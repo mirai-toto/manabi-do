@@ -1,0 +1,56 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+jobs:
+  flutter-ci:
+    name: Flutter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Get dependencies
+        run: flutter pub get
+        working-directory: manabi_do
+
+      - name: Analyze
+        run: flutter analyze
+        working-directory: manabi_do
+
+      - name: Format check
+        run: dart format --output=none --set-exit-if-changed .
+        working-directory: manabi_do
+
+  release-dry-run:
+    name: semantic-release (dry run)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install semantic-release
+        run: |
+          npm install -g \
+            semantic-release \
+            @semantic-release/commit-analyzer \
+            @semantic-release/release-notes-generator \
+            @semantic-release/github
+
+      - name: semantic-release dry run
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: semantic-release --dry-run

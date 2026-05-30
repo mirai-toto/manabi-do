@@ -1,0 +1,20 @@
+# Tatoeba build cache (downloaded by tool/build_content_db.py, not committed)
+manabi_do/tool/tatoeba_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Docker
+docker-compose.override.yml
+
+# JMdict / KANJIDIC2 source files — large offline downloads, not committed
+manabi_do/tool/data/

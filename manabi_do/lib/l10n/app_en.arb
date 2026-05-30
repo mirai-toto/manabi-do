@@ -1,0 +1,316 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Manabi Do",
+  "@appTitle": { "description": "The name of the application" },
+
+  "tagline": "Learn Japanese — offline, at your pace",
+  "signInWithGoogle": "Sign in with Google",
+  "signInWithApple": "Sign in with Apple",
+  "continueAsGuest": "Continue as guest →",
+  "or": "or",
+
+  "sectionGrammar": "Grammar",
+  "sectionCharacters": "Characters",
+  "sectionVocabulary": "Vocabulary",
+
+  "tabHiragana": "Hiragana",
+  "@tabHiragana": {},
+  "tabKatakana": "Katakana",
+  "@tabKatakana": {},
+  "tabKanji": "Kanji",
+  "kana": "Kana",
+  "@tabKanji": {},
+
+  "skipKana": "Skip (exclude from practice)",
+  "skippedKana": "Skipped",
+
+  "statusNotStarted": "Not started",
+
+  "exampleWords": "Example Words",
+  "readings": "Readings",
+
+  "difficultyLevel": "Difficulty {level}",
+  "@difficultyLevel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "chapterN": "Chapter {number}",
+  "@chapterN": {
+    "placeholders": {
+      "number": { "type": "String" }
+    }
+  },
+
+  "nLessons": "{count} lessons",
+  "@nLessons": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "multipleChoice": "Multiple Choice",
+  "sentenceFillIn": "Sentence",
+  "sentenceFillInPrompt": "Fill in the blank",
+  "practice": "Practice →",
+
+  "sessionComplete": "Session complete!",
+  "retry": "Retry",
+  "nextLesson": "Next lesson →",
+  "dailyTraining": "Daily Training",
+  "writingPractice": "Writing Practice",
+  "next": "Next →",
+  "kanjiPracticed": "{count} kanji practiced",
+  "@kanjiPracticed": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "correct": "Correct",
+  "missed": "Missed",
+  "timeSpent": "Time spent",
+
+  "flashcardDefaultPrompt": "What does this mean?",
+  "flashcardJapaneseQuestion": "How do you say this in Japanese?",
+  "tapToReveal": "Tap to reveal",
+  "tapToHide": "Tap to hide",
+  "flashcardNotYet": "✗  Not yet",
+  "flashcardGotIt": "✓  Got it",
+
+  "navSettings": "Settings",
+  "navHome": "Home",
+  "navVocab": "Vocab",
+
+  "greetingMorning": "Good morning",
+  "greetingAfternoon": "Good afternoon",
+  "greetingEvening": "Good evening",
+  "greetingSubtitle": "Let's study some Japanese",
+
+  "streakLabel": "day streak",
+  "streakSubtitle": "Keep it up!",
+
+  "comingSoon": "Coming soon",
+
+  "strokeOrderPlaceholder": "▶ Stroke order animation",
+
+  "strokeOrder": "Stroke Order",
+  "selectLevel": "Select a Level",
+  "onyomi": "onyomi",
+  "kunyomi": "kunyomi",
+  "noExampleWordsFound": "No example words found",
+
+  "posNoun": "Noun",
+  "posVerb": "Verb",
+  "posAdverb": "Adverb",
+  "posNaAdjective": "Na-adjective",
+  "posIAdjective": "I-adjective",
+  "posNoAdjective": "No-adjective",
+  "posExpression": "Expression",
+  "posConjunction": "Conjunction",
+  "posInterjection": "Interjection",
+  "posPronoun": "Pronoun",
+  "posNumeral": "Numeral",
+  "posPrefix": "Prefix",
+  "posSuffix": "Suffix",
+  "posParticle": "Particle",
+  "posCounter": "Counter",
+  "posAuxiliaryVerb": "Aux. verb",
+  "posAuxiliary": "Auxiliary",
+  "posPreNounAdj": "Pre-noun adj.",
+  "posAdjIxClass": "Adj. (ii/yoi)",
+  "posPrenominalAdj": "Prenominal adj.",
+  "posNounSuffix": "Noun suffix",
+  "posNounPrefix": "Noun prefix",
+  "posSuruSpecial": "Suru verb (special)",
+  "posSuruIrregular": "Suru verb (irreg.)",
+
+  "levelN5": "Beginner",
+  "levelN4": "Elementary",
+  "levelN3": "Intermediate",
+  "levelN2": "Upper-Intermediate",
+  "levelN1": "Advanced",
+
+  "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
+  "@charactersSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "charactersSubtitleShort": "Kana · Kanji N5–N1",
+
+  "nKanji": "{count} kanji",
+  "@nKanji": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "kanaRowVowels": "Vowels",
+
+  "settingsData": "Data",
+  "settingsResetProgress": "Reset all progress",
+  "resetProgressTitle": "Reset all progress?",
+  "resetProgressBody": "All SRS cards will be permanently deleted.",
+  "resetKanaTitle": "Reset this kana?",
+  "resetKanaBody": "SRS data for this character will be permanently deleted.",
+  "resetConfirm": "Reset",
+  "cancel": "Cancel",
+
+  "settingsPractice": "Practice",
+  "settingsPracticeNewCharacters": "New characters per day",
+  "settingsPracticeNewVocab": "New vocabulary per day",
+
+  "settingsAppearance": "Appearance",
+  "settingsThemeSystem": "System",
+  "settingsThemeLight": "Light",
+  "settingsThemeDark": "Dark",
+  "settingsLanguage": "Language",
+
+  "aboutTitle": "About",
+  "aboutVersion": "Version {version}",
+  "@aboutVersion": {
+    "placeholders": { "version": { "type": "String" } }
+  },
+  "aboutDataSources": "Data sources",
+  "aboutEdrdgNotice": "This app uses JMdict and KANJIDIC2, published by the Electronic Dictionary Research and Development Group (EDRDG) under a Creative Commons Attribution-ShareAlike 4.0 International licence.",
+  "aboutEdrdgLink": "edrdg.org",
+  "aboutKanjiVgNotice": "Kanji stroke order diagrams use KanjiVG by Ulrich Apel, licensed under Creative Commons Attribution-ShareAlike 3.0 Unported.",
+  "aboutKanjiVgLink": "kanjivg.tagaini.net",
+  "aboutTatoebaNotice": "Example sentences are sourced from Tatoeba (tatoeba.org), a community-built multilingual corpus, licensed under Creative Commons Attribution 2.0.",
+  "aboutTatoebaLink": "tatoeba.org",
+  "aboutOpenSourceLicenses": "Open source licenses",
+
+  "practiceSessionDone": "Session complete",
+  "practiceReviewed": "{count} reviewed",
+  "@practiceReviewed": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceGotIt": "{count} got it",
+  "@practiceGotIt": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceNotYet": "{count} not yet",
+  "@practiceNotYet": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceEmpty": "Nothing to review — come back tomorrow!",
+  "practiceDone": "Done",
+  "quitPracticeTitle": "Leave session?",
+  "quitPracticeBody": "Your remaining items won't be reviewed.",
+  "quit": "Leave",
+
+  "drawingPractice": "Practice Drawing",
+  "selfAssessQuestion": "Did you get it right?",
+  "ratingAgain": "Again",
+  "ratingHard": "Hard",
+  "ratingGood": "Good",
+  "ratingEasy": "Easy",
+  "drawingReference": "Reference",
+  "drawingYourAnswer": "Your answer",
+  "drawingCheck": "Check",
+  "drawingUndo": "Undo",
+  "drawingClear": "Clear",
+  "drawingStrokeCount": "{count} strokes",
+  "@drawingStrokeCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "drawingStrokeResult": "{correct} / {total} strokes correct",
+  "@drawingStrokeResult": {
+    "placeholders": {
+      "correct": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "mcqSelectMeaning": "What does this kanji mean?",
+  "mcqSelectWordMeaning": "What does this word mean?",
+  "mcqSelectKanji": "Select the kanji for: \"{meaning}\"",
+  "@mcqSelectKanji": {
+    "placeholders": { "meaning": { "type": "String" } }
+  },
+
+  "srsStateNew": "New",
+  "srsStateLearning": "Learning",
+  "srsStateApprentice": "Apprentice",
+  "srsStateFamiliar": "Familiar",
+  "srsStateMastered": "Mastered",
+  "srsStateExpert": "Expert",
+  "srsDueToday": "Due today",
+  "srsDueIn": "Due in {days}d",
+  "@srsDueIn": {
+    "placeholders": { "days": { "type": "int" } }
+  },
+  "nWords": "{count} words",
+  "@nWords": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "vocabSubtitle": "{total} words to discover",
+  "@vocabSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "vocabSubtitleShort": "Words to discover",
+  "reviewsDue": "{count} reviews waiting",
+  "@reviewsDue": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "nNew": "{count} new",
+  "@nNew": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "reviewsDueSubtitle": "Tap to start your session",
+  "reviewNow": "Review now",
+  "studyNow": "Study now",
+  "reviewAndStudy": "Review & study",
+  "viewDetail": "View detail",
+  "allCaughtUp": "All caught up!",
+  "allCaughtUpSubtitle": "Come back later for more reviews",
+  "grammarChapters": "Chapters",
+  "japaneseBasics": "Japanese Basics",
+  "japaneseBasicsSubtitle": "Language fundamentals",
+  "grammarSubtitle": "Basics & JLPT N5–N1",
+  "searchKanji": "Search kanji",
+  "searchKanjiHint": "Kanji, reading, or meaning…",
+  "searchKanjiPrompt": "Search by kanji, reading, or meaning",
+  "noResults": "No results",
+
+  "groupN": "Group {n}",
+  "@groupN": {
+    "placeholders": { "n": { "type": "int" } }
+  },
+
+  "practiceSettingsTitle": "Practice settings",
+  "practiceSettingsRecognition": "Recognition",
+  "recognitionStrict": "Strict",
+  "recognitionNormal": "Normal",
+  "recognitionLenient": "Lenient",
+  "practiceSettingsSessionLength": "Session length",
+  "practiceSettingsMcqChoices": "Options per question",
+  "sessionLengthHint": "Takes effect next session",
+  "practiceSettingsHint": "Hint",
+  "hintMeaning": "Meaning",
+  "hintReadings": "Readings",
+  "hintBoth": "Both",
+  "ghostKanjiLabel": "Ghost kanji",
+  "ghostKanjiSubtitle": "Show kanji outline while drawing",
+  "snapToReferenceLabel": "Snap to reference",
+  "snapToReferenceSubtitle": "Replace correct strokes with clean reference",
+  "showStrokeCountLabel": "Show stroke count",
+  "showStrokeCountSubtitle": "Display number of strokes as a hint",
+  "autoAdvanceLabel": "Auto-advance",
+  "autoAdvanceSubtitle": "Move to next kanji automatically when all correct",
+
+  "hintUsedFeedback": "Hint used — marked as missed",
+
+  "flashcardPractice": "Flashcard",
+  "mcqPractice": "Multiple Choice",
+  "freePractice": "Free Practice",
+  "sentencePractice": "Sentences",
+
+  "sentenceSettingsLabel": "Sentence exercise",
+  "showSentenceFuriganaLabel": "Furigana in question",
+  "showSentenceFuriganaSubtitle": "Show reading above kanji in the sentence",
+  "showChoiceFuriganaLabel": "Furigana in choices",
+  "showChoiceFuriganaSubtitle": "Show reading above kanji in answer options",
+  "translationModeLabel": "Translation",
+  "translationModeAlways": "Always",
+  "translationModeOnDemand": "Button",
+  "translationModeNever": "Never"
+}

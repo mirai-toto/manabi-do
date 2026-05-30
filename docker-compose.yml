@@ -1,0 +1,16 @@
+services:
+  flutter:
+    build: .
+    volumes:
+      - ./manabi_do:/app
+      - pub-cache:/root/.pub-cache
+    working_dir: /app
+
+  build:
+    extends:
+      service: flutter
+    command: >
+      sh -c "flutter pub get && flutter gen-l10n && dart run build_runner build --delete-conflicting-outputs 2>/dev/null; flutter build linux --release"
+
+volumes:
+  pub-cache:

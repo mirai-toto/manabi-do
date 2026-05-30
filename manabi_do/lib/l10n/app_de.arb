@@ -1,0 +1,307 @@
+{
+  "@@locale": "de",
+
+  "appTitle": "Manabi Do",
+
+  "tagline": "Japanisch lernen — offline, in deinem Tempo",
+  "signInWithGoogle": "Mit Google anmelden",
+  "signInWithApple": "Mit Apple anmelden",
+  "continueAsGuest": "Als Gast fortfahren →",
+  "or": "oder",
+
+  "sectionGrammar": "Grammatik",
+  "sectionCharacters": "Zeichen",
+  "sectionVocabulary": "Vokabular",
+
+  "tabHiragana": "Hiragana",
+  "tabKatakana": "Katakana",
+  "tabKanji": "Kanji",
+  "kana": "Kana",
+
+  "skipKana": "Überspringen (aus Übung ausschließen)",
+  "skippedKana": "Übersprungen",
+
+  "statusNotStarted": "Nicht begonnen",
+
+  "exampleWords": "Beispielwörter",
+  "readings": "Lesungen",
+
+  "difficultyLevel": "Schwierigkeit {level}",
+  "@difficultyLevel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "chapterN": "Kapitel {number}",
+  "@chapterN": {
+    "placeholders": {
+      "number": { "type": "String" }
+    }
+  },
+
+  "nLessons": "{count} Lektionen",
+  "@nLessons": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "multipleChoice": "Multiple Choice",
+  "sentenceFillIn": "Satz",
+  "sentenceFillInPrompt": "Lücke ausfüllen",
+  "practice": "Üben →",
+
+  "sessionComplete": "Sitzung abgeschlossen!",
+  "retry": "Nochmal",
+  "nextLesson": "Nächste Lektion →",
+  "dailyTraining": "Tägliches Training",
+  "writingPractice": "Schreibübung",
+  "next": "Weiter →",
+  "kanjiPracticed": "{count} Kanji geübt",
+  "correct": "Richtig",
+  "missed": "Falsch",
+  "timeSpent": "Benötigte Zeit",
+
+  "flashcardDefaultPrompt": "Was bedeutet das?",
+  "flashcardJapaneseQuestion": "Wie sagt man das auf Japanisch?",
+  "tapToReveal": "Zum Aufdecken tippen",
+  "tapToHide": "Zum Verbergen tippen",
+  "flashcardNotYet": "✗  Noch nicht",
+  "flashcardGotIt": "✓  Gewusst",
+
+  "navSettings": "Einstellungen",
+  "navHome": "Start",
+  "navVocab": "Vokabeln",
+
+  "greetingMorning": "Guten Morgen",
+  "greetingAfternoon": "Guten Tag",
+  "greetingEvening": "Guten Abend",
+  "greetingSubtitle": "Lass uns Japanisch lernen",
+
+  "streakLabel": "Tage in Folge",
+  "streakSubtitle": "Weiter so!",
+
+  "comingSoon": "Demnächst verfügbar",
+
+  "strokeOrderPlaceholder": "▶ Strichfolge-Animation",
+
+  "strokeOrder": "Strichfolge",
+  "selectLevel": "Niveau auswählen",
+  "onyomi": "Onyomi",
+  "kunyomi": "Kunyomi",
+  "noExampleWordsFound": "Keine Beispielwörter gefunden",
+
+  "posNoun": "Substantiv",
+  "posVerb": "Verb",
+  "posAdverb": "Adverb",
+  "posNaAdjective": "Na-Adjektiv",
+  "posIAdjective": "I-Adjektiv",
+  "posNoAdjective": "No-Adjektiv",
+  "posExpression": "Ausdruck",
+  "posConjunction": "Konjunktion",
+  "posInterjection": "Interjektion",
+  "posPronoun": "Pronomen",
+  "posNumeral": "Zahlwort",
+  "posPrefix": "Präfix",
+  "posSuffix": "Suffix",
+  "posParticle": "Partikel",
+  "posCounter": "Zählwort",
+  "posAuxiliaryVerb": "Hilfsverb",
+  "posAuxiliary": "Auxiliar",
+  "posPreNounAdj": "Pränominales Adj.",
+  "posAdjIxClass": "Adj. (ii/yoi)",
+  "posPrenominalAdj": "Pränominales Adj.",
+  "posNounSuffix": "Nominalsuffix",
+  "posNounPrefix": "Nominalpräfix",
+  "posSuruSpecial": "Suru-Verb (spez.)",
+  "posSuruIrregular": "Suru-Verb (unreg.)",
+
+  "levelN5": "Anfänger",
+  "levelN4": "Grundstufe",
+  "levelN3": "Mittelstufe",
+  "levelN2": "Obere Mittelstufe",
+  "levelN1": "Fortgeschritten",
+
+  "charactersSubtitle": "Kana · Kanji N5–N1 · {total} Kana",
+  "@charactersSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "charactersSubtitleShort": "Kana · Kanji N5–N1",
+
+  "nKanji": "{count} Kanji",
+  "@nKanji": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "kanaRowVowels": "Vokale",
+
+  "settingsData": "Daten",
+  "settingsResetProgress": "Alle Fortschritte zurücksetzen",
+  "resetProgressTitle": "Alle Fortschritte zurücksetzen?",
+  "resetProgressBody": "Alle SRS-Karten werden dauerhaft gelöscht.",
+  "resetKanaTitle": "Dieses Kana zurücksetzen?",
+  "resetKanaBody": "SRS-Daten für dieses Zeichen werden dauerhaft gelöscht.",
+  "resetConfirm": "Zurücksetzen",
+  "cancel": "Abbrechen",
+
+  "settingsPractice": "Übung",
+  "settingsPracticeNewCharacters": "Neue Zeichen pro Tag",
+  "settingsPracticeNewVocab": "Neues Vokabular pro Tag",
+
+  "settingsAppearance": "Erscheinungsbild",
+  "settingsThemeSystem": "System",
+  "settingsThemeLight": "Hell",
+  "settingsThemeDark": "Dunkel",
+  "settingsLanguage": "Sprache",
+
+  "aboutTitle": "Über",
+  "aboutVersion": "Version {version}",
+  "@aboutVersion": {
+    "placeholders": { "version": { "type": "String" } }
+  },
+  "aboutDataSources": "Datenquellen",
+  "aboutEdrdgNotice": "Diese App verwendet JMdict und KANJIDIC2, veröffentlicht von der Electronic Dictionary Research and Development Group (EDRDG) unter einer Creative Commons Attribution-ShareAlike 4.0 International Lizenz.",
+  "aboutEdrdgLink": "edrdg.org",
+  "aboutKanjiVgNotice": "Die Strichreihenfolge-Diagramme verwenden KanjiVG von Ulrich Apel, lizenziert unter Creative Commons Attribution-ShareAlike 3.0 Unported.",
+  "aboutKanjiVgLink": "kanjivg.tagaini.net",
+  "aboutTatoebaNotice": "Beispielsätze stammen von Tatoeba (tatoeba.org), einem gemeinschaftlich erstellten mehrsprachigen Korpus, lizenziert unter Creative Commons Attribution 2.0.",
+  "aboutTatoebaLink": "tatoeba.org",
+  "aboutOpenSourceLicenses": "Open-Source-Lizenzen",
+
+  "practiceSessionDone": "Sitzung abgeschlossen",
+  "practiceReviewed": "{count} wiederholt",
+  "@practiceReviewed": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceGotIt": "{count} gewusst",
+  "@practiceGotIt": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceNotYet": "{count} noch nicht",
+  "@practiceNotYet": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceEmpty": "Nichts zu wiederholen — komm morgen wieder!",
+  "practiceDone": "Fertig",
+  "quitPracticeTitle": "Sitzung verlassen?",
+  "quitPracticeBody": "Die verbleibenden Elemente werden nicht geübt.",
+  "quit": "Verlassen",
+
+  "drawingPractice": "Schreiben üben",
+  "selfAssessQuestion": "Hast du es gewusst?",
+  "ratingAgain": "Nochmal",
+  "ratingHard": "Schwer",
+  "ratingGood": "Gut",
+  "ratingEasy": "Leicht",
+  "drawingReference": "Referenz",
+  "drawingYourAnswer": "Deine Antwort",
+  "drawingCheck": "Prüfen",
+  "drawingUndo": "Rückgängig",
+  "drawingClear": "Löschen",
+  "drawingStrokeCount": "{count} Striche",
+  "@drawingStrokeCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "drawingStrokeResult": "{correct} / {total} Striche korrekt",
+  "@drawingStrokeResult": {
+    "placeholders": {
+      "correct": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "mcqSelectMeaning": "Was bedeutet dieses Kanji?",
+  "mcqSelectWordMeaning": "Was bedeutet dieses Wort?",
+  "mcqSelectKanji": "Welches Kanji steht für: \"{meaning}\"?",
+  "@mcqSelectKanji": {
+    "placeholders": { "meaning": { "type": "String" } }
+  },
+
+  "srsStateNew": "Neu",
+  "srsStateLearning": "In Bearbeitung",
+  "srsStateApprentice": "Anfänger",
+  "srsStateFamiliar": "Vertraut",
+  "srsStateMastered": "Gelernt",
+  "srsStateExpert": "Experte",
+  "srsDueToday": "Heute fällig",
+  "srsDueIn": "In {days} T.",
+  "@srsDueIn": {
+    "placeholders": { "days": { "type": "int" } }
+  },
+  "nWords": "{count} Wörter",
+  "@nWords": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "vocabSubtitle": "{total} Wörter entdecken",
+  "@vocabSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "vocabSubtitleShort": "Wörter entdecken",
+  "reviewsDue": "{count} Wiederholungen ausstehend",
+  "@reviewsDue": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "nNew": "{count} neu",
+  "@nNew": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "reviewsDueSubtitle": "Tippen um die Sitzung zu starten",
+  "reviewNow": "Jetzt üben",
+  "studyNow": "Jetzt lernen",
+  "reviewAndStudy": "Üben & lernen",
+  "viewDetail": "Details anzeigen",
+  "allCaughtUp": "Alles erledigt!",
+  "allCaughtUpSubtitle": "Komm später für weitere Wiederholungen zurück",
+  "grammarChapters": "Kapitel",
+  "japaneseBasics": "Japanische Grundlagen",
+  "japaneseBasicsSubtitle": "Sprachliche Grundlagen",
+  "grammarSubtitle": "Grundlagen & JLPT N5–N1",
+  "searchKanji": "Kanji suchen",
+  "searchKanjiHint": "Kanji, Lesung oder Bedeutung…",
+  "searchKanjiPrompt": "Nach Kanji, Lesung oder Bedeutung suchen",
+  "noResults": "Keine Ergebnisse",
+
+  "groupN": "Gruppe {n}",
+  "@groupN": {
+    "placeholders": { "n": { "type": "int" } }
+  },
+
+  "practiceSettingsTitle": "Übungseinstellungen",
+  "practiceSettingsRecognition": "Erkennung",
+  "recognitionStrict": "Streng",
+  "recognitionNormal": "Normal",
+  "recognitionLenient": "Großzügig",
+  "practiceSettingsSessionLength": "Sitzungslänge",
+  "practiceSettingsMcqChoices": "Optionen pro Frage",
+  "sessionLengthHint": "Gilt ab der nächsten Sitzung",
+  "practiceSettingsHint": "Hinweis",
+  "hintMeaning": "Bedeutung",
+  "hintReadings": "Lesungen",
+  "hintBoth": "Beides",
+  "ghostKanjiLabel": "Geist-Kanji",
+  "ghostKanjiSubtitle": "Kanji-Umriss beim Zeichnen anzeigen",
+  "snapToReferenceLabel": "An Referenz einrasten",
+  "snapToReferenceSubtitle": "Korrekte Striche durch saubere Referenz ersetzen",
+  "showStrokeCountLabel": "Strichanzahl anzeigen",
+  "showStrokeCountSubtitle": "Anzahl der Striche als Hinweis anzeigen",
+  "autoAdvanceLabel": "Auto-Weiter",
+  "autoAdvanceSubtitle": "Automatisch zum nächsten Kanji wechseln, wenn alles korrekt ist",
+
+  "hintUsedFeedback": "Hinweis benutzt — als falsch markiert",
+
+  "flashcardPractice": "Karteikarten",
+  "mcqPractice": "Multiple Choice",
+  "freePractice": "Freies Üben",
+  "sentencePractice": "Sätze",
+
+  "sentenceSettingsLabel": "Satzübung",
+  "showSentenceFuriganaLabel": "Furigana im Satz",
+  "showSentenceFuriganaSubtitle": "Lesung über Kanji im Satz anzeigen",
+  "showChoiceFuriganaLabel": "Furigana in Antworten",
+  "showChoiceFuriganaSubtitle": "Lesung in den Antwortoptionen anzeigen",
+  "translationModeLabel": "Übersetzung",
+  "translationModeAlways": "Immer",
+  "translationModeOnDemand": "Schaltfläche",
+  "translationModeNever": "Nie"
+}

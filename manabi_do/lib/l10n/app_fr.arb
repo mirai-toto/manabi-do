@@ -1,0 +1,307 @@
+{
+  "@@locale": "fr",
+
+  "appTitle": "Manabi Do",
+
+  "tagline": "Apprends le japonais — hors ligne, à ton rythme",
+  "signInWithGoogle": "Connecte-toi avec Google",
+  "signInWithApple": "Connecte-toi avec Apple",
+  "continueAsGuest": "Continuer sans compte →",
+  "or": "ou",
+
+  "sectionGrammar": "Grammaire",
+  "sectionCharacters": "Caractères",
+  "sectionVocabulary": "Vocabulaire",
+
+  "tabHiragana": "Hiragana",
+  "tabKatakana": "Katakana",
+  "tabKanji": "Kanji",
+  "kana": "Kana",
+
+  "skipKana": "Passer (ignorer pour les révisions)",
+  "skippedKana": "Ignoré",
+
+  "statusNotStarted": "Pas encore commencé",
+
+  "exampleWords": "Exemples",
+  "readings": "Lectures",
+
+  "difficultyLevel": "Difficulté {level}",
+  "@difficultyLevel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "chapterN": "Chapitre {number}",
+  "@chapterN": {
+    "placeholders": {
+      "number": { "type": "String" }
+    }
+  },
+
+  "nLessons": "{count} leçons",
+  "@nLessons": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "multipleChoice": "Choix multiple",
+  "sentenceFillIn": "Phrase",
+  "sentenceFillInPrompt": "Complétez la phrase",
+  "practice": "S'entraîner →",
+
+  "sessionComplete": "Séance terminée !",
+  "retry": "Réessayer",
+  "nextLesson": "Leçon suivante →",
+  "dailyTraining": "Entraînement quotidien",
+  "writingPractice": "Pratique de l'écriture",
+  "next": "Suivant →",
+  "kanjiPracticed": "{count} kanji pratiqués",
+  "correct": "Correct",
+  "missed": "Raté",
+  "timeSpent": "Temps passé",
+
+  "flashcardDefaultPrompt": "C'est quoi ?",
+  "flashcardJapaneseQuestion": "Comment dit-on ça en japonais ?",
+  "tapToReveal": "Appuie pour révéler",
+  "tapToHide": "Appuie pour masquer",
+  "flashcardNotYet": "✗  Pas encore",
+  "flashcardGotIt": "✓  Je sais",
+
+  "navSettings": "Paramètres",
+  "navHome": "Accueil",
+  "navVocab": "Vocab",
+
+  "greetingMorning": "Bonjour",
+  "greetingAfternoon": "Bon après-midi",
+  "greetingEvening": "Bonsoir",
+  "greetingSubtitle": "Un peu de japonais ?",
+
+  "streakLabel": "jours de suite",
+  "streakSubtitle": "Continue comme ça !",
+
+  "comingSoon": "Bientôt disponible",
+
+  "strokeOrderPlaceholder": "▶ Animation de l'ordre des traits",
+
+  "strokeOrder": "Ordre des traits",
+  "selectLevel": "Choisir un niveau",
+  "onyomi": "onyomi",
+  "kunyomi": "kunyomi",
+  "noExampleWordsFound": "Aucun exemple trouvé",
+
+  "posNoun": "Nom",
+  "posVerb": "Verbe",
+  "posAdverb": "Adverbe",
+  "posNaAdjective": "Adjectif na",
+  "posIAdjective": "Adjectif i",
+  "posNoAdjective": "Adjectif no",
+  "posExpression": "Expression",
+  "posConjunction": "Conjonction",
+  "posInterjection": "Interjection",
+  "posPronoun": "Pronom",
+  "posNumeral": "Numéral",
+  "posPrefix": "Préfixe",
+  "posSuffix": "Suffixe",
+  "posParticle": "Particule",
+  "posCounter": "Compteur",
+  "posAuxiliaryVerb": "Verbe aux.",
+  "posAuxiliary": "Auxiliaire",
+  "posPreNounAdj": "Adj. pré-nominal",
+  "posAdjIxClass": "Adj. (ii/yoi)",
+  "posPrenominalAdj": "Adj. prénominal",
+  "posNounSuffix": "Suffixe nominal",
+  "posNounPrefix": "Préfixe nominal",
+  "posSuruSpecial": "Verbe suru (spécial)",
+  "posSuruIrregular": "Verbe suru (irrég.)",
+
+  "levelN5": "Débutant",
+  "levelN4": "Élémentaire",
+  "levelN3": "Intermédiaire",
+  "levelN2": "Intermédiaire supérieur",
+  "levelN1": "Avancé",
+
+  "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
+  "@charactersSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "charactersSubtitleShort": "Kana · Kanji N5–N1",
+
+  "nKanji": "{count} kanji",
+  "@nKanji": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "kanaRowVowels": "Voyelles",
+
+  "settingsData": "Données",
+  "settingsResetProgress": "Réinitialiser la progression",
+  "resetProgressTitle": "Réinitialiser toute la progression ?",
+  "resetProgressBody": "Toutes les cartes SRS seront définitivement supprimées.",
+  "resetKanaTitle": "Réinitialiser ce kana ?",
+  "resetKanaBody": "Les données SRS de ce caractère seront définitivement supprimées.",
+  "resetConfirm": "Réinitialiser",
+  "cancel": "Annuler",
+
+  "settingsPractice": "Entraînement",
+  "settingsPracticeNewCharacters": "Nouveaux caractères par jour",
+  "settingsPracticeNewVocab": "Nouveau vocabulaire par jour",
+
+  "settingsAppearance": "Apparence",
+  "settingsThemeSystem": "Système",
+  "settingsThemeLight": "Clair",
+  "settingsThemeDark": "Sombre",
+  "settingsLanguage": "Langue",
+
+  "aboutTitle": "À propos",
+  "aboutVersion": "Version {version}",
+  "@aboutVersion": {
+    "placeholders": { "version": { "type": "String" } }
+  },
+  "aboutDataSources": "Sources de données",
+  "aboutEdrdgNotice": "Cette application utilise JMdict et KANJIDIC2, publiés par l'Electronic Dictionary Research and Development Group (EDRDG) sous licence Creative Commons Attribution-ShareAlike 4.0 International.",
+  "aboutEdrdgLink": "edrdg.org",
+  "aboutKanjiVgNotice": "Les diagrammes d'ordre des traits utilisent KanjiVG d'Ulrich Apel, sous licence Creative Commons Attribution-ShareAlike 3.0 non transposé.",
+  "aboutKanjiVgLink": "kanjivg.tagaini.net",
+  "aboutTatoebaNotice": "Les exemples de phrases proviennent de Tatoeba (tatoeba.org), un corpus multilingue communautaire, sous licence Creative Commons Attribution 2.0.",
+  "aboutTatoebaLink": "tatoeba.org",
+  "aboutOpenSourceLicenses": "Licences open source",
+
+  "practiceSessionDone": "Session terminée !",
+  "practiceReviewed": "{count} révisées",
+  "@practiceReviewed": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceGotIt": "{count} réussies",
+  "@practiceGotIt": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceNotYet": "{count} à revoir",
+  "@practiceNotYet": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceEmpty": "Rien à revoir — reviens demain !",
+  "practiceDone": "Terminer",
+  "quitPracticeTitle": "Quitter la session ?",
+  "quitPracticeBody": "Les éléments restants ne seront pas révisés.",
+  "quit": "Quitter",
+
+  "drawingPractice": "S'entraîner à tracer",
+  "selfAssessQuestion": "Tu l'as eu ?",
+  "ratingAgain": "Raté",
+  "ratingHard": "Dur",
+  "ratingGood": "Bien",
+  "ratingEasy": "Facile",
+  "drawingReference": "Référence",
+  "drawingYourAnswer": "Ta réponse",
+  "drawingCheck": "Vérifier",
+  "drawingUndo": "Annuler",
+  "drawingClear": "Effacer",
+  "drawingStrokeCount": "{count} traits",
+  "@drawingStrokeCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "drawingStrokeResult": "{correct} / {total} traits corrects",
+  "@drawingStrokeResult": {
+    "placeholders": {
+      "correct": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "mcqSelectMeaning": "Ce kanji veut dire ?",
+  "mcqSelectWordMeaning": "Que signifie ce mot ?",
+  "mcqSelectKanji": "Quel kanji pour \"{meaning}\" ?",
+  "@mcqSelectKanji": {
+    "placeholders": { "meaning": { "type": "String" } }
+  },
+
+  "srsStateNew": "Nouveau",
+  "srsStateLearning": "En cours",
+  "srsStateApprentice": "Apprenti",
+  "srsStateFamiliar": "Familier",
+  "srsStateMastered": "Maîtrisé",
+  "srsStateExpert": "Expert",
+  "srsDueToday": "À revoir aujourd'hui",
+  "srsDueIn": "Dans {days}j",
+  "@srsDueIn": {
+    "placeholders": { "days": { "type": "int" } }
+  },
+  "nWords": "{count} mots",
+  "@nWords": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "vocabSubtitle": "{total} mots à découvrir",
+  "@vocabSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "vocabSubtitleShort": "Mots à découvrir",
+  "reviewsDue": "{count} révisions en attente",
+  "@reviewsDue": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "nNew": "{count} nouveau",
+  "@nNew": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "reviewsDueSubtitle": "Appuyez pour commencer la session",
+  "reviewNow": "Réviser",
+  "studyNow": "Étudier",
+  "reviewAndStudy": "Réviser & étudier",
+  "viewDetail": "Voir le détail",
+  "allCaughtUp": "Tout est à jour !",
+  "allCaughtUpSubtitle": "Revenez plus tard pour de nouvelles révisions",
+  "grammarChapters": "Chapitres",
+  "japaneseBasics": "Bases du japonais",
+  "japaneseBasicsSubtitle": "Fondamentaux de la langue",
+  "grammarSubtitle": "Bases & JLPT N5–N1",
+  "searchKanji": "Rechercher un kanji",
+  "searchKanjiHint": "Kanji, lecture ou signification…",
+  "searchKanjiPrompt": "Rechercher par kanji, lecture ou signification",
+  "noResults": "Aucun résultat",
+
+  "groupN": "Groupe {n}",
+  "@groupN": {
+    "placeholders": { "n": { "type": "int" } }
+  },
+
+  "practiceSettingsTitle": "Réglages de pratique",
+  "practiceSettingsRecognition": "Reconnaissance",
+  "recognitionStrict": "Strict",
+  "recognitionNormal": "Normal",
+  "recognitionLenient": "Tolérant",
+  "practiceSettingsSessionLength": "Durée de session",
+  "practiceSettingsMcqChoices": "Options par question",
+  "sessionLengthHint": "Prend effet à la prochaine session",
+  "practiceSettingsHint": "Indice",
+  "hintMeaning": "Signification",
+  "hintReadings": "Lectures",
+  "hintBoth": "Les deux",
+  "ghostKanjiLabel": "Kanji fantôme",
+  "ghostKanjiSubtitle": "Afficher le contour du kanji pendant le tracé",
+  "snapToReferenceLabel": "Accrocher à la référence",
+  "snapToReferenceSubtitle": "Remplacer les traits corrects par la référence propre",
+  "showStrokeCountLabel": "Afficher le nombre de traits",
+  "showStrokeCountSubtitle": "Afficher le nombre de traits comme indice",
+  "autoAdvanceLabel": "Avance automatique",
+  "autoAdvanceSubtitle": "Passer au kanji suivant automatiquement quand tout est correct",
+
+  "hintUsedFeedback": "Indice utilisé — marqué comme raté",
+
+  "flashcardPractice": "Cartes mémoire",
+  "mcqPractice": "Choix multiple",
+  "freePractice": "Pratique libre",
+  "sentencePractice": "Phrases",
+
+  "sentenceSettingsLabel": "Exercice de phrases",
+  "showSentenceFuriganaLabel": "Furigana dans la phrase",
+  "showSentenceFuriganaSubtitle": "Afficher la lecture au-dessus des kanji",
+  "showChoiceFuriganaLabel": "Furigana dans les choix",
+  "showChoiceFuriganaSubtitle": "Afficher la lecture dans les options de réponse",
+  "translationModeLabel": "Traduction",
+  "translationModeAlways": "Toujours",
+  "translationModeOnDemand": "Bouton",
+  "translationModeNever": "Jamais"
+}
