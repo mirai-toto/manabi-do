@@ -1,0 +1,25 @@
+{
+  "@@locale": "en",
+  "appTitle": "Manabi Do",
+  "@appTitle": {
+    "description": "The name of the application"
+  },
+  "sectionCharacters": "Characters",
+  "@sectionCharacters": {
+    "description": "Navigation label for the Characters section"
+  },
+  "sectionGrammar": "Grammar",
+  "@sectionGrammar": {
+    "description": "Navigation label for the Grammar section"
+  },
+  "tabHiragana": "Hiragana",
+  "@tabHiragana": {},
+  "tabKatakana": "Katakana",
+  "@tabKatakana": {},
+  "tabKanji": "Kanji",
+  "@tabKanji": {},
+  "known": "Known",
+  "@known": {},
+  "notKnown": "Not known",
+  "@notKnown": {}
+}
