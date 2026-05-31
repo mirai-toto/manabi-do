@@ -8,6 +8,7 @@
 | Language | Dart | Bundled with Flutter, syntax close to Java/Kotlin |
 | Database | SQLite via `drift` | Offline first, JPA-like annotations, managed migrations |
 | State management | Riverpod | Modern Flutter standard, compatible with Clean Architecture |
+| UI | Material 3 | Broadest ecosystem, adaptive navigation components, markdown support |
 | i18n | `flutter_localizations` + `intl` | Flutter standard, ARB-based, code-generated accessors |
 
 ---
@@ -34,6 +35,7 @@ Presentation  →  Domain  ←  Data
 - Flutter widgets (screens, components)
 - Riverpod notifiers (state management)
 - Unaware of SQLite — communicates only through use cases
+- Adaptive layout: bottom nav (mobile) → navigation rail (tablet) → navigation drawer (desktop)
 
 ---
 
