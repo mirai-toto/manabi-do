@@ -35,7 +35,14 @@ Full offline — no backend for now (multi-device sync considered for later)
 
 ---
 
-### 2. Grammar
+### 2. Vocabulary
+
+- N5 and N4 vocabulary lists
+- Each word has: kanji form, kana reading, meaning, JLPT level, part of speech
+- Words linked to relevant kanji where applicable
+- Data from JMdict
+
+### 3. Grammar
 
 - 17 chapters covering N5/N4 Japanese concepts
 - Each chapter contains one or more lessons

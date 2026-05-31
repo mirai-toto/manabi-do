@@ -6,10 +6,11 @@ import 'tables/grammar_lessons_table.dart';
 import 'tables/kanas_table.dart';
 import 'tables/kanjis_table.dart';
 import 'tables/progress_table.dart';
+import 'tables/vocabulary_table.dart';
 
 part 'app_database.g.dart';
 
-@DriftDatabase(tables: [Kanjis, Kanas, GrammarLessons, Exercises, ProgressEntries])
+@DriftDatabase(tables: [Kanjis, Kanas, VocabularyEntries, GrammarLessons, Exercises, ProgressEntries])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(driftDatabase(name: 'manabi_do'));
 

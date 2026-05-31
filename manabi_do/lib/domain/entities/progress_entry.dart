@@ -1,4 +1,4 @@
-enum ItemType { kanji, kana, exercise, lesson }
+enum ItemType { kanji, kana, vocabulary, exercise, lesson }
 
 class ProgressEntry {
   final int id;

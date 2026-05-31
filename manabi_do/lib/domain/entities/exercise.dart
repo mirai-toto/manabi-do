@@ -1,6 +1,6 @@
 enum ExerciseType { mcq, flashcard, trueFalse, freeWriting, matching, ordering }
 
-enum ExerciseSource { kana, kanji, grammar }
+enum ExerciseSource { kana, kanji, vocabulary, grammar }
 
 class Exercise {
   final int id;
