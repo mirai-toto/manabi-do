@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'home_screen.dart';
@@ -113,7 +114,7 @@ class _AuthSection extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _GoogleLogo(),
+                  SvgPicture.asset('assets/icons/google.svg', width: 20, height: 20),
                   const SizedBox(width: 10),
                   const Text('Sign in with Google'),
                 ],
@@ -124,12 +125,12 @@ class _AuthSection extends StatelessWidget {
               onPressed: onContinue,
               backgroundColor: const Color(0xFF1C1C1E),
               foregroundColor: Colors.white,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('', style: TextStyle(fontSize: 18)),
-                  SizedBox(width: 10),
-                  Text('Sign in with Apple'),
+                  SvgPicture.asset('assets/icons/apple.svg', width: 20, height: 20),
+                  const SizedBox(width: 10),
+                  const Text('Sign in with Apple'),
                 ],
               ),
             ),
@@ -209,26 +210,3 @@ class _OrDivider extends StatelessWidget {
   }
 }
 
-class _GoogleLogo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
-      width: 20,
-      height: 20,
-      child: Stack(
-        children: [
-          Center(
-            child: Text(
-              'G',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF4285F4),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
