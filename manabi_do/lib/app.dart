@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:manabi_do/l10n/app_localizations.dart';
 
-import 'presentation/screens/home_screen.dart';
+import 'presentation/screens/landing_screen.dart';
 
 class ManabiDoApp extends StatelessWidget {
   const ManabiDoApp({super.key});
@@ -24,7 +24,7 @@ class ManabiDoApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6B4EFF)),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const LandingScreen(),
     );
   }
 }
