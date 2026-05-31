@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manabi Do — Screens</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #6B4EFF;
+    --primary-container: #E8E0FF;
+    --on-primary: #FFFFFF;
+    --on-primary-container: #1E0085;
+    --secondary: #5E5791;
+    --secondary-container: #E4DFFF;
+    --surface: #FEF7FF;
+    --surface-variant: #E7E0EC;
+    --surface-container: #F3EDF7;
+    --surface-container-high: #ECE6F0;
+    --on-surface: #1C1B1F;
+    --on-surface-variant: #49454F;
+    --outline: #79747E;
+    --outline-variant: #CAC4D0;
+    --error: #B3261E;
+    --success: #146B3A;
+    --success-container: #C8F5DA;
+    --font-body: 'Inter', sans-serif;
+    --font-jp: 'Noto Sans JP', sans-serif;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 28px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: #1A1A2E;
+    padding: 48px 32px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,.4); text-align: center; margin-bottom: 48px;
+  }
+
+  /* ── Layout ── */
+  .screens-grid {
+    display: flex; flex-wrap: wrap; gap: 48px; justify-content: center;
+  }
+
+  .screen-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+  }
+
+  .screen-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,.35);
+  }
+
+  /* ── Phone frame ── */
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: #111;
+    border-radius: 54px;
+    padding: 14px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.08),
+      0 32px 80px rgba(0,0,0,.6),
+      inset 0 0 0 1px rgba(255,255,255,.04);
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .phone-inner {
+    width: 100%; height: 100%;
+    border-radius: 42px;
+    overflow: hidden;
+    background: var(--surface);
+    position: relative;
+  }
+
+  /* notch */
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 14px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 34px;
+    background: #111;
+    border-radius: 0 0 20px 20px;
+    z-index: 10;
+  }
+
+  /* status bar */
+  .status-bar {
+    height: 50px; display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 0 24px 8px;
+    font-size: 12px; font-weight: 600; color: var(--on-surface);
+    flex-shrink: 0;
+  }
+  .status-bar.light { color: white; }
+  .status-icons { display: flex; gap: 6px; align-items: center; font-size: 11px; }
+
+  /* screen scroll container */
+  .screen-scroll {
+    height: calc(844px - 28px - 50px); /* phone padding + status bar */
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
+  .screen-scroll::-webkit-scrollbar { display: none; }
+
+  /* ── Common ── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: var(--font-body); font-size: 15px; font-weight: 600;
+    border: none; cursor: pointer; border-radius: 100px;
+    padding: 14px 28px; transition: all .15s;
+  }
+  .btn-filled { background: var(--primary); color: white; width: 100%; }
+  .btn-tonal { background: var(--primary-container); color: var(--on-primary-container); }
+  .btn-outlined { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+  .progress-bar-wrap { background: var(--surface-variant); border-radius: 100px; height: 6px; }
+  .progress-bar-fill { height: 100%; border-radius: 100px; background: var(--primary); }
+  .divider { height: 1px; background: var(--outline-variant); }
+
+  /* ── Nav bar ── */
+  .nav-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: white; border-top: 1px solid var(--outline-variant);
+    display: flex; padding: 8px 0 20px; z-index: 5;
+  }
+  .nav-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 10px; font-weight: 500; color: var(--on-surface-variant); cursor: pointer;
+  }
+  .nav-item.active { color: var(--on-primary-container); }
+  .nav-pill {
+    width: 64px; height: 30px; border-radius: 100px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .nav-item.active .nav-pill { background: var(--primary-container); }
+
+  /* ════════════════════════════════
+     SCREEN 1 — LANDING
+  ════════════════════════════════ */
+  .landing-hero {
+    height: 420px;
+    background: linear-gradient(160deg, #0D0630 0%, #3D1FCC 50%, #9B7FFF 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; padding: 0 32px; text-align: center;
+  }
+  .landing-jp {
+    font-family: var(--font-jp); font-size: 96px; font-weight: 700;
+    color: white; line-height: 1;
+    text-shadow: 0 4px 32px rgba(107,78,255,.6);
+  }
+  .landing-app-name {
+    font-size: 16px; font-weight: 600; color: rgba(255,255,255,.7);
+    letter-spacing: 3px; text-transform: uppercase;
+  }
+  .landing-tagline { font-size: 13px; color: rgba(255,255,255,.45); margin-top: 4px; }
+  .landing-body { padding: 32px 24px; display: flex; flex-direction: column; gap: 12px; background: white; }
+  .landing-btn {
+    width: 100%; padding: 16px; border-radius: 14px;
+    font-size: 15px; font-weight: 600; font-family: var(--font-body);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .landing-btn-google { background: white; color: #1F1F1F; border: 1.5px solid #DADCE0; }
+  .landing-btn-apple { background: #1C1C1E; color: white; }
+  .landing-divider {
+    text-align: center; font-size: 12px; color: var(--on-surface-variant);
+    position: relative; padding: 4px 0;
+  }
+  .landing-divider::before, .landing-divider::after {
+    content: ''; position: absolute; top: 50%; width: 42%; height: 1px;
+    background: var(--outline-variant);
+  }
+  .landing-divider::before { left: 0; }
+  .landing-divider::after { right: 0; }
+  .landing-btn-guest {
+    background: var(--surface-container); color: var(--on-surface);
+  }
+
+  /* ════════════════════════════════
+     SCREEN 2 — HOME
+  ════════════════════════════════ */
+  .home-header {
+    padding: 16px 20px 12px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .home-greeting { font-size: 22px; font-weight: 700; }
+  .home-sub { font-size: 13px; color: var(--on-surface-variant); margin-top: 1px; }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--primary-container);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: var(--primary);
+  }
+  .home-content { padding: 0 16px 120px; display: flex; flex-direction: column; gap: 14px; }
+
+  .home-section-card {
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08); cursor: pointer;
+  }
+  .home-card-banner {
+    padding: 22px 20px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .home-card-banner.grammar { background: linear-gradient(135deg, #5B3EEF 0%, #9B7FFF 100%); }
+  .home-card-banner.chars { background: linear-gradient(135deg, #1565C0 0%, #42A5F5 100%); }
+  .home-card-banner.vocab { background: linear-gradient(135deg, #2E7D32 0%, #66BB6A 100%); }
+  .hc-title { font-size: 20px; font-weight: 700; color: white; }
+  .hc-sub { font-size: 12px; color: rgba(255,255,255,.75); margin-top: 2px; }
+  .hc-emoji { font-family: var(--font-jp); font-size: 44px; color: rgba(255,255,255,.3); font-weight: 700; }
+  .home-card-foot {
+    background: white; padding: 12px 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hc-stat { font-size: 12px; color: var(--on-surface-variant); flex-shrink: 0; }
+  .hc-stat strong { color: var(--on-surface); }
+
+  .streak-card {
+    background: linear-gradient(135deg, #FF6B35, #FF8C42);
+    border-radius: 20px; padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 2px 12px rgba(255,107,53,.3);
+  }
+  .streak-num { font-size: 36px; font-weight: 800; color: white; }
+  .streak-label { font-size: 14px; font-weight: 600; color: white; }
+  .streak-sub { font-size: 12px; color: rgba(255,255,255,.7); }
+
+  /* ════════════════════════════════
+     SCREEN 3 — GRAMMAR CHAPTER LIST
+  ════════════════════════════════ */
+  .screen-header {
+    padding: 12px 20px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .back-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--surface-container);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; cursor: pointer; flex-shrink: 0;
+  }
+  .screen-title { font-size: 22px; font-weight: 700; }
+  .screen-sub { font-size: 13px; color: var(--on-surface-variant); }
+
+  .chapter-list { padding: 0 16px 100px; display: flex; flex-direction: column; gap: 12px; }
+  .chapter-card {
+    background: white; border-radius: 18px; padding: 18px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.07); cursor: pointer;
+  }
+  .chapter-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .ch-num { font-size: 11px; font-weight: 600; letter-spacing: .8px; color: var(--primary); text-transform: uppercase; }
+  .ch-badge {
+    font-size: 11px; font-weight: 500; background: var(--primary-container);
+    color: var(--on-primary-container); padding: 3px 10px; border-radius: 100px;
+  }
+  .ch-title { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+  .ch-desc { font-size: 12px; color: var(--on-surface-variant); margin-bottom: 12px; line-height: 1.4; }
+  .ch-progress-label { font-size: 11px; color: var(--on-surface-variant); display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .ch-done { color: var(--success); font-weight: 600; }
+
+  /* ════════════════════════════════
+     SCREEN 4 — LESSON LIST
+  ════════════════════════════════ */
+  .lesson-list { padding: 0 16px 100px; display: flex; flex-direction: column; gap: 10px; }
+  .lesson-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 14px; border-radius: 16px;
+    background: white; cursor: pointer;
+    border: 1.5px solid var(--outline-variant);
+  }
+  .lesson-icon-circle {
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700;
+  }
+  .lesson-icon-circle.done { background: var(--success-container); color: var(--success); }
+  .lesson-icon-circle.current { background: var(--primary-container); color: var(--primary); }
+  .lesson-icon-circle.locked { background: var(--surface-variant); color: var(--on-surface-variant); }
+  .lesson-info { flex: 1; }
+  .lesson-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .lesson-meta { font-size: 11px; color: var(--on-surface-variant); display: flex; align-items: center; gap: 8px; }
+  .dots { display: flex; gap: 3px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--outline-variant); }
+  .dot.on { background: var(--primary); }
+  .badge-known { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 100px; background: var(--success-container); color: var(--success); }
+  .badge-new { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 100px; background: var(--primary-container); color: var(--primary); }
+
+  /* ════════════════════════════════
+     SCREEN 5 — LESSON READER
+  ════════════════════════════════ */
+  .reader-hero {
+    background: linear-gradient(135deg, #5B3EEF, #9B7FFF);
+    padding: 16px 20px 28px; color: white;
+  }
+  .reader-chapter-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: .75; margin-bottom: 4px; }
+  .reader-title { font-size: 24px; font-weight: 700; }
+  .reader-tags { display: flex; gap: 6px; margin-top: 10px; }
+  .reader-tag { font-size: 11px; padding: 3px 10px; border-radius: 100px; background: rgba(255,255,255,.2); color: white; }
+  .reader-body { padding: 20px 20px 0; font-size: 15px; line-height: 1.75; color: var(--on-surface); }
+  .reader-body h3 { font-size: 17px; font-weight: 700; margin: 20px 0 8px; }
+  .reader-body p { margin-bottom: 12px; }
+  .jp-block {
+    background: var(--primary-container); border-left: 3px solid var(--primary);
+    border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 12px 0;
+  }
+  .jp-block .jp { font-family: var(--font-jp); font-size: 20px; color: var(--on-primary-container); font-weight: 600; }
+  .jp-block .tr { font-size: 12px; color: var(--on-surface-variant); margin-top: 4px; font-style: italic; }
+  .reader-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  .reader-table th { background: var(--surface-container); padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--outline-variant); }
+  .reader-table td { padding: 8px 10px; border-bottom: 1px solid var(--outline-variant); font-family: var(--font-jp); }
+  .reader-table td:first-child { font-family: var(--font-body); font-size: 12px; }
+  .reader-footer { padding: 20px; margin-bottom: 20px; }
+
+  /* ════════════════════════════════
+     SCREEN 6 — EXERCISE (MCQ)
+  ════════════════════════════════ */
+  .ex-screen { padding: 16px 20px; display: flex; flex-direction: column; height: calc(844px - 28px - 50px); }
+  .ex-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .ex-progress-bar { flex: 1; height: 4px; background: var(--surface-variant); border-radius: 100px; }
+  .ex-progress-fill { height: 100%; border-radius: 100px; background: var(--primary); }
+  .ex-counter { font-size: 12px; font-weight: 600; color: var(--on-surface-variant); }
+  .ex-type-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: .6px; text-transform: uppercase;
+    color: var(--primary); background: var(--primary-container);
+    padding: 4px 12px; border-radius: 100px; display: inline-block; margin-bottom: 16px;
+    align-self: flex-start;
+  }
+  .ex-question { font-size: 17px; font-weight: 600; line-height: 1.4; margin-bottom: 10px; }
+  .ex-jp { font-family: var(--font-jp); font-size: 40px; font-weight: 700; color: var(--primary); margin-bottom: 28px; display: block; }
+  .mcq-options { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .mcq-opt {
+    padding: 16px; border-radius: 14px;
+    border: 1.5px solid var(--outline-variant); cursor: pointer;
+    font-size: 15px; display: flex; align-items: center; gap: 12px;
+    transition: all .12s;
+  }
+  .mcq-opt.selected { border-color: var(--primary); background: var(--primary-container); }
+  .mcq-opt.correct { border-color: var(--success); background: var(--success-container); }
+  .mcq-opt.wrong { border-color: var(--error); background: #FCE8E6; }
+  .mcq-letter {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    border: 1.5px solid currentColor;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+  }
+  .mcq-opt.correct .mcq-letter { color: var(--success); }
+  .mcq-opt.wrong .mcq-letter { color: var(--error); }
+  .opt-jp { font-family: var(--font-jp); font-size: 17px; }
+  .ex-confirm-btn {
+    margin-top: 20px; width: 100%; padding: 16px; border-radius: 14px;
+    background: var(--primary); color: white;
+    font-size: 16px; font-weight: 700; font-family: var(--font-body);
+    border: none; cursor: pointer;
+  }
+  .ex-confirm-btn.disabled { background: var(--surface-variant); color: var(--on-surface-variant); }
+
+  /* ════════════════════════════════
+     SCREEN 7 — FLASHCARD
+  ════════════════════════════════ */
+  .flash-screen { padding: 16px 20px; display: flex; flex-direction: column; }
+  .flashcard-big {
+    border-radius: 24px; margin: 16px 0;
+    background: linear-gradient(135deg, #5B3EEF 0%, #9B7FFF 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; height: 280px; cursor: pointer;
+    box-shadow: 0 8px 32px rgba(107,78,255,.35); position: relative;
+  }
+  .fc-hint { font-size: 11px; color: rgba(255,255,255,.5); position: absolute; bottom: 16px; }
+  .fc-jp { font-family: var(--font-jp); font-size: 72px; font-weight: 700; color: white; }
+  .fc-label { font-size: 14px; color: rgba(255,255,255,.7); }
+  .flashcard-big.flipped { background: linear-gradient(135deg, #1A5E3A, #2E9E60); }
+  .fc-answer { font-size: 26px; font-weight: 700; color: white; text-align: center; }
+  .fc-reading { font-family: var(--font-jp); font-size: 20px; color: rgba(255,255,255,.8); }
+  .flash-actions { display: flex; gap: 12px; margin-top: 4px; }
+  .flash-btn {
+    flex: 1; padding: 18px; border-radius: 16px;
+    border: none; cursor: pointer; font-size: 15px; font-weight: 700;
+    font-family: var(--font-body);
+  }
+  .flash-no { background: #FCE8E6; color: var(--error); }
+  .flash-yes { background: var(--success-container); color: var(--success); }
+  .flash-upcoming { padding: 0 4px; }
+  .flash-upcoming-label { font-size: 12px; font-weight: 600; color: var(--on-surface-variant); margin-bottom: 8px; }
+  .flash-queue { display: flex; gap: 8px; }
+  .fq-card {
+    background: var(--primary-container); border-radius: 12px;
+    width: 60px; height: 64px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px;
+  }
+  .fq-card.unknown { background: var(--surface-variant); }
+  .fq-jp { font-family: var(--font-jp); font-size: 20px; font-weight: 600; color: var(--primary); }
+  .fq-card.unknown .fq-jp { color: var(--on-surface-variant); }
+
+  /* ════════════════════════════════
+     SCREEN 8 — EXERCISE SUMMARY
+  ════════════════════════════════ */
+  .summary-screen {
+    padding: 24px 20px;
+    display: flex; flex-direction: column; align-items: center;
+    background: var(--surface);
+  }
+  .summary-confetti {
+    font-size: 40px; margin-bottom: 8px; text-align: center;
+  }
+  .summary-circle {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), #9B7FFF);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(107,78,255,.4);
+    flex-direction: column; margin-bottom: 20px;
+  }
+  .sc-num { font-size: 36px; font-weight: 800; color: white; line-height: 1; }
+  .sc-label { font-size: 11px; color: rgba(255,255,255,.7); font-weight: 600; }
+  .summary-title { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+  .summary-sub { font-size: 14px; color: var(--on-surface-variant); margin-bottom: 28px; text-align: center; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; margin-bottom: 24px; }
+  .stat-box { background: white; border-radius: 16px; padding: 16px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .stat-n { font-size: 32px; font-weight: 800; }
+  .stat-l { font-size: 11px; font-weight: 500; color: var(--on-surface-variant); margin-top: 2px; }
+  .missed-review { width: 100%; background: #FCE8E6; border-radius: 16px; padding: 16px; margin-bottom: 20px; }
+  .missed-title { font-size: 13px; font-weight: 600; color: var(--error); margin-bottom: 10px; }
+  .missed-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .missed-chip {
+    font-family: var(--font-jp); font-size: 16px; font-weight: 600;
+    background: white; color: var(--error); padding: 6px 14px; border-radius: 100px;
+  }
+  .summary-actions { display: flex; gap: 10px; width: 100%; }
+  .sum-btn {
+    flex: 1; padding: 16px; border-radius: 14px;
+    font-size: 15px; font-weight: 700; font-family: var(--font-body); border: none; cursor: pointer;
+  }
+  .sum-retry { background: var(--surface-container); color: var(--on-surface); }
+  .sum-next { background: var(--primary); color: white; }
+
+  /* ════════════════════════════════
+     SCREEN 9 — KANA
+  ════════════════════════════════ */
+  .kana-header-tabs {
+    display: flex; background: var(--surface-container);
+    margin: 0 16px 16px; border-radius: 12px; padding: 4px;
+  }
+  .kana-tab {
+    flex: 1; padding: 8px; text-align: center;
+    font-size: 13px; font-weight: 600; border-radius: 10px; cursor: pointer;
+    color: var(--on-surface-variant);
+  }
+  .kana-tab.active { background: white; color: var(--primary); box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+  .kana-group-label { font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--on-surface-variant); padding: 0 16px 8px; }
+  .kana-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding: 0 16px 12px; }
+  .kana-cell {
+    aspect-ratio: 1; border-radius: 12px;
+    background: white; border: 1.5px solid var(--outline-variant);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 3px; cursor: pointer;
+  }
+  .kana-cell.known { background: var(--success-container); border-color: var(--success); }
+  .kana-char { font-family: var(--font-jp); font-size: 26px; font-weight: 500; }
+  .kana-rom { font-size: 9px; font-weight: 600; letter-spacing: .3px; color: var(--on-surface-variant); }
+  .kana-cell.known .kana-rom { color: var(--success); }
+  .kana-progress-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px; background: white; margin: 0 0 4px;
+  }
+  .kana-progress-text { font-size: 12px; color: var(--on-surface-variant); }
+  .kana-progress-text strong { color: var(--on-surface); }
+
+  /* ════════════════════════════════
+     SCREEN 10 — KANJI DETAIL
+  ════════════════════════════════ */
+  .kanji-detail-screen { padding-bottom: 100px; }
+  .kanji-hero {
+    background: linear-gradient(135deg, #1565C0, #42A5F5);
+    padding: 16px 20px 32px; display: flex; align-items: center; gap: 20px;
+  }
+  .kanji-big-char {
+    width: 96px; height: 96px; border-radius: 20px;
+    background: rgba(255,255,255,.2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-jp); font-size: 60px; font-weight: 700; color: white;
+    flex-shrink: 0;
+  }
+  .kanji-hero-info { color: white; }
+  .kanji-meaning-big { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .kanji-jlpt { font-size: 11px; font-weight: 600; background: rgba(255,255,255,.2); padding: 3px 10px; border-radius: 100px; display: inline-block; margin-bottom: 8px; }
+  .kanji-readings { display: flex; flex-wrap: wrap; gap: 6px; }
+  .k-reading { font-family: var(--font-jp); font-size: 14px; background: rgba(255,255,255,.15); padding: 3px 10px; border-radius: 100px; }
+  .kanji-body { padding: 20px; }
+  .kanji-section-label { font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--on-surface-variant); margin-bottom: 10px; }
+  .stroke-placeholder {
+    background: var(--surface-container); border-radius: 16px;
+    height: 140px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px; flex-direction: column; gap: 6px;
+  }
+  .stroke-placeholder .sp-jp { font-family: var(--font-jp); font-size: 64px; color: var(--on-surface); }
+  .sp-label { font-size: 11px; color: var(--on-surface-variant); }
+  .kanji-words { display: flex; flex-direction: column; }
+  .kw-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--outline-variant);
+  }
+  .kw-kanji { font-family: var(--font-jp); font-size: 18px; font-weight: 700; width: 72px; }
+  .kw-info { flex: 1; }
+  .kw-reading { font-family: var(--font-jp); font-size: 13px; color: var(--on-surface-variant); }
+  .kw-meaning { font-size: 13px; color: var(--on-surface); font-weight: 500; }
+  .toggle-known-bar {
+    margin: 20px 0; display: flex; align-items: center; justify-content: center;
+    gap: 10px; padding: 14px; border-radius: 14px;
+    background: var(--success-container); cursor: pointer;
+    font-size: 15px; font-weight: 600; color: var(--success);
+  }
+</style>
+</head>
+<body>
+
+<h1>Manabi Do · Screen Mockups</h1>
+
+<div class="screens-grid">
+
+  <!-- ═══════════════════════════ SCREEN 1: LANDING ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">01 · Landing</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar light">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="landing-hero">
+            <div class="landing-jp">学び</div>
+            <div class="landing-app-name">Manabi Do</div>
+            <div class="landing-tagline">Learn Japanese — offline, at your pace</div>
+          </div>
+          <div class="landing-body">
+            <button class="landing-btn landing-btn-google">
+              <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+              Sign in with Google
+            </button>
+            <button class="landing-btn landing-btn-apple">
+              <svg width="20" height="20" viewBox="0 0 814 1000"><path fill="white" d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-150.3-93.8C27.7 761.9 0 666.2 0 575.4c0-176.3 115.4-269.5 228.9-269.5 60.3 0 110.6 39.5 148.4 39.5 36 0 92.4-42.1 159.9-42.1 25.6 0 108.2 2.6 168.5 80.1zm-230.3-111.5c28.2-35.2 48.3-84.1 48.3-133s-1.3-10.2-1.9-10.2c-42.7 0-94.4 34.5-125 72.6-26.9 33.2-51.9 82.1-51.9 131.6 0 5.1.6 10.2 1 11.5 3.2.6 8.3 1.3 13.5 1.3 38.4 0 86.1-25.6 116-73.8z"/></svg>
+              Sign in with Apple
+            </button>
+            <div class="landing-divider">or</div>
+            <button class="landing-btn landing-btn-guest">Continue as guest →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SCREEN 2: HOME ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">02 · Home</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="screen-scroll" style="padding-bottom:80px">
+          <div class="home-header">
+            <div>
+              <div class="home-greeting">Good morning 👋</div>
+              <div class="home-sub">Let's study some Japanese</div>
+            </div>
+            <div class="avatar">M</div>
+          </div>
+          <div class="home-content">
+            <div class="home-section-card">
+              <div class="home-card-banner grammar">
+                <div>
+                  <div class="hc-title">Grammar</div>
+                  <div class="hc-sub">17 chapters · N5/N4</div>
+                </div>
+                <div class="hc-emoji">文</div>
+              </div>
+              <div class="home-card-foot">
+                <div class="hc-stat"><strong>3</strong> / 17 chapters</div>
+                <div class="progress-bar-wrap" style="flex:1">
+                  <div class="progress-bar-fill" style="width:18%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="home-section-card">
+              <div class="home-card-banner chars">
+                <div>
+                  <div class="hc-title">Characters</div>
+                  <div class="hc-sub">Kana · Kanji N5/N4</div>
+                </div>
+                <div class="hc-emoji">字</div>
+              </div>
+              <div class="home-card-foot">
+                <div class="hc-stat"><strong>46</strong> / 184 known</div>
+                <div class="progress-bar-wrap" style="flex:1">
+                  <div class="progress-bar-fill" style="width:25%; background:#1976D2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="home-section-card">
+              <div class="home-card-banner vocab">
+                <div>
+                  <div class="hc-title">Vocabulary</div>
+                  <div class="hc-sub">800+ words · N5/N4</div>
+                </div>
+                <div class="hc-emoji">語</div>
+              </div>
+              <div class="home-card-foot">
+                <div class="hc-stat"><strong>120</strong> / 800 known</div>
+                <div class="progress-bar-wrap" style="flex:1">
+                  <div class="progress-bar-fill" style="width:15%; background:#388E3C"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-bar">
+          <div class="nav-item active">
+            <div class="nav-pill">🏠</div>Home
+          </div>
+          <div class="nav-item">
+            <div class="nav-pill">字</div>Characters
+          </div>
+          <div class="nav-item">
+            <div class="nav-pill">語</div>Vocab
+          </div>
+          <div class="nav-item">
+            <div class="nav-pill">文</div>Grammar
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SCREEN 3: GRAMMAR CHAPTERS ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">03 · Grammar Chapters</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="screen-header">
+            <div class="back-btn">←</div>
+            <div>
+              <div class="screen-title">Grammar</div>
+              <div class="screen-sub">17 chapters · N5/N4</div>
+            </div>
+          </div>
+          <div class="chapter-list">
+            <div class="chapter-card" style="border-left: 3px solid var(--primary)">
+              <div class="chapter-card-top">
+                <div class="ch-num">Chapter 01</div>
+                <div class="ch-badge">5 lessons</div>
+              </div>
+              <div class="ch-title">Verbs</div>
+              <div class="ch-desc">Verb groups, base forms, polite conjugations and て-form.</div>
+              <div class="ch-progress-label">
+                <span>3 / 5 lessons</span>
+                <span class="ch-done">60%</span>
+              </div>
+              <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:60%"></div></div>
+            </div>
+            <div class="chapter-card">
+              <div class="chapter-card-top">
+                <div class="ch-num">Chapter 02</div>
+                <div class="ch-badge">3 lessons</div>
+              </div>
+              <div class="ch-title">Directions & Places</div>
+              <div class="ch-desc">Spatial particles, location nouns, and directional expressions.</div>
+              <div class="ch-progress-label">
+                <span>0 / 3 lessons</span>
+                <span>—</span>
+              </div>
+              <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="chapter-card">
+              <div class="chapter-card-top">
+                <div class="ch-num">Chapter 03</div>
+                <div class="ch-badge">4 lessons</div>
+              </div>
+              <div class="ch-title">Adjectives</div>
+              <div class="ch-desc">い and な adjectives, predicates and attributive forms.</div>
+              <div class="ch-progress-label"><span>0 / 4 lessons</span><span>—</span></div>
+              <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="chapter-card">
+              <div class="chapter-card-top">
+                <div class="ch-num">Chapter 04</div>
+                <div class="ch-badge">3 lessons</div>
+              </div>
+              <div class="ch-title">Particles</div>
+              <div class="ch-desc">は、が、を、に、で、へ — core sentence structure.</div>
+              <div class="ch-progress-label"><span>0 / 3 lessons</span><span>—</span></div>
+              <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="chapter-card">
+              <div class="chapter-card-top">
+                <div class="ch-num">Chapter 05</div>
+                <div class="ch-badge">2 lessons</div>
+              </div>
+              <div class="ch-title">Questions</div>
+              <div class="ch-desc">Question markers, interrogative words and intonation.</div>
+              <div class="ch-progress-label"><span>0 / 2 lessons</span><span>—</span></div>
+              <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-bar">
+          <div class="nav-item">
+            <div class="nav-pill">🏠</div>Home
+          </div>
+          <div class="nav-item">
+            <div class="nav-pill">字</div>Characters
+          </div>
+          <div class="nav-item">
+            <div class="nav-pill">語</div>Vocab
+          </div>
+          <div class="nav-item active">
+            <div class="nav-pill">文</div>Grammar
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SCREEN 4: LESSON LIST ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">04 · Lesson List</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="screen-scroll">
+          <div style="background: linear-gradient(135deg,#5B3EEF,#9B7FFF); padding: 16px 20px 28px; color:white;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px">
+              <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:14px">←</div>
+              <span style="font-size:12px;opacity:.75">Grammar · Chapter 01</span>
+            </div>
+            <div style="font-size:22px;font-weight:700;margin-bottom:8px">Verbs</div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="flex:1;height:4px;background:rgba(255,255,255,.3);border-radius:100px">
+                <div style="width:60%;height:100%;background:white;border-radius:100px"></div>
+              </div>
+              <span style="font-size:12px;opacity:.8">3 / 5</span>
+            </div>
+          </div>
+          <div class="lesson-list">
+            <div class="lesson-row" style="border-color:var(--success)">
+              <div class="lesson-icon-circle done">✓</div>
+              <div class="lesson-info">
+                <div class="lesson-title">Verb Groups</div>
+                <div class="lesson-meta">
+                  <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div>
+                  <span>Difficulty 2 · 8 exercises</span>
+                </div>
+              </div>
+              <div class="badge-known">Known</div>
+            </div>
+            <div class="lesson-row" style="border-color:var(--success)">
+              <div class="lesson-icon-circle done">✓</div>
+              <div class="lesson-info">
+                <div class="lesson-title">Polite Form (ます)</div>
+                <div class="lesson-meta">
+                  <div class="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+                  <span>Difficulty 1 · 6 exercises</span>
+                </div>
+              </div>
+              <div class="badge-known">Known</div>
+            </div>
+            <div class="lesson-row" style="border-color:var(--success)">
+              <div class="lesson-icon-circle done">✓</div>
+              <div class="lesson-info">
+                <div class="lesson-title">Negative Form (ません)</div>
+                <div class="lesson-meta">
+                  <div class="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+                  <span>Difficulty 1 · 6 exercises</span>
+                </div>
+              </div>
+              <div class="badge-known">Known</div>
+            </div>
+            <div class="lesson-row" style="border-color:var(--primary); background:var(--primary-container)">
+              <div class="lesson-icon-circle current">4</div>
+              <div class="lesson-info">
+                <div class="lesson-title">て-form Conjugation</div>
+                <div class="lesson-meta">
+                  <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div>
+                  <span>Difficulty 3 · 10 exercises</span>
+                </div>
+              </div>
+              <div class="badge-new">Start</div>
+            </div>
+            <div class="lesson-row" style="opacity:.5">
+              <div class="lesson-icon-circle locked">🔒</div>
+              <div class="lesson-info">
+                <div class="lesson-title">た-form (Past)</div>
+                <div class="lesson-meta">
+                  <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div>
+                  <span>Difficulty 2 · 8 exercises</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-bar">
+          <div class="nav-item"><div class="nav-pill">🏠</div>Home</div>
+          <div class="nav-item"><div class="nav-pill">字</div>Characters</div>
+          <div class="nav-item"><div class="nav-pill">語</div>Vocab</div>
+          <div class="nav-item active"><div class="nav-pill">文</div>Grammar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SCREEN 5: LESSON READER ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">05 · Lesson Reader</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar light">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="reader-hero">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+              <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:14px;color:white">←</div>
+              <span style="font-size:12px;color:rgba(255,255,255,.7)">Chapter 01 · Verbs</span>
+            </div>
+            <div class="reader-title">て-form Conjugation</div>
+            <div class="reader-tags">
+              <div class="reader-tag">N5</div>
+              <div class="reader-tag">verbs</div>
+              <div class="reader-tag">conjugation</div>
+              <div class="reader-tag">difficulty ●●●</div>
+            </div>
+          </div>
+          <div class="reader-body">
+            <p>The <strong>て-form</strong> is one of the most versatile verb forms in Japanese. It connects actions, forms requests, and builds compound sentences.</p>
+            <h3>Group 1 — Godan verbs</h3>
+            <p>The ending changes based on the final syllable of the verb stem:</p>
+            <div class="jp-block">
+              <div class="jp">書く → 書いて</div>
+              <div class="tr">kaku → kaite &nbsp;·&nbsp; to write</div>
+            </div>
+            <div class="jp-block">
+              <div class="jp">飲む → 飲んで</div>
+              <div class="tr">nomu → nonde &nbsp;·&nbsp; to drink</div>
+            </div>
+            <div class="jp-block">
+              <div class="jp">話す → 話して</div>
+              <div class="tr">hanasu → hanashite &nbsp;·&nbsp; to speak</div>
+            </div>
+            <h3>Group 2 — Ichidan verbs</h3>
+            <p>Simply drop る and add て:</p>
+            <div class="jp-block">
+              <div class="jp">食べる → 食べて</div>
+              <div class="tr">taberu → tabete &nbsp;·&nbsp; to eat</div>
+            </div>
+            <h3>Conjugation table</h3>
+            <table class="reader-table">
+              <tr><th>Ending</th><th>て-form</th><th>Example</th></tr>
+              <tr><td>く</td><td>いて</td><td>書いて</td></tr>
+              <tr><td>ぐ</td><td>いで</td><td>泳いで</td></tr>
+              <tr><td>す</td><td>して</td><td>話して</td></tr>
+              <tr><td>む/ぬ/ぶ</td><td>んで</td><td>飲んで</td></tr>
+              <tr><td>る/う/つ</td><td>って</td><td>買って</td></tr>
+            </table>
+          </div>
+          <div class="reader-footer">
+            <button class="btn btn-filled" style="border-radius:14px; padding:16px; font-size:16px">
+              Practice → (10 exercises)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SCREEN 6: EXERCISE MCQ ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">06 · Exercise — MCQ</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="ex-screen">
+          <div class="ex-progress">
+            <div style="font-size:12px;cursor:pointer;color:var(--on-surface-variant)">✕</div>
+            <div class="ex-progress-bar">
+              <div class="ex-progress-fill" style="width:30%"></div>
+            </div>
+            <div class="ex-counter">3 / 10</div>
+          </div>
+          <div class="ex-type-tag">Multiple Choice</div>
+          <div class="ex-question">What is the て-form of this verb?</div>
+          <div class="ex-jp">飲む</div>
+          <div class="mcq-options">
+            <div class="mcq-opt wrong">
+              <div class="mcq-letter">A</div>
+              <span class="opt-jp">飲いて ✗</span>
+            </div>
+            <div class="mcq-opt correct">
+              <div class="mcq-letter">B</div>
+              <span class="opt-jp">飲んで ✓</span>
+            </div>
+            <div class="mcq-opt">
+              <div class="mcq-letter">C</div>
+              <span class="opt-jp">飲して</span>
+            </div>
+            <div class="mcq-opt">
+              <div class="mcq-letter">D</div>
+              <span class="opt-jp">飲って</span>
+            </div>
+          </div>
+          <button class="ex-confirm-btn">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SCREEN 7: FLASHCARD ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">07 · Exercise — Flashcard</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="flash-screen">
+          <div class="ex-progress" style="margin-bottom:12px">
+            <div style="font-size:12px;cursor:pointer;color:var(--on-surface-variant)">✕</div>
+            <div class="ex-progress-bar">
+              <div class="ex-progress-fill" style="width:60%"></div>
+            </div>
+            <div class="ex-counter">6 / 10</div>
+          </div>
+          <div class="ex-type-tag">Flashcard</div>
+          <div class="flashcard-big flipped">
+            <div class="fc-reading">たべる</div>
+            <div class="fc-answer">to eat</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:4px">食べる</div>
+            <div class="fc-hint">Did you know it? ↓</div>
+          </div>
+          <div class="flash-actions">
+            <button class="flash-btn flash-no">✗  Not yet</button>
+            <button class="flash-btn flash-yes">✓  Got it</button>
+          </div>
+          <div class="flash-upcoming" style="margin-top:20px">
+            <div class="flash-upcoming-label">Up next</div>
+            <div class="flash-queue">
+              <div class="fq-card"><div class="fq-jp">飲む</div></div>
+              <div class="fq-card"><div class="fq-jp">書く</div></div>
+              <div class="fq-card unknown"><div class="fq-jp">?</div></div>
+              <div class="fq-card unknown"><div class="fq-jp">?</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SCREEN 8: SUMMARY ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">08 · Exercise Summary</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="summary-screen">
+            <div class="summary-confetti">🎉</div>
+            <div class="summary-circle">
+              <div class="sc-num">8/10</div>
+              <div class="sc-label">score</div>
+            </div>
+            <div class="summary-title">Lesson Complete!</div>
+            <div class="summary-sub">て-form Conjugation · Chapter 01<br>Great work — you nailed 80%</div>
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div class="stat-n" style="color:var(--success)">8</div>
+                <div class="stat-l">Correct</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-n" style="color:var(--error)">2</div>
+                <div class="stat-l">Missed</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-n" style="color:var(--primary)">5</div>
+                <div class="stat-l">Marked known</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-n">3m</div>
+                <div class="stat-l">Time spent</div>
+              </div>
+            </div>
+            <div class="missed-review">
+              <div class="missed-title">Review these again:</div>
+              <div class="missed-items">
+                <div class="missed-chip">飲んで</div>
+                <div class="missed-chip">書いて</div>
+              </div>
+            </div>
+            <div class="summary-actions">
+              <button class="sum-btn sum-retry">↺ Retry</button>
+              <button class="sum-btn sum-next">Next lesson →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SCREEN 9: KANA ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">09 · Characters — Kana</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="screen-header">
+            <div class="back-btn">←</div>
+            <div>
+              <div class="screen-title">Characters</div>
+              <div class="screen-sub">Kana & Kanji</div>
+            </div>
+          </div>
+          <div class="kana-header-tabs">
+            <div class="kana-tab active">Hiragana</div>
+            <div class="kana-tab">Katakana</div>
+            <div class="kana-tab">Kanji</div>
+          </div>
+          <div class="kana-progress-row">
+            <div class="kana-progress-text"><strong>7</strong> / 46 known</div>
+            <div class="progress-bar-wrap" style="flex:1">
+              <div class="progress-bar-fill" style="width:15%"></div>
+            </div>
+          </div>
+          <div class="kana-group-label">A row</div>
+          <div class="kana-grid">
+            <div class="kana-cell known"><div class="kana-char">あ</div><div class="kana-rom">a</div></div>
+            <div class="kana-cell known"><div class="kana-char">い</div><div class="kana-rom">i</div></div>
+            <div class="kana-cell known"><div class="kana-char">う</div><div class="kana-rom">u</div></div>
+            <div class="kana-cell known"><div class="kana-char">え</div><div class="kana-rom">e</div></div>
+            <div class="kana-cell known"><div class="kana-char">お</div><div class="kana-rom">o</div></div>
+          </div>
+          <div class="kana-group-label" style="margin-top:8px">KA row</div>
+          <div class="kana-grid">
+            <div class="kana-cell known"><div class="kana-char">か</div><div class="kana-rom">ka</div></div>
+            <div class="kana-cell known"><div class="kana-char">き</div><div class="kana-rom">ki</div></div>
+            <div class="kana-cell"><div class="kana-char">く</div><div class="kana-rom">ku</div></div>
+            <div class="kana-cell"><div class="kana-char">け</div><div class="kana-rom">ke</div></div>
+            <div class="kana-cell"><div class="kana-char">こ</div><div class="kana-rom">ko</div></div>
+          </div>
+          <div class="kana-group-label" style="margin-top:8px">SA row</div>
+          <div class="kana-grid">
+            <div class="kana-cell"><div class="kana-char">さ</div><div class="kana-rom">sa</div></div>
+            <div class="kana-cell"><div class="kana-char">し</div><div class="kana-rom">shi</div></div>
+            <div class="kana-cell"><div class="kana-char">す</div><div class="kana-rom">su</div></div>
+            <div class="kana-cell"><div class="kana-char">せ</div><div class="kana-rom">se</div></div>
+            <div class="kana-cell"><div class="kana-char">そ</div><div class="kana-rom">so</div></div>
+          </div>
+          <div class="kana-group-label" style="margin-top:8px">TA row</div>
+          <div class="kana-grid">
+            <div class="kana-cell"><div class="kana-char">た</div><div class="kana-rom">ta</div></div>
+            <div class="kana-cell"><div class="kana-char">ち</div><div class="kana-rom">chi</div></div>
+            <div class="kana-cell"><div class="kana-char">つ</div><div class="kana-rom">tsu</div></div>
+            <div class="kana-cell"><div class="kana-char">て</div><div class="kana-rom">te</div></div>
+            <div class="kana-cell"><div class="kana-char">と</div><div class="kana-rom">to</div></div>
+          </div>
+          <div style="height:100px"></div>
+        </div>
+        <div class="nav-bar">
+          <div class="nav-item"><div class="nav-pill">🏠</div>Home</div>
+          <div class="nav-item active"><div class="nav-pill">字</div>Characters</div>
+          <div class="nav-item"><div class="nav-pill">語</div>Vocab</div>
+          <div class="nav-item"><div class="nav-pill">文</div>Grammar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SCREEN 10: KANJI DETAIL ═══════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">10 · Kanji Detail</div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="status-bar light">
+          <span>9:41</span>
+          <div class="status-icons">▲ WiFi 🔋</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="kanji-detail-screen">
+            <div class="kanji-hero">
+              <div style="display:flex;flex-direction:column;gap:4px;flex:1">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                  <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:14px;color:white;cursor:pointer">←</div>
+                  <span style="font-size:12px;color:rgba(255,255,255,.7)">Kanji · N5</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:16px">
+                  <div class="kanji-big-char">食</div>
+                  <div class="kanji-hero-info">
+                    <div class="kanji-meaning-big">eat, food</div>
+                    <div class="kanji-jlpt">N5 · 9 strokes</div>
+                    <div class="kanji-readings">
+                      <span class="k-reading">しょく</span>
+                      <span class="k-reading">た.べる</span>
+                      <span class="k-reading">く.う</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="kanji-body">
+              <div class="kanji-section-label">Stroke Order</div>
+              <div class="stroke-placeholder">
+                <div class="sp-jp">食</div>
+                <div class="sp-label">▶ SVG animation</div>
+              </div>
+              <div class="kanji-section-label">Example Words</div>
+              <div class="kanji-words">
+                <div class="kw-row">
+                  <div class="kw-kanji">食べ物</div>
+                  <div class="kw-info">
+                    <div class="kw-reading">たべもの</div>
+                    <div class="kw-meaning">food</div>
+                  </div>
+                </div>
+                <div class="kw-row">
+                  <div class="kw-kanji">食事</div>
+                  <div class="kw-info">
+                    <div class="kw-reading">しょくじ</div>
+                    <div class="kw-meaning">meal</div>
+                  </div>
+                </div>
+                <div class="kw-row">
+                  <div class="kw-kanji">食堂</div>
+                  <div class="kw-info">
+                    <div class="kw-reading">しょくどう</div>
+                    <div class="kw-meaning">cafeteria</div>
+                  </div>
+                </div>
+                <div class="kw-row">
+                  <div class="kw-kanji">朝食</div>
+                  <div class="kw-info">
+                    <div class="kw-reading">ちょうしょく</div>
+                    <div class="kw-meaning">breakfast</div>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle-known-bar">
+                ✓ &nbsp; Mark as Known
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
