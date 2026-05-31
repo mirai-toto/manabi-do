@@ -7,6 +7,17 @@ Full offline — no backend for now (multi-device sync considered for later)
 
 ---
 
+## Target Users
+
+**Initial phase:** Learners who already have a basic foundation in Japanese — they know all kana, some kanji, and have basic vocabulary. They are not absolute beginners.
+
+This assumption has direct consequences on build priority:
+- Grammar lessons are the core value proposition and the first thing to build
+- Characters and vocabulary sections support grammar but are not the entry point
+- The app does not need to hand-hold users through kana recognition or stroke order in the initial phase
+
+---
+
 ## Localization (i18n)
 
 - UI strings are localized via ARB files (`lib/l10n/app_<locale>.arb`)
