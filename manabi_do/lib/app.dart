@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:manabi_do/l10n/app_localizations.dart';
 
@@ -9,7 +9,7 @@ class ManabiDoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return CupertinoApp(
       title: 'Manabi Do',
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -20,9 +20,8 @@ class ManabiDoApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en'),
       ],
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6B4EFF)),
-        useMaterial3: true,
+      theme: const CupertinoThemeData(
+        primaryColor: CupertinoColors.systemIndigo,
       ),
       home: const HomeScreen(),
     );

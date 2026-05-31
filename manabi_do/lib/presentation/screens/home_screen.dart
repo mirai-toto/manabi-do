@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:manabi_do/l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,22 +7,26 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.appTitle)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FilledButton(
-              onPressed: () {},
-              child: Text(l10n.sectionCharacters),
-            ),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () {},
-              child: Text(l10n.sectionGrammar),
-            ),
-          ],
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text(l10n.appTitle),
+      ),
+      child: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CupertinoButton.filled(
+                onPressed: () {},
+                child: Text(l10n.sectionCharacters),
+              ),
+              const SizedBox(height: 16),
+              CupertinoButton.filled(
+                onPressed: () {},
+                child: Text(l10n.sectionGrammar),
+              ),
+            ],
+          ),
         ),
       ),
     );
