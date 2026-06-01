@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_dimens.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/theme/app_tokens.dart';
+import '../../data/database/app_database.dart';
 import '../../domain/data/kana_data.dart';
 import '../../l10n/l10n.dart';
+import '../providers/database_provider.dart';
+import '../providers/kanji_provider.dart';
 import '../widgets/widgets.dart';
 
 class CharactersScreen extends StatefulWidget {
@@ -73,7 +77,7 @@ class _CharactersScreenState extends State<CharactersScreen>
                     known: _knownKatakana,
                     onToggle: _toggleKatakana,
                   ),
-                  const _KanjiStub(),
+                  const _KanjiTabView(),
                 ],
               ),
             ),
@@ -314,23 +318,99 @@ class _KanaGrid extends StatelessWidget {
   }
 }
 
-// ─── Kanji stub ───────────────────────────────────────────────────────────────
+// ─── Kanji tab ────────────────────────────────────────────────────────────────
 
-class _KanjiStub extends StatelessWidget {
-  const _KanjiStub();
+class _KanjiTabView extends ConsumerWidget {
+  const _KanjiTabView();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final kanjiAsync = ref.watch(n5KanjiProvider);
+    final knownAsync = ref.watch(knownKanjiIdsProvider);
+
+    if (kanjiAsync is AsyncLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    final kanjiList = kanjiAsync.asData?.value ?? [];
+    final knownIds = knownAsync.asData?.value ?? {};
+
+    final knownCount = kanjiList.where((k) => knownIds.contains(k.id)).length;
+
+    return ListView(
+      padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
+      children: [
+        _ProgressRow(known: knownCount, total: kanjiList.length),
+        _KanjiGrid(
+          kanjis: kanjiList,
+          knownIds: knownIds,
+          onToggle: (id, isKnown) =>
+              ref.read(databaseProvider).setKanjiKnown(id, isKnown: isKnown),
+        ),
+      ],
+    );
+  }
+}
+
+class _KanjiGrid extends StatelessWidget {
+  final List<Kanji> kanjis;
+  final Set<int> knownIds;
+  final void Function(int id, bool isKnown) onToggle;
+
+  const _KanjiGrid({
+    required this.kanjis,
+    required this.knownIds,
+    required this.onToggle,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final t = context.tokens;
-    final l = context.l10n;
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text('漢', style: AppTextStyles.jpDisplay.copyWith(color: t.characters)),
-          const SizedBox(height: AppDimens.spaceSm),
-          Text(l.comingSoon, style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant)),
-        ],
+    const gap = AppDimens.spaceSm;
+    const cols = 4;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final cellSize = (constraints.maxWidth - gap * (cols - 1)) / cols;
+          final kanjiSize = (cellSize * 0.30).clamp(18.0, 48.0);
+          final meaningSize = (cellSize * 0.10).clamp(9.0, 13.0);
+
+          final rows = <Widget>[];
+          for (int i = 0; i < kanjis.length; i += cols) {
+            final rowItems = kanjis.sublist(i, (i + cols).clamp(0, kanjis.length));
+            rows.add(Row(
+              children: [
+                for (int j = 0; j < rowItems.length; j++) ...[
+                  if (j > 0) const SizedBox(width: gap),
+                  KanjiCell(
+                    character: rowItems[j].character,
+                    meaning: rowItems[j].meaning,
+                    isKnown: knownIds.contains(rowItems[j].id),
+                    onTap: () => onToggle(
+                      rowItems[j].id,
+                      !knownIds.contains(rowItems[j].id),
+                    ),
+                    size: cellSize,
+                    kanjiSize: kanjiSize,
+                    meaningSize: meaningSize,
+                  ),
+                ],
+                // Pad incomplete last row
+                if (rowItems.length < cols) ...[
+                  const SizedBox(width: gap),
+                  for (int k = rowItems.length; k < cols - 1; k++) ...[
+                    SizedBox(width: cellSize),
+                    const SizedBox(width: gap),
+                  ],
+                  SizedBox(width: cellSize),
+                ],
+              ],
+            ));
+            rows.add(const SizedBox(height: gap));
+          }
+          return Column(children: rows);
+        },
       ),
     );
   }
