@@ -47,33 +47,39 @@ class _CharactersScreenState extends State<CharactersScreen>
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _CharactersHeader(tabIndex: _tabController.index),
-        _SegmentedTabBar(
-          controller: _tabController,
-          labels: [l.tabHiragana, l.tabKatakana, l.tabKanji],
-        ),
-        Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              _KanaTabView(
-                rows: KanaData.hiragana,
-                known: _knownHiragana,
-                onToggle: _toggleHiragana,
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 640),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _CharactersHeader(tabIndex: _tabController.index),
+            _SegmentedTabBar(
+              controller: _tabController,
+              labels: [l.tabHiragana, l.tabKatakana, l.tabKanji],
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  _KanaTabView(
+                    rows: KanaData.hiragana,
+                    known: _knownHiragana,
+                    onToggle: _toggleHiragana,
+                  ),
+                  _KanaTabView(
+                    rows: KanaData.katakana,
+                    known: _knownKatakana,
+                    onToggle: _toggleKatakana,
+                  ),
+                  const _KanjiStub(),
+                ],
               ),
-              _KanaTabView(
-                rows: KanaData.katakana,
-                known: _knownKatakana,
-                onToggle: _toggleKatakana,
-              ),
-              const _KanjiStub(),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
