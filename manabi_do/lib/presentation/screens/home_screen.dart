@@ -21,53 +21,80 @@ class HomeScreen extends StatelessWidget {
     final t = context.tokens;
     final l = context.l10n;
 
+    final grammarCard = SectionCard(
+      title: l.sectionGrammar,
+      icon: '文',
+      gradientColors: [t.primary, t.primaryLight],
+      progressColor: t.primary,
+      subtitle: '17 chapters · N5/N4',
+      statLabel: '3 / 17 chapters',
+      progress: 0.18,
+      onTap: () {},
+    );
+    final charactersCard = SectionCard(
+      title: l.sectionCharacters,
+      icon: '字',
+      gradientColors: [t.charactersDark, t.characters],
+      progressColor: t.characters,
+      subtitle: 'Kana · Kanji N5/N4',
+      statLabel: '46 / 184 known',
+      progress: 0.25,
+      onTap: () {},
+    );
+    final vocabularyCard = SectionCard(
+      title: l.sectionVocabulary,
+      icon: '語',
+      gradientColors: [t.vocabularyDark, t.vocabulary],
+      progressColor: t.vocabulary,
+      subtitle: '800+ words · N5/N4',
+      statLabel: '120 / 800 known',
+      progress: 0.15,
+      onTap: () {},
+    );
+    final streakCard = StreakCard(
+      days: 7,
+      label: l.streakLabel,
+      subtitle: l.streakSubtitle,
+    );
+
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
       children: [
         _HomeHeader(greeting: _greeting(context), subtitle: l.greetingSubtitle),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-          child: Column(
-            children: [
-              SectionCard(
-                title: l.sectionGrammar,
-                icon: '文',
-                gradientColors: [t.primary, t.primaryLight],
-                progressColor: t.primary,
-                subtitle: '17 chapters · N5/N4',
-                statLabel: '3 / 17 chapters',
-                progress: 0.18,
-                onTap: () {},
-              ),
-              const SizedBox(height: AppDimens.spaceSm),
-              SectionCard(
-                title: l.sectionCharacters,
-                icon: '字',
-                gradientColors: [t.charactersDark, t.characters],
-                progressColor: t.characters,
-                subtitle: 'Kana · Kanji N5/N4',
-                statLabel: '46 / 184 known',
-                progress: 0.25,
-                onTap: () {},
-              ),
-              const SizedBox(height: AppDimens.spaceSm),
-              SectionCard(
-                title: l.sectionVocabulary,
-                icon: '語',
-                gradientColors: [t.vocabularyDark, t.vocabulary],
-                progressColor: t.vocabulary,
-                subtitle: '800+ words · N5/N4',
-                statLabel: '120 / 800 known',
-                progress: 0.15,
-                onTap: () {},
-              ),
-              const SizedBox(height: AppDimens.spaceMd),
-              StreakCard(
-                days: 7,
-                label: l.streakLabel,
-                subtitle: l.streakSubtitle,
-              ),
-            ],
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              if (constraints.maxWidth >= 480) {
+                final half = (constraints.maxWidth - AppDimens.spaceSm) / 2;
+                return Column(
+                  children: [
+                    Row(children: [
+                      SizedBox(width: half, child: grammarCard),
+                      const SizedBox(width: AppDimens.spaceSm),
+                      SizedBox(width: half, child: charactersCard),
+                    ]),
+                    const SizedBox(height: AppDimens.spaceSm),
+                    Row(children: [
+                      SizedBox(width: half, child: vocabularyCard),
+                      const SizedBox(width: AppDimens.spaceSm),
+                      SizedBox(width: half, child: streakCard),
+                    ]),
+                  ],
+                );
+              }
+              return Column(
+                children: [
+                  grammarCard,
+                  const SizedBox(height: AppDimens.spaceSm),
+                  charactersCard,
+                  const SizedBox(height: AppDimens.spaceSm),
+                  vocabularyCard,
+                  const SizedBox(height: AppDimens.spaceMd),
+                  streakCard,
+                ],
+              );
+            },
           ),
         ),
       ],
