@@ -64,6 +64,18 @@
   "flashcardGotIt": "✓  Je sais",
 
   "navMore": "Plus",
+  "navHome": "Accueil",
+  "navVocab": "Vocab",
+
+  "greetingMorning": "Bonjour 👋",
+  "greetingAfternoon": "Bon après-midi 👋",
+  "greetingEvening": "Bonsoir 👋",
+  "greetingSubtitle": "Étudions le japonais",
+
+  "streakLabel": "jours de suite",
+  "streakSubtitle": "Continue comme ça !",
+
+  "comingSoon": "Bientôt disponible",
 
   "strokeOrderPlaceholder": "▶ Animation de l'ordre des traits"
 }

@@ -308,6 +308,60 @@ abstract class AppLocalizations {
   /// **'More'**
   String get navMore;
 
+  /// No description provided for @navHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navHome;
+
+  /// No description provided for @navVocab.
+  ///
+  /// In en, this message translates to:
+  /// **'Vocab'**
+  String get navVocab;
+
+  /// No description provided for @greetingMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good morning 👋'**
+  String get greetingMorning;
+
+  /// No description provided for @greetingAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Good afternoon 👋'**
+  String get greetingAfternoon;
+
+  /// No description provided for @greetingEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good evening 👋'**
+  String get greetingEvening;
+
+  /// No description provided for @greetingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s study some Japanese'**
+  String get greetingSubtitle;
+
+  /// No description provided for @streakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'day streak'**
+  String get streakLabel;
+
+  /// No description provided for @streakSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it up!'**
+  String get streakSubtitle;
+
+  /// No description provided for @comingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon'**
+  String get comingSoon;
+
   /// No description provided for @strokeOrderPlaceholder.
   ///
   /// In en, this message translates to:

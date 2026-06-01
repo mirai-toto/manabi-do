@@ -120,5 +120,32 @@ class AppLocalizationsFr extends AppLocalizations {
   String get navMore => 'Plus';
 
   @override
+  String get navHome => 'Accueil';
+
+  @override
+  String get navVocab => 'Vocab';
+
+  @override
+  String get greetingMorning => 'Bonjour 👋';
+
+  @override
+  String get greetingAfternoon => 'Bon après-midi 👋';
+
+  @override
+  String get greetingEvening => 'Bonsoir 👋';
+
+  @override
+  String get greetingSubtitle => 'Étudions le japonais';
+
+  @override
+  String get streakLabel => 'jours de suite';
+
+  @override
+  String get streakSubtitle => 'Continue comme ça !';
+
+  @override
+  String get comingSoon => 'Bientôt disponible';
+
+  @override
   String get strokeOrderPlaceholder => '▶ Animation de l\'ordre des traits';
 }

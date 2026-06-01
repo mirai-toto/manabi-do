@@ -6,7 +6,7 @@ import 'package:manabi_do/l10n/app_localizations.dart';
 import 'core/providers/locale_provider.dart';
 import 'core/providers/theme_provider.dart';
 import 'core/theme/app_theme.dart';
-import 'presentation/screens/landing_screen.dart';
+import 'presentation/screens/shell_screen.dart';
 
 class ManabiDoApp extends ConsumerWidget {
   const ManabiDoApp({super.key});
@@ -32,7 +32,7 @@ class ManabiDoApp extends ConsumerWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
-      home: const LandingScreen(),
+      home: const ShellScreen(),
     );
   }
 }

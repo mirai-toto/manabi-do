@@ -70,6 +70,18 @@
   "flashcardGotIt": "✓  Got it",
 
   "navMore": "More",
+  "navHome": "Home",
+  "navVocab": "Vocab",
+
+  "greetingMorning": "Good morning 👋",
+  "greetingAfternoon": "Good afternoon 👋",
+  "greetingEvening": "Good evening 👋",
+  "greetingSubtitle": "Let's study some Japanese",
+
+  "streakLabel": "day streak",
+  "streakSubtitle": "Keep it up!",
+
+  "comingSoon": "Coming soon",
 
   "strokeOrderPlaceholder": "▶ Stroke order animation"
 }

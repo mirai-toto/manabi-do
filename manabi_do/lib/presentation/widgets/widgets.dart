@@ -14,6 +14,7 @@ export 'navigation/nav_destination.dart';
 export 'study/chapter_card.dart';
 export 'study/lesson_row.dart';
 export 'study/section_card.dart';
+export 'study/streak_card.dart';
 
 // characters
 export 'characters/kana_cell.dart';
