@@ -13,8 +13,8 @@ class AppEmoji extends StatelessWidget {
       style: TextStyle(
         fontSize: size,
         fontFamilyFallback: const [
+          'NotoColorEmoji',
           'Apple Color Emoji',
-          'Noto Color Emoji',
           'Segoe UI Emoji',
         ],
       ),
