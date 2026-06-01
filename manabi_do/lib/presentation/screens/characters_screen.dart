@@ -286,6 +286,8 @@ class _KanaGrid extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final cellSize = (constraints.maxWidth - gap * (cols - 1)) / cols;
+          final kanaSize = (cellSize * 0.24).clamp(18.0, 48.0);
+          final romajiSize = (cellSize * 0.095).clamp(9.0, 18.0);
           return Row(
             children: [
               for (int i = 0; i < row.entries.length; i++) ...[
@@ -300,6 +302,8 @@ class _KanaGrid extends StatelessWidget {
                     onTap: () => onToggle(row.entries[i]!.kana),
                     width: cellSize,
                     height: cellSize,
+                    kanaSize: kanaSize,
+                    romajiSize: romajiSize,
                   ),
               ],
             ],

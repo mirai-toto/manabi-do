@@ -11,6 +11,8 @@ class KanaCell extends StatelessWidget {
   final VoidCallback? onTap;
   final double width;
   final double height;
+  final double? kanaSize;
+  final double? romajiSize;
 
   const KanaCell({
     super.key,
@@ -20,6 +22,8 @@ class KanaCell extends StatelessWidget {
     this.onTap,
     this.width = 72,
     this.height = 80,
+    this.kanaSize,
+    this.romajiSize,
   });
 
   @override
@@ -49,12 +53,17 @@ class KanaCell extends StatelessWidget {
           children: [
             Text(
               kana,
-              style: AppTextStyles.jpMedium.copyWith(height: 1, color: t.onSurface),
+              style: AppTextStyles.jpMedium.copyWith(
+                fontSize: kanaSize,
+                height: 1,
+                color: t.onSurface,
+              ),
             ),
             const SizedBox(height: AppDimens.spaceXs),
             Text(
               romaji,
               style: AppTextStyles.labelSmall.copyWith(
+                fontSize: romajiSize,
                 letterSpacing: 0.5,
                 color: isKnown ? t.success : t.onSurfaceVariant,
               ),
