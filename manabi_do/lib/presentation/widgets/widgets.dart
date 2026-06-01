@@ -1,5 +1,6 @@
 // common
 export 'common/app_button.dart';
+export 'common/app_emoji.dart';
 export 'common/app_filter_chip.dart';
 export 'common/app_text_field.dart';
 export 'common/known_toggle.dart';

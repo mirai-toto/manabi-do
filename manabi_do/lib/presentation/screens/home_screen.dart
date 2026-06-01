@@ -102,7 +102,7 @@ class _HomeHeader extends StatelessWidget {
                       style: AppTextStyles.titleLarge.copyWith(color: t.onSurface),
                     ),
                     const SizedBox(width: 6),
-                    const Text('👋', style: TextStyle(fontSize: 22)),
+                    const AppEmoji('👋', size: 22),
                   ],
                 ),
                 const SizedBox(height: AppDimens.spaceXxs),
