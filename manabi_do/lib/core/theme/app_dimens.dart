@@ -1,4 +1,7 @@
 abstract final class AppDimens {
+  // Max content width — applied to all screens for consistent centering
+  static const double screenMaxWidth = 1100;
+
   // Border radius — matches mockup CSS variables
   static const double radiusSm = 8;
   static const double radiusMd = 12;

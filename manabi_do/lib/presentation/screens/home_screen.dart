@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1100),
+        constraints: const BoxConstraints(maxWidth: AppDimens.screenMaxWidth),
         child: ListView(
           padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
           children: [
