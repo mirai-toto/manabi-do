@@ -1,0 +1,1 @@
+enum LessonStatus { done, notStarted }

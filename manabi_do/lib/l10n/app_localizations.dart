@@ -100,17 +100,53 @@ abstract class AppLocalizations {
   /// **'Manabi Do'**
   String get appTitle;
 
-  /// Navigation label for the Characters section
+  /// No description provided for @tagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn Japanese — offline, at your pace'**
+  String get tagline;
+
+  /// No description provided for @signInWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get signInWithGoogle;
+
+  /// No description provided for @signInWithApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Apple'**
+  String get signInWithApple;
+
+  /// No description provided for @continueAsGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue as guest →'**
+  String get continueAsGuest;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get or;
+
+  /// No description provided for @sectionGrammar.
+  ///
+  /// In en, this message translates to:
+  /// **'Grammar'**
+  String get sectionGrammar;
+
+  /// No description provided for @sectionCharacters.
   ///
   /// In en, this message translates to:
   /// **'Characters'**
   String get sectionCharacters;
 
-  /// Navigation label for the Grammar section
+  /// No description provided for @sectionVocabulary.
   ///
   /// In en, this message translates to:
-  /// **'Grammar'**
-  String get sectionGrammar;
+  /// **'Vocabulary'**
+  String get sectionVocabulary;
 
   /// No description provided for @tabHiragana.
   ///
@@ -136,11 +172,143 @@ abstract class AppLocalizations {
   /// **'Known'**
   String get known;
 
+  /// No description provided for @knownCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Known ✓'**
+  String get knownCheck;
+
+  /// No description provided for @markAsKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as known'**
+  String get markAsKnown;
+
   /// No description provided for @notKnown.
   ///
   /// In en, this message translates to:
   /// **'Not known'**
   String get notKnown;
+
+  /// No description provided for @statusNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get statusNotStarted;
+
+  /// No description provided for @exampleWords.
+  ///
+  /// In en, this message translates to:
+  /// **'Example Words'**
+  String get exampleWords;
+
+  /// No description provided for @readings.
+  ///
+  /// In en, this message translates to:
+  /// **'Readings'**
+  String get readings;
+
+  /// No description provided for @difficultyLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty {level}'**
+  String difficultyLevel(int level);
+
+  /// No description provided for @chapterN.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapter {number}'**
+  String chapterN(String number);
+
+  /// No description provided for @nLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} lessons'**
+  String nLessons(int count);
+
+  /// No description provided for @multipleChoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Multiple Choice'**
+  String get multipleChoice;
+
+  /// No description provided for @practice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice →'**
+  String get practice;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @nextLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Next lesson →'**
+  String get nextLesson;
+
+  /// No description provided for @correct.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct'**
+  String get correct;
+
+  /// No description provided for @missed.
+  ///
+  /// In en, this message translates to:
+  /// **'Missed'**
+  String get missed;
+
+  /// No description provided for @markedKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked known'**
+  String get markedKnown;
+
+  /// No description provided for @timeSpent.
+  ///
+  /// In en, this message translates to:
+  /// **'Time spent'**
+  String get timeSpent;
+
+  /// No description provided for @flashcardDefaultPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'What does this mean?'**
+  String get flashcardDefaultPrompt;
+
+  /// No description provided for @tapToReveal.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to reveal'**
+  String get tapToReveal;
+
+  /// No description provided for @flashcardNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'✗  Not yet'**
+  String get flashcardNotYet;
+
+  /// No description provided for @flashcardGotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'✓  Got it'**
+  String get flashcardGotIt;
+
+  /// No description provided for @navMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get navMore;
+
+  /// No description provided for @strokeOrderPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'▶ Stroke order animation'**
+  String get strokeOrderPlaceholder;
 }
 
 class _AppLocalizationsDelegate

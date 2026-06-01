@@ -1,25 +1,75 @@
 {
   "@@locale": "en",
+
   "appTitle": "Manabi Do",
-  "@appTitle": {
-    "description": "The name of the application"
-  },
-  "sectionCharacters": "Characters",
-  "@sectionCharacters": {
-    "description": "Navigation label for the Characters section"
-  },
+  "@appTitle": { "description": "The name of the application" },
+
+  "tagline": "Learn Japanese — offline, at your pace",
+  "signInWithGoogle": "Sign in with Google",
+  "signInWithApple": "Sign in with Apple",
+  "continueAsGuest": "Continue as guest →",
+  "or": "or",
+
   "sectionGrammar": "Grammar",
-  "@sectionGrammar": {
-    "description": "Navigation label for the Grammar section"
-  },
+  "sectionCharacters": "Characters",
+  "sectionVocabulary": "Vocabulary",
+
   "tabHiragana": "Hiragana",
   "@tabHiragana": {},
   "tabKatakana": "Katakana",
   "@tabKatakana": {},
   "tabKanji": "Kanji",
   "@tabKanji": {},
+
   "known": "Known",
   "@known": {},
+  "knownCheck": "Known ✓",
+  "markAsKnown": "Mark as known",
   "notKnown": "Not known",
-  "@notKnown": {}
+  "@notKnown": {},
+
+  "statusNotStarted": "Not started",
+
+  "exampleWords": "Example Words",
+  "readings": "Readings",
+
+  "difficultyLevel": "Difficulty {level}",
+  "@difficultyLevel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "chapterN": "Chapter {number}",
+  "@chapterN": {
+    "placeholders": {
+      "number": { "type": "String" }
+    }
+  },
+
+  "nLessons": "{count} lessons",
+  "@nLessons": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "multipleChoice": "Multiple Choice",
+  "practice": "Practice →",
+
+  "retry": "Retry",
+  "nextLesson": "Next lesson →",
+  "correct": "Correct",
+  "missed": "Missed",
+  "markedKnown": "Marked known",
+  "timeSpent": "Time spent",
+
+  "flashcardDefaultPrompt": "What does this mean?",
+  "tapToReveal": "Tap to reveal",
+  "flashcardNotYet": "✗  Not yet",
+  "flashcardGotIt": "✓  Got it",
+
+  "navMore": "More",
+
+  "strokeOrderPlaceholder": "▶ Stroke order animation"
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/theme/app_brand_colors.dart';
+import '../../core/theme/app_dimens.dart';
+import '../../core/theme/app_text_styles.dart';
+import '../../core/theme/app_tokens.dart';
+import '../../l10n/l10n.dart';
 import 'home_screen.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -16,13 +20,14 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = context.tokens;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: t.cardBackground,
         body: Column(
           children: [
-            Expanded(child: _Hero()),
+            Expanded(child: const _Hero()),
             _AuthSection(onContinue: () => _continue(context)),
           ],
         ),
@@ -32,16 +37,19 @@ class LandingScreen extends StatelessWidget {
 }
 
 class _Hero extends StatelessWidget {
+  const _Hero();
+
   @override
   Widget build(BuildContext context) {
+    final t = context.tokens;
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0xFF0D0630), Color(0xFF3D1FCC), Color(0xFF9B7FFF)],
-          stops: [0.0, 0.5, 1.0],
+          colors: [AppBrandColors.heroDeep, AppBrandColors.heroMid, t.primaryLight],
+          stops: const [0.0, 0.5, 1.0],
         ),
       ),
       child: SafeArea(
@@ -51,35 +59,27 @@ class _Hero extends StatelessWidget {
           children: [
             Text(
               '学び',
-              style: GoogleFonts.notoSansJp(
-                fontSize: 96,
-                fontWeight: FontWeight.w700,
+              style: AppTextStyles.jpHero.copyWith(
                 color: Colors.white,
-                height: 1.0,
                 shadows: [
-                  Shadow(
-                    color: const Color(0xFF6B4EFF).withOpacity(0.6),
-                    blurRadius: 32,
-                  ),
+                  Shadow(color: t.primary.withValues(alpha: 0.6), blurRadius: 32),
                 ],
               ),
             ),
             const SizedBox(height: 12),
             Text(
               'MANABI DO',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.white.withOpacity(0.7),
+              style: AppTextStyles.labelLarge.copyWith(
+                color: Colors.white.withValues(alpha: 0.7),
                 letterSpacing: 3,
+                fontSize: 16,
               ),
             ),
             const SizedBox(height: 6),
             Text(
-              'Learn Japanese — offline, at your pace',
-              style: TextStyle(
-                fontSize: 13,
-                color: Colors.white.withOpacity(0.45),
+              context.l10n.tagline,
+              style: AppTextStyles.bodySmall.copyWith(
+                color: Colors.white.withValues(alpha: 0.45),
               ),
             ),
           ],
@@ -96,11 +96,15 @@ class _AuthSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final t = context.tokens;
+    final l = context.l10n;
 
     return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+      color: t.cardBackground,
+      padding: const EdgeInsets.fromLTRB(
+        AppDimens.spaceLg, AppDimens.spaceXl,
+        AppDimens.spaceLg, AppDimens.spaceLg,
+      ),
       child: SafeArea(
         top: false,
         child: Column(
@@ -108,40 +112,40 @@ class _AuthSection extends StatelessWidget {
           children: [
             _LandingButton(
               onPressed: onContinue,
-              backgroundColor: Colors.white,
-              foregroundColor: const Color(0xFF1F1F1F),
-              side: const BorderSide(color: Color(0xFFDADCE0), width: 1.5),
+              backgroundColor: t.cardBackground,
+              foregroundColor: t.onSurface,
+              side: BorderSide(color: t.outlineVariant, width: 1.5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset('assets/icons/google.svg', width: 20, height: 20),
                   const SizedBox(width: 10),
-                  const Text('Sign in with Google'),
+                  Text(l.signInWithGoogle),
                 ],
               ),
             ),
             const SizedBox(height: 12),
             _LandingButton(
               onPressed: onContinue,
-              backgroundColor: const Color(0xFF1C1C1E),
+              backgroundColor: AppBrandColors.appleButton,
               foregroundColor: Colors.white,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset('assets/icons/apple.svg', width: 20, height: 20),
                   const SizedBox(width: 10),
-                  const Text('Sign in with Apple'),
+                  Text(l.signInWithApple),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: AppDimens.spaceLg),
             _OrDivider(),
-            const SizedBox(height: 20),
+            const SizedBox(height: AppDimens.spaceLg),
             _LandingButton(
               onPressed: onContinue,
-              backgroundColor: colorScheme.surfaceContainerHighest,
-              foregroundColor: colorScheme.onSurface,
-              child: const Text('Continue as guest →'),
+              backgroundColor: t.surfaceContainer,
+              foregroundColor: t.onSurface,
+              child: Text(l.continueAsGuest),
             ),
           ],
         ),
@@ -175,12 +179,12 @@ class _LandingButton extends StatelessWidget {
           backgroundColor: backgroundColor,
           foregroundColor: foregroundColor,
           elevation: 0,
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AppDimens.radiusLg),
             side: side ?? BorderSide.none,
           ),
-          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          textStyle: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600),
         ),
         child: child,
       ),
@@ -191,17 +195,15 @@ class _LandingButton extends StatelessWidget {
 class _OrDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final t = context.tokens;
     return Row(
       children: [
         const Expanded(child: Divider()),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Text(
-            'or',
-            style: TextStyle(
-              fontSize: 12,
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
+            context.l10n.or,
+            style: AppTextStyles.label.copyWith(color: t.onSurfaceVariant),
           ),
         ),
         const Expanded(child: Divider()),
@@ -209,4 +211,3 @@ class _OrDivider extends StatelessWidget {
     );
   }
 }
-
