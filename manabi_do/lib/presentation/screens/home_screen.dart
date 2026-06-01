@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../core/providers/locale_provider.dart';
 import '../../core/providers/theme_provider.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/theme/app_tokens.dart';
@@ -43,6 +44,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         elevation: 0,
         title: Text('Widget Gallery', style: AppTextStyles.title),
         actions: [
+          IconButton(
+            icon: Text(
+              ref.watch(localeProvider).languageCode == 'en' ? '🇫🇷' : '🇬🇧',
+              style: const TextStyle(fontSize: 20),
+            ),
+            onPressed: () => ref.read(localeProvider.notifier).toggle(),
+          ),
           IconButton(
             icon: Icon(
               ref.watch(themeModeProvider) == ThemeMode.dark

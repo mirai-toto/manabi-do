@@ -1,0 +1,69 @@
+{
+  "@@locale": "fr",
+
+  "appTitle": "Manabi Do",
+
+  "tagline": "Apprends le japonais — hors ligne, à ton rythme",
+  "signInWithGoogle": "Se connecter avec Google",
+  "signInWithApple": "Se connecter avec Apple",
+  "continueAsGuest": "Continuer en tant qu'invité →",
+  "or": "ou",
+
+  "sectionGrammar": "Grammaire",
+  "sectionCharacters": "Caractères",
+  "sectionVocabulary": "Vocabulaire",
+
+  "tabHiragana": "Hiragana",
+  "tabKatakana": "Katakana",
+  "tabKanji": "Kanji",
+
+  "known": "Appris",
+  "knownCheck": "Appris ✓",
+  "markAsKnown": "Marquer comme appris",
+  "notKnown": "Non appris",
+
+  "statusNotStarted": "Non commencé",
+
+  "exampleWords": "Exemples",
+  "readings": "Lectures",
+
+  "difficultyLevel": "Difficulté {level}",
+  "@difficultyLevel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "chapterN": "Chapitre {number}",
+  "@chapterN": {
+    "placeholders": {
+      "number": { "type": "String" }
+    }
+  },
+
+  "nLessons": "{count} leçons",
+  "@nLessons": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "multipleChoice": "Choix multiple",
+  "practice": "Pratiquer →",
+
+  "retry": "Réessayer",
+  "nextLesson": "Leçon suivante →",
+  "correct": "Correct",
+  "missed": "Manqué",
+  "markedKnown": "Marqué appris",
+  "timeSpent": "Temps passé",
+
+  "flashcardDefaultPrompt": "Que signifie ceci ?",
+  "tapToReveal": "Appuyer pour révéler",
+  "flashcardNotYet": "✗  Pas encore",
+  "flashcardGotIt": "✓  Je sais",
+
+  "navMore": "Plus",
+
+  "strokeOrderPlaceholder": "▶ Animation de l'ordre des traits"
+}
