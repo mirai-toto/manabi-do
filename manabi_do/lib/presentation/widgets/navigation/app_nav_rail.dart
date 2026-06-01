@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -82,13 +83,23 @@ class _RailItem extends StatelessWidget {
                     )
                   : null,
               child: Center(
-                child: Text(
-                  destination.icon,
-                  style: AppTextStyles.jpBody.copyWith(
-                    fontSize: 18,
-                    color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
-                  ),
-                ),
+                child: destination.iconAsset != null
+                    ? SvgPicture.asset(
+                        destination.iconAsset!,
+                        width: 20,
+                        height: 20,
+                        colorFilter: ColorFilter.mode(
+                          isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
+                          BlendMode.srcIn,
+                        ),
+                      )
+                    : Text(
+                        destination.icon!,
+                        style: AppTextStyles.jpBody.copyWith(
+                          fontSize: 18,
+                          color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
+                        ),
+                      ),
               ),
             ),
             const SizedBox(height: AppDimens.spaceXxs),

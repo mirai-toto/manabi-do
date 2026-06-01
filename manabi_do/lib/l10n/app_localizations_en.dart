@@ -126,13 +126,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navVocab => 'Vocab';
 
   @override
-  String get greetingMorning => 'Good morning 👋';
+  String get greetingMorning => 'Good morning';
 
   @override
-  String get greetingAfternoon => 'Good afternoon 👋';
+  String get greetingAfternoon => 'Good afternoon';
 
   @override
-  String get greetingEvening => 'Good evening 👋';
+  String get greetingEvening => 'Good evening';
 
   @override
   String get greetingSubtitle => 'Let\'s study some Japanese';

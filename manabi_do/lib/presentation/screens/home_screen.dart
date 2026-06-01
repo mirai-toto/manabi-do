@@ -95,9 +95,15 @@ class _HomeHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  greeting,
-                  style: AppTextStyles.titleLarge.copyWith(color: t.onSurface),
+                Row(
+                  children: [
+                    Text(
+                      greeting,
+                      style: AppTextStyles.titleLarge.copyWith(color: t.onSurface),
+                    ),
+                    const SizedBox(width: 6),
+                    const Text('👋', style: TextStyle(fontSize: 22)),
+                  ],
                 ),
                 const SizedBox(height: AppDimens.spaceXxs),
                 Text(

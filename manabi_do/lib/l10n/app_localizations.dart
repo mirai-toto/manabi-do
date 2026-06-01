@@ -323,19 +323,19 @@ abstract class AppLocalizations {
   /// No description provided for @greetingMorning.
   ///
   /// In en, this message translates to:
-  /// **'Good morning 👋'**
+  /// **'Good morning'**
   String get greetingMorning;
 
   /// No description provided for @greetingAfternoon.
   ///
   /// In en, this message translates to:
-  /// **'Good afternoon 👋'**
+  /// **'Good afternoon'**
   String get greetingAfternoon;
 
   /// No description provided for @greetingEvening.
   ///
   /// In en, this message translates to:
-  /// **'Good evening 👋'**
+  /// **'Good evening'**
   String get greetingEvening;
 
   /// No description provided for @greetingSubtitle.

@@ -73,9 +73,9 @@
   "navHome": "Home",
   "navVocab": "Vocab",
 
-  "greetingMorning": "Good morning 👋",
-  "greetingAfternoon": "Good afternoon 👋",
-  "greetingEvening": "Good evening 👋",
+  "greetingMorning": "Good morning",
+  "greetingAfternoon": "Good afternoon",
+  "greetingEvening": "Good evening",
   "greetingSubtitle": "Let's study some Japanese",
 
   "streakLabel": "day streak",

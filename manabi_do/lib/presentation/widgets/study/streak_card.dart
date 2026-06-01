@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_brand_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -39,7 +40,12 @@ class StreakCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Text('🔥', style: TextStyle(fontSize: 32)),
+          SvgPicture.asset(
+            'assets/icons/fire.svg',
+            width: 32,
+            height: 32,
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          ),
           const SizedBox(width: AppDimens.spaceMd),
           Text(
             '$days',
