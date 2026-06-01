@@ -28,7 +28,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
   List<NavDestination> _destinations(BuildContext context) {
     final l = context.l10n;
     return [
-      NavDestination(label: l.navHome, iconAsset: 'assets/icons/home.svg'),
+      NavDestination(label: l.navHome, icon: '家'),
       NavDestination(label: l.sectionCharacters, icon: '字'),
       NavDestination(label: l.navVocab,          icon: '語'),
       NavDestination(label: l.sectionGrammar,    icon: '文'),
