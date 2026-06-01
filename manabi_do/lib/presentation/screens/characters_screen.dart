@@ -50,7 +50,7 @@ class _CharactersScreenState extends State<CharactersScreen>
     return Align(
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 640),
+        constraints: const BoxConstraints(maxWidth: 800),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
