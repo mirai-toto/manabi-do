@@ -57,47 +57,48 @@ class HomeScreen extends StatelessWidget {
       subtitle: l.streakSubtitle,
     );
 
-    return ListView(
-      padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
-      children: [
-        _HomeHeader(greeting: _greeting(context), subtitle: l.greetingSubtitle),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              if (constraints.maxWidth >= 480) {
-                final half = (constraints.maxWidth - AppDimens.spaceSm) / 2;
-                return Column(
-                  children: [
-                    Row(children: [
-                      SizedBox(width: half, child: grammarCard),
-                      const SizedBox(width: AppDimens.spaceSm),
-                      SizedBox(width: half, child: charactersCard),
-                    ]),
-                    const SizedBox(height: AppDimens.spaceSm),
-                    Row(children: [
-                      SizedBox(width: half, child: vocabularyCard),
-                      const SizedBox(width: AppDimens.spaceSm),
-                      SizedBox(width: half, child: streakCard),
-                    ]),
-                  ],
-                );
-              }
-              return Column(
-                children: [
-                  grammarCard,
-                  const SizedBox(height: AppDimens.spaceSm),
-                  charactersCard,
-                  const SizedBox(height: AppDimens.spaceSm),
-                  vocabularyCard,
-                  const SizedBox(height: AppDimens.spaceMd),
-                  streakCard,
-                ],
-              );
-            },
-          ),
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 800),
+        child: ListView(
+          padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
+          children: [
+            _HomeHeader(greeting: _greeting(context), subtitle: l.greetingSubtitle),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final w = constraints.maxWidth;
+                  final sectionCards = w >= 480
+                      ? Row(children: [
+                          Expanded(child: grammarCard),
+                          const SizedBox(width: AppDimens.spaceSm),
+                          Expanded(child: charactersCard),
+                          const SizedBox(width: AppDimens.spaceSm),
+                          Expanded(child: vocabularyCard),
+                        ])
+                      : Column(children: [
+                          grammarCard,
+                          const SizedBox(height: AppDimens.spaceSm),
+                          charactersCard,
+                          const SizedBox(height: AppDimens.spaceSm),
+                          vocabularyCard,
+                        ]);
+
+                  return Column(
+                    children: [
+                      sectionCards,
+                      const SizedBox(height: AppDimens.spaceLg),
+                      streakCard,
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
