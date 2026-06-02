@@ -325,19 +325,7 @@ class _KanaGrid extends StatelessWidget {
 
 // ─── Kanji level metadata ────────────────────────────────────────────────────
 
-class _LevelInfo {
-  final String code;
-  final bool available;
-  const _LevelInfo(this.code, {this.available = false});
-}
-
-const _kanjiLevels = [
-  _LevelInfo('N5', available: true),
-  _LevelInfo('N4', available: true),
-  _LevelInfo('N3', available: true),
-  _LevelInfo('N2', available: true),
-  _LevelInfo('N1', available: true),
-];
+const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
 // ─── Kanji tab ────────────────────────────────────────────────────────────────
 
@@ -414,11 +402,11 @@ class _KanjiLevelSelector extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: AppDimens.spaceSm),
-        for (final level in _kanjiLevels)
+        for (final code in _kanjiLevels)
           _LevelCard(
-            level: level,
-            data: ref.watch(kanjiListProvider(level.code)).asData?.value,
-            onTap: () => onSelect(level.code),
+            code: code,
+            data: ref.watch(kanjiListProvider(code)).asData?.value,
+            onTap: () => onSelect(code),
           ),
       ],
     );
@@ -426,10 +414,10 @@ class _KanjiLevelSelector extends ConsumerWidget {
 }
 
 class _LevelCard extends StatelessWidget {
-  final _LevelInfo level;
+  final String code;
   final KanjiLevelData? data;
   final VoidCallback onTap;
-  const _LevelCard({required this.level, required this.data, required this.onTap});
+  const _LevelCard({required this.code, required this.data, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -450,14 +438,14 @@ class _LevelCard extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: level.available ? t.characters : t.surfaceContainer,
+                color: t.characters,
                 borderRadius: BorderRadius.circular(AppDimens.radiusSm),
               ),
               child: Center(
                 child: Text(
-                  level.code,
+                  code,
                   style: AppTextStyles.labelLarge.copyWith(
-                    color: level.available ? Colors.white : t.onSurfaceVariant,
+                    color: Colors.white,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -471,7 +459,7 @@ class _LevelCard extends StatelessWidget {
                   Text(
                     data?.label ?? '—',
                     style: AppTextStyles.body.copyWith(
-                      color: level.available ? t.onSurface : t.onSurfaceVariant,
+                      color: t.onSurface,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -482,23 +470,7 @@ class _LevelCard extends StatelessWidget {
                 ],
               ),
             ),
-            if (!level.available)
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.spaceSm,
-                  vertical: AppDimens.spaceXs,
-                ),
-                decoration: BoxDecoration(
-                  color: t.surfaceContainer,
-                  borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-                ),
-                child: Text(
-                  'Soon',
-                  style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
-                ),
-              )
-            else
-              Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),
+            Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),
           ],
         ),
       ),
