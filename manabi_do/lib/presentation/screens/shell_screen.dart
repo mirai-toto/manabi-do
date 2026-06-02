@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_tokens.dart';
 import '../../l10n/l10n.dart';
 import '../widgets/widgets.dart';
-import 'characters_screen.dart';
-import 'grammar_screen.dart';
+import 'characters/characters_screen.dart';
+import 'grammar/grammar_screen.dart';
 import 'home_screen.dart';
-import 'vocabulary_screen.dart';
+import 'vocabulary/vocabulary_screen.dart';
 
 class ShellScreen extends ConsumerStatefulWidget {
   const ShellScreen({super.key});

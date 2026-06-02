@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker run *)",
+      "Bash(sudo chown -R wsluser:wsluser /home/wsluser/manabi-do/manabi_do/)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(docker compose *)",
+      "Bash(grep -v \"^#\\\\|^$\\\\| Container\\\\| Image\\\\| Analyzing\")",
+      "Bash(sed -i 's|'\\\\''progress_bar.dart'\\\\''|'\\\\''../common/progress_bar.dart'\\\\''|g' /home/wsluser/manabi-do/manabi_do/lib/presentation/widgets/study/section_card.dart /home/wsluser/manabi-do/manabi_do/lib/presentation/widgets/study/chapter_card.dart)",
+      "Bash(sed -i 's|'\\\\''known_toggle.dart'\\\\''|'\\\\''../common/known_toggle.dart'\\\\''|g' /home/wsluser/manabi-do/manabi_do/lib/presentation/widgets/characters/kanji_detail_card.dart)",
+      "Bash(sed -i 's|'\\\\''app_button.dart'\\\\''|'\\\\''../common/app_button.dart'\\\\''|g' /home/wsluser/manabi-do/manabi_do/lib/presentation/widgets/exercise/lesson_reader_card.dart /home/wsluser/manabi-do/manabi_do/lib/presentation/widgets/exercise/summary_card.dart)"
+    ]
+  }
+}
