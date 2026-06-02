@@ -1,0 +1,418 @@
+{
+  "level": "N5",
+  "total": 103,
+  "kanji": [
+    {
+      "id": 23433,
+      "character": "安"
+    },
+    {
+      "id": 19968,
+      "character": "一"
+    },
+    {
+      "id": 39154,
+      "character": "飲"
+    },
+    {
+      "id": 21491,
+      "character": "右"
+    },
+    {
+      "id": 38632,
+      "character": "雨"
+    },
+    {
+      "id": 39365,
+      "character": "駅"
+    },
+    {
+      "id": 20870,
+      "character": "円"
+    },
+    {
+      "id": 19979,
+      "character": "下"
+    },
+    {
+      "id": 20309,
+      "character": "何"
+    },
+    {
+      "id": 28779,
+      "character": "火"
+    },
+    {
+      "id": 33457,
+      "character": "花"
+    },
+    {
+      "id": 20250,
+      "character": "会"
+    },
+    {
+      "id": 22806,
+      "character": "外"
+    },
+    {
+      "id": 23398,
+      "character": "学"
+    },
+    {
+      "id": 38291,
+      "character": "間"
+    },
+    {
+      "id": 27671,
+      "character": "気"
+    },
+    {
+      "id": 20241,
+      "character": "休"
+    },
+    {
+      "id": 39770,
+      "character": "魚"
+    },
+    {
+      "id": 37329,
+      "character": "金"
+    },
+    {
+      "id": 20061,
+      "character": "九"
+    },
+    {
+      "id": 31354,
+      "character": "空"
+    },
+    {
+      "id": 26376,
+      "character": "月"
+    },
+    {
+      "id": 35211,
+      "character": "見"
+    },
+    {
+      "id": 35328,
+      "character": "言"
+    },
+    {
+      "id": 21476,
+      "character": "古"
+    },
+    {
+      "id": 20116,
+      "character": "五"
+    },
+    {
+      "id": 21320,
+      "character": "午"
+    },
+    {
+      "id": 24460,
+      "character": "後"
+    },
+    {
+      "id": 35486,
+      "character": "語"
+    },
+    {
+      "id": 21475,
+      "character": "口"
+    },
+    {
+      "id": 26657,
+      "character": "校"
+    },
+    {
+      "id": 34892,
+      "character": "行"
+    },
+    {
+      "id": 39640,
+      "character": "高"
+    },
+    {
+      "id": 22269,
+      "character": "国"
+    },
+    {
+      "id": 20170,
+      "character": "今"
+    },
+    {
+      "id": 24038,
+      "character": "左"
+    },
+    {
+      "id": 19977,
+      "character": "三"
+    },
+    {
+      "id": 23665,
+      "character": "山"
+    },
+    {
+      "id": 22235,
+      "character": "四"
+    },
+    {
+      "id": 23376,
+      "character": "子"
+    },
+    {
+      "id": 26178,
+      "character": "時"
+    },
+    {
+      "id": 32819,
+      "character": "耳"
+    },
+    {
+      "id": 19971,
+      "character": "七"
+    },
+    {
+      "id": 31038,
+      "character": "社"
+    },
+    {
+      "id": 36554,
+      "character": "車"
+    },
+    {
+      "id": 25163,
+      "character": "手"
+    },
+    {
+      "id": 36913,
+      "character": "週"
+    },
+    {
+      "id": 21313,
+      "character": "十"
+    },
+    {
+      "id": 20986,
+      "character": "出"
+    },
+    {
+      "id": 26360,
+      "character": "書"
+    },
+    {
+      "id": 22899,
+      "character": "女"
+    },
+    {
+      "id": 23567,
+      "character": "小"
+    },
+    {
+      "id": 23569,
+      "character": "少"
+    },
+    {
+      "id": 19978,
+      "character": "上"
+    },
+    {
+      "id": 39135,
+      "character": "食"
+    },
+    {
+      "id": 26032,
+      "character": "新"
+    },
+    {
+      "id": 20154,
+      "character": "人"
+    },
+    {
+      "id": 27700,
+      "character": "水"
+    },
+    {
+      "id": 29983,
+      "character": "生"
+    },
+    {
+      "id": 35199,
+      "character": "西"
+    },
+    {
+      "id": 20808,
+      "character": "先"
+    },
+    {
+      "id": 21315,
+      "character": "千"
+    },
+    {
+      "id": 24029,
+      "character": "川"
+    },
+    {
+      "id": 21069,
+      "character": "前"
+    },
+    {
+      "id": 36275,
+      "character": "足"
+    },
+    {
+      "id": 22810,
+      "character": "多"
+    },
+    {
+      "id": 22823,
+      "character": "大"
+    },
+    {
+      "id": 30007,
+      "character": "男"
+    },
+    {
+      "id": 20013,
+      "character": "中"
+    },
+    {
+      "id": 38263,
+      "character": "長"
+    },
+    {
+      "id": 22825,
+      "character": "天"
+    },
+    {
+      "id": 24215,
+      "character": "店"
+    },
+    {
+      "id": 38651,
+      "character": "電"
+    },
+    {
+      "id": 22303,
+      "character": "土"
+    },
+    {
+      "id": 26481,
+      "character": "東"
+    },
+    {
+      "id": 36947,
+      "character": "道"
+    },
+    {
+      "id": 35501,
+      "character": "読"
+    },
+    {
+      "id": 21335,
+      "character": "南"
+    },
+    {
+      "id": 20108,
+      "character": "二"
+    },
+    {
+      "id": 26085,
+      "character": "日"
+    },
+    {
+      "id": 20837,
+      "character": "入"
+    },
+    {
+      "id": 24180,
+      "character": "年"
+    },
+    {
+      "id": 36023,
+      "character": "買"
+    },
+    {
+      "id": 30333,
+      "character": "白"
+    },
+    {
+      "id": 20843,
+      "character": "八"
+    },
+    {
+      "id": 21322,
+      "character": "半"
+    },
+    {
+      "id": 30334,
+      "character": "百"
+    },
+    {
+      "id": 29238,
+      "character": "父"
+    },
+    {
+      "id": 20998,
+      "character": "分"
+    },
+    {
+      "id": 32862,
+      "character": "聞"
+    },
+    {
+      "id": 27597,
+      "character": "母"
+    },
+    {
+      "id": 21271,
+      "character": "北"
+    },
+    {
+      "id": 26412,
+      "character": "本"
+    },
+    {
+      "id": 27598,
+      "character": "毎"
+    },
+    {
+      "id": 19975,
+      "character": "万"
+    },
+    {
+      "id": 21517,
+      "character": "名"
+    },
+    {
+      "id": 26408,
+      "character": "木"
+    },
+    {
+      "id": 30446,
+      "character": "目"
+    },
+    {
+      "id": 21451,
+      "character": "友"
+    },
+    {
+      "id": 26469,
+      "character": "来"
+    },
+    {
+      "id": 31435,
+      "character": "立"
+    },
+    {
+      "id": 20845,
+      "character": "六"
+    },
+    {
+      "id": 35441,
+      "character": "話"
+    }
+  ]
+}

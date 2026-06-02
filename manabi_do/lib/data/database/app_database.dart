@@ -16,7 +16,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(driftDatabase(name: 'manabi_do'));
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -24,15 +24,23 @@ class AppDatabase extends _$AppDatabase {
       await m.createAll();
       await _seedN5Kanji();
     },
+    onUpgrade: (m, from, to) async {
+      for (final table in allTables) {
+        await m.deleteTable(table.actualTableName);
+      }
+      await m.createAll();
+      await _seedN5Kanji();
+    },
   );
 
   Future<void> _seedN5Kanji() async {
-    final companions = n5KanjiData.map((e) => KanjisCompanion.insert(
-      character: e.$1,
-      meaning: e.$2,
-      onReading: e.$3,
-      kunReading: e.$4,
-      jlptLevel: 'N5',
+    final companions = n5KanjiData.map((e) => KanjisCompanion(
+      id: Value(e.$1),
+      character: Value(e.$2),
+      meaning: Value(e.$3),
+      onReading: Value(e.$4),
+      kunReading: Value(e.$5),
+      jlptLevel: const Value('N5'),
     )).toList();
     await batch((b) => b.insertAll(kanjis, companions));
   }
