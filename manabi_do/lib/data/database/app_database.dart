@@ -63,6 +63,9 @@ class AppDatabase extends _$AppDatabase {
   Stream<List<Kanji>> watchKanjiByLevel(String level) =>
       (select(kanjis)..where((k) => k.jlptLevel.equals(level))).watch();
 
+  Stream<Kanji?> watchKanjiById(int id) =>
+      (select(kanjis)..where((k) => k.id.equals(id))).watchSingleOrNull();
+
   // ── Progress queries ─────────────────────────────────────────────────────
 
   Stream<Set<int>> watchKnownKanjiIds() =>

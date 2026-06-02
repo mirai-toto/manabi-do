@@ -31,9 +31,8 @@ final kanjiListProvider = FutureProvider.family<KanjiLevelData, String>((ref, le
   );
 });
 
-// Full kanji stream from DB — used for detail views.
-final n5KanjiProvider = StreamProvider<List<Kanji>>((ref) {
-  return ref.watch(databaseProvider).watchKanjiByLevel('N5');
+final kanjiDetailProvider = StreamProvider.family<Kanji?, int>((ref, id) {
+  return ref.watch(databaseProvider).watchKanjiById(id);
 });
 
 final knownKanjiIdsProvider = StreamProvider<Set<int>>((ref) {

@@ -3,28 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../providers/kanji_provider.dart' show KanjiLevelData, KanjiListEntry, kanjiListProvider;
+import '../../providers/kanji_provider.dart' show KanjiLevelData, KanjiListEntry, kanjiListProvider, knownKanjiIdsProvider;
 import '../../widgets/widgets.dart';
+import 'kanji_detail_screen.dart';
+import 'kanji_level.dart';
 
 const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
-
-Color _levelColor(String level) => switch (level) {
-      'N5' => const Color(0xFF43A047),
-      'N4' => const Color(0xFF039BE5),
-      'N3' => const Color(0xFF7B1FA2),
-      'N2' => const Color(0xFFE65100),
-      'N1' => const Color(0xFFC62828),
-      _ => const Color(0xFF607D8B),
-    };
-
-int _levelDifficulty(String level) => switch (level) {
-      'N5' => 1,
-      'N4' => 2,
-      'N3' => 3,
-      'N2' => 4,
-      'N1' => 5,
-      _ => 0,
-    };
 
 class KanjiTabView extends ConsumerStatefulWidget {
   const KanjiTabView({super.key});
@@ -35,11 +19,6 @@ class KanjiTabView extends ConsumerStatefulWidget {
 
 class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
   String? _selectedLevel;
-  final Set<int> _knownIds = {};
-
-  void _toggle(int id) => setState(
-        () => _knownIds.contains(id) ? _knownIds.remove(id) : _knownIds.add(id),
-      );
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +29,7 @@ class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
     }
 
     final kanjiAsync = ref.watch(kanjiListProvider(_selectedLevel!));
+    final knownIds = ref.watch(knownKanjiIdsProvider).asData?.value ?? {};
 
     if (kanjiAsync is AsyncLoading) {
       return const Center(child: CircularProgressIndicator());
@@ -57,8 +37,9 @@ class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
 
     final data = kanjiAsync.asData?.value;
     final kanjiList = data?.kanji ?? [];
-    final knownCount = kanjiList.where((k) => _knownIds.contains(k.id)).length;
-    final color = _levelColor(_selectedLevel!);
+    final levelIdSet = kanjiList.map((k) => k.id).toSet();
+    final knownCount = knownIds.intersection(levelIdSet).length;
+    final color = levelColor(_selectedLevel!);
 
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
@@ -70,11 +51,7 @@ class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
           onBack: () => setState(() => _selectedLevel = null),
         ),
         ProgressRow(known: knownCount, total: kanjiList.length, color: color),
-        _KanjiGrid(
-          kanjis: kanjiList,
-          knownIds: _knownIds,
-          onToggle: _toggle,
-        ),
+        _KanjiGrid(kanjis: kanjiList, knownIds: knownIds),
       ],
     );
   }
@@ -119,8 +96,8 @@ class _LevelCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final color = _levelColor(code);
-    final difficulty = _levelDifficulty(code);
+    final color = levelColor(code);
+    final difficulty = levelDifficulty(code);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -265,13 +242,8 @@ class _LevelHeader extends StatelessWidget {
 class _KanjiGrid extends StatelessWidget {
   final List<KanjiListEntry> kanjis;
   final Set<int> knownIds;
-  final void Function(int id) onToggle;
 
-  const _KanjiGrid({
-    required this.kanjis,
-    required this.knownIds,
-    required this.onToggle,
-  });
+  const _KanjiGrid({required this.kanjis, required this.knownIds});
 
   @override
   Widget build(BuildContext context) {
@@ -297,7 +269,11 @@ class _KanjiGrid extends StatelessWidget {
                     character: rowItems[j].character,
                     meaning: '',
                     isKnown: knownIds.contains(rowItems[j].id),
-                    onTap: () => onToggle(rowItems[j].id),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => KanjiDetailScreen(kanjiId: rowItems[j].id),
+                      ),
+                    ),
                     size: cellSize,
                     kanjiSize: kanjiSize,
                     meaningSize: meaningSize,
