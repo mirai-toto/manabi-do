@@ -61,7 +61,7 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _CharactersHeader(tabIndex: _tabController.index, kanaData: kanaData),
-            _SegmentedTabBar(
+            SegmentedTabBar(
               controller: _tabController,
               labels: [l.tabHiragana, l.tabKatakana, l.tabKanji],
             ),
@@ -136,53 +136,6 @@ class _CharactersHeader extends StatelessWidget {
   }
 }
 
-// ─── Segmented tab bar ────────────────────────────────────────────────────────
-
-class _SegmentedTabBar extends StatelessWidget {
-  final TabController controller;
-  final List<String> labels;
-
-  const _SegmentedTabBar({required this.controller, required this.labels});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        AppDimens.spaceMd, 0, AppDimens.spaceMd, AppDimens.spaceSm,
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
-          color: t.surfaceContainer,
-          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        ),
-        child: TabBar(
-          controller: controller,
-          dividerColor: Colors.transparent,
-          indicatorSize: TabBarIndicatorSize.tab,
-          indicator: BoxDecoration(
-            color: t.cardBackground,
-            borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-            boxShadow: [
-              BoxShadow(
-                color: t.onSurface.withValues(alpha: 0.08),
-                blurRadius: 4,
-                offset: const Offset(0, 1),
-              ),
-            ],
-          ),
-          labelColor: t.primary,
-          unselectedLabelColor: t.onSurfaceVariant,
-          labelStyle: AppTextStyles.labelLarge,
-          unselectedLabelStyle: AppTextStyles.labelLarge,
-          tabs: labels.map((l) => Tab(text: l)).toList(),
-        ),
-      ),
-    );
-  }
-}
-
 // ─── Kana tab ─────────────────────────────────────────────────────────────────
 
 class _KanaTabView extends StatelessWidget {
@@ -198,13 +151,14 @@ class _KanaTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = context.tokens;
     final allKana = rows.expand((r) => r.kana).toList();
     final knownCount = allKana.where((e) => known.contains(e.kana)).length;
 
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
       children: [
-        _ProgressRow(known: knownCount, total: allKana.length),
+        ProgressRow(known: knownCount, total: allKana.length, color: t.characters),
         for (final row in rows) ...[
           _RowLabel(row.label),
           const SizedBox(height: AppDimens.spaceXs),
@@ -212,43 +166,6 @@ class _KanaTabView extends StatelessWidget {
           const SizedBox(height: AppDimens.spaceSm),
         ],
       ],
-    );
-  }
-}
-
-// ─── Progress row ─────────────────────────────────────────────────────────────
-
-class _ProgressRow extends StatelessWidget {
-  final int known;
-  final int total;
-  const _ProgressRow({required this.known, required this.total});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        AppDimens.spaceMd, AppDimens.spaceSm, AppDimens.spaceMd, AppDimens.spaceMd,
-      ),
-      child: Row(
-        children: [
-          Text(
-            '$known',
-            style: AppTextStyles.labelLarge.copyWith(color: t.onSurface),
-          ),
-          Text(
-            ' / $total known',
-            style: AppTextStyles.labelLarge.copyWith(color: t.onSurfaceVariant),
-          ),
-          const SizedBox(width: AppDimens.spaceMd),
-          Expanded(
-            child: AppProgressBar(
-              progress: total > 0 ? known / total : 0,
-              color: t.characters,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -358,6 +275,7 @@ class _KanjiTabViewState extends ConsumerState<_KanjiTabView> {
       return const Center(child: CircularProgressIndicator());
     }
 
+    final t = context.tokens;
     final data = kanjiAsync.asData?.value;
     final kanjiList = data?.kanji ?? [];
     final knownCount = kanjiList.where((k) => _knownIds.contains(k.id)).length;
@@ -370,7 +288,7 @@ class _KanjiTabViewState extends ConsumerState<_KanjiTabView> {
           label: data?.label,
           onBack: () => setState(() => _selectedLevel = null),
         ),
-        _ProgressRow(known: knownCount, total: kanjiList.length),
+        ProgressRow(known: knownCount, total: kanjiList.length, color: t.characters),
         _KanjiGrid(
           kanjis: kanjiList,
           knownIds: _knownIds,

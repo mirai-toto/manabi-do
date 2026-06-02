@@ -5,6 +5,8 @@ export 'common/app_filter_chip.dart';
 export 'common/app_text_field.dart';
 export 'common/known_toggle.dart';
 export 'common/progress_bar.dart';
+export 'common/progress_row.dart';
+export 'common/segmented_tab_bar.dart';
 
 // navigation
 export 'navigation/app_nav_bar.dart';
