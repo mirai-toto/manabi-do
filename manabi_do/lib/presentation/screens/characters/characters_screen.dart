@@ -328,17 +328,16 @@ class _KanaGrid extends StatelessWidget {
 class _LevelInfo {
   final String code;
   final String label;
-  final int total;
   final bool available;
-  const _LevelInfo(this.code, this.label, this.total, {this.available = false});
+  const _LevelInfo(this.code, this.label, {this.available = false});
 }
 
 const _kanjiLevels = [
-  _LevelInfo('N5', 'Beginner',            79,  available: true),
-  _LevelInfo('N4', 'Elementary',         166,  available: true),
-  _LevelInfo('N3', 'Intermediate',       367,  available: true),
-  _LevelInfo('N2', 'Upper-Intermediate', 367,  available: true),
-  _LevelInfo('N1', 'Advanced',          1232,  available: true),
+  _LevelInfo('N5', 'Beginner',            available: true),
+  _LevelInfo('N4', 'Elementary',          available: true),
+  _LevelInfo('N3', 'Intermediate',        available: true),
+  _LevelInfo('N2', 'Upper-Intermediate',  available: true),
+  _LevelInfo('N1', 'Advanced',            available: true),
 ];
 
 // ─── Kanji tab ────────────────────────────────────────────────────────────────
@@ -395,12 +394,12 @@ class _KanjiTabViewState extends ConsumerState<_KanjiTabView> {
 
 // ─── Level selector ───────────────────────────────────────────────────────────
 
-class _KanjiLevelSelector extends StatelessWidget {
+class _KanjiLevelSelector extends ConsumerWidget {
   final void Function(String) onSelect;
   const _KanjiLevelSelector({required this.onSelect});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     return ListView(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -415,7 +414,11 @@ class _KanjiLevelSelector extends StatelessWidget {
         ),
         const SizedBox(height: AppDimens.spaceSm),
         for (final level in _kanjiLevels)
-          _LevelCard(level: level, onTap: () => onSelect(level.code)),
+          _LevelCard(
+            level: level,
+            total: ref.watch(kanjiListProvider(level.code)).asData?.value?.length,
+            onTap: () => onSelect(level.code),
+          ),
       ],
     );
   }
@@ -423,8 +426,9 @@ class _KanjiLevelSelector extends StatelessWidget {
 
 class _LevelCard extends StatelessWidget {
   final _LevelInfo level;
+  final int? total;
   final VoidCallback onTap;
-  const _LevelCard({required this.level, required this.onTap});
+  const _LevelCard({required this.level, required this.total, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -471,7 +475,7 @@ class _LevelCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${level.total} kanji',
+                    total != null ? '$total kanji' : '— kanji',
                     style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
                   ),
                 ],
