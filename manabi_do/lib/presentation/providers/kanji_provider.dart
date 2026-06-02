@@ -10,16 +10,25 @@ class KanjiListEntry {
   const KanjiListEntry({required this.id, required this.character});
 }
 
-// Loads the lightweight kanji list (id + character) for a given level from JSON.
-final kanjiListProvider = FutureProvider.family<List<KanjiListEntry>, String>((ref, level) async {
+class KanjiLevelData {
+  final String level;
+  final String label;
+  final List<KanjiListEntry> kanji;
+  const KanjiLevelData({required this.level, required this.label, required this.kanji});
+  int get total => kanji.length;
+}
+
+// Loads level metadata + kanji list (id + character) from JSON.
+final kanjiListProvider = FutureProvider.family<KanjiLevelData, String>((ref, level) async {
   final raw = await rootBundle.loadString('assets/data/${level.toLowerCase()}.json');
   final json = jsonDecode(raw) as Map<String, dynamic>;
-  return (json['kanji'] as List<dynamic>)
-      .map((e) => KanjiListEntry(
-            id: e['id'] as int,
-            character: e['character'] as String,
-          ))
-      .toList();
+  return KanjiLevelData(
+    level: json['level'] as String,
+    label: json['label'] as String,
+    kanji: (json['kanji'] as List<dynamic>)
+        .map((e) => KanjiListEntry(id: e['id'] as int, character: e['character'] as String))
+        .toList(),
+  );
 });
 
 // Full kanji stream from DB — used for detail views.

@@ -6,7 +6,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../domain/data/kana_data.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kana_provider.dart';
-import '../../providers/kanji_provider.dart' show KanjiListEntry, kanjiListProvider;
+import '../../providers/kanji_provider.dart' show KanjiLevelData, KanjiListEntry, kanjiListProvider;
 import '../../widgets/widgets.dart';
 
 class CharactersScreen extends ConsumerStatefulWidget {
@@ -327,17 +327,16 @@ class _KanaGrid extends StatelessWidget {
 
 class _LevelInfo {
   final String code;
-  final String label;
   final bool available;
-  const _LevelInfo(this.code, this.label, {this.available = false});
+  const _LevelInfo(this.code, {this.available = false});
 }
 
 const _kanjiLevels = [
-  _LevelInfo('N5', 'Beginner',            available: true),
-  _LevelInfo('N4', 'Elementary',          available: true),
-  _LevelInfo('N3', 'Intermediate',        available: true),
-  _LevelInfo('N2', 'Upper-Intermediate',  available: true),
-  _LevelInfo('N1', 'Advanced',            available: true),
+  _LevelInfo('N5', available: true),
+  _LevelInfo('N4', available: true),
+  _LevelInfo('N3', available: true),
+  _LevelInfo('N2', available: true),
+  _LevelInfo('N1', available: true),
 ];
 
 // ─── Kanji tab ────────────────────────────────────────────────────────────────
@@ -371,7 +370,8 @@ class _KanjiTabViewState extends ConsumerState<_KanjiTabView> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    final kanjiList = kanjiAsync.asData?.value ?? [];
+    final data = kanjiAsync.asData?.value;
+    final kanjiList = data?.kanji ?? [];
     final knownCount = kanjiList.where((k) => _knownIds.contains(k.id)).length;
 
     return ListView(
@@ -379,6 +379,7 @@ class _KanjiTabViewState extends ConsumerState<_KanjiTabView> {
       children: [
         _LevelHeader(
           level: _selectedLevel!,
+          label: data?.label,
           onBack: () => setState(() => _selectedLevel = null),
         ),
         _ProgressRow(known: knownCount, total: kanjiList.length),
@@ -416,7 +417,7 @@ class _KanjiLevelSelector extends ConsumerWidget {
         for (final level in _kanjiLevels)
           _LevelCard(
             level: level,
-            total: ref.watch(kanjiListProvider(level.code)).asData?.value?.length,
+            data: ref.watch(kanjiListProvider(level.code)).asData?.value,
             onTap: () => onSelect(level.code),
           ),
       ],
@@ -426,9 +427,9 @@ class _KanjiLevelSelector extends ConsumerWidget {
 
 class _LevelCard extends StatelessWidget {
   final _LevelInfo level;
-  final int? total;
+  final KanjiLevelData? data;
   final VoidCallback onTap;
-  const _LevelCard({required this.level, required this.total, required this.onTap});
+  const _LevelCard({required this.level, required this.data, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -468,14 +469,14 @@ class _LevelCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    level.label,
+                    data?.label ?? '—',
                     style: AppTextStyles.body.copyWith(
                       color: level.available ? t.onSurface : t.onSurfaceVariant,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   Text(
-                    total != null ? '$total kanji' : '— kanji',
+                    data != null ? '${data!.total} kanji' : '— kanji',
                     style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
                   ),
                 ],
@@ -509,13 +510,13 @@ class _LevelCard extends StatelessWidget {
 
 class _LevelHeader extends StatelessWidget {
   final String level;
+  final String? label;
   final VoidCallback onBack;
-  const _LevelHeader({required this.level, required this.onBack});
+  const _LevelHeader({required this.level, required this.onBack, this.label});
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final info = _kanjiLevels.firstWhere((l) => l.code == level);
     return Padding(
       padding: const EdgeInsets.fromLTRB(
         AppDimens.spaceXs, AppDimens.spaceSm, AppDimens.spaceMd, 0,
@@ -528,11 +529,13 @@ class _LevelHeader extends StatelessWidget {
             color: t.onSurface,
           ),
           Text(level, style: AppTextStyles.title.copyWith(color: t.onSurface)),
-          const SizedBox(width: AppDimens.spaceSm),
-          Text(
-            '· ${info.label}',
-            style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-          ),
+          if (label != null) ...[
+            const SizedBox(width: AppDimens.spaceSm),
+            Text(
+              '· $label',
+              style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+            ),
+          ],
         ],
       ),
     );
