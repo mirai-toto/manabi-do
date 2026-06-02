@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_text_styles.dart';
-import '../../core/theme/app_tokens.dart';
-import '../../l10n/l10n.dart';
+import '../../../core/theme/app_text_styles.dart';
+import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/l10n.dart';
 
 class GrammarScreen extends StatelessWidget {
   const GrammarScreen({super.key});
