@@ -6,18 +6,18 @@ import '../../core/theme/app_tokens.dart';
 import '../../data/database/app_database.dart';
 import '../../domain/data/kana_data.dart';
 import '../../l10n/l10n.dart';
-import '../providers/database_provider.dart';
+import '../providers/kana_provider.dart';
 import '../providers/kanji_provider.dart';
 import '../widgets/widgets.dart';
 
-class CharactersScreen extends StatefulWidget {
+class CharactersScreen extends ConsumerStatefulWidget {
   const CharactersScreen({super.key});
 
   @override
-  State<CharactersScreen> createState() => _CharactersScreenState();
+  ConsumerState<CharactersScreen> createState() => _CharactersScreenState();
 }
 
-class _CharactersScreenState extends State<CharactersScreen>
+class _CharactersScreenState extends ConsumerState<CharactersScreen>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
   final Set<String> _knownHiragana = {};
@@ -51,6 +51,9 @@ class _CharactersScreenState extends State<CharactersScreen>
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    final kanaAsync = ref.watch(kanaDataProvider);
+    final kanaData = kanaAsync.asData?.value;
+
     return Align(
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
@@ -58,28 +61,30 @@ class _CharactersScreenState extends State<CharactersScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _CharactersHeader(tabIndex: _tabController.index),
+            _CharactersHeader(tabIndex: _tabController.index, kanaData: kanaData),
             _SegmentedTabBar(
               controller: _tabController,
               labels: [l.tabHiragana, l.tabKatakana, l.tabKanji],
             ),
             Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  _KanaTabView(
-                    rows: KanaData.hiragana,
-                    known: _knownHiragana,
-                    onToggle: _toggleHiragana,
-                  ),
-                  _KanaTabView(
-                    rows: KanaData.katakana,
-                    known: _knownKatakana,
-                    onToggle: _toggleKatakana,
-                  ),
-                  const _KanjiTabView(),
-                ],
-              ),
+              child: kanaData == null
+                  ? const Center(child: CircularProgressIndicator())
+                  : TabBarView(
+                      controller: _tabController,
+                      children: [
+                        _KanaTabView(
+                          rows: kanaData.hiragana,
+                          known: _knownHiragana,
+                          onToggle: _toggleHiragana,
+                        ),
+                        _KanaTabView(
+                          rows: kanaData.katakana,
+                          known: _knownKatakana,
+                          onToggle: _toggleKatakana,
+                        ),
+                        const _KanjiTabView(),
+                      ],
+                    ),
             ),
           ],
         ),
@@ -92,16 +97,17 @@ class _CharactersScreenState extends State<CharactersScreen>
 
 class _CharactersHeader extends StatelessWidget {
   final int tabIndex;
-  const _CharactersHeader({required this.tabIndex});
+  final KanaData? kanaData;
+  const _CharactersHeader({required this.tabIndex, required this.kanaData});
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
-
-    final allHiragana = KanaData.hiragana.expand((r) => r.kana).length;
-    final allKatakana = KanaData.katakana.expand((r) => r.kana).length;
-    final total = allHiragana + allKatakana;
+    final total = kanaData?.total;
+    final subtitle = total != null
+        ? 'Kana · Kanji N5–N1  ·  $total kana'
+        : 'Kana · Kanji N5–N1';
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(
@@ -118,7 +124,7 @@ class _CharactersHeader extends StatelessWidget {
                   style: AppTextStyles.headline.copyWith(color: t.onSurface),
                 ),
                 Text(
-                  'Kana · Kanji N5/N4  ·  $total characters',
+                  subtitle,
                   style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
                 ),
               ],
@@ -318,34 +324,261 @@ class _KanaGrid extends StatelessWidget {
   }
 }
 
+// ─── Kanji level metadata ────────────────────────────────────────────────────
+
+class _LevelInfo {
+  final String code;
+  final String label;
+  final int total;
+  final bool available;
+  const _LevelInfo(this.code, this.label, this.total, {this.available = false});
+}
+
+const _kanjiLevels = [
+  _LevelInfo('N5', 'Beginner',            80,  available: true),
+  _LevelInfo('N4', 'Elementary',         168),
+  _LevelInfo('N3', 'Intermediate',       370),
+  _LevelInfo('N2', 'Upper-Intermediate', 367),
+  _LevelInfo('N1', 'Advanced',          1232),
+];
+
 // ─── Kanji tab ────────────────────────────────────────────────────────────────
 
-class _KanjiTabView extends ConsumerWidget {
+class _KanjiTabView extends ConsumerStatefulWidget {
   const _KanjiTabView();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_KanjiTabView> createState() => _KanjiTabViewState();
+}
+
+class _KanjiTabViewState extends ConsumerState<_KanjiTabView> {
+  String? _selectedLevel;
+  final Set<int> _knownIds = {};
+
+  void _toggle(int id) => setState(
+        () => _knownIds.contains(id) ? _knownIds.remove(id) : _knownIds.add(id),
+      );
+
+  @override
+  Widget build(BuildContext context) {
     final kanjiAsync = ref.watch(n5KanjiProvider);
-    final knownAsync = ref.watch(knownKanjiIdsProvider);
+
+    if (_selectedLevel == null) {
+      return _KanjiLevelSelector(
+        onSelect: (level) => setState(() => _selectedLevel = level),
+      );
+    }
+
+    if (_selectedLevel != 'N5') {
+      return _KanjiComingSoon(
+        level: _selectedLevel!,
+        onBack: () => setState(() => _selectedLevel = null),
+      );
+    }
 
     if (kanjiAsync is AsyncLoading) {
       return const Center(child: CircularProgressIndicator());
     }
 
     final kanjiList = kanjiAsync.asData?.value ?? [];
-    final knownIds = knownAsync.asData?.value ?? {};
-
-    final knownCount = kanjiList.where((k) => knownIds.contains(k.id)).length;
+    final knownCount = kanjiList.where((k) => _knownIds.contains(k.id)).length;
 
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
       children: [
+        _LevelHeader(
+          level: _selectedLevel!,
+          onBack: () => setState(() => _selectedLevel = null),
+        ),
         _ProgressRow(known: knownCount, total: kanjiList.length),
         _KanjiGrid(
           kanjis: kanjiList,
-          knownIds: knownIds,
-          onToggle: (id, isKnown) =>
-              ref.read(databaseProvider).setKanjiKnown(id, isKnown: isKnown),
+          knownIds: _knownIds,
+          onToggle: (id, _) => _toggle(id),
+        ),
+      ],
+    );
+  }
+}
+
+// ─── Level selector ───────────────────────────────────────────────────────────
+
+class _KanjiLevelSelector extends StatelessWidget {
+  final void Function(String) onSelect;
+  const _KanjiLevelSelector({required this.onSelect});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    return ListView(
+      padding: const EdgeInsets.all(AppDimens.spaceMd),
+      children: [
+        Text(
+          'SELECT A LEVEL',
+          style: AppTextStyles.label.copyWith(
+            color: t.onSurfaceVariant,
+            letterSpacing: 0.8,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: AppDimens.spaceSm),
+        for (final level in _kanjiLevels)
+          _LevelCard(level: level, onTap: () => onSelect(level.code)),
+      ],
+    );
+  }
+}
+
+class _LevelCard extends StatelessWidget {
+  final _LevelInfo level;
+  final VoidCallback onTap;
+  const _LevelCard({required this.level, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: AppDimens.spaceSm),
+        padding: const EdgeInsets.all(AppDimens.spaceMd),
+        decoration: BoxDecoration(
+          color: t.cardBackground,
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+          border: Border.all(color: t.outlineVariant, width: 1),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: level.available ? t.characters : t.surfaceContainer,
+                borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+              ),
+              child: Center(
+                child: Text(
+                  level.code,
+                  style: AppTextStyles.labelLarge.copyWith(
+                    color: level.available ? Colors.white : t.onSurfaceVariant,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: AppDimens.spaceMd),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    level.label,
+                    style: AppTextStyles.body.copyWith(
+                      color: level.available ? t.onSurface : t.onSurfaceVariant,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    '${level.total} kanji',
+                    style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+                  ),
+                ],
+              ),
+            ),
+            if (!level.available)
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.spaceSm,
+                  vertical: AppDimens.spaceXs,
+                ),
+                decoration: BoxDecoration(
+                  color: t.surfaceContainer,
+                  borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+                ),
+                child: Text(
+                  'Soon',
+                  style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
+                ),
+              )
+            else
+              Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Level header (shown inside the grid view) ────────────────────────────────
+
+class _LevelHeader extends StatelessWidget {
+  final String level;
+  final VoidCallback onBack;
+  const _LevelHeader({required this.level, required this.onBack});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final info = _kanjiLevels.firstWhere((l) => l.code == level);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        AppDimens.spaceXs, AppDimens.spaceSm, AppDimens.spaceMd, 0,
+      ),
+      child: Row(
+        children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_back_rounded),
+            onPressed: onBack,
+            color: t.onSurface,
+          ),
+          Text(level, style: AppTextStyles.title.copyWith(color: t.onSurface)),
+          const SizedBox(width: AppDimens.spaceSm),
+          Text(
+            '· ${info.label}',
+            style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─── Coming soon placeholder ──────────────────────────────────────────────────
+
+class _KanjiComingSoon extends StatelessWidget {
+  final String level;
+  final VoidCallback onBack;
+  const _KanjiComingSoon({required this.level, required this.onBack});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final info = _kanjiLevels.firstWhere((l) => l.code == level);
+    return Column(
+      children: [
+        _LevelHeader(level: level, onBack: onBack),
+        Expanded(
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  level,
+                  style: AppTextStyles.jpDisplay.copyWith(color: t.onSurfaceVariant),
+                ),
+                const SizedBox(height: AppDimens.spaceSm),
+                Text(
+                  'Coming soon',
+                  style: AppTextStyles.title.copyWith(color: t.onSurface),
+                ),
+                const SizedBox(height: AppDimens.spaceXs),
+                Text(
+                  '${info.total} kanji · ${info.label}',
+                  style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );

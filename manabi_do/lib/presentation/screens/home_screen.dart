@@ -4,6 +4,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/theme/app_tokens.dart';
 import '../../l10n/l10n.dart';
 import '../widgets/widgets.dart';
+import 'widget_gallery_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -65,6 +66,7 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
           children: [
             _HomeHeader(greeting: _greeting(context), subtitle: l.greetingSubtitle),
+            _DevGalleryLink(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
               child: LayoutBuilder(
@@ -97,6 +99,28 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DevGalleryLink extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Padding(
+        padding: const EdgeInsets.only(right: AppDimens.spaceMd, bottom: AppDimens.spaceXs),
+        child: GestureDetector(
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute<void>(builder: (_) => const WidgetGalleryScreen()),
+          ),
+          child: Text(
+            'Widget Gallery →',
+            style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
+          ),
         ),
       ),
     );
