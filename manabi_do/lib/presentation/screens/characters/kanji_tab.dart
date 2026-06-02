@@ -8,6 +8,24 @@ import '../../widgets/widgets.dart';
 
 const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
+Color _levelColor(String level) => switch (level) {
+      'N5' => const Color(0xFF43A047),
+      'N4' => const Color(0xFF039BE5),
+      'N3' => const Color(0xFF7B1FA2),
+      'N2' => const Color(0xFFE65100),
+      'N1' => const Color(0xFFC62828),
+      _ => const Color(0xFF607D8B),
+    };
+
+int _levelDifficulty(String level) => switch (level) {
+      'N5' => 1,
+      'N4' => 2,
+      'N3' => 3,
+      'N2' => 4,
+      'N1' => 5,
+      _ => 0,
+    };
+
 class KanjiTabView extends ConsumerStatefulWidget {
   const KanjiTabView({super.key});
 
@@ -37,10 +55,10 @@ class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    final t = context.tokens;
     final data = kanjiAsync.asData?.value;
     final kanjiList = data?.kanji ?? [];
     final knownCount = kanjiList.where((k) => _knownIds.contains(k.id)).length;
+    final color = _levelColor(_selectedLevel!);
 
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
@@ -48,9 +66,10 @@ class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
         _LevelHeader(
           level: _selectedLevel!,
           label: data?.label,
+          color: color,
           onBack: () => setState(() => _selectedLevel = null),
         ),
-        ProgressRow(known: knownCount, total: kanjiList.length, color: t.characters),
+        ProgressRow(known: knownCount, total: kanjiList.length, color: color),
         _KanjiGrid(
           kanjis: kanjiList,
           knownIds: _knownIds,
@@ -100,6 +119,8 @@ class _LevelCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+    final color = _levelColor(code);
+    final difficulty = _levelDifficulty(code);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -108,7 +129,7 @@ class _LevelCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: t.cardBackground,
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          border: Border.all(color: t.outlineVariant, width: 1),
+          border: Border.all(color: color.withValues(alpha: 0.35), width: 1),
         ),
         child: Row(
           children: [
@@ -116,7 +137,7 @@ class _LevelCard extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: t.characters,
+                color: color,
                 borderRadius: BorderRadius.circular(AppDimens.radiusSm),
               ),
               child: Center(
@@ -141,9 +162,16 @@ class _LevelCard extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Text(
-                    data != null ? '${data!.total} kanji' : '— kanji',
-                    style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Text(
+                        data != null ? '${data!.total} kanji' : '— kanji',
+                        style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+                      ),
+                      const SizedBox(width: AppDimens.spaceSm),
+                      _DifficultyDots(filled: difficulty, color: color),
+                    ],
                   ),
                 ],
               ),
@@ -156,11 +184,42 @@ class _LevelCard extends StatelessWidget {
   }
 }
 
+class _DifficultyDots extends StatelessWidget {
+  final int filled;
+  final Color color;
+  const _DifficultyDots({required this.filled, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(
+        5,
+        (i) => Container(
+          margin: EdgeInsets.only(left: i > 0 ? 3 : 0),
+          width: 6,
+          height: 6,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: i < filled ? color : color.withValues(alpha: 0.2),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _LevelHeader extends StatelessWidget {
   final String level;
   final String? label;
+  final Color color;
   final VoidCallback onBack;
-  const _LevelHeader({required this.level, required this.onBack, this.label});
+  const _LevelHeader({
+    required this.level,
+    required this.onBack,
+    required this.color,
+    this.label,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +235,20 @@ class _LevelHeader extends StatelessWidget {
             onPressed: onBack,
             color: t.onSurface,
           ),
-          Text(level, style: AppTextStyles.title.copyWith(color: t.onSurface)),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+            ),
+            child: Text(
+              level,
+              style: AppTextStyles.labelLarge.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
           if (label != null) ...[
             const SizedBox(width: AppDimens.spaceSm),
             Text(
