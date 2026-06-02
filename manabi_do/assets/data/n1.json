@@ -1,0 +1,4934 @@
+{
+  "level": "N1",
+  "total": 1232,
+  "kanji": [
+    {
+      "id": 27663,
+      "character": "氏"
+    },
+    {
+      "id": 32113,
+      "character": "統"
+    },
+    {
+      "id": 20445,
+      "character": "保"
+    },
+    {
+      "id": 31532,
+      "character": "第"
+    },
+    {
+      "id": 32080,
+      "character": "結"
+    },
+    {
+      "id": 27966,
+      "character": "派"
+    },
+    {
+      "id": 26696,
+      "character": "案"
+    },
+    {
+      "id": 31574,
+      "character": "策"
+    },
+    {
+      "id": 22522,
+      "character": "基"
+    },
+    {
+      "id": 20385,
+      "character": "価"
+    },
+    {
+      "id": 25552,
+      "character": "提"
+    },
+    {
+      "id": 25369,
+      "character": "挙"
+    },
+    {
+      "id": 24540,
+      "character": "応"
+    },
+    {
+      "id": 20225,
+      "character": "企"
+    },
+    {
+      "id": 26908,
+      "character": "検"
+    },
+    {
+      "id": 34276,
+      "character": "藤"
+    },
+    {
+      "id": 27810,
+      "character": "沢"
+    },
+    {
+      "id": 35009,
+      "character": "裁"
+    },
+    {
+      "id": 35388,
+      "character": "証"
+    },
+    {
+      "id": 25588,
+      "character": "援"
+    },
+    {
+      "id": 26045,
+      "character": "施"
+    },
+    {
+      "id": 20117,
+      "character": "井"
+    },
+    {
+      "id": 35703,
+      "character": "護"
+    },
+    {
+      "id": 23637,
+      "character": "展"
+    },
+    {
+      "id": 24907,
+      "character": "態"
+    },
+    {
+      "id": 39854,
+      "character": "鮮"
+    },
+    {
+      "id": 35222,
+      "character": "視"
+    },
+    {
+      "id": 26465,
+      "character": "条"
+    },
+    {
+      "id": 24185,
+      "character": "幹"
+    },
+    {
+      "id": 29420,
+      "character": "独"
+    },
+    {
+      "id": 23470,
+      "character": "宮"
+    },
+    {
+      "id": 29575,
+      "character": "率"
+    },
+    {
+      "id": 34907,
+      "character": "衛"
+    },
+    {
+      "id": 24373,
+      "character": "張"
+    },
+    {
+      "id": 30435,
+      "character": "監"
+    },
+    {
+      "id": 29872,
+      "character": "環"
+    },
+    {
+      "id": 23529,
+      "character": "審"
+    },
+    {
+      "id": 32681,
+      "character": "義"
+    },
+    {
+      "id": 35380,
+      "character": "訴"
+    },
+    {
+      "id": 26666,
+      "character": "株"
+    },
+    {
+      "id": 23039,
+      "character": "姿"
+    },
+    {
+      "id": 38307,
+      "character": "閣"
+    },
+    {
+      "id": 34886,
+      "character": "衆"
+    },
+    {
+      "id": 35413,
+      "character": "評"
+    },
+    {
+      "id": 24433,
+      "character": "影"
+    },
+    {
+      "id": 26494,
+      "character": "松"
+    },
+    {
+      "id": 25731,
+      "character": "撃"
+    },
+    {
+      "id": 20304,
+      "character": "佐"
+    },
+    {
+      "id": 26680,
+      "character": "核"
+    },
+    {
+      "id": 25972,
+      "character": "整"
+    },
+    {
+      "id": 34701,
+      "character": "融"
+    },
+    {
+      "id": 35069,
+      "character": "製"
+    },
+    {
+      "id": 31080,
+      "character": "票"
+    },
+    {
+      "id": 28169,
+      "character": "渉"
+    },
+    {
+      "id": 38911,
+      "character": "響"
+    },
+    {
+      "id": 25512,
+      "character": "推"
+    },
+    {
+      "id": 35531,
+      "character": "請"
+    },
+    {
+      "id": 22120,
+      "character": "器"
+    },
+    {
+      "id": 22763,
+      "character": "士"
+    },
+    {
+      "id": 35342,
+      "character": "討"
+    },
+    {
+      "id": 25915,
+      "character": "攻"
+    },
+    {
+      "id": 23822,
+      "character": "崎"
+    },
+    {
+      "id": 30563,
+      "character": "督"
+    },
+    {
+      "id": 25480,
+      "character": "授"
+    },
+    {
+      "id": 20652,
+      "character": "催"
+    },
+    {
+      "id": 21450,
+      "character": "及"
+    },
+    {
+      "id": 25010,
+      "character": "憲"
+    },
+    {
+      "id": 38626,
+      "character": "離"
+    },
+    {
+      "id": 28608,
+      "character": "激"
+    },
+    {
+      "id": 25688,
+      "character": "摘"
+    },
+    {
+      "id": 31995,
+      "character": "系"
+    },
+    {
+      "id": 25209,
+      "character": "批"
+    },
+    {
+      "id": 37070,
+      "character": "郎"
+    },
+    {
+      "id": 20581,
+      "character": "健"
+    },
+    {
+      "id": 30431,
+      "character": "盟"
+    },
+    {
+      "id": 24467,
+      "character": "従"
+    },
+    {
+      "id": 20462,
+      "character": "修"
+    },
+    {
+      "id": 38538,
+      "character": "隊"
+    },
+    {
+      "id": 32340,
+      "character": "織"
+    },
+    {
+      "id": 25313,
+      "character": "拡"
+    },
+    {
+      "id": 25925,
+      "character": "故"
+    },
+    {
+      "id": 25391,
+      "character": "振"
+    },
+    {
+      "id": 24321,
+      "character": "弁"
+    },
+    {
+      "id": 23601,
+      "character": "就"
+    },
+    {
+      "id": 30064,
+      "character": "異"
+    },
+    {
+      "id": 29486,
+      "character": "献"
+    },
+    {
+      "id": 21427,
+      "character": "厳"
+    },
+    {
+      "id": 32173,
+      "character": "維"
+    },
+    {
+      "id": 27996,
+      "character": "浜"
+    },
+    {
+      "id": 36986,
+      "character": "遺"
+    },
+    {
+      "id": 22593,
+      "character": "塁"
+    },
+    {
+      "id": 37030,
+      "character": "邦"
+    },
+    {
+      "id": 32032,
+      "character": "素"
+    },
+    {
+      "id": 36963,
+      "character": "遣"
+    },
+    {
+      "id": 25239,
+      "character": "抗"
+    },
+    {
+      "id": 27169,
+      "character": "模"
+    },
+    {
+      "id": 38596,
+      "character": "雄"
+    },
+    {
+      "id": 30410,
+      "character": "益"
+    },
+    {
+      "id": 32202,
+      "character": "緊"
+    },
+    {
+      "id": 27161,
+      "character": "標"
+    },
+    {
+      "id": 23459,
+      "character": "宣"
+    },
+    {
+      "id": 26157,
+      "character": "昭"
+    },
+    {
+      "id": 24259,
+      "character": "廃"
+    },
+    {
+      "id": 20234,
+      "character": "伊"
+    },
+    {
+      "id": 27743,
+      "character": "江"
+    },
+    {
+      "id": 20698,
+      "character": "僚"
+    },
+    {
+      "id": 21513,
+      "character": "吉"
+    },
+    {
+      "id": 30427,
+      "character": "盛"
+    },
+    {
+      "id": 30343,
+      "character": "皇"
+    },
+    {
+      "id": 33256,
+      "character": "臨"
+    },
+    {
+      "id": 36367,
+      "character": "踏"
+    },
+    {
+      "id": 22730,
+      "character": "壊"
+    },
+    {
+      "id": 20661,
+      "character": "債"
+    },
+    {
+      "id": 33288,
+      "character": "興"
+    },
+    {
+      "id": 28304,
+      "character": "源"
+    },
+    {
+      "id": 20736,
+      "character": "儀"
+    },
+    {
+      "id": 21109,
+      "character": "創"
+    },
+    {
+      "id": 38556,
+      "character": "障"
+    },
+    {
+      "id": 32153,
+      "character": "継"
+    },
+    {
+      "id": 31563,
+      "character": "筋"
+    },
+    {
+      "id": 38360,
+      "character": "闘"
+    },
+    {
+      "id": 33900,
+      "character": "葬"
+    },
+    {
+      "id": 36991,
+      "character": "避"
+    },
+    {
+      "id": 21496,
+      "character": "司"
+    },
+    {
+      "id": 24247,
+      "character": "康"
+    },
+    {
+      "id": 21892,
+      "character": "善"
+    },
+    {
+      "id": 36910,
+      "character": "逮"
+    },
+    {
+      "id": 36843,
+      "character": "迫"
+    },
+    {
+      "id": 24785,
+      "character": "惑"
+    },
+    {
+      "id": 23849,
+      "character": "崩"
+    },
+    {
+      "id": 32000,
+      "character": "紀"
+    },
+    {
+      "id": 32884,
+      "character": "聴"
+    },
+    {
+      "id": 33073,
+      "character": "脱"
+    },
+    {
+      "id": 32026,
+      "character": "級"
+    },
+    {
+      "id": 21338,
+      "character": "博"
+    },
+    {
+      "id": 32224,
+      "character": "締"
+    },
+    {
+      "id": 25937,
+      "character": "救"
+    },
+    {
+      "id": 22519,
+      "character": "執"
+    },
+    {
+      "id": 25151,
+      "character": "房"
+    },
+    {
+      "id": 25764,
+      "character": "撤"
+    },
+    {
+      "id": 21066,
+      "character": "削"
+    },
+    {
+      "id": 23494,
+      "character": "密"
+    },
+    {
+      "id": 25514,
+      "character": "措"
+    },
+    {
+      "id": 24535,
+      "character": "志"
+    },
+    {
+      "id": 36617,
+      "character": "載"
+    },
+    {
+      "id": 38499,
+      "character": "陣"
+    },
+    {
+      "id": 25105,
+      "character": "我"
+    },
+    {
+      "id": 28858,
+      "character": "為"
+    },
+    {
+      "id": 25233,
+      "character": "抑"
+    },
+    {
+      "id": 24149,
+      "character": "幕"
+    },
+    {
+      "id": 26579,
+      "character": "染"
+    },
+    {
+      "id": 22856,
+      "character": "奈"
+    },
+    {
+      "id": 20663,
+      "character": "傷"
+    },
+    {
+      "id": 25246,
+      "character": "択"
+    },
+    {
+      "id": 31168,
+      "character": "秀"
+    },
+    {
+      "id": 24500,
+      "character": "徴"
+    },
+    {
+      "id": 24382,
+      "character": "弾"
+    },
+    {
+      "id": 20767,
+      "character": "償"
+    },
+    {
+      "id": 21151,
+      "character": "功"
+    },
+    {
+      "id": 25312,
+      "character": "拠"
+    },
+    {
+      "id": 31192,
+      "character": "秘"
+    },
+    {
+      "id": 25298,
+      "character": "拒"
+    },
+    {
+      "id": 21009,
+      "character": "刑"
+    },
+    {
+      "id": 22618,
+      "character": "塚"
+    },
+    {
+      "id": 33268,
+      "character": "致"
+    },
+    {
+      "id": 32368,
+      "character": "繰"
+    },
+    {
+      "id": 23614,
+      "character": "尾"
+    },
+    {
+      "id": 25551,
+      "character": "描"
+    },
+    {
+      "id": 37428,
+      "character": "鈴"
+    },
+    {
+      "id": 30436,
+      "character": "盤"
+    },
+    {
+      "id": 38917,
+      "character": "項"
+    },
+    {
+      "id": 21930,
+      "character": "喪"
+    },
+    {
+      "id": 20276,
+      "character": "伴"
+    },
+    {
+      "id": 39178,
+      "character": "養"
+    },
+    {
+      "id": 25080,
+      "character": "懸"
+    },
+    {
+      "id": 34903,
+      "character": "街"
+    },
+    {
+      "id": 22865,
+      "character": "契"
+    },
+    {
+      "id": 25522,
+      "character": "掲"
+    },
+    {
+      "id": 36493,
+      "character": "躍"
+    },
+    {
+      "id": 26820,
+      "character": "棄"
+    },
+    {
+      "id": 37048,
+      "character": "邸"
+    },
+    {
+      "id": 32302,
+      "character": "縮"
+    },
+    {
+      "id": 36996,
+      "character": "還"
+    },
+    {
+      "id": 23646,
+      "character": "属"
+    },
+    {
+      "id": 24942,
+      "character": "慮"
+    },
+    {
+      "id": 26528,
+      "character": "枠"
+    },
+    {
+      "id": 24693,
+      "character": "恵"
+    },
+    {
+      "id": 38706,
+      "character": "露"
+    },
+    {
+      "id": 27798,
+      "character": "沖"
+    },
+    {
+      "id": 32233,
+      "character": "緩"
+    },
+    {
+      "id": 31680,
+      "character": "節"
+    },
+    {
+      "id": 38656,
+      "character": "需"
+    },
+    {
+      "id": 23556,
+      "character": "射"
+    },
+    {
+      "id": 36092,
+      "character": "購"
+    },
+    {
+      "id": 25582,
+      "character": "揮"
+    },
+    {
+      "id": 20805,
+      "character": "充"
+    },
+    {
+      "id": 36002,
+      "character": "貢"
+    },
+    {
+      "id": 40575,
+      "character": "鹿"
+    },
+    {
+      "id": 21364,
+      "character": "却"
+    },
+    {
+      "id": 31471,
+      "character": "端"
+    },
+    {
+      "id": 36035,
+      "character": "賃"
+    },
+    {
+      "id": 29554,
+      "character": "獲"
+    },
+    {
+      "id": 37089,
+      "character": "郡"
+    },
+    {
+      "id": 20341,
+      "character": "併"
+    },
+    {
+      "id": 24505,
+      "character": "徹"
+    },
+    {
+      "id": 36020,
+      "character": "貴"
+    },
+    {
+      "id": 34909,
+      "character": "衝"
+    },
+    {
+      "id": 28966,
+      "character": "焦"
+    },
+    {
+      "id": 22890,
+      "character": "奪"
+    },
+    {
+      "id": 28797,
+      "character": "災"
+    },
+    {
+      "id": 28006,
+      "character": "浦"
+    },
+    {
+      "id": 26512,
+      "character": "析"
+    },
+    {
+      "id": 35698,
+      "character": "譲"
+    },
+    {
+      "id": 31216,
+      "character": "称"
+    },
+    {
+      "id": 32013,
+      "character": "納"
+    },
+    {
+      "id": 27193,
+      "character": "樹"
+    },
+    {
+      "id": 25361,
+      "character": "挑"
+    },
+    {
+      "id": 35480,
+      "character": "誘"
+    },
+    {
+      "id": 32027,
+      "character": "紛"
+    },
+    {
+      "id": 33267,
+      "character": "至"
+    },
+    {
+      "id": 23447,
+      "character": "宗"
+    },
+    {
+      "id": 20419,
+      "character": "促"
+    },
+    {
+      "id": 24910,
+      "character": "慎"
+    },
+    {
+      "id": 25511,
+      "character": "控"
+    },
+    {
+      "id": 26234,
+      "character": "智"
+    },
+    {
+      "id": 25569,
+      "character": "握"
+    },
+    {
+      "id": 23449,
+      "character": "宙"
+    },
+    {
+      "id": 20426,
+      "character": "俊"
+    },
+    {
+      "id": 37549,
+      "character": "銭"
+    },
+    {
+      "id": 28171,
+      "character": "渋"
+    },
+    {
+      "id": 37507,
+      "character": "銃"
+    },
+    {
+      "id": 25805,
+      "character": "操"
+    },
+    {
+      "id": 25658,
+      "character": "携"
+    },
+    {
+      "id": 35386,
+      "character": "診"
+    },
+    {
+      "id": 35351,
+      "character": "託"
+    },
+    {
+      "id": 25774,
+      "character": "撮"
+    },
+    {
+      "id": 35477,
+      "character": "誕"
+    },
+    {
+      "id": 20405,
+      "character": "侵"
+    },
+    {
+      "id": 25324,
+      "character": "括"
+    },
+    {
+      "id": 35613,
+      "character": "謝"
+    },
+    {
+      "id": 39366,
+      "character": "駆"
+    },
+    {
+      "id": 36879,
+      "character": "透"
+    },
+    {
+      "id": 27941,
+      "character": "津"
+    },
+    {
+      "id": 22721,
+      "character": "壁"
+    },
+    {
+      "id": 31282,
+      "character": "稲"
+    },
+    {
+      "id": 20206,
+      "character": "仮"
+    },
+    {
+      "id": 35010,
+      "character": "裂"
+    },
+    {
+      "id": 25935,
+      "character": "敏"
+    },
+    {
+      "id": 26159,
+      "character": "是"
+    },
+    {
+      "id": 25490,
+      "character": "排"
+    },
+    {
+      "id": 35029,
+      "character": "裕"
+    },
+    {
+      "id": 22533,
+      "character": "堅"
+    },
+    {
+      "id": 35379,
+      "character": "訳"
+    },
+    {
+      "id": 33437,
+      "character": "芝"
+    },
+    {
+      "id": 32177,
+      "character": "綱"
+    },
+    {
+      "id": 20856,
+      "character": "典"
+    },
+    {
+      "id": 36032,
+      "character": "賀"
+    },
+    {
+      "id": 25201,
+      "character": "扱"
+    },
+    {
+      "id": 39015,
+      "character": "顧"
+    },
+    {
+      "id": 24344,
+      "character": "弘"
+    },
+    {
+      "id": 30475,
+      "character": "看"
+    },
+    {
+      "id": 35359,
+      "character": "訟"
+    },
+    {
+      "id": 25106,
+      "character": "戒"
+    },
+    {
+      "id": 31049,
+      "character": "祉"
+    },
+    {
+      "id": 35465,
+      "character": "誉"
+    },
+    {
+      "id": 27475,
+      "character": "歓"
+    },
+    {
+      "id": 22863,
+      "character": "奏"
+    },
+    {
+      "id": 21223,
+      "character": "勧"
+    },
+    {
+      "id": 39442,
+      "character": "騒"
+    },
+    {
+      "id": 38309,
+      "character": "閥"
+    },
+    {
+      "id": 30002,
+      "character": "甲"
+    },
+    {
+      "id": 32260,
+      "character": "縄"
+    },
+    {
+      "id": 37111,
+      "character": "郷"
+    },
+    {
+      "id": 25594,
+      "character": "揺"
+    },
+    {
+      "id": 20813,
+      "character": "免"
+    },
+    {
+      "id": 26082,
+      "character": "既"
+    },
+    {
+      "id": 34214,
+      "character": "薦"
+    },
+    {
+      "id": 38563,
+      "character": "隣"
+    },
+    {
+      "id": 33775,
+      "character": "華"
+    },
+    {
+      "id": 31684,
+      "character": "範"
+    },
+    {
+      "id": 38560,
+      "character": "隠"
+    },
+    {
+      "id": 24499,
+      "character": "徳"
+    },
+    {
+      "id": 21746,
+      "character": "哲"
+    },
+    {
+      "id": 26441,
+      "character": "杉"
+    },
+    {
+      "id": 37320,
+      "character": "釈"
+    },
+    {
+      "id": 24049,
+      "character": "己"
+    },
+    {
+      "id": 22949,
+      "character": "妥"
+    },
+    {
+      "id": 23041,
+      "character": "威"
+    },
+    {
+      "id": 35946,
+      "character": "豪"
+    },
+    {
+      "id": 29066,
+      "character": "熊"
+    },
+    {
+      "id": 28382,
+      "character": "滞"
+    },
+    {
+      "id": 24494,
+      "character": "微"
+    },
+    {
+      "id": 38534,
+      "character": "隆"
+    },
+    {
+      "id": 30151,
+      "character": "症"
+    },
+    {
+      "id": 26283,
+      "character": "暫"
+    },
+    {
+      "id": 24544,
+      "character": "忠"
+    },
+    {
+      "id": 20489,
+      "character": "倉"
+    },
+    {
+      "id": 24422,
+      "character": "彦"
+    },
+    {
+      "id": 32925,
+      "character": "肝"
+    },
+    {
+      "id": 21914,
+      "character": "喚"
+    },
+    {
+      "id": 27839,
+      "character": "沿"
+    },
+    {
+      "id": 22937,
+      "character": "妙"
+    },
+    {
+      "id": 21809,
+      "character": "唱"
+    },
+    {
+      "id": 38463,
+      "character": "阿"
+    },
+    {
+      "id": 32034,
+      "character": "索"
+    },
+    {
+      "id": 35488,
+      "character": "誠"
+    },
+    {
+      "id": 35186,
+      "character": "襲"
+    },
+    {
+      "id": 25031,
+      "character": "懇"
+    },
+    {
+      "id": 20467,
+      "character": "俳"
+    },
+    {
+      "id": 26564,
+      "character": "柄"
+    },
+    {
+      "id": 39514,
+      "character": "驚"
+    },
+    {
+      "id": 40635,
+      "character": "麻"
+    },
+    {
+      "id": 26446,
+      "character": "李"
+    },
+    {
+      "id": 28009,
+      "character": "浩"
+    },
+    {
+      "id": 21092,
+      "character": "剤"
+    },
+    {
+      "id": 28716,
+      "character": "瀬"
+    },
+    {
+      "id": 36259,
+      "character": "趣"
+    },
+    {
+      "id": 38501,
+      "character": "陥"
+    },
+    {
+      "id": 25998,
+      "character": "斎"
+    },
+    {
+      "id": 36011,
+      "character": "貫"
+    },
+    {
+      "id": 20185,
+      "character": "仙"
+    },
+    {
+      "id": 24944,
+      "character": "慰"
+    },
+    {
+      "id": 24207,
+      "character": "序"
+    },
+    {
+      "id": 26092,
+      "character": "旬"
+    },
+    {
+      "id": 20860,
+      "character": "兼"
+    },
+    {
+      "id": 32854,
+      "character": "聖"
+    },
+    {
+      "id": 26088,
+      "character": "旨"
+    },
+    {
+      "id": 21363,
+      "character": "即"
+    },
+    {
+      "id": 26611,
+      "character": "柳"
+    },
+    {
+      "id": 33294,
+      "character": "舎"
+    },
+    {
+      "id": 20605,
+      "character": "偽"
+    },
+    {
+      "id": 36611,
+      "character": "較"
+    },
+    {
+      "id": 35207,
+      "character": "覇"
+    },
+    {
+      "id": 35443,
+      "character": "詳"
+    },
+    {
+      "id": 25269,
+      "character": "抵"
+    },
+    {
+      "id": 33029,
+      "character": "脅"
+    },
+    {
+      "id": 33538,
+      "character": "茂"
+    },
+    {
+      "id": 29344,
+      "character": "犠"
+    },
+    {
+      "id": 26071,
+      "character": "旗"
+    },
+    {
+      "id": 36317,
+      "character": "距"
+    },
+    {
+      "id": 38597,
+      "character": "雅"
+    },
+    {
+      "id": 39166,
+      "character": "飾"
+    },
+    {
+      "id": 32178,
+      "character": "網"
+    },
+    {
+      "id": 31452,
+      "character": "竜"
+    },
+    {
+      "id": 35433,
+      "character": "詩"
+    },
+    {
+      "id": 32321,
+      "character": "繁"
+    },
+    {
+      "id": 32764,
+      "character": "翼"
+    },
+    {
+      "id": 28511,
+      "character": "潟"
+    },
+    {
+      "id": 25973,
+      "character": "敵"
+    },
+    {
+      "id": 39749,
+      "character": "魅"
+    },
+    {
+      "id": 23244,
+      "character": "嫌"
+    },
+    {
+      "id": 25993,
+      "character": "斉"
+    },
+    {
+      "id": 25975,
+      "character": "敷"
+    },
+    {
+      "id": 25793,
+      "character": "擁"
+    },
+    {
+      "id": 22287,
+      "character": "圏"
+    },
+    {
+      "id": 37240,
+      "character": "酸"
+    },
+    {
+      "id": 32624,
+      "character": "罰"
+    },
+    {
+      "id": 28357,
+      "character": "滅"
+    },
+    {
+      "id": 30990,
+      "character": "礎"
+    },
+    {
+      "id": 33104,
+      "character": "腐"
+    },
+    {
+      "id": 33050,
+      "character": "脚"
+    },
+    {
+      "id": 28526,
+      "character": "潮"
+    },
+    {
+      "id": 26757,
+      "character": "梅"
+    },
+    {
+      "id": 23613,
+      "character": "尽"
+    },
+    {
+      "id": 20693,
+      "character": "僕"
+    },
+    {
+      "id": 26716,
+      "character": "桜"
+    },
+    {
+      "id": 28369,
+      "character": "滑"
+    },
+    {
+      "id": 23396,
+      "character": "孤"
+    },
+    {
+      "id": 28814,
+      "character": "炎"
+    },
+    {
+      "id": 36064,
+      "character": "賠"
+    },
+    {
+      "id": 21477,
+      "character": "句"
+    },
+    {
+      "id": 37628,
+      "character": "鋼"
+    },
+    {
+      "id": 38929,
+      "character": "頑"
+    },
+    {
+      "id": 37782,
+      "character": "鎖"
+    },
+    {
+      "id": 24425,
+      "character": "彩"
+    },
+    {
+      "id": 25705,
+      "character": "摩"
+    },
+    {
+      "id": 21169,
+      "character": "励"
+    },
+    {
+      "id": 32294,
+      "character": "縦"
+    },
+    {
+      "id": 36637,
+      "character": "輝"
+    },
+    {
+      "id": 33988,
+      "character": "蓄"
+    },
+    {
+      "id": 36600,
+      "character": "軸"
+    },
+    {
+      "id": 24033,
+      "character": "巡"
+    },
+    {
+      "id": 31292,
+      "character": "稼"
+    },
+    {
+      "id": 30636,
+      "character": "瞬"
+    },
+    {
+      "id": 30770,
+      "character": "砲"
+    },
+    {
+      "id": 22132,
+      "character": "噴"
+    },
+    {
+      "id": 35463,
+      "character": "誇"
+    },
+    {
+      "id": 31077,
+      "character": "祥"
+    },
+    {
+      "id": 29298,
+      "character": "牲"
+    },
+    {
+      "id": 31209,
+      "character": "秩"
+    },
+    {
+      "id": 24093,
+      "character": "帝"
+    },
+    {
+      "id": 23439,
+      "character": "宏"
+    },
+    {
+      "id": 21766,
+      "character": "唆"
+    },
+    {
+      "id": 38459,
+      "character": "阻"
+    },
+    {
+      "id": 27888,
+      "character": "泰"
+    },
+    {
+      "id": 36036,
+      "character": "賄"
+    },
+    {
+      "id": 25778,
+      "character": "撲"
+    },
+    {
+      "id": 22528,
+      "character": "堀"
+    },
+    {
+      "id": 33738,
+      "character": "菊"
+    },
+    {
+      "id": 32094,
+      "character": "絞"
+    },
+    {
+      "id": 32257,
+      "character": "縁"
+    },
+    {
+      "id": 21807,
+      "character": "唯"
+    },
+    {
+      "id": 33192,
+      "character": "膨"
+    },
+    {
+      "id": 30690,
+      "character": "矢"
+    },
+    {
+      "id": 32784,
+      "character": "耐"
+    },
+    {
+      "id": 22654,
+      "character": "塾"
+    },
+    {
+      "id": 28431,
+      "character": "漏"
+    },
+    {
+      "id": 24950,
+      "character": "慶"
+    },
+    {
+      "id": 29467,
+      "character": "猛"
+    },
+    {
+      "id": 33459,
+      "character": "芳"
+    },
+    {
+      "id": 25074,
+      "character": "懲"
+    },
+    {
+      "id": 21091,
+      "character": "剣"
+    },
+    {
+      "id": 24432,
+      "character": "彰"
+    },
+    {
+      "id": 26827,
+      "character": "棋"
+    },
+    {
+      "id": 19969,
+      "character": "丁"
+    },
+    {
+      "id": 24658,
+      "character": "恒"
+    },
+    {
+      "id": 25562,
+      "character": "揚"
+    },
+    {
+      "id": 20882,
+      "character": "冒"
+    },
+    {
+      "id": 20043,
+      "character": "之"
+    },
+    {
+      "id": 20523,
+      "character": "倫"
+    },
+    {
+      "id": 38515,
+      "character": "陳"
+    },
+    {
+      "id": 25014,
+      "character": "憶"
+    },
+    {
+      "id": 28508,
+      "character": "潜"
+    },
+    {
+      "id": 26792,
+      "character": "梨"
+    },
+    {
+      "id": 20161,
+      "character": "仁"
+    },
+    {
+      "id": 20811,
+      "character": "克"
+    },
+    {
+      "id": 23731,
+      "character": "岳"
+    },
+    {
+      "id": 27010,
+      "character": "概"
+    },
+    {
+      "id": 25304,
+      "character": "拘"
+    },
+    {
+      "id": 22675,
+      "character": "墓"
+    },
+    {
+      "id": 40665,
+      "character": "黙"
+    },
+    {
+      "id": 38920,
+      "character": "須"
+    },
+    {
+      "id": 20559,
+      "character": "偏"
+    },
+    {
+      "id": 38640,
+      "character": "雰"
+    },
+    {
+      "id": 36935,
+      "character": "遇"
+    },
+    {
+      "id": 35566,
+      "character": "諮"
+    },
+    {
+      "id": 29421,
+      "character": "狭"
+    },
+    {
+      "id": 21331,
+      "character": "卓"
+    },
+    {
+      "id": 20096,
+      "character": "亀"
+    },
+    {
+      "id": 31975,
+      "character": "糧"
+    },
+    {
+      "id": 31807,
+      "character": "簿"
+    },
+    {
+      "id": 28809,
+      "character": "炉"
+    },
+    {
+      "id": 29287,
+      "character": "牧"
+    },
+    {
+      "id": 27530,
+      "character": "殊"
+    },
+    {
+      "id": 27542,
+      "character": "殖"
+    },
+    {
+      "id": 33382,
+      "character": "艦"
+    },
+    {
+      "id": 36649,
+      "character": "輩"
+    },
+    {
+      "id": 31348,
+      "character": "穴"
+    },
+    {
+      "id": 22855,
+      "character": "奇"
+    },
+    {
+      "id": 24930,
+      "character": "慢"
+    },
+    {
+      "id": 40372,
+      "character": "鶴"
+    },
+    {
+      "id": 35584,
+      "character": "謀"
+    },
+    {
+      "id": 26262,
+      "character": "暖"
+    },
+    {
+      "id": 26124,
+      "character": "昌"
+    },
+    {
+      "id": 25293,
+      "character": "拍"
+    },
+    {
+      "id": 26391,
+      "character": "朗"
+    },
+    {
+      "id": 23515,
+      "character": "寛"
+    },
+    {
+      "id": 35206,
+      "character": "覆"
+    },
+    {
+      "id": 32990,
+      "character": "胞"
+    },
+    {
+      "id": 27875,
+      "character": "泣"
+    },
+    {
+      "id": 38548,
+      "character": "隔"
+    },
+    {
+      "id": 27972,
+      "character": "浄"
+    },
+    {
+      "id": 27809,
+      "character": "没"
+    },
+    {
+      "id": 26247,
+      "character": "暇"
+    },
+    {
+      "id": 32954,
+      "character": "肺"
+    },
+    {
+      "id": 35998,
+      "character": "貞"
+    },
+    {
+      "id": 38742,
+      "character": "靖"
+    },
+    {
+      "id": 37969,
+      "character": "鑑"
+    },
+    {
+      "id": 39164,
+      "character": "飼"
+    },
+    {
+      "id": 38512,
+      "character": "陰"
+    },
+    {
+      "id": 37528,
+      "character": "銘"
+    },
+    {
+      "id": 38543,
+      "character": "随"
+    },
+    {
+      "id": 28872,
+      "character": "烈"
+    },
+    {
+      "id": 23563,
+      "character": "尋"
+    },
+    {
+      "id": 31295,
+      "character": "稿"
+    },
+    {
+      "id": 20025,
+      "character": "丹"
+    },
+    {
+      "id": 21843,
+      "character": "啓"
+    },
+    {
+      "id": 20063,
+      "character": "也"
+    },
+    {
+      "id": 19992,
+      "character": "丘"
+    },
+    {
+      "id": 26847,
+      "character": "棟"
+    },
+    {
+      "id": 22732,
+      "character": "壌"
+    },
+    {
+      "id": 28459,
+      "character": "漫"
+    },
+    {
+      "id": 29572,
+      "character": "玄"
+    },
+    {
+      "id": 31896,
+      "character": "粘"
+    },
+    {
+      "id": 24735,
+      "character": "悟"
+    },
+    {
+      "id": 33303,
+      "character": "舗"
+    },
+    {
+      "id": 22922,
+      "character": "妊"
+    },
+    {
+      "id": 29087,
+      "character": "熟"
+    },
+    {
+      "id": 26093,
+      "character": "旭"
+    },
+    {
+      "id": 24681,
+      "character": "恩"
+    },
+    {
+      "id": 39472,
+      "character": "騰"
+    },
+    {
+      "id": 24448,
+      "character": "往"
+    },
+    {
+      "id": 35910,
+      "character": "豆"
+    },
+    {
+      "id": 36930,
+      "character": "遂"
+    },
+    {
+      "id": 29378,
+      "character": "狂"
+    },
+    {
+      "id": 23696,
+      "character": "岐"
+    },
+    {
+      "id": 38491,
+      "character": "陛"
+    },
+    {
+      "id": 32239,
+      "character": "緯"
+    },
+    {
+      "id": 22521,
+      "character": "培"
+    },
+    {
+      "id": 34928,
+      "character": "衰"
+    },
+    {
+      "id": 33351,
+      "character": "艇"
+    },
+    {
+      "id": 23624,
+      "character": "屈"
+    },
+    {
+      "id": 24452,
+      "character": "径"
+    },
+    {
+      "id": 28129,
+      "character": "淡"
+    },
+    {
+      "id": 25277,
+      "character": "抽"
+    },
+    {
+      "id": 25259,
+      "character": "披"
+    },
+    {
+      "id": 24311,
+      "character": "廷"
+    },
+    {
+      "id": 37670,
+      "character": "錦"
+    },
+    {
+      "id": 20934,
+      "character": "准"
+    },
+    {
+      "id": 26257,
+      "character": "暑"
+    },
+    {
+      "id": 30959,
+      "character": "磯"
+    },
+    {
+      "id": 22888,
+      "character": "奨"
+    },
+    {
+      "id": 28024,
+      "character": "浸"
+    },
+    {
+      "id": 21104,
+      "character": "剰"
+    },
+    {
+      "id": 32966,
+      "character": "胆"
+    },
+    {
+      "id": 32330,
+      "character": "繊"
+    },
+    {
+      "id": 39378,
+      "character": "駒"
+    },
+    {
+      "id": 34394,
+      "character": "虚"
+    },
+    {
+      "id": 38666,
+      "character": "霊"
+    },
+    {
+      "id": 24115,
+      "character": "帳"
+    },
+    {
+      "id": 24724,
+      "character": "悔"
+    },
+    {
+      "id": 35565,
+      "character": "諭"
+    },
+    {
+      "id": 24808,
+      "character": "惨"
+    },
+    {
+      "id": 34384,
+      "character": "虐"
+    },
+    {
+      "id": 32763,
+      "character": "翻"
+    },
+    {
+      "id": 22684,
+      "character": "墜"
+    },
+    {
+      "id": 27836,
+      "character": "沼"
+    },
+    {
+      "id": 25454,
+      "character": "据"
+    },
+    {
+      "id": 32933,
+      "character": "肥"
+    },
+    {
+      "id": 24464,
+      "character": "徐"
+    },
+    {
+      "id": 31958,
+      "character": "糖"
+    },
+    {
+      "id": 25645,
+      "character": "搭"
+    },
+    {
+      "id": 30462,
+      "character": "盾"
+    },
+    {
+      "id": 33032,
+      "character": "脈"
+    },
+    {
+      "id": 28381,
+      "character": "滝"
+    },
+    {
+      "id": 36556,
+      "character": "軌"
+    },
+    {
+      "id": 20469,
+      "character": "俵"
+    },
+    {
+      "id": 22952,
+      "character": "妨"
+    },
+    {
+      "id": 25830,
+      "character": "擦"
+    },
+    {
+      "id": 39912,
+      "character": "鯨"
+    },
+    {
+      "id": 33624,
+      "character": "荘"
+    },
+    {
+      "id": 35582,
+      "character": "諾"
+    },
+    {
+      "id": 38647,
+      "character": "雷"
+    },
+    {
+      "id": 28418,
+      "character": "漂"
+    },
+    {
+      "id": 25040,
+      "character": "懐"
+    },
+    {
+      "id": 21208,
+      "character": "勘"
+    },
+    {
+      "id": 26685,
+      "character": "栽"
+    },
+    {
+      "id": 25296,
+      "character": "拐"
+    },
+    {
+      "id": 39364,
+      "character": "駄"
+    },
+    {
+      "id": 28155,
+      "character": "添"
+    },
+    {
+      "id": 20896,
+      "character": "冠"
+    },
+    {
+      "id": 26012,
+      "character": "斜"
+    },
+    {
+      "id": 37857,
+      "character": "鏡"
+    },
+    {
+      "id": 32865,
+      "character": "聡"
+    },
+    {
+      "id": 28010,
+      "character": "浪"
+    },
+    {
+      "id": 20124,
+      "character": "亜"
+    },
+    {
+      "id": 35239,
+      "character": "覧"
+    },
+    {
+      "id": 35408,
+      "character": "詐"
+    },
+    {
+      "id": 22727,
+      "character": "壇"
+    },
+    {
+      "id": 21234,
+      "character": "勲"
+    },
+    {
+      "id": 39764,
+      "character": "魔"
+    },
+    {
+      "id": 37228,
+      "character": "酬"
+    },
+    {
+      "id": 32043,
+      "character": "紫"
+    },
+    {
+      "id": 26329,
+      "character": "曙"
+    },
+    {
+      "id": 32011,
+      "character": "紋"
+    },
+    {
+      "id": 21368,
+      "character": "卸"
+    },
+    {
+      "id": 22894,
+      "character": "奮"
+    },
+    {
+      "id": 27396,
+      "character": "欄"
+    },
+    {
+      "id": 36920,
+      "character": "逸"
+    },
+    {
+      "id": 28079,
+      "character": "涯"
+    },
+    {
+      "id": 25299,
+      "character": "拓"
+    },
+    {
+      "id": 30524,
+      "character": "眼"
+    },
+    {
+      "id": 29508,
+      "character": "獄"
+    },
+    {
+      "id": 23578,
+      "character": "尚"
+    },
+    {
+      "id": 24427,
+      "character": "彫"
+    },
+    {
+      "id": 31311,
+      "character": "穏"
+    },
+    {
+      "id": 38997,
+      "character": "顕"
+    },
+    {
+      "id": 24039,
+      "character": "巧"
+    },
+    {
+      "id": 30683,
+      "character": "矛"
+    },
+    {
+      "id": 22435,
+      "character": "垣"
+    },
+    {
+      "id": 27450,
+      "character": "欺"
+    },
+    {
+      "id": 37347,
+      "character": "釣"
+    },
+    {
+      "id": 33833,
+      "character": "萩"
+    },
+    {
+      "id": 31899,
+      "character": "粛"
+    },
+    {
+      "id": 26647,
+      "character": "栗"
+    },
+    {
+      "id": 24858,
+      "character": "愚"
+    },
+    {
+      "id": 22025,
+      "character": "嘉"
+    },
+    {
+      "id": 36973,
+      "character": "遭"
+    },
+    {
+      "id": 26550,
+      "character": "架"
+    },
+    {
+      "id": 39740,
+      "character": "鬼"
+    },
+    {
+      "id": 24246,
+      "character": "庶"
+    },
+    {
+      "id": 31258,
+      "character": "稚"
+    },
+    {
+      "id": 28363,
+      "character": "滋"
+    },
+    {
+      "id": 24187,
+      "character": "幻"
+    },
+    {
+      "id": 29038,
+      "character": "煮"
+    },
+    {
+      "id": 23019,
+      "character": "姫"
+    },
+    {
+      "id": 35475,
+      "character": "誓"
+    },
+    {
+      "id": 25226,
+      "character": "把"
+    },
+    {
+      "id": 36341,
+      "character": "践"
+    },
+    {
+      "id": 21576,
+      "character": "呈"
+    },
+    {
+      "id": 30094,
+      "character": "疎"
+    },
+    {
+      "id": 20208,
+      "character": "仰"
+    },
+    {
+      "id": 21083,
+      "character": "剛"
+    },
+    {
+      "id": 30142,
+      "character": "疾"
+    },
+    {
+      "id": 24449,
+      "character": "征"
+    },
+    {
+      "id": 30741,
+      "character": "砕"
+    },
+    {
+      "id": 35617,
+      "character": "謡"
+    },
+    {
+      "id": 23233,
+      "character": "嫁"
+    },
+    {
+      "id": 35609,
+      "character": "謙"
+    },
+    {
+      "id": 21518,
+      "character": "后"
+    },
+    {
+      "id": 22022,
+      "character": "嘆"
+    },
+    {
+      "id": 33740,
+      "character": "菌"
+    },
+    {
+      "id": 37772,
+      "character": "鎌"
+    },
+    {
+      "id": 24035,
+      "character": "巣"
+    },
+    {
+      "id": 38971,
+      "character": "頻"
+    },
+    {
+      "id": 29748,
+      "character": "琴"
+    },
+    {
+      "id": 29677,
+      "character": "班"
+    },
+    {
+      "id": 26842,
+      "character": "棚"
+    },
+    {
+      "id": 28500,
+      "character": "潔"
+    },
+    {
+      "id": 37239,
+      "character": "酷"
+    },
+    {
+      "id": 23472,
+      "character": "宰"
+    },
+    {
+      "id": 24266,
+      "character": "廊"
+    },
+    {
+      "id": 23490,
+      "character": "寂"
+    },
+    {
+      "id": 36784,
+      "character": "辰"
+    },
+    {
+      "id": 38686,
+      "character": "霞"
+    },
+    {
+      "id": 20239,
+      "character": "伏"
+    },
+    {
+      "id": 30849,
+      "character": "碁"
+    },
+    {
+      "id": 20439,
+      "character": "俗"
+    },
+    {
+      "id": 28448,
+      "character": "漠"
+    },
+    {
+      "id": 37034,
+      "character": "邪"
+    },
+    {
+      "id": 26230,
+      "character": "晶"
+    },
+    {
+      "id": 22696,
+      "character": "墨"
+    },
+    {
+      "id": 37806,
+      "character": "鎮"
+    },
+    {
+      "id": 27934,
+      "character": "洞"
+    },
+    {
+      "id": 23653,
+      "character": "履"
+    },
+    {
+      "id": 21155,
+      "character": "劣"
+    },
+    {
+      "id": 37027,
+      "character": "那"
+    },
+    {
+      "id": 27572,
+      "character": "殴"
+    },
+    {
+      "id": 23072,
+      "character": "娠"
+    },
+    {
+      "id": 22857,
+      "character": "奉"
+    },
+    {
+      "id": 24962,
+      "character": "憂"
+    },
+    {
+      "id": 26420,
+      "character": "朴"
+    },
+    {
+      "id": 20141,
+      "character": "亭"
+    },
+    {
+      "id": 28147,
+      "character": "淳"
+    },
+    {
+      "id": 24618,
+      "character": "怪"
+    },
+    {
+      "id": 40169,
+      "character": "鳩"
+    },
+    {
+      "id": 37204,
+      "character": "酔"
+    },
+    {
+      "id": 24796,
+      "character": "惜"
+    },
+    {
+      "id": 31339,
+      "character": "穫"
+    },
+    {
+      "id": 20339,
+      "character": "佳"
+    },
+    {
+      "id": 28516,
+      "character": "潤"
+    },
+    {
+      "id": 24764,
+      "character": "悼"
+    },
+    {
+      "id": 20047,
+      "character": "乏"
+    },
+    {
+      "id": 35442,
+      "character": "該"
+    },
+    {
+      "id": 36212,
+      "character": "赴"
+    },
+    {
+      "id": 26705,
+      "character": "桑"
+    },
+    {
+      "id": 26690,
+      "character": "桂"
+    },
+    {
+      "id": 39620,
+      "character": "髄"
+    },
+    {
+      "id": 34382,
+      "character": "虎"
+    },
+    {
+      "id": 30406,
+      "character": "盆"
+    },
+    {
+      "id": 26187,
+      "character": "晋"
+    },
+    {
+      "id": 31298,
+      "character": "穂"
+    },
+    {
+      "id": 22766,
+      "character": "壮"
+    },
+    {
+      "id": 22564,
+      "character": "堤"
+    },
+    {
+      "id": 39138,
+      "character": "飢"
+    },
+    {
+      "id": 20621,
+      "character": "傍"
+    },
+    {
+      "id": 30123,
+      "character": "疫"
+    },
+    {
+      "id": 32047,
+      "character": "累"
+    },
+    {
+      "id": 30196,
+      "character": "痴"
+    },
+    {
+      "id": 25644,
+      "character": "搬"
+    },
+    {
+      "id": 26179,
+      "character": "晃"
+    },
+    {
+      "id": 30290,
+      "character": "癒"
+    },
+    {
+      "id": 26704,
+      "character": "桐"
+    },
+    {
+      "id": 23544,
+      "character": "寸"
+    },
+    {
+      "id": 37101,
+      "character": "郭"
+    },
+    {
+      "id": 23615,
+      "character": "尿"
+    },
+    {
+      "id": 20982,
+      "character": "凶"
+    },
+    {
+      "id": 21520,
+      "character": "吐"
+    },
+    {
+      "id": 23476,
+      "character": "宴"
+    },
+    {
+      "id": 40441,
+      "character": "鷹"
+    },
+    {
+      "id": 36051,
+      "character": "賓"
+    },
+    {
+      "id": 34396,
+      "character": "虜"
+    },
+    {
+      "id": 38518,
+      "character": "陶"
+    },
+    {
+      "id": 37912,
+      "character": "鐘"
+    },
+    {
+      "id": 25022,
+      "character": "憾"
+    },
+    {
+      "id": 29482,
+      "character": "猪"
+    },
+    {
+      "id": 32024,
+      "character": "紘"
+    },
+    {
+      "id": 30913,
+      "character": "磁"
+    },
+    {
+      "id": 24357,
+      "character": "弥"
+    },
+    {
+      "id": 26118,
+      "character": "昆"
+    },
+    {
+      "id": 31895,
+      "character": "粗"
+    },
+    {
+      "id": 35330,
+      "character": "訂"
+    },
+    {
+      "id": 33469,
+      "character": "芽"
+    },
+    {
+      "id": 24196,
+      "character": "庄"
+    },
+    {
+      "id": 20632,
+      "character": "傘"
+    },
+    {
+      "id": 25958,
+      "character": "敦"
+    },
+    {
+      "id": 39438,
+      "character": "騎"
+    },
+    {
+      "id": 23527,
+      "character": "寧"
+    },
+    {
+      "id": 24490,
+      "character": "循"
+    },
+    {
+      "id": 24525,
+      "character": "忍"
+    },
+    {
+      "id": 24608,
+      "character": "怠"
+    },
+    {
+      "id": 22914,
+      "character": "如"
+    },
+    {
+      "id": 23534,
+      "character": "寮"
+    },
+    {
+      "id": 31056,
+      "character": "祐"
+    },
+    {
+      "id": 40300,
+      "character": "鵬"
+    },
+    {
+      "id": 37467,
+      "character": "鉛"
+    },
+    {
+      "id": 29664,
+      "character": "珠"
+    },
+    {
+      "id": 20957,
+      "character": "凝"
+    },
+    {
+      "id": 33495,
+      "character": "苗"
+    },
+    {
+      "id": 29539,
+      "character": "獣"
+    },
+    {
+      "id": 21696,
+      "character": "哀"
+    },
+    {
+      "id": 36339,
+      "character": "跳"
+    },
+    {
+      "id": 21280,
+      "character": "匠"
+    },
+    {
+      "id": 22402,
+      "character": "垂"
+    },
+    {
+      "id": 34503,
+      "character": "蛇"
+    },
+    {
+      "id": 28548,
+      "character": "澄"
+    },
+    {
+      "id": 32299,
+      "character": "縫"
+    },
+    {
+      "id": 20711,
+      "character": "僧"
+    },
+    {
+      "id": 30522,
+      "character": "眺"
+    },
+    {
+      "id": 20120,
+      "character": "亘"
+    },
+    {
+      "id": 21577,
+      "character": "呉"
+    },
+    {
+      "id": 20961,
+      "character": "凡"
+    },
+    {
+      "id": 25001,
+      "character": "憩"
+    },
+    {
+      "id": 23195,
+      "character": "媛"
+    },
+    {
+      "id": 28317,
+      "character": "溝"
+    },
+    {
+      "id": 24685,
+      "character": "恭"
+    },
+    {
+      "id": 21000,
+      "character": "刈"
+    },
+    {
+      "id": 30561,
+      "character": "睡"
+    },
+    {
+      "id": 37679,
+      "character": "錯"
+    },
+    {
+      "id": 20271,
+      "character": "伯"
+    },
+    {
+      "id": 31545,
+      "character": "笹"
+    },
+    {
+      "id": 31296,
+      "character": "穀"
+    },
+    {
+      "id": 38517,
+      "character": "陵"
+    },
+    {
+      "id": 38695,
+      "character": "霧"
+    },
+    {
+      "id": 39746,
+      "character": "魂"
+    },
+    {
+      "id": 24330,
+      "character": "弊"
+    },
+    {
+      "id": 22915,
+      "character": "妃"
+    },
+    {
+      "id": 33334,
+      "character": "舶"
+    },
+    {
+      "id": 39187,
+      "character": "餓"
+    },
+    {
+      "id": 31406,
+      "character": "窮"
+    },
+    {
+      "id": 25484,
+      "character": "掌"
+    },
+    {
+      "id": 40599,
+      "character": "麗"
+    },
+    {
+      "id": 32190,
+      "character": "綾"
+    },
+    {
+      "id": 33261,
+      "character": "臭"
+    },
+    {
+      "id": 24742,
+      "character": "悦"
+    },
+    {
+      "id": 20995,
+      "character": "刃"
+    },
+    {
+      "id": 32283,
+      "character": "縛"
+    },
+    {
+      "id": 26278,
+      "character": "暦"
+    },
+    {
+      "id": 23452,
+      "character": "宜"
+    },
+    {
+      "id": 30450,
+      "character": "盲"
+    },
+    {
+      "id": 31883,
+      "character": "粋"
+    },
+    {
+      "id": 36785,
+      "character": "辱"
+    },
+    {
+      "id": 27589,
+      "character": "毅"
+    },
+    {
+      "id": 36676,
+      "character": "轄"
+    },
+    {
+      "id": 29503,
+      "character": "猿"
+    },
+    {
+      "id": 24358,
+      "character": "弦"
+    },
+    {
+      "id": 31252,
+      "character": "稔"
+    },
+    {
+      "id": 31378,
+      "character": "窒"
+    },
+    {
+      "id": 28810,
+      "character": "炊"
+    },
+    {
+      "id": 27946,
+      "character": "洪"
+    },
+    {
+      "id": 25666,
+      "character": "摂"
+    },
+    {
+      "id": 39165,
+      "character": "飽"
+    },
+    {
+      "id": 20887,
+      "character": "冗"
+    },
+    {
+      "id": 26691,
+      "character": "桃"
+    },
+    {
+      "id": 29417,
+      "character": "狩"
+    },
+    {
+      "id": 26417,
+      "character": "朱"
+    },
+    {
+      "id": 28198,
+      "character": "渦"
+    },
+    {
+      "id": 32051,
+      "character": "紳"
+    },
+    {
+      "id": 26530,
+      "character": "枢"
+    },
+    {
+      "id": 30865,
+      "character": "碑"
+    },
+    {
+      "id": 37723,
+      "character": "鍛"
+    },
+    {
+      "id": 20992,
+      "character": "刀"
+    },
+    {
+      "id": 40723,
+      "character": "鼓"
+    },
+    {
+      "id": 35064,
+      "character": "裸"
+    },
+    {
+      "id": 29494,
+      "character": "猶"
+    },
+    {
+      "id": 22602,
+      "character": "塊"
+    },
+    {
+      "id": 26059,
+      "character": "旋"
+    },
+    {
+      "id": 24339,
+      "character": "弓"
+    },
+    {
+      "id": 24163,
+      "character": "幣"
+    },
+    {
+      "id": 33180,
+      "character": "膜"
+    },
+    {
+      "id": 25159,
+      "character": "扇"
+    },
+    {
+      "id": 33144,
+      "character": "腸"
+    },
+    {
+      "id": 27133,
+      "character": "槽"
+    },
+    {
+      "id": 24904,
+      "character": "慈"
+    },
+    {
+      "id": 26954,
+      "character": "楊"
+    },
+    {
+      "id": 20240,
+      "character": "伐"
+    },
+    {
+      "id": 39423,
+      "character": "駿"
+    },
+    {
+      "id": 28460,
+      "character": "漬"
+    },
+    {
+      "id": 31998,
+      "character": "糾"
+    },
+    {
+      "id": 20142,
+      "character": "亮"
+    },
+    {
+      "id": 22707,
+      "character": "墳"
+    },
+    {
+      "id": 22378,
+      "character": "坪"
+    },
+    {
+      "id": 32058,
+      "character": "紺"
+    },
+    {
+      "id": 23087,
+      "character": "娯"
+    },
+    {
+      "id": 26943,
+      "character": "椿"
+    },
+    {
+      "id": 33292,
+      "character": "舌"
+    },
+    {
+      "id": 32645,
+      "character": "羅"
+    },
+    {
+      "id": 23777,
+      "character": "峡"
+    },
+    {
+      "id": 20472,
+      "character": "俸"
+    },
+    {
+      "id": 21400,
+      "character": "厘"
+    },
+    {
+      "id": 23792,
+      "character": "峰"
+    },
+    {
+      "id": 22317,
+      "character": "圭"
+    },
+    {
+      "id": 37304,
+      "character": "醸"
+    },
+    {
+      "id": 34030,
+      "character": "蓮"
+    },
+    {
+      "id": 24340,
+      "character": "弔"
+    },
+    {
+      "id": 20057,
+      "character": "乙"
+    },
+    {
+      "id": 27713,
+      "character": "汁"
+    },
+    {
+      "id": 23612,
+      "character": "尼"
+    },
+    {
+      "id": 36941,
+      "character": "遍"
+    },
+    {
+      "id": 34913,
+      "character": "衡"
+    },
+    {
+      "id": 34219,
+      "character": "薫"
+    },
+    {
+      "id": 29471,
+      "character": "猟"
+    },
+    {
+      "id": 32650,
+      "character": "羊"
+    },
+    {
+      "id": 27454,
+      "character": "款"
+    },
+    {
+      "id": 38322,
+      "character": "閲"
+    },
+    {
+      "id": 20597,
+      "character": "偵"
+    },
+    {
+      "id": 21917,
+      "character": "喝"
+    },
+    {
+      "id": 25954,
+      "character": "敢"
+    },
+    {
+      "id": 32974,
+      "character": "胎"
+    },
+    {
+      "id": 37237,
+      "character": "酵"
+    },
+    {
+      "id": 24996,
+      "character": "憤"
+    },
+    {
+      "id": 35930,
+      "character": "豚"
+    },
+    {
+      "id": 36974,
+      "character": "遮"
+    },
+    {
+      "id": 25161,
+      "character": "扉"
+    },
+    {
+      "id": 30827,
+      "character": "硫"
+    },
+    {
+      "id": 36198,
+      "character": "赦"
+    },
+    {
+      "id": 31363,
+      "character": "窃"
+    },
+    {
+      "id": 27873,
+      "character": "泡"
+    },
+    {
+      "id": 29790,
+      "character": "瑞"
+    },
+    {
+      "id": 21448,
+      "character": "又"
+    },
+    {
+      "id": 24936,
+      "character": "慨"
+    },
+    {
+      "id": 32033,
+      "character": "紡"
+    },
+    {
+      "id": 24680,
+      "character": "恨"
+    },
+    {
+      "id": 32938,
+      "character": "肪"
+    },
+    {
+      "id": 25206,
+      "character": "扶"
+    },
+    {
+      "id": 25135,
+      "character": "戯"
+    },
+    {
+      "id": 20237,
+      "character": "伍"
+    },
+    {
+      "id": 24524,
+      "character": "忌"
+    },
+    {
+      "id": 28609,
+      "character": "濁"
+    },
+    {
+      "id": 22868,
+      "character": "奔"
+    },
+    {
+      "id": 26007,
+      "character": "斗"
+    },
+    {
+      "id": 34349,
+      "character": "蘭"
+    },
+    {
+      "id": 36805,
+      "character": "迅"
+    },
+    {
+      "id": 32918,
+      "character": "肖"
+    },
+    {
+      "id": 37474,
+      "character": "鉢"
+    },
+    {
+      "id": 26429,
+      "character": "朽"
+    },
+    {
+      "id": 27579,
+      "character": "殻"
+    },
+    {
+      "id": 20139,
+      "character": "享"
+    },
+    {
+      "id": 31206,
+      "character": "秦"
+    },
+    {
+      "id": 33541,
+      "character": "茅"
+    },
+    {
+      "id": 34281,
+      "character": "藩"
+    },
+    {
+      "id": 27801,
+      "character": "沙"
+    },
+    {
+      "id": 36628,
+      "character": "輔"
+    },
+    {
+      "id": 23186,
+      "character": "媒"
+    },
+    {
+      "id": 40335,
+      "character": "鶏"
+    },
+    {
+      "id": 31109,
+      "character": "禅"
+    },
+    {
+      "id": 22065,
+      "character": "嘱"
+    },
+    {
+      "id": 33012,
+      "character": "胴"
+    },
+    {
+      "id": 36845,
+      "character": "迭"
+    },
+    {
+      "id": 25407,
+      "character": "挿"
+    },
+    {
+      "id": 23888,
+      "character": "嵐"
+    },
+    {
+      "id": 26894,
+      "character": "椎"
+    },
+    {
+      "id": 32121,
+      "character": "絹"
+    },
+    {
+      "id": 38506,
+      "character": "陪"
+    },
+    {
+      "id": 21078,
+      "character": "剖"
+    },
+    {
+      "id": 35676,
+      "character": "譜"
+    },
+    {
+      "id": 37057,
+      "character": "郁"
+    },
+    {
+      "id": 24736,
+      "character": "悠"
+    },
+    {
+      "id": 28113,
+      "character": "淑"
+    },
+    {
+      "id": 24070,
+      "character": "帆"
+    },
+    {
+      "id": 26241,
+      "character": "暁"
+    },
+    {
+      "id": 20625,
+      "character": "傑"
+    },
+    {
+      "id": 26976,
+      "character": "楠"
+    },
+    {
+      "id": 31515,
+      "character": "笛"
+    },
+    {
+      "id": 29618,
+      "character": "玲"
+    },
+    {
+      "id": 22900,
+      "character": "奴"
+    },
+    {
+      "id": 37664,
+      "character": "錠"
+    },
+    {
+      "id": 25331,
+      "character": "拳"
+    },
+    {
+      "id": 32724,
+      "character": "翔"
+    },
+    {
+      "id": 36983,
+      "character": "遷"
+    },
+    {
+      "id": 25305,
+      "character": "拙"
+    },
+    {
+      "id": 20365,
+      "character": "侍"
+    },
+    {
+      "id": 23610,
+      "character": "尺"
+    },
+    {
+      "id": 23776,
+      "character": "峠"
+    },
+    {
+      "id": 31716,
+      "character": "篤"
+    },
+    {
+      "id": 32903,
+      "character": "肇"
+    },
+    {
+      "id": 28167,
+      "character": "渇"
+    },
+    {
+      "id": 21460,
+      "character": "叔"
+    },
+    {
+      "id": 38604,
+      "character": "雌"
+    },
+    {
+      "id": 20136,
+      "character": "亨"
+    },
+    {
+      "id": 22570,
+      "character": "堪"
+    },
+    {
+      "id": 21465,
+      "character": "叙"
+    },
+    {
+      "id": 37218,
+      "character": "酢"
+    },
+    {
+      "id": 21535,
+      "character": "吟"
+    },
+    {
+      "id": 36883,
+      "character": "逓"
+    },
+    {
+      "id": 23994,
+      "character": "嶺"
+    },
+    {
+      "id": 29978,
+      "character": "甚"
+    },
+    {
+      "id": 21932,
+      "character": "喬"
+    },
+    {
+      "id": 23815,
+      "character": "崇"
+    },
+    {
+      "id": 28422,
+      "character": "漆"
+    },
+    {
+      "id": 23724,
+      "character": "岬"
+    },
+    {
+      "id": 30294,
+      "character": "癖"
+    },
+    {
+      "id": 24841,
+      "character": "愉"
+    },
+    {
+      "id": 23493,
+      "character": "寅"
+    },
+    {
+      "id": 30977,
+      "character": "礁"
+    },
+    {
+      "id": 20035,
+      "character": "乃"
+    },
+    {
+      "id": 27954,
+      "character": "洲"
+    },
+    {
+      "id": 23663,
+      "character": "屯"
+    },
+    {
+      "id": 27194,
+      "character": "樺"
+    },
+    {
+      "id": 27097,
+      "character": "槙"
+    },
+    {
+      "id": 23035,
+      "character": "姻"
+    },
+    {
+      "id": 24012,
+      "character": "巌"
+    },
+    {
+      "id": 25836,
+      "character": "擬"
+    },
+    {
+      "id": 22592,
+      "character": "塀"
+    },
+    {
+      "id": 21767,
+      "character": "唇"
+    },
+    {
+      "id": 30566,
+      "character": "睦"
+    },
+    {
+      "id": 38289,
+      "character": "閑"
+    },
+    {
+      "id": 32993,
+      "character": "胡"
+    },
+    {
+      "id": 24189,
+      "character": "幽"
+    },
+    {
+      "id": 23803,
+      "character": "峻"
+    },
+    {
+      "id": 26361,
+      "character": "曹"
+    },
+    {
+      "id": 35424,
+      "character": "詠"
+    },
+    {
+      "id": 21329,
+      "character": "卑"
+    },
+    {
+      "id": 20398,
+      "character": "侮"
+    },
+    {
+      "id": 37619,
+      "character": "鋳"
+    },
+    {
+      "id": 25273,
+      "character": "抹"
+    },
+    {
+      "id": 23561,
+      "character": "尉"
+    },
+    {
+      "id": 27131,
+      "character": "槻"
+    },
+    {
+      "id": 38583,
+      "character": "隷"
+    },
+    {
+      "id": 31117,
+      "character": "禍"
+    },
+    {
+      "id": 34678,
+      "character": "蝶"
+    },
+    {
+      "id": 37226,
+      "character": "酪"
+    },
+    {
+      "id": 33550,
+      "character": "茎"
+    },
+    {
+      "id": 24101,
+      "character": "帥"
+    },
+    {
+      "id": 36893,
+      "character": "逝"
+    },
+    {
+      "id": 27773,
+      "character": "汽"
+    },
+    {
+      "id": 29730,
+      "character": "琢"
+    },
+    {
+      "id": 21311,
+      "character": "匿"
+    },
+    {
+      "id": 35167,
+      "character": "襟"
+    },
+    {
+      "id": 34509,
+      "character": "蛍"
+    },
+    {
+      "id": 34121,
+      "character": "蕉"
+    },
+    {
+      "id": 23521,
+      "character": "寡"
+    },
+    {
+      "id": 29705,
+      "character": "琉"
+    },
+    {
+      "id": 30178,
+      "character": "痢"
+    },
+    {
+      "id": 24248,
+      "character": "庸"
+    },
+    {
+      "id": 26379,
+      "character": "朋"
+    },
+    {
+      "id": 22353,
+      "character": "坑"
+    },
+    {
+      "id": 34253,
+      "character": "藍"
+    },
+    {
+      "id": 36042,
+      "character": "賊"
+    },
+    {
+      "id": 25662,
+      "character": "搾"
+    },
+    {
+      "id": 30036,
+      "character": "畔"
+    },
+    {
+      "id": 36988,
+      "character": "遼"
+    },
+    {
+      "id": 21764,
+      "character": "唄"
+    },
+    {
+      "id": 23380,
+      "character": "孔"
+    },
+    {
+      "id": 27224,
+      "character": "橘"
+    },
+    {
+      "id": 28465,
+      "character": "漱"
+    },
+    {
+      "id": 21570,
+      "character": "呂"
+    },
+    {
+      "id": 25335,
+      "character": "拷"
+    },
+    {
+      "id": 23330,
+      "character": "嬢"
+    },
+    {
+      "id": 33489,
+      "character": "苑"
+    },
+    {
+      "id": 24061,
+      "character": "巽"
+    },
+    {
+      "id": 26460,
+      "character": "杜"
+    },
+    {
+      "id": 28179,
+      "character": "渓"
+    },
+    {
+      "id": 32705,
+      "character": "翁"
+    },
+    {
+      "id": 24265,
+      "character": "廉"
+    },
+    {
+      "id": 35641,
+      "character": "謹"
+    },
+    {
+      "id": 30643,
+      "character": "瞳"
+    },
+    {
+      "id": 28263,
+      "character": "湧"
+    },
+    {
+      "id": 27427,
+      "character": "欣"
+    },
+    {
+      "id": 31407,
+      "character": "窯"
+    },
+    {
+      "id": 35090,
+      "character": "褒"
+    },
+    {
+      "id": 37276,
+      "character": "醜"
+    },
+    {
+      "id": 21319,
+      "character": "升"
+    },
+    {
+      "id": 27529,
+      "character": "殉"
+    },
+    {
+      "id": 29033,
+      "character": "煩"
+    },
+    {
+      "id": 24052,
+      "character": "巴"
+    },
+    {
+      "id": 31118,
+      "character": "禎"
+    },
+    {
+      "id": 21182,
+      "character": "劾"
+    },
+    {
+      "id": 22549,
+      "character": "堕"
+    },
+    {
+      "id": 31199,
+      "character": "租"
+    },
+    {
+      "id": 31260,
+      "character": "稜"
+    },
+    {
+      "id": 26719,
+      "character": "桟"
+    },
+    {
+      "id": 20525,
+      "character": "倭"
+    },
+    {
+      "id": 23167,
+      "character": "婿"
+    },
+    {
+      "id": 24917,
+      "character": "慕"
+    },
+    {
+      "id": 26000,
+      "character": "斐"
+    },
+    {
+      "id": 32631,
+      "character": "罷"
+    },
+    {
+      "id": 30703,
+      "character": "矯"
+    },
+    {
+      "id": 26576,
+      "character": "某"
+    },
+    {
+      "id": 22234,
+      "character": "囚"
+    },
+    {
+      "id": 39745,
+      "character": "魁"
+    },
+    {
+      "id": 34425,
+      "character": "虹"
+    },
+    {
+      "id": 40251,
+      "character": "鴻"
+    },
+    {
+      "id": 27852,
+      "character": "泌"
+    },
+    {
+      "id": 26044,
+      "character": "於"
+    },
+    {
+      "id": 36211,
+      "character": "赳"
+    },
+    {
+      "id": 28472,
+      "character": "漸"
+    },
+    {
+      "id": 34442,
+      "character": "蚊"
+    },
+    {
+      "id": 33909,
+      "character": "葵"
+    },
+    {
+      "id": 21380,
+      "character": "厄"
+    },
+    {
+      "id": 34299,
+      "character": "藻"
+    },
+    {
+      "id": 31108,
+      "character": "禄"
+    },
+    {
+      "id": 23391,
+      "character": "孟"
+    },
+    {
+      "id": 23265,
+      "character": "嫡"
+    },
+    {
+      "id": 23597,
+      "character": "尭"
+    },
+    {
+      "id": 22151,
+      "character": "嚇"
+    },
+    {
+      "id": 24051,
+      "character": "巳"
+    },
+    {
+      "id": 20984,
+      "character": "凸"
+    },
+    {
+      "id": 26274,
+      "character": "暢"
+    },
+    {
+      "id": 38907,
+      "character": "韻"
+    },
+    {
+      "id": 38684,
+      "character": "霜"
+    },
+    {
+      "id": 30813,
+      "character": "硝"
+    },
+    {
+      "id": 21189,
+      "character": "勅"
+    },
+    {
+      "id": 33465,
+      "character": "芹"
+    },
+    {
+      "id": 26447,
+      "character": "杏"
+    },
+    {
+      "id": 26874,
+      "character": "棺"
+    },
+    {
+      "id": 20754,
+      "character": "儒"
+    },
+    {
+      "id": 40179,
+      "character": "鳳"
+    },
+    {
+      "id": 39336,
+      "character": "馨"
+    },
+    {
+      "id": 24935,
+      "character": "慧"
+    },
+    {
+      "id": 24833,
+      "character": "愁"
+    },
+    {
+      "id": 27004,
+      "character": "楼"
+    },
+    {
+      "id": 24428,
+      "character": "彬"
+    },
+    {
+      "id": 21281,
+      "character": "匡"
+    },
+    {
+      "id": 30473,
+      "character": "眉"
+    },
+    {
+      "id": 27453,
+      "character": "欽"
+    },
+    {
+      "id": 34218,
+      "character": "薪"
+    },
+    {
+      "id": 35088,
+      "character": "褐"
+    },
+    {
+      "id": 36060,
+      "character": "賜"
+    },
+    {
+      "id": 23919,
+      "character": "嵯"
+    },
+    {
+      "id": 32156,
+      "character": "綜"
+    },
+    {
+      "id": 32341,
+      "character": "繕"
+    },
+    {
+      "id": 26643,
+      "character": "栓"
+    },
+    {
+      "id": 32736,
+      "character": "翠"
+    },
+    {
+      "id": 39822,
+      "character": "鮎"
+    },
+    {
+      "id": 27035,
+      "character": "榛"
+    },
+    {
+      "id": 20985,
+      "character": "凹"
+    },
+    {
+      "id": 33398,
+      "character": "艶"
+    },
+    {
+      "id": 24803,
+      "character": "惣"
+    },
+    {
+      "id": 34086,
+      "character": "蔦"
+    },
+    {
+      "id": 37676,
+      "character": "錬"
+    },
+    {
+      "id": 38588,
+      "character": "隼"
+    },
+    {
+      "id": 28186,
+      "character": "渚"
+    },
+    {
+      "id": 34935,
+      "character": "衷"
+    },
+    {
+      "id": 36880,
+      "character": "逐"
+    },
+    {
+      "id": 26021,
+      "character": "斥"
+    },
+    {
+      "id": 31232,
+      "character": "稀"
+    },
+    {
+      "id": 33433,
+      "character": "芙"
+    },
+    {
+      "id": 35412,
+      "character": "詔"
+    },
+    {
+      "id": 30352,
+      "character": "皐"
+    },
+    {
+      "id": 38619,
+      "character": "雛"
+    },
+    {
+      "id": 24799,
+      "character": "惟"
+    },
+    {
+      "id": 20305,
+      "character": "佑"
+    },
+    {
+      "id": 32768,
+      "character": "耀"
+    },
+    {
+      "id": 40667,
+      "character": "黛"
+    },
+    {
+      "id": 28197,
+      "character": "渥"
+    },
+    {
+      "id": 24999,
+      "character": "憧"
+    },
+    {
+      "id": 23477,
+      "character": "宵"
+    },
+    {
+      "id": 22916,
+      "character": "妄"
+    },
+    {
+      "id": 24775,
+      "character": "惇"
+    },
+    {
+      "id": 33065,
+      "character": "脩"
+    },
+    {
+      "id": 29995,
+      "character": "甫"
+    },
+    {
+      "id": 37196,
+      "character": "酌"
+    },
+    {
+      "id": 34453,
+      "character": "蚕"
+    },
+    {
+      "id": 23305,
+      "character": "嬉"
+    },
+    {
+      "id": 33980,
+      "character": "蒼"
+    },
+    {
+      "id": 26249,
+      "character": "暉"
+    },
+    {
+      "id": 38930,
+      "character": "頒"
+    },
+    {
+      "id": 21482,
+      "character": "只"
+    },
+    {
+      "id": 32930,
+      "character": "肢"
+    },
+    {
+      "id": 27264,
+      "character": "檀"
+    },
+    {
+      "id": 20977,
+      "character": "凱"
+    },
+    {
+      "id": 24407,
+      "character": "彗"
+    },
+    {
+      "id": 35588,
+      "character": "謄"
+    },
+    {
+      "id": 26771,
+      "character": "梓"
+    },
+    {
+      "id": 19985,
+      "character": "丑"
+    },
+    {
+      "id": 21987,
+      "character": "嗣"
+    },
+    {
+      "id": 21494,
+      "character": "叶"
+    },
+    {
+      "id": 27728,
+      "character": "汐"
+    },
+    {
+      "id": 32098,
+      "character": "絢"
+    },
+    {
+      "id": 26388,
+      "character": "朔"
+    },
+    {
+      "id": 20285,
+      "character": "伽"
+    },
+    {
+      "id": 30045,
+      "character": "畝"
+    },
+    {
+      "id": 25220,
+      "character": "抄"
+    },
+    {
+      "id": 29245,
+      "character": "爽"
+    },
+    {
+      "id": 40654,
+      "character": "黎"
+    },
+    {
+      "id": 24816,
+      "character": "惰"
+    },
+    {
+      "id": 34542,
+      "character": "蛮"
+    },
+    {
+      "id": 20916,
+      "character": "冴"
+    },
+    {
+      "id": 26106,
+      "character": "旺"
+    },
+    {
+      "id": 33804,
+      "character": "萌"
+    },
+    {
+      "id": 20594,
+      "character": "偲"
+    },
+    {
+      "id": 22769,
+      "character": "壱"
+    },
+    {
+      "id": 29792,
+      "character": "瑠"
+    },
+    {
+      "id": 20801,
+      "character": "允"
+    },
+    {
+      "id": 20399,
+      "character": "侯"
+    },
+    {
+      "id": 33940,
+      "character": "蒔"
+    },
+    {
+      "id": 39881,
+      "character": "鯉"
+    },
+    {
+      "id": 24359,
+      "character": "弧"
+    },
+    {
+      "id": 36965,
+      "character": "遥"
+    },
+    {
+      "id": 33308,
+      "character": "舜"
+    },
+    {
+      "id": 29787,
+      "character": "瑛"
+    },
+    {
+      "id": 38468,
+      "character": "附"
+    },
+    {
+      "id": 24426,
+      "character": "彪"
+    },
+    {
+      "id": 21359,
+      "character": "卯"
+    },
+    {
+      "id": 20294,
+      "character": "但"
+    },
+    {
+      "id": 32186,
+      "character": "綺"
+    },
+    {
+      "id": 33419,
+      "character": "芋"
+    },
+    {
+      "id": 33564,
+      "character": "茜"
+    },
+    {
+      "id": 20940,
+      "character": "凌"
+    },
+    {
+      "id": 30355,
+      "character": "皓"
+    },
+    {
+      "id": 27960,
+      "character": "洸"
+    },
+    {
+      "id": 27628,
+      "character": "毬"
+    },
+    {
+      "id": 23110,
+      "character": "婆"
+    },
+    {
+      "id": 32203,
+      "character": "緋"
+    },
+    {
+      "id": 39899,
+      "character": "鯛"
+    },
+    {
+      "id": 24604,
+      "character": "怜"
+    },
+    {
+      "id": 37009,
+      "character": "邑"
+    },
+    {
+      "id": 20515,
+      "character": "倣"
+    },
+    {
+      "id": 30887,
+      "character": "碧"
+    },
+    {
+      "id": 21828,
+      "character": "啄"
+    },
+    {
+      "id": 31331,
+      "character": "穣"
+    },
+    {
+      "id": 37193,
+      "character": "酉"
+    },
+    {
+      "id": 24716,
+      "character": "悌"
+    },
+    {
+      "id": 20537,
+      "character": "倹"
+    },
+    {
+      "id": 26586,
+      "character": "柚"
+    },
+    {
+      "id": 32365,
+      "character": "繭"
+    },
+    {
+      "id": 20134,
+      "character": "亦"
+    },
+    {
+      "id": 35426,
+      "character": "詢"
+    },
+    {
+      "id": 37319,
+      "character": "采"
+    },
+    {
+      "id": 32023,
+      "character": "紗"
+    },
+    {
+      "id": 36070,
+      "character": "賦"
+    },
+    {
+      "id": 30520,
+      "character": "眸"
+    },
+    {
+      "id": 29590,
+      "character": "玖"
+    },
+    {
+      "id": 24336,
+      "character": "弐"
+    },
+    {
+      "id": 37656,
+      "character": "錘"
+    },
+    {
+      "id": 35524,
+      "character": "諄"
+    },
+    {
+      "id": 20502,
+      "character": "倖"
+    },
+    {
+      "id": 30168,
+      "character": "痘"
+    },
+    {
+      "id": 31513,
+      "character": "笙"
+    },
+    {
+      "id": 20355,
+      "character": "侃"
+    },
+    {
+      "id": 35039,
+      "character": "裟"
+    },
+    {
+      "id": 27957,
+      "character": "洵"
+    },
+    {
+      "id": 29246,
+      "character": "爾"
+    },
+    {
+      "id": 32791,
+      "character": "耗"
+    },
+    {
+      "id": 26164,
+      "character": "昴"
+    },
+    {
+      "id": 37521,
+      "character": "銑"
+    },
+    {
+      "id": 33694,
+      "character": "莞"
+    },
+    {
+      "id": 20278,
+      "character": "伶"
+    },
+    {
+      "id": 30889,
+      "character": "碩"
+    },
+    {
+      "id": 23461,
+      "character": "宥"
+    },
+    {
+      "id": 28361,
+      "character": "滉"
+    },
+    {
+      "id": 26191,
+      "character": "晏"
+    },
+    {
+      "id": 20238,
+      "character": "伎"
+    },
+    {
+      "id": 26389,
+      "character": "朕"
+    },
+    {
+      "id": 36842,
+      "character": "迪"
+    },
+    {
+      "id": 32184,
+      "character": "綸"
+    },
+    {
+      "id": 19988,
+      "character": "且"
+    },
+    {
+      "id": 31459,
+      "character": "竣"
+    },
+    {
+      "id": 26216,
+      "character": "晨"
+    },
+    {
+      "id": 21519,
+      "character": "吏"
+    },
+    {
+      "id": 29158,
+      "character": "燦"
+    },
+    {
+      "id": 40639,
+      "character": "麿"
+    },
+    {
+      "id": 38924,
+      "character": "頌"
+    },
+    {
+      "id": 31623,
+      "character": "箇"
+    },
+    {
+      "id": 26963,
+      "character": "楓"
+    },
+    {
+      "id": 29747,
+      "character": "琳"
+    },
+    {
+      "id": 26791,
+      "character": "梧"
+    },
+    {
+      "id": 21705,
+      "character": "哉"
+    },
+    {
+      "id": 28586,
+      "character": "澪"
+    },
+    {
+      "id": 21249,
+      "character": "匁"
+    },
+    {
+      "id": 26207,
+      "character": "晟"
+    },
+    {
+      "id": 34943,
+      "character": "衿"
+    },
+    {
+      "id": 20970,
+      "character": "凪"
+    },
+    {
+      "id": 26786,
+      "character": "梢"
+    },
+    {
+      "id": 19993,
+      "character": "丙"
+    },
+    {
+      "id": 39087,
+      "character": "颯"
+    },
+    {
+      "id": 33540,
+      "character": "茄"
+    },
+    {
+      "id": 21242,
+      "character": "勺"
+    },
+    {
+      "id": 24661,
+      "character": "恕"
+    },
+    {
+      "id": 34135,
+      "character": "蕗"
+    },
+    {
+      "id": 29786,
+      "character": "瑚"
+    },
+    {
+      "id": 36981,
+      "character": "遵"
+    },
+    {
+      "id": 30637,
+      "character": "瞭"
+    },
+    {
+      "id": 29134,
+      "character": "燎"
+    },
+    {
+      "id": 34398,
+      "character": "虞"
+    },
+    {
+      "id": 26570,
+      "character": "柊"
+    },
+    {
+      "id": 20369,
+      "character": "侑"
+    },
+    {
+      "id": 35585,
+      "character": "謁"
+    },
+    {
+      "id": 26020,
+      "character": "斤"
+    },
+    {
+      "id": 23913,
+      "character": "嵩"
+    },
+    {
+      "id": 25466,
+      "character": "捺"
+    },
+    {
+      "id": 33993,
+      "character": "蓉"
+    },
+    {
+      "id": 33545,
+      "character": "茉"
+    },
+    {
+      "id": 34952,
+      "character": "袈"
+    },
+    {
+      "id": 29183,
+      "character": "燿"
+    },
+    {
+      "id": 35516,
+      "character": "誼"
+    },
+    {
+      "id": 20918,
+      "character": "冶"
+    },
+    {
+      "id": 26654,
+      "character": "栞"
+    },
+    {
+      "id": 22718,
+      "character": "墾"
+    },
+    {
+      "id": 21185,
+      "character": "勁"
+    },
+    {
+      "id": 33750,
+      "character": "菖"
+    },
+    {
+      "id": 26086,
+      "character": "旦"
+    },
+    {
+      "id": 26891,
+      "character": "椋"
+    },
+    {
+      "id": 21473,
+      "character": "叡"
+    },
+    {
+      "id": 32044,
+      "character": "紬"
+    },
+    {
+      "id": 32996,
+      "character": "胤"
+    },
+    {
+      "id": 20956,
+      "character": "凜"
+    },
+    {
+      "id": 20133,
+      "character": "亥"
+    },
+    {
+      "id": 29237,
+      "character": "爵"
+    },
+    {
+      "id": 33081,
+      "character": "脹"
+    },
+    {
+      "id": 40607,
+      "character": "麟"
+    },
+    {
+      "id": 33673,
+      "character": "莉"
+    },
+    {
+      "id": 27760,
+      "character": "汰"
+    },
+    {
+      "id": 29814,
+      "character": "瑶"
+    },
+    {
+      "id": 29811,
+      "character": "瑳"
+    },
+    {
+      "id": 32822,
+      "character": "耶"
+    },
+    {
+      "id": 26928,
+      "character": "椰"
+    },
+    {
+      "id": 32067,
+      "character": "絃"
+    },
+    {
+      "id": 19998,
+      "character": "丞"
+    },
+    {
+      "id": 29827,
+      "character": "璃"
+    },
+    {
+      "id": 22862,
+      "character": "奎"
+    },
+    {
+      "id": 22609,
+      "character": "塑"
+    },
+    {
+      "id": 26114,
+      "character": "昂"
+    },
+    {
+      "id": 26622,
+      "character": "柾"
+    },
+    {
+      "id": 29081,
+      "character": "熙"
+    },
+    {
+      "id": 33771,
+      "character": "菫"
+    },
+    {
+      "id": 35538,
+      "character": "諒"
+    },
+    {
+      "id": 38816,
+      "character": "鞠"
+    },
+    {
+      "id": 23834,
+      "character": "崚"
+    },
+    {
+      "id": 28651,
+      "character": "濫"
+    },
+    {
+      "id": 25463,
+      "character": "捷"
+    }
+  ]
+}

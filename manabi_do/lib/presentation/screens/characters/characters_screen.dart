@@ -3,11 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../data/database/app_database.dart';
 import '../../../domain/data/kana_data.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kana_provider.dart';
-import '../../providers/kanji_provider.dart';
+import '../../providers/kanji_provider.dart' show KanjiListEntry, kanjiListProvider;
 import '../../widgets/widgets.dart';
 
 class CharactersScreen extends ConsumerStatefulWidget {
@@ -335,11 +334,11 @@ class _LevelInfo {
 }
 
 const _kanjiLevels = [
-  _LevelInfo('N5', 'Beginner',            80,  available: true),
-  _LevelInfo('N4', 'Elementary',         168),
-  _LevelInfo('N3', 'Intermediate',       370),
-  _LevelInfo('N2', 'Upper-Intermediate', 367),
-  _LevelInfo('N1', 'Advanced',          1232),
+  _LevelInfo('N5', 'Beginner',            79,  available: true),
+  _LevelInfo('N4', 'Elementary',         166,  available: true),
+  _LevelInfo('N3', 'Intermediate',       367,  available: true),
+  _LevelInfo('N2', 'Upper-Intermediate', 367,  available: true),
+  _LevelInfo('N1', 'Advanced',          1232,  available: true),
 ];
 
 // ─── Kanji tab ────────────────────────────────────────────────────────────────
@@ -361,20 +360,13 @@ class _KanjiTabViewState extends ConsumerState<_KanjiTabView> {
 
   @override
   Widget build(BuildContext context) {
-    final kanjiAsync = ref.watch(n5KanjiProvider);
-
     if (_selectedLevel == null) {
       return _KanjiLevelSelector(
         onSelect: (level) => setState(() => _selectedLevel = level),
       );
     }
 
-    if (_selectedLevel != 'N5') {
-      return _KanjiComingSoon(
-        level: _selectedLevel!,
-        onBack: () => setState(() => _selectedLevel = null),
-      );
-    }
+    final kanjiAsync = ref.watch(kanjiListProvider(_selectedLevel!));
 
     if (kanjiAsync is AsyncLoading) {
       return const Center(child: CircularProgressIndicator());
@@ -394,7 +386,7 @@ class _KanjiTabViewState extends ConsumerState<_KanjiTabView> {
         _KanjiGrid(
           kanjis: kanjiList,
           knownIds: _knownIds,
-          onToggle: (id, _) => _toggle(id),
+          onToggle: _toggle,
         ),
       ],
     );
@@ -543,52 +535,11 @@ class _LevelHeader extends StatelessWidget {
   }
 }
 
-// ─── Coming soon placeholder ──────────────────────────────────────────────────
-
-class _KanjiComingSoon extends StatelessWidget {
-  final String level;
-  final VoidCallback onBack;
-  const _KanjiComingSoon({required this.level, required this.onBack});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    final info = _kanjiLevels.firstWhere((l) => l.code == level);
-    return Column(
-      children: [
-        _LevelHeader(level: level, onBack: onBack),
-        Expanded(
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  level,
-                  style: AppTextStyles.jpDisplay.copyWith(color: t.onSurfaceVariant),
-                ),
-                const SizedBox(height: AppDimens.spaceSm),
-                Text(
-                  'Coming soon',
-                  style: AppTextStyles.title.copyWith(color: t.onSurface),
-                ),
-                const SizedBox(height: AppDimens.spaceXs),
-                Text(
-                  '${info.total} kanji · ${info.label}',
-                  style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 class _KanjiGrid extends StatelessWidget {
-  final List<Kanji> kanjis;
+  final List<KanjiListEntry> kanjis;
   final Set<int> knownIds;
-  final void Function(int id, bool isKnown) onToggle;
+  final void Function(int id) onToggle;
 
   const _KanjiGrid({
     required this.kanjis,
@@ -618,12 +569,9 @@ class _KanjiGrid extends StatelessWidget {
                   if (j > 0) const SizedBox(width: gap),
                   KanjiCell(
                     character: rowItems[j].character,
-                    meaning: rowItems[j].meaning,
+                    meaning: '',
                     isKnown: knownIds.contains(rowItems[j].id),
-                    onTap: () => onToggle(
-                      rowItems[j].id,
-                      !knownIds.contains(rowItems[j].id),
-                    ),
+                    onTap: () => onToggle(rowItems[j].id),
                     size: cellSize,
                     kanjiSize: kanjiSize,
                     meaningSize: meaningSize,

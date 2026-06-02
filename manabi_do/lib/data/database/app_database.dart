@@ -1,6 +1,10 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 
+import 'n1_kanji_seed.dart';
+import 'n2_kanji_seed.dart';
+import 'n3_kanji_seed.dart';
+import 'n4_kanji_seed.dart';
 import 'n5_kanji_seed.dart';
 import 'tables/exercises_table.dart';
 import 'tables/grammar_lessons_table.dart';
@@ -16,33 +20,42 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(driftDatabase(name: 'manabi_do'));
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (m) async {
       await m.createAll();
-      await _seedN5Kanji();
+      await _seedAllKanji();
     },
     onUpgrade: (m, from, to) async {
       for (final table in allTables) {
         await m.deleteTable(table.actualTableName);
       }
       await m.createAll();
-      await _seedN5Kanji();
+      await _seedAllKanji();
     },
   );
 
-  Future<void> _seedN5Kanji() async {
-    final companions = n5KanjiData.map((e) => KanjisCompanion(
-      id: Value(e.$1),
-      character: Value(e.$2),
-      meaning: Value(e.$3),
-      onReading: Value(e.$4),
-      kunReading: Value(e.$5),
-      jlptLevel: const Value('N5'),
-    )).toList();
-    await batch((b) => b.insertAll(kanjis, companions));
+  Future<void> _seedAllKanji() async {
+    final levels = [
+      (n5KanjiData, 'N5'),
+      (n4KanjiData, 'N4'),
+      (n3KanjiData, 'N3'),
+      (n2KanjiData, 'N2'),
+      (n1KanjiData, 'N1'),
+    ];
+    for (final (data, level) in levels) {
+      final companions = data.map((e) => KanjisCompanion(
+        id: Value(e.$1),
+        character: Value(e.$2),
+        meaning: Value(e.$3),
+        onReading: Value(e.$4),
+        kunReading: Value(e.$5),
+        jlptLevel: Value(level),
+      )).toList();
+      await batch((b) => b.insertAll(kanjis, companions));
+    }
   }
 
   // ── Kanji queries ────────────────────────────────────────────────────────
