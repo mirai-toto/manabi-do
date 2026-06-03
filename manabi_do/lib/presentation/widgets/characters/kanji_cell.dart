@@ -56,20 +56,22 @@ class KanjiCell extends StatelessWidget {
                   color: t.onSurface,
                 ),
               ),
-              const SizedBox(height: AppDimens.spaceXs),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceXs),
-                child: Text(
-                  meaning,
-                  style: AppTextStyles.labelSmall.copyWith(
-                    fontSize: meaningSize,
-                    color: isKnown ? t.success : t.onSurfaceVariant,
+              if (meaning.isNotEmpty) ...[
+                const SizedBox(height: AppDimens.spaceXs),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceXs),
+                  child: Text(
+                    meaning,
+                    style: AppTextStyles.labelSmall.copyWith(
+                      fontSize: meaningSize,
+                      color: isKnown ? t.success : t.onSurfaceVariant,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
                 ),
-              ),
+              ],
             ],
           ),
         ),
