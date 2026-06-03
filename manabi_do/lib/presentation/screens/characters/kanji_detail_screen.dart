@@ -275,9 +275,7 @@ class _ReadingRow extends StatelessWidget {
                     ),
                     TextSpan(
                       text: r.substring(dotIdx),
-                      style: AppTextStyles.jpBody.copyWith(
-                        color: textColor.withValues(alpha: 0.30),
-                      ),
+                      style: AppTextStyles.jpBody.copyWith(color: t.onSurfaceVariant),
                     ),
                   ]),
                 );
