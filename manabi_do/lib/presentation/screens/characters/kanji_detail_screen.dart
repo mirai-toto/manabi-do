@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_dimens.dart';
@@ -391,17 +392,25 @@ class _StrokeOrderSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppDimens.radiusSm),
               ),
               clipBehavior: Clip.antiAlias,
-              child: SvgPicture.asset(
-                assetPath,
-                width: 160,
-                height: 160,
-                placeholderBuilder: (_) => const Center(
-                  child: SizedBox(
-                    width: 24,
-                    height: 24,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  ),
-                ),
+              child: FutureBuilder<ByteData>(
+                future: rootBundle.load(assetPath),
+                builder: (context, snap) {
+                  if (snap.hasError) {
+                    return const Center(
+                      child: Text('—', style: TextStyle(color: Colors.grey, fontSize: 32)),
+                    );
+                  }
+                  if (!snap.hasData) {
+                    return const Center(
+                      child: SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                    );
+                  }
+                  return SvgPicture.asset(assetPath, width: 160, height: 160);
+                },
               ),
             ),
           ),
