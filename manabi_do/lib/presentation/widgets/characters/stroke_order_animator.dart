@@ -94,6 +94,9 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
         builder: (context, _) => Stack(
           alignment: Alignment.center,
           children: [
+            // Expands the Stack to the full card width so the button
+            // can be positioned outside the 160×160 canvas.
+            const SizedBox(height: 160, width: double.infinity),
             Container(
               width: 160,
               height: 160,
@@ -113,8 +116,8 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
             ),
             if (_controller.isCompleted)
               Positioned(
-                bottom: 6,
-                right: 6,
+                bottom: 0,
+                right: 0,
                 child: Container(
                   width: 28,
                   height: 28,
