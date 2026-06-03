@@ -28,6 +28,8 @@ class AppDatabase extends _$AppDatabase {
       await m.createAll();
       await _seedAllKanji();
     },
+    // WARNING: drop-and-recreate wipes all user progress on every schema bump.
+    // Replace with column-level migrations before shipping to real users.
     onUpgrade: (m, from, to) async {
       for (final table in allTables) {
         await m.deleteTable(table.actualTableName);
