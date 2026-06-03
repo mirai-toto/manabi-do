@@ -76,17 +76,6 @@ class $KanjisTable extends Kanjis with TableInfo<$KanjisTable, Kanji> {
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _strokeSvgMeta = const VerificationMeta(
-    'strokeSvg',
-  );
-  @override
-  late final GeneratedColumn<String> strokeSvg = GeneratedColumn<String>(
-    'stroke_svg',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -95,7 +84,6 @@ class $KanjisTable extends Kanjis with TableInfo<$KanjisTable, Kanji> {
     onReading,
     kunReading,
     jlptLevel,
-    strokeSvg,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -152,12 +140,6 @@ class $KanjisTable extends Kanjis with TableInfo<$KanjisTable, Kanji> {
     } else if (isInserting) {
       context.missing(_jlptLevelMeta);
     }
-    if (data.containsKey('stroke_svg')) {
-      context.handle(
-        _strokeSvgMeta,
-        strokeSvg.isAcceptableOrUnknown(data['stroke_svg']!, _strokeSvgMeta),
-      );
-    }
     return context;
   }
 
@@ -191,10 +173,6 @@ class $KanjisTable extends Kanjis with TableInfo<$KanjisTable, Kanji> {
         DriftSqlType.string,
         data['${effectivePrefix}jlpt_level'],
       )!,
-      strokeSvg: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}stroke_svg'],
-      ),
     );
   }
 
@@ -211,7 +189,6 @@ class Kanji extends DataClass implements Insertable<Kanji> {
   final String onReading;
   final String kunReading;
   final String jlptLevel;
-  final String? strokeSvg;
   const Kanji({
     required this.id,
     required this.character,
@@ -219,7 +196,6 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     required this.onReading,
     required this.kunReading,
     required this.jlptLevel,
-    this.strokeSvg,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -230,9 +206,6 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     map['on_reading'] = Variable<String>(onReading);
     map['kun_reading'] = Variable<String>(kunReading);
     map['jlpt_level'] = Variable<String>(jlptLevel);
-    if (!nullToAbsent || strokeSvg != null) {
-      map['stroke_svg'] = Variable<String>(strokeSvg);
-    }
     return map;
   }
 
@@ -244,9 +217,6 @@ class Kanji extends DataClass implements Insertable<Kanji> {
       onReading: Value(onReading),
       kunReading: Value(kunReading),
       jlptLevel: Value(jlptLevel),
-      strokeSvg: strokeSvg == null && nullToAbsent
-          ? const Value.absent()
-          : Value(strokeSvg),
     );
   }
 
@@ -262,7 +232,6 @@ class Kanji extends DataClass implements Insertable<Kanji> {
       onReading: serializer.fromJson<String>(json['onReading']),
       kunReading: serializer.fromJson<String>(json['kunReading']),
       jlptLevel: serializer.fromJson<String>(json['jlptLevel']),
-      strokeSvg: serializer.fromJson<String?>(json['strokeSvg']),
     );
   }
   @override
@@ -275,7 +244,6 @@ class Kanji extends DataClass implements Insertable<Kanji> {
       'onReading': serializer.toJson<String>(onReading),
       'kunReading': serializer.toJson<String>(kunReading),
       'jlptLevel': serializer.toJson<String>(jlptLevel),
-      'strokeSvg': serializer.toJson<String?>(strokeSvg),
     };
   }
 
@@ -286,7 +254,6 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     String? onReading,
     String? kunReading,
     String? jlptLevel,
-    Value<String?> strokeSvg = const Value.absent(),
   }) => Kanji(
     id: id ?? this.id,
     character: character ?? this.character,
@@ -294,7 +261,6 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     onReading: onReading ?? this.onReading,
     kunReading: kunReading ?? this.kunReading,
     jlptLevel: jlptLevel ?? this.jlptLevel,
-    strokeSvg: strokeSvg.present ? strokeSvg.value : this.strokeSvg,
   );
   Kanji copyWithCompanion(KanjisCompanion data) {
     return Kanji(
@@ -306,7 +272,6 @@ class Kanji extends DataClass implements Insertable<Kanji> {
           ? data.kunReading.value
           : this.kunReading,
       jlptLevel: data.jlptLevel.present ? data.jlptLevel.value : this.jlptLevel,
-      strokeSvg: data.strokeSvg.present ? data.strokeSvg.value : this.strokeSvg,
     );
   }
 
@@ -318,22 +283,14 @@ class Kanji extends DataClass implements Insertable<Kanji> {
           ..write('meaning: $meaning, ')
           ..write('onReading: $onReading, ')
           ..write('kunReading: $kunReading, ')
-          ..write('jlptLevel: $jlptLevel, ')
-          ..write('strokeSvg: $strokeSvg')
+          ..write('jlptLevel: $jlptLevel')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-    id,
-    character,
-    meaning,
-    onReading,
-    kunReading,
-    jlptLevel,
-    strokeSvg,
-  );
+  int get hashCode =>
+      Object.hash(id, character, meaning, onReading, kunReading, jlptLevel);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -343,8 +300,7 @@ class Kanji extends DataClass implements Insertable<Kanji> {
           other.meaning == this.meaning &&
           other.onReading == this.onReading &&
           other.kunReading == this.kunReading &&
-          other.jlptLevel == this.jlptLevel &&
-          other.strokeSvg == this.strokeSvg);
+          other.jlptLevel == this.jlptLevel);
 }
 
 class KanjisCompanion extends UpdateCompanion<Kanji> {
@@ -354,7 +310,6 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
   final Value<String> onReading;
   final Value<String> kunReading;
   final Value<String> jlptLevel;
-  final Value<String?> strokeSvg;
   const KanjisCompanion({
     this.id = const Value.absent(),
     this.character = const Value.absent(),
@@ -362,7 +317,6 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     this.onReading = const Value.absent(),
     this.kunReading = const Value.absent(),
     this.jlptLevel = const Value.absent(),
-    this.strokeSvg = const Value.absent(),
   });
   KanjisCompanion.insert({
     this.id = const Value.absent(),
@@ -371,7 +325,6 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     required String onReading,
     required String kunReading,
     required String jlptLevel,
-    this.strokeSvg = const Value.absent(),
   }) : character = Value(character),
        meaning = Value(meaning),
        onReading = Value(onReading),
@@ -384,7 +337,6 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     Expression<String>? onReading,
     Expression<String>? kunReading,
     Expression<String>? jlptLevel,
-    Expression<String>? strokeSvg,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -393,7 +345,6 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
       if (onReading != null) 'on_reading': onReading,
       if (kunReading != null) 'kun_reading': kunReading,
       if (jlptLevel != null) 'jlpt_level': jlptLevel,
-      if (strokeSvg != null) 'stroke_svg': strokeSvg,
     });
   }
 
@@ -404,7 +355,6 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     Value<String>? onReading,
     Value<String>? kunReading,
     Value<String>? jlptLevel,
-    Value<String?>? strokeSvg,
   }) {
     return KanjisCompanion(
       id: id ?? this.id,
@@ -413,7 +363,6 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
       onReading: onReading ?? this.onReading,
       kunReading: kunReading ?? this.kunReading,
       jlptLevel: jlptLevel ?? this.jlptLevel,
-      strokeSvg: strokeSvg ?? this.strokeSvg,
     );
   }
 
@@ -438,9 +387,6 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     if (jlptLevel.present) {
       map['jlpt_level'] = Variable<String>(jlptLevel.value);
     }
-    if (strokeSvg.present) {
-      map['stroke_svg'] = Variable<String>(strokeSvg.value);
-    }
     return map;
   }
 
@@ -452,8 +398,7 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
           ..write('meaning: $meaning, ')
           ..write('onReading: $onReading, ')
           ..write('kunReading: $kunReading, ')
-          ..write('jlptLevel: $jlptLevel, ')
-          ..write('strokeSvg: $strokeSvg')
+          ..write('jlptLevel: $jlptLevel')
           ..write(')'))
         .toString();
   }
@@ -2633,7 +2578,6 @@ typedef $$KanjisTableCreateCompanionBuilder =
       required String onReading,
       required String kunReading,
       required String jlptLevel,
-      Value<String?> strokeSvg,
     });
 typedef $$KanjisTableUpdateCompanionBuilder =
     KanjisCompanion Function({
@@ -2643,7 +2587,6 @@ typedef $$KanjisTableUpdateCompanionBuilder =
       Value<String> onReading,
       Value<String> kunReading,
       Value<String> jlptLevel,
-      Value<String?> strokeSvg,
     });
 
 final class $$KanjisTableReferences
@@ -2714,11 +2657,6 @@ class $$KanjisTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get strokeSvg => $composableBuilder(
-    column: $table.strokeSvg,
-    builder: (column) => ColumnFilters(column),
-  );
-
   Expression<bool> vocabularyEntriesRefs(
     Expression<bool> Function($$VocabularyEntriesTableFilterComposer f) f,
   ) {
@@ -2783,11 +2721,6 @@ class $$KanjisTableOrderingComposer
     column: $table.jlptLevel,
     builder: (column) => ColumnOrderings(column),
   );
-
-  ColumnOrderings<String> get strokeSvg => $composableBuilder(
-    column: $table.strokeSvg,
-    builder: (column) => ColumnOrderings(column),
-  );
 }
 
 class $$KanjisTableAnnotationComposer
@@ -2818,9 +2751,6 @@ class $$KanjisTableAnnotationComposer
 
   GeneratedColumn<String> get jlptLevel =>
       $composableBuilder(column: $table.jlptLevel, builder: (column) => column);
-
-  GeneratedColumn<String> get strokeSvg =>
-      $composableBuilder(column: $table.strokeSvg, builder: (column) => column);
 
   Expression<T> vocabularyEntriesRefs<T extends Object>(
     Expression<T> Function($$VocabularyEntriesTableAnnotationComposer a) f,
@@ -2883,7 +2813,6 @@ class $$KanjisTableTableManager
                 Value<String> onReading = const Value.absent(),
                 Value<String> kunReading = const Value.absent(),
                 Value<String> jlptLevel = const Value.absent(),
-                Value<String?> strokeSvg = const Value.absent(),
               }) => KanjisCompanion(
                 id: id,
                 character: character,
@@ -2891,7 +2820,6 @@ class $$KanjisTableTableManager
                 onReading: onReading,
                 kunReading: kunReading,
                 jlptLevel: jlptLevel,
-                strokeSvg: strokeSvg,
               ),
           createCompanionCallback:
               ({
@@ -2901,7 +2829,6 @@ class $$KanjisTableTableManager
                 required String onReading,
                 required String kunReading,
                 required String jlptLevel,
-                Value<String?> strokeSvg = const Value.absent(),
               }) => KanjisCompanion.insert(
                 id: id,
                 character: character,
@@ -2909,7 +2836,6 @@ class $$KanjisTableTableManager
                 onReading: onReading,
                 kunReading: kunReading,
                 jlptLevel: jlptLevel,
-                strokeSvg: strokeSvg,
               ),
           withReferenceMapper: (p0) => p0
               .map(
