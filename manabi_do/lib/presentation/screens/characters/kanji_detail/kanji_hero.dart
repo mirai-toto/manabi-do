@@ -11,7 +11,9 @@ class KanjiHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkColor = Color.lerp(color, Colors.black, 0.35)!;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final darkColor = Color.lerp(color, Colors.black, isDark ? 0.65 : 0.35)!;
+    final lightColor = isDark ? Color.lerp(color, Colors.black, 0.30)! : color;
     final topPadding = MediaQuery.of(context).padding.top;
 
     return Container(
@@ -19,7 +21,7 @@ class KanjiHero extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [darkColor, color],
+          colors: [darkColor, lightColor],
         ),
       ),
       padding: EdgeInsets.fromLTRB(
