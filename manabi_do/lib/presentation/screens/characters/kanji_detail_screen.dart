@@ -246,7 +246,7 @@ class _ReadingRow extends StatelessWidget {
     final bgColor = textColor.withValues(alpha: 0.12);
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
           width: 56,
