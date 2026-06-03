@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -241,6 +242,8 @@ class _KanjiBody extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppDimens.spaceLg),
+          _StrokeOrderSection(kanji: kanji),
+          const SizedBox(height: AppDimens.spaceLg),
           GestureDetector(
             onTap: onToggle,
             child: AnimatedContainer(
@@ -342,6 +345,65 @@ class _ReadingRow extends StatelessWidget {
                 child: chipText,
               );
             }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _StrokeOrderSection extends StatelessWidget {
+  final Kanji kanji;
+  const _StrokeOrderSection({required this.kanji});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final hexCode = kanji.id.toRadixString(16).padLeft(5, '0');
+    final assetPath = 'assets/kanji_svg/$hexCode.svg';
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'STROKE ORDER',
+          style: AppTextStyles.label.copyWith(
+            color: t.onSurfaceVariant,
+            letterSpacing: 0.8,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: AppDimens.spaceSm),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(AppDimens.spaceMd),
+          decoration: BoxDecoration(
+            color: t.cardBackground,
+            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+            border: Border.all(color: t.outlineVariant),
+          ),
+          child: Center(
+            child: Container(
+              width: 160,
+              height: 160,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: SvgPicture.asset(
+                assetPath,
+                width: 160,
+                height: 160,
+                placeholderBuilder: (_) => const Center(
+                  child: SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
       ],

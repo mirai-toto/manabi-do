@@ -64,6 +64,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/data/
+    - assets/kanji_svg/
 
   fonts:
     - family: Inter
