@@ -379,19 +379,10 @@ class _StrokeOrderSection extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppDimens.radiusMd),
             border: Border.all(color: t.outlineVariant),
           ),
-          child: Center(
-            child: Container(
-              width: 160,
-              height: 160,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: StrokeOrderAnimator(kanjiId: kanji.id),
-            ),
-          ),
+          child: Center(child: StrokeOrderAnimator(kanjiId: kanji.id)),
         ),
+        const SizedBox(height: AppDimens.spaceSm),
+        StrokeStepRow(kanjiId: kanji.id),
       ],
     );
   }
