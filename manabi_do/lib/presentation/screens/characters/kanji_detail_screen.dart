@@ -5,8 +5,8 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/kanji_provider.dart';
+import '../../widgets/widgets.dart';
 import 'kanji_detail/kanji_hero.dart';
-import 'kanji_detail/kanji_known_toggle.dart';
 import 'kanji_detail/kanji_readings_card.dart';
 import 'kanji_detail/stroke_order_section.dart';
 
@@ -61,7 +61,7 @@ class _KanjiBody extends StatelessWidget {
           const SizedBox(height: AppDimens.spaceLg),
           StrokeOrderSection(kanji: kanji),
           const SizedBox(height: AppDimens.spaceLg),
-          KanjiKnownToggle(isKnown: isKnown, onTap: onToggle),
+          KnownToggle(isKnown: isKnown, onTap: onToggle, fullWidth: true),
         ],
       ),
     );
