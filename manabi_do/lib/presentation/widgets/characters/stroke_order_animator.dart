@@ -133,11 +133,18 @@ class StrokeStepRow extends StatefulWidget {
 
 class _StrokeStepRowState extends State<StrokeStepRow> {
   List<Path>? _strokes;
+  final _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _load();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   Future<void> _load() async {
@@ -150,29 +157,57 @@ class _StrokeStepRowState extends State<StrokeStepRow> {
     } catch (_) {}
   }
 
+  void _onDragUpdate(DragUpdateDetails details) {
+    if (!_scrollController.hasClients) return;
+    final pos = _scrollController.position;
+    _scrollController.jumpTo(
+      (_scrollController.offset - details.delta.dx)
+          .clamp(pos.minScrollExtent, pos.maxScrollExtent),
+    );
+  }
+
+  void _onDragEnd(DragEndDetails details) {
+    if (!_scrollController.hasClients) return;
+    final pos = _scrollController.position;
+    final target = (_scrollController.offset - details.velocity.pixelsPerSecond.dx * 0.12)
+        .clamp(pos.minScrollExtent, pos.maxScrollExtent);
+    _scrollController.animateTo(
+      target,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.decelerate,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final strokes = _strokes;
     if (strokes == null) return const SizedBox.shrink();
 
-    return SizedBox(
-      height: 48,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: strokes.length,
-        separatorBuilder: (_, _) => const SizedBox(width: 6),
-        itemBuilder: (context, i) => Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(6),
-            border: Border.all(color: const Color(0xFFE0E0E0)),
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: CustomPaint(
-            size: const Size(48, 48),
-            painter: _StepPainter(strokes: strokes, step: i),
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onHorizontalDragUpdate: _onDragUpdate,
+      onHorizontalDragEnd: _onDragEnd,
+      child: SizedBox(
+        height: 48,
+        child: ListView.separated(
+          controller: _scrollController,
+          scrollDirection: Axis.horizontal,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: strokes.length,
+          separatorBuilder: (_, _) => const SizedBox(width: 6),
+          itemBuilder: (context, i) => Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(color: const Color(0xFFE0E0E0)),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: CustomPaint(
+              size: const Size(48, 48),
+              painter: _StepPainter(strokes: strokes, step: i),
+            ),
           ),
         ),
       ),
