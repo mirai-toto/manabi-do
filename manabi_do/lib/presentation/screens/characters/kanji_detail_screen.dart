@@ -53,10 +53,6 @@ class _KanjiHero extends StatelessWidget {
   Widget build(BuildContext context) {
     final darkColor = Color.lerp(color, Colors.black, 0.35)!;
     final topPadding = MediaQuery.of(context).padding.top;
-    final onReadings =
-        kanji.onReading.split('、').where((s) => s.trim().isNotEmpty).toList();
-    final kunReadings =
-        kanji.kunReading.split('、').where((s) => s.trim().isNotEmpty).toList();
 
     return Container(
       decoration: BoxDecoration(
@@ -129,15 +125,6 @@ class _KanjiHero extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: AppDimens.spaceSm),
-                    Wrap(
-                      spacing: 6,
-                      runSpacing: 4,
-                      children: [
-                        ...onReadings.map((r) => _ReadingChip(r)),
-                        ...kunReadings.map((r) => _ReadingChip(r, isKun: true)),
-                      ],
-                    ),
                   ],
                 ),
               ),
@@ -149,45 +136,6 @@ class _KanjiHero extends StatelessWidget {
   }
 }
 
-class _ReadingChip extends StatelessWidget {
-  final String text;
-  final bool isKun;
-  const _ReadingChip(this.text, {this.isKun = false});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    final bgColor = (isKun ? t.kunyomi : t.onyomi).withValues(alpha: 0.30);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: _buildText(text, isKun),
-    );
-  }
-
-  static Widget _buildText(String text, bool isKun) {
-    if (!isKun || !text.contains('.')) {
-      return Text(text, style: AppTextStyles.jpBody.copyWith(color: Colors.white));
-    }
-    final dotIdx = text.indexOf('.');
-    return RichText(
-      text: TextSpan(children: [
-        TextSpan(
-          text: text.substring(0, dotIdx),
-          style: AppTextStyles.jpBody.copyWith(color: Colors.white),
-        ),
-        TextSpan(
-          text: text.substring(dotIdx + 1),
-          style: AppTextStyles.jpBody.copyWith(color: Colors.white.withValues(alpha: 0.5)),
-        ),
-      ]),
-    );
-  }
-}
 
 class _KanjiBody extends StatelessWidget {
   final Kanji kanji;
