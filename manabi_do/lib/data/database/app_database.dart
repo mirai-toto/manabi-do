@@ -2,10 +2,15 @@ import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 
 import 'n1_kanji_seed.dart';
+import 'n1_vocab_seed.dart';
 import 'n2_kanji_seed.dart';
+import 'n2_vocab_seed.dart';
 import 'n3_kanji_seed.dart';
+import 'n3_vocab_seed.dart';
 import 'n4_kanji_seed.dart';
+import 'n4_vocab_seed.dart';
 import 'n5_kanji_seed.dart';
+import 'n5_vocab_seed.dart';
 import 'tables/exercises_table.dart';
 import 'tables/grammar_lessons_table.dart';
 import 'tables/kanas_table.dart';
@@ -20,13 +25,14 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(driftDatabase(name: 'manabi_do'));
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (m) async {
       await m.createAll();
       await _seedAllKanji();
+      await _seedAllVocab();
     },
     // WARNING: drop-and-recreate wipes all user progress on every schema bump.
     // Replace with column-level migrations before shipping to real users.
@@ -36,6 +42,7 @@ class AppDatabase extends _$AppDatabase {
       }
       await m.createAll();
       await _seedAllKanji();
+      await _seedAllVocab();
     },
   );
 
@@ -59,6 +66,36 @@ class AppDatabase extends _$AppDatabase {
       await batch((b) => b.insertAll(kanjis, companions));
     }
   }
+
+  Future<void> _seedAllVocab() async {
+    final datasets = [
+      (n5VocabData, 'N5'),
+      (n4VocabData, 'N4'),
+      (n3VocabData, 'N3'),
+      (n2VocabData, 'N2'),
+      (n1VocabData, 'N1'),
+    ];
+    for (final (data, level) in datasets) {
+      final companions = data.map((e) => VocabularyEntriesCompanion(
+        word: Value(e.$1),
+        reading: Value(e.$2),
+        meaning: Value(e.$3),
+        partOfSpeech: Value(e.$4),
+        jlptLevel: Value(level),
+        kanjiId: Value(e.$5),
+      )).toList();
+      await batch((b) => b.insertAll(vocabularyEntries, companions));
+    }
+  }
+
+  // ── Vocabulary queries ───────────────────────────────────────────────────
+
+  Future<List<VocabularyEntry>> getVocabForKanji(int kanjiId, String character) =>
+      (select(vocabularyEntries)
+        ..where((v) => v.kanjiId.equals(kanjiId) | v.word.like('%$character%'))
+        ..orderBy([(v) => OrderingTerm.desc(v.jlptLevel), (v) => OrderingTerm.asc(v.word)])
+        ..limit(30))
+      .get();
 
   // ── Kanji queries ────────────────────────────────────────────────────────
 
