@@ -311,7 +311,7 @@ class _StudyTab extends StatelessWidget {
 
         const _GallerySection(
           label: 'StreakCard',
-          child: StreakCard(days: 7),
+          child: StreakCard(days: 7, label: '🔥 Streak', subtitle: 'Keep it up!'),
         ),
         _gap,
 
@@ -519,8 +519,21 @@ class _NavTab extends StatefulWidget {
   State<_NavTab> createState() => _NavTabState();
 }
 
-class _NavTabState extends State<_NavTab> {
+class _NavTabState extends State<_NavTab> with SingleTickerProviderStateMixin {
   int _navIndex = 0;
+  late final TabController _segController;
+
+  @override
+  void initState() {
+    super.initState();
+    _segController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _segController.dispose();
+    super.dispose();
+  }
 
   List<NavDestination> _destinations(BuildContext context) {
     final l = context.l10n;
@@ -565,9 +578,8 @@ class _NavTabState extends State<_NavTab> {
         _GallerySection(
           label: 'SegmentedTabBar',
           child: SegmentedTabBar(
-            tabs: const ['Tab A', 'Tab B', 'Tab C'],
-            selectedIndex: _navIndex % 3,
-            onTabSelected: (i) => setState(() => _navIndex = i),
+            controller: _segController,
+            labels: const ['Tab A', 'Tab B', 'Tab C'],
           ),
         ),
         _gap,
