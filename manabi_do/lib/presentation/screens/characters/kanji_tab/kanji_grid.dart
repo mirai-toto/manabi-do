@@ -22,39 +22,31 @@ class KanjiGrid extends StatelessWidget {
           final kanjiSize = (cellSize * 0.30).clamp(18.0, 48.0);
           final meaningSize = (cellSize * 0.10).clamp(9.0, 13.0);
 
-          final rows = <Widget>[];
-          for (int i = 0; i < kanjis.length; i += cols) {
-            final rowItems = kanjis.sublist(i, (i + cols).clamp(0, kanjis.length));
-            rows.add(Row(
-              children: [
-                for (int j = 0; j < rowItems.length; j++) ...[
-                  if (j > 0) const SizedBox(width: gap),
-                  KanjiCell(
-                    character: rowItems[j].character,
-                    isKnown: knownIds.contains(rowItems[j].id),
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => KanjiDetailScreen(kanjiId: rowItems[j].id),
-                      ),
-                    ),
-                    size: cellSize,
-                    kanjiSize: kanjiSize,
-                    meaningSize: meaningSize,
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: cols,
+              crossAxisSpacing: gap,
+              mainAxisSpacing: gap,
+            ),
+            itemCount: kanjis.length,
+            itemBuilder: (context, i) {
+              final entry = kanjis[i];
+              return KanjiCell(
+                character: entry.character,
+                isKnown: knownIds.contains(entry.id),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => KanjiDetailScreen(kanjiId: entry.id),
                   ),
-                ],
-                if (rowItems.length < cols) ...[
-                  const SizedBox(width: gap),
-                  for (int k = rowItems.length; k < cols - 1; k++) ...[
-                    SizedBox(width: cellSize),
-                    const SizedBox(width: gap),
-                  ],
-                  SizedBox(width: cellSize),
-                ],
-              ],
-            ));
-            rows.add(const SizedBox(height: gap));
-          }
-          return Column(children: rows);
+                ),
+                size: cellSize,
+                kanjiSize: kanjiSize,
+                meaningSize: meaningSize,
+              );
+            },
+          );
         },
       ),
     );
