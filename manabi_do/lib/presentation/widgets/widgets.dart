@@ -7,6 +7,7 @@ export 'common/known_toggle.dart';
 export 'common/progress_bar.dart';
 export 'common/practice_button.dart';
 export 'common/progress_row.dart';
+export 'common/section_label.dart';
 export 'common/segmented_tab_bar.dart';
 
 // navigation

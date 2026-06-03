@@ -3,6 +3,7 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../data/database/app_database.dart';
+import '../../../widgets/widgets.dart';
 
 class KanjiReadingsCard extends StatelessWidget {
   final Kanji kanji;
@@ -19,14 +20,7 @@ class KanjiReadingsCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'READINGS',
-          style: AppTextStyles.label.copyWith(
-            color: t.onSurfaceVariant,
-            letterSpacing: 0.8,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        const SectionLabel('Readings'),
         const SizedBox(height: AppDimens.spaceSm),
         Container(
           width: double.infinity,

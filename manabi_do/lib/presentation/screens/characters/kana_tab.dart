@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
-import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../domain/data/kana_data.dart';
 import '../../widgets/widgets.dart';
@@ -30,33 +28,15 @@ class KanaTabView extends StatelessWidget {
         ProgressRow(known: knownCount, total: allKana.length, color: color),
         PracticeButton(color: color),
         for (final row in rows) ...[
-          _RowLabel(row.label),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
+            child: SectionLabel(row.label),
+          ),
           const SizedBox(height: AppDimens.spaceXs),
           _KanaGrid(row: row, known: known, onToggle: onToggle),
           const SizedBox(height: AppDimens.spaceSm),
         ],
       ],
-    );
-  }
-}
-
-class _RowLabel extends StatelessWidget {
-  final String label;
-  const _RowLabel(this.label);
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-      child: Text(
-        label.toUpperCase(),
-        style: AppTextStyles.label.copyWith(
-          color: t.onSurfaceVariant,
-          letterSpacing: 0.8,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
     );
   }
 }
