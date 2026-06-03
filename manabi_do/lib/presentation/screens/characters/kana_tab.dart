@@ -23,11 +23,12 @@ class KanaTabView extends StatelessWidget {
     final allKana = rows.expand((r) => r.kana).toList();
     final knownCount = allKana.where((e) => known.contains(e.kana)).length;
 
+    final color = levelColor('kana');
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
       children: [
-        ProgressRow(known: knownCount, total: allKana.length, color: levelColor('kana')),
-        PracticeButton(color: levelColor('kana')),
+        ProgressRow(known: knownCount, total: allKana.length, color: color),
+        PracticeButton(color: color),
         for (final row in rows) ...[
           _RowLabel(row.label),
           const SizedBox(height: AppDimens.spaceXs),
