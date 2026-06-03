@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:xml/xml.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -20,27 +21,30 @@ List<Path> _parseStrokes(String svgString) {
       .toList();
 }
 
+final _kanjiStrokesProvider = FutureProvider.family<List<Path>, int>((ref, kanjiId) async {
+  final hexCode = kanjiId.toRadixString(16).padLeft(5, '0');
+  final svgString = await rootBundle.loadString('assets/kanji_svg/$hexCode.svg');
+  return _parseStrokes(svgString);
+});
+
 // ── Animation ────────────────────────────────────────────────────────────────
 
-class StrokeOrderAnimator extends StatefulWidget {
+class StrokeOrderAnimator extends ConsumerStatefulWidget {
   final int kanjiId;
   const StrokeOrderAnimator({super.key, required this.kanjiId});
 
   @override
-  State<StrokeOrderAnimator> createState() => _StrokeOrderAnimatorState();
+  ConsumerState<StrokeOrderAnimator> createState() => _StrokeOrderAnimatorState();
 }
 
-class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
+class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  List<Path>? _strokes;
-  bool _failed = false;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
-    _loadAndPlay();
   }
 
   @override
@@ -49,23 +53,7 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
     super.dispose();
   }
 
-  Future<void> _loadAndPlay() async {
-    final hexCode = widget.kanjiId.toRadixString(16).padLeft(5, '0');
-    try {
-      final svgString = await rootBundle.loadString('assets/kanji_svg/$hexCode.svg');
-      final strokes = _parseStrokes(svgString);
-      if (!mounted) return;
-      setState(() => _strokes = strokes);
-      _play();
-    } catch (_) {
-      if (!mounted) return;
-      setState(() => _failed = true);
-    }
-  }
-
-  void _play() {
-    final strokes = _strokes;
-    if (strokes == null || strokes.isEmpty) return;
+  void _play(List<Path> strokes) {
     _controller
       ..duration = Duration(milliseconds: strokes.length * 500)
       ..forward(from: 0);
@@ -73,14 +61,23 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
 
   @override
   Widget build(BuildContext context) {
-    if (_failed) {
+    final strokesAsync = ref.watch(_kanjiStrokesProvider(widget.kanjiId));
+
+    ref.listen<AsyncValue<List<Path>>>(_kanjiStrokesProvider(widget.kanjiId), (prev, next) {
+      if (prev is! AsyncData && next is AsyncData<List<Path>>) {
+        _play(next.value);
+      }
+    });
+
+    if (strokesAsync is AsyncError) {
       return const SizedBox(
         width: 160,
         height: 160,
         child: Center(child: Text('—', style: TextStyle(color: Colors.grey, fontSize: 32))),
       );
     }
-    final strokes = _strokes;
+
+    final strokes = strokesAsync.asData?.value;
     if (strokes == null) {
       return const SizedBox(
         width: 160,
@@ -88,9 +85,10 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
         child: Center(child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))),
       );
     }
+
     final t = context.tokens;
     return GestureDetector(
-      onTap: _play,
+      onTap: () => _play(strokes),
       child: AnimatedBuilder(
         animation: _controller,
         builder: (context, _) => Stack(
@@ -139,38 +137,21 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
 
 // ── Step-by-step row ─────────────────────────────────────────────────────────
 
-class StrokeStepRow extends StatefulWidget {
+class StrokeStepRow extends ConsumerStatefulWidget {
   final int kanjiId;
   const StrokeStepRow({super.key, required this.kanjiId});
 
   @override
-  State<StrokeStepRow> createState() => _StrokeStepRowState();
+  ConsumerState<StrokeStepRow> createState() => _StrokeStepRowState();
 }
 
-class _StrokeStepRowState extends State<StrokeStepRow> {
-  List<Path>? _strokes;
+class _StrokeStepRowState extends ConsumerState<StrokeStepRow> {
   final _scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    _load();
-  }
 
   @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  }
-
-  Future<void> _load() async {
-    final hexCode = widget.kanjiId.toRadixString(16).padLeft(5, '0');
-    try {
-      final svgString = await rootBundle.loadString('assets/kanji_svg/$hexCode.svg');
-      final strokes = _parseStrokes(svgString);
-      if (!mounted) return;
-      setState(() => _strokes = strokes);
-    } catch (_) {}
   }
 
   void _onDragUpdate(DragUpdateDetails details) {
@@ -196,7 +177,7 @@ class _StrokeStepRowState extends State<StrokeStepRow> {
 
   @override
   Widget build(BuildContext context) {
-    final strokes = _strokes;
+    final strokes = ref.watch(_kanjiStrokesProvider(widget.kanjiId)).asData?.value;
     if (strokes == null) return const SizedBox.shrink();
 
     final t = context.tokens;
