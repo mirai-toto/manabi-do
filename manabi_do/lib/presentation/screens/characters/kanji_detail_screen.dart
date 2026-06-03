@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/kanji_provider.dart';
+import '../../widgets/widgets.dart';
 import '../../../core/theme/jlpt_level.dart';
 
 class KanjiDetailScreen extends ConsumerWidget {
@@ -360,9 +359,6 @@ class _StrokeOrderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final hexCode = kanji.id.toRadixString(16).padLeft(5, '0');
-    final assetPath = 'assets/kanji_svg/$hexCode.svg';
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -392,26 +388,7 @@ class _StrokeOrderSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppDimens.radiusSm),
               ),
               clipBehavior: Clip.antiAlias,
-              child: FutureBuilder<ByteData>(
-                future: rootBundle.load(assetPath),
-                builder: (context, snap) {
-                  if (snap.hasError) {
-                    return const Center(
-                      child: Text('—', style: TextStyle(color: Colors.grey, fontSize: 32)),
-                    );
-                  }
-                  if (!snap.hasData) {
-                    return const Center(
-                      child: SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      ),
-                    );
-                  }
-                  return SvgPicture.asset(assetPath, width: 160, height: 160);
-                },
-              ),
+              child: StrokeOrderAnimator(kanjiId: kanji.id),
             ),
           ),
         ),
