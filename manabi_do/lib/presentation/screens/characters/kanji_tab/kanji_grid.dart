@@ -31,7 +31,6 @@ class KanjiGrid extends StatelessWidget {
                   if (j > 0) const SizedBox(width: gap),
                   KanjiCell(
                     character: rowItems[j].character,
-                    meaning: '',
                     isKnown: knownIds.contains(rowItems[j].id),
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(

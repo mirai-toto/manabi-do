@@ -15,7 +15,7 @@ class KanjiCell extends StatelessWidget {
   const KanjiCell({
     super.key,
     required this.character,
-    required this.meaning,
+    this.meaning = '',
     this.isKnown = false,
     this.onTap,
     this.size = 80,
