@@ -3,6 +3,22 @@ import 'package:flutter/services.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:xml/xml.dart';
 
+List<Path> _parseStrokes(String svgString) {
+  final doc = XmlDocument.parse(svgString);
+  final strokePathsGroup = doc.descendants
+      .whereType<XmlElement>()
+      .firstWhere((e) =>
+          e.name.local == 'g' &&
+          (e.getAttribute('id') ?? '').startsWith('kvg:StrokePaths_'));
+  return strokePathsGroup.descendants
+      .whereType<XmlElement>()
+      .where((e) => e.name.local == 'path')
+      .map((e) => parseSvgPathData(e.getAttribute('d') ?? ''))
+      .toList();
+}
+
+// ── Animation ────────────────────────────────────────────────────────────────
+
 class StrokeOrderAnimator extends StatefulWidget {
   final int kanjiId;
   const StrokeOrderAnimator({super.key, required this.kanjiId});
@@ -44,20 +60,6 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
     }
   }
 
-  List<Path> _parseStrokes(String svgString) {
-    final doc = XmlDocument.parse(svgString);
-    final strokePathsGroup = doc.descendants
-        .whereType<XmlElement>()
-        .firstWhere((e) =>
-            e.name.local == 'g' &&
-            (e.getAttribute('id') ?? '').startsWith('kvg:StrokePaths_'));
-    return strokePathsGroup.descendants
-        .whereType<XmlElement>()
-        .where((e) => e.name.local == 'path')
-        .map((e) => parseSvgPathData(e.getAttribute('d') ?? ''))
-        .toList();
-  }
-
   void _play() {
     final strokes = _strokes;
     if (strokes == null || strokes.isEmpty) return;
@@ -90,17 +92,26 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
         builder: (context, _) => Stack(
           alignment: Alignment.center,
           children: [
-            CustomPaint(
-              size: const Size(160, 160),
-              painter: _StrokeOrderPainter(
-                strokes: strokes,
-                progress: _controller.value * strokes.length,
+            Container(
+              width: 160,
+              height: 160,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: CustomPaint(
+                size: const Size(160, 160),
+                painter: _StrokeOrderPainter(
+                  strokes: strokes,
+                  progress: _controller.value * strokes.length,
+                ),
               ),
             ),
             if (_controller.isCompleted)
               const Positioned(
-                bottom: 6,
-                right: 6,
+                bottom: 10,
+                right: 10,
                 child: Icon(Icons.replay_rounded, size: 16, color: Colors.grey),
               ),
           ],
@@ -110,6 +121,67 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
   }
 }
 
+// ── Step-by-step row ─────────────────────────────────────────────────────────
+
+class StrokeStepRow extends StatefulWidget {
+  final int kanjiId;
+  const StrokeStepRow({super.key, required this.kanjiId});
+
+  @override
+  State<StrokeStepRow> createState() => _StrokeStepRowState();
+}
+
+class _StrokeStepRowState extends State<StrokeStepRow> {
+  List<Path>? _strokes;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final hexCode = widget.kanjiId.toRadixString(16).padLeft(5, '0');
+    try {
+      final svgString = await rootBundle.loadString('assets/kanji_svg/$hexCode.svg');
+      final strokes = _parseStrokes(svgString);
+      if (!mounted) return;
+      setState(() => _strokes = strokes);
+    } catch (_) {}
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final strokes = _strokes;
+    if (strokes == null) return const SizedBox.shrink();
+
+    return SizedBox(
+      height: 48,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: strokes.length,
+        separatorBuilder: (_, _) => const SizedBox(width: 6),
+        itemBuilder: (context, i) => Container(
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(color: const Color(0xFFE0E0E0)),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: CustomPaint(
+            size: const Size(48, 48),
+            painter: _StepPainter(strokes: strokes, step: i),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ── Painters ─────────────────────────────────────────────────────────────────
+
 class _StrokeOrderPainter extends CustomPainter {
   final List<Path> strokes;
   final double progress;
@@ -118,7 +190,6 @@ class _StrokeOrderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // KanjiVG viewBox is 0 0 109 109
     canvas.scale(size.width / 109, size.height / 109);
 
     final paint = Paint()
@@ -148,4 +219,37 @@ class _StrokeOrderPainter extends CustomPainter {
   @override
   bool shouldRepaint(_StrokeOrderPainter old) =>
       old.progress != progress || old.strokes != strokes;
+}
+
+class _StepPainter extends CustomPainter {
+  final List<Path> strokes;
+  final int step;
+
+  _StepPainter({required this.strokes, required this.step});
+
+  static final _prevPaint = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 3.5
+    ..strokeCap = StrokeCap.round
+    ..strokeJoin = StrokeJoin.round
+    ..color = const Color(0xFFCCCCCC);
+
+  static final _currPaint = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 3.5
+    ..strokeCap = StrokeCap.round
+    ..strokeJoin = StrokeJoin.round
+    ..color = const Color(0xFF1C1B1F);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.scale(size.width / 109, size.height / 109);
+    for (int i = 0; i <= step && i < strokes.length; i++) {
+      canvas.drawPath(strokes[i], i < step ? _prevPaint : _currPaint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_StepPainter old) =>
+      old.step != step || old.strokes != strokes;
 }
