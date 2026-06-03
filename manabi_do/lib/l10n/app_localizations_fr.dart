@@ -148,4 +148,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get strokeOrderPlaceholder => '▶ Animation de l\'ordre des traits';
+
+  @override
+  String get strokeOrder => 'Ordre des traits';
+
+  @override
+  String get selectLevel => 'Choisir un niveau';
+
+  @override
+  String get onyomi => 'onyomi';
+
+  @override
+  String get kunyomi => 'kunyomi';
+
+  @override
+  String get noExampleWordsFound => 'Aucun exemple trouvé';
 }

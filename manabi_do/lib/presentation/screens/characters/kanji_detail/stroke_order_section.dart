@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../data/database/app_database.dart';
+import '../../../../l10n/l10n.dart';
 import '../../../widgets/widgets.dart';
 
 class StrokeOrderSection extends StatelessWidget {
@@ -14,7 +15,7 @@ class StrokeOrderSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionLabel('Stroke Order'),
+        SectionLabel(context.l10n.strokeOrder),
         const SizedBox(height: AppDimens.spaceSm),
         Container(
           width: double.infinity,

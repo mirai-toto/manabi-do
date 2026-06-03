@@ -3,6 +3,7 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../data/database/app_database.dart';
+import '../../../../l10n/l10n.dart';
 import '../../../widgets/widgets.dart';
 
 class KanjiReadingsCard extends StatelessWidget {
@@ -20,7 +21,7 @@ class KanjiReadingsCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionLabel('Readings'),
+        SectionLabel(context.l10n.readings),
         const SizedBox(height: AppDimens.spaceSm),
         Container(
           width: double.infinity,
@@ -34,11 +35,11 @@ class KanjiReadingsCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (onReadings.isNotEmpty)
-                _ReadingRow(label: 'onyomi', readings: onReadings, isKun: false),
+                _ReadingRow(label: context.l10n.onyomi, readings: onReadings, isKun: false),
               if (onReadings.isNotEmpty && kunReadings.isNotEmpty)
                 const SizedBox(height: AppDimens.spaceSm),
               if (kunReadings.isNotEmpty)
-                _ReadingRow(label: 'kunyomi', readings: kunReadings, isKun: true),
+                _ReadingRow(label: context.l10n.kunyomi, readings: kunReadings, isKun: true),
             ],
           ),
         ),

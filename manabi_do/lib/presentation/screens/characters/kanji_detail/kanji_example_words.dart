@@ -5,6 +5,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
+import '../../../../l10n/l10n.dart';
 import '../../../widgets/widgets.dart';
 import '../../../providers/vocab_provider.dart';
 
@@ -19,7 +20,7 @@ class KanjiExampleWords extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionLabel('Example Words'),
+        SectionLabel(context.l10n.exampleWords),
         const SizedBox(height: AppDimens.spaceSm),
         async.when(
           loading: () => const Center(
@@ -43,7 +44,7 @@ class KanjiExampleWords extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
         child: Text(
-          'No example words found',
+          context.l10n.noExampleWordsFound,
           style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
         ),
       ),

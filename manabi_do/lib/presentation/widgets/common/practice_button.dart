@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../../l10n/l10n.dart';
 
 class PracticeButton extends StatelessWidget {
   final Color color;
@@ -14,7 +15,7 @@ class PracticeButton extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Practice mode coming soon')),
+          SnackBar(content: Text(context.l10n.comingSoon)),
         ),
         child: Container(
           width: double.infinity,
@@ -30,7 +31,7 @@ class PracticeButton extends StatelessWidget {
               Icon(Icons.school_rounded, color: color, size: 20),
               const SizedBox(width: AppDimens.spaceSm),
               Text(
-                'Practice',
+                context.l10n.practice,
                 style: AppTextStyles.body.copyWith(
                   color: color,
                   fontWeight: FontWeight.w600,

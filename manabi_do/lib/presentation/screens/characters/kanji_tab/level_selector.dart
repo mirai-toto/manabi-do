@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_dimens.dart';
+import '../../../../l10n/l10n.dart';
 import '../../../providers/kanji_provider.dart';
 import '../../../widgets/widgets.dart';
 import 'level_card.dart';
@@ -16,7 +17,7 @@ class KanjiLevelSelector extends ConsumerWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
       children: [
-        const SectionLabel('Select a Level'),
+        SectionLabel(context.l10n.selectLevel),
         const SizedBox(height: AppDimens.spaceSm),
         for (final code in _kanjiLevels)
           KanjiLevelCard(
