@@ -40,6 +40,10 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color vocabularyDark;
   final Color vocabulary;
 
+  // Reading types
+  final Color onyomi;
+  final Color kunyomi;
+
   const AppTokens({
     required this.surface,
     required this.surfaceVariant,
@@ -69,6 +73,8 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.characters,
     required this.vocabularyDark,
     required this.vocabulary,
+    required this.onyomi,
+    required this.kunyomi,
   });
 
   static const light = AppTokens(
@@ -100,6 +106,8 @@ class AppTokens extends ThemeExtension<AppTokens> {
     characters: Color(0xFF1976D2),
     vocabularyDark: Color(0xFF1B5E20),
     vocabulary: Color(0xFF388E3C),
+    onyomi: Color(0xFF1565C0),
+    kunyomi: Color(0xFFC62828),
   );
 
   static const dark = AppTokens(
@@ -131,6 +139,8 @@ class AppTokens extends ThemeExtension<AppTokens> {
     characters: Color(0xFF90CAF9),
     vocabularyDark: Color(0xFF2E7D32),
     vocabulary: Color(0xFFA5D6A7),
+    onyomi: Color(0xFF90CAF9),
+    kunyomi: Color(0xFFEF9A9A),
   );
 
   @override
@@ -163,6 +173,8 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? characters,
     Color? vocabularyDark,
     Color? vocabulary,
+    Color? onyomi,
+    Color? kunyomi,
   }) => AppTokens(
     surface: surface ?? this.surface,
     surfaceVariant: surfaceVariant ?? this.surfaceVariant,
@@ -192,6 +204,8 @@ class AppTokens extends ThemeExtension<AppTokens> {
     characters: characters ?? this.characters,
     vocabularyDark: vocabularyDark ?? this.vocabularyDark,
     vocabulary: vocabulary ?? this.vocabulary,
+    onyomi: onyomi ?? this.onyomi,
+    kunyomi: kunyomi ?? this.kunyomi,
   );
 
   @override
@@ -226,6 +240,8 @@ class AppTokens extends ThemeExtension<AppTokens> {
       characters: Color.lerp(characters, other.characters, t)!,
       vocabularyDark: Color.lerp(vocabularyDark, other.vocabularyDark, t)!,
       vocabulary: Color.lerp(vocabulary, other.vocabulary, t)!,
+      onyomi: Color.lerp(onyomi, other.onyomi, t)!,
+      kunyomi: Color.lerp(kunyomi, other.kunyomi, t)!,
     );
   }
 }

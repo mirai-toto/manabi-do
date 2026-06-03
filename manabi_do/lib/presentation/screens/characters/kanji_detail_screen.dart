@@ -134,7 +134,7 @@ class _KanjiHero extends StatelessWidget {
                       runSpacing: 4,
                       children: [
                         ...onReadings.map((r) => _ReadingChip(r)),
-                        ...kunReadings.map((r) => _ReadingChip(r)),
+                        ...kunReadings.map((r) => _ReadingChip(r, isKun: true)),
                       ],
                     ),
                   ],
@@ -150,17 +150,40 @@ class _KanjiHero extends StatelessWidget {
 
 class _ReadingChip extends StatelessWidget {
   final String text;
-  const _ReadingChip(this.text);
+  final bool isKun;
+  const _ReadingChip(this.text, {this.isKun = false});
 
   @override
   Widget build(BuildContext context) {
+    final t = context.tokens;
+    final bgColor = (isKun ? t.kunyomi : t.onyomi).withValues(alpha: 0.30);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.15),
+        color: bgColor,
         borderRadius: BorderRadius.circular(100),
       ),
-      child: Text(text, style: AppTextStyles.jpBody.copyWith(color: Colors.white)),
+      child: _buildText(text, isKun),
+    );
+  }
+
+  static Widget _buildText(String text, bool isKun) {
+    if (!isKun || !text.contains('.')) {
+      return Text(text, style: AppTextStyles.jpBody.copyWith(color: Colors.white));
+    }
+    final dotIdx = text.indexOf('.');
+    return RichText(
+      text: TextSpan(children: [
+        TextSpan(
+          text: text.substring(0, dotIdx),
+          style: AppTextStyles.jpBody.copyWith(color: Colors.white),
+        ),
+        TextSpan(
+          text: text.substring(dotIdx + 1),
+          style: AppTextStyles.jpBody.copyWith(color: Colors.white.withValues(alpha: 0.5)),
+        ),
+      ]),
     );
   }
 }
@@ -209,11 +232,11 @@ class _KanjiBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (onReadings.isNotEmpty)
-                  _ReadingRow(label: 'ON', readings: onReadings),
+                  _ReadingRow(label: 'onyomi', readings: onReadings, isKun: false),
                 if (onReadings.isNotEmpty && kunReadings.isNotEmpty)
                   const SizedBox(height: AppDimens.spaceSm),
                 if (kunReadings.isNotEmpty)
-                  _ReadingRow(label: 'KUN', readings: kunReadings),
+                  _ReadingRow(label: 'kunyomi', readings: kunReadings, isKun: true),
               ],
             ),
           ),
@@ -262,20 +285,24 @@ class _KanjiBody extends StatelessWidget {
 class _ReadingRow extends StatelessWidget {
   final String label;
   final List<String> readings;
-  const _ReadingRow({required this.label, required this.readings});
+  final bool isKun;
+  const _ReadingRow({required this.label, required this.readings, required this.isKun});
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+    final textColor = isKun ? t.kunyomi : t.onyomi;
+    final bgColor = textColor.withValues(alpha: 0.12);
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: 36,
+          width: 56,
           child: Text(
             label,
             style: AppTextStyles.labelSmall.copyWith(
-              color: t.onSurfaceVariant,
+              color: textColor,
               fontWeight: FontWeight.w700,
               letterSpacing: 0.5,
             ),
@@ -285,16 +312,36 @@ class _ReadingRow extends StatelessWidget {
           child: Wrap(
             spacing: 6,
             runSpacing: 4,
-            children: readings
-                .map((r) => Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: t.surfaceContainer,
-                        borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+            children: readings.map((r) {
+              final Widget chipText;
+              if (isKun && r.contains('.')) {
+                final dotIdx = r.indexOf('.');
+                chipText = RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                      text: r.substring(0, dotIdx),
+                      style: AppTextStyles.jpBody.copyWith(color: textColor),
+                    ),
+                    TextSpan(
+                      text: r.substring(dotIdx + 1),
+                      style: AppTextStyles.jpBody.copyWith(
+                        color: textColor.withValues(alpha: 0.45),
                       ),
-                      child: Text(r, style: AppTextStyles.jpBody.copyWith(color: t.onSurface)),
-                    ))
-                .toList(),
+                    ),
+                  ]),
+                );
+              } else {
+                chipText = Text(r, style: AppTextStyles.jpBody.copyWith(color: textColor));
+              }
+              return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+                ),
+                child: chipText,
+              );
+            }).toList(),
           ),
         ),
       ],
