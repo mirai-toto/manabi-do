@@ -331,21 +331,6 @@ class _WidgetGalleryScreenState extends ConsumerState<WidgetGalleryScreen> {
           ),
           const SizedBox(height: 32),
 
-          _SectionLabel('Kanji Detail Card'),
-          const SizedBox(height: 12),
-          KanjiDetailCard(
-            kanji: '食',
-            meaning: 'Eat, food',
-            jlptLevel: 'N5',
-            readings: const ['た(べる)', 'しょく', 'く(う)'],
-            examples: const [
-              KanjiExample(kanji: '食べる', reading: 'たべる', meaning: 'to eat'),
-              KanjiExample(kanji: '食事', reading: 'しょくじ', meaning: 'meal'),
-              KanjiExample(kanji: '食堂', reading: 'しょくどう', meaning: 'cafeteria'),
-            ],
-            isKnown: _isKnown,
-            onKnownToggle: () => setState(() => _isKnown = !_isKnown),
-          ),
           const SizedBox(height: 40),
         ],
       ),
