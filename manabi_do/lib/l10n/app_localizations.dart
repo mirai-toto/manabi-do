@@ -368,34 +368,14 @@ abstract class AppLocalizations {
   /// **'▶ Stroke order animation'**
   String get strokeOrderPlaceholder;
 
-  /// No description provided for @strokeOrder.
-  ///
-  /// In en, this message translates to:
-  /// **'Stroke Order'**
   String get strokeOrder;
 
-  /// No description provided for @selectLevel.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a Level'**
   String get selectLevel;
 
-  /// Japanese reading type — on'yomi (Chinese-derived reading).
-  ///
-  /// In en, this message translates to:
-  /// **'onyomi'**
   String get onyomi;
 
-  /// Japanese reading type — kun'yomi (native Japanese reading).
-  ///
-  /// In en, this message translates to:
-  /// **'kunyomi'**
   String get kunyomi;
 
-  /// No description provided for @noExampleWordsFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No example words found'**
   String get noExampleWordsFound;
 }
 
