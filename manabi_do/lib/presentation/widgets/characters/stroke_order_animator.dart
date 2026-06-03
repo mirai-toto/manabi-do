@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:xml/xml.dart';
+import '../../../core/theme/app_tokens.dart';
 
 List<Path> _parseStrokes(String svgString) {
   final doc = XmlDocument.parse(svgString);
@@ -85,6 +86,7 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
         child: Center(child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))),
       );
     }
+    final t = context.tokens;
     return GestureDetector(
       onTap: _play,
       child: AnimatedBuilder(
@@ -96,7 +98,7 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
               width: 160,
               height: 160,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: t.cardBackground,
                 borderRadius: BorderRadius.circular(8),
               ),
               clipBehavior: Clip.antiAlias,
@@ -105,6 +107,7 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
                 painter: _StrokeOrderPainter(
                   strokes: strokes,
                   progress: _controller.value * strokes.length,
+                  strokeColor: t.onSurface,
                 ),
               ),
             ),
@@ -183,6 +186,7 @@ class _StrokeStepRowState extends State<StrokeStepRow> {
     final strokes = _strokes;
     if (strokes == null) return const SizedBox.shrink();
 
+    final t = context.tokens;
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onHorizontalDragUpdate: _onDragUpdate,
@@ -199,14 +203,19 @@ class _StrokeStepRowState extends State<StrokeStepRow> {
             width: 48,
             height: 48,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: t.cardBackground,
               borderRadius: BorderRadius.circular(6),
-              border: Border.all(color: const Color(0xFFE0E0E0)),
+              border: Border.all(color: t.outlineVariant),
             ),
             clipBehavior: Clip.antiAlias,
             child: CustomPaint(
               size: const Size(48, 48),
-              painter: _StepPainter(strokes: strokes, step: i),
+              painter: _StepPainter(
+                strokes: strokes,
+                step: i,
+                prevColor: t.onSurfaceVariant,
+                currColor: t.onSurface,
+              ),
             ),
           ),
         ),
@@ -220,8 +229,9 @@ class _StrokeStepRowState extends State<StrokeStepRow> {
 class _StrokeOrderPainter extends CustomPainter {
   final List<Path> strokes;
   final double progress;
+  final Color strokeColor;
 
-  _StrokeOrderPainter({required this.strokes, required this.progress});
+  _StrokeOrderPainter({required this.strokes, required this.progress, required this.strokeColor});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -232,7 +242,7 @@ class _StrokeOrderPainter extends CustomPainter {
       ..strokeWidth = 3.5
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
-      ..color = const Color(0xFF1C1B1F);
+      ..color = strokeColor;
 
     for (int i = 0; i < strokes.length; i++) {
       final strokeProgress = (progress - i).clamp(0.0, 1.0);
@@ -253,38 +263,31 @@ class _StrokeOrderPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_StrokeOrderPainter old) =>
-      old.progress != progress || old.strokes != strokes;
+      old.progress != progress || old.strokes != strokes || old.strokeColor != strokeColor;
 }
 
 class _StepPainter extends CustomPainter {
   final List<Path> strokes;
   final int step;
+  final Color prevColor;
+  final Color currColor;
 
-  _StepPainter({required this.strokes, required this.step});
-
-  static final _prevPaint = Paint()
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 3.5
-    ..strokeCap = StrokeCap.round
-    ..strokeJoin = StrokeJoin.round
-    ..color = const Color(0xFFCCCCCC);
-
-  static final _currPaint = Paint()
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 3.5
-    ..strokeCap = StrokeCap.round
-    ..strokeJoin = StrokeJoin.round
-    ..color = const Color(0xFF1C1B1F);
+  _StepPainter({required this.strokes, required this.step, required this.prevColor, required this.currColor});
 
   @override
   void paint(Canvas canvas, Size size) {
     canvas.scale(size.width / 109, size.height / 109);
+    final base = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 3.5
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
     for (int i = 0; i <= step && i < strokes.length; i++) {
-      canvas.drawPath(strokes[i], i < step ? _prevPaint : _currPaint);
+      canvas.drawPath(strokes[i], base..color = (i < step ? prevColor : currColor));
     }
   }
 
   @override
   bool shouldRepaint(_StepPainter old) =>
-      old.step != step || old.strokes != strokes;
+      old.step != step || old.strokes != strokes || old.prevColor != prevColor || old.currColor != currColor;
 }
