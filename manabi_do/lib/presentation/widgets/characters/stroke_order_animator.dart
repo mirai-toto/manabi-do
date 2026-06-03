@@ -4,6 +4,8 @@ import 'package:path_drawing/path_drawing.dart';
 import 'package:xml/xml.dart';
 import '../../../core/theme/app_tokens.dart';
 
+const double _kanjiVgViewBox = 109;
+
 List<Path> _parseStrokes(String svgString) {
   final doc = XmlDocument.parse(svgString);
   final strokePathsGroup = doc.descendants
@@ -246,7 +248,7 @@ class _StrokeOrderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.scale(size.width / 109, size.height / 109);
+    canvas.scale(size.width / _kanjiVgViewBox, size.height / _kanjiVgViewBox);
 
     final paint = Paint()
       ..style = PaintingStyle.stroke
@@ -287,7 +289,7 @@ class _StepPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.scale(size.width / 109, size.height / 109);
+    canvas.scale(size.width / _kanjiVgViewBox, size.height / _kanjiVgViewBox);
     final base = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.5
