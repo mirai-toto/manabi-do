@@ -40,6 +40,7 @@ class StrokeOrderAnimator extends ConsumerStatefulWidget {
 class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  bool _didAutoPlay = false;
 
   @override
   void initState() {
@@ -63,11 +64,13 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
   Widget build(BuildContext context) {
     final strokesAsync = ref.watch(_kanjiStrokesProvider(widget.kanjiId));
 
-    ref.listen<AsyncValue<List<Path>>>(_kanjiStrokesProvider(widget.kanjiId), (prev, next) {
-      if (prev is! AsyncData && next is AsyncData<List<Path>>) {
-        _play(next.value);
-      }
-    });
+    final strokes = strokesAsync.asData?.value;
+    if (strokes != null && !_didAutoPlay) {
+      _didAutoPlay = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _play(strokes);
+      });
+    }
 
     if (strokesAsync is AsyncError) {
       return const SizedBox(
@@ -77,7 +80,6 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
       );
     }
 
-    final strokes = strokesAsync.asData?.value;
     if (strokes == null) {
       return const SizedBox(
         width: 160,
