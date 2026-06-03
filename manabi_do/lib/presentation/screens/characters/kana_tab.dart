@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../core/theme/jlpt_level.dart';
 import '../../../domain/data/kana_data.dart';
 import '../../widgets/widgets.dart';
 
@@ -19,14 +20,14 @@ class KanaTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = context.tokens;
     final allKana = rows.expand((r) => r.kana).toList();
     final knownCount = allKana.where((e) => known.contains(e.kana)).length;
 
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
       children: [
-        ProgressRow(known: knownCount, total: allKana.length, color: t.characters),
+        ProgressRow(known: knownCount, total: allKana.length, color: levelColor('kana')),
+        PracticeButton(color: levelColor('kana')),
         for (final row in rows) ...[
           _RowLabel(row.label),
           const SizedBox(height: AppDimens.spaceXs),

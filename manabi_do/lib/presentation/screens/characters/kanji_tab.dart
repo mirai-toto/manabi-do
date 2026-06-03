@@ -6,7 +6,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../providers/kanji_provider.dart' show KanjiLevelData, KanjiListEntry, kanjiListProvider, knownKanjiIdsProvider;
 import '../../widgets/widgets.dart';
 import 'kanji_detail_screen.dart';
-import 'kanji_level.dart';
+import '../../../core/theme/jlpt_level.dart';
 
 const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
@@ -51,6 +51,7 @@ class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
           onBack: () => setState(() => _selectedLevel = null),
         ),
         ProgressRow(known: knownCount, total: kanjiList.length, color: color),
+        PracticeButton(color: color),
         _KanjiGrid(kanjis: kanjiList, knownIds: knownIds),
       ],
     );

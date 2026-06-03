@@ -6,7 +6,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/kanji_provider.dart';
-import 'kanji_level.dart';
+import '../../../core/theme/jlpt_level.dart';
 
 class KanjiDetailScreen extends ConsumerWidget {
   final int kanjiId;
