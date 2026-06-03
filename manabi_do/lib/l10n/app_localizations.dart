@@ -368,14 +368,34 @@ abstract class AppLocalizations {
   /// **'▶ Stroke order animation'**
   String get strokeOrderPlaceholder;
 
+  /// No description provided for @strokeOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Stroke Order'**
   String get strokeOrder;
 
+  /// No description provided for @selectLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a Level'**
   String get selectLevel;
 
+  /// No description provided for @onyomi.
+  ///
+  /// In en, this message translates to:
+  /// **'onyomi'**
   String get onyomi;
 
+  /// No description provided for @kunyomi.
+  ///
+  /// In en, this message translates to:
+  /// **'kunyomi'**
   String get kunyomi;
 
+  /// No description provided for @noExampleWordsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No example words found'**
   String get noExampleWordsFound;
 }
 
