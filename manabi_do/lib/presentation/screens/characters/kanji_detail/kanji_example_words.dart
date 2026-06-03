@@ -15,7 +15,7 @@ class KanjiExampleWords extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final async = ref.watch(kanjiVocabProvider((kanji.id, kanji.character)));
+    final async = ref.watch(kanjiVocabProvider((kanjiId: kanji.id, character: kanji.character)));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
