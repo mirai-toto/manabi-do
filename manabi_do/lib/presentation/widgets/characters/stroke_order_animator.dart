@@ -112,10 +112,18 @@ class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
               ),
             ),
             if (_controller.isCompleted)
-              const Positioned(
-                bottom: 10,
-                right: 10,
-                child: Icon(Icons.replay_rounded, size: 16, color: Colors.grey),
+              Positioned(
+                bottom: 6,
+                right: 6,
+                child: Container(
+                  width: 28,
+                  height: 28,
+                  decoration: BoxDecoration(
+                    color: t.onSurfaceVariant.withValues(alpha: 0.12),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.replay_rounded, size: 18, color: t.onSurfaceVariant),
+                ),
               ),
           ],
         ),
