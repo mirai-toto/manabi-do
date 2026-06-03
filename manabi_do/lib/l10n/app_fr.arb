@@ -77,5 +77,11 @@
 
   "comingSoon": "Bientôt disponible",
 
-  "strokeOrderPlaceholder": "▶ Animation de l'ordre des traits"
+  "strokeOrderPlaceholder": "▶ Animation de l'ordre des traits",
+
+  "strokeOrder": "Ordre des traits",
+  "selectLevel": "Choisir un niveau",
+  "onyomi": "onyomi",
+  "kunyomi": "kunyomi",
+  "noExampleWordsFound": "Aucun exemple trouvé"
 }

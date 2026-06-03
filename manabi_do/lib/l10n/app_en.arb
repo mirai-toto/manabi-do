@@ -83,5 +83,11 @@
 
   "comingSoon": "Coming soon",
 
-  "strokeOrderPlaceholder": "▶ Stroke order animation"
+  "strokeOrderPlaceholder": "▶ Stroke order animation",
+
+  "strokeOrder": "Stroke Order",
+  "selectLevel": "Select a Level",
+  "onyomi": "onyomi",
+  "kunyomi": "kunyomi",
+  "noExampleWordsFound": "No example words found"
 }
