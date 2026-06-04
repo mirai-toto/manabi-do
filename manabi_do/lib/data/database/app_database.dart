@@ -189,6 +189,14 @@ class AppDatabase extends _$AppDatabase {
     };
   }
 
+  Stream<Map<int, Card>> watchAllSrsCardsForType(String itemType) =>
+      (select(srsCards)..where((s) => s.itemType.equals(itemType)))
+          .watch()
+          .map((rows) => {
+            for (final r in rows)
+              r.itemId: Card.fromMap(jsonDecode(r.cardJson) as Map<String, dynamic>)
+          });
+
   Future<Card?> getSrsCard(String itemType, int itemId) async {
     final row = await (select(srsCards)
       ..where((s) => s.itemType.equals(itemType) & s.itemId.equals(itemId)))

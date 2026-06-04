@@ -8,7 +8,6 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
-import '../../providers/kana_progress_provider.dart';
 import '../../widgets/widgets.dart';
 
 // Supported languages: code → (flag emoji, native name)
@@ -40,8 +39,6 @@ class SettingsScreen extends ConsumerWidget {
     );
     if (confirmed != true) return;
     await ref.read(databaseProvider).resetAllProgress();
-    ref.invalidate(kanaSrsCardsProvider('hiragana'));
-    ref.invalidate(kanaSrsCardsProvider('katakana'));
   }
 
   @override

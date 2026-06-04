@@ -8,7 +8,6 @@ final knownHiraganaProvider = StreamProvider<Set<int>>((ref) =>
 final knownKatakanaProvider = StreamProvider<Set<int>>((ref) =>
     ref.watch(databaseProvider).watchKnownKanaIds('katakana'));
 
-// Map<kanaId, Card> — reloaded whenever the SRS session provider invalidates
-final kanaSrsCardsProvider = FutureProvider.family<Map<int, Card>, String>(
-  (ref, type) => ref.watch(databaseProvider).getAllSrsCardsForType(type),
+final kanaSrsCardsProvider = StreamProvider.family<Map<int, Card>, String>(
+  (ref, type) => ref.watch(databaseProvider).watchAllSrsCardsForType(type),
 );
