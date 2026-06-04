@@ -175,9 +175,6 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
 
 class _ProgressInfo extends StatelessWidget {
   final Card? srsCard;
-
-  static const _matureThreshold = 21.0;
-
   const _ProgressInfo({required this.srsCard});
 
   @override
@@ -186,15 +183,15 @@ class _ProgressInfo extends StatelessWidget {
     final l = context.l10n;
 
     final stability = srsCard?.stability ?? 0.0;
-    final isMastered = stability >= _matureThreshold;
 
-    final (stateLabel, stateColor) = switch ((srsCard, isMastered)) {
-      (null, _)   => (l.srsStateNew,      t.onSurfaceVariant),
-      (_, true)   => (l.srsStateMastered, t.success),
-      _           => (l.srsStateLearning,  t.warning),
+    final (stateLabel, stateColor) = switch (srsCard?.state) {
+      null         => (l.srsStateNew,      t.onSurfaceVariant),
+      State.review => (l.srsStateMastered, t.success),
+      _            => (l.srsStateLearning,  t.warning),
     };
 
-    final progress = (stability / _matureThreshold).clamp(0.0, 1.0);
+    // Progress bar fills as stability grows; 21d is a soft visual reference point
+    final progress = (stability / 21.0).clamp(0.0, 1.0);
     final dueText = _dueText(srsCard, l);
 
     return Column(

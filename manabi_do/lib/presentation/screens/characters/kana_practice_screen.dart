@@ -52,10 +52,8 @@ class _KanaPracticeScreenState extends ConsumerState<KanaPracticeScreen> {
     final db = ref.read(databaseProvider);
     await db.upsertSrsCard(widget.type, kana.id, result.card);
 
-    // Mark as known once stability reaches 21 days (Anki "mature" threshold)
-    final stability = result.card.stability ?? 0;
-    final wasKnown = (existingCard?.stability ?? 0) >= 21;
-    if (stability >= 21 && !wasKnown) {
+    // Mark as known when FSRS graduates the card from learning to review
+    if (result.card.state == State.review && existingCard?.state != State.review) {
       await db.setKanaKnown(widget.type, kana.id, isKnown: true);
     }
 
