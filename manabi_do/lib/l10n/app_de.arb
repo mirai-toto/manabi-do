@@ -184,6 +184,10 @@
 
   "drawingPractice": "Schreiben üben",
   "selfAssessQuestion": "Hast du es gewusst?",
+  "ratingAgain": "Nochmal",
+  "ratingHard": "Schwer",
+  "ratingGood": "Gut",
+  "ratingEasy": "Leicht",
   "drawingReference": "Referenz",
   "drawingYourAnswer": "Deine Antwort",
   "drawingCheck": "Prüfen",

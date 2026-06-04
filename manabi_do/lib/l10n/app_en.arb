@@ -190,6 +190,10 @@
 
   "drawingPractice": "Practice Drawing",
   "selfAssessQuestion": "Did you get it right?",
+  "ratingAgain": "Again",
+  "ratingHard": "Hard",
+  "ratingGood": "Good",
+  "ratingEasy": "Easy",
   "drawingReference": "Reference",
   "drawingYourAnswer": "Your answer",
   "drawingCheck": "Check",

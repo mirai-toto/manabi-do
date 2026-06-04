@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Card;
+import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -112,55 +113,73 @@ class FlashCard extends StatelessWidget {
 }
 
 class FlashCardActions extends StatelessWidget {
-  final String notYetLabel;
-  final String gotItLabel;
+  final Card? card;
   final String? question;
-  final VoidCallback? onNotYet;
-  final VoidCallback? onGotIt;
+  final void Function(Rating) onRate;
 
   const FlashCardActions({
     super.key,
-    required this.notYetLabel,
-    required this.gotItLabel,
+    required this.card,
+    required this.onRate,
     this.question,
-    this.onNotYet,
-    this.onGotIt,
   });
+
+  String _fmt(Card preview) {
+    final diff = preview.due.difference(DateTime.now());
+    if (diff.inMinutes < 60) return '${diff.inMinutes.clamp(1, 59)}m';
+    if (diff.inHours < 24) return '${diff.inHours}h';
+    if (diff.inDays < 30) return '${diff.inDays}d';
+    return '${(diff.inDays / 30).round()}mo';
+  }
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+    final l = context.l10n;
+    final fsrsCard = card ?? Card(cardId: DateTime.now().millisecondsSinceEpoch, due: DateTime.now());
+    final s = Scheduler();
+    final again = s.reviewCard(fsrsCard, Rating.again).card;
+    final hard  = s.reviewCard(fsrsCard, Rating.hard).card;
+    final good  = s.reviewCard(fsrsCard, Rating.good).card;
+    final easy  = s.reviewCard(fsrsCard, Rating.easy).card;
+
+    Widget btn(String label, String interval, Color bg, Color fg, Rating rating) => Expanded(
+      child: _RatingButton(label: label, interval: interval, bgColor: bg, fgColor: fg, onTap: () => onRate(rating)),
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (question != null) ...[
-          Text(
-            question!,
-            style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
-            textAlign: TextAlign.center,
-          ),
+          Text(question!, style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant), textAlign: TextAlign.center),
           const SizedBox(height: AppDimens.spaceXs),
         ],
-        Row(
-          children: [
-            Expanded(child: _FlashButton(label: notYetLabel, bgColor: t.errorContainer,   fgColor: t.error,   onTap: onNotYet)),
-            const SizedBox(width: AppDimens.spaceSm),
-            Expanded(child: _FlashButton(label: gotItLabel,  bgColor: t.successContainer, fgColor: t.success, onTap: onGotIt)),
-          ],
-        ),
+        Row(children: [
+          btn(l.ratingAgain, _fmt(again), t.errorContainer,   t.error,   Rating.again),
+          const SizedBox(width: AppDimens.spaceSm),
+          btn(l.ratingHard,  _fmt(hard),  t.warningContainer, t.warning, Rating.hard),
+        ]),
+        const SizedBox(height: AppDimens.spaceSm),
+        Row(children: [
+          btn(l.ratingGood, _fmt(good), t.successContainer, t.success, Rating.good),
+          const SizedBox(width: AppDimens.spaceSm),
+          btn(l.ratingEasy, _fmt(easy), t.primaryContainer, t.primary, Rating.easy),
+        ]),
       ],
     );
   }
 }
 
-class _FlashButton extends StatelessWidget {
+class _RatingButton extends StatelessWidget {
   final String label;
+  final String interval;
   final Color bgColor;
   final Color fgColor;
   final VoidCallback? onTap;
 
-  const _FlashButton({
+  const _RatingButton({
     required this.label,
+    required this.interval,
     required this.bgColor,
     required this.fgColor,
     this.onTap,
@@ -168,7 +187,7 @@ class _FlashButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Semantics(
-    label: label,
+    label: '$label $interval',
     button: true,
     excludeSemantics: true,
     child: Container(
@@ -183,10 +202,12 @@ class _FlashButton extends StatelessWidget {
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-            child: Text(
-              label,
-              textAlign: TextAlign.center,
-              style: AppTextStyles.labelLarge.copyWith(color: fgColor),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(label, textAlign: TextAlign.center, style: AppTextStyles.labelLarge.copyWith(color: fgColor)),
+                Text(interval, textAlign: TextAlign.center, style: AppTextStyles.labelSmall.copyWith(color: fgColor.withValues(alpha: 0.75))),
+              ],
             ),
           ),
         ),

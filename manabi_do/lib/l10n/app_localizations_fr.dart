@@ -374,6 +374,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get selfAssessQuestion => 'Tu l\'as eu ?';
 
   @override
+  String get ratingAgain => 'Raté';
+
+  @override
+  String get ratingHard => 'Dur';
+
+  @override
+  String get ratingGood => 'Bien';
+
+  @override
+  String get ratingEasy => 'Facile';
+
+  @override
   String get drawingReference => 'Référence';
 
   @override

@@ -1,12 +1,10 @@
 import 'dart:math';
-import 'dart:ui' as dart_ui;
 
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
 
 import '../../../core/providers/srs_settings_provider.dart';
-import '../../../core/srs/stroke_dtw.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -15,12 +13,11 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
 import '../../providers/database_provider.dart';
-import '../../widgets/characters/kanji_drawing_canvas.dart';
 import '../../widgets/characters/kanji_strokes_provider.dart';
-import '../../widgets/characters/stroke_order_animator.dart';
-import '../../widgets/common/app_emoji.dart';
+import '../../widgets/exercise/drawing_exercise.dart';
 import '../../widgets/exercise/flash_card.dart';
 import '../../widgets/exercise/mcq_card.dart';
+import '../../widgets/exercise/session_summary.dart';
 
 // ── Quiz types ────────────────────────────────────────────────────────────────
 
@@ -143,7 +140,7 @@ class _KanjiPracticeScreenState extends ConsumerState<KanjiPracticeScreen> {
       body: _queue == null
           ? const Center(child: CircularProgressIndicator())
           : _done
-              ? _SessionSummary(
+              ? SessionSummary(
                   gotIt: _gotIt,
                   notYet: _notYet,
                   color: color,
@@ -321,11 +318,9 @@ class _FlashcardBodyState extends State<_FlashcardBody> {
           if (_revealed) ...[
             const SizedBox(height: AppDimens.spaceMd),
             FlashCardActions(
-              notYetLabel: l.flashcardNotYet,
-              gotItLabel: l.flashcardGotIt,
+              card: widget.item.card,
               question: l.selfAssessQuestion,
-              onNotYet: () => widget.onAnswer(Rating.again),
-              onGotIt: () => widget.onAnswer(Rating.good),
+              onRate: widget.onAnswer,
             ),
           ],
         ],
@@ -336,7 +331,7 @@ class _FlashcardBodyState extends State<_FlashcardBody> {
 
 // ── Drawing body ──────────────────────────────────────────────────────────────
 
-class _DrawingBody extends ConsumerStatefulWidget {
+class _DrawingBody extends ConsumerWidget {
   final _QueueItem item;
   final int index;
   final int total;
@@ -353,24 +348,10 @@ class _DrawingBody extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<_DrawingBody> createState() => _DrawingBodyState();
-}
-
-class _DrawingBodyState extends ConsumerState<_DrawingBody> {
-  List<List<Offset>> _strokes = [];
-  List<bool>? _strokeResults;
-  final _canvasKey = GlobalKey<KanjiDrawingCanvasState>();
-
-  void _check(List<dart_ui.Path> refStrokes) {
-    setState(() => _strokeResults = evaluateStrokes(_strokes, refStrokes));
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
-    final strokesAsync = ref.watch(kanjiStrokesProvider(widget.item.kanji.id));
-    final checked = _strokeResults != null;
+    final strokesAsync = ref.watch(kanjiStrokesProvider(item.kanji.id));
 
     return Padding(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -378,142 +359,24 @@ class _DrawingBodyState extends ConsumerState<_DrawingBody> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           LinearProgressIndicator(
-            value: widget.index / widget.total,
+            value: index / total,
             backgroundColor: t.outlineVariant,
-            color: widget.color,
+            color: color,
             borderRadius: BorderRadius.circular(4),
           ),
           const SizedBox(height: AppDimens.spaceMd),
           strokesAsync.when(
-            loading: () => const Expanded(child: Center(child: CircularProgressIndicator())),
+            loading: () => const Center(child: CircularProgressIndicator()),
             error: (_, _) => const SizedBox.shrink(),
-            data: (refStrokes) {
-              final correctCount = _strokeResults?.where((b) => b).length ?? 0;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    widget.item.kanji.meaning,
-                    style: AppTextStyles.titleLarge.copyWith(color: t.onSurface),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: AppDimens.spaceXs),
-                  Text(
-                    l.drawingStrokeCount(refStrokes.length),
-                    style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: AppDimens.spaceMd),
-                  if (!checked) ...[
-                    Center(
-                      child: KanjiDrawingCanvas(
-                        key: _canvasKey,
-                        onStrokesChanged: (s) => setState(() => _strokes = s),
-                        strokeResults: null,
-                        referenceStrokes: null,
-                        enabled: true,
-                      ),
-                    ),
-                    const SizedBox(height: AppDimens.spaceSm),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton.icon(
-                          onPressed: () => _canvasKey.currentState?.undo(),
-                          icon: const Icon(Icons.undo_rounded, size: 16),
-                          label: Text(l.drawingUndo),
-                        ),
-                        const SizedBox(width: AppDimens.spaceSm),
-                        TextButton.icon(
-                          onPressed: () => _canvasKey.currentState?.clear(),
-                          icon: const Icon(Icons.delete_outline_rounded, size: 16),
-                          label: Text(l.drawingClear),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: AppDimens.spaceSm),
-                    FilledButton(
-                      onPressed: _strokes.isEmpty ? null : () => _check(refStrokes),
-                      style: FilledButton.styleFrom(
-                        backgroundColor: widget.color,
-                        disabledBackgroundColor: t.outlineVariant,
-                        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-                        ),
-                      ),
-                      child: Text(
-                        l.drawingCheck,
-                        style: AppTextStyles.body.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ] else ...[
-                    LayoutBuilder(builder: (_, constraints) {
-                      final cardSize = (constraints.maxWidth - AppDimens.spaceMd) / 2;
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text(l.drawingReference,
-                                    style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant)),
-                                const SizedBox(height: AppDimens.spaceXs),
-                                StrokeOrderAnimator(
-                                    kanjiId: widget.item.kanji.id, size: cardSize),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: AppDimens.spaceMd),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text(l.drawingYourAnswer,
-                                    style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant)),
-                                const SizedBox(height: AppDimens.spaceXs),
-                                SizedBox(
-                                  width: cardSize,
-                                  height: cardSize,
-                                  child: FittedBox(
-                                    fit: BoxFit.contain,
-                                    child: KanjiDrawingCanvas(
-                                      key: _canvasKey,
-                                      onStrokesChanged: (_) {},
-                                      strokeResults: _strokeResults,
-                                      referenceStrokes: null,
-                                      enabled: false,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      );
-                    }),
-                    const SizedBox(height: AppDimens.spaceSm),
-                    Text(
-                      l.drawingStrokeResult(correctCount, refStrokes.length),
-                      style: AppTextStyles.body.copyWith(
-                        color: correctCount == refStrokes.length ? t.success : t.error,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: AppDimens.spaceSm),
-                    FlashCardActions(
-                      notYetLabel: l.flashcardNotYet,
-                      gotItLabel: l.flashcardGotIt,
-                      onNotYet: () => widget.onAnswer(Rating.again),
-                      onGotIt: () => widget.onAnswer(Rating.good),
-                    ),
-                  ],
-                ],
-              );
-            },
+            data: (refStrokes) => DrawingExercise(
+              referenceStrokes: refStrokes,
+              kanjiId: item.kanji.id,
+              label: item.kanji.meaning,
+              color: color,
+              card: item.card,
+              onRate: onAnswer,
+              question: l.selfAssessQuestion,
+            ),
           ),
         ],
       ),
@@ -521,106 +384,3 @@ class _DrawingBodyState extends ConsumerState<_DrawingBody> {
   }
 }
 
-// ── Session summary ───────────────────────────────────────────────────────────
-
-class _SessionSummary extends StatelessWidget {
-  final int gotIt;
-  final int notYet;
-  final Color color;
-  final VoidCallback onDone;
-
-  const _SessionSummary({
-    required this.gotIt,
-    required this.notYet,
-    required this.color,
-    required this.onDone,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    final l = context.l10n;
-    final total = gotIt + notYet;
-
-    if (total == 0) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(AppDimens.spaceLg),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const AppEmoji('🎉', size: 56),
-              const SizedBox(height: AppDimens.spaceMd),
-              Text(l.practiceEmpty,
-                  textAlign: TextAlign.center,
-                  style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant)),
-              const SizedBox(height: AppDimens.spaceLg),
-              _DoneButton(onDone: onDone, color: color, label: l.practiceDone),
-            ],
-          ),
-        ),
-      );
-    }
-
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(AppDimens.spaceLg),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const AppEmoji('🎉', size: 56),
-            const SizedBox(height: AppDimens.spaceMd),
-            Text(l.practiceSessionDone, style: AppTextStyles.title.copyWith(color: t.onSurface)),
-            const SizedBox(height: AppDimens.spaceLg),
-            _StatRow(icon: Icons.check_circle_rounded, color: t.success, label: l.practiceGotIt(gotIt)),
-            const SizedBox(height: AppDimens.spaceSm),
-            _StatRow(icon: Icons.cancel_rounded, color: t.error, label: l.practiceNotYet(notYet)),
-            const SizedBox(height: AppDimens.spaceLg),
-            _DoneButton(onDone: onDone, color: color, label: l.practiceDone),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _StatRow extends StatelessWidget {
-  final IconData icon;
-  final Color color;
-  final String label;
-  const _StatRow({required this.icon, required this.color, required this.label});
-
-  @override
-  Widget build(BuildContext context) => Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(icon, color: color, size: 22),
-      const SizedBox(width: AppDimens.spaceSm),
-      Text(label, style: AppTextStyles.body.copyWith(color: color, fontWeight: FontWeight.w600)),
-    ],
-  );
-}
-
-class _DoneButton extends StatelessWidget {
-  final VoidCallback onDone;
-  final Color color;
-  final String label;
-  const _DoneButton({required this.onDone, required this.color, required this.label});
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-    width: double.infinity,
-    child: FilledButton(
-      onPressed: onDone,
-      style: FilledButton.styleFrom(
-        backgroundColor: color,
-        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimens.radiusMd)),
-      ),
-      child: Text(
-        label,
-        style: AppTextStyles.body.copyWith(color: Colors.white, fontWeight: FontWeight.w600),
-      ),
-    ),
-  );
-}

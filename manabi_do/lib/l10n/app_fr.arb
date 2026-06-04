@@ -184,6 +184,10 @@
 
   "drawingPractice": "S'entraîner à tracer",
   "selfAssessQuestion": "Tu l'as eu ?",
+  "ratingAgain": "Raté",
+  "ratingHard": "Dur",
+  "ratingGood": "Bien",
+  "ratingEasy": "Facile",
   "drawingReference": "Référence",
   "drawingYourAnswer": "Ta réponse",
   "drawingCheck": "Vérifier",

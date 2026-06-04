@@ -784,6 +784,30 @@ abstract class AppLocalizations {
   /// **'Did you get it right?'**
   String get selfAssessQuestion;
 
+  /// No description provided for @ratingAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Again'**
+  String get ratingAgain;
+
+  /// No description provided for @ratingHard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hard'**
+  String get ratingHard;
+
+  /// No description provided for @ratingGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get ratingGood;
+
+  /// No description provided for @ratingEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy'**
+  String get ratingEasy;
+
   /// No description provided for @drawingReference.
   ///
   /// In en, this message translates to:

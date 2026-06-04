@@ -374,6 +374,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get selfAssessQuestion => 'Hast du es gewusst?';
 
   @override
+  String get ratingAgain => 'Nochmal';
+
+  @override
+  String get ratingHard => 'Schwer';
+
+  @override
+  String get ratingGood => 'Gut';
+
+  @override
+  String get ratingEasy => 'Leicht';
+
+  @override
   String get drawingReference => 'Referenz';
 
   @override

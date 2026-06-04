@@ -590,10 +590,8 @@ class _LiveFlashCardState extends State<_LiveFlashCard> {
     ),
     const SizedBox(height: 8),
     FlashCardActions(
-      notYetLabel: context.l10n.flashcardNotYet,
-      gotItLabel: context.l10n.flashcardGotIt,
-      onNotYet: () => setState(() => _revealed = false),
-      onGotIt:  () => setState(() => _revealed = false),
+      card: null,
+      onRate: (_) => setState(() => _revealed = false),
     ),
   ]);
 }
