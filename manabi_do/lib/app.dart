@@ -28,6 +28,7 @@ class ManabiDoApp extends ConsumerWidget {
       supportedLocales: const [
         Locale('en'),
         Locale('fr'),
+        Locale('de'),
       ],
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,

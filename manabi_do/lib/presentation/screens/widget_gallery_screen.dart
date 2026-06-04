@@ -52,7 +52,10 @@ class _WidgetGalleryScreenState extends ConsumerState<WidgetGalleryScreen>
               ref.watch(localeProvider).languageCode == 'en' ? '🇫🇷' : '🇬🇧',
               style: const TextStyle(fontSize: 20),
             ),
-            onPressed: () => ref.read(localeProvider.notifier).toggle(),
+            onPressed: () {
+              final current = ref.read(localeProvider).languageCode;
+              ref.read(localeProvider.notifier).setLocale(Locale(current == 'en' ? 'fr' : 'en'));
+            },
           ),
           IconButton(
             icon: Icon(

@@ -12,6 +12,7 @@ import '../../widgets/widgets.dart';
 const _languages = [
   (code: 'en', flag: '🇬🇧', name: 'English'),
   (code: 'fr', flag: '🇫🇷', name: 'Français'),
+  (code: 'de', flag: '🇩🇪', name: 'Deutsch'),
 ];
 
 class SettingsScreen extends ConsumerWidget {
@@ -79,7 +80,7 @@ class SettingsScreen extends ConsumerWidget {
       builder: (_) => _LanguagePickerSheet(
         currentCode: current,
         onSelect: (code) {
-          if (code != current) ref.read(localeProvider.notifier).toggle();
+          ref.read(localeProvider.notifier).setLocale(Locale(code));
           Navigator.of(context).pop();
         },
         title: l.settingsLanguage,

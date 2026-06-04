@@ -5,9 +5,7 @@ class LocaleNotifier extends Notifier<Locale> {
   @override
   Locale build() => const Locale('en');
 
-  void toggle() {
-    state = state.languageCode == 'en' ? const Locale('fr') : const Locale('en');
-  }
+  void setLocale(Locale locale) => state = locale;
 }
 
 final localeProvider = NotifierProvider<LocaleNotifier, Locale>(

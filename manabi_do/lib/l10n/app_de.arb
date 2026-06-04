@@ -1,0 +1,144 @@
+{
+  "@@locale": "de",
+
+  "appTitle": "Manabi Do",
+
+  "tagline": "Japanisch lernen — offline, in deinem Tempo",
+  "signInWithGoogle": "Mit Google anmelden",
+  "signInWithApple": "Mit Apple anmelden",
+  "continueAsGuest": "Als Gast fortfahren →",
+  "or": "oder",
+
+  "sectionGrammar": "Grammatik",
+  "sectionCharacters": "Zeichen",
+  "sectionVocabulary": "Vokabular",
+
+  "tabHiragana": "Hiragana",
+  "tabKatakana": "Katakana",
+  "tabKanji": "Kanji",
+
+  "known": "Gelernt",
+  "knownCheck": "Gelernt ✓",
+  "markAsKnown": "Als gelernt markieren",
+  "notKnown": "Nicht gelernt",
+
+  "statusNotStarted": "Nicht begonnen",
+
+  "exampleWords": "Beispielwörter",
+  "readings": "Lesungen",
+
+  "difficultyLevel": "Schwierigkeit {level}",
+  "@difficultyLevel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "chapterN": "Kapitel {number}",
+  "@chapterN": {
+    "placeholders": {
+      "number": { "type": "String" }
+    }
+  },
+
+  "nLessons": "{count} Lektionen",
+  "@nLessons": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "multipleChoice": "Multiple Choice",
+  "practice": "Üben →",
+
+  "retry": "Nochmal",
+  "nextLesson": "Nächste Lektion →",
+  "correct": "Richtig",
+  "missed": "Falsch",
+  "markedKnown": "Als gelernt markiert",
+  "timeSpent": "Benötigte Zeit",
+
+  "flashcardDefaultPrompt": "Was bedeutet das?",
+  "tapToReveal": "Zum Aufdecken tippen",
+  "flashcardNotYet": "✗  Noch nicht",
+  "flashcardGotIt": "✓  Gewusst",
+
+  "navSettings": "Einstellungen",
+  "navHome": "Start",
+  "navVocab": "Vokabeln",
+
+  "greetingMorning": "Guten Morgen",
+  "greetingAfternoon": "Guten Tag",
+  "greetingEvening": "Guten Abend",
+  "greetingSubtitle": "Lass uns Japanisch lernen",
+
+  "streakLabel": "Tage in Folge",
+  "streakSubtitle": "Weiter so!",
+
+  "comingSoon": "Demnächst verfügbar",
+
+  "strokeOrderPlaceholder": "▶ Strichfolge-Animation",
+
+  "strokeOrder": "Strichfolge",
+  "selectLevel": "Niveau auswählen",
+  "onyomi": "Onyomi",
+  "kunyomi": "Kunyomi",
+  "noExampleWordsFound": "Keine Beispielwörter gefunden",
+
+  "posNoun": "Substantiv",
+  "posVerb": "Verb",
+  "posAdverb": "Adverb",
+  "posNaAdjective": "Na-Adjektiv",
+  "posIAdjective": "I-Adjektiv",
+  "posNoAdjective": "No-Adjektiv",
+  "posExpression": "Ausdruck",
+  "posConjunction": "Konjunktion",
+  "posInterjection": "Interjektion",
+  "posPronoun": "Pronomen",
+  "posNumeral": "Zahlwort",
+  "posPrefix": "Präfix",
+  "posSuffix": "Suffix",
+  "posParticle": "Partikel",
+  "posCounter": "Zählwort",
+  "posAuxiliaryVerb": "Hilfsverb",
+  "posAuxiliary": "Auxiliar",
+  "posPreNounAdj": "Pränominales Adj.",
+  "posAdjIxClass": "Adj. (ii/yoi)",
+  "posPrenominalAdj": "Pränominales Adj.",
+  "posNounSuffix": "Nominalsuffix",
+  "posNounPrefix": "Nominalpräfix",
+  "posSuruSpecial": "Suru-Verb (spez.)",
+  "posSuruIrregular": "Suru-Verb (unreg.)",
+
+  "levelN5": "Anfänger",
+  "levelN4": "Grundstufe",
+  "levelN3": "Mittelstufe",
+  "levelN2": "Obere Mittelstufe",
+  "levelN1": "Fortgeschritten",
+
+  "charactersSubtitle": "Kana · Kanji N5–N1 · {total} Kana",
+  "@charactersSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "charactersSubtitleShort": "Kana · Kanji N5–N1",
+
+  "nKanji": "{count} Kanji",
+  "@nKanji": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "knownProgress": "{known} / {total} gelernt",
+  "@knownProgress": {
+    "placeholders": {
+      "known": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "kanaRowVowels": "Vokale",
+
+  "settingsAppearance": "Erscheinungsbild",
+  "settingsThemeLight": "Heller Modus",
+  "settingsThemeDark": "Dunkler Modus",
+  "settingsLanguage": "Sprache"
+}
