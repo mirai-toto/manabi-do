@@ -98,7 +98,7 @@ def create_tables(db: sqlite3.Connection) -> None:
 
 
 def insert_kanji(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
-    path = f"assets/data/kanji_{slug}.json"
+    path = f"content/kanji_{slug}.json"
     with open(path, encoding="utf-8") as f:
         entries = json.load(f)
 
@@ -125,7 +125,7 @@ def insert_kanji(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
 
 
 def insert_vocab(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
-    path = f"assets/data/vocab_{slug}.json"
+    path = f"content/vocab_{slug}.json"
     with open(path, encoding="utf-8") as f:
         entries = json.load(f)
 

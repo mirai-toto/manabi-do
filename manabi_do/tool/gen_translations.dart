@@ -1,4 +1,4 @@
-// Enriches assets/data/kanji_n[1-5].json and assets/data/vocab_n[1-5].json
+// Enriches content/kanji_n[1-5].json and content/vocab_n[1-5].json
 // with multilingual meanings from JMdict-simplified and KANJIDIC2.
 //
 // Prerequisites — download these files and place them in tool/data/:
@@ -95,7 +95,7 @@ void main() async {
   }
 
   const encoder = JsonEncoder.withIndent('  ');
-  final outDir = Directory('assets/data');
+  final outDir = Directory('content');
 
   for (final slug in ['n5', 'n4', 'n3', 'n2', 'n1']) {
     // ── Kanji ────────────────────────────────────────────────────────────
