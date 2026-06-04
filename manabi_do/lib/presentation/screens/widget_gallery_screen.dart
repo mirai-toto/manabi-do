@@ -149,6 +149,8 @@ class _CommonTab extends StatelessWidget {
     _gap,
     _GallerySection(label: 'AppFilterChip',  interactive: true, child: _LiveFilterChips()),
     _gap,
+    _GallerySection(label: 'AppFilterChip (disabled)', child: _DemoFilterChipsDisabled()),
+    _gap,
     _GallerySection(label: 'AppTextField',   interactive: true, child: _LiveTextField()),
     _gap,
     _GallerySection(label: 'KnownToggle',    interactive: true, child: _LiveKnownToggle()),
@@ -170,18 +172,24 @@ class _DemoAppButtons extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Wrap(spacing: 8, runSpacing: 8, children: const [
-        AppButton(label: 'Start Lesson'),
-        AppButton(label: 'Practice',  variant: AppButtonVariant.tonal),
-        AppButton(label: 'View All',  variant: AppButtonVariant.outlined),
-        AppButton(label: 'Skip',      variant: AppButtonVariant.text),
-        AppButton(label: 'Reset',     variant: AppButtonVariant.danger),
+      Wrap(spacing: 8, runSpacing: 8, children: [
+        AppButton(label: 'Start Lesson', onPressed: () {}),
+        AppButton(label: 'Practice',  variant: AppButtonVariant.tonal,    onPressed: () {}),
+        AppButton(label: 'View All',  variant: AppButtonVariant.outlined, onPressed: () {}),
+        AppButton(label: 'Skip',      variant: AppButtonVariant.text,     onPressed: () {}),
+        AppButton(label: 'Reset',     variant: AppButtonVariant.danger,   onPressed: () {}),
       ]),
       const SizedBox(height: 8),
-      Wrap(spacing: 8, runSpacing: 8, children: const [
-        AppButton(label: 'Small', size: AppButtonSize.small),
-        AppButton(label: 'N5',    variant: AppButtonVariant.tonal, size: AppButtonSize.small),
-        AppButton(label: 'With icon', icon: Icon(Icons.play_arrow, size: 16)),
+      Wrap(spacing: 8, runSpacing: 8, children: [
+        AppButton(label: 'Small',      size: AppButtonSize.small, onPressed: () {}),
+        AppButton(label: 'N5',         variant: AppButtonVariant.tonal, size: AppButtonSize.small, onPressed: () {}),
+        AppButton(label: 'With icon',  icon: const Icon(Icons.play_arrow, size: 16), onPressed: () {}),
+      ]),
+      const SizedBox(height: 8),
+      const Wrap(spacing: 8, runSpacing: 8, children: [
+        AppButton(label: 'Disabled filled'),
+        AppButton(label: 'Disabled tonal',    variant: AppButtonVariant.tonal),
+        AppButton(label: 'Disabled outlined', variant: AppButtonVariant.outlined),
       ]),
     ],
   );
@@ -207,6 +215,20 @@ class _LiveFilterChipsState extends State<_LiveFilterChips> {
           isActive: _active[i],
           onTap: () => setState(() => _active[i] = !_active[i]),
         ),
+    ],
+  );
+}
+
+class _DemoFilterChipsDisabled extends StatelessWidget {
+  const _DemoFilterChipsDisabled();
+  @override
+  Widget build(BuildContext context) => const Wrap(
+    spacing: 8, runSpacing: 8,
+    children: [
+      AppFilterChip(label: 'All',        isActive: true),
+      AppFilterChip(label: 'N5'),
+      AppFilterChip(label: 'Verbs'),
+      AppFilterChip(label: 'Adjectives', isActive: true),
     ],
   );
 }

@@ -20,43 +20,48 @@ class AppFilterChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+    final disabled = onTap == null;
 
-    return Semantics(
-      label: label,
-      selected: isActive,
-      button: onTap != null,
-      excludeSemantics: true,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 120),
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: isActive ? t.primaryContainer : Colors.transparent,
-          border: Border.all(
-            color: isActive ? t.primary : t.outlineVariant,
-            width: 1.5,
+    return Opacity(
+      opacity: disabled ? 0.38 : 1.0,
+      child: Semantics(
+        label: label,
+        selected: isActive,
+        button: !disabled,
+        enabled: !disabled,
+        excludeSemantics: true,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 120),
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            color: isActive ? t.primaryContainer : Colors.transparent,
+            border: Border.all(
+              color: isActive ? t.primary : t.outlineVariant,
+              width: 1.5,
+            ),
+            borderRadius: BorderRadius.circular(AppDimens.radiusPill),
           ),
-          borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: onTap,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.chipPaddingH,
-                vertical: AppDimens.chipPaddingV,
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (leading != null) ...[leading!, const SizedBox(width: AppDimens.spaceXs)],
-                  Text(
-                    label,
-                    style: AppTextStyles.bodySmall.copyWith(
-                      color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: onTap,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.chipPaddingH,
+                  vertical: AppDimens.chipPaddingV,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (leading != null) ...[leading!, const SizedBox(width: AppDimens.spaceXs)],
+                    Text(
+                      label,
+                      style: AppTextStyles.bodySmall.copyWith(
+                        color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
