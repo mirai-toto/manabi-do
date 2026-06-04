@@ -627,6 +627,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get settingsLanguage;
+
+  /// No description provided for @aboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get aboutTitle;
+
+  /// No description provided for @aboutVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}'**
+  String aboutVersion(String version);
+
+  /// No description provided for @aboutDataSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Data sources'**
+  String get aboutDataSources;
+
+  /// No description provided for @aboutEdrdgNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'This app uses JMdict and KANJIDIC2, published by the Electronic Dictionary Research and Development Group (EDRDG) under a Creative Commons Attribution-ShareAlike 4.0 International licence.'**
+  String get aboutEdrdgNotice;
+
+  /// No description provided for @aboutEdrdgLink.
+  ///
+  /// In en, this message translates to:
+  /// **'edrdg.org'**
+  String get aboutEdrdgLink;
 }
 
 class _AppLocalizationsDelegate

@@ -140,5 +140,14 @@
   "settingsAppearance": "Erscheinungsbild",
   "settingsThemeLight": "Heller Modus",
   "settingsThemeDark": "Dunkler Modus",
-  "settingsLanguage": "Sprache"
+  "settingsLanguage": "Sprache",
+
+  "aboutTitle": "Über",
+  "aboutVersion": "Version {version}",
+  "@aboutVersion": {
+    "placeholders": { "version": { "type": "String" } }
+  },
+  "aboutDataSources": "Datenquellen",
+  "aboutEdrdgNotice": "Diese App verwendet JMdict und KANJIDIC2, veröffentlicht von der Electronic Dictionary Research and Development Group (EDRDG) unter einer Creative Commons Attribution-ShareAlike 4.0 International Lizenz.",
+  "aboutEdrdgLink": "edrdg.org"
 }

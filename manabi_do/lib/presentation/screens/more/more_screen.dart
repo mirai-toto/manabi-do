@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import '../../../core/providers/locale_provider.dart';
 import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
@@ -15,6 +16,8 @@ const _languages = [
   (code: 'de', flag: '🇩🇪', name: 'Deutsch'),
 ];
 
+final _packageInfoProvider = FutureProvider<PackageInfo>((_) => PackageInfo.fromPlatform());
+
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -24,11 +27,14 @@ class SettingsScreen extends ConsumerWidget {
     final themeMode = ref.watch(themeModeProvider);
     final locale    = ref.watch(localeProvider);
     final isDark    = themeMode == ThemeMode.dark;
+    final pkgAsync  = ref.watch(_packageInfoProvider);
 
     final currentLang = _languages.firstWhere(
       (e) => e.code == locale.languageCode,
       orElse: () => _languages.first,
     );
+
+    final version = pkgAsync.when(data: (p) => p.version, loading: () => '—', error: (e, s) => '—');
 
     return Align(
       alignment: Alignment.topCenter,
@@ -62,6 +68,20 @@ class SettingsScreen extends ConsumerWidget {
                 onTap: () => _showLanguagePicker(context, ref, locale.languageCode),
               ),
             ]),
+            const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.aboutTitle),
+            const SizedBox(height: AppDimens.spaceSm),
+            _SettingsCard(children: [
+              _InfoRow(
+                icon: Icons.info_outline_rounded,
+                label: l.aboutVersion(version),
+              ),
+            ]),
+            const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.aboutDataSources),
+            const SizedBox(height: AppDimens.spaceSm),
+            _AttributionCard(notice: l.aboutEdrdgNotice, link: l.aboutEdrdgLink),
+            const SizedBox(height: AppDimens.spaceLg),
           ],
         ),
       ),
@@ -151,6 +171,27 @@ class _ToggleRow extends StatelessWidget {
   }
 }
 
+class _InfoRow extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  const _InfoRow({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceSm),
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: t.onSurfaceVariant),
+          const SizedBox(width: AppDimens.spaceMd),
+          Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: t.onSurface))),
+        ],
+      ),
+    );
+  }
+}
+
 class _TappableRow extends StatelessWidget {
   final Widget leading;
   final String label;
@@ -173,6 +214,34 @@ class _TappableRow extends StatelessWidget {
             Icon(Icons.chevron_right_rounded, size: 20, color: t.onSurfaceVariant),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _AttributionCard extends StatelessWidget {
+  final String notice;
+  final String link;
+  const _AttributionCard({required this.notice, required this.link});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppDimens.spaceMd),
+      decoration: BoxDecoration(
+        color: t.cardBackground,
+        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        border: Border.all(color: t.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(notice, style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant)),
+          const SizedBox(height: AppDimens.spaceSm),
+          Text(link, style: AppTextStyles.bodySmall.copyWith(color: t.primary)),
+        ],
       ),
     );
   }

@@ -283,4 +283,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsLanguage => 'Language';
+
+  @override
+  String get aboutTitle => 'About';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get aboutDataSources => 'Data sources';
+
+  @override
+  String get aboutEdrdgNotice =>
+      'This app uses JMdict and KANJIDIC2, published by the Electronic Dictionary Research and Development Group (EDRDG) under a Creative Commons Attribution-ShareAlike 4.0 International licence.';
+
+  @override
+  String get aboutEdrdgLink => 'edrdg.org';
 }
