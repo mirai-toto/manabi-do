@@ -23,33 +23,40 @@ class KanjiExampleWords extends ConsumerWidget {
         SectionLabel(context.l10n.exampleWords),
         const SizedBox(height: AppDimens.spaceSm),
         async.when(
-          loading: () => const Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-              child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2)),
-            ),
-          ),
-          error: (_, __) => const SizedBox.shrink(),
-          data: (words) => words.isEmpty
-              ? _emptyState(context)
-              : _WordList(words: words),
+          loading: () => const _Loading(),
+          error: (_, _) => const SizedBox.shrink(),
+          data: (words) => words.isEmpty ? const _EmptyState() : _WordList(words: words),
         ),
       ],
     );
   }
+}
 
-  Widget _emptyState(BuildContext context) {
-    final t = context.tokens;
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-        child: Text(
-          context.l10n.noExampleWordsFound,
-          style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-        ),
+class _Loading extends StatelessWidget {
+  const _Loading();
+
+  @override
+  Widget build(BuildContext context) => const Center(
+    child: Padding(
+      padding: EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+      child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2)),
+    ),
+  );
+}
+
+class _EmptyState extends StatelessWidget {
+  const _EmptyState();
+
+  @override
+  Widget build(BuildContext context) => Center(
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+      child: Text(
+        context.l10n.noExampleWordsFound,
+        style: AppTextStyles.bodySmall.copyWith(color: context.tokens.onSurfaceVariant),
       ),
-    );
-  }
+    ),
+  );
 }
 
 class _WordList extends StatelessWidget {
@@ -83,55 +90,64 @@ class _WordRow extends StatelessWidget {
   const _WordRow({required this.word});
 
   @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: 10),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(flex: 2, child: _WordLabel(word: word.word, reading: word.reading)),
+        const SizedBox(width: AppDimens.spaceSm),
+        Expanded(
+          flex: 3,
+          child: Text(
+            word.meaning,
+            style: AppTextStyles.bodySmall.copyWith(color: context.tokens.onSurfaceVariant),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        const SizedBox(width: AppDimens.spaceSm),
+        _JlptBadge(level: word.jlptLevel),
+      ],
+    ),
+  );
+}
+
+class _WordLabel extends StatelessWidget {
+  final String word;
+  final String reading;
+  const _WordLabel({required this.word, required this.reading});
+
+  @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final color = levelColor(word.jlptLevel);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(word, style: AppTextStyles.jpBody.copyWith(color: t.onSurface, fontWeight: FontWeight.w600)),
+        const SizedBox(height: 2),
+        Text(reading, style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant)),
+      ],
+    );
+  }
+}
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  word.word,
-                  style: AppTextStyles.jpBody.copyWith(color: t.onSurface, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  word.reading,
-                  style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: AppDimens.spaceSm),
-          Expanded(
-            flex: 3,
-            child: Text(
-              word.meaning,
-              style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          const SizedBox(width: AppDimens.spaceSm),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-            ),
-            child: Text(
-              word.jlptLevel,
-              style: AppTextStyles.labelSmall.copyWith(color: color, fontWeight: FontWeight.w700),
-            ),
-          ),
-        ],
+class _JlptBadge extends StatelessWidget {
+  final String level;
+  const _JlptBadge({required this.level});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = levelColor(level);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+      ),
+      child: Text(
+        level,
+        style: AppTextStyles.labelSmall.copyWith(color: color, fontWeight: FontWeight.w700),
       ),
     );
   }

@@ -89,20 +89,44 @@ class _WidgetGalleryScreenState extends ConsumerState<WidgetGalleryScreen>
 class _GallerySection extends StatelessWidget {
   final String label;
   final Widget child;
-  const _GallerySection({required this.label, required this.child});
+  final bool interactive;
+  const _GallerySection({required this.label, required this.child, this.interactive = false});
 
   @override
   Widget build(BuildContext context) {
+    final t = context.tokens;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label.toUpperCase(),
-          style: AppTextStyles.labelSmall.copyWith(
-            color: context.tokens.onSurfaceVariant,
-            letterSpacing: 1.2,
-            fontWeight: FontWeight.w600,
-          ),
+        Row(
+          spacing: 8,
+          children: [
+            Text(
+              label.toUpperCase(),
+              style: AppTextStyles.labelSmall.copyWith(
+                color: t.onSurfaceVariant,
+                letterSpacing: 1.2,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            if (interactive)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                decoration: BoxDecoration(
+                  color: t.success.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  'LIVE',
+                  style: AppTextStyles.labelSmall.copyWith(
+                    color: t.success,
+                    fontSize: 9,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.8,
+                  ),
+                ),
+              ),
+          ],
         ),
         const SizedBox(height: AppDimens.spaceSm),
         child,
@@ -111,153 +135,173 @@ class _GallerySection extends StatelessWidget {
   }
 }
 
-const _gap = SizedBox(height: AppDimens.spaceLg);
+const _gap  = SizedBox(height: AppDimens.spaceLg);
 const _hpad = EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceMd);
 
 // ── Common tab ────────────────────────────────────────────────────────────────
 
-class _CommonTab extends StatefulWidget {
+class _CommonTab extends StatelessWidget {
   const _CommonTab();
 
   @override
-  State<_CommonTab> createState() => _CommonTabState();
+  Widget build(BuildContext context) => ListView(padding: _hpad, children: const [
+    _GallerySection(label: 'AppButton',      child: _DemoAppButtons()),
+    _gap,
+    _GallerySection(label: 'AppFilterChip',  interactive: true, child: _LiveFilterChips()),
+    _gap,
+    _GallerySection(label: 'AppTextField',   interactive: true, child: _LiveTextField()),
+    _gap,
+    _GallerySection(label: 'KnownToggle',    interactive: true, child: _LiveKnownToggle()),
+    _gap,
+    _GallerySection(label: 'ProgressBar & ProgressRow', child: _DemoProgress()),
+    _gap,
+    _GallerySection(label: 'PracticeButton', interactive: true, child: _DemoPracticeButtons()),
+    _gap,
+    _GallerySection(label: 'SectionLabel',   child: _DemoSectionLabels()),
+    _gap,
+    _GallerySection(label: 'AppEmoji',       child: _DemoAppEmoji()),
+    _gap,
+  ]);
 }
 
-class _CommonTabState extends State<_CommonTab> {
-  bool _isKnown = false;
-  bool _chip1 = true;
-  bool _chip2 = false;
-  bool _chip3 = true;
-  final _textController = TextEditingController();
+class _DemoAppButtons extends StatelessWidget {
+  const _DemoAppButtons();
+  @override
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Wrap(spacing: 8, runSpacing: 8, children: const [
+        AppButton(label: 'Start Lesson'),
+        AppButton(label: 'Practice',  variant: AppButtonVariant.tonal),
+        AppButton(label: 'View All',  variant: AppButtonVariant.outlined),
+        AppButton(label: 'Skip',      variant: AppButtonVariant.text),
+        AppButton(label: 'Reset',     variant: AppButtonVariant.danger),
+      ]),
+      const SizedBox(height: 8),
+      Wrap(spacing: 8, runSpacing: 8, children: const [
+        AppButton(label: 'Small', size: AppButtonSize.small),
+        AppButton(label: 'N5',    variant: AppButtonVariant.tonal, size: AppButtonSize.small),
+        AppButton(label: 'With icon', icon: Icon(Icons.play_arrow, size: 16)),
+      ]),
+    ],
+  );
+}
+
+class _LiveFilterChips extends StatefulWidget {
+  const _LiveFilterChips();
+  @override
+  State<_LiveFilterChips> createState() => _LiveFilterChipsState();
+}
+
+class _LiveFilterChipsState extends State<_LiveFilterChips> {
+  static const _labels = ['All', 'N5', 'Verbs', 'Adjectives', 'Particles'];
+  final _active = [true, false, true, false, false];
 
   @override
-  void dispose() {
-    _textController.dispose();
-    super.dispose();
-  }
+  Widget build(BuildContext context) => Wrap(
+    spacing: 8, runSpacing: 8,
+    children: [
+      for (final (i, label) in _labels.indexed)
+        AppFilterChip(
+          label: label,
+          isActive: _active[i],
+          onTap: () => setState(() => _active[i] = !_active[i]),
+        ),
+    ],
+  );
+}
+
+class _LiveTextField extends StatefulWidget {
+  const _LiveTextField();
+  @override
+  State<_LiveTextField> createState() => _LiveTextFieldState();
+}
+
+class _LiveTextFieldState extends State<_LiveTextField> {
+  final _controller = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: _hpad,
-      children: [
-        _GallerySection(
-          label: 'AppButton',
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Wrap(spacing: 8, runSpacing: 8, children: [
-                AppButton(label: 'Start Lesson'),
-                AppButton(label: 'Practice', variant: AppButtonVariant.tonal),
-                AppButton(label: 'View All', variant: AppButtonVariant.outlined),
-                AppButton(label: 'Skip', variant: AppButtonVariant.text),
-                AppButton(label: 'Reset', variant: AppButtonVariant.danger),
-              ]),
-              const SizedBox(height: 8),
-              Wrap(spacing: 8, runSpacing: 8, children: [
-                AppButton(label: 'Small', size: AppButtonSize.small),
-                AppButton(label: 'N5', variant: AppButtonVariant.tonal, size: AppButtonSize.small),
-                AppButton(
-                  label: 'With icon',
-                  icon: const Icon(Icons.play_arrow, size: 16),
-                ),
-              ]),
-            ],
-          ),
-        ),
-        _gap,
+  void dispose() { _controller.dispose(); super.dispose(); }
 
-        _GallerySection(
-          label: 'AppFilterChip',
-          child: Wrap(spacing: 8, runSpacing: 8, children: [
-            AppFilterChip(label: 'All',        isActive: _chip1, onTap: () => setState(() => _chip1 = !_chip1)),
-            AppFilterChip(label: 'N5',         isActive: _chip2, onTap: () => setState(() => _chip2 = !_chip2)),
-            AppFilterChip(label: 'Verbs',      isActive: _chip3, onTap: () => setState(() => _chip3 = !_chip3)),
-            const AppFilterChip(label: 'Adjectives'),
-            const AppFilterChip(label: 'Particles'),
-          ]),
-        ),
-        _gap,
+  @override
+  Widget build(BuildContext context) => Column(children: [
+    AppTextField(
+      label: 'Search',
+      controller: _controller,
+      hint: 'e.g. 食べる',
+      prefixIcon: const Icon(Icons.search),
+    ),
+    const SizedBox(height: 8),
+    const AppTextField(label: 'Disabled', hint: 'Cannot edit', enabled: false),
+  ]);
+}
 
-        _GallerySection(
-          label: 'AppTextField',
-          child: Column(children: [
-            AppTextField(
-              label: 'Search',
-              controller: _textController,
-              hint: 'e.g. 食べる',
-              prefixIcon: const Icon(Icons.search),
-            ),
-            const SizedBox(height: 8),
-            const AppTextField(
-              label: 'Disabled',
-              hint: 'Cannot edit',
-              enabled: false,
-            ),
-          ]),
-        ),
-        _gap,
+class _LiveKnownToggle extends StatefulWidget {
+  const _LiveKnownToggle();
+  @override
+  State<_LiveKnownToggle> createState() => _LiveKnownToggleState();
+}
 
-        _GallerySection(
-          label: 'KnownToggle',
-          child: Row(spacing: 12, children: [
-            KnownToggle(isKnown: _isKnown, onTap: () => setState(() => _isKnown = !_isKnown)),
-            KnownToggle(isKnown: true,  onTap: () {}),
-            KnownToggle(isKnown: false, onTap: () {}),
-          ]),
-        ),
-        _gap,
+class _LiveKnownToggleState extends State<_LiveKnownToggle> {
+  bool _known = false;
 
-        _GallerySection(
-          label: 'ProgressBar & ProgressRow',
-          child: Column(children: [
-            const AppProgressBar(progress: 0.65),
-            const SizedBox(height: 8),
-            AppProgressBar(progress: 0.3, color: context.tokens.characters),
-            const SizedBox(height: 12),
-            const ProgressRow(known: 32, total: 80),
-            const SizedBox(height: 4),
-            ProgressRow(known: 46, total: 184, color: context.tokens.characters),
-          ]),
-        ),
-        _gap,
+  @override
+  Widget build(BuildContext context) => Row(spacing: 12, children: [
+    KnownToggle(isKnown: _known, onTap: () => setState(() => _known = !_known)),
+    KnownToggle(isKnown: true,  onTap: () {}),
+    KnownToggle(isKnown: false, onTap: () {}),
+  ]);
+}
 
-        _GallerySection(
-          label: 'PracticeButton',
-          child: Column(children: [
-            for (final level in ['N5', 'N4', 'N3', 'N2', 'N1']) ...[
-              PracticeButton(color: levelColor(level)),
-              const SizedBox(height: 4),
-            ],
-          ]),
-        ),
-        _gap,
+class _DemoProgress extends StatelessWidget {
+  const _DemoProgress();
+  @override
+  Widget build(BuildContext context) => Column(children: [
+    const AppProgressBar(progress: 0.65),
+    const SizedBox(height: 8),
+    AppProgressBar(progress: 0.3, color: context.tokens.characters),
+    const SizedBox(height: 12),
+    const ProgressRow(known: 32, total: 80),
+    const SizedBox(height: 4),
+    ProgressRow(known: 46, total: 184, color: context.tokens.characters),
+  ]);
+}
 
-        _GallerySection(
-          label: 'SectionLabel',
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const SectionLabel('Readings'),
-            const SizedBox(height: 8),
-            const SectionLabel('Stroke Order'),
-            const SizedBox(height: 8),
-            const SectionLabel('Example Words'),
-          ]),
-        ),
-        _gap,
+class _DemoPracticeButtons extends StatelessWidget {
+  const _DemoPracticeButtons();
+  @override
+  Widget build(BuildContext context) => Column(children: [
+    for (final level in ['N5', 'N4', 'N3', 'N2', 'N1']) ...[
+      PracticeButton(color: levelColor(level)),
+      const SizedBox(height: 4),
+    ],
+  ]);
+}
 
-        _GallerySection(
-          label: 'AppEmoji',
-          child: Wrap(spacing: 12, children: const [
-            AppEmoji('🔥', size: 32),
-            AppEmoji('⭐', size: 32),
-            AppEmoji('✅', size: 32),
-            AppEmoji('🎌', size: 32),
-          ]),
-        ),
-        _gap,
-      ],
-    );
-  }
+class _DemoSectionLabels extends StatelessWidget {
+  const _DemoSectionLabels();
+  @override
+  Widget build(BuildContext context) => const Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SectionLabel('Readings'),
+      SizedBox(height: 8),
+      SectionLabel('Stroke Order'),
+      SizedBox(height: 8),
+      SectionLabel('Example Words'),
+    ],
+  );
+}
+
+class _DemoAppEmoji extends StatelessWidget {
+  const _DemoAppEmoji();
+  @override
+  Widget build(BuildContext context) => const Wrap(spacing: 12, children: [
+    AppEmoji('🔥', size: 32),
+    AppEmoji('⭐', size: 32),
+    AppEmoji('✅', size: 32),
+    AppEmoji('🎌', size: 32),
+  ]);
 }
 
 // ── Study tab ─────────────────────────────────────────────────────────────────
@@ -266,324 +310,344 @@ class _StudyTab extends StatelessWidget {
   const _StudyTab();
 
   @override
+  Widget build(BuildContext context) => ListView(padding: _hpad, children: const [
+    _GallerySection(label: 'SectionCard',  child: _DemoSectionCards()),
+    _gap,
+    _GallerySection(label: 'StreakCard',   child: StreakCard(days: 7, label: '🔥 Streak', subtitle: 'Keep it up!')),
+    _gap,
+    _GallerySection(label: 'ChapterCard',  child: _DemoChapterCards()),
+    _gap,
+    _GallerySection(label: 'LessonRow',    child: _DemoLessonRows()),
+    _gap,
+  ]);
+}
+
+class _DemoSectionCards extends StatelessWidget {
+  const _DemoSectionCards();
+  @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: _hpad,
-      children: [
-        _GallerySection(
-          label: 'SectionCard',
-          child: Column(children: [
-            SectionCard(
-              title: context.l10n.sectionGrammar,
-              icon: '文',
-              gradientColors: [context.tokens.primary, context.tokens.primaryLight],
-              progressColor: context.tokens.primary,
-              subtitle: '17 chapters · N5/N4',
-              statLabel: '3 / 17 chapters completed',
-              progress: 0.18,
-              onTap: () {},
-            ),
-            const SizedBox(height: 10),
-            SectionCard(
-              title: context.l10n.sectionCharacters,
-              icon: '字',
-              gradientColors: [context.tokens.charactersDark, context.tokens.characters],
-              progressColor: context.tokens.characters,
-              subtitle: 'Kana · Kanji N5–N1',
-              statLabel: '46 / 184 known',
-              progress: 0.25,
-              onTap: () {},
-            ),
-            const SizedBox(height: 10),
-            SectionCard(
-              title: context.l10n.sectionVocabulary,
-              icon: '語',
-              gradientColors: [context.tokens.vocabularyDark, context.tokens.vocabulary],
-              progressColor: context.tokens.vocabulary,
-              subtitle: '800+ words · N5/N4',
-              statLabel: '120 / 800 known',
-              progress: 0.15,
-              onTap: () {},
-            ),
-          ]),
-        ),
-        _gap,
-
-        const _GallerySection(
-          label: 'StreakCard',
-          child: StreakCard(days: 7, label: '🔥 Streak', subtitle: 'Keep it up!'),
-        ),
-        _gap,
-
-        _GallerySection(
-          label: 'ChapterCard',
-          child: Column(children: [
-            ChapterCard(
-              chapterNumber: 1,
-              title: 'Verbs',
-              description: 'Verb groups, base forms, polite conjugations and て-form.',
-              totalLessons: 5,
-              completedLessons: 3,
-              onTap: () {},
-            ),
-            const SizedBox(height: 10),
-            ChapterCard(
-              chapterNumber: 2,
-              title: 'Directions & Places',
-              description: 'Spatial particles, location nouns, and directional expressions.',
-              totalLessons: 3,
-              completedLessons: 0,
-              onTap: () {},
-            ),
-          ]),
-        ),
-        _gap,
-
-        const _GallerySection(
-          label: 'LessonRow',
-          child: Column(children: [
-            LessonRow(title: 'Verb Groups',       difficulty: 2, status: LessonStatus.done),
-            SizedBox(height: 8),
-            LessonRow(title: 'Polite Form (ます)', difficulty: 1, status: LessonStatus.done),
-            SizedBox(height: 8),
-            LessonRow(title: 'て-form',           difficulty: 3, status: LessonStatus.notStarted),
-          ]),
-        ),
-        _gap,
-      ],
-    );
+    final t = context.tokens;
+    final l = context.l10n;
+    return Column(children: [
+      SectionCard(
+        title: l.sectionGrammar,
+        icon: '文',
+        gradientColors: [t.primary, t.primaryLight],
+        progressColor: t.primary,
+        subtitle: '17 chapters · N5/N4',
+        statLabel: '3 / 17 chapters completed',
+        progress: 0.18,
+        onTap: () {},
+      ),
+      const SizedBox(height: 10),
+      SectionCard(
+        title: l.sectionCharacters,
+        icon: '字',
+        gradientColors: [t.charactersDark, t.characters],
+        progressColor: t.characters,
+        subtitle: 'Kana · Kanji N5–N1',
+        statLabel: '46 / 184 known',
+        progress: 0.25,
+        onTap: () {},
+      ),
+      const SizedBox(height: 10),
+      SectionCard(
+        title: l.sectionVocabulary,
+        icon: '語',
+        gradientColors: [t.vocabularyDark, t.vocabulary],
+        progressColor: t.vocabulary,
+        subtitle: '800+ words · N5/N4',
+        statLabel: '120 / 800 known',
+        progress: 0.15,
+        onTap: () {},
+      ),
+    ]);
   }
+}
+
+class _DemoChapterCards extends StatelessWidget {
+  const _DemoChapterCards();
+  @override
+  Widget build(BuildContext context) => Column(children: [
+    ChapterCard(
+      chapterNumber: 1,
+      title: 'Verbs',
+      description: 'Verb groups, base forms, polite conjugations and て-form.',
+      totalLessons: 5,
+      completedLessons: 3,
+      onTap: () {},
+    ),
+    const SizedBox(height: 10),
+    ChapterCard(
+      chapterNumber: 2,
+      title: 'Directions & Places',
+      description: 'Spatial particles, location nouns, and directional expressions.',
+      totalLessons: 3,
+      completedLessons: 0,
+      onTap: () {},
+    ),
+  ]);
+}
+
+class _DemoLessonRows extends StatelessWidget {
+  const _DemoLessonRows();
+  @override
+  Widget build(BuildContext context) => const Column(children: [
+    LessonRow(title: 'Verb Groups',       difficulty: 2, status: LessonStatus.done),
+    SizedBox(height: 8),
+    LessonRow(title: 'Polite Form (ます)', difficulty: 1, status: LessonStatus.done),
+    SizedBox(height: 8),
+    LessonRow(title: 'て-form',           difficulty: 3, status: LessonStatus.notStarted),
+  ]);
 }
 
 // ── Characters tab ────────────────────────────────────────────────────────────
 
-class _CharactersTab extends StatefulWidget {
+const _demoKanjiId = 39135; // 食
+
+class _CharactersTab extends StatelessWidget {
   const _CharactersTab();
 
   @override
-  State<_CharactersTab> createState() => _CharactersTabState();
+  Widget build(BuildContext context) => ListView(padding: _hpad, children: const [
+    _GallerySection(label: 'CharacterCell (kana)',  child: _DemoKanaCells()),
+    _gap,
+    _GallerySection(label: 'CharacterCell (kanji)', child: _DemoKanjiCells()),
+    _gap,
+    _GallerySection(label: 'StrokeOrderAnimator', interactive: true, child: StrokeOrderAnimator(kanjiId: _demoKanjiId)),
+    _gap,
+    _GallerySection(label: 'StrokeStepRow',       interactive: true, child: StrokeStepRow(kanjiId: _demoKanjiId)),
+    _gap,
+  ]);
 }
 
-class _CharactersTabState extends State<_CharactersTab> {
-  // Unicode codepoint of 食 — a common kanji with a clear stroke order
-  static const _demoKanjiId = 39135;
-
+class _DemoKanaCells extends StatelessWidget {
+  const _DemoKanaCells();
   @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: _hpad,
-      children: [
-        _GallerySection(
-          label: 'CharacterCell (kana)',
-          child: Wrap(spacing: 8, runSpacing: 8, children: const [
-            CharacterCell(character: 'あ', subLabel: 'a', isKnown: true),
-            CharacterCell(character: 'い', subLabel: 'i', isKnown: true),
-            CharacterCell(character: 'う', subLabel: 'u', isKnown: true),
-            CharacterCell(character: 'え', subLabel: 'e'),
-            CharacterCell(character: 'お', subLabel: 'o'),
-            CharacterCell(character: 'か', subLabel: 'ka'),
-            CharacterCell(character: 'き', subLabel: 'ki'),
-          ]),
-        ),
-        _gap,
+  Widget build(BuildContext context) => const Wrap(spacing: 8, runSpacing: 8, children: [
+    CharacterCell(character: 'あ', subLabel: 'a',  isKnown: true),
+    CharacterCell(character: 'い', subLabel: 'i',  isKnown: true),
+    CharacterCell(character: 'う', subLabel: 'u',  isKnown: true),
+    CharacterCell(character: 'え', subLabel: 'e'),
+    CharacterCell(character: 'お', subLabel: 'o'),
+    CharacterCell(character: 'か', subLabel: 'ka'),
+    CharacterCell(character: 'き', subLabel: 'ki'),
+  ]);
+}
 
-        _GallerySection(
-          label: 'CharacterCell (kanji)',
-          child: Wrap(spacing: 8, runSpacing: 8, children: const [
-            CharacterCell(character: '食', isKnown: true),
-            CharacterCell(character: '水', isKnown: true),
-            CharacterCell(character: '火'),
-            CharacterCell(character: '山'),
-            CharacterCell(character: '川'),
-          ]),
-        ),
-        _gap,
-
-        const _GallerySection(
-          label: 'StrokeOrderAnimator',
-          child: StrokeOrderAnimator(kanjiId: _demoKanjiId),
-        ),
-        _gap,
-
-        const _GallerySection(
-          label: 'StrokeStepRow',
-          child: StrokeStepRow(kanjiId: _demoKanjiId),
-        ),
-        _gap,
-      ],
-    );
-  }
+class _DemoKanjiCells extends StatelessWidget {
+  const _DemoKanjiCells();
+  @override
+  Widget build(BuildContext context) => const Wrap(spacing: 8, runSpacing: 8, children: [
+    CharacterCell(character: '食', isKnown: true),
+    CharacterCell(character: '水', isKnown: true),
+    CharacterCell(character: '火'),
+    CharacterCell(character: '山'),
+    CharacterCell(character: '川'),
+  ]);
 }
 
 // ── Exercise tab ──────────────────────────────────────────────────────────────
 
-class _ExerciseTab extends StatefulWidget {
+class _ExerciseTab extends StatelessWidget {
   const _ExerciseTab();
 
   @override
-  State<_ExerciseTab> createState() => _ExerciseTabState();
+  Widget build(BuildContext context) => ListView(padding: _hpad, children: const [
+    _GallerySection(label: 'FlashCard',        interactive: true, child: _LiveFlashCard()),
+    _gap,
+    _GallerySection(label: 'McqCard',          interactive: true, child: _LiveMcqCard()),
+    _gap,
+    _GallerySection(label: 'SummaryCard',      child: _DemoSummaryCard()),
+    _gap,
+    _GallerySection(label: 'LessonReaderCard', child: _DemoLessonReaderCard()),
+    _gap,
+  ]);
 }
 
-class _ExerciseTabState extends State<_ExerciseTab> {
-  int _mcqSelected = -1;
-  bool _flashRevealed = false;
+class _LiveFlashCard extends StatefulWidget {
+  const _LiveFlashCard();
+  @override
+  State<_LiveFlashCard> createState() => _LiveFlashCardState();
+}
+
+class _LiveFlashCardState extends State<_LiveFlashCard> {
+  bool _revealed = false;
 
   @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: _hpad,
-      children: [
-        _GallerySection(
-          label: 'FlashCard',
-          child: Column(children: [
-            FlashCard(
-              japanese: '食べる',
-              isRevealed: _flashRevealed,
-              answer: 'to eat',
-              onTap: () => setState(() => _flashRevealed = !_flashRevealed),
-            ),
-            const SizedBox(height: 8),
-            FlashCardActions(
-              notYetLabel: context.l10n.flashcardNotYet,
-              gotItLabel: context.l10n.flashcardGotIt,
-              onNotYet: () => setState(() => _flashRevealed = false),
-              onGotIt:  () => setState(() => _flashRevealed = false),
-            ),
-          ]),
-        ),
-        _gap,
+  Widget build(BuildContext context) => Column(children: [
+    FlashCard(
+      japanese: '食べる',
+      isRevealed: _revealed,
+      answer: 'to eat',
+      onTap: () => setState(() => _revealed = !_revealed),
+    ),
+    const SizedBox(height: 8),
+    FlashCardActions(
+      notYetLabel: context.l10n.flashcardNotYet,
+      gotItLabel: context.l10n.flashcardGotIt,
+      onNotYet: () => setState(() => _revealed = false),
+      onGotIt:  () => setState(() => _revealed = false),
+    ),
+  ]);
+}
 
-        _GallerySection(
-          label: 'McqCard',
-          child: McqCard(
-            question: 'What is the て-form of 書く?',
-            japanesePrompt: '書く → ？',
-            options: [
-              McqOption(letter: 'A', text: '書きて', useJpFont: true),
-              McqOption(letter: 'B', text: '書いて ✓', useJpFont: true,
-                  state: _mcqSelected == 1 ? McqOptionState.correct : McqOptionState.idle),
-              McqOption(letter: 'C', text: '書って ✗', useJpFont: true,
-                  state: _mcqSelected == 2 ? McqOptionState.wrong : McqOptionState.idle),
-              McqOption(letter: 'D', text: '書んで', useJpFont: true),
-            ],
-            onOptionTap: (i) => setState(() => _mcqSelected = i),
-          ),
-        ),
-        _gap,
+class _LiveMcqCard extends StatefulWidget {
+  const _LiveMcqCard();
+  @override
+  State<_LiveMcqCard> createState() => _LiveMcqCardState();
+}
 
-        _GallerySection(
-          label: 'SummaryCard',
-          child: SummaryCard(
-            score: 8,
-            total: 10,
-            title: 'Lesson Complete!',
-            subtitle: 'て-form · Chapter 01',
-            correct: 8,
-            missed: 2,
-            markedKnown: 5,
-            timeSpent: '2m',
-            onRetry: () {},
-            onNext: () {},
-          ),
-        ),
-        _gap,
+class _LiveMcqCardState extends State<_LiveMcqCard> {
+  int _selected = -1;
 
-        _GallerySection(
-          label: 'LessonReaderCard',
-          child: LessonReaderCard(
-            chapterLabel: 'Chapter 01 · Verbs',
-            title: 'て-form Conjugation',
-            body: const [
-              ReaderBodyText('The て-form is one of the most important verb forms in Japanese.'),
-              ReaderSectionTitle('Group 1 verbs (godan)'),
-              ReaderJpExample(japanese: '書く → 書いて', translation: 'kaku → kaite'),
-              ReaderJpExample(japanese: '飲む → 飲んで', translation: 'nomu → nonde'),
-              ReaderSectionTitle('Group 2 verbs (ichidan)'),
-              ReaderJpExample(japanese: '食べる → 食べて', translation: 'taberu → tabete'),
-            ],
-            onPractice: () {},
-          ),
-        ),
-        _gap,
-      ],
-    );
-  }
+  @override
+  Widget build(BuildContext context) => McqCard(
+    question: 'What is the て-form of 書く?',
+    japanesePrompt: '書く → ？',
+    options: [
+      McqOption(letter: 'A', text: '書きて', useJpFont: true),
+      McqOption(letter: 'B', text: '書いて ✓', useJpFont: true,
+          state: _selected == 1 ? McqOptionState.correct : McqOptionState.idle),
+      McqOption(letter: 'C', text: '書って ✗', useJpFont: true,
+          state: _selected == 2 ? McqOptionState.wrong   : McqOptionState.idle),
+      McqOption(letter: 'D', text: '書んで', useJpFont: true),
+    ],
+    onOptionTap: (i) => setState(() => _selected = i),
+  );
+}
+
+class _DemoSummaryCard extends StatelessWidget {
+  const _DemoSummaryCard();
+  @override
+  Widget build(BuildContext context) => SummaryCard(
+    score: 8,
+    total: 10,
+    title: 'Lesson Complete!',
+    subtitle: 'て-form · Chapter 01',
+    correct: 8,
+    missed: 2,
+    markedKnown: 5,
+    timeSpent: '2m',
+    onRetry: () {},
+    onNext: () {},
+  );
+}
+
+class _DemoLessonReaderCard extends StatelessWidget {
+  const _DemoLessonReaderCard();
+  @override
+  Widget build(BuildContext context) => LessonReaderCard(
+    chapterLabel: 'Chapter 01 · Verbs',
+    title: 'て-form Conjugation',
+    body: const [
+      ReaderBodyText('The て-form is one of the most important verb forms in Japanese.'),
+      ReaderSectionTitle('Group 1 verbs (godan)'),
+      ReaderJpExample(japanese: '書く → 書いて', translation: 'kaku → kaite'),
+      ReaderJpExample(japanese: '飲む → 飲んで', translation: 'nomu → nonde'),
+      ReaderSectionTitle('Group 2 verbs (ichidan)'),
+      ReaderJpExample(japanese: '食べる → 食べて', translation: 'taberu → tabete'),
+    ],
+    onPractice: () {},
+  );
 }
 
 // ── Navigation tab ────────────────────────────────────────────────────────────
 
-class _NavTab extends StatefulWidget {
+class _NavTab extends StatelessWidget {
   const _NavTab();
 
   @override
-  State<_NavTab> createState() => _NavTabState();
+  Widget build(BuildContext context) => ListView(padding: _hpad, children: const [
+    _GallerySection(label: 'AppNavBar',       interactive: true, child: _LiveNavBar()),
+    _gap,
+    _GallerySection(label: 'AppNavRail',      interactive: true, child: _LiveNavRail()),
+    _gap,
+    _GallerySection(label: 'SegmentedTabBar', interactive: true, child: _LiveSegmentedTabBar()),
+    _gap,
+  ]);
 }
 
-class _NavTabState extends State<_NavTab> with SingleTickerProviderStateMixin {
-  int _navIndex = 0;
-  late final TabController _segController;
+class _LiveNavBar extends StatefulWidget {
+  const _LiveNavBar();
+  @override
+  State<_LiveNavBar> createState() => _LiveNavBarState();
+}
+
+class _LiveNavBarState extends State<_LiveNavBar> {
+  int _index = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    return AppNavBar(
+      destinations: [
+        NavDestination(label: l.sectionCharacters, icon: '字'),
+        NavDestination(label: l.sectionVocabulary, icon: '語'),
+        NavDestination(label: l.sectionGrammar,    icon: '文'),
+        NavDestination(label: l.navMore,           icon: '☰'),
+      ],
+      selectedIndex: _index,
+      onDestinationSelected: (i) => setState(() => _index = i),
+    );
+  }
+}
+
+class _LiveNavRail extends StatefulWidget {
+  const _LiveNavRail();
+  @override
+  State<_LiveNavRail> createState() => _LiveNavRailState();
+}
+
+class _LiveNavRailState extends State<_LiveNavRail> {
+  int _index = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppNavRail(
+          destinations: [
+            NavDestination(label: l.sectionCharacters, icon: '字'),
+            NavDestination(label: l.sectionVocabulary, icon: '語'),
+            NavDestination(label: l.sectionGrammar,    icon: '文'),
+            NavDestination(label: l.navMore,           icon: '☰'),
+          ],
+          selectedIndex: _index,
+          onDestinationSelected: (i) => setState(() => _index = i),
+        ),
+      ],
+    );
+  }
+}
+
+class _LiveSegmentedTabBar extends StatefulWidget {
+  const _LiveSegmentedTabBar();
+  @override
+  State<_LiveSegmentedTabBar> createState() => _LiveSegmentedTabBarState();
+}
+
+class _LiveSegmentedTabBarState extends State<_LiveSegmentedTabBar>
+    with SingleTickerProviderStateMixin {
+  late final TabController _controller;
 
   @override
   void initState() {
     super.initState();
-    _segController = TabController(length: 3, vsync: this);
+    _controller = TabController(length: 3, vsync: this);
   }
 
   @override
   void dispose() {
-    _segController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
-  List<NavDestination> _destinations(BuildContext context) {
-    final l = context.l10n;
-    return [
-      NavDestination(label: l.sectionCharacters, icon: '字'),
-      NavDestination(label: l.sectionVocabulary, icon: '語'),
-      NavDestination(label: l.sectionGrammar,    icon: '文'),
-      NavDestination(label: l.navMore,           icon: '☰'),
-    ];
-  }
-
   @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: _hpad,
-      children: [
-        _GallerySection(
-          label: 'AppNavBar',
-          child: AppNavBar(
-            destinations: _destinations(context),
-            selectedIndex: _navIndex,
-            onDestinationSelected: (i) => setState(() => _navIndex = i),
-          ),
-        ),
-        _gap,
-
-        _GallerySection(
-          label: 'AppNavRail',
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppNavRail(
-                destinations: _destinations(context),
-                selectedIndex: _navIndex,
-                onDestinationSelected: (i) => setState(() => _navIndex = i),
-              ),
-            ],
-          ),
-        ),
-        _gap,
-
-        _GallerySection(
-          label: 'SegmentedTabBar',
-          child: SegmentedTabBar(
-            controller: _segController,
-            labels: const ['Tab A', 'Tab B', 'Tab C'],
-          ),
-        ),
-        _gap,
-      ],
-    );
-  }
+  Widget build(BuildContext context) => SegmentedTabBar(
+    controller: _controller,
+    labels: const ['Tab A', 'Tab B', 'Tab C'],
+  );
 }

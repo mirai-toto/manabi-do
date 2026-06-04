@@ -67,28 +67,49 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
               labels: [l.tabHiragana, l.tabKatakana, l.tabKanji],
             ),
             Expanded(
-              child: kanaData == null
-                  ? const Center(child: CircularProgressIndicator())
-                  : TabBarView(
-                      controller: _tabController,
-                      children: [
-                        KanaTabView(
-                          rows: kanaData.hiragana,
-                          known: _knownHiragana,
-                          onToggle: _toggleHiragana,
-                        ),
-                        KanaTabView(
-                          rows: kanaData.katakana,
-                          known: _knownKatakana,
-                          onToggle: _toggleKatakana,
-                        ),
-                        const KanjiTabView(),
-                      ],
-                    ),
+              child: _CharactersBody(
+                tabController: _tabController,
+                kanaData: kanaData,
+                knownHiragana: _knownHiragana,
+                knownKatakana: _knownKatakana,
+                onToggleHiragana: _toggleHiragana,
+                onToggleKatakana: _toggleKatakana,
+              ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CharactersBody extends StatelessWidget {
+  final TabController tabController;
+  final KanaData? kanaData;
+  final Set<String> knownHiragana;
+  final Set<String> knownKatakana;
+  final void Function(String) onToggleHiragana;
+  final void Function(String) onToggleKatakana;
+
+  const _CharactersBody({
+    required this.tabController,
+    required this.kanaData,
+    required this.knownHiragana,
+    required this.knownKatakana,
+    required this.onToggleHiragana,
+    required this.onToggleKatakana,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (kanaData == null) return const Center(child: CircularProgressIndicator());
+    return TabBarView(
+      controller: tabController,
+      children: [
+        KanaTabView(rows: kanaData!.hiragana, known: knownHiragana, onToggle: onToggleHiragana),
+        KanaTabView(rows: kanaData!.katakana, known: knownKatakana, onToggle: onToggleKatakana),
+        const KanjiTabView(),
+      ],
     );
   }
 }

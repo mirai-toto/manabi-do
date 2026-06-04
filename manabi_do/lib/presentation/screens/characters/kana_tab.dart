@@ -27,18 +27,32 @@ class KanaTabView extends StatelessWidget {
       children: [
         ProgressRow(known: knownCount, total: allKana.length, color: color),
         PracticeButton(color: color),
-        for (final row in rows) ...[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-            child: SectionLabel(row.label),
-          ),
-          const SizedBox(height: AppDimens.spaceXs),
-          _KanaGrid(row: row, known: known, onToggle: onToggle),
-          const SizedBox(height: AppDimens.spaceSm),
-        ],
+        for (final row in rows)
+          _KanaRowSection(row: row, known: known, onToggle: onToggle),
       ],
     );
   }
+}
+
+class _KanaRowSection extends StatelessWidget {
+  final KanaRow row;
+  final Set<String> known;
+  final void Function(String) onToggle;
+  const _KanaRowSection({required this.row, required this.known, required this.onToggle});
+
+  @override
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
+        child: SectionLabel(row.label),
+      ),
+      const SizedBox(height: AppDimens.spaceXs),
+      _KanaGrid(row: row, known: known, onToggle: onToggle),
+      const SizedBox(height: AppDimens.spaceSm),
+    ],
+  );
 }
 
 class _KanaGrid extends StatelessWidget {
