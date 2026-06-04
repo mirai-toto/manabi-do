@@ -336,10 +336,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get srsStateLearning => 'In Bearbeitung';
 
   @override
+  String get srsStateApprentice => 'Anfänger';
+
+  @override
   String get srsStateFamiliar => 'Vertraut';
 
   @override
   String get srsStateMastered => 'Gelernt';
+
+  @override
+  String get srsStateExpert => 'Experte';
 
   @override
   String get srsDueToday => 'Heute fällig';

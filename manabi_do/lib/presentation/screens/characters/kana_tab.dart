@@ -165,7 +165,7 @@ class _KanaCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final level = srsLevel(card);
-    final accent = level == SrsLevel.newCard ? null : level.accent(context);
+    final accent = level == SrsLevel.newCard ? null : level.accent;
     return CharacterCell(
       character: entry.kana,
       subLabel: entry.romaji,

@@ -712,6 +712,12 @@ abstract class AppLocalizations {
   /// **'Learning'**
   String get srsStateLearning;
 
+  /// No description provided for @srsStateApprentice.
+  ///
+  /// In en, this message translates to:
+  /// **'Apprentice'**
+  String get srsStateApprentice;
+
   /// No description provided for @srsStateFamiliar.
   ///
   /// In en, this message translates to:
@@ -723,6 +729,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Mastered'**
   String get srsStateMastered;
+
+  /// No description provided for @srsStateExpert.
+  ///
+  /// In en, this message translates to:
+  /// **'Expert'**
+  String get srsStateExpert;
 
   /// No description provided for @srsDueToday.
   ///

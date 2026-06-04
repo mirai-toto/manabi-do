@@ -46,10 +46,7 @@ class _KanaPracticeScreenState extends ConsumerState<KanaPracticeScreen> {
     final db = ref.read(databaseProvider);
     for (final (kana, existingCard) in queue) {
       var card = existingCard ?? Card(cardId: DateTime.now().millisecondsSinceEpoch, due: DateTime.now());
-      // Rate easy 3 times to push stability well past the mastered threshold
-      for (var i = 0; i < 3; i++) {
-        card = _scheduler.reviewCard(card, Rating.easy).card;
-      }
+      card = _scheduler.reviewCard(card, Rating.easy).card;
       await db.upsertSrsCard(widget.type, kana.id, card);
       await db.setKanaKnown(widget.type, kana.id, isKnown: true);
     }
