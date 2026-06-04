@@ -8,16 +8,26 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../widgets/widgets.dart';
 
-class MoreScreen extends ConsumerWidget {
-  const MoreScreen({super.key});
+// Supported languages: code → (flag emoji, native name)
+const _languages = [
+  (code: 'en', flag: '🇬🇧', name: 'English'),
+  (code: 'fr', flag: '🇫🇷', name: 'Français'),
+];
+
+class SettingsScreen extends ConsumerWidget {
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.tokens;
-    final l = context.l10n;
+    final l        = context.l10n;
     final themeMode = ref.watch(themeModeProvider);
     final locale    = ref.watch(localeProvider);
     final isDark    = themeMode == ThemeMode.dark;
+
+    final currentLang = _languages.firstWhere(
+      (e) => e.code == locale.languageCode,
+      orElse: () => _languages.first,
+    );
 
     return Align(
       alignment: Alignment.topCenter,
@@ -42,28 +52,37 @@ class MoreScreen extends ConsumerWidget {
             SectionLabel(l.settingsLanguage),
             const SizedBox(height: AppDimens.spaceSm),
             _SettingsCard(children: [
-              _LanguageRow(
-                label: 'English',
-                selected: locale.languageCode == 'en',
-                onTap: () {
-                  if (locale.languageCode != 'en') {
-                    ref.read(localeProvider.notifier).toggle();
-                  }
-                },
-              ),
-              Divider(height: 1, thickness: 1, color: t.outlineVariant),
-              _LanguageRow(
-                label: 'Français',
-                selected: locale.languageCode == 'fr',
-                onTap: () {
-                  if (locale.languageCode != 'fr') {
-                    ref.read(localeProvider.notifier).toggle();
-                  }
-                },
+              _TappableRow(
+                leading: Text(
+                  currentLang.flag,
+                  style: const TextStyle(fontSize: 22, fontFamily: 'NotoColorEmoji'),
+                ),
+                label: currentLang.name,
+                onTap: () => _showLanguagePicker(context, ref, locale.languageCode),
               ),
             ]),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showLanguagePicker(BuildContext context, WidgetRef ref, String current) {
+    final t = context.tokens;
+    final l = context.l10n;
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: t.cardBackground,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppDimens.radiusLg)),
+      ),
+      builder: (_) => _LanguagePickerSheet(
+        currentCode: current,
+        onSelect: (code) {
+          if (code != current) ref.read(localeProvider.notifier).toggle();
+          Navigator.of(context).pop();
+        },
+        title: l.settingsLanguage,
       ),
     );
   }
@@ -79,9 +98,9 @@ class _ScreenHeader extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Text(l.navMore, style: AppTextStyles.headline.copyWith(color: t.onSurface)),
+            child: Text(l.navSettings, style: AppTextStyles.headline.copyWith(color: t.onSurface)),
           ),
-          Text('⚙', style: AppTextStyles.jpDisplay.copyWith(color: t.onSurfaceVariant)),
+          Icon(Icons.settings_rounded, color: t.onSurfaceVariant, size: 26),
         ],
       ),
     );
@@ -123,25 +142,19 @@ class _ToggleRow extends StatelessWidget {
         children: [
           Icon(icon, size: 20, color: t.onSurfaceVariant),
           const SizedBox(width: AppDimens.spaceMd),
-          Expanded(
-            child: Text(label, style: AppTextStyles.body.copyWith(color: t.onSurface)),
-          ),
-          Switch(
-            value: value,
-            onChanged: onChanged,
-            activeThumbColor: t.primary,
-          ),
+          Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: t.onSurface))),
+          Switch(value: value, onChanged: onChanged, activeThumbColor: t.primary),
         ],
       ),
     );
   }
 }
 
-class _LanguageRow extends StatelessWidget {
+class _TappableRow extends StatelessWidget {
+  final Widget leading;
   final String label;
-  final bool selected;
   final VoidCallback onTap;
-  const _LanguageRow({required this.label, required this.selected, required this.onTap});
+  const _TappableRow({required this.leading, required this.label, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -153,17 +166,77 @@ class _LanguageRow extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceMd),
         child: Row(
           children: [
-            Expanded(
-              child: Text(
-                label,
-                style: AppTextStyles.body.copyWith(
-                  color: selected ? t.primary : t.onSurface,
-                  fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-                ),
+            leading,
+            const SizedBox(width: AppDimens.spaceMd),
+            Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: t.onSurface))),
+            Icon(Icons.chevron_right_rounded, size: 20, color: t.onSurfaceVariant),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LanguagePickerSheet extends StatelessWidget {
+  final String currentCode;
+  final void Function(String code) onSelect;
+  final String title;
+  const _LanguagePickerSheet({required this.currentCode, required this.onSelect, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 36,
+              height: 4,
+              margin: const EdgeInsets.only(bottom: AppDimens.spaceMd),
+              decoration: BoxDecoration(
+                color: t.outlineVariant,
+                borderRadius: BorderRadius.circular(2),
               ),
             ),
-            if (selected)
-              Icon(Icons.check_rounded, size: 20, color: t.primary),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(title, style: AppTextStyles.title.copyWith(color: t.onSurface)),
+              ),
+            ),
+            const SizedBox(height: AppDimens.spaceMd),
+            for (final lang in _languages) ...[
+              InkWell(
+                onTap: () => onSelect(lang.code),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceMd),
+                  child: Row(
+                    children: [
+                      Text(
+                        lang.flag,
+                        style: const TextStyle(fontSize: 28, fontFamily: 'NotoColorEmoji'),
+                      ),
+                      const SizedBox(width: AppDimens.spaceMd),
+                      Expanded(
+                        child: Text(
+                          lang.name,
+                          style: AppTextStyles.body.copyWith(
+                            color: lang.code == currentCode ? t.primary : t.onSurface,
+                            fontWeight: lang.code == currentCode ? FontWeight.w600 : FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                      if (lang.code == currentCode)
+                        Icon(Icons.check_rounded, size: 20, color: t.primary),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
       ),

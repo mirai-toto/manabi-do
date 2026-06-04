@@ -24,7 +24,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     CharactersScreen(),
     VocabularyScreen(),
     GrammarScreen(),
-    MoreScreen(),
+    SettingsScreen(),
   ];
 
   List<NavDestination> _destinations(BuildContext context) {
@@ -34,7 +34,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
       NavDestination(label: l.sectionCharacters, icon: '字'),
       NavDestination(label: l.navVocab,          icon: '語'),
       NavDestination(label: l.sectionGrammar,    icon: '文'),
-      NavDestination(label: l.navMore,           icon: '…'),
+      NavDestination(label: l.navSettings,       icon: '⚙'),
     ];
   }
 

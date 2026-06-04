@@ -117,7 +117,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get flashcardGotIt => '✓  Got it';
 
   @override
-  String get navMore => 'More';
+  String get navSettings => 'Settings';
 
   @override
   String get navHome => 'Home';
