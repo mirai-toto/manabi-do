@@ -155,6 +155,8 @@ class _CommonTab extends StatelessWidget {
     _gap,
     _GallerySection(label: 'KnownToggle',    interactive: true, child: _LiveKnownToggle()),
     _gap,
+    _GallerySection(label: 'KnownToggle (disabled)', child: _DemoKnownToggleDisabled()),
+    _gap,
     _GallerySection(label: 'ProgressBar & ProgressRow', child: _DemoProgress()),
     _gap,
     _GallerySection(label: 'PracticeButton', interactive: true, child: _DemoPracticeButtons()),
@@ -272,6 +274,15 @@ class _LiveKnownToggleState extends State<_LiveKnownToggle> {
     KnownToggle(isKnown: _known, onTap: () => setState(() => _known = !_known)),
     KnownToggle(isKnown: true,  onTap: () {}),
     KnownToggle(isKnown: false, onTap: () {}),
+  ]);
+}
+
+class _DemoKnownToggleDisabled extends StatelessWidget {
+  const _DemoKnownToggleDisabled();
+  @override
+  Widget build(BuildContext context) => const Row(spacing: 12, children: [
+    KnownToggle(isKnown: false),
+    KnownToggle(isKnown: true),
   ]);
 }
 

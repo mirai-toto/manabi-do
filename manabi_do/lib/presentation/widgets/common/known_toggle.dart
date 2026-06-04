@@ -21,11 +21,15 @@ class KnownToggle extends StatelessWidget {
     final t = context.tokens;
     final l = context.l10n;
     final label = isKnown ? l.knownCheck : l.markAsKnown;
+    final disabled = onTap == null;
 
-    return Semantics(
+    return Opacity(
+      opacity: disabled ? 0.38 : 1.0,
+      child: Semantics(
       label: label,
       toggled: isKnown,
-      button: true,
+      button: !disabled,
+      enabled: !disabled,
       excludeSemantics: true,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
@@ -73,6 +77,7 @@ class KnownToggle extends StatelessWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }
