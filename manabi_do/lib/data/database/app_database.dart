@@ -146,14 +146,7 @@ class AppDatabase extends _$AppDatabase {
       .map((rows) => rows.map((r) => r.itemId).toSet());
 
   Future<void> setKanjiKnown(int kanjiId, {required bool isKnown}) =>
-      into(progressEntries).insertOnConflictUpdate(
-        ProgressEntriesCompanion.insert(
-          itemType: 'kanji',
-          itemId: kanjiId,
-          isKnown: isKnown,
-          toggledAt: DateTime.now(),
-        ),
-      );
+      _upsertProgress('kanji', kanjiId, isKnown: isKnown);
 
   // itemType is 'hiragana' or 'katakana'
   Stream<Set<int>> watchKnownKanaIds(String itemType) =>
@@ -163,14 +156,26 @@ class AppDatabase extends _$AppDatabase {
       .map((rows) => rows.map((r) => r.itemId).toSet());
 
   Future<void> setKanaKnown(String itemType, int kanaId, {required bool isKnown}) =>
-      into(progressEntries).insertOnConflictUpdate(
-        ProgressEntriesCompanion.insert(
-          itemType: itemType,
-          itemId: kanaId,
-          isKnown: isKnown,
-          toggledAt: DateTime.now(),
+      _upsertProgress(itemType, kanaId, isKnown: isKnown);
+
+  Future<void> _upsertProgress(String itemType, int itemId, {required bool isKnown}) {
+    final companion = ProgressEntriesCompanion.insert(
+      itemType: itemType,
+      itemId: itemId,
+      isKnown: isKnown,
+      toggledAt: DateTime.now(),
+    );
+    return into(progressEntries).insert(
+      companion,
+      onConflict: DoUpdate(
+        (old) => ProgressEntriesCompanion.custom(
+          isKnown: Variable(isKnown),
+          toggledAt: Variable(DateTime.now()),
         ),
-      );
+        target: [progressEntries.itemType, progressEntries.itemId],
+      ),
+    );
+  }
 
   // ── SRS queries ──────────────────────────────────────────────────────────
 
