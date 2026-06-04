@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import 'nav_destination.dart';
+import 'nav_item.dart';
 
 class AppNavBar extends StatelessWidget {
   final List<NavDestination> destinations;
@@ -31,85 +30,16 @@ class AppNavBar extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceSm, vertical: AppDimens.buttonPaddingV),
       child: Row(
-        children: List.generate(destinations.length, (i) {
-          return _NavItem(
+        children: List.generate(destinations.length, (i) => Expanded(
+          child: NavItem(
             destination: destinations[i],
             isActive: i == selectedIndex,
             onTap: () => onDestinationSelected?.call(i),
-          );
-        }),
-      ),
-    );
-  }
-}
-
-class _NavItem extends StatelessWidget {
-  final NavDestination destination;
-  final bool isActive;
-  final VoidCallback onTap;
-
-  const _NavItem({
-    required this.destination,
-    required this.isActive,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-
-    return Expanded(
-      child: Semantics(
-        label: destination.label,
-        selected: isActive,
-        button: true,
-        excludeSemantics: true,
-        child: GestureDetector(
-        onTap: onTap,
-        behavior: HitTestBehavior.opaque,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 150),
-              width: isActive ? 64 : 24,
-              height: 32,
-              decoration: isActive
-                  ? BoxDecoration(
-                      color: t.primaryContainer,
-                      borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-                    )
-                  : null,
-              child: Center(
-                child: destination.iconAsset != null
-                    ? SvgPicture.asset(
-                        destination.iconAsset!,
-                        width: 22,
-                        height: 22,
-                        colorFilter: ColorFilter.mode(
-                          isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
-                          BlendMode.srcIn,
-                        ),
-                      )
-                    : Text(
-                        destination.icon!,
-                        style: AppTextStyles.jpBody.copyWith(
-                          fontSize: 20,
-                          color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
-                        ),
-                      ),
-              ),
-            ),
-            const SizedBox(height: AppDimens.spaceXs),
-            Text(
-              destination.label,
-              style: AppTextStyles.labelSmall.copyWith(
-                color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
-              ),
-            ),
-          ],
-        ),
-        ),
+            pillWidth: 64,
+            iconSize: 22,
+            labelSpacing: AppDimens.spaceXs,
+          ),
+        )),
       ),
     );
   }

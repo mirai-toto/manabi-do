@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import 'nav_destination.dart';
+import 'nav_item.dart';
 
 class AppNavRail extends StatelessWidget {
   final List<NavDestination> destinations;
@@ -33,87 +32,19 @@ class AppNavRail extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: List.generate(destinations.length, (i) {
-          return _RailItem(
+        children: List.generate(destinations.length, (i) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceXs),
+          child: NavItem(
             destination: destinations[i],
             isActive: i == selectedIndex,
             onTap: () => onDestinationSelected?.call(i),
-          );
-        }),
-      ),
-    );
-  }
-}
-
-class _RailItem extends StatelessWidget {
-  final NavDestination destination;
-  final bool isActive;
-  final VoidCallback onTap;
-
-  const _RailItem({
-    required this.destination,
-    required this.isActive,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-
-    return Semantics(
-      label: destination.label,
-      selected: isActive,
-      button: true,
-      excludeSemantics: true,
-      child: GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceXs),
-        child: Column(
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 150),
-              width: 56,
-              height: 32,
-              decoration: isActive
-                  ? BoxDecoration(
-                      color: t.primaryContainer,
-                      borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-                    )
-                  : null,
-              child: Center(
-                child: destination.iconAsset != null
-                    ? SvgPicture.asset(
-                        destination.iconAsset!,
-                        width: 20,
-                        height: 20,
-                        colorFilter: ColorFilter.mode(
-                          isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
-                          BlendMode.srcIn,
-                        ),
-                      )
-                    : Text(
-                        destination.icon!,
-                        style: AppTextStyles.jpBody.copyWith(
-                          fontSize: 18,
-                          color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
-                        ),
-                      ),
-              ),
-            ),
-            const SizedBox(height: AppDimens.spaceXxs),
-            Text(
-              destination.label,
-              style: AppTextStyles.labelSmall.copyWith(
-                fontSize: 10,
-                color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
+            pillWidth: 56,
+            iconSize: 20,
+            labelFontSize: 10,
+            labelSpacing: AppDimens.spaceXxs,
+            labelAlign: TextAlign.center,
+          ),
+        )),
       ),
     );
   }

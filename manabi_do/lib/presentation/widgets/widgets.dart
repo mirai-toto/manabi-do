@@ -15,6 +15,10 @@ export 'navigation/app_nav_bar.dart';
 export 'navigation/app_nav_rail.dart';
 export 'navigation/nav_destination.dart';
 
+// settings
+export 'settings/settings_card.dart';
+export 'settings/settings_tile.dart';
+
 // study
 export 'study/chapter_card.dart';
 export 'study/lesson_row.dart';

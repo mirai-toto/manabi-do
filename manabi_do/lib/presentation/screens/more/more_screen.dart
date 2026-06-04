@@ -7,23 +7,20 @@ import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
-import '../../widgets/widgets.dart';
-
-// Supported languages: code → (flag emoji, native name)
-const _languages = [
-  (code: 'en', flag: '🇬🇧', name: 'English'),
-  (code: 'fr', flag: '🇫🇷', name: 'Français'),
-  (code: 'de', flag: '🇩🇪', name: 'Deutsch'),
-];
+import '../../widgets/common/section_label.dart';
+import '../../widgets/settings/settings_card.dart';
+import '../../widgets/settings/settings_tile.dart';
+import 'language_picker_sheet.dart';
 
 final _packageInfoProvider = FutureProvider<PackageInfo>((_) => PackageInfo.fromPlatform());
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
-  Future<void> _confirmResetAll(BuildContext context, WidgetRef ref, AppLocalizations l) async {
+  Future<void> _confirmResetAll(BuildContext context, AppDatabase db, AppLocalizations l) async {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -39,26 +36,45 @@ class SettingsScreen extends ConsumerWidget {
       ),
     );
     if (confirmed != true) return;
-    await ref.read(databaseProvider).resetAllProgress();
+    await db.resetAllProgress();
+  }
+
+  void _showLanguagePicker(BuildContext context, WidgetRef ref, String current, String title) {
+    final t = context.tokens;
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: t.cardBackground,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(AppDimens.radiusLg)),
+      ),
+      builder: (_) => LanguagePickerSheet(
+        currentCode: current,
+        title: title,
+        onSelect: (code) {
+          ref.read(localeProvider.notifier).setLocale(Locale(code));
+          Navigator.of(context).pop();
+        },
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l        = context.l10n;
-    final t        = context.tokens;
+    final l         = context.l10n;
+    final t         = context.tokens;
     final themeMode = ref.watch(themeModeProvider);
     final locale    = ref.watch(localeProvider);
     final isDark    = themeMode == ThemeMode.dark;
     final pkgAsync  = ref.watch(_packageInfoProvider);
+    final srs       = ref.watch(srsSettingsProvider);
+    final db        = ref.read(databaseProvider);
 
-    final currentLang = _languages.firstWhere(
+    final currentLang = languages.firstWhere(
       (e) => e.code == locale.languageCode,
-      orElse: () => _languages.first,
+      orElse: () => languages.first,
     );
-
-    final version = pkgAsync.when(data: (p) => p.version, loading: () => '—', error: (e, s) => '—');
-    final srsSettings = ref.watch(srsSettingsProvider);
-    final newCards = srsSettings.asData?.value.newCardsPerSession ?? 10;
+    final version  = pkgAsync.when(data: (p) => p.version, loading: () => '—', error: (_, _) => '—');
+    final newCards = srs.asData?.value.newCardsPerSession ?? 10;
 
     return Align(
       alignment: Alignment.topCenter,
@@ -69,16 +85,14 @@ class SettingsScreen extends ConsumerWidget {
           children: [
             _ScreenHeader(),
             const SizedBox(height: AppDimens.spaceLg),
+
             SectionLabel(l.settingsPractice),
             const SizedBox(height: AppDimens.spaceSm),
-            _SettingsCard(children: [
-              _StepperRow(
+            SettingsCard(children: [
+              SettingsStepper(
                 icon: Icons.layers_rounded,
                 label: l.settingsPracticeNewCards,
                 value: newCards,
-                min: 5,
-                max: 50,
-                step: 5,
                 onDecrement: newCards > 5
                     ? () => ref.read(srsSettingsProvider.notifier).setNewCardsPerSession(newCards - 5)
                     : null,
@@ -87,55 +101,57 @@ class SettingsScreen extends ConsumerWidget {
                     : null,
               ),
             ]),
+
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsAppearance),
             const SizedBox(height: AppDimens.spaceSm),
-            _SettingsCard(children: [
-              _ToggleRow(
+            SettingsCard(children: [
+              SettingsToggle(
                 icon: isDark ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
                 label: isDark ? l.settingsThemeDark : l.settingsThemeLight,
                 value: isDark,
                 onChanged: (_) => ref.read(themeModeProvider.notifier).toggle(),
               ),
             ]),
+
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsLanguage),
             const SizedBox(height: AppDimens.spaceSm),
-            _SettingsCard(children: [
-              _TappableRow(
+            SettingsCard(children: [
+              SettingsTile(
                 leading: Text(
                   currentLang.flag,
                   style: const TextStyle(fontSize: 22, fontFamily: 'NotoColorEmoji'),
                 ),
                 label: currentLang.name,
-                onTap: () => _showLanguagePicker(context, ref, locale.languageCode),
+                onTap: () => _showLanguagePicker(context, ref, locale.languageCode, l.settingsLanguage),
               ),
             ]),
+
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsData),
             const SizedBox(height: AppDimens.spaceSm),
-            _SettingsCard(children: [
-              _TappableRow(
+            SettingsCard(children: [
+              SettingsTile(
                 leading: Icon(Icons.delete_outline_rounded, size: 20, color: t.error),
                 label: l.settingsResetProgress,
                 labelColor: t.error,
-                onTap: () => _confirmResetAll(context, ref, l),
+                onTap: () => _confirmResetAll(context, db, l),
               ),
             ]),
+
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.aboutTitle),
             const SizedBox(height: AppDimens.spaceSm),
-            _SettingsCard(children: [
-              _InfoRow(
-                icon: Icons.info_outline_rounded,
-                label: l.aboutVersion(version),
-              ),
-              _TappableRow(
-                leading: Icon(Icons.article_outlined, size: 20, color: context.tokens.onSurfaceVariant),
+            SettingsCard(children: [
+              SettingsInfo(icon: Icons.info_outline_rounded, label: l.aboutVersion(version)),
+              SettingsTile(
+                leading: Icon(Icons.article_outlined, size: 20, color: t.onSurfaceVariant),
                 label: l.aboutOpenSourceLicenses,
                 onTap: () => showLicensePage(context: context, applicationName: l.appTitle),
               ),
             ]),
+
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.aboutDataSources),
             const SizedBox(height: AppDimens.spaceSm),
@@ -143,26 +159,6 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: AppDimens.spaceLg),
           ],
         ),
-      ),
-    );
-  }
-
-  void _showLanguagePicker(BuildContext context, WidgetRef ref, String current) {
-    final t = context.tokens;
-    final l = context.l10n;
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: t.cardBackground,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(AppDimens.radiusLg)),
-      ),
-      builder: (_) => _LanguagePickerSheet(
-        currentCode: current,
-        onSelect: (code) {
-          ref.read(localeProvider.notifier).setLocale(Locale(code));
-          Navigator.of(context).pop();
-        },
-        title: l.settingsLanguage,
       ),
     );
   }
@@ -177,103 +173,9 @@ class _ScreenHeader extends StatelessWidget {
       padding: const EdgeInsets.only(top: AppDimens.spaceSm),
       child: Row(
         children: [
-          Expanded(
-            child: Text(l.navSettings, style: AppTextStyles.headline.copyWith(color: t.onSurface)),
-          ),
+          Expanded(child: Text(l.navSettings, style: AppTextStyles.headline.copyWith(color: t.onSurface))),
           Icon(Icons.settings_rounded, color: t.onSurfaceVariant, size: 26),
         ],
-      ),
-    );
-  }
-}
-
-class _SettingsCard extends StatelessWidget {
-  final List<Widget> children;
-  const _SettingsCard({required this.children});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: t.cardBackground,
-        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: t.outlineVariant),
-      ),
-      child: Column(children: children),
-    );
-  }
-}
-
-class _ToggleRow extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final bool value;
-  final ValueChanged<bool> onChanged;
-  const _ToggleRow({required this.icon, required this.label, required this.value, required this.onChanged});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceSm),
-      child: Row(
-        children: [
-          Icon(icon, size: 20, color: t.onSurfaceVariant),
-          const SizedBox(width: AppDimens.spaceMd),
-          Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: t.onSurface))),
-          Switch(value: value, onChanged: onChanged, activeThumbColor: t.primary),
-        ],
-      ),
-    );
-  }
-}
-
-class _InfoRow extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  const _InfoRow({required this.icon, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceSm),
-      child: Row(
-        children: [
-          Icon(icon, size: 20, color: t.onSurfaceVariant),
-          const SizedBox(width: AppDimens.spaceMd),
-          Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: t.onSurface))),
-        ],
-      ),
-    );
-  }
-}
-
-class _TappableRow extends StatelessWidget {
-  final Widget leading;
-  final String label;
-  final VoidCallback onTap;
-  final Color? labelColor;
-  const _TappableRow({required this.leading, required this.label, required this.onTap, this.labelColor});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceMd),
-        child: Row(
-          children: [
-            leading,
-            const SizedBox(width: AppDimens.spaceMd),
-            Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: labelColor ?? t.onSurface))),
-            Icon(Icons.chevron_right_rounded, size: 20, color: labelColor ?? t.onSurfaceVariant),
-          ],
-        ),
       ),
     );
   }
@@ -302,132 +204,6 @@ class _AttributionCard extends StatelessWidget {
           const SizedBox(height: AppDimens.spaceSm),
           Text(link, style: AppTextStyles.bodySmall.copyWith(color: t.primary)),
         ],
-      ),
-    );
-  }
-}
-
-class _StepperRow extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final int value;
-  final int min;
-  final int max;
-  final int step;
-  final VoidCallback? onDecrement;
-  final VoidCallback? onIncrement;
-
-  const _StepperRow({
-    required this.icon,
-    required this.label,
-    required this.value,
-    required this.min,
-    required this.max,
-    required this.step,
-    this.onDecrement,
-    this.onIncrement,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceSm),
-      child: Row(
-        children: [
-          Icon(icon, size: 20, color: t.onSurfaceVariant),
-          const SizedBox(width: AppDimens.spaceMd),
-          Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: t.onSurface))),
-          IconButton(
-            onPressed: onDecrement,
-            icon: Icon(Icons.remove_rounded, size: 18, color: onDecrement != null ? t.onSurface : t.outlineVariant),
-            visualDensity: VisualDensity.compact,
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-          ),
-          SizedBox(
-            width: 36,
-            child: Text(
-              '$value',
-              textAlign: TextAlign.center,
-              style: AppTextStyles.body.copyWith(color: t.onSurface, fontWeight: FontWeight.w600),
-            ),
-          ),
-          IconButton(
-            onPressed: onIncrement,
-            icon: Icon(Icons.add_rounded, size: 18, color: onIncrement != null ? t.onSurface : t.outlineVariant),
-            visualDensity: VisualDensity.compact,
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LanguagePickerSheet extends StatelessWidget {
-  final String currentCode;
-  final void Function(String code) onSelect;
-  final String title;
-  const _LanguagePickerSheet({required this.currentCode, required this.onSelect, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 36,
-              height: 4,
-              margin: const EdgeInsets.only(bottom: AppDimens.spaceMd),
-              decoration: BoxDecoration(
-                color: t.outlineVariant,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(title, style: AppTextStyles.title.copyWith(color: t.onSurface)),
-              ),
-            ),
-            const SizedBox(height: AppDimens.spaceMd),
-            for (final lang in _languages) ...[
-              InkWell(
-                onTap: () => onSelect(lang.code),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceMd),
-                  child: Row(
-                    children: [
-                      Text(
-                        lang.flag,
-                        style: const TextStyle(fontSize: 28, fontFamily: 'NotoColorEmoji'),
-                      ),
-                      const SizedBox(width: AppDimens.spaceMd),
-                      Expanded(
-                        child: Text(
-                          lang.name,
-                          style: AppTextStyles.body.copyWith(
-                            color: lang.code == currentCode ? t.primary : t.onSurface,
-                            fontWeight: lang.code == currentCode ? FontWeight.w600 : FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      if (lang.code == currentCode)
-                        Icon(Icons.check_rounded, size: 20, color: t.primary),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ],
-        ),
       ),
     );
   }
