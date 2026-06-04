@@ -5,6 +5,7 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/level_label.dart';
 import '../../providers/kanji_provider.dart';
 import '../../widgets/widgets.dart';
+import 'kanji_practice_screen.dart';
 import 'kanji_tab/kanji_grid.dart';
 import 'kanji_tab/level_header.dart';
 import 'kanji_tab/level_selector.dart';
@@ -29,6 +30,7 @@ class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
 
     final kanjiAsync = ref.watch(kanjiListProvider(_selectedLevel!));
     final knownIds = ref.watch(knownKanjiIdsProvider).asData?.value ?? {};
+    final srsCards = ref.watch(kanjiSrsCardsProvider).asData?.value ?? {};
 
     if (kanjiAsync is AsyncLoading) {
       return const Center(child: CircularProgressIndicator());
@@ -50,8 +52,15 @@ class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
           onBack: () => setState(() => _selectedLevel = null),
         ),
         ProgressRow(known: knownCount, total: kanjiList.length, color: color),
-        PracticeButton(color: color),
-        KanjiGrid(kanjis: kanjiList, knownIds: knownIds),
+        PracticeButton(
+          color: color,
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => KanjiPracticeScreen(level: _selectedLevel!),
+            ),
+          ),
+        ),
+        KanjiGrid(kanjis: kanjiList, skippedIds: knownIds, srsCards: srsCards),
       ],
     );
   }

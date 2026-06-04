@@ -173,7 +173,7 @@ class _KanaCell extends StatelessWidget {
     } else if (level == SrsLevel.newCard) {
       accent = null;
     } else {
-      accent = level.accent;
+      accent = level.accent(context.tokens);
     }
     return CharacterCell(
       character: entry.kana,

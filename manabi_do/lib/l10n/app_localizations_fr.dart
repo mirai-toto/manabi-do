@@ -15,13 +15,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tagline => 'Apprends le japonais — hors ligne, à ton rythme';
 
   @override
-  String get signInWithGoogle => 'Se connecter avec Google';
+  String get signInWithGoogle => 'Connecte-toi avec Google';
 
   @override
-  String get signInWithApple => 'Se connecter avec Apple';
+  String get signInWithApple => 'Connecte-toi avec Apple';
 
   @override
-  String get continueAsGuest => 'Continuer en tant qu\'invité →';
+  String get continueAsGuest => 'Continuer sans compte →';
 
   @override
   String get or => 'ou';
@@ -57,13 +57,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get notKnown => 'Non appris';
 
   @override
-  String get skipKana => 'Ignorer (exclure de la pratique)';
+  String get skipKana => 'Passer (ignorer pour les révisions)';
 
   @override
   String get skippedKana => 'Ignoré';
 
   @override
-  String get statusNotStarted => 'Non commencé';
+  String get statusNotStarted => 'Pas encore commencé';
 
   @override
   String get exampleWords => 'Exemples';
@@ -90,7 +90,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get multipleChoice => 'Choix multiple';
 
   @override
-  String get practice => 'Pratiquer →';
+  String get practice => 'S\'entraîner →';
 
   @override
   String get retry => 'Réessayer';
@@ -102,19 +102,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get correct => 'Correct';
 
   @override
-  String get missed => 'Manqué';
+  String get missed => 'Raté';
 
   @override
-  String get markedKnown => 'Marqué appris';
+  String get markedKnown => 'Noté comme appris';
 
   @override
   String get timeSpent => 'Temps passé';
 
   @override
-  String get flashcardDefaultPrompt => 'Que signifie ceci ?';
+  String get flashcardDefaultPrompt => 'C\'est quoi ?';
 
   @override
-  String get tapToReveal => 'Appuyer pour révéler';
+  String get tapToReveal => 'Appuie pour révéler';
 
   @override
   String get flashcardNotYet => '✗  Pas encore';
@@ -141,7 +141,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get greetingEvening => 'Bonsoir';
 
   @override
-  String get greetingSubtitle => 'Étudions le japonais';
+  String get greetingSubtitle => 'Un peu de japonais ?';
 
   @override
   String get streakLabel => 'jours de suite';
@@ -344,7 +344,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get aboutOpenSourceLicenses => 'Licences open source';
 
   @override
-  String get practiceSessionDone => 'Session terminée';
+  String get practiceSessionDone => 'Session terminée !';
 
   @override
   String practiceReviewed(int count) {
@@ -362,10 +362,49 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get practiceEmpty => 'Rien à réviser — revenez demain !';
+  String get practiceEmpty => 'Rien à revoir — reviens demain !';
 
   @override
   String get practiceDone => 'Terminer';
+
+  @override
+  String get drawingPractice => 'S\'entraîner à tracer';
+
+  @override
+  String get selfAssessQuestion => 'Tu l\'as eu ?';
+
+  @override
+  String get drawingReference => 'Référence';
+
+  @override
+  String get drawingYourAnswer => 'Ta réponse';
+
+  @override
+  String get drawingCheck => 'Vérifier';
+
+  @override
+  String get drawingUndo => 'Annuler';
+
+  @override
+  String get drawingClear => 'Effacer';
+
+  @override
+  String drawingStrokeCount(int count) {
+    return '$count traits';
+  }
+
+  @override
+  String drawingStrokeResult(int correct, int total) {
+    return '$correct / $total traits corrects';
+  }
+
+  @override
+  String get mcqSelectMeaning => 'Ce kanji veut dire ?';
+
+  @override
+  String mcqSelectKanji(String meaning) {
+    return 'Quel kanji pour \"$meaning\" ?';
+  }
 
   @override
   String get srsStateNew => 'Nouveau';
@@ -386,7 +425,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get srsStateExpert => 'Expert';
 
   @override
-  String get srsDueToday => 'À réviser aujourd\'hui';
+  String get srsDueToday => 'À revoir aujourd\'hui';
 
   @override
   String srsDueIn(int days) {

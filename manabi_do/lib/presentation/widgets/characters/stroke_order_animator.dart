@@ -5,7 +5,8 @@ import 'kanji_strokes_provider.dart';
 
 class StrokeOrderAnimator extends ConsumerStatefulWidget {
   final int kanjiId;
-  const StrokeOrderAnimator({super.key, required this.kanjiId});
+  final double size;
+  const StrokeOrderAnimator({super.key, required this.kanjiId, this.size = 160});
 
   @override
   ConsumerState<StrokeOrderAnimator> createState() => _StrokeOrderAnimatorState();
@@ -47,21 +48,22 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
     }
 
     if (strokesAsync is AsyncError) {
-      return const SizedBox(
-        width: 160,
-        height: 160,
-        child: Center(child: Text('—', style: TextStyle(color: Colors.grey, fontSize: 32))),
+      return SizedBox(
+        width: widget.size,
+        height: widget.size,
+        child: const Center(child: Text('—', style: TextStyle(color: Colors.grey, fontSize: 32))),
       );
     }
 
     if (strokes == null) {
-      return const SizedBox(
-        width: 160,
-        height: 160,
-        child: Center(child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))),
+      return SizedBox(
+        width: widget.size,
+        height: widget.size,
+        child: const Center(child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))),
       );
     }
 
+    final s = widget.size;
     final t = context.tokens;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -72,19 +74,17 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
         builder: (context, _) => Stack(
           alignment: Alignment.center,
           children: [
-            // Expands the Stack to full card width so the replay button
-            // can be positioned outside the 160×160 canvas.
-            const SizedBox(height: 160, width: double.infinity),
+            SizedBox(height: s, width: s),
             Container(
-              width: 160,
-              height: 160,
+              width: s,
+              height: s,
               decoration: BoxDecoration(
                 color: t.cardBackground,
                 borderRadius: BorderRadius.circular(8),
               ),
               clipBehavior: Clip.antiAlias,
               child: CustomPaint(
-                size: const Size(160, 160),
+                size: Size(s, s),
                 painter: _StrokeOrderPainter(
                   strokes: strokes,
                   progress: _controller.value * strokes.length,

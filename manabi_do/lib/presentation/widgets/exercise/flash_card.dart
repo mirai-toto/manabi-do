@@ -114,6 +114,7 @@ class FlashCard extends StatelessWidget {
 class FlashCardActions extends StatelessWidget {
   final String notYetLabel;
   final String gotItLabel;
+  final String? question;
   final VoidCallback? onNotYet;
   final VoidCallback? onGotIt;
 
@@ -121,6 +122,7 @@ class FlashCardActions extends StatelessWidget {
     super.key,
     required this.notYetLabel,
     required this.gotItLabel,
+    this.question,
     this.onNotYet,
     this.onGotIt,
   });
@@ -128,11 +130,24 @@ class FlashCardActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(child: _FlashButton(label: notYetLabel, bgColor: t.errorContainer,   fgColor: t.error,   onTap: onNotYet)),
-        const SizedBox(width: AppDimens.spaceSm),
-        Expanded(child: _FlashButton(label: gotItLabel,  bgColor: t.successContainer, fgColor: t.success, onTap: onGotIt)),
+        if (question != null) ...[
+          Text(
+            question!,
+            style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: AppDimens.spaceXs),
+        ],
+        Row(
+          children: [
+            Expanded(child: _FlashButton(label: notYetLabel, bgColor: t.errorContainer,   fgColor: t.error,   onTap: onNotYet)),
+            const SizedBox(width: AppDimens.spaceSm),
+            Expanded(child: _FlashButton(label: gotItLabel,  bgColor: t.successContainer, fgColor: t.success, onTap: onGotIt)),
+          ],
+        ),
       ],
     );
   }

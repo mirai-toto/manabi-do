@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/theme_provider.dart';
+import '../../core/srs/srs_level.dart';
 import '../../core/theme/app_dimens.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/theme/app_tokens.dart';
@@ -446,9 +447,9 @@ class _CharactersTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView(padding: _hpad, children: const [
-    _GallerySection(label: 'CharacterCell (kana)',  child: _DemoKanaCells()),
+    _GallerySection(label: 'CharacterCell — SRS levels (kana)',  child: _DemoKanaCells()),
     _gap,
-    _GallerySection(label: 'CharacterCell (kanji)', child: _DemoKanjiCells()),
+    _GallerySection(label: 'CharacterCell — SRS levels (kanji)', child: _DemoKanjiCells()),
     _gap,
     _GallerySection(label: 'StrokeOrderAnimator', interactive: true, child: StrokeOrderAnimator(kanjiId: _demoKanjiId)),
     _gap,
@@ -459,28 +460,97 @@ class _CharactersTab extends StatelessWidget {
 
 class _DemoKanaCells extends StatelessWidget {
   const _DemoKanaCells();
+
+  static const _kana = [
+    ('あ', 'a'),
+    ('い', 'i'),
+    ('う', 'u'),
+    ('え', 'e'),
+    ('お', 'o'),
+    ('か', 'ka'),
+  ];
+
   @override
-  Widget build(BuildContext context) => const Wrap(spacing: 8, runSpacing: 8, children: [
-    CharacterCell(character: 'あ', subLabel: 'a',  isKnown: true),
-    CharacterCell(character: 'い', subLabel: 'i',  isKnown: true),
-    CharacterCell(character: 'う', subLabel: 'u',  isKnown: true),
-    CharacterCell(character: 'え', subLabel: 'e'),
-    CharacterCell(character: 'お', subLabel: 'o'),
-    CharacterCell(character: 'か', subLabel: 'ka'),
-    CharacterCell(character: 'き', subLabel: 'ki'),
-  ]);
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final levels = SrsLevel.values;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (int i = 0; i < _kana.length; i++)
+              CharacterCell(
+                character: _kana[i].$1,
+                subLabel: _kana[i].$2,
+                accentColor: levels[i] == SrsLevel.newCard ? null : levels[i].accent(t),
+              ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        _SrsLevelLegend(),
+      ],
+    );
+  }
 }
 
 class _DemoKanjiCells extends StatelessWidget {
   const _DemoKanjiCells();
+
+  static const _kanji = ['食', '水', '火', '山', '川', '語'];
+
   @override
-  Widget build(BuildContext context) => const Wrap(spacing: 8, runSpacing: 8, children: [
-    CharacterCell(character: '食', isKnown: true),
-    CharacterCell(character: '水', isKnown: true),
-    CharacterCell(character: '火'),
-    CharacterCell(character: '山'),
-    CharacterCell(character: '川'),
-  ]);
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final levels = SrsLevel.values;
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (int i = 0; i < _kanji.length; i++)
+          CharacterCell(
+            character: _kanji[i],
+            accentColor: levels[i] == SrsLevel.newCard ? null : levels[i].accent(t),
+          ),
+      ],
+    );
+  }
+}
+
+class _SrsLevelLegend extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    const labels = ['New', 'Learning', 'Apprentice', 'Familiar', 'Mastered', 'Expert'];
+    final levels = SrsLevel.values;
+    return Wrap(
+      spacing: 12,
+      runSpacing: 4,
+      children: [
+        for (int i = 0; i < levels.length; i++)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 10,
+                height: 10,
+                decoration: BoxDecoration(
+                  color: levels[i] == SrsLevel.newCard ? t.outlineVariant : levels[i].accent(t),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(width: 4),
+              Text(
+                labels[i],
+                style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
+              ),
+            ],
+          ),
+      ],
+    );
+  }
 }
 
 // ── Exercise tab ──────────────────────────────────────────────────────────────

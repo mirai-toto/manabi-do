@@ -132,6 +132,9 @@ class AppDatabase extends _$AppDatabase {
 
   // ── Kanji queries ────────────────────────────────────────────────────────
 
+  Future<List<Kanji>> getKanjiByLevel(String level) =>
+      (select(kanjis)..where((k) => k.jlptLevel.equals(level))).get();
+
   Stream<List<Kanji>> watchKanjiByLevel(String level) =>
       (select(kanjis)..where((k) => k.jlptLevel.equals(level))).watch();
 
@@ -237,6 +240,39 @@ class AppDatabase extends _$AppDatabase {
     await (delete(progressEntries)
       ..where((p) => p.itemType.equals(type) & p.itemId.equals(kanaId)))
       .go();
+  }
+
+  Future<List<(Kanji, Card?)>> getKanjiSrsSession(String level, {int newCardLimit = 10}) async {
+    final skippedIds = await (select(progressEntries)
+      ..where((p) => p.itemType.equals('kanji') & p.isKnown.equals(true)))
+      .get()
+      .then((rows) => rows.map((r) => r.itemId).toSet());
+
+    final kanjiList = await (select(kanjis)..where((k) => k.jlptLevel.equals(level))).get();
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+
+    final seenToday = await (select(srsCards)
+      ..where((s) =>
+          s.itemType.equals('kanji') &
+          s.firstSeenAt.isBiggerOrEqualValue(todayStart)))
+      .get()
+      .then((rows) => rows.length);
+
+    final remainingNew = (newCardLimit - seenToday).clamp(0, newCardLimit);
+
+    final cards = await Future.wait(
+      kanjiList.map((k) => getSrsCard('kanji', k.id)),
+    );
+
+    final pairs = List.generate(kanjiList.length, (i) => (kanjiList[i], cards[i]))
+        .where((p) => !skippedIds.contains(p.$1.id))
+        .toList();
+
+    final due     = pairs.where((p) => p.$2 != null && !p.$2!.due.isAfter(now)).toList();
+    final newOnes = pairs.where((p) => p.$2 == null).take(remainingNew).toList();
+
+    return [...due, ...newOnes];
   }
 
   Future<List<(Kana, Card?)>> getKanaSrsSession(String type, {int newCardLimit = 10}) async {

@@ -10,6 +10,7 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../../core/providers/srs_settings_provider.dart';
 import '../../providers/database_provider.dart';
+import '../../widgets/common/app_emoji.dart';
 import '../../widgets/exercise/flash_card.dart';
 
 class KanaPracticeScreen extends ConsumerStatefulWidget {
@@ -159,6 +160,7 @@ class _SessionBody extends StatelessWidget {
             FlashCardActions(
               notYetLabel: l.flashcardNotYet,
               gotItLabel: l.flashcardGotIt,
+              question: l.selfAssessQuestion,
               onNotYet: () => onAnswer(Rating.again),
               onGotIt: () => onAnswer(Rating.good),
             )
@@ -196,7 +198,7 @@ class _SessionSummary extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('🎉', style: const TextStyle(fontSize: 56)),
+              const AppEmoji('🎉', size: 56),
               const SizedBox(height: AppDimens.spaceMd),
               Text(l.practiceEmpty,
                   textAlign: TextAlign.center,
@@ -215,7 +217,7 @@ class _SessionSummary extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('🎉', style: const TextStyle(fontSize: 56)),
+            const AppEmoji('🎉', size: 56),
             const SizedBox(height: AppDimens.spaceMd),
             Text(
               l.practiceSessionDone,

@@ -1,13 +1,23 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Card;
+import 'package:fsrs/fsrs.dart';
+import '../../../../core/srs/srs_level.dart';
 import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_tokens.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../widgets/widgets.dart';
 import '../kanji_detail_screen.dart';
 
 class KanjiGrid extends StatelessWidget {
   final List<Kanji> kanjis;
-  final Set<int> knownIds;
-  const KanjiGrid({super.key, required this.kanjis, required this.knownIds});
+  final Set<int> skippedIds;
+  final Map<int, Card> srsCards;
+
+  const KanjiGrid({
+    super.key,
+    required this.kanjis,
+    required this.skippedIds,
+    required this.srsCards,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +43,19 @@ class KanjiGrid extends StatelessWidget {
             itemCount: kanjis.length,
             itemBuilder: (context, i) {
               final entry = kanjis[i];
+              final card = srsCards[entry.id];
+              final level = srsLevel(card);
+              final Color? accent;
+              if (skippedIds.contains(entry.id)) {
+                accent = Colors.grey.shade400;
+              } else if (level == SrsLevel.newCard) {
+                accent = null;
+              } else {
+                accent = level.accent(context.tokens);
+              }
               return CharacterCell(
                 character: entry.character,
-                isKnown: knownIds.contains(entry.id),
+                accentColor: accent,
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (_) => KanjiDetailScreen(kanjiId: entry.id),

@@ -4,9 +4,9 @@
   "appTitle": "Manabi Do",
 
   "tagline": "Apprends le japonais — hors ligne, à ton rythme",
-  "signInWithGoogle": "Se connecter avec Google",
-  "signInWithApple": "Se connecter avec Apple",
-  "continueAsGuest": "Continuer en tant qu'invité →",
+  "signInWithGoogle": "Connecte-toi avec Google",
+  "signInWithApple": "Connecte-toi avec Apple",
+  "continueAsGuest": "Continuer sans compte →",
   "or": "ou",
 
   "sectionGrammar": "Grammaire",
@@ -21,10 +21,10 @@
   "knownCheck": "Appris ✓",
   "markAsKnown": "Marquer comme appris",
   "notKnown": "Non appris",
-  "skipKana": "Ignorer (exclure de la pratique)",
+  "skipKana": "Passer (ignorer pour les révisions)",
   "skippedKana": "Ignoré",
 
-  "statusNotStarted": "Non commencé",
+  "statusNotStarted": "Pas encore commencé",
 
   "exampleWords": "Exemples",
   "readings": "Lectures",
@@ -51,17 +51,17 @@
   },
 
   "multipleChoice": "Choix multiple",
-  "practice": "Pratiquer →",
+  "practice": "S'entraîner →",
 
   "retry": "Réessayer",
   "nextLesson": "Leçon suivante →",
   "correct": "Correct",
-  "missed": "Manqué",
-  "markedKnown": "Marqué appris",
+  "missed": "Raté",
+  "markedKnown": "Noté comme appris",
   "timeSpent": "Temps passé",
 
-  "flashcardDefaultPrompt": "Que signifie ceci ?",
-  "tapToReveal": "Appuyer pour révéler",
+  "flashcardDefaultPrompt": "C'est quoi ?",
+  "tapToReveal": "Appuie pour révéler",
   "flashcardNotYet": "✗  Pas encore",
   "flashcardGotIt": "✓  Je sais",
 
@@ -72,7 +72,7 @@
   "greetingMorning": "Bonjour",
   "greetingAfternoon": "Bon après-midi",
   "greetingEvening": "Bonsoir",
-  "greetingSubtitle": "Étudions le japonais",
+  "greetingSubtitle": "Un peu de japonais ?",
 
   "streakLabel": "jours de suite",
   "streakSubtitle": "Continue comme ça !",
@@ -166,7 +166,7 @@
   "aboutEdrdgLink": "edrdg.org",
   "aboutOpenSourceLicenses": "Licences open source",
 
-  "practiceSessionDone": "Session terminée",
+  "practiceSessionDone": "Session terminée !",
   "practiceReviewed": "{count} révisées",
   "@practiceReviewed": {
     "placeholders": { "count": { "type": "int" } }
@@ -179,8 +179,33 @@
   "@practiceNotYet": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "practiceEmpty": "Rien à réviser — revenez demain !",
+  "practiceEmpty": "Rien à revoir — reviens demain !",
   "practiceDone": "Terminer",
+
+  "drawingPractice": "S'entraîner à tracer",
+  "selfAssessQuestion": "Tu l'as eu ?",
+  "drawingReference": "Référence",
+  "drawingYourAnswer": "Ta réponse",
+  "drawingCheck": "Vérifier",
+  "drawingUndo": "Annuler",
+  "drawingClear": "Effacer",
+  "drawingStrokeCount": "{count} traits",
+  "@drawingStrokeCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "drawingStrokeResult": "{correct} / {total} traits corrects",
+  "@drawingStrokeResult": {
+    "placeholders": {
+      "correct": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "mcqSelectMeaning": "Ce kanji veut dire ?",
+  "mcqSelectKanji": "Quel kanji pour \"{meaning}\" ?",
+  "@mcqSelectKanji": {
+    "placeholders": { "meaning": { "type": "String" } }
+  },
 
   "srsStateNew": "Nouveau",
   "srsStateLearning": "En cours",
@@ -188,7 +213,7 @@
   "srsStateFamiliar": "Familier",
   "srsStateMastered": "Maîtrisé",
   "srsStateExpert": "Expert",
-  "srsDueToday": "À réviser aujourd'hui",
+  "srsDueToday": "À revoir aujourd'hui",
   "srsDueIn": "Dans {days}j",
   "@srsDueIn": {
     "placeholders": { "days": { "type": "int" } }

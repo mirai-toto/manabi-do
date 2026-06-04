@@ -368,6 +368,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get practiceDone => 'Done';
 
   @override
+  String get drawingPractice => 'Practice Drawing';
+
+  @override
+  String get selfAssessQuestion => 'Did you get it right?';
+
+  @override
+  String get drawingReference => 'Reference';
+
+  @override
+  String get drawingYourAnswer => 'Your answer';
+
+  @override
+  String get drawingCheck => 'Check';
+
+  @override
+  String get drawingUndo => 'Undo';
+
+  @override
+  String get drawingClear => 'Clear';
+
+  @override
+  String drawingStrokeCount(int count) {
+    return '$count strokes';
+  }
+
+  @override
+  String drawingStrokeResult(int correct, int total) {
+    return '$correct / $total strokes correct';
+  }
+
+  @override
+  String get mcqSelectMeaning => 'What does this kanji mean?';
+
+  @override
+  String mcqSelectKanji(String meaning) {
+    return 'Select the kanji for: \"$meaning\"';
+  }
+
+  @override
   String get srsStateNew => 'New';
 
   @override

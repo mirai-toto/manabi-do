@@ -772,6 +772,72 @@ abstract class AppLocalizations {
   /// **'Done'**
   String get practiceDone;
 
+  /// No description provided for @drawingPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice Drawing'**
+  String get drawingPractice;
+
+  /// No description provided for @selfAssessQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you get it right?'**
+  String get selfAssessQuestion;
+
+  /// No description provided for @drawingReference.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference'**
+  String get drawingReference;
+
+  /// No description provided for @drawingYourAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Your answer'**
+  String get drawingYourAnswer;
+
+  /// No description provided for @drawingCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Check'**
+  String get drawingCheck;
+
+  /// No description provided for @drawingUndo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get drawingUndo;
+
+  /// No description provided for @drawingClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get drawingClear;
+
+  /// No description provided for @drawingStrokeCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} strokes'**
+  String drawingStrokeCount(int count);
+
+  /// No description provided for @drawingStrokeResult.
+  ///
+  /// In en, this message translates to:
+  /// **'{correct} / {total} strokes correct'**
+  String drawingStrokeResult(int correct, int total);
+
+  /// No description provided for @mcqSelectMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'What does this kanji mean?'**
+  String get mcqSelectMeaning;
+
+  /// No description provided for @mcqSelectKanji.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the kanji for: \"{meaning}\"'**
+  String mcqSelectKanji(String meaning);
+
   /// No description provided for @srsStateNew.
   ///
   /// In en, this message translates to:

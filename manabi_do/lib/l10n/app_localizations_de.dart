@@ -368,6 +368,45 @@ class AppLocalizationsDe extends AppLocalizations {
   String get practiceDone => 'Fertig';
 
   @override
+  String get drawingPractice => 'Schreiben üben';
+
+  @override
+  String get selfAssessQuestion => 'Hast du es gewusst?';
+
+  @override
+  String get drawingReference => 'Referenz';
+
+  @override
+  String get drawingYourAnswer => 'Deine Antwort';
+
+  @override
+  String get drawingCheck => 'Prüfen';
+
+  @override
+  String get drawingUndo => 'Rückgängig';
+
+  @override
+  String get drawingClear => 'Löschen';
+
+  @override
+  String drawingStrokeCount(int count) {
+    return '$count Striche';
+  }
+
+  @override
+  String drawingStrokeResult(int correct, int total) {
+    return '$correct / $total Striche korrekt';
+  }
+
+  @override
+  String get mcqSelectMeaning => 'Was bedeutet dieses Kanji?';
+
+  @override
+  String mcqSelectKanji(String meaning) {
+    return 'Welches Kanji steht für: \"$meaning\"?';
+  }
+
+  @override
   String get srsStateNew => 'Neu';
 
   @override

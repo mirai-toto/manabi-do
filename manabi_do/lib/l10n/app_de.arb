@@ -182,6 +182,31 @@
   "practiceEmpty": "Nichts zu wiederholen — komm morgen wieder!",
   "practiceDone": "Fertig",
 
+  "drawingPractice": "Schreiben üben",
+  "selfAssessQuestion": "Hast du es gewusst?",
+  "drawingReference": "Referenz",
+  "drawingYourAnswer": "Deine Antwort",
+  "drawingCheck": "Prüfen",
+  "drawingUndo": "Rückgängig",
+  "drawingClear": "Löschen",
+  "drawingStrokeCount": "{count} Striche",
+  "@drawingStrokeCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "drawingStrokeResult": "{correct} / {total} Striche korrekt",
+  "@drawingStrokeResult": {
+    "placeholders": {
+      "correct": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "mcqSelectMeaning": "Was bedeutet dieses Kanji?",
+  "mcqSelectKanji": "Welches Kanji steht für: \"{meaning}\"?",
+  "@mcqSelectKanji": {
+    "placeholders": { "meaning": { "type": "String" } }
+  },
+
   "srsStateNew": "Neu",
   "srsStateLearning": "In Bearbeitung",
   "srsStateApprentice": "Anfänger",

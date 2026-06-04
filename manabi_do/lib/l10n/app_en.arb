@@ -188,6 +188,31 @@
   "practiceEmpty": "Nothing to review — come back tomorrow!",
   "practiceDone": "Done",
 
+  "drawingPractice": "Practice Drawing",
+  "selfAssessQuestion": "Did you get it right?",
+  "drawingReference": "Reference",
+  "drawingYourAnswer": "Your answer",
+  "drawingCheck": "Check",
+  "drawingUndo": "Undo",
+  "drawingClear": "Clear",
+  "drawingStrokeCount": "{count} strokes",
+  "@drawingStrokeCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "drawingStrokeResult": "{correct} / {total} strokes correct",
+  "@drawingStrokeResult": {
+    "placeholders": {
+      "correct": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "mcqSelectMeaning": "What does this kanji mean?",
+  "mcqSelectKanji": "Select the kanji for: \"{meaning}\"",
+  "@mcqSelectKanji": {
+    "placeholders": { "meaning": { "type": "String" } }
+  },
+
   "srsStateNew": "New",
   "srsStateLearning": "Learning",
   "srsStateApprentice": "Apprentice",
