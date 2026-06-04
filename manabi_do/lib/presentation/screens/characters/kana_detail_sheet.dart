@@ -52,6 +52,27 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
     if (mounted) setState(() => _isKnown = next);
   }
 
+  Future<void> _resetProgress() async {
+    final l = context.l10n;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l.resetKanaTitle),
+        content: Text(l.resetKanaBody),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l.cancel)),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(l.resetConfirm, style: TextStyle(color: ctx.tokens.error)),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    await ref.read(databaseProvider).resetKanaCard(widget.type, widget.entry.id);
+    if (mounted) setState(() { _srsCard = null; _isKnown = false; });
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
@@ -167,6 +188,21 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
                 ),
               ),
             ),
+
+            if (_loaded && (_srsCard != null || _isKnown)) ...[
+              const SizedBox(height: AppDimens.spaceSm),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton.icon(
+                  onPressed: _resetProgress,
+                  icon: Icon(Icons.restart_alt_rounded, size: 18, color: t.error),
+                  label: Text(
+                    l.settingsResetProgress,
+                    style: AppTextStyles.bodySmall.copyWith(color: t.error),
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
       ),

@@ -137,6 +137,15 @@
 
   "kanaRowVowels": "Voyelles",
 
+  "settingsData": "Données",
+  "settingsResetProgress": "Réinitialiser la progression",
+  "resetProgressTitle": "Réinitialiser toute la progression ?",
+  "resetProgressBody": "Toutes les cartes SRS et les états appris seront définitivement supprimés.",
+  "resetKanaTitle": "Réinitialiser ce kana ?",
+  "resetKanaBody": "Les données SRS et l'état appris de ce caractère seront définitivement supprimés.",
+  "resetConfirm": "Réinitialiser",
+  "cancel": "Annuler",
+
   "settingsAppearance": "Apparence",
   "settingsThemeLight": "Mode clair",
   "settingsThemeDark": "Mode sombre",

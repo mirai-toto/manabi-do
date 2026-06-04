@@ -207,6 +207,20 @@ class AppDatabase extends _$AppDatabase {
         ),
       );
 
+  Future<void> resetAllProgress() async {
+    await delete(srsCards).go();
+    await delete(progressEntries).go();
+  }
+
+  Future<void> resetKanaCard(String type, int kanaId) async {
+    await (delete(srsCards)
+      ..where((s) => s.itemType.equals(type) & s.itemId.equals(kanaId)))
+      .go();
+    await (delete(progressEntries)
+      ..where((p) => p.itemType.equals(type) & p.itemId.equals(kanaId)))
+      .go();
+  }
+
   Future<List<(Kana, Card?)>> getKanaSrsSession(String type) async {
     final kanaList = await getKanaByType(type);
     final now = DateTime.now();

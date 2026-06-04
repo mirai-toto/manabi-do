@@ -7,6 +7,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../../providers/database_provider.dart';
+import '../../providers/kana_progress_provider.dart';
 import '../../widgets/widgets.dart';
 
 // Supported languages: code → (flag emoji, native name)
@@ -21,9 +23,31 @@ final _packageInfoProvider = FutureProvider<PackageInfo>((_) => PackageInfo.from
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
+  Future<void> _confirmResetAll(BuildContext context, WidgetRef ref, AppLocalizations l) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l.resetProgressTitle),
+        content: Text(l.resetProgressBody),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l.cancel)),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(l.resetConfirm, style: TextStyle(color: ctx.tokens.error)),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    await ref.read(databaseProvider).resetAllProgress();
+    ref.invalidate(kanaSrsCardsProvider('hiragana'));
+    ref.invalidate(kanaSrsCardsProvider('katakana'));
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l        = context.l10n;
+    final t        = context.tokens;
     final themeMode = ref.watch(themeModeProvider);
     final locale    = ref.watch(localeProvider);
     final isDark    = themeMode == ThemeMode.dark;
@@ -66,6 +90,17 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 label: currentLang.name,
                 onTap: () => _showLanguagePicker(context, ref, locale.languageCode),
+              ),
+            ]),
+            const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.settingsData),
+            const SizedBox(height: AppDimens.spaceSm),
+            _SettingsCard(children: [
+              _TappableRow(
+                leading: Icon(Icons.delete_outline_rounded, size: 20, color: t.error),
+                label: l.settingsResetProgress,
+                labelColor: t.error,
+                onTap: () => _confirmResetAll(context, ref, l),
               ),
             ]),
             const SizedBox(height: AppDimens.spaceLg),
@@ -201,7 +236,8 @@ class _TappableRow extends StatelessWidget {
   final Widget leading;
   final String label;
   final VoidCallback onTap;
-  const _TappableRow({required this.leading, required this.label, required this.onTap});
+  final Color? labelColor;
+  const _TappableRow({required this.leading, required this.label, required this.onTap, this.labelColor});
 
   @override
   Widget build(BuildContext context) {
@@ -215,8 +251,8 @@ class _TappableRow extends StatelessWidget {
           children: [
             leading,
             const SizedBox(width: AppDimens.spaceMd),
-            Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: t.onSurface))),
-            Icon(Icons.chevron_right_rounded, size: 20, color: t.onSurfaceVariant),
+            Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: labelColor ?? t.onSurface))),
+            Icon(Icons.chevron_right_rounded, size: 20, color: labelColor ?? t.onSurfaceVariant),
           ],
         ),
       ),

@@ -604,6 +604,54 @@ abstract class AppLocalizations {
   /// **'Vowels'**
   String get kanaRowVowels;
 
+  /// No description provided for @settingsData.
+  ///
+  /// In en, this message translates to:
+  /// **'Data'**
+  String get settingsData;
+
+  /// No description provided for @settingsResetProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset all progress'**
+  String get settingsResetProgress;
+
+  /// No description provided for @resetProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset all progress?'**
+  String get resetProgressTitle;
+
+  /// No description provided for @resetProgressBody.
+  ///
+  /// In en, this message translates to:
+  /// **'All SRS cards and known states will be permanently deleted.'**
+  String get resetProgressBody;
+
+  /// No description provided for @resetKanaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset this kana?'**
+  String get resetKanaTitle;
+
+  /// No description provided for @resetKanaBody.
+  ///
+  /// In en, this message translates to:
+  /// **'SRS data and known state for this character will be permanently deleted.'**
+  String get resetKanaBody;
+
+  /// No description provided for @resetConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get resetConfirm;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
   /// No description provided for @settingsAppearance.
   ///
   /// In en, this message translates to:

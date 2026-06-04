@@ -273,6 +273,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kanaRowVowels => 'Vowels';
 
   @override
+  String get settingsData => 'Data';
+
+  @override
+  String get settingsResetProgress => 'Reset all progress';
+
+  @override
+  String get resetProgressTitle => 'Reset all progress?';
+
+  @override
+  String get resetProgressBody =>
+      'All SRS cards and known states will be permanently deleted.';
+
+  @override
+  String get resetKanaTitle => 'Reset this kana?';
+
+  @override
+  String get resetKanaBody =>
+      'SRS data and known state for this character will be permanently deleted.';
+
+  @override
+  String get resetConfirm => 'Reset';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
   String get settingsAppearance => 'Appearance';
 
   @override

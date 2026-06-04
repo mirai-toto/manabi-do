@@ -143,6 +143,15 @@
 
   "kanaRowVowels": "Vowels",
 
+  "settingsData": "Data",
+  "settingsResetProgress": "Reset all progress",
+  "resetProgressTitle": "Reset all progress?",
+  "resetProgressBody": "All SRS cards and known states will be permanently deleted.",
+  "resetKanaTitle": "Reset this kana?",
+  "resetKanaBody": "SRS data and known state for this character will be permanently deleted.",
+  "resetConfirm": "Reset",
+  "cancel": "Cancel",
+
   "settingsAppearance": "Appearance",
   "settingsThemeLight": "Light mode",
   "settingsThemeDark": "Dark mode",

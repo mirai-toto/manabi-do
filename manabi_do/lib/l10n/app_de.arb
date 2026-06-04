@@ -137,6 +137,15 @@
 
   "kanaRowVowels": "Vokale",
 
+  "settingsData": "Daten",
+  "settingsResetProgress": "Alle Fortschritte zurücksetzen",
+  "resetProgressTitle": "Alle Fortschritte zurücksetzen?",
+  "resetProgressBody": "Alle SRS-Karten und Lernstände werden dauerhaft gelöscht.",
+  "resetKanaTitle": "Dieses Kana zurücksetzen?",
+  "resetKanaBody": "SRS-Daten und Lernstand für dieses Zeichen werden dauerhaft gelöscht.",
+  "resetConfirm": "Zurücksetzen",
+  "cancel": "Abbrechen",
+
   "settingsAppearance": "Erscheinungsbild",
   "settingsThemeLight": "Heller Modus",
   "settingsThemeDark": "Dunkler Modus",
