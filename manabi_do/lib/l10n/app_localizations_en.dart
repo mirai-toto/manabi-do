@@ -163,4 +163,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noExampleWordsFound => 'No example words found';
+
+  @override
+  String get posNoun => 'Noun';
+
+  @override
+  String get posVerb => 'Verb';
+
+  @override
+  String get posAdverb => 'Adverb';
+
+  @override
+  String get posNaAdjective => 'Na-adjective';
+
+  @override
+  String get posIAdjective => 'I-adjective';
+
+  @override
+  String get posNoAdjective => 'No-adjective';
+
+  @override
+  String get posExpression => 'Expression';
+
+  @override
+  String get posConjunction => 'Conjunction';
+
+  @override
+  String get posInterjection => 'Interjection';
+
+  @override
+  String get posPronoun => 'Pronoun';
+
+  @override
+  String get posNumeral => 'Numeral';
+
+  @override
+  String get posPrefix => 'Prefix';
+
+  @override
+  String get posSuffix => 'Suffix';
+
+  @override
+  String get posParticle => 'Particle';
+
+  @override
+  String get posCounter => 'Counter';
+
+  @override
+  String get posAuxiliaryVerb => 'Aux. verb';
+
+  @override
+  String get posAuxiliary => 'Auxiliary';
+
+  @override
+  String get posPreNounAdj => 'Pre-noun adj.';
+
+  @override
+  String get posAdjIxClass => 'Adj. (ii/yoi)';
+
+  @override
+  String get posPrenominalAdj => 'Prenominal adj.';
+
+  @override
+  String get posNounSuffix => 'Noun suffix';
+
+  @override
+  String get posNounPrefix => 'Noun prefix';
+
+  @override
+  String get posSuruSpecial => 'Suru verb (special)';
+
+  @override
+  String get posSuruIrregular => 'Suru verb (irreg.)';
 }

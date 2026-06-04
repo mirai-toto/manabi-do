@@ -6,6 +6,7 @@ import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
+import '../../../../l10n/pos_label.dart';
 import '../../../widgets/widgets.dart';
 import '../../../providers/vocab_provider.dart';
 

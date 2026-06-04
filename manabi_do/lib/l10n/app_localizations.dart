@@ -397,6 +397,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No example words found'**
   String get noExampleWordsFound;
+
+  /// No description provided for @posNoun.
+  ///
+  /// In en, this message translates to:
+  /// **'Noun'**
+  String get posNoun;
+
+  /// No description provided for @posVerb.
+  ///
+  /// In en, this message translates to:
+  /// **'Verb'**
+  String get posVerb;
+
+  /// No description provided for @posAdverb.
+  ///
+  /// In en, this message translates to:
+  /// **'Adverb'**
+  String get posAdverb;
+
+  /// No description provided for @posNaAdjective.
+  ///
+  /// In en, this message translates to:
+  /// **'Na-adjective'**
+  String get posNaAdjective;
+
+  /// No description provided for @posIAdjective.
+  ///
+  /// In en, this message translates to:
+  /// **'I-adjective'**
+  String get posIAdjective;
+
+  /// No description provided for @posNoAdjective.
+  ///
+  /// In en, this message translates to:
+  /// **'No-adjective'**
+  String get posNoAdjective;
+
+  /// No description provided for @posExpression.
+  ///
+  /// In en, this message translates to:
+  /// **'Expression'**
+  String get posExpression;
+
+  /// No description provided for @posConjunction.
+  ///
+  /// In en, this message translates to:
+  /// **'Conjunction'**
+  String get posConjunction;
+
+  /// No description provided for @posInterjection.
+  ///
+  /// In en, this message translates to:
+  /// **'Interjection'**
+  String get posInterjection;
+
+  /// No description provided for @posPronoun.
+  ///
+  /// In en, this message translates to:
+  /// **'Pronoun'**
+  String get posPronoun;
+
+  /// No description provided for @posNumeral.
+  ///
+  /// In en, this message translates to:
+  /// **'Numeral'**
+  String get posNumeral;
+
+  /// No description provided for @posPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefix'**
+  String get posPrefix;
+
+  /// No description provided for @posSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'Suffix'**
+  String get posSuffix;
+
+  /// No description provided for @posParticle.
+  ///
+  /// In en, this message translates to:
+  /// **'Particle'**
+  String get posParticle;
+
+  /// No description provided for @posCounter.
+  ///
+  /// In en, this message translates to:
+  /// **'Counter'**
+  String get posCounter;
+
+  /// No description provided for @posAuxiliaryVerb.
+  ///
+  /// In en, this message translates to:
+  /// **'Aux. verb'**
+  String get posAuxiliaryVerb;
+
+  /// No description provided for @posAuxiliary.
+  ///
+  /// In en, this message translates to:
+  /// **'Auxiliary'**
+  String get posAuxiliary;
+
+  /// No description provided for @posPreNounAdj.
+  ///
+  /// In en, this message translates to:
+  /// **'Pre-noun adj.'**
+  String get posPreNounAdj;
+
+  /// No description provided for @posAdjIxClass.
+  ///
+  /// In en, this message translates to:
+  /// **'Adj. (ii/yoi)'**
+  String get posAdjIxClass;
+
+  /// No description provided for @posPrenominalAdj.
+  ///
+  /// In en, this message translates to:
+  /// **'Prenominal adj.'**
+  String get posPrenominalAdj;
+
+  /// No description provided for @posNounSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'Noun suffix'**
+  String get posNounSuffix;
+
+  /// No description provided for @posNounPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Noun prefix'**
+  String get posNounPrefix;
+
+  /// No description provided for @posSuruSpecial.
+  ///
+  /// In en, this message translates to:
+  /// **'Suru verb (special)'**
+  String get posSuruSpecial;
+
+  /// No description provided for @posSuruIrregular.
+  ///
+  /// In en, this message translates to:
+  /// **'Suru verb (irreg.)'**
+  String get posSuruIrregular;
 }
 
 class _AppLocalizationsDelegate

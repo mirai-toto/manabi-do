@@ -163,4 +163,76 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noExampleWordsFound => 'Aucun exemple trouvé';
+
+  @override
+  String get posNoun => 'Nom';
+
+  @override
+  String get posVerb => 'Verbe';
+
+  @override
+  String get posAdverb => 'Adverbe';
+
+  @override
+  String get posNaAdjective => 'Adjectif na';
+
+  @override
+  String get posIAdjective => 'Adjectif i';
+
+  @override
+  String get posNoAdjective => 'Adjectif no';
+
+  @override
+  String get posExpression => 'Expression';
+
+  @override
+  String get posConjunction => 'Conjonction';
+
+  @override
+  String get posInterjection => 'Interjection';
+
+  @override
+  String get posPronoun => 'Pronom';
+
+  @override
+  String get posNumeral => 'Numéral';
+
+  @override
+  String get posPrefix => 'Préfixe';
+
+  @override
+  String get posSuffix => 'Suffixe';
+
+  @override
+  String get posParticle => 'Particule';
+
+  @override
+  String get posCounter => 'Compteur';
+
+  @override
+  String get posAuxiliaryVerb => 'Verbe aux.';
+
+  @override
+  String get posAuxiliary => 'Auxiliaire';
+
+  @override
+  String get posPreNounAdj => 'Adj. pré-nominal';
+
+  @override
+  String get posAdjIxClass => 'Adj. (ii/yoi)';
+
+  @override
+  String get posPrenominalAdj => 'Adj. prénominal';
+
+  @override
+  String get posNounSuffix => 'Suffixe nominal';
+
+  @override
+  String get posNounPrefix => 'Préfixe nominal';
+
+  @override
+  String get posSuruSpecial => 'Verbe suru (spécial)';
+
+  @override
+  String get posSuruIrregular => 'Verbe suru (irrég.)';
 }
