@@ -3179,6 +3179,316 @@ class VocabTranslationsCompanion extends UpdateCompanion<VocabTranslation> {
   }
 }
 
+class $SrsCardsTable extends SrsCards with TableInfo<$SrsCardsTable, SrsCard> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SrsCardsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _itemTypeMeta = const VerificationMeta(
+    'itemType',
+  );
+  @override
+  late final GeneratedColumn<String> itemType = GeneratedColumn<String>(
+    'item_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _itemIdMeta = const VerificationMeta('itemId');
+  @override
+  late final GeneratedColumn<int> itemId = GeneratedColumn<int>(
+    'item_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dueMeta = const VerificationMeta('due');
+  @override
+  late final GeneratedColumn<DateTime> due = GeneratedColumn<DateTime>(
+    'due',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _cardJsonMeta = const VerificationMeta(
+    'cardJson',
+  );
+  @override
+  late final GeneratedColumn<String> cardJson = GeneratedColumn<String>(
+    'card_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [itemType, itemId, due, cardJson];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'srs_cards';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SrsCard> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('item_type')) {
+      context.handle(
+        _itemTypeMeta,
+        itemType.isAcceptableOrUnknown(data['item_type']!, _itemTypeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_itemTypeMeta);
+    }
+    if (data.containsKey('item_id')) {
+      context.handle(
+        _itemIdMeta,
+        itemId.isAcceptableOrUnknown(data['item_id']!, _itemIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_itemIdMeta);
+    }
+    if (data.containsKey('due')) {
+      context.handle(
+        _dueMeta,
+        due.isAcceptableOrUnknown(data['due']!, _dueMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dueMeta);
+    }
+    if (data.containsKey('card_json')) {
+      context.handle(
+        _cardJsonMeta,
+        cardJson.isAcceptableOrUnknown(data['card_json']!, _cardJsonMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_cardJsonMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {itemType, itemId};
+  @override
+  SrsCard map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SrsCard(
+      itemType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}item_type'],
+      )!,
+      itemId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}item_id'],
+      )!,
+      due: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}due'],
+      )!,
+      cardJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}card_json'],
+      )!,
+    );
+  }
+
+  @override
+  $SrsCardsTable createAlias(String alias) {
+    return $SrsCardsTable(attachedDatabase, alias);
+  }
+}
+
+class SrsCard extends DataClass implements Insertable<SrsCard> {
+  final String itemType;
+  final int itemId;
+  final DateTime due;
+  final String cardJson;
+  const SrsCard({
+    required this.itemType,
+    required this.itemId,
+    required this.due,
+    required this.cardJson,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['item_type'] = Variable<String>(itemType);
+    map['item_id'] = Variable<int>(itemId);
+    map['due'] = Variable<DateTime>(due);
+    map['card_json'] = Variable<String>(cardJson);
+    return map;
+  }
+
+  SrsCardsCompanion toCompanion(bool nullToAbsent) {
+    return SrsCardsCompanion(
+      itemType: Value(itemType),
+      itemId: Value(itemId),
+      due: Value(due),
+      cardJson: Value(cardJson),
+    );
+  }
+
+  factory SrsCard.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SrsCard(
+      itemType: serializer.fromJson<String>(json['itemType']),
+      itemId: serializer.fromJson<int>(json['itemId']),
+      due: serializer.fromJson<DateTime>(json['due']),
+      cardJson: serializer.fromJson<String>(json['cardJson']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'itemType': serializer.toJson<String>(itemType),
+      'itemId': serializer.toJson<int>(itemId),
+      'due': serializer.toJson<DateTime>(due),
+      'cardJson': serializer.toJson<String>(cardJson),
+    };
+  }
+
+  SrsCard copyWith({
+    String? itemType,
+    int? itemId,
+    DateTime? due,
+    String? cardJson,
+  }) => SrsCard(
+    itemType: itemType ?? this.itemType,
+    itemId: itemId ?? this.itemId,
+    due: due ?? this.due,
+    cardJson: cardJson ?? this.cardJson,
+  );
+  SrsCard copyWithCompanion(SrsCardsCompanion data) {
+    return SrsCard(
+      itemType: data.itemType.present ? data.itemType.value : this.itemType,
+      itemId: data.itemId.present ? data.itemId.value : this.itemId,
+      due: data.due.present ? data.due.value : this.due,
+      cardJson: data.cardJson.present ? data.cardJson.value : this.cardJson,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SrsCard(')
+          ..write('itemType: $itemType, ')
+          ..write('itemId: $itemId, ')
+          ..write('due: $due, ')
+          ..write('cardJson: $cardJson')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(itemType, itemId, due, cardJson);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SrsCard &&
+          other.itemType == this.itemType &&
+          other.itemId == this.itemId &&
+          other.due == this.due &&
+          other.cardJson == this.cardJson);
+}
+
+class SrsCardsCompanion extends UpdateCompanion<SrsCard> {
+  final Value<String> itemType;
+  final Value<int> itemId;
+  final Value<DateTime> due;
+  final Value<String> cardJson;
+  final Value<int> rowid;
+  const SrsCardsCompanion({
+    this.itemType = const Value.absent(),
+    this.itemId = const Value.absent(),
+    this.due = const Value.absent(),
+    this.cardJson = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SrsCardsCompanion.insert({
+    required String itemType,
+    required int itemId,
+    required DateTime due,
+    required String cardJson,
+    this.rowid = const Value.absent(),
+  }) : itemType = Value(itemType),
+       itemId = Value(itemId),
+       due = Value(due),
+       cardJson = Value(cardJson);
+  static Insertable<SrsCard> custom({
+    Expression<String>? itemType,
+    Expression<int>? itemId,
+    Expression<DateTime>? due,
+    Expression<String>? cardJson,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (itemType != null) 'item_type': itemType,
+      if (itemId != null) 'item_id': itemId,
+      if (due != null) 'due': due,
+      if (cardJson != null) 'card_json': cardJson,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SrsCardsCompanion copyWith({
+    Value<String>? itemType,
+    Value<int>? itemId,
+    Value<DateTime>? due,
+    Value<String>? cardJson,
+    Value<int>? rowid,
+  }) {
+    return SrsCardsCompanion(
+      itemType: itemType ?? this.itemType,
+      itemId: itemId ?? this.itemId,
+      due: due ?? this.due,
+      cardJson: cardJson ?? this.cardJson,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (itemType.present) {
+      map['item_type'] = Variable<String>(itemType.value);
+    }
+    if (itemId.present) {
+      map['item_id'] = Variable<int>(itemId.value);
+    }
+    if (due.present) {
+      map['due'] = Variable<DateTime>(due.value);
+    }
+    if (cardJson.present) {
+      map['card_json'] = Variable<String>(cardJson.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SrsCardsCompanion(')
+          ..write('itemType: $itemType, ')
+          ..write('itemId: $itemId, ')
+          ..write('due: $due, ')
+          ..write('cardJson: $cardJson, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -3195,6 +3505,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       $KanjiTranslationsTable(this);
   late final $VocabTranslationsTable vocabTranslations =
       $VocabTranslationsTable(this);
+  late final $SrsCardsTable srsCards = $SrsCardsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -3208,6 +3519,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     progressEntries,
     kanjiTranslations,
     vocabTranslations,
+    srsCards,
   ];
 }
 
@@ -5861,6 +6173,181 @@ typedef $$VocabTranslationsTableProcessedTableManager =
       VocabTranslation,
       PrefetchHooks Function({bool vocabId})
     >;
+typedef $$SrsCardsTableCreateCompanionBuilder =
+    SrsCardsCompanion Function({
+      required String itemType,
+      required int itemId,
+      required DateTime due,
+      required String cardJson,
+      Value<int> rowid,
+    });
+typedef $$SrsCardsTableUpdateCompanionBuilder =
+    SrsCardsCompanion Function({
+      Value<String> itemType,
+      Value<int> itemId,
+      Value<DateTime> due,
+      Value<String> cardJson,
+      Value<int> rowid,
+    });
+
+class $$SrsCardsTableFilterComposer
+    extends Composer<_$AppDatabase, $SrsCardsTable> {
+  $$SrsCardsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get itemType => $composableBuilder(
+    column: $table.itemType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get itemId => $composableBuilder(
+    column: $table.itemId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get due => $composableBuilder(
+    column: $table.due,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get cardJson => $composableBuilder(
+    column: $table.cardJson,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$SrsCardsTableOrderingComposer
+    extends Composer<_$AppDatabase, $SrsCardsTable> {
+  $$SrsCardsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get itemType => $composableBuilder(
+    column: $table.itemType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get itemId => $composableBuilder(
+    column: $table.itemId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get due => $composableBuilder(
+    column: $table.due,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get cardJson => $composableBuilder(
+    column: $table.cardJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$SrsCardsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SrsCardsTable> {
+  $$SrsCardsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get itemType =>
+      $composableBuilder(column: $table.itemType, builder: (column) => column);
+
+  GeneratedColumn<int> get itemId =>
+      $composableBuilder(column: $table.itemId, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get due =>
+      $composableBuilder(column: $table.due, builder: (column) => column);
+
+  GeneratedColumn<String> get cardJson =>
+      $composableBuilder(column: $table.cardJson, builder: (column) => column);
+}
+
+class $$SrsCardsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SrsCardsTable,
+          SrsCard,
+          $$SrsCardsTableFilterComposer,
+          $$SrsCardsTableOrderingComposer,
+          $$SrsCardsTableAnnotationComposer,
+          $$SrsCardsTableCreateCompanionBuilder,
+          $$SrsCardsTableUpdateCompanionBuilder,
+          (SrsCard, BaseReferences<_$AppDatabase, $SrsCardsTable, SrsCard>),
+          SrsCard,
+          PrefetchHooks Function()
+        > {
+  $$SrsCardsTableTableManager(_$AppDatabase db, $SrsCardsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SrsCardsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SrsCardsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SrsCardsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> itemType = const Value.absent(),
+                Value<int> itemId = const Value.absent(),
+                Value<DateTime> due = const Value.absent(),
+                Value<String> cardJson = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SrsCardsCompanion(
+                itemType: itemType,
+                itemId: itemId,
+                due: due,
+                cardJson: cardJson,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String itemType,
+                required int itemId,
+                required DateTime due,
+                required String cardJson,
+                Value<int> rowid = const Value.absent(),
+              }) => SrsCardsCompanion.insert(
+                itemType: itemType,
+                itemId: itemId,
+                due: due,
+                cardJson: cardJson,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$SrsCardsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SrsCardsTable,
+      SrsCard,
+      $$SrsCardsTableFilterComposer,
+      $$SrsCardsTableOrderingComposer,
+      $$SrsCardsTableAnnotationComposer,
+      $$SrsCardsTableCreateCompanionBuilder,
+      $$SrsCardsTableUpdateCompanionBuilder,
+      (SrsCard, BaseReferences<_$AppDatabase, $SrsCardsTable, SrsCard>),
+      SrsCard,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -5881,4 +6368,6 @@ class $AppDatabaseManager {
       $$KanjiTranslationsTableTableManager(_db, _db.kanjiTranslations);
   $$VocabTranslationsTableTableManager get vocabTranslations =>
       $$VocabTranslationsTableTableManager(_db, _db.vocabTranslations);
+  $$SrsCardsTableTableManager get srsCards =>
+      $$SrsCardsTableTableManager(_db, _db.srsCards);
 }

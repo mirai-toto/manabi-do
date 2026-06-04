@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter/services.dart';
+import 'package:fsrs/fsrs.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -12,6 +14,7 @@ import 'tables/grammar_lessons_table.dart';
 import 'tables/kanas_table.dart';
 import 'tables/kanjis_table.dart';
 import 'tables/progress_table.dart';
+import 'tables/srs_cards_table.dart';
 import 'tables/translations_table.dart';
 import 'tables/vocabulary_table.dart';
 
@@ -26,15 +29,20 @@ part 'app_database.g.dart';
   ProgressEntries,
   KanjiTranslations,
   VocabTranslations,
+  SrsCards,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 7;
+  int get schemaVersion => 8;
 
-  // No onCreate/onUpgrade needed — the DB is pre-built and copied from assets.
-  // Schema migrations will be handled in a future release before production.
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+    onUpgrade: (m, from, to) async {
+      if (from < 8) await m.createTable(srsCards);
+    },
+  );
 
   // ── Kana queries ─────────────────────────────────────────────────────────
 
@@ -66,7 +74,7 @@ class AppDatabase extends _$AppDatabase {
       label: label,
       group: group,
       entries: slots
-          .map((k) => k == null ? null : KanaEntry(k.character, k.romaji))
+          .map((k) => k == null ? null : KanaEntry(id: k.id, kana: k.character, romaji: k.romaji))
           .toList(),
     );
 
@@ -91,6 +99,12 @@ class AppDatabase extends _$AppDatabase {
       katakana: katakana,
     );
   }
+
+  Future<List<Kana>> getKanaByType(String type) =>
+      (select(kanas)
+        ..where((k) => k.type.equals(type))
+        ..orderBy([(k) => OrderingTerm.asc(k.id)]))
+      .get();
 
   // ── Translation queries ──────────────────────────────────────────────────
 
@@ -140,6 +154,59 @@ class AppDatabase extends _$AppDatabase {
           toggledAt: DateTime.now(),
         ),
       );
+
+  // itemType is 'hiragana' or 'katakana'
+  Stream<Set<int>> watchKnownKanaIds(String itemType) =>
+      (select(progressEntries)
+        ..where((p) => p.itemType.equals(itemType) & p.isKnown.equals(true)))
+      .watch()
+      .map((rows) => rows.map((r) => r.itemId).toSet());
+
+  Future<void> setKanaKnown(String itemType, int kanaId, {required bool isKnown}) =>
+      into(progressEntries).insertOnConflictUpdate(
+        ProgressEntriesCompanion.insert(
+          itemType: itemType,
+          itemId: kanaId,
+          isKnown: isKnown,
+          toggledAt: DateTime.now(),
+        ),
+      );
+
+  // ── SRS queries ──────────────────────────────────────────────────────────
+
+  Future<Card?> getSrsCard(String itemType, int itemId) async {
+    final row = await (select(srsCards)
+      ..where((s) => s.itemType.equals(itemType) & s.itemId.equals(itemId)))
+      .getSingleOrNull();
+    if (row == null) return null;
+    return Card.fromMap(jsonDecode(row.cardJson) as Map<String, dynamic>);
+  }
+
+  Future<void> upsertSrsCard(String itemType, int itemId, Card card) =>
+      into(srsCards).insertOnConflictUpdate(
+        SrsCardsCompanion.insert(
+          itemType: itemType,
+          itemId: itemId,
+          due: card.due,
+          cardJson: jsonEncode(card.toMap()),
+        ),
+      );
+
+  Future<List<(Kana, Card?)>> getKanaSrsSession(String type) async {
+    final kanaList = await getKanaByType(type);
+    final now = DateTime.now();
+
+    final cards = await Future.wait(
+      kanaList.map((k) => getSrsCard(type, k.id)),
+    );
+
+    final pairs = List.generate(kanaList.length, (i) => (kanaList[i], cards[i]));
+
+    final due    = pairs.where((p) => p.$2 != null && !p.$2!.due.isAfter(now)).toList();
+    final newOnes = pairs.where((p) => p.$2 == null).take(20).toList();
+
+    return [...due, ...newOnes];
+  }
 }
 
 // Bump this string whenever a new assets/manabi_do_content.db is shipped.

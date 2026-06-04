@@ -150,5 +150,21 @@
   "aboutDataSources": "Sources de données",
   "aboutEdrdgNotice": "Cette application utilise JMdict et KANJIDIC2, publiés par l'Electronic Dictionary Research and Development Group (EDRDG) sous licence Creative Commons Attribution-ShareAlike 4.0 International.",
   "aboutEdrdgLink": "edrdg.org",
-  "aboutOpenSourceLicenses": "Licences open source"
+  "aboutOpenSourceLicenses": "Licences open source",
+
+  "practiceSessionDone": "Session terminée",
+  "practiceReviewed": "{count} révisées",
+  "@practiceReviewed": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceGotIt": "{count} réussies",
+  "@practiceGotIt": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceNotYet": "{count} à revoir",
+  "@practiceNotYet": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceEmpty": "Rien à réviser — revenez demain !",
+  "practiceDone": "Terminer"
 }

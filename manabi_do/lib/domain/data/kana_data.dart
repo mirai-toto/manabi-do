@@ -1,10 +1,11 @@
 class KanaEntry {
+  final int id;
   final String kana;
   final String romaji;
-  const KanaEntry(this.kana, this.romaji);
+  const KanaEntry({required this.id, required this.kana, required this.romaji});
 
   factory KanaEntry.fromJson(Map<String, dynamic> json) =>
-      KanaEntry(json['kana'] as String, json['romaji'] as String);
+      KanaEntry(id: json['id'] as int, kana: json['kana'] as String, romaji: json['romaji'] as String);
 }
 
 class KanaRow {

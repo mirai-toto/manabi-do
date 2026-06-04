@@ -7,29 +7,31 @@ import '../../widgets/widgets.dart';
 
 class KanaTabView extends StatelessWidget {
   final List<KanaRow> rows;
-  final Set<String> known;
-  final void Function(String) onToggle;
+  final Set<int> knownIds;
+  final void Function(int id) onToggle;
+  final VoidCallback onPractice;
 
   const KanaTabView({
     super.key,
     required this.rows,
-    required this.known,
+    required this.knownIds,
     required this.onToggle,
+    required this.onPractice,
   });
 
   @override
   Widget build(BuildContext context) {
     final allKana = rows.expand((r) => r.kana).toList();
-    final knownCount = allKana.where((e) => known.contains(e.kana)).length;
+    final knownCount = allKana.where((e) => knownIds.contains(e.id)).length;
 
     final color = levelColor('kana');
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
       children: [
         ProgressRow(known: knownCount, total: allKana.length, color: color),
-        PracticeButton(color: color),
+        PracticeButton(color: color, onTap: onPractice),
         for (final row in rows)
-          _KanaRowSection(row: row, known: known, onToggle: onToggle),
+          _KanaRowSection(row: row, knownIds: knownIds, onToggle: onToggle),
       ],
     );
   }
@@ -37,9 +39,9 @@ class KanaTabView extends StatelessWidget {
 
 class _KanaRowSection extends StatelessWidget {
   final KanaRow row;
-  final Set<String> known;
-  final void Function(String) onToggle;
-  const _KanaRowSection({required this.row, required this.known, required this.onToggle});
+  final Set<int> knownIds;
+  final void Function(int id) onToggle;
+  const _KanaRowSection({required this.row, required this.knownIds, required this.onToggle});
 
   String _localizedLabel(BuildContext context) {
     return switch (row.label) {
@@ -57,7 +59,7 @@ class _KanaRowSection extends StatelessWidget {
         child: SectionLabel(_localizedLabel(context)),
       ),
       const SizedBox(height: AppDimens.spaceXs),
-      _KanaGrid(row: row, known: known, onToggle: onToggle),
+      _KanaGrid(row: row, knownIds: knownIds, onToggle: onToggle),
       const SizedBox(height: AppDimens.spaceSm),
     ],
   );
@@ -65,10 +67,10 @@ class _KanaRowSection extends StatelessWidget {
 
 class _KanaGrid extends StatelessWidget {
   final KanaRow row;
-  final Set<String> known;
-  final void Function(String) onToggle;
+  final Set<int> knownIds;
+  final void Function(int id) onToggle;
 
-  const _KanaGrid({required this.row, required this.known, required this.onToggle});
+  const _KanaGrid({required this.row, required this.knownIds, required this.onToggle});
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +94,8 @@ class _KanaGrid extends StatelessWidget {
                   CharacterCell(
                     character: row.entries[i]!.kana,
                     subLabel: row.entries[i]!.romaji,
-                    isKnown: known.contains(row.entries[i]!.kana),
-                    onTap: () => onToggle(row.entries[i]!.kana),
+                    isKnown: knownIds.contains(row.entries[i]!.id),
+                    onTap: () => onToggle(row.entries[i]!.id),
                     width: cellSize,
                     height: cellSize,
                     characterSize: kanaSize,

@@ -663,6 +663,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open source licenses'**
   String get aboutOpenSourceLicenses;
+
+  /// No description provided for @practiceSessionDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Session complete'**
+  String get practiceSessionDone;
+
+  /// No description provided for @practiceReviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} reviewed'**
+  String practiceReviewed(int count);
+
+  /// No description provided for @practiceGotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} got it'**
+  String practiceGotIt(int count);
+
+  /// No description provided for @practiceNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} not yet'**
+  String practiceNotYet(int count);
+
+  /// No description provided for @practiceEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to review — come back tomorrow!'**
+  String get practiceEmpty;
+
+  /// No description provided for @practiceDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get practiceDone;
 }
 
 class _AppLocalizationsDelegate

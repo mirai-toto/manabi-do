@@ -156,5 +156,21 @@
   "aboutDataSources": "Data sources",
   "aboutEdrdgNotice": "This app uses JMdict and KANJIDIC2, published by the Electronic Dictionary Research and Development Group (EDRDG) under a Creative Commons Attribution-ShareAlike 4.0 International licence.",
   "aboutEdrdgLink": "edrdg.org",
-  "aboutOpenSourceLicenses": "Open source licenses"
+  "aboutOpenSourceLicenses": "Open source licenses",
+
+  "practiceSessionDone": "Session complete",
+  "practiceReviewed": "{count} reviewed",
+  "@practiceReviewed": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceGotIt": "{count} got it",
+  "@practiceGotIt": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceNotYet": "{count} not yet",
+  "@practiceNotYet": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "practiceEmpty": "Nothing to review — come back tomorrow!",
+  "practiceDone": "Done"
 }

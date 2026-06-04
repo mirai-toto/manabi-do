@@ -5,7 +5,8 @@ import '../../../l10n/l10n.dart';
 
 class PracticeButton extends StatelessWidget {
   final Color color;
-  const PracticeButton({super.key, required this.color});
+  final VoidCallback? onTap;
+  const PracticeButton({super.key, required this.color, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,7 @@ class PracticeButton extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(context.l10n.comingSoon)),
-            ),
+            onTap: onTap,
             child: Padding(
               padding: const EdgeInsets.all(AppDimens.spaceMd),
               child: Row(

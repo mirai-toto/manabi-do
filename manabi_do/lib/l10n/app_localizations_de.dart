@@ -304,4 +304,28 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aboutOpenSourceLicenses => 'Open-Source-Lizenzen';
+
+  @override
+  String get practiceSessionDone => 'Sitzung abgeschlossen';
+
+  @override
+  String practiceReviewed(int count) {
+    return '$count wiederholt';
+  }
+
+  @override
+  String practiceGotIt(int count) {
+    return '$count gewusst';
+  }
+
+  @override
+  String practiceNotYet(int count) {
+    return '$count noch nicht';
+  }
+
+  @override
+  String get practiceEmpty => 'Nichts zu wiederholen — komm morgen wieder!';
+
+  @override
+  String get practiceDone => 'Fertig';
 }
