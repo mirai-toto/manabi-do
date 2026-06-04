@@ -243,51 +243,32 @@ class AppDatabase extends _$AppDatabase {
   }
 
   Future<List<(Kanji, Card?)>> getKanjiSrsSession(String level, {int newCardLimit = 10}) async {
-    final skippedIds = await (select(progressEntries)
-      ..where((p) => p.itemType.equals('kanji') & p.isKnown.equals(true)))
-      .get()
-      .then((rows) => rows.map((r) => r.itemId).toSet());
-
-    final kanjiList = await (select(kanjis)..where((k) => k.jlptLevel.equals(level))).get();
-    final now = DateTime.now();
-    final todayStart = DateTime(now.year, now.month, now.day);
-
-    final seenToday = await (select(srsCards)
-      ..where((s) =>
-          s.itemType.equals('kanji') &
-          s.firstSeenAt.isBiggerOrEqualValue(todayStart)))
-      .get()
-      .then((rows) => rows.length);
-
-    final remainingNew = (newCardLimit - seenToday).clamp(0, newCardLimit);
-
-    final cards = await Future.wait(
-      kanjiList.map((k) => getSrsCard('kanji', k.id)),
-    );
-
-    final pairs = List.generate(kanjiList.length, (i) => (kanjiList[i], cards[i]))
-        .where((p) => !skippedIds.contains(p.$1.id))
-        .toList();
-
-    final due     = pairs.where((p) => p.$2 != null && !p.$2!.due.isAfter(now)).toList();
-    final newOnes = pairs.where((p) => p.$2 == null).take(remainingNew).toList();
-
-    return [...due, ...newOnes];
+    final items = await (select(kanjis)..where((k) => k.jlptLevel.equals(level))).get();
+    return _buildSrsSession('kanji', items, (k) => k.id, newCardLimit: newCardLimit);
   }
 
   Future<List<(Kana, Card?)>> getKanaSrsSession(String type, {int newCardLimit = 10}) async {
-    final skippedIds = await (select(progressEntries)
-      ..where((p) => p.itemType.equals(type) & p.isKnown.equals(true)))
-      .get()
-      .then((rows) => rows.map((r) => r.itemId).toSet());
+    final items = await getKanaByType(type);
+    return _buildSrsSession(type, items, (k) => k.id, newCardLimit: newCardLimit);
+  }
 
-    final kanaList = await getKanaByType(type);
+  Future<List<(T, Card?)>> _buildSrsSession<T>(
+    String itemType,
+    List<T> items,
+    int Function(T) getId, {
+    required int newCardLimit,
+  }) async {
     final now = DateTime.now();
     final todayStart = DateTime(now.year, now.month, now.day);
 
+    final skippedIds = await (select(progressEntries)
+      ..where((p) => p.itemType.equals(itemType) & p.isKnown.equals(true)))
+      .get()
+      .then((rows) => rows.map((r) => r.itemId).toSet());
+
     final seenToday = await (select(srsCards)
       ..where((s) =>
-          s.itemType.equals(type) &
+          s.itemType.equals(itemType) &
           s.firstSeenAt.isBiggerOrEqualValue(todayStart)))
       .get()
       .then((rows) => rows.length);
@@ -295,11 +276,11 @@ class AppDatabase extends _$AppDatabase {
     final remainingNew = (newCardLimit - seenToday).clamp(0, newCardLimit);
 
     final cards = await Future.wait(
-      kanaList.map((k) => getSrsCard(type, k.id)),
+      items.map((item) => getSrsCard(itemType, getId(item))),
     );
 
-    final pairs = List.generate(kanaList.length, (i) => (kanaList[i], cards[i]))
-        .where((p) => !skippedIds.contains(p.$1.id))
+    final pairs = List.generate(items.length, (i) => (items[i], cards[i]))
+        .where((p) => !skippedIds.contains(getId(p.$1)))
         .toList();
 
     final due     = pairs.where((p) => p.$2 != null && !p.$2!.due.isAfter(now)).toList();
