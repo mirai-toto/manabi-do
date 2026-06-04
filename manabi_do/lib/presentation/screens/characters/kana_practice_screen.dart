@@ -91,7 +91,6 @@ class _KanaPracticeScreenState extends ConsumerState<KanaPracticeScreen> {
           widget.type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
           style: AppTextStyles.title.copyWith(color: t.onSurface),
         ),
-        actions: const [],
       ),
       body: _queue == null
           ? const Center(child: CircularProgressIndicator())
