@@ -1,0 +1,6032 @@
+[
+  {
+    "word": "東",
+    "reading": "ひがし",
+    "pos": "noun",
+    "kanjiId": 26481,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "eastern Japan (esp. Kamakura or Edo, from perspective of Kyoto or Nara); eastern provinces"
+    }
+  },
+  {
+    "word": "私",
+    "reading": "わたくし",
+    "pos": "pronoun",
+    "kanjiId": 31169,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "I; me"
+    }
+  },
+  {
+    "word": "私",
+    "reading": "わたし",
+    "pos": "pronoun",
+    "kanjiId": 31169,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "I; me"
+    }
+  },
+  {
+    "word": "一日",
+    "reading": "いちにち",
+    "pos": "noun",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "one day"
+    }
+  },
+  {
+    "word": "一日",
+    "reading": "ついたち",
+    "pos": "noun",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "one day"
+    }
+  },
+  {
+    "word": "一人",
+    "reading": "ひとり",
+    "pos": "noun",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "one person"
+    }
+  },
+  {
+    "word": "暇",
+    "reading": "ひま",
+    "pos": "noun",
+    "kanjiId": 26247,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "spare time; free time; leisure"
+    }
+  },
+  {
+    "word": "入口",
+    "reading": "いりぐち",
+    "pos": "noun",
+    "kanjiId": 20837,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "entrance; entry; gate"
+    }
+  },
+  {
+    "word": "入る",
+    "reading": "はいる",
+    "pos": "verb",
+    "kanjiId": 20837,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to enter; to go in; to get in"
+    }
+  },
+  {
+    "word": "甘い",
+    "reading": "あまい",
+    "pos": "i-adjective",
+    "kanjiId": 29976,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "sweet-tasting; sweet; sugary"
+    }
+  },
+  {
+    "word": "上手",
+    "reading": "じょうず",
+    "pos": "na-adjective",
+    "kanjiId": 19978,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "skillful; skilled; proficient"
+    }
+  },
+  {
+    "word": "塩",
+    "reading": "しお",
+    "pos": "noun",
+    "kanjiId": 22633,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "salt; common salt; table salt"
+    }
+  },
+  {
+    "word": "黄色",
+    "reading": "きいろ",
+    "pos": "noun",
+    "kanjiId": 40644,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "yellow; amber"
+    }
+  },
+  {
+    "word": "弟",
+    "reading": "おとうと",
+    "pos": "noun",
+    "kanjiId": 24351,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "younger brother; little brother; kid brother"
+    }
+  },
+  {
+    "word": "角",
+    "reading": "かど",
+    "pos": "noun",
+    "kanjiId": 35282,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "angle"
+    }
+  },
+  {
+    "word": "門",
+    "reading": "もん",
+    "pos": "noun",
+    "kanjiId": 38272,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "door (esp. Japanese-style)"
+    }
+  },
+  {
+    "word": "眼鏡",
+    "reading": "めがね",
+    "pos": "noun",
+    "kanjiId": 30524,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "glasses; eyeglasses; spectacles"
+    }
+  },
+  {
+    "word": "来る",
+    "reading": "くる",
+    "pos": "verb",
+    "kanjiId": 26469,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to come (spatially or temporally); to approach; to arrive"
+    }
+  },
+  {
+    "word": "戸",
+    "reading": "と",
+    "pos": "noun",
+    "kanjiId": 25144,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "door (esp. Japanese-style)"
+    }
+  },
+  {
+    "word": "次",
+    "reading": "つぎ",
+    "pos": "noun",
+    "kanjiId": 27425,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "next; following; subsequent"
+    }
+  },
+  {
+    "word": "丈夫",
+    "reading": "じょうぶ",
+    "pos": "na-adjective",
+    "kanjiId": 22827,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "healthy; robust; strong"
+    }
+  },
+  {
+    "word": "人",
+    "reading": "ひと",
+    "pos": "suffix",
+    "kanjiId": 20154,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "-ian (e.g. Italian); -ite (e.g. Tokyoite)"
+    }
+  },
+  {
+    "word": "前",
+    "reading": "まえ",
+    "pos": "noun",
+    "kanjiId": 21069,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "point; tip; end"
+    }
+  },
+  {
+    "word": "誰",
+    "reading": "だれ",
+    "pos": "pronoun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "who"
+    }
+  },
+  {
+    "word": "誰",
+    "reading": "だれか",
+    "pos": "pronoun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "who"
+    }
+  },
+  {
+    "word": "体",
+    "reading": "からだ",
+    "pos": "noun",
+    "kanjiId": 20307,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "body"
+    }
+  },
+  {
+    "word": "店",
+    "reading": "みせ",
+    "pos": "noun",
+    "kanjiId": 24215,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "store; shop; establishment"
+    }
+  },
+  {
+    "word": "止まる",
+    "reading": "とまる",
+    "pos": "verb",
+    "kanjiId": 27490,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to stop (moving); to come to a stop"
+    }
+  },
+  {
+    "word": "七日",
+    "reading": "なのか",
+    "pos": "noun",
+    "kanjiId": 19971,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "7th day of the month"
+    }
+  },
+  {
+    "word": "南",
+    "reading": "みなみ",
+    "pos": "noun",
+    "kanjiId": 21335,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "south"
+    }
+  },
+  {
+    "word": "悪い",
+    "reading": "わるい",
+    "pos": "i-adjective",
+    "kanjiId": 24746,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bad; poor; undesirable"
+    }
+  },
+  {
+    "word": "二人",
+    "reading": "ふたり",
+    "pos": "noun",
+    "kanjiId": 20108,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "two persons; two people; pair"
+    }
+  },
+  {
+    "word": "灰皿",
+    "reading": "はいざら",
+    "pos": "noun",
+    "kanjiId": 28784,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "ashtray"
+    }
+  },
+  {
+    "word": "弾く",
+    "reading": "ひく",
+    "pos": "verb",
+    "kanjiId": 24382,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to flip; to snap; to flick"
+    }
+  },
+  {
+    "word": "始め",
+    "reading": "はじめ",
+    "pos": "noun",
+    "kanjiId": 22987,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "beginning; start; outset"
+    }
+  },
+  {
+    "word": "万",
+    "reading": "まん",
+    "pos": "adverb",
+    "kanjiId": 19975,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "completely; absolutely; totally"
+    }
+  },
+  {
+    "word": "三",
+    "reading": "さん",
+    "pos": "numeral",
+    "kanjiId": 19977,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "three; 3"
+    }
+  },
+  {
+    "word": "六",
+    "reading": "ろく",
+    "pos": "numeral",
+    "kanjiId": 20845,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "six; 6"
+    }
+  },
+  {
+    "word": "一昨日",
+    "reading": "おととい",
+    "pos": "noun",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "day before yesterday"
+    }
+  },
+  {
+    "word": "一昨年",
+    "reading": "おととし",
+    "pos": "noun",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "year before last"
+    }
+  },
+  {
+    "word": "伯母さん",
+    "reading": "おばさん",
+    "pos": "noun",
+    "kanjiId": 20271,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "aunt"
+    }
+  },
+  {
+    "word": "叔母さん",
+    "reading": "おばさん",
+    "pos": "noun",
+    "kanjiId": 21460,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "aunt"
+    }
+  },
+  {
+    "word": "作る",
+    "reading": "つくる",
+    "pos": "verb",
+    "kanjiId": 20316,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to make; to produce; to manufacture"
+    }
+  },
+  {
+    "word": "円い",
+    "reading": "まるい",
+    "pos": "i-adjective",
+    "kanjiId": 20870,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "round; circular; spherical"
+    }
+  },
+  {
+    "word": "いい",
+    "reading": "いい",
+    "pos": "adj-ix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "good; excellent; fine"
+    }
+  },
+  {
+    "word": "いい",
+    "reading": "よい",
+    "pos": "adj-ix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "good; excellent; fine"
+    }
+  },
+  {
+    "word": "よい",
+    "reading": "いい",
+    "pos": "adj-ix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "good; excellent; fine"
+    }
+  },
+  {
+    "word": "言う",
+    "reading": "いう",
+    "pos": "verb",
+    "kanjiId": 35328,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to say; to utter; to declare"
+    }
+  },
+  {
+    "word": "上",
+    "reading": "うえ",
+    "pos": "noun",
+    "kanjiId": 19978,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "above; over; up"
+    }
+  },
+  {
+    "word": "魚",
+    "reading": "さかな",
+    "pos": "noun",
+    "kanjiId": 39770,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "fish"
+    }
+  },
+  {
+    "word": "後",
+    "reading": "あと",
+    "pos": "noun",
+    "kanjiId": 24460,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "behind; rear"
+    }
+  },
+  {
+    "word": "居る",
+    "reading": "いる",
+    "pos": "verb",
+    "kanjiId": 23621,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to be (of animate objects); to exist"
+    }
+  },
+  {
+    "word": "空",
+    "reading": "そら",
+    "pos": "noun",
+    "kanjiId": 31354,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "emptiness; being empty"
+    }
+  },
+  {
+    "word": "川",
+    "reading": "かわ",
+    "pos": "noun",
+    "kanjiId": 24029,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "river; stream"
+    }
+  },
+  {
+    "word": "河",
+    "reading": "かわ",
+    "pos": "noun",
+    "kanjiId": 27827,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "river; stream"
+    }
+  },
+  {
+    "word": "九",
+    "reading": "きゅう",
+    "pos": "numeral",
+    "kanjiId": 20061,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "nine; 9"
+    }
+  },
+  {
+    "word": "九",
+    "reading": "く",
+    "pos": "numeral",
+    "kanjiId": 20061,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "nine; 9"
+    }
+  },
+  {
+    "word": "キロ",
+    "reading": "キロ",
+    "pos": "prefix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "kilo-; 1000"
+    }
+  },
+  {
+    "word": "キロ",
+    "reading": "キログラム",
+    "pos": "prefix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "kilo-; 1000"
+    }
+  },
+  {
+    "word": "キロ",
+    "reading": "キロ",
+    "pos": "prefix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "kilo-; 1000"
+    }
+  },
+  {
+    "word": "キロ",
+    "reading": "キロメートル",
+    "pos": "prefix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "kilo-; 1000"
+    }
+  },
+  {
+    "word": "下",
+    "reading": "した",
+    "pos": "noun",
+    "kanjiId": 19979,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "below; down; under"
+    }
+  },
+  {
+    "word": "今日",
+    "reading": "きょう",
+    "pos": "noun",
+    "kanjiId": 20170,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "today; this day"
+    }
+  },
+  {
+    "word": "散歩",
+    "reading": "さんぽする",
+    "pos": "noun",
+    "kanjiId": 25955,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "walk; stroll"
+    }
+  },
+  {
+    "word": "四",
+    "reading": "し",
+    "pos": "numeral",
+    "kanjiId": 22235,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "four; 4"
+    }
+  },
+  {
+    "word": "四",
+    "reading": "よん",
+    "pos": "numeral",
+    "kanjiId": 22235,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "four; 4"
+    }
+  },
+  {
+    "word": "七",
+    "reading": "しち",
+    "pos": "numeral",
+    "kanjiId": 19971,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "seven"
+    }
+  },
+  {
+    "word": "七",
+    "reading": "なな",
+    "pos": "numeral",
+    "kanjiId": 19971,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "seven"
+    }
+  },
+  {
+    "word": "じゃあ",
+    "reading": "じゃ",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "then; well; so"
+    }
+  },
+  {
+    "word": "じゃあ",
+    "reading": "じゃあ",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "then; well; so"
+    }
+  },
+  {
+    "word": "十",
+    "reading": "じゅう とお",
+    "pos": "numeral",
+    "kanjiId": 21313,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "ten; 10"
+    }
+  },
+  {
+    "word": "背",
+    "reading": "せ",
+    "pos": "noun",
+    "kanjiId": 32972,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "height; stature"
+    }
+  },
+  {
+    "word": "掃除",
+    "reading": "そうじする",
+    "pos": "noun",
+    "kanjiId": 25475,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cleaning; sweeping; dusting"
+    }
+  },
+  {
+    "word": "それ",
+    "reading": "それ",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "there!; look!"
+    }
+  },
+  {
+    "word": "中",
+    "reading": "なか",
+    "pos": "noun",
+    "kanjiId": 20013,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "inside; interior"
+    }
+  },
+  {
+    "word": "辛い",
+    "reading": "からい",
+    "pos": "i-adjective",
+    "kanjiId": 36763,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "spicy; hot"
+    }
+  },
+  {
+    "word": "では",
+    "reading": "では",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "then; well; so"
+    }
+  },
+  {
+    "word": "でも",
+    "reading": "でも",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "but; however; though"
+    }
+  },
+  {
+    "word": "どう",
+    "reading": "どう",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "whoa (command used to stop a horse, etc.)"
+    }
+  },
+  {
+    "word": "何",
+    "reading": "なん",
+    "pos": "pronoun",
+    "kanjiId": 20309,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "what"
+    }
+  },
+  {
+    "word": "何",
+    "reading": "なに",
+    "pos": "pronoun",
+    "kanjiId": 20309,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "what"
+    }
+  },
+  {
+    "word": "はい",
+    "reading": "はい",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "yes; that is correct"
+    }
+  },
+  {
+    "word": "勉強",
+    "reading": "べんきょうする",
+    "pos": "noun",
+    "kanjiId": 21193,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "study"
+    }
+  },
+  {
+    "word": "方",
+    "reading": "かた",
+    "pos": "noun",
+    "kanjiId": 26041,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "direction; way"
+    }
+  },
+  {
+    "word": "外",
+    "reading": "そと",
+    "pos": "noun",
+    "kanjiId": 22806,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "outside; exterior"
+    }
+  },
+  {
+    "word": "丸い",
+    "reading": "まるい",
+    "pos": "i-adjective",
+    "kanjiId": 20024,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "round; circular; spherical"
+    }
+  },
+  {
+    "word": "夜",
+    "reading": "よる",
+    "pos": "noun",
+    "kanjiId": 22812,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "night; evening"
+    }
+  },
+  {
+    "word": "より",
+    "reading": "より",
+    "pos": "particle",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "than"
+    }
+  },
+  {
+    "word": "より",
+    "reading": "ほう",
+    "pos": "particle",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "than"
+    }
+  },
+  {
+    "word": "練習",
+    "reading": "れんしゅうする",
+    "pos": "noun",
+    "kanjiId": 32244,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "practice; training; drill"
+    }
+  },
+  {
+    "word": "明日",
+    "reading": "あした",
+    "pos": "noun",
+    "kanjiId": 26126,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "tomorrow"
+    }
+  },
+  {
+    "word": "開く",
+    "reading": "あく",
+    "pos": "verb",
+    "kanjiId": 38283,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to open; to undo; to unseal"
+    }
+  },
+  {
+    "word": "会う",
+    "reading": "あう",
+    "pos": "verb",
+    "kanjiId": 20250,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to meet; to encounter; to see"
+    }
+  },
+  {
+    "word": "青",
+    "reading": "あお",
+    "pos": "noun",
+    "kanjiId": 38738,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "blue; azure"
+    }
+  },
+  {
+    "word": "青い",
+    "reading": "あおい",
+    "pos": "i-adjective",
+    "kanjiId": 38738,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "blue; azure"
+    }
+  },
+  {
+    "word": "赤",
+    "reading": "あか",
+    "pos": "noun",
+    "kanjiId": 36196,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "red; crimson; scarlet"
+    }
+  },
+  {
+    "word": "赤い",
+    "reading": "あかい",
+    "pos": "i-adjective",
+    "kanjiId": 36196,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "red; crimson; scarlet"
+    }
+  },
+  {
+    "word": "明い",
+    "reading": "あかるい",
+    "pos": "i-adjective",
+    "kanjiId": 26126,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "light; bright; well-lit"
+    }
+  },
+  {
+    "word": "秋",
+    "reading": "あき",
+    "pos": "noun",
+    "kanjiId": 31179,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "time; hour; moment"
+    }
+  },
+  {
+    "word": "開ける",
+    "reading": "あける",
+    "pos": "verb",
+    "kanjiId": 38283,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to open (a door, etc.); to unwrap (e.g. parcel, package); to unlock"
+    }
+  },
+  {
+    "word": "上げる",
+    "reading": "あげる",
+    "pos": "verb",
+    "kanjiId": 19978,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to raise; to elevate"
+    }
+  },
+  {
+    "word": "朝",
+    "reading": "あさ",
+    "pos": "noun",
+    "kanjiId": 26397,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "morning"
+    }
+  },
+  {
+    "word": "朝御飯",
+    "reading": "あさごはん",
+    "pos": "noun",
+    "kanjiId": 26397,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "breakfast"
+    }
+  },
+  {
+    "word": "足",
+    "reading": "あし",
+    "pos": "noun",
+    "kanjiId": 36275,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "foot; paw; arm (of an octopus, squid, etc.)"
+    }
+  },
+  {
+    "word": "遊ぶ",
+    "reading": "あそぶ",
+    "pos": "verb",
+    "kanjiId": 36938,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to play (games, sports); to enjoy oneself; to have a good time"
+    }
+  },
+  {
+    "word": "暖かい",
+    "reading": "あたたかい",
+    "pos": "i-adjective",
+    "kanjiId": 26262,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "warm; mild; (pleasantly) hot"
+    }
+  },
+  {
+    "word": "頭",
+    "reading": "あたま",
+    "pos": "counter",
+    "kanjiId": 38957,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "counter for large animals (e.g. head of cattle); counter for insects in a collection; counter for helmets, masks, etc."
+    }
+  },
+  {
+    "word": "新しい",
+    "reading": "あたらしい",
+    "pos": "i-adjective",
+    "kanjiId": 26032,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "new; novel; fresh"
+    }
+  },
+  {
+    "word": "暑い",
+    "reading": "あつい",
+    "pos": "i-adjective",
+    "kanjiId": 26257,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "hot; warm; sultry"
+    }
+  },
+  {
+    "word": "熱い",
+    "reading": "あつい",
+    "pos": "i-adjective",
+    "kanjiId": 29105,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "hot (to the touch)"
+    }
+  },
+  {
+    "word": "厚い",
+    "reading": "あつい",
+    "pos": "i-adjective",
+    "kanjiId": 21402,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "thick; deep; heavy"
+    }
+  },
+  {
+    "word": "兄",
+    "reading": "あに",
+    "pos": "noun",
+    "kanjiId": 20804,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "older brother; elder brother"
+    }
+  },
+  {
+    "word": "姉",
+    "reading": "あね",
+    "pos": "noun",
+    "kanjiId": 22985,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "older sister; elder sister"
+    }
+  },
+  {
+    "word": "あの",
+    "reading": "あの",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "say; well; um"
+    }
+  },
+  {
+    "word": "あの",
+    "reading": "あの",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "say; well; um"
+    }
+  },
+  {
+    "word": "アパート",
+    "reading": "アパート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "apartment building; apartment block; apartment house"
+    }
+  },
+  {
+    "word": "危ない",
+    "reading": "あぶない",
+    "pos": "i-adjective",
+    "kanjiId": 21361,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "dangerous; risky; hazardous"
+    }
+  },
+  {
+    "word": "雨",
+    "reading": "あめ",
+    "pos": "noun",
+    "kanjiId": 38632,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "rain"
+    }
+  },
+  {
+    "word": "飴",
+    "reading": "あめ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(hard) candy; toffee"
+    }
+  },
+  {
+    "word": "洗う",
+    "reading": "あらう",
+    "pos": "verb",
+    "kanjiId": 27927,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to wash; to cleanse; to rinse"
+    }
+  },
+  {
+    "word": "歩く",
+    "reading": "あるく",
+    "pos": "verb",
+    "kanjiId": 27497,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to walk"
+    }
+  },
+  {
+    "word": "あれ",
+    "reading": "あれ",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "huh?; eh?; what?"
+    }
+  },
+  {
+    "word": "いいえ",
+    "reading": "いいえ",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "no"
+    }
+  },
+  {
+    "word": "家",
+    "reading": "いえ",
+    "pos": "noun",
+    "kanjiId": 23478,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "house; residence; dwelling"
+    }
+  },
+  {
+    "word": "行く",
+    "reading": "いく",
+    "pos": "verb",
+    "kanjiId": 34892,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to go; to move (towards); to head (towards)"
+    }
+  },
+  {
+    "word": "行く",
+    "reading": "ゆく",
+    "pos": "verb",
+    "kanjiId": 34892,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to go; to move (towards); to head (towards)"
+    }
+  },
+  {
+    "word": "いくら",
+    "reading": "いくら",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "salted salmon roe"
+    }
+  },
+  {
+    "word": "池",
+    "reading": "いけ",
+    "pos": "noun",
+    "kanjiId": 27744,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "pond"
+    }
+  },
+  {
+    "word": "医者",
+    "reading": "いしゃ",
+    "pos": "noun",
+    "kanjiId": 21307,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "doctor; physician"
+    }
+  },
+  {
+    "word": "忙しい",
+    "reading": "いそがしい",
+    "pos": "i-adjective",
+    "kanjiId": 24537,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "busy; occupied; hectic"
+    }
+  },
+  {
+    "word": "痛い",
+    "reading": "いたい",
+    "pos": "i-adjective",
+    "kanjiId": 30171,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "painful; sore"
+    }
+  },
+  {
+    "word": "一",
+    "reading": "いち",
+    "pos": "numeral",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "one; 1"
+    }
+  },
+  {
+    "word": "五日",
+    "reading": "いつか",
+    "pos": "noun",
+    "kanjiId": 20116,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "5th day of the month"
+    }
+  },
+  {
+    "word": "一緒",
+    "reading": "いっしょ",
+    "pos": "noun",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(doing) together"
+    }
+  },
+  {
+    "word": "五つ",
+    "reading": "いつつ",
+    "pos": "numeral",
+    "kanjiId": 20116,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "five"
+    }
+  },
+  {
+    "word": "犬",
+    "reading": "いぬ",
+    "pos": "noun",
+    "kanjiId": 29356,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "dog (Canis (lupus) familiaris); canine"
+    }
+  },
+  {
+    "word": "今",
+    "reading": "いま",
+    "pos": "noun",
+    "kanjiId": 20170,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "now; the present time; just now"
+    }
+  },
+  {
+    "word": "意味",
+    "reading": "いみ",
+    "pos": "noun",
+    "kanjiId": 24847,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "meaning; significance; sense"
+    }
+  },
+  {
+    "word": "妹",
+    "reading": "いもうと",
+    "pos": "noun",
+    "kanjiId": 22969,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "younger sister"
+    }
+  },
+  {
+    "word": "嫌",
+    "reading": "いや",
+    "pos": "na-adjective",
+    "kanjiId": 23244,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "disliking; not wanting; unwilling (to do)"
+    }
+  },
+  {
+    "word": "要る",
+    "reading": "いる",
+    "pos": "verb",
+    "kanjiId": 35201,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to be needed; to be necessary; to be required"
+    }
+  },
+  {
+    "word": "入れる",
+    "reading": "いれる",
+    "pos": "verb",
+    "kanjiId": 20837,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to put in; to let in; to take in"
+    }
+  },
+  {
+    "word": "色",
+    "reading": "いろ",
+    "pos": "noun",
+    "kanjiId": 33394,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "colour; color; hue"
+    }
+  },
+  {
+    "word": "後ろ",
+    "reading": "うしろ",
+    "pos": "noun",
+    "kanjiId": 24460,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "back; behind; rear"
+    }
+  },
+  {
+    "word": "薄い",
+    "reading": "うすい",
+    "pos": "i-adjective",
+    "kanjiId": 34180,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "thin (of an object)"
+    }
+  },
+  {
+    "word": "歌",
+    "reading": "うた",
+    "pos": "noun",
+    "kanjiId": 27468,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "song; singing"
+    }
+  },
+  {
+    "word": "歌う",
+    "reading": "うたう",
+    "pos": "verb",
+    "kanjiId": 27468,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to sing"
+    }
+  },
+  {
+    "word": "生まれる",
+    "reading": "うまれる",
+    "pos": "verb",
+    "kanjiId": 29983,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to be born"
+    }
+  },
+  {
+    "word": "海",
+    "reading": "うみ",
+    "pos": "noun",
+    "kanjiId": 28023,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "sea; ocean; waters"
+    }
+  },
+  {
+    "word": "売る",
+    "reading": "うる",
+    "pos": "verb",
+    "kanjiId": 22770,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to sell"
+    }
+  },
+  {
+    "word": "煩い",
+    "reading": "うるさい",
+    "pos": "i-adjective",
+    "kanjiId": 29033,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "noisy; loud"
+    }
+  },
+  {
+    "word": "上着",
+    "reading": "うわぎ",
+    "pos": "noun",
+    "kanjiId": 19978,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "coat; jacket; outerwear"
+    }
+  },
+  {
+    "word": "絵",
+    "reading": "え",
+    "pos": "noun",
+    "kanjiId": 32117,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "picture; drawing; painting"
+    }
+  },
+  {
+    "word": "映画",
+    "reading": "えいが",
+    "pos": "noun",
+    "kanjiId": 26144,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "movie; film; motion picture"
+    }
+  },
+  {
+    "word": "映画館",
+    "reading": "えいがかん",
+    "pos": "noun",
+    "kanjiId": 26144,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "movie theatre; movie theater; cinema"
+    }
+  },
+  {
+    "word": "英語",
+    "reading": "えいご",
+    "pos": "noun",
+    "kanjiId": 33521,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "English (language)"
+    }
+  },
+  {
+    "word": "ええ",
+    "reading": "ええ",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "yes; that is correct; right"
+    }
+  },
+  {
+    "word": "駅",
+    "reading": "えき",
+    "pos": "noun",
+    "kanjiId": 39365,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "railway station; train station"
+    }
+  },
+  {
+    "word": "エレベーター",
+    "reading": "エレベーター",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "elevator; lift"
+    }
+  },
+  {
+    "word": "鉛筆",
+    "reading": "えんぴつ",
+    "pos": "noun",
+    "kanjiId": 37467,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(wooden) pencil"
+    }
+  },
+  {
+    "word": "多い",
+    "reading": "おおい",
+    "pos": "i-adjective",
+    "kanjiId": 22810,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "many; numerous; a lot"
+    }
+  },
+  {
+    "word": "大きい",
+    "reading": "おおきい",
+    "pos": "i-adjective",
+    "kanjiId": 22823,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "big; large; great"
+    }
+  },
+  {
+    "word": "大きな",
+    "reading": "おおきな",
+    "pos": "adj-pn",
+    "kanjiId": 22823,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "big; large; great"
+    }
+  },
+  {
+    "word": "大勢",
+    "reading": "おおぜい",
+    "pos": "noun",
+    "kanjiId": 22823,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "crowd of people; great number of people"
+    }
+  },
+  {
+    "word": "お母さん",
+    "reading": "おかあさん",
+    "pos": "noun",
+    "kanjiId": 27597,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "mother; mom; mum"
+    }
+  },
+  {
+    "word": "お菓子",
+    "reading": "おかし",
+    "pos": "noun",
+    "kanjiId": 33747,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "confections; sweets; candy"
+    }
+  },
+  {
+    "word": "お金",
+    "reading": "おかね",
+    "pos": "noun",
+    "kanjiId": 37329,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "money"
+    }
+  },
+  {
+    "word": "起きる",
+    "reading": "おきる",
+    "pos": "verb",
+    "kanjiId": 36215,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to get up; to rise; to blaze up (fire)"
+    }
+  },
+  {
+    "word": "置く",
+    "reading": "おく",
+    "pos": "verb",
+    "kanjiId": 32622,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to put; to place"
+    }
+  },
+  {
+    "word": "奥さん",
+    "reading": "おくさん",
+    "pos": "noun",
+    "kanjiId": 22885,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "wife; your wife; his wife"
+    }
+  },
+  {
+    "word": "お酒",
+    "reading": "おさけ",
+    "pos": "noun",
+    "kanjiId": 37202,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "alcohol; sake"
+    }
+  },
+  {
+    "word": "お皿",
+    "reading": "おさら",
+    "pos": "noun",
+    "kanjiId": 30399,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "plate; dish"
+    }
+  },
+  {
+    "word": "伯父",
+    "reading": "おじいさん",
+    "pos": "noun",
+    "kanjiId": 20271,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "uncle"
+    }
+  },
+  {
+    "word": "伯父",
+    "reading": "おじさん",
+    "pos": "noun",
+    "kanjiId": 20271,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "uncle"
+    }
+  },
+  {
+    "word": "叔父",
+    "reading": "おじいさん",
+    "pos": "noun",
+    "kanjiId": 21460,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "uncle"
+    }
+  },
+  {
+    "word": "叔父",
+    "reading": "おじさん",
+    "pos": "noun",
+    "kanjiId": 21460,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "uncle"
+    }
+  },
+  {
+    "word": "教える",
+    "reading": "おしえる",
+    "pos": "verb",
+    "kanjiId": 25945,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to teach; to instruct"
+    }
+  },
+  {
+    "word": "押す",
+    "reading": "おす",
+    "pos": "verb",
+    "kanjiId": 25276,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to push; to thrust; to shove"
+    }
+  },
+  {
+    "word": "遅い",
+    "reading": "おそい",
+    "pos": "i-adjective",
+    "kanjiId": 36933,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "slow"
+    }
+  },
+  {
+    "word": "お茶",
+    "reading": "おちゃ",
+    "pos": "noun",
+    "kanjiId": 33590,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "tea (esp. green or barley)"
+    }
+  },
+  {
+    "word": "お手洗い",
+    "reading": "おてあらい",
+    "pos": "noun",
+    "kanjiId": 25163,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "toilet; restroom; lavatory"
+    }
+  },
+  {
+    "word": "お父さん",
+    "reading": "おとうさん",
+    "pos": "noun",
+    "kanjiId": 29238,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "father; dad; papa"
+    }
+  },
+  {
+    "word": "男",
+    "reading": "おとこ",
+    "pos": "noun",
+    "kanjiId": 30007,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "man; male"
+    }
+  },
+  {
+    "word": "男の子",
+    "reading": "おとこのこ",
+    "pos": "expression",
+    "kanjiId": 30007,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "boy; son; baby boy"
+    }
+  },
+  {
+    "word": "大人",
+    "reading": "おとな",
+    "pos": "noun",
+    "kanjiId": 22823,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "adult; grown-up"
+    }
+  },
+  {
+    "word": "同じ",
+    "reading": "おなじ",
+    "pos": "na-adjective",
+    "kanjiId": 21516,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "same; identical; equal"
+    }
+  },
+  {
+    "word": "お兄さん",
+    "reading": "おにいさん",
+    "pos": "noun",
+    "kanjiId": 20804,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "older brother; elder brother"
+    }
+  },
+  {
+    "word": "お姉さん",
+    "reading": "おねえさん",
+    "pos": "noun",
+    "kanjiId": 22985,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "older sister; elder sister"
+    }
+  },
+  {
+    "word": "お風呂",
+    "reading": "おふろ",
+    "pos": "noun",
+    "kanjiId": 39080,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bath"
+    }
+  },
+  {
+    "word": "お弁当",
+    "reading": "おべんとう",
+    "pos": "noun",
+    "kanjiId": 24321,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bento; Japanese box lunch"
+    }
+  },
+  {
+    "word": "覚える",
+    "reading": "おぼえる",
+    "pos": "verb",
+    "kanjiId": 35226,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to memorize; to memorise; to commit to memory"
+    }
+  },
+  {
+    "word": "重い",
+    "reading": "おもい",
+    "pos": "i-adjective",
+    "kanjiId": 37325,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "heavy; weighty"
+    }
+  },
+  {
+    "word": "泳ぐ",
+    "reading": "およぐ",
+    "pos": "verb",
+    "kanjiId": 27891,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to swim"
+    }
+  },
+  {
+    "word": "降りる",
+    "reading": "おりる",
+    "pos": "verb",
+    "kanjiId": 38477,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to descend (e.g. a mountain); to go down; to come down"
+    }
+  },
+  {
+    "word": "終る",
+    "reading": "おわる",
+    "pos": "verb",
+    "kanjiId": 32066,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to end; to come to an end; to finish"
+    }
+  },
+  {
+    "word": "音楽",
+    "reading": "おんがく",
+    "pos": "noun",
+    "kanjiId": 38899,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "music"
+    }
+  },
+  {
+    "word": "女",
+    "reading": "おんな",
+    "pos": "noun",
+    "kanjiId": 22899,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "woman; female"
+    }
+  },
+  {
+    "word": "女の子",
+    "reading": "おんなのこ",
+    "pos": "expression",
+    "kanjiId": 22899,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "girl; daughter; baby girl"
+    }
+  },
+  {
+    "word": "外国",
+    "reading": "がいこく",
+    "pos": "noun",
+    "kanjiId": 22806,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "foreign country"
+    }
+  },
+  {
+    "word": "外国人",
+    "reading": "がいこくじん",
+    "pos": "noun",
+    "kanjiId": 22806,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "foreigner; foreign citizen; foreign national"
+    }
+  },
+  {
+    "word": "会社",
+    "reading": "かいしゃ",
+    "pos": "noun",
+    "kanjiId": 20250,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "company; corporation; firm"
+    }
+  },
+  {
+    "word": "階段",
+    "reading": "かいだん",
+    "pos": "noun",
+    "kanjiId": 38542,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "stairs; stairway; staircase"
+    }
+  },
+  {
+    "word": "買い物",
+    "reading": "かいもの",
+    "pos": "noun",
+    "kanjiId": 36023,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "shopping; purchased goods"
+    }
+  },
+  {
+    "word": "買う",
+    "reading": "かう",
+    "pos": "verb",
+    "kanjiId": 36023,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to buy; to purchase"
+    }
+  },
+  {
+    "word": "返す",
+    "reading": "かえす",
+    "pos": "verb",
+    "kanjiId": 36820,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to return (something); to restore; to put back"
+    }
+  },
+  {
+    "word": "帰る",
+    "reading": "かえる",
+    "pos": "verb",
+    "kanjiId": 24112,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to return; to come home; to go home"
+    }
+  },
+  {
+    "word": "書く",
+    "reading": "かく",
+    "pos": "verb",
+    "kanjiId": 26360,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to write; to compose; to pen"
+    }
+  },
+  {
+    "word": "学生",
+    "reading": "がくせい",
+    "pos": "noun",
+    "kanjiId": 23398,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "student (esp. a university student)"
+    }
+  },
+  {
+    "word": "傘",
+    "reading": "かさ",
+    "pos": "noun",
+    "kanjiId": 20632,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "umbrella; parasol"
+    }
+  },
+  {
+    "word": "貸す",
+    "reading": "かす",
+    "pos": "verb",
+    "kanjiId": 36024,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to lend; to loan"
+    }
+  },
+  {
+    "word": "風",
+    "reading": "かぜ",
+    "pos": "noun",
+    "kanjiId": 39080,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "swing; shake; sweep"
+    }
+  },
+  {
+    "word": "風邪",
+    "reading": "かぜ",
+    "pos": "noun",
+    "kanjiId": 39080,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(common) cold; influenza; flu"
+    }
+  },
+  {
+    "word": "家族",
+    "reading": "かぞく",
+    "pos": "noun",
+    "kanjiId": 23478,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "family"
+    }
+  },
+  {
+    "word": "学校",
+    "reading": "がっこう",
+    "pos": "noun",
+    "kanjiId": 23398,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "school"
+    }
+  },
+  {
+    "word": "カップ",
+    "reading": "カップ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cup (drinking vessel, measure, brassiere, prize, etc.)"
+    }
+  },
+  {
+    "word": "家庭",
+    "reading": "かてい",
+    "pos": "noun",
+    "kanjiId": 23478,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "home; household; family"
+    }
+  },
+  {
+    "word": "花瓶",
+    "reading": "かびん",
+    "pos": "noun",
+    "kanjiId": 33457,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(flower) vase"
+    }
+  },
+  {
+    "word": "紙",
+    "reading": "かみ",
+    "pos": "noun",
+    "kanjiId": 32025,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "paper"
+    }
+  },
+  {
+    "word": "カメラ",
+    "reading": "カメラ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "camera"
+    }
+  },
+  {
+    "word": "火曜日",
+    "reading": "かようび",
+    "pos": "noun",
+    "kanjiId": 28779,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "Tuesday"
+    }
+  },
+  {
+    "word": "借りる",
+    "reading": "かりる",
+    "pos": "verb",
+    "kanjiId": 20511,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to borrow"
+    }
+  },
+  {
+    "word": "軽い",
+    "reading": "かるい",
+    "pos": "i-adjective",
+    "kanjiId": 36605,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "light (i.e. not heavy); feeling light (i.e. offering little resistance, moving easily)"
+    }
+  },
+  {
+    "word": "カレンダー",
+    "reading": "カレンダー",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "calendar"
+    }
+  },
+  {
+    "word": "漢字",
+    "reading": "かんじ",
+    "pos": "noun",
+    "kanjiId": 28450,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "kanji; Chinese character"
+    }
+  },
+  {
+    "word": "木",
+    "reading": "き",
+    "pos": "noun",
+    "kanjiId": 26408,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "tree; shrub; bush"
+    }
+  },
+  {
+    "word": "黄色い",
+    "reading": "きいろい",
+    "pos": "i-adjective",
+    "kanjiId": 40644,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "yellow"
+    }
+  },
+  {
+    "word": "消える",
+    "reading": "きえる",
+    "pos": "verb",
+    "kanjiId": 28040,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to disappear; to vanish; to go out of sight"
+    }
+  },
+  {
+    "word": "聞く",
+    "reading": "きく",
+    "pos": "verb",
+    "kanjiId": 32862,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to hear"
+    }
+  },
+  {
+    "word": "北",
+    "reading": "きた",
+    "pos": "noun",
+    "kanjiId": 21271,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "north"
+    }
+  },
+  {
+    "word": "ギター",
+    "reading": "ギター",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "guitar"
+    }
+  },
+  {
+    "word": "汚い",
+    "reading": "きたない",
+    "pos": "i-adjective",
+    "kanjiId": 27738,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "dirty; filthy; foul"
+    }
+  },
+  {
+    "word": "喫茶店",
+    "reading": "きっさてん",
+    "pos": "noun",
+    "kanjiId": 21931,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "coffee shop; tearoom; coffee lounge"
+    }
+  },
+  {
+    "word": "切手",
+    "reading": "きって",
+    "pos": "noun",
+    "kanjiId": 20999,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "stamp (postage)"
+    }
+  },
+  {
+    "word": "切符",
+    "reading": "きっぷ",
+    "pos": "noun",
+    "kanjiId": 20999,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "ticket"
+    }
+  },
+  {
+    "word": "昨日",
+    "reading": "きのう",
+    "pos": "noun",
+    "kanjiId": 26152,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "yesterday"
+    }
+  },
+  {
+    "word": "牛肉",
+    "reading": "ぎゅうにく",
+    "pos": "noun",
+    "kanjiId": 29275,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "beef"
+    }
+  },
+  {
+    "word": "牛乳",
+    "reading": "ぎゅうにゅう",
+    "pos": "noun",
+    "kanjiId": 29275,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(cow's) milk"
+    }
+  },
+  {
+    "word": "教室",
+    "reading": "きょうしつ",
+    "pos": "noun",
+    "kanjiId": 25945,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "classroom; lecture room"
+    }
+  },
+  {
+    "word": "兄弟",
+    "reading": "きょうだい",
+    "pos": "noun",
+    "kanjiId": 20804,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "brothers and sisters; siblings"
+    }
+  },
+  {
+    "word": "去年",
+    "reading": "きょねん",
+    "pos": "noun",
+    "kanjiId": 21435,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "last year"
+    }
+  },
+  {
+    "word": "嫌い",
+    "reading": "きらい",
+    "pos": "na-adjective",
+    "kanjiId": 23244,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "disliked; hated; disagreeable"
+    }
+  },
+  {
+    "word": "切る",
+    "reading": "きる",
+    "pos": "verb",
+    "kanjiId": 20999,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to cut; to cut through; to perform (surgery)"
+    }
+  },
+  {
+    "word": "着る",
+    "reading": "きる",
+    "pos": "verb",
+    "kanjiId": 30528,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to wear (from the shoulders down); to put on"
+    }
+  },
+  {
+    "word": "キログラム",
+    "reading": "キロ",
+    "pos": "prefix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "kilo-; 1000"
+    }
+  },
+  {
+    "word": "キロメートル",
+    "reading": "キロ",
+    "pos": "prefix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "kilo-; 1000"
+    }
+  },
+  {
+    "word": "銀行",
+    "reading": "ぎんこう",
+    "pos": "noun",
+    "kanjiId": 37504,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bank; banking institution"
+    }
+  },
+  {
+    "word": "金曜日",
+    "reading": "きんようび",
+    "pos": "noun",
+    "kanjiId": 37329,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "Friday"
+    }
+  },
+  {
+    "word": "薬",
+    "reading": "くすり",
+    "pos": "noun",
+    "kanjiId": 34220,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "medicine; pharmaceuticals; (legal) drugs"
+    }
+  },
+  {
+    "word": "果物",
+    "reading": "くだもの",
+    "pos": "noun",
+    "kanjiId": 26524,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "fruit"
+    }
+  },
+  {
+    "word": "口",
+    "reading": "くち",
+    "pos": "noun",
+    "kanjiId": 21475,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "mouth"
+    }
+  },
+  {
+    "word": "靴",
+    "reading": "くつ",
+    "pos": "noun",
+    "kanjiId": 38772,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "shoe; shoes; boots"
+    }
+  },
+  {
+    "word": "靴下",
+    "reading": "くつした",
+    "pos": "noun",
+    "kanjiId": 38772,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "socks; sock; stockings"
+    }
+  },
+  {
+    "word": "国",
+    "reading": "くに",
+    "pos": "noun",
+    "kanjiId": 22269,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "country; state"
+    }
+  },
+  {
+    "word": "曇り",
+    "reading": "くもり",
+    "pos": "noun",
+    "kanjiId": 26311,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cloudiness; cloudy weather"
+    }
+  },
+  {
+    "word": "曇る",
+    "reading": "くもる",
+    "pos": "verb",
+    "kanjiId": 26311,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to get cloudy; to cloud over; to become overcast"
+    }
+  },
+  {
+    "word": "暗い",
+    "reading": "くらい",
+    "pos": "i-adjective",
+    "kanjiId": 26263,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "dark; gloomy; murky"
+    }
+  },
+  {
+    "word": "クラス",
+    "reading": "クラス",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "class"
+    }
+  },
+  {
+    "word": "車",
+    "reading": "くるま",
+    "pos": "noun",
+    "kanjiId": 36554,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "car; automobile; vehicle"
+    }
+  },
+  {
+    "word": "黒",
+    "reading": "くろ",
+    "pos": "noun",
+    "kanjiId": 40658,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "black"
+    }
+  },
+  {
+    "word": "黒い",
+    "reading": "くろい",
+    "pos": "i-adjective",
+    "kanjiId": 40658,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "black"
+    }
+  },
+  {
+    "word": "警官",
+    "reading": "けいかん",
+    "pos": "noun",
+    "kanjiId": 35686,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "police officer; policeman; constable"
+    }
+  },
+  {
+    "word": "今朝",
+    "reading": "けさ",
+    "pos": "noun",
+    "kanjiId": 20170,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "this morning"
+    }
+  },
+  {
+    "word": "消す",
+    "reading": "けす",
+    "pos": "verb",
+    "kanjiId": 28040,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to erase; to rub out; to rub off"
+    }
+  },
+  {
+    "word": "結構",
+    "reading": "けっこう",
+    "pos": "na-adjective",
+    "kanjiId": 32080,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "splendid; nice; wonderful"
+    }
+  },
+  {
+    "word": "結婚",
+    "reading": "けっこん",
+    "pos": "noun",
+    "kanjiId": 32080,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "marriage"
+    }
+  },
+  {
+    "word": "月曜日",
+    "reading": "げつようび",
+    "pos": "noun",
+    "kanjiId": 26376,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "Monday"
+    }
+  },
+  {
+    "word": "玄関",
+    "reading": "げんかん",
+    "pos": "noun",
+    "kanjiId": 29572,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "entrance; front door; entryway"
+    }
+  },
+  {
+    "word": "元気",
+    "reading": "げんき",
+    "pos": "na-adjective",
+    "kanjiId": 20803,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "lively; full of spirit; energetic"
+    }
+  },
+  {
+    "word": "五",
+    "reading": "ご",
+    "pos": "numeral",
+    "kanjiId": 20116,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "five; 5"
+    }
+  },
+  {
+    "word": "公園",
+    "reading": "こうえん",
+    "pos": "noun",
+    "kanjiId": 20844,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(public) park"
+    }
+  },
+  {
+    "word": "交差点",
+    "reading": "こうさてん",
+    "pos": "noun",
+    "kanjiId": 20132,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "crossing; intersection"
+    }
+  },
+  {
+    "word": "紅茶",
+    "reading": "こうちゃ",
+    "pos": "noun",
+    "kanjiId": 32005,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "black tea"
+    }
+  },
+  {
+    "word": "交番",
+    "reading": "こうばん",
+    "pos": "noun",
+    "kanjiId": 20132,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "police box; koban; small neighborhood police station"
+    }
+  },
+  {
+    "word": "声",
+    "reading": "こえ",
+    "pos": "noun",
+    "kanjiId": 22768,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "voice"
+    }
+  },
+  {
+    "word": "コート",
+    "reading": "コート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "coat"
+    }
+  },
+  {
+    "word": "午後",
+    "reading": "ごご",
+    "pos": "noun",
+    "kanjiId": 21320,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "afternoon; p.m."
+    }
+  },
+  {
+    "word": "九日",
+    "reading": "ここのか",
+    "pos": "noun",
+    "kanjiId": 20061,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "9th day of the month"
+    }
+  },
+  {
+    "word": "九つ",
+    "reading": "ここのつ",
+    "pos": "numeral",
+    "kanjiId": 20061,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "nine"
+    }
+  },
+  {
+    "word": "午前",
+    "reading": "ごぜん",
+    "pos": "noun",
+    "kanjiId": 21320,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "morning; a.m."
+    }
+  },
+  {
+    "word": "答える",
+    "reading": "こたえる",
+    "pos": "verb",
+    "kanjiId": 31572,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to answer; to reply"
+    }
+  },
+  {
+    "word": "コップ",
+    "reading": "コップ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cop; police officer"
+    }
+  },
+  {
+    "word": "今年",
+    "reading": "ことし",
+    "pos": "noun",
+    "kanjiId": 20170,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "this year"
+    }
+  },
+  {
+    "word": "言葉",
+    "reading": "ことば",
+    "pos": "noun",
+    "kanjiId": 35328,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "language; dialect"
+    }
+  },
+  {
+    "word": "子供",
+    "reading": "こども",
+    "pos": "noun",
+    "kanjiId": 23376,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "child; children"
+    }
+  },
+  {
+    "word": "御飯",
+    "reading": "ごはん",
+    "pos": "noun",
+    "kanjiId": 24481,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cooked rice"
+    }
+  },
+  {
+    "word": "困る",
+    "reading": "こまる",
+    "pos": "verb",
+    "kanjiId": 22256,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to be troubled; to have difficulty; to be in a fix"
+    }
+  },
+  {
+    "word": "これ",
+    "reading": "これ",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "hey; oi; come on"
+    }
+  },
+  {
+    "word": "今月",
+    "reading": "こんげつ",
+    "pos": "noun",
+    "kanjiId": 20170,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "this month"
+    }
+  },
+  {
+    "word": "今週",
+    "reading": "こんしゅう",
+    "pos": "noun",
+    "kanjiId": 20170,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "this week"
+    }
+  },
+  {
+    "word": "こんな",
+    "reading": "こんな",
+    "pos": "adj-pn",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "this sort of; this kind of; like this"
+    }
+  },
+  {
+    "word": "今晩",
+    "reading": "こんばん",
+    "pos": "noun",
+    "kanjiId": 20170,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "tonight; this evening"
+    }
+  },
+  {
+    "word": "さあ",
+    "reading": "さあ",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "come (on); come now; come along"
+    }
+  },
+  {
+    "word": "財布",
+    "reading": "さいふ",
+    "pos": "noun",
+    "kanjiId": 36001,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "wallet; purse; coin purse"
+    }
+  },
+  {
+    "word": "先",
+    "reading": "さき",
+    "pos": "noun",
+    "kanjiId": 20808,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "a short while ago; a moment ago; just now"
+    }
+  },
+  {
+    "word": "咲く",
+    "reading": "さく",
+    "pos": "verb",
+    "kanjiId": 21682,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to bloom; to flower; to blossom"
+    }
+  },
+  {
+    "word": "作文",
+    "reading": "さくぶん",
+    "pos": "noun",
+    "kanjiId": 20316,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "writing (an essay, prose, etc.); composition"
+    }
+  },
+  {
+    "word": "差す",
+    "reading": "さす",
+    "pos": "verb",
+    "kanjiId": 24046,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to shine"
+    }
+  },
+  {
+    "word": "雑誌",
+    "reading": "ざっし",
+    "pos": "noun",
+    "kanjiId": 38609,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "magazine; journal; periodical"
+    }
+  },
+  {
+    "word": "砂糖",
+    "reading": "さとう",
+    "pos": "noun",
+    "kanjiId": 30722,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "sugar"
+    }
+  },
+  {
+    "word": "寒い",
+    "reading": "さむい",
+    "pos": "i-adjective",
+    "kanjiId": 23506,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cold (e.g. weather)"
+    }
+  },
+  {
+    "word": "さ来年",
+    "reading": "さらいねん",
+    "pos": "noun",
+    "kanjiId": 26469,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "year after next"
+    }
+  },
+  {
+    "word": "時間",
+    "reading": "じかん",
+    "pos": "noun",
+    "kanjiId": 26178,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "time"
+    }
+  },
+  {
+    "word": "仕事",
+    "reading": "しごと",
+    "pos": "noun",
+    "kanjiId": 20181,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "work; job; labor"
+    }
+  },
+  {
+    "word": "辞書",
+    "reading": "じしょ",
+    "pos": "noun",
+    "kanjiId": 36766,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "dictionary; lexicon"
+    }
+  },
+  {
+    "word": "静か",
+    "reading": "しずか",
+    "pos": "na-adjective",
+    "kanjiId": 38745,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "quiet; silent"
+    }
+  },
+  {
+    "word": "質問",
+    "reading": "しつもん",
+    "pos": "noun",
+    "kanjiId": 36074,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "question; inquiry; enquiry"
+    }
+  },
+  {
+    "word": "自転車",
+    "reading": "じてんしゃ",
+    "pos": "noun",
+    "kanjiId": 33258,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bicycle; bike"
+    }
+  },
+  {
+    "word": "自動車",
+    "reading": "じどうしゃ",
+    "pos": "noun",
+    "kanjiId": 33258,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "car; automobile; motorcar"
+    }
+  },
+  {
+    "word": "死ぬ",
+    "reading": "しぬ",
+    "pos": "verb",
+    "kanjiId": 27515,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to die; to pass away"
+    }
+  },
+  {
+    "word": "字引",
+    "reading": "じびき",
+    "pos": "noun",
+    "kanjiId": 23383,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "dictionary"
+    }
+  },
+  {
+    "word": "自分",
+    "reading": "じぶん",
+    "pos": "pronoun",
+    "kanjiId": 33258,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "myself; yourself; oneself"
+    }
+  },
+  {
+    "word": "閉まる",
+    "reading": "しまる",
+    "pos": "verb",
+    "kanjiId": 38281,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to be shut; to close; to be closed"
+    }
+  },
+  {
+    "word": "閉める",
+    "reading": "しめる",
+    "pos": "verb",
+    "kanjiId": 38281,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to close; to shut"
+    }
+  },
+  {
+    "word": "締める",
+    "reading": "しめる",
+    "pos": "verb",
+    "kanjiId": 32224,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to tie; to fasten; to tighten"
+    }
+  },
+  {
+    "word": "じゃ",
+    "reading": "じゃ",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "then; well; so"
+    }
+  },
+  {
+    "word": "じゃ",
+    "reading": "じゃあ",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "then; well; so"
+    }
+  },
+  {
+    "word": "写真",
+    "reading": "しゃしん",
+    "pos": "noun",
+    "kanjiId": 20889,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "photograph; photo; picture"
+    }
+  },
+  {
+    "word": "シャツ",
+    "reading": "シャツ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "shirt (undergarment); undershirt; singlet"
+    }
+  },
+  {
+    "word": "シャワー",
+    "reading": "シャワー",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "shower"
+    }
+  },
+  {
+    "word": "授業",
+    "reading": "じゅぎょう",
+    "pos": "noun",
+    "kanjiId": 25480,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "lesson; class; teaching"
+    }
+  },
+  {
+    "word": "宿題",
+    "reading": "しゅくだい",
+    "pos": "noun",
+    "kanjiId": 23487,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "homework; assignment"
+    }
+  },
+  {
+    "word": "食堂",
+    "reading": "しょくどう",
+    "pos": "noun",
+    "kanjiId": 39135,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "dining room; dining hall; cafeteria"
+    }
+  },
+  {
+    "word": "知る",
+    "reading": "しる",
+    "pos": "verb",
+    "kanjiId": 30693,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to know; to be aware (of); to be conscious (of)"
+    }
+  },
+  {
+    "word": "白",
+    "reading": "しろ",
+    "pos": "noun",
+    "kanjiId": 30333,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "white"
+    }
+  },
+  {
+    "word": "白い",
+    "reading": "しろい",
+    "pos": "i-adjective",
+    "kanjiId": 30333,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "white"
+    }
+  },
+  {
+    "word": "新聞",
+    "reading": "しんぶん",
+    "pos": "noun",
+    "kanjiId": 26032,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "newspaper"
+    }
+  },
+  {
+    "word": "水曜日",
+    "reading": "すいようび",
+    "pos": "noun",
+    "kanjiId": 27700,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "Wednesday"
+    }
+  },
+  {
+    "word": "吸う",
+    "reading": "すう",
+    "pos": "verb",
+    "kanjiId": 21560,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to breathe in; to inhale; to smoke (a cigarette, etc.)"
+    }
+  },
+  {
+    "word": "スカート",
+    "reading": "スカート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "skirt"
+    }
+  },
+  {
+    "word": "好き",
+    "reading": "すき",
+    "pos": "na-adjective",
+    "kanjiId": 22909,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "liking; being fond of; to one's liking"
+    }
+  },
+  {
+    "word": "少ない",
+    "reading": "すくない",
+    "pos": "i-adjective",
+    "kanjiId": 23569,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "few; little; small (amount)"
+    }
+  },
+  {
+    "word": "少し",
+    "reading": "すこし",
+    "pos": "adverb",
+    "kanjiId": 23569,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "a little; a bit; a small amount"
+    }
+  },
+  {
+    "word": "涼しい",
+    "reading": "すずしい",
+    "pos": "i-adjective",
+    "kanjiId": 28092,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cool; refreshing"
+    }
+  },
+  {
+    "word": "ストーブ",
+    "reading": "ストーブ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(room) heater; stove"
+    }
+  },
+  {
+    "word": "スプーン",
+    "reading": "スプーン",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "spoon"
+    }
+  },
+  {
+    "word": "スポーツ",
+    "reading": "スポーツ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "sport; sports"
+    }
+  },
+  {
+    "word": "住む",
+    "reading": "すむ",
+    "pos": "verb",
+    "kanjiId": 20303,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to live (of humans); to reside; to inhabit"
+    }
+  },
+  {
+    "word": "スリッパ",
+    "reading": "スリッパ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "slipper; slippers"
+    }
+  },
+  {
+    "word": "座る",
+    "reading": "すわる",
+    "pos": "verb",
+    "kanjiId": 24231,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to sit (down); to have a seat; to be seated"
+    }
+  },
+  {
+    "word": "生徒",
+    "reading": "せいと",
+    "pos": "noun",
+    "kanjiId": 29983,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "pupil; student; schoolchild"
+    }
+  },
+  {
+    "word": "セーター",
+    "reading": "セーター",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "sweater; jumper"
+    }
+  },
+  {
+    "word": "背広",
+    "reading": "せびろ",
+    "pos": "noun",
+    "kanjiId": 32972,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "business suit"
+    }
+  },
+  {
+    "word": "狭い",
+    "reading": "せまい",
+    "pos": "i-adjective",
+    "kanjiId": 29421,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "narrow; confined; small"
+    }
+  },
+  {
+    "word": "千",
+    "reading": "せん",
+    "pos": "numeral",
+    "kanjiId": 21315,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "thousand; 1,000"
+    }
+  },
+  {
+    "word": "先月",
+    "reading": "せんげつ",
+    "pos": "noun",
+    "kanjiId": 20808,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "last month"
+    }
+  },
+  {
+    "word": "先週",
+    "reading": "せんしゅう",
+    "pos": "noun",
+    "kanjiId": 20808,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "last week; the week before"
+    }
+  },
+  {
+    "word": "先生",
+    "reading": "せんせい",
+    "pos": "noun",
+    "kanjiId": 20808,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "teacher; instructor; master"
+    }
+  },
+  {
+    "word": "洗濯",
+    "reading": "せんたく",
+    "pos": "noun",
+    "kanjiId": 27927,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "washing; laundry"
+    }
+  },
+  {
+    "word": "全部",
+    "reading": "ぜんぶ",
+    "pos": "noun",
+    "kanjiId": 20840,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "all; entire; whole"
+    }
+  },
+  {
+    "word": "大学",
+    "reading": "だいがく",
+    "pos": "noun",
+    "kanjiId": 22823,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "university; college"
+    }
+  },
+  {
+    "word": "大使館",
+    "reading": "たいしかん",
+    "pos": "noun",
+    "kanjiId": 22823,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "embassy"
+    }
+  },
+  {
+    "word": "大丈夫",
+    "reading": "だいじょうぶ",
+    "pos": "na-adjective",
+    "kanjiId": 22823,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "safe; secure; sound"
+    }
+  },
+  {
+    "word": "大好き",
+    "reading": "だいすき",
+    "pos": "na-adjective",
+    "kanjiId": 22823,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "liking very much; loving (something or someone); adoring"
+    }
+  },
+  {
+    "word": "大切",
+    "reading": "たいせつ",
+    "pos": "na-adjective",
+    "kanjiId": 22823,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "important; significant; serious"
+    }
+  },
+  {
+    "word": "台所",
+    "reading": "だいどころ",
+    "pos": "noun",
+    "kanjiId": 21488,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "kitchen"
+    }
+  },
+  {
+    "word": "高い",
+    "reading": "たかい",
+    "pos": "i-adjective",
+    "kanjiId": 39640,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "high; tall"
+    }
+  },
+  {
+    "word": "タクシー",
+    "reading": "タクシー",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "taxi"
+    }
+  },
+  {
+    "word": "出す",
+    "reading": "だす",
+    "pos": "verb",
+    "kanjiId": 20986,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to take out; to get out"
+    }
+  },
+  {
+    "word": "立つ",
+    "reading": "たつ",
+    "pos": "verb",
+    "kanjiId": 31435,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to stand (up); to rise; to get to one's feet"
+    }
+  },
+  {
+    "word": "建物",
+    "reading": "たてもの",
+    "pos": "noun",
+    "kanjiId": 24314,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "building"
+    }
+  },
+  {
+    "word": "楽しい",
+    "reading": "たのしい",
+    "pos": "i-adjective",
+    "kanjiId": 27005,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "enjoyable; fun; pleasant"
+    }
+  },
+  {
+    "word": "頼む",
+    "reading": "たのむ",
+    "pos": "verb",
+    "kanjiId": 38972,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to request; to beg; to ask"
+    }
+  },
+  {
+    "word": "食べ物",
+    "reading": "たべもの",
+    "pos": "noun",
+    "kanjiId": 39135,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "food"
+    }
+  },
+  {
+    "word": "食べる",
+    "reading": "たべる",
+    "pos": "verb",
+    "kanjiId": 39135,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to eat"
+    }
+  },
+  {
+    "word": "卵",
+    "reading": "たまご",
+    "pos": "noun",
+    "kanjiId": 21365,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "eggs; egg; spawn"
+    }
+  },
+  {
+    "word": "誕生日",
+    "reading": "たんじょうび",
+    "pos": "noun",
+    "kanjiId": 35477,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "birthday"
+    }
+  },
+  {
+    "word": "だんだん",
+    "reading": "だんだん",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "thank you"
+    }
+  },
+  {
+    "word": "小さい",
+    "reading": "ちいさい",
+    "pos": "i-adjective",
+    "kanjiId": 23567,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "small; little; tiny"
+    }
+  },
+  {
+    "word": "小さな",
+    "reading": "ちいさな",
+    "pos": "adj-pn",
+    "kanjiId": 23567,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "small; little; tiny"
+    }
+  },
+  {
+    "word": "近い",
+    "reading": "ちかい",
+    "pos": "i-adjective",
+    "kanjiId": 36817,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "near; close; short (distance)"
+    }
+  },
+  {
+    "word": "違う",
+    "reading": "ちがう",
+    "pos": "verb",
+    "kanjiId": 36949,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to differ (from); to be different; to be distinct"
+    }
+  },
+  {
+    "word": "近く",
+    "reading": "ちかく",
+    "pos": "noun",
+    "kanjiId": 36817,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "near; neighbourhood; neighborhood"
+    }
+  },
+  {
+    "word": "地下鉄",
+    "reading": "ちかてつ",
+    "pos": "noun",
+    "kanjiId": 22320,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "subway; metro; underground (railway)"
+    }
+  },
+  {
+    "word": "地図",
+    "reading": "ちず",
+    "pos": "noun",
+    "kanjiId": 22320,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "map; atlas; chart"
+    }
+  },
+  {
+    "word": "茶色",
+    "reading": "ちゃいろ",
+    "pos": "noun",
+    "kanjiId": 33590,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "brown; light brown; tawny"
+    }
+  },
+  {
+    "word": "使う",
+    "reading": "つかう",
+    "pos": "verb",
+    "kanjiId": 20351,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to use (a tool, method, etc.); to make use of; to put to use"
+    }
+  },
+  {
+    "word": "疲れる",
+    "reading": "つかれる",
+    "pos": "verb",
+    "kanjiId": 30130,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to get tired; to tire; to get fatigued"
+    }
+  },
+  {
+    "word": "着く",
+    "reading": "つく",
+    "pos": "verb",
+    "kanjiId": 30528,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to arrive at; to reach"
+    }
+  },
+  {
+    "word": "机",
+    "reading": "つくえ",
+    "pos": "noun",
+    "kanjiId": 26426,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "desk"
+    }
+  },
+  {
+    "word": "勤める",
+    "reading": "つとめる",
+    "pos": "verb",
+    "kanjiId": 21220,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to work (for); to be employed (at); to serve (in)"
+    }
+  },
+  {
+    "word": "冷たい",
+    "reading": "つめたい",
+    "pos": "i-adjective",
+    "kanjiId": 20919,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cold (to the touch); chilly; icy"
+    }
+  },
+  {
+    "word": "強い",
+    "reading": "つよい",
+    "pos": "i-adjective",
+    "kanjiId": 24375,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "strong; potent; competent"
+    }
+  },
+  {
+    "word": "手",
+    "reading": "て",
+    "pos": "noun",
+    "kanjiId": 25163,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "hand; arm"
+    }
+  },
+  {
+    "word": "テープ",
+    "reading": "テープ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "tape"
+    }
+  },
+  {
+    "word": "テーブル",
+    "reading": "テーブル",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "table"
+    }
+  },
+  {
+    "word": "テープレコーダー",
+    "reading": "テープレコーダー",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "tape recorder"
+    }
+  },
+  {
+    "word": "出かける",
+    "reading": "でかける",
+    "pos": "verb",
+    "kanjiId": 20986,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to go out (e.g. on an excursion or outing); to leave; to depart"
+    }
+  },
+  {
+    "word": "手紙",
+    "reading": "てがみ",
+    "pos": "noun",
+    "kanjiId": 25163,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "letter; note"
+    }
+  },
+  {
+    "word": "出口",
+    "reading": "でぐち",
+    "pos": "noun",
+    "kanjiId": 20986,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "exit; way out"
+    }
+  },
+  {
+    "word": "テスト",
+    "reading": "テスト",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "test (of ability, knowledge, etc.); exam; examination"
+    }
+  },
+  {
+    "word": "デパート",
+    "reading": "デパート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "department store"
+    }
+  },
+  {
+    "word": "出る",
+    "reading": "でる",
+    "pos": "verb",
+    "kanjiId": 20986,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to leave; to exit; to go out"
+    }
+  },
+  {
+    "word": "テレビ",
+    "reading": "テレビ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "television; TV"
+    }
+  },
+  {
+    "word": "天気",
+    "reading": "てんき",
+    "pos": "noun",
+    "kanjiId": 22825,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "weather"
+    }
+  },
+  {
+    "word": "電気",
+    "reading": "でんき",
+    "pos": "noun",
+    "kanjiId": 38651,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "electricity"
+    }
+  },
+  {
+    "word": "電車",
+    "reading": "でんしゃ",
+    "pos": "noun",
+    "kanjiId": 38651,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "train; electric train"
+    }
+  },
+  {
+    "word": "電話",
+    "reading": "でんわ",
+    "pos": "noun",
+    "kanjiId": 38651,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "telephone call; phone call"
+    }
+  },
+  {
+    "word": "ドア",
+    "reading": "ドア",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "door"
+    }
+  },
+  {
+    "word": "トイレ",
+    "reading": "トイレ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "toilet; restroom; bathroom"
+    }
+  },
+  {
+    "word": "どうぞ",
+    "reading": "どうぞ",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "please; kindly; pray"
+    }
+  },
+  {
+    "word": "動物",
+    "reading": "どうぶつ",
+    "pos": "noun",
+    "kanjiId": 21205,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "animal"
+    }
+  },
+  {
+    "word": "どうも",
+    "reading": "どうも",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "thank you; thanks"
+    }
+  },
+  {
+    "word": "遠い",
+    "reading": "とおい",
+    "pos": "i-adjective",
+    "kanjiId": 36960,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "far; distant; far away"
+    }
+  },
+  {
+    "word": "十日",
+    "reading": "とおか",
+    "pos": "noun",
+    "kanjiId": 21313,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "10th day of the month"
+    }
+  },
+  {
+    "word": "時々",
+    "reading": "ときどき",
+    "pos": "adverb",
+    "kanjiId": 26178,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "sometimes; occasionally; at times"
+    }
+  },
+  {
+    "word": "時計",
+    "reading": "とけい",
+    "pos": "noun",
+    "kanjiId": 26178,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "clock; watch; timepiece"
+    }
+  },
+  {
+    "word": "所",
+    "reading": "ところ",
+    "pos": "noun",
+    "kanjiId": 25152,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "place; spot; scene"
+    }
+  },
+  {
+    "word": "年",
+    "reading": "とし",
+    "pos": "noun",
+    "kanjiId": 24180,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "year"
+    }
+  },
+  {
+    "word": "図書館",
+    "reading": "としょかん",
+    "pos": "noun",
+    "kanjiId": 22259,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "library"
+    }
+  },
+  {
+    "word": "隣",
+    "reading": "となり",
+    "pos": "no-adjective",
+    "kanjiId": 38563,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "next (to); adjoining; adjacent"
+    }
+  },
+  {
+    "word": "飛ぶ",
+    "reading": "とぶ",
+    "pos": "verb",
+    "kanjiId": 39131,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to fly; to soar"
+    }
+  },
+  {
+    "word": "友達",
+    "reading": "ともだち",
+    "pos": "noun",
+    "kanjiId": 21451,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "friend; companion"
+    }
+  },
+  {
+    "word": "土曜日",
+    "reading": "どようび",
+    "pos": "noun",
+    "kanjiId": 22303,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "Saturday"
+    }
+  },
+  {
+    "word": "鳥",
+    "reading": "とり",
+    "pos": "noun",
+    "kanjiId": 40165,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bird"
+    }
+  },
+  {
+    "word": "とり肉",
+    "reading": "とりにく",
+    "pos": "noun",
+    "kanjiId": 32905,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "chicken meat"
+    }
+  },
+  {
+    "word": "取る",
+    "reading": "とる",
+    "pos": "verb",
+    "kanjiId": 21462,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to take; to pick up; to grab"
+    }
+  },
+  {
+    "word": "撮る",
+    "reading": "とる",
+    "pos": "verb",
+    "kanjiId": 25774,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to take (a photograph)"
+    }
+  },
+  {
+    "word": "ナイフ",
+    "reading": "ナイフ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "knife"
+    }
+  },
+  {
+    "word": "長い",
+    "reading": "ながい",
+    "pos": "i-adjective",
+    "kanjiId": 38263,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "long (distance, length)"
+    }
+  },
+  {
+    "word": "鳴く",
+    "reading": "なく",
+    "pos": "verb",
+    "kanjiId": 40180,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to make sound (of an animal); to call; to cry"
+    }
+  },
+  {
+    "word": "無くす",
+    "reading": "なくす",
+    "pos": "verb",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to lose (something)"
+    }
+  },
+  {
+    "word": "夏",
+    "reading": "なつ",
+    "pos": "noun",
+    "kanjiId": 22799,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "summer"
+    }
+  },
+  {
+    "word": "夏休み",
+    "reading": "なつやすみ",
+    "pos": "noun",
+    "kanjiId": 22799,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "summer vacation; summer holiday"
+    }
+  },
+  {
+    "word": "七つ",
+    "reading": "ななつ",
+    "pos": "numeral",
+    "kanjiId": 19971,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "seven"
+    }
+  },
+  {
+    "word": "名前",
+    "reading": "なまえ",
+    "pos": "noun",
+    "kanjiId": 21517,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "name"
+    }
+  },
+  {
+    "word": "習う",
+    "reading": "ならう",
+    "pos": "verb",
+    "kanjiId": 32722,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to take lessons in; to be taught; to learn (from a teacher)"
+    }
+  },
+  {
+    "word": "並ぶ",
+    "reading": "ならぶ",
+    "pos": "verb",
+    "kanjiId": 20006,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to line up; to stand in a line"
+    }
+  },
+  {
+    "word": "並べる",
+    "reading": "ならべる",
+    "pos": "verb",
+    "kanjiId": 20006,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to line up; to set up; to arrange in a line"
+    }
+  },
+  {
+    "word": "なる",
+    "reading": "なる",
+    "pos": "suffix",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "that is in"
+    }
+  },
+  {
+    "word": "二",
+    "reading": "に",
+    "pos": "numeral",
+    "kanjiId": 20108,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "two; 2"
+    }
+  },
+  {
+    "word": "賑やか",
+    "reading": "にぎやか",
+    "pos": "na-adjective",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bustling; busy; crowded"
+    }
+  },
+  {
+    "word": "肉",
+    "reading": "にく",
+    "pos": "noun",
+    "kanjiId": 32905,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "flesh"
+    }
+  },
+  {
+    "word": "西",
+    "reading": "にし",
+    "pos": "noun",
+    "kanjiId": 35199,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "west"
+    }
+  },
+  {
+    "word": "日曜日",
+    "reading": "にちようび",
+    "pos": "noun",
+    "kanjiId": 26085,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "Sunday"
+    }
+  },
+  {
+    "word": "荷物",
+    "reading": "にもつ",
+    "pos": "noun",
+    "kanjiId": 33655,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "luggage; baggage; package"
+    }
+  },
+  {
+    "word": "ニュース",
+    "reading": "ニュース",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "news"
+    }
+  },
+  {
+    "word": "庭",
+    "reading": "にわ",
+    "pos": "noun",
+    "kanjiId": 24237,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "garden; yard; courtyard"
+    }
+  },
+  {
+    "word": "脱ぐ",
+    "reading": "ぬぐ",
+    "pos": "verb",
+    "kanjiId": 33073,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to take off (clothes, shoes, etc.); to undress"
+    }
+  },
+  {
+    "word": "温い",
+    "reading": "ぬるい",
+    "pos": "i-adjective",
+    "kanjiId": 28201,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "lukewarm; tepid"
+    }
+  },
+  {
+    "word": "ネクタイ",
+    "reading": "ネクタイ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "tie; necktie"
+    }
+  },
+  {
+    "word": "猫",
+    "reading": "ねこ",
+    "pos": "noun",
+    "kanjiId": 29483,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cat (esp. the domestic cat, Felis catus); feline"
+    }
+  },
+  {
+    "word": "寝る",
+    "reading": "ねる",
+    "pos": "verb",
+    "kanjiId": 23517,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to sleep (lying down)"
+    }
+  },
+  {
+    "word": "ノート",
+    "reading": "ノート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "notebook; copy-book; exercise book"
+    }
+  },
+  {
+    "word": "登る",
+    "reading": "のぼる",
+    "pos": "verb",
+    "kanjiId": 30331,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to ascend; to go up; to climb"
+    }
+  },
+  {
+    "word": "飲み物",
+    "reading": "のみもの",
+    "pos": "noun",
+    "kanjiId": 39154,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "drink; beverage"
+    }
+  },
+  {
+    "word": "飲む",
+    "reading": "のむ",
+    "pos": "verb",
+    "kanjiId": 39154,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to drink; to swallow; to take (medicine)"
+    }
+  },
+  {
+    "word": "乗る",
+    "reading": "のる",
+    "pos": "verb",
+    "kanjiId": 20055,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to get on (train, plane, bus, ship, etc.); to get in; to board"
+    }
+  },
+  {
+    "word": "歯",
+    "reading": "は",
+    "pos": "noun",
+    "kanjiId": 27503,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "tooth; teeth"
+    }
+  },
+  {
+    "word": "パーティー",
+    "reading": "パーティー",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "party (social gathering)"
+    }
+  },
+  {
+    "word": "葉書",
+    "reading": "はがき",
+    "pos": "noun",
+    "kanjiId": 33865,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "postcard"
+    }
+  },
+  {
+    "word": "箱",
+    "reading": "はこ",
+    "pos": "noun",
+    "kanjiId": 31665,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "box; case; chest"
+    }
+  },
+  {
+    "word": "橋",
+    "reading": "はし",
+    "pos": "noun",
+    "kanjiId": 27211,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bridge"
+    }
+  },
+  {
+    "word": "始まる",
+    "reading": "はじまる",
+    "pos": "verb",
+    "kanjiId": 22987,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to begin; to start; to commence"
+    }
+  },
+  {
+    "word": "初め",
+    "reading": "はじめ",
+    "pos": "noun",
+    "kanjiId": 21021,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "beginning; start; outset"
+    }
+  },
+  {
+    "word": "初めて",
+    "reading": "はじめて",
+    "pos": "adverb",
+    "kanjiId": 21021,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "for the first time"
+    }
+  },
+  {
+    "word": "走る",
+    "reading": "はしる",
+    "pos": "verb",
+    "kanjiId": 36208,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to run"
+    }
+  },
+  {
+    "word": "バス",
+    "reading": "バス",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bus"
+    }
+  },
+  {
+    "word": "バター",
+    "reading": "バター",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "butter"
+    }
+  },
+  {
+    "word": "二十歳",
+    "reading": "はたち",
+    "pos": "noun",
+    "kanjiId": 20108,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "20 years old"
+    }
+  },
+  {
+    "word": "働く",
+    "reading": "はたらく",
+    "pos": "verb",
+    "kanjiId": 20685,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to work; to labor; to labour"
+    }
+  },
+  {
+    "word": "八",
+    "reading": "はち",
+    "pos": "numeral",
+    "kanjiId": 20843,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "eight; 8"
+    }
+  },
+  {
+    "word": "二十日",
+    "reading": "はつか",
+    "pos": "noun",
+    "kanjiId": 20108,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "20th day of the month"
+    }
+  },
+  {
+    "word": "花",
+    "reading": "はな",
+    "pos": "noun",
+    "kanjiId": 33457,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "flower; blossom; bloom"
+    }
+  },
+  {
+    "word": "鼻",
+    "reading": "はな",
+    "pos": "noun",
+    "kanjiId": 40763,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "nose"
+    }
+  },
+  {
+    "word": "話",
+    "reading": "はなし",
+    "pos": "noun",
+    "kanjiId": 35441,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "talk; speech; chat"
+    }
+  },
+  {
+    "word": "話す",
+    "reading": "はなす",
+    "pos": "verb",
+    "kanjiId": 35441,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to talk; to speak; to converse"
+    }
+  },
+  {
+    "word": "早い",
+    "reading": "はやい",
+    "pos": "i-adjective",
+    "kanjiId": 26089,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "fast; quick; rapid"
+    }
+  },
+  {
+    "word": "速い",
+    "reading": "はやい",
+    "pos": "i-adjective",
+    "kanjiId": 36895,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "fast; quick; rapid"
+    }
+  },
+  {
+    "word": "春",
+    "reading": "はる",
+    "pos": "noun",
+    "kanjiId": 26149,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "spring; springtime"
+    }
+  },
+  {
+    "word": "貼る",
+    "reading": "はる",
+    "pos": "verb",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to stick; to paste; to affix"
+    }
+  },
+  {
+    "word": "晴れ",
+    "reading": "はれ",
+    "pos": "noun",
+    "kanjiId": 26228,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "clear weather; fine weather"
+    }
+  },
+  {
+    "word": "晴れる",
+    "reading": "はれる",
+    "pos": "verb",
+    "kanjiId": 26228,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to clear up; to clear away; to be sunny"
+    }
+  },
+  {
+    "word": "半",
+    "reading": "はん",
+    "pos": "noun",
+    "kanjiId": 21322,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "half; semi-; partial"
+    }
+  },
+  {
+    "word": "晩",
+    "reading": "ばん",
+    "pos": "noun",
+    "kanjiId": 26217,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "evening; night"
+    }
+  },
+  {
+    "word": "パン",
+    "reading": "パン",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bread; (sweet) pastry"
+    }
+  },
+  {
+    "word": "ハンカチ",
+    "reading": "ハンカチ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "handkerchief"
+    }
+  },
+  {
+    "word": "番号",
+    "reading": "ばんごう",
+    "pos": "noun",
+    "kanjiId": 30058,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "number; series of digits"
+    }
+  },
+  {
+    "word": "晩御飯",
+    "reading": "ばんごはん",
+    "pos": "noun",
+    "kanjiId": 26217,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "dinner; evening meal"
+    }
+  },
+  {
+    "word": "半分",
+    "reading": "はんぶん",
+    "pos": "adverb",
+    "kanjiId": 21322,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "half"
+    }
+  },
+  {
+    "word": "引く",
+    "reading": "ひく",
+    "pos": "verb",
+    "kanjiId": 24341,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to pull; to tug; to lead (e.g. a horse)"
+    }
+  },
+  {
+    "word": "低い",
+    "reading": "ひくい",
+    "pos": "i-adjective",
+    "kanjiId": 20302,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "low (rank, degree, value, content, quality, etc.)"
+    }
+  },
+  {
+    "word": "飛行機",
+    "reading": "ひこうき",
+    "pos": "noun",
+    "kanjiId": 39131,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "airplane; aeroplane; plane"
+    }
+  },
+  {
+    "word": "左",
+    "reading": "ひだり",
+    "pos": "noun",
+    "kanjiId": 24038,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "left; left-hand side"
+    }
+  },
+  {
+    "word": "一つ",
+    "reading": "ひとつ",
+    "pos": "numeral",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "one"
+    }
+  },
+  {
+    "word": "一月",
+    "reading": "ひとつき",
+    "pos": "noun",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "January"
+    }
+  },
+  {
+    "word": "百",
+    "reading": "ひゃく",
+    "pos": "numeral",
+    "kanjiId": 30334,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "hundred; 100"
+    }
+  },
+  {
+    "word": "病院",
+    "reading": "びょういん",
+    "pos": "noun",
+    "kanjiId": 30149,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "hospital; clinic; doctor's office"
+    }
+  },
+  {
+    "word": "病気",
+    "reading": "びょうき",
+    "pos": "noun",
+    "kanjiId": 30149,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "illness (usu. excluding minor ailments, e.g. common cold); disease; sickness"
+    }
+  },
+  {
+    "word": "昼",
+    "reading": "ひる",
+    "pos": "noun",
+    "kanjiId": 26172,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "noon; midday"
+    }
+  },
+  {
+    "word": "昼御飯",
+    "reading": "ひるごはん",
+    "pos": "noun",
+    "kanjiId": 26172,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "lunch; midday meal"
+    }
+  },
+  {
+    "word": "広い",
+    "reading": "ひろい",
+    "pos": "i-adjective",
+    "kanjiId": 24195,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "spacious; vast; wide"
+    }
+  },
+  {
+    "word": "フィルム",
+    "reading": "フィルム",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "film"
+    }
+  },
+  {
+    "word": "封筒",
+    "reading": "ふうとう",
+    "pos": "noun",
+    "kanjiId": 23553,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "envelope"
+    }
+  },
+  {
+    "word": "プール",
+    "reading": "プール",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(swimming) pool"
+    }
+  },
+  {
+    "word": "フォーク",
+    "reading": "フォーク",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "fork"
+    }
+  },
+  {
+    "word": "吹く",
+    "reading": "ふく",
+    "pos": "verb",
+    "kanjiId": 21561,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to blow (of the wind)"
+    }
+  },
+  {
+    "word": "服",
+    "reading": "ふく",
+    "pos": "noun",
+    "kanjiId": 26381,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "clothes (esp. Western clothes); clothing; dress"
+    }
+  },
+  {
+    "word": "二つ",
+    "reading": "ふたつ",
+    "pos": "numeral",
+    "kanjiId": 20108,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "two"
+    }
+  },
+  {
+    "word": "豚肉",
+    "reading": "ぶたにく",
+    "pos": "noun",
+    "kanjiId": 35930,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "pork"
+    }
+  },
+  {
+    "word": "二日",
+    "reading": "ふつか",
+    "pos": "noun",
+    "kanjiId": 20108,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "2nd day of the month"
+    }
+  },
+  {
+    "word": "太い",
+    "reading": "ふとい",
+    "pos": "i-adjective",
+    "kanjiId": 22826,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "fat; thick"
+    }
+  },
+  {
+    "word": "冬",
+    "reading": "ふゆ",
+    "pos": "noun",
+    "kanjiId": 20908,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "winter"
+    }
+  },
+  {
+    "word": "降る",
+    "reading": "ふる",
+    "pos": "verb",
+    "kanjiId": 38477,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to descend; to go down; to come down"
+    }
+  },
+  {
+    "word": "古い",
+    "reading": "ふるい",
+    "pos": "i-adjective",
+    "kanjiId": 21476,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "old; aged; ancient"
+    }
+  },
+  {
+    "word": "文章",
+    "reading": "ぶんしょう",
+    "pos": "noun",
+    "kanjiId": 25991,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "writing; composition; essay"
+    }
+  },
+  {
+    "word": "下手",
+    "reading": "へた",
+    "pos": "noun",
+    "kanjiId": 19979,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "humble position; inferior"
+    }
+  },
+  {
+    "word": "ベッド",
+    "reading": "ベッド",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bed"
+    }
+  },
+  {
+    "word": "ペット",
+    "reading": "ペット",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "pet"
+    }
+  },
+  {
+    "word": "部屋",
+    "reading": "へや",
+    "pos": "noun",
+    "kanjiId": 37096,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "room; chamber"
+    }
+  },
+  {
+    "word": "辺",
+    "reading": "へん",
+    "pos": "noun",
+    "kanjiId": 36794,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "area; vicinity; region"
+    }
+  },
+  {
+    "word": "ペン",
+    "reading": "ペン",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "pen"
+    }
+  },
+  {
+    "word": "便利",
+    "reading": "べんり",
+    "pos": "na-adjective",
+    "kanjiId": 20415,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "convenient; handy; useful"
+    }
+  },
+  {
+    "word": "帽子",
+    "reading": "ぼうし",
+    "pos": "noun",
+    "kanjiId": 24125,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "hat; cap"
+    }
+  },
+  {
+    "word": "ボールペン",
+    "reading": "ボールペン",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "ball-point pen"
+    }
+  },
+  {
+    "word": "ポケット",
+    "reading": "ポケット",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "pocket"
+    }
+  },
+  {
+    "word": "欲しい",
+    "reading": "ほしい",
+    "pos": "i-adjective",
+    "kanjiId": 27442,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "wanting (to have); desiring; wishing for"
+    }
+  },
+  {
+    "word": "ポスト",
+    "reading": "ポスト",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "postbox; mailbox; mail box"
+    }
+  },
+  {
+    "word": "細い",
+    "reading": "ほそい",
+    "pos": "i-adjective",
+    "kanjiId": 32048,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "thin; slender; fine"
+    }
+  },
+  {
+    "word": "ホテル",
+    "reading": "ホテル",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "hotel"
+    }
+  },
+  {
+    "word": "本",
+    "reading": "ほん",
+    "pos": "noun",
+    "kanjiId": 26412,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "origin; source; beginning"
+    }
+  },
+  {
+    "word": "本棚",
+    "reading": "ほんだな",
+    "pos": "noun",
+    "kanjiId": 26412,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "bookshelves; bookshelf; bookcase"
+    }
+  },
+  {
+    "word": "毎朝",
+    "reading": "まいあさ",
+    "pos": "noun",
+    "kanjiId": 27598,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "every morning"
+    }
+  },
+  {
+    "word": "毎月",
+    "reading": "まいげつ",
+    "pos": "adverb",
+    "kanjiId": 27598,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "every month; each month; monthly"
+    }
+  },
+  {
+    "word": "毎月",
+    "reading": "まいつき",
+    "pos": "adverb",
+    "kanjiId": 27598,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "every month; each month; monthly"
+    }
+  },
+  {
+    "word": "毎週",
+    "reading": "まいしゅう",
+    "pos": "noun",
+    "kanjiId": 27598,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "every week"
+    }
+  },
+  {
+    "word": "毎日",
+    "reading": "まいにち",
+    "pos": "noun",
+    "kanjiId": 27598,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "every day; daily"
+    }
+  },
+  {
+    "word": "毎年",
+    "reading": "まいねん",
+    "pos": "adverb",
+    "kanjiId": 27598,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "every year; yearly; annually"
+    }
+  },
+  {
+    "word": "毎年",
+    "reading": "まいとし",
+    "pos": "adverb",
+    "kanjiId": 27598,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "every year; yearly; annually"
+    }
+  },
+  {
+    "word": "毎晩",
+    "reading": "まいばん",
+    "pos": "noun",
+    "kanjiId": 27598,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "every night"
+    }
+  },
+  {
+    "word": "曲る",
+    "reading": "まがる",
+    "pos": "verb",
+    "kanjiId": 26354,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to bend; to curve; to warp"
+    }
+  },
+  {
+    "word": "町",
+    "reading": "まち",
+    "pos": "noun",
+    "kanjiId": 30010,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "town; block; neighbourhood"
+    }
+  },
+  {
+    "word": "待つ",
+    "reading": "まつ",
+    "pos": "verb",
+    "kanjiId": 24453,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to wait"
+    }
+  },
+  {
+    "word": "マッチ",
+    "reading": "マッチ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "match (contest)"
+    }
+  },
+  {
+    "word": "窓",
+    "reading": "まど",
+    "pos": "noun",
+    "kanjiId": 31379,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "window"
+    }
+  },
+  {
+    "word": "万年筆",
+    "reading": "まんねんひつ",
+    "pos": "noun",
+    "kanjiId": 19975,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "fountain pen"
+    }
+  },
+  {
+    "word": "磨く",
+    "reading": "みがく",
+    "pos": "verb",
+    "kanjiId": 30952,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to polish; to shine; to burnish"
+    }
+  },
+  {
+    "word": "右",
+    "reading": "みぎ",
+    "pos": "noun",
+    "kanjiId": 21491,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "right; right-hand side"
+    }
+  },
+  {
+    "word": "短い",
+    "reading": "みじかい",
+    "pos": "i-adjective",
+    "kanjiId": 30701,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "short"
+    }
+  },
+  {
+    "word": "水",
+    "reading": "みず",
+    "pos": "noun",
+    "kanjiId": 27700,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "water (esp. cool or cold)"
+    }
+  },
+  {
+    "word": "見せる",
+    "reading": "みせる",
+    "pos": "verb",
+    "kanjiId": 35211,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to show; to display"
+    }
+  },
+  {
+    "word": "道",
+    "reading": "みち",
+    "pos": "noun",
+    "kanjiId": 36947,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "road; path; street"
+    }
+  },
+  {
+    "word": "三日",
+    "reading": "みっか",
+    "pos": "noun",
+    "kanjiId": 19977,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "3rd day of the month"
+    }
+  },
+  {
+    "word": "三つ",
+    "reading": "みっつ",
+    "pos": "numeral",
+    "kanjiId": 19977,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "three"
+    }
+  },
+  {
+    "word": "緑",
+    "reading": "みどり",
+    "pos": "noun",
+    "kanjiId": 32209,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "green"
+    }
+  },
+  {
+    "word": "皆さん",
+    "reading": "みなさん",
+    "pos": "noun",
+    "kanjiId": 30342,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "all; everyone; everybody"
+    }
+  },
+  {
+    "word": "耳",
+    "reading": "みみ",
+    "pos": "noun",
+    "kanjiId": 32819,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "ear"
+    }
+  },
+  {
+    "word": "六日",
+    "reading": "むいか",
+    "pos": "noun",
+    "kanjiId": 20845,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "6th day of the month"
+    }
+  },
+  {
+    "word": "向こう",
+    "reading": "むこう",
+    "pos": "noun",
+    "kanjiId": 21521,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "opposite side; other side"
+    }
+  },
+  {
+    "word": "難しい",
+    "reading": "むずかしい",
+    "pos": "i-adjective",
+    "kanjiId": 38627,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "difficult; hard; troublesome"
+    }
+  },
+  {
+    "word": "六つ",
+    "reading": "むっつ",
+    "pos": "numeral",
+    "kanjiId": 20845,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "six"
+    }
+  },
+  {
+    "word": "村",
+    "reading": "むら",
+    "pos": "noun",
+    "kanjiId": 26449,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "village"
+    }
+  },
+  {
+    "word": "目",
+    "reading": "め",
+    "pos": "noun",
+    "kanjiId": 30446,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "eye; eyeball"
+    }
+  },
+  {
+    "word": "もう",
+    "reading": "もう",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "already; yet; by now"
+    }
+  },
+  {
+    "word": "もう一度",
+    "reading": "もういちど",
+    "pos": "expression",
+    "kanjiId": 19968,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "once more; again"
+    }
+  },
+  {
+    "word": "木曜日",
+    "reading": "もくようび",
+    "pos": "noun",
+    "kanjiId": 26408,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "Thursday"
+    }
+  },
+  {
+    "word": "持つ",
+    "reading": "もつ",
+    "pos": "verb",
+    "kanjiId": 25345,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to hold (in one's hand); to take; to carry"
+    }
+  },
+  {
+    "word": "もっと",
+    "reading": "もっと",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(some) more; even more; longer"
+    }
+  },
+  {
+    "word": "物",
+    "reading": "もの",
+    "pos": "noun",
+    "kanjiId": 29289,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "thing; object; article"
+    }
+  },
+  {
+    "word": "問題",
+    "reading": "もんだい",
+    "pos": "noun",
+    "kanjiId": 21839,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "question (e.g. on a test); problem"
+    }
+  },
+  {
+    "word": "八百屋",
+    "reading": "やおや",
+    "pos": "noun",
+    "kanjiId": 20843,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "greengrocer; fruit and vegetable shop"
+    }
+  },
+  {
+    "word": "野菜",
+    "reading": "やさい",
+    "pos": "noun",
+    "kanjiId": 37326,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "vegetable"
+    }
+  },
+  {
+    "word": "易しい",
+    "reading": "やさしい",
+    "pos": "i-adjective",
+    "kanjiId": 26131,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "easy; plain; simple"
+    }
+  },
+  {
+    "word": "安い",
+    "reading": "やすい",
+    "pos": "i-adjective",
+    "kanjiId": 23433,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cheap; inexpensive"
+    }
+  },
+  {
+    "word": "休み",
+    "reading": "やすみ",
+    "pos": "noun",
+    "kanjiId": 20241,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "rest; recess; respite"
+    }
+  },
+  {
+    "word": "休む",
+    "reading": "やすむ",
+    "pos": "verb",
+    "kanjiId": 20241,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to be absent; to take a day off"
+    }
+  },
+  {
+    "word": "八つ",
+    "reading": "やっつ",
+    "pos": "numeral",
+    "kanjiId": 20843,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "eight"
+    }
+  },
+  {
+    "word": "山",
+    "reading": "やま",
+    "pos": "noun",
+    "kanjiId": 23665,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "mountain; hill"
+    }
+  },
+  {
+    "word": "夕方",
+    "reading": "ゆうがた",
+    "pos": "noun",
+    "kanjiId": 22805,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "early evening (usu. from 3pm to 6pm); dusk"
+    }
+  },
+  {
+    "word": "夕飯",
+    "reading": "ゆうはん",
+    "pos": "noun",
+    "kanjiId": 22805,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "evening meal; dinner; supper"
+    }
+  },
+  {
+    "word": "郵便局",
+    "reading": "ゆうびんきょく",
+    "pos": "noun",
+    "kanjiId": 37109,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "post office"
+    }
+  },
+  {
+    "word": "昨夜",
+    "reading": "ゆうべ",
+    "pos": "noun",
+    "kanjiId": 26152,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "last night; yesterday evening"
+    }
+  },
+  {
+    "word": "有名",
+    "reading": "ゆうめい",
+    "pos": "na-adjective",
+    "kanjiId": 26377,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "famous; well-known"
+    }
+  },
+  {
+    "word": "雪",
+    "reading": "ゆき",
+    "pos": "noun",
+    "kanjiId": 38634,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "snow; snowfall"
+    }
+  },
+  {
+    "word": "八日",
+    "reading": "ようか",
+    "pos": "noun",
+    "kanjiId": 20843,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "8th day of the month"
+    }
+  },
+  {
+    "word": "洋服",
+    "reading": "ようふく",
+    "pos": "noun",
+    "kanjiId": 27915,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "Western-style clothes (cf. traditional Japanese clothes)"
+    }
+  },
+  {
+    "word": "横",
+    "reading": "よこ",
+    "pos": "noun",
+    "kanjiId": 27178,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "horizontal (as opposed to vertical)"
+    }
+  },
+  {
+    "word": "四日",
+    "reading": "よっか",
+    "pos": "noun",
+    "kanjiId": 22235,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "4th day of the month"
+    }
+  },
+  {
+    "word": "四つ",
+    "reading": "よっつ",
+    "pos": "numeral",
+    "kanjiId": 22235,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "four; 4"
+    }
+  },
+  {
+    "word": "呼ぶ",
+    "reading": "よぶ",
+    "pos": "verb",
+    "kanjiId": 21628,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to call out (to); to call; to invoke"
+    }
+  },
+  {
+    "word": "読む",
+    "reading": "よむ",
+    "pos": "verb",
+    "kanjiId": 35501,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to read"
+    }
+  },
+  {
+    "word": "弱い",
+    "reading": "よわい",
+    "pos": "i-adjective",
+    "kanjiId": 24369,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "weak; frail; delicate"
+    }
+  },
+  {
+    "word": "来月",
+    "reading": "らいげつ",
+    "pos": "noun",
+    "kanjiId": 26469,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "next month"
+    }
+  },
+  {
+    "word": "来週",
+    "reading": "らいしゅう",
+    "pos": "noun",
+    "kanjiId": 26469,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "next week"
+    }
+  },
+  {
+    "word": "来年",
+    "reading": "らいねん",
+    "pos": "noun",
+    "kanjiId": 26469,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "next year"
+    }
+  },
+  {
+    "word": "ラジオ",
+    "reading": "ラジオ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "radio"
+    }
+  },
+  {
+    "word": "ラジカセ",
+    "reading": "ラジカセ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "radio-cassette player"
+    }
+  },
+  {
+    "word": "ラジオカセット",
+    "reading": "ラジオカセット",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "radio-cassette; tape recorder"
+    }
+  },
+  {
+    "word": "留学生",
+    "reading": "りゅうがくせい",
+    "pos": "noun",
+    "kanjiId": 30041,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "overseas student; exchange student"
+    }
+  },
+  {
+    "word": "両親",
+    "reading": "りょうしん",
+    "pos": "noun",
+    "kanjiId": 20001,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "parents; both parents"
+    }
+  },
+  {
+    "word": "料理",
+    "reading": "りょうり",
+    "pos": "noun",
+    "kanjiId": 26009,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "cooking; cookery; cuisine"
+    }
+  },
+  {
+    "word": "旅行",
+    "reading": "りょこう",
+    "pos": "noun",
+    "kanjiId": 26053,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "travel; trip; journey"
+    }
+  },
+  {
+    "word": "零",
+    "reading": "れい",
+    "pos": "noun",
+    "kanjiId": 38646,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "zero; nought"
+    }
+  },
+  {
+    "word": "冷蔵庫",
+    "reading": "れいぞうこ",
+    "pos": "noun",
+    "kanjiId": 20919,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "refrigerator; fridge"
+    }
+  },
+  {
+    "word": "レコード",
+    "reading": "レコード",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "(phonograph) record"
+    }
+  },
+  {
+    "word": "レストラン",
+    "reading": "レストラン",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "restaurant (esp. Western-style)"
+    }
+  },
+  {
+    "word": "廊下",
+    "reading": "ろうか",
+    "pos": "noun",
+    "kanjiId": 24266,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "corridor; hallway; passageway"
+    }
+  },
+  {
+    "word": "若い",
+    "reading": "わかい",
+    "pos": "i-adjective",
+    "kanjiId": 33509,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "young; youthful"
+    }
+  },
+  {
+    "word": "分かる",
+    "reading": "わかる",
+    "pos": "verb",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to understand; to comprehend; to grasp"
+    }
+  },
+  {
+    "word": "忘れる",
+    "reading": "わすれる",
+    "pos": "verb",
+    "kanjiId": 24536,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to forget; to leave carelessly; to be forgetful of"
+    }
+  },
+  {
+    "word": "渡す",
+    "reading": "わたす",
+    "pos": "verb",
+    "kanjiId": 28193,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to ferry across (e.g. a river); to carry across; to traverse"
+    }
+  },
+  {
+    "word": "渡る",
+    "reading": "わたる",
+    "pos": "verb",
+    "kanjiId": 28193,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "to cross over; to go across"
+    }
+  },
+  {
+    "word": "ほう",
+    "reading": "より",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "oh; ho; exclamation of surprise, admiration, etc."
+    }
+  },
+  {
+    "word": "ほう",
+    "reading": "ほう",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N5",
+    "meanings": {
+      "en": "oh; ho; exclamation of surprise, admiration, etc."
+    }
+  }
+]

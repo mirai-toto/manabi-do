@@ -15,7 +15,7 @@ class KanjiExampleWords extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final async = ref.watch(kanjiVocabProvider((kanjiId: kanji.id, character: kanji.character)));
+    final async = ref.watch(localizedKanjiVocabProvider((kanjiId: kanji.id, character: kanji.character)));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +60,7 @@ class _EmptyState extends StatelessWidget {
 }
 
 class _WordList extends StatelessWidget {
-  final List<VocabularyEntry> words;
+  final List<(VocabularyEntry, String)> words;
   const _WordList({required this.words});
 
   @override
@@ -77,7 +77,7 @@ class _WordList extends StatelessWidget {
         children: [
           for (int i = 0; i < words.length; i++) ...[
             if (i > 0) Divider(height: 1, thickness: 1, color: t.outlineVariant),
-            _WordRow(word: words[i]),
+            _WordRow(entry: words[i].$1, meaning: words[i].$2),
           ],
         ],
       ),
@@ -86,8 +86,9 @@ class _WordList extends StatelessWidget {
 }
 
 class _WordRow extends StatelessWidget {
-  final VocabularyEntry word;
-  const _WordRow({required this.word});
+  final VocabularyEntry entry;
+  final String meaning;
+  const _WordRow({required this.entry, required this.meaning});
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -95,19 +96,19 @@ class _WordRow extends StatelessWidget {
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(flex: 2, child: _WordLabel(word: word.word, reading: word.reading)),
+        Expanded(flex: 2, child: _WordLabel(word: entry.word, reading: entry.reading)),
         const SizedBox(width: AppDimens.spaceSm),
         Expanded(
           flex: 3,
           child: Text(
-            word.meaning,
+            meaning,
             style: AppTextStyles.bodySmall.copyWith(color: context.tokens.onSurfaceVariant),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
         ),
         const SizedBox(width: AppDimens.spaceSm),
-        _JlptBadge(level: word.jlptLevel),
+        _JlptBadge(level: entry.jlptLevel),
       ],
     ),
   );

@@ -1,0 +1,1308 @@
+[
+  {
+    "id": 26085,
+    "character": "日",
+    "jlpt": "N5",
+    "on": [
+      "ニチ",
+      "ジツ"
+    ],
+    "kun": [
+      "ひ",
+      "-び",
+      "-か"
+    ],
+    "meanings": {
+      "en": "day, sun, Japan"
+    }
+  },
+  {
+    "id": 19968,
+    "character": "一",
+    "jlpt": "N5",
+    "on": [
+      "イチ",
+      "イツ"
+    ],
+    "kun": [
+      "ひと-",
+      "ひと.つ"
+    ],
+    "meanings": {
+      "en": "one, one radical (no.1)"
+    }
+  },
+  {
+    "id": 22269,
+    "character": "国",
+    "jlpt": "N5",
+    "on": [
+      "コク"
+    ],
+    "kun": [
+      "くに"
+    ],
+    "meanings": {
+      "en": "country"
+    }
+  },
+  {
+    "id": 20154,
+    "character": "人",
+    "jlpt": "N5",
+    "on": [
+      "ジン",
+      "ニン"
+    ],
+    "kun": [
+      "ひと",
+      "-り",
+      "-と"
+    ],
+    "meanings": {
+      "en": "person"
+    }
+  },
+  {
+    "id": 24180,
+    "character": "年",
+    "jlpt": "N5",
+    "on": [
+      "ネン"
+    ],
+    "kun": [
+      "とし"
+    ],
+    "meanings": {
+      "en": "year, counter for years"
+    }
+  },
+  {
+    "id": 22823,
+    "character": "大",
+    "jlpt": "N5",
+    "on": [
+      "ダイ",
+      "タイ"
+    ],
+    "kun": [
+      "おお-",
+      "おお.きい",
+      "-おお.いに"
+    ],
+    "meanings": {
+      "en": "large, big"
+    }
+  },
+  {
+    "id": 21313,
+    "character": "十",
+    "jlpt": "N5",
+    "on": [
+      "ジュウ",
+      "ジッ",
+      "ジュッ"
+    ],
+    "kun": [
+      "とお",
+      "と",
+      "そ"
+    ],
+    "meanings": {
+      "en": "ten"
+    }
+  },
+  {
+    "id": 20108,
+    "character": "二",
+    "jlpt": "N5",
+    "on": [
+      "ニ",
+      "ジ"
+    ],
+    "kun": [
+      "ふた",
+      "ふた.つ",
+      "ふたたび"
+    ],
+    "meanings": {
+      "en": "two, two radical (no. 7)"
+    }
+  },
+  {
+    "id": 26412,
+    "character": "本",
+    "jlpt": "N5",
+    "on": [
+      "ホン"
+    ],
+    "kun": [
+      "もと"
+    ],
+    "meanings": {
+      "en": "book, present, main"
+    }
+  },
+  {
+    "id": 20013,
+    "character": "中",
+    "jlpt": "N5",
+    "on": [
+      "チュウ"
+    ],
+    "kun": [
+      "なか",
+      "うち",
+      "あた.る"
+    ],
+    "meanings": {
+      "en": "in, inside, middle"
+    }
+  },
+  {
+    "id": 38263,
+    "character": "長",
+    "jlpt": "N5",
+    "on": [
+      "チョウ"
+    ],
+    "kun": [
+      "なが.い",
+      "おさ"
+    ],
+    "meanings": {
+      "en": "long, leader, superior"
+    }
+  },
+  {
+    "id": 20986,
+    "character": "出",
+    "jlpt": "N5",
+    "on": [
+      "シュツ",
+      "スイ"
+    ],
+    "kun": [
+      "で.る",
+      "-で",
+      "だ.す",
+      "-だ.す",
+      "い.でる",
+      "い.だす"
+    ],
+    "meanings": {
+      "en": "exit, leave, go out"
+    }
+  },
+  {
+    "id": 19977,
+    "character": "三",
+    "jlpt": "N5",
+    "on": [
+      "サン",
+      "ゾウ"
+    ],
+    "kun": [
+      "み",
+      "み.つ",
+      "みっ.つ"
+    ],
+    "meanings": {
+      "en": "three"
+    }
+  },
+  {
+    "id": 26178,
+    "character": "時",
+    "jlpt": "N5",
+    "on": [
+      "ジ"
+    ],
+    "kun": [
+      "とき",
+      "-どき"
+    ],
+    "meanings": {
+      "en": "time, hour"
+    }
+  },
+  {
+    "id": 34892,
+    "character": "行",
+    "jlpt": "N5",
+    "on": [
+      "コウ",
+      "ギョウ",
+      "アン"
+    ],
+    "kun": [
+      "い.く",
+      "ゆ.く",
+      "-ゆ.き",
+      "-ゆき",
+      "-い.き",
+      "-いき",
+      "おこな.う",
+      "おこ.なう"
+    ],
+    "meanings": {
+      "en": "going, journey, carry out"
+    }
+  },
+  {
+    "id": 35211,
+    "character": "見",
+    "jlpt": "N5",
+    "on": [
+      "ケン"
+    ],
+    "kun": [
+      "み.る",
+      "み.える",
+      "み.せる"
+    ],
+    "meanings": {
+      "en": "see, hopes, chances"
+    }
+  },
+  {
+    "id": 26376,
+    "character": "月",
+    "jlpt": "N5",
+    "on": [
+      "ゲツ",
+      "ガツ"
+    ],
+    "kun": [
+      "つき"
+    ],
+    "meanings": {
+      "en": "month, moon"
+    }
+  },
+  {
+    "id": 24460,
+    "character": "後",
+    "jlpt": "N5",
+    "on": [
+      "ゴ",
+      "コウ"
+    ],
+    "kun": [
+      "のち",
+      "うし.ろ",
+      "うしろ",
+      "あと",
+      "おく.れる"
+    ],
+    "meanings": {
+      "en": "behind, back, later"
+    }
+  },
+  {
+    "id": 21069,
+    "character": "前",
+    "jlpt": "N5",
+    "on": [
+      "ゼン"
+    ],
+    "kun": [
+      "まえ",
+      "-まえ"
+    ],
+    "meanings": {
+      "en": "in front, before"
+    }
+  },
+  {
+    "id": 29983,
+    "character": "生",
+    "jlpt": "N5",
+    "on": [
+      "セイ",
+      "ショウ"
+    ],
+    "kun": [
+      "い.きる",
+      "い.かす",
+      "い.ける",
+      "う.まれる",
+      "うま.れる",
+      "う.まれ",
+      "うまれ",
+      "う.む",
+      "お.う",
+      "は.える",
+      "は.やす",
+      "き",
+      "なま",
+      "なま-",
+      "な.る",
+      "な.す",
+      "む.す",
+      "-う"
+    ],
+    "meanings": {
+      "en": "life, genuine, birth"
+    }
+  },
+  {
+    "id": 20116,
+    "character": "五",
+    "jlpt": "N5",
+    "on": [
+      "ゴ"
+    ],
+    "kun": [
+      "いつ",
+      "いつ.つ"
+    ],
+    "meanings": {
+      "en": "five"
+    }
+  },
+  {
+    "id": 38291,
+    "character": "間",
+    "jlpt": "N5",
+    "on": [
+      "カン",
+      "ケン"
+    ],
+    "kun": [
+      "あいだ",
+      "ま",
+      "あい"
+    ],
+    "meanings": {
+      "en": "interval, space"
+    }
+  },
+  {
+    "id": 19978,
+    "character": "上",
+    "jlpt": "N5",
+    "on": [
+      "ジョウ",
+      "ショウ",
+      "シャン"
+    ],
+    "kun": [
+      "うえ",
+      "-うえ",
+      "うわ-",
+      "かみ",
+      "あ.げる",
+      "-あ.げる",
+      "あ.がる",
+      "-あ.がる",
+      "あ.がり",
+      "-あ.がり",
+      "のぼ.る",
+      "のぼ.り",
+      "のぼ.せる",
+      "のぼ.す",
+      "たてまつ.る"
+    ],
+    "meanings": {
+      "en": "above, up"
+    }
+  },
+  {
+    "id": 26481,
+    "character": "東",
+    "jlpt": "N5",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "ひがし"
+    ],
+    "meanings": {
+      "en": "east"
+    }
+  },
+  {
+    "id": 22235,
+    "character": "四",
+    "jlpt": "N5",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "よ",
+      "よ.つ",
+      "よっ.つ",
+      "よん"
+    ],
+    "meanings": {
+      "en": "four"
+    }
+  },
+  {
+    "id": 20170,
+    "character": "今",
+    "jlpt": "N5",
+    "on": [
+      "コン",
+      "キン"
+    ],
+    "kun": [
+      "いま"
+    ],
+    "meanings": {
+      "en": "now"
+    }
+  },
+  {
+    "id": 37329,
+    "character": "金",
+    "jlpt": "N5",
+    "on": [
+      "キン",
+      "コン",
+      "ゴン"
+    ],
+    "kun": [
+      "かね",
+      "かな-",
+      "-がね"
+    ],
+    "meanings": {
+      "en": "gold"
+    }
+  },
+  {
+    "id": 20061,
+    "character": "九",
+    "jlpt": "N5",
+    "on": [
+      "キュウ",
+      "ク"
+    ],
+    "kun": [
+      "ここの",
+      "ここの.つ"
+    ],
+    "meanings": {
+      "en": "nine"
+    }
+  },
+  {
+    "id": 20837,
+    "character": "入",
+    "jlpt": "N5",
+    "on": [
+      "ニュウ",
+      "ジュ"
+    ],
+    "kun": [
+      "い.る",
+      "-い.る",
+      "-い.り",
+      "い.れる",
+      "-い.れ",
+      "はい.る"
+    ],
+    "meanings": {
+      "en": "enter, insert"
+    }
+  },
+  {
+    "id": 23398,
+    "character": "学",
+    "jlpt": "N5",
+    "on": [
+      "ガク"
+    ],
+    "kun": [
+      "まな.ぶ"
+    ],
+    "meanings": {
+      "en": "study, learning, science"
+    }
+  },
+  {
+    "id": 39640,
+    "character": "高",
+    "jlpt": "N5",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "たか.い",
+      "たか",
+      "-だか",
+      "たか.まる",
+      "たか.める"
+    ],
+    "meanings": {
+      "en": "tall, high, expensive"
+    }
+  },
+  {
+    "id": 20870,
+    "character": "円",
+    "jlpt": "N5",
+    "on": [
+      "エン"
+    ],
+    "kun": [
+      "まる.い",
+      "まる",
+      "まど",
+      "まど.か",
+      "まろ.やか"
+    ],
+    "meanings": {
+      "en": "circle, yen, round"
+    }
+  },
+  {
+    "id": 23376,
+    "character": "子",
+    "jlpt": "N5",
+    "on": [
+      "シ",
+      "ス",
+      "ツ"
+    ],
+    "kun": [
+      "こ",
+      "-こ",
+      "ね"
+    ],
+    "meanings": {
+      "en": "child, sign of the rat, 11PM-1AM"
+    }
+  },
+  {
+    "id": 22806,
+    "character": "外",
+    "jlpt": "N5",
+    "on": [
+      "ガイ",
+      "ゲ"
+    ],
+    "kun": [
+      "そと",
+      "ほか",
+      "はず.す",
+      "はず.れる",
+      "と-"
+    ],
+    "meanings": {
+      "en": "outside"
+    }
+  },
+  {
+    "id": 20843,
+    "character": "八",
+    "jlpt": "N5",
+    "on": [
+      "ハチ",
+      "ハツ"
+    ],
+    "kun": [
+      "や",
+      "や.つ",
+      "やっ.つ",
+      "よう"
+    ],
+    "meanings": {
+      "en": "eight, eight radical (no. 12)"
+    }
+  },
+  {
+    "id": 20845,
+    "character": "六",
+    "jlpt": "N5",
+    "on": [
+      "ロク",
+      "リク"
+    ],
+    "kun": [
+      "む",
+      "む.つ",
+      "むっ.つ",
+      "むい"
+    ],
+    "meanings": {
+      "en": "six"
+    }
+  },
+  {
+    "id": 19979,
+    "character": "下",
+    "jlpt": "N5",
+    "on": [
+      "カ",
+      "ゲ"
+    ],
+    "kun": [
+      "した",
+      "しも",
+      "もと",
+      "さ.げる",
+      "さ.がる",
+      "くだ.る",
+      "くだ.り",
+      "くだ.す",
+      "-くだ.す",
+      "くだ.さる",
+      "お.ろす",
+      "お.りる"
+    ],
+    "meanings": {
+      "en": "below, down, descend"
+    }
+  },
+  {
+    "id": 26469,
+    "character": "来",
+    "jlpt": "N5",
+    "on": [
+      "ライ",
+      "タイ"
+    ],
+    "kun": [
+      "く.る",
+      "きた.る",
+      "きた.す",
+      "き.たす",
+      "き.たる",
+      "き",
+      "こ"
+    ],
+    "meanings": {
+      "en": "come, due, next"
+    }
+  },
+  {
+    "id": 27671,
+    "character": "気",
+    "jlpt": "N5",
+    "on": [
+      "キ",
+      "ケ"
+    ],
+    "kun": [
+      "いき",
+      "き"
+    ],
+    "meanings": {
+      "en": "spirit, mind, air"
+    }
+  },
+  {
+    "id": 23567,
+    "character": "小",
+    "jlpt": "N5",
+    "on": [
+      "ショウ"
+    ],
+    "kun": [
+      "ちい.さい",
+      "こ-",
+      "お-",
+      "さ-"
+    ],
+    "meanings": {
+      "en": "little, small"
+    }
+  },
+  {
+    "id": 19971,
+    "character": "七",
+    "jlpt": "N5",
+    "on": [
+      "シチ"
+    ],
+    "kun": [
+      "なな",
+      "なな.つ",
+      "なの"
+    ],
+    "meanings": {
+      "en": "seven"
+    }
+  },
+  {
+    "id": 23665,
+    "character": "山",
+    "jlpt": "N5",
+    "on": [
+      "サン",
+      "セン"
+    ],
+    "kun": [
+      "やま"
+    ],
+    "meanings": {
+      "en": "mountain"
+    }
+  },
+  {
+    "id": 35441,
+    "character": "話",
+    "jlpt": "N5",
+    "on": [
+      "ワ"
+    ],
+    "kun": [
+      "はな.す",
+      "はなし"
+    ],
+    "meanings": {
+      "en": "tale, talk"
+    }
+  },
+  {
+    "id": 22899,
+    "character": "女",
+    "jlpt": "N5",
+    "on": [
+      "ジョ",
+      "ニョ",
+      "ニョウ"
+    ],
+    "kun": [
+      "おんな",
+      "め"
+    ],
+    "meanings": {
+      "en": "woman, female"
+    }
+  },
+  {
+    "id": 21271,
+    "character": "北",
+    "jlpt": "N5",
+    "on": [
+      "ホク"
+    ],
+    "kun": [
+      "きた"
+    ],
+    "meanings": {
+      "en": "north"
+    }
+  },
+  {
+    "id": 21320,
+    "character": "午",
+    "jlpt": "N5",
+    "on": [
+      "ゴ"
+    ],
+    "kun": [
+      "うま"
+    ],
+    "meanings": {
+      "en": "noon, sign of the horse, 11AM-1PM"
+    }
+  },
+  {
+    "id": 30334,
+    "character": "百",
+    "jlpt": "N5",
+    "on": [
+      "ヒャク",
+      "ビャク"
+    ],
+    "kun": [
+      "もも"
+    ],
+    "meanings": {
+      "en": "hundred"
+    }
+  },
+  {
+    "id": 26360,
+    "character": "書",
+    "jlpt": "N5",
+    "on": [
+      "ショ"
+    ],
+    "kun": [
+      "か.く",
+      "-が.き",
+      "-がき"
+    ],
+    "meanings": {
+      "en": "write"
+    }
+  },
+  {
+    "id": 20808,
+    "character": "先",
+    "jlpt": "N5",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "さき",
+      "ま.ず"
+    ],
+    "meanings": {
+      "en": "before, ahead, previous"
+    }
+  },
+  {
+    "id": 21517,
+    "character": "名",
+    "jlpt": "N5",
+    "on": [
+      "メイ",
+      "ミョウ"
+    ],
+    "kun": [
+      "な",
+      "-な"
+    ],
+    "meanings": {
+      "en": "name, noted, distinguished"
+    }
+  },
+  {
+    "id": 24029,
+    "character": "川",
+    "jlpt": "N5",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "かわ"
+    ],
+    "meanings": {
+      "en": "stream, river, river or three-stroke river radical (no. 47)"
+    }
+  },
+  {
+    "id": 21315,
+    "character": "千",
+    "jlpt": "N5",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "ち"
+    ],
+    "meanings": {
+      "en": "thousand"
+    }
+  },
+  {
+    "id": 27700,
+    "character": "水",
+    "jlpt": "N5",
+    "on": [
+      "スイ"
+    ],
+    "kun": [
+      "みず",
+      "みず-"
+    ],
+    "meanings": {
+      "en": "water"
+    }
+  },
+  {
+    "id": 21322,
+    "character": "半",
+    "jlpt": "N5",
+    "on": [
+      "ハン"
+    ],
+    "kun": [
+      "なか.ば"
+    ],
+    "meanings": {
+      "en": "half, middle, odd number"
+    }
+  },
+  {
+    "id": 30007,
+    "character": "男",
+    "jlpt": "N5",
+    "on": [
+      "ダン",
+      "ナン"
+    ],
+    "kun": [
+      "おとこ",
+      "お"
+    ],
+    "meanings": {
+      "en": "male"
+    }
+  },
+  {
+    "id": 35199,
+    "character": "西",
+    "jlpt": "N5",
+    "on": [
+      "セイ",
+      "サイ",
+      "ス"
+    ],
+    "kun": [
+      "にし"
+    ],
+    "meanings": {
+      "en": "west, Spain"
+    }
+  },
+  {
+    "id": 38651,
+    "character": "電",
+    "jlpt": "N5",
+    "on": [
+      "デン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "electricity"
+    }
+  },
+  {
+    "id": 26657,
+    "character": "校",
+    "jlpt": "N5",
+    "on": [
+      "コウ",
+      "キョウ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "exam, school, printing"
+    }
+  },
+  {
+    "id": 35486,
+    "character": "語",
+    "jlpt": "N5",
+    "on": [
+      "ゴ"
+    ],
+    "kun": [
+      "かた.る",
+      "かた.らう"
+    ],
+    "meanings": {
+      "en": "word, speech, language"
+    }
+  },
+  {
+    "id": 22303,
+    "character": "土",
+    "jlpt": "N5",
+    "on": [
+      "ド",
+      "ト"
+    ],
+    "kun": [
+      "つち"
+    ],
+    "meanings": {
+      "en": "soil, earth, ground"
+    }
+  },
+  {
+    "id": 26408,
+    "character": "木",
+    "jlpt": "N5",
+    "on": [
+      "ボク",
+      "モク"
+    ],
+    "kun": [
+      "き",
+      "こ-"
+    ],
+    "meanings": {
+      "en": "tree, wood"
+    }
+  },
+  {
+    "id": 32862,
+    "character": "聞",
+    "jlpt": "N5",
+    "on": [
+      "ブン",
+      "モン"
+    ],
+    "kun": [
+      "き.く",
+      "き.こえる"
+    ],
+    "meanings": {
+      "en": "hear, ask, listen"
+    }
+  },
+  {
+    "id": 39135,
+    "character": "食",
+    "jlpt": "N5",
+    "on": [
+      "ショク",
+      "ジキ"
+    ],
+    "kun": [
+      "く.う",
+      "く.らう",
+      "た.べる",
+      "は.む"
+    ],
+    "meanings": {
+      "en": "eat, food"
+    }
+  },
+  {
+    "id": 36554,
+    "character": "車",
+    "jlpt": "N5",
+    "on": [
+      "シャ"
+    ],
+    "kun": [
+      "くるま"
+    ],
+    "meanings": {
+      "en": "car"
+    }
+  },
+  {
+    "id": 20309,
+    "character": "何",
+    "jlpt": "N5",
+    "on": [
+      "カ"
+    ],
+    "kun": [
+      "なに",
+      "なん",
+      "なに-",
+      "なん-"
+    ],
+    "meanings": {
+      "en": "what"
+    }
+  },
+  {
+    "id": 21335,
+    "character": "南",
+    "jlpt": "N5",
+    "on": [
+      "ナン",
+      "ナ"
+    ],
+    "kun": [
+      "みなみ"
+    ],
+    "meanings": {
+      "en": "south"
+    }
+  },
+  {
+    "id": 19975,
+    "character": "万",
+    "jlpt": "N5",
+    "on": [
+      "マン",
+      "バン"
+    ],
+    "kun": [
+      "よろず"
+    ],
+    "meanings": {
+      "en": "ten thousand, 10,000"
+    }
+  },
+  {
+    "id": 27598,
+    "character": "毎",
+    "jlpt": "N5",
+    "on": [
+      "マイ"
+    ],
+    "kun": [
+      "ごと",
+      "-ごと.に"
+    ],
+    "meanings": {
+      "en": "every"
+    }
+  },
+  {
+    "id": 30333,
+    "character": "白",
+    "jlpt": "N5",
+    "on": [
+      "ハク",
+      "ビャク"
+    ],
+    "kun": [
+      "しろ",
+      "しら-",
+      "しろ.い"
+    ],
+    "meanings": {
+      "en": "white"
+    }
+  },
+  {
+    "id": 22825,
+    "character": "天",
+    "jlpt": "N5",
+    "on": [
+      "テン"
+    ],
+    "kun": [
+      "あまつ",
+      "あめ",
+      "あま-"
+    ],
+    "meanings": {
+      "en": "heavens, sky, imperial"
+    }
+  },
+  {
+    "id": 27597,
+    "character": "母",
+    "jlpt": "N5",
+    "on": [
+      "ボ"
+    ],
+    "kun": [
+      "はは",
+      "も"
+    ],
+    "meanings": {
+      "en": "mother"
+    }
+  },
+  {
+    "id": 28779,
+    "character": "火",
+    "jlpt": "N5",
+    "on": [
+      "カ"
+    ],
+    "kun": [
+      "ひ",
+      "-び",
+      "ほ-"
+    ],
+    "meanings": {
+      "en": "fire"
+    }
+  },
+  {
+    "id": 21491,
+    "character": "右",
+    "jlpt": "N5",
+    "on": [
+      "ウ",
+      "ユウ"
+    ],
+    "kun": [
+      "みぎ"
+    ],
+    "meanings": {
+      "en": "right"
+    }
+  },
+  {
+    "id": 35501,
+    "character": "読",
+    "jlpt": "N5",
+    "on": [
+      "ドク",
+      "トク",
+      "トウ"
+    ],
+    "kun": [
+      "よ.む",
+      "-よ.み"
+    ],
+    "meanings": {
+      "en": "read"
+    }
+  },
+  {
+    "id": 21451,
+    "character": "友",
+    "jlpt": "N5",
+    "on": [
+      "ユウ"
+    ],
+    "kun": [
+      "とも"
+    ],
+    "meanings": {
+      "en": "friend"
+    }
+  },
+  {
+    "id": 24038,
+    "character": "左",
+    "jlpt": "N5",
+    "on": [
+      "サ",
+      "シャ"
+    ],
+    "kun": [
+      "ひだり"
+    ],
+    "meanings": {
+      "en": "left"
+    }
+  },
+  {
+    "id": 20241,
+    "character": "休",
+    "jlpt": "N5",
+    "on": [
+      "キュウ"
+    ],
+    "kun": [
+      "やす.む",
+      "やす.まる",
+      "やす.める"
+    ],
+    "meanings": {
+      "en": "rest, day off, retire"
+    }
+  },
+  {
+    "id": 29238,
+    "character": "父",
+    "jlpt": "N5",
+    "on": [
+      "フ"
+    ],
+    "kun": [
+      "ちち"
+    ],
+    "meanings": {
+      "en": "father"
+    }
+  },
+  {
+    "id": 38632,
+    "character": "雨",
+    "jlpt": "N5",
+    "on": [
+      "ウ"
+    ],
+    "kun": [
+      "あめ",
+      "あま-",
+      "-さめ"
+    ],
+    "meanings": {
+      "en": "rain"
+    }
+  }
+]

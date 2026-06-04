@@ -1,0 +1,5572 @@
+[
+  {
+    "word": "字",
+    "reading": "じ",
+    "pos": "noun",
+    "kanjiId": 23383,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "section of village"
+    }
+  },
+  {
+    "word": "怒る",
+    "reading": "おこる",
+    "pos": "verb",
+    "kanjiId": 24594,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to get angry; to get mad; to lose one's temper"
+    }
+  },
+  {
+    "word": "市",
+    "reading": "し",
+    "pos": "noun",
+    "kanjiId": 24066,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "market; fair"
+    }
+  },
+  {
+    "word": "大事",
+    "reading": "だいじ",
+    "pos": "na-adjective",
+    "kanjiId": 22823,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "important; serious; crucial"
+    }
+  },
+  {
+    "word": "木綿",
+    "reading": "もめん",
+    "pos": "noun",
+    "kanjiId": 26408,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "cotton (material)"
+    }
+  },
+  {
+    "word": "包む",
+    "reading": "つつむ",
+    "pos": "verb",
+    "kanjiId": 21253,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to wrap up; to pack; to bundle"
+    }
+  },
+  {
+    "word": "汚れる",
+    "reading": "よごれる",
+    "pos": "verb",
+    "kanjiId": 27738,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be violated; to be corrupted; to be polluted"
+    }
+  },
+  {
+    "word": "けれど",
+    "reading": "けれど",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "but; however; although"
+    }
+  },
+  {
+    "word": "けれど",
+    "reading": "けれども",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "but; however; although"
+    }
+  },
+  {
+    "word": "僕",
+    "reading": "ぼく",
+    "pos": "noun",
+    "kanjiId": 20693,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "servant; manservant; menial"
+    }
+  },
+  {
+    "word": "十分",
+    "reading": "じゅうぶん",
+    "pos": "noun",
+    "kanjiId": 21313,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "ten minutes"
+    }
+  },
+  {
+    "word": "畳",
+    "reading": "たたみ",
+    "pos": "counter",
+    "kanjiId": 30067,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "tatami mat (esp. as a measure of room size, either 1.82 sqm or 1.54 sqm)"
+    }
+  },
+  {
+    "word": "昼間",
+    "reading": "ひるま",
+    "pos": "noun",
+    "kanjiId": 26172,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "daytime; during the day; time from sunrise until sunset"
+    }
+  },
+  {
+    "word": "途中",
+    "reading": "とちゅう",
+    "pos": "noun",
+    "kanjiId": 36884,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "on the way; en route"
+    }
+  },
+  {
+    "word": "止める",
+    "reading": "とめる",
+    "pos": "verb",
+    "kanjiId": 27490,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to stop; to turn off"
+    }
+  },
+  {
+    "word": "止める",
+    "reading": "やめる",
+    "pos": "verb",
+    "kanjiId": 27490,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to stop; to turn off"
+    }
+  },
+  {
+    "word": "音",
+    "reading": "おと",
+    "pos": "noun",
+    "kanjiId": 38899,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sound; noise"
+    }
+  },
+  {
+    "word": "不便",
+    "reading": "ふべん",
+    "pos": "noun",
+    "kanjiId": 19981,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "inconvenience; inexpediency; unhandiness"
+    }
+  },
+  {
+    "word": "固い",
+    "reading": "かたい",
+    "pos": "i-adjective",
+    "kanjiId": 22266,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "hard; solid; tough"
+    }
+  },
+  {
+    "word": "下る",
+    "reading": "さがる",
+    "pos": "verb",
+    "kanjiId": 19979,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to come down; to go down; to fall"
+    }
+  },
+  {
+    "word": "退院",
+    "reading": "たいいん",
+    "pos": "noun",
+    "kanjiId": 36864,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "leaving hospital; discharge from hospital"
+    }
+  },
+  {
+    "word": "大分",
+    "reading": "だいぶ",
+    "pos": "adverb",
+    "kanjiId": 22823,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "considerably; greatly; a lot"
+    }
+  },
+  {
+    "word": "上る",
+    "reading": "あがる",
+    "pos": "verb",
+    "kanjiId": 19978,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to rise; to go up; to come up"
+    }
+  },
+  {
+    "word": "拝見",
+    "reading": "はいけん",
+    "pos": "noun",
+    "kanjiId": 25309,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "seeing; looking at"
+    }
+  },
+  {
+    "word": "リポート",
+    "reading": "レポート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "report; paper"
+    }
+  },
+  {
+    "word": "リポート",
+    "reading": "リポート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "report; paper"
+    }
+  },
+  {
+    "word": "案内",
+    "reading": "あんない",
+    "pos": "noun",
+    "kanjiId": 26696,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "guidance; leading (the way); showing around"
+    }
+  },
+  {
+    "word": "うん",
+    "reading": "うん",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "yes; yeah; uh huh"
+    }
+  },
+  {
+    "word": "運転",
+    "reading": "うんてん",
+    "pos": "noun",
+    "kanjiId": 36939,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "operation (of a machine); running; working"
+    }
+  },
+  {
+    "word": "運動",
+    "reading": "うんどう",
+    "pos": "noun",
+    "kanjiId": 36939,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "exercise; physical training; workout"
+    }
+  },
+  {
+    "word": "遠慮",
+    "reading": "えんりょ",
+    "pos": "noun",
+    "kanjiId": 36960,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "reserve; constraint; restraint"
+    }
+  },
+  {
+    "word": "計画",
+    "reading": "けいかく",
+    "pos": "noun",
+    "kanjiId": 35336,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "plan; project; schedule"
+    }
+  },
+  {
+    "word": "経験",
+    "reading": "けいけん",
+    "pos": "noun",
+    "kanjiId": 32076,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "experience"
+    }
+  },
+  {
+    "word": "工場",
+    "reading": "こうじょう",
+    "pos": "noun",
+    "kanjiId": 24037,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "factory; plant; mill"
+    }
+  },
+  {
+    "word": "故障",
+    "reading": "こしょう",
+    "pos": "noun",
+    "kanjiId": 25925,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "fault; trouble; breakdown"
+    }
+  },
+  {
+    "word": "コンピューター",
+    "reading": "コンピュータ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "computer"
+    }
+  },
+  {
+    "word": "コンピューター",
+    "reading": "コンピューター",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "computer"
+    }
+  },
+  {
+    "word": "支度",
+    "reading": "したく",
+    "pos": "noun",
+    "kanjiId": 25903,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "preparation; arrangements"
+    }
+  },
+  {
+    "word": "出席",
+    "reading": "しゅっせき",
+    "pos": "noun",
+    "kanjiId": 20986,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "attendance; presence; appearance"
+    }
+  },
+  {
+    "word": "出発",
+    "reading": "しゅっぱつ",
+    "pos": "noun",
+    "kanjiId": 20986,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "departure; leaving; setting off"
+    }
+  },
+  {
+    "word": "準備",
+    "reading": "じゅんび",
+    "pos": "noun",
+    "kanjiId": 28310,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "preparation; arrangements; getting ready"
+    }
+  },
+  {
+    "word": "招待",
+    "reading": "しょうたい",
+    "pos": "noun",
+    "kanjiId": 25307,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "invitation"
+    }
+  },
+  {
+    "word": "承知",
+    "reading": "しょうち",
+    "pos": "noun",
+    "kanjiId": 25215,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "knowledge; awareness"
+    }
+  },
+  {
+    "word": "食事",
+    "reading": "しょくじ",
+    "pos": "noun",
+    "kanjiId": 39135,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "meal (e.g. lunch, dinner)"
+    }
+  },
+  {
+    "word": "心配",
+    "reading": "しんぱい",
+    "pos": "noun",
+    "kanjiId": 24515,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "worry; concern; anxiety"
+    }
+  },
+  {
+    "word": "空く",
+    "reading": "あく",
+    "pos": "verb",
+    "kanjiId": 31354,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to become less crowded; to thin out; to get empty"
+    }
+  },
+  {
+    "word": "すると",
+    "reading": "すると",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(and) then; and; thereupon"
+    }
+  },
+  {
+    "word": "生産",
+    "reading": "せいさん",
+    "pos": "noun",
+    "kanjiId": 29983,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "production; manufacture"
+    }
+  },
+  {
+    "word": "世話",
+    "reading": "せわ",
+    "pos": "noun",
+    "kanjiId": 19990,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "care; looking after; help"
+    }
+  },
+  {
+    "word": "そう",
+    "reading": "そう",
+    "pos": "auxiliary",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "appearing that; seeming that; looking like"
+    }
+  },
+  {
+    "word": "相談",
+    "reading": "そうだん",
+    "pos": "noun",
+    "kanjiId": 30456,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "consultation; discussion; discussing"
+    }
+  },
+  {
+    "word": "だから",
+    "reading": "だから",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "so; therefore; accordingly"
+    }
+  },
+  {
+    "word": "日",
+    "reading": "ひ",
+    "pos": "noun",
+    "kanjiId": 26085,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "day; days"
+    }
+  },
+  {
+    "word": "入院",
+    "reading": "にゅういん",
+    "pos": "noun",
+    "kanjiId": 20837,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "hospitalization; hospitalisation"
+    }
+  },
+  {
+    "word": "入学",
+    "reading": "にゅうがく",
+    "pos": "noun",
+    "kanjiId": 20837,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "admission (to a school or university); entrance; enrolment"
+    }
+  },
+  {
+    "word": "表",
+    "reading": "おもて",
+    "pos": "noun",
+    "kanjiId": 34920,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "surface"
+    }
+  },
+  {
+    "word": "打つ",
+    "reading": "うつ",
+    "pos": "verb",
+    "kanjiId": 25171,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to hit; to strike; to knock"
+    }
+  },
+  {
+    "word": "放送",
+    "reading": "ほうそう",
+    "pos": "noun",
+    "kanjiId": 25918,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "broadcasting; broadcast; program"
+    }
+  },
+  {
+    "word": "間",
+    "reading": "あいだ",
+    "pos": "noun",
+    "kanjiId": 38291,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "space (between); gap; interval"
+    }
+  },
+  {
+    "word": "皆",
+    "reading": "みな",
+    "pos": "noun",
+    "kanjiId": 30342,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "everyone; everybody; all"
+    }
+  },
+  {
+    "word": "都",
+    "reading": "と",
+    "pos": "noun",
+    "kanjiId": 37117,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "capital (esp. Kyoto, Japan's former capital); seat of government"
+    }
+  },
+  {
+    "word": "訳",
+    "reading": "わけ",
+    "pos": "noun",
+    "kanjiId": 35379,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "reason; cause; grounds"
+    }
+  },
+  {
+    "word": "輸出",
+    "reading": "ゆしゅつ",
+    "pos": "noun",
+    "kanjiId": 36664,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "export; exportation"
+    }
+  },
+  {
+    "word": "輸入",
+    "reading": "ゆにゅう",
+    "pos": "noun",
+    "kanjiId": 36664,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "import; importation; introduction"
+    }
+  },
+  {
+    "word": "レポート",
+    "reading": "レポート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "report; paper"
+    }
+  },
+  {
+    "word": "レポート",
+    "reading": "リポート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "report; paper"
+    }
+  },
+  {
+    "word": "あ",
+    "reading": "あ",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "ah; oh"
+    }
+  },
+  {
+    "word": "ああ",
+    "reading": "ああ",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "like that; so"
+    }
+  },
+  {
+    "word": "合う",
+    "reading": "あう",
+    "pos": "verb",
+    "kanjiId": 21512,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to come together; to merge; to unite"
+    }
+  },
+  {
+    "word": "赤ん坊",
+    "reading": "あかんぼう",
+    "pos": "noun",
+    "kanjiId": 36196,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "baby; infant"
+    }
+  },
+  {
+    "word": "アクセサリー",
+    "reading": "アクセサリー",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "accessory (fashion); jewelry"
+    }
+  },
+  {
+    "word": "浅い",
+    "reading": "あさい",
+    "pos": "i-adjective",
+    "kanjiId": 27973,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "shallow; superficial"
+    }
+  },
+  {
+    "word": "味",
+    "reading": "あじ",
+    "pos": "noun",
+    "kanjiId": 21619,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "flavor; flavour; taste"
+    }
+  },
+  {
+    "word": "明日",
+    "reading": "あす",
+    "pos": "noun",
+    "kanjiId": 26126,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "tomorrow"
+    }
+  },
+  {
+    "word": "遊び",
+    "reading": "あそび",
+    "pos": "noun",
+    "kanjiId": 36938,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "play; playing; game"
+    }
+  },
+  {
+    "word": "集る",
+    "reading": "あつまる",
+    "pos": "verb",
+    "kanjiId": 38598,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to gather; to collect; to assemble"
+    }
+  },
+  {
+    "word": "集める",
+    "reading": "あつめる",
+    "pos": "verb",
+    "kanjiId": 38598,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to collect; to assemble; to gather"
+    }
+  },
+  {
+    "word": "アナウンサー",
+    "reading": "アナウンサー",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "announcer; presenter; broadcaster"
+    }
+  },
+  {
+    "word": "謝る",
+    "reading": "あやまる",
+    "pos": "verb",
+    "kanjiId": 35613,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to apologize (apologise)"
+    }
+  },
+  {
+    "word": "アルコール",
+    "reading": "アルコール",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "alcohol"
+    }
+  },
+  {
+    "word": "アルバイト",
+    "reading": "アルバイト",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "part-time job; side job"
+    }
+  },
+  {
+    "word": "安心",
+    "reading": "あんしん",
+    "pos": "noun",
+    "kanjiId": 23433,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "peace of mind; relief; (sense of) security"
+    }
+  },
+  {
+    "word": "安全",
+    "reading": "あんぜん",
+    "pos": "noun",
+    "kanjiId": 23433,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "safety; security"
+    }
+  },
+  {
+    "word": "あんな",
+    "reading": "あんな",
+    "pos": "adj-pn",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "that sort of; that kind of; like that"
+    }
+  },
+  {
+    "word": "以下",
+    "reading": "いか",
+    "pos": "n-suf",
+    "kanjiId": 20197,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "not exceeding ...; not more than ...; ... and under"
+    }
+  },
+  {
+    "word": "以外",
+    "reading": "いがい",
+    "pos": "n-suf",
+    "kanjiId": 20197,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "excluding; except (for); apart from"
+    }
+  },
+  {
+    "word": "医学",
+    "reading": "いがく",
+    "pos": "noun",
+    "kanjiId": 21307,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "medicine; medical science"
+    }
+  },
+  {
+    "word": "生きる",
+    "reading": "いきる",
+    "pos": "verb",
+    "kanjiId": 29983,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to live; to exist"
+    }
+  },
+  {
+    "word": "意見",
+    "reading": "いけん",
+    "pos": "noun",
+    "kanjiId": 24847,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "opinion; view; comment"
+    }
+  },
+  {
+    "word": "石",
+    "reading": "いし",
+    "pos": "noun",
+    "kanjiId": 30707,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "stone; rock; pebble"
+    }
+  },
+  {
+    "word": "以上",
+    "reading": "いじょう",
+    "pos": "n-suf",
+    "kanjiId": 20197,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "not less than ...; ... and over; ... and above"
+    }
+  },
+  {
+    "word": "急ぐ",
+    "reading": "いそぐ",
+    "pos": "verb",
+    "kanjiId": 24613,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to hurry; to rush; to hasten"
+    }
+  },
+  {
+    "word": "致す",
+    "reading": "いたす",
+    "pos": "verb",
+    "kanjiId": 33268,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to do"
+    }
+  },
+  {
+    "word": "一度",
+    "reading": "いちど",
+    "pos": "noun",
+    "kanjiId": 19968,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "once; one time; on one occasion"
+    }
+  },
+  {
+    "word": "一生懸命",
+    "reading": "いっしょうけんめい",
+    "pos": "adverb",
+    "kanjiId": 19968,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "very hard; with utmost effort; as hard as one can"
+    }
+  },
+  {
+    "word": "糸",
+    "reading": "いと",
+    "pos": "noun",
+    "kanjiId": 31992,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "thread; yarn; string"
+    }
+  },
+  {
+    "word": "以内",
+    "reading": "いない",
+    "pos": "noun",
+    "kanjiId": 20197,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "within; inside of; less than"
+    }
+  },
+  {
+    "word": "田舎",
+    "reading": "いなか",
+    "pos": "noun",
+    "kanjiId": 30000,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "rural area; countryside; the sticks"
+    }
+  },
+  {
+    "word": "祈る",
+    "reading": "いのる",
+    "pos": "verb",
+    "kanjiId": 31048,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to pray; to say a prayer; to say grace"
+    }
+  },
+  {
+    "word": "植える",
+    "reading": "うえる",
+    "pos": "verb",
+    "kanjiId": 26893,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to plant; to grow; to raise"
+    }
+  },
+  {
+    "word": "受付",
+    "reading": "うけつけ",
+    "pos": "noun",
+    "kanjiId": 21463,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "reception (desk); information desk; receptionist"
+    }
+  },
+  {
+    "word": "受ける",
+    "reading": "うける",
+    "pos": "verb",
+    "kanjiId": 21463,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to receive; to get"
+    }
+  },
+  {
+    "word": "動く",
+    "reading": "うごく",
+    "pos": "verb",
+    "kanjiId": 21205,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to move; to stir; to shift"
+    }
+  },
+  {
+    "word": "美しい",
+    "reading": "うつくしい",
+    "pos": "i-adjective",
+    "kanjiId": 32654,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "beautiful; pretty; lovely"
+    }
+  },
+  {
+    "word": "写す",
+    "reading": "うつす",
+    "pos": "verb",
+    "kanjiId": 20889,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to copy; to duplicate; to reproduce"
+    }
+  },
+  {
+    "word": "移る",
+    "reading": "うつる",
+    "pos": "verb",
+    "kanjiId": 31227,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to move (to another place or state); to change (e.g. of state, affiliation, scenery, etc.); to be transferred"
+    }
+  },
+  {
+    "word": "腕",
+    "reading": "うで",
+    "pos": "noun",
+    "kanjiId": 33109,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "arm"
+    }
+  },
+  {
+    "word": "裏",
+    "reading": "うら",
+    "pos": "noun",
+    "kanjiId": 35023,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "inside; within"
+    }
+  },
+  {
+    "word": "売り場",
+    "reading": "うりば",
+    "pos": "noun",
+    "kanjiId": 22770,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "selling area; counter; section"
+    }
+  },
+  {
+    "word": "運転手",
+    "reading": "うんてんしゅ",
+    "pos": "noun",
+    "kanjiId": 36939,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "driver; chauffeur"
+    }
+  },
+  {
+    "word": "エスカレーター",
+    "reading": "エスカレーター",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "escalator"
+    }
+  },
+  {
+    "word": "枝",
+    "reading": "えだ",
+    "pos": "noun",
+    "kanjiId": 26525,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "branch; bough; limb"
+    }
+  },
+  {
+    "word": "選ぶ",
+    "reading": "えらぶ",
+    "pos": "verb",
+    "kanjiId": 36984,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to choose; to select; to pick (out)"
+    }
+  },
+  {
+    "word": "お祝い",
+    "reading": "おいわい",
+    "pos": "noun",
+    "kanjiId": 31069,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "congratulation; congratulations; celebration"
+    }
+  },
+  {
+    "word": "オートバイ",
+    "reading": "オートバイ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "motorcycle; motorbike"
+    }
+  },
+  {
+    "word": "億",
+    "reading": "おく",
+    "pos": "numeral",
+    "kanjiId": 20740,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "hundred million; 100,000,000; 10^8"
+    }
+  },
+  {
+    "word": "屋上",
+    "reading": "おくじょう",
+    "pos": "noun",
+    "kanjiId": 23627,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "rooftop"
+    }
+  },
+  {
+    "word": "贈り物",
+    "reading": "おくりもの",
+    "pos": "noun",
+    "kanjiId": 36104,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "present; gift"
+    }
+  },
+  {
+    "word": "送る",
+    "reading": "おくる",
+    "pos": "verb",
+    "kanjiId": 36865,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to send; to dispatch; to forward"
+    }
+  },
+  {
+    "word": "遅れる",
+    "reading": "おくれる",
+    "pos": "verb",
+    "kanjiId": 36933,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be late; to be delayed; to fall behind schedule"
+    }
+  },
+  {
+    "word": "起す",
+    "reading": "おこす",
+    "pos": "verb",
+    "kanjiId": 36215,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to raise; to raise up; to set up"
+    }
+  },
+  {
+    "word": "行う",
+    "reading": "おこなう",
+    "pos": "verb",
+    "kanjiId": 34892,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to perform; to do; to conduct oneself"
+    }
+  },
+  {
+    "word": "押し入れ",
+    "reading": "おしいれ",
+    "pos": "noun",
+    "kanjiId": 25276,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "closet (built into the wall, usu. with sliding doors); (built-in) wardrobe"
+    }
+  },
+  {
+    "word": "お嬢さん",
+    "reading": "おじょうさん",
+    "pos": "noun",
+    "kanjiId": 23330,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(another's) daughter"
+    }
+  },
+  {
+    "word": "お宅",
+    "reading": "おたく",
+    "pos": "noun",
+    "kanjiId": 23429,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "your house; your home; your family"
+    }
+  },
+  {
+    "word": "落る",
+    "reading": "おちる",
+    "pos": "verb",
+    "kanjiId": 33853,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to fall; to drop; to come down"
+    }
+  },
+  {
+    "word": "夫",
+    "reading": "おっと",
+    "pos": "noun",
+    "kanjiId": 22827,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "husband"
+    }
+  },
+  {
+    "word": "落す",
+    "reading": "おとす",
+    "pos": "verb",
+    "kanjiId": 33853,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to drop; to lose; to let fall"
+    }
+  },
+  {
+    "word": "踊り",
+    "reading": "おどり",
+    "pos": "noun",
+    "kanjiId": 36362,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "dance"
+    }
+  },
+  {
+    "word": "踊る",
+    "reading": "おどる",
+    "pos": "verb",
+    "kanjiId": 36362,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to dance (orig. a hopping dance)"
+    }
+  },
+  {
+    "word": "驚く",
+    "reading": "おどろく",
+    "pos": "verb",
+    "kanjiId": 39514,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be surprised; to be taken aback; to be amazed"
+    }
+  },
+  {
+    "word": "お祭り",
+    "reading": "おまつり",
+    "pos": "noun",
+    "kanjiId": 31085,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "festival; feast; carnival"
+    }
+  },
+  {
+    "word": "お見舞い",
+    "reading": "おみまい",
+    "pos": "noun",
+    "kanjiId": 35211,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "visit (to someone affected by illness or misfortune); call; inquiry (about someone's health)"
+    }
+  },
+  {
+    "word": "お土産",
+    "reading": "おみやげ",
+    "pos": "noun",
+    "kanjiId": 22303,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "local specialty or souvenir bought as a gift while traveling (travelling)"
+    }
+  },
+  {
+    "word": "思い出す",
+    "reading": "おもいだす",
+    "pos": "verb",
+    "kanjiId": 24605,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to recall; to remember; to recollect"
+    }
+  },
+  {
+    "word": "思う",
+    "reading": "おもう",
+    "pos": "verb",
+    "kanjiId": 24605,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to think; to consider; to believe"
+    }
+  },
+  {
+    "word": "親",
+    "reading": "おや",
+    "pos": "noun",
+    "kanjiId": 35242,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "parent; parents; mother and father"
+    }
+  },
+  {
+    "word": "下りる",
+    "reading": "おりる",
+    "pos": "verb",
+    "kanjiId": 19979,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to descend (e.g. a mountain); to go down; to come down"
+    }
+  },
+  {
+    "word": "折る",
+    "reading": "おる",
+    "pos": "verb",
+    "kanjiId": 25240,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to break; to fracture; to break off"
+    }
+  },
+  {
+    "word": "お礼",
+    "reading": "おれい",
+    "pos": "noun",
+    "kanjiId": 31036,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "thanks; gratitude"
+    }
+  },
+  {
+    "word": "折れる",
+    "reading": "おれる",
+    "pos": "verb",
+    "kanjiId": 25240,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to break; to be broken; to snap"
+    }
+  },
+  {
+    "word": "終わり",
+    "reading": "おわり",
+    "pos": "noun",
+    "kanjiId": 32066,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "end; ending; close"
+    }
+  },
+  {
+    "word": "カーテン",
+    "reading": "カーテン",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "curtain; curtains"
+    }
+  },
+  {
+    "word": "海岸",
+    "reading": "かいがん",
+    "pos": "noun",
+    "kanjiId": 28023,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "seashore; coast; seaside"
+    }
+  },
+  {
+    "word": "会議",
+    "reading": "かいぎ",
+    "pos": "noun",
+    "kanjiId": 20250,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "meeting; conference; session"
+    }
+  },
+  {
+    "word": "会議室",
+    "reading": "かいぎしつ",
+    "pos": "noun",
+    "kanjiId": 20250,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "conference room; council room"
+    }
+  },
+  {
+    "word": "会場",
+    "reading": "かいじょう",
+    "pos": "noun",
+    "kanjiId": 20250,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "assembly hall; meeting place; venue"
+    }
+  },
+  {
+    "word": "会話",
+    "reading": "かいわ",
+    "pos": "noun",
+    "kanjiId": 20250,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "conversation; talk; chat"
+    }
+  },
+  {
+    "word": "帰り",
+    "reading": "かえり",
+    "pos": "noun",
+    "kanjiId": 24112,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "return; coming back"
+    }
+  },
+  {
+    "word": "変える",
+    "reading": "かえる",
+    "pos": "verb",
+    "kanjiId": 22793,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to change; to alter; to transform"
+    }
+  },
+  {
+    "word": "科学",
+    "reading": "かがく",
+    "pos": "noun",
+    "kanjiId": 31185,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "science"
+    }
+  },
+  {
+    "word": "鏡",
+    "reading": "かがみ",
+    "pos": "noun",
+    "kanjiId": 37857,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "mirror; looking-glass"
+    }
+  },
+  {
+    "word": "掛ける",
+    "reading": "かける",
+    "pos": "verb",
+    "kanjiId": 25499,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to hang up (e.g. a coat, a picture on the wall); to let hang; to suspend (from)"
+    }
+  },
+  {
+    "word": "飾る",
+    "reading": "かざる",
+    "pos": "verb",
+    "kanjiId": 39166,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to decorate; to ornament; to adorn"
+    }
+  },
+  {
+    "word": "火事",
+    "reading": "かじ",
+    "pos": "noun",
+    "kanjiId": 28779,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "fire; conflagration"
+    }
+  },
+  {
+    "word": "ガソリン",
+    "reading": "ガソリン",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "gasoline; petrol"
+    }
+  },
+  {
+    "word": "ガソリンスタンド",
+    "reading": "ガソリンスタンド",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "gas station; petrol station; filling station"
+    }
+  },
+  {
+    "word": "堅",
+    "reading": "かたい",
+    "pos": "noun",
+    "kanjiId": 22533,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "strength; solidity; firmness"
+    }
+  },
+  {
+    "word": "硬",
+    "reading": "かたい",
+    "pos": "noun",
+    "kanjiId": 30828,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "hardness"
+    }
+  },
+  {
+    "word": "形",
+    "reading": "かたち",
+    "pos": "noun",
+    "kanjiId": 24418,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(physical) form; shape; figure"
+    }
+  },
+  {
+    "word": "片付ける",
+    "reading": "かたづける",
+    "pos": "verb",
+    "kanjiId": 29255,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to put in order; to tidy up; to clean up"
+    }
+  },
+  {
+    "word": "課長",
+    "reading": "かちょう",
+    "pos": "noun",
+    "kanjiId": 35506,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "section manager; section chief"
+    }
+  },
+  {
+    "word": "勝つ",
+    "reading": "かつ",
+    "pos": "verb",
+    "kanjiId": 21213,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to win; to gain victory"
+    }
+  },
+  {
+    "word": "家内",
+    "reading": "かない",
+    "pos": "noun",
+    "kanjiId": 23478,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(my) wife"
+    }
+  },
+  {
+    "word": "悲しい",
+    "reading": "かなしい",
+    "pos": "i-adjective",
+    "kanjiId": 24754,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sad; miserable; unhappy"
+    }
+  },
+  {
+    "word": "必ず",
+    "reading": "かならず",
+    "pos": "adverb",
+    "kanjiId": 24517,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "always; without exception; necessarily"
+    }
+  },
+  {
+    "word": "彼女",
+    "reading": "かのじょ",
+    "pos": "pronoun",
+    "kanjiId": 24444,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "she; her"
+    }
+  },
+  {
+    "word": "壁",
+    "reading": "かべ",
+    "pos": "noun",
+    "kanjiId": 22721,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "wall; partition"
+    }
+  },
+  {
+    "word": "髪",
+    "reading": "かみ",
+    "pos": "noun",
+    "kanjiId": 39658,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "hair (on the head)"
+    }
+  },
+  {
+    "word": "噛む",
+    "reading": "かむ",
+    "pos": "verb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to bite"
+    }
+  },
+  {
+    "word": "通う",
+    "reading": "かよう",
+    "pos": "verb",
+    "kanjiId": 36890,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to go to and from (a place); to go back and forth between; to run between (e.g. bus, train, etc.)"
+    }
+  },
+  {
+    "word": "彼",
+    "reading": "かれ",
+    "pos": "pronoun",
+    "kanjiId": 24444,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "that; that thing"
+    }
+  },
+  {
+    "word": "彼ら",
+    "reading": "かれら",
+    "pos": "pronoun",
+    "kanjiId": 24444,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "they; them"
+    }
+  },
+  {
+    "word": "乾く",
+    "reading": "かわく",
+    "pos": "verb",
+    "kanjiId": 20094,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to get dry"
+    }
+  },
+  {
+    "word": "代わり",
+    "reading": "かわり",
+    "pos": "noun",
+    "kanjiId": 20195,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "substitute; replacement; substituting"
+    }
+  },
+  {
+    "word": "変わる",
+    "reading": "かわる",
+    "pos": "verb",
+    "kanjiId": 22793,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to change; to be transformed; to be altered"
+    }
+  },
+  {
+    "word": "考える",
+    "reading": "かんがえる",
+    "pos": "verb",
+    "kanjiId": 32771,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to think (about, of); to think over; to ponder"
+    }
+  },
+  {
+    "word": "関係",
+    "reading": "かんけい",
+    "pos": "noun",
+    "kanjiId": 38306,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "relation; relationship; connection"
+    }
+  },
+  {
+    "word": "看護婦",
+    "reading": "かんごふ",
+    "pos": "noun",
+    "kanjiId": 30475,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(female) nurse"
+    }
+  },
+  {
+    "word": "簡単",
+    "reading": "かんたん",
+    "pos": "na-adjective",
+    "kanjiId": 31777,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "simple; easy; uncomplicated"
+    }
+  },
+  {
+    "word": "気",
+    "reading": "き",
+    "pos": "noun",
+    "kanjiId": 27671,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "spirit; mind; heart"
+    }
+  },
+  {
+    "word": "機会",
+    "reading": "きかい",
+    "pos": "noun",
+    "kanjiId": 27231,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "chance; opportunity; occasion"
+    }
+  },
+  {
+    "word": "危険",
+    "reading": "きけん",
+    "pos": "noun",
+    "kanjiId": 21361,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "danger; peril; hazard"
+    }
+  },
+  {
+    "word": "聞こえる",
+    "reading": "きこえる",
+    "pos": "verb",
+    "kanjiId": 32862,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be heard; to be audible; to reach one's ears"
+    }
+  },
+  {
+    "word": "汽車",
+    "reading": "きしゃ",
+    "pos": "noun",
+    "kanjiId": 27773,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "steam locomotive; steam train"
+    }
+  },
+  {
+    "word": "技術",
+    "reading": "ぎじゅつ",
+    "pos": "noun",
+    "kanjiId": 25216,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "technology; engineering"
+    }
+  },
+  {
+    "word": "季節",
+    "reading": "きせつ",
+    "pos": "noun",
+    "kanjiId": 23395,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "season; time of year"
+    }
+  },
+  {
+    "word": "規則",
+    "reading": "きそく",
+    "pos": "noun",
+    "kanjiId": 35215,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "rule; regulation"
+    }
+  },
+  {
+    "word": "絹",
+    "reading": "きぬ",
+    "pos": "noun",
+    "kanjiId": 32121,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "silk"
+    }
+  },
+  {
+    "word": "厳しい",
+    "reading": "きびしい",
+    "pos": "i-adjective",
+    "kanjiId": 21427,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "severe; strict; rigid"
+    }
+  },
+  {
+    "word": "気分",
+    "reading": "きぶん",
+    "pos": "noun",
+    "kanjiId": 27671,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "feeling; mood"
+    }
+  },
+  {
+    "word": "決る",
+    "reading": "きまる",
+    "pos": "verb",
+    "kanjiId": 27770,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be decided; to be settled; to be fixed"
+    }
+  },
+  {
+    "word": "君",
+    "reading": "きみ",
+    "pos": "pronoun",
+    "kanjiId": 21531,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "you; buddy; pal"
+    }
+  },
+  {
+    "word": "君",
+    "reading": "くん",
+    "pos": "pronoun",
+    "kanjiId": 21531,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "you; buddy; pal"
+    }
+  },
+  {
+    "word": "決める",
+    "reading": "きめる",
+    "pos": "verb",
+    "kanjiId": 27770,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to decide; to choose; to determine"
+    }
+  },
+  {
+    "word": "気持ち",
+    "reading": "きもち",
+    "pos": "noun",
+    "kanjiId": 27671,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "feeling; sensation; mood"
+    }
+  },
+  {
+    "word": "着物",
+    "reading": "きもの",
+    "pos": "noun",
+    "kanjiId": 30528,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "kimono; Japanese traditional clothing (esp. full-length)"
+    }
+  },
+  {
+    "word": "客",
+    "reading": "きゃく",
+    "pos": "noun",
+    "kanjiId": 23458,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "guest; visitor"
+    }
+  },
+  {
+    "word": "急",
+    "reading": "きゅう",
+    "pos": "na-adjective",
+    "kanjiId": 24613,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sudden; abrupt; unexpected"
+    }
+  },
+  {
+    "word": "急行",
+    "reading": "きゅうこう",
+    "pos": "noun",
+    "kanjiId": 24613,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "hurrying (to somewhere); rushing; hastening"
+    }
+  },
+  {
+    "word": "教育",
+    "reading": "きょういく",
+    "pos": "noun",
+    "kanjiId": 25945,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "education; schooling; training"
+    }
+  },
+  {
+    "word": "教会",
+    "reading": "きょうかい",
+    "pos": "noun",
+    "kanjiId": 25945,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "church; congregation"
+    }
+  },
+  {
+    "word": "競争",
+    "reading": "きょうそう",
+    "pos": "noun",
+    "kanjiId": 31478,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "competition; contest; rivalry"
+    }
+  },
+  {
+    "word": "興味",
+    "reading": "きょうみ",
+    "pos": "noun",
+    "kanjiId": 33288,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "interest (in something); curiosity (about something); zest (for)"
+    }
+  },
+  {
+    "word": "近所",
+    "reading": "きんじょ",
+    "pos": "noun",
+    "kanjiId": 36817,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "neighbourhood; neighborhood; vicinity"
+    }
+  },
+  {
+    "word": "具合",
+    "reading": "ぐあい",
+    "pos": "noun",
+    "kanjiId": 20855,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "condition; state"
+    }
+  },
+  {
+    "word": "空気",
+    "reading": "くうき",
+    "pos": "noun",
+    "kanjiId": 31354,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "air; atmosphere"
+    }
+  },
+  {
+    "word": "空港",
+    "reading": "くうこう",
+    "pos": "noun",
+    "kanjiId": 31354,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "airport"
+    }
+  },
+  {
+    "word": "草",
+    "reading": "くさ",
+    "pos": "noun",
+    "kanjiId": 33609,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "grass; weed; herb"
+    }
+  },
+  {
+    "word": "首",
+    "reading": "くび",
+    "pos": "noun",
+    "kanjiId": 39318,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "neck"
+    }
+  },
+  {
+    "word": "雲",
+    "reading": "くも",
+    "pos": "noun",
+    "kanjiId": 38642,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "cloud"
+    }
+  },
+  {
+    "word": "比べる",
+    "reading": "くらべる",
+    "pos": "verb",
+    "kanjiId": 27604,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to compare; to make a comparison (between)"
+    }
+  },
+  {
+    "word": "暮れる",
+    "reading": "くれる",
+    "pos": "verb",
+    "kanjiId": 26286,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to get dark; to grow dark"
+    }
+  },
+  {
+    "word": "毛",
+    "reading": "け",
+    "pos": "noun",
+    "kanjiId": 27611,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "hair"
+    }
+  },
+  {
+    "word": "経済",
+    "reading": "けいざい",
+    "pos": "noun",
+    "kanjiId": 32076,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "economy; economics"
+    }
+  },
+  {
+    "word": "警察",
+    "reading": "けいさつ",
+    "pos": "noun",
+    "kanjiId": 35686,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "police"
+    }
+  },
+  {
+    "word": "ケーキ",
+    "reading": "ケーキ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "cake"
+    }
+  },
+  {
+    "word": "景色",
+    "reading": "けしき",
+    "pos": "noun",
+    "kanjiId": 26223,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "scenery; scene; landscape"
+    }
+  },
+  {
+    "word": "消しゴム",
+    "reading": "けしゴム",
+    "pos": "noun",
+    "kanjiId": 28040,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "eraser; rubber"
+    }
+  },
+  {
+    "word": "下宿",
+    "reading": "げしゅく",
+    "pos": "noun",
+    "kanjiId": 19979,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "boarding; lodging; board and lodging"
+    }
+  },
+  {
+    "word": "決して",
+    "reading": "けっして",
+    "pos": "adverb",
+    "kanjiId": 27770,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(not) ever; (not) by any means; (not) in the least"
+    }
+  },
+  {
+    "word": "けれども",
+    "reading": "けれど",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "but; however; although"
+    }
+  },
+  {
+    "word": "けれども",
+    "reading": "けれども",
+    "pos": "conjunction",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "but; however; although"
+    }
+  },
+  {
+    "word": "原因",
+    "reading": "げんいん",
+    "pos": "noun",
+    "kanjiId": 21407,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "cause; origin; source"
+    }
+  },
+  {
+    "word": "研究",
+    "reading": "けんきゅう",
+    "pos": "noun",
+    "kanjiId": 30740,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "research; study; investigation"
+    }
+  },
+  {
+    "word": "研究室",
+    "reading": "けんきゅうしつ",
+    "pos": "noun",
+    "kanjiId": 30740,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "laboratory"
+    }
+  },
+  {
+    "word": "見物",
+    "reading": "けんぶつ",
+    "pos": "noun",
+    "kanjiId": 35211,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sightseeing; watching; viewing"
+    }
+  },
+  {
+    "word": "子",
+    "reading": "こ",
+    "pos": "noun",
+    "kanjiId": 23376,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "child; kid; teenager"
+    }
+  },
+  {
+    "word": "郊外",
+    "reading": "こうがい",
+    "pos": "noun",
+    "kanjiId": 37066,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "suburb; residential area on the outskirt of a city; commuter belt"
+    }
+  },
+  {
+    "word": "講義",
+    "reading": "こうぎ",
+    "pos": "noun",
+    "kanjiId": 35611,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "lecture"
+    }
+  },
+  {
+    "word": "工業",
+    "reading": "こうぎょう",
+    "pos": "noun",
+    "kanjiId": 24037,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(manufacturing) industry"
+    }
+  },
+  {
+    "word": "高校",
+    "reading": "こうこう",
+    "pos": "noun",
+    "kanjiId": 39640,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "senior high school; high school"
+    }
+  },
+  {
+    "word": "高校生",
+    "reading": "こうこうせい",
+    "pos": "noun",
+    "kanjiId": 39640,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "senior high school student"
+    }
+  },
+  {
+    "word": "校長",
+    "reading": "こうちょう",
+    "pos": "noun",
+    "kanjiId": 26657,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "principal; head teacher; headmaster"
+    }
+  },
+  {
+    "word": "交通",
+    "reading": "こうつう",
+    "pos": "noun",
+    "kanjiId": 20132,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "traffic; transportation"
+    }
+  },
+  {
+    "word": "講堂",
+    "reading": "こうどう",
+    "pos": "noun",
+    "kanjiId": 35611,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "auditorium; lecture hall"
+    }
+  },
+  {
+    "word": "高等学校",
+    "reading": "こうとうがっこう",
+    "pos": "noun",
+    "kanjiId": 39640,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "senior high school; high school"
+    }
+  },
+  {
+    "word": "公務員",
+    "reading": "こうむいん",
+    "pos": "noun",
+    "kanjiId": 20844,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "public employee; government employee; public-sector worker"
+    }
+  },
+  {
+    "word": "国際",
+    "reading": "こくさい",
+    "pos": "no-adjective",
+    "kanjiId": 22269,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "international"
+    }
+  },
+  {
+    "word": "心",
+    "reading": "こころ",
+    "pos": "noun",
+    "kanjiId": 24515,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "mind; heart; spirit"
+    }
+  },
+  {
+    "word": "御主人",
+    "reading": "ごしゅじん",
+    "pos": "noun",
+    "kanjiId": 24481,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "your husband; her husband"
+    }
+  },
+  {
+    "word": "ご存じ",
+    "reading": "ごぞんじ",
+    "pos": "noun",
+    "kanjiId": 23384,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "knowing; being aware (of)"
+    }
+  },
+  {
+    "word": "答",
+    "reading": "こたえ",
+    "pos": "noun",
+    "kanjiId": 31572,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "answer; reply; response"
+    }
+  },
+  {
+    "word": "こと",
+    "reading": "こと",
+    "pos": "particle",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "particle indicating a command"
+    }
+  },
+  {
+    "word": "小鳥",
+    "reading": "ことり",
+    "pos": "noun",
+    "kanjiId": 23567,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "small bird; little bird"
+    }
+  },
+  {
+    "word": "細かい",
+    "reading": "こまかい",
+    "pos": "i-adjective",
+    "kanjiId": 32048,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "small"
+    }
+  },
+  {
+    "word": "込む",
+    "reading": "こむ",
+    "pos": "verb",
+    "kanjiId": 36796,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be crowded; to be packed; to be congested"
+    }
+  },
+  {
+    "word": "米",
+    "reading": "こめ",
+    "pos": "noun",
+    "kanjiId": 31859,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "metre (unit of length); meter"
+    }
+  },
+  {
+    "word": "怖い",
+    "reading": "こわい",
+    "pos": "i-adjective",
+    "kanjiId": 24598,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "scary; frightening; eerie"
+    }
+  },
+  {
+    "word": "壊す",
+    "reading": "こわす",
+    "pos": "verb",
+    "kanjiId": 22730,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to break; to destroy; to demolish"
+    }
+  },
+  {
+    "word": "壊れる",
+    "reading": "こわれる",
+    "pos": "verb",
+    "kanjiId": 22730,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be broken; to break; to fall apart"
+    }
+  },
+  {
+    "word": "コンサート",
+    "reading": "コンサート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "concert"
+    }
+  },
+  {
+    "word": "今度",
+    "reading": "こんど",
+    "pos": "noun",
+    "kanjiId": 20170,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "this time; now"
+    }
+  },
+  {
+    "word": "コンピュータ",
+    "reading": "コンピュータ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "computer"
+    }
+  },
+  {
+    "word": "コンピュータ",
+    "reading": "コンピューター",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "computer"
+    }
+  },
+  {
+    "word": "今夜",
+    "reading": "こんや",
+    "pos": "noun",
+    "kanjiId": 20170,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "this evening; tonight"
+    }
+  },
+  {
+    "word": "最近",
+    "reading": "さいきん",
+    "pos": "noun",
+    "kanjiId": 26368,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "recently; lately; these days"
+    }
+  },
+  {
+    "word": "最後",
+    "reading": "さいご",
+    "pos": "noun",
+    "kanjiId": 26368,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "end; conclusion"
+    }
+  },
+  {
+    "word": "最初",
+    "reading": "さいしょ",
+    "pos": "no-adjective",
+    "kanjiId": 26368,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "beginning; outset; first"
+    }
+  },
+  {
+    "word": "坂",
+    "reading": "さか",
+    "pos": "noun",
+    "kanjiId": 22338,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "slope; incline; hill"
+    }
+  },
+  {
+    "word": "探す",
+    "reading": "さがす",
+    "pos": "verb",
+    "kanjiId": 25506,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to search for; to look for; to hunt for"
+    }
+  },
+  {
+    "word": "盛ん",
+    "reading": "さかん",
+    "pos": "na-adjective",
+    "kanjiId": 30427,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "prosperous; flourishing; thriving"
+    }
+  },
+  {
+    "word": "下げる",
+    "reading": "さげる",
+    "pos": "verb",
+    "kanjiId": 19979,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to hang; to suspend; to wear (e.g. decoration)"
+    }
+  },
+  {
+    "word": "差し上げる",
+    "reading": "さしあげる",
+    "pos": "verb",
+    "kanjiId": 24046,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to lift up; to hold up; to raise"
+    }
+  },
+  {
+    "word": "寂しい",
+    "reading": "さびしい",
+    "pos": "i-adjective",
+    "kanjiId": 23490,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "lonely; lonesome; solitary"
+    }
+  },
+  {
+    "word": "さ来月",
+    "reading": "さらいげつ",
+    "pos": "noun",
+    "kanjiId": 26469,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "month after next"
+    }
+  },
+  {
+    "word": "さ来週",
+    "reading": "さらいしゅう",
+    "pos": "noun",
+    "kanjiId": 26469,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "week after next"
+    }
+  },
+  {
+    "word": "サラダ",
+    "reading": "サラダ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "salad"
+    }
+  },
+  {
+    "word": "騒ぐ",
+    "reading": "さわぐ",
+    "pos": "verb",
+    "kanjiId": 39442,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to make noise; to make racket; to be noisy"
+    }
+  },
+  {
+    "word": "触る",
+    "reading": "さわる",
+    "pos": "verb",
+    "kanjiId": 35302,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to touch; to feel; to handle"
+    }
+  },
+  {
+    "word": "産業",
+    "reading": "さんぎょう",
+    "pos": "noun",
+    "kanjiId": 29987,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "industry"
+    }
+  },
+  {
+    "word": "サンダル",
+    "reading": "サンダル",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sandal"
+    }
+  },
+  {
+    "word": "サンドイッチ",
+    "reading": "サンドイッチ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sandwich"
+    }
+  },
+  {
+    "word": "残念",
+    "reading": "ざんねん",
+    "pos": "na-adjective",
+    "kanjiId": 27531,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "regrettable; unfortunate; disappointing"
+    }
+  },
+  {
+    "word": "試合",
+    "reading": "しあい",
+    "pos": "noun",
+    "kanjiId": 35430,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "match; game; bout"
+    }
+  },
+  {
+    "word": "仕方",
+    "reading": "しかた",
+    "pos": "noun",
+    "kanjiId": 20181,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "way; method; means"
+    }
+  },
+  {
+    "word": "試験",
+    "reading": "しけん",
+    "pos": "noun",
+    "kanjiId": 35430,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "examination; exam; test"
+    }
+  },
+  {
+    "word": "事故",
+    "reading": "じこ",
+    "pos": "noun",
+    "kanjiId": 20107,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "accident; incident; trouble"
+    }
+  },
+  {
+    "word": "地震",
+    "reading": "じしん",
+    "pos": "noun",
+    "kanjiId": 22320,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "earthquake"
+    }
+  },
+  {
+    "word": "時代",
+    "reading": "じだい",
+    "pos": "noun",
+    "kanjiId": 26178,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "period; epoch; era"
+    }
+  },
+  {
+    "word": "下着",
+    "reading": "したぎ",
+    "pos": "noun",
+    "kanjiId": 19979,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "underwear; undergarment; underclothes"
+    }
+  },
+  {
+    "word": "失敗",
+    "reading": "しっぱい",
+    "pos": "noun",
+    "kanjiId": 22833,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "failure; mistake; blunder"
+    }
+  },
+  {
+    "word": "辞典",
+    "reading": "じてん",
+    "pos": "noun",
+    "kanjiId": 36766,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "dictionary; lexicon"
+    }
+  },
+  {
+    "word": "品物",
+    "reading": "しなもの",
+    "pos": "noun",
+    "kanjiId": 21697,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "article; item; thing"
+    }
+  },
+  {
+    "word": "島",
+    "reading": "しま",
+    "pos": "noun",
+    "kanjiId": 23798,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "island"
+    }
+  },
+  {
+    "word": "市民",
+    "reading": "しみん",
+    "pos": "noun",
+    "kanjiId": 24066,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "citizen (of a country); citizenry"
+    }
+  },
+  {
+    "word": "事務所",
+    "reading": "じむしょ",
+    "pos": "noun",
+    "kanjiId": 20107,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "office"
+    }
+  },
+  {
+    "word": "社会",
+    "reading": "しゃかい",
+    "pos": "noun",
+    "kanjiId": 31038,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "society; public; community"
+    }
+  },
+  {
+    "word": "社長",
+    "reading": "しゃちょう",
+    "pos": "noun",
+    "kanjiId": 31038,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "company president; manager; director"
+    }
+  },
+  {
+    "word": "ジャム",
+    "reading": "ジャム",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "jam"
+    }
+  },
+  {
+    "word": "自由",
+    "reading": "じゆう",
+    "pos": "noun",
+    "kanjiId": 33258,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "freedom; liberty"
+    }
+  },
+  {
+    "word": "習慣",
+    "reading": "しゅうかん",
+    "pos": "noun",
+    "kanjiId": 32722,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "habit"
+    }
+  },
+  {
+    "word": "住所",
+    "reading": "じゅうしょ",
+    "pos": "noun",
+    "kanjiId": 20303,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "address (of a home, business, etc.); residence; domicile"
+    }
+  },
+  {
+    "word": "柔道",
+    "reading": "じゅうどう",
+    "pos": "noun",
+    "kanjiId": 26580,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "judo"
+    }
+  },
+  {
+    "word": "趣味",
+    "reading": "しゅみ",
+    "pos": "noun",
+    "kanjiId": 36259,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "hobby; pastime"
+    }
+  },
+  {
+    "word": "紹介",
+    "reading": "しょうかい",
+    "pos": "noun",
+    "kanjiId": 32057,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "introduction; presentation; referral"
+    }
+  },
+  {
+    "word": "小学校",
+    "reading": "しょうがっこう",
+    "pos": "noun",
+    "kanjiId": 23567,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "primary school; elementary school; grade school"
+    }
+  },
+  {
+    "word": "小説",
+    "reading": "しょうせつ",
+    "pos": "noun",
+    "kanjiId": 23567,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "novel; story; (work of) fiction"
+    }
+  },
+  {
+    "word": "将来",
+    "reading": "しょうらい",
+    "pos": "noun",
+    "kanjiId": 23558,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "future; (future) prospects"
+    }
+  },
+  {
+    "word": "食料品",
+    "reading": "しょくりょうひん",
+    "pos": "noun",
+    "kanjiId": 39135,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "foodstuff; groceries"
+    }
+  },
+  {
+    "word": "女性",
+    "reading": "じょせい",
+    "pos": "noun",
+    "kanjiId": 22899,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "woman; female"
+    }
+  },
+  {
+    "word": "知らせる",
+    "reading": "しらせる",
+    "pos": "verb",
+    "kanjiId": 30693,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to notify; to advise; to inform"
+    }
+  },
+  {
+    "word": "調べる",
+    "reading": "しらべる",
+    "pos": "verb",
+    "kanjiId": 35519,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to examine; to look up; to investigate"
+    }
+  },
+  {
+    "word": "人口",
+    "reading": "じんこう",
+    "pos": "noun",
+    "kanjiId": 20154,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "population"
+    }
+  },
+  {
+    "word": "神社",
+    "reading": "じんじゃ",
+    "pos": "noun",
+    "kanjiId": 31070,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "Shinto shrine"
+    }
+  },
+  {
+    "word": "親切",
+    "reading": "しんせつ",
+    "pos": "na-adjective",
+    "kanjiId": 35242,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "kind; gentle; considerate"
+    }
+  },
+  {
+    "word": "新聞社",
+    "reading": "しんぶんしゃ",
+    "pos": "noun",
+    "kanjiId": 26032,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "newspaper company"
+    }
+  },
+  {
+    "word": "水泳",
+    "reading": "すいえい",
+    "pos": "noun",
+    "kanjiId": 27700,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "swimming"
+    }
+  },
+  {
+    "word": "水道",
+    "reading": "すいどう",
+    "pos": "noun",
+    "kanjiId": 27700,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "water supply; water service; waterworks"
+    }
+  },
+  {
+    "word": "数学",
+    "reading": "すうがく",
+    "pos": "noun",
+    "kanjiId": 25968,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "mathematics"
+    }
+  },
+  {
+    "word": "スーツ",
+    "reading": "スーツ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "suit (clothing)"
+    }
+  },
+  {
+    "word": "スーツケース",
+    "reading": "スーツケース",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "suitcase"
+    }
+  },
+  {
+    "word": "過ぎる",
+    "reading": "すぎる",
+    "pos": "verb",
+    "kanjiId": 36942,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to pass through; to pass by; to go beyond"
+    }
+  },
+  {
+    "word": "スクリーン",
+    "reading": "スクリーン",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "screen"
+    }
+  },
+  {
+    "word": "凄い",
+    "reading": "すごい",
+    "pos": "i-adjective",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "terrible; dreadful"
+    }
+  },
+  {
+    "word": "進む",
+    "reading": "すすむ",
+    "pos": "verb",
+    "kanjiId": 36914,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to advance; to go forward"
+    }
+  },
+  {
+    "word": "すっかり",
+    "reading": "すっかり",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "all; completely; totally"
+    }
+  },
+  {
+    "word": "すっと",
+    "reading": "すっと",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "straight; quickly; directly"
+    }
+  },
+  {
+    "word": "ステーキ",
+    "reading": "ステーキ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "steak"
+    }
+  },
+  {
+    "word": "捨てる",
+    "reading": "すてる",
+    "pos": "verb",
+    "kanjiId": 25448,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to throw away; to cast away; to dump"
+    }
+  },
+  {
+    "word": "ステレオ",
+    "reading": "ステレオ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "stereo (sound)"
+    }
+  },
+  {
+    "word": "砂",
+    "reading": "すな",
+    "pos": "noun",
+    "kanjiId": 30722,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sand; grit; fine gravel"
+    }
+  },
+  {
+    "word": "滑る",
+    "reading": "すべる",
+    "pos": "verb",
+    "kanjiId": 28369,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to slide; to glide; to skate"
+    }
+  },
+  {
+    "word": "隅",
+    "reading": "すみ",
+    "pos": "noun",
+    "kanjiId": 38533,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "corner; nook; recess"
+    }
+  },
+  {
+    "word": "済む",
+    "reading": "すむ",
+    "pos": "verb",
+    "kanjiId": 28168,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to finish; to end; to be completed"
+    }
+  },
+  {
+    "word": "生活",
+    "reading": "せいかつ",
+    "pos": "noun",
+    "kanjiId": 29983,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "life; living"
+    }
+  },
+  {
+    "word": "政治",
+    "reading": "せいじ",
+    "pos": "noun",
+    "kanjiId": 25919,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "politics; government"
+    }
+  },
+  {
+    "word": "西洋",
+    "reading": "せいよう",
+    "pos": "noun",
+    "kanjiId": 35199,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "the West; the Occident; Western countries"
+    }
+  },
+  {
+    "word": "世界",
+    "reading": "せかい",
+    "pos": "noun",
+    "kanjiId": 19990,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "the world; society; the universe"
+    }
+  },
+  {
+    "word": "席",
+    "reading": "せき",
+    "pos": "noun",
+    "kanjiId": 24109,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "seat"
+    }
+  },
+  {
+    "word": "説明",
+    "reading": "せつめい",
+    "pos": "noun",
+    "kanjiId": 35500,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "explanation; exposition; description"
+    }
+  },
+  {
+    "word": "背中",
+    "reading": "せなか",
+    "pos": "noun",
+    "kanjiId": 32972,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "back (of the body)"
+    }
+  },
+  {
+    "word": "線",
+    "reading": "せん",
+    "pos": "noun",
+    "kanjiId": 32218,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "line; stripe; stria"
+    }
+  },
+  {
+    "word": "戦争",
+    "reading": "せんそう",
+    "pos": "noun",
+    "kanjiId": 25126,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "war"
+    }
+  },
+  {
+    "word": "先輩",
+    "reading": "せんぱい",
+    "pos": "noun",
+    "kanjiId": 20808,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "senior (at school, work, etc.); superior; elder"
+    }
+  },
+  {
+    "word": "育てる",
+    "reading": "そだてる",
+    "pos": "verb",
+    "kanjiId": 32946,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to raise; to rear; to bring up"
+    }
+  },
+  {
+    "word": "卒業",
+    "reading": "そつぎょう",
+    "pos": "noun",
+    "kanjiId": 21330,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "graduation; completion (of a course)"
+    }
+  },
+  {
+    "word": "祖父",
+    "reading": "そふ",
+    "pos": "noun",
+    "kanjiId": 31062,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "grandfather"
+    }
+  },
+  {
+    "word": "ソフト",
+    "reading": "ソフト",
+    "pos": "na-adjective",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "soft"
+    }
+  },
+  {
+    "word": "祖母",
+    "reading": "そぼ",
+    "pos": "noun",
+    "kanjiId": 31062,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "grandmother"
+    }
+  },
+  {
+    "word": "そろそろ",
+    "reading": "そろそろ",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "soon; before long; any time now"
+    }
+  },
+  {
+    "word": "そんな",
+    "reading": "そんな",
+    "pos": "adj-pn",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "such; that sort of; that kind of"
+    }
+  },
+  {
+    "word": "そんなに",
+    "reading": "そんなに",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "so much; so; like that"
+    }
+  },
+  {
+    "word": "大学生",
+    "reading": "だいがくせい",
+    "pos": "noun",
+    "kanjiId": 22823,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "university student; college student"
+    }
+  },
+  {
+    "word": "大体",
+    "reading": "だいたい",
+    "pos": "adverb",
+    "kanjiId": 22823,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "generally; on the whole; mostly"
+    }
+  },
+  {
+    "word": "タイプ",
+    "reading": "タイプ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "type; kind; sort"
+    }
+  },
+  {
+    "word": "台風",
+    "reading": "たいふう",
+    "pos": "noun",
+    "kanjiId": 21488,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "typhoon; hurricane"
+    }
+  },
+  {
+    "word": "倒れる",
+    "reading": "たおれる",
+    "pos": "verb",
+    "kanjiId": 20498,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to fall (over, down); to collapse; to take a fall"
+    }
+  },
+  {
+    "word": "確か",
+    "reading": "たしか",
+    "pos": "na-adjective",
+    "kanjiId": 30906,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sure; certain; positive"
+    }
+  },
+  {
+    "word": "足す",
+    "reading": "たす",
+    "pos": "verb",
+    "kanjiId": 36275,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to add (numbers)"
+    }
+  },
+  {
+    "word": "訪ねる",
+    "reading": "たずねる",
+    "pos": "verb",
+    "kanjiId": 35370,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to visit; to call on; to pay a visit to"
+    }
+  },
+  {
+    "word": "尋ねる",
+    "reading": "たずねる",
+    "pos": "verb",
+    "kanjiId": 23563,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to ask; to enquire; to inquire"
+    }
+  },
+  {
+    "word": "正しい",
+    "reading": "ただしい",
+    "pos": "i-adjective",
+    "kanjiId": 27491,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "right; correct"
+    }
+  },
+  {
+    "word": "立てる",
+    "reading": "たてる",
+    "pos": "verb",
+    "kanjiId": 31435,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to stand up; to put up; to set up"
+    }
+  },
+  {
+    "word": "建てる",
+    "reading": "たてる",
+    "pos": "verb",
+    "kanjiId": 24314,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to build; to construct"
+    }
+  },
+  {
+    "word": "例えば",
+    "reading": "たとえば",
+    "pos": "adverb",
+    "kanjiId": 20363,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "for example; for instance; e.g."
+    }
+  },
+  {
+    "word": "棚",
+    "reading": "たな",
+    "pos": "noun",
+    "kanjiId": 26842,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "shelf; ledge; rack"
+    }
+  },
+  {
+    "word": "楽しみ",
+    "reading": "たのしみ",
+    "pos": "noun",
+    "kanjiId": 27005,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "enjoyment; pleasure; amusement"
+    }
+  },
+  {
+    "word": "楽む",
+    "reading": "たのしむ",
+    "pos": "verb",
+    "kanjiId": 27005,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to enjoy; to take pleasure in; to have a good time"
+    }
+  },
+  {
+    "word": "為",
+    "reading": "ため",
+    "pos": "noun",
+    "kanjiId": 28858,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "good; advantage; benefit"
+    }
+  },
+  {
+    "word": "足りる",
+    "reading": "たりる",
+    "pos": "verb",
+    "kanjiId": 36275,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be sufficient; to be enough"
+    }
+  },
+  {
+    "word": "男性",
+    "reading": "だんせい",
+    "pos": "noun",
+    "kanjiId": 30007,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "man; male"
+    }
+  },
+  {
+    "word": "暖房",
+    "reading": "だんぼう",
+    "pos": "noun",
+    "kanjiId": 26262,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(indoor) heating"
+    }
+  },
+  {
+    "word": "血",
+    "reading": "ち",
+    "pos": "noun",
+    "kanjiId": 34880,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "blood"
+    }
+  },
+  {
+    "word": "チェック",
+    "reading": "チェック",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "check (pattern); plaid"
+    }
+  },
+  {
+    "word": "力",
+    "reading": "ちから",
+    "pos": "noun",
+    "kanjiId": 21147,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "force; strength; might"
+    }
+  },
+  {
+    "word": "ちゃん",
+    "reading": "ちゃん",
+    "pos": "suffix",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "suffix for familiar person"
+    }
+  },
+  {
+    "word": "注意",
+    "reading": "ちゅうい",
+    "pos": "noun",
+    "kanjiId": 27880,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "attention; notice; heed"
+    }
+  },
+  {
+    "word": "中学校",
+    "reading": "ちゅうがっこう",
+    "pos": "noun",
+    "kanjiId": 20013,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "junior high school; middle school; lower secondary school"
+    }
+  },
+  {
+    "word": "注射",
+    "reading": "ちゅうしゃ",
+    "pos": "noun",
+    "kanjiId": 27880,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "injection; jab; shot"
+    }
+  },
+  {
+    "word": "駐車場",
+    "reading": "ちゅうしゃじょう",
+    "pos": "noun",
+    "kanjiId": 39376,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "parking lot; car park; carpark"
+    }
+  },
+  {
+    "word": "地理",
+    "reading": "ちり",
+    "pos": "noun",
+    "kanjiId": 22320,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "geography"
+    }
+  },
+  {
+    "word": "捕まえる",
+    "reading": "つかまえる",
+    "pos": "verb",
+    "kanjiId": 25429,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to catch; to capture; to arrest"
+    }
+  },
+  {
+    "word": "付く",
+    "reading": "つく",
+    "pos": "verb",
+    "kanjiId": 20184,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be attached; to be connected with; to adhere"
+    }
+  },
+  {
+    "word": "漬ける",
+    "reading": "つける",
+    "pos": "verb",
+    "kanjiId": 28460,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to soak (in); to steep; to dip"
+    }
+  },
+  {
+    "word": "都合",
+    "reading": "つごう",
+    "pos": "noun",
+    "kanjiId": 37117,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "circumstances; condition; convenience"
+    }
+  },
+  {
+    "word": "伝える",
+    "reading": "つたえる",
+    "pos": "verb",
+    "kanjiId": 20253,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to convey; to report; to transmit"
+    }
+  },
+  {
+    "word": "続く",
+    "reading": "つづく",
+    "pos": "verb",
+    "kanjiId": 32154,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to continue; to last; to go on"
+    }
+  },
+  {
+    "word": "続ける",
+    "reading": "つづける",
+    "pos": "verb",
+    "kanjiId": 32154,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to continue; to keep up; to keep on"
+    }
+  },
+  {
+    "word": "妻",
+    "reading": "つま",
+    "pos": "noun",
+    "kanjiId": 22971,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "wife"
+    }
+  },
+  {
+    "word": "釣る",
+    "reading": "つる",
+    "pos": "verb",
+    "kanjiId": 37347,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to fish; to angle; to catch"
+    }
+  },
+  {
+    "word": "連れる",
+    "reading": "つれる",
+    "pos": "verb",
+    "kanjiId": 36899,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to take (someone) with one; to bring along; to go with"
+    }
+  },
+  {
+    "word": "丁寧",
+    "reading": "ていねい",
+    "pos": "na-adjective",
+    "kanjiId": 19969,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "polite; courteous; civil"
+    }
+  },
+  {
+    "word": "テキスト",
+    "reading": "テキスト",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "text"
+    }
+  },
+  {
+    "word": "適当",
+    "reading": "てきとう",
+    "pos": "na-adjective",
+    "kanjiId": 36969,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "suitable; proper; appropriate"
+    }
+  },
+  {
+    "word": "手伝う",
+    "reading": "てつだう",
+    "pos": "verb",
+    "kanjiId": 25163,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to help; to assist; to aid"
+    }
+  },
+  {
+    "word": "テニス",
+    "reading": "テニス",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "tennis"
+    }
+  },
+  {
+    "word": "手袋",
+    "reading": "てぶくろ",
+    "pos": "noun",
+    "kanjiId": 25163,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "glove; mitten; mitt"
+    }
+  },
+  {
+    "word": "寺",
+    "reading": "てら",
+    "pos": "noun",
+    "kanjiId": 23546,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "temple (Buddhist)"
+    }
+  },
+  {
+    "word": "点",
+    "reading": "てん",
+    "pos": "noun",
+    "kanjiId": 28857,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "dot; point; mark"
+    }
+  },
+  {
+    "word": "店員",
+    "reading": "てんいん",
+    "pos": "noun",
+    "kanjiId": 24215,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "employee (of a store); shop assistant; clerk"
+    }
+  },
+  {
+    "word": "天気予報",
+    "reading": "てんきよほう",
+    "pos": "noun",
+    "kanjiId": 22825,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "weather forecast; weather report"
+    }
+  },
+  {
+    "word": "電灯",
+    "reading": "でんとう",
+    "pos": "noun",
+    "kanjiId": 38651,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "electric light"
+    }
+  },
+  {
+    "word": "電報",
+    "reading": "でんぽう",
+    "pos": "noun",
+    "kanjiId": 38651,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "telegram"
+    }
+  },
+  {
+    "word": "展覧会",
+    "reading": "てんらんかい",
+    "pos": "noun",
+    "kanjiId": 23637,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "exhibition"
+    }
+  },
+  {
+    "word": "道具",
+    "reading": "どうぐ",
+    "pos": "noun",
+    "kanjiId": 36947,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "tool; implement; instrument"
+    }
+  },
+  {
+    "word": "動物園",
+    "reading": "どうぶつえん",
+    "pos": "noun",
+    "kanjiId": 21205,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "zoo; zoological gardens"
+    }
+  },
+  {
+    "word": "遠く",
+    "reading": "とおく",
+    "pos": "noun",
+    "kanjiId": 36960,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "far away; distant place; a (great) distance"
+    }
+  },
+  {
+    "word": "通る",
+    "reading": "とおる",
+    "pos": "verb",
+    "kanjiId": 36890,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to go by; to go past; to go along"
+    }
+  },
+  {
+    "word": "特に",
+    "reading": "とくに",
+    "pos": "adverb",
+    "kanjiId": 29305,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "particularly; especially; in particular"
+    }
+  },
+  {
+    "word": "特別",
+    "reading": "とくべつ",
+    "pos": "na-adjective",
+    "kanjiId": 29305,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "special; particular; extraordinary"
+    }
+  },
+  {
+    "word": "特急",
+    "reading": "とっきゅう",
+    "pos": "noun",
+    "kanjiId": 29305,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "limited express (train for which a limited-express ticket is required)"
+    }
+  },
+  {
+    "word": "届ける",
+    "reading": "とどける",
+    "pos": "verb",
+    "kanjiId": 23626,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to deliver; to forward; to send"
+    }
+  },
+  {
+    "word": "泊まる",
+    "reading": "とまる",
+    "pos": "verb",
+    "kanjiId": 27850,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to stay at (e.g. hotel)"
+    }
+  },
+  {
+    "word": "取り替える",
+    "reading": "とりかえる",
+    "pos": "verb",
+    "kanjiId": 21462,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to exchange; to swap; to barter"
+    }
+  },
+  {
+    "word": "泥棒",
+    "reading": "どろぼう",
+    "pos": "noun",
+    "kanjiId": 27877,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "thief; burglar; robber"
+    }
+  },
+  {
+    "word": "どんどん",
+    "reading": "どんどん",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "drumming (noise); beating; pounding"
+    }
+  },
+  {
+    "word": "直す",
+    "reading": "なおす",
+    "pos": "verb",
+    "kanjiId": 30452,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to repair; to mend; to fix"
+    }
+  },
+  {
+    "word": "直る",
+    "reading": "なおる",
+    "pos": "verb",
+    "kanjiId": 30452,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to get mended; to be repaired; to be fixed"
+    }
+  },
+  {
+    "word": "治る",
+    "reading": "なおる",
+    "pos": "verb",
+    "kanjiId": 27835,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to get better; to get well; to recover (from an illness)"
+    }
+  },
+  {
+    "word": "中々",
+    "reading": "なかなか",
+    "pos": "adverb",
+    "kanjiId": 20013,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "very; considerably; easily"
+    }
+  },
+  {
+    "word": "泣く",
+    "reading": "なく",
+    "pos": "verb",
+    "kanjiId": 27875,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to cry; to shed tears; to weep"
+    }
+  },
+  {
+    "word": "無くなる",
+    "reading": "なくなる",
+    "pos": "verb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be lost (e.g. luggage); to be missing"
+    }
+  },
+  {
+    "word": "亡くなる",
+    "reading": "なくなる",
+    "pos": "verb",
+    "kanjiId": 20129,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to die; to pass away"
+    }
+  },
+  {
+    "word": "投げる",
+    "reading": "なげる",
+    "pos": "verb",
+    "kanjiId": 25237,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to throw; to hurl; to fling"
+    }
+  },
+  {
+    "word": "鳴る",
+    "reading": "なる",
+    "pos": "verb",
+    "kanjiId": 40180,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to sound; to ring; to resound"
+    }
+  },
+  {
+    "word": "慣れる",
+    "reading": "なれる",
+    "pos": "verb",
+    "kanjiId": 24931,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to get used to; to grow accustomed to; to become familiar with"
+    }
+  },
+  {
+    "word": "苦い",
+    "reading": "にがい",
+    "pos": "i-adjective",
+    "kanjiId": 33510,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "bitter"
+    }
+  },
+  {
+    "word": "二階建て",
+    "reading": "にかいだて",
+    "pos": "noun",
+    "kanjiId": 20108,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "two-storied building"
+    }
+  },
+  {
+    "word": "逃げる",
+    "reading": "にげる",
+    "pos": "verb",
+    "kanjiId": 36867,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to run away; to flee; to get away (e.g. from danger)"
+    }
+  },
+  {
+    "word": "日記",
+    "reading": "にっき",
+    "pos": "noun",
+    "kanjiId": 26085,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "diary; journal"
+    }
+  },
+  {
+    "word": "似る",
+    "reading": "にる",
+    "pos": "verb",
+    "kanjiId": 20284,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to resemble; to look like; to be like"
+    }
+  },
+  {
+    "word": "人形",
+    "reading": "にんぎょう",
+    "pos": "noun",
+    "kanjiId": 20154,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "doll; puppet; marionette"
+    }
+  },
+  {
+    "word": "盗む",
+    "reading": "ぬすむ",
+    "pos": "verb",
+    "kanjiId": 30423,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to steal"
+    }
+  },
+  {
+    "word": "塗る",
+    "reading": "ぬる",
+    "pos": "verb",
+    "kanjiId": 22615,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to paint; to spread; to plaster"
+    }
+  },
+  {
+    "word": "熱",
+    "reading": "ねつ",
+    "pos": "noun",
+    "kanjiId": 29105,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "heat"
+    }
+  },
+  {
+    "word": "寝坊",
+    "reading": "ねぼう",
+    "pos": "noun",
+    "kanjiId": 23517,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sleeping in late; oversleeping"
+    }
+  },
+  {
+    "word": "眠い",
+    "reading": "ねむい",
+    "pos": "i-adjective",
+    "kanjiId": 30496,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "sleepy; drowsy; somnolent"
+    }
+  },
+  {
+    "word": "眠る",
+    "reading": "ねむる",
+    "pos": "verb",
+    "kanjiId": 30496,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to sleep"
+    }
+  },
+  {
+    "word": "残る",
+    "reading": "のこる",
+    "pos": "verb",
+    "kanjiId": 27531,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to remain; to be left"
+    }
+  },
+  {
+    "word": "乗り換える",
+    "reading": "のりかえる",
+    "pos": "verb",
+    "kanjiId": 20055,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to transfer (trains); to change (bus, train)"
+    }
+  },
+  {
+    "word": "乗り物",
+    "reading": "のりもの",
+    "pos": "noun",
+    "kanjiId": 20055,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "vehicle; conveyance; (means of) transport"
+    }
+  },
+  {
+    "word": "葉",
+    "reading": "は",
+    "pos": "noun",
+    "kanjiId": 33865,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "leaf; blade (of grass); (pine) needle"
+    }
+  },
+  {
+    "word": "場合",
+    "reading": "ばあい",
+    "pos": "noun",
+    "kanjiId": 22580,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "case; occasion; situation"
+    }
+  },
+  {
+    "word": "パート",
+    "reading": "パート",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "part"
+    }
+  },
+  {
+    "word": "倍",
+    "reading": "ばい",
+    "pos": "noun",
+    "kanjiId": 20493,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "double; twice (as much)"
+    }
+  },
+  {
+    "word": "歯医者",
+    "reading": "はいしゃ",
+    "pos": "noun",
+    "kanjiId": 27503,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "dentist"
+    }
+  },
+  {
+    "word": "運ぶ",
+    "reading": "はこぶ",
+    "pos": "verb",
+    "kanjiId": 36939,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to carry; to transport; to move"
+    }
+  },
+  {
+    "word": "始める",
+    "reading": "はじめる",
+    "pos": "verb",
+    "kanjiId": 22987,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to start; to begin; to commence"
+    }
+  },
+  {
+    "word": "場所",
+    "reading": "ばしょ",
+    "pos": "noun",
+    "kanjiId": 22580,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "place; location; spot"
+    }
+  },
+  {
+    "word": "恥ずかしい",
+    "reading": "はずかしい",
+    "pos": "i-adjective",
+    "kanjiId": 24677,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "embarrassing; embarrassed; ashamed"
+    }
+  },
+  {
+    "word": "パソコン",
+    "reading": "パソコン",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "personal computer; PC"
+    }
+  },
+  {
+    "word": "発音",
+    "reading": "はつおん",
+    "pos": "noun",
+    "kanjiId": 30330,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "pronunciation"
+    }
+  },
+  {
+    "word": "はっきり",
+    "reading": "はっきり",
+    "pos": "adverb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "clearly; plainly; distinctly"
+    }
+  },
+  {
+    "word": "花見",
+    "reading": "はなみ",
+    "pos": "noun",
+    "kanjiId": 33457,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "cherry blossom viewing; flower viewing"
+    }
+  },
+  {
+    "word": "林",
+    "reading": "はやし",
+    "pos": "noun",
+    "kanjiId": 26519,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "wood; woods; forest"
+    }
+  },
+  {
+    "word": "払う",
+    "reading": "はらう",
+    "pos": "verb",
+    "kanjiId": 25173,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to pay (e.g. money, bill)"
+    }
+  },
+  {
+    "word": "番組",
+    "reading": "ばんぐみ",
+    "pos": "noun",
+    "kanjiId": 30058,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "program (e.g. TV); programme"
+    }
+  },
+  {
+    "word": "反対",
+    "reading": "はんたい",
+    "pos": "noun",
+    "kanjiId": 21453,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "opposition; resistance; antagonism"
+    }
+  },
+  {
+    "word": "ハンドバッグ",
+    "reading": "ハンドバッグ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "handbag; purse"
+    }
+  },
+  {
+    "word": "火",
+    "reading": "ひ",
+    "pos": "noun",
+    "kanjiId": 28779,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "fire; flame; blaze"
+    }
+  },
+  {
+    "word": "ピアノ",
+    "reading": "ピアノ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "piano (instrument)"
+    }
+  },
+  {
+    "word": "冷える",
+    "reading": "ひえる",
+    "pos": "verb",
+    "kanjiId": 20919,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to grow cold; to get chilly; to cool down"
+    }
+  },
+  {
+    "word": "光",
+    "reading": "ひかり",
+    "pos": "noun",
+    "kanjiId": 20809,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "light"
+    }
+  },
+  {
+    "word": "光る",
+    "reading": "ひかる",
+    "pos": "verb",
+    "kanjiId": 20809,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to shine; to glitter; to be bright"
+    }
+  },
+  {
+    "word": "引き出し",
+    "reading": "ひきだし",
+    "pos": "noun",
+    "kanjiId": 24341,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "drawer"
+    }
+  },
+  {
+    "word": "引き出す",
+    "reading": "ひきだす",
+    "pos": "verb",
+    "kanjiId": 24341,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to pull out; to take out; to draw out"
+    }
+  },
+  {
+    "word": "飛行場",
+    "reading": "ひこうじょう",
+    "pos": "noun",
+    "kanjiId": 39131,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "airfield; airport; aerodrome"
+    }
+  },
+  {
+    "word": "久しぶり",
+    "reading": "ひさしぶり",
+    "pos": "no-adjective",
+    "kanjiId": 20037,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "a long time (since the last time); first in a long time"
+    }
+  },
+  {
+    "word": "美術館",
+    "reading": "びじゅつかん",
+    "pos": "noun",
+    "kanjiId": 32654,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "art museum; art gallery"
+    }
+  },
+  {
+    "word": "非常に",
+    "reading": "ひじょうに",
+    "pos": "adverb",
+    "kanjiId": 38750,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "very; extremely; exceedingly"
+    }
+  },
+  {
+    "word": "引っ越す",
+    "reading": "ひっこす",
+    "pos": "verb",
+    "kanjiId": 24341,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to move (house); to change residence"
+    }
+  },
+  {
+    "word": "必要",
+    "reading": "ひつよう",
+    "pos": "na-adjective",
+    "kanjiId": 24517,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "necessary; needed; essential"
+    }
+  },
+  {
+    "word": "開く",
+    "reading": "ひらく",
+    "pos": "verb",
+    "kanjiId": 38283,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to open; to undo; to unseal"
+    }
+  },
+  {
+    "word": "ビル",
+    "reading": "ビル",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "multi-floor building; multi-storey building"
+    }
+  },
+  {
+    "word": "昼休み",
+    "reading": "ひるやすみ",
+    "pos": "noun",
+    "kanjiId": 26172,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "lunch break; noon recess; noon rest period"
+    }
+  },
+  {
+    "word": "拾う",
+    "reading": "ひろう",
+    "pos": "verb",
+    "kanjiId": 25342,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to pick up; to gather"
+    }
+  },
+  {
+    "word": "増える",
+    "reading": "ふえる",
+    "pos": "verb",
+    "kanjiId": 22679,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to increase; to multiply"
+    }
+  },
+  {
+    "word": "深い",
+    "reading": "ふかい",
+    "pos": "i-adjective",
+    "kanjiId": 28145,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "deep"
+    }
+  },
+  {
+    "word": "複雑",
+    "reading": "ふくざつ",
+    "pos": "na-adjective",
+    "kanjiId": 35079,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "complex; complicated; intricate"
+    }
+  },
+  {
+    "word": "復習",
+    "reading": "ふくしゅう",
+    "pos": "noun",
+    "kanjiId": 24489,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "review (of learned material); revision"
+    }
+  },
+  {
+    "word": "部長",
+    "reading": "ぶちょう",
+    "pos": "noun",
+    "kanjiId": 37096,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "head (chief, director) of a section or department"
+    }
+  },
+  {
+    "word": "普通",
+    "reading": "ふつう",
+    "pos": "no-adjective",
+    "kanjiId": 26222,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "normal; ordinary; regular"
+    }
+  },
+  {
+    "word": "太る",
+    "reading": "ふとる",
+    "pos": "verb",
+    "kanjiId": 22826,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to put on weight; to gain weight; to grow fat"
+    }
+  },
+  {
+    "word": "布団",
+    "reading": "ふとん",
+    "pos": "noun",
+    "kanjiId": 24067,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "futon; Japanese bedding consisting of a mattress and a duvet"
+    }
+  },
+  {
+    "word": "舟",
+    "reading": "ふね",
+    "pos": "noun",
+    "kanjiId": 33311,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "ship; boat; watercraft"
+    }
+  },
+  {
+    "word": "踏む",
+    "reading": "ふむ",
+    "pos": "verb",
+    "kanjiId": 36367,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to step on; to tread on; to trample on"
+    }
+  },
+  {
+    "word": "降り出す",
+    "reading": "ふりだす",
+    "pos": "verb",
+    "kanjiId": 38477,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to begin to rain; to begin to snow"
+    }
+  },
+  {
+    "word": "プレゼント",
+    "reading": "プレゼント",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "present; gift"
+    }
+  },
+  {
+    "word": "文化",
+    "reading": "ぶんか",
+    "pos": "noun",
+    "kanjiId": 25991,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "culture; civilization; civilisation"
+    }
+  },
+  {
+    "word": "文学",
+    "reading": "ぶんがく",
+    "pos": "noun",
+    "kanjiId": 25991,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "literature"
+    }
+  },
+  {
+    "word": "文法",
+    "reading": "ぶんぽう",
+    "pos": "noun",
+    "kanjiId": 25991,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "grammar"
+    }
+  },
+  {
+    "word": "別",
+    "reading": "べつ",
+    "pos": "noun",
+    "kanjiId": 21029,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "distinction; difference; discrimination"
+    }
+  },
+  {
+    "word": "ベル",
+    "reading": "ベル",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "bell"
+    }
+  },
+  {
+    "word": "変",
+    "reading": "へん",
+    "pos": "na-adjective",
+    "kanjiId": 22793,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "strange; odd; peculiar"
+    }
+  },
+  {
+    "word": "返事",
+    "reading": "へんじ",
+    "pos": "noun",
+    "kanjiId": 36820,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "reply; answer; response"
+    }
+  },
+  {
+    "word": "貿易",
+    "reading": "ぼうえき",
+    "pos": "noun",
+    "kanjiId": 36031,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(foreign) trade; (international) commerce; importing and exporting"
+    }
+  },
+  {
+    "word": "法律",
+    "reading": "ほうりつ",
+    "pos": "noun",
+    "kanjiId": 27861,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "law; legislation; act"
+    }
+  },
+  {
+    "word": "星",
+    "reading": "ほし",
+    "pos": "noun",
+    "kanjiId": 26143,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "star (usu. excluding the Sun); planet (usu. excluding Earth); heavenly body"
+    }
+  },
+  {
+    "word": "翻訳",
+    "reading": "ほんやく",
+    "pos": "noun",
+    "kanjiId": 32763,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "translation"
+    }
+  },
+  {
+    "word": "参る",
+    "reading": "まいる",
+    "pos": "verb",
+    "kanjiId": 21442,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to go; to come; to call"
+    }
+  },
+  {
+    "word": "負ける",
+    "reading": "まける",
+    "pos": "verb",
+    "kanjiId": 36000,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to lose; to be defeated; to be beaten"
+    }
+  },
+  {
+    "word": "間違える",
+    "reading": "まちがえる",
+    "pos": "verb",
+    "kanjiId": 38291,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to make a mistake (in); to commit an error; to get wrong"
+    }
+  },
+  {
+    "word": "間に合う",
+    "reading": "まにあう",
+    "pos": "verb",
+    "kanjiId": 38291,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be in time (for)"
+    }
+  },
+  {
+    "word": "周り",
+    "reading": "まわり",
+    "pos": "noun",
+    "kanjiId": 21608,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "circumference; girth"
+    }
+  },
+  {
+    "word": "回る",
+    "reading": "まわる",
+    "pos": "verb",
+    "kanjiId": 22238,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to go around; to make a circle around"
+    }
+  },
+  {
+    "word": "漫画",
+    "reading": "まんが",
+    "pos": "noun",
+    "kanjiId": 28459,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "cartoon; comic; comic strip"
+    }
+  },
+  {
+    "word": "真中",
+    "reading": "まんなか",
+    "pos": "noun",
+    "kanjiId": 30495,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "middle; centre; center"
+    }
+  },
+  {
+    "word": "見える",
+    "reading": "みえる",
+    "pos": "verb",
+    "kanjiId": 35211,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be seen; to be visible; to be in sight"
+    }
+  },
+  {
+    "word": "湖",
+    "reading": "みずうみ",
+    "pos": "noun",
+    "kanjiId": 28246,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "lake"
+    }
+  },
+  {
+    "word": "味噌",
+    "reading": "みそ",
+    "pos": "noun",
+    "kanjiId": 21619,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "miso; fermented condiment usu. made from soybeans"
+    }
+  },
+  {
+    "word": "見つかる",
+    "reading": "みつかる",
+    "pos": "verb",
+    "kanjiId": 35211,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be found; to be discovered"
+    }
+  },
+  {
+    "word": "見つける",
+    "reading": "みつける",
+    "pos": "verb",
+    "kanjiId": 35211,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to find; to discover; to come across"
+    }
+  },
+  {
+    "word": "港",
+    "reading": "みなと",
+    "pos": "noun",
+    "kanjiId": 28207,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "harbour; harbor; port"
+    }
+  },
+  {
+    "word": "向かう",
+    "reading": "むかう",
+    "pos": "verb",
+    "kanjiId": 21521,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to face"
+    }
+  },
+  {
+    "word": "迎える",
+    "reading": "むかえる",
+    "pos": "verb",
+    "kanjiId": 36814,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to go out to meet; to receive; to welcome"
+    }
+  },
+  {
+    "word": "昔",
+    "reading": "むかし",
+    "pos": "noun",
+    "kanjiId": 26132,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "the old days; the past; former times"
+    }
+  },
+  {
+    "word": "虫",
+    "reading": "むし",
+    "pos": "noun",
+    "kanjiId": 34411,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "insect; bug; cricket"
+    }
+  },
+  {
+    "word": "息子",
+    "reading": "むすこ",
+    "pos": "noun",
+    "kanjiId": 24687,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "son"
+    }
+  },
+  {
+    "word": "娘",
+    "reading": "むすめ",
+    "pos": "noun",
+    "kanjiId": 23064,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "unmarried woman"
+    }
+  },
+  {
+    "word": "無理",
+    "reading": "むり",
+    "pos": "na-adjective",
+    "kanjiId": 29702,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "unreasonable; unnatural; unjustifiable"
+    }
+  },
+  {
+    "word": "召し上がる",
+    "reading": "めしあがる",
+    "pos": "verb",
+    "kanjiId": 21484,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to eat; to drink"
+    }
+  },
+  {
+    "word": "珍しい",
+    "reading": "めずらしい",
+    "pos": "i-adjective",
+    "kanjiId": 29645,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "rare; uncommon; unusual"
+    }
+  },
+  {
+    "word": "申し上げる",
+    "reading": "もうしあげる",
+    "pos": "verb",
+    "kanjiId": 30003,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to say; to tell; to state"
+    }
+  },
+  {
+    "word": "申す",
+    "reading": "もうす",
+    "pos": "verb",
+    "kanjiId": 30003,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to say; to be called"
+    }
+  },
+  {
+    "word": "もし",
+    "reading": "もし",
+    "pos": "interjection",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "excuse me! (when calling out to someone)"
+    }
+  },
+  {
+    "word": "戻る",
+    "reading": "もどる",
+    "pos": "verb",
+    "kanjiId": 25147,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to turn back (e.g. half-way)"
+    }
+  },
+  {
+    "word": "森",
+    "reading": "もり",
+    "pos": "noun",
+    "kanjiId": 26862,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "forest"
+    }
+  },
+  {
+    "word": "焼く",
+    "reading": "やく",
+    "pos": "verb",
+    "kanjiId": 28988,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to burn"
+    }
+  },
+  {
+    "word": "約束",
+    "reading": "やくそく",
+    "pos": "noun",
+    "kanjiId": 32004,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "promise; agreement; arrangement"
+    }
+  },
+  {
+    "word": "役に立つ",
+    "reading": "やくにたつ",
+    "pos": "expression",
+    "kanjiId": 24441,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be helpful; to be useful"
+    }
+  },
+  {
+    "word": "焼ける",
+    "reading": "やける",
+    "pos": "verb",
+    "kanjiId": 28988,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to burn; to burn down; to go down in flames"
+    }
+  },
+  {
+    "word": "優しい",
+    "reading": "やさしい",
+    "pos": "i-adjective",
+    "kanjiId": 20778,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "tender; kind; gentle"
+    }
+  },
+  {
+    "word": "痩せる",
+    "reading": "やせる",
+    "pos": "verb",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to become thin; to lose weight; to slim"
+    }
+  },
+  {
+    "word": "止む",
+    "reading": "やむ",
+    "pos": "verb",
+    "kanjiId": 27490,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to cease; to stop; to be over"
+    }
+  },
+  {
+    "word": "柔らかい",
+    "reading": "やわらかい",
+    "pos": "i-adjective",
+    "kanjiId": 26580,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "soft; tender; supple"
+    }
+  },
+  {
+    "word": "湯",
+    "reading": "ゆ",
+    "pos": "noun",
+    "kanjiId": 28271,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "hot water"
+    }
+  },
+  {
+    "word": "指",
+    "reading": "ゆび",
+    "pos": "noun",
+    "kanjiId": 25351,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "finger; toe; digit"
+    }
+  },
+  {
+    "word": "指輪",
+    "reading": "ゆびわ",
+    "pos": "noun",
+    "kanjiId": 25351,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(finger) ring"
+    }
+  },
+  {
+    "word": "夢",
+    "reading": "ゆめ",
+    "pos": "noun",
+    "kanjiId": 22818,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "dream"
+    }
+  },
+  {
+    "word": "揺れる",
+    "reading": "ゆれる",
+    "pos": "verb",
+    "kanjiId": 25594,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to shake; to sway; to rock"
+    }
+  },
+  {
+    "word": "用",
+    "reading": "よう",
+    "pos": "noun",
+    "kanjiId": 29992,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "business; task; errand"
+    }
+  },
+  {
+    "word": "用意",
+    "reading": "ようい",
+    "pos": "noun",
+    "kanjiId": 29992,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "preparation; arrangements; provision"
+    }
+  },
+  {
+    "word": "用事",
+    "reading": "ようじ",
+    "pos": "noun",
+    "kanjiId": 29992,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "business; things to do; engagement"
+    }
+  },
+  {
+    "word": "予習",
+    "reading": "よしゅう",
+    "pos": "noun",
+    "kanjiId": 20104,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "preparation for a lesson"
+    }
+  },
+  {
+    "word": "予定",
+    "reading": "よてい",
+    "pos": "noun",
+    "kanjiId": 20104,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "plans; arrangement; schedule"
+    }
+  },
+  {
+    "word": "予約",
+    "reading": "よやく",
+    "pos": "noun",
+    "kanjiId": 20104,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "reservation; appointment; booking"
+    }
+  },
+  {
+    "word": "寄る",
+    "reading": "よる",
+    "pos": "verb",
+    "kanjiId": 23492,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to approach; to draw near; to come near"
+    }
+  },
+  {
+    "word": "喜ぶ",
+    "reading": "よろこぶ",
+    "pos": "verb",
+    "kanjiId": 21916,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to be delighted; to be glad; to be pleased"
+    }
+  },
+  {
+    "word": "理由",
+    "reading": "りゆう",
+    "pos": "noun",
+    "kanjiId": 29702,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "reason; grounds; pretext"
+    }
+  },
+  {
+    "word": "利用",
+    "reading": "りよう",
+    "pos": "noun",
+    "kanjiId": 21033,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "use; utilization; utilisation"
+    }
+  },
+  {
+    "word": "両方",
+    "reading": "りょうほう",
+    "pos": "noun",
+    "kanjiId": 20001,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "both; both sides; both parties"
+    }
+  },
+  {
+    "word": "旅館",
+    "reading": "りょかん",
+    "pos": "noun",
+    "kanjiId": 26053,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "ryokan; traditional Japanese inn"
+    }
+  },
+  {
+    "word": "留守",
+    "reading": "るす",
+    "pos": "noun",
+    "kanjiId": 30041,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "absence; being away from home"
+    }
+  },
+  {
+    "word": "冷房",
+    "reading": "れいぼう",
+    "pos": "noun",
+    "kanjiId": 20919,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "air conditioning; air cooling"
+    }
+  },
+  {
+    "word": "歴史",
+    "reading": "れきし",
+    "pos": "noun",
+    "kanjiId": 27508,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "history"
+    }
+  },
+  {
+    "word": "レジ",
+    "reading": "レジ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "(cash) register"
+    }
+  },
+  {
+    "word": "連絡",
+    "reading": "れんらく",
+    "pos": "noun",
+    "kanjiId": 36899,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "contacting; (making) contact; getting in touch"
+    }
+  },
+  {
+    "word": "ワープロ",
+    "reading": "ワープロ",
+    "pos": "noun",
+    "kanjiId": null,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "word processor"
+    }
+  },
+  {
+    "word": "沸かす",
+    "reading": "わかす",
+    "pos": "verb",
+    "kanjiId": 27832,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to boil; to heat (a liquid); to prepare (a bath, hot drink)"
+    }
+  },
+  {
+    "word": "別れる",
+    "reading": "わかれる",
+    "pos": "verb",
+    "kanjiId": 21029,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to part (usu. of people); to part from; to part with"
+    }
+  },
+  {
+    "word": "沸く",
+    "reading": "わく",
+    "pos": "verb",
+    "kanjiId": 27832,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to grow hot (e.g. water); to boil"
+    }
+  },
+  {
+    "word": "忘れ物",
+    "reading": "わすれもの",
+    "pos": "noun",
+    "kanjiId": 24536,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "lost article; thing left behind"
+    }
+  },
+  {
+    "word": "笑う",
+    "reading": "わらう",
+    "pos": "verb",
+    "kanjiId": 31505,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to laugh"
+    }
+  },
+  {
+    "word": "割合",
+    "reading": "わりあい",
+    "pos": "noun",
+    "kanjiId": 21106,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "rate; ratio; percentage"
+    }
+  },
+  {
+    "word": "割れる",
+    "reading": "われる",
+    "pos": "verb",
+    "kanjiId": 21106,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "to break; to be smashed"
+    }
+  },
+  {
+    "word": "泳ぎ方",
+    "reading": "およぎかた",
+    "pos": "noun",
+    "kanjiId": 27891,
+    "jlpt": "N4",
+    "meanings": {
+      "en": "way of swimming"
+    }
+  }
+]

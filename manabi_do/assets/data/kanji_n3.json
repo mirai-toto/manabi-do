@@ -1,0 +1,5816 @@
+[
+  {
+    "id": 25919,
+    "character": "政",
+    "jlpt": "N3",
+    "on": [
+      "セイ",
+      "ショウ"
+    ],
+    "kun": [
+      "まつりごと",
+      "まん"
+    ],
+    "meanings": {
+      "en": "politics, government"
+    }
+  },
+  {
+    "id": 35696,
+    "character": "議",
+    "jlpt": "N3",
+    "on": [
+      "ギ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "deliberation, consultation, debate"
+    }
+  },
+  {
+    "id": 27665,
+    "character": "民",
+    "jlpt": "N3",
+    "on": [
+      "ミン"
+    ],
+    "kun": [
+      "たみ"
+    ],
+    "meanings": {
+      "en": "people, nation, subjects"
+    }
+  },
+  {
+    "id": 36899,
+    "character": "連",
+    "jlpt": "N3",
+    "on": [
+      "レン"
+    ],
+    "kun": [
+      "つら.なる",
+      "つら.ねる",
+      "つ.れる",
+      "-づ.れ"
+    ],
+    "meanings": {
+      "en": "take along, lead, join"
+    }
+  },
+  {
+    "id": 23550,
+    "character": "対",
+    "jlpt": "N3",
+    "on": [
+      "タイ",
+      "ツイ"
+    ],
+    "kun": [
+      "あいて",
+      "こた.える",
+      "そろ.い",
+      "つれあ.い",
+      "なら.ぶ",
+      "むか.う"
+    ],
+    "meanings": {
+      "en": "vis-a-vis, opposite, even"
+    }
+  },
+  {
+    "id": 37096,
+    "character": "部",
+    "jlpt": "N3",
+    "on": [
+      "ブ"
+    ],
+    "kun": [
+      "-べ"
+    ],
+    "meanings": {
+      "en": "section, bureau, dept"
+    }
+  },
+  {
+    "id": 21512,
+    "character": "合",
+    "jlpt": "N3",
+    "on": [
+      "ゴウ",
+      "ガッ",
+      "カッ"
+    ],
+    "kun": [
+      "あ.う",
+      "-あ.う",
+      "あ.い",
+      "あい-",
+      "-あ.い",
+      "-あい",
+      "あ.わす",
+      "あ.わせる",
+      "-あ.わせる"
+    ],
+    "meanings": {
+      "en": "fit, suit, join"
+    }
+  },
+  {
+    "id": 24066,
+    "character": "市",
+    "jlpt": "N3",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "いち"
+    ],
+    "meanings": {
+      "en": "market, city, town"
+    }
+  },
+  {
+    "id": 20869,
+    "character": "内",
+    "jlpt": "N3",
+    "on": [
+      "ナイ",
+      "ダイ"
+    ],
+    "kun": [
+      "うち"
+    ],
+    "meanings": {
+      "en": "inside, within, between"
+    }
+  },
+  {
+    "id": 30456,
+    "character": "相",
+    "jlpt": "N3",
+    "on": [
+      "ソウ",
+      "ショウ"
+    ],
+    "kun": [
+      "あい-"
+    ],
+    "meanings": {
+      "en": "inter-, mutual, together"
+    }
+  },
+  {
+    "id": 23450,
+    "character": "定",
+    "jlpt": "N3",
+    "on": [
+      "テイ",
+      "ジョウ"
+    ],
+    "kun": [
+      "さだ.める",
+      "さだ.まる",
+      "さだ.か"
+    ],
+    "meanings": {
+      "en": "determine, fix, establish"
+    }
+  },
+  {
+    "id": 22238,
+    "character": "回",
+    "jlpt": "N3",
+    "on": [
+      "カイ",
+      "エ"
+    ],
+    "kun": [
+      "まわ.る",
+      "-まわ.る",
+      "-まわ.り",
+      "まわ.す",
+      "-まわ.す",
+      "まわ.し-",
+      "-まわ.し",
+      "もとお.る",
+      "か.える"
+    ],
+    "meanings": {
+      "en": "-times, round, game"
+    }
+  },
+  {
+    "id": 36984,
+    "character": "選",
+    "jlpt": "N3",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "えら.ぶ",
+      "え.る",
+      "よ.る"
+    ],
+    "meanings": {
+      "en": "elect, select, choose"
+    }
+  },
+  {
+    "id": 31859,
+    "character": "米",
+    "jlpt": "N3",
+    "on": [
+      "ベイ",
+      "マイ",
+      "メエトル"
+    ],
+    "kun": [
+      "こめ",
+      "よね"
+    ],
+    "meanings": {
+      "en": "rice, USA, metre"
+    }
+  },
+  {
+    "id": 23455,
+    "character": "実",
+    "jlpt": "N3",
+    "on": [
+      "ジツ",
+      "シツ"
+    ],
+    "kun": [
+      "み",
+      "みの.る",
+      "まこと",
+      "みの",
+      "みち.る"
+    ],
+    "meanings": {
+      "en": "reality, truth, seed"
+    }
+  },
+  {
+    "id": 38306,
+    "character": "関",
+    "jlpt": "N3",
+    "on": [
+      "カン"
+    ],
+    "kun": [
+      "せき",
+      "-ぜき",
+      "かか.わる",
+      "からくり",
+      "かんぬき"
+    ],
+    "meanings": {
+      "en": "connection, barrier, gateway"
+    }
+  },
+  {
+    "id": 27770,
+    "character": "決",
+    "jlpt": "N3",
+    "on": [
+      "ケツ"
+    ],
+    "kun": [
+      "き.める",
+      "-ぎ.め",
+      "き.まる",
+      "さ.く"
+    ],
+    "meanings": {
+      "en": "decide, fix, agree upon"
+    }
+  },
+  {
+    "id": 20840,
+    "character": "全",
+    "jlpt": "N3",
+    "on": [
+      "ゼン"
+    ],
+    "kun": [
+      "まった.く",
+      "すべ.て"
+    ],
+    "meanings": {
+      "en": "whole, entire, all"
+    }
+  },
+  {
+    "id": 34920,
+    "character": "表",
+    "jlpt": "N3",
+    "on": [
+      "ヒョウ"
+    ],
+    "kun": [
+      "おもて",
+      "-おもて",
+      "あらわ.す",
+      "あらわ.れる",
+      "あら.わす"
+    ],
+    "meanings": {
+      "en": "surface, table, chart"
+    }
+  },
+  {
+    "id": 25126,
+    "character": "戦",
+    "jlpt": "N3",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "いくさ",
+      "たたか.う",
+      "おのの.く",
+      "そよ.ぐ",
+      "わなな.く"
+    ],
+    "meanings": {
+      "en": "war, battle, match"
+    }
+  },
+  {
+    "id": 32076,
+    "character": "経",
+    "jlpt": "N3",
+    "on": [
+      "ケイ",
+      "キョウ",
+      "キン"
+    ],
+    "kun": [
+      "へ.る",
+      "た.つ",
+      "たていと",
+      "はか.る",
+      "のり"
+    ],
+    "meanings": {
+      "en": "sutra, longitude, pass thru"
+    }
+  },
+  {
+    "id": 26368,
+    "character": "最",
+    "jlpt": "N3",
+    "on": [
+      "サイ",
+      "シュ"
+    ],
+    "kun": [
+      "もっと.も",
+      "つま"
+    ],
+    "meanings": {
+      "en": "utmost, most, extreme"
+    }
+  },
+  {
+    "id": 29694,
+    "character": "現",
+    "jlpt": "N3",
+    "on": [
+      "ゲン"
+    ],
+    "kun": [
+      "あらわ.れる",
+      "あらわ.す",
+      "うつつ",
+      "うつ.つ"
+    ],
+    "meanings": {
+      "en": "present, existing, actual"
+    }
+  },
+  {
+    "id": 35519,
+    "character": "調",
+    "jlpt": "N3",
+    "on": [
+      "チョウ"
+    ],
+    "kun": [
+      "しら.べる",
+      "しら.べ",
+      "ととの.う",
+      "ととの.える"
+    ],
+    "meanings": {
+      "en": "tune, tone, meter"
+    }
+  },
+  {
+    "id": 21270,
+    "character": "化",
+    "jlpt": "N3",
+    "on": [
+      "カ",
+      "ケ"
+    ],
+    "kun": [
+      "ば.ける",
+      "ば.かす",
+      "ふ.ける",
+      "け.する"
+    ],
+    "meanings": {
+      "en": "change, take the form of, influence"
+    }
+  },
+  {
+    "id": 24403,
+    "character": "当",
+    "jlpt": "N3",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "あ.たる",
+      "あ.たり",
+      "あ.てる",
+      "あ.て",
+      "まさ.に",
+      "まさ.にべし"
+    ],
+    "meanings": {
+      "en": "hit, right, appropriate"
+    }
+  },
+  {
+    "id": 32004,
+    "character": "約",
+    "jlpt": "N3",
+    "on": [
+      "ヤク"
+    ],
+    "kun": [
+      "つづ.まる",
+      "つづ.める",
+      "つづま.やか"
+    ],
+    "meanings": {
+      "en": "promise, approximately, shrink"
+    }
+  },
+  {
+    "id": 39318,
+    "character": "首",
+    "jlpt": "N3",
+    "on": [
+      "シュ"
+    ],
+    "kun": [
+      "くび"
+    ],
+    "meanings": {
+      "en": "neck, counter for songs and poems"
+    }
+  },
+  {
+    "id": 27861,
+    "character": "法",
+    "jlpt": "N3",
+    "on": [
+      "ホウ",
+      "ハッ",
+      "ホッ",
+      "フラン"
+    ],
+    "kun": [
+      "のり"
+    ],
+    "meanings": {
+      "en": "method, law, rule"
+    }
+  },
+  {
+    "id": 24615,
+    "character": "性",
+    "jlpt": "N3",
+    "on": [
+      "セイ",
+      "ショウ"
+    ],
+    "kun": [
+      "さが"
+    ],
+    "meanings": {
+      "en": "sex, gender, nature"
+    }
+  },
+  {
+    "id": 35201,
+    "character": "要",
+    "jlpt": "N3",
+    "on": [
+      "ヨウ"
+    ],
+    "kun": [
+      "い.る",
+      "かなめ"
+    ],
+    "meanings": {
+      "en": "need, main point, essence"
+    }
+  },
+  {
+    "id": 21046,
+    "character": "制",
+    "jlpt": "N3",
+    "on": [
+      "セイ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "system, law, rule"
+    }
+  },
+  {
+    "id": 27835,
+    "character": "治",
+    "jlpt": "N3",
+    "on": [
+      "ジ",
+      "チ"
+    ],
+    "kun": [
+      "おさ.める",
+      "おさ.まる",
+      "なお.る",
+      "なお.す"
+    ],
+    "meanings": {
+      "en": "reign, be at peace, calm down"
+    }
+  },
+  {
+    "id": 21209,
+    "character": "務",
+    "jlpt": "N3",
+    "on": [
+      "ム"
+    ],
+    "kun": [
+      "つと.める"
+    ],
+    "meanings": {
+      "en": "task, duties"
+    }
+  },
+  {
+    "id": 25104,
+    "character": "成",
+    "jlpt": "N3",
+    "on": [
+      "セイ",
+      "ジョウ"
+    ],
+    "kun": [
+      "な.る",
+      "な.す",
+      "-な.す"
+    ],
+    "meanings": {
+      "en": "turn into, become, get"
+    }
+  },
+  {
+    "id": 26399,
+    "character": "期",
+    "jlpt": "N3",
+    "on": [
+      "キ",
+      "ゴ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "period, time, date"
+    }
+  },
+  {
+    "id": 21462,
+    "character": "取",
+    "jlpt": "N3",
+    "on": [
+      "シュ"
+    ],
+    "kun": [
+      "と.る",
+      "と.り",
+      "と.り-",
+      "とり",
+      "-ど.り"
+    ],
+    "meanings": {
+      "en": "take, fetch, take up"
+    }
+  },
+  {
+    "id": 37117,
+    "character": "都",
+    "jlpt": "N3",
+    "on": [
+      "ト",
+      "ツ"
+    ],
+    "kun": [
+      "みやこ"
+    ],
+    "meanings": {
+      "en": "metropolis, capital, all"
+    }
+  },
+  {
+    "id": 21644,
+    "character": "和",
+    "jlpt": "N3",
+    "on": [
+      "ワ",
+      "オ",
+      "カ"
+    ],
+    "kun": [
+      "やわ.らぐ",
+      "やわ.らげる",
+      "なご.む",
+      "なご.やか",
+      "あ.える"
+    ],
+    "meanings": {
+      "en": "harmony, Japanese style, peace"
+    }
+  },
+  {
+    "id": 27231,
+    "character": "機",
+    "jlpt": "N3",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "はた"
+    ],
+    "meanings": {
+      "en": "loom, mechanism, machine"
+    }
+  },
+  {
+    "id": 24179,
+    "character": "平",
+    "jlpt": "N3",
+    "on": [
+      "ヘイ",
+      "ビョウ",
+      "ヒョウ"
+    ],
+    "kun": [
+      "たい.ら",
+      "たい.らげる",
+      "ひら"
+    ],
+    "meanings": {
+      "en": "even, flat, peace"
+    }
+  },
+  {
+    "id": 21152,
+    "character": "加",
+    "jlpt": "N3",
+    "on": [
+      "カ"
+    ],
+    "kun": [
+      "くわ.える",
+      "くわ.わる"
+    ],
+    "meanings": {
+      "en": "add, addition, increase"
+    }
+  },
+  {
+    "id": 21463,
+    "character": "受",
+    "jlpt": "N3",
+    "on": [
+      "ジュ"
+    ],
+    "kun": [
+      "う.ける",
+      "-う.け",
+      "う.かる"
+    ],
+    "meanings": {
+      "en": "accept, undergo, answer (phone)"
+    }
+  },
+  {
+    "id": 32154,
+    "character": "続",
+    "jlpt": "N3",
+    "on": [
+      "ゾク",
+      "ショク",
+      "コウ",
+      "キョウ"
+    ],
+    "kun": [
+      "つづ.く",
+      "つづ.ける",
+      "つぐ.ない"
+    ],
+    "meanings": {
+      "en": "continue, series, sequel"
+    }
+  },
+  {
+    "id": 36914,
+    "character": "進",
+    "jlpt": "N3",
+    "on": [
+      "シン"
+    ],
+    "kun": [
+      "すす.む",
+      "すす.める"
+    ],
+    "meanings": {
+      "en": "advance, proceed, progress"
+    }
+  },
+  {
+    "id": 25968,
+    "character": "数",
+    "jlpt": "N3",
+    "on": [
+      "スウ",
+      "ス",
+      "サク",
+      "ソク",
+      "シュ"
+    ],
+    "kun": [
+      "かず",
+      "かぞ.える",
+      "しばしば",
+      "せ.める",
+      "わずらわ.しい"
+    ],
+    "meanings": {
+      "en": "number, strength, fate"
+    }
+  },
+  {
+    "id": 35352,
+    "character": "記",
+    "jlpt": "N3",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "しる.す"
+    ],
+    "meanings": {
+      "en": "scribe, account, narrative"
+    }
+  },
+  {
+    "id": 21021,
+    "character": "初",
+    "jlpt": "N3",
+    "on": [
+      "ショ"
+    ],
+    "kun": [
+      "はじ.め",
+      "はじ.めて",
+      "はつ",
+      "はつ-",
+      "うい-",
+      "-そ.める",
+      "-ぞ.め"
+    ],
+    "meanings": {
+      "en": "first time, beginning"
+    }
+  },
+  {
+    "id": 25351,
+    "character": "指",
+    "jlpt": "N3",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "ゆび",
+      "さ.す",
+      "-さ.し"
+    ],
+    "meanings": {
+      "en": "finger, point to, indicate"
+    }
+  },
+  {
+    "id": 27177,
+    "character": "権",
+    "jlpt": "N3",
+    "on": [
+      "ケン",
+      "ゴン"
+    ],
+    "kun": [
+      "おもり",
+      "かり",
+      "はか.る"
+    ],
+    "meanings": {
+      "en": "authority, power, rights"
+    }
+  },
+  {
+    "id": 25903,
+    "character": "支",
+    "jlpt": "N3",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "ささ.える",
+      "つか.える",
+      "か.う"
+    ],
+    "meanings": {
+      "en": "branch, support, sustain"
+    }
+  },
+  {
+    "id": 29987,
+    "character": "産",
+    "jlpt": "N3",
+    "on": [
+      "サン"
+    ],
+    "kun": [
+      "う.む",
+      "う.まれる",
+      "うぶ-",
+      "む.す"
+    ],
+    "meanings": {
+      "en": "products, bear, give birth"
+    }
+  },
+  {
+    "id": 28857,
+    "character": "点",
+    "jlpt": "N3",
+    "on": [
+      "テン"
+    ],
+    "kun": [
+      "つ.ける",
+      "つ.く",
+      "た.てる",
+      "さ.す",
+      "とぼ.す",
+      "とも.す",
+      "ぼち"
+    ],
+    "meanings": {
+      "en": "spot, point, mark"
+    }
+  },
+  {
+    "id": 22577,
+    "character": "報",
+    "jlpt": "N3",
+    "on": [
+      "ホウ"
+    ],
+    "kun": [
+      "むく.いる"
+    ],
+    "meanings": {
+      "en": "report, news, reward"
+    }
+  },
+  {
+    "id": 28168,
+    "character": "済",
+    "jlpt": "N3",
+    "on": [
+      "サイ",
+      "セイ"
+    ],
+    "kun": [
+      "す.む",
+      "-ず.み",
+      "-ずみ",
+      "す.まない",
+      "す.ます",
+      "-す.ます",
+      "すく.う",
+      "な.す",
+      "わたし",
+      "わた.る"
+    ],
+    "meanings": {
+      "en": "settle (debt, etc.), relieve (burden), finish"
+    }
+  },
+  {
+    "id": 27963,
+    "character": "活",
+    "jlpt": "N3",
+    "on": [
+      "カツ"
+    ],
+    "kun": [
+      "い.きる",
+      "い.かす",
+      "い.ける"
+    ],
+    "meanings": {
+      "en": "lively, resuscitation, being helped"
+    }
+  },
+  {
+    "id": 21407,
+    "character": "原",
+    "jlpt": "N3",
+    "on": [
+      "ゲン"
+    ],
+    "kun": [
+      "はら"
+    ],
+    "meanings": {
+      "en": "meadow, original, primitive"
+    }
+  },
+  {
+    "id": 20849,
+    "character": "共",
+    "jlpt": "N3",
+    "on": [
+      "キョウ"
+    ],
+    "kun": [
+      "とも",
+      "とも.に",
+      "-ども"
+    ],
+    "meanings": {
+      "en": "together, both, neither"
+    }
+  },
+  {
+    "id": 24471,
+    "character": "得",
+    "jlpt": "N3",
+    "on": [
+      "トク"
+    ],
+    "kun": [
+      "え.る",
+      "う.る"
+    ],
+    "meanings": {
+      "en": "gain, get, find"
+    }
+  },
+  {
+    "id": 35299,
+    "character": "解",
+    "jlpt": "N3",
+    "on": [
+      "カイ",
+      "ゲ"
+    ],
+    "kun": [
+      "と.く",
+      "と.かす",
+      "と.ける",
+      "ほど.く",
+      "ほぐ.す",
+      "わか.る",
+      "さと.る"
+    ],
+    "meanings": {
+      "en": "unravel, notes, key"
+    }
+  },
+  {
+    "id": 20132,
+    "character": "交",
+    "jlpt": "N3",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "まじ.わる",
+      "まじ.える",
+      "ま.じる",
+      "まじ.る",
+      "ま.ざる",
+      "ま.ぜる",
+      "-か.う",
+      "か.わす",
+      "かわ.す",
+      "こもごも"
+    ],
+    "meanings": {
+      "en": "mingle, mixing, association"
+    }
+  },
+  {
+    "id": 36039,
+    "character": "資",
+    "jlpt": "N3",
+    "on": [
+      "シ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "assets, resources, capital"
+    }
+  },
+  {
+    "id": 20104,
+    "character": "予",
+    "jlpt": "N3",
+    "on": [
+      "ヨ",
+      "シャ"
+    ],
+    "kun": [
+      "あらかじ.め"
+    ],
+    "meanings": {
+      "en": "beforehand, previous, myself"
+    }
+  },
+  {
+    "id": 21521,
+    "character": "向",
+    "jlpt": "N3",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "む.く",
+      "む.い",
+      "-む.き",
+      "む.ける",
+      "-む.け",
+      "む.かう",
+      "む.かい",
+      "む.こう",
+      "む.こう-",
+      "むこ",
+      "むか.い"
+    ],
+    "meanings": {
+      "en": "yonder, facing, beyond"
+    }
+  },
+  {
+    "id": 38555,
+    "character": "際",
+    "jlpt": "N3",
+    "on": [
+      "サイ"
+    ],
+    "kun": [
+      "きわ",
+      "-ぎわ"
+    ],
+    "meanings": {
+      "en": "occasion, side, edge"
+    }
+  },
+  {
+    "id": 21213,
+    "character": "勝",
+    "jlpt": "N3",
+    "on": [
+      "ショウ"
+    ],
+    "kun": [
+      "か.つ",
+      "-が.ち",
+      "まさ.る",
+      "すぐ.れる",
+      "かつ"
+    ],
+    "meanings": {
+      "en": "victory, win, prevail"
+    }
+  },
+  {
+    "id": 38754,
+    "character": "面",
+    "jlpt": "N3",
+    "on": [
+      "メン",
+      "ベン"
+    ],
+    "kun": [
+      "おも",
+      "おもて",
+      "つら"
+    ],
+    "meanings": {
+      "en": "mask, face, features"
+    }
+  },
+  {
+    "id": 21578,
+    "character": "告",
+    "jlpt": "N3",
+    "on": [
+      "コク"
+    ],
+    "kun": [
+      "つ.げる"
+    ],
+    "meanings": {
+      "en": "revelation, tell, inform"
+    }
+  },
+  {
+    "id": 21453,
+    "character": "反",
+    "jlpt": "N3",
+    "on": [
+      "ハン",
+      "ホン",
+      "タン",
+      "ホ"
+    ],
+    "kun": [
+      "そ.る",
+      "そ.らす",
+      "かえ.す",
+      "かえ.る",
+      "-かえ.る"
+    ],
+    "meanings": {
+      "en": "anti-"
+    }
+  },
+  {
+    "id": 21028,
+    "character": "判",
+    "jlpt": "N3",
+    "on": [
+      "ハン",
+      "バン"
+    ],
+    "kun": [
+      "わか.る"
+    ],
+    "meanings": {
+      "en": "judgement, judgment, signature"
+    }
+  },
+  {
+    "id": 35469,
+    "character": "認",
+    "jlpt": "N3",
+    "on": [
+      "ニン"
+    ],
+    "kun": [
+      "みと.める",
+      "したた.める"
+    ],
+    "meanings": {
+      "en": "acknowledge, witness, discern"
+    }
+  },
+  {
+    "id": 21442,
+    "character": "参",
+    "jlpt": "N3",
+    "on": [
+      "サン",
+      "シン"
+    ],
+    "kun": [
+      "まい.る",
+      "まい-",
+      "まじわる",
+      "みつ"
+    ],
+    "meanings": {
+      "en": "nonplussed, three (in documents), going"
+    }
+  },
+  {
+    "id": 21033,
+    "character": "利",
+    "jlpt": "N3",
+    "on": [
+      "リ"
+    ],
+    "kun": [
+      "き.く"
+    ],
+    "meanings": {
+      "en": "profit, advantage, benefit"
+    }
+  },
+  {
+    "id": 32068,
+    "character": "組",
+    "jlpt": "N3",
+    "on": [
+      "ソ"
+    ],
+    "kun": [
+      "く.む",
+      "くみ",
+      "-ぐみ"
+    ],
+    "meanings": {
+      "en": "association, braid, plait"
+    }
+  },
+  {
+    "id": 20449,
+    "character": "信",
+    "jlpt": "N3",
+    "on": [
+      "シン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "faith, truth, fidelity"
+    }
+  },
+  {
+    "id": 22312,
+    "character": "在",
+    "jlpt": "N3",
+    "on": [
+      "ザイ"
+    ],
+    "kun": [
+      "あ.る"
+    ],
+    "meanings": {
+      "en": "exist, outskirts, suburbs"
+    }
+  },
+  {
+    "id": 20214,
+    "character": "件",
+    "jlpt": "N3",
+    "on": [
+      "ケン"
+    ],
+    "kun": [
+      "くだん"
+    ],
+    "meanings": {
+      "en": "affair, case, matter"
+    }
+  },
+  {
+    "id": 20596,
+    "character": "側",
+    "jlpt": "N3",
+    "on": [
+      "ソク"
+    ],
+    "kun": [
+      "かわ",
+      "がわ",
+      "そば"
+    ],
+    "meanings": {
+      "en": "side, lean, oppose"
+    }
+  },
+  {
+    "id": 20219,
+    "character": "任",
+    "jlpt": "N3",
+    "on": [
+      "ニン"
+    ],
+    "kun": [
+      "まか.せる",
+      "まか.す"
+    ],
+    "meanings": {
+      "en": "responsibility, duty, term"
+    }
+  },
+  {
+    "id": 24341,
+    "character": "引",
+    "jlpt": "N3",
+    "on": [
+      "イン"
+    ],
+    "kun": [
+      "ひ.く",
+      "ひ.ける"
+    ],
+    "meanings": {
+      "en": "pull, tug, jerk"
+    }
+  },
+  {
+    "id": 27714,
+    "character": "求",
+    "jlpt": "N3",
+    "on": [
+      "キュウ",
+      "グ"
+    ],
+    "kun": [
+      "もと.める"
+    ],
+    "meanings": {
+      "en": "request, want, wish for"
+    }
+  },
+  {
+    "id": 25152,
+    "character": "所",
+    "jlpt": "N3",
+    "on": [
+      "ショ"
+    ],
+    "kun": [
+      "ところ",
+      "-ところ",
+      "どころ",
+      "とこ"
+    ],
+    "meanings": {
+      "en": "place, extent"
+    }
+  },
+  {
+    "id": 27425,
+    "character": "次",
+    "jlpt": "N3",
+    "on": [
+      "ジ",
+      "シ"
+    ],
+    "kun": [
+      "つ.ぐ",
+      "つぎ"
+    ],
+    "meanings": {
+      "en": "next, order, sequence"
+    }
+  },
+  {
+    "id": 26152,
+    "character": "昨",
+    "jlpt": "N3",
+    "on": [
+      "サク"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "yesterday, previous"
+    }
+  },
+  {
+    "id": 35542,
+    "character": "論",
+    "jlpt": "N3",
+    "on": [
+      "ロン"
+    ],
+    "kun": [
+      "あげつら.う"
+    ],
+    "meanings": {
+      "en": "argument, discourse"
+    }
+  },
+  {
+    "id": 23448,
+    "character": "官",
+    "jlpt": "N3",
+    "on": [
+      "カン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "bureaucrat, the government, organ"
+    }
+  },
+  {
+    "id": 22679,
+    "character": "増",
+    "jlpt": "N3",
+    "on": [
+      "ゾウ"
+    ],
+    "kun": [
+      "ま.す",
+      "ま.し",
+      "ふ.える",
+      "ふ.やす"
+    ],
+    "meanings": {
+      "en": "increase, add, augment"
+    }
+  },
+  {
+    "id": 20418,
+    "character": "係",
+    "jlpt": "N3",
+    "on": [
+      "ケイ"
+    ],
+    "kun": [
+      "かか.る",
+      "かかり",
+      "-がかり",
+      "かか.わる"
+    ],
+    "meanings": {
+      "en": "person in charge, connection, duty"
+    }
+  },
+  {
+    "id": 24863,
+    "character": "感",
+    "jlpt": "N3",
+    "on": [
+      "カン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "emotion, feeling, sensation"
+    }
+  },
+  {
+    "id": 24773,
+    "character": "情",
+    "jlpt": "N3",
+    "on": [
+      "ジョウ",
+      "セイ"
+    ],
+    "kun": [
+      "なさ.け"
+    ],
+    "meanings": {
+      "en": "feelings, emotion, passion"
+    }
+  },
+  {
+    "id": 25237,
+    "character": "投",
+    "jlpt": "N3",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "な.げる",
+      "-な.げ"
+    ],
+    "meanings": {
+      "en": "throw, discard, abandon"
+    }
+  },
+  {
+    "id": 31034,
+    "character": "示",
+    "jlpt": "N3",
+    "on": [
+      "ジ",
+      "シ"
+    ],
+    "kun": [
+      "しめ.す"
+    ],
+    "meanings": {
+      "en": "show, indicate, point out"
+    }
+  },
+  {
+    "id": 22793,
+    "character": "変",
+    "jlpt": "N3",
+    "on": [
+      "ヘン"
+    ],
+    "kun": [
+      "か.わる",
+      "か.わり",
+      "か.える"
+    ],
+    "meanings": {
+      "en": "unusual, change, strange"
+    }
+  },
+  {
+    "id": 25171,
+    "character": "打",
+    "jlpt": "N3",
+    "on": [
+      "ダ",
+      "ダース"
+    ],
+    "kun": [
+      "う.つ",
+      "う.ち-",
+      "ぶ.つ"
+    ],
+    "meanings": {
+      "en": "strike, hit, knock"
+    }
+  },
+  {
+    "id": 30452,
+    "character": "直",
+    "jlpt": "N3",
+    "on": [
+      "チョク",
+      "ジキ",
+      "ジカ"
+    ],
+    "kun": [
+      "ただ.ちに",
+      "なお.す",
+      "-なお.す",
+      "なお.る",
+      "なお.き",
+      "す.ぐ"
+    ],
+    "meanings": {
+      "en": "straightaway, honesty, frankness"
+    }
+  },
+  {
+    "id": 20001,
+    "character": "両",
+    "jlpt": "N3",
+    "on": [
+      "リョウ"
+    ],
+    "kun": [
+      "てる",
+      "ふたつ"
+    ],
+    "meanings": {
+      "en": "both, old Japanese coin, counter for carriages (e.g., in a train)"
+    }
+  },
+  {
+    "id": 24335,
+    "character": "式",
+    "jlpt": "N3",
+    "on": [
+      "シキ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "style, ceremony, rite"
+    }
+  },
+  {
+    "id": 30906,
+    "character": "確",
+    "jlpt": "N3",
+    "on": [
+      "カク",
+      "コウ"
+    ],
+    "kun": [
+      "たし.か",
+      "たし.かめる"
+    ],
+    "meanings": {
+      "en": "assurance, firm, tight"
+    }
+  },
+  {
+    "id": 26524,
+    "character": "果",
+    "jlpt": "N3",
+    "on": [
+      "カ"
+    ],
+    "kun": [
+      "は.たす",
+      "はた.す",
+      "-は.たす",
+      "は.てる",
+      "-は.てる",
+      "は.て"
+    ],
+    "meanings": {
+      "en": "fruit, reward, carry out"
+    }
+  },
+  {
+    "id": 23481,
+    "character": "容",
+    "jlpt": "N3",
+    "on": [
+      "ヨウ"
+    ],
+    "kun": [
+      "い.れる"
+    ],
+    "meanings": {
+      "en": "contain, form, looks"
+    }
+  },
+  {
+    "id": 24517,
+    "character": "必",
+    "jlpt": "N3",
+    "on": [
+      "ヒツ"
+    ],
+    "kun": [
+      "かなら.ず"
+    ],
+    "meanings": {
+      "en": "invariably, certain, inevitable"
+    }
+  },
+  {
+    "id": 28436,
+    "character": "演",
+    "jlpt": "N3",
+    "on": [
+      "エン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "performance, act, play"
+    }
+  },
+  {
+    "id": 27507,
+    "character": "歳",
+    "jlpt": "N3",
+    "on": [
+      "サイ",
+      "セイ"
+    ],
+    "kun": [
+      "とし",
+      "とせ",
+      "よわい"
+    ],
+    "meanings": {
+      "en": "year-end, age, occasion"
+    }
+  },
+  {
+    "id": 20105,
+    "character": "争",
+    "jlpt": "N3",
+    "on": [
+      "ソウ"
+    ],
+    "kun": [
+      "あらそ.う",
+      "いか.でか"
+    ],
+    "meanings": {
+      "en": "contend, dispute, argue"
+    }
+  },
+  {
+    "id": 35527,
+    "character": "談",
+    "jlpt": "N3",
+    "on": [
+      "ダン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "discuss, talk"
+    }
+  },
+  {
+    "id": 33021,
+    "character": "能",
+    "jlpt": "N3",
+    "on": [
+      "ノウ"
+    ],
+    "kun": [
+      "よ.く",
+      "あた.う"
+    ],
+    "meanings": {
+      "en": "ability, talent, skill"
+    }
+  },
+  {
+    "id": 20301,
+    "character": "位",
+    "jlpt": "N3",
+    "on": [
+      "イ"
+    ],
+    "kun": [
+      "くらい",
+      "ぐらい"
+    ],
+    "meanings": {
+      "en": "rank, grade, throne"
+    }
+  },
+  {
+    "id": 32622,
+    "character": "置",
+    "jlpt": "N3",
+    "on": [
+      "チ"
+    ],
+    "kun": [
+      "お.く",
+      "-お.き"
+    ],
+    "meanings": {
+      "en": "placement, put, set"
+    }
+  },
+  {
+    "id": 27969,
+    "character": "流",
+    "jlpt": "N3",
+    "on": [
+      "リュウ",
+      "ル"
+    ],
+    "kun": [
+      "なが.れる",
+      "なが.れ",
+      "なが.す",
+      "-なが.す"
+    ],
+    "meanings": {
+      "en": "current, a sink, flow"
+    }
+  },
+  {
+    "id": 26684,
+    "character": "格",
+    "jlpt": "N3",
+    "on": [
+      "カク",
+      "コウ",
+      "キャク",
+      "ゴウ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "status, rank, capacity"
+    }
+  },
+  {
+    "id": 30097,
+    "character": "疑",
+    "jlpt": "N3",
+    "on": [
+      "ギ"
+    ],
+    "kun": [
+      "うたが.う"
+    ],
+    "meanings": {
+      "en": "doubt, distrust, be suspicious"
+    }
+  },
+  {
+    "id": 36942,
+    "character": "過",
+    "jlpt": "N3",
+    "on": [
+      "カ"
+    ],
+    "kun": [
+      "す.ぎる",
+      "す.ごす",
+      "あやま.ち",
+      "あやま.つ",
+      "よぎ.る",
+      "よ.ぎる"
+    ],
+    "meanings": {
+      "en": "overdo, exceed, go beyond"
+    }
+  },
+  {
+    "id": 23616,
+    "character": "局",
+    "jlpt": "N3",
+    "on": [
+      "キョク"
+    ],
+    "kun": [
+      "つぼね"
+    ],
+    "meanings": {
+      "en": "bureau, board, office"
+    }
+  },
+  {
+    "id": 25918,
+    "character": "放",
+    "jlpt": "N3",
+    "on": [
+      "ホウ"
+    ],
+    "kun": [
+      "はな.す",
+      "-っぱな.し",
+      "はな.つ",
+      "はな.れる",
+      "こ.く",
+      "ほう.る"
+    ],
+    "meanings": {
+      "en": "set free, release, fire"
+    }
+  },
+  {
+    "id": 24120,
+    "character": "常",
+    "jlpt": "N3",
+    "on": [
+      "ジョウ"
+    ],
+    "kun": [
+      "つね",
+      "とこ-"
+    ],
+    "meanings": {
+      "en": "usual, ordinary, normal"
+    }
+  },
+  {
+    "id": 29366,
+    "character": "状",
+    "jlpt": "N3",
+    "on": [
+      "ジョウ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "status quo, conditions, circumstances"
+    }
+  },
+  {
+    "id": 29699,
+    "character": "球",
+    "jlpt": "N3",
+    "on": [
+      "キュウ"
+    ],
+    "kun": [
+      "たま"
+    ],
+    "meanings": {
+      "en": "ball, sphere"
+    }
+  },
+  {
+    "id": 32887,
+    "character": "職",
+    "jlpt": "N3",
+    "on": [
+      "ショク",
+      "ソク"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "post, employment, work"
+    }
+  },
+  {
+    "id": 19982,
+    "character": "与",
+    "jlpt": "N3",
+    "on": [
+      "ヨ"
+    ],
+    "kun": [
+      "あた.える",
+      "あずか.る",
+      "くみ.する",
+      "ともに"
+    ],
+    "meanings": {
+      "en": "bestow, participate in, give"
+    }
+  },
+  {
+    "id": 20379,
+    "character": "供",
+    "jlpt": "N3",
+    "on": [
+      "キョウ",
+      "ク",
+      "クウ",
+      "グ"
+    ],
+    "kun": [
+      "そな.える",
+      "とも",
+      "-ども"
+    ],
+    "meanings": {
+      "en": "submit, offer, present"
+    }
+  },
+  {
+    "id": 24441,
+    "character": "役",
+    "jlpt": "N3",
+    "on": [
+      "ヤク",
+      "エキ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "duty, war, campaign"
+    }
+  },
+  {
+    "id": 27083,
+    "character": "構",
+    "jlpt": "N3",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "かま.える",
+      "かま.う"
+    ],
+    "meanings": {
+      "en": "posture, stance, appearance"
+    }
+  },
+  {
+    "id": 21106,
+    "character": "割",
+    "jlpt": "N3",
+    "on": [
+      "カツ"
+    ],
+    "kun": [
+      "わ.る",
+      "わり",
+      "わ.り",
+      "わ.れる",
+      "さ.く"
+    ],
+    "meanings": {
+      "en": "proportion, comparatively, divide"
+    }
+  },
+  {
+    "id": 36027,
+    "character": "費",
+    "jlpt": "N3",
+    "on": [
+      "ヒ"
+    ],
+    "kun": [
+      "つい.やす",
+      "つい.える"
+    ],
+    "meanings": {
+      "en": "expense, cost, spend"
+    }
+  },
+  {
+    "id": 20184,
+    "character": "付",
+    "jlpt": "N3",
+    "on": [
+      "フ"
+    ],
+    "kun": [
+      "つ.ける",
+      "-つ.ける",
+      "-づ.ける",
+      "つ.け",
+      "つ.け-",
+      "-つ.け",
+      "-づ.け",
+      "-づけ",
+      "つ.く",
+      "-づ.く",
+      "つ.き",
+      "-つ.き",
+      "-つき",
+      "-づ.き",
+      "-づき"
+    ],
+    "meanings": {
+      "en": "adhere, attach, refer to"
+    }
+  },
+  {
+    "id": 30001,
+    "character": "由",
+    "jlpt": "N3",
+    "on": [
+      "ユ",
+      "ユウ",
+      "ユイ"
+    ],
+    "kun": [
+      "よし",
+      "よ.る"
+    ],
+    "meanings": {
+      "en": "wherefore, a reason"
+    }
+  },
+  {
+    "id": 35500,
+    "character": "説",
+    "jlpt": "N3",
+    "on": [
+      "セツ",
+      "ゼイ"
+    ],
+    "kun": [
+      "と.く"
+    ],
+    "meanings": {
+      "en": "opinion, theory, explanation"
+    }
+  },
+  {
+    "id": 38627,
+    "character": "難",
+    "jlpt": "N3",
+    "on": [
+      "ナン"
+    ],
+    "kun": [
+      "かた.い",
+      "-がた.い",
+      "むずか.しい",
+      "むづか.しい",
+      "むつか.しい",
+      "-にく.い"
+    ],
+    "meanings": {
+      "en": "difficult, impossible, trouble"
+    }
+  },
+  {
+    "id": 20778,
+    "character": "優",
+    "jlpt": "N3",
+    "on": [
+      "ユウ",
+      "ウ"
+    ],
+    "kun": [
+      "やさ.しい",
+      "すぐ.れる",
+      "まさ.る"
+    ],
+    "meanings": {
+      "en": "tenderness, excel, surpass"
+    }
+  },
+  {
+    "id": 22827,
+    "character": "夫",
+    "jlpt": "N3",
+    "on": [
+      "フ",
+      "フウ",
+      "ブ"
+    ],
+    "kun": [
+      "おっと",
+      "それ"
+    ],
+    "meanings": {
+      "en": "husband, man"
+    }
+  },
+  {
+    "id": 21454,
+    "character": "収",
+    "jlpt": "N3",
+    "on": [
+      "シュウ"
+    ],
+    "kun": [
+      "おさ.める",
+      "おさ.まる"
+    ],
+    "meanings": {
+      "en": "income, obtain, reap"
+    }
+  },
+  {
+    "id": 26029,
+    "character": "断",
+    "jlpt": "N3",
+    "on": [
+      "ダン"
+    ],
+    "kun": [
+      "た.つ",
+      "ことわ.る",
+      "さだ.める"
+    ],
+    "meanings": {
+      "en": "severance, decline, refuse"
+    }
+  },
+  {
+    "id": 30707,
+    "character": "石",
+    "jlpt": "N3",
+    "on": [
+      "セキ",
+      "シャク",
+      "コク"
+    ],
+    "kun": [
+      "いし"
+    ],
+    "meanings": {
+      "en": "stone"
+    }
+  },
+  {
+    "id": 36949,
+    "character": "違",
+    "jlpt": "N3",
+    "on": [
+      "イ"
+    ],
+    "kun": [
+      "ちが.う",
+      "ちが.い",
+      "ちが.える",
+      "-ちが.える",
+      "たが.う",
+      "たが.える"
+    ],
+    "meanings": {
+      "en": "difference, differ"
+    }
+  },
+  {
+    "id": 28040,
+    "character": "消",
+    "jlpt": "N3",
+    "on": [
+      "ショウ"
+    ],
+    "kun": [
+      "き.える",
+      "け.す"
+    ],
+    "meanings": {
+      "en": "extinguish, blow out, turn off"
+    }
+  },
+  {
+    "id": 31070,
+    "character": "神",
+    "jlpt": "N3",
+    "on": [
+      "シン",
+      "ジン"
+    ],
+    "kun": [
+      "かみ",
+      "かん-",
+      "こう-"
+    ],
+    "meanings": {
+      "en": "gods, mind, soul"
+    }
+  },
+  {
+    "id": 30058,
+    "character": "番",
+    "jlpt": "N3",
+    "on": [
+      "バン"
+    ],
+    "kun": [
+      "つが.い"
+    ],
+    "meanings": {
+      "en": "turn, number in a series"
+    }
+  },
+  {
+    "id": 35215,
+    "character": "規",
+    "jlpt": "N3",
+    "on": [
+      "キ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "standard, measure"
+    }
+  },
+  {
+    "id": 34899,
+    "character": "術",
+    "jlpt": "N3",
+    "on": [
+      "ジュツ"
+    ],
+    "kun": [
+      "すべ"
+    ],
+    "meanings": {
+      "en": "art, technique, skill"
+    }
+  },
+  {
+    "id": 20633,
+    "character": "備",
+    "jlpt": "N3",
+    "on": [
+      "ビ"
+    ],
+    "kun": [
+      "そな.える",
+      "そな.わる",
+      "つぶさ.に"
+    ],
+    "meanings": {
+      "en": "equip, provision, preparation"
+    }
+  },
+  {
+    "id": 23429,
+    "character": "宅",
+    "jlpt": "N3",
+    "on": [
+      "タク"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "home, house, residence"
+    }
+  },
+  {
+    "id": 23475,
+    "character": "害",
+    "jlpt": "N3",
+    "on": [
+      "ガイ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "harm, injury"
+    }
+  },
+  {
+    "id": 37197,
+    "character": "配",
+    "jlpt": "N3",
+    "on": [
+      "ハイ"
+    ],
+    "kun": [
+      "くば.る"
+    ],
+    "meanings": {
+      "en": "distribute, spouse, exile"
+    }
+  },
+  {
+    "id": 35686,
+    "character": "警",
+    "jlpt": "N3",
+    "on": [
+      "ケイ"
+    ],
+    "kun": [
+      "いまし.める"
+    ],
+    "meanings": {
+      "en": "admonish, commandment"
+    }
+  },
+  {
+    "id": 32946,
+    "character": "育",
+    "jlpt": "N3",
+    "on": [
+      "イク"
+    ],
+    "kun": [
+      "そだ.つ",
+      "そだ.ち",
+      "そだ.てる",
+      "はぐく.む"
+    ],
+    "meanings": {
+      "en": "bring up, grow up, raise"
+    }
+  },
+  {
+    "id": 24109,
+    "character": "席",
+    "jlpt": "N3",
+    "on": [
+      "セキ"
+    ],
+    "kun": [
+      "むしろ"
+    ],
+    "meanings": {
+      "en": "seat, mat, occasion"
+    }
+  },
+  {
+    "id": 35370,
+    "character": "訪",
+    "jlpt": "N3",
+    "on": [
+      "ホウ"
+    ],
+    "kun": [
+      "おとず.れる",
+      "たず.ねる",
+      "と.う"
+    ],
+    "meanings": {
+      "en": "call on, visit, look up"
+    }
+  },
+  {
+    "id": 20055,
+    "character": "乗",
+    "jlpt": "N3",
+    "on": [
+      "ジョウ",
+      "ショウ"
+    ],
+    "kun": [
+      "の.る",
+      "-の.り",
+      "の.せる"
+    ],
+    "meanings": {
+      "en": "ride, power, multiplication"
+    }
+  },
+  {
+    "id": 27531,
+    "character": "残",
+    "jlpt": "N3",
+    "on": [
+      "ザン",
+      "サン"
+    ],
+    "kun": [
+      "のこ.る",
+      "のこ.す",
+      "そこな.う",
+      "のこ.り"
+    ],
+    "meanings": {
+      "en": "remainder, leftover, balance"
+    }
+  },
+  {
+    "id": 24819,
+    "character": "想",
+    "jlpt": "N3",
+    "on": [
+      "ソウ",
+      "ソ"
+    ],
+    "kun": [
+      "おも.う"
+    ],
+    "meanings": {
+      "en": "idea, thought, conception"
+    }
+  },
+  {
+    "id": 22768,
+    "character": "声",
+    "jlpt": "N3",
+    "on": [
+      "セイ",
+      "ショウ"
+    ],
+    "kun": [
+      "こえ",
+      "こわ-"
+    ],
+    "meanings": {
+      "en": "voice"
+    }
+  },
+  {
+    "id": 24565,
+    "character": "念",
+    "jlpt": "N3",
+    "on": [
+      "ネン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "wish, sense, idea"
+    }
+  },
+  {
+    "id": 21161,
+    "character": "助",
+    "jlpt": "N3",
+    "on": [
+      "ジョ"
+    ],
+    "kun": [
+      "たす.ける",
+      "たす.かる",
+      "す.ける",
+      "すけ"
+    ],
+    "meanings": {
+      "en": "help, rescue, assist"
+    }
+  },
+  {
+    "id": 21172,
+    "character": "労",
+    "jlpt": "N3",
+    "on": [
+      "ロウ"
+    ],
+    "kun": [
+      "ろう.する",
+      "いたわ.る",
+      "いた.ずき",
+      "ねぎら",
+      "つか.れる",
+      "ねぎら.う"
+    ],
+    "meanings": {
+      "en": "labor, thank for, reward for"
+    }
+  },
+  {
+    "id": 20363,
+    "character": "例",
+    "jlpt": "N3",
+    "on": [
+      "レイ"
+    ],
+    "kun": [
+      "たと.える"
+    ],
+    "meanings": {
+      "en": "example, custom, usage"
+    }
+  },
+  {
+    "id": 28982,
+    "character": "然",
+    "jlpt": "N3",
+    "on": [
+      "ゼン",
+      "ネン"
+    ],
+    "kun": [
+      "しか",
+      "しか.り",
+      "しか.し",
+      "さ"
+    ],
+    "meanings": {
+      "en": "sort of thing, so, if so"
+    }
+  },
+  {
+    "id": 38480,
+    "character": "限",
+    "jlpt": "N3",
+    "on": [
+      "ゲン"
+    ],
+    "kun": [
+      "かぎ.る",
+      "かぎ.り",
+      "-かぎ.り"
+    ],
+    "meanings": {
+      "en": "limit, restrict, to best of ability"
+    }
+  },
+  {
+    "id": 36861,
+    "character": "追",
+    "jlpt": "N3",
+    "on": [
+      "ツイ"
+    ],
+    "kun": [
+      "お.う"
+    ],
+    "meanings": {
+      "en": "chase, drive away, follow"
+    }
+  },
+  {
+    "id": 21830,
+    "character": "商",
+    "jlpt": "N3",
+    "on": [
+      "ショウ"
+    ],
+    "kun": [
+      "あきな.う"
+    ],
+    "meanings": {
+      "en": "make a deal, selling, dealing in"
+    }
+  },
+  {
+    "id": 33865,
+    "character": "葉",
+    "jlpt": "N3",
+    "on": [
+      "ヨウ"
+    ],
+    "kun": [
+      "は"
+    ],
+    "meanings": {
+      "en": "leaf, plane, lobe"
+    }
+  },
+  {
+    "id": 20253,
+    "character": "伝",
+    "jlpt": "N3",
+    "on": [
+      "デン",
+      "テン"
+    ],
+    "kun": [
+      "つた.わる",
+      "つた.える",
+      "つた.う",
+      "つだ.う",
+      "-づた.い",
+      "つて"
+    ],
+    "meanings": {
+      "en": "transmit, go along, walk along"
+    }
+  },
+  {
+    "id": 20685,
+    "character": "働",
+    "jlpt": "N3",
+    "on": [
+      "ドウ"
+    ],
+    "kun": [
+      "はたら.く"
+    ],
+    "meanings": {
+      "en": "work, (kokuji)"
+    }
+  },
+  {
+    "id": 24418,
+    "character": "形",
+    "jlpt": "N3",
+    "on": [
+      "ケイ",
+      "ギョウ"
+    ],
+    "kun": [
+      "かた",
+      "-がた",
+      "かたち",
+      "なり"
+    ],
+    "meanings": {
+      "en": "shape, form, style"
+    }
+  },
+  {
+    "id": 26223,
+    "character": "景",
+    "jlpt": "N3",
+    "on": [
+      "ケイ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "scenery, view"
+    }
+  },
+  {
+    "id": 33853,
+    "character": "落",
+    "jlpt": "N3",
+    "on": [
+      "ラク"
+    ],
+    "kun": [
+      "お.ちる",
+      "お.ち",
+      "お.とす"
+    ],
+    "meanings": {
+      "en": "fall, drop, come down"
+    }
+  },
+  {
+    "id": 22909,
+    "character": "好",
+    "jlpt": "N3",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "この.む",
+      "す.く",
+      "よ.い",
+      "い.い"
+    ],
+    "meanings": {
+      "en": "fond, pleasing, like something"
+    }
+  },
+  {
+    "id": 36864,
+    "character": "退",
+    "jlpt": "N3",
+    "on": [
+      "タイ"
+    ],
+    "kun": [
+      "しりぞ.く",
+      "しりぞ.ける",
+      "ひ.く",
+      "の.く",
+      "の.ける",
+      "ど.く"
+    ],
+    "meanings": {
+      "en": "retreat, withdraw, retire"
+    }
+  },
+  {
+    "id": 38957,
+    "character": "頭",
+    "jlpt": "N3",
+    "on": [
+      "トウ",
+      "ズ",
+      "ト"
+    ],
+    "kun": [
+      "あたま",
+      "かしら",
+      "-がしら",
+      "かぶり"
+    ],
+    "meanings": {
+      "en": "head, counter for large animals"
+    }
+  },
+  {
+    "id": 36000,
+    "character": "負",
+    "jlpt": "N3",
+    "on": [
+      "フ"
+    ],
+    "kun": [
+      "ま.ける",
+      "ま.かす",
+      "お.う"
+    ],
+    "meanings": {
+      "en": "defeat, negative, -"
+    }
+  },
+  {
+    "id": 28193,
+    "character": "渡",
+    "jlpt": "N3",
+    "on": [
+      "ト"
+    ],
+    "kun": [
+      "わた.る",
+      "-わた.る",
+      "わた.す"
+    ],
+    "meanings": {
+      "en": "transit, ford, ferry"
+    }
+  },
+  {
+    "id": 22833,
+    "character": "失",
+    "jlpt": "N3",
+    "on": [
+      "シツ"
+    ],
+    "kun": [
+      "うしな.う",
+      "う.せる"
+    ],
+    "meanings": {
+      "en": "lose, error, fault"
+    }
+  },
+  {
+    "id": 24046,
+    "character": "差",
+    "jlpt": "N3",
+    "on": [
+      "サ"
+    ],
+    "kun": [
+      "さ.す",
+      "さ.し"
+    ],
+    "meanings": {
+      "en": "distinction, difference, variation"
+    }
+  },
+  {
+    "id": 26411,
+    "character": "末",
+    "jlpt": "N3",
+    "on": [
+      "マツ",
+      "バツ"
+    ],
+    "kun": [
+      "すえ",
+      "うら",
+      "うれ"
+    ],
+    "meanings": {
+      "en": "end, close, tip"
+    }
+  },
+  {
+    "id": 23432,
+    "character": "守",
+    "jlpt": "N3",
+    "on": [
+      "シュ",
+      "ス"
+    ],
+    "kun": [
+      "まも.る",
+      "まも.り",
+      "もり",
+      "-もり",
+      "かみ"
+    ],
+    "meanings": {
+      "en": "guard, protect, defend"
+    }
+  },
+  {
+    "id": 33509,
+    "character": "若",
+    "jlpt": "N3",
+    "on": [
+      "ジャク",
+      "ニャク",
+      "ニャ"
+    ],
+    "kun": [
+      "わか.い",
+      "わか-",
+      "も.しくわ",
+      "も.し",
+      "も.しくは",
+      "ごと.し"
+    ],
+    "meanings": {
+      "en": "young, if, perhaps"
+    }
+  },
+  {
+    "id": 31278,
+    "character": "種",
+    "jlpt": "N3",
+    "on": [
+      "シュ"
+    ],
+    "kun": [
+      "たね",
+      "-ぐさ"
+    ],
+    "meanings": {
+      "en": "species, kind, class"
+    }
+  },
+  {
+    "id": 32654,
+    "character": "美",
+    "jlpt": "N3",
+    "on": [
+      "ビ",
+      "ミ"
+    ],
+    "kun": [
+      "うつく.しい"
+    ],
+    "meanings": {
+      "en": "beauty, beautiful"
+    }
+  },
+  {
+    "id": 21629,
+    "character": "命",
+    "jlpt": "N3",
+    "on": [
+      "メイ",
+      "ミョウ"
+    ],
+    "kun": [
+      "いのち"
+    ],
+    "meanings": {
+      "en": "fate, command, decree"
+    }
+  },
+  {
+    "id": 31119,
+    "character": "福",
+    "jlpt": "N3",
+    "on": [
+      "フク"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "blessing, fortune, luck"
+    }
+  },
+  {
+    "id": 26395,
+    "character": "望",
+    "jlpt": "N3",
+    "on": [
+      "ボウ",
+      "モウ"
+    ],
+    "kun": [
+      "のぞ.む",
+      "もち"
+    ],
+    "meanings": {
+      "en": "ambition, full moon, hope"
+    }
+  },
+  {
+    "id": 38750,
+    "character": "非",
+    "jlpt": "N3",
+    "on": [
+      "ヒ"
+    ],
+    "kun": [
+      "あら.ず"
+    ],
+    "meanings": {
+      "en": "un-, mistake, negative"
+    }
+  },
+  {
+    "id": 35251,
+    "character": "観",
+    "jlpt": "N3",
+    "on": [
+      "カン"
+    ],
+    "kun": [
+      "み.る",
+      "しめ.す"
+    ],
+    "meanings": {
+      "en": "outlook, look, appearance"
+    }
+  },
+  {
+    "id": 23519,
+    "character": "察",
+    "jlpt": "N3",
+    "on": [
+      "サツ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "guess, presume, surmise"
+    }
+  },
+  {
+    "id": 27573,
+    "character": "段",
+    "jlpt": "N3",
+    "on": [
+      "ダン",
+      "タン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "grade, steps, stairs"
+    }
+  },
+  {
+    "id": 27178,
+    "character": "横",
+    "jlpt": "N3",
+    "on": [
+      "オウ"
+    ],
+    "kun": [
+      "よこ"
+    ],
+    "meanings": {
+      "en": "sideways, side, horizontal"
+    }
+  },
+  {
+    "id": 28145,
+    "character": "深",
+    "jlpt": "N3",
+    "on": [
+      "シン"
+    ],
+    "kun": [
+      "ふか.い",
+      "-ぶか.い",
+      "ふか.まる",
+      "ふか.める",
+      "み-"
+    ],
+    "meanings": {
+      "en": "deep, heighten, intensify"
+    }
+  },
+  {
+    "id": 30003,
+    "character": "申",
+    "jlpt": "N3",
+    "on": [
+      "シン"
+    ],
+    "kun": [
+      "もう.す",
+      "もう.し-",
+      "さる"
+    ],
+    "meanings": {
+      "en": "have the honor to, sign of the monkey, 3-5PM"
+    }
+  },
+  {
+    "id": 27096,
+    "character": "様",
+    "jlpt": "N3",
+    "on": [
+      "ヨウ",
+      "ショウ"
+    ],
+    "kun": [
+      "さま",
+      "さん"
+    ],
+    "meanings": {
+      "en": "Esq., way, manner"
+    }
+  },
+  {
+    "id": 36001,
+    "character": "財",
+    "jlpt": "N3",
+    "on": [
+      "ザイ",
+      "サイ",
+      "ゾク"
+    ],
+    "kun": [
+      "たから"
+    ],
+    "meanings": {
+      "en": "property, money, wealth"
+    }
+  },
+  {
+    "id": 28207,
+    "character": "港",
+    "jlpt": "N3",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "みなと"
+    ],
+    "meanings": {
+      "en": "harbor"
+    }
+  },
+  {
+    "id": 35672,
+    "character": "識",
+    "jlpt": "N3",
+    "on": [
+      "シキ"
+    ],
+    "kun": [
+      "し.る",
+      "しる.す"
+    ],
+    "meanings": {
+      "en": "discriminating, know, write"
+    }
+  },
+  {
+    "id": 21628,
+    "character": "呼",
+    "jlpt": "N3",
+    "on": [
+      "コ"
+    ],
+    "kun": [
+      "よ.ぶ"
+    ],
+    "meanings": {
+      "en": "call, call out to, invite"
+    }
+  },
+  {
+    "id": 36948,
+    "character": "達",
+    "jlpt": "N3",
+    "on": [
+      "タツ",
+      "ダ"
+    ],
+    "kun": [
+      "-たち"
+    ],
+    "meanings": {
+      "en": "accomplished, reach, arrive"
+    }
+  },
+  {
+    "id": 33391,
+    "character": "良",
+    "jlpt": "N3",
+    "on": [
+      "リョウ"
+    ],
+    "kun": [
+      "よ.い",
+      "-よ.い",
+      "い.い",
+      "-い.い"
+    ],
+    "meanings": {
+      "en": "good, pleasing, skilled"
+    }
+  },
+  {
+    "id": 20505,
+    "character": "候",
+    "jlpt": "N3",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "そうろう"
+    ],
+    "meanings": {
+      "en": "climate, season, weather"
+    }
+  },
+  {
+    "id": 31243,
+    "character": "程",
+    "jlpt": "N3",
+    "on": [
+      "テイ"
+    ],
+    "kun": [
+      "ほど",
+      "-ほど"
+    ],
+    "meanings": {
+      "en": "extent, degree, law"
+    }
+  },
+  {
+    "id": 28288,
+    "character": "満",
+    "jlpt": "N3",
+    "on": [
+      "マン",
+      "バン"
+    ],
+    "kun": [
+      "み.ちる",
+      "み.つ",
+      "み.たす"
+    ],
+    "meanings": {
+      "en": "full, fullness, enough"
+    }
+  },
+  {
+    "id": 25943,
+    "character": "敗",
+    "jlpt": "N3",
+    "on": [
+      "ハイ"
+    ],
+    "kun": [
+      "やぶ.れる"
+    ],
+    "meanings": {
+      "en": "failure, defeat, reversal"
+    }
+  },
+  {
+    "id": 20516,
+    "character": "値",
+    "jlpt": "N3",
+    "on": [
+      "チ"
+    ],
+    "kun": [
+      "ね",
+      "あたい"
+    ],
+    "meanings": {
+      "en": "price, cost, value"
+    }
+  },
+  {
+    "id": 31361,
+    "character": "突",
+    "jlpt": "N3",
+    "on": [
+      "トツ",
+      "カ"
+    ],
+    "kun": [
+      "つ.く"
+    ],
+    "meanings": {
+      "en": "stab, protruding, thrust"
+    }
+  },
+  {
+    "id": 20809,
+    "character": "光",
+    "jlpt": "N3",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "ひか.る",
+      "ひかり"
+    ],
+    "meanings": {
+      "en": "ray, light"
+    }
+  },
+  {
+    "id": 36335,
+    "character": "路",
+    "jlpt": "N3",
+    "on": [
+      "ロ",
+      "ル"
+    ],
+    "kun": [
+      "-じ",
+      "みち"
+    ],
+    "meanings": {
+      "en": "path, route, road"
+    }
+  },
+  {
+    "id": 31185,
+    "character": "科",
+    "jlpt": "N3",
+    "on": [
+      "カ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "department, course, section"
+    }
+  },
+  {
+    "id": 31309,
+    "character": "積",
+    "jlpt": "N3",
+    "on": [
+      "セキ"
+    ],
+    "kun": [
+      "つ.む",
+      "-づ.み",
+      "つ.もる",
+      "つ.もり"
+    ],
+    "meanings": {
+      "en": "volume, product (x*y), acreage"
+    }
+  },
+  {
+    "id": 20182,
+    "character": "他",
+    "jlpt": "N3",
+    "on": [
+      "タ"
+    ],
+    "kun": [
+      "ほか"
+    ],
+    "meanings": {
+      "en": "other, another, the others"
+    }
+  },
+  {
+    "id": 20966,
+    "character": "処",
+    "jlpt": "N3",
+    "on": [
+      "ショ"
+    ],
+    "kun": [
+      "ところ",
+      "-こ",
+      "お.る"
+    ],
+    "meanings": {
+      "en": "dispose, manage, deal with"
+    }
+  },
+  {
+    "id": 22826,
+    "character": "太",
+    "jlpt": "N3",
+    "on": [
+      "タイ",
+      "タ"
+    ],
+    "kun": [
+      "ふと.い",
+      "ふと.る"
+    ],
+    "meanings": {
+      "en": "plump, thick, big around"
+    }
+  },
+  {
+    "id": 23458,
+    "character": "客",
+    "jlpt": "N3",
+    "on": [
+      "キャク",
+      "カク"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "guest, visitor, customer"
+    }
+  },
+  {
+    "id": 21542,
+    "character": "否",
+    "jlpt": "N3",
+    "on": [
+      "ヒ"
+    ],
+    "kun": [
+      "いな",
+      "いや"
+    ],
+    "meanings": {
+      "en": "negate, no, noes"
+    }
+  },
+  {
+    "id": 24107,
+    "character": "師",
+    "jlpt": "N3",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "いくさ"
+    ],
+    "meanings": {
+      "en": "expert, teacher, master"
+    }
+  },
+  {
+    "id": 30331,
+    "character": "登",
+    "jlpt": "N3",
+    "on": [
+      "トウ",
+      "ト",
+      "ドウ",
+      "ショウ",
+      "チョウ"
+    ],
+    "kun": [
+      "のぼ.る",
+      "あ.がる"
+    ],
+    "meanings": {
+      "en": "ascend, climb up"
+    }
+  },
+  {
+    "id": 26131,
+    "character": "易",
+    "jlpt": "N3",
+    "on": [
+      "エキ",
+      "イ"
+    ],
+    "kun": [
+      "やさ.しい",
+      "やす.い"
+    ],
+    "meanings": {
+      "en": "easy, ready to, simple"
+    }
+  },
+  {
+    "id": 36895,
+    "character": "速",
+    "jlpt": "N3",
+    "on": [
+      "ソク"
+    ],
+    "kun": [
+      "はや.い",
+      "はや-",
+      "はや.める",
+      "すみ.やか"
+    ],
+    "meanings": {
+      "en": "quick, fast"
+    }
+  },
+  {
+    "id": 23384,
+    "character": "存",
+    "jlpt": "N3",
+    "on": [
+      "ソン",
+      "ゾン"
+    ],
+    "kun": [
+      "ながら.える",
+      "あ.る",
+      "たも.つ",
+      "と.う"
+    ],
+    "meanings": {
+      "en": "exist, suppose, be aware of"
+    }
+  },
+  {
+    "id": 39131,
+    "character": "飛",
+    "jlpt": "N3",
+    "on": [
+      "ヒ"
+    ],
+    "kun": [
+      "と.ぶ",
+      "と.ばす",
+      "-と.ばす"
+    ],
+    "meanings": {
+      "en": "fly, skip (pages), scatter"
+    }
+  },
+  {
+    "id": 27578,
+    "character": "殺",
+    "jlpt": "N3",
+    "on": [
+      "サツ",
+      "サイ",
+      "セツ"
+    ],
+    "kun": [
+      "ころ.す",
+      "-ごろ.し",
+      "そ.ぐ",
+      "あや.める"
+    ],
+    "meanings": {
+      "en": "kill, murder, butcher"
+    }
+  },
+  {
+    "id": 21495,
+    "character": "号",
+    "jlpt": "N3",
+    "on": [
+      "ゴウ"
+    ],
+    "kun": [
+      "さけ.ぶ",
+      "よびな"
+    ],
+    "meanings": {
+      "en": "nickname, number, item"
+    }
+  },
+  {
+    "id": 21336,
+    "character": "単",
+    "jlpt": "N3",
+    "on": [
+      "タン"
+    ],
+    "kun": [
+      "ひとえ"
+    ],
+    "meanings": {
+      "en": "simple, one, single"
+    }
+  },
+  {
+    "id": 24231,
+    "character": "座",
+    "jlpt": "N3",
+    "on": [
+      "ザ"
+    ],
+    "kun": [
+      "すわ.る"
+    ],
+    "meanings": {
+      "en": "squat, seat, cushion"
+    }
+  },
+  {
+    "id": 30772,
+    "character": "破",
+    "jlpt": "N3",
+    "on": [
+      "ハ"
+    ],
+    "kun": [
+      "やぶ.る",
+      "やぶ.れる",
+      "わ.れる"
+    ],
+    "meanings": {
+      "en": "rend, rip, tear"
+    }
+  },
+  {
+    "id": 38500,
+    "character": "除",
+    "jlpt": "N3",
+    "on": [
+      "ジョ",
+      "ジ"
+    ],
+    "kun": [
+      "のぞ.く",
+      "-よ.け"
+    ],
+    "meanings": {
+      "en": "exclude, division (x/3), remove"
+    }
+  },
+  {
+    "id": 23436,
+    "character": "完",
+    "jlpt": "N3",
+    "on": [
+      "カン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "perfect, completion, end"
+    }
+  },
+  {
+    "id": 38477,
+    "character": "降",
+    "jlpt": "N3",
+    "on": [
+      "コウ",
+      "ゴ"
+    ],
+    "kun": [
+      "お.りる",
+      "お.ろす",
+      "ふ.る",
+      "ふ.り",
+      "くだ.る",
+      "くだ.す"
+    ],
+    "meanings": {
+      "en": "descend, precipitate, fall"
+    }
+  },
+  {
+    "id": 36012,
+    "character": "責",
+    "jlpt": "N3",
+    "on": [
+      "セキ"
+    ],
+    "kun": [
+      "せ.める"
+    ],
+    "meanings": {
+      "en": "blame, condemn, censure"
+    }
+  },
+  {
+    "id": 25429,
+    "character": "捕",
+    "jlpt": "N3",
+    "on": [
+      "ホ"
+    ],
+    "kun": [
+      "と.らえる",
+      "と.らわれる",
+      "と.る",
+      "とら.える",
+      "とら.われる",
+      "つか.まえる",
+      "つか.まる"
+    ],
+    "meanings": {
+      "en": "catch, capture"
+    }
+  },
+  {
+    "id": 21361,
+    "character": "危",
+    "jlpt": "N3",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "あぶ.ない",
+      "あや.うい",
+      "あや.ぶむ"
+    ],
+    "meanings": {
+      "en": "dangerous, fear, uneasy"
+    }
+  },
+  {
+    "id": 32102,
+    "character": "給",
+    "jlpt": "N3",
+    "on": [
+      "キュウ"
+    ],
+    "kun": [
+      "たま.う",
+      "たも.う",
+      "-たま.え"
+    ],
+    "meanings": {
+      "en": "salary, wage, gift"
+    }
+  },
+  {
+    "id": 33510,
+    "character": "苦",
+    "jlpt": "N3",
+    "on": [
+      "ク"
+    ],
+    "kun": [
+      "くる.しい",
+      "-ぐる.しい",
+      "くる.しむ",
+      "くる.しめる",
+      "にが.い",
+      "にが.る"
+    ],
+    "meanings": {
+      "en": "suffering, trial, worry"
+    }
+  },
+  {
+    "id": 36814,
+    "character": "迎",
+    "jlpt": "N3",
+    "on": [
+      "ゲイ"
+    ],
+    "kun": [
+      "むか.える"
+    ],
+    "meanings": {
+      "en": "welcome, meet, greet"
+    }
+  },
+  {
+    "id": 22290,
+    "character": "園",
+    "jlpt": "N3",
+    "on": [
+      "エン"
+    ],
+    "kun": [
+      "その"
+    ],
+    "meanings": {
+      "en": "park, garden, yard"
+    }
+  },
+  {
+    "id": 20855,
+    "character": "具",
+    "jlpt": "N3",
+    "on": [
+      "グ"
+    ],
+    "kun": [
+      "そな.える",
+      "つぶさ.に"
+    ],
+    "meanings": {
+      "en": "tool, utensil, means"
+    }
+  },
+  {
+    "id": 36766,
+    "character": "辞",
+    "jlpt": "N3",
+    "on": [
+      "ジ"
+    ],
+    "kun": [
+      "や.める",
+      "いな.む"
+    ],
+    "meanings": {
+      "en": "resign, word, term"
+    }
+  },
+  {
+    "id": 22240,
+    "character": "因",
+    "jlpt": "N3",
+    "on": [
+      "イン"
+    ],
+    "kun": [
+      "よ.る",
+      "ちな.む"
+    ],
+    "meanings": {
+      "en": "cause, factor, be associated with"
+    }
+  },
+  {
+    "id": 39340,
+    "character": "馬",
+    "jlpt": "N3",
+    "on": [
+      "バ"
+    ],
+    "kun": [
+      "うま",
+      "うま-",
+      "ま"
+    ],
+    "meanings": {
+      "en": "horse"
+    }
+  },
+  {
+    "id": 24859,
+    "character": "愛",
+    "jlpt": "N3",
+    "on": [
+      "アイ"
+    ],
+    "kun": [
+      "いと.しい",
+      "かな.しい",
+      "め.でる",
+      "お.しむ",
+      "まな"
+    ],
+    "meanings": {
+      "en": "love, affection, favourite"
+    }
+  },
+  {
+    "id": 23500,
+    "character": "富",
+    "jlpt": "N3",
+    "on": [
+      "フ",
+      "フウ"
+    ],
+    "kun": [
+      "と.む",
+      "とみ"
+    ],
+    "meanings": {
+      "en": "wealth, enrich, abundant"
+    }
+  },
+  {
+    "id": 24444,
+    "character": "彼",
+    "jlpt": "N3",
+    "on": [
+      "ヒ"
+    ],
+    "kun": [
+      "かれ",
+      "かの",
+      "か.の"
+    ],
+    "meanings": {
+      "en": "he, that, the"
+    }
+  },
+  {
+    "id": 26410,
+    "character": "未",
+    "jlpt": "N3",
+    "on": [
+      "ミ",
+      "ビ"
+    ],
+    "kun": [
+      "いま.だ",
+      "ま.だ",
+      "ひつじ"
+    ],
+    "meanings": {
+      "en": "un-, not yet, hitherto"
+    }
+  },
+  {
+    "id": 33310,
+    "character": "舞",
+    "jlpt": "N3",
+    "on": [
+      "ブ"
+    ],
+    "kun": [
+      "ま.う",
+      "-ま.う",
+      "まい"
+    ],
+    "meanings": {
+      "en": "dance, flit, circle"
+    }
+  },
+  {
+    "id": 20129,
+    "character": "亡",
+    "jlpt": "N3",
+    "on": [
+      "ボウ",
+      "モウ"
+    ],
+    "kun": [
+      "な.い",
+      "な.き-",
+      "ほろ.びる",
+      "ほろ.ぶ",
+      "ほろ.ぼす"
+    ],
+    "meanings": {
+      "en": "deceased, the late, dying"
+    }
+  },
+  {
+    "id": 20919,
+    "character": "冷",
+    "jlpt": "N3",
+    "on": [
+      "レイ"
+    ],
+    "kun": [
+      "つめ.たい",
+      "ひ.える",
+      "ひ.や",
+      "ひ.ややか",
+      "ひ.やす",
+      "ひ.やかす",
+      "さ.める",
+      "さ.ます"
+    ],
+    "meanings": {
+      "en": "cool, cold (beer, person), chill"
+    }
+  },
+  {
+    "id": 36969,
+    "character": "適",
+    "jlpt": "N3",
+    "on": [
+      "テキ"
+    ],
+    "kun": [
+      "かな.う"
+    ],
+    "meanings": {
+      "en": "suitable, occasional, rare"
+    }
+  },
+  {
+    "id": 23142,
+    "character": "婦",
+    "jlpt": "N3",
+    "on": [
+      "フ"
+    ],
+    "kun": [
+      "よめ"
+    ],
+    "meanings": {
+      "en": "lady, woman, wife"
+    }
+  },
+  {
+    "id": 23492,
+    "character": "寄",
+    "jlpt": "N3",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "よ.る",
+      "-よ.り",
+      "よ.せる"
+    ],
+    "meanings": {
+      "en": "draw near, stop in, bring near"
+    }
+  },
+  {
+    "id": 36796,
+    "character": "込",
+    "jlpt": "N3",
+    "on": [],
+    "kun": [
+      "-こ.む",
+      "こ.む",
+      "こ.み",
+      "-こ.み",
+      "こ.める"
+    ],
+    "meanings": {
+      "en": "crowded, mixture, in bulk"
+    }
+  },
+  {
+    "id": 38996,
+    "character": "顔",
+    "jlpt": "N3",
+    "on": [
+      "ガン"
+    ],
+    "kun": [
+      "かお"
+    ],
+    "meanings": {
+      "en": "face, expression"
+    }
+  },
+  {
+    "id": 39006,
+    "character": "類",
+    "jlpt": "N3",
+    "on": [
+      "ルイ"
+    ],
+    "kun": [
+      "たぐ.い"
+    ],
+    "meanings": {
+      "en": "sort, kind, variety"
+    }
+  },
+  {
+    "id": 20313,
+    "character": "余",
+    "jlpt": "N3",
+    "on": [
+      "ヨ"
+    ],
+    "kun": [
+      "あま.る",
+      "あま.り",
+      "あま.す",
+      "あんま.り"
+    ],
+    "meanings": {
+      "en": "too much, myself, surplus"
+    }
+  },
+  {
+    "id": 29579,
+    "character": "王",
+    "jlpt": "N3",
+    "on": [
+      "オウ",
+      "-ノウ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "king, rule, magnate"
+    }
+  },
+  {
+    "id": 36820,
+    "character": "返",
+    "jlpt": "N3",
+    "on": [
+      "ヘン"
+    ],
+    "kun": [
+      "かえ.す",
+      "-かえ.す",
+      "かえ.る",
+      "-かえ.る"
+    ],
+    "meanings": {
+      "en": "return, answer, fade"
+    }
+  },
+  {
+    "id": 22971,
+    "character": "妻",
+    "jlpt": "N3",
+    "on": [
+      "サイ"
+    ],
+    "kun": [
+      "つま"
+    ],
+    "meanings": {
+      "en": "wife, spouse"
+    }
+  },
+  {
+    "id": 32972,
+    "character": "背",
+    "jlpt": "N3",
+    "on": [
+      "ハイ"
+    ],
+    "kun": [
+      "せ",
+      "せい",
+      "そむ.く",
+      "そむ.ける"
+    ],
+    "meanings": {
+      "en": "stature, height, back"
+    }
+  },
+  {
+    "id": 29105,
+    "character": "熱",
+    "jlpt": "N3",
+    "on": [
+      "ネツ"
+    ],
+    "kun": [
+      "あつ.い"
+    ],
+    "meanings": {
+      "en": "heat, temperature, fever"
+    }
+  },
+  {
+    "id": 23487,
+    "character": "宿",
+    "jlpt": "N3",
+    "on": [
+      "シュク"
+    ],
+    "kun": [
+      "やど",
+      "やど.る",
+      "やど.す"
+    ],
+    "meanings": {
+      "en": "inn, lodging, relay station"
+    }
+  },
+  {
+    "id": 34220,
+    "character": "薬",
+    "jlpt": "N3",
+    "on": [
+      "ヤク"
+    ],
+    "kun": [
+      "くすり"
+    ],
+    "meanings": {
+      "en": "medicine, chemical, enamel"
+    }
+  },
+  {
+    "id": 38522,
+    "character": "険",
+    "jlpt": "N3",
+    "on": [
+      "ケン"
+    ],
+    "kun": [
+      "けわ.しい"
+    ],
+    "meanings": {
+      "en": "precipitous, inaccessible place, impregnable position"
+    }
+  },
+  {
+    "id": 38972,
+    "character": "頼",
+    "jlpt": "N3",
+    "on": [
+      "ライ"
+    ],
+    "kun": [
+      "たの.む",
+      "たの.もしい",
+      "たよ.る"
+    ],
+    "meanings": {
+      "en": "trust, request"
+    }
+  },
+  {
+    "id": 35226,
+    "character": "覚",
+    "jlpt": "N3",
+    "on": [
+      "カク"
+    ],
+    "kun": [
+      "おぼ.える",
+      "さ.ます",
+      "さ.める",
+      "さと.る"
+    ],
+    "meanings": {
+      "en": "memorize, learn, remember"
+    }
+  },
+  {
+    "id": 33337,
+    "character": "船",
+    "jlpt": "N3",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "ふね",
+      "ふな-"
+    ],
+    "meanings": {
+      "en": "ship, boat"
+    }
+  },
+  {
+    "id": 36884,
+    "character": "途",
+    "jlpt": "N3",
+    "on": [
+      "ト"
+    ],
+    "kun": [
+      "みち"
+    ],
+    "meanings": {
+      "en": "route, way, road"
+    }
+  },
+  {
+    "id": 35377,
+    "character": "許",
+    "jlpt": "N3",
+    "on": [
+      "キョ"
+    ],
+    "kun": [
+      "ゆる.す",
+      "もと"
+    ],
+    "meanings": {
+      "en": "permit, approve"
+    }
+  },
+  {
+    "id": 25244,
+    "character": "抜",
+    "jlpt": "N3",
+    "on": [
+      "バツ",
+      "ハツ",
+      "ハイ"
+    ],
+    "kun": [
+      "ぬ.く",
+      "-ぬ.く",
+      "ぬ.き",
+      "ぬ.ける",
+      "ぬ.かす",
+      "ぬ.かる"
+    ],
+    "meanings": {
+      "en": "slip out, extract, pull out"
+    }
+  },
+  {
+    "id": 20415,
+    "character": "便",
+    "jlpt": "N3",
+    "on": [
+      "ベン",
+      "ビン"
+    ],
+    "kun": [
+      "たよ.り"
+    ],
+    "meanings": {
+      "en": "convenience, facility, excrement"
+    }
+  },
+  {
+    "id": 30041,
+    "character": "留",
+    "jlpt": "N3",
+    "on": [
+      "リュウ",
+      "ル"
+    ],
+    "kun": [
+      "と.める",
+      "と.まる",
+      "とど.める",
+      "とど.まる",
+      "るうぶる"
+    ],
+    "meanings": {
+      "en": "detain, fasten, halt"
+    }
+  },
+  {
+    "id": 32618,
+    "character": "罪",
+    "jlpt": "N3",
+    "on": [
+      "ザイ"
+    ],
+    "kun": [
+      "つみ"
+    ],
+    "meanings": {
+      "en": "guilt, sin, crime"
+    }
+  },
+  {
+    "id": 21162,
+    "character": "努",
+    "jlpt": "N3",
+    "on": [
+      "ド"
+    ],
+    "kun": [
+      "つと.める"
+    ],
+    "meanings": {
+      "en": "toil, diligent, as much as possible"
+    }
+  },
+  {
+    "id": 31934,
+    "character": "精",
+    "jlpt": "N3",
+    "on": [
+      "セイ",
+      "ショウ"
+    ],
+    "kun": [
+      "しら.げる",
+      "くわ.しい"
+    ],
+    "meanings": {
+      "en": "refined, ghost, fairy"
+    }
+  },
+  {
+    "id": 25955,
+    "character": "散",
+    "jlpt": "N3",
+    "on": [
+      "サン"
+    ],
+    "kun": [
+      "ち.る",
+      "ち.らす",
+      "-ち.らす",
+      "ち.らかす",
+      "ち.らかる",
+      "ち.らばる",
+      "ばら",
+      "ばら.ける"
+    ],
+    "meanings": {
+      "en": "scatter, disperse, spend"
+    }
+  },
+  {
+    "id": 38745,
+    "character": "静",
+    "jlpt": "N3",
+    "on": [
+      "セイ",
+      "ジョウ"
+    ],
+    "kun": [
+      "しず-",
+      "しず.か",
+      "しず.まる",
+      "しず.める"
+    ],
+    "meanings": {
+      "en": "quiet"
+    }
+  },
+  {
+    "id": 23130,
+    "character": "婚",
+    "jlpt": "N3",
+    "on": [
+      "コン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "marriage"
+    }
+  },
+  {
+    "id": 21916,
+    "character": "喜",
+    "jlpt": "N3",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "よろこ.ぶ",
+      "よろこ.ばす"
+    ],
+    "meanings": {
+      "en": "rejoice, take pleasure in"
+    }
+  },
+  {
+    "id": 28014,
+    "character": "浮",
+    "jlpt": "N3",
+    "on": [
+      "フ"
+    ],
+    "kun": [
+      "う.く",
+      "う.かれる",
+      "う.かぶ",
+      "う.かべる"
+    ],
+    "meanings": {
+      "en": "floating, float, rise to surface"
+    }
+  },
+  {
+    "id": 32118,
+    "character": "絶",
+    "jlpt": "N3",
+    "on": [
+      "ゼツ"
+    ],
+    "kun": [
+      "た.える",
+      "た.やす",
+      "た.つ"
+    ],
+    "meanings": {
+      "en": "discontinue, sever, cut off"
+    }
+  },
+  {
+    "id": 24184,
+    "character": "幸",
+    "jlpt": "N3",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "さいわ.い",
+      "さち",
+      "しあわ.せ"
+    ],
+    "meanings": {
+      "en": "happiness, blessing, fortune"
+    }
+  },
+  {
+    "id": 25276,
+    "character": "押",
+    "jlpt": "N3",
+    "on": [
+      "オウ"
+    ],
+    "kun": [
+      "お.す",
+      "お.し-",
+      "お.っ-",
+      "お.さえる",
+      "おさ.える"
+    ],
+    "meanings": {
+      "en": "push, stop, check"
+    }
+  },
+  {
+    "id": 20498,
+    "character": "倒",
+    "jlpt": "N3",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "たお.れる",
+      "-だお.れ",
+      "たお.す",
+      "さかさま",
+      "さかさ",
+      "さかしま"
+    ],
+    "meanings": {
+      "en": "overthrow, fall, collapse"
+    }
+  },
+  {
+    "id": 31561,
+    "character": "等",
+    "jlpt": "N3",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "ひと.しい",
+      "など",
+      "-ら"
+    ],
+    "meanings": {
+      "en": "etc., and so forth, class (first)"
+    }
+  },
+  {
+    "id": 32769,
+    "character": "老",
+    "jlpt": "N3",
+    "on": [
+      "ロウ"
+    ],
+    "kun": [
+      "お.いる",
+      "ふ.ける"
+    ],
+    "meanings": {
+      "en": "old man, old age, grow old"
+    }
+  },
+  {
+    "id": 26354,
+    "character": "曲",
+    "jlpt": "N3",
+    "on": [
+      "キョク"
+    ],
+    "kun": [
+      "ま.がる",
+      "ま.げる",
+      "くま"
+    ],
+    "meanings": {
+      "en": "bend, music, melody"
+    }
+  },
+  {
+    "id": 25173,
+    "character": "払",
+    "jlpt": "N3",
+    "on": [
+      "フツ",
+      "ヒツ",
+      "ホツ"
+    ],
+    "kun": [
+      "はら.う",
+      "-はら.い",
+      "-ばら.い"
+    ],
+    "meanings": {
+      "en": "pay, clear out, prune"
+    }
+  },
+  {
+    "id": 24237,
+    "character": "庭",
+    "jlpt": "N3",
+    "on": [
+      "テイ"
+    ],
+    "kun": [
+      "にわ"
+    ],
+    "meanings": {
+      "en": "courtyard, garden, yard"
+    }
+  },
+  {
+    "id": 24466,
+    "character": "徒",
+    "jlpt": "N3",
+    "on": [
+      "ト"
+    ],
+    "kun": [
+      "いたずら",
+      "あだ"
+    ],
+    "meanings": {
+      "en": "on foot, junior, emptiness"
+    }
+  },
+  {
+    "id": 21220,
+    "character": "勤",
+    "jlpt": "N3",
+    "on": [
+      "キン",
+      "ゴン"
+    ],
+    "kun": [
+      "つと.める",
+      "-づと.め",
+      "つと.まる",
+      "いそ.しむ"
+    ],
+    "meanings": {
+      "en": "diligence, become employed, serve"
+    }
+  },
+  {
+    "id": 36933,
+    "character": "遅",
+    "jlpt": "N3",
+    "on": [
+      "チ"
+    ],
+    "kun": [
+      "おく.れる",
+      "おく.らす",
+      "おそ.い"
+    ],
+    "meanings": {
+      "en": "slow, late, back"
+    }
+  },
+  {
+    "id": 23621,
+    "character": "居",
+    "jlpt": "N3",
+    "on": [
+      "キョ",
+      "コ"
+    ],
+    "kun": [
+      "い.る",
+      "-い",
+      "お.る"
+    ],
+    "meanings": {
+      "en": "reside, to be, exist"
+    }
+  },
+  {
+    "id": 38609,
+    "character": "雑",
+    "jlpt": "N3",
+    "on": [
+      "ザツ",
+      "ゾウ"
+    ],
+    "kun": [
+      "まじ.える",
+      "まじ.る"
+    ],
+    "meanings": {
+      "en": "miscellaneous"
+    }
+  },
+  {
+    "id": 25307,
+    "character": "招",
+    "jlpt": "N3",
+    "on": [
+      "ショウ"
+    ],
+    "kun": [
+      "まね.く"
+    ],
+    "meanings": {
+      "en": "beckon, invite, summon"
+    }
+  },
+  {
+    "id": 22256,
+    "character": "困",
+    "jlpt": "N3",
+    "on": [
+      "コン"
+    ],
+    "kun": [
+      "こま.る"
+    ],
+    "meanings": {
+      "en": "quandary, become distressed, annoyed"
+    }
+  },
+  {
+    "id": 27424,
+    "character": "欠",
+    "jlpt": "N3",
+    "on": [
+      "ケツ",
+      "ケン"
+    ],
+    "kun": [
+      "か.ける",
+      "か.く"
+    ],
+    "meanings": {
+      "en": "lack, gap, fail"
+    }
+  },
+  {
+    "id": 26356,
+    "character": "更",
+    "jlpt": "N3",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "さら",
+      "さら.に",
+      "ふ.ける",
+      "ふ.かす"
+    ],
+    "meanings": {
+      "en": "grow late, night watch, sit up late"
+    }
+  },
+  {
+    "id": 21051,
+    "character": "刻",
+    "jlpt": "N3",
+    "on": [
+      "コク"
+    ],
+    "kun": [
+      "きざ.む",
+      "きざ.み"
+    ],
+    "meanings": {
+      "en": "engrave, cut fine, chop"
+    }
+  },
+  {
+    "id": 36059,
+    "character": "賛",
+    "jlpt": "N3",
+    "on": [
+      "サン"
+    ],
+    "kun": [
+      "たす.ける",
+      "たた.える"
+    ],
+    "meanings": {
+      "en": "approve, praise, title or inscription on picture"
+    }
+  },
+  {
+    "id": 25265,
+    "character": "抱",
+    "jlpt": "N3",
+    "on": [
+      "ホウ"
+    ],
+    "kun": [
+      "だ.く",
+      "いだ.く",
+      "かか.える"
+    ],
+    "meanings": {
+      "en": "embrace, hug, hold in arms"
+    }
+  },
+  {
+    "id": 29359,
+    "character": "犯",
+    "jlpt": "N3",
+    "on": [
+      "ハン",
+      "ボン"
+    ],
+    "kun": [
+      "おか.す"
+    ],
+    "meanings": {
+      "en": "crime, sin, offense"
+    }
+  },
+  {
+    "id": 24656,
+    "character": "恐",
+    "jlpt": "N3",
+    "on": [
+      "キョウ"
+    ],
+    "kun": [
+      "おそ.れる",
+      "おそ.る",
+      "おそ.ろしい",
+      "こわ.い",
+      "こわ.がる"
+    ],
+    "meanings": {
+      "en": "fear, dread, awe"
+    }
+  },
+  {
+    "id": 24687,
+    "character": "息",
+    "jlpt": "N3",
+    "on": [
+      "ソク"
+    ],
+    "kun": [
+      "いき"
+    ],
+    "meanings": {
+      "en": "breath, respiration, son"
+    }
+  },
+  {
+    "id": 36960,
+    "character": "遠",
+    "jlpt": "N3",
+    "on": [
+      "エン",
+      "オン"
+    ],
+    "kun": [
+      "とお.い"
+    ],
+    "meanings": {
+      "en": "distant, far"
+    }
+  },
+  {
+    "id": 25147,
+    "character": "戻",
+    "jlpt": "N3",
+    "on": [
+      "レイ"
+    ],
+    "kun": [
+      "もど.す",
+      "もど.る"
+    ],
+    "meanings": {
+      "en": "re-, return, revert"
+    }
+  },
+  {
+    "id": 39000,
+    "character": "願",
+    "jlpt": "N3",
+    "on": [
+      "ガン"
+    ],
+    "kun": [
+      "ねが.う",
+      "-ねがい"
+    ],
+    "meanings": {
+      "en": "petition, request, vow"
+    }
+  },
+  {
+    "id": 32117,
+    "character": "絵",
+    "jlpt": "N3",
+    "on": [
+      "カイ",
+      "エ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "picture, drawing, painting"
+    }
+  },
+  {
+    "id": 36234,
+    "character": "越",
+    "jlpt": "N3",
+    "on": [
+      "エツ",
+      "オツ"
+    ],
+    "kun": [
+      "こ.す",
+      "-こ.す",
+      "-ご.し",
+      "こ.える",
+      "-ご.え"
+    ],
+    "meanings": {
+      "en": "surpass, cross over, move to"
+    }
+  },
+  {
+    "id": 27442,
+    "character": "欲",
+    "jlpt": "N3",
+    "on": [
+      "ヨク"
+    ],
+    "kun": [
+      "ほっ.する",
+      "ほ.しい"
+    ],
+    "meanings": {
+      "en": "longing, covetousness, greed"
+    }
+  },
+  {
+    "id": 30171,
+    "character": "痛",
+    "jlpt": "N3",
+    "on": [
+      "ツウ"
+    ],
+    "kun": [
+      "いた.い",
+      "いた.む",
+      "いた.ましい",
+      "いた.める"
+    ],
+    "meanings": {
+      "en": "pain, hurt, damage"
+    }
+  },
+  {
+    "id": 31505,
+    "character": "笑",
+    "jlpt": "N3",
+    "on": [
+      "ショウ"
+    ],
+    "kun": [
+      "わら.う",
+      "え.む"
+    ],
+    "meanings": {
+      "en": "laugh"
+    }
+  },
+  {
+    "id": 20114,
+    "character": "互",
+    "jlpt": "N3",
+    "on": [
+      "ゴ"
+    ],
+    "kun": [
+      "たが.い",
+      "かたみ.に"
+    ],
+    "meanings": {
+      "en": "mutually, reciprocally, together"
+    }
+  },
+  {
+    "id": 26463,
+    "character": "束",
+    "jlpt": "N3",
+    "on": [
+      "ソク"
+    ],
+    "kun": [
+      "たば",
+      "たば.ねる",
+      "つか",
+      "つか.ねる"
+    ],
+    "meanings": {
+      "en": "bundle, sheaf, ream"
+    }
+  },
+  {
+    "id": 20284,
+    "character": "似",
+    "jlpt": "N3",
+    "on": [
+      "ジ"
+    ],
+    "kun": [
+      "に.る",
+      "ひ.る"
+    ],
+    "meanings": {
+      "en": "becoming, resemble, counterfeit"
+    }
+  },
+  {
+    "id": 21015,
+    "character": "列",
+    "jlpt": "N3",
+    "on": [
+      "レツ",
+      "レ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "file, row, rank"
+    }
+  },
+  {
+    "id": 25506,
+    "character": "探",
+    "jlpt": "N3",
+    "on": [
+      "タン"
+    ],
+    "kun": [
+      "さぐ.る",
+      "さが.す"
+    ],
+    "meanings": {
+      "en": "grope, search, look for"
+    }
+  },
+  {
+    "id": 36867,
+    "character": "逃",
+    "jlpt": "N3",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "に.げる",
+      "に.がす",
+      "のが.す",
+      "のが.れる"
+    ],
+    "meanings": {
+      "en": "escape, flee, shirk"
+    }
+  },
+  {
+    "id": 36938,
+    "character": "遊",
+    "jlpt": "N3",
+    "on": [
+      "ユウ",
+      "ユ"
+    ],
+    "kun": [
+      "あそ.ぶ",
+      "あそ.ばす"
+    ],
+    "meanings": {
+      "en": "play"
+    }
+  },
+  {
+    "id": 36855,
+    "character": "迷",
+    "jlpt": "N3",
+    "on": [
+      "メイ"
+    ],
+    "kun": [
+      "まよ.う"
+    ],
+    "meanings": {
+      "en": "astray, be perplexed, in doubt"
+    }
+  },
+  {
+    "id": 22818,
+    "character": "夢",
+    "jlpt": "N3",
+    "on": [
+      "ム",
+      "ボウ"
+    ],
+    "kun": [
+      "ゆめ",
+      "ゆめ.みる",
+      "くら.い"
+    ],
+    "meanings": {
+      "en": "dream, vision, illusion"
+    }
+  },
+  {
+    "id": 21531,
+    "character": "君",
+    "jlpt": "N3",
+    "on": [
+      "クン"
+    ],
+    "kun": [
+      "きみ",
+      "-ぎみ"
+    ],
+    "meanings": {
+      "en": "mister, you, ruler"
+    }
+  },
+  {
+    "id": 38281,
+    "character": "閉",
+    "jlpt": "N3",
+    "on": [
+      "ヘイ"
+    ],
+    "kun": [
+      "と.じる",
+      "と.ざす",
+      "し.める",
+      "し.まる",
+      "た.てる"
+    ],
+    "meanings": {
+      "en": "closed, shut"
+    }
+  },
+  {
+    "id": 32210,
+    "character": "緒",
+    "jlpt": "N3",
+    "on": [
+      "ショ",
+      "チョ"
+    ],
+    "kun": [
+      "お",
+      "いとぐち"
+    ],
+    "meanings": {
+      "en": "thong, beginning, inception"
+    }
+  },
+  {
+    "id": 25240,
+    "character": "折",
+    "jlpt": "N3",
+    "on": [
+      "セツ",
+      "シャク"
+    ],
+    "kun": [
+      "お.る",
+      "おり",
+      "お.り",
+      "-お.り",
+      "お.れる"
+    ],
+    "meanings": {
+      "en": "fold, break, fracture"
+    }
+  },
+  {
+    "id": 33609,
+    "character": "草",
+    "jlpt": "N3",
+    "on": [
+      "ソウ"
+    ],
+    "kun": [
+      "くさ",
+      "くさ-",
+      "-ぐさ"
+    ],
+    "meanings": {
+      "en": "grass, weeds, herbs"
+    }
+  },
+  {
+    "id": 26286,
+    "character": "暮",
+    "jlpt": "N3",
+    "on": [
+      "ボ"
+    ],
+    "kun": [
+      "く.れる",
+      "く.らす"
+    ],
+    "meanings": {
+      "en": "evening, twilight, season's end"
+    }
+  },
+  {
+    "id": 37202,
+    "character": "酒",
+    "jlpt": "N3",
+    "on": [
+      "シュ"
+    ],
+    "kun": [
+      "さけ",
+      "さか-"
+    ],
+    "meanings": {
+      "en": "sake, alcohol"
+    }
+  },
+  {
+    "id": 24754,
+    "character": "悲",
+    "jlpt": "N3",
+    "on": [
+      "ヒ"
+    ],
+    "kun": [
+      "かな.しい",
+      "かな.しむ"
+    ],
+    "meanings": {
+      "en": "grieve, sad, deplore"
+    }
+  },
+  {
+    "id": 26228,
+    "character": "晴",
+    "jlpt": "N3",
+    "on": [
+      "セイ"
+    ],
+    "kun": [
+      "は.れる",
+      "は.れ",
+      "は.れ-",
+      "-ば.れ",
+      "は.らす"
+    ],
+    "meanings": {
+      "en": "clear up"
+    }
+  },
+  {
+    "id": 25499,
+    "character": "掛",
+    "jlpt": "N3",
+    "on": [
+      "カイ",
+      "ケイ"
+    ],
+    "kun": [
+      "か.ける",
+      "-か.ける",
+      "か.け",
+      "-か.け",
+      "-が.け",
+      "か.かる",
+      "-か.かる",
+      "-が.かる",
+      "か.かり",
+      "-が.かり",
+      "かかり",
+      "-がかり"
+    ],
+    "meanings": {
+      "en": "hang, suspend, depend"
+    }
+  },
+  {
+    "id": 21040,
+    "character": "到",
+    "jlpt": "N3",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "いた.る"
+    ],
+    "meanings": {
+      "en": "arrival, proceed, reach"
+    }
+  },
+  {
+    "id": 23517,
+    "character": "寝",
+    "jlpt": "N3",
+    "on": [
+      "シン"
+    ],
+    "kun": [
+      "ね.る",
+      "ね.かす",
+      "い.ぬ",
+      "みたまや",
+      "や.める"
+    ],
+    "meanings": {
+      "en": "lie down, sleep, rest"
+    }
+  },
+  {
+    "id": 26263,
+    "character": "暗",
+    "jlpt": "N3",
+    "on": [
+      "アン"
+    ],
+    "kun": [
+      "くら.い",
+      "くら.む",
+      "くれ.る"
+    ],
+    "meanings": {
+      "en": "darkness, disappear, shade"
+    }
+  },
+  {
+    "id": 30423,
+    "character": "盗",
+    "jlpt": "N3",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "ぬす.む",
+      "ぬす.み"
+    ],
+    "meanings": {
+      "en": "steal, rob, pilfer"
+    }
+  },
+  {
+    "id": 21560,
+    "character": "吸",
+    "jlpt": "N3",
+    "on": [
+      "キュウ"
+    ],
+    "kun": [
+      "す.う"
+    ],
+    "meanings": {
+      "en": "suck, imbibe, inhale"
+    }
+  },
+  {
+    "id": 38525,
+    "character": "陽",
+    "jlpt": "N3",
+    "on": [
+      "ヨウ"
+    ],
+    "kun": [
+      "ひ"
+    ],
+    "meanings": {
+      "en": "sunshine, yang principle, positive"
+    }
+  },
+  {
+    "id": 24481,
+    "character": "御",
+    "jlpt": "N3",
+    "on": [
+      "ギョ",
+      "ゴ"
+    ],
+    "kun": [
+      "おん-",
+      "お-",
+      "み-"
+    ],
+    "meanings": {
+      "en": "honorable, manipulate, govern"
+    }
+  },
+  {
+    "id": 27503,
+    "character": "歯",
+    "jlpt": "N3",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "よわい",
+      "は",
+      "よわ.い",
+      "よわい.する"
+    ],
+    "meanings": {
+      "en": "tooth, cog"
+    }
+  },
+  {
+    "id": 24536,
+    "character": "忘",
+    "jlpt": "N3",
+    "on": [
+      "ボウ"
+    ],
+    "kun": [
+      "わす.れる"
+    ],
+    "meanings": {
+      "en": "forget"
+    }
+  },
+  {
+    "id": 38634,
+    "character": "雪",
+    "jlpt": "N3",
+    "on": [
+      "セツ"
+    ],
+    "kun": [
+      "ゆき"
+    ],
+    "meanings": {
+      "en": "snow"
+    }
+  },
+  {
+    "id": 21561,
+    "character": "吹",
+    "jlpt": "N3",
+    "on": [
+      "スイ"
+    ],
+    "kun": [
+      "ふ.く"
+    ],
+    "meanings": {
+      "en": "blow, breathe, puff"
+    }
+  },
+  {
+    "id": 23064,
+    "character": "娘",
+    "jlpt": "N3",
+    "on": [
+      "ジョウ"
+    ],
+    "kun": [
+      "むすめ",
+      "こ"
+    ],
+    "meanings": {
+      "en": "daughter, girl"
+    }
+  },
+  {
+    "id": 35492,
+    "character": "誤",
+    "jlpt": "N3",
+    "on": [
+      "ゴ"
+    ],
+    "kun": [
+      "あやま.る",
+      "-あやま.る"
+    ],
+    "meanings": {
+      "en": "mistake, err, do wrong"
+    }
+  },
+  {
+    "id": 27927,
+    "character": "洗",
+    "jlpt": "N3",
+    "on": [
+      "セン"
+    ],
+    "kun": [
+      "あら.う"
+    ],
+    "meanings": {
+      "en": "wash, inquire into, probe"
+    }
+  },
+  {
+    "id": 24931,
+    "character": "慣",
+    "jlpt": "N3",
+    "on": [
+      "カン"
+    ],
+    "kun": [
+      "な.れる",
+      "な.らす"
+    ],
+    "meanings": {
+      "en": "accustomed, get used to, become experienced"
+    }
+  },
+  {
+    "id": 31036,
+    "character": "礼",
+    "jlpt": "N3",
+    "on": [
+      "レイ",
+      "ライ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "salute, bow, ceremony"
+    }
+  },
+  {
+    "id": 31379,
+    "character": "窓",
+    "jlpt": "N3",
+    "on": [
+      "ソウ",
+      "ス"
+    ],
+    "kun": [
+      "まど",
+      "てんまど",
+      "けむだし"
+    ],
+    "meanings": {
+      "en": "window, pane"
+    }
+  },
+  {
+    "id": 26132,
+    "character": "昔",
+    "jlpt": "N3",
+    "on": [
+      "セキ",
+      "シャク"
+    ],
+    "kun": [
+      "むかし"
+    ],
+    "meanings": {
+      "en": "once upon a time, antiquity, old times"
+    }
+  },
+  {
+    "id": 36007,
+    "character": "貧",
+    "jlpt": "N3",
+    "on": [
+      "ヒン",
+      "ビン"
+    ],
+    "kun": [
+      "まず.しい"
+    ],
+    "meanings": {
+      "en": "poverty, poor"
+    }
+  },
+  {
+    "id": 24594,
+    "character": "怒",
+    "jlpt": "N3",
+    "on": [
+      "ド",
+      "ヌ"
+    ],
+    "kun": [
+      "いか.る",
+      "おこ.る"
+    ],
+    "meanings": {
+      "en": "angry, be offended"
+    }
+  },
+  {
+    "id": 27891,
+    "character": "泳",
+    "jlpt": "N3",
+    "on": [
+      "エイ"
+    ],
+    "kun": [
+      "およ.ぐ"
+    ],
+    "meanings": {
+      "en": "swim"
+    }
+  },
+  {
+    "id": 31062,
+    "character": "祖",
+    "jlpt": "N3",
+    "on": [
+      "ソ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "ancestor, pioneer, founder"
+    }
+  },
+  {
+    "id": 26479,
+    "character": "杯",
+    "jlpt": "N3",
+    "on": [
+      "ハイ"
+    ],
+    "kun": [
+      "さかずき"
+    ],
+    "meanings": {
+      "en": "counter for cupfuls, wine glass, glass"
+    }
+  },
+  {
+    "id": 30130,
+    "character": "疲",
+    "jlpt": "N3",
+    "on": [
+      "ヒ"
+    ],
+    "kun": [
+      "つか.れる",
+      "-づか.れ",
+      "つか.らす"
+    ],
+    "meanings": {
+      "en": "exhausted, tire, weary"
+    }
+  },
+  {
+    "id": 30342,
+    "character": "皆",
+    "jlpt": "N3",
+    "on": [
+      "カイ"
+    ],
+    "kun": [
+      "みな",
+      "みんな"
+    ],
+    "meanings": {
+      "en": "all, everything"
+    }
+  },
+  {
+    "id": 40180,
+    "character": "鳴",
+    "jlpt": "N3",
+    "on": [
+      "メイ"
+    ],
+    "kun": [
+      "な.く",
+      "な.る",
+      "な.らす"
+    ],
+    "meanings": {
+      "en": "chirp, cry, bark"
+    }
+  },
+  {
+    "id": 33145,
+    "character": "腹",
+    "jlpt": "N3",
+    "on": [
+      "フク"
+    ],
+    "kun": [
+      "はら"
+    ],
+    "meanings": {
+      "en": "abdomen, belly, stomach"
+    }
+  },
+  {
+    "id": 29017,
+    "character": "煙",
+    "jlpt": "N3",
+    "on": [
+      "エン"
+    ],
+    "kun": [
+      "けむ.る",
+      "けむり",
+      "けむ.い"
+    ],
+    "meanings": {
+      "en": "smoke"
+    }
+  },
+  {
+    "id": 30496,
+    "character": "眠",
+    "jlpt": "N3",
+    "on": [
+      "ミン"
+    ],
+    "kun": [
+      "ねむ.る",
+      "ねむ.い"
+    ],
+    "meanings": {
+      "en": "sleep, die, sleepy"
+    }
+  },
+  {
+    "id": 24598,
+    "character": "怖",
+    "jlpt": "N3",
+    "on": [
+      "フ",
+      "ホ"
+    ],
+    "kun": [
+      "こわ.い",
+      "こわ.がる",
+      "お.じる",
+      "おそ.れる"
+    ],
+    "meanings": {
+      "en": "dreadful, be frightened, fearful"
+    }
+  },
+  {
+    "id": 32819,
+    "character": "耳",
+    "jlpt": "N3",
+    "on": [
+      "ジ"
+    ],
+    "kun": [
+      "みみ"
+    ],
+    "meanings": {
+      "en": "ear"
+    }
+  },
+  {
+    "id": 38914,
+    "character": "頂",
+    "jlpt": "N3",
+    "on": [
+      "チョウ"
+    ],
+    "kun": [
+      "いただ.く",
+      "いただき"
+    ],
+    "meanings": {
+      "en": "place on the head, receive, top of head"
+    }
+  },
+  {
+    "id": 31665,
+    "character": "箱",
+    "jlpt": "N3",
+    "on": [
+      "ソウ"
+    ],
+    "kun": [
+      "はこ"
+    ],
+    "meanings": {
+      "en": "box, chest, case"
+    }
+  },
+  {
+    "id": 26217,
+    "character": "晩",
+    "jlpt": "N3",
+    "on": [
+      "バン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "nightfall, night"
+    }
+  },
+  {
+    "id": 23506,
+    "character": "寒",
+    "jlpt": "N3",
+    "on": [
+      "カン"
+    ],
+    "kun": [
+      "さむ.い"
+    ],
+    "meanings": {
+      "en": "cold"
+    }
+  },
+  {
+    "id": 39658,
+    "character": "髪",
+    "jlpt": "N3",
+    "on": [
+      "ハツ"
+    ],
+    "kun": [
+      "かみ"
+    ],
+    "meanings": {
+      "en": "hair of the head"
+    }
+  },
+  {
+    "id": 24537,
+    "character": "忙",
+    "jlpt": "N3",
+    "on": [
+      "ボウ",
+      "モウ"
+    ],
+    "kun": [
+      "いそが.しい",
+      "せわ.しい",
+      "おそ.れる",
+      "うれえるさま"
+    ],
+    "meanings": {
+      "en": "busy, occupied, restless"
+    }
+  },
+  {
+    "id": 25165,
+    "character": "才",
+    "jlpt": "N3",
+    "on": [
+      "サイ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "genius, years old, cubic shaku"
+    }
+  },
+  {
+    "id": 38772,
+    "character": "靴",
+    "jlpt": "N3",
+    "on": [
+      "カ"
+    ],
+    "kun": [
+      "くつ"
+    ],
+    "meanings": {
+      "en": "shoes"
+    }
+  },
+  {
+    "id": 24677,
+    "character": "恥",
+    "jlpt": "N3",
+    "on": [
+      "チ"
+    ],
+    "kun": [
+      "は.じる",
+      "はじ",
+      "は.じらう",
+      "は.ずかしい"
+    ],
+    "meanings": {
+      "en": "shame, dishonor"
+    }
+  },
+  {
+    "id": 20598,
+    "character": "偶",
+    "jlpt": "N3",
+    "on": [
+      "グウ"
+    ],
+    "kun": [
+      "たま"
+    ],
+    "meanings": {
+      "en": "accidentally, even number, couple"
+    }
+  },
+  {
+    "id": 20553,
+    "character": "偉",
+    "jlpt": "N3",
+    "on": [
+      "イ"
+    ],
+    "kun": [
+      "えら.い"
+    ],
+    "meanings": {
+      "en": "admirable, greatness, remarkable"
+    }
+  },
+  {
+    "id": 29483,
+    "character": "猫",
+    "jlpt": "N3",
+    "on": [
+      "ビョウ"
+    ],
+    "kun": [
+      "ねこ"
+    ],
+    "meanings": {
+      "en": "cat"
+    }
+  },
+  {
+    "id": 24190,
+    "character": "幾",
+    "jlpt": "N3",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "いく-",
+      "いく.つ",
+      "いく.ら"
+    ],
+    "meanings": {
+      "en": "how many, how much, how far"
+    }
+  }
+]

@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../data/database/app_database.dart';
+import '../../../providers/vocab_provider.dart';
 
-class KanjiHero extends StatelessWidget {
+class KanjiHero extends ConsumerWidget {
   final Kanji kanji;
   final Color color;
   final VoidCallback onBack;
   const KanjiHero({super.key, required this.kanji, required this.color, required this.onBack});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final darkColor  = Color.lerp(color, Colors.black, isDark ? 0.65 : 0.35)!;
     final lightColor = isDark ? Color.lerp(color, Colors.black, 0.30)! : color;
     final topPadding = MediaQuery.of(context).padding.top;
+
+    final localizedAsync = ref.watch(localizedKanjiMeaningProvider(kanji.id));
+    final localizedMeaning = localizedAsync.asData?.value ?? '';
+    final meaning = localizedMeaning.isNotEmpty ? localizedMeaning : kanji.meaning;
 
     return Container(
       decoration: BoxDecoration(
@@ -40,7 +46,7 @@ class KanjiHero extends StatelessWidget {
             children: [
               _CharacterBox(character: kanji.character),
               const SizedBox(width: AppDimens.spaceMd),
-              Expanded(child: _KanjiInfo(meaning: kanji.meaning, level: kanji.jlptLevel)),
+              Expanded(child: _KanjiInfo(meaning: meaning, level: kanji.jlptLevel)),
             ],
           ),
         ],
