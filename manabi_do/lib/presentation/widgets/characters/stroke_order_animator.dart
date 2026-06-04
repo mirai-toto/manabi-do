@@ -63,7 +63,9 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
     }
 
     final t = context.tokens;
-    return GestureDetector(
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
       onTap: () => _play(strokes),
       child: AnimatedBuilder(
         animation: _controller,
@@ -106,6 +108,7 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
               ),
           ],
         ),
+      ),
       ),
     );
   }

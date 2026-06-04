@@ -27,79 +27,83 @@ class FlashCard extends StatelessWidget {
     final promptLabel = label ?? l.flashcardDefaultPrompt;
 
     return Semantics(
-      label: isRevealed
-          ? '$japanese: ${answer ?? ""}'
-          : '$promptLabel $japanese',
+      label: isRevealed ? '$japanese: ${answer ?? ""}' : '$promptLabel $japanese',
       button: true,
       excludeSemantics: true,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          height: 220,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [t.primary, t.primaryLight],
-            ),
-            borderRadius: BorderRadius.circular(AppDimens.radiusXl),
-            boxShadow: [
-              BoxShadow(
-                color: t.primary.withValues(alpha: 0.35),
-                blurRadius: 20,
-                offset: const Offset(0, 4),
-              ),
-            ],
+      child: Container(
+        height: 220,
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [t.primary, t.primaryLight],
           ),
-          child: Stack(
-            children: [
-              Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (!isRevealed) ...[
-                      Text(
-                        japanese,
-                        style: AppTextStyles.jpFlash.copyWith(color: Colors.white),
-                      ),
-                      const SizedBox(height: AppDimens.spaceSm),
-                      Text(
-                        promptLabel,
-                        style: AppTextStyles.bodySmall.copyWith(
-                          color: Colors.white.withValues(alpha: 0.8),
+          borderRadius: BorderRadius.circular(AppDimens.radiusXl),
+          boxShadow: [
+            BoxShadow(
+              color: t.primary.withValues(alpha: 0.35),
+              blurRadius: 20,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            splashColor: Colors.white.withValues(alpha: 0.15),
+            highlightColor: Colors.white.withValues(alpha: 0.08),
+            child: Stack(
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (!isRevealed) ...[
+                        Text(
+                          japanese,
+                          style: AppTextStyles.jpFlash.copyWith(color: Colors.white),
                         ),
-                      ),
-                    ] else ...[
-                      Text(
-                        answer ?? '',
-                        style: AppTextStyles.titleLarge.copyWith(color: Colors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: AppDimens.spaceXs),
-                      Text(
-                        japanese,
-                        style: AppTextStyles.jpBody.copyWith(
-                          color: Colors.white.withValues(alpha: 0.8),
+                        const SizedBox(height: AppDimens.spaceSm),
+                        Text(
+                          promptLabel,
+                          style: AppTextStyles.bodySmall.copyWith(
+                            color: Colors.white.withValues(alpha: 0.8),
+                          ),
                         ),
-                      ),
+                      ] else ...[
+                        Text(
+                          answer ?? '',
+                          style: AppTextStyles.titleLarge.copyWith(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: AppDimens.spaceXs),
+                        Text(
+                          japanese,
+                          style: AppTextStyles.jpBody.copyWith(
+                            color: Colors.white.withValues(alpha: 0.8),
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
-                ),
-              ),
-              if (!isRevealed)
-                Positioned(
-                  bottom: AppDimens.spaceMd,
-                  left: 0,
-                  right: 0,
-                  child: Text(
-                    l.tapToReveal,
-                    textAlign: TextAlign.center,
-                    style: AppTextStyles.labelSmall.copyWith(
-                      color: Colors.white.withValues(alpha: 0.7),
-                    ),
                   ),
                 ),
-            ],
+                if (!isRevealed)
+                  Positioned(
+                    bottom: AppDimens.spaceMd,
+                    left: 0,
+                    right: 0,
+                    child: Text(
+                      l.tapToReveal,
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.labelSmall.copyWith(
+                        color: Colors.white.withValues(alpha: 0.7),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
@@ -124,26 +128,11 @@ class FlashCardActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-
     return Row(
       children: [
-        Expanded(
-          child: _FlashButton(
-            label: notYetLabel,
-            bgColor: t.errorContainer,
-            fgColor: t.error,
-            onTap: onNotYet,
-          ),
-        ),
+        Expanded(child: _FlashButton(label: notYetLabel, bgColor: t.errorContainer,   fgColor: t.error,   onTap: onNotYet)),
         const SizedBox(width: AppDimens.spaceSm),
-        Expanded(
-          child: _FlashButton(
-            label: gotItLabel,
-            bgColor: t.successContainer,
-            fgColor: t.success,
-            onTap: onGotIt,
-          ),
-        ),
+        Expanded(child: _FlashButton(label: gotItLabel,  bgColor: t.successContainer, fgColor: t.success, onTap: onGotIt)),
       ],
     );
   }
@@ -163,26 +152,30 @@ class _FlashButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      label: label,
-      button: true,
-      excludeSemantics: true,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(AppDimens.radiusLg),
-          ),
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: AppTextStyles.labelLarge.copyWith(color: fgColor),
+  Widget build(BuildContext context) => Semantics(
+    label: label,
+    button: true,
+    excludeSemantics: true,
+    child: Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(AppDimens.radiusLg),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+            child: Text(
+              label,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.labelLarge.copyWith(color: fgColor),
+            ),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }

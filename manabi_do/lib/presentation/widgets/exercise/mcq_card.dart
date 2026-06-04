@@ -166,33 +166,39 @@ class _McqOptionTile extends StatelessWidget {
       selected: option.state != McqOptionState.idle,
       button: option.state == McqOptionState.idle,
       excludeSemantics: true,
-      child: GestureDetector(
-        onTap: option.state == McqOptionState.idle ? onTap : null,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 120),
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppDimens.spaceMd,
-            vertical: AppDimens.optionTilePaddingV,
-          ),
-          decoration: BoxDecoration(
-            color: bgColor,
-            border: Border.all(color: borderColor, width: 1.5),
-            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          ),
-          child: Row(
-            children: [
-              _LetterCircle(letter: option.letter, color: contentColor),
-              const SizedBox(width: AppDimens.spaceSm + 4),
-              Expanded(
-                child: Text(
-                  option.text,
-                  style: (option.useJpFont
-                      ? AppTextStyles.jpBody
-                      : AppTextStyles.body
-                  ).copyWith(color: contentColor),
-                ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 120),
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: bgColor,
+          border: Border.all(color: borderColor, width: 1.5),
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: option.state == McqOptionState.idle ? onTap : null,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceMd,
+                vertical: AppDimens.optionTilePaddingV,
               ),
-            ],
+              child: Row(
+                children: [
+                  _LetterCircle(letter: option.letter, color: contentColor),
+                  const SizedBox(width: AppDimens.spaceSm + 4),
+                  Expanded(
+                    child: Text(
+                      option.text,
+                      style: (option.useJpFont
+                          ? AppTextStyles.jpBody
+                          : AppTextStyles.body
+                      ).copyWith(color: contentColor),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),

@@ -102,7 +102,7 @@ class _DevGalleryLink extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: Padding(
         padding: const EdgeInsets.only(right: AppDimens.spaceMd, bottom: AppDimens.spaceXs),
-        child: GestureDetector(
+        child: InkWell(
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute<void>(builder: (_) => const WidgetGalleryScreen()),
           ),

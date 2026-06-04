@@ -16,23 +16,29 @@ class KanjiLevelCard extends StatelessWidget {
     final t = context.tokens;
     final color = levelColor(code);
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: AppDimens.spaceSm),
-        padding: const EdgeInsets.all(AppDimens.spaceMd),
-        decoration: BoxDecoration(
-          color: t.cardBackground,
-          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          border: Border.all(color: color.withValues(alpha: 0.35), width: 1),
-        ),
-        child: Row(
-          children: [
-            _LevelBadge(code: code, color: color),
-            const SizedBox(width: AppDimens.spaceMd),
-            Expanded(child: _LevelCardInfo(data: data, code: code, color: color)),
-            Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),
-          ],
+    return Container(
+      margin: const EdgeInsets.only(bottom: AppDimens.spaceSm),
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: t.cardBackground,
+        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        border: Border.all(color: color.withValues(alpha: 0.35), width: 1),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(AppDimens.spaceMd),
+            child: Row(
+              children: [
+                _LevelBadge(code: code, color: color),
+                const SizedBox(width: AppDimens.spaceMd),
+                Expanded(child: _LevelCardInfo(data: data, code: code, color: color)),
+                Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),
+              ],
+            ),
+          ),
         ),
       ),
     );

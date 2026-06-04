@@ -7,7 +7,7 @@ import '../../../l10n/l10n.dart';
 
 class LessonRow extends StatelessWidget {
   final String title;
-  final int difficulty; // 1–3
+  final int difficulty;
   final LessonStatus status;
   final int? lessonNumber;
   final VoidCallback? onTap;
@@ -31,43 +31,49 @@ class LessonRow extends StatelessWidget {
       label: '$title, ${l.difficultyLevel(difficulty)}, ${isDone ? l.known : l.statusNotStarted}',
       button: onTap != null,
       excludeSemantics: true,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppDimens.spaceMd,
-            vertical: AppDimens.buttonPaddingV,
-          ),
-          decoration: BoxDecoration(
-            color: t.cardBackground,
-            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-            border: Border.all(color: t.outlineVariant, width: 1.5),
-          ),
-          child: Row(
-            children: [
-              _LeadingIcon(isDone: isDone, lessonNumber: lessonNumber),
-              const SizedBox(width: AppDimens.iconTextGap),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title, style: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600)),
-                    const SizedBox(height: AppDimens.spaceXs),
-                    Row(
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: t.cardBackground,
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+          border: Border.all(color: t.outlineVariant, width: 1.5),
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceMd,
+                vertical: AppDimens.buttonPaddingV,
+              ),
+              child: Row(
+                children: [
+                  _LeadingIcon(isDone: isDone, lessonNumber: lessonNumber),
+                  const SizedBox(width: AppDimens.iconTextGap),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _DifficultyPips(difficulty: difficulty),
-                        const SizedBox(width: AppDimens.spaceSm),
-                        Text(
-                          l.difficultyLevel(difficulty),
-                          style: AppTextStyles.label.copyWith(color: t.onSurfaceVariant),
+                        Text(title, style: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600)),
+                        const SizedBox(height: AppDimens.spaceXs),
+                        Row(
+                          children: [
+                            _DifficultyPips(difficulty: difficulty),
+                            const SizedBox(width: AppDimens.spaceSm),
+                            Text(
+                              l.difficultyLevel(difficulty),
+                              style: AppTextStyles.label.copyWith(color: t.onSurfaceVariant),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  _StatusChip(isDone: isDone),
+                ],
               ),
-              _StatusChip(isDone: isDone),
-            ],
+            ),
           ),
         ),
       ),

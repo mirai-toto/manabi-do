@@ -34,75 +34,78 @@ class SectionCard extends StatelessWidget {
       label: '$title. $statLabel',
       button: onTap != null,
       excludeSemantics: true,
-      child: GestureDetector(
-        onTap: onTap,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(AppDimens.radiusXl),
-          child: Column(
-            children: [
-              Container(
-                height: 110,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: gradientColors,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppDimens.radiusXl),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            child: Column(
+              children: [
+                Container(
+                  height: 110,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: gradientColors,
+                    ),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimens.spaceLg,
+                    vertical: AppDimens.spaceLg,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              title,
+                              style: AppTextStyles.titleLarge.copyWith(color: Colors.white),
+                            ),
+                            const SizedBox(height: AppDimens.spaceXxs),
+                            Text(
+                              subtitle,
+                              style: AppTextStyles.bodySmall.copyWith(
+                                color: Colors.white.withValues(alpha: 0.8),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Text(
+                        icon,
+                        style: AppTextStyles.jpDisplay.copyWith(color: Colors.white),
+                      ),
+                    ],
                   ),
                 ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.spaceLg,
-                  vertical: AppDimens.spaceLg,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            title,
-                            style: AppTextStyles.titleLarge.copyWith(color: Colors.white),
-                          ),
-                          const SizedBox(height: AppDimens.spaceXxs),
-                          Text(
-                            subtitle,
-                            style: AppTextStyles.bodySmall.copyWith(
-                              color: Colors.white.withValues(alpha: 0.8),
-                            ),
-                          ),
-                        ],
+                Container(
+                  color: t.cardBackground,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimens.spaceLg,
+                    vertical: AppDimens.spaceMd,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          statLabel,
+                          style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+                        ),
                       ),
-                    ),
-                    Text(
-                      icon,
-                      style: AppTextStyles.jpDisplay.copyWith(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                color: t.cardBackground,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.spaceLg,
-                  vertical: AppDimens.spaceMd,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        statLabel,
-                        style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+                      const SizedBox(width: AppDimens.spaceMd),
+                      Expanded(
+                        child: AppProgressBar(progress: progress, color: progressColor),
                       ),
-                    ),
-                    const SizedBox(width: AppDimens.spaceMd),
-                    Expanded(
-                      child: AppProgressBar(progress: progress, color: progressColor),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -54,16 +54,20 @@ class _BackButton extends StatelessWidget {
   const _BackButton({required this.onTap});
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-    onTap: onTap,
-    child: Container(
-      width: 36,
-      height: 36,
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.2),
-        shape: BoxShape.circle,
+  Widget build(BuildContext context) => Container(
+    width: 36,
+    height: 36,
+    clipBehavior: Clip.antiAlias,
+    decoration: const BoxDecoration(
+      color: Color(0x33ffffff),
+      shape: BoxShape.circle,
+    ),
+    child: Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 18),
       ),
-      child: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 18),
     ),
   );
 }

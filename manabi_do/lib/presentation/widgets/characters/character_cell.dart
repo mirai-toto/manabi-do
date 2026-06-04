@@ -39,49 +39,53 @@ class CharacterCell extends StatelessWidget {
       label: semanticsLabel,
       button: onTap != null,
       excludeSemantics: true,
-      child: GestureDetector(
-        onTap: onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            color: isKnown ? t.successContainer : t.cardBackground,
-            border: Border.all(
-              color: isKnown ? t.success : t.outlineVariant,
-              width: 1.5,
-            ),
-            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        width: width,
+        height: height,
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: isKnown ? t.successContainer : t.cardBackground,
+          border: Border.all(
+            color: isKnown ? t.success : t.outlineVariant,
+            width: 1.5,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                character,
-                style: AppTextStyles.jpMedium.copyWith(
-                  fontSize: characterSize,
-                  height: 1,
-                  color: t.onSurface,
-                ),
-              ),
-              if (subLabel.isNotEmpty) ...[
-                const SizedBox(height: AppDimens.spaceXs),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceXs),
-                  child: Text(
-                    subLabel,
-                    style: AppTextStyles.labelSmall.copyWith(
-                      fontSize: subLabelSize,
-                      letterSpacing: 0.5,
-                      color: isKnown ? t.success : t.onSurfaceVariant,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  character,
+                  style: AppTextStyles.jpMedium.copyWith(
+                    fontSize: characterSize,
+                    height: 1,
+                    color: t.onSurface,
                   ),
                 ),
+                if (subLabel.isNotEmpty) ...[
+                  const SizedBox(height: AppDimens.spaceXs),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceXs),
+                    child: Text(
+                      subLabel,
+                      style: AppTextStyles.labelSmall.copyWith(
+                        fontSize: subLabelSize,
+                        letterSpacing: 0.5,
+                        color: isKnown ? t.success : t.onSurfaceVariant,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),

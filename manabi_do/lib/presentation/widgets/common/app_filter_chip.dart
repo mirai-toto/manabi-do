@@ -26,11 +26,9 @@ class AppFilterChip extends StatelessWidget {
       selected: isActive,
       button: onTap != null,
       excludeSemantics: true,
-      child: GestureDetector(
-      onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 120),
-        padding: const EdgeInsets.symmetric(horizontal: AppDimens.chipPaddingH, vertical: AppDimens.chipPaddingV),
+        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: isActive ? t.primaryContainer : Colors.transparent,
           border: Border.all(
@@ -39,19 +37,30 @@ class AppFilterChip extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(AppDimens.radiusPill),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (leading != null) ...[leading!, const SizedBox(width: AppDimens.spaceXs)],
-            Text(
-              label,
-              style: AppTextStyles.bodySmall.copyWith(
-                color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.chipPaddingH,
+                vertical: AppDimens.chipPaddingV,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (leading != null) ...[leading!, const SizedBox(width: AppDimens.spaceXs)],
+                  Text(
+                    label,
+                    style: AppTextStyles.bodySmall.copyWith(
+                      color: isActive ? t.onPrimaryContainer : t.onSurfaceVariant,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
-      ),
       ),
     );
   }
