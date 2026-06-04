@@ -37,6 +37,13 @@ class CharacterCell extends StatelessWidget {
       if (isKnown) context.l10n.known.toLowerCase(),
     ].join(', ');
 
+    final accentOrKnown = accentColor ?? (isKnown ? t.success : null);
+    final backgroundColor = accentOrKnown != null
+        ? accentOrKnown.withValues(alpha: 0.13)
+        : t.cardBackground;
+    final borderColor = accentOrKnown ?? t.outlineVariant;
+    final subLabelColor = accentOrKnown ?? t.onSurfaceVariant;
+
     return Semantics(
       label: semanticsLabel,
       button: onTap != null,
@@ -47,13 +54,8 @@ class CharacterCell extends StatelessWidget {
         height: height,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: accentColor != null
-              ? accentColor!.withValues(alpha: 0.13)
-              : (isKnown ? t.successContainer : t.cardBackground),
-          border: Border.all(
-            color: accentColor ?? (isKnown ? t.success : t.outlineVariant),
-            width: 1.5,
-          ),
+          color: backgroundColor,
+          border: Border.all(color: borderColor, width: 1.5),
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
         ),
         child: Material(
@@ -80,7 +82,7 @@ class CharacterCell extends StatelessWidget {
                       style: AppTextStyles.labelSmall.copyWith(
                         fontSize: subLabelSize,
                         letterSpacing: 0.5,
-                        color: accentColor ?? (isKnown ? t.success : t.onSurfaceVariant),
+                        color: subLabelColor,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,

@@ -6,16 +6,16 @@ import '../../l10n/l10n.dart';
 import '../widgets/widgets.dart';
 import 'widget_gallery_screen.dart';
 
+String _greeting(BuildContext context) {
+  final hour = DateTime.now().hour;
+  final l = context.l10n;
+  if (hour < 12) return l.greetingMorning;
+  if (hour < 18) return l.greetingAfternoon;
+  return l.greetingEvening;
+}
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  String _greeting(BuildContext context) {
-    final hour = DateTime.now().hour;
-    final l = context.l10n;
-    if (hour < 12) return l.greetingMorning;
-    if (hour < 18) return l.greetingAfternoon;
-    return l.greetingEvening;
-  }
 
   @override
   Widget build(BuildContext context) {

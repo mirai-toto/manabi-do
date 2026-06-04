@@ -59,35 +59,28 @@ class KanaTabView extends ConsumerWidget {
         for (final row in rows)
           _KanaRowSection(
             row: row,
+            label: _localizeRowLabel(context, row.label),
             srsCards: srsCards,
             skippedIds: knownIds,
-            onTap: (entry) => _showDetail(context, entry, _localizedRowLabel(context, row.label)),
+            onTap: (entry) => _showDetail(context, entry, _localizeRowLabel(context, row.label)),
           ),
       ],
     );
   }
 
-  String _localizedRowLabel(BuildContext context, String label) {
-    return switch (label) {
-      'Vowels' => context.l10n.kanaRowVowels,
-      _ => label,
-    };
-  }
+  static String _localizeRowLabel(BuildContext context, String label) => switch (label) {
+    'Vowels' => context.l10n.kanaRowVowels,
+    _ => label,
+  };
 }
 
 class _KanaRowSection extends StatelessWidget {
   final KanaRow row;
+  final String label;
   final Map<int, Card> srsCards;
   final Set<int> skippedIds;
   final void Function(KanaEntry) onTap;
-  const _KanaRowSection({required this.row, required this.srsCards, required this.skippedIds, required this.onTap});
-
-  String _localizedLabel(BuildContext context) {
-    return switch (row.label) {
-      'Vowels' => context.l10n.kanaRowVowels,
-      _ => row.label,
-    };
-  }
+  const _KanaRowSection({required this.row, required this.label, required this.srsCards, required this.skippedIds, required this.onTap});
 
   @override
   Widget build(BuildContext context) => Column(
@@ -95,7 +88,7 @@ class _KanaRowSection extends StatelessWidget {
     children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-        child: SectionLabel(_localizedLabel(context)),
+        child: SectionLabel(label),
       ),
       const SizedBox(height: AppDimens.spaceXs),
       _KanaGrid(row: row, srsCards: srsCards, skippedIds: skippedIds, onTap: onTap),

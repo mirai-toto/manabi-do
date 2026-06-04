@@ -6,6 +6,9 @@ import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../widgets/widgets.dart';
 
+List<String> _parseReadings(String raw) =>
+    raw.split('、').where((s) => s.trim().isNotEmpty).toList();
+
 class KanjiReadingsCard extends StatelessWidget {
   final Kanji kanji;
   const KanjiReadingsCard({super.key, required this.kanji});
@@ -13,10 +16,8 @@ class KanjiReadingsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final onReadings =
-        kanji.onReading.split('、').where((s) => s.trim().isNotEmpty).toList();
-    final kunReadings =
-        kanji.kunReading.split('、').where((s) => s.trim().isNotEmpty).toList();
+    final onReadings  = _parseReadings(kanji.onReading);
+    final kunReadings = _parseReadings(kanji.kunReading);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

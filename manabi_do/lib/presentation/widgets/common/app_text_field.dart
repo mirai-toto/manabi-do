@@ -27,6 +27,11 @@ class AppTextField extends StatelessWidget {
     this.enabled = true,
   });
 
+  OutlineInputBorder _border(Color color) => OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        borderSide: BorderSide(color: color, width: 1.5),
+      );
+
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
@@ -51,22 +56,10 @@ class AppTextField extends StatelessWidget {
         suffixIcon: suffixIcon,
         filled: true,
         fillColor: t.cardBackground,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          borderSide: BorderSide(color: t.outlineVariant, width: 1.5),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          borderSide: BorderSide(color: t.outlineVariant, width: 1.5),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          borderSide: BorderSide(color: t.primary, width: 1.5),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          borderSide: BorderSide(color: t.outlineVariant.withValues(alpha: 0.5), width: 1.5),
-        ),
+        border:         _border(t.outlineVariant),
+        enabledBorder:  _border(t.outlineVariant),
+        focusedBorder:  _border(t.primary),
+        disabledBorder: _border(t.outlineVariant.withValues(alpha: 0.5)),
       ),
     );
   }
