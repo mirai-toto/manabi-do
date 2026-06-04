@@ -54,11 +54,6 @@ class _KanaPracticeScreenState extends ConsumerState<KanaPracticeScreen> {
     final db = ref.read(databaseProvider);
     await db.upsertSrsCard(widget.type, kana.id, result.card);
 
-    // Mark as known when FSRS graduates the card from learning to review
-    if (result.card.state == State.review && existingCard?.state != State.review) {
-      await db.setKanaKnown(widget.type, kana.id, isKnown: true);
-    }
-
     setState(() {
       if (rating == Rating.again) {
         _notYet++;

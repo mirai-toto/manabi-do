@@ -21,6 +21,8 @@
   "knownCheck": "Gelernt ✓",
   "markAsKnown": "Als gelernt markieren",
   "notKnown": "Nicht gelernt",
+  "skipKana": "Überspringen (aus Übung ausschließen)",
+  "skippedKana": "Übersprungen",
 
   "statusNotStarted": "Nicht begonnen",
 

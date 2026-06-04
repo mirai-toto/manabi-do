@@ -15,14 +15,14 @@ class KanaDetailSheet extends ConsumerStatefulWidget {
   final KanaEntry entry;
   final String rowLabel;
   final String type; // 'hiragana' | 'katakana'
-  final bool isKnown;
+  final bool isSkipped;
 
   const KanaDetailSheet({
     super.key,
     required this.entry,
     required this.rowLabel,
     required this.type,
-    required this.isKnown,
+    required this.isSkipped,
   });
 
   @override
@@ -32,12 +32,12 @@ class KanaDetailSheet extends ConsumerStatefulWidget {
 class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
   Card? _srsCard;
   bool _loaded = false;
-  late bool _isKnown;
+  late bool _isSkipped;
 
   @override
   void initState() {
     super.initState();
-    _isKnown = widget.isKnown;
+    _isSkipped = widget.isSkipped;
     _loadCard();
   }
 
@@ -46,10 +46,10 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
     if (mounted) setState(() { _srsCard = card; _loaded = true; });
   }
 
-  Future<void> _toggleKnown() async {
-    final next = !_isKnown;
+  Future<void> _toggleSkip() async {
+    final next = !_isSkipped;
     await ref.read(databaseProvider).setKanaKnown(widget.type, widget.entry.id, isKnown: next);
-    if (mounted) setState(() => _isKnown = next);
+    if (mounted) setState(() => _isSkipped = next);
   }
 
   Future<void> _resetProgress() async {
@@ -70,7 +70,7 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
     );
     if (confirmed != true) return;
     await ref.read(databaseProvider).resetKanaCard(widget.type, widget.entry.id);
-    if (mounted) setState(() { _srsCard = null; _isKnown = false; });
+    if (mounted) setState(() { _srsCard = null; _isSkipped = false; });
   }
 
   @override
@@ -163,25 +163,25 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
 
             const SizedBox(height: AppDimens.spaceMd),
 
-            // Known toggle
+            // Skip toggle
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: _toggleKnown,
+                onPressed: _toggleSkip,
                 icon: Icon(
-                  _isKnown ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
-                  color: _isKnown ? t.success : t.onSurfaceVariant,
+                  Icons.not_interested_rounded,
+                  color: _isSkipped ? t.error : t.onSurfaceVariant,
                 ),
                 label: Text(
-                  _isKnown ? l.knownCheck : l.markAsKnown,
+                  _isSkipped ? l.skippedKana : l.skipKana,
                   style: AppTextStyles.body.copyWith(
-                    color: _isKnown ? t.success : t.onSurface,
+                    color: _isSkipped ? t.error : t.onSurface,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceSm),
-                  side: BorderSide(color: _isKnown ? t.success : t.outlineVariant),
+                  side: BorderSide(color: _isSkipped ? t.error : t.outlineVariant),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppDimens.radiusMd),
                   ),
@@ -189,7 +189,7 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
               ),
             ),
 
-            if (_loaded && (_srsCard != null || _isKnown)) ...[
+            if (_loaded && (_srsCard != null || _isSkipped)) ...[
               const SizedBox(height: AppDimens.spaceSm),
               SizedBox(
                 width: double.infinity,

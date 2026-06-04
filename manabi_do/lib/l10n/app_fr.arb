@@ -21,6 +21,8 @@
   "knownCheck": "Appris ✓",
   "markAsKnown": "Marquer comme appris",
   "notKnown": "Non appris",
+  "skipKana": "Ignorer (exclure de la pratique)",
+  "skippedKana": "Ignoré",
 
   "statusNotStarted": "Non commencé",
 

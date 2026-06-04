@@ -240,6 +240,11 @@ class AppDatabase extends _$AppDatabase {
   }
 
   Future<List<(Kana, Card?)>> getKanaSrsSession(String type, {int newCardLimit = 10}) async {
+    final skippedIds = await (select(progressEntries)
+      ..where((p) => p.itemType.equals(type) & p.isKnown.equals(true)))
+      .get()
+      .then((rows) => rows.map((r) => r.itemId).toSet());
+
     final kanaList = await getKanaByType(type);
     final now = DateTime.now();
     final todayStart = DateTime(now.year, now.month, now.day);
@@ -257,7 +262,9 @@ class AppDatabase extends _$AppDatabase {
       kanaList.map((k) => getSrsCard(type, k.id)),
     );
 
-    final pairs = List.generate(kanaList.length, (i) => (kanaList[i], cards[i]));
+    final pairs = List.generate(kanaList.length, (i) => (kanaList[i], cards[i]))
+        .where((p) => !skippedIds.contains(p.$1.id))
+        .toList();
 
     final due     = pairs.where((p) => p.$2 != null && !p.$2!.due.isAfter(now)).toList();
     final newOnes = pairs.where((p) => p.$2 == null).take(remainingNew).toList();

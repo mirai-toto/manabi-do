@@ -36,7 +36,7 @@ class KanaTabView extends ConsumerWidget {
         entry: entry,
         rowLabel: rowLabel,
         type: type,
-        isKnown: knownIds.contains(entry.id),
+        isSkipped: knownIds.contains(entry.id),
       ),
     );
   }
@@ -44,9 +44,12 @@ class KanaTabView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final allKana = rows.expand((r) => r.kana).toList();
-    final knownCount = allKana.where((e) => knownIds.contains(e.id)).length;
     final color = levelColor('kana');
     final srsCards = ref.watch(kanaSrsCardsProvider(type)).asData?.value ?? {};
+    final knownCount = allKana.where((e) {
+      final level = srsLevel(srsCards[e.id]);
+      return level != SrsLevel.newCard && level != SrsLevel.learning;
+    }).length;
 
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
@@ -57,6 +60,7 @@ class KanaTabView extends ConsumerWidget {
           _KanaRowSection(
             row: row,
             srsCards: srsCards,
+            skippedIds: knownIds,
             onTap: (entry) => _showDetail(context, entry, _localizedRowLabel(context, row.label)),
           ),
       ],
@@ -74,8 +78,9 @@ class KanaTabView extends ConsumerWidget {
 class _KanaRowSection extends StatelessWidget {
   final KanaRow row;
   final Map<int, Card> srsCards;
+  final Set<int> skippedIds;
   final void Function(KanaEntry) onTap;
-  const _KanaRowSection({required this.row, required this.srsCards, required this.onTap});
+  const _KanaRowSection({required this.row, required this.srsCards, required this.skippedIds, required this.onTap});
 
   String _localizedLabel(BuildContext context) {
     return switch (row.label) {
@@ -93,7 +98,7 @@ class _KanaRowSection extends StatelessWidget {
         child: SectionLabel(_localizedLabel(context)),
       ),
       const SizedBox(height: AppDimens.spaceXs),
-      _KanaGrid(row: row, srsCards: srsCards, onTap: onTap),
+      _KanaGrid(row: row, srsCards: srsCards, skippedIds: skippedIds, onTap: onTap),
       const SizedBox(height: AppDimens.spaceSm),
     ],
   );
@@ -102,9 +107,10 @@ class _KanaRowSection extends StatelessWidget {
 class _KanaGrid extends StatelessWidget {
   final KanaRow row;
   final Map<int, Card> srsCards;
+  final Set<int> skippedIds;
   final void Function(KanaEntry) onTap;
 
-  const _KanaGrid({required this.row, required this.srsCards, required this.onTap});
+  const _KanaGrid({required this.row, required this.srsCards, required this.skippedIds, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +134,7 @@ class _KanaGrid extends StatelessWidget {
                   _KanaCell(
                     entry: row.entries[i]!,
                     card: srsCards[row.entries[i]!.id],
+                    isSkipped: skippedIds.contains(row.entries[i]!.id),
                     onTap: () => onTap(row.entries[i]!),
                     width: cellSize,
                     height: cellSize,
@@ -146,6 +153,7 @@ class _KanaGrid extends StatelessWidget {
 class _KanaCell extends StatelessWidget {
   final KanaEntry entry;
   final Card? card;
+  final bool isSkipped;
   final VoidCallback onTap;
   final double width;
   final double height;
@@ -155,6 +163,7 @@ class _KanaCell extends StatelessWidget {
   const _KanaCell({
     required this.entry,
     required this.card,
+    required this.isSkipped,
     required this.onTap,
     required this.width,
     required this.height,
@@ -165,7 +174,14 @@ class _KanaCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final level = srsLevel(card);
-    final accent = level == SrsLevel.newCard ? null : level.accent;
+    final Color? accent;
+    if (isSkipped) {
+      accent = Colors.grey.shade400;
+    } else if (level == SrsLevel.newCard) {
+      accent = null;
+    } else {
+      accent = level.accent;
+    }
     return CharacterCell(
       character: entry.kana,
       subLabel: entry.romaji,

@@ -27,6 +27,8 @@
   "markAsKnown": "Mark as known",
   "notKnown": "Not known",
   "@notKnown": {},
+  "skipKana": "Skip (exclude from practice)",
+  "skippedKana": "Skipped",
 
   "statusNotStarted": "Not started",
 

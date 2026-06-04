@@ -57,6 +57,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get notKnown => 'Non appris';
 
   @override
+  String get skipKana => 'Ignorer (exclure de la pratique)';
+
+  @override
+  String get skippedKana => 'Ignoré';
+
+  @override
   String get statusNotStarted => 'Non commencé';
 
   @override

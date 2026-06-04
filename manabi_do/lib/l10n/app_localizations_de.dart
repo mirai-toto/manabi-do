@@ -57,6 +57,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get notKnown => 'Nicht gelernt';
 
   @override
+  String get skipKana => 'Überspringen (aus Übung ausschließen)';
+
+  @override
+  String get skippedKana => 'Übersprungen';
+
+  @override
   String get statusNotStarted => 'Nicht begonnen';
 
   @override

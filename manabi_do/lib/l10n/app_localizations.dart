@@ -196,6 +196,18 @@ abstract class AppLocalizations {
   /// **'Not known'**
   String get notKnown;
 
+  /// No description provided for @skipKana.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip (exclude from practice)'**
+  String get skipKana;
+
+  /// No description provided for @skippedKana.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped'**
+  String get skippedKana;
+
   /// No description provided for @statusNotStarted.
   ///
   /// In en, this message translates to:
