@@ -222,14 +222,15 @@ class _ProgressInfo extends StatelessWidget {
     final stability = srsCard?.stability ?? 0.0;
     final level = srsLevel(srsCard);
 
-    final (stateLabel, stateColor) = switch (level) {
-      SrsLevel.newCard    => (l.srsStateNew,        t.onSurfaceVariant),
-      SrsLevel.learning   => (l.srsStateLearning,   const Color(0xFFE87E04)),
-      SrsLevel.apprentice => (l.srsStateApprentice, const Color(0xFF9B59D0)),
-      SrsLevel.familiar   => (l.srsStateFamiliar,   const Color(0xFF4B7BF5)),
-      SrsLevel.mastered   => (l.srsStateMastered,   const Color(0xFF0097A7)),
-      SrsLevel.expert     => (l.srsStateExpert,     const Color(0xFF2E9E5B)),
+    final stateLabel = switch (level) {
+      SrsLevel.newCard    => l.srsStateNew,
+      SrsLevel.learning   => l.srsStateLearning,
+      SrsLevel.apprentice => l.srsStateApprentice,
+      SrsLevel.familiar   => l.srsStateFamiliar,
+      SrsLevel.mastered   => l.srsStateMastered,
+      SrsLevel.expert     => l.srsStateExpert,
     };
+    final stateColor = level == SrsLevel.newCard ? t.onSurfaceVariant : level.accent(t);
 
     final progress = (stability / 21.0).clamp(0.0, 1.0);
     final dueText = _dueText(srsCard, l);
