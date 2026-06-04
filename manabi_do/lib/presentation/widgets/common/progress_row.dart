@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/l10n.dart';
 import 'progress_bar.dart';
 
 class ProgressRow extends StatelessWidget {
@@ -21,12 +22,8 @@ class ProgressRow extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            '$known',
+            context.l10n.knownProgress(known, total),
             style: AppTextStyles.labelLarge.copyWith(color: t.onSurface),
-          ),
-          Text(
-            ' / $total known',
-            style: AppTextStyles.labelLarge.copyWith(color: t.onSurfaceVariant),
           ),
           const SizedBox(width: AppDimens.spaceMd),
           Expanded(

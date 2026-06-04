@@ -5,15 +5,15 @@ import '../../../../core/theme/app_tokens.dart';
 
 class KanjiLevelHeader extends StatelessWidget {
   final String level;
-  final String? label;
+  final String label;
   final Color color;
   final VoidCallback onBack;
   const KanjiLevelHeader({
     super.key,
     required this.level,
+    required this.label,
     required this.color,
     required this.onBack,
-    this.label,
   });
 
   @override
@@ -44,13 +44,11 @@ class KanjiLevelHeader extends StatelessWidget {
               ),
             ),
           ),
-          if (label != null) ...[
-            const SizedBox(width: AppDimens.spaceSm),
-            Text(
-              '· $label',
-              style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-            ),
-          ],
+          const SizedBox(width: AppDimens.spaceSm),
+          Text(
+            '· $label',
+            style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+          ),
         ],
       ),
     );

@@ -108,5 +108,32 @@
   "posNounSuffix": "Suffixe nominal",
   "posNounPrefix": "Préfixe nominal",
   "posSuruSpecial": "Verbe suru (spécial)",
-  "posSuruIrregular": "Verbe suru (irrég.)"
+  "posSuruIrregular": "Verbe suru (irrég.)",
+
+  "levelN5": "Débutant",
+  "levelN4": "Élémentaire",
+  "levelN3": "Intermédiaire",
+  "levelN2": "Intermédiaire supérieur",
+  "levelN1": "Avancé",
+
+  "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
+  "@charactersSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "charactersSubtitleShort": "Kana · Kanji N5–N1",
+
+  "nKanji": "{count} kanji",
+  "@nKanji": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "knownProgress": "{known} / {total} appris",
+  "@knownProgress": {
+    "placeholders": {
+      "known": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "kanaRowVowels": "Voyelles"
 }

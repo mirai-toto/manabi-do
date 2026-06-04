@@ -235,4 +235,40 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get posSuruIrregular => 'Verbe suru (irrég.)';
+
+  @override
+  String get levelN5 => 'Débutant';
+
+  @override
+  String get levelN4 => 'Élémentaire';
+
+  @override
+  String get levelN3 => 'Intermédiaire';
+
+  @override
+  String get levelN2 => 'Intermédiaire supérieur';
+
+  @override
+  String get levelN1 => 'Avancé';
+
+  @override
+  String charactersSubtitle(int total) {
+    return 'Kana · Kanji N5–N1 · $total kana';
+  }
+
+  @override
+  String get charactersSubtitleShort => 'Kana · Kanji N5–N1';
+
+  @override
+  String nKanji(int count) {
+    return '$count kanji';
+  }
+
+  @override
+  String knownProgress(int known, int total) {
+    return '$known / $total appris';
+  }
+
+  @override
+  String get kanaRowVowels => 'Voyelles';
 }

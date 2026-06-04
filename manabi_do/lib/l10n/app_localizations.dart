@@ -541,6 +541,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Suru verb (irreg.)'**
   String get posSuruIrregular;
+
+  /// No description provided for @levelN5.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get levelN5;
+
+  /// No description provided for @levelN4.
+  ///
+  /// In en, this message translates to:
+  /// **'Elementary'**
+  String get levelN4;
+
+  /// No description provided for @levelN3.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get levelN3;
+
+  /// No description provided for @levelN2.
+  ///
+  /// In en, this message translates to:
+  /// **'Upper-Intermediate'**
+  String get levelN2;
+
+  /// No description provided for @levelN1.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get levelN1;
+
+  /// No description provided for @charactersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kana · Kanji N5–N1 · {total} kana'**
+  String charactersSubtitle(int total);
+
+  /// No description provided for @charactersSubtitleShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Kana · Kanji N5–N1'**
+  String get charactersSubtitleShort;
+
+  /// No description provided for @nKanji.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} kanji'**
+  String nKanji(int count);
+
+  /// No description provided for @knownProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{known} / {total} known'**
+  String knownProgress(int known, int total);
+
+  /// No description provided for @kanaRowVowels.
+  ///
+  /// In en, this message translates to:
+  /// **'Vowels'**
+  String get kanaRowVowels;
 }
 
 class _AppLocalizationsDelegate

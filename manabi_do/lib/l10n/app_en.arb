@@ -114,5 +114,32 @@
   "posNounSuffix": "Noun suffix",
   "posNounPrefix": "Noun prefix",
   "posSuruSpecial": "Suru verb (special)",
-  "posSuruIrregular": "Suru verb (irreg.)"
+  "posSuruIrregular": "Suru verb (irreg.)",
+
+  "levelN5": "Beginner",
+  "levelN4": "Elementary",
+  "levelN3": "Intermediate",
+  "levelN2": "Upper-Intermediate",
+  "levelN1": "Advanced",
+
+  "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
+  "@charactersSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "charactersSubtitleShort": "Kana · Kanji N5–N1",
+
+  "nKanji": "{count} kanji",
+  "@nKanji": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "knownProgress": "{known} / {total} known",
+  "@knownProgress": {
+    "placeholders": {
+      "known": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "kanaRowVowels": "Vowels"
 }

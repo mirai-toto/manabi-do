@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../domain/data/kana_data.dart';
+import '../../../l10n/l10n.dart';
 import '../../widgets/widgets.dart';
 
 class KanaTabView extends StatelessWidget {
@@ -40,13 +41,20 @@ class _KanaRowSection extends StatelessWidget {
   final void Function(String) onToggle;
   const _KanaRowSection({required this.row, required this.known, required this.onToggle});
 
+  String _localizedLabel(BuildContext context) {
+    return switch (row.label) {
+      'Vowels' => context.l10n.kanaRowVowels,
+      _ => row.label,
+    };
+  }
+
   @override
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-        child: SectionLabel(row.label),
+        child: SectionLabel(_localizedLabel(context)),
       ),
       const SizedBox(height: AppDimens.spaceXs),
       _KanaGrid(row: row, known: known, onToggle: onToggle),

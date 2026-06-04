@@ -14,9 +14,8 @@ then re-run this script.
 import json
 import sqlite3
 import os
-import sys
 
-SCHEMA_VERSION = 6
+SCHEMA_VERSION = 7
 OUT_PATH = "assets/manabi_do_content.db"
 LEVELS = [("n5", "N5"), ("n4", "N4"), ("n3", "N3"), ("n2", "N2"), ("n1", "N1")]
 
@@ -57,11 +56,13 @@ def create_tables(db: sqlite3.Connection) -> None:
         );
 
         CREATE TABLE kanas (
-            id        INTEGER PRIMARY KEY AUTOINCREMENT,
-            character TEXT NOT NULL,
-            romaji    TEXT NOT NULL,
-            type      TEXT NOT NULL,
-            row       TEXT NOT NULL
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            character  TEXT NOT NULL,
+            romaji     TEXT NOT NULL,
+            type       TEXT NOT NULL,
+            row        TEXT NOT NULL,
+            kana_group TEXT NOT NULL,
+            slot       INTEGER NOT NULL
         );
 
         CREATE TABLE grammar_lessons (
@@ -144,6 +145,28 @@ def insert_vocab(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
     return len(entries)
 
 
+def insert_kana(db: sqlite3.Connection) -> int:
+    path = "assets/data/kana.json"
+    with open(path, encoding="utf-8") as f:
+        d = json.load(f)
+
+    rows = []
+    for type_ in ("hiragana", "katakana"):
+        for kana_row in d[type_]:
+            label = kana_row["label"]
+            group = kana_row["group"]
+            for slot, entry in enumerate(kana_row["entries"]):
+                if entry is None:
+                    continue
+                rows.append((entry["kana"], entry["romaji"], type_, label, group, slot))
+
+    db.executemany(
+        "INSERT INTO kanas (character, romaji, type, row, kana_group, slot) VALUES (?, ?, ?, ?, ?, ?)",
+        rows,
+    )
+    return len(rows)
+
+
 def main() -> None:
     if os.path.exists(OUT_PATH):
         os.remove(OUT_PATH)
@@ -164,6 +187,10 @@ def main() -> None:
         print(f"Inserting {jlpt} vocab… ", end="", flush=True)
         n = insert_vocab(db, slug, jlpt)
         print(f"{n} entries")
+
+    print("Inserting kana… ", end="", flush=True)
+    n = insert_kana(db)
+    print(f"{n} entries")
 
     db.commit()
     db.close()

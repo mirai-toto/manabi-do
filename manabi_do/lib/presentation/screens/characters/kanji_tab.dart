@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/jlpt_level.dart';
+import '../../../l10n/level_label.dart';
 import '../../providers/kanji_provider.dart';
 import '../../widgets/widgets.dart';
 import 'kanji_tab/kanji_grid.dart';
@@ -44,7 +45,7 @@ class _KanjiTabViewState extends ConsumerState<KanjiTabView> {
       children: [
         KanjiLevelHeader(
           level: _selectedLevel!,
-          label: data?.label,
+          label: levelLabel(_selectedLevel!, context),
           color: color,
           onBack: () => setState(() => _selectedLevel = null),
         ),

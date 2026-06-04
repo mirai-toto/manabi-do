@@ -3,6 +3,8 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
+import '../../../../l10n/l10n.dart';
+import '../../../../l10n/level_label.dart';
 import '../../../providers/kanji_provider.dart';
 
 class KanjiLevelCard extends StatelessWidget {
@@ -80,14 +82,14 @@ class _LevelCardInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          data?.label ?? '—',
+          levelLabel(code, context),
           style: AppTextStyles.body.copyWith(color: t.onSurface, fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 4),
         Row(
           children: [
             Text(
-              data != null ? '${data!.total} kanji' : '— kanji',
+              data != null ? context.l10n.nKanji(data!.total) : '—',
               style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
             ),
             const SizedBox(width: AppDimens.spaceSm),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
-import '../../../providers/kanji_provider.dart';
+import '../../../../data/database/app_database.dart';
 import '../../../widgets/widgets.dart';
 import '../kanji_detail_screen.dart';
 
 class KanjiGrid extends StatelessWidget {
-  final List<KanjiListEntry> kanjis;
+  final List<Kanji> kanjis;
   final Set<int> knownIds;
   const KanjiGrid({super.key, required this.kanjis, required this.knownIds});
 

@@ -125,8 +125,8 @@ class _CharactersHeader extends StatelessWidget {
     final l = context.l10n;
     final total = kanaData?.total;
     final subtitle = total != null
-        ? 'Kana · Kanji N5–N1  ·  $total kana'
-        : 'Kana · Kanji N5–N1';
+        ? l.charactersSubtitle(total)
+        : l.charactersSubtitleShort;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(

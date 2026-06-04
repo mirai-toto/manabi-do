@@ -101,11 +101,23 @@ class _WordRow extends StatelessWidget {
         const SizedBox(width: AppDimens.spaceSm),
         Expanded(
           flex: 3,
-          child: Text(
-            meaning,
-            style: AppTextStyles.bodySmall.copyWith(color: context.tokens.onSurfaceVariant),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                meaning,
+                style: AppTextStyles.bodySmall.copyWith(color: context.tokens.onSurfaceVariant),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 2),
+              Text(
+                posLabel(entry.partOfSpeech, context),
+                style: AppTextStyles.labelSmall.copyWith(
+                  color: context.tokens.onSurfaceVariant.withValues(alpha: 0.6),
+                ),
+              ),
+            ],
           ),
         ),
         const SizedBox(width: AppDimens.spaceSm),

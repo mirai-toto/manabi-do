@@ -460,8 +460,36 @@ class $KanasTable extends Kanas with TableInfo<$KanasTable, Kana> {
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _kanaGroupMeta = const VerificationMeta(
+    'kanaGroup',
+  );
   @override
-  List<GeneratedColumn> get $columns => [id, character, romaji, type, row];
+  late final GeneratedColumn<String> kanaGroup = GeneratedColumn<String>(
+    'kana_group',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _slotMeta = const VerificationMeta('slot');
+  @override
+  late final GeneratedColumn<int> slot = GeneratedColumn<int>(
+    'slot',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    character,
+    romaji,
+    type,
+    row,
+    kanaGroup,
+    slot,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -509,6 +537,22 @@ class $KanasTable extends Kanas with TableInfo<$KanasTable, Kana> {
     } else if (isInserting) {
       context.missing(_rowMeta);
     }
+    if (data.containsKey('kana_group')) {
+      context.handle(
+        _kanaGroupMeta,
+        kanaGroup.isAcceptableOrUnknown(data['kana_group']!, _kanaGroupMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kanaGroupMeta);
+    }
+    if (data.containsKey('slot')) {
+      context.handle(
+        _slotMeta,
+        slot.isAcceptableOrUnknown(data['slot']!, _slotMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_slotMeta);
+    }
     return context;
   }
 
@@ -538,6 +582,14 @@ class $KanasTable extends Kanas with TableInfo<$KanasTable, Kana> {
         DriftSqlType.string,
         data['${effectivePrefix}row'],
       )!,
+      kanaGroup: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kana_group'],
+      )!,
+      slot: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}slot'],
+      )!,
     );
   }
 
@@ -553,12 +605,16 @@ class Kana extends DataClass implements Insertable<Kana> {
   final String romaji;
   final String type;
   final String row;
+  final String kanaGroup;
+  final int slot;
   const Kana({
     required this.id,
     required this.character,
     required this.romaji,
     required this.type,
     required this.row,
+    required this.kanaGroup,
+    required this.slot,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -568,6 +624,8 @@ class Kana extends DataClass implements Insertable<Kana> {
     map['romaji'] = Variable<String>(romaji);
     map['type'] = Variable<String>(type);
     map['row'] = Variable<String>(row);
+    map['kana_group'] = Variable<String>(kanaGroup);
+    map['slot'] = Variable<int>(slot);
     return map;
   }
 
@@ -578,6 +636,8 @@ class Kana extends DataClass implements Insertable<Kana> {
       romaji: Value(romaji),
       type: Value(type),
       row: Value(row),
+      kanaGroup: Value(kanaGroup),
+      slot: Value(slot),
     );
   }
 
@@ -592,6 +652,8 @@ class Kana extends DataClass implements Insertable<Kana> {
       romaji: serializer.fromJson<String>(json['romaji']),
       type: serializer.fromJson<String>(json['type']),
       row: serializer.fromJson<String>(json['row']),
+      kanaGroup: serializer.fromJson<String>(json['kanaGroup']),
+      slot: serializer.fromJson<int>(json['slot']),
     );
   }
   @override
@@ -603,6 +665,8 @@ class Kana extends DataClass implements Insertable<Kana> {
       'romaji': serializer.toJson<String>(romaji),
       'type': serializer.toJson<String>(type),
       'row': serializer.toJson<String>(row),
+      'kanaGroup': serializer.toJson<String>(kanaGroup),
+      'slot': serializer.toJson<int>(slot),
     };
   }
 
@@ -612,12 +676,16 @@ class Kana extends DataClass implements Insertable<Kana> {
     String? romaji,
     String? type,
     String? row,
+    String? kanaGroup,
+    int? slot,
   }) => Kana(
     id: id ?? this.id,
     character: character ?? this.character,
     romaji: romaji ?? this.romaji,
     type: type ?? this.type,
     row: row ?? this.row,
+    kanaGroup: kanaGroup ?? this.kanaGroup,
+    slot: slot ?? this.slot,
   );
   Kana copyWithCompanion(KanasCompanion data) {
     return Kana(
@@ -626,6 +694,8 @@ class Kana extends DataClass implements Insertable<Kana> {
       romaji: data.romaji.present ? data.romaji.value : this.romaji,
       type: data.type.present ? data.type.value : this.type,
       row: data.row.present ? data.row.value : this.row,
+      kanaGroup: data.kanaGroup.present ? data.kanaGroup.value : this.kanaGroup,
+      slot: data.slot.present ? data.slot.value : this.slot,
     );
   }
 
@@ -636,13 +706,16 @@ class Kana extends DataClass implements Insertable<Kana> {
           ..write('character: $character, ')
           ..write('romaji: $romaji, ')
           ..write('type: $type, ')
-          ..write('row: $row')
+          ..write('row: $row, ')
+          ..write('kanaGroup: $kanaGroup, ')
+          ..write('slot: $slot')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, character, romaji, type, row);
+  int get hashCode =>
+      Object.hash(id, character, romaji, type, row, kanaGroup, slot);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -651,7 +724,9 @@ class Kana extends DataClass implements Insertable<Kana> {
           other.character == this.character &&
           other.romaji == this.romaji &&
           other.type == this.type &&
-          other.row == this.row);
+          other.row == this.row &&
+          other.kanaGroup == this.kanaGroup &&
+          other.slot == this.slot);
 }
 
 class KanasCompanion extends UpdateCompanion<Kana> {
@@ -660,12 +735,16 @@ class KanasCompanion extends UpdateCompanion<Kana> {
   final Value<String> romaji;
   final Value<String> type;
   final Value<String> row;
+  final Value<String> kanaGroup;
+  final Value<int> slot;
   const KanasCompanion({
     this.id = const Value.absent(),
     this.character = const Value.absent(),
     this.romaji = const Value.absent(),
     this.type = const Value.absent(),
     this.row = const Value.absent(),
+    this.kanaGroup = const Value.absent(),
+    this.slot = const Value.absent(),
   });
   KanasCompanion.insert({
     this.id = const Value.absent(),
@@ -673,16 +752,22 @@ class KanasCompanion extends UpdateCompanion<Kana> {
     required String romaji,
     required String type,
     required String row,
+    required String kanaGroup,
+    required int slot,
   }) : character = Value(character),
        romaji = Value(romaji),
        type = Value(type),
-       row = Value(row);
+       row = Value(row),
+       kanaGroup = Value(kanaGroup),
+       slot = Value(slot);
   static Insertable<Kana> custom({
     Expression<int>? id,
     Expression<String>? character,
     Expression<String>? romaji,
     Expression<String>? type,
     Expression<String>? row,
+    Expression<String>? kanaGroup,
+    Expression<int>? slot,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -690,6 +775,8 @@ class KanasCompanion extends UpdateCompanion<Kana> {
       if (romaji != null) 'romaji': romaji,
       if (type != null) 'type': type,
       if (row != null) 'row': row,
+      if (kanaGroup != null) 'kana_group': kanaGroup,
+      if (slot != null) 'slot': slot,
     });
   }
 
@@ -699,6 +786,8 @@ class KanasCompanion extends UpdateCompanion<Kana> {
     Value<String>? romaji,
     Value<String>? type,
     Value<String>? row,
+    Value<String>? kanaGroup,
+    Value<int>? slot,
   }) {
     return KanasCompanion(
       id: id ?? this.id,
@@ -706,6 +795,8 @@ class KanasCompanion extends UpdateCompanion<Kana> {
       romaji: romaji ?? this.romaji,
       type: type ?? this.type,
       row: row ?? this.row,
+      kanaGroup: kanaGroup ?? this.kanaGroup,
+      slot: slot ?? this.slot,
     );
   }
 
@@ -727,6 +818,12 @@ class KanasCompanion extends UpdateCompanion<Kana> {
     if (row.present) {
       map['row'] = Variable<String>(row.value);
     }
+    if (kanaGroup.present) {
+      map['kana_group'] = Variable<String>(kanaGroup.value);
+    }
+    if (slot.present) {
+      map['slot'] = Variable<int>(slot.value);
+    }
     return map;
   }
 
@@ -737,7 +834,9 @@ class KanasCompanion extends UpdateCompanion<Kana> {
           ..write('character: $character, ')
           ..write('romaji: $romaji, ')
           ..write('type: $type, ')
-          ..write('row: $row')
+          ..write('row: $row, ')
+          ..write('kanaGroup: $kanaGroup, ')
+          ..write('slot: $slot')
           ..write(')'))
         .toString();
   }
@@ -3548,6 +3647,8 @@ typedef $$KanasTableCreateCompanionBuilder =
       required String romaji,
       required String type,
       required String row,
+      required String kanaGroup,
+      required int slot,
     });
 typedef $$KanasTableUpdateCompanionBuilder =
     KanasCompanion Function({
@@ -3556,6 +3657,8 @@ typedef $$KanasTableUpdateCompanionBuilder =
       Value<String> romaji,
       Value<String> type,
       Value<String> row,
+      Value<String> kanaGroup,
+      Value<int> slot,
     });
 
 class $$KanasTableFilterComposer extends Composer<_$AppDatabase, $KanasTable> {
@@ -3588,6 +3691,16 @@ class $$KanasTableFilterComposer extends Composer<_$AppDatabase, $KanasTable> {
 
   ColumnFilters<String> get row => $composableBuilder(
     column: $table.row,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kanaGroup => $composableBuilder(
+    column: $table.kanaGroup,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get slot => $composableBuilder(
+    column: $table.slot,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -3625,6 +3738,16 @@ class $$KanasTableOrderingComposer
     column: $table.row,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get kanaGroup => $composableBuilder(
+    column: $table.kanaGroup,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get slot => $composableBuilder(
+    column: $table.slot,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$KanasTableAnnotationComposer
@@ -3650,6 +3773,12 @@ class $$KanasTableAnnotationComposer
 
   GeneratedColumn<String> get row =>
       $composableBuilder(column: $table.row, builder: (column) => column);
+
+  GeneratedColumn<String> get kanaGroup =>
+      $composableBuilder(column: $table.kanaGroup, builder: (column) => column);
+
+  GeneratedColumn<int> get slot =>
+      $composableBuilder(column: $table.slot, builder: (column) => column);
 }
 
 class $$KanasTableTableManager
@@ -3685,12 +3814,16 @@ class $$KanasTableTableManager
                 Value<String> romaji = const Value.absent(),
                 Value<String> type = const Value.absent(),
                 Value<String> row = const Value.absent(),
+                Value<String> kanaGroup = const Value.absent(),
+                Value<int> slot = const Value.absent(),
               }) => KanasCompanion(
                 id: id,
                 character: character,
                 romaji: romaji,
                 type: type,
                 row: row,
+                kanaGroup: kanaGroup,
+                slot: slot,
               ),
           createCompanionCallback:
               ({
@@ -3699,12 +3832,16 @@ class $$KanasTableTableManager
                 required String romaji,
                 required String type,
                 required String row,
+                required String kanaGroup,
+                required int slot,
               }) => KanasCompanion.insert(
                 id: id,
                 character: character,
                 romaji: romaji,
                 type: type,
                 row: row,
+                kanaGroup: kanaGroup,
+                slot: slot,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
