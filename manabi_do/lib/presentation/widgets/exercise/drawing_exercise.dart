@@ -10,6 +10,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../characters/kanji_drawing_canvas.dart';
 import '../characters/stroke_order_animator.dart';
+import '../characters/user_stroke_animator.dart';
 import 'flash_card.dart';
 
 /// A self-contained drawing exercise.
@@ -144,19 +145,10 @@ class _DrawingExerciseState extends State<DrawingExercise> {
                     Text(l.drawingYourAnswer,
                         style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant)),
                     const SizedBox(height: AppDimens.spaceXs),
-                    SizedBox(
-                      width: cardSize,
-                      height: cardSize,
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: KanjiDrawingCanvas(
-                          key: _canvasKey,
-                          onStrokesChanged: (_) {},
-                          strokeResults: _strokeResults,
-                          referenceStrokes: null,
-                          enabled: false,
-                        ),
-                      ),
+                    UserStrokeAnimator(
+                      strokes: _strokes,
+                      strokeResults: _strokeResults,
+                      size: cardSize,
                     ),
                   ]),
                 ),
