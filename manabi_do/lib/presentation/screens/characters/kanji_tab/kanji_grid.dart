@@ -33,7 +33,7 @@ class KanjiGrid extends StatelessWidget {
             itemCount: kanjis.length,
             itemBuilder: (context, i) {
               final entry = kanjis[i];
-              return KanjiCell(
+              return CharacterCell(
                 character: entry.character,
                 isKnown: knownIds.contains(entry.id),
                 onTap: () => Navigator.of(context).push(
@@ -41,9 +41,10 @@ class KanjiGrid extends StatelessWidget {
                     builder: (_) => KanjiDetailScreen(kanjiId: entry.id),
                   ),
                 ),
-                size: cellSize,
-                kanjiSize: kanjiSize,
-                meaningSize: meaningSize,
+                width: cellSize,
+                height: cellSize,
+                characterSize: kanjiSize,
+                subLabelSize: meaningSize,
               );
             },
           );

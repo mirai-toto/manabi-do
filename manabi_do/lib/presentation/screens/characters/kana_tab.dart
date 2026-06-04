@@ -67,15 +67,15 @@ class _KanaGrid extends StatelessWidget {
                 if (row.entries[i] == null)
                   SizedBox(width: cellSize, height: cellSize)
                 else
-                  KanaCell(
-                    kana: row.entries[i]!.kana,
-                    romaji: row.entries[i]!.romaji,
+                  CharacterCell(
+                    character: row.entries[i]!.kana,
+                    subLabel: row.entries[i]!.romaji,
                     isKnown: known.contains(row.entries[i]!.kana),
                     onTap: () => onToggle(row.entries[i]!.kana),
                     width: cellSize,
                     height: cellSize,
-                    kanaSize: kanaSize,
-                    romajiSize: romajiSize,
+                    characterSize: kanaSize,
+                    subLabelSize: romajiSize,
                   ),
               ],
             ],

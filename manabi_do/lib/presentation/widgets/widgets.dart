@@ -22,8 +22,7 @@ export 'study/section_card.dart';
 export 'study/streak_card.dart';
 
 // characters
-export 'characters/kana_cell.dart';
-export 'characters/kanji_cell.dart';
+export 'characters/character_cell.dart';
 export 'characters/stroke_order_animator.dart';
 export 'characters/stroke_step_row.dart';
 

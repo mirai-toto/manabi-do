@@ -2,41 +2,49 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/l10n.dart';
 
-class KanjiCell extends StatelessWidget {
+class CharacterCell extends StatelessWidget {
   final String character;
-  final String meaning;
+  final String subLabel;
   final bool isKnown;
   final VoidCallback? onTap;
-  final double size;
-  final double? kanjiSize;
-  final double? meaningSize;
+  final double width;
+  final double height;
+  final double? characterSize;
+  final double? subLabelSize;
 
-  const KanjiCell({
+  const CharacterCell({
     super.key,
     required this.character,
-    this.meaning = '',
+    this.subLabel = '',
     this.isKnown = false,
     this.onTap,
-    this.size = 80,
-    this.kanjiSize,
-    this.meaningSize,
+    this.width = 80,
+    this.height = 80,
+    this.characterSize,
+    this.subLabelSize,
   });
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+    final semanticsLabel = [
+      character,
+      if (subLabel.isNotEmpty) subLabel,
+      if (isKnown) context.l10n.known.toLowerCase(),
+    ].join(', ');
 
     return Semantics(
-      label: '$character, $meaning${isKnown ? ', known' : ''}',
+      label: semanticsLabel,
       button: onTap != null,
       excludeSemantics: true,
       child: GestureDetector(
         onTap: onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),
-          width: size,
-          height: size,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             color: isKnown ? t.successContainer : t.cardBackground,
             border: Border.all(
@@ -51,19 +59,20 @@ class KanjiCell extends StatelessWidget {
               Text(
                 character,
                 style: AppTextStyles.jpMedium.copyWith(
-                  fontSize: kanjiSize,
+                  fontSize: characterSize,
                   height: 1,
                   color: t.onSurface,
                 ),
               ),
-              if (meaning.isNotEmpty) ...[
+              if (subLabel.isNotEmpty) ...[
                 const SizedBox(height: AppDimens.spaceXs),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceXs),
                   child: Text(
-                    meaning,
+                    subLabel,
                     style: AppTextStyles.labelSmall.copyWith(
-                      fontSize: meaningSize,
+                      fontSize: subLabelSize,
+                      letterSpacing: 0.5,
                       color: isKnown ? t.success : t.onSurfaceVariant,
                     ),
                     maxLines: 2,
