@@ -302,7 +302,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsPractice => 'Übung';
 
   @override
-  String get settingsPracticeNewCards => 'Neue Karten pro Sitzung';
+  String get settingsPracticeNewCards => 'Neue Karten pro Tag';
 
   @override
   String get settingsAppearance => 'Erscheinungsbild';

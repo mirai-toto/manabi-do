@@ -3213,6 +3213,17 @@ class $SrsCardsTable extends SrsCards with TableInfo<$SrsCardsTable, SrsCard> {
     type: DriftSqlType.dateTime,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _firstSeenAtMeta = const VerificationMeta(
+    'firstSeenAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> firstSeenAt = GeneratedColumn<DateTime>(
+    'first_seen_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _cardJsonMeta = const VerificationMeta(
     'cardJson',
   );
@@ -3225,7 +3236,13 @@ class $SrsCardsTable extends SrsCards with TableInfo<$SrsCardsTable, SrsCard> {
     requiredDuringInsert: true,
   );
   @override
-  List<GeneratedColumn> get $columns => [itemType, itemId, due, cardJson];
+  List<GeneratedColumn> get $columns => [
+    itemType,
+    itemId,
+    due,
+    firstSeenAt,
+    cardJson,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -3262,6 +3279,15 @@ class $SrsCardsTable extends SrsCards with TableInfo<$SrsCardsTable, SrsCard> {
     } else if (isInserting) {
       context.missing(_dueMeta);
     }
+    if (data.containsKey('first_seen_at')) {
+      context.handle(
+        _firstSeenAtMeta,
+        firstSeenAt.isAcceptableOrUnknown(
+          data['first_seen_at']!,
+          _firstSeenAtMeta,
+        ),
+      );
+    }
     if (data.containsKey('card_json')) {
       context.handle(
         _cardJsonMeta,
@@ -3291,6 +3317,10 @@ class $SrsCardsTable extends SrsCards with TableInfo<$SrsCardsTable, SrsCard> {
         DriftSqlType.dateTime,
         data['${effectivePrefix}due'],
       )!,
+      firstSeenAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}first_seen_at'],
+      ),
       cardJson: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}card_json'],
@@ -3308,11 +3338,13 @@ class SrsCard extends DataClass implements Insertable<SrsCard> {
   final String itemType;
   final int itemId;
   final DateTime due;
+  final DateTime? firstSeenAt;
   final String cardJson;
   const SrsCard({
     required this.itemType,
     required this.itemId,
     required this.due,
+    this.firstSeenAt,
     required this.cardJson,
   });
   @override
@@ -3321,6 +3353,9 @@ class SrsCard extends DataClass implements Insertable<SrsCard> {
     map['item_type'] = Variable<String>(itemType);
     map['item_id'] = Variable<int>(itemId);
     map['due'] = Variable<DateTime>(due);
+    if (!nullToAbsent || firstSeenAt != null) {
+      map['first_seen_at'] = Variable<DateTime>(firstSeenAt);
+    }
     map['card_json'] = Variable<String>(cardJson);
     return map;
   }
@@ -3330,6 +3365,9 @@ class SrsCard extends DataClass implements Insertable<SrsCard> {
       itemType: Value(itemType),
       itemId: Value(itemId),
       due: Value(due),
+      firstSeenAt: firstSeenAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(firstSeenAt),
       cardJson: Value(cardJson),
     );
   }
@@ -3343,6 +3381,7 @@ class SrsCard extends DataClass implements Insertable<SrsCard> {
       itemType: serializer.fromJson<String>(json['itemType']),
       itemId: serializer.fromJson<int>(json['itemId']),
       due: serializer.fromJson<DateTime>(json['due']),
+      firstSeenAt: serializer.fromJson<DateTime?>(json['firstSeenAt']),
       cardJson: serializer.fromJson<String>(json['cardJson']),
     );
   }
@@ -3353,6 +3392,7 @@ class SrsCard extends DataClass implements Insertable<SrsCard> {
       'itemType': serializer.toJson<String>(itemType),
       'itemId': serializer.toJson<int>(itemId),
       'due': serializer.toJson<DateTime>(due),
+      'firstSeenAt': serializer.toJson<DateTime?>(firstSeenAt),
       'cardJson': serializer.toJson<String>(cardJson),
     };
   }
@@ -3361,11 +3401,13 @@ class SrsCard extends DataClass implements Insertable<SrsCard> {
     String? itemType,
     int? itemId,
     DateTime? due,
+    Value<DateTime?> firstSeenAt = const Value.absent(),
     String? cardJson,
   }) => SrsCard(
     itemType: itemType ?? this.itemType,
     itemId: itemId ?? this.itemId,
     due: due ?? this.due,
+    firstSeenAt: firstSeenAt.present ? firstSeenAt.value : this.firstSeenAt,
     cardJson: cardJson ?? this.cardJson,
   );
   SrsCard copyWithCompanion(SrsCardsCompanion data) {
@@ -3373,6 +3415,9 @@ class SrsCard extends DataClass implements Insertable<SrsCard> {
       itemType: data.itemType.present ? data.itemType.value : this.itemType,
       itemId: data.itemId.present ? data.itemId.value : this.itemId,
       due: data.due.present ? data.due.value : this.due,
+      firstSeenAt: data.firstSeenAt.present
+          ? data.firstSeenAt.value
+          : this.firstSeenAt,
       cardJson: data.cardJson.present ? data.cardJson.value : this.cardJson,
     );
   }
@@ -3383,13 +3428,14 @@ class SrsCard extends DataClass implements Insertable<SrsCard> {
           ..write('itemType: $itemType, ')
           ..write('itemId: $itemId, ')
           ..write('due: $due, ')
+          ..write('firstSeenAt: $firstSeenAt, ')
           ..write('cardJson: $cardJson')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(itemType, itemId, due, cardJson);
+  int get hashCode => Object.hash(itemType, itemId, due, firstSeenAt, cardJson);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -3397,6 +3443,7 @@ class SrsCard extends DataClass implements Insertable<SrsCard> {
           other.itemType == this.itemType &&
           other.itemId == this.itemId &&
           other.due == this.due &&
+          other.firstSeenAt == this.firstSeenAt &&
           other.cardJson == this.cardJson);
 }
 
@@ -3404,12 +3451,14 @@ class SrsCardsCompanion extends UpdateCompanion<SrsCard> {
   final Value<String> itemType;
   final Value<int> itemId;
   final Value<DateTime> due;
+  final Value<DateTime?> firstSeenAt;
   final Value<String> cardJson;
   final Value<int> rowid;
   const SrsCardsCompanion({
     this.itemType = const Value.absent(),
     this.itemId = const Value.absent(),
     this.due = const Value.absent(),
+    this.firstSeenAt = const Value.absent(),
     this.cardJson = const Value.absent(),
     this.rowid = const Value.absent(),
   });
@@ -3417,6 +3466,7 @@ class SrsCardsCompanion extends UpdateCompanion<SrsCard> {
     required String itemType,
     required int itemId,
     required DateTime due,
+    this.firstSeenAt = const Value.absent(),
     required String cardJson,
     this.rowid = const Value.absent(),
   }) : itemType = Value(itemType),
@@ -3427,6 +3477,7 @@ class SrsCardsCompanion extends UpdateCompanion<SrsCard> {
     Expression<String>? itemType,
     Expression<int>? itemId,
     Expression<DateTime>? due,
+    Expression<DateTime>? firstSeenAt,
     Expression<String>? cardJson,
     Expression<int>? rowid,
   }) {
@@ -3434,6 +3485,7 @@ class SrsCardsCompanion extends UpdateCompanion<SrsCard> {
       if (itemType != null) 'item_type': itemType,
       if (itemId != null) 'item_id': itemId,
       if (due != null) 'due': due,
+      if (firstSeenAt != null) 'first_seen_at': firstSeenAt,
       if (cardJson != null) 'card_json': cardJson,
       if (rowid != null) 'rowid': rowid,
     });
@@ -3443,6 +3495,7 @@ class SrsCardsCompanion extends UpdateCompanion<SrsCard> {
     Value<String>? itemType,
     Value<int>? itemId,
     Value<DateTime>? due,
+    Value<DateTime?>? firstSeenAt,
     Value<String>? cardJson,
     Value<int>? rowid,
   }) {
@@ -3450,6 +3503,7 @@ class SrsCardsCompanion extends UpdateCompanion<SrsCard> {
       itemType: itemType ?? this.itemType,
       itemId: itemId ?? this.itemId,
       due: due ?? this.due,
+      firstSeenAt: firstSeenAt ?? this.firstSeenAt,
       cardJson: cardJson ?? this.cardJson,
       rowid: rowid ?? this.rowid,
     );
@@ -3467,6 +3521,9 @@ class SrsCardsCompanion extends UpdateCompanion<SrsCard> {
     if (due.present) {
       map['due'] = Variable<DateTime>(due.value);
     }
+    if (firstSeenAt.present) {
+      map['first_seen_at'] = Variable<DateTime>(firstSeenAt.value);
+    }
     if (cardJson.present) {
       map['card_json'] = Variable<String>(cardJson.value);
     }
@@ -3482,6 +3539,7 @@ class SrsCardsCompanion extends UpdateCompanion<SrsCard> {
           ..write('itemType: $itemType, ')
           ..write('itemId: $itemId, ')
           ..write('due: $due, ')
+          ..write('firstSeenAt: $firstSeenAt, ')
           ..write('cardJson: $cardJson, ')
           ..write('rowid: $rowid')
           ..write(')'))
@@ -6178,6 +6236,7 @@ typedef $$SrsCardsTableCreateCompanionBuilder =
       required String itemType,
       required int itemId,
       required DateTime due,
+      Value<DateTime?> firstSeenAt,
       required String cardJson,
       Value<int> rowid,
     });
@@ -6186,6 +6245,7 @@ typedef $$SrsCardsTableUpdateCompanionBuilder =
       Value<String> itemType,
       Value<int> itemId,
       Value<DateTime> due,
+      Value<DateTime?> firstSeenAt,
       Value<String> cardJson,
       Value<int> rowid,
     });
@@ -6211,6 +6271,11 @@ class $$SrsCardsTableFilterComposer
 
   ColumnFilters<DateTime> get due => $composableBuilder(
     column: $table.due,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get firstSeenAt => $composableBuilder(
+    column: $table.firstSeenAt,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -6244,6 +6309,11 @@ class $$SrsCardsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<DateTime> get firstSeenAt => $composableBuilder(
+    column: $table.firstSeenAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get cardJson => $composableBuilder(
     column: $table.cardJson,
     builder: (column) => ColumnOrderings(column),
@@ -6267,6 +6337,11 @@ class $$SrsCardsTableAnnotationComposer
 
   GeneratedColumn<DateTime> get due =>
       $composableBuilder(column: $table.due, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get firstSeenAt => $composableBuilder(
+    column: $table.firstSeenAt,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get cardJson =>
       $composableBuilder(column: $table.cardJson, builder: (column) => column);
@@ -6303,12 +6378,14 @@ class $$SrsCardsTableTableManager
                 Value<String> itemType = const Value.absent(),
                 Value<int> itemId = const Value.absent(),
                 Value<DateTime> due = const Value.absent(),
+                Value<DateTime?> firstSeenAt = const Value.absent(),
                 Value<String> cardJson = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => SrsCardsCompanion(
                 itemType: itemType,
                 itemId: itemId,
                 due: due,
+                firstSeenAt: firstSeenAt,
                 cardJson: cardJson,
                 rowid: rowid,
               ),
@@ -6317,12 +6394,14 @@ class $$SrsCardsTableTableManager
                 required String itemType,
                 required int itemId,
                 required DateTime due,
+                Value<DateTime?> firstSeenAt = const Value.absent(),
                 required String cardJson,
                 Value<int> rowid = const Value.absent(),
               }) => SrsCardsCompanion.insert(
                 itemType: itemType,
                 itemId: itemId,
                 due: due,
+                firstSeenAt: firstSeenAt,
                 cardJson: cardJson,
                 rowid: rowid,
               ),

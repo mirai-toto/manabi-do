@@ -661,7 +661,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsPracticeNewCards.
   ///
   /// In en, this message translates to:
-  /// **'New cards per session'**
+  /// **'New cards per day'**
   String get settingsPracticeNewCards;
 
   /// No description provided for @settingsAppearance.

@@ -35,12 +35,13 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 8;
+  int get schemaVersion => 9;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onUpgrade: (m, from, to) async {
       if (from < 8) await m.createTable(srsCards);
+      if (from < 9) await m.addColumn(srsCards, srsCards.firstSeenAt);
     },
   );
 
@@ -206,12 +207,21 @@ class AppDatabase extends _$AppDatabase {
   }
 
   Future<void> upsertSrsCard(String itemType, int itemId, Card card) =>
-      into(srsCards).insertOnConflictUpdate(
+      into(srsCards).insert(
         SrsCardsCompanion.insert(
           itemType: itemType,
           itemId: itemId,
           due: card.due,
+          firstSeenAt: Value(DateTime.now()),
           cardJson: jsonEncode(card.toMap()),
+        ),
+        onConflict: DoUpdate(
+          (old) => SrsCardsCompanion.custom(
+            due: Variable(card.due),
+            cardJson: Variable(jsonEncode(card.toMap())),
+            // firstSeenAt intentionally omitted — never overwrite the original date
+          ),
+          target: [srsCards.itemType, srsCards.itemId],
         ),
       );
 
@@ -232,6 +242,16 @@ class AppDatabase extends _$AppDatabase {
   Future<List<(Kana, Card?)>> getKanaSrsSession(String type, {int newCardLimit = 10}) async {
     final kanaList = await getKanaByType(type);
     final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+
+    final seenToday = await (select(srsCards)
+      ..where((s) =>
+          s.itemType.equals(type) &
+          s.firstSeenAt.isBiggerOrEqualValue(todayStart)))
+      .get()
+      .then((rows) => rows.length);
+
+    final remainingNew = (newCardLimit - seenToday).clamp(0, newCardLimit);
 
     final cards = await Future.wait(
       kanaList.map((k) => getSrsCard(type, k.id)),
@@ -240,7 +260,7 @@ class AppDatabase extends _$AppDatabase {
     final pairs = List.generate(kanaList.length, (i) => (kanaList[i], cards[i]));
 
     final due     = pairs.where((p) => p.$2 != null && !p.$2!.due.isAfter(now)).toList();
-    final newOnes = pairs.where((p) => p.$2 == null).take(newCardLimit).toList();
+    final newOnes = pairs.where((p) => p.$2 == null).take(remainingNew).toList();
 
     return [...due, ...newOnes];
   }
