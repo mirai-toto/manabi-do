@@ -60,25 +60,39 @@ def create_tables(db: sqlite3.Connection) -> None:
             id        INTEGER PRIMARY KEY AUTOINCREMENT,
             character TEXT NOT NULL,
             romaji    TEXT NOT NULL,
-            type      TEXT NOT NULL
+            type      TEXT NOT NULL,
+            row       TEXT NOT NULL
         );
 
         CREATE TABLE grammar_lessons (
-            id    INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            locale      TEXT NOT NULL,
+            chapter     TEXT NOT NULL,
+            title       TEXT NOT NULL,
+            content_md  TEXT NOT NULL,
+            order_index INTEGER NOT NULL,
+            metadata    TEXT NOT NULL DEFAULT '{}'
         );
 
         CREATE TABLE exercises (
-            id      INTEGER PRIMARY KEY AUTOINCREMENT,
-            content TEXT NOT NULL
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            locale      TEXT NOT NULL,
+            type        TEXT NOT NULL,
+            source      TEXT NOT NULL,
+            source_id   INTEGER NOT NULL,
+            prompt      TEXT NOT NULL,
+            answer      TEXT NOT NULL,
+            distractors TEXT NOT NULL DEFAULT '[]',
+            lesson_id   INTEGER REFERENCES grammar_lessons(id)
         );
 
         CREATE TABLE progress_entries (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
             item_type  TEXT NOT NULL,
             item_id    INTEGER NOT NULL,
             is_known   INTEGER NOT NULL,
             toggled_at INTEGER NOT NULL,
-            PRIMARY KEY (item_type, item_id)
+            UNIQUE (item_type, item_id)
         );
     """)
 
