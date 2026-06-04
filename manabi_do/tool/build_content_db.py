@@ -146,7 +146,7 @@ def insert_vocab(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
 
 
 def insert_kana(db: sqlite3.Connection) -> int:
-    path = "assets/data/kana.json"
+    path = "content/kana.json"
     with open(path, encoding="utf-8") as f:
         d = json.load(f)
 

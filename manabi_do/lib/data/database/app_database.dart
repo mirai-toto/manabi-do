@@ -145,7 +145,7 @@ class AppDatabase extends _$AppDatabase {
 // Bump this string whenever a new assets/manabi_do_content.db is shipped.
 // Using a separate marker file so Drift's automatic user_version bumping
 // doesn't fool the detection logic.
-const _assetDbVersion = '7';
+const _assetDbVersion = '7.1';
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {

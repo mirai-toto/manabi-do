@@ -13,7 +13,10 @@
       "あつ.まる"
     ],
     "meanings": {
-      "en": "meeting, meet, party"
+      "en": "meeting, meet, party, association, interview, join",
+      "fr": "réunion, rencontre, meeting, parti, association, entrevue, rejoindre",
+      "es": "asociación, reunión, encontrarse con, reunirse",
+      "pt": "encontro, reunião, festa, associação, entrevista, une"
     }
   },
   {
@@ -27,7 +30,10 @@
       "おな.じ"
     ],
     "meanings": {
-      "en": "same, agree, equal"
+      "en": "same, agree, equal",
+      "fr": "identique, similaire, égal",
+      "es": "mismo, igual, compañero, idéntico, similar",
+      "pt": "mesmo, concorda, igual"
     }
   },
   {
@@ -44,7 +50,10 @@
       "つか.える"
     ],
     "meanings": {
-      "en": "matter, thing, fact"
+      "en": "matter, thing, fact, business, reason, possibly",
+      "fr": "fait, chose, matière, affaire, raison, peut-être",
+      "es": "cosa, hecho, asunto, acción",
+      "pt": "matéria, coisa, fato, negócios, razão, possivelmente"
     }
   },
   {
@@ -61,7 +70,10 @@
       "おの.ずと"
     ],
     "meanings": {
-      "en": "oneself"
+      "en": "oneself",
+      "fr": "soi-même",
+      "es": "uno mismo, por sí mismo, auto-",
+      "pt": "a si próprio"
     }
   },
   {
@@ -75,7 +87,10 @@
       "やしろ"
     ],
     "meanings": {
-      "en": "company, firm, office"
+      "en": "company, firm, office, association, shrine",
+      "fr": "temple shinto, compagnie, firme, bureau, association",
+      "es": "compañía, asociación, sociedad, santuario shintoísta",
+      "pt": "companhia, firme, escritório, associação, templo"
     }
   },
   {
@@ -94,7 +109,10 @@
       "はな.つ"
     ],
     "meanings": {
-      "en": "departure, discharge, publish"
+      "en": "departure, discharge, publish, emit, start from, disclose, counter for gunshots",
+      "fr": "départ, décharge, dégagement, publier, émettre, partir de, divulguer, compteur de coups de feu",
+      "es": "abrir, exponer, suceder",
+      "pt": "liberar, partida, publicar, emitir, a partir de, revelar"
     }
   },
   {
@@ -108,7 +126,10 @@
       "もの"
     ],
     "meanings": {
-      "en": "someone, person"
+      "en": "someone, person",
+      "fr": "personne, quelqu'un",
+      "es": "persona",
+      "pt": "alguém, pessoa"
     }
   },
   {
@@ -121,7 +142,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "ground, earth"
+      "en": "ground, earth",
+      "fr": "sol, terre",
+      "es": "suelo, tierra, terreno, posición",
+      "pt": "terra, chão"
     }
   },
   {
@@ -136,7 +160,10 @@
       "わざ"
     ],
     "meanings": {
-      "en": "business, vocation, arts"
+      "en": "business, vocation, arts, performance",
+      "fr": "activité, vocation, arts, représentation, karma",
+      "es": "negocio, industria, trabajo",
+      "pt": "negócios, vocação, artes, performance"
     }
   },
   {
@@ -152,7 +179,10 @@
       "-がた"
     ],
     "meanings": {
-      "en": "direction, person, alternative"
+      "en": "direction, person, alternative",
+      "fr": "direction, personne, alternative",
+      "es": "dirección, lado, cuadrado, método, manera, persona, forma de hacer",
+      "pt": "direção, pessoa, alternativa"
     }
   },
   {
@@ -169,7 +199,10 @@
       "にい-"
     ],
     "meanings": {
-      "en": "new"
+      "en": "new",
+      "fr": "nouveau",
+      "es": "nuevo, fresco",
+      "pt": "novo"
     }
   },
   {
@@ -184,7 +217,10 @@
       "ば"
     ],
     "meanings": {
-      "en": "location, place"
+      "en": "location, place",
+      "fr": "lieu, place, aire, champ (magnétique)",
+      "es": "lugar, situación, momento",
+      "pt": "localização, lugar"
     }
   },
   {
@@ -196,7 +232,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "employee, member, number"
+      "en": "employee, member, number, the one in charge",
+      "fr": "employé, membre, nombre (de personnes), personne en charge",
+      "es": "empleado, miembro, personal",
+      "pt": "empregado, membro, número, encarregado"
     }
   },
   {
@@ -221,7 +260,10 @@
       "-だ.てる"
     ],
     "meanings": {
-      "en": "stand up, rise, set up"
+      "en": "stand up, rise, set up, erect",
+      "fr": "debout",
+      "es": "levantarse, alzarse, ponerse en pie, levantar, erigir, estar en pie",
+      "pt": "Ficar de pé, levantar-se"
     }
   },
   {
@@ -240,7 +282,10 @@
       "あ.ける"
     ],
     "meanings": {
-      "en": "open, unfold, unseal"
+      "en": "open, unfold, unseal",
+      "fr": "ouvrir, s'ouvrir, briser le sceau",
+      "es": "abrir, desdoblar, dar comienzo, abrirse, estar abierto",
+      "pt": "abrir, desdobrar, deslacrar"
     }
   },
   {
@@ -258,7 +303,10 @@
       "た-"
     ],
     "meanings": {
-      "en": "hand"
+      "en": "hand",
+      "fr": "main",
+      "es": "mano",
+      "pt": "mão"
     }
   },
   {
@@ -274,7 +322,10 @@
       "ちから"
     ],
     "meanings": {
-      "en": "power, strength, strong"
+      "en": "power, strength, strong, strain, bear up, exert",
+      "fr": "force, fort, puissance, tension, tenir le coup, s'efforcer, employer (force)",
+      "es": "potencia, poder, fuerza, energía, vigor, énfasis",
+      "pt": "força, forte, esforço, suportar, exercer"
     }
   },
   {
@@ -290,7 +341,10 @@
       "とん"
     ],
     "meanings": {
-      "en": "question, ask, problem"
+      "en": "question, ask, problem",
+      "fr": "question, demander, problème",
+      "es": "duda, pregunta, problema, preguntar, acusar",
+      "pt": "perguntar, pergunta, problema"
     }
   },
   {
@@ -313,7 +367,10 @@
       "しろ"
     ],
     "meanings": {
-      "en": "substitute, change, convert"
+      "en": "substitute, change, convert, replace, period, age, counter for decades of ages, eras, etc., generation, charge, rate, fee",
+      "fr": "substituer, changer, convertir, remplacer, période, âge, ère, génération, montant d'argent, taux, prix, redevance",
+      "es": "generación, reinado, sustituir, reemplazar, relevar",
+      "pt": "substituto, mudança, convertido, repor, período, idade, geração, carga, valor, taxa"
     }
   },
   {
@@ -338,7 +395,10 @@
       "あ.かす"
     ],
     "meanings": {
-      "en": "bright, light"
+      "en": "bright, light",
+      "fr": "clair, lumière",
+      "es": "luz, brillo, claridad, listo, inteligente, claro, luminoso, iluminar, aclarar",
+      "pt": "brilhante, luz"
     }
   },
   {
@@ -353,7 +413,10 @@
       "うご.かす"
     ],
     "meanings": {
-      "en": "move, motion, change"
+      "en": "move, motion, change, confusion, shift, shake",
+      "fr": "bouger, mouvement, changement, confusion, secouer",
+      "es": "mover, movimiento, moverse, trasladar",
+      "pt": "mover, movimento, mudança, jáfusão, trocar, agitar"
     }
   },
   {
@@ -369,7 +432,10 @@
       "みやこ"
     ],
     "meanings": {
-      "en": "capital, 10**16"
+      "en": "capital, 10**16",
+      "fr": "capitale, 10**16",
+      "es": "capital",
+      "pt": "capital, 10 elevado a 16"
     }
   },
   {
@@ -386,7 +452,10 @@
       "ま-"
     ],
     "meanings": {
-      "en": "eye, class, look"
+      "en": "eye, class, look, insight, experience, care, favor",
+      "fr": "oeil, regard, aperçu, numérateur ordinal, expérience, classe, faveur, pièce (Go)",
+      "es": "ojo, mirada, percepción",
+      "pt": "olho, classe, olhar, visão, experiência, atenção, favor"
     }
   },
   {
@@ -408,7 +477,10 @@
       "かよ.う"
     ],
     "meanings": {
-      "en": "traffic, pass through, avenue"
+      "en": "traffic, pass through, avenue, commute, counter for letters, notes, documents, etc.",
+      "fr": "circulation, passer par, avenue, trajet (travail), compteur de lettres, notes, ...",
+      "es": "atravesar, traspasar, hacer saber, pasar, ir y venir",
+      "pt": "tráfego, passar através de, avenida, comutar, sufixo para contagem de letras"
     }
   },
   {
@@ -424,7 +496,10 @@
       "こと"
     ],
     "meanings": {
-      "en": "say, word"
+      "en": "say, word",
+      "fr": "dire",
+      "es": "palabras, decir",
+      "pt": "Dizer, palavras"
     }
   },
   {
@@ -438,7 +513,10 @@
       "ことわり"
     ],
     "meanings": {
-      "en": "logic, arrangement, reason"
+      "en": "logic, arrangement, reason, justice, truth",
+      "fr": "logique, principe, raison, justice, vérité",
+      "es": "lógica, razón, preparar",
+      "pt": "lógica, arranjo, razão, justiça, verdade"
     }
   },
   {
@@ -454,7 +532,10 @@
       "かたち"
     ],
     "meanings": {
-      "en": "body, substance, object"
+      "en": "body, substance, object, reality, counter for images",
+      "fr": "corps, substance, objet, réalité, compteur d'images",
+      "es": "cuerpo, forma",
+      "pt": "corpo, substância, objeto, realidade, sufixo para contagem de para imagens"
     }
   },
   {
@@ -468,7 +549,10 @@
       "た"
     ],
     "meanings": {
-      "en": "rice field, rice paddy"
+      "en": "rice field, rice paddy",
+      "fr": "rizière",
+      "es": "campo de arroz, arrozal",
+      "pt": "campo de arroz, arroz sem beneficiar"
     }
   },
   {
@@ -486,7 +570,10 @@
       "あるじ"
     ],
     "meanings": {
-      "en": "lord, chief, master"
+      "en": "lord, chief, master, main thing, principal",
+      "fr": "maître, seigneur, chef, principal, propriétaire, mari",
+      "es": "señor, jefe, dueño, patrón",
+      "pt": "senhor, chefe, mestre, coisa principal, principal"
     }
   },
   {
@@ -498,7 +585,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "topic, subject"
+      "en": "topic, subject",
+      "fr": "sujet",
+      "es": "objeto, tema, materia",
+      "pt": "tópico, assunto"
     }
   },
   {
@@ -510,7 +600,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "idea, mind, heart"
+      "en": "idea, mind, heart, taste, thought, desire, care, liking",
+      "fr": "idée, esprit, coeur, pensée, attention, goût, désir",
+      "es": "idea, sentimiento, razón, intención",
+      "pt": "idéia, mente, coração, gosto, pensamento, desejo, atenção"
     }
   },
   {
@@ -523,7 +616,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "negative, non-, bad"
+      "en": "negative, non-, bad, ugly, clumsy",
+      "fr": "négation, non, mauvais, laid, maladroit",
+      "es": "prefijo negativo: in-, des-",
+      "pt": "Prefixo negativo, negativa, não, feia, ruim, deselegante"
     }
   },
   {
@@ -540,7 +636,10 @@
       "-づく.り"
     ],
     "meanings": {
-      "en": "make, production, prepare"
+      "en": "make, production, prepare, build",
+      "fr": "fabriquer, produire, construire, préparer",
+      "es": "hacer, construir, fabricar, conducta, comportamiento, crear",
+      "pt": "fazer, produção, preparar, construção"
     }
   },
   {
@@ -554,7 +653,10 @@
       "もち.いる"
     ],
     "meanings": {
-      "en": "utilize, business, service"
+      "en": "utilize, business, service, use, employ",
+      "fr": "se servir de, affaires, service, utiliser, employer",
+      "es": "uso, empleo, trabajo, usar, hacer uso de",
+      "pt": "utilizar, negócios, serviço, usar, empregar"
     }
   },
   {
@@ -571,7 +673,10 @@
       "-た.い"
     ],
     "meanings": {
-      "en": "degrees, occurrence, time"
+      "en": "degrees, occurrence, time, counter for occurrences, consider, attitude",
+      "fr": "degré, occurrence, fois, compteur d'occurrences",
+      "es": "grado, vez, veces",
+      "pt": "graus, ocorrência, tempo, sufixo para contagem de para ocorrências"
     }
   },
   {
@@ -590,7 +695,10 @@
       "こわ.い"
     ],
     "meanings": {
-      "en": "strong"
+      "en": "strong",
+      "fr": "fort",
+      "es": "fuerte, coacción, poderoso, obligar, forzar, coaccionar",
+      "pt": "Forte, poderoso, forçar"
     }
   },
   {
@@ -605,7 +713,10 @@
       "おおやけ"
     ],
     "meanings": {
-      "en": "public, prince, official"
+      "en": "public, prince, official, governmental",
+      "fr": "public, prince, officiel, gouvernemental",
+      "es": "público, imparcial, oficial",
+      "pt": "público, príncipe, oficial, governamental"
     }
   },
   {
@@ -621,7 +732,10 @@
       "も.てる"
     ],
     "meanings": {
-      "en": "hold, have"
+      "en": "hold, have",
+      "fr": "avoir, tenir",
+      "es": "duración, propiedad, cargo, sostener, mantener",
+      "pt": "segurar, ter"
     }
   },
   {
@@ -637,7 +751,10 @@
       "の-"
     ],
     "meanings": {
-      "en": "plains, field, rustic"
+      "en": "plains, field, rustic, civilian life",
+      "fr": "sauvage, champ, rustique, vie civile",
+      "es": "campo, llano, extensión, rango, natural, civil, no oficial",
+      "pt": "planícies, campo, rústico, vida de civil"
     }
   },
   {
@@ -651,7 +768,10 @@
       "もっ.て"
     ],
     "meanings": {
-      "en": "by means of, because, in view of"
+      "en": "by means of, because, in view of, compared with",
+      "fr": "au moyen de, parce que, en vue de, comparé à",
+      "es": "además de, más que",
+      "pt": "Por meios de, porque, em visão de, comparada com"
     }
   },
   {
@@ -667,7 +787,10 @@
       "おぼ.す"
     ],
     "meanings": {
-      "en": "think"
+      "en": "think",
+      "fr": "penser",
+      "es": "pensar, considerar",
+      "pt": "pensar"
     }
   },
   {
@@ -684,7 +807,10 @@
       "うち"
     ],
     "meanings": {
-      "en": "house, home, family"
+      "en": "house, home, family, professional, expert, performer",
+      "fr": "maison",
+      "es": "casa, hogar, especialista",
+      "pt": "casa, lar"
     }
   },
   {
@@ -700,7 +826,10 @@
       "よ"
     ],
     "meanings": {
-      "en": "generation, world, society"
+      "en": "generation, world, society, public",
+      "fr": "génération, monde, société, public",
+      "es": "generación, mundo, edad",
+      "pt": "geração, mundo, sociedade, pública"
     }
   },
   {
@@ -716,7 +845,10 @@
       "まさ.る"
     ],
     "meanings": {
-      "en": "many, frequent, much"
+      "en": "many, frequent, much",
+      "fr": "beaucoup, nombreux, fréquent",
+      "es": "abundante, mucho",
+      "pt": "muitos, frequentar, muito"
     }
   },
   {
@@ -734,7 +866,10 @@
       "まさ.に"
     ],
     "meanings": {
-      "en": "correct, justice, righteous"
+      "en": "correct, justice, righteous, 10**40",
+      "fr": "correct, positif, juste, droit, 10**40",
+      "es": "correcto, justo, arreglar, enderezar",
+      "pt": "corrigir, justiça, correto, direito, 10 elevado a 40"
     }
   },
   {
@@ -751,7 +886,10 @@
       "やす.らか"
     ],
     "meanings": {
-      "en": "relax, cheap, low"
+      "en": "relax, cheap, low, quiet, rested, contented, peaceful",
+      "fr": "paisible, calme, tranquille, pas cher, reposant, satisfait",
+      "es": "barato, tranquilo, pacífico",
+      "pt": "relaxar, calmo, baixo, barato, descansado, pacífico, satisfeito"
     }
   },
   {
@@ -763,7 +901,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "Inst., institution, temple"
+      "en": "Inst., institution, temple, mansion, school",
+      "fr": "temple, institution, résidence, école, hôpital",
+      "es": "institución, templo, hospital",
+      "pt": "instituição, templo, mansão, escola"
     }
   },
   {
@@ -778,7 +919,10 @@
       "-ごころ"
     ],
     "meanings": {
-      "en": "heart, mind, spirit"
+      "en": "heart, mind, spirit, heart radical (no. 61)",
+      "fr": "coeur, esprit, radical coeur (no. 61)",
+      "es": "corazón, centro",
+      "pt": "coração, mente, espírito"
     }
   },
   {
@@ -790,7 +934,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "world, boundary"
+      "en": "world, boundary",
+      "fr": "monde",
+      "es": "borde, frontera, extensión, ámbito",
+      "pt": "mundo"
     }
   },
   {
@@ -805,7 +952,10 @@
       "おそ.わる"
     ],
     "meanings": {
-      "en": "teach, faith, doctrine"
+      "en": "teach, faith, doctrine",
+      "fr": "enseigner, foi, doctrine",
+      "es": "educación, enseñanza, enseñar, instruir, ser enseñado",
+      "pt": "ensinar, fé, doutrina"
     }
   },
   {
@@ -821,7 +971,10 @@
       "あや"
     ],
     "meanings": {
-      "en": "sentence, literature, style"
+      "en": "sentence, literature, style, art, decoration, figures, plan, literary radical (no. 67)",
+      "fr": "phrase, littérature, style, art, décoration, figure (de style), plan, radical littéraire (no. 67)",
+      "es": "letras, literatura",
+      "pt": "sentença, literatura, estilo, arte, decoração, figuras, plano"
     }
   },
   {
@@ -836,7 +989,10 @@
       "もと"
     ],
     "meanings": {
-      "en": "beginning, former time, origin"
+      "en": "beginning, former time, origin",
+      "fr": "commencement, origine, ancien temps",
+      "es": "comienzo, principio, origen, jefe",
+      "pt": "começo, tempo anterior, origem"
     }
   },
   {
@@ -857,7 +1013,10 @@
       "おも"
     ],
     "meanings": {
-      "en": "heavy, important, esteem"
+      "en": "heavy, important, esteem, respect, heap up, pile up, nest of boxes, -fold",
+      "fr": "lourd, empiler, entasser, s'emboîter, - couches",
+      "es": "pesado, importante, apilar, amontonar",
+      "pt": "pesado, empilhar, pilha de caixas, -dobrar"
     }
   },
   {
@@ -872,7 +1031,10 @@
       "ちか.い"
     ],
     "meanings": {
-      "en": "near, early, akin"
+      "en": "near, early, akin, tantamount",
+      "fr": "près, tôt, proche, équivalent à",
+      "es": "cerca, cercano",
+      "pt": "perto, cedo, consangüíneo, equivalente"
     }
   },
   {
@@ -887,7 +1049,10 @@
       "かんが.え"
     ],
     "meanings": {
-      "en": "consider, think over"
+      "en": "consider, think over",
+      "fr": "réfléchir, considérer",
+      "es": "idea, pensar, investigar, considerar",
+      "pt": "considerar, refletir"
     }
   },
   {
@@ -908,7 +1073,10 @@
       "はか.る"
     ],
     "meanings": {
-      "en": "brush-stroke, picture"
+      "en": "brush-stroke, picture",
+      "fr": "trait de plume, dessin, écran, compteur de traits de kanji",
+      "es": "dibujo, trazo, puntuar, interrumpir",
+      "pt": "gravura"
     }
   },
   {
@@ -922,7 +1090,10 @@
       "うみ"
     ],
     "meanings": {
-      "en": "sea, ocean"
+      "en": "sea, ocean",
+      "fr": "mer, océan",
+      "es": "mar, océano, playa",
+      "pt": "oceano, mar"
     }
   },
   {
@@ -937,7 +1108,10 @@
       "う.れる"
     ],
     "meanings": {
-      "en": "sell"
+      "en": "sell",
+      "fr": "vendre",
+      "es": "vender, ensanchar, propagar, ser vendido",
+      "pt": "Vender"
     }
   },
   {
@@ -952,7 +1126,10 @@
       "し.らせる"
     ],
     "meanings": {
-      "en": "know, wisdom"
+      "en": "know, wisdom",
+      "fr": "savoir, sagesse",
+      "es": "conocer, saber, entender",
+      "pt": "saber, sabedoria"
     }
   },
   {
@@ -968,7 +1145,10 @@
       "いう"
     ],
     "meanings": {
-      "en": "road-way, street, district"
+      "en": "road-way, street, district, journey, course, moral, teachings",
+      "fr": "voie, route, rue, région, voyage, morale, enseignements",
+      "es": "camino, razón, modo, decir, senda, método",
+      "pt": "Caminho, estrada, rua, distrito, viagem, curso, moral, ensinamentos, filosofia"
     }
   },
   {
@@ -984,7 +1164,10 @@
       "つど.う"
     ],
     "meanings": {
-      "en": "gather, meet, congregate"
+      "en": "gather, meet, congregate, swarm, flock",
+      "fr": "rassembler, réunir, collection, grouiller, attroupement",
+      "es": "reunir, coleccionar, reunirse",
+      "pt": "juntar, reunião, congregar, enxame, bando"
     }
   },
   {
@@ -999,7 +1182,10 @@
       "わ.ける"
     ],
     "meanings": {
-      "en": "separate, branch off, diverge"
+      "en": "separate, branch off, diverge, fork, another, extra, specially",
+      "fr": "séparer, spécialement, diverger, extra, un autre",
+      "es": "separar, aparte, distinto, dividirse",
+      "pt": "separar, ramo desligado, divergir, garfo, outro, extra, especialmente"
     }
   },
   {
@@ -1015,7 +1201,10 @@
       "もの-"
     ],
     "meanings": {
-      "en": "thing, object, matter"
+      "en": "thing, object, matter",
+      "fr": "objet, chose, matière",
+      "es": "cosa, objeto, materia",
+      "pt": "coisa, objeto, matéria"
     }
   },
   {
@@ -1032,7 +1221,10 @@
       "-づか.い"
     ],
     "meanings": {
-      "en": "use, send on a mission, order"
+      "en": "use, send on a mission, order, messenger, envoy, ambassador, cause",
+      "fr": "utiliser",
+      "es": "usar, manejar, emplear",
+      "pt": "Uso, usar"
     }
   },
   {
@@ -1047,7 +1239,10 @@
       "しな"
     ],
     "meanings": {
-      "en": "goods, refinement, dignity"
+      "en": "goods, refinement, dignity, article, counter for meal courses",
+      "fr": "marchandise, dignité, raffinement, article, compteur de plats",
+      "es": "producto, artículo, bienes",
+      "pt": "bens, refinamento, dignidade, artigo, sufixo para contagem de para pratos de refeição"
     }
   },
   {
@@ -1062,7 +1257,10 @@
       "はか.らう"
     ],
     "meanings": {
-      "en": "plot, plan, scheme"
+      "en": "plot, plan, scheme, measure",
+      "fr": "planifier, projeter, calcul, mesure",
+      "es": "medida, cuenta, contar, pensar, medir, pesar",
+      "pt": "desenho, plano, esquema, medida"
     }
   },
   {
@@ -1077,7 +1275,10 @@
       "し.に-"
     ],
     "meanings": {
-      "en": "death, die"
+      "en": "death, die",
+      "fr": "mort, mourir",
+      "es": "muerte, morir",
+      "pt": "morte, dados"
     }
   },
   {
@@ -1089,7 +1290,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "special"
+      "en": "special",
+      "fr": "spécial",
+      "es": "especial",
+      "pt": "Especial"
     }
   },
   {
@@ -1104,7 +1308,10 @@
       "わたし"
     ],
     "meanings": {
-      "en": "private, I, me"
+      "en": "private, I, me",
+      "fr": "privé, je, moi",
+      "es": "yo, privado, secreto",
+      "pt": "particular, Eu, me"
     }
   },
   {
@@ -1120,7 +1327,10 @@
       "はじ.まる"
     ],
     "meanings": {
-      "en": "commence, begin"
+      "en": "commence, begin",
+      "fr": "commencer, débuter",
+      "es": "comenzar, empezar, empezar (trans.), empezar (intrans.)",
+      "pt": "iniciar, começar"
     }
   },
   {
@@ -1134,7 +1344,10 @@
       "あさ"
     ],
     "meanings": {
-      "en": "morning, dynasty, regime"
+      "en": "morning, dynasty, regime, epoch, period, (North) Korea",
+      "fr": "matin, dynastie, régime, période, époque, Corée (Nord)",
+      "es": "mañana, amanecer, corte imperial",
+      "pt": "manhã, disnastia, regime, época, período, Coréia do Norte"
     }
   },
   {
@@ -1148,7 +1361,10 @@
       "はこ.ぶ"
     ],
     "meanings": {
-      "en": "carry, luck, destiny"
+      "en": "carry, luck, destiny, fate, lot, transport, progress, advance",
+      "fr": "porter, chance, destin, destinée, sort, progrès",
+      "es": "suerte, destino, transportar",
+      "pt": "carregar, sorte, destino, objetivo, transportar, progresso, avanço"
     }
   },
   {
@@ -1167,7 +1383,10 @@
       "つい.に"
     ],
     "meanings": {
-      "en": "end, finish"
+      "en": "end, finish",
+      "fr": "finir, fin",
+      "es": "fin, final, terminar, acabar, finalizar",
+      "pt": "fim, terminar"
     }
   },
   {
@@ -1184,7 +1403,10 @@
       "つかさ"
     ],
     "meanings": {
-      "en": "pedestal, a stand, counter for machines and vehicles"
+      "en": "pedestal, a stand, counter for machines and vehicles",
+      "fr": "piédestal, socle, compteur de voitures ou machines",
+      "es": "estante, banco, tribuna, pedestal, contador para maquinas y vehículos",
+      "pt": "pedestal, stand, sufixo para contagem de para máquinas e veículos"
     }
   },
   {
@@ -1202,7 +1424,10 @@
       "ひろ.げる"
     ],
     "meanings": {
-      "en": "wide, broad, spacious"
+      "en": "wide, broad, spacious",
+      "fr": "vaste, large, spacieux",
+      "es": "amplio, ancho, espacioso, ensancharse, ensanchar, extenderse, extender",
+      "pt": "largo, vasto, espaçoso"
     }
   },
   {
@@ -1220,7 +1445,10 @@
       "-ず.まい"
     ],
     "meanings": {
-      "en": "dwell, reside, live"
+      "en": "dwell, reside, live, inhabit",
+      "fr": "résider, vivre, habiter",
+      "es": "residir, vivir, habitar, residencia",
+      "pt": "reside, vida, habita"
     }
   },
   {
@@ -1236,7 +1464,10 @@
       "まこと"
     ],
     "meanings": {
-      "en": "true, reality, Buddhist sect"
+      "en": "true, reality, Buddhist sect",
+      "fr": "exact, vrai, réalité, secte bouddhiste",
+      "es": "verdad, realidad, puro, genuino, verdadero",
+      "pt": "verdadeiro, realidade, seita do Budismo"
     }
   },
   {
@@ -1251,7 +1482,10 @@
       "あ.る"
     ],
     "meanings": {
-      "en": "possess, have, exist"
+      "en": "possess, have, exist, happen, occur, approx",
+      "fr": "posséder, avoir, être, arriver (se passer)",
+      "es": "existir, poseer, tener, ser",
+      "pt": "possuir, ter, existir, acontecer, ocorrer, aproximadamente, haver"
     }
   },
   {
@@ -1266,7 +1500,10 @@
       "くち"
     ],
     "meanings": {
-      "en": "mouth"
+      "en": "mouth",
+      "fr": "bouche",
+      "es": "boca, orificio, apertura",
+      "pt": "boca"
     }
   },
   {
@@ -1281,7 +1518,10 @@
       "すこ.し"
     ],
     "meanings": {
-      "en": "few, little"
+      "en": "few, little",
+      "fr": "un petit peu, un peu",
+      "es": "poco, pequeño, un poco, apenas",
+      "pt": "poucos, pequenos"
     }
   },
   {
@@ -1295,7 +1535,10 @@
       "まち"
     ],
     "meanings": {
-      "en": "town, village, block"
+      "en": "town, village, block, street",
+      "fr": "quartier, ville, village, rue",
+      "es": "pueblo, ciudad, bloque, calle",
+      "pt": "aldeia, cidade, bloco, rua"
     }
   },
   {
@@ -1307,7 +1550,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "fee, materials"
+      "en": "fee, materials",
+      "fr": "redevance, recette, frais, prix, matériau",
+      "es": "material, precio",
+      "pt": "taxa, materiais"
     }
   },
   {
@@ -1321,7 +1567,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "craft, construction, katakana e radical (no. 48)"
+      "en": "craft, construction, katakana e radical (no. 48)",
+      "fr": "ingénierie, industrie, construction, radical katakana E (no. 48)",
+      "es": "construcción, fabricación, obrero",
+      "pt": "ofício, construção"
     }
   },
   {
@@ -1339,7 +1588,10 @@
       "た.つ"
     ],
     "meanings": {
-      "en": "build"
+      "en": "build",
+      "fr": "construire",
+      "es": "construir, edificar, levantarse, ser construido",
+      "pt": "Construção"
     }
   },
   {
@@ -1360,7 +1612,10 @@
       "むな.しい"
     ],
     "meanings": {
-      "en": "empty, sky, void"
+      "en": "empty, sky, void, vacant, vacuum",
+      "fr": "vide, ciel, vacant, creux",
+      "es": "cielo, atmósfera, vacío, vacante, quedarse vacío, vaciar",
+      "pt": "esvaziar, ceú, desocupado, vazio, vácuo"
     }
   },
   {
@@ -1376,7 +1631,10 @@
       "せ.く"
     ],
     "meanings": {
-      "en": "hurry, emergency, sudden"
+      "en": "hurry, emergency, sudden, steep",
+      "fr": "urgence, se dépêcher, soudain, raide, abrupt, aigu",
+      "es": "prisa, urgencia, apresurarse, darse prisa",
+      "pt": "apressar, emergência, repentina"
     }
   },
   {
@@ -1403,7 +1661,10 @@
       "-さ.し"
     ],
     "meanings": {
-      "en": "stop, halt"
+      "en": "stop, halt",
+      "fr": "arrêter, cesser",
+      "es": "parar, cesar, dejar de hacer, detenerse, pararse, detener",
+      "pt": "parada"
     }
   },
   {
@@ -1417,7 +1678,10 @@
       "おく.る"
     ],
     "meanings": {
-      "en": "escort, send"
+      "en": "escort, send",
+      "fr": "escorter, envoyer",
+      "es": "enviar, remitir, expedir",
+      "pt": "acompanhante, enviar"
     }
   },
   {
@@ -1441,7 +1705,10 @@
       "-ぎ.れ"
     ],
     "meanings": {
-      "en": "cut, cutoff, be sharp"
+      "en": "cut, cutoff, be sharp",
+      "fr": "couper, trancher, tranchant, passionné, sérieux",
+      "es": "cortar, urgente, apremiante, completo, cortar bien, agotarse",
+      "pt": "corte, talho, afiar"
     }
   },
   {
@@ -1462,7 +1729,10 @@
       "くる.めく"
     ],
     "meanings": {
-      "en": "revolve, turn around, change"
+      "en": "revolve, turn around, change",
+      "fr": "rouler, tourner, changer",
+      "es": "cambiar, girar, rodar, caerse, tropezar, dar vueltas, volcarse, caer",
+      "pt": "revolver, voltar a ser, mudança"
     }
   },
   {
@@ -1476,7 +1746,10 @@
       "と.ぐ"
     ],
     "meanings": {
-      "en": "polish, study of, sharpen"
+      "en": "polish, study of, sharpen",
+      "fr": "polir, étudier, aiguiser",
+      "es": "estudio, afilar, pulir",
+      "pt": "polir, estudar, afiar"
     }
   },
   {
@@ -1493,7 +1766,10 @@
       "た.す"
     ],
     "meanings": {
-      "en": "leg, foot, be sufficient"
+      "en": "leg, foot, be sufficient, counter for pairs of footwear",
+      "fr": "jambe, pied, suffire, ajouter, compteur de paires de chaussures",
+      "es": "pierna, pie, ser suficiente, pata, bastar",
+      "pt": "perna, pé, ser suficiente"
     }
   },
   {
@@ -1508,7 +1784,10 @@
       "きわ.める"
     ],
     "meanings": {
-      "en": "research, study"
+      "en": "research, study",
+      "fr": "recherche, étudier",
+      "es": "estudio, investigación, profundización, último, final, dominar, profundizar en el estudio de",
+      "pt": "pesquisa, estudo"
     }
   },
   {
@@ -1526,7 +1805,10 @@
       "この.む"
     ],
     "meanings": {
-      "en": "music, comfort, ease"
+      "en": "music, comfort, ease",
+      "fr": "musique, agréable, confort",
+      "es": "música, divertido, fácil, agradable, disfrutar, divertirse",
+      "pt": "música, conforto, facilidade"
     }
   },
   {
@@ -1544,7 +1826,10 @@
       "た.つ"
     ],
     "meanings": {
-      "en": "rouse, wake up, get up"
+      "en": "rouse, wake up, get up",
+      "fr": "se lever, se réveiller, début, se produire, provoquer",
+      "es": "despertar, levantarse, comenzar, comienzo, despertar a alguien",
+      "pt": "despertar, acordar, levantar"
     }
   },
   {
@@ -1562,7 +1847,10 @@
       "つ.ける"
     ],
     "meanings": {
-      "en": "don, arrive, wear"
+      "en": "don, arrive, wear, counter for suits of clothing",
+      "fr": "enfiler, porter (vêtement), arriver, compteur de vêtements",
+      "es": "usar, llevar puesto, vestir, llegar, alcanzar",
+      "pt": "vestir, chegar, usar, sufixo para contagem de vestuário"
     }
   },
   {
@@ -1577,7 +1865,10 @@
       "たな"
     ],
     "meanings": {
-      "en": "store, shop"
+      "en": "store, shop",
+      "fr": "magasin, échoppe",
+      "es": "tienda, establecimiento",
+      "pt": "loja, comércio"
     }
   },
   {
@@ -1594,7 +1885,10 @@
       "やまい"
     ],
     "meanings": {
-      "en": "ill, sick"
+      "en": "ill, sick",
+      "fr": "malade",
+      "es": "enfermedad, caer enfermo",
+      "pt": "mal, doente"
     }
   },
   {
@@ -1613,7 +1907,10 @@
       "わりふ"
     ],
     "meanings": {
-      "en": "substance, quality, matter"
+      "en": "substance, quality, matter, temperament",
+      "fr": "substance, matière, qualité, tempérament",
+      "es": "substancia, contenido, simplicidad, calidad, depósito, custodia",
+      "pt": "substância, qualidade, matéria, temperamento"
     }
   },
   {
@@ -1628,7 +1925,10 @@
       "-ま.ち"
     ],
     "meanings": {
-      "en": "wait, depend on"
+      "en": "wait, depend on",
+      "fr": "attendre, compter sur",
+      "es": "esperar, aguardar",
+      "pt": "esperar, contar com"
     }
   },
   {
@@ -1643,7 +1943,10 @@
       "ため.す"
     ],
     "meanings": {
-      "en": "test, try, attempt"
+      "en": "test, try, attempt, experiment, ordeal",
+      "fr": "test, essai, tentative, expérience, épreuve",
+      "es": "prueba, ensayo, experimento, probar, experimentar, intentar",
+      "pt": "teste, tentativa, testar, experimento, prova"
     }
   },
   {
@@ -1655,7 +1958,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "tribe, family"
+      "en": "tribe, family",
+      "fr": "tribu, famille",
+      "es": "tribu, familia",
+      "pt": "tribo, família"
     }
   },
   {
@@ -1669,7 +1975,10 @@
       "しろがね"
     ],
     "meanings": {
-      "en": "silver"
+      "en": "silver",
+      "fr": "argent",
+      "es": "plata",
+      "pt": "prata"
     }
   },
   {
@@ -1689,7 +1998,10 @@
       "さ-"
     ],
     "meanings": {
-      "en": "early, fast"
+      "en": "early, fast",
+      "fr": "tôt, rapide",
+      "es": "temprano, rápido, pronto, apresurarse, precipitarse, acelerar",
+      "pt": "cedo, rápido"
     }
   },
   {
@@ -1706,7 +2018,10 @@
       "-ば.え"
     ],
     "meanings": {
-      "en": "reflect, reflection, projection"
+      "en": "reflect, reflection, projection",
+      "fr": "projection, refléter, réflexion",
+      "es": "reflejo, reflexión, reflejar, reflejarse, proyectarse, proyectar",
+      "pt": "reflitir, reflexão, projeção"
     }
   },
   {
@@ -1723,7 +2038,10 @@
       "した.しむ"
     ],
     "meanings": {
-      "en": "parent, intimacy, relative"
+      "en": "parent, intimacy, relative, familiarity, dealer (cards)",
+      "fr": "parent, parenté, intimité, familiarité, donneur (cartes)",
+      "es": "padre, madre, familiares, íntimo, personalmente, padres, hacerse amigo, intimar",
+      "pt": "pai, intimidade, parente, familiaridade, crupiê"
     }
   },
   {
@@ -1741,7 +2059,10 @@
       "ためし"
     ],
     "meanings": {
-      "en": "verification, effect, testing"
+      "en": "verification, effect, testing",
+      "fr": "vérification, examen, effet",
+      "es": "prueba, intento, efecto",
+      "pt": "verificação, efeito, teste"
     }
   },
   {
@@ -1755,7 +2076,10 @@
       "はなぶさ"
     ],
     "meanings": {
-      "en": "England, English, hero"
+      "en": "England, English, hero, outstanding, calyx",
+      "fr": "Angleterre, anglais, fleur éclose, brillant",
+      "es": "Inglaterra, excelente",
+      "pt": "Inglaterra, Inglês"
     }
   },
   {
@@ -1771,7 +2095,10 @@
       "くすし"
     ],
     "meanings": {
-      "en": "doctor, medicine"
+      "en": "doctor, medicine",
+      "fr": "médecin, docteur",
+      "es": "doctor, médico, medicina, curar",
+      "pt": "doutor, remédio"
     }
   },
   {
@@ -1786,7 +2113,10 @@
       "つか.える"
     ],
     "meanings": {
-      "en": "attend, doing, official"
+      "en": "attend, doing, official, serve",
+      "fr": "servir, faire, officiel",
+      "es": "trabajo, servir, asistir",
+      "pt": "atender, ação, oficial, servir"
     }
   },
   {
@@ -1802,7 +2132,10 @@
       "-さ.る"
     ],
     "meanings": {
-      "en": "gone, past, quit"
+      "en": "gone, past, quit, leave, elapse, eliminate, divorce",
+      "fr": "parti, passé, quitter, s'écouler, éliminer, divorce",
+      "es": "pasado, ido, dejar, abandonar, partir",
+      "pt": "foi, passado, deixar, passar, eliminar, divórcio"
     }
   },
   {
@@ -1817,7 +2150,10 @@
       "あじ.わう"
     ],
     "meanings": {
-      "en": "flavor, taste"
+      "en": "flavor, taste",
+      "fr": "goût, saveur",
+      "es": "sabor, gusto, experiencia",
+      "pt": "sabor, gosto"
     }
   },
   {
@@ -1835,7 +2171,10 @@
       "うつ.し"
     ],
     "meanings": {
-      "en": "copy, be photographed, describe"
+      "en": "copy, be photographed, describe",
+      "fr": "copie, être photographié, décrire",
+      "es": "copiar, imitar, fotografiar",
+      "pt": "cópia, foto, descrever"
     }
   },
   {
@@ -1851,7 +2190,10 @@
       "-な"
     ],
     "meanings": {
-      "en": "character, letter, word"
+      "en": "character, letter, word, section of village",
+      "fr": "caractère, lettre, mot, hameau",
+      "es": "carácter, letra, palabra",
+      "pt": "caracter, letra, palavra, seção de aldeia"
     }
   },
   {
@@ -1866,7 +2208,10 @@
       "こた.え"
     ],
     "meanings": {
-      "en": "solution, answer"
+      "en": "solution, answer",
+      "fr": "solution, réponse",
+      "es": "solución, respuesta, contestar, responder",
+      "pt": "solução, resposta"
     }
   },
   {
@@ -1881,7 +2226,10 @@
       "よる"
     ],
     "meanings": {
-      "en": "night, evening"
+      "en": "night, evening",
+      "fr": "nuit, soirée",
+      "es": "noche, tarde",
+      "pt": "noite, à noite"
     }
   },
   {
@@ -1898,7 +2246,10 @@
       "ね"
     ],
     "meanings": {
-      "en": "sound, noise"
+      "en": "sound, noise",
+      "fr": "son, bruit",
+      "es": "sonido, ruido",
+      "pt": "som, barulho"
     }
   },
   {
@@ -1914,7 +2265,10 @@
       "つ.ぐ"
     ],
     "meanings": {
-      "en": "pour, irrigate, shed (tears)"
+      "en": "pour, irrigate, shed (tears), flow into, concentrate on, notes, comment, annotate",
+      "fr": "verser, se jeter dans, arroser, servir (boisson), note, remarque, annotation, commentaire",
+      "es": "derramar, verter, regar, concentrarse",
+      "pt": "derramar, irrigar, verter (lágrimas), desaguar, colocar em(copos), notas, comentário, anotar"
     }
   },
   {
@@ -1931,7 +2285,10 @@
       "とつ.ぐ"
     ],
     "meanings": {
-      "en": "homecoming, arrive at, lead to"
+      "en": "homecoming, arrive at, lead to, result in",
+      "fr": "retour à la maison, arriver à, mener à, aboutir à, renvoyer",
+      "es": "regreso, vuelta, retorno, regresar, volver",
+      "pt": "Retôrno a casa, chegar em, conduzir-se, resultar"
     }
   },
   {
@@ -1947,7 +2304,10 @@
       "-ふる.す"
     ],
     "meanings": {
-      "en": "old"
+      "en": "old",
+      "fr": "vieux",
+      "es": "viejo, antiguo, desgastar",
+      "pt": "velho"
     }
   },
   {
@@ -1962,7 +2322,10 @@
       "うた.う"
     ],
     "meanings": {
-      "en": "song, sing"
+      "en": "song, sing",
+      "fr": "chanson, chanter",
+      "es": "canción, cantar",
+      "pt": "canção, cantar"
     }
   },
   {
@@ -1976,7 +2339,10 @@
       "か.う"
     ],
     "meanings": {
-      "en": "buy"
+      "en": "buy",
+      "fr": "acheter",
+      "es": "comprar",
+      "pt": "comprar"
     }
   },
   {
@@ -1999,7 +2365,10 @@
       "にく.む"
     ],
     "meanings": {
-      "en": "bad, vice, rascal"
+      "en": "bad, vice, rascal, false, evil, wrong",
+      "fr": "mauvais, vice, vaurien, faux, mal",
+      "es": "malo, incorrecto, equivocado, odio, mal",
+      "pt": "mal, ruim, falso, mau, errado"
     }
   },
   {
@@ -2015,7 +2384,10 @@
       "はか.る"
     ],
     "meanings": {
-      "en": "map, drawing, plan"
+      "en": "map, drawing, plan, extraordinary, audacious",
+      "fr": "carte, dessin, plan, inattendu, accidentellement",
+      "es": "dibujo, ilustración, consulta, estrategia, planear, diseñar",
+      "pt": "mapa, desenho, plano, inesperado, acidentalmente"
     }
   },
   {
@@ -2027,7 +2399,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "week"
+      "en": "week",
+      "fr": "semaine",
+      "es": "semana",
+      "pt": "semana"
     }
   },
   {
@@ -2041,7 +2416,10 @@
       "むろ"
     ],
     "meanings": {
-      "en": "room, apartment, chamber"
+      "en": "room, apartment, chamber, greenhouse, cellar",
+      "fr": "pièce, appartement, chambre, serre, cave",
+      "es": "habitación, cuarto, caverna, guarida, gruta",
+      "pt": "quarto, apartamento, câmara, estufa, porão"
     }
   },
   {
@@ -2058,7 +2436,10 @@
       "あゆ.む"
     ],
     "meanings": {
-      "en": "walk, counter for steps"
+      "en": "walk, counter for steps",
+      "fr": "marcher, compteur de pas",
+      "es": "camino, caminar, razón, proporción, ir a pie",
+      "pt": "passeio"
     }
   },
   {
@@ -2074,7 +2455,10 @@
       "かざ-"
     ],
     "meanings": {
-      "en": "wind, air, style"
+      "en": "wind, air, style, manner",
+      "fr": "vent, air, style, manière",
+      "es": "viento, aire, hábito, estilo, conducta",
+      "pt": "vento, ar, estilo, maneira"
     }
   },
   {
@@ -2088,7 +2472,10 @@
       "かみ"
     ],
     "meanings": {
-      "en": "paper"
+      "en": "paper",
+      "fr": "papier",
+      "es": "papel, periódico",
+      "pt": "Papel"
     }
   },
   {
@@ -2104,7 +2491,10 @@
       "くろ.い"
     ],
     "meanings": {
-      "en": "black"
+      "en": "black",
+      "fr": "noir",
+      "es": "negro, maldad",
+      "pt": "preto"
     }
   },
   {
@@ -2119,7 +2509,10 @@
       "はな"
     ],
     "meanings": {
-      "en": "flower"
+      "en": "flower",
+      "fr": "fleur",
+      "es": "flor",
+      "pt": "flor"
     }
   },
   {
@@ -2133,7 +2526,10 @@
       "はる"
     ],
     "meanings": {
-      "en": "springtime, spring (season)"
+      "en": "springtime, spring (season)",
+      "fr": "printemps",
+      "es": "primavera, comienzo del año, tiempos de juventud",
+      "pt": "primaveril, primavera (estação)"
     }
   },
   {
@@ -2152,7 +2548,10 @@
       "あか.らめる"
     ],
     "meanings": {
-      "en": "red"
+      "en": "red",
+      "fr": "rouge",
+      "es": "rojo, enrojecer, enrojecerse, sonrojarse",
+      "pt": "vermelho"
     }
   },
   {
@@ -2169,7 +2568,10 @@
       "あお.い"
     ],
     "meanings": {
-      "en": "blue, green"
+      "en": "blue, green",
+      "fr": "bleu, vert",
+      "es": "azul, verde, pálido",
+      "pt": "verde, azul, imaturo, verde-claro"
     }
   },
   {
@@ -2184,7 +2586,10 @@
       "たて"
     ],
     "meanings": {
-      "en": "building, mansion, large building"
+      "en": "building, mansion, large building, palace",
+      "fr": "bâtiment, grand bâtiment, résidence, palais",
+      "es": "edificio, mansión",
+      "pt": "edifício, mansão, edifício grande, palácio"
     }
   },
   {
@@ -2198,7 +2603,10 @@
       "や"
     ],
     "meanings": {
-      "en": "roof, house, shop"
+      "en": "roof, house, shop, dealer, seller",
+      "fr": "toit, maison, échoppe, négociant, vendeur",
+      "es": "casa, tejado, tienda",
+      "pt": "teto, casa, loja, negociante, vendedor"
     }
   },
   {
@@ -2213,7 +2621,10 @@
       "いろ"
     ],
     "meanings": {
-      "en": "color"
+      "en": "color",
+      "fr": "couleur",
+      "es": "color, aspecto",
+      "pt": "cor"
     }
   },
   {
@@ -2227,7 +2638,10 @@
       "はし.る"
     ],
     "meanings": {
-      "en": "run"
+      "en": "run",
+      "fr": "courir",
+      "es": "correr, escapar, huir",
+      "pt": "Correr, corrida"
     }
   },
   {
@@ -2242,7 +2656,10 @@
       "とき"
     ],
     "meanings": {
-      "en": "autumn"
+      "en": "autumn",
+      "fr": "automne",
+      "es": "otoño",
+      "pt": "outono"
     }
   },
   {
@@ -2258,7 +2675,10 @@
       "なつ"
     ],
     "meanings": {
-      "en": "summer"
+      "en": "summer",
+      "fr": "été",
+      "es": "verano",
+      "pt": "verão"
     }
   },
   {
@@ -2274,7 +2694,10 @@
       "なら.い"
     ],
     "meanings": {
-      "en": "learn"
+      "en": "learn",
+      "fr": "apprendre",
+      "es": "aprender, estudiar",
+      "pt": "aprender"
     }
   },
   {
@@ -2286,7 +2709,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "station"
+      "en": "station",
+      "fr": "gare",
+      "es": "estación",
+      "pt": "estação"
     }
   },
   {
@@ -2298,7 +2724,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "ocean, sea, foreign"
+      "en": "ocean, sea, foreign, Western style",
+      "fr": "océan, style occidental",
+      "es": "océano, de estilo occidental, cada una de las dos mitades del mundo",
+      "pt": "oceano, estilo ocidental"
     }
   },
   {
@@ -2312,7 +2741,10 @@
       "たび"
     ],
     "meanings": {
-      "en": "trip, travel"
+      "en": "trip, travel",
+      "fr": "voyage",
+      "es": "viaje, trayecto, excursión",
+      "pt": "viagem, jornada"
     }
   },
   {
@@ -2324,7 +2756,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "clothing, admit, obey"
+      "en": "clothing, admit, obey, discharge",
+      "fr": "habillement, admettre, obéir, libérer (renvoi), avaler (médicament)",
+      "es": "ropa, admitir, obedecer",
+      "pt": "vestuário, permitir, obedecer, descarregar"
     }
   },
   {
@@ -2338,7 +2773,10 @@
       "ゆう"
     ],
     "meanings": {
-      "en": "evening"
+      "en": "evening",
+      "fr": "soirée",
+      "es": "tarde, noche",
+      "pt": "Noite"
     }
   },
   {
@@ -2352,7 +2790,10 @@
       "か.りる"
     ],
     "meanings": {
-      "en": "borrow, rent"
+      "en": "borrow, rent",
+      "fr": "emprunter, louer",
+      "es": "deuda, pedir prestado, alquilar",
+      "pt": "pedir emprestado, aluguel"
     }
   },
   {
@@ -2364,7 +2805,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "weekday"
+      "en": "weekday",
+      "fr": "jour de la semaine",
+      "es": "día de la semana, brillar, resplandecer",
+      "pt": "dia útil"
     }
   },
   {
@@ -2380,7 +2824,10 @@
       "-の.み"
     ],
     "meanings": {
-      "en": "drink, smoke, take"
+      "en": "drink, smoke, take",
+      "fr": "boire, fumer, prendre",
+      "es": "beber",
+      "pt": "beber, fumar, tomar"
     }
   },
   {
@@ -2394,7 +2841,10 @@
       "しし"
     ],
     "meanings": {
-      "en": "meat"
+      "en": "meat",
+      "fr": "chair, viande",
+      "es": "carne",
+      "pt": "carne"
     }
   },
   {
@@ -2410,7 +2860,10 @@
       "かし-"
     ],
     "meanings": {
-      "en": "lend"
+      "en": "lend",
+      "fr": "prêter, louer",
+      "es": "préstamo, prestar, alquilar",
+      "pt": "Emprestar"
     }
   },
   {
@@ -2422,7 +2875,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "public chamber, hall"
+      "en": "public chamber, hall",
+      "fr": "édifice public, temple, salle, hall, grandiose (bâtiment)",
+      "es": "templo, salón, vestíbulo",
+      "pt": "câmara pública, corredor"
     }
   },
   {
@@ -2436,7 +2892,10 @@
       "とり"
     ],
     "meanings": {
-      "en": "bird, chicken"
+      "en": "bird, chicken",
+      "fr": "oiseau, poulet",
+      "es": "pájaro, ave",
+      "pt": "Pássaro, sufixo para nomes de pássaros."
     }
   },
   {
@@ -2450,7 +2909,10 @@
       "めし"
     ],
     "meanings": {
-      "en": "meal, boiled rice"
+      "en": "meal, boiled rice",
+      "fr": "repas, riz bouilli",
+      "es": "comida, arroz cocido",
+      "pt": "refeição, arroz cozido"
     }
   },
   {
@@ -2464,7 +2926,10 @@
       "つと.める"
     ],
     "meanings": {
-      "en": "exertion, endeavour, encourage"
+      "en": "exertion, endeavour, encourage, strive, make effort, diligent",
+      "fr": "exercice",
+      "es": "esforzarse, ejercitarse",
+      "pt": "esforço"
     }
   },
   {
@@ -2478,7 +2943,10 @@
       "ふゆ"
     ],
     "meanings": {
-      "en": "winter"
+      "en": "winter",
+      "fr": "hiver",
+      "es": "invierno",
+      "pt": "Inverno"
     }
   },
   {
@@ -2492,7 +2960,10 @@
       "ひる"
     ],
     "meanings": {
-      "en": "daytime, noon"
+      "en": "daytime, noon",
+      "fr": "journée, midi",
+      "es": "día, mediodía",
+      "pt": "dia, meio-dia"
     }
   },
   {
@@ -2505,7 +2976,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "tea"
+      "en": "tea",
+      "fr": "thé",
+      "es": "hoja de té, té",
+      "pt": "chá"
     }
   },
   {
@@ -2521,7 +2995,10 @@
       "おとうと"
     ],
     "meanings": {
-      "en": "younger brother, faithful service to elders"
+      "en": "younger brother, faithful service to elders",
+      "fr": "frère cadet, apprenti, disciple, service déférent aux ainés",
+      "es": "hermano menor",
+      "pt": "irmão mais jovem"
     }
   },
   {
@@ -2535,7 +3012,10 @@
       "うし"
     ],
     "meanings": {
-      "en": "cow"
+      "en": "cow",
+      "fr": "vache",
+      "es": "vaca, ganado",
+      "pt": "Vaca"
     }
   },
   {
@@ -2551,7 +3031,10 @@
       "-ざかな"
     ],
     "meanings": {
-      "en": "fish"
+      "en": "fish",
+      "fr": "poisson",
+      "es": "pez, pescado",
+      "pt": "peixe"
     }
   },
   {
@@ -2566,7 +3049,10 @@
       "あに"
     ],
     "meanings": {
-      "en": "elder brother, big brother"
+      "en": "elder brother, big brother",
+      "fr": "frère aîné, grand frère",
+      "es": "hermano mayor",
+      "pt": "irmão mais velho, irmão maior"
     }
   },
   {
@@ -2581,7 +3067,10 @@
       "いぬ-"
     ],
     "meanings": {
-      "en": "dog"
+      "en": "dog",
+      "fr": "chien",
+      "es": "perro",
+      "pt": "Cão"
     }
   },
   {
@@ -2595,7 +3084,10 @@
       "いもうと"
     ],
     "meanings": {
-      "en": "younger sister"
+      "en": "younger sister",
+      "fr": "soeur cadette",
+      "es": "hermana menor",
+      "pt": "irmã mais jovem"
     }
   },
   {
@@ -2610,7 +3102,10 @@
       "はは"
     ],
     "meanings": {
-      "en": "elder sister"
+      "en": "elder sister",
+      "fr": "soeur aînée",
+      "es": "hermana mayor",
+      "pt": "irmã mais velha"
     }
   },
   {
@@ -2622,7 +3117,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "Sino-, China"
+      "en": "Sino-, China",
+      "fr": "sino-, Chine",
+      "es": "antigua región de China, China, hombre",
+      "pt": "Sino-, China"
     }
   }
 ]

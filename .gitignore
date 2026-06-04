@@ -12,3 +12,6 @@ Desktop.ini
 
 # Docker
 docker-compose.override.yml
+
+# JMdict / KANJIDIC2 source files — large offline downloads, not committed
+manabi_do/tool/data/

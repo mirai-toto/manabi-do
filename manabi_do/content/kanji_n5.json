@@ -13,7 +13,10 @@
       "-か"
     ],
     "meanings": {
-      "en": "day, sun, Japan"
+      "en": "day, sun, Japan, counter for days",
+      "fr": "jour, soleil, Japon, compteur de jours",
+      "es": "día, solar, Japón, sol, rayo de sol",
+      "pt": "dia, sol, Japão"
     }
   },
   {
@@ -29,7 +32,10 @@
       "ひと.つ"
     ],
     "meanings": {
-      "en": "one, one radical (no.1)"
+      "en": "one, one radical (no.1)",
+      "fr": "un, radical un (no. 1)",
+      "es": "uno, 1",
+      "pt": "um"
     }
   },
   {
@@ -43,7 +49,10 @@
       "くに"
     ],
     "meanings": {
-      "en": "country"
+      "en": "country",
+      "fr": "pays",
+      "es": "país",
+      "pt": "País, terra, nação"
     }
   },
   {
@@ -60,7 +69,10 @@
       "-と"
     ],
     "meanings": {
-      "en": "person"
+      "en": "person",
+      "fr": "être humain, personne",
+      "es": "persona",
+      "pt": "pessoa"
     }
   },
   {
@@ -74,7 +86,10 @@
       "とし"
     ],
     "meanings": {
-      "en": "year, counter for years"
+      "en": "year, counter for years",
+      "fr": "année, compteur d'années",
+      "es": "año, edad",
+      "pt": "Ano"
     }
   },
   {
@@ -91,7 +106,10 @@
       "-おお.いに"
     ],
     "meanings": {
-      "en": "large, big"
+      "en": "large, big",
+      "fr": "grand",
+      "es": "grande, muy, mucho",
+      "pt": "grande, enorme"
     }
   },
   {
@@ -109,7 +127,10 @@
       "そ"
     ],
     "meanings": {
-      "en": "ten"
+      "en": "ten",
+      "fr": "dix",
+      "es": "diez, 10",
+      "pt": "dez"
     }
   },
   {
@@ -126,7 +147,10 @@
       "ふたたび"
     ],
     "meanings": {
-      "en": "two, two radical (no. 7)"
+      "en": "two, two radical (no. 7)",
+      "fr": "deux, radical deux (no. 2)",
+      "es": "dos, 2",
+      "pt": "dois"
     }
   },
   {
@@ -140,7 +164,10 @@
       "もと"
     ],
     "meanings": {
-      "en": "book, present, main"
+      "en": "book, present, main, origin, true, real, counter for long cylindrical things",
+      "fr": "livre, présent, essentiel, origine, principal, réalité, vérité, compteur d'objets allongés",
+      "es": "libro, origen, base, contador de cosas alargadas",
+      "pt": "livro, presente, real, verdadeiro, principal, sufixo p/ contagem De coisas longas"
     }
   },
   {
@@ -156,7 +183,10 @@
       "あた.る"
     ],
     "meanings": {
-      "en": "in, inside, middle"
+      "en": "in, inside, middle, mean, center",
+      "fr": "dans, dedans, à l'intérieur, milieu, centre, moyenne",
+      "es": "centro, dentro, interior, medio",
+      "pt": "em, interior, médio, meio, centro"
     }
   },
   {
@@ -171,7 +201,10 @@
       "おさ"
     ],
     "meanings": {
-      "en": "long, leader, superior"
+      "en": "long, leader, superior, senior",
+      "fr": "long, chef",
+      "es": "largo, jefe, sobresaliente",
+      "pt": "Longo, ambicionar, líder, chefe"
     }
   },
   {
@@ -191,7 +224,10 @@
       "い.だす"
     ],
     "meanings": {
-      "en": "exit, leave, go out"
+      "en": "exit, leave, go out, come out, put out, protrude",
+      "fr": "sortir, quitter, présence",
+      "es": "salir, dejar, sacar",
+      "pt": "saída, deixa"
     }
   },
   {
@@ -208,7 +244,10 @@
       "みっ.つ"
     ],
     "meanings": {
-      "en": "three"
+      "en": "three",
+      "fr": "trois",
+      "es": "tres, 3",
+      "pt": "três"
     }
   },
   {
@@ -223,7 +262,10 @@
       "-どき"
     ],
     "meanings": {
-      "en": "time, hour"
+      "en": "time, hour",
+      "fr": "temps, heure",
+      "es": "tiempo, hora, ocasión",
+      "pt": "tempo, hora"
     }
   },
   {
@@ -246,7 +288,10 @@
       "おこ.なう"
     ],
     "meanings": {
-      "en": "going, journey, carry out"
+      "en": "going, journey, carry out, conduct, act, line, row, bank",
+      "fr": "aller, voyage",
+      "es": "ir, fila, línea (texto), ocurrencia, conducta, realizar, llevar a cabo, ocurrir",
+      "pt": "ir, viagem, viajar"
     }
   },
   {
@@ -262,7 +307,10 @@
       "み.せる"
     ],
     "meanings": {
-      "en": "see, hopes, chances"
+      "en": "see, hopes, chances, idea, opinion, look at, visible",
+      "fr": "regarder, voir, visible, espoirs, chances, idée, opinion",
+      "es": "vista, ver, esperanza, idea, opinión, observar, ser visto, estar a la vista, poder verse, mostrar",
+      "pt": "ver, esperanças, oportunidades, idéia, opinião, olhar, visíveis"
     }
   },
   {
@@ -277,7 +325,10 @@
       "つき"
     ],
     "meanings": {
-      "en": "month, moon"
+      "en": "month, moon",
+      "fr": "lune, mois",
+      "es": "mes, luna",
+      "pt": "mês, lua"
     }
   },
   {
@@ -296,7 +347,10 @@
       "おく.れる"
     ],
     "meanings": {
-      "en": "behind, back, later"
+      "en": "behind, back, later",
+      "fr": "après, derrière, plus tard",
+      "es": "después, atrás, detrás, retrasarse",
+      "pt": "atrás, costas, mais tarde"
     }
   },
   {
@@ -311,7 +365,10 @@
       "-まえ"
     ],
     "meanings": {
-      "en": "in front, before"
+      "en": "in front, before",
+      "fr": "devant, avant",
+      "es": "antes, delante de",
+      "pt": "em frente, antes"
     }
   },
   {
@@ -343,7 +400,10 @@
       "-う"
     ],
     "meanings": {
-      "en": "life, genuine, birth"
+      "en": "life, genuine, birth",
+      "fr": "vie, naissance, authentique, cru",
+      "es": "vida, nacimiento, vivir, existir, nacer, dar a luz, puro, crudo",
+      "pt": "vida, genuína, nascimento"
     }
   },
   {
@@ -358,7 +418,10 @@
       "いつ.つ"
     ],
     "meanings": {
-      "en": "five"
+      "en": "five",
+      "fr": "cinq",
+      "es": "cinco, 5",
+      "pt": "cinco"
     }
   },
   {
@@ -375,7 +438,10 @@
       "あい"
     ],
     "meanings": {
-      "en": "interval, space"
+      "en": "interval, space",
+      "fr": "intervalle, espace",
+      "es": "intervalo, espacio, habitación",
+      "pt": "intervalo, espaço"
     }
   },
   {
@@ -405,7 +471,10 @@
       "たてまつ.る"
     ],
     "meanings": {
-      "en": "above, up"
+      "en": "above, up",
+      "fr": "au-dessus, haut, monter, donner (je te donne)",
+      "es": "arriba, encima, parte superior, cima, superficie",
+      "pt": "acima, para cima, sobre, subir, galgar, em cima, escalar"
     }
   },
   {
@@ -419,7 +488,10 @@
       "ひがし"
     ],
     "meanings": {
-      "en": "east"
+      "en": "east",
+      "fr": "Est",
+      "es": "Este",
+      "pt": "Oriente"
     }
   },
   {
@@ -436,7 +508,10 @@
       "よん"
     ],
     "meanings": {
-      "en": "four"
+      "en": "four",
+      "fr": "quatre",
+      "es": "cuatro, 4",
+      "pt": "quatro"
     }
   },
   {
@@ -451,7 +526,10 @@
       "いま"
     ],
     "meanings": {
-      "en": "now"
+      "en": "now",
+      "fr": "maintenant",
+      "es": "ahora, momento actual",
+      "pt": "agora"
     }
   },
   {
@@ -469,7 +547,10 @@
       "-がね"
     ],
     "meanings": {
-      "en": "gold"
+      "en": "gold",
+      "fr": "or",
+      "es": "oro, dinero, metal",
+      "pt": "ouro"
     }
   },
   {
@@ -485,7 +566,10 @@
       "ここの.つ"
     ],
     "meanings": {
-      "en": "nine"
+      "en": "nine",
+      "fr": "neuf",
+      "es": "nueve, 9",
+      "pt": "nove"
     }
   },
   {
@@ -505,7 +589,10 @@
       "はい.る"
     ],
     "meanings": {
-      "en": "enter, insert"
+      "en": "enter, insert",
+      "fr": "entrer, insérer",
+      "es": "entrar, insertar, admitir, introducir, meter",
+      "pt": "entrar, inserir"
     }
   },
   {
@@ -519,7 +606,10 @@
       "まな.ぶ"
     ],
     "meanings": {
-      "en": "study, learning, science"
+      "en": "study, learning, science",
+      "fr": "étudier, apprendre, science",
+      "es": "estudio, aprendizaje, ciencia, estudiar",
+      "pt": "estudo, aprendizagem, ciência"
     }
   },
   {
@@ -537,7 +627,10 @@
       "たか.める"
     ],
     "meanings": {
-      "en": "tall, high, expensive"
+      "en": "tall, high, expensive",
+      "fr": "haut, élevé, grand, cher",
+      "es": "alto, caro, sobresaliente, elevar, levantar",
+      "pt": "Caro, alto"
     }
   },
   {
@@ -555,7 +648,10 @@
       "まろ.やか"
     ],
     "meanings": {
-      "en": "circle, yen, round"
+      "en": "circle, yen, round",
+      "fr": "cercle, yen, rond",
+      "es": "circular, redondo, yen",
+      "pt": "círculo, iene, redondo"
     }
   },
   {
@@ -573,7 +669,10 @@
       "ね"
     ],
     "meanings": {
-      "en": "child, sign of the rat, 11PM-1AM"
+      "en": "child, sign of the rat, 11PM-1AM, first sign of Chinese zodiac",
+      "fr": "enfant, signe de la 1ère branche terrestre, signe du Rat (zodiaque), 23 h à 01 h, Nord (0°)",
+      "es": "chiquillo, niño",
+      "pt": "criança"
     }
   },
   {
@@ -592,7 +691,10 @@
       "と-"
     ],
     "meanings": {
-      "en": "outside"
+      "en": "outside",
+      "fr": "extérieur",
+      "es": "fuera, exterior, otro, desatar, estar desatado, estar desconectado",
+      "pt": "Exterior"
     }
   },
   {
@@ -610,7 +712,10 @@
       "よう"
     ],
     "meanings": {
-      "en": "eight, eight radical (no. 12)"
+      "en": "eight, eight radical (no. 12)",
+      "fr": "huit, radical huit (no. 12)",
+      "es": "ocho, 8",
+      "pt": "Oito"
     }
   },
   {
@@ -628,7 +733,10 @@
       "むい"
     ],
     "meanings": {
-      "en": "six"
+      "en": "six",
+      "fr": "six",
+      "es": "seis, 6",
+      "pt": "seis"
     }
   },
   {
@@ -654,7 +762,10 @@
       "お.りる"
     ],
     "meanings": {
-      "en": "below, down, descend"
+      "en": "below, down, descend, give, low, inferior",
+      "fr": "au-dessous, descendre, bas, donner (vous me donnez), inférieur",
+      "es": "debajo, inferior, debajo de, parte inferior",
+      "pt": "baixo, abaixo, descende, inferior, sub, sob"
     }
   },
   {
@@ -675,7 +786,10 @@
       "こ"
     ],
     "meanings": {
-      "en": "come, due, next"
+      "en": "come, due, next, cause, become",
+      "fr": "venir, dû à, suivant, causer, devenir",
+      "es": "venir, llegar, acercarse, aproximarse",
+      "pt": "Vir, devido, próximo, causa, tornar-se"
     }
   },
   {
@@ -691,7 +805,10 @@
       "き"
     ],
     "meanings": {
-      "en": "spirit, mind, air"
+      "en": "spirit, mind, air, atmosphere, mood",
+      "fr": "esprit, air, atmosphère, humeur",
+      "es": "espíritu, mente",
+      "pt": "espírito, mente"
     }
   },
   {
@@ -708,7 +825,10 @@
       "さ-"
     ],
     "meanings": {
-      "en": "little, small"
+      "en": "little, small",
+      "fr": "petit",
+      "es": "poco, pequeño",
+      "pt": "Pequeno, pouco"
     }
   },
   {
@@ -724,7 +844,10 @@
       "なの"
     ],
     "meanings": {
-      "en": "seven"
+      "en": "seven",
+      "fr": "sept",
+      "es": "siete, 7",
+      "pt": "Sete"
     }
   },
   {
@@ -739,7 +862,10 @@
       "やま"
     ],
     "meanings": {
-      "en": "mountain"
+      "en": "mountain",
+      "fr": "montagne",
+      "es": "montaña",
+      "pt": "montanha"
     }
   },
   {
@@ -754,7 +880,10 @@
       "はなし"
     ],
     "meanings": {
-      "en": "tale, talk"
+      "en": "tale, talk",
+      "fr": "parler, histoire",
+      "es": "cuento, charla, hablar, narrar",
+      "pt": "Conversar, falar uma língua, conto"
     }
   },
   {
@@ -771,7 +900,10 @@
       "め"
     ],
     "meanings": {
-      "en": "woman, female"
+      "en": "woman, female",
+      "fr": "femme, féminin",
+      "es": "femenino, mujer",
+      "pt": "mulher, fêmea"
     }
   },
   {
@@ -785,7 +917,10 @@
       "きた"
     ],
     "meanings": {
-      "en": "north"
+      "en": "north",
+      "fr": "nord",
+      "es": "Norte, huir, perder",
+      "pt": "norte"
     }
   },
   {
@@ -799,7 +934,10 @@
       "うま"
     ],
     "meanings": {
-      "en": "noon, sign of the horse, 11AM-1PM"
+      "en": "noon, sign of the horse, 11AM-1PM, seventh sign of Chinese zodiac",
+      "fr": "midi, signe de la 7ème branche terrestre, signe du Cheval (zodiaque), 11 h à 13 h, Sud (180°)",
+      "es": "mediodía",
+      "pt": "meio-dia"
     }
   },
   {
@@ -814,7 +952,10 @@
       "もも"
     ],
     "meanings": {
-      "en": "hundred"
+      "en": "hundred",
+      "fr": "cent",
+      "es": "cien, muchos",
+      "pt": "cem"
     }
   },
   {
@@ -830,7 +971,10 @@
       "-がき"
     ],
     "meanings": {
-      "en": "write"
+      "en": "write",
+      "fr": "écrire",
+      "es": "escritura, escrito, escribir",
+      "pt": "escrever"
     }
   },
   {
@@ -845,7 +989,10 @@
       "ま.ず"
     ],
     "meanings": {
-      "en": "before, ahead, previous"
+      "en": "before, ahead, previous, future, precedence",
+      "fr": "avant, devant, précédent, futur, antériorité",
+      "es": "antes, adelante, previo, precedencia, extremo, punta, final, anterior",
+      "pt": "antes, prévio, na frente, futuro, precedência"
     }
   },
   {
@@ -861,7 +1008,10 @@
       "-な"
     ],
     "meanings": {
-      "en": "name, noted, distinguished"
+      "en": "name, noted, distinguished, reputation",
+      "fr": "nom, célèbre, fameux, réputation",
+      "es": "nombre, célebre, distinguido, reputación",
+      "pt": "nome, fama, distinção, reputação"
     }
   },
   {
@@ -875,7 +1025,10 @@
       "かわ"
     ],
     "meanings": {
-      "en": "stream, river, river or three-stroke river radical (no. 47)"
+      "en": "stream, river, river or three-stroke river radical (no. 47)",
+      "fr": "rivière, fleuve, radical rivière (no. 47)",
+      "es": "arroyo, río",
+      "pt": "corrente, rio"
     }
   },
   {
@@ -889,7 +1042,10 @@
       "ち"
     ],
     "meanings": {
-      "en": "thousand"
+      "en": "thousand",
+      "fr": "mille",
+      "es": "mil, muchos",
+      "pt": "Mil"
     }
   },
   {
@@ -904,7 +1060,10 @@
       "みず-"
     ],
     "meanings": {
-      "en": "water"
+      "en": "water",
+      "fr": "eau",
+      "es": "agua",
+      "pt": "água"
     }
   },
   {
@@ -918,7 +1077,10 @@
       "なか.ば"
     ],
     "meanings": {
-      "en": "half, middle, odd number"
+      "en": "half, middle, odd number, semi-, part-",
+      "fr": "moitié, demi, milieu, nombre impair",
+      "es": "mitad, medio, incompleto, semi-, semi, a medias, en parte",
+      "pt": "metade, médio, número ímpar, semi-, parte-"
     }
   },
   {
@@ -934,7 +1096,10 @@
       "お"
     ],
     "meanings": {
-      "en": "male"
+      "en": "male",
+      "fr": "homme, mâle",
+      "es": "masculino, hombre",
+      "pt": "masculino"
     }
   },
   {
@@ -950,7 +1115,10 @@
       "にし"
     ],
     "meanings": {
-      "en": "west, Spain"
+      "en": "west, Spain",
+      "fr": "Ouest, Espagne",
+      "es": "Oeste, España",
+      "pt": "oeste, Espanha"
     }
   },
   {
@@ -962,7 +1130,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "electricity"
+      "en": "electricity",
+      "fr": "électricité",
+      "es": "electricidad, eléctrico",
+      "pt": "eletricidade"
     }
   },
   {
@@ -975,7 +1146,10 @@
     ],
     "kun": [],
     "meanings": {
-      "en": "exam, school, printing"
+      "en": "exam, school, printing, proof, correction",
+      "fr": "école, examen, impression, épreuve, correction",
+      "es": "escuela, colegio, centro docente",
+      "pt": "exame, escola, impressão, prova, correção"
     }
   },
   {
@@ -990,7 +1164,10 @@
       "かた.らう"
     ],
     "meanings": {
-      "en": "word, speech, language"
+      "en": "word, speech, language",
+      "fr": "langage, mot, raconter",
+      "es": "palabra, discurso, lenguaje, hablar, conversar, narrar",
+      "pt": "palavra, discurso, língua"
     }
   },
   {
@@ -1005,7 +1182,10 @@
       "つち"
     ],
     "meanings": {
-      "en": "soil, earth, ground"
+      "en": "soil, earth, ground, Turkey",
+      "fr": "sol, terre, terrain, Turquie",
+      "es": "suelo, tierra, Turquía",
+      "pt": "solo, terra, chão, Turquia"
     }
   },
   {
@@ -1021,7 +1201,10 @@
       "こ-"
     ],
     "meanings": {
-      "en": "tree, wood"
+      "en": "tree, wood",
+      "fr": "arbre, bois (matière)",
+      "es": "árbol, madera",
+      "pt": "árvore, madeira"
     }
   },
   {
@@ -1037,7 +1220,10 @@
       "き.こえる"
     ],
     "meanings": {
-      "en": "hear, ask, listen"
+      "en": "hear, ask, listen",
+      "fr": "entendre, écouter, demander",
+      "es": "preguntar, escuchar, rumor, reputación, oír",
+      "pt": "escutar, perguntar, escuta"
     }
   },
   {
@@ -1055,7 +1241,10 @@
       "は.む"
     ],
     "meanings": {
-      "en": "eat, food"
+      "en": "eat, food",
+      "fr": "manger, nourriture",
+      "es": "alimento, comida, eclipse, comer",
+      "pt": "comer, comida, alimento"
     }
   },
   {
@@ -1069,7 +1258,10 @@
       "くるま"
     ],
     "meanings": {
-      "en": "car"
+      "en": "car",
+      "fr": "véhicule, voiture",
+      "es": "coche, vehículo, rueda",
+      "pt": "carro"
     }
   },
   {
@@ -1086,7 +1278,10 @@
       "なん-"
     ],
     "meanings": {
-      "en": "what"
+      "en": "what",
+      "fr": "quoi",
+      "es": "qué",
+      "pt": "que"
     }
   },
   {
@@ -1101,7 +1296,10 @@
       "みなみ"
     ],
     "meanings": {
-      "en": "south"
+      "en": "south",
+      "fr": "sud",
+      "es": "Sur",
+      "pt": "sul"
     }
   },
   {
@@ -1116,7 +1314,10 @@
       "よろず"
     ],
     "meanings": {
-      "en": "ten thousand, 10,000"
+      "en": "ten thousand, 10,000",
+      "fr": "myriade, 10000",
+      "es": "diez mil, muchos",
+      "pt": "dez mil"
     }
   },
   {
@@ -1131,7 +1332,10 @@
       "-ごと.に"
     ],
     "meanings": {
-      "en": "every"
+      "en": "every",
+      "fr": "chaque",
+      "es": "siempre, cada, en ese momento",
+      "pt": "todo"
     }
   },
   {
@@ -1148,7 +1352,10 @@
       "しろ.い"
     ],
     "meanings": {
-      "en": "white"
+      "en": "white",
+      "fr": "blanc",
+      "es": "blanco",
+      "pt": "branco"
     }
   },
   {
@@ -1164,7 +1371,10 @@
       "あま-"
     ],
     "meanings": {
-      "en": "heavens, sky, imperial"
+      "en": "heavens, sky, imperial",
+      "fr": "cieux, ciel, impérial",
+      "es": "paraíso, cielo, imperial",
+      "pt": "paraíso, ceú, imperiais"
     }
   },
   {
@@ -1179,7 +1389,10 @@
       "も"
     ],
     "meanings": {
-      "en": "mother"
+      "en": "mother",
+      "fr": "maman, mère",
+      "es": "madre, base, cimientos",
+      "pt": "mãe, materno"
     }
   },
   {
@@ -1195,7 +1408,10 @@
       "ほ-"
     ],
     "meanings": {
-      "en": "fire"
+      "en": "fire",
+      "fr": "feu",
+      "es": "fuego, flama, llama",
+      "pt": "fogo"
     }
   },
   {
@@ -1210,7 +1426,10 @@
       "みぎ"
     ],
     "meanings": {
-      "en": "right"
+      "en": "right",
+      "fr": "droite",
+      "es": "derecha",
+      "pt": "Direita"
     }
   },
   {
@@ -1227,7 +1446,10 @@
       "-よ.み"
     ],
     "meanings": {
-      "en": "read"
+      "en": "read",
+      "fr": "lire",
+      "es": "leer",
+      "pt": "leia"
     }
   },
   {
@@ -1241,7 +1463,10 @@
       "とも"
     ],
     "meanings": {
-      "en": "friend"
+      "en": "friend",
+      "fr": "ami",
+      "es": "amigo, compañero",
+      "pt": "amigo"
     }
   },
   {
@@ -1256,7 +1481,10 @@
       "ひだり"
     ],
     "meanings": {
-      "en": "left"
+      "en": "left",
+      "fr": "gauche",
+      "es": "izquierda",
+      "pt": "Esquerda"
     }
   },
   {
@@ -1272,7 +1500,10 @@
       "やす.める"
     ],
     "meanings": {
-      "en": "rest, day off, retire"
+      "en": "rest, day off, retire, sleep",
+      "fr": "repos, jour de repos, se coucher, dormir",
+      "es": "descanso, descansar, tomarse un descanso, estar descansado, dar descanso",
+      "pt": "descanso, dia desligado, aposentar, sono"
     }
   },
   {
@@ -1286,7 +1517,10 @@
       "ちち"
     ],
     "meanings": {
-      "en": "father"
+      "en": "father",
+      "fr": "père",
+      "es": "padre",
+      "pt": "pai"
     }
   },
   {
@@ -1302,7 +1536,10 @@
       "-さめ"
     ],
     "meanings": {
-      "en": "rain"
+      "en": "rain",
+      "fr": "pluie",
+      "es": "lluvia",
+      "pt": "chuva"
     }
   }
 ]
