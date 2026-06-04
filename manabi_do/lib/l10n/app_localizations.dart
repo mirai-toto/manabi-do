@@ -699,6 +699,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Done'**
   String get practiceDone;
+
+  /// No description provided for @srsStateNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get srsStateNew;
+
+  /// No description provided for @srsStateLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning'**
+  String get srsStateLearning;
+
+  /// No description provided for @srsStateMastered.
+  ///
+  /// In en, this message translates to:
+  /// **'Mastered'**
+  String get srsStateMastered;
+
+  /// No description provided for @srsDueToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Due today'**
+  String get srsDueToday;
+
+  /// No description provided for @srsDueIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Due in {days}d'**
+  String srsDueIn(int days);
 }
 
 class _AppLocalizationsDelegate

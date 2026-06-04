@@ -328,4 +328,21 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get practiceDone => 'Fertig';
+
+  @override
+  String get srsStateNew => 'Neu';
+
+  @override
+  String get srsStateLearning => 'In Bearbeitung';
+
+  @override
+  String get srsStateMastered => 'Gelernt';
+
+  @override
+  String get srsDueToday => 'Heute fällig';
+
+  @override
+  String srsDueIn(int days) {
+    return 'In $days T.';
+  }
 }

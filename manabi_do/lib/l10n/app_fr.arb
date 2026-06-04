@@ -166,5 +166,14 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "practiceEmpty": "Rien à réviser — revenez demain !",
-  "practiceDone": "Terminer"
+  "practiceDone": "Terminer",
+
+  "srsStateNew": "Nouveau",
+  "srsStateLearning": "En cours",
+  "srsStateMastered": "Maîtrisé",
+  "srsDueToday": "À réviser aujourd'hui",
+  "srsDueIn": "Dans {days}j",
+  "@srsDueIn": {
+    "placeholders": { "days": { "type": "int" } }
+  }
 }

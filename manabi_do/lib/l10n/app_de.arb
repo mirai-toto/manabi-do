@@ -166,5 +166,14 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "practiceEmpty": "Nichts zu wiederholen — komm morgen wieder!",
-  "practiceDone": "Fertig"
+  "practiceDone": "Fertig",
+
+  "srsStateNew": "Neu",
+  "srsStateLearning": "In Bearbeitung",
+  "srsStateMastered": "Gelernt",
+  "srsDueToday": "Heute fällig",
+  "srsDueIn": "In {days} T.",
+  "@srsDueIn": {
+    "placeholders": { "days": { "type": "int" } }
+  }
 }

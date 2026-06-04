@@ -172,5 +172,14 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "practiceEmpty": "Nothing to review — come back tomorrow!",
-  "practiceDone": "Done"
+  "practiceDone": "Done",
+
+  "srsStateNew": "New",
+  "srsStateLearning": "Learning",
+  "srsStateMastered": "Mastered",
+  "srsDueToday": "Due today",
+  "srsDueIn": "Due in {days}d",
+  "@srsDueIn": {
+    "placeholders": { "days": { "type": "int" } }
+  }
 }

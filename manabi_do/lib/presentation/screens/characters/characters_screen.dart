@@ -5,7 +5,6 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../domain/data/kana_data.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
 import '../../providers/kana_progress_provider.dart';
 import '../../providers/kana_provider.dart';
 import '../../widgets/widgets.dart';
@@ -37,11 +36,6 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
     super.dispose();
   }
 
-  void _toggleKana(String type, int kanaId, Set<int> current) {
-    final isKnown = current.contains(kanaId);
-    ref.read(databaseProvider).setKanaKnown(type, kanaId, isKnown: !isKnown);
-  }
-
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
@@ -71,13 +65,13 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
                         KanaTabView(
                           rows: kanaData.hiragana,
                           knownIds: knownHiragana,
-                          onToggle: (id) => _toggleKana('hiragana', id, knownHiragana),
+                          type: 'hiragana',
                           onPractice: () => _openPractice('hiragana'),
                         ),
                         KanaTabView(
                           rows: kanaData.katakana,
                           knownIds: knownKatakana,
-                          onToggle: (id) => _toggleKana('katakana', id, knownKatakana),
+                          type: 'katakana',
                           onPractice: () => _openPractice('katakana'),
                         ),
                         const KanjiTabView(),
