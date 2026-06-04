@@ -41,6 +41,21 @@ class _KanaPracticeScreenState extends ConsumerState<KanaPracticeScreen> {
     if (queue.isEmpty) setState(() => _done = true);
   }
 
+  Future<void> _debugCompleteAll() async {
+    final queue = _queue!;
+    final db = ref.read(databaseProvider);
+    for (final (kana, existingCard) in queue) {
+      var card = existingCard ?? Card(cardId: DateTime.now().millisecondsSinceEpoch, due: DateTime.now());
+      // Rate easy 3 times to push stability well past the mastered threshold
+      for (var i = 0; i < 3; i++) {
+        card = _scheduler.reviewCard(card, Rating.easy).card;
+      }
+      await db.upsertSrsCard(widget.type, kana.id, card);
+      await db.setKanaKnown(widget.type, kana.id, isKnown: true);
+    }
+    setState(() { _gotIt = queue.length; _done = true; });
+  }
+
   Future<void> _answer(Rating rating) async {
     final queue = _queue!;
     final (kana, existingCard) = queue[_index];
@@ -91,6 +106,14 @@ class _KanaPracticeScreenState extends ConsumerState<KanaPracticeScreen> {
           widget.type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
           style: AppTextStyles.title.copyWith(color: t.onSurface),
         ),
+        actions: [
+          if (!_done && _queue != null)
+            IconButton(
+              icon: const Icon(Icons.fast_forward_rounded, color: Colors.orange),
+              tooltip: 'DEBUG: complete session',
+              onPressed: _debugCompleteAll,
+            ),
+        ],
       ),
       body: _queue == null
           ? const Center(child: CircularProgressIndicator())
