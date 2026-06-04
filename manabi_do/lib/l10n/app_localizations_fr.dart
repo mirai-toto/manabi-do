@@ -271,4 +271,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get kanaRowVowels => 'Voyelles';
+
+  @override
+  String get settingsAppearance => 'Apparence';
+
+  @override
+  String get settingsThemeLight => 'Mode clair';
+
+  @override
+  String get settingsThemeDark => 'Mode sombre';
+
+  @override
+  String get settingsLanguage => 'Langue';
 }

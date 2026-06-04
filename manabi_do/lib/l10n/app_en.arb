@@ -141,5 +141,10 @@
     }
   },
 
-  "kanaRowVowels": "Vowels"
+  "kanaRowVowels": "Vowels",
+
+  "settingsAppearance": "Appearance",
+  "settingsThemeLight": "Light mode",
+  "settingsThemeDark": "Dark mode",
+  "settingsLanguage": "Language"
 }

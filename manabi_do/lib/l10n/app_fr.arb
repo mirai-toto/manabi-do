@@ -135,5 +135,10 @@
     }
   },
 
-  "kanaRowVowels": "Voyelles"
+  "kanaRowVowels": "Voyelles",
+
+  "settingsAppearance": "Apparence",
+  "settingsThemeLight": "Mode clair",
+  "settingsThemeDark": "Mode sombre",
+  "settingsLanguage": "Langue"
 }

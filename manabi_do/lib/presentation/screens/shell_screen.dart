@@ -6,6 +6,7 @@ import '../widgets/widgets.dart';
 import 'characters/characters_screen.dart';
 import 'grammar/grammar_screen.dart';
 import 'home_screen.dart';
+import 'more/more_screen.dart';
 import 'vocabulary/vocabulary_screen.dart';
 
 class ShellScreen extends ConsumerStatefulWidget {
@@ -23,15 +24,17 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     CharactersScreen(),
     VocabularyScreen(),
     GrammarScreen(),
+    MoreScreen(),
   ];
 
   List<NavDestination> _destinations(BuildContext context) {
     final l = context.l10n;
     return [
-      NavDestination(label: l.navHome, icon: '家'),
+      NavDestination(label: l.navHome,           icon: '家'),
       NavDestination(label: l.sectionCharacters, icon: '字'),
       NavDestination(label: l.navVocab,          icon: '語'),
       NavDestination(label: l.sectionGrammar,    icon: '文'),
+      NavDestination(label: l.navMore,           icon: '…'),
     ];
   }
 

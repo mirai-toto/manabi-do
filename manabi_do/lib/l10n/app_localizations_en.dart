@@ -271,4 +271,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kanaRowVowels => 'Vowels';
+
+  @override
+  String get settingsAppearance => 'Appearance';
+
+  @override
+  String get settingsThemeLight => 'Light mode';
+
+  @override
+  String get settingsThemeDark => 'Dark mode';
+
+  @override
+  String get settingsLanguage => 'Language';
 }
