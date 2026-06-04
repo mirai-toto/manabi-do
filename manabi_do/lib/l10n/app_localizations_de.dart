@@ -301,4 +301,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aboutEdrdgLink => 'edrdg.org';
+
+  @override
+  String get aboutOpenSourceLicenses => 'Open-Source-Lizenzen';
 }

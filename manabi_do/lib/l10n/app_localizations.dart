@@ -657,6 +657,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'edrdg.org'**
   String get aboutEdrdgLink;
+
+  /// No description provided for @aboutOpenSourceLicenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Open source licenses'**
+  String get aboutOpenSourceLicenses;
 }
 
 class _AppLocalizationsDelegate

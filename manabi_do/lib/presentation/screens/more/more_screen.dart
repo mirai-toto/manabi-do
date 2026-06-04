@@ -76,6 +76,11 @@ class SettingsScreen extends ConsumerWidget {
                 icon: Icons.info_outline_rounded,
                 label: l.aboutVersion(version),
               ),
+              _TappableRow(
+                leading: Icon(Icons.article_outlined, size: 20, color: context.tokens.onSurfaceVariant),
+                label: l.aboutOpenSourceLicenses,
+                onTap: () => showLicensePage(context: context, applicationName: l.appTitle),
+              ),
             ]),
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.aboutDataSources),

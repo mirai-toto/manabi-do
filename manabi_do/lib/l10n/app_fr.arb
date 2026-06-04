@@ -149,5 +149,6 @@
   },
   "aboutDataSources": "Sources de données",
   "aboutEdrdgNotice": "Cette application utilise JMdict et KANJIDIC2, publiés par l'Electronic Dictionary Research and Development Group (EDRDG) sous licence Creative Commons Attribution-ShareAlike 4.0 International.",
-  "aboutEdrdgLink": "edrdg.org"
+  "aboutEdrdgLink": "edrdg.org",
+  "aboutOpenSourceLicenses": "Licences open source"
 }
