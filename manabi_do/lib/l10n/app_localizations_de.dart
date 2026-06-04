@@ -299,6 +299,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get cancel => 'Abbrechen';
 
   @override
+  String get settingsPractice => 'Übung';
+
+  @override
+  String get settingsPracticeNewCards => 'Neue Karten pro Sitzung';
+
+  @override
   String get settingsAppearance => 'Erscheinungsbild';
 
   @override

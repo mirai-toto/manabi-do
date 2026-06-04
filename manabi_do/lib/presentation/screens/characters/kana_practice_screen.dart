@@ -8,6 +8,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
+import '../../../core/providers/srs_settings_provider.dart';
 import '../../providers/database_provider.dart';
 import '../../widgets/exercise/flash_card.dart';
 
@@ -36,7 +37,8 @@ class _KanaPracticeScreenState extends ConsumerState<KanaPracticeScreen> {
 
   Future<void> _loadSession() async {
     final db = ref.read(databaseProvider);
-    final queue = await db.getKanaSrsSession(widget.type);
+    final settings = await ref.read(srsSettingsProvider.future);
+    final queue = await db.getKanaSrsSession(widget.type, newCardLimit: settings.newCardsPerSession);
     setState(() => _queue = queue);
     if (queue.isEmpty) setState(() => _done = true);
   }

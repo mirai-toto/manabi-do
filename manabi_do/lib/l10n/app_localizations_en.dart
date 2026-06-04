@@ -299,6 +299,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel => 'Cancel';
 
   @override
+  String get settingsPractice => 'Practice';
+
+  @override
+  String get settingsPracticeNewCards => 'New cards per session';
+
+  @override
   String get settingsAppearance => 'Appearance';
 
   @override

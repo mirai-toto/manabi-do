@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../../../core/providers/locale_provider.dart';
+import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -56,6 +57,8 @@ class SettingsScreen extends ConsumerWidget {
     );
 
     final version = pkgAsync.when(data: (p) => p.version, loading: () => '—', error: (e, s) => '—');
+    final srsSettings = ref.watch(srsSettingsProvider);
+    final newCards = srsSettings.asData?.value.newCardsPerSession ?? 10;
 
     return Align(
       alignment: Alignment.topCenter,
@@ -65,6 +68,25 @@ class SettingsScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(AppDimens.spaceMd),
           children: [
             _ScreenHeader(),
+            const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.settingsPractice),
+            const SizedBox(height: AppDimens.spaceSm),
+            _SettingsCard(children: [
+              _StepperRow(
+                icon: Icons.layers_rounded,
+                label: l.settingsPracticeNewCards,
+                value: newCards,
+                min: 5,
+                max: 50,
+                step: 5,
+                onDecrement: newCards > 5
+                    ? () => ref.read(srsSettingsProvider.notifier).setNewCardsPerSession(newCards - 5)
+                    : null,
+                onIncrement: newCards < 50
+                    ? () => ref.read(srsSettingsProvider.notifier).setNewCardsPerSession(newCards + 5)
+                    : null,
+              ),
+            ]),
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsAppearance),
             const SizedBox(height: AppDimens.spaceSm),
@@ -279,6 +301,65 @@ class _AttributionCard extends StatelessWidget {
           Text(notice, style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant)),
           const SizedBox(height: AppDimens.spaceSm),
           Text(link, style: AppTextStyles.bodySmall.copyWith(color: t.primary)),
+        ],
+      ),
+    );
+  }
+}
+
+class _StepperRow extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final int value;
+  final int min;
+  final int max;
+  final int step;
+  final VoidCallback? onDecrement;
+  final VoidCallback? onIncrement;
+
+  const _StepperRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.min,
+    required this.max,
+    required this.step,
+    this.onDecrement,
+    this.onIncrement,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd, vertical: AppDimens.spaceSm),
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: t.onSurfaceVariant),
+          const SizedBox(width: AppDimens.spaceMd),
+          Expanded(child: Text(label, style: AppTextStyles.body.copyWith(color: t.onSurface))),
+          IconButton(
+            onPressed: onDecrement,
+            icon: Icon(Icons.remove_rounded, size: 18, color: onDecrement != null ? t.onSurface : t.outlineVariant),
+            visualDensity: VisualDensity.compact,
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+          ),
+          SizedBox(
+            width: 36,
+            child: Text(
+              '$value',
+              textAlign: TextAlign.center,
+              style: AppTextStyles.body.copyWith(color: t.onSurface, fontWeight: FontWeight.w600),
+            ),
+          ),
+          IconButton(
+            onPressed: onIncrement,
+            icon: Icon(Icons.add_rounded, size: 18, color: onIncrement != null ? t.onSurface : t.outlineVariant),
+            visualDensity: VisualDensity.compact,
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+          ),
         ],
       ),
     );

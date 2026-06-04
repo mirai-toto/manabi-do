@@ -146,6 +146,9 @@
   "resetConfirm": "Zurücksetzen",
   "cancel": "Abbrechen",
 
+  "settingsPractice": "Übung",
+  "settingsPracticeNewCards": "Neue Karten pro Sitzung",
+
   "settingsAppearance": "Erscheinungsbild",
   "settingsThemeLight": "Heller Modus",
   "settingsThemeDark": "Dunkler Modus",

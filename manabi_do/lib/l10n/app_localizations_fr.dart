@@ -299,6 +299,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get cancel => 'Annuler';
 
   @override
+  String get settingsPractice => 'Entraînement';
+
+  @override
+  String get settingsPracticeNewCards => 'Nouvelles cartes par session';
+
+  @override
   String get settingsAppearance => 'Apparence';
 
   @override

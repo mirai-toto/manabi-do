@@ -146,6 +146,9 @@
   "resetConfirm": "Réinitialiser",
   "cancel": "Annuler",
 
+  "settingsPractice": "Entraînement",
+  "settingsPracticeNewCards": "Nouvelles cartes par session",
+
   "settingsAppearance": "Apparence",
   "settingsThemeLight": "Mode clair",
   "settingsThemeDark": "Mode sombre",

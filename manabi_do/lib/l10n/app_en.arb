@@ -152,6 +152,9 @@
   "resetConfirm": "Reset",
   "cancel": "Cancel",
 
+  "settingsPractice": "Practice",
+  "settingsPracticeNewCards": "New cards per session",
+
   "settingsAppearance": "Appearance",
   "settingsThemeLight": "Light mode",
   "settingsThemeDark": "Dark mode",

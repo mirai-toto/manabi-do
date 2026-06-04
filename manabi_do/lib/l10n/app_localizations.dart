@@ -652,6 +652,18 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @settingsPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get settingsPractice;
+
+  /// No description provided for @settingsPracticeNewCards.
+  ///
+  /// In en, this message translates to:
+  /// **'New cards per session'**
+  String get settingsPracticeNewCards;
+
   /// No description provided for @settingsAppearance.
   ///
   /// In en, this message translates to:

@@ -229,7 +229,7 @@ class AppDatabase extends _$AppDatabase {
       .go();
   }
 
-  Future<List<(Kana, Card?)>> getKanaSrsSession(String type) async {
+  Future<List<(Kana, Card?)>> getKanaSrsSession(String type, {int newCardLimit = 10}) async {
     final kanaList = await getKanaByType(type);
     final now = DateTime.now();
 
@@ -239,8 +239,8 @@ class AppDatabase extends _$AppDatabase {
 
     final pairs = List.generate(kanaList.length, (i) => (kanaList[i], cards[i]));
 
-    final due    = pairs.where((p) => p.$2 != null && !p.$2!.due.isAfter(now)).toList();
-    final newOnes = pairs.where((p) => p.$2 == null).take(20).toList();
+    final due     = pairs.where((p) => p.$2 != null && !p.$2!.due.isAfter(now)).toList();
+    final newOnes = pairs.where((p) => p.$2 == null).take(newCardLimit).toList();
 
     return [...due, ...newOnes];
   }
