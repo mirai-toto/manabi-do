@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Card, State;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart';
 
+import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -183,14 +184,15 @@ class _ProgressInfo extends StatelessWidget {
     final l = context.l10n;
 
     final stability = srsCard?.stability ?? 0.0;
+    final level = srsLevel(srsCard);
 
-    final (stateLabel, stateColor) = switch (srsCard?.state) {
-      null         => (l.srsStateNew,      t.onSurfaceVariant),
-      State.review => (l.srsStateMastered, t.success),
-      _            => (l.srsStateLearning,  t.warning),
+    final (stateLabel, stateColor) = switch (level) {
+      SrsLevel.newCard  => (l.srsStateNew,       t.onSurfaceVariant),
+      SrsLevel.learning => (l.srsStateLearning,  const Color(0xFFE87E04)),
+      SrsLevel.familiar => (l.srsStateFamiliar,  const Color(0xFF4B7BF5)),
+      SrsLevel.mastered => (l.srsStateMastered,  const Color(0xFF2E9E5B)),
     };
 
-    // Progress bar fills as stability grows; 21d is a soft visual reference point
     final progress = (stability / 21.0).clamp(0.0, 1.0);
     final dueText = _dueText(srsCard, l);
 

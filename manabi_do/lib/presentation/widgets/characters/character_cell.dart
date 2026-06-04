@@ -8,6 +8,7 @@ class CharacterCell extends StatelessWidget {
   final String character;
   final String subLabel;
   final bool isKnown;
+  final Color? accentColor; // overrides isKnown styling when provided
   final VoidCallback? onTap;
   final double width;
   final double height;
@@ -19,6 +20,7 @@ class CharacterCell extends StatelessWidget {
     required this.character,
     this.subLabel = '',
     this.isKnown = false,
+    this.accentColor,
     this.onTap,
     this.width = 80,
     this.height = 80,
@@ -45,9 +47,11 @@ class CharacterCell extends StatelessWidget {
         height: height,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: isKnown ? t.successContainer : t.cardBackground,
+          color: accentColor != null
+              ? accentColor!.withValues(alpha: 0.13)
+              : (isKnown ? t.successContainer : t.cardBackground),
           border: Border.all(
-            color: isKnown ? t.success : t.outlineVariant,
+            color: accentColor ?? (isKnown ? t.success : t.outlineVariant),
             width: 1.5,
           ),
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
@@ -76,7 +80,7 @@ class CharacterCell extends StatelessWidget {
                       style: AppTextStyles.labelSmall.copyWith(
                         fontSize: subLabelSize,
                         letterSpacing: 0.5,
-                        color: isKnown ? t.success : t.onSurfaceVariant,
+                        color: accentColor ?? (isKnown ? t.success : t.onSurfaceVariant),
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,

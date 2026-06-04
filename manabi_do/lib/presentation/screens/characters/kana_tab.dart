@@ -1,10 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fsrs/fsrs.dart';
+import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../domain/data/kana_data.dart';
 import '../../../l10n/l10n.dart';
+import '../../providers/kana_progress_provider.dart';
 import '../../widgets/widgets.dart';
 import 'kana_detail_sheet.dart';
 
@@ -43,6 +46,7 @@ class KanaTabView extends ConsumerWidget {
     final allKana = rows.expand((r) => r.kana).toList();
     final knownCount = allKana.where((e) => knownIds.contains(e.id)).length;
     final color = levelColor('kana');
+    final srsCards = ref.watch(kanaSrsCardsProvider(type)).asData?.value ?? {};
 
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
@@ -52,7 +56,7 @@ class KanaTabView extends ConsumerWidget {
         for (final row in rows)
           _KanaRowSection(
             row: row,
-            knownIds: knownIds,
+            srsCards: srsCards,
             onTap: (entry) => _showDetail(context, entry, _localizedRowLabel(context, row.label)),
           ),
       ],
@@ -69,9 +73,9 @@ class KanaTabView extends ConsumerWidget {
 
 class _KanaRowSection extends StatelessWidget {
   final KanaRow row;
-  final Set<int> knownIds;
+  final Map<int, Card> srsCards;
   final void Function(KanaEntry) onTap;
-  const _KanaRowSection({required this.row, required this.knownIds, required this.onTap});
+  const _KanaRowSection({required this.row, required this.srsCards, required this.onTap});
 
   String _localizedLabel(BuildContext context) {
     return switch (row.label) {
@@ -89,7 +93,7 @@ class _KanaRowSection extends StatelessWidget {
         child: SectionLabel(_localizedLabel(context)),
       ),
       const SizedBox(height: AppDimens.spaceXs),
-      _KanaGrid(row: row, knownIds: knownIds, onTap: onTap),
+      _KanaGrid(row: row, srsCards: srsCards, onTap: onTap),
       const SizedBox(height: AppDimens.spaceSm),
     ],
   );
@@ -97,10 +101,10 @@ class _KanaRowSection extends StatelessWidget {
 
 class _KanaGrid extends StatelessWidget {
   final KanaRow row;
-  final Set<int> knownIds;
+  final Map<int, Card> srsCards;
   final void Function(KanaEntry) onTap;
 
-  const _KanaGrid({required this.row, required this.knownIds, required this.onTap});
+  const _KanaGrid({required this.row, required this.srsCards, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -121,10 +125,9 @@ class _KanaGrid extends StatelessWidget {
                 if (row.entries[i] == null)
                   SizedBox(width: cellSize, height: cellSize)
                 else
-                  CharacterCell(
-                    character: row.entries[i]!.kana,
-                    subLabel: row.entries[i]!.romaji,
-                    isKnown: knownIds.contains(row.entries[i]!.id),
+                  _KanaCell(
+                    entry: row.entries[i]!,
+                    card: srsCards[row.entries[i]!.id],
                     onTap: () => onTap(row.entries[i]!),
                     width: cellSize,
                     height: cellSize,
@@ -136,6 +139,42 @@ class _KanaGrid extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class _KanaCell extends StatelessWidget {
+  final KanaEntry entry;
+  final Card? card;
+  final VoidCallback onTap;
+  final double width;
+  final double height;
+  final double? characterSize;
+  final double? subLabelSize;
+
+  const _KanaCell({
+    required this.entry,
+    required this.card,
+    required this.onTap,
+    required this.width,
+    required this.height,
+    this.characterSize,
+    this.subLabelSize,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final level = srsLevel(card);
+    final accent = level == SrsLevel.newCard ? null : level.accent(context);
+    return CharacterCell(
+      character: entry.kana,
+      subLabel: entry.romaji,
+      accentColor: accent,
+      onTap: onTap,
+      width: width,
+      height: height,
+      characterSize: characterSize,
+      subLabelSize: subLabelSize,
     );
   }
 }

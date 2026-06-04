@@ -170,6 +170,7 @@
 
   "srsStateNew": "Neu",
   "srsStateLearning": "In Bearbeitung",
+  "srsStateFamiliar": "Vertraut",
   "srsStateMastered": "Gelernt",
   "srsDueToday": "Heute fällig",
   "srsDueIn": "In {days} T.",

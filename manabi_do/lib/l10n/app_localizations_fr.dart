@@ -336,6 +336,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get srsStateLearning => 'En cours';
 
   @override
+  String get srsStateFamiliar => 'Familier';
+
+  @override
   String get srsStateMastered => 'Maîtrisé';
 
   @override

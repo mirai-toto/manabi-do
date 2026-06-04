@@ -174,6 +174,16 @@ class AppDatabase extends _$AppDatabase {
 
   // ── SRS queries ──────────────────────────────────────────────────────────
 
+  Future<Map<int, Card>> getAllSrsCardsForType(String itemType) async {
+    final rows = await (select(srsCards)
+      ..where((s) => s.itemType.equals(itemType)))
+      .get();
+    return {
+      for (final r in rows)
+        r.itemId: Card.fromMap(jsonDecode(r.cardJson) as Map<String, dynamic>)
+    };
+  }
+
   Future<Card?> getSrsCard(String itemType, int itemId) async {
     final row = await (select(srsCards)
       ..where((s) => s.itemType.equals(itemType) & s.itemId.equals(itemId)))

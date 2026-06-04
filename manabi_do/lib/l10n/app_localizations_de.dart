@@ -336,6 +336,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get srsStateLearning => 'In Bearbeitung';
 
   @override
+  String get srsStateFamiliar => 'Vertraut';
+
+  @override
   String get srsStateMastered => 'Gelernt';
 
   @override

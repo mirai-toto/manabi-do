@@ -712,6 +712,12 @@ abstract class AppLocalizations {
   /// **'Learning'**
   String get srsStateLearning;
 
+  /// No description provided for @srsStateFamiliar.
+  ///
+  /// In en, this message translates to:
+  /// **'Familiar'**
+  String get srsStateFamiliar;
+
   /// No description provided for @srsStateMastered.
   ///
   /// In en, this message translates to:

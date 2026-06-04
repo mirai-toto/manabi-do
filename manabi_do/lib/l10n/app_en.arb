@@ -176,6 +176,7 @@
 
   "srsStateNew": "New",
   "srsStateLearning": "Learning",
+  "srsStateFamiliar": "Familiar",
   "srsStateMastered": "Mastered",
   "srsDueToday": "Due today",
   "srsDueIn": "Due in {days}d",
