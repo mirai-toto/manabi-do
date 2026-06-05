@@ -9,6 +9,7 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../domain/data/kana_data.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
+import '../../widgets/common/confirm_dialog.dart';
 import '../../widgets/common/srs_progress_info.dart';
 
 class KanaDetailSheet extends ConsumerStatefulWidget {
@@ -54,21 +55,12 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
 
   Future<void> _resetProgress() async {
     final l = context.l10n;
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(l.resetKanaTitle),
-        content: Text(l.resetKanaBody),
-        actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l.cancel)),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l.resetConfirm, style: TextStyle(color: ctx.tokens.error)),
-          ),
-        ],
-      ),
+    final confirmed = await showConfirmDialog(
+      context,
+      title: l.resetKanaTitle,
+      body: l.resetKanaBody,
     );
-    if (confirmed != true) return;
+    if (!confirmed) return;
     await ref.read(databaseProvider).resetSrsCard(widget.type, widget.entry.id);
     if (mounted) setState(() { _srsCard = null; _isSkipped = false; });
   }

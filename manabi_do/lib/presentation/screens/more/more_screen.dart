@@ -10,6 +10,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
+import '../../widgets/common/confirm_dialog.dart';
 import '../../widgets/common/section_label.dart';
 import '../../widgets/settings/settings_card.dart';
 import '../../widgets/settings/settings_tile.dart';
@@ -21,21 +22,12 @@ class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   Future<void> _confirmResetAll(BuildContext context, AppDatabase db, AppLocalizations l) async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(l.resetProgressTitle),
-        content: Text(l.resetProgressBody),
-        actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l.cancel)),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l.resetConfirm, style: TextStyle(color: ctx.tokens.error)),
-          ),
-        ],
-      ),
+    final confirmed = await showConfirmDialog(
+      context,
+      title: l.resetProgressTitle,
+      body: l.resetProgressBody,
     );
-    if (confirmed != true) return;
+    if (!confirmed) return;
     await db.resetAllProgress();
   }
 

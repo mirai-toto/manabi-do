@@ -10,6 +10,7 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/kanji_provider.dart';
+import '../../widgets/common/confirm_dialog.dart';
 import '../../widgets/common/srs_progress_info.dart';
 import '../../widgets/widgets.dart';
 import 'kanji_detail/kanji_example_words.dart';
@@ -131,21 +132,12 @@ class _KanjiSrsSectionState extends ConsumerState<_KanjiSrsSection> {
 
   Future<void> _reset() async {
     final l = context.l10n;
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(l.resetKanaTitle),
-        content: Text(l.resetKanaBody),
-        actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l.cancel)),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l.resetConfirm, style: TextStyle(color: ctx.tokens.error)),
-          ),
-        ],
-      ),
+    final confirmed = await showConfirmDialog(
+      context,
+      title: l.resetKanaTitle,
+      body: l.resetKanaBody,
     );
-    if (confirmed != true) return;
+    if (!confirmed) return;
     await ref.read(databaseProvider).resetSrsCard('kanji', widget.kanjiId);
     if (mounted) setState(() => _card = null);
   }
