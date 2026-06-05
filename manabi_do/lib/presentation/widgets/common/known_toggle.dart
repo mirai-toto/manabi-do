@@ -66,11 +66,20 @@ class KnownToggle extends StatelessWidget {
                     child: const Icon(Icons.check, size: 12, color: Colors.white),
                   ),
                   const SizedBox(width: AppDimens.spaceSm),
-                  Text(
-                    label,
-                    style: AppTextStyles.labelLarge.copyWith(
-                      color: isKnown ? t.success : t.onSurface,
-                    ),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Text(
+                        l.markAsKnown,
+                        style: AppTextStyles.labelLarge.copyWith(color: Colors.transparent),
+                      ),
+                      Text(
+                        label,
+                        style: AppTextStyles.labelLarge.copyWith(
+                          color: isKnown ? t.success : t.onSurface,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

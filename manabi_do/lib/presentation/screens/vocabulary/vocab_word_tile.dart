@@ -102,23 +102,29 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
                       overflow: _expanded ? TextOverflow.visible : TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: AppDimens.spaceXs),
-                    PillBadge(
-                      label: posLabel(widget.entry.partOfSpeech, context),
-                      color: posColor,
-                      background: posColor.withValues(alpha: 0.1),
-                      textStyle: AppTextStyles.labelSmall,
-                    ),
-                    if (overflows) ...[
-                      const SizedBox(height: AppDimens.spaceXs),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          _expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded,
-                          size: 16,
-                          color: t.onSurfaceVariant,
-                        ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Stack(
+                        alignment: Alignment.centerLeft,
+                        children: [
+                          PillBadge(
+                            label: posLabel(widget.entry.partOfSpeech, context),
+                            color: posColor,
+                            background: posColor.withValues(alpha: 0.1),
+                            textStyle: AppTextStyles.labelSmall,
+                          ),
+                          if (overflows)
+                            Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                _expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded,
+                                size: 16,
+                                color: t.onSurfaceVariant,
+                              ),
+                            ),
+                        ],
                       ),
-                    ],
+                    ),
                   ],
                 ),
               ),
