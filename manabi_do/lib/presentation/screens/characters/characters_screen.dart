@@ -40,7 +40,6 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
   Widget build(BuildContext context) {
     final l = context.l10n;
     final kanaAsync = ref.watch(kanaDataProvider);
-    final kanaData = kanaAsync.asData?.value;
     final knownHiragana = ref.watch(knownHiraganaProvider).asData?.value ?? {};
     final knownKatakana = ref.watch(knownKatakanaProvider).asData?.value ?? {};
 
@@ -51,32 +50,42 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _CharactersHeader(tabIndex: _tabController.index, kanaData: kanaData),
+            _CharactersHeader(tabIndex: _tabController.index, kanaData: kanaAsync.asData?.value),
             SegmentedTabBar(
               controller: _tabController,
               labels: [l.tabHiragana, l.tabKatakana, l.tabKanji],
             ),
             Expanded(
-              child: kanaData == null
-                  ? const Center(child: CircularProgressIndicator())
-                  : TabBarView(
-                      controller: _tabController,
-                      children: [
-                        KanaTabView(
-                          rows: kanaData.hiragana,
-                          knownIds: knownHiragana,
-                          type: 'hiragana',
-                          onPractice: () => _openPractice('hiragana'),
-                        ),
-                        KanaTabView(
-                          rows: kanaData.katakana,
-                          knownIds: knownKatakana,
-                          type: 'katakana',
-                          onPractice: () => _openPractice('katakana'),
-                        ),
-                        const KanjiTabView(),
-                      ],
+              child: switch (kanaAsync) {
+                AsyncData(:final value) => TabBarView(
+                    controller: _tabController,
+                    children: [
+                      KanaTabView(
+                        rows: value.hiragana,
+                        knownIds: knownHiragana,
+                        type: 'hiragana',
+                        onPractice: () => _openPractice('hiragana'),
+                      ),
+                      KanaTabView(
+                        rows: value.katakana,
+                        knownIds: knownKatakana,
+                        type: 'katakana',
+                        onPractice: () => _openPractice('katakana'),
+                      ),
+                      const KanjiTabView(),
+                    ],
+                  ),
+                AsyncError(:final error) => Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppDimens.spaceLg),
+                      child: Text(
+                        'Database error: $error',
+                        textAlign: TextAlign.center,
+                      ),
                     ),
+                  ),
+                _ => const Center(child: CircularProgressIndicator()),
+              },
             ),
           ],
         ),
