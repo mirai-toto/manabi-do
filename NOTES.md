@@ -1,28 +1,39 @@
 # Notes & Ideas
 
+## Pre-release Checklist
+
+Must ship before v1:
+
+- **Onboarding** — first-launch flow: pick JLPT target level, pick UI language. Sets the default filter so the app opens to something meaningful, not an empty level selector.
+- **App icon** — currently default Flutter icon. Need a custom icon at all required sizes (Android / iOS).
+- **Empty practice state** — when no SRS cards are due for a level, `PracticeSessionScreen` falls straight into `SessionSummary(0, 0)` which looks broken. Show a "nothing due" screen with next-review time instead.
+- **App name & bundle ID** — set proper display name and bundle IDs for both platforms before first store submission.
+- **Privacy policy URL** — required by both App Store and Play Store.
+- **Home screen** — currently a mock/placeholder. Needs real content (progress overview, what's due today, quick-access to active levels).
+- **Text-to-speech** — read out Japanese words and example sentences using the device TTS engine (`flutter_tts` package). Useful on vocab tiles, kanji detail, and flashcards.
+- **Grammar screen** — "coming soon" placeholder. Needs at least N5 grammar points before release so the tab isn't empty.
+- **Data sync** — sign in with Google / Apple and sync SRS progress to Drive or a backend so progress survives reinstalls and transfers between devices.
+
+Nice-to-have before v1 (if time allows):
+- **Kanji detail — example words** — already in DB, just needs the UI (grouped by JLPT level).
+
+---
+
 ## Current Goal
 
-Polish the vocabulary word list tile and bring the kanji character detail up to parity with kana.
-
-## Immediate Improvements
-
-- **Kanji detail screen — SRS progress**: `KanjiDetailScreen` opens on tap but shows no SRS info. Add the progress panel that kana already has:
-  - SRS state badge + stability bar + due date (reuse `_ProgressInfo` from `kana_detail_sheet.dart`)
-  - Skip/unskip toggle (DB method `setKanjiKnown` already exists)
-  - Reset progress button (needs `resetKanjiCard` in DB, mirrors `resetKanaCard`)
-
-- **VocabWordTile — furigana rendering**: the reading is currently plain text next to the word. Improve to render proper ruby/furigana annotation — small kana above each kanji segment rather than a separate text field beside the word. Requires parsing the word+reading pair to align furigana spans over the correct characters.
+Pre-release: home screen, TTS, grammar, sync.
 
 ## Completed
 
 - ~~**Kanji detail — readings**: label as "onyomi" / "kunyomi"; grey out okurigana after the dot~~ ✓
 - ~~**Kanji detail — stroke order**: animated stroke order display (KanjiVG + CustomPainter)~~ ✓
 - ~~**Characters — practice sessions**: flashcard, MCQ, drawing exercise; shared `PracticeSessionScreen` for kana / kanji / vocab~~ ✓
-- ~~**Vocabulary screen**: level selector, word list with known toggle + expandable meanings, SRS practice session~~ ✓
-- ~~**Kanji detail — example words**: show words using the kanji, grouped by JLPT level~~ (not started — moved to backlog)
+- ~~**Vocabulary screen**: level selector, word list with furigana, expandable meanings, known toggle, SRS practice session~~ ✓
+- ~~**Kanji detail — SRS progress panel**: state badge, stability bar, due date, reset button~~ ✓
+- ~~**VocabWordTile — furigana**: ruby text above kanji segments, kana anchored alignment~~ ✓
 
-## Backlog / Later
+## Backlog / Post-v1
 
-- Kanji detail — example words (grouped by level, fetched from DB)
-- Grammar screen (stub)
-- Onboarding / level selection on first launch
+- Onboarding refinement (level quiz instead of manual pick)
+- Kanji detail — example words
+- Grammar screen deeper content
