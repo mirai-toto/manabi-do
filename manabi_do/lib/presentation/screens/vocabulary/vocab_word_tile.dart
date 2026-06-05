@@ -54,23 +54,23 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
         horizontal: AppDimens.spaceMd,
         vertical: AppDimens.spaceSm,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final tp = TextPainter(
-                  text: TextSpan(text: meaning, style: meaningStyle),
-                  maxLines: 2,
-                  textDirection: TextDirection.ltr,
-                )..layout(maxWidth: constraints.maxWidth);
-                final overflows = tp.didExceedMaxLines;
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final tp = TextPainter(
+            text: TextSpan(text: meaning, style: meaningStyle),
+            maxLines: 2,
+            textDirection: TextDirection.ltr,
+          )..layout(maxWidth: constraints.maxWidth);
+          final overflows = tp.didExceedMaxLines;
 
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.alphabetic,
                       children: [
@@ -85,49 +85,46 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 2),
-                    GestureDetector(
-                      onTap: overflows ? () => setState(() => _expanded = !_expanded) : null,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            meaning,
-                            style: meaningStyle,
-                            maxLines: _expanded ? null : 2,
-                            overflow: _expanded ? TextOverflow.visible : TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(height: AppDimens.spaceXs),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              PillBadge(
-                                label: posLabel(widget.entry.partOfSpeech, context),
-                                color: posColor,
-                                background: posColor.withValues(alpha: 0.1),
-                                textStyle: AppTextStyles.labelSmall,
-                              ),
-                              if (overflows) ...[
-                                const SizedBox(width: AppDimens.spaceXs),
-                                Icon(
-                                  _expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded,
-                                  size: 14,
-                                  color: t.onSurfaceVariant,
-                                ),
-                              ],
-                            ],
-                          ),
-                        ],
-                      ),
+                  ),
+                  KnownToggle(isKnown: widget.isKnown, onTap: widget.onToggleKnown),
+                ],
+              ),
+              const SizedBox(height: 2),
+              GestureDetector(
+                onTap: overflows ? () => setState(() => _expanded = !_expanded) : null,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      meaning,
+                      style: meaningStyle,
+                      maxLines: _expanded ? null : 2,
+                      overflow: _expanded ? TextOverflow.visible : TextOverflow.ellipsis,
                     ),
+                    const SizedBox(height: AppDimens.spaceXs),
+                    PillBadge(
+                      label: posLabel(widget.entry.partOfSpeech, context),
+                      color: posColor,
+                      background: posColor.withValues(alpha: 0.1),
+                      textStyle: AppTextStyles.labelSmall,
+                    ),
+                    if (overflows) ...[
+                      const SizedBox(height: AppDimens.spaceXs),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          _expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded,
+                          size: 16,
+                          color: t.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
                   ],
-                );
-              },
-            ),
-          ),
-          const SizedBox(width: AppDimens.spaceSm),
-          KnownToggle(isKnown: widget.isKnown, onTap: widget.onToggleKnown),
-        ],
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
