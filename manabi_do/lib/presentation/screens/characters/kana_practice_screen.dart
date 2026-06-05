@@ -1,172 +1,46 @@
-import 'package:flutter/material.dart' hide Card, State;
+import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fsrs/fsrs.dart';
 
-import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
-import '../../../core/theme/app_tokens.dart';
+import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
-import '../../../core/providers/srs_settings_provider.dart';
-import '../../providers/database_provider.dart';
-import '../../widgets/exercise/flash_card.dart';
-import '../../widgets/exercise/session_summary.dart';
+import '../../widgets/exercise/practice_session_screen.dart';
 
-class KanaPracticeScreen extends ConsumerStatefulWidget {
+class KanaPracticeScreen extends StatelessWidget {
   final String type; // 'hiragana' | 'katakana'
   const KanaPracticeScreen({super.key, required this.type});
 
   @override
-  ConsumerState<KanaPracticeScreen> createState() => _KanaPracticeScreenState();
-}
-
-class _KanaPracticeScreenState extends ConsumerState<KanaPracticeScreen> {
-  final _scheduler = Scheduler();
-  List<(Kana, Card?)>? _queue;
-  int _index = 0;
-  bool _revealed = false;
-  int _gotIt = 0;
-  int _notYet = 0;
-  bool _done = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadSession();
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    return PracticeSessionScreen(
+      title: type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
+      color: levelColor('kana'),
+      loadQueue: _buildQueue,
+    );
   }
 
-  Future<void> _loadSession() async {
-    final db = ref.read(databaseProvider);
+  Future<List<PracticeItem>> _buildQueue(AppDatabase db, WidgetRef ref) async {
     final settings = await ref.read(srsSettingsProvider.future);
-    final queue = await db.getKanaSrsSession(widget.type, newCardLimit: settings.newCardsPerSession);
-    setState(() => _queue = queue);
-    if (queue.isEmpty) setState(() => _done = true);
-  }
-
-  Future<void> _answer(Rating rating) async {
-    final queue = _queue!;
-    final (kana, existingCard) = queue[_index];
-    final fsrsCard = existingCard ??
-        Card(cardId: DateTime.now().millisecondsSinceEpoch, due: DateTime.now());
-
-    final result = _scheduler.reviewCard(fsrsCard, rating);
-
-    final db = ref.read(databaseProvider);
-    await db.upsertSrsCard(widget.type, kana.id, result.card);
-
-    setState(() {
-      if (rating == Rating.again) {
-        _notYet++;
-      } else {
-        _gotIt++;
-      }
-      if (_index + 1 >= queue.length) {
-        _done = true;
-      } else {
-        _index++;
-        _revealed = false;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    final l = context.l10n;
     final color = levelColor('kana');
-
-    return Scaffold(
-      backgroundColor: t.surface,
-      appBar: AppBar(
-        backgroundColor: t.surface,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.close_rounded, color: t.onSurface),
-          onPressed: () => Navigator.of(context).pop(),
+    final queue = await db.getKanaSrsSession(type, newCardLimit: settings.newCardsPerSession);
+    return queue.map((pair) {
+      final (kana, card) = pair;
+      return PracticeItem(
+        id: kana.id,
+        srsType: type,
+        card: card,
+        buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+          japanese: kana.character,
+          answer: kana.romaji,
+          card: card,
+          index: index,
+          total: total,
+          color: color,
+          onAnswer: onAnswer,
         ),
-        title: Text(
-          widget.type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
-          style: AppTextStyles.title.copyWith(color: t.onSurface),
-        ),
-      ),
-      body: _queue == null
-          ? const Center(child: CircularProgressIndicator())
-          : _done
-              ? SessionSummary(
-                  gotIt: _gotIt,
-                  notYet: _notYet,
-                  color: color,
-                  onDone: () => Navigator.of(context).pop(),
-                )
-              : _SessionBody(
-                  entry: _queue![_index],
-                  index: _index,
-                  total: _queue!.length,
-                  revealed: _revealed,
-                  color: color,
-                  onReveal: () => setState(() => _revealed = true),
-                  onAnswer: _answer,
-                ),
-    );
+      );
+    }).toList();
   }
 }
-
-class _SessionBody extends StatelessWidget {
-  final (Kana, Card?) entry;
-  final int index;
-  final int total;
-  final bool revealed;
-  final Color color;
-  final VoidCallback onReveal;
-  final void Function(Rating) onAnswer;
-
-  const _SessionBody({
-    required this.entry,
-    required this.index,
-    required this.total,
-    required this.revealed,
-    required this.color,
-    required this.onReveal,
-    required this.onAnswer,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    final l = context.l10n;
-    final kana = entry.$1;
-
-    return Padding(
-      padding: const EdgeInsets.all(AppDimens.spaceMd),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          LinearProgressIndicator(
-            value: index / total,
-            backgroundColor: t.outlineVariant,
-            color: color,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          const SizedBox(height: AppDimens.spaceLg),
-          FlashCard(
-            japanese: kana.character,
-            answer: kana.romaji,
-            isRevealed: revealed,
-            onTap: revealed ? null : onReveal,
-          ),
-          const SizedBox(height: AppDimens.spaceMd),
-          if (revealed)
-            FlashCardActions(
-              card: entry.$2,
-              question: l.selfAssessQuestion,
-              onRate: onAnswer,
-            )
-          else
-            const SizedBox(height: 56),
-        ],
-      ),
-    );
-  }
-}
-
