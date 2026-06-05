@@ -8,6 +8,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/pos_label.dart';
 import '../../providers/database_provider.dart';
+import '../../widgets/common/furigana_text.dart';
 import '../../widgets/common/known_toggle.dart';
 import '../../widgets/common/pill_badge.dart';
 
@@ -70,23 +71,14 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Text(
-                          widget.entry.word,
-                          style: AppTextStyles.jpMedium.copyWith(color: t.onSurface),
-                        ),
-                        const SizedBox(width: AppDimens.spaceSm),
-                        Flexible(
-                          child: Text(
-                            widget.entry.reading,
-                            style: AppTextStyles.jpBody.copyWith(color: t.onSurfaceVariant),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                    child: FuriganaText(
+                      word: widget.entry.word,
+                      reading: widget.entry.reading,
+                      wordStyle: AppTextStyles.jpMedium.copyWith(color: t.onSurface),
+                      rubyStyle: AppTextStyles.jpBody.copyWith(
+                        fontSize: 11,
+                        color: t.onSurfaceVariant,
+                      ),
                     ),
                   ),
                   KnownToggle(isKnown: widget.isKnown, onTap: widget.onToggleKnown),
