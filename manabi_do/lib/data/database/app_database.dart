@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:fsrs/fsrs.dart';
 import 'package:path/path.dart' as p;
@@ -297,27 +298,35 @@ const _assetDbVersion = '7.1';
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
+    debugPrint('[DB] 1 - getting documents dir');
     final dir    = await getApplicationDocumentsDirectory();
+    debugPrint('[DB] 2 - dir: ${dir.path}');
     final file   = File(p.join(dir.path, 'manabi_do.db'));
     final marker = File(p.join(dir.path, 'manabi_do.db.version'));
 
     final currentVersion = marker.existsSync() ? marker.readAsStringSync().trim() : '';
     final needsCopy = !file.existsSync() || currentVersion != _assetDbVersion;
+    debugPrint('[DB] 3 - needsCopy: $needsCopy');
 
     if (needsCopy) {
-      // Remove stale WAL/SHM files so SQLite doesn't try to replay old frames.
       for (final suffix in ['-wal', '-shm']) {
         final side = File('${file.path}$suffix');
         if (side.existsSync()) side.deleteSync();
       }
 
+      debugPrint('[DB] 4 - loading asset from bundle');
       final blob = await rootBundle.load('assets/manabi_do_content.db');
+      debugPrint('[DB] 5 - writing ${blob.lengthInBytes} bytes');
       await file.writeAsBytes(
         blob.buffer.asUint8List(blob.offsetInBytes, blob.lengthInBytes),
       );
       await marker.writeAsString(_assetDbVersion);
+      debugPrint('[DB] 6 - copy done');
     }
 
-    return NativeDatabase(file);
+    debugPrint('[DB] 7 - opening NativeDatabase');
+    final db = NativeDatabase(file);
+    debugPrint('[DB] 8 - done');
+    return db;
   });
 }
