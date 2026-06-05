@@ -3,6 +3,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/pill_badge.dart';
 import '../common/progress_bar.dart';
 
 class ChapterCard extends StatelessWidget {
@@ -67,19 +68,11 @@ class ChapterCard extends StatelessWidget {
                           letterSpacing: 0.8,
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppDimens.badgePaddingH,
-                          vertical: AppDimens.badgePaddingV,
-                        ),
-                        decoration: BoxDecoration(
-                          color: t.primaryContainer,
-                          borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-                        ),
-                        child: Text(
-                          l.nLessons(totalLessons),
-                          style: AppTextStyles.label.copyWith(color: t.onPrimaryContainer),
-                        ),
+                      PillBadge(
+                        label: l.nLessons(totalLessons),
+                        color: t.onPrimaryContainer,
+                        background: t.primaryContainer,
+                        textStyle: AppTextStyles.label,
                       ),
                     ],
                   ),

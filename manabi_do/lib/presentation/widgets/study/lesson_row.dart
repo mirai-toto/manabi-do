@@ -3,6 +3,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../common/difficulty_dots.dart';
+import '../common/pill_badge.dart';
 import '../../../domain/entities/lesson_status.dart';
 import '../../../l10n/l10n.dart';
 
@@ -123,21 +124,11 @@ class _StatusChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppDimens.badgePaddingH,
-        vertical: AppDimens.badgePaddingV,
-      ),
-      decoration: BoxDecoration(
-        color: isDone ? t.successContainer : t.surfaceVariant,
-        borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-      ),
-      child: Text(
-        isDone ? l.known : l.statusNotStarted,
-        style: AppTextStyles.label.copyWith(
-          color: isDone ? t.success : t.onSurfaceVariant,
-        ),
-      ),
+    return PillBadge(
+      label: isDone ? l.known : l.statusNotStarted,
+      color: isDone ? t.success : t.onSurfaceVariant,
+      background: isDone ? t.successContainer : t.surfaceVariant,
+      textStyle: AppTextStyles.label,
     );
   }
 }

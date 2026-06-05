@@ -3,6 +3,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/pill_badge.dart';
 
 enum McqOptionState { idle, selected, correct, wrong }
 
@@ -75,23 +76,11 @@ class _ExTypeBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppDimens.badgePaddingH,
-        vertical: AppDimens.badgePaddingV,
-      ),
-      decoration: BoxDecoration(
-        color: t.primaryContainer,
-        borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-      ),
-      child: Text(
-        context.l10n.multipleChoice.toUpperCase(),
-        style: AppTextStyles.labelSmall.copyWith(
-          color: t.primary,
-          fontWeight: FontWeight.w600,
-          letterSpacing: 0.6,
-        ),
-      ),
+    return PillBadge(
+      label: context.l10n.multipleChoice.toUpperCase(),
+      color: t.primary,
+      background: t.primaryContainer,
+      textStyle: AppTextStyles.labelSmall.copyWith(fontWeight: FontWeight.w600, letterSpacing: 0.6),
     );
   }
 }

@@ -10,6 +10,7 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../domain/data/kana_data.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
+import '../../widgets/common/pill_badge.dart';
 
 class KanaDetailSheet extends ConsumerStatefulWidget {
   final KanaEntry entry;
@@ -240,19 +241,10 @@ class _ProgressInfo extends StatelessWidget {
       children: [
         Row(
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: stateColor.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: Text(
-                stateLabel,
-                style: AppTextStyles.labelSmall.copyWith(
-                  color: stateColor,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+            PillBadge(
+              label: stateLabel,
+              color: stateColor,
+              background: stateColor.withValues(alpha: 0.12),
             ),
             if (dueText != null) ...[
               const SizedBox(width: AppDimens.spaceSm),

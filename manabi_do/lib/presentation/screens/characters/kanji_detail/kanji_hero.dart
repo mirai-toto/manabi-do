@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_dimens.dart';
+import '../../../widgets/common/pill_badge.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../providers/vocab_provider.dart';
@@ -117,15 +118,9 @@ class _LevelPill extends StatelessWidget {
   const _LevelPill({required this.level});
 
   @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-    decoration: BoxDecoration(
-      color: Colors.white.withValues(alpha: 0.2),
-      borderRadius: BorderRadius.circular(100),
-    ),
-    child: Text(
-      level,
-      style: AppTextStyles.labelSmall.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
-    ),
+  Widget build(BuildContext context) => PillBadge(
+    label: level,
+    color: Colors.white,
+    background: Colors.white.withValues(alpha: 0.2),
   );
 }
