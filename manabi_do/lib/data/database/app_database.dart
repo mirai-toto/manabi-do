@@ -257,12 +257,12 @@ class AppDatabase extends _$AppDatabase {
     await delete(progressEntries).go();
   }
 
-  Future<void> resetKanaCard(String type, int kanaId) async {
+  Future<void> resetSrsCard(String type, int itemId) async {
     await (delete(srsCards)
-      ..where((s) => s.itemType.equals(type) & s.itemId.equals(kanaId)))
+      ..where((s) => s.itemType.equals(type) & s.itemId.equals(itemId)))
       .go();
     await (delete(progressEntries)
-      ..where((p) => p.itemType.equals(type) & p.itemId.equals(kanaId)))
+      ..where((p) => p.itemType.equals(type) & p.itemId.equals(itemId)))
       .go();
   }
 

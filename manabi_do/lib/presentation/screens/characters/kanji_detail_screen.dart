@@ -1,12 +1,16 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fsrs/fsrs.dart' show Card;
+
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/kanji_provider.dart';
+import '../../widgets/common/srs_progress_info.dart';
 import '../../widgets/widgets.dart';
 import 'kanji_detail/kanji_example_words.dart';
 import 'kanji_detail/kanji_hero.dart';
@@ -93,9 +97,92 @@ class _KanjiBody extends StatelessWidget {
           const SizedBox(height: AppDimens.spaceLg),
           KanjiExampleWords(kanji: kanji),
           const SizedBox(height: AppDimens.spaceLg),
+          _KanjiSrsSection(kanjiId: kanji.id),
+          const SizedBox(height: AppDimens.spaceMd),
           KnownToggle(isKnown: isKnown, onTap: onToggle, fullWidth: true),
         ],
       ),
+    );
+  }
+}
+
+class _KanjiSrsSection extends ConsumerStatefulWidget {
+  final int kanjiId;
+  const _KanjiSrsSection({required this.kanjiId});
+
+  @override
+  ConsumerState<_KanjiSrsSection> createState() => _KanjiSrsSectionState();
+}
+
+class _KanjiSrsSectionState extends ConsumerState<_KanjiSrsSection> {
+  Card? _card;
+  bool _loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final card = await ref.read(databaseProvider).getSrsCard('kanji', widget.kanjiId);
+    if (mounted) setState(() { _card = card; _loaded = true; });
+  }
+
+  Future<void> _reset() async {
+    final l = context.l10n;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l.resetKanaTitle),
+        content: Text(l.resetKanaBody),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l.cancel)),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(l.resetConfirm, style: TextStyle(color: ctx.tokens.error)),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    await ref.read(databaseProvider).resetSrsCard('kanji', widget.kanjiId);
+    if (mounted) setState(() => _card = null);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final l = context.l10n;
+
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(AppDimens.spaceMd),
+          decoration: BoxDecoration(
+            color: t.surfaceContainer,
+            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+          ),
+          child: _loaded
+              ? SrsProgressInfo(srsCard: _card)
+              : const Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))),
+        ),
+        if (_loaded && _card != null) ...[
+          const SizedBox(height: AppDimens.spaceXs),
+          SizedBox(
+            width: double.infinity,
+            child: TextButton.icon(
+              onPressed: _reset,
+              icon: Icon(Icons.restart_alt_rounded, size: 18, color: t.error),
+              label: Text(
+                l.settingsResetProgress,
+                style: AppTextStyles.bodySmall.copyWith(color: t.error),
+              ),
+            ),
+          ),
+        ],
+      ],
     );
   }
 }
