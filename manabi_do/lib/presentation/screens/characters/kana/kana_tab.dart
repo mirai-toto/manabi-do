@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart';
-import '../../../core/srs/srs_level.dart';
-import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
-import '../../../domain/data/kana_data.dart';
-import '../../../l10n/l10n.dart';
-import '../../providers/kana_progress_provider.dart';
-import '../../widgets/widgets.dart';
+import '../../../../core/srs/srs_level.dart';
+import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_tokens.dart';
+import '../../../../core/theme/jlpt_level.dart';
+import '../../../../domain/data/kana_data.dart';
+import '../../../../l10n/l10n.dart';
+import '../../../providers/kana_progress_provider.dart';
+import '../../../widgets/widgets.dart';
 import 'kana_detail_sheet.dart';
 
 class KanaTabView extends ConsumerWidget {

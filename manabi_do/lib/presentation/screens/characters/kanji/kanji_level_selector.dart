@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../providers/kanji_provider.dart';
-import '../../../widgets/widgets.dart';
-import 'level_card.dart';
+import '../../../widgets/common/jlpt_level_card.dart';
+import '../../../widgets/common/section_label.dart';
 
 const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
@@ -20,12 +21,17 @@ class KanjiLevelSelector extends ConsumerWidget {
         SectionLabel(context.l10n.selectLevel),
         const SizedBox(height: AppDimens.spaceSm),
         for (final code in _kanjiLevels)
-          KanjiLevelCard(
+          JlptLevelCard(
             code: code,
-            data: ref.watch(kanjiListProvider(code)).asData?.value,
+            subtitle: _subtitle(context, ref, code),
             onTap: () => onSelect(code),
           ),
       ],
     );
+  }
+
+  String? _subtitle(BuildContext context, WidgetRef ref, String code) {
+    final data = ref.watch(kanjiListProvider(code)).asData?.value;
+    return data != null ? context.l10n.nKanji(data.total) : '—';
   }
 }

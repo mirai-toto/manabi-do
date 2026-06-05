@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/jlpt_level.dart';
-import '../../../l10n/level_label.dart';
-import '../../providers/kanji_provider.dart';
-import '../../widgets/widgets.dart';
+import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/jlpt_level.dart';
+import '../../../../l10n/level_label.dart';
+import '../../../providers/kanji_provider.dart';
+import '../../../widgets/widgets.dart';
 import 'kanji_practice_screen.dart';
-import 'kanji_tab/kanji_grid.dart';
-import 'kanji_tab/level_header.dart';
-import 'kanji_tab/level_selector.dart';
+import 'kanji_grid.dart';
+import 'kanji_level_header.dart';
+import 'kanji_level_selector.dart';
 
 class KanjiTabView extends ConsumerStatefulWidget {
   const KanjiTabView({super.key});

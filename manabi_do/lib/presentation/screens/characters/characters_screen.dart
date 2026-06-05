@@ -8,9 +8,9 @@ import '../../../l10n/l10n.dart';
 import '../../providers/kana_progress_provider.dart';
 import '../../providers/kana_provider.dart';
 import '../../widgets/widgets.dart';
-import 'kana_practice_screen.dart';
-import 'kana_tab.dart';
-import 'kanji_tab.dart';
+import 'kana/kana_practice_screen.dart';
+import 'kana/kana_tab.dart';
+import 'kanji/kanji_tab.dart';
 
 class CharactersScreen extends ConsumerStatefulWidget {
   const CharactersScreen({super.key});

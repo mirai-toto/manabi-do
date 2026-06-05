@@ -2,21 +2,21 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 
-import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
-import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
-import '../../../data/database/app_database.dart';
-import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
-import '../../providers/kanji_provider.dart';
-import '../../widgets/common/confirm_dialog.dart';
-import '../../widgets/common/srs_progress_info.dart';
-import '../../widgets/widgets.dart';
-import 'kanji_detail/kanji_example_words.dart';
-import 'kanji_detail/kanji_hero.dart';
-import 'kanji_detail/kanji_readings_card.dart';
-import 'kanji_detail/stroke_order_section.dart';
+import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_tokens.dart';
+import '../../../../core/theme/jlpt_level.dart';
+import '../../../../data/database/app_database.dart';
+import '../../../../l10n/l10n.dart';
+import '../../../providers/database_provider.dart';
+import '../../../providers/kanji_provider.dart';
+import '../../../widgets/common/confirm_dialog.dart';
+import '../../../widgets/common/srs_progress_info.dart';
+import '../../../widgets/widgets.dart';
+import 'kanji_example_words.dart';
+import 'kanji_hero.dart';
+import 'kanji_readings_card.dart';
+import 'stroke_order_section.dart';
 import 'kanji_drawing_practice_screen.dart';
 
 class KanjiDetailScreen extends ConsumerWidget {

@@ -5,7 +5,7 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../widgets/widgets.dart';
-import '../kanji_detail_screen.dart';
+import 'kanji_detail_screen.dart';
 
 class KanjiGrid extends StatelessWidget {
   final List<Kanji> kanjis;
