@@ -227,5 +227,14 @@
   "srsDueIn": "Due in {days}d",
   "@srsDueIn": {
     "placeholders": { "days": { "type": "int" } }
-  }
+  },
+  "nWords": "{count} words",
+  "@nWords": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "vocabSubtitle": "{total} words to discover",
+  "@vocabSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "vocabSubtitleShort": "Words to discover"
 }

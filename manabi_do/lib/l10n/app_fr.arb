@@ -221,5 +221,14 @@
   "srsDueIn": "Dans {days}j",
   "@srsDueIn": {
     "placeholders": { "days": { "type": "int" } }
-  }
+  },
+  "nWords": "{count} mots",
+  "@nWords": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "vocabSubtitle": "{total} mots à découvrir",
+  "@vocabSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "vocabSubtitleShort": "Mots à découvrir"
 }

@@ -221,5 +221,14 @@
   "srsDueIn": "In {days} T.",
   "@srsDueIn": {
     "placeholders": { "days": { "type": "int" } }
-  }
+  },
+  "nWords": "{count} Wörter",
+  "@nWords": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "vocabSubtitle": "{total} Wörter entdecken",
+  "@vocabSubtitle": {
+    "placeholders": { "total": { "type": "int" } }
+  },
+  "vocabSubtitleShort": "Wörter entdecken"
 }

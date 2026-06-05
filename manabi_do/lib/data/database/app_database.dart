@@ -133,6 +133,27 @@ class AppDatabase extends _$AppDatabase {
         ..limit(30))
       .get();
 
+  Future<List<VocabularyEntry>> getVocabByLevel(String level) =>
+      (select(vocabularyEntries)
+        ..where((v) => v.jlptLevel.equals(level))
+        ..orderBy([(v) => OrderingTerm.asc(v.word)]))
+      .get();
+
+  Stream<Set<int>> watchKnownVocabIds() =>
+      (select(progressEntries)
+        ..where((p) => p.itemType.equals('vocabulary') & p.isKnown.equals(true)))
+      .watch()
+      .map((rows) => rows.map((r) => r.itemId).toSet());
+
+  Future<void> setVocabKnown(int vocabId, {required bool isKnown}) =>
+      _upsertProgress('vocabulary', vocabId, isKnown: isKnown);
+
+  Future<List<(VocabularyEntry, Card?)>> getVocabSrsSession(
+      String level, {int newCardLimit = 10}) async {
+    final items = await getVocabByLevel(level);
+    return _buildSrsSession('vocabulary', items, (v) => v.id, newCardLimit: newCardLimit);
+  }
+
   // ── Kanji queries ────────────────────────────────────────────────────────
 
   Future<List<Kanji>> getKanjiByLevel(String level) =>

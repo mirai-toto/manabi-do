@@ -443,4 +443,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String srsDueIn(int days) {
     return 'Due in ${days}d';
   }
+
+  @override
+  String nWords(int count) {
+    return '$count words';
+  }
+
+  @override
+  String vocabSubtitle(int total) {
+    return '$total words to discover';
+  }
+
+  @override
+  String get vocabSubtitleShort => 'Words to discover';
 }

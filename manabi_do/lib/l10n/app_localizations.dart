@@ -909,6 +909,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Due in {days}d'**
   String srsDueIn(int days);
+
+  /// No description provided for @nWords.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} words'**
+  String nWords(int count);
+
+  /// No description provided for @vocabSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{total} words to discover'**
+  String vocabSubtitle(int total);
+
+  /// No description provided for @vocabSubtitleShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Words to discover'**
+  String get vocabSubtitleShort;
 }
 
 class _AppLocalizationsDelegate
