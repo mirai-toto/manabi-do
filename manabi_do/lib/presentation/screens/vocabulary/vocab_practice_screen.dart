@@ -284,10 +284,6 @@ class _McqBodyState extends State<_McqBody> {
         return McqOptionState.idle;
       });
     });
-    Future.delayed(const Duration(milliseconds: 800), () {
-      if (!mounted) return;
-      widget.onAnswer(isCorrect ? Rating.good : Rating.again);
-    });
   }
 
   @override
@@ -319,6 +315,14 @@ class _McqBodyState extends State<_McqBody> {
             options: options,
             onOptionTap: _answered ? null : _onTap,
           ),
+          if (_answered) ...[
+            const SizedBox(height: AppDimens.spaceMd),
+            FlashCardActions(
+              card: item.card,
+              question: context.l10n.selfAssessQuestion,
+              onRate: widget.onAnswer,
+            ),
+          ],
         ],
       ),
     );
