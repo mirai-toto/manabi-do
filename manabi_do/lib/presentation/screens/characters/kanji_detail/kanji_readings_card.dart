@@ -15,7 +15,6 @@ class KanjiReadingsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = context.tokens;
     final onReadings  = _parseReadings(kanji.onReading);
     final kunReadings = _parseReadings(kanji.kunReading);
 
@@ -24,14 +23,8 @@ class KanjiReadingsCard extends StatelessWidget {
       children: [
         SectionLabel(context.l10n.readings),
         const SizedBox(height: AppDimens.spaceSm),
-        Container(
-          width: double.infinity,
+        CardContainer(
           padding: const EdgeInsets.all(AppDimens.spaceMd),
-          decoration: BoxDecoration(
-            color: t.cardBackground,
-            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-            border: Border.all(color: t.outlineVariant),
-          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

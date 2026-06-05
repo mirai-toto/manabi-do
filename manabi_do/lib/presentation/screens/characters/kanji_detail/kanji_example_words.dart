@@ -67,13 +67,7 @@ class _WordList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: t.cardBackground,
-        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: t.outlineVariant),
-      ),
+    return CardContainer(
       child: Column(
         children: [
           for (int i = 0; i < words.length; i++) ...[
