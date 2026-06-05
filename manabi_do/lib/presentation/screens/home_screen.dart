@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../core/theme/app_dimens.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/theme/app_tokens.dart';
 import '../../l10n/l10n.dart';
+import '../providers/home_provider.dart';
+import '../providers/kana_progress_provider.dart';
+import '../providers/kanji_provider.dart';
+import '../providers/vocab_list_provider.dart';
 import '../widgets/widgets.dart';
-import 'widget_gallery_screen.dart';
+
+// Tab indices matching ShellScreen._screens order.
+const _kTabCharacters = 1;
+const _kTabVocabulary = 2;
+const _kTabGrammar    = 3;
 
 String _greeting(BuildContext context) {
   final hour = DateTime.now().hour;
@@ -14,12 +24,28 @@ String _greeting(BuildContext context) {
   return l.greetingEvening;
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+
+    // ── Progress data ────────────────────────────────────────────────────────
+    final knownKanji    = ref.watch(knownKanjiIdsProvider).asData?.value.length ?? 0;
+    final knownHiragana = ref.watch(knownHiraganaProvider).asData?.value.length ?? 0;
+    final knownKatakana = ref.watch(knownKatakanaProvider).asData?.value.length ?? 0;
+    final knownVocab    = ref.watch(knownVocabIdsProvider).asData?.value.length ?? 0;
+
+    final totalKanji = ref.watch(totalKanjiProvider).asData?.value ?? 0;
+    final totalKana  = ref.watch(totalKanaProvider).asData?.value ?? 0;
+    final totalVocab = ref.watch(totalVocabProvider).asData?.value ?? 0;
+
+    final knownChars = knownHiragana + knownKatakana + knownKanji;
+    final totalChars = totalKana + totalKanji;
+
+    void goTo(int tab) => ref.read(selectedTabProvider.notifier).select(tab);
+
     return Align(
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
@@ -28,14 +54,23 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
           children: [
             _HomeHeader(greeting: _greeting(context), subtitle: l.greetingSubtitle),
-            const _DevGalleryLink(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-              child: Column(children: [
-                const _SectionCards(),
-                const SizedBox(height: AppDimens.spaceLg),
-                StreakCard(days: 7, label: l.streakLabel, subtitle: l.streakSubtitle),
-              ]),
+              child: Column(
+                children: [
+                  _DueTodayBanner(onTap: () => goTo(_kTabCharacters)),
+                  const SizedBox(height: AppDimens.spaceMd),
+                  _SectionCards(
+                    knownChars: knownChars, totalChars: totalChars,
+                    knownVocab: knownVocab, totalVocab: totalVocab,
+                    onCharactersTap: () => goTo(_kTabCharacters),
+                    onVocabTap:      () => goTo(_kTabVocabulary),
+                    onGrammarTap:    () => goTo(_kTabGrammar),
+                  ),
+                  const SizedBox(height: AppDimens.spaceLg),
+                  StreakCard(days: 0, label: l.streakLabel, subtitle: l.streakSubtitle),
+                ],
+              ),
             ),
           ],
         ),
@@ -44,31 +79,128 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// ── Due-today banner ──────────────────────────────────────────────────────────
+
+class _DueTodayBanner extends ConsumerWidget {
+  final VoidCallback onTap;
+  const _DueTodayBanner({required this.onTap});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.tokens;
+    final l = context.l10n;
+    final dueAsync = ref.watch(dueTodayCountProvider);
+
+    return dueAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (due) {
+        final hasReviews = due > 0;
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(AppDimens.radiusXl),
+          child: Material(
+            color: hasReviews ? t.primaryContainer : t.surfaceContainer,
+            child: InkWell(
+              onTap: hasReviews ? onTap : null,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.spaceLg,
+                  vertical: AppDimens.spaceMd,
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      hasReviews ? '📚' : '✅',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    const SizedBox(width: AppDimens.spaceMd),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            hasReviews
+                                ? l.reviewsDue(due)
+                                : l.allCaughtUp,
+                            style: AppTextStyles.body.copyWith(
+                              color: hasReviews ? t.onPrimaryContainer : t.onSurface,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            hasReviews ? l.reviewsDueSubtitle : l.allCaughtUpSubtitle,
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: hasReviews
+                                  ? t.onPrimaryContainer.withValues(alpha: 0.7)
+                                  : t.onSurfaceVariant,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (hasReviews)
+                      Icon(Icons.arrow_forward_rounded,
+                          color: t.onPrimaryContainer, size: 20),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ── Section cards ─────────────────────────────────────────────────────────────
+
 class _SectionCards extends StatelessWidget {
-  const _SectionCards();
+  final int knownChars;
+  final int totalChars;
+  final int knownVocab;
+  final int totalVocab;
+  final VoidCallback onCharactersTap;
+  final VoidCallback onVocabTap;
+  final VoidCallback onGrammarTap;
+
+  const _SectionCards({
+    required this.knownChars,
+    required this.totalChars,
+    required this.knownVocab,
+    required this.totalVocab,
+    required this.onCharactersTap,
+    required this.onVocabTap,
+    required this.onGrammarTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
+
+    final charProgress = totalChars > 0 ? knownChars / totalChars : 0.0;
+    final vocabProgress = totalVocab > 0 ? knownVocab / totalVocab : 0.0;
+
     final cards = [
       SectionCard(
         title: l.sectionGrammar, icon: '文',
         gradientColors: [t.primary, t.primaryLight], progressColor: t.primary,
-        subtitle: '17 chapters · N5/N4', statLabel: '3 / 17 chapters',
-        progress: 0.18, onTap: () {},
+        subtitle: 'N5 · N4', statLabel: l.comingSoon,
+        progress: 0.0, onTap: onGrammarTap,
       ),
       SectionCard(
         title: l.sectionCharacters, icon: '字',
         gradientColors: [t.charactersDark, t.characters], progressColor: t.characters,
-        subtitle: 'Kana · Kanji N5/N4', statLabel: '46 / 184 known',
-        progress: 0.25, onTap: () {},
+        subtitle: 'Kana · Kanji',
+        statLabel: totalChars > 0 ? '$knownChars / $totalChars' : '—',
+        progress: charProgress, onTap: onCharactersTap,
       ),
       SectionCard(
-        title: l.sectionVocabulary, icon: '語',
+        title: l.navVocab, icon: '語',
         gradientColors: [t.vocabularyDark, t.vocabulary], progressColor: t.vocabulary,
-        subtitle: '800+ words · N5/N4', statLabel: '120 / 800 known',
-        progress: 0.15, onTap: () {},
+        subtitle: 'N5 → N1',
+        statLabel: totalVocab > 0 ? '$knownVocab / $totalVocab' : '—',
+        progress: vocabProgress, onTap: onVocabTap,
       ),
     ];
 
@@ -92,29 +224,7 @@ class _SectionCards extends StatelessWidget {
   }
 }
 
-class _DevGalleryLink extends StatelessWidget {
-  const _DevGalleryLink();
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Padding(
-        padding: const EdgeInsets.only(right: AppDimens.spaceMd, bottom: AppDimens.spaceXs),
-        child: InkWell(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute<void>(builder: (_) => const WidgetGalleryScreen()),
-          ),
-          child: Text(
-            'Widget Gallery →',
-            style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
-          ),
-        ),
-      ),
-    );
-  }
-}
+// ── Header ────────────────────────────────────────────────────────────────────
 
 class _HomeHeader extends StatelessWidget {
   final String greeting;
@@ -144,25 +254,14 @@ class _HomeHeader extends StatelessWidget {
               ],
             ),
           ),
-          const _AvatarPlaceholder(),
+          Container(
+            width: 40, height: 40,
+            decoration: BoxDecoration(color: t.primaryContainer, shape: BoxShape.circle),
+            child: Center(
+              child: Text('?', style: AppTextStyles.title.copyWith(color: t.primary)),
+            ),
+          ),
         ],
-      ),
-    );
-  }
-}
-
-class _AvatarPlaceholder extends StatelessWidget {
-  const _AvatarPlaceholder();
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Container(
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(color: t.primaryContainer, shape: BoxShape.circle),
-      child: Center(
-        child: Text('?', style: AppTextStyles.title.copyWith(color: t.primary)),
       ),
     );
   }

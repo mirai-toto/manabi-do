@@ -139,6 +139,14 @@ class AppDatabase extends _$AppDatabase {
         ..orderBy([(v) => OrderingTerm.asc(v.word)]))
       .get();
 
+  Future<int> countTotalKanji() => (select(kanjis)).get().then((r) => r.length);
+
+  Future<int> countTotalVocab() => (select(vocabularyEntries)).get().then((r) => r.length);
+
+  Stream<int> watchDueTodayCount() => (select(srsCards)).watch().map(
+        (rows) => rows.where((r) => !r.due.isAfter(DateTime.now())).length,
+      );
+
   Stream<Set<int>> watchKnownVocabIds() =>
       (select(progressEntries)
         ..where((p) => p.itemType.equals('vocabulary') & p.isKnown.equals(true)))

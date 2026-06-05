@@ -237,5 +237,12 @@
   "@vocabSubtitle": {
     "placeholders": { "total": { "type": "int" } }
   },
-  "vocabSubtitleShort": "Words to discover"
+  "vocabSubtitleShort": "Words to discover",
+  "reviewsDue": "{count} reviews waiting",
+  "@reviewsDue": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "reviewsDueSubtitle": "Tap to start your session",
+  "allCaughtUp": "All caught up!",
+  "allCaughtUpSubtitle": "Come back later for more reviews"
 }

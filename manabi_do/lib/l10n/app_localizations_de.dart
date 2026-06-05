@@ -459,4 +459,19 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get vocabSubtitleShort => 'Wörter entdecken';
+
+  @override
+  String reviewsDue(int count) {
+    return '$count Wiederholungen ausstehend';
+  }
+
+  @override
+  String get reviewsDueSubtitle => 'Tippen um die Sitzung zu starten';
+
+  @override
+  String get allCaughtUp => 'Alles erledigt!';
+
+  @override
+  String get allCaughtUpSubtitle =>
+      'Komm später für weitere Wiederholungen zurück';
 }

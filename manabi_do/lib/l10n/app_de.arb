@@ -231,5 +231,12 @@
   "@vocabSubtitle": {
     "placeholders": { "total": { "type": "int" } }
   },
-  "vocabSubtitleShort": "Wörter entdecken"
+  "vocabSubtitleShort": "Wörter entdecken",
+  "reviewsDue": "{count} Wiederholungen ausstehend",
+  "@reviewsDue": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "reviewsDueSubtitle": "Tippen um die Sitzung zu starten",
+  "allCaughtUp": "Alles erledigt!",
+  "allCaughtUpSubtitle": "Komm später für weitere Wiederholungen zurück"
 }

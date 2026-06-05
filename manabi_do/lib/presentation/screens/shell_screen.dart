@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_tokens.dart';
 import '../../l10n/l10n.dart';
+import '../providers/home_provider.dart';
 import '../widgets/widgets.dart';
 import 'characters/characters_screen.dart';
 import 'grammar/grammar_screen.dart';
@@ -17,8 +18,6 @@ class ShellScreen extends ConsumerStatefulWidget {
 }
 
 class _ShellScreenState extends ConsumerState<ShellScreen> {
-  int _currentIndex = 0;
-
   static const _screens = [
     HomeScreen(),
     CharactersScreen(),
@@ -43,8 +42,10 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     final t = context.tokens;
     final destinations = _destinations(context);
     final isWide = MediaQuery.sizeOf(context).width >= 600;
+    final index = ref.watch(selectedTabProvider);
+    void setIndex(int i) => ref.read(selectedTabProvider.notifier).select(i);
 
-    final body = IndexedStack(index: _currentIndex, children: _screens);
+    final body = IndexedStack(index: index, children: _screens);
 
     if (isWide) {
       return Scaffold(
@@ -54,8 +55,8 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
             children: [
               AppNavRail(
                 destinations: destinations,
-                selectedIndex: _currentIndex,
-                onDestinationSelected: (i) => setState(() => _currentIndex = i),
+                selectedIndex: index,
+                onDestinationSelected: setIndex,
               ),
               Expanded(child: body),
             ],
@@ -69,8 +70,8 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
       body: SafeArea(child: body),
       bottomNavigationBar: AppNavBar(
         destinations: destinations,
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (i) => setState(() => _currentIndex = i),
+        selectedIndex: index,
+        onDestinationSelected: setIndex,
       ),
     );
   }

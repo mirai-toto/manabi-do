@@ -459,4 +459,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get vocabSubtitleShort => 'Mots à découvrir';
+
+  @override
+  String reviewsDue(int count) {
+    return '$count révisions en attente';
+  }
+
+  @override
+  String get reviewsDueSubtitle => 'Appuyez pour commencer la session';
+
+  @override
+  String get allCaughtUp => 'Tout est à jour !';
+
+  @override
+  String get allCaughtUpSubtitle =>
+      'Revenez plus tard pour de nouvelles révisions';
 }

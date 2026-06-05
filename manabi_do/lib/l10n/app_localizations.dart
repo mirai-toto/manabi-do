@@ -933,6 +933,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Words to discover'**
   String get vocabSubtitleShort;
+
+  /// No description provided for @reviewsDue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} reviews waiting'**
+  String reviewsDue(int count);
+
+  /// No description provided for @reviewsDueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to start your session'**
+  String get reviewsDueSubtitle;
+
+  /// No description provided for @allCaughtUp.
+  ///
+  /// In en, this message translates to:
+  /// **'All caught up!'**
+  String get allCaughtUp;
+
+  /// No description provided for @allCaughtUpSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Come back later for more reviews'**
+  String get allCaughtUpSubtitle;
 }
 
 class _AppLocalizationsDelegate

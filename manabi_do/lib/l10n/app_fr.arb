@@ -231,5 +231,12 @@
   "@vocabSubtitle": {
     "placeholders": { "total": { "type": "int" } }
   },
-  "vocabSubtitleShort": "Mots à découvrir"
+  "vocabSubtitleShort": "Mots à découvrir",
+  "reviewsDue": "{count} révisions en attente",
+  "@reviewsDue": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "reviewsDueSubtitle": "Appuyez pour commencer la session",
+  "allCaughtUp": "Tout est à jour !",
+  "allCaughtUpSubtitle": "Revenez plus tard pour de nouvelles révisions"
 }
