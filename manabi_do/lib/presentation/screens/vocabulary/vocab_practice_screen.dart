@@ -214,7 +214,7 @@ class _FlashcardBodyState extends State<_FlashcardBody> {
     final t = context.tokens;
     final item = widget.item;
 
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -297,7 +297,7 @@ class _McqBodyState extends State<_McqBody> {
       state: _states[i],
     ));
 
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
