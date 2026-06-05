@@ -79,9 +79,12 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
                           style: AppTextStyles.jpMedium.copyWith(color: t.onSurface),
                         ),
                         const SizedBox(width: AppDimens.spaceSm),
-                        Text(
-                          widget.entry.reading,
-                          style: AppTextStyles.jpBody.copyWith(color: t.onSurfaceVariant),
+                        Flexible(
+                          child: Text(
+                            widget.entry.reading,
+                            style: AppTextStyles.jpBody.copyWith(color: t.onSurfaceVariant),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
