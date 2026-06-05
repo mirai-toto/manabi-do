@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../common/difficulty_dots.dart';
 import '../../../domain/entities/lesson_status.dart';
 import '../../../l10n/l10n.dart';
 
@@ -59,7 +60,7 @@ class LessonRow extends StatelessWidget {
                         const SizedBox(height: AppDimens.spaceXs),
                         Row(
                           children: [
-                            _DifficultyPips(difficulty: difficulty),
+                            DifficultyDots(total: 3, filled: difficulty, color: t.primary, emptyColor: t.outlineVariant),
                             const SizedBox(width: AppDimens.spaceSm),
                             Text(
                               l.difficultyLevel(difficulty),
@@ -112,29 +113,6 @@ class _LeadingIcon extends StatelessWidget {
   }
 }
 
-class _DifficultyPips extends StatelessWidget {
-  final int difficulty;
-
-  const _DifficultyPips({required this.difficulty});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Row(
-      children: List.generate(3, (i) => Padding(
-        padding: const EdgeInsets.only(right: AppDimens.pipGap),
-        child: Container(
-          width: AppDimens.pipSize,
-          height: AppDimens.pipSize,
-          decoration: BoxDecoration(
-            color: i < difficulty ? t.primary : t.outlineVariant,
-            shape: BoxShape.circle,
-          ),
-        ),
-      )),
-    );
-  }
-}
 
 class _StatusChip extends StatelessWidget {
   final bool isDone;

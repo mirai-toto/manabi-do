@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
+import '../../../widgets/common/difficulty_dots.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
@@ -93,7 +94,7 @@ class _LevelCardInfo extends StatelessWidget {
               style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
             ),
             const SizedBox(width: AppDimens.spaceSm),
-            _DifficultyDots(filled: levelDifficulty(code), color: color),
+            DifficultyDots(total: 5, filled: levelDifficulty(code), color: color),
           ],
         ),
       ],
@@ -101,25 +102,3 @@ class _LevelCardInfo extends StatelessWidget {
   }
 }
 
-class _DifficultyDots extends StatelessWidget {
-  final int filled;
-  final Color color;
-  const _DifficultyDots({required this.filled, required this.color});
-
-  @override
-  Widget build(BuildContext context) => Row(
-    mainAxisSize: MainAxisSize.min,
-    children: List.generate(
-      5,
-      (i) => Container(
-        margin: EdgeInsets.only(left: i > 0 ? 3 : 0),
-        width: 6,
-        height: 6,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: i < filled ? color : color.withValues(alpha: 0.2),
-        ),
-      ),
-    ),
-  );
-}
