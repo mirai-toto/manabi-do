@@ -314,7 +314,7 @@ class _McqBodyState extends State<_McqBody> {
           ),
           const SizedBox(height: AppDimens.spaceLg),
           McqCard(
-            question: context.l10n.mcqSelectMeaning,
+            question: context.l10n.mcqSelectWordMeaning,
             japanesePrompt: item.entry.word,
             options: options,
             onOptionTap: _answered ? null : _onTap,

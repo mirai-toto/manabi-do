@@ -206,6 +206,7 @@
   },
 
   "mcqSelectMeaning": "Ce kanji veut dire ?",
+  "mcqSelectWordMeaning": "Que signifie ce mot ?",
   "mcqSelectKanji": "Quel kanji pour \"{meaning}\" ?",
   "@mcqSelectKanji": {
     "placeholders": { "meaning": { "type": "String" } }

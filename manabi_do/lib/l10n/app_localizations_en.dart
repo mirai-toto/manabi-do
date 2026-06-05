@@ -414,6 +414,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mcqSelectMeaning => 'What does this kanji mean?';
 
   @override
+  String get mcqSelectWordMeaning => 'What does this word mean?';
+
+  @override
   String mcqSelectKanji(String meaning) {
     return 'Select the kanji for: \"$meaning\"';
   }

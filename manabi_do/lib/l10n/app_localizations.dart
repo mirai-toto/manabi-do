@@ -856,6 +856,12 @@ abstract class AppLocalizations {
   /// **'What does this kanji mean?'**
   String get mcqSelectMeaning;
 
+  /// No description provided for @mcqSelectWordMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'What does this word mean?'**
+  String get mcqSelectWordMeaning;
+
   /// No description provided for @mcqSelectKanji.
   ///
   /// In en, this message translates to:
