@@ -20,7 +20,7 @@ final _localizedVocabMeaningProvider =
   return tr[vocabId] ?? '';
 });
 
-class VocabWordTile extends ConsumerWidget {
+class VocabWordTile extends ConsumerStatefulWidget {
   final VocabularyEntry entry;
   final bool isKnown;
   final VoidCallback? onToggleKnown;
@@ -33,13 +33,21 @@ class VocabWordTile extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<VocabWordTile> createState() => _VocabWordTileState();
+}
+
+class _VocabWordTileState extends ConsumerState<VocabWordTile> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
     final t = context.tokens;
-    final localized = ref.watch(_localizedVocabMeaningProvider(entry.id));
+    final localized = ref.watch(_localizedVocabMeaningProvider(widget.entry.id));
     final meaning = localized.asData?.value.isNotEmpty == true
         ? localized.asData!.value
-        : entry.meaning;
+        : widget.entry.meaning;
     final posColor = t.onSurfaceVariant;
+    final meaningStyle = AppTextStyles.body.copyWith(color: t.onSurface);
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -50,41 +58,75 @@ class VocabWordTile extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final tp = TextPainter(
+                  text: TextSpan(text: meaning, style: meaningStyle),
+                  maxLines: 2,
+                  textDirection: TextDirection.ltr,
+                )..layout(maxWidth: constraints.maxWidth);
+                final overflows = tp.didExceedMaxLines;
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      entry.word,
-                      style: AppTextStyles.jpMedium.copyWith(color: t.onSurface),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Text(
+                          widget.entry.word,
+                          style: AppTextStyles.jpMedium.copyWith(color: t.onSurface),
+                        ),
+                        const SizedBox(width: AppDimens.spaceSm),
+                        Text(
+                          widget.entry.reading,
+                          style: AppTextStyles.jpBody.copyWith(color: t.onSurfaceVariant),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: AppDimens.spaceSm),
-                    Text(
-                      entry.reading,
-                      style: AppTextStyles.jpBody.copyWith(color: t.onSurfaceVariant),
+                    const SizedBox(height: 2),
+                    GestureDetector(
+                      onTap: overflows ? () => setState(() => _expanded = !_expanded) : null,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            meaning,
+                            style: meaningStyle,
+                            maxLines: _expanded ? null : 2,
+                            overflow: _expanded ? TextOverflow.visible : TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: AppDimens.spaceXs),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              PillBadge(
+                                label: posLabel(widget.entry.partOfSpeech, context),
+                                color: posColor,
+                                background: posColor.withValues(alpha: 0.1),
+                                textStyle: AppTextStyles.labelSmall,
+                              ),
+                              if (overflows) ...[
+                                const SizedBox(width: AppDimens.spaceXs),
+                                Icon(
+                                  _expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded,
+                                  size: 14,
+                                  color: t.onSurfaceVariant,
+                                ),
+                              ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  meaning,
-                  style: AppTextStyles.body.copyWith(color: t.onSurface),
-                ),
-                const SizedBox(height: AppDimens.spaceXs),
-                PillBadge(
-                  label: posLabel(entry.partOfSpeech, context),
-                  color: posColor,
-                  background: posColor.withValues(alpha: 0.1),
-                  textStyle: AppTextStyles.labelSmall,
-                ),
-              ],
+                );
+              },
             ),
           ),
           const SizedBox(width: AppDimens.spaceSm),
-          KnownToggle(isKnown: isKnown, onTap: onToggleKnown),
+          KnownToggle(isKnown: widget.isKnown, onTap: widget.onToggleKnown),
         ],
       ),
     );
