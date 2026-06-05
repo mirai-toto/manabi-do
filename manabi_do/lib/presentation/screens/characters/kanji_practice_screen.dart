@@ -217,10 +217,6 @@ class _McqBodyState extends State<_McqBody> {
         return McqOptionState.idle;
       });
     });
-    Future.delayed(const Duration(milliseconds: 800), () {
-      if (!mounted) return;
-      widget.onAnswer(isCorrect ? Rating.good : Rating.again);
-    });
   }
 
   @override
@@ -240,7 +236,7 @@ class _McqBodyState extends State<_McqBody> {
       );
     });
 
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -258,8 +254,16 @@ class _McqBodyState extends State<_McqBody> {
                 : l.mcqSelectKanji(item.kanji.meaning),
             japanesePrompt: isKanjiToMeaning ? item.kanji.character : null,
             options: options,
-            onOptionTap: _onTap,
+            onOptionTap: _answered ? null : _onTap,
           ),
+          if (_answered) ...[
+            const SizedBox(height: AppDimens.spaceMd),
+            FlashCardActions(
+              card: item.card,
+              question: l.selfAssessQuestion,
+              onRate: widget.onAnswer,
+            ),
+          ],
         ],
       ),
     );
