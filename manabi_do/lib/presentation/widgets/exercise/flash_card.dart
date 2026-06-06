@@ -9,6 +9,7 @@ class FlashCard extends StatelessWidget {
   final String japanese;
   final String? label;
   final bool isRevealed;
+  final bool isReversed; // EN→JP: show answer as prompt, japanese as reveal
   final String? answer;
   final VoidCallback? onTap;
 
@@ -17,6 +18,7 @@ class FlashCard extends StatelessWidget {
     required this.japanese,
     this.label,
     this.isRevealed = false,
+    this.isReversed = false,
     this.answer,
     this.onTap,
   });
@@ -58,36 +60,67 @@ class FlashCard extends StatelessWidget {
             child: Stack(
               children: [
                 Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceLg),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
                       if (!isRevealed) ...[
-                        Text(
-                          japanese,
-                          style: AppTextStyles.jpFlash.copyWith(color: Colors.white),
-                        ),
-                        const SizedBox(height: AppDimens.spaceSm),
-                        Text(
-                          promptLabel,
-                          style: AppTextStyles.bodySmall.copyWith(
-                            color: Colors.white.withValues(alpha: 0.8),
+                        if (!isReversed) ...[
+                          Text(
+                            japanese,
+                            style: AppTextStyles.jpFlash.copyWith(color: Colors.white),
                           ),
-                        ),
+                          const SizedBox(height: AppDimens.spaceSm),
+                          Text(
+                            promptLabel,
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: Colors.white.withValues(alpha: 0.8),
+                            ),
+                          ),
+                        ] else ...[
+                          Text(
+                            answer ?? '',
+                            style: AppTextStyles.titleLarge.copyWith(color: Colors.white),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ] else ...[
-                        Text(
-                          answer ?? '',
-                          style: AppTextStyles.titleLarge.copyWith(color: Colors.white),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: AppDimens.spaceXs),
-                        Text(
-                          japanese,
-                          style: AppTextStyles.jpBody.copyWith(
-                            color: Colors.white.withValues(alpha: 0.8),
+                        if (!isReversed) ...[
+                          Text(
+                            answer ?? '',
+                            style: AppTextStyles.titleLarge.copyWith(color: Colors.white),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
+                          const SizedBox(height: AppDimens.spaceXs),
+                          Text(
+                            japanese,
+                            style: AppTextStyles.jpBody.copyWith(
+                              color: Colors.white.withValues(alpha: 0.8),
+                            ),
+                          ),
+                        ] else ...[
+                          Text(
+                            japanese,
+                            style: AppTextStyles.jpFlash.copyWith(color: Colors.white),
+                          ),
+                          const SizedBox(height: AppDimens.spaceXs),
+                          Text(
+                            answer ?? '',
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: Colors.white.withValues(alpha: 0.8),
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ],
                     ],
+                  ),
                   ),
                 ),
                 if (!isRevealed)

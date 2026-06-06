@@ -173,15 +173,71 @@ class AppDatabase extends _$AppDatabase {
   }
 
   /// All due kanji across every JLPT level — no new cards, for home screen review.
+  /// 3 queries total regardless of kanji table size.
   Future<List<(Kanji, Card?)>> getAllDueKanjiSrsSession() async {
-    final items = await select(kanjis).get();
-    return _buildSrsSession('kanji', items, (k) => k.id, newCardLimit: 0);
+    final now = DateTime.now();
+
+    final knownIds = await (select(progressEntries)
+      ..where((p) => p.itemType.equals('kanji') & p.isKnown.equals(true)))
+      .get()
+      .then((rows) => rows.map((r) => r.itemId).toSet());
+
+    final dueRows = await (select(srsCards)
+      ..where((s) => s.itemType.equals('kanji')))
+      .get()
+      .then((rows) => rows
+          .where((r) => !r.due.isAfter(now) && !knownIds.contains(r.itemId))
+          .toList());
+
+    if (dueRows.isEmpty) return [];
+
+    final dueIds = dueRows.map((r) => r.itemId).toList();
+    final kanjiList = await (select(kanjis)..where((k) => k.id.isIn(dueIds))).get();
+    final kanjiById  = {for (final k in kanjiList) k.id: k};
+    final cardByItemId = {for (final r in dueRows) r.itemId: r};
+
+    return dueIds
+        .where(kanjiById.containsKey)
+        .map((id) {
+          final card = Card.fromMap(
+              jsonDecode(cardByItemId[id]!.cardJson) as Map<String, dynamic>);
+          return (kanjiById[id]!, card as Card?);
+        })
+        .toList();
   }
 
   /// All due vocabulary across every JLPT level — no new cards, for home screen review.
+  /// 3 queries total regardless of vocab table size.
   Future<List<(VocabularyEntry, Card?)>> getAllDueVocabSrsSession() async {
-    final items = await select(vocabularyEntries).get();
-    return _buildSrsSession('vocabulary', items, (v) => v.id, newCardLimit: 0);
+    final now = DateTime.now();
+
+    final knownIds = await (select(progressEntries)
+      ..where((p) => p.itemType.equals('vocabulary') & p.isKnown.equals(true)))
+      .get()
+      .then((rows) => rows.map((r) => r.itemId).toSet());
+
+    final dueRows = await (select(srsCards)
+      ..where((s) => s.itemType.equals('vocabulary')))
+      .get()
+      .then((rows) => rows
+          .where((r) => !r.due.isAfter(now) && !knownIds.contains(r.itemId))
+          .toList());
+
+    if (dueRows.isEmpty) return [];
+
+    final dueIds = dueRows.map((r) => r.itemId).toList();
+    final vocabList = await (select(vocabularyEntries)..where((v) => v.id.isIn(dueIds))).get();
+    final vocabById    = {for (final v in vocabList) v.id: v};
+    final cardByItemId = {for (final r in dueRows) r.itemId: r};
+
+    return dueIds
+        .where(vocabById.containsKey)
+        .map((id) {
+          final card = Card.fromMap(
+              jsonDecode(cardByItemId[id]!.cardJson) as Map<String, dynamic>);
+          return (vocabById[id]!, card as Card?);
+        })
+        .toList();
   }
 
   Stream<Set<int>> watchKnownVocabIds() =>
@@ -296,6 +352,35 @@ class AppDatabase extends _$AppDatabase {
           target: [srsCards.itemType, srsCards.itemId],
         ),
       );
+
+  /// Debug only — inserts past-due SRS cards for a sample of items.
+  Future<void> seedFakeReviews() async {
+    final yesterday = DateTime.now().subtract(const Duration(days: 1));
+
+    final hiragana = await (select(kanas)
+      ..where((k) => k.type.equals('hiragana'))
+      ..limit(20)).get();
+    for (final k in hiragana) {
+      await upsertSrsCard('hiragana', k.id,
+          Card(cardId: k.id, due: yesterday));
+    }
+
+    final kanji = await (select(kanjis)
+      ..where((k) => k.jlptLevel.equals('N5'))
+      ..limit(20)).get();
+    for (final k in kanji) {
+      await upsertSrsCard('kanji', k.id,
+          Card(cardId: k.id, due: yesterday));
+    }
+
+    final vocab = await (select(vocabularyEntries)
+      ..where((v) => v.jlptLevel.equals('N5'))
+      ..limit(20)).get();
+    for (final v in vocab) {
+      await upsertSrsCard('vocabulary', v.id,
+          Card(cardId: v.id, due: yesterday));
+    }
+  }
 
   Future<void> resetAllProgress() async {
     await delete(srsCards).go();

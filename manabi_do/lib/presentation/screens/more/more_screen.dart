@@ -125,6 +125,11 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(children: [
               SettingsTile(
+                leading: Icon(Icons.science_outlined, size: 20, color: t.onSurfaceVariant),
+                label: 'Seed fake reviews (debug)',
+                onTap: () => db.seedFakeReviews(),
+              ),
+              SettingsTile(
                 leading: Icon(Icons.delete_outline_rounded, size: 20, color: t.error),
                 label: l.settingsResetProgress,
                 labelColor: t.error,

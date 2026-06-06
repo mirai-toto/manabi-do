@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -69,6 +71,7 @@ Future<List<PracticeItem>> _loadVocabQueue(AppDatabase db, WidgetRef ref) async 
   final translations = locale != 'en'
       ? await db.getVocabTranslations(ids, locale)
       : <int, String>{};
+  final rng = Random();
 
   final items = pairs.map((pair) {
     final (entry, card) = pair;
@@ -82,6 +85,7 @@ Future<List<PracticeItem>> _loadVocabQueue(AppDatabase db, WidgetRef ref) async 
         japanese: entry.word,
         label: entry.reading,
         answer: meaning,
+        isReversed: rng.nextBool(),
         card: card, index: index, total: total, color: color, onAnswer: onAnswer,
       ),
     );

@@ -43,14 +43,16 @@ class VocabPracticeScreen extends StatelessWidget {
 
     return pairs.map((pair) {
       final (entry, card) = pair;
+      final quizType = rng.nextInt(3); // 0: JP→EN flashcard, 1: EN→JP flashcard, 2: MCQ
 
-      if (rng.nextBool()) {
+      if (quizType == 0 || quizType == 1) {
         return PracticeItem(
           id: entry.id, srsType: 'vocabulary', card: card,
           buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
             japanese: entry.word,
             label: entry.reading,
             answer: meaningOf(entry),
+            isReversed: quizType == 1,
             card: card, index: index, total: total, color: color, onAnswer: onAnswer,
           ),
         );

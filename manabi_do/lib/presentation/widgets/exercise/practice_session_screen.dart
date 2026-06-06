@@ -119,6 +119,7 @@ class PracticeFlashcardBody extends StatefulWidget {
   final String japanese;
   final String? label;
   final String answer;
+  final bool isReversed;
   final Card? card;
   final int index;
   final int total;
@@ -135,6 +136,7 @@ class PracticeFlashcardBody extends StatefulWidget {
     required this.color,
     required this.onAnswer,
     this.label,
+    this.isReversed = false,
   });
 
   @override
@@ -165,6 +167,7 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
             label: widget.label,
             answer: widget.answer,
             isRevealed: _revealed,
+            isReversed: widget.isReversed,
             onTap: _revealed ? null : () => setState(() => _revealed = true),
           ),
           if (_revealed) ...[
