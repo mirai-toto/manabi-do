@@ -147,6 +147,43 @@ class AppDatabase extends _$AppDatabase {
         (rows) => rows.where((r) => !r.due.isAfter(DateTime.now())).length,
       );
 
+  Stream<int> watchCharactersDueCount() => (select(srsCards)).watch().map(
+        (rows) => rows
+            .where((r) =>
+                (r.itemType == 'hiragana' ||
+                    r.itemType == 'katakana' ||
+                    r.itemType == 'kanji') &&
+                !r.due.isAfter(DateTime.now()))
+            .length,
+      );
+
+  Stream<int> watchVocabDueCount() => (select(srsCards)).watch().map(
+        (rows) => rows
+            .where((r) => r.itemType == 'vocabulary' && !r.due.isAfter(DateTime.now()))
+            .length,
+      );
+
+  /// All due kana (hiragana + katakana) — no new cards, for home screen review.
+  Future<List<(Kana, Card?)>> getAllDueKanaSrsSession() async {
+    final hiragana = await getKanaByType('hiragana');
+    final katakana = await getKanaByType('katakana');
+    final h = await _buildSrsSession('hiragana', hiragana, (k) => k.id, newCardLimit: 0);
+    final k = await _buildSrsSession('katakana', katakana, (k) => k.id, newCardLimit: 0);
+    return [...h, ...k];
+  }
+
+  /// All due kanji across every JLPT level — no new cards, for home screen review.
+  Future<List<(Kanji, Card?)>> getAllDueKanjiSrsSession() async {
+    final items = await select(kanjis).get();
+    return _buildSrsSession('kanji', items, (k) => k.id, newCardLimit: 0);
+  }
+
+  /// All due vocabulary across every JLPT level — no new cards, for home screen review.
+  Future<List<(VocabularyEntry, Card?)>> getAllDueVocabSrsSession() async {
+    final items = await select(vocabularyEntries).get();
+    return _buildSrsSession('vocabulary', items, (v) => v.id, newCardLimit: 0);
+  }
+
   Stream<Set<int>> watchKnownVocabIds() =>
       (select(progressEntries)
         ..where((p) => p.itemType.equals('vocabulary') & p.isKnown.equals(true)))

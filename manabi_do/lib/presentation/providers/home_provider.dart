@@ -27,3 +27,11 @@ final totalKanaProvider = FutureProvider<int>(
 final dueTodayCountProvider = StreamProvider<int>(
   (ref) => ref.watch(databaseProvider).watchDueTodayCount(),
 );
+
+final charactersDueCountProvider = StreamProvider<int>(
+  (ref) => ref.watch(databaseProvider).watchCharactersDueCount(),
+);
+
+final vocabDueCountProvider = StreamProvider<int>(
+  (ref) => ref.watch(databaseProvider).watchVocabDueCount(),
+);

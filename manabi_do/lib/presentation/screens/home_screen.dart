@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/providers/locale_provider.dart';
 import '../../core/theme/app_dimens.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/theme/app_tokens.dart';
+import '../../core/theme/jlpt_level.dart';
+import '../../data/database/app_database.dart';
 import '../../l10n/l10n.dart';
 import '../providers/home_provider.dart';
 import '../providers/kana_progress_provider.dart';
 import '../providers/kanji_provider.dart';
 import '../providers/vocab_list_provider.dart';
+import '../widgets/exercise/practice_session_screen.dart';
 import '../widgets/widgets.dart';
 
 // Tab indices matching ShellScreen._screens order.
@@ -22,6 +26,68 @@ String _greeting(BuildContext context) {
   if (hour < 12) return l.greetingMorning;
   if (hour < 18) return l.greetingAfternoon;
   return l.greetingEvening;
+}
+
+// ── Combined loadQueue closures for home-screen review ────────────────────────
+// Due-only (newCardLimit=0). Flashcard format — full MCQ/drawing lives per-tab.
+
+Future<List<PracticeItem>> _loadCharactersQueue(AppDatabase db, WidgetRef ref) async {
+  final kana  = await db.getAllDueKanaSrsSession();
+  final kanji = await db.getAllDueKanjiSrsSession();
+
+  final kanaItems = kana.map((pair) {
+    final (k, card) = pair;
+    final color = levelColor('kana');
+    return PracticeItem(
+      id: k.id, srsType: k.type, card: card,
+      buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+        japanese: k.character, answer: k.romaji,
+        card: card, index: index, total: total, color: color, onAnswer: onAnswer,
+      ),
+    );
+  });
+
+  final kanjiItems = kanji.map((pair) {
+    final (k, card) = pair;
+    final color = levelColor(k.jlptLevel);
+    return PracticeItem(
+      id: k.id, srsType: 'kanji', card: card,
+      buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+        japanese: k.character, answer: k.meaning,
+        card: card, index: index, total: total, color: color, onAnswer: onAnswer,
+      ),
+    );
+  });
+
+  return [...kanaItems, ...kanjiItems]..shuffle();
+}
+
+Future<List<PracticeItem>> _loadVocabQueue(AppDatabase db, WidgetRef ref) async {
+  final locale = ref.read(localeProvider).languageCode;
+  final pairs  = await db.getAllDueVocabSrsSession();
+  final ids    = pairs.map((p) => p.$1.id).toList();
+  final translations = locale != 'en'
+      ? await db.getVocabTranslations(ids, locale)
+      : <int, String>{};
+
+  final items = pairs.map((pair) {
+    final (entry, card) = pair;
+    final color   = levelColor(entry.jlptLevel);
+    final meaning = translations[entry.id]?.isNotEmpty == true
+        ? translations[entry.id]!
+        : entry.meaning;
+    return PracticeItem(
+      id: entry.id, srsType: 'vocabulary', card: card,
+      buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+        japanese: entry.word,
+        label: entry.reading,
+        answer: meaning,
+        card: card, index: index, total: total, color: color, onAnswer: onAnswer,
+      ),
+    );
+  }).toList();
+
+  return items..shuffle();
 }
 
 class HomeScreen extends ConsumerWidget {
@@ -58,7 +124,7 @@ class HomeScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
               child: Column(
                 children: [
-                  _DueTodayBanner(onTap: () => goTo(_kTabCharacters)),
+                  _ReviewSection(),
                   const SizedBox(height: AppDimens.spaceMd),
                   _SectionCards(
                     knownChars: knownChars, totalChars: totalChars,
@@ -79,75 +145,169 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-// ── Due-today banner ──────────────────────────────────────────────────────────
+// ── Review section ────────────────────────────────────────────────────────────
 
-class _DueTodayBanner extends ConsumerWidget {
-  final VoidCallback onTap;
-  const _DueTodayBanner({required this.onTap});
-
+class _ReviewSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
-    final dueAsync = ref.watch(dueTodayCountProvider);
+    final charsDue = ref.watch(charactersDueCountProvider).asData?.value ?? 0;
+    final vocabDue = ref.watch(vocabDueCountProvider).asData?.value ?? 0;
 
-    return dueAsync.when(
-      loading: () => const SizedBox.shrink(),
-      error: (_, _) => const SizedBox.shrink(),
-      data: (due) {
-        final hasReviews = due > 0;
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(AppDimens.radiusXl),
-          child: Material(
-            color: hasReviews ? t.primaryContainer : t.surfaceContainer,
-            child: InkWell(
-              onTap: hasReviews ? onTap : null,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.spaceLg,
-                  vertical: AppDimens.spaceMd,
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      hasReviews ? '📚' : '✅',
-                      style: const TextStyle(fontSize: 22),
-                    ),
-                    const SizedBox(width: AppDimens.spaceMd),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            hasReviews
-                                ? l.reviewsDue(due)
-                                : l.allCaughtUp,
-                            style: AppTextStyles.body.copyWith(
-                              color: hasReviews ? t.onPrimaryContainer : t.onSurface,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text(
-                            hasReviews ? l.reviewsDueSubtitle : l.allCaughtUpSubtitle,
-                            style: AppTextStyles.bodySmall.copyWith(
-                              color: hasReviews
-                                  ? t.onPrimaryContainer.withValues(alpha: 0.7)
-                                  : t.onSurfaceVariant,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    if (hasReviews)
-                      Icon(Icons.arrow_forward_rounded,
-                          color: t.onPrimaryContainer, size: 20),
-                  ],
+    if (charsDue == 0 && vocabDue == 0) {
+      return _AllCaughtUpBanner();
+    }
+
+    return Column(
+      children: [
+        if (charsDue > 0)
+          _ReviewDomainCard(
+            icon: '字',
+            title: l.sectionCharacters,
+            count: charsDue,
+            color: t.characters,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => PracticeSessionScreen(
+                  title: l.sectionCharacters,
+                  color: t.characters,
+                  loadQueue: _loadCharactersQueue,
                 ),
               ),
             ),
           ),
-        );
-      },
+        if (charsDue > 0 && vocabDue > 0)
+          const SizedBox(height: AppDimens.spaceSm),
+        if (vocabDue > 0)
+          _ReviewDomainCard(
+            icon: '語',
+            title: l.navVocab,
+            count: vocabDue,
+            color: t.vocabulary,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => PracticeSessionScreen(
+                  title: l.navVocab,
+                  color: t.vocabulary,
+                  loadQueue: _loadVocabQueue,
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _ReviewDomainCard extends StatelessWidget {
+  final String icon;
+  final String title;
+  final int count;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _ReviewDomainCard({
+    required this.icon,
+    required this.title,
+    required this.count,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final l = context.l10n;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(AppDimens.radiusXl),
+      child: Material(
+        color: color.withValues(alpha: 0.12),
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.spaceLg,
+              vertical: AppDimens.spaceMd,
+            ),
+            child: Row(
+              children: [
+                Text(icon, style: AppTextStyles.jpBody.copyWith(fontSize: 22)),
+                const SizedBox(width: AppDimens.spaceMd),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: AppTextStyles.body.copyWith(
+                          color: t.onSurface,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        l.reviewsDue(count),
+                        style: AppTextStyles.bodySmall.copyWith(
+                          color: t.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(Icons.arrow_forward_rounded, color: color, size: 20),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _AllCaughtUpBanner extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final l = context.l10n;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(AppDimens.radiusXl),
+      child: Material(
+        color: t.surfaceContainer,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppDimens.spaceLg,
+            vertical: AppDimens.spaceMd,
+          ),
+          child: Row(
+            children: [
+              const AppEmoji('✅', size: 22),
+              const SizedBox(width: AppDimens.spaceMd),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l.allCaughtUp,
+                      style: AppTextStyles.body.copyWith(
+                        color: t.onSurface,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      l.allCaughtUpSubtitle,
+                      style: AppTextStyles.bodySmall.copyWith(
+                        color: t.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
