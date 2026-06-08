@@ -10,10 +10,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
-import '../../widgets/common/confirm_dialog.dart';
-import '../../widgets/common/section_label.dart';
-import '../../widgets/settings/settings_card.dart';
-import '../../widgets/settings/settings_tile.dart';
+import '../../widgets/widgets.dart';
 import 'language_picker_sheet.dart';
 
 final _packageInfoProvider = FutureProvider<PackageInfo>((_) => PackageInfo.fromPlatform());

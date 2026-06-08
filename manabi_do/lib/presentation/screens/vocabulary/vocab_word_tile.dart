@@ -8,10 +8,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/pos_label.dart';
 import '../../providers/database_provider.dart';
-import '../../widgets/common/furigana_text.dart';
-import '../../widgets/common/known_toggle.dart';
-import '../../widgets/common/pill_badge.dart';
-import '../../widgets/common/speak_button.dart';
+import '../../widgets/widgets.dart';
 
 final _localizedVocabMeaningProvider =
     FutureProvider.family<String, int>((ref, vocabId) async {

@@ -10,8 +10,6 @@ import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../providers/database_provider.dart';
 import '../../../providers/kanji_provider.dart';
-import '../../../widgets/common/confirm_dialog.dart';
-import '../../../widgets/common/srs_progress_info.dart';
 import '../../../widgets/widgets.dart';
 import 'kanji_example_words.dart';
 import 'kanji_hero.dart';

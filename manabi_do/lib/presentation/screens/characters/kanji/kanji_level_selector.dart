@@ -4,8 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../providers/kanji_provider.dart';
-import '../../../widgets/common/jlpt_level_card.dart';
-import '../../../widgets/common/section_label.dart';
+import '../../../widgets/widgets.dart';
 
 const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 

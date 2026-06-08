@@ -9,9 +9,7 @@ import '../../../../core/theme/jlpt_level.dart';
 import '../../../../domain/data/kana_data.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../providers/database_provider.dart';
-import '../../../widgets/common/confirm_dialog.dart';
-import '../../../widgets/common/speak_button.dart';
-import '../../../widgets/common/srs_progress_info.dart';
+import '../../../widgets/widgets.dart';
 
 class KanaDetailSheet extends ConsumerStatefulWidget {
   final KanaEntry entry;
