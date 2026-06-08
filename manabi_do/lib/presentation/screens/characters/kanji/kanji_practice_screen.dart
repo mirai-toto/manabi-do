@@ -14,7 +14,7 @@ import '../../../../l10n/level_label.dart';
 import '../../../widgets/characters/kanji_strokes_provider.dart';
 import '../../../widgets/exercise/drawing_exercise.dart';
 import '../../../widgets/exercise/mcq_card.dart';
-import '../../../widgets/exercise/practice_session_screen.dart';
+import '../../practice_session_screen.dart';
 
 // ── Screen ────────────────────────────────────────────────────────────────────
 

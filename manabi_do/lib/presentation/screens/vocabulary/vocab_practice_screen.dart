@@ -10,7 +10,7 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
 import '../../widgets/exercise/mcq_card.dart';
-import '../../widgets/exercise/practice_session_screen.dart';
+import '../practice_session_screen.dart';
 
 class VocabPracticeScreen extends StatelessWidget {
   final String level;

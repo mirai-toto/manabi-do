@@ -5,7 +5,7 @@ import '../../../../core/providers/srs_settings_provider.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
-import '../../../widgets/exercise/practice_session_screen.dart';
+import '../../practice_session_screen.dart';
 
 class KanaPracticeScreen extends StatelessWidget {
   final String type; // 'hiragana' | 'katakana'

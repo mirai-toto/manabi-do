@@ -2,15 +2,15 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
 
-import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
-import '../../../core/theme/app_tokens.dart';
-import '../../../data/database/app_database.dart';
-import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
-import 'flash_card.dart';
-import 'mcq_card.dart';
-import 'session_summary.dart';
+import '../../core/theme/app_dimens.dart';
+import '../../core/theme/app_text_styles.dart';
+import '../../core/theme/app_tokens.dart';
+import '../../data/database/app_database.dart';
+import '../../l10n/l10n.dart';
+import '../providers/database_provider.dart';
+import '../widgets/exercise/flash_card.dart';
+import '../widgets/exercise/mcq_card.dart';
+import '../widgets/exercise/session_summary.dart';
 
 // ── Practice item ─────────────────────────────────────────────────────────────
 

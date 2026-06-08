@@ -15,7 +15,7 @@ import '../providers/home_provider.dart';
 import '../providers/kana_progress_provider.dart';
 import '../providers/kanji_provider.dart';
 import '../providers/vocab_list_provider.dart';
-import '../widgets/exercise/practice_session_screen.dart';
+import 'practice_session_screen.dart';
 import '../widgets/widgets.dart';
 
 // Tab indices matching ShellScreen._screens order.
