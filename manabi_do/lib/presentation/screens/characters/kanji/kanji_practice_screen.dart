@@ -64,9 +64,14 @@ class KanjiPracticeScreen extends StatelessWidget {
       if (type == _QuizType.drawing) {
         return PracticeItem(
           id: kanji.id, srsType: 'kanji', card: card,
-          buildBody: (index, total, onAnswer) => _DrawingBody(
-            kanji: kanji, card: card,
-            index: index, total: total, color: color, onAnswer: onAnswer,
+          buildBody: (index, total, onAnswer) => Builder(
+            builder: (ctx) => _DrawingBody(
+              kanji: kanji, card: card,
+              index: index, total: total, color: color, onAnswer: onAnswer,
+              onDetailTap: () => Navigator.of(ctx).push(
+                MaterialPageRoute(builder: (_) => KanjiDetailScreen(kanjiId: kanji.id)),
+              ),
+            ),
           ),
         );
       }
@@ -84,13 +89,18 @@ class KanjiPracticeScreen extends StatelessWidget {
 
       return PracticeItem(
         id: kanji.id, srsType: 'kanji', card: card,
-        buildBody: (index, total, onAnswer) => _KanjiMcqBody(
-          isKanjiToMeaning: isKanjiToMeaning,
-          kanjiMeaning: kanji.meaning,
-          kanjiCharacter: kanji.character,
-          options: mcqOptions,
-          correctIndex: correctIndex,
-          card: card, index: index, total: total, color: color, onAnswer: onAnswer,
+        buildBody: (index, total, onAnswer) => Builder(
+          builder: (ctx) => _KanjiMcqBody(
+            isKanjiToMeaning: isKanjiToMeaning,
+            kanjiMeaning: kanji.meaning,
+            kanjiCharacter: kanji.character,
+            options: mcqOptions,
+            correctIndex: correctIndex,
+            card: card, index: index, total: total, color: color, onAnswer: onAnswer,
+            onDetailTap: () => Navigator.of(ctx).push(
+              MaterialPageRoute(builder: (_) => KanjiDetailScreen(kanjiId: kanji.id)),
+            ),
+          ),
         ),
       );
     }).toList();
@@ -110,6 +120,7 @@ class _KanjiMcqBody extends StatelessWidget {
   final int total;
   final Color color;
   final void Function(Rating) onAnswer;
+  final VoidCallback? onDetailTap;
 
   const _KanjiMcqBody({
     required this.isKanjiToMeaning,
@@ -122,6 +133,7 @@ class _KanjiMcqBody extends StatelessWidget {
     required this.total,
     required this.color,
     required this.onAnswer,
+    this.onDetailTap,
   });
 
   @override
@@ -135,6 +147,7 @@ class _KanjiMcqBody extends StatelessWidget {
       options: options,
       correctIndex: correctIndex,
       card: card, index: index, total: total, color: color, onAnswer: onAnswer,
+      onDetailTap: onDetailTap,
     );
   }
 }
@@ -148,6 +161,7 @@ class _DrawingBody extends ConsumerWidget {
   final int total;
   final Color color;
   final void Function(Rating) onAnswer;
+  final VoidCallback? onDetailTap;
 
   const _DrawingBody({
     required this.kanji,
@@ -156,6 +170,7 @@ class _DrawingBody extends ConsumerWidget {
     required this.total,
     required this.color,
     required this.onAnswer,
+    this.onDetailTap,
   });
 
   @override
@@ -187,6 +202,7 @@ class _DrawingBody extends ConsumerWidget {
               card: card,
               onRate: onAnswer,
               question: l.selfAssessQuestion,
+              onDetailTap: onDetailTap,
             ),
           ),
         ],

@@ -28,6 +28,7 @@ class DrawingExercise extends StatefulWidget {
   final Card? card;
   final void Function(Rating)? onRate;
   final String? question;
+  final VoidCallback? onDetailTap;
 
   const DrawingExercise({
     super.key,
@@ -38,6 +39,7 @@ class DrawingExercise extends StatefulWidget {
     this.card,
     this.onRate,
     this.question,
+    this.onDetailTap,
   });
 
   @override
@@ -165,13 +167,24 @@ class _DrawingExerciseState extends State<DrawingExercise> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: AppDimens.spaceSm),
-          if (widget.onRate != null)
+          if (widget.onRate != null) ...[
             FlashCardActions(
               card: widget.card,
               question: widget.question,
               onRate: widget.onRate!,
-            )
-          else
+            ),
+            if (widget.onDetailTap != null) ...[
+              const SizedBox(height: AppDimens.spaceSm),
+              TextButton.icon(
+                onPressed: widget.onDetailTap,
+                icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                label: Text(context.l10n.viewDetail),
+                style: TextButton.styleFrom(
+                  foregroundColor: context.tokens.onSurfaceVariant,
+                ),
+              ),
+            ],
+          ] else
             FilledButton(
               onPressed: _reset,
               style: FilledButton.styleFrom(

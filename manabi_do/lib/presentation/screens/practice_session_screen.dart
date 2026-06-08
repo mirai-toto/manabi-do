@@ -209,6 +209,7 @@ class PracticeMcqBody extends StatefulWidget {
   final int total;
   final Color color;
   final void Function(Rating) onAnswer;
+  final VoidCallback? onDetailTap;
 
   const PracticeMcqBody({
     super.key,
@@ -221,6 +222,7 @@ class PracticeMcqBody extends StatefulWidget {
     required this.color,
     required this.onAnswer,
     this.japanesePrompt,
+    this.onDetailTap,
   });
 
   @override
@@ -283,6 +285,17 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
               question: context.l10n.selfAssessQuestion,
               onRate: widget.onAnswer,
             ),
+            if (widget.onDetailTap != null) ...[
+              const SizedBox(height: AppDimens.spaceSm),
+              TextButton.icon(
+                onPressed: widget.onDetailTap,
+                icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                label: Text(context.l10n.viewDetail),
+                style: TextButton.styleFrom(
+                  foregroundColor: context.tokens.onSurfaceVariant,
+                ),
+              ),
+            ],
           ],
         ],
       ),
