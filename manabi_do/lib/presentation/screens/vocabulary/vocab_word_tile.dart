@@ -11,6 +11,7 @@ import '../../providers/database_provider.dart';
 import '../../widgets/common/furigana_text.dart';
 import '../../widgets/common/known_toggle.dart';
 import '../../widgets/common/pill_badge.dart';
+import '../../widgets/common/speak_button.dart';
 
 final _localizedVocabMeaningProvider =
     FutureProvider.family<String, int>((ref, vocabId) async {
@@ -81,6 +82,7 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
                       ),
                     ),
                   ),
+                  SpeakButton(text: widget.entry.word, color: t.onSurfaceVariant),
                   KnownToggle(isKnown: widget.isKnown, onTap: widget.onToggleKnown),
                 ],
               ),

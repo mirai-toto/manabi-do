@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart' hide Card;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/speak_button.dart';
 
-class FlashCard extends StatelessWidget {
+class FlashCard extends ConsumerWidget {
   final String japanese;
   final String? label;
   final bool isRevealed;
@@ -24,7 +26,7 @@ class FlashCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
     final promptLabel = label ?? l.flashcardDefaultPrompt;
@@ -121,6 +123,14 @@ class FlashCard extends StatelessWidget {
                       ],
                     ],
                   ),
+                  ),
+                ),
+                Positioned(
+                  top: AppDimens.spaceXs,
+                  right: AppDimens.spaceXs,
+                  child: SpeakButton(
+                    text: japanese,
+                    color: Colors.white.withValues(alpha: 0.8),
                   ),
                 ),
                 if (!isRevealed)

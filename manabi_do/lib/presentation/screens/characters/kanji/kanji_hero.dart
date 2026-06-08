@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../widgets/common/pill_badge.dart';
+import '../../../widgets/common/speak_button.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../providers/vocab_provider.dart';
@@ -45,7 +46,20 @@ class KanjiHero extends ConsumerWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _CharacterBox(character: kanji.character),
+              Stack(
+                children: [
+                  _CharacterBox(character: kanji.character),
+                  Positioned(
+                    bottom: AppDimens.spaceXs,
+                    right: AppDimens.spaceXs,
+                    child: SpeakButton(
+                      text: kanji.character,
+                      color: Colors.white.withValues(alpha: 0.8),
+                      size: 18,
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(width: AppDimens.spaceMd),
               Expanded(child: _KanjiInfo(meaning: meaning, level: kanji.jlptLevel)),
             ],
