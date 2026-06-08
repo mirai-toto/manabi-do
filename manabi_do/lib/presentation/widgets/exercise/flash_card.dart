@@ -126,8 +126,8 @@ class FlashCard extends ConsumerWidget {
                   ),
                 ),
                 Positioned(
-                  top: AppDimens.spaceXs,
-                  right: AppDimens.spaceXs,
+                  top: AppDimens.spaceSm,
+                  right: AppDimens.spaceSm,
                   child: SpeakButton(
                     text: japanese,
                     color: Colors.white.withValues(alpha: 0.8),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/pill_badge.dart';
+import '../common/speak_button.dart';
 
 enum McqOptionState { idle, selected, correct, wrong }
 
@@ -85,14 +87,14 @@ class _ExTypeBadge extends StatelessWidget {
   }
 }
 
-class _ExPrompt extends StatelessWidget {
+class _ExPrompt extends ConsumerWidget {
   final String question;
   final String? japanesePrompt;
 
   const _ExPrompt({required this.question, this.japanesePrompt});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
 
     return Column(
@@ -107,9 +109,16 @@ class _ExPrompt extends StatelessWidget {
         ),
         if (japanesePrompt != null) ...[
           const SizedBox(height: AppDimens.spaceXs),
-          Text(
-            japanesePrompt!,
-            style: AppTextStyles.jpMedium.copyWith(color: t.onSurface),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                japanesePrompt!,
+                style: AppTextStyles.jpMedium.copyWith(color: t.onSurface),
+              ),
+              const SizedBox(width: AppDimens.spaceSm),
+              SpeakButton(text: japanesePrompt!, color: t.onSurfaceVariant),
+            ],
           ),
         ],
       ],
