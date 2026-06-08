@@ -125,6 +125,7 @@ class PracticeFlashcardBody extends StatefulWidget {
   final int total;
   final Color color;
   final void Function(Rating) onAnswer;
+  final VoidCallback? onDetailTap;
 
   const PracticeFlashcardBody({
     super.key,
@@ -137,6 +138,7 @@ class PracticeFlashcardBody extends StatefulWidget {
     required this.onAnswer,
     this.label,
     this.isReversed = false,
+    this.onDetailTap,
   });
 
   @override
@@ -177,6 +179,17 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
               question: context.l10n.selfAssessQuestion,
               onRate: widget.onAnswer,
             ),
+            if (widget.onDetailTap != null) ...[
+              const SizedBox(height: AppDimens.spaceSm),
+              TextButton.icon(
+                onPressed: widget.onDetailTap,
+                icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                label: Text(context.l10n.viewDetail),
+                style: TextButton.styleFrom(
+                  foregroundColor: context.tokens.onSurfaceVariant,
+                ),
+              ),
+            ],
           ],
         ],
       ),

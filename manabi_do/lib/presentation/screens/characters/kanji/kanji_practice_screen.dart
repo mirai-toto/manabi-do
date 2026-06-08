@@ -15,6 +15,7 @@ import '../../../widgets/characters/kanji_strokes_provider.dart';
 import '../../../widgets/exercise/drawing_exercise.dart';
 import '../../../widgets/exercise/mcq_card.dart';
 import '../../practice_session_screen.dart';
+import 'kanji_detail_screen.dart';
 
 // ── Screen ────────────────────────────────────────────────────────────────────
 
@@ -47,10 +48,15 @@ class KanjiPracticeScreen extends StatelessWidget {
       if (type == _QuizType.flashcard) {
         return PracticeItem(
           id: kanji.id, srsType: 'kanji', card: card,
-          buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
-            japanese: kanji.character,
-            answer: kanji.meaning,
-            card: card, index: index, total: total, color: color, onAnswer: onAnswer,
+          buildBody: (index, total, onAnswer) => Builder(
+            builder: (ctx) => PracticeFlashcardBody(
+              japanese: kanji.character,
+              answer: kanji.meaning,
+              card: card, index: index, total: total, color: color, onAnswer: onAnswer,
+              onDetailTap: () => Navigator.of(ctx).push(
+                MaterialPageRoute(builder: (_) => KanjiDetailScreen(kanjiId: kanji.id)),
+              ),
+            ),
           ),
         );
       }
