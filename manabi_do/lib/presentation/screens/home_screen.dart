@@ -109,7 +109,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> with WidgetsBindingObse
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _refreshTimer = Timer.periodic(const Duration(seconds: 30), (_) => _refresh());
+    _refreshTimer = Timer.periodic(const Duration(seconds: 10), (_) => _refresh());
   }
 
   @override
