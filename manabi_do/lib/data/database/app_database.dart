@@ -163,6 +163,29 @@ class AppDatabase extends _$AppDatabase {
             .length,
       );
 
+  Stream<int> watchStreakDays() => (select(srsCards)).watch().map((rows) {
+        final reviewDates = <String>{};
+        for (final row in rows) {
+          try {
+            final map = jsonDecode(row.cardJson) as Map<String, dynamic>;
+            final raw = map['lastReview'] as String?;
+            if (raw != null) {
+              final dt = DateTime.parse(raw).toLocal();
+              reviewDates.add('${dt.year}-${dt.month.toString().padLeft(2, '0')}-${dt.day.toString().padLeft(2, '0')}');
+            }
+          } catch (_) {}
+        }
+        int streak = 0;
+        var date = DateTime.now().toLocal();
+        while (true) {
+          final key = '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+          if (!reviewDates.contains(key)) break;
+          streak++;
+          date = date.subtract(const Duration(days: 1));
+        }
+        return streak;
+      });
+
   /// All due kana (hiragana + katakana) — no new cards, for home screen review.
   Future<List<(Kana, Card?)>> getAllDueKanaSrsSession() async {
     final hiragana = await getKanaByType('hiragana');

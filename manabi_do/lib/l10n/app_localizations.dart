@@ -946,6 +946,12 @@ abstract class AppLocalizations {
   /// **'Tap to start your session'**
   String get reviewsDueSubtitle;
 
+  /// No description provided for @reviewNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Review now'**
+  String get reviewNow;
+
   /// No description provided for @allCaughtUp.
   ///
   /// In en, this message translates to:

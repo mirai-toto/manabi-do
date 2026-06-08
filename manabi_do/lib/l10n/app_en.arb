@@ -243,6 +243,7 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "reviewsDueSubtitle": "Tap to start your session",
+  "reviewNow": "Review now",
   "allCaughtUp": "All caught up!",
   "allCaughtUpSubtitle": "Come back later for more reviews"
 }

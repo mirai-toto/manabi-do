@@ -469,6 +469,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reviewsDueSubtitle => 'Tap to start your session';
 
   @override
+  String get reviewNow => 'Review now';
+
+  @override
   String get allCaughtUp => 'All caught up!';
 
   @override

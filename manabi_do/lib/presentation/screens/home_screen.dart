@@ -114,7 +114,32 @@ class HomeScreen extends ConsumerWidget {
     final knownChars = knownHiragana + knownKatakana + knownKanji;
     final totalChars = totalKana + totalKanji;
 
+    final charsDue = ref.watch(charactersDueCountProvider).asData?.value ?? 0;
+    final vocabDue = ref.watch(vocabDueCountProvider).asData?.value ?? 0;
+
     void goTo(int tab) => ref.read(selectedTabProvider.notifier).select(tab);
+
+    void startCharsReview() => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => PracticeSessionScreen(
+          title: l.sectionCharacters,
+          color: context.tokens.characters,
+          loadQueue: _loadCharactersQueue,
+        ),
+      ),
+    );
+
+    void startVocabReview() => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => PracticeSessionScreen(
+          title: l.navVocab,
+          color: context.tokens.vocabulary,
+          loadQueue: _loadVocabQueue,
+        ),
+      ),
+    );
 
     return Align(
       alignment: Alignment.topCenter,
@@ -128,188 +153,22 @@ class HomeScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
               child: Column(
                 children: [
-                  _ReviewSection(),
-                  const SizedBox(height: AppDimens.spaceMd),
                   _SectionCards(
                     knownChars: knownChars, totalChars: totalChars,
                     knownVocab: knownVocab, totalVocab: totalVocab,
+                    charsDue: charsDue, vocabDue: vocabDue,
                     onCharactersTap: () => goTo(_kTabCharacters),
                     onVocabTap:      () => goTo(_kTabVocabulary),
                     onGrammarTap:    () => goTo(_kTabGrammar),
+                    onCharsReview:   startCharsReview,
+                    onVocabReview:   startVocabReview,
                   ),
                   const SizedBox(height: AppDimens.spaceLg),
-                  StreakCard(days: 0, label: l.streakLabel, subtitle: l.streakSubtitle),
+                  StreakCard(days: ref.watch(streakDaysProvider).asData?.value ?? 0, label: l.streakLabel, subtitle: l.streakSubtitle),
                 ],
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-// ── Review section ────────────────────────────────────────────────────────────
-
-class _ReviewSection extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.tokens;
-    final l = context.l10n;
-    final charsDue = ref.watch(charactersDueCountProvider).asData?.value ?? 0;
-    final vocabDue = ref.watch(vocabDueCountProvider).asData?.value ?? 0;
-
-    if (charsDue == 0 && vocabDue == 0) {
-      return _AllCaughtUpBanner();
-    }
-
-    return Column(
-      children: [
-        if (charsDue > 0)
-          _ReviewDomainCard(
-            icon: '字',
-            title: l.sectionCharacters,
-            count: charsDue,
-            color: t.characters,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => PracticeSessionScreen(
-                  title: l.sectionCharacters,
-                  color: t.characters,
-                  loadQueue: _loadCharactersQueue,
-                ),
-              ),
-            ),
-          ),
-        if (charsDue > 0 && vocabDue > 0)
-          const SizedBox(height: AppDimens.spaceSm),
-        if (vocabDue > 0)
-          _ReviewDomainCard(
-            icon: '語',
-            title: l.navVocab,
-            count: vocabDue,
-            color: t.vocabulary,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => PracticeSessionScreen(
-                  title: l.navVocab,
-                  color: t.vocabulary,
-                  loadQueue: _loadVocabQueue,
-                ),
-              ),
-            ),
-          ),
-      ],
-    );
-  }
-}
-
-class _ReviewDomainCard extends StatelessWidget {
-  final String icon;
-  final String title;
-  final int count;
-  final Color color;
-  final VoidCallback onTap;
-
-  const _ReviewDomainCard({
-    required this.icon,
-    required this.title,
-    required this.count,
-    required this.color,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    final l = context.l10n;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppDimens.radiusXl),
-      child: Material(
-        color: color.withValues(alpha: 0.12),
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimens.spaceLg,
-              vertical: AppDimens.spaceMd,
-            ),
-            child: Row(
-              children: [
-                Text(icon, style: AppTextStyles.jpBody.copyWith(fontSize: 22)),
-                const SizedBox(width: AppDimens.spaceMd),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: AppTextStyles.body.copyWith(
-                          color: t.onSurface,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        l.reviewsDue(count),
-                        style: AppTextStyles.bodySmall.copyWith(
-                          color: t.onSurfaceVariant,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Icon(Icons.arrow_forward_rounded, color: color, size: 20),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _AllCaughtUpBanner extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    final l = context.l10n;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppDimens.radiusXl),
-      child: Material(
-        color: t.surfaceContainer,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppDimens.spaceLg,
-            vertical: AppDimens.spaceMd,
-          ),
-          child: Row(
-            children: [
-              const AppEmoji('✅', size: 22),
-              const SizedBox(width: AppDimens.spaceMd),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l.allCaughtUp,
-                      style: AppTextStyles.body.copyWith(
-                        color: t.onSurface,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      l.allCaughtUpSubtitle,
-                      style: AppTextStyles.bodySmall.copyWith(
-                        color: t.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
@@ -323,18 +182,26 @@ class _SectionCards extends StatelessWidget {
   final int totalChars;
   final int knownVocab;
   final int totalVocab;
+  final int charsDue;
+  final int vocabDue;
   final VoidCallback onCharactersTap;
   final VoidCallback onVocabTap;
   final VoidCallback onGrammarTap;
+  final VoidCallback onCharsReview;
+  final VoidCallback onVocabReview;
 
   const _SectionCards({
     required this.knownChars,
     required this.totalChars,
     required this.knownVocab,
     required this.totalVocab,
+    required this.charsDue,
+    required this.vocabDue,
     required this.onCharactersTap,
     required this.onVocabTap,
     required this.onGrammarTap,
+    required this.onCharsReview,
+    required this.onVocabReview,
   });
 
   @override
@@ -357,14 +224,20 @@ class _SectionCards extends StatelessWidget {
         gradientColors: [t.charactersDark, t.characters], progressColor: t.characters,
         subtitle: 'Kana · Kanji',
         statLabel: totalChars > 0 ? '$knownChars / $totalChars' : '—',
-        progress: charProgress, onTap: onCharactersTap,
+        progress: charProgress,
+        dueCount: charsDue,
+        onTap: onCharactersTap,
+        onReview: onCharsReview,
       ),
       SectionCard(
         title: l.navVocab, icon: '語',
         gradientColors: [t.vocabularyDark, t.vocabulary], progressColor: t.vocabulary,
         subtitle: 'N5 → N1',
         statLabel: totalVocab > 0 ? '$knownVocab / $totalVocab' : '—',
-        progress: vocabProgress, onTap: onVocabTap,
+        progress: vocabProgress,
+        dueCount: vocabDue,
+        onTap: onVocabTap,
+        onReview: onVocabReview,
       ),
     ];
 

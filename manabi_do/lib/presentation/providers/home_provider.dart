@@ -35,3 +35,7 @@ final charactersDueCountProvider = StreamProvider<int>(
 final vocabDueCountProvider = StreamProvider<int>(
   (ref) => ref.watch(databaseProvider).watchVocabDueCount(),
 );
+
+final streakDaysProvider = StreamProvider<int>(
+  (ref) => ref.watch(databaseProvider).watchStreakDays(),
+);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/l10n.dart';
 import '../common/progress_bar.dart';
 
 class SectionCard extends StatelessWidget {
@@ -12,7 +13,9 @@ class SectionCard extends StatelessWidget {
   final String subtitle;
   final String statLabel;
   final double progress;
+  final int dueCount;
   final VoidCallback? onTap;
+  final VoidCallback? onReview;
 
   const SectionCard({
     super.key,
@@ -23,23 +26,27 @@ class SectionCard extends StatelessWidget {
     required this.subtitle,
     required this.statLabel,
     required this.progress,
+    this.dueCount = 0,
     this.onTap,
+    this.onReview,
   });
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+    final l = context.l10n;
+    final hasDue = dueCount > 0 && onReview != null;
 
     return Semantics(
-      label: '$title. $statLabel',
-      button: onTap != null,
+      label: hasDue ? '$title. $dueCount ${l.reviewsDue(dueCount)}' : '$title. $statLabel',
+      button: true,
       excludeSemantics: true,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppDimens.radiusXl),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: onTap,
+            onTap: hasDue ? onReview : onTap,
             child: Column(
               children: [
                 Container(
@@ -89,20 +96,43 @@ class SectionCard extends StatelessWidget {
                     horizontal: AppDimens.spaceLg,
                     vertical: AppDimens.spaceMd,
                   ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          statLabel,
-                          style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+                  child: hasDue
+                      ? Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                l.reviewsDue(dueCount),
+                                style: AppTextStyles.bodySmall.copyWith(
+                                  color: progressColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              l.reviewNow,
+                              style: AppTextStyles.labelSmall.copyWith(
+                                color: progressColor,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(width: AppDimens.spaceXxs),
+                            Icon(Icons.arrow_forward_rounded, color: progressColor, size: 14),
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                statLabel,
+                                style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+                              ),
+                            ),
+                            const SizedBox(width: AppDimens.spaceMd),
+                            Expanded(
+                              child: AppProgressBar(progress: progress, color: progressColor),
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(width: AppDimens.spaceMd),
-                      Expanded(
-                        child: AppProgressBar(progress: progress, color: progressColor),
-                      ),
-                    ],
-                  ),
                 ),
               ],
             ),

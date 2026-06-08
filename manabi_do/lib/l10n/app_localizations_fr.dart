@@ -469,6 +469,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get reviewsDueSubtitle => 'Appuyez pour commencer la session';
 
   @override
+  String get reviewNow => 'Réviser';
+
+  @override
   String get allCaughtUp => 'Tout est à jour !';
 
   @override

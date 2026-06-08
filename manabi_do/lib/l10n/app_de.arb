@@ -237,6 +237,7 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "reviewsDueSubtitle": "Tippen um die Sitzung zu starten",
+  "reviewNow": "Jetzt üben",
   "allCaughtUp": "Alles erledigt!",
   "allCaughtUpSubtitle": "Komm später für weitere Wiederholungen zurück"
 }
