@@ -10,6 +10,7 @@ import '../../../../domain/data/kana_data.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../providers/database_provider.dart';
 import '../../../widgets/common/confirm_dialog.dart';
+import '../../../widgets/common/speak_button.dart';
 import '../../../widgets/common/srs_progress_info.dart';
 
 class KanaDetailSheet extends ConsumerStatefulWidget {
@@ -92,26 +93,39 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
             // Character hero
             Row(
               children: [
-                Container(
-                  width: 88,
-                  height: 88,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.lerp(color, Colors.black, 0.25)!,
-                        color,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                Stack(
+                  children: [
+                    Container(
+                      width: 88,
+                      height: 88,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.lerp(color, Colors.black, 0.25)!,
+                            color,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+                      ),
+                      child: Center(
+                        child: Text(
+                          widget.entry.kana,
+                          style: AppTextStyles.jpKanji.copyWith(color: Colors.white),
+                        ),
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-                  ),
-                  child: Center(
-                    child: Text(
-                      widget.entry.kana,
-                      style: AppTextStyles.jpKanji.copyWith(color: Colors.white),
+                    Positioned(
+                      bottom: AppDimens.spaceXs,
+                      right: AppDimens.spaceXs,
+                      child: SpeakButton(
+                        text: widget.entry.kana,
+                        color: Colors.white.withValues(alpha: 0.8),
+                        size: 18,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 const SizedBox(width: AppDimens.spaceMd),
                 Expanded(
