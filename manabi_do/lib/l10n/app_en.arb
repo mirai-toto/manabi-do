@@ -158,8 +158,9 @@
   "settingsPracticeNewCards": "New cards per day",
 
   "settingsAppearance": "Appearance",
-  "settingsThemeLight": "Light mode",
-  "settingsThemeDark": "Dark mode",
+  "settingsThemeSystem": "System",
+  "settingsThemeLight": "Light",
+  "settingsThemeDark": "Dark",
   "settingsLanguage": "Language",
 
   "aboutTitle": "About",

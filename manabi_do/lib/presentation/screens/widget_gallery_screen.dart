@@ -60,11 +60,16 @@ class _WidgetGalleryScreenState extends ConsumerState<WidgetGalleryScreen>
           ),
           IconButton(
             icon: Icon(
-              ref.watch(themeModeProvider) == ThemeMode.dark
+              (ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system) == ThemeMode.dark
                   ? Icons.light_mode_outlined
                   : Icons.dark_mode_outlined,
             ),
-            onPressed: () => ref.read(themeModeProvider.notifier).toggle(),
+            onPressed: () {
+              final current = ref.read(themeModeProvider).asData?.value ?? ThemeMode.system;
+              ref.read(themeModeProvider.notifier).setMode(
+                current == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark,
+              );
+            },
           ),
         ],
         bottom: TabBar(

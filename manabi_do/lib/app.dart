@@ -13,7 +13,7 @@ class ManabiDoApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode = ref.watch(themeModeProvider);
+    final themeMode = ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system;
     final locale = ref.watch(localeProvider);
 
     return MaterialApp(

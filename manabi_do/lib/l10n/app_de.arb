@@ -152,8 +152,9 @@
   "settingsPracticeNewCards": "Neue Karten pro Tag",
 
   "settingsAppearance": "Erscheinungsbild",
-  "settingsThemeLight": "Heller Modus",
-  "settingsThemeDark": "Dunkler Modus",
+  "settingsThemeSystem": "System",
+  "settingsThemeLight": "Hell",
+  "settingsThemeDark": "Dunkel",
   "settingsLanguage": "Sprache",
 
   "aboutTitle": "Über",

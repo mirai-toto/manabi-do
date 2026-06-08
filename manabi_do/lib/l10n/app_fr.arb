@@ -152,8 +152,9 @@
   "settingsPracticeNewCards": "Nouvelles cartes par jour",
 
   "settingsAppearance": "Apparence",
-  "settingsThemeLight": "Mode clair",
-  "settingsThemeDark": "Mode sombre",
+  "settingsThemeSystem": "Système",
+  "settingsThemeLight": "Clair",
+  "settingsThemeDark": "Sombre",
   "settingsLanguage": "Langue",
 
   "aboutTitle": "À propos",

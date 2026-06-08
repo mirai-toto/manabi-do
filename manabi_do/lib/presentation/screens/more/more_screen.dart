@@ -54,9 +54,8 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l         = context.l10n;
     final t         = context.tokens;
-    final themeMode = ref.watch(themeModeProvider);
+    final themeMode = ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system;
     final locale    = ref.watch(localeProvider);
-    final isDark    = themeMode == ThemeMode.dark;
     final pkgAsync  = ref.watch(_packageInfoProvider);
     final srs       = ref.watch(srsSettingsProvider);
     final db        = ref.read(databaseProvider);
@@ -98,11 +97,33 @@ class SettingsScreen extends ConsumerWidget {
             SectionLabel(l.settingsAppearance),
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(children: [
-              SettingsToggle(
-                icon: isDark ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
-                label: isDark ? l.settingsThemeDark : l.settingsThemeLight,
-                value: isDark,
-                onChanged: (_) => ref.read(themeModeProvider.notifier).toggle(),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.spaceMd,
+                  vertical: AppDimens.spaceSm,
+                ),
+                child: SegmentedButton<ThemeMode>(
+                  segments: [
+                    ButtonSegment(
+                      value: ThemeMode.system,
+                      icon: const Icon(Icons.brightness_auto_rounded),
+                      label: Text(l.settingsThemeSystem),
+                    ),
+                    ButtonSegment(
+                      value: ThemeMode.light,
+                      icon: const Icon(Icons.light_mode_rounded),
+                      label: Text(l.settingsThemeLight),
+                    ),
+                    ButtonSegment(
+                      value: ThemeMode.dark,
+                      icon: const Icon(Icons.dark_mode_rounded),
+                      label: Text(l.settingsThemeDark),
+                    ),
+                  ],
+                  selected: {themeMode},
+                  onSelectionChanged: (modes) =>
+                      ref.read(themeModeProvider.notifier).setMode(modes.first),
+                ),
               ),
             ]),
 

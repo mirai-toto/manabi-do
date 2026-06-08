@@ -314,10 +314,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsAppearance => 'Appearance';
 
   @override
-  String get settingsThemeLight => 'Light mode';
+  String get settingsThemeSystem => 'System';
 
   @override
-  String get settingsThemeDark => 'Dark mode';
+  String get settingsThemeLight => 'Light';
+
+  @override
+  String get settingsThemeDark => 'Dark';
 
   @override
   String get settingsLanguage => 'Language';
