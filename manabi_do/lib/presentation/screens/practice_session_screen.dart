@@ -159,7 +159,7 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
             value: widget.index / widget.total,
             backgroundColor: t.outlineVariant,
             color: widget.color,
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(AppDimens.radiusXs),
           ),
           const SizedBox(height: AppDimens.spaceLg),
           FlashCard(
@@ -254,7 +254,7 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
             value: widget.index / widget.total,
             backgroundColor: t.outlineVariant,
             color: widget.color,
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(AppDimens.radiusXs),
           ),
           const SizedBox(height: AppDimens.spaceLg),
           McqCard(

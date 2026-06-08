@@ -169,7 +169,7 @@ class _KanaCell extends StatelessWidget {
     final level = srsLevel(card);
     final Color? accent;
     if (isSkipped) {
-      accent = Colors.grey.shade400;
+      accent = context.tokens.outlineVariant;
     } else if (level == SrsLevel.newCard) {
       accent = null;
     } else {

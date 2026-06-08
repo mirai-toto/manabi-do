@@ -20,4 +20,5 @@ abstract final class AppTextStyles {
   static TextStyle get jpLarge   => const TextStyle(fontFamily: 'NotoSansJP', fontSize: 32, fontWeight: FontWeight.w500);
   static TextStyle get jpMedium  => const TextStyle(fontFamily: 'NotoSansJP', fontSize: 28, fontWeight: FontWeight.w500);
   static TextStyle get jpBody    => const TextStyle(fontFamily: 'NotoSansJP', fontSize: 16, fontWeight: FontWeight.w400);
+  static TextStyle get jpFurigana => const TextStyle(fontFamily: 'NotoSansJP', fontSize: 11, fontWeight: FontWeight.w400);
 }

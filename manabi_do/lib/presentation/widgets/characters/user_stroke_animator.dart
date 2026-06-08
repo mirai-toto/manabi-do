@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 
 const double _kCanvasSize = 260.0;
@@ -62,7 +63,7 @@ class _UserStrokeAnimatorState extends State<UserStrokeAnimator>
                 height: s,
                 decoration: BoxDecoration(
                   color: t.cardBackground,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(AppDimens.radiusSm),
                 ),
                 clipBehavior: Clip.antiAlias,
                 child: CustomPaint(

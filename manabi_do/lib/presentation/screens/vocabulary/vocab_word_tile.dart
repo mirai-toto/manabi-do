@@ -73,8 +73,7 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
                       word: widget.entry.word,
                       reading: widget.entry.reading,
                       wordStyle: AppTextStyles.jpMedium.copyWith(color: t.onSurface),
-                      rubyStyle: AppTextStyles.jpBody.copyWith(
-                        fontSize: 11,
+                      rubyStyle: AppTextStyles.jpFurigana.copyWith(
                         color: t.onSurfaceVariant,
                       ),
                     ),

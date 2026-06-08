@@ -3,6 +3,7 @@ abstract final class AppDimens {
   static const double screenMaxWidth = 1100;
 
   // Border radius — matches mockup CSS variables
+  static const double radiusXs = 4;
   static const double radiusSm = 8;
   static const double radiusMd = 12;
   static const double radiusLg = 16;

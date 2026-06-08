@@ -61,7 +61,7 @@ class SrsProgressInfo extends StatelessWidget {
         if (srsCard != null) ...[
           const SizedBox(height: AppDimens.spaceSm),
           ClipRRect(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(AppDimens.radiusXs),
             child: LinearProgressIndicator(
               value: progress,
               backgroundColor: t.outlineVariant,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import 'kanji_strokes_provider.dart';
 
@@ -80,7 +81,7 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
               height: s,
               decoration: BoxDecoration(
                 color: t.cardBackground,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(AppDimens.radiusSm),
               ),
               clipBehavior: Clip.antiAlias,
               child: CustomPaint(

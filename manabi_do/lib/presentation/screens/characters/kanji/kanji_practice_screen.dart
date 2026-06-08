@@ -167,7 +167,7 @@ class _DrawingBody extends ConsumerWidget {
             value: index / total,
             backgroundColor: t.outlineVariant,
             color: color,
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(AppDimens.radiusXs),
           ),
           const SizedBox(height: AppDimens.spaceMd),
           strokesAsync.when(

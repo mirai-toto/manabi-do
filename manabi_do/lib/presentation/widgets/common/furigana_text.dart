@@ -117,10 +117,7 @@ class FuriganaText extends StatelessWidget {
     }
 
     final effectiveRubyStyle = rubyStyle ??
-        AppTextStyles.jpBody.copyWith(
-          fontSize: 11,
-          color: t.onSurfaceVariant,
-        );
+        AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
