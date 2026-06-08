@@ -4,6 +4,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/progress_bar.dart';
+import '../common/tappable_card.dart';
 
 class SectionCard extends StatelessWidget {
   final String title;
@@ -41,13 +42,12 @@ class SectionCard extends StatelessWidget {
       label: hasDue ? '$title. $dueCount ${l.reviewsDue(dueCount)}' : '$title. $statLabel',
       button: true,
       excludeSemantics: true,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(AppDimens.radiusXl),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: hasDue ? onReview : onTap,
-            child: Column(
+      child: TappableCard(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppDimens.radiusXl),
+        ),
+        onTap: hasDue ? onReview : onTap,
+        child: Column(
               children: [
                 Container(
                   height: 110,
@@ -137,8 +137,6 @@ class SectionCard extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ),
     );
   }
 }

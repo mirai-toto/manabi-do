@@ -6,6 +6,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/level_label.dart';
 import 'difficulty_dots.dart';
+import 'tappable_card.dart';
 
 class JlptLevelCard extends StatelessWidget {
   final String code;
@@ -24,19 +25,16 @@ class JlptLevelCard extends StatelessWidget {
     final t = context.tokens;
     final color = levelColor(code);
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: AppDimens.spaceSm),
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: t.cardBackground,
-        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: color.withValues(alpha: 0.35)),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppDimens.spaceSm),
+      child: TappableCard(
+        decoration: BoxDecoration(
+          color: t.cardBackground,
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+          border: Border.all(color: color.withValues(alpha: 0.35)),
+        ),
+        onTap: onTap,
+        child: Padding(
             padding: const EdgeInsets.all(AppDimens.spaceMd),
             child: Row(
               children: [
@@ -77,7 +75,6 @@ class JlptLevelCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 }

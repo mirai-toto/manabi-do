@@ -4,6 +4,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../common/difficulty_dots.dart';
 import '../common/pill_badge.dart';
+import '../common/tappable_card.dart';
 import '../../../domain/entities/lesson_status.dart';
 import '../../../l10n/l10n.dart';
 
@@ -33,18 +34,14 @@ class LessonRow extends StatelessWidget {
       label: '$title, ${l.difficultyLevel(difficulty)}, ${isDone ? l.known : l.statusNotStarted}',
       button: onTap != null,
       excludeSemantics: true,
-      child: Container(
-        clipBehavior: Clip.antiAlias,
+      child: TappableCard(
         decoration: BoxDecoration(
           color: t.cardBackground,
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
           border: Border.all(color: t.outlineVariant, width: 1.5),
         ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: onTap,
-            child: Padding(
+        onTap: onTap,
+        child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: AppDimens.spaceMd,
                 vertical: AppDimens.buttonPaddingV,
@@ -77,8 +74,6 @@ class LessonRow extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
     );
   }
 }

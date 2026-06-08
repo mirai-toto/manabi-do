@@ -10,6 +10,7 @@ export 'common/practice_button.dart';
 export 'common/progress_row.dart';
 export 'common/section_label.dart';
 export 'common/segmented_tab_bar.dart';
+export 'common/tappable_card.dart';
 
 // navigation
 export 'navigation/app_nav_bar.dart';

@@ -5,6 +5,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/pill_badge.dart';
 import '../common/progress_bar.dart';
+import '../common/tappable_card.dart';
 
 class ChapterCard extends StatelessWidget {
   final int chapterNumber;
@@ -38,21 +39,18 @@ class ChapterCard extends StatelessWidget {
       label: '$chapterLabel: $title',
       button: onTap != null,
       excludeSemantics: true,
-      child: Container(
+      child: SizedBox(
         width: width,
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: t.cardBackground,
-          borderRadius: BorderRadius.circular(AppDimens.radiusLg),
-          boxShadow: [
-            BoxShadow(color: t.onSurface.withValues(alpha: 0.08), blurRadius: 8, offset: const Offset(0, 2)),
-          ],
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: onTap,
-            child: Padding(
+        child: TappableCard(
+          decoration: BoxDecoration(
+            color: t.cardBackground,
+            borderRadius: BorderRadius.circular(AppDimens.radiusLg),
+            boxShadow: [
+              BoxShadow(color: t.onSurface.withValues(alpha: 0.08), blurRadius: 8, offset: const Offset(0, 2)),
+            ],
+          ),
+          onTap: onTap,
+          child: Padding(
               padding: const EdgeInsets.all(AppDimens.spaceLg),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +102,7 @@ class ChapterCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
+
   }
 }
