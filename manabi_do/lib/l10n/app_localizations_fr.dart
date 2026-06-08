@@ -475,6 +475,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get reviewNow => 'Réviser';
 
   @override
+  String get viewDetail => 'Voir le détail';
+
+  @override
   String get allCaughtUp => 'Tout est à jour !';
 
   @override

@@ -49,8 +49,8 @@ class KanjiHero extends ConsumerWidget {
                 children: [
                   _CharacterBox(character: kanji.character),
                   Positioned(
-                    bottom: AppDimens.spaceXs,
-                    right: AppDimens.spaceXs,
+                    top: AppDimens.spaceSm,
+                    right: AppDimens.spaceSm,
                     child: SpeakButton(
                       text: kanji.character,
                       color: Colors.white.withValues(alpha: 0.8),

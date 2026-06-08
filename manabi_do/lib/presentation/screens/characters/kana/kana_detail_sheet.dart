@@ -115,8 +115,8 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
                       ),
                     ),
                     Positioned(
-                      bottom: AppDimens.spaceXs,
-                      right: AppDimens.spaceXs,
+                      top: AppDimens.spaceSm,
+                      right: AppDimens.spaceSm,
                       child: SpeakButton(
                         text: widget.entry.kana,
                         color: Colors.white.withValues(alpha: 0.8),

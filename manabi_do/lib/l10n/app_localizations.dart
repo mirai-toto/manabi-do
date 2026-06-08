@@ -958,6 +958,12 @@ abstract class AppLocalizations {
   /// **'Review now'**
   String get reviewNow;
 
+  /// No description provided for @viewDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'View detail'**
+  String get viewDetail;
+
   /// No description provided for @allCaughtUp.
   ///
   /// In en, this message translates to:
