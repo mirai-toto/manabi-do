@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -142,11 +143,12 @@ class SettingsScreen extends ConsumerWidget {
             SectionLabel(l.settingsData),
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(children: [
-              SettingsTile(
-                leading: Icon(Icons.science_outlined, size: 20, color: t.onSurfaceVariant),
-                label: 'Seed fake reviews (debug)',
-                onTap: () => db.seedFakeReviews(),
-              ),
+              if (kDebugMode)
+                SettingsTile(
+                  leading: Icon(Icons.science_outlined, size: 20, color: t.onSurfaceVariant),
+                  label: 'Seed fake reviews (debug)',
+                  onTap: () => db.seedFakeReviews(),
+                ),
               SettingsTile(
                 leading: Icon(Icons.delete_outline_rounded, size: 20, color: t.error),
                 label: l.settingsResetProgress,

@@ -24,10 +24,6 @@ final totalKanaProvider = FutureProvider<int>(
   (ref) => ref.read(databaseProvider).getKanaData().then((d) => d.total),
 );
 
-final dueTodayCountProvider = StreamProvider<int>(
-  (ref) => ref.watch(databaseProvider).watchDueTodayCount(),
-);
-
 final charactersDueCountProvider = StreamProvider<int>(
   (ref) => ref.watch(databaseProvider).watchCharactersDueCount(),
 );

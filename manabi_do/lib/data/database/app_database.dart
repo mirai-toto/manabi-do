@@ -143,10 +143,6 @@ class AppDatabase extends _$AppDatabase {
 
   Future<int> countTotalVocab() => (select(vocabularyEntries)).get().then((r) => r.length);
 
-  Stream<int> watchDueTodayCount() => (select(srsCards)).watch().map(
-        (rows) => rows.where((r) => !r.due.isAfter(DateTime.now())).length,
-      );
-
   Stream<int> watchCharactersDueCount() => (select(srsCards)).watch().map(
         (rows) => rows
             .where((r) =>
