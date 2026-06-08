@@ -40,3 +40,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android machine-generated files
+android/local.properties
+**/GeneratedPluginRegistrant.java
