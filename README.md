@@ -1,53 +1,88 @@
 # Manabi Do
 
-A Japanese learning app covering kana, kanji (N5/N4), and grammar. Built with Flutter for Linux, Windows, macOS, iOS, and Android. Full offline — no backend.
+<img src="manabi_do/assets/icons/app_icon.png" width="100px" alt="Manabi Do icon">
 
-## Dependencies
+## Overview
 
-| Tool | Purpose |
+Offline Japanese learning app for Android, iOS, Windows, and Linux. Covers kana, kanji (N5–N1), and vocabulary with spaced-repetition (FSRS) practice sessions.
+
+### Features
+
+- **Kana** — hiragana and katakana tables with stroke order, TTS, and SRS flashcard practice
+- **Kanji** — N5–N1 kanji with readings, stroke order animation, example words, and SRS practice (flashcard, MCQ, drawing)
+- **Vocabulary** — N5–N1 word list with furigana, part-of-speech tags, and SRS practice
+- **Home screen** — daily review cards per domain (characters, vocabulary) with live due counts
+- **Localization** — English, French, German UI
+- **Fully offline** — no account required, all data on-device
+
+---
+
+## Install
+
+| Platform | Link |
 |---|---|
-| Flutter (stable) | App framework |
-| Docker | Linux builds (no local Flutter required) |
-| Visual Studio 2022 + C++ workload | Windows builds |
+| Android | *(coming soon — Google Play)* |
+| iOS | *(coming soon — App Store)* |
+| Windows | *(coming soon — Microsoft Store)* |
+| Linux | *(coming soon)* |
 
-## Building
+---
 
-### Linux (via Docker)
+## Development
+
+### Linux
+
+No local Flutter installation needed — everything runs inside Docker.
 
 ```bash
-docker compose run build
+# Build and run
+./run-linux.sh
 ```
 
-Output: `manabi_do/build/linux/x64/release/bundle/manabi_do`
+The `Dockerfile` and `docker-compose.yml` at the repo root define the build environment.
 
-### Windows (local)
+### Windows
 
-Requires Flutter and Visual Studio installed on the Windows host.
+Requires [Flutter SDK](https://docs.flutter.dev/get-started/install/windows) and Visual Studio 2022 with the C++ workload.
 
 ```powershell
 cd manabi_do
+flutter run -d windows
+```
+
+Release build:
+
+```powershell
 flutter build windows --release
 ```
 
 Output: `build\windows\x64\runner\Release\manabi_do.exe`
 
-### Run locally (development)
-
-Requires Flutter installed locally.
-
-```bash
-cd manabi_do
-flutter run -d linux   # or -d windows on Windows
-```
+---
 
 ## Project structure
 
 ```
-docs/          # Architecture and product requirements
-manabi_do/     # Flutter application
+grammar/          # Grammar curriculum outlines per JLPT level (N5–N1)
+manabi_do/
   lib/
-    domain/    # Entities and repository interfaces (no external deps)
-    data/      # SQLite via drift, repository implementations
-    presentation/ # Flutter widgets, Riverpod providers
-    l10n/      # Localization (ARB files)
+    core/         # Theme tokens, dimensions, SRS helpers
+    data/         # Drift database, DAOs, asset seeding
+    l10n/         # Localization (ARB files — en, fr, de)
+    presentation/
+      providers/  # Riverpod providers
+      screens/    # App screens (home, characters, vocabulary, grammar, settings)
+      widgets/    # Shared UI components
 ```
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+---
+
+## Support
+
+Open an issue on [GitHub Issues](https://github.com/mirai-toto/manabi-do/issues) with as much detail as possible.
