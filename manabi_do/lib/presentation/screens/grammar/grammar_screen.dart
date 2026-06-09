@@ -111,32 +111,43 @@ class _ChapterList extends ConsumerWidget {
                 AppDimens.spaceMd, AppDimens.spaceSm, AppDimens.spaceMd, AppDimens.spaceSm),
             child: SectionLabel(l.grammarChapters),
           ),
-          CardContainer(
-            child: Column(
-              children: [
-                for (int i = 0; i < chapters.length; i++) ...[
-                  if (i > 0) Divider(height: 1, color: t.outlineVariant),
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: AppDimens.spaceMd,
-                      vertical: AppDimens.spaceXs,
-                    ),
-                    title: Text(
-                      chapters[i].title,
-                      style: AppTextStyles.body.copyWith(color: t.onSurface),
-                    ),
-                    trailing: Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (_) => GrammarLessonScreen(
-                          title: chapters[i].title,
-                          content: chapters[i].content,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+            child: CardContainer(
+              child: Column(
+                children: [
+                  for (int i = 0; i < chapters.length; i++) ...[
+                    if (i > 0) Divider(height: 1, color: t.outlineVariant),
+                    InkWell(
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => GrammarLessonScreen(
+                            title: chapters[i].title,
+                            content: chapters[i].content,
+                          ),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppDimens.spaceMd,
+                          vertical: AppDimens.spaceMd,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                chapters[i].title,
+                                style: AppTextStyles.body.copyWith(color: t.onSurface),
+                              ),
+                            ),
+                            Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),
+                          ],
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ],
-              ],
+              ),
             ),
           ),
           const SizedBox(height: AppDimens.spaceLg),
