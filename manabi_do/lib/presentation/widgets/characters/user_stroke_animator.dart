@@ -54,7 +54,7 @@ class _UserStrokeAnimatorState extends State<UserStrokeAnimator>
         onTap: () => _controller.forward(from: 0),
         child: AnimatedBuilder(
           animation: _controller,
-          builder: (_, __) => Stack(
+          builder: (ctx, _) => Stack(
             alignment: Alignment.center,
             children: [
               SizedBox(width: s, height: s),

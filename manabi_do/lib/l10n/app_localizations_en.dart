@@ -482,4 +482,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get allCaughtUpSubtitle => 'Come back later for more reviews';
+
+  @override
+  String get grammarChapters => 'Chapters';
 }

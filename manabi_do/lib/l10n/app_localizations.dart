@@ -975,6 +975,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Come back later for more reviews'**
   String get allCaughtUpSubtitle;
+
+  /// No description provided for @grammarChapters.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapters'**
+  String get grammarChapters;
 }
 
 class _AppLocalizationsDelegate

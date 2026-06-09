@@ -483,4 +483,7 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get allCaughtUpSubtitle =>
       'Komm später für weitere Wiederholungen zurück';
+
+  @override
+  String get grammarChapters => 'Kapitel';
 }
