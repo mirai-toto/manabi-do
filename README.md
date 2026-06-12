@@ -77,6 +77,12 @@ manabi_do/
 
 ---
 
+## Privacy
+
+[Privacy Policy](https://mirai-toto.github.io/manabi-do/privacy/)
+
+---
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
