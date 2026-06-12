@@ -9,14 +9,14 @@
 - **View detail in practice** — "View detail" link on all kanji exercise types (flashcard, MCQ, drawing) that opens `KanjiDetailScreen`
 - **Vocabulary screen** — level selector, word list with furigana, known toggle, SRS practice session
 - **Kanji detail** — readings (onyomi / kunyomi), stroke order animation, SRS progress panel
+- **Grammar screen** — Japanese Basics (5 foundational chapters) + N5 grammar points; themed markdown renderer
+- **App name & bundle ID** — `com.github.mirai_toto.manabi_do`; display name "Manabi Do" on Android and iOS
 
 ---
 
 ## v1 — Must Ship
 
-- [ ] **Grammar screen** — at minimum N5 grammar points so the tab is not empty
 - [ ] **Data sync** — sign in with Google / Apple, sync SRS progress so it survives reinstalls
-- [ ] **App name & bundle ID** — set before any store submission
 - [ ] **Privacy policy** — required by App Store and Play Store
 
 ---
