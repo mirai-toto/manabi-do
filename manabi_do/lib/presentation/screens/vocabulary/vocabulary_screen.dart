@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../widgets/widgets.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/vocab_list_provider.dart';
 import 'vocab_level_selector.dart';
@@ -47,36 +47,11 @@ class _VocabularyScreenState extends ConsumerState<VocabularyScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Header
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppDimens.spaceMd, AppDimens.spaceMd,
-                AppDimens.spaceMd, AppDimens.spaceSm,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          l.sectionVocabulary,
-                          style: AppTextStyles.headline.copyWith(color: t.onSurface),
-                        ),
-                        Text(
-                          subtitle,
-                          style: AppTextStyles.bodySmall.copyWith(
-                              color: t.onSurfaceVariant),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    '語',
-                    style: AppTextStyles.jpDisplay.copyWith(color: t.vocabulary),
-                  ),
-                ],
-              ),
+            SectionHeader(
+              title: l.sectionVocabulary,
+              subtitle: subtitle,
+              glyph: '語',
+              color: t.vocabulary,
             ),
             // Body
             Expanded(

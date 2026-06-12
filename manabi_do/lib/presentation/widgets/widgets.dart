@@ -13,6 +13,7 @@ export 'common/pill_badge.dart';
 export 'common/practice_button.dart';
 export 'common/progress_bar.dart';
 export 'common/progress_row.dart';
+export 'common/section_header.dart';
 export 'common/section_label.dart';
 export 'common/segmented_tab_bar.dart';
 export 'common/speak_button.dart';

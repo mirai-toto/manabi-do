@@ -993,6 +993,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language fundamentals'**
   String get japaneseBasicsSubtitle;
+
+  /// No description provided for @grammarSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Basics & JLPT N5–N1'**
+  String get grammarSubtitle;
 }
 
 class _AppLocalizationsDelegate

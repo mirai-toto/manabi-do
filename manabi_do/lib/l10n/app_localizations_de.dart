@@ -492,4 +492,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get japaneseBasicsSubtitle => 'Sprachliche Grundlagen';
+
+  @override
+  String get grammarSubtitle => 'Grundlagen & JLPT N5–N1';
 }

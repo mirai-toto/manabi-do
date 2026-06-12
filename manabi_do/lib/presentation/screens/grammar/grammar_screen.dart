@@ -29,26 +29,11 @@ class _GrammarScreenState extends ConsumerState<GrammarScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(
-            AppDimens.spaceMd, AppDimens.spaceMd, AppDimens.spaceMd, AppDimens.spaceSm,
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(l.sectionGrammar,
-                        style: AppTextStyles.headline.copyWith(color: t.onSurface)),
-                    Text(l.grammarSubtitle,
-                        style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant)),
-                  ],
-                ),
-              ),
-              Text('文', style: AppTextStyles.jpDisplay.copyWith(color: t.primary)),
-            ],
-          ),
+        SectionHeader(
+          title: l.sectionGrammar,
+          subtitle: l.grammarSubtitle,
+          glyph: '文',
+          color: t.primary,
         ),
         Expanded(
           child: _selectedLevel == null

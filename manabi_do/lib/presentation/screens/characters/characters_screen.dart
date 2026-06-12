@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../domain/data/kana_data.dart';
 import '../../../l10n/l10n.dart';
@@ -50,7 +49,7 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _CharactersHeader(tabIndex: _tabController.index, kanaData: kanaAsync.asData?.value),
+            _CharactersHeader(kanaData: kanaAsync.asData?.value),
             SegmentedTabBar(
               controller: _tabController,
               labels: [l.tabHiragana, l.tabKatakana, l.tabKanji],
@@ -101,43 +100,20 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
 }
 
 class _CharactersHeader extends StatelessWidget {
-  final int tabIndex;
   final KanaData? kanaData;
-  const _CharactersHeader({required this.tabIndex, required this.kanaData});
+  const _CharactersHeader({required this.kanaData});
 
   @override
   Widget build(BuildContext context) {
-    final t = context.tokens;
     final l = context.l10n;
+    final t = context.tokens;
     final total = kanaData?.total;
-    final subtitle = total != null
-        ? l.charactersSubtitle(total)
-        : l.charactersSubtitleShort;
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        AppDimens.spaceMd, AppDimens.spaceMd, AppDimens.spaceMd, AppDimens.spaceSm,
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l.sectionCharacters,
-                  style: AppTextStyles.headline.copyWith(color: t.onSurface),
-                ),
-                Text(
-                  subtitle,
-                  style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-                ),
-              ],
-            ),
-          ),
-          Text('字', style: AppTextStyles.jpDisplay.copyWith(color: t.characters)),
-        ],
-      ),
+    final subtitle = total != null ? l.charactersSubtitle(total) : l.charactersSubtitleShort;
+    return SectionHeader(
+      title: l.sectionCharacters,
+      subtitle: subtitle,
+      glyph: '字',
+      color: t.characters,
     );
   }
 }
