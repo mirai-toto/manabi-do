@@ -4,6 +4,7 @@ export 'common/app_emoji.dart';
 export 'common/app_filter_chip.dart';
 export 'common/app_text_field.dart';
 export 'common/card_container.dart';
+export 'common/chapter_list_view.dart';
 export 'common/confirm_dialog.dart';
 export 'common/difficulty_dots.dart';
 export 'common/furigana_text.dart';
