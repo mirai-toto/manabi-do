@@ -485,4 +485,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get grammarChapters => 'Chapters';
+
+  @override
+  String get japaneseBasics => 'Japanese Basics';
+
+  @override
+  String get japaneseBasicsSubtitle => 'Language fundamentals';
 }

@@ -248,5 +248,8 @@
   "viewDetail": "View detail",
   "allCaughtUp": "All caught up!",
   "allCaughtUpSubtitle": "Come back later for more reviews",
-  "grammarChapters": "Chapters"
+  "grammarChapters": "Chapters",
+  "japaneseBasics": "Japanese Basics",
+  "japaneseBasicsSubtitle": "Language fundamentals",
+  "grammarSubtitle": "Basics & JLPT N5–N1"
 }

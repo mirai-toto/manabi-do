@@ -981,6 +981,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Chapters'**
   String get grammarChapters;
+
+  /// No description provided for @japaneseBasics.
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese Basics'**
+  String get japaneseBasics;
+
+  /// No description provided for @japaneseBasicsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Language fundamentals'**
+  String get japaneseBasicsSubtitle;
 }
 
 class _AppLocalizationsDelegate

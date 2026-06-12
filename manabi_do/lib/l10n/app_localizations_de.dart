@@ -486,4 +486,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get grammarChapters => 'Kapitel';
+
+  @override
+  String get japaneseBasics => 'Japanische Grundlagen';
+
+  @override
+  String get japaneseBasicsSubtitle => 'Sprachliche Grundlagen';
 }

@@ -24,12 +24,41 @@ class _GrammarScreenState extends ConsumerState<GrammarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_selectedLevel == null) {
-      return _LevelSelector(onSelect: (level) => setState(() => _selectedLevel = level));
-    }
-    return _ChapterList(
-      level: _selectedLevel!,
-      onBack: () => setState(() => _selectedLevel = null),
+    final l = context.l10n;
+    final t = context.tokens;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppDimens.spaceMd, AppDimens.spaceMd, AppDimens.spaceMd, AppDimens.spaceSm,
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l.sectionGrammar,
+                        style: AppTextStyles.headline.copyWith(color: t.onSurface)),
+                    Text(l.grammarSubtitle,
+                        style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant)),
+                  ],
+                ),
+              ),
+              Text('文', style: AppTextStyles.jpDisplay.copyWith(color: t.primary)),
+            ],
+          ),
+        ),
+        Expanded(
+          child: _selectedLevel == null
+              ? _LevelSelector(onSelect: (level) => setState(() => _selectedLevel = level))
+              : _ChapterList(
+                  level: _selectedLevel!,
+                  onBack: () => setState(() => _selectedLevel = null),
+                ),
+        ),
+      ],
     );
   }
 }
@@ -46,6 +75,8 @@ class _LevelSelector extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
       children: [
+        _BasicsCard(onTap: () => onSelect('basics')),
+        const SizedBox(height: AppDimens.spaceSm),
         SectionLabel(l.selectLevel),
         const SizedBox(height: AppDimens.spaceSm),
         for (final level in _levels)
@@ -71,6 +102,68 @@ class _LevelSelector extends StatelessWidget {
   }
 }
 
+// ── Basics card ────────────────────────────────────────────────────────────────
+
+class _BasicsCard extends StatelessWidget {
+  final VoidCallback onTap;
+  const _BasicsCard({required this.onTap});
+
+  static const _color = Color(0xFF795548);
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final l = context.l10n;
+    return TappableCard(
+      decoration: BoxDecoration(
+        color: t.cardBackground,
+        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        border: Border.all(color: _color.withValues(alpha: 0.35)),
+      ),
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.all(AppDimens.spaceMd),
+        child: Row(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: _color,
+                borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+              ),
+              child: const Center(
+                child: Icon(Icons.menu_book_rounded, color: Colors.white, size: 24),
+              ),
+            ),
+            const SizedBox(width: AppDimens.spaceMd),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l.japaneseBasics,
+                    style: AppTextStyles.body.copyWith(
+                      color: t.onSurface,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    l.japaneseBasicsSubtitle,
+                    style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 // ── Chapter list ───────────────────────────────────────────────────────────────
 
 class _ChapterList extends ConsumerWidget {
@@ -83,6 +176,8 @@ class _ChapterList extends ConsumerWidget {
     final t = context.tokens;
     final l = context.l10n;
     final chaptersAsync = ref.watch(grammarChaptersProvider(level));
+
+    final title = level == 'basics' ? l.japaneseBasics : levelLabel(level, context);
 
     return chaptersAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -100,7 +195,7 @@ class _ChapterList extends ConsumerWidget {
                   onPressed: onBack,
                 ),
                 Text(
-                  levelLabel(level, context),
+                  title,
                   style: AppTextStyles.title.copyWith(color: t.onSurface),
                 ),
               ],

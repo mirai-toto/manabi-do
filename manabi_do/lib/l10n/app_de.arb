@@ -242,5 +242,8 @@
   "viewDetail": "Details anzeigen",
   "allCaughtUp": "Alles erledigt!",
   "allCaughtUpSubtitle": "Komm später für weitere Wiederholungen zurück",
-  "grammarChapters": "Kapitel"
+  "grammarChapters": "Kapitel",
+  "japaneseBasics": "Japanische Grundlagen",
+  "japaneseBasicsSubtitle": "Sprachliche Grundlagen",
+  "grammarSubtitle": "Grundlagen & JLPT N5–N1"
 }
