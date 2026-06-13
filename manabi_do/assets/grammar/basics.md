@@ -2,139 +2,190 @@
 
 ## How Japanese Is Written
 
-Japanese uses three scripts together, and most sentences mix all three.
+Japanese uses three scripts simultaneously. Most sentences mix all three.
 
-**Hiragana** (ひらがな) is the primary syllabary. It has 46 base characters, each representing a syllable — *ka*, *mi*, *te*, and so on. Hiragana is used for native Japanese words, grammatical particles, verb and adjective endings, and words without a kanji.
+**Hiragana** (ひらがな) is the primary syllabary — 46 base characters, each representing one syllable (*ka*, *mi*, *te*, etc.). Used for native Japanese words, grammatical particles, verb endings, and any word that has no kanji.
 
-**Katakana** (カタカナ) mirrors hiragana exactly in sound but looks different. It is used for foreign loanwords, emphasis, scientific names, and onomatopoeia.
+**Katakana** (カタカナ) mirrors hiragana in sound but has a different visual style. Used for foreign loanwords, emphasis, scientific terms, and onomatopoeia.
 
-**Kanji** (漢字) are characters borrowed from Chinese, each carrying meaning. Most content words in written Japanese use kanji. A typical educated adult knows around 2,000 kanji; the 常用漢字 (jōyō kanji) standard lists 2,136 for general use.
+**Kanji** (漢字) are characters borrowed from Chinese, each carrying meaning. Most content words in written Japanese use kanji. The 常用漢字 standard defines 2,136 characters for everyday use.
 
-A single sentence uses all three:
+### A Sentence Using All Three Scripts
 
-> 私はコーヒーが好きです。  
+| Part | Script | Role |
+|---|---|---|
+| 私 | Kanji | "I / me" |
+| は | Hiragana | topic particle |
+| コーヒー | Katakana | "coffee" (loanword) |
+| が | Hiragana | subject particle |
+| 好きです。| Kanji + Hiragana | "like" + polite ending |
+
+> **私はコーヒーが好きです。**  
 > *Watashi wa koohii ga suki desu.*  
 > I like coffee.
-
-- 私 — kanji
-- は、が、です — hiragana
-- コーヒー — katakana (foreign word: *coffee*)
-- 好き — kanji + hiragana ending
 
 ---
 
 ## Sentence Structure
 
-Japanese is a **Subject–Object–Verb (SOV)** language. The verb always comes at the end.
+Japanese is a **Subject–Object–Verb (SOV)** language. The verb always comes last.
 
-| English (SVO) | Japanese (SOV) |
-|---------------|----------------|
-| I **drink** coffee. | 私はコーヒーを**飲みます**。 |
-| She **reads** books. | 彼女は本を**読みます**。 |
+### Word Order
 
-**Topic vs. subject**
+| English (SVO) | Japanese (SOV) | Romaji |
+|---|---|---|
+| I **drink** coffee. | 私はコーヒーを**飲みます**。| Watashi wa koohii wo **nomimasu**. |
+| She **reads** books. | 彼女は本を**読みます**。| Kanojo wa hon wo **yomimasu**. |
+| He **bought** a bag. | 彼はかばんを**買いました**。| Kare wa kaban wo **kaimashita**. |
 
-Japanese distinguishes the *topic* of the sentence (は) from the *subject* (が):
+### Topic は vs Subject が
 
-- は marks what the sentence is *about* — it may not be the doer of the action.
-- が marks the grammatical *subject* — the entity doing or experiencing something.
+Japanese distinguishes what the sentence is *about* (topic, marked with は) from who *does* the action (subject, marked with が).
 
-> 猫は魚が好きです。  
-> *As for cats, [they] like fish.*  
-> (猫は = topic; 魚が = subject of 好き)
+```
+[Topic] は [Subject] が [Predicate]
+```
 
-**Modifiers come before what they modify**
+| Japanese | Romaji | English | Note |
+|---|---|---|---|
+| 猫は魚が好きです。| Neko wa sakana ga suki desu. | Cats like fish. | 猫は = topic; 魚が = subject of 好き |
+| 私は頭が痛いです。| Watashi wa atama ga itai desu. | My head hurts. | 私は = topic; 頭が = subject of 痛い |
 
-Adjectives, relative clauses, and possessives all precede the noun they describe:
+> **Note:** は often translates as "as for ~" or "speaking of ~". The topic sets the context; the subject performs the action.
 
-> 大きい犬 — big dog *(big + dog)*  
-> 私が買った本 — the book I bought *(I bought + book)*
+### Modifiers Come Before What They Modify
 
-**Dropping the subject**
+Unlike English, adjectives and relative clauses always precede the noun they describe.
 
-Japanese regularly omits the subject when it is clear from context. Saying 食べます (*tabemasu*, "eat") alone is a complete sentence meaning "(I/you/we/they) eat."
+| Japanese | Romaji | English |
+|---|---|---|
+| 大きい犬 | ōkii inu | big dog *(big + dog)* |
+| 赤い車 | akai kuruma | red car |
+| 私が買った本 | watashi ga katta hon | the book I bought |
+| 昨日見た映画 | kinō mita eiga | the movie I watched yesterday |
+
+### Dropping the Subject
+
+Japanese regularly omits the subject when it is clear from context.
+
+| Japanese | Romaji | English |
+|---|---|---|
+| 食べます。| Tabemasu. | (I/you/we/they) eat. |
+| 行きますか。| Ikimasu ka. | Are you going? |
+| わかりました。| Wakarimashita. | (I) understood. |
 
 ---
 
 ## Punctuation & Spacing
 
-Japanese does not use spaces between words. The change of script and reader familiarity with word boundaries make spaces unnecessary.
+Japanese does not use spaces between words. The alternation of scripts and familiarity with common words make word boundaries clear to readers.
+
+### Punctuation Marks
 
 | Symbol | Name | Use |
-|--------|------|-----|
-| 。 | Kuten | Sentence-ending period |
-| 、 | Touten | Comma — pause within a sentence |
-| 「 」 | Kagikakko | Quotation marks (primary) |
-| 『 』 | Nijū kagikakko | Quotation marks (nested) |
+|---|---|---|
+| 。| Kuten | Sentence-ending period |
+| 、| Touten | Comma — pause within a sentence |
+| 「 」| Kagikakko | Quotation marks (primary) |
+| 『 』| Nijū kagikakko | Quotation marks (nested / titles) |
 | ・ | Nakaguro | Separates list items or parts of a foreign name |
-| ー | Chōonpu | Extends a vowel sound (used in katakana) |
-| ！ ？ | Full-width ! ? | Same as English, but full-width in formal text |
+| ー | Chōonpu | Extends a vowel sound in katakana |
+| ！ ？ | Full-width ! ? | Same as English, full-width form used in Japanese text |
 
-**Writing direction**
+### Examples in Context
 
-Modern Japanese is usually written horizontally, left to right (like English). Traditional texts — novels, newspapers, manga speech bubbles — are written *vertically*, in columns read right to left.
+| Japanese | Romaji | English |
+|---|---|---|
+| 「おはよう」と言いました。| "Ohayō" to iimashita. | (She) said "Good morning." |
+| 私はりんご、みかん、ぶどうを買いました。| Watashi wa ringo, mikan, budō wo kaimashita. | I bought apples, oranges, and grapes. |
+
+### Writing Direction
+
+Modern Japanese is written horizontally, left to right — the same as English. Traditional texts (novels, some newspapers, manga speech bubbles) are written *vertically* in columns read from right to left.
 
 ---
 
 ## Small Kana & Sound Rules
 
-Three special small kana alter pronunciation in distinct ways.
+Three special small kana change pronunciation in specific, predictable ways.
 
 ### っ — Double Consonant (Sokuon)
 
-A small っ signals a short pause before the next consonant, effectively doubling it. It counts as one mora (beat) of length.
+A small っ signals a short pause before the following consonant, effectively doubling it. It counts as one full mora (beat) of length.
 
-| Written | Romaji | Meaning |
-|---------|--------|---------|
+```
+[consonant kana] + っ + [consonant kana]
+→ the following consonant is doubled
+```
+
+| Written | Romaji | English |
+|---|---|---|
 | きって | kitte | postage stamp |
 | ざっし | zasshi | magazine |
 | いっぽ | ippo | one step |
+| きっぷ | kippu | ticket |
+
+> **Note:** Without the っ, the meaning changes entirely: きて (*kite*) = "come!" — completely different from きって (*kitte*, stamp).
 
 ### ゃ ゅ ょ — Compound Sounds (Yōon)
 
-These small versions of や、ゆ、よ combine with a consonant kana to form a *single blended syllable*:
+Small や, ゆ, よ combine with a consonant kana to form a single blended syllable — not two syllables.
 
-| Written | Romaji | Note |
-|---------|--------|------|
-| きゃ | kya | one syllable, not *ki-ya* |
-| にゅ | nyu | one syllable |
-| びょ | byo | one syllable |
-| しゃ | sha | one syllable |
+```
+[consonant + i kana] + ゃ / ゅ / ょ → one syllable
+```
+
+| Written | Romaji | One syllable? |
+|---|---|---|
+| きゃ | kya | yes — not *ki-ya* |
+| しゅ | shu | yes — not *shi-yu* |
+| にょ | nyo | yes |
+| びょういん | byōin | hospital — 4 mora: びょ・う・い・ん |
 
 ### Long Vowels
 
-Vowels can be held for one extra beat, and this changes meaning:
-
-- **Hiragana**: write the vowel twice (or use a specific extender)  
-  おかあさん (*okaasan*, mother) vs おかさん (not a word)
-- **Katakana**: use ー  
-  コーヒー (*koohii*, coffee)
-
-Minimal pairs where length is the only difference:
+Holding a vowel for one extra beat changes meaning. Length is phonemically significant.
 
 | Short | Long | Difference |
-|-------|------|------------|
+|---|---|---|
 | おじさん (*ojisan*) | おじいさん (*ojiisan*) | uncle vs grandfather |
 | ここ (*koko*) | こうこう (*kōkō*) | here vs high school |
+| おばさん (*obasan*) | おばあさん (*obaasan*) | aunt vs grandmother |
+
+**How long vowels are written:**
+
+```
+Hiragana: repeat the vowel (or use お + う for the ō sound)
+  おかあさん = okaasan (mother)
+  こうこう   = kōkō    (high school)
+
+Katakana: use ー (chōonpu)
+  コーヒー = koohii (coffee)
+  スーパー = suupaa (supermarket)
+```
 
 ---
 
 ## Pitch Accent
 
-Unlike English, which uses *stress* (relative loudness), Japanese uses **pitch** — each syllable is pronounced at either a high or low tone, and the pattern varies by word.
+English stress makes a syllable louder. Japanese **pitch accent** makes a syllable higher or lower in tone. Every word has a pitch pattern.
 
-The standard variety (Tokyo dialect) is what textbooks and most media use.
+The Tokyo dialect is the standard used in textbooks and broadcast media.
 
-**Why it matters — minimal pairs**
+### High and Low Patterns
 
-| Word | Reading | Pitch | Meaning |
-|------|---------|-------|---------|
+Pitch is described as H (high) or L (low) per mora.
+
+| Word | Reading | Pitch | English |
+|---|---|---|---|
 | 橋 | hashi | L-H | bridge |
 | 箸 | hashi | H-L | chopsticks |
 | 端 | hashi | H-L | edge |
+| 雨 | ame | L-H | rain |
+| 飴 | ame | H-L | candy |
 
-In isolation, 橋 vs 箸 are distinguished by pitch. In a sentence, context usually resolves any ambiguity.
+In a full sentence, context almost always resolves which word is meant. Pitch accent rarely causes real misunderstanding.
 
-**For beginners**
+### For Beginners
 
-Getting pitch accent wrong rarely causes miscommunication. Focus on vocabulary and grammar first. Pitch accent is best absorbed through extensive listening, and can be refined as your level improves.
+Getting pitch accent wrong does not prevent communication. Focus on vocabulary and grammar first. Pitch is best absorbed through listening — it improves naturally with exposure and can be studied deliberately at intermediate level.
