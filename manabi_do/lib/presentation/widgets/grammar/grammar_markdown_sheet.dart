@@ -32,6 +32,18 @@ MarkdownStyleSheet grammarMarkdownSheet(BuildContext context) {
     horizontalRuleDecoration: BoxDecoration(
       border: Border(bottom: BorderSide(color: t.outlineVariant)),
     ),
+    tableHead: AppTextStyles.bodySmall.copyWith(
+      color: t.onSurface,
+      fontWeight: FontWeight.w600,
+    ),
+    tableBody: AppTextStyles.body.copyWith(color: t.onSurface),
+    tableHeadAlign: TextAlign.left,
+    tableBorder: TableBorder.all(color: t.outlineVariant, width: 1),
+    tableCellsDecoration: BoxDecoration(color: t.cardBackground),
+    tablePadding: const EdgeInsets.symmetric(
+      horizontal: AppDimens.spaceSm,
+      vertical: AppDimens.spaceXs,
+    ),
     blockSpacing: AppDimens.spaceSm,
     listIndent: AppDimens.spaceLg,
   );

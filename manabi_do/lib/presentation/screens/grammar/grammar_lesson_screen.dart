@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
+import 'package:markdown/markdown.dart' as md;
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -34,6 +35,7 @@ class GrammarLessonScreen extends StatelessWidget {
       body: Markdown(
         data: content,
         styleSheet: grammarMarkdownSheet(context),
+        extensionSet: md.ExtensionSet.gitHubFlavored,
         padding: const EdgeInsets.symmetric(
           horizontal: AppDimens.spaceMd,
           vertical: AppDimens.spaceMd,

@@ -48,6 +48,7 @@ dependencies:
   fsrs: ^2.0.1
   flutter_tts: ^4.2.5
   flutter_markdown_plus: ^1.0.7
+  markdown: ^7.0.0
   widgetbook: ^3.23.0
   widgetbook_annotation: ^3.11.0
 
