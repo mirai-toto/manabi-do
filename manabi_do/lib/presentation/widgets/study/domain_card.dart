@@ -11,7 +11,6 @@ class DomainCard extends StatelessWidget {
   final String icon;
   final List<Color> gradientColors;
   final Color progressColor;
-  final String subtitle;
   final String statLabel;
   final double progress;
   final int dueCount;
@@ -25,7 +24,6 @@ class DomainCard extends StatelessWidget {
     required this.icon,
     required this.gradientColors,
     required this.progressColor,
-    required this.subtitle,
     required this.statLabel,
     required this.progress,
     this.dueCount = 0,
@@ -82,15 +80,10 @@ class DomainCard extends StatelessWidget {
                       children: [
                         Text(
                           title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: AppTextStyles.titleLarge.copyWith(
                             color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: AppDimens.spaceXxs),
-                        Text(
-                          subtitle,
-                          style: AppTextStyles.bodySmall.copyWith(
-                            color: Colors.white.withValues(alpha: 0.8),
                           ),
                         ),
                       ],

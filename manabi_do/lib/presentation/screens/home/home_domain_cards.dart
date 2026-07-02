@@ -53,7 +53,7 @@ class HomeDomainCards extends StatelessWidget {
       icon: 'か',
       gradientColors: [t.charactersDark, t.characters],
       progressColor: t.characters,
-      subtitle: 'Hiragana · Katakana',
+
       statLabel: totalKana > 0 ? l.nKanji(totalKana) : '—',
       progress: 0.0,
       dueCount: kanaDue,
@@ -67,7 +67,7 @@ class HomeDomainCards extends StatelessWidget {
       icon: '字',
       gradientColors: [t.charactersDark, t.characters],
       progressColor: t.characters,
-      subtitle: 'N5 → N1',
+
       statLabel: totalKanji > 0 ? l.nKanji(totalKanji) : '—',
       progress: 0.0,
       dueCount: kanjiDue,
@@ -77,11 +77,11 @@ class HomeDomainCards extends StatelessWidget {
     );
 
     final vocabCard = DomainCard(
-      title: l.navVocab,
+      title: l.sectionVocabulary,
       icon: '語',
       gradientColors: [t.vocabularyDark, t.vocabulary],
       progressColor: t.vocabulary,
-      subtitle: 'N5 → N1',
+
       statLabel: totalVocab > 0 ? l.nWords(totalVocab) : '—',
       progress: 0.0,
       dueCount: vocabDue,
@@ -95,10 +95,18 @@ class HomeDomainCards extends StatelessWidget {
       icon: '文',
       gradientColors: [t.primary, t.primaryLight],
       progressColor: t.primary,
-      subtitle: 'N5 · N4',
+
       statLabel: l.comingSoon,
       progress: 0.0,
       onTap: onGrammarTap,
+    );
+
+    final kanaKanjiRow = Row(
+      children: [
+        Expanded(child: kanaCard),
+        const SizedBox(width: AppDimens.spaceSm),
+        Expanded(child: kanjiCard),
+      ],
     );
 
     return LayoutBuilder(
@@ -106,13 +114,7 @@ class HomeDomainCards extends StatelessWidget {
         if (constraints.maxWidth >= 480) {
           return Column(
             children: [
-              Row(
-                children: [
-                  Expanded(child: kanaCard),
-                  const SizedBox(width: AppDimens.spaceSm),
-                  Expanded(child: kanjiCard),
-                ],
-              ),
+              kanaKanjiRow,
               const SizedBox(height: AppDimens.spaceSm),
               Row(
                 children: [
@@ -126,9 +128,7 @@ class HomeDomainCards extends StatelessWidget {
         }
         return Column(
           children: [
-            kanaCard,
-            const SizedBox(height: AppDimens.spaceSm),
-            kanjiCard,
+            kanaKanjiRow,
             const SizedBox(height: AppDimens.spaceSm),
             vocabCard,
             const SizedBox(height: AppDimens.spaceSm),

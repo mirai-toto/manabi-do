@@ -60,7 +60,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     return [
       NavDestination(label: l.navHome, icon: '家'),
       NavDestination(label: l.sectionCharacters, icon: '字'),
-      NavDestination(label: l.navVocab, icon: '語'),
+      NavDestination(label: l.sectionVocabulary, icon: '語'),
       NavDestination(label: l.sectionGrammar, icon: '文'),
       NavDestination(label: l.navSettings, icon: '⚙'),
     ];

@@ -37,7 +37,7 @@ Widget buildDomainCardDefault(BuildContext context) {
       icon: '漢',
       gradientColors: [primary, primary.withValues(alpha: 0.6)],
       progressColor: primary,
-      subtitle: 'N5 — N1 kanji',
+
       statLabel: '42 / 2136 known',
       progress: 0.02,
       onTap: () {},
@@ -55,7 +55,7 @@ Widget buildDomainCardReviewsDue(BuildContext context) {
       icon: '漢',
       gradientColors: [primary, primary.withValues(alpha: 0.6)],
       progressColor: primary,
-      subtitle: 'N5 — N1 kanji',
+
       statLabel: '42 / 2136 known',
       progress: 0.02,
       dueCount: 12,

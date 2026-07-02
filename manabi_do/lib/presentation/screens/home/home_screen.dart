@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
@@ -10,20 +9,11 @@ import '../../providers/home_provider.dart';
 import '../../widgets/widgets.dart';
 import '../practice/practice_session_screen.dart';
 import 'home_domain_cards.dart';
-import 'home_header.dart';
 import 'home_review_queues.dart';
 
 const _kTabCharacters = 1;
 const _kTabVocabulary = 2;
 const _kTabGrammar = 3;
-
-String _greeting(BuildContext context) {
-  final hour = DateTime.now().hour;
-  final l = context.l10n;
-  if (hour < 12) return l.greetingMorning;
-  if (hour < 18) return l.greetingAfternoon;
-  return l.greetingEvening;
-}
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -113,7 +103,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         context,
         MaterialPageRoute<void>(
           builder: (_) => PracticeSessionScreen(
-            title: l.navVocab,
+            title: l.sectionVocabulary,
             color: t.vocabulary,
             loadQueue: loadVocabQueue,
           ),
@@ -128,33 +118,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         child: ListView(
           padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
           children: [
-            HomeHeader(
-              greeting: _greeting(context),
-              subtitle: l.greetingSubtitle,
-            ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.spaceMd,
-              ),
+              padding: const EdgeInsets.all(AppDimens.spaceMd),
               child: Column(
                 children: [
                   HomeDomainCards(
-                    totalKana: totalKana,
-                    totalKanji: totalKanji,
-                    totalVocab: totalVocab,
-                    kanaDue: kanaDue,
-                    kanaNew: kanaNew,
-                    kanjiDue: kanjiDue,
-                    kanjiNew: kanjiNew,
-                    vocabDue: vocabDue,
-                    vocabNew: vocabNew,
-                    onKanaTap: () => goTo(_kTabCharacters),
-                    onKanjiTap: () => goTo(_kTabCharacters),
-                    onVocabTap: () => goTo(_kTabVocabulary),
-                    onGrammarTap: () => goTo(_kTabGrammar),
-                    onKanaPractice: openKanaPractice,
-                    onKanjiPractice: openKanjiPractice,
-                    onVocabPractice: openVocabPractice,
+                totalKana: totalKana,
+                totalKanji: totalKanji,
+                totalVocab: totalVocab,
+                kanaDue: kanaDue,
+                kanaNew: kanaNew,
+                kanjiDue: kanjiDue,
+                kanjiNew: kanjiNew,
+                vocabDue: vocabDue,
+                vocabNew: vocabNew,
+                onKanaTap: () => goTo(_kTabCharacters),
+                onKanjiTap: () => goTo(_kTabCharacters),
+                onVocabTap: () => goTo(_kTabVocabulary),
+                onGrammarTap: () => goTo(_kTabGrammar),
+                onKanaPractice: openKanaPractice,
+                onKanjiPractice: openKanjiPractice,
+                onVocabPractice: openVocabPractice,
                   ),
                   const SizedBox(height: AppDimens.spaceLg),
                   StreakCard(
