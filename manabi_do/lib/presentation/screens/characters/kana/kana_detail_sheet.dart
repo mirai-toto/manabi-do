@@ -41,11 +41,12 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
     final card = await ref
         .read(databaseProvider)
         .getSrsCard(widget.type, widget.entry.id);
-    if (mounted)
+    if (mounted) {
       setState(() {
         _srsCard = card;
         _loaded = true;
       });
+    }
   }
 
   Future<void> _resetProgress() async {

@@ -43,11 +43,12 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
       return;
     }
     final results = await ref.read(databaseProvider).searchKanji(q);
-    if (mounted)
+    if (mounted) {
       setState(() {
         _results = results;
         _searching = true;
       });
+    }
   }
 
   void _clear() {

@@ -65,10 +65,12 @@ class _SentenceClozeBodyState extends ConsumerState<SentenceClozeBody> {
     setState(() {
       _answered = true;
       _states = List.generate(widget.options.length, (j) {
-        if (j == i)
+        if (j == i) {
           return isCorrect ? McqOptionState.correct : McqOptionState.wrong;
-        if (!isCorrect && j == widget.correctIndex)
+        }
+        if (!isCorrect && j == widget.correctIndex) {
           return McqOptionState.correct;
+        }
         return McqOptionState.idle;
       });
     });

@@ -124,11 +124,12 @@ class _KanjiSrsSectionState extends ConsumerState<_KanjiSrsSection> {
     final card = await ref
         .read(databaseProvider)
         .getSrsCard('kanji', widget.kanjiId);
-    if (mounted)
+    if (mounted) {
       setState(() {
         _card = card;
         _loaded = true;
       });
+    }
   }
 
   Future<void> _reset() async {

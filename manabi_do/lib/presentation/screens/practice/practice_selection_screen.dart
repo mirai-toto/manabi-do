@@ -163,8 +163,9 @@ class _ModeCardState extends State<_ModeCard> {
                       builder: (context, snap) {
                         if (!snap.hasData) return const SizedBox.shrink();
                         final (due, newCards) = snap.data!;
-                        if (due == 0 && newCards == 0)
+                        if (due == 0 && newCards == 0) {
                           return const SizedBox.shrink();
+                        }
                         final parts = [
                           if (due > 0) l.reviewsDue(due),
                           if (newCards > 0) l.nNew(newCards),
