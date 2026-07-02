@@ -30,6 +30,9 @@ jobs:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: echo "$KEYSTORE_BASE64" | tr -d '\n' | base64 --decode > $HOME/release.jks
 
+      - name: Verify keystore
+        run: keytool -list -keystore $HOME/release.jks -storepass "${{ secrets.KEYSTORE_PASSWORD }}" -noprompt
+
       - name: Write key.properties
         run: |
           cat > manabi_do/android/key.properties << PROPS
