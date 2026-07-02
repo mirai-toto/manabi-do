@@ -43,8 +43,12 @@ final totalKanaProvider = FutureProvider<int>(
   (ref) => ref.read(databaseProvider).getKanaData().then((d) => d.total),
 );
 
-final charactersDueCountProvider = StreamProvider<int>(
-  (ref) => ref.watch(databaseProvider).watchCharactersDueCount(),
+final kanaDueCountProvider = StreamProvider<int>(
+  (ref) => ref.watch(databaseProvider).watchKanaDueCount(),
+);
+
+final kanjiDueCountProvider = StreamProvider<int>(
+  (ref) => ref.watch(databaseProvider).watchKanjiDueCount(),
 );
 
 final vocabDueCountProvider = StreamProvider<int>(
@@ -55,11 +59,18 @@ final streakDaysProvider = StreamProvider<int>(
   (ref) => ref.watch(databaseProvider).watchStreakDays(),
 );
 
-final charactersNewCountProvider = StreamProvider<int>((ref) {
+final kanaNewCountProvider = StreamProvider<int>((ref) {
   final db = ref.watch(databaseProvider);
   final limit =
       ref.watch(srsSettingsProvider).asData?.value.newCharactersPerDay ?? 10;
-  return db.watchCharactersNewCount(newCardLimit: limit);
+  return db.watchKanaNewCount(newCardLimit: limit);
+});
+
+final kanjiNewCountProvider = StreamProvider<int>((ref) {
+  final db = ref.watch(databaseProvider);
+  final limit =
+      ref.watch(srsSettingsProvider).asData?.value.newCharactersPerDay ?? 10;
+  return db.watchKanjiNewCount(newCardLimit: limit);
 });
 
 final practiceActiveProvider = NotifierProvider<PracticeActiveNotifier, bool>(

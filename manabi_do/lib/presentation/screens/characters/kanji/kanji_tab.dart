@@ -4,11 +4,9 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
-import '../../../../core/providers/srs_settings_provider.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../l10n/level_label.dart';
 import '../../../../core/srs/srs_level.dart';
-import '../../../providers/database_provider.dart';
 import '../../../providers/home_provider.dart';
 import '../../../providers/kanji_provider.dart';
 import '../../../widgets/widgets.dart';
@@ -77,7 +75,6 @@ class _KanjiGroupSelector extends ConsumerWidget {
         PracticeButton(
           color: color,
           onTap: () {
-            final db = ref.read(databaseProvider);
             final l = context.l10n;
             Navigator.of(context).push(
               MaterialPageRoute<void>(
@@ -85,28 +82,6 @@ class _KanjiGroupSelector extends ConsumerWidget {
                   title: levelLabel(level, ctx),
                   color: color,
                   modes: [
-                    PracticeMode(
-                      icon: Icons.calendar_today_rounded,
-                      title: l.dailyTraining,
-                      counts: () async {
-                        final settings = await ref.read(
-                          srsSettingsProvider.future,
-                        );
-                        final session = await db.getKanjiSrsSession(
-                          level,
-                          newCardLimit: settings.newCharactersPerDay,
-                        );
-                        return (
-                          session.where((p) => p.$2 != null).length,
-                          session.where((p) => p.$2 == null).length,
-                        );
-                      },
-                      onTap: () async => Navigator.of(ctx).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => KanjiPracticeScreen(level: level),
-                        ),
-                      ),
-                    ),
                     PracticeMode(
                       icon: Icons.edit_rounded,
                       title: l.writingPractice,
@@ -276,7 +251,6 @@ class _KanjiGroupView extends ConsumerWidget {
         PracticeButton(
           color: color,
           onTap: () {
-            final db = ref.read(databaseProvider);
             final l = context.l10n;
             final groupTitle = l.groupN(groupIndex + 1);
             Navigator.of(context).push(
@@ -285,34 +259,6 @@ class _KanjiGroupView extends ConsumerWidget {
                   title: groupTitle,
                   color: color,
                   modes: [
-                    PracticeMode(
-                      icon: Icons.calendar_today_rounded,
-                      title: l.dailyTraining,
-                      counts: () async {
-                        final settings = await ref.read(
-                          srsSettingsProvider.future,
-                        );
-                        final full = await db.getKanjiSrsSession(
-                          level,
-                          newCardLimit: settings.newCharactersPerDay,
-                        );
-                        final session = full
-                            .where((p) => groupIds.contains(p.$1.id))
-                            .toList();
-                        return (
-                          session.where((p) => p.$2 != null).length,
-                          session.where((p) => p.$2 == null).length,
-                        );
-                      },
-                      onTap: () async => Navigator.of(ctx).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => KanjiPracticeScreen(
-                            level: level,
-                            allowedIds: groupIds,
-                          ),
-                        ),
-                      ),
-                    ),
                     PracticeMode(
                       icon: Icons.edit_rounded,
                       title: l.writingPractice,

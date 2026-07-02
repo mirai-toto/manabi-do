@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:drift/drift.dart';
 import 'package:fsrs/fsrs.dart';
@@ -205,6 +206,9 @@ class AppDatabase extends _$AppDatabase {
             ..orderBy([(v) => OrderingTerm.asc(v.word)]))
           .get();
 
+  Future<List<VocabularyEntry>> getAllVocab() =>
+      (select(vocabularyEntries)).get();
+
   Future<int> countTotalKanji() => (select(kanjis)).get().then((r) => r.length);
 
   // ── Sentence queries ─────────────────────────────────────────────────────
@@ -258,6 +262,24 @@ class AppDatabase extends _$AppDatabase {
                   r.itemType == 'katakana' ||
                   r.itemType == 'kanji') &&
               !r.due.isAfter(DateTime.now()),
+        )
+        .length,
+  );
+
+  Stream<int> watchKanaDueCount() => (select(srsCards)).watch().map(
+    (rows) => rows
+        .where(
+          (r) =>
+              (r.itemType == 'hiragana' || r.itemType == 'katakana') &&
+              !r.due.isAfter(DateTime.now()),
+        )
+        .length,
+  );
+
+  Stream<int> watchKanjiDueCount() => (select(srsCards)).watch().map(
+    (rows) => rows
+        .where(
+          (r) => r.itemType == 'kanji' && !r.due.isAfter(DateTime.now()),
         )
         .length,
   );
@@ -318,6 +340,50 @@ class AppDatabase extends _$AppDatabase {
         return hiraganaNew + katakanaNew + kanjiNew;
       });
 
+  Stream<int> watchKanaNewCount({required int newCardLimit}) =>
+      (select(srsCards)).watch().asyncMap((_) async {
+        final seenH = await _countSeenToday('hiragana');
+        final seenK = await _countSeenToday('katakana');
+        final remaining = (newCardLimit - seenH - seenK).clamp(0, newCardLimit);
+        if (remaining == 0) return 0;
+        Future<int> countUnseen(String type) async {
+          final total = await (select(
+            kanas,
+          )..where((k) => k.type.equals(type))).get().then((r) => r.length);
+          final seen = await (select(
+            srsCards,
+          )..where((s) => s.itemType.equals(type))).get().then((r) => r.length);
+          return (total - seen).clamp(0, total);
+        }
+        final unseenH = await countUnseen('hiragana');
+        final unseenK = await countUnseen('katakana');
+        return min(unseenH + unseenK, remaining);
+      });
+
+  Stream<int> watchKanjiNewCount({required int newCardLimit}) =>
+      (select(srsCards)).watch().asyncMap((_) async {
+        final kanjiRemaining = (newCardLimit - await _countSeenToday('kanji'))
+            .clamp(0, newCardLimit);
+        if (kanjiRemaining == 0) return 0;
+        final seenIds =
+            await (select(srsCards)..where((s) => s.itemType.equals('kanji')))
+                .get()
+                .then((rows) => {for (final r in rows) r.itemId});
+        final allKanji = await select(kanjis).get();
+        final unseenByLevel = <String, int>{};
+        for (final k in allKanji) {
+          if (!seenIds.contains(k.id)) {
+            unseenByLevel[k.jlptLevel] =
+                (unseenByLevel[k.jlptLevel] ?? 0) + 1;
+          }
+        }
+        for (final level in const ['N5', 'N4', 'N3', 'N2', 'N1']) {
+          final n = unseenByLevel[level] ?? 0;
+          if (n > 0) return n.clamp(0, kanjiRemaining);
+        }
+        return 0;
+      });
+
   Stream<int> watchVocabNewCount({required int newCardLimit}) =>
       (select(srsCards)).watch().asyncMap((_) async {
         final remaining = (newCardLimit - await _countSeenToday('vocabulary'))
@@ -361,25 +427,37 @@ class AppDatabase extends _$AppDatabase {
     });
   }
 
-  /// All due kana (hiragana + katakana), optionally including new cards.
+  /// All due kana (hiragana + katakana), with a shared new-card budget.
   Future<List<(Kana, Card?)>> getAllDueKanaSrsSession({
     int newCardLimit = 0,
   }) async {
     final hiragana = await getKanaByType('hiragana');
     final katakana = await getKanaByType('katakana');
-    final h = await _buildSrsSession(
-      'hiragana',
-      hiragana,
-      (k) => k.id,
-      newCardLimit: newCardLimit,
-    );
-    final k = await _buildSrsSession(
-      'katakana',
-      katakana,
-      (k) => k.id,
-      newCardLimit: newCardLimit,
-    );
-    return [...h, ...k];
+    // Due cards only (no new cards yet)
+    final h = await _buildSrsSession('hiragana', hiragana, (k) => k.id, newCardLimit: 0);
+    final k = await _buildSrsSession('katakana', katakana, (k) => k.id, newCardLimit: 0);
+    if (newCardLimit <= 0) return [...h, ...k];
+    // Shared budget across both kana types
+    final seenH = await _countSeenToday('hiragana');
+    final seenK = await _countSeenToday('katakana');
+    final remaining = (newCardLimit - seenH - seenK).clamp(0, newCardLimit);
+    if (remaining == 0) return [...h, ...k];
+    final hCards = await getAllSrsCardsForType('hiragana');
+    final kCards = await getAllSrsCardsForType('katakana');
+    final newH = hiragana
+        .where((item) => hCards[item.id] == null)
+        .take(remaining)
+        .map((item) => (item, null as Card?))
+        .toList();
+    final leftover = remaining - newH.length;
+    final newK = leftover > 0
+        ? katakana
+            .where((item) => kCards[item.id] == null)
+            .take(leftover)
+            .map((item) => (item, null as Card?))
+            .toList()
+        : <(Kana, Card?)>[];
+    return [...h, ...k, ...newH, ...newK];
   }
 
   /// Due kanji from all levels; new cards only from the lowest JLPT level
@@ -455,6 +533,8 @@ class AppDatabase extends _$AppDatabase {
 
   Future<List<Kanji>> getKanjiByLevel(String level) =>
       (select(kanjis)..where((k) => k.jlptLevel.equals(level))).get();
+
+  Future<List<Kanji>> getAllKanji() => select(kanjis).get();
 
   Stream<List<Kanji>> watchKanjiByLevel(String level) =>
       (select(kanjis)..where((k) => k.jlptLevel.equals(level))).watch();

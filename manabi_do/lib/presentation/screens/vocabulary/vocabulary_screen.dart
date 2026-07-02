@@ -8,8 +8,6 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
-import '../../../core/providers/srs_settings_provider.dart';
-import '../../providers/database_provider.dart';
 import '../../providers/home_provider.dart';
 import '../../providers/vocab_list_provider.dart';
 import '../../widgets/widgets.dart';
@@ -154,7 +152,6 @@ class _VocabGroupSelector extends ConsumerWidget {
         PracticeButton(
           color: color,
           onTap: () {
-            final db = ref.read(databaseProvider);
             final l = context.l10n;
             Navigator.of(context).push(
               MaterialPageRoute<void>(
@@ -162,28 +159,6 @@ class _VocabGroupSelector extends ConsumerWidget {
                   title: levelLabel(level, ctx),
                   color: color,
                   modes: [
-                    PracticeMode(
-                      icon: Icons.calendar_today_rounded,
-                      title: l.dailyTraining,
-                      counts: () async {
-                        final settings = await ref.read(
-                          srsSettingsProvider.future,
-                        );
-                        final session = await db.getVocabSrsSession(
-                          level,
-                          newCardLimit: settings.newVocabPerDay,
-                        );
-                        return (
-                          session.where((p) => p.$2 != null).length,
-                          session.where((p) => p.$2 == null).length,
-                        );
-                      },
-                      onTap: () async => Navigator.of(ctx).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => VocabPracticeScreen(level: level),
-                        ),
-                      ),
-                    ),
                     PracticeMode(
                       icon: Icons.style_rounded,
                       title: l.flashcardPractice,

@@ -95,7 +95,8 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
   @override
   Widget build(BuildContext context) {
     void invalidateSrsCounts() {
-      ref.invalidate(charactersDueCountProvider);
+      ref.invalidate(kanaDueCountProvider);
+      ref.invalidate(kanjiDueCountProvider);
       ref.invalidate(vocabDueCountProvider);
     }
 

@@ -171,7 +171,7 @@ class _KanjiQueueBuilder {
           srsType: 'kanji',
           card: card,
           buildBody: (index, total, onAnswer) => Builder(
-            builder: (ctx) => _DrawingBody(
+            builder: (ctx) => KanjiDrawingBody(
               kanji: kanji,
               card: card,
               isFreeMode: freeMode,
@@ -289,7 +289,7 @@ class _KanjiMcqBody extends StatelessWidget {
 
 // ── Drawing body ──────────────────────────────────────────────────────────────
 
-class _DrawingBody extends ConsumerWidget {
+class KanjiDrawingBody extends ConsumerWidget {
   final Kanji kanji;
   final Card? card;
   final bool isFreeMode;
@@ -299,7 +299,8 @@ class _DrawingBody extends ConsumerWidget {
   final void Function(Rating) onAnswer;
   final VoidCallback? onDetailTap;
 
-  const _DrawingBody({
+  const KanjiDrawingBody({
+    super.key,
     required this.kanji,
     required this.card,
     required this.index,

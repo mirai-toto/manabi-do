@@ -3,14 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
 import '../../providers/home_provider.dart';
 import '../../widgets/widgets.dart';
-import '../practice/practice_selection_screen.dart';
 import '../practice/practice_session_screen.dart';
 import 'home_domain_cards.dart';
 import 'home_header.dart';
@@ -57,7 +54,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   }
 
   void _refresh() {
-    ref.invalidate(charactersDueCountProvider);
+    ref.invalidate(kanaDueCountProvider);
+    ref.invalidate(kanjiDueCountProvider);
     ref.invalidate(vocabDueCountProvider);
   }
 
@@ -69,145 +67,55 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    final t = context.tokens;
 
     final totalKanji = ref.watch(totalKanjiProvider).asData?.value ?? 0;
     final totalKana = ref.watch(totalKanaProvider).asData?.value ?? 0;
     final totalVocab = ref.watch(totalVocabProvider).asData?.value ?? 0;
-    final totalChars = totalKana + totalKanji;
 
-    final charsDue = ref.watch(charactersDueCountProvider).asData?.value ?? 0;
-    final charsNew = ref.watch(charactersNewCountProvider).asData?.value ?? 0;
+    final kanaDue = ref.watch(kanaDueCountProvider).asData?.value ?? 0;
+    final kanaNew = ref.watch(kanaNewCountProvider).asData?.value ?? 0;
+    final kanjiDue = ref.watch(kanjiDueCountProvider).asData?.value ?? 0;
+    final kanjiNew = ref.watch(kanjiNewCountProvider).asData?.value ?? 0;
     final vocabDue = ref.watch(vocabDueCountProvider).asData?.value ?? 0;
     final vocabNew = ref.watch(vocabNewCountProvider).asData?.value ?? 0;
 
     void goTo(int tab) => ref.read(selectedTabProvider.notifier).select(tab);
 
-    void openCharsPractice() {
-      final t = context.tokens;
-      final db = ref.read(databaseProvider);
+    void openKanaPractice() {
       Navigator.push(
         context,
         MaterialPageRoute<void>(
-          builder: (ctx) => PracticeSelectionScreen(
-            title: l.sectionCharacters,
+          builder: (_) => PracticeSessionScreen(
+            title: l.kana,
             color: t.characters,
-            modes: [
-              PracticeMode(
-                icon: Icons.translate_rounded,
-                title: l.kana,
-                counts: () async {
-                  final s = await ref.read(srsSettingsProvider.future);
-                  final session = await db.getAllDueKanaSrsSession(
-                    newCardLimit: s.newCharactersPerDay,
-                  );
-                  return (
-                    session.where((p) => p.$2 != null).length,
-                    session.where((p) => p.$2 == null).length,
-                  );
-                },
-                onTap: () async => Navigator.of(ctx).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => PracticeSessionScreen(
-                      title: l.kana,
-                      color: t.characters,
-                      loadQueue: loadKanaQueue,
-                    ),
-                  ),
-                ),
-              ),
-              PracticeMode(
-                icon: Icons.calendar_today_rounded,
-                title: l.tabKanji,
-                counts: () async {
-                  final s = await ref.read(srsSettingsProvider.future);
-                  final session = await db.getAllDueKanjiSrsSession(
-                    newCardLimit: s.newCharactersPerDay,
-                  );
-                  return (
-                    session.where((p) => p.$2 != null).length,
-                    session.where((p) => p.$2 == null).length,
-                  );
-                },
-                onTap: () async => Navigator.of(ctx).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => PracticeSessionScreen(
-                      title: l.tabKanji,
-                      color: t.characters,
-                      loadQueue: loadKanjiQueue,
-                    ),
-                  ),
-                ),
-              ),
-              PracticeMode(
-                icon: Icons.explore_rounded,
-                title: l.freePractice,
-                onTap: () async {
-                  Navigator.of(ctx).pop();
-                  goTo(_kTabCharacters);
-                },
-              ),
-            ],
+            loadQueue: loadKanaQueue,
+          ),
+        ),
+      );
+    }
+
+    void openKanjiPractice() {
+      Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+          builder: (_) => PracticeSessionScreen(
+            title: l.tabKanji,
+            color: t.characters,
+            loadQueue: loadKanjiQueue,
           ),
         ),
       );
     }
 
     void openVocabPractice() {
-      final t = context.tokens;
-      final db = ref.read(databaseProvider);
       Navigator.push(
         context,
         MaterialPageRoute<void>(
-          builder: (ctx) => PracticeSelectionScreen(
+          builder: (_) => PracticeSessionScreen(
             title: l.navVocab,
             color: t.vocabulary,
-            modes: [
-              PracticeMode(
-                icon: Icons.calendar_today_rounded,
-                title: l.dailyTraining,
-                counts: () async {
-                  final s = await ref.read(srsSettingsProvider.future);
-                  final session = await db.getAllDueVocabSrsSession(
-                    newCardLimit: s.newVocabPerDay,
-                  );
-                  return (
-                    session.where((p) => p.$2 != null).length,
-                    session.where((p) => p.$2 == null).length,
-                  );
-                },
-                onTap: () async => Navigator.of(ctx).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => PracticeSessionScreen(
-                      title: l.navVocab,
-                      color: t.vocabulary,
-                      loadQueue: loadVocabQueue,
-                    ),
-                  ),
-                ),
-              ),
-              PracticeMode(
-                icon: Icons.explore_rounded,
-                title: l.freePractice,
-                onTap: () async {
-                  Navigator.of(ctx).pop();
-                  goTo(_kTabVocabulary);
-                },
-              ),
-              PracticeMode(
-                icon: Icons.chat_bubble_outline_rounded,
-                title: l.sentencePractice,
-                onTap: () async => Navigator.of(ctx).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => PracticeSessionScreen(
-                      title: l.sentencePractice,
-                      color: t.vocabulary,
-                      loadQueue: loadVocabSentenceQueue,
-                      settingsContexts: const {SettingsContext.sentence},
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            loadQueue: loadVocabQueue,
           ),
         ),
       );
@@ -231,16 +139,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               child: Column(
                 children: [
                   HomeDomainCards(
-                    totalChars: totalChars,
+                    totalKana: totalKana,
+                    totalKanji: totalKanji,
                     totalVocab: totalVocab,
-                    charsDue: charsDue,
-                    charsNew: charsNew,
+                    kanaDue: kanaDue,
+                    kanaNew: kanaNew,
+                    kanjiDue: kanjiDue,
+                    kanjiNew: kanjiNew,
                     vocabDue: vocabDue,
                     vocabNew: vocabNew,
-                    onCharactersTap: () => goTo(_kTabCharacters),
+                    onKanaTap: () => goTo(_kTabCharacters),
+                    onKanjiTap: () => goTo(_kTabCharacters),
                     onVocabTap: () => goTo(_kTabVocabulary),
                     onGrammarTap: () => goTo(_kTabGrammar),
-                    onCharsPractice: openCharsPractice,
+                    onKanaPractice: openKanaPractice,
+                    onKanjiPractice: openKanjiPractice,
                     onVocabPractice: openVocabPractice,
                   ),
                   const SizedBox(height: AppDimens.spaceLg),
