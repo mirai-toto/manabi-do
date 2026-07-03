@@ -12,6 +12,7 @@ import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../l10n/level_label.dart';
+import '../../../providers/database_provider.dart';
 import '../../../providers/flashcard_settings_provider.dart';
 import '../../../providers/mcq_settings_provider.dart';
 import '../../../widgets/characters/kanji_strokes_provider.dart';
@@ -61,7 +62,7 @@ class KanjiPracticeScreen extends StatelessWidget {
     return PracticeSessionScreen(
       title: levelLabel(level, context),
       color: levelColor(level),
-      loadQueue: (db, ref) => builder.build(db: db, ref: ref),
+      loadQueue: (ref) => builder.build(ref: ref),
       persistSrs: !freeMode,
       settingsContexts: _contexts,
     );
@@ -83,10 +84,8 @@ class _KanjiQueueBuilder {
     required this.freeMode,
   });
 
-  Future<List<PracticeItem>> build({
-    required AppDatabase db,
-    required WidgetRef ref,
-  }) async {
+  Future<List<PracticeItem>> build({required WidgetRef ref}) async {
+    final db = ref.read(databaseProvider);
     final color = levelColor(level);
     final rng = Random();
     final locale = ref.read(localeProvider).languageCode;

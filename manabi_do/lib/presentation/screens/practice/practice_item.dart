@@ -2,8 +2,6 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
-import '../../../data/database/app_database.dart';
-
 class PracticeItem {
   final int id;
   final String srsType;
@@ -19,5 +17,4 @@ class PracticeItem {
   });
 }
 
-typedef LoadQueue =
-    Future<List<PracticeItem>> Function(AppDatabase db, WidgetRef ref);
+typedef LoadQueue = Future<List<PracticeItem>> Function(WidgetRef ref);

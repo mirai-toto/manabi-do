@@ -8,6 +8,7 @@ import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
+import '../../providers/database_provider.dart';
 import '../../providers/mcq_settings_provider.dart';
 import '../../providers/sentence_settings_provider.dart';
 import '../../widgets/exercise/mcq_card.dart';
@@ -15,7 +16,8 @@ import '../characters/kanji/kanji_practice_screen.dart';
 import '../practice/practice_session_screen.dart';
 import '../practice/sentence_cloze_body.dart';
 
-Future<List<PracticeItem>> loadKanaQueue(AppDatabase db, WidgetRef ref) async {
+Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
+  final db = ref.read(databaseProvider);
   final settings = await ref.read(srsSettingsProvider.future);
   final pairs = await db.getAllDueKanaSrsSession(
     newCardLimit: settings.newCharactersPerDay,
@@ -40,7 +42,8 @@ Future<List<PracticeItem>> loadKanaQueue(AppDatabase db, WidgetRef ref) async {
   }).toList()..shuffle();
 }
 
-Future<List<PracticeItem>> loadKanjiQueue(AppDatabase db, WidgetRef ref) async {
+Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
+  final db = ref.read(databaseProvider);
   final settings = await ref.read(srsSettingsProvider.future);
   final mcqSettings = ref.read(mcqSettingsProvider);
   final locale = ref.read(localeProvider).languageCode;
@@ -62,9 +65,7 @@ Future<List<PracticeItem>> loadKanjiQueue(AppDatabase db, WidgetRef ref) async {
   return pairs.map((pair) {
     final (k, card) = pair;
     final color = levelColor(k.jlptLevel);
-    final quizType = rng.nextInt(
-      4,
-    ); // 0: flashcard, 1: MCQ kanji→meaning, 2: MCQ meaning→kanji, 3: drawing
+    final quizType = rng.nextInt(4);
 
     if (quizType == 0) {
       return PracticeItem(
@@ -139,7 +140,8 @@ Future<List<PracticeItem>> loadKanjiQueue(AppDatabase db, WidgetRef ref) async {
   }).toList()..shuffle(rng);
 }
 
-Future<List<PracticeItem>> loadVocabQueue(AppDatabase db, WidgetRef ref) async {
+Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
+  final db = ref.read(databaseProvider);
   final locale = ref.read(localeProvider).languageCode;
   final settings = await ref.read(srsSettingsProvider.future);
   final mcqSettings = ref.read(mcqSettingsProvider);
@@ -174,7 +176,6 @@ Future<List<PracticeItem>> loadVocabQueue(AppDatabase db, WidgetRef ref) async {
     final color = levelColor(entry.jlptLevel);
     final sentences = sentencesByVocabId[entry.id] ?? [];
     final hasSentence = sentences.isNotEmpty;
-    // 0: JP→EN flashcard, 1: EN→JP flashcard, 2: MCQ, 3: sentence cloze
     final typeCount = hasSentence ? 4 : 3;
     final quizType = rng.nextInt(typeCount);
 

@@ -8,6 +8,7 @@ import '../../core/providers/srs_settings_provider.dart';
 import '../../core/theme/jlpt_level.dart';
 import '../../data/database/app_database.dart';
 import '../../l10n/l10n.dart';
+import '../providers/database_provider.dart';
 import '../providers/flashcard_settings_provider.dart';
 import '../providers/mcq_settings_provider.dart';
 import '../providers/sentence_settings_provider.dart';
@@ -19,7 +20,6 @@ class VocabSessionService {
   const VocabSessionService();
 
   Future<List<PracticeItem>> buildQueue({
-    required AppDatabase db,
     required WidgetRef ref,
     required String level,
     required Set<int>? allowedIds,
@@ -28,6 +28,7 @@ class VocabSessionService {
     required bool mcqOnly,
     required bool flashcardOnly,
   }) async {
+    final db = ref.read(databaseProvider);
     final locale = ref.read(localeProvider).languageCode;
     final color = levelColor(level);
     final rng = Random();

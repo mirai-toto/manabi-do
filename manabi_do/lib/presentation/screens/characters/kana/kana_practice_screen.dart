@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/providers/srs_settings_provider.dart';
 import '../../../../core/theme/jlpt_level.dart';
-import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
+import '../../../providers/database_provider.dart';
 import '../../practice/practice_session_screen.dart';
 
 class KanaPracticeScreen extends StatelessWidget {
@@ -21,7 +21,8 @@ class KanaPracticeScreen extends StatelessWidget {
     );
   }
 
-  Future<List<PracticeItem>> _buildQueue(AppDatabase db, WidgetRef ref) async {
+  Future<List<PracticeItem>> _buildQueue(WidgetRef ref) async {
+    final db = ref.read(databaseProvider);
     final settings = await ref.read(srsSettingsProvider.future);
     final color = levelColor('kana');
     final queue = await db.getKanaSrsSession(

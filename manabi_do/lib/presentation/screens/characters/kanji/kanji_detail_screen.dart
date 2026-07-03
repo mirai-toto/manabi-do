@@ -8,8 +8,8 @@ import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
-import '../../../providers/database_provider.dart';
 import '../../../providers/kanji_provider.dart';
+import '../../../services/srs_service.dart';
 import '../../../widgets/widgets.dart';
 import 'kanji_example_words.dart';
 import 'kanji_hero.dart';
@@ -121,9 +121,7 @@ class _KanjiSrsSectionState extends ConsumerState<_KanjiSrsSection> {
   }
 
   Future<void> _load() async {
-    final card = await ref
-        .read(databaseProvider)
-        .getSrsCard('kanji', widget.kanjiId);
+    final card = await srsService.getCard(ref, 'kanji', widget.kanjiId);
     if (mounted) {
       setState(() {
         _card = card;
@@ -140,7 +138,7 @@ class _KanjiSrsSectionState extends ConsumerState<_KanjiSrsSection> {
       body: l.resetKanaBody,
     );
     if (!confirmed) return;
-    await ref.read(databaseProvider).resetSrsCard('kanji', widget.kanjiId);
+    await srsService.resetCard(ref, 'kanji', widget.kanjiId);
     if (mounted) setState(() => _card = null);
   }
 

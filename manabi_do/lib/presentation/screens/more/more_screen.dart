@@ -8,9 +8,8 @@ import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
+import '../../services/srs_service.dart';
 import '../../widgets/widgets.dart';
 import 'language_picker_sheet.dart';
 
@@ -23,7 +22,7 @@ class SettingsScreen extends ConsumerWidget {
 
   Future<void> _confirmResetAll(
     BuildContext context,
-    AppDatabase db,
+    WidgetRef ref,
     AppLocalizations l,
   ) async {
     final confirmed = await showConfirmDialog(
@@ -32,7 +31,7 @@ class SettingsScreen extends ConsumerWidget {
       body: l.resetProgressBody,
     );
     if (!confirmed) return;
-    await db.resetAllProgress();
+    await srsService.resetAll(ref);
   }
 
   void _showLanguagePicker(
@@ -70,7 +69,6 @@ class SettingsScreen extends ConsumerWidget {
     final locale = ref.watch(localeProvider);
     final pkgAsync = ref.watch(_packageInfoProvider);
     final srs = ref.watch(srsSettingsProvider);
-    final db = ref.read(databaseProvider);
 
     final currentLang = languages.firstWhere(
       (e) => e.code == locale.languageCode,
@@ -194,7 +192,7 @@ class SettingsScreen extends ConsumerWidget {
                       color: t.onSurfaceVariant,
                     ),
                     label: 'Seed fake reviews (debug)',
-                    onTap: () => db.seedFakeReviews(),
+                    onTap: () => srsService.seedFakeReviews(ref),
                   ),
                 SettingsTile(
                   leading: Icon(
@@ -204,7 +202,7 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                   label: l.settingsResetProgress,
                   labelColor: t.error,
-                  onTap: () => _confirmResetAll(context, db, l),
+                  onTap: () => _confirmResetAll(context, ref, l),
                 ),
               ],
             ),
