@@ -198,6 +198,9 @@ class VocabSessionService {
             builder: (context) => PracticeMcqBody(
               question: context.l10n.mcqSelectWordMeaning,
               japanesePrompt: entry.word,
+              japaneseReading: entry.reading != entry.word
+                  ? entry.reading
+                  : null,
               options: mcqOptions,
               correctIndex: correctIndex,
               isFreeMode: true,
@@ -315,6 +318,9 @@ class VocabSessionService {
             builder: (context) => PracticeMcqBody(
               question: context.l10n.mcqSelectWordMeaning,
               japanesePrompt: entry.word,
+              japaneseReading: entry.reading != entry.word
+                  ? entry.reading
+                  : null,
               options: mcqOptions,
               correctIndex: correctIndex,
               isFreeMode: freeMode,

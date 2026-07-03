@@ -218,6 +218,7 @@ Future<List<PracticeItem>> loadVocabQueue(AppDatabase db, WidgetRef ref) async {
           builder: (ctx) => PracticeMcqBody(
             question: ctx.l10n.mcqSelectWordMeaning,
             japanesePrompt: entry.word,
+            japaneseReading: entry.reading != entry.word ? entry.reading : null,
             options: mcqOptions,
             correctIndex: correctIndex,
             card: card,

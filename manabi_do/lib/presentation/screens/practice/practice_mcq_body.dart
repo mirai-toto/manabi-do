@@ -13,6 +13,7 @@ import '../../widgets/exercise/mcq_card.dart';
 class PracticeMcqBody extends ConsumerStatefulWidget {
   final String question;
   final String? japanesePrompt;
+  final String? japaneseReading;
   final List<McqOption> options;
   final int correctIndex;
   final Card? card;
@@ -36,6 +37,7 @@ class PracticeMcqBody extends ConsumerStatefulWidget {
     required this.onAnswer,
     this.isFreeMode = false,
     this.japanesePrompt,
+    this.japaneseReading,
     this.onDetailTap,
     this.compactGrid = false,
   });
@@ -114,6 +116,7 @@ class _PracticeMcqBodyState extends ConsumerState<PracticeMcqBody> {
           McqCard(
             question: widget.question,
             japanesePrompt: widget.japanesePrompt,
+            japaneseReading: widget.japaneseReading,
             options: options,
             onOptionTap: _answered ? null : _onTap,
             compactGrid: widget.compactGrid,
