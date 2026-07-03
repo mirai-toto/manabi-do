@@ -47,6 +47,21 @@ A lesson is the smallest navigable unit — the screen the user reads.
 
 ---
 
+## Existing shared widgets
+
+These widgets already exist in `lib/presentation/widgets/common/` and must be reused
+rather than duplicated in grammar block implementations.
+
+| Widget | File | What it does |
+|---|---|---|
+| `JapaneseText` | `japanese_text.dart` | Japanese word with optional furigana above each kanji. Also exports `furiganaSpans`, `rubySpan`, `splitSentenceAnnotation` for sentence-level rendering. |
+| `CardContainer` | `card_container.dart` | Full-width card with `cardBackground` fill, `outlineVariant` border, `radiusMd` corners. Use as the outer shell for any block that needs a card look. |
+| `SectionLabel` | `section_label.dart` | Small all-caps label in `onSurfaceVariant`. Use for column headers in tables. |
+| `PillBadge` | `pill_badge.dart` | Coloured pill with a label. Use for level or category tags inside blocks. |
+| `TappableSurface` | `tappable_surface.dart` | `ClipRRect → Material → InkWell → Ink` shell. Use only when a block needs a tap handler. |
+
+---
+
 ## Block Types
 
 ---
@@ -63,7 +78,7 @@ Plain explanatory prose. Supports inline **bold** and *italic* via simple marker
 }
 ```
 
-**Widget:** `TextBlock` — renders as body text with the app's standard font and colour.
+**Widget:** `TextBlock` (new) — renders as body text with the app's standard font and colour.
 
 ---
 
@@ -78,7 +93,7 @@ A visual sub-heading within a lesson. Used to separate named sub-topics.
 }
 ```
 
-**Widget:** `SectionTitleBlock` — larger weight text with a left accent bar using the level colour.
+**Widget:** `SectionTitleBlock` (new) — larger weight text with a left accent bar using the level colour.
 
 ---
 
@@ -97,8 +112,8 @@ Monospaced or visually distinct from body text. Supports multiple lines.
 }
 ```
 
-**Widget:** `PatternBlock` — pill-shaped card with a subtle background tint (level colour at low
-opacity), monospaced font, left-aligned. Each line on its own row.
+**Widget:** `PatternBlock` (new) — card shell via `CardContainer`, subtle level-colour tint,
+monospaced font, left-aligned. Each line on its own row.
 
 ---
 
@@ -114,7 +129,7 @@ so it stands out without interrupting flow.
 }
 ```
 
-**Widget:** `NoteBlock` — left border in amber/warning colour, slightly inset background,
+**Widget:** `NoteBlock` (new) — left border in amber/warning colour, slightly inset background,
 italic body text, small info icon leading.
 
 ---
@@ -146,8 +161,8 @@ This is the most common block — almost every lesson section has one.
 `columns` controls which columns appear and their order. Allowed values:
 `japanese`, `romaji`, `english`. All three are optional — some tables may omit romaji.
 
-**Widget:** `ExampleTableBlock` — clean table with alternating row backgrounds.
-Japanese column uses the Japanese font. Header row uses the level colour at low opacity.
+**Widget:** `ExampleTableBlock` (new) — clean table with alternating row backgrounds.
+Japanese column uses `JapaneseText`. Column headers use `SectionLabel`.
 
 ---
 
@@ -168,10 +183,11 @@ A table for vocabulary or kanji listings — typically with more columns than ex
 ```
 
 `columns` is an ordered list of column keys. Any string key is valid — the header
-displays the key capitalised. This keeps the block flexible for counters, pitch, etc.
+displays the key capitalised using `SectionLabel`. This keeps the block flexible for
+counters, pitch accent, etc.
 
-**Widget:** `VocabTableBlock` — same visual treatment as `example_table` but column widths
-auto-sized. Japanese column uses Japanese font.
+**Widget:** `VocabTableBlock` (new) — same visual treatment as `example_table`, column widths
+auto-sized. Japanese column uses `JapaneseText`.
 
 ---
 
@@ -193,8 +209,9 @@ Rows are conjugation forms; a single target word is shown across all forms.
 }
 ```
 
-**Widget:** `ConjugationTableBlock` — first column (`form`) is bold label; subsequent columns
-match `example_table` styling. `label` appears above the table as a sub-caption.
+**Widget:** `ConjugationTableBlock` (new) — first column (`form`) is bold label; subsequent
+columns match `example_table` styling. `label` appears above the table as a sub-caption
+rendered with `SectionLabel`.
 
 ---
 
@@ -221,8 +238,9 @@ Used for "A vs B" explanations (e.g. に vs で, から vs ので).
 }
 ```
 
-**Widget:** `ComparisonBlock` — two cards side by side (or stacked on narrow screens).
-Each card has a coloured label at top, description text, then the example sentence.
+**Widget:** `ComparisonBlock` (new) — two `CardContainer` cards side by side (stacked on
+narrow screens). Each card has a `PillBadge` label at top, description text, then the
+example sentence using `JapaneseText`.
 
 ---
 
@@ -236,7 +254,7 @@ A visual separator between major sub-sections within a long lesson.
 }
 ```
 
-**Widget:** `DividerBlock` — thin horizontal line, same as a section break. No parameters.
+**Widget:** Flutter's built-in `Divider` — no new widget needed. No parameters.
 
 ---
 
