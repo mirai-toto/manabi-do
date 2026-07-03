@@ -503,7 +503,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String reviewsDue(int count) {
-    return '$count Wiederholungen ausstehend';
+    return '$count Wiederholungen';
   }
 
   @override

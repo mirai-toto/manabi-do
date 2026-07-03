@@ -503,7 +503,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String reviewsDue(int count) {
-    return '$count révisions en attente';
+    return '$count révisions';
   }
 
   @override

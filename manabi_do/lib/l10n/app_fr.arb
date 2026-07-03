@@ -238,7 +238,7 @@
     "placeholders": { "total": { "type": "int" } }
   },
   "vocabSubtitleShort": "Mots à découvrir",
-  "reviewsDue": "{count} révisions en attente",
+  "reviewsDue": "{count} révisions",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }
   },

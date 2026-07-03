@@ -238,7 +238,7 @@
     "placeholders": { "total": { "type": "int" } }
   },
   "vocabSubtitleShort": "Wörter entdecken",
-  "reviewsDue": "{count} Wiederholungen ausstehend",
+  "reviewsDue": "{count} Wiederholungen",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }
   },

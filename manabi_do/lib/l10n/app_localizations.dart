@@ -1015,7 +1015,7 @@ abstract class AppLocalizations {
   /// No description provided for @reviewsDue.
   ///
   /// In en, this message translates to:
-  /// **'{count} reviews waiting'**
+  /// **'{count} reviews'**
   String reviewsDue(int count);
 
   /// No description provided for @nNew.

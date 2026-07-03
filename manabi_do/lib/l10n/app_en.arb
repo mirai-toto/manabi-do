@@ -247,7 +247,7 @@
     "placeholders": { "total": { "type": "int" } }
   },
   "vocabSubtitleShort": "Words to discover",
-  "reviewsDue": "{count} reviews waiting",
+  "reviewsDue": "{count} reviews",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }
   },

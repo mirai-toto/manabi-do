@@ -53,11 +53,11 @@ class HomeDomainCards extends StatelessWidget {
       icon: 'か',
       gradientColors: [t.charactersDark, t.characters],
       progressColor: t.characters,
-
       statLabel: totalKana > 0 ? l.nKanji(totalKana) : '—',
       progress: 0.0,
       dueCount: kanaDue,
       newCount: kanaNew,
+      stackActivity: true,
       onTap: onKanaTap,
       onPractice: onKanaPractice,
     );
@@ -67,11 +67,11 @@ class HomeDomainCards extends StatelessWidget {
       icon: '字',
       gradientColors: [t.charactersDark, t.characters],
       progressColor: t.characters,
-
       statLabel: totalKanji > 0 ? l.nKanji(totalKanji) : '—',
       progress: 0.0,
       dueCount: kanjiDue,
       newCount: kanjiNew,
+      stackActivity: true,
       onTap: onKanjiTap,
       onPractice: onKanjiPractice,
     );
