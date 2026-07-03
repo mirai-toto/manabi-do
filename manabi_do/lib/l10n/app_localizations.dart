@@ -1090,6 +1090,18 @@ abstract class AppLocalizations {
   /// **'Basics & JLPT N5–N1'**
   String get grammarSubtitle;
 
+  /// No description provided for @grammarLockedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grammar is coming soon'**
+  String get grammarLockedTitle;
+
+  /// No description provided for @grammarLockedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re actively working on the grammar section. Stay tuned!'**
+  String get grammarLockedSubtitle;
+
   /// No description provided for @searchKanji.
   ///
   /// In en, this message translates to:
@@ -1275,6 +1287,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sentence exercise'**
   String get sentenceSettingsLabel;
+
+  /// No description provided for @showMcqFuriganaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Furigana in prompt'**
+  String get showMcqFuriganaLabel;
+
+  /// No description provided for @showMcqFuriganaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show reading above kanji in the Japanese word'**
+  String get showMcqFuriganaSubtitle;
 
   /// No description provided for @showSentenceFuriganaLabel.
   ///

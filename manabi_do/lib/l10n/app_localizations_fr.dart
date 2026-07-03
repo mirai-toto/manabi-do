@@ -653,6 +653,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get sentenceSettingsLabel => 'Exercice de phrases';
 
   @override
+  String get showMcqFuriganaLabel => 'Furigana dans l\'énoncé';
+
+  @override
+  String get showMcqFuriganaSubtitle =>
+      'Afficher la lecture au-dessus des kanji du mot';
+
+  @override
   String get showSentenceFuriganaLabel => 'Furigana dans la phrase';
 
   @override

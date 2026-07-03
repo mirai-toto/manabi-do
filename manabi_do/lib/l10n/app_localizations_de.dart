@@ -651,6 +651,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sentenceSettingsLabel => 'Satzübung';
 
   @override
+  String get showMcqFuriganaLabel => 'Furigana in der Aufgabe';
+
+  @override
+  String get showMcqFuriganaSubtitle =>
+      'Lesung über Kanji im japanischen Wort anzeigen';
+
+  @override
   String get showSentenceFuriganaLabel => 'Furigana im Satz';
 
   @override

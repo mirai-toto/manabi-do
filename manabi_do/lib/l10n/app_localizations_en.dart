@@ -648,6 +648,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sentenceSettingsLabel => 'Sentence exercise';
 
   @override
+  String get showMcqFuriganaLabel => 'Furigana in prompt';
+
+  @override
+  String get showMcqFuriganaSubtitle =>
+      'Show reading above kanji in the Japanese word';
+
+  @override
   String get showSentenceFuriganaLabel => 'Furigana in question';
 
   @override
