@@ -97,6 +97,7 @@ Exercises are attached to grammar lessons and are generic across content types.
 | MCQ | One question, N choices, one correct answer |
 | Flashcard | Card shown, user self-assesses (known / not known) |
 | Drawing | User traces stroke order on a canvas (kana/kanji) |
+| Sentence cloze | A Japanese sentence with the target word blanked out; user picks the correct word from multiple choices |
 | Lesson reader | Inline reading card within an exercise flow |
 
 The system is designed to be extensible — new types can be added without a full rewrite.

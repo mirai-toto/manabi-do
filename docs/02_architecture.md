@@ -153,11 +153,4 @@ ARB files under `lib/l10n/`. Code-generated accessors via `AppLocalizations`. Co
 
 ## External Data Sources
 
-| Source | Content | License |
-|---|---|---|
-| Kanjidic2 | Readings, meanings, JLPT level | CC BY-SA 4.0 |
-| KanjiVG | Stroke order SVG | CC BY-SA 3.0 |
-| JMdict | Vocabulary | CC BY-SA 4.0 |
-| Tatoeba | Example sentences | CC BY 2.0 |
-| Kana | Hardcoded (46+46+variants) | — |
-| Grammar | Created manually | — |
+See `docs/03_database.md` for data sources, coverage, and known gaps.
