@@ -9,7 +9,6 @@ import 'db_connection_native.dart'
 
 import '../../domain/data/kana_data.dart';
 import 'tables/exercises_table.dart';
-import 'tables/grammar_lessons_table.dart';
 import 'tables/kanas_table.dart';
 import 'tables/kanjis_table.dart';
 import 'tables/progress_table.dart';
@@ -25,7 +24,6 @@ part 'app_database.g.dart';
     Kanjis,
     Kanas,
     VocabularyEntries,
-    GrammarLessons,
     Exercises,
     ProgressEntries,
     KanjiTranslations,

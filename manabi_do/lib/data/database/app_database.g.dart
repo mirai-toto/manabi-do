@@ -1296,449 +1296,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   }
 }
 
-class $GrammarLessonsTable extends GrammarLessons
-    with TableInfo<$GrammarLessonsTable, GrammarLesson> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $GrammarLessonsTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<int> id = GeneratedColumn<int>(
-    'id',
-    aliasedName,
-    false,
-    hasAutoIncrement: true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
-  );
-  static const VerificationMeta _localeMeta = const VerificationMeta('locale');
-  @override
-  late final GeneratedColumn<String> locale = GeneratedColumn<String>(
-    'locale',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _chapterMeta = const VerificationMeta(
-    'chapter',
-  );
-  @override
-  late final GeneratedColumn<String> chapter = GeneratedColumn<String>(
-    'chapter',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _titleMeta = const VerificationMeta('title');
-  @override
-  late final GeneratedColumn<String> title = GeneratedColumn<String>(
-    'title',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _contentMdMeta = const VerificationMeta(
-    'contentMd',
-  );
-  @override
-  late final GeneratedColumn<String> contentMd = GeneratedColumn<String>(
-    'content_md',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _orderIndexMeta = const VerificationMeta(
-    'orderIndex',
-  );
-  @override
-  late final GeneratedColumn<int> orderIndex = GeneratedColumn<int>(
-    'order_index',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _metadataMeta = const VerificationMeta(
-    'metadata',
-  );
-  @override
-  late final GeneratedColumn<String> metadata = GeneratedColumn<String>(
-    'metadata',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    defaultValue: const Constant('{}'),
-  );
-  @override
-  List<GeneratedColumn> get $columns => [
-    id,
-    locale,
-    chapter,
-    title,
-    contentMd,
-    orderIndex,
-    metadata,
-  ];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'grammar_lessons';
-  @override
-  VerificationContext validateIntegrity(
-    Insertable<GrammarLesson> instance, {
-    bool isInserting = false,
-  }) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('locale')) {
-      context.handle(
-        _localeMeta,
-        locale.isAcceptableOrUnknown(data['locale']!, _localeMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_localeMeta);
-    }
-    if (data.containsKey('chapter')) {
-      context.handle(
-        _chapterMeta,
-        chapter.isAcceptableOrUnknown(data['chapter']!, _chapterMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_chapterMeta);
-    }
-    if (data.containsKey('title')) {
-      context.handle(
-        _titleMeta,
-        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_titleMeta);
-    }
-    if (data.containsKey('content_md')) {
-      context.handle(
-        _contentMdMeta,
-        contentMd.isAcceptableOrUnknown(data['content_md']!, _contentMdMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_contentMdMeta);
-    }
-    if (data.containsKey('order_index')) {
-      context.handle(
-        _orderIndexMeta,
-        orderIndex.isAcceptableOrUnknown(data['order_index']!, _orderIndexMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_orderIndexMeta);
-    }
-    if (data.containsKey('metadata')) {
-      context.handle(
-        _metadataMeta,
-        metadata.isAcceptableOrUnknown(data['metadata']!, _metadataMeta),
-      );
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  GrammarLesson map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return GrammarLesson(
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}id'],
-      )!,
-      locale: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}locale'],
-      )!,
-      chapter: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}chapter'],
-      )!,
-      title: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}title'],
-      )!,
-      contentMd: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}content_md'],
-      )!,
-      orderIndex: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}order_index'],
-      )!,
-      metadata: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}metadata'],
-      )!,
-    );
-  }
-
-  @override
-  $GrammarLessonsTable createAlias(String alias) {
-    return $GrammarLessonsTable(attachedDatabase, alias);
-  }
-}
-
-class GrammarLesson extends DataClass implements Insertable<GrammarLesson> {
-  final int id;
-  final String locale;
-  final String chapter;
-  final String title;
-  final String contentMd;
-  final int orderIndex;
-  final String metadata;
-  const GrammarLesson({
-    required this.id,
-    required this.locale,
-    required this.chapter,
-    required this.title,
-    required this.contentMd,
-    required this.orderIndex,
-    required this.metadata,
-  });
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['id'] = Variable<int>(id);
-    map['locale'] = Variable<String>(locale);
-    map['chapter'] = Variable<String>(chapter);
-    map['title'] = Variable<String>(title);
-    map['content_md'] = Variable<String>(contentMd);
-    map['order_index'] = Variable<int>(orderIndex);
-    map['metadata'] = Variable<String>(metadata);
-    return map;
-  }
-
-  GrammarLessonsCompanion toCompanion(bool nullToAbsent) {
-    return GrammarLessonsCompanion(
-      id: Value(id),
-      locale: Value(locale),
-      chapter: Value(chapter),
-      title: Value(title),
-      contentMd: Value(contentMd),
-      orderIndex: Value(orderIndex),
-      metadata: Value(metadata),
-    );
-  }
-
-  factory GrammarLesson.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return GrammarLesson(
-      id: serializer.fromJson<int>(json['id']),
-      locale: serializer.fromJson<String>(json['locale']),
-      chapter: serializer.fromJson<String>(json['chapter']),
-      title: serializer.fromJson<String>(json['title']),
-      contentMd: serializer.fromJson<String>(json['contentMd']),
-      orderIndex: serializer.fromJson<int>(json['orderIndex']),
-      metadata: serializer.fromJson<String>(json['metadata']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'locale': serializer.toJson<String>(locale),
-      'chapter': serializer.toJson<String>(chapter),
-      'title': serializer.toJson<String>(title),
-      'contentMd': serializer.toJson<String>(contentMd),
-      'orderIndex': serializer.toJson<int>(orderIndex),
-      'metadata': serializer.toJson<String>(metadata),
-    };
-  }
-
-  GrammarLesson copyWith({
-    int? id,
-    String? locale,
-    String? chapter,
-    String? title,
-    String? contentMd,
-    int? orderIndex,
-    String? metadata,
-  }) => GrammarLesson(
-    id: id ?? this.id,
-    locale: locale ?? this.locale,
-    chapter: chapter ?? this.chapter,
-    title: title ?? this.title,
-    contentMd: contentMd ?? this.contentMd,
-    orderIndex: orderIndex ?? this.orderIndex,
-    metadata: metadata ?? this.metadata,
-  );
-  GrammarLesson copyWithCompanion(GrammarLessonsCompanion data) {
-    return GrammarLesson(
-      id: data.id.present ? data.id.value : this.id,
-      locale: data.locale.present ? data.locale.value : this.locale,
-      chapter: data.chapter.present ? data.chapter.value : this.chapter,
-      title: data.title.present ? data.title.value : this.title,
-      contentMd: data.contentMd.present ? data.contentMd.value : this.contentMd,
-      orderIndex: data.orderIndex.present
-          ? data.orderIndex.value
-          : this.orderIndex,
-      metadata: data.metadata.present ? data.metadata.value : this.metadata,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('GrammarLesson(')
-          ..write('id: $id, ')
-          ..write('locale: $locale, ')
-          ..write('chapter: $chapter, ')
-          ..write('title: $title, ')
-          ..write('contentMd: $contentMd, ')
-          ..write('orderIndex: $orderIndex, ')
-          ..write('metadata: $metadata')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(id, locale, chapter, title, contentMd, orderIndex, metadata);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is GrammarLesson &&
-          other.id == this.id &&
-          other.locale == this.locale &&
-          other.chapter == this.chapter &&
-          other.title == this.title &&
-          other.contentMd == this.contentMd &&
-          other.orderIndex == this.orderIndex &&
-          other.metadata == this.metadata);
-}
-
-class GrammarLessonsCompanion extends UpdateCompanion<GrammarLesson> {
-  final Value<int> id;
-  final Value<String> locale;
-  final Value<String> chapter;
-  final Value<String> title;
-  final Value<String> contentMd;
-  final Value<int> orderIndex;
-  final Value<String> metadata;
-  const GrammarLessonsCompanion({
-    this.id = const Value.absent(),
-    this.locale = const Value.absent(),
-    this.chapter = const Value.absent(),
-    this.title = const Value.absent(),
-    this.contentMd = const Value.absent(),
-    this.orderIndex = const Value.absent(),
-    this.metadata = const Value.absent(),
-  });
-  GrammarLessonsCompanion.insert({
-    this.id = const Value.absent(),
-    required String locale,
-    required String chapter,
-    required String title,
-    required String contentMd,
-    required int orderIndex,
-    this.metadata = const Value.absent(),
-  }) : locale = Value(locale),
-       chapter = Value(chapter),
-       title = Value(title),
-       contentMd = Value(contentMd),
-       orderIndex = Value(orderIndex);
-  static Insertable<GrammarLesson> custom({
-    Expression<int>? id,
-    Expression<String>? locale,
-    Expression<String>? chapter,
-    Expression<String>? title,
-    Expression<String>? contentMd,
-    Expression<int>? orderIndex,
-    Expression<String>? metadata,
-  }) {
-    return RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (locale != null) 'locale': locale,
-      if (chapter != null) 'chapter': chapter,
-      if (title != null) 'title': title,
-      if (contentMd != null) 'content_md': contentMd,
-      if (orderIndex != null) 'order_index': orderIndex,
-      if (metadata != null) 'metadata': metadata,
-    });
-  }
-
-  GrammarLessonsCompanion copyWith({
-    Value<int>? id,
-    Value<String>? locale,
-    Value<String>? chapter,
-    Value<String>? title,
-    Value<String>? contentMd,
-    Value<int>? orderIndex,
-    Value<String>? metadata,
-  }) {
-    return GrammarLessonsCompanion(
-      id: id ?? this.id,
-      locale: locale ?? this.locale,
-      chapter: chapter ?? this.chapter,
-      title: title ?? this.title,
-      contentMd: contentMd ?? this.contentMd,
-      orderIndex: orderIndex ?? this.orderIndex,
-      metadata: metadata ?? this.metadata,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<int>(id.value);
-    }
-    if (locale.present) {
-      map['locale'] = Variable<String>(locale.value);
-    }
-    if (chapter.present) {
-      map['chapter'] = Variable<String>(chapter.value);
-    }
-    if (title.present) {
-      map['title'] = Variable<String>(title.value);
-    }
-    if (contentMd.present) {
-      map['content_md'] = Variable<String>(contentMd.value);
-    }
-    if (orderIndex.present) {
-      map['order_index'] = Variable<int>(orderIndex.value);
-    }
-    if (metadata.present) {
-      map['metadata'] = Variable<String>(metadata.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('GrammarLessonsCompanion(')
-          ..write('id: $id, ')
-          ..write('locale: $locale, ')
-          ..write('chapter: $chapter, ')
-          ..write('title: $title, ')
-          ..write('contentMd: $contentMd, ')
-          ..write('orderIndex: $orderIndex, ')
-          ..write('metadata: $metadata')
-          ..write(')'))
-        .toString();
-  }
-}
-
 class $ExercisesTable extends Exercises
     with TableInfo<$ExercisesTable, Exercise> {
   @override
@@ -1826,20 +1383,6 @@ class $ExercisesTable extends Exercises
     requiredDuringInsert: false,
     defaultValue: const Constant('[]'),
   );
-  static const VerificationMeta _lessonIdMeta = const VerificationMeta(
-    'lessonId',
-  );
-  @override
-  late final GeneratedColumn<int> lessonId = GeneratedColumn<int>(
-    'lesson_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES grammar_lessons (id)',
-    ),
-  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1850,7 +1393,6 @@ class $ExercisesTable extends Exercises
     prompt,
     answer,
     distractors,
-    lessonId,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1924,12 +1466,6 @@ class $ExercisesTable extends Exercises
         ),
       );
     }
-    if (data.containsKey('lesson_id')) {
-      context.handle(
-        _lessonIdMeta,
-        lessonId.isAcceptableOrUnknown(data['lesson_id']!, _lessonIdMeta),
-      );
-    }
     return context;
   }
 
@@ -1971,10 +1507,6 @@ class $ExercisesTable extends Exercises
         DriftSqlType.string,
         data['${effectivePrefix}distractors'],
       )!,
-      lessonId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}lesson_id'],
-      ),
     );
   }
 
@@ -1993,7 +1525,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
   final String prompt;
   final String answer;
   final String distractors;
-  final int? lessonId;
   const Exercise({
     required this.id,
     required this.locale,
@@ -2003,7 +1534,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     required this.prompt,
     required this.answer,
     required this.distractors,
-    this.lessonId,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -2016,9 +1546,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     map['prompt'] = Variable<String>(prompt);
     map['answer'] = Variable<String>(answer);
     map['distractors'] = Variable<String>(distractors);
-    if (!nullToAbsent || lessonId != null) {
-      map['lesson_id'] = Variable<int>(lessonId);
-    }
     return map;
   }
 
@@ -2032,9 +1559,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       prompt: Value(prompt),
       answer: Value(answer),
       distractors: Value(distractors),
-      lessonId: lessonId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(lessonId),
     );
   }
 
@@ -2052,7 +1576,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       prompt: serializer.fromJson<String>(json['prompt']),
       answer: serializer.fromJson<String>(json['answer']),
       distractors: serializer.fromJson<String>(json['distractors']),
-      lessonId: serializer.fromJson<int?>(json['lessonId']),
     );
   }
   @override
@@ -2067,7 +1590,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       'prompt': serializer.toJson<String>(prompt),
       'answer': serializer.toJson<String>(answer),
       'distractors': serializer.toJson<String>(distractors),
-      'lessonId': serializer.toJson<int?>(lessonId),
     };
   }
 
@@ -2080,7 +1602,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     String? prompt,
     String? answer,
     String? distractors,
-    Value<int?> lessonId = const Value.absent(),
   }) => Exercise(
     id: id ?? this.id,
     locale: locale ?? this.locale,
@@ -2090,7 +1611,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     prompt: prompt ?? this.prompt,
     answer: answer ?? this.answer,
     distractors: distractors ?? this.distractors,
-    lessonId: lessonId.present ? lessonId.value : this.lessonId,
   );
   Exercise copyWithCompanion(ExercisesCompanion data) {
     return Exercise(
@@ -2104,7 +1624,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       distractors: data.distractors.present
           ? data.distractors.value
           : this.distractors,
-      lessonId: data.lessonId.present ? data.lessonId.value : this.lessonId,
     );
   }
 
@@ -2118,8 +1637,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           ..write('sourceId: $sourceId, ')
           ..write('prompt: $prompt, ')
           ..write('answer: $answer, ')
-          ..write('distractors: $distractors, ')
-          ..write('lessonId: $lessonId')
+          ..write('distractors: $distractors')
           ..write(')'))
         .toString();
   }
@@ -2134,7 +1652,6 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     prompt,
     answer,
     distractors,
-    lessonId,
   );
   @override
   bool operator ==(Object other) =>
@@ -2147,8 +1664,7 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           other.sourceId == this.sourceId &&
           other.prompt == this.prompt &&
           other.answer == this.answer &&
-          other.distractors == this.distractors &&
-          other.lessonId == this.lessonId);
+          other.distractors == this.distractors);
 }
 
 class ExercisesCompanion extends UpdateCompanion<Exercise> {
@@ -2160,7 +1676,6 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
   final Value<String> prompt;
   final Value<String> answer;
   final Value<String> distractors;
-  final Value<int?> lessonId;
   const ExercisesCompanion({
     this.id = const Value.absent(),
     this.locale = const Value.absent(),
@@ -2170,7 +1685,6 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     this.prompt = const Value.absent(),
     this.answer = const Value.absent(),
     this.distractors = const Value.absent(),
-    this.lessonId = const Value.absent(),
   });
   ExercisesCompanion.insert({
     this.id = const Value.absent(),
@@ -2181,7 +1695,6 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     required String prompt,
     required String answer,
     this.distractors = const Value.absent(),
-    this.lessonId = const Value.absent(),
   }) : locale = Value(locale),
        type = Value(type),
        source = Value(source),
@@ -2197,7 +1710,6 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     Expression<String>? prompt,
     Expression<String>? answer,
     Expression<String>? distractors,
-    Expression<int>? lessonId,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -2208,7 +1720,6 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       if (prompt != null) 'prompt': prompt,
       if (answer != null) 'answer': answer,
       if (distractors != null) 'distractors': distractors,
-      if (lessonId != null) 'lesson_id': lessonId,
     });
   }
 
@@ -2221,7 +1732,6 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     Value<String>? prompt,
     Value<String>? answer,
     Value<String>? distractors,
-    Value<int?>? lessonId,
   }) {
     return ExercisesCompanion(
       id: id ?? this.id,
@@ -2232,7 +1742,6 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       prompt: prompt ?? this.prompt,
       answer: answer ?? this.answer,
       distractors: distractors ?? this.distractors,
-      lessonId: lessonId ?? this.lessonId,
     );
   }
 
@@ -2263,9 +1772,6 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     if (distractors.present) {
       map['distractors'] = Variable<String>(distractors.value);
     }
-    if (lessonId.present) {
-      map['lesson_id'] = Variable<int>(lessonId.value);
-    }
     return map;
   }
 
@@ -2279,8 +1785,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
           ..write('sourceId: $sourceId, ')
           ..write('prompt: $prompt, ')
           ..write('answer: $answer, ')
-          ..write('distractors: $distractors, ')
-          ..write('lessonId: $lessonId')
+          ..write('distractors: $distractors')
           ..write(')'))
         .toString();
   }
@@ -4309,7 +3814,6 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $KanasTable kanas = $KanasTable(this);
   late final $VocabularyEntriesTable vocabularyEntries =
       $VocabularyEntriesTable(this);
-  late final $GrammarLessonsTable grammarLessons = $GrammarLessonsTable(this);
   late final $ExercisesTable exercises = $ExercisesTable(this);
   late final $ProgressEntriesTable progressEntries = $ProgressEntriesTable(
     this,
@@ -4330,7 +3834,6 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     kanjis,
     kanas,
     vocabularyEntries,
-    grammarLessons,
     exercises,
     progressEntries,
     kanjiTranslations,
@@ -4368,10 +3871,7 @@ final class $$KanjisTableReferences
   _vocabularyEntriesRefsTable(_$AppDatabase db) =>
       MultiTypedResultKey.fromTable(
         db.vocabularyEntries,
-        aliasName: $_aliasNameGenerator(
-          db.kanjis.id,
-          db.vocabularyEntries.kanjiId,
-        ),
+        aliasName: 'kanjis__id__vocabulary_entries__kanji_id',
       );
 
   $$VocabularyEntriesTableProcessedTableManager get vocabularyEntriesRefs {
@@ -4392,10 +3892,7 @@ final class $$KanjisTableReferences
   _kanjiTranslationsRefsTable(_$AppDatabase db) =>
       MultiTypedResultKey.fromTable(
         db.kanjiTranslations,
-        aliasName: $_aliasNameGenerator(
-          db.kanjis.id,
-          db.kanjiTranslations.kanjiId,
-        ),
+        aliasName: 'kanjis__id__kanji_translations__kanji_id',
       );
 
   $$KanjiTranslationsTableProcessedTableManager get kanjiTranslationsRefs {
@@ -5029,9 +4526,8 @@ final class $$VocabularyEntriesTableReferences
     super.$_typedResult,
   );
 
-  static $KanjisTable _kanjiIdTable(_$AppDatabase db) => db.kanjis.createAlias(
-    $_aliasNameGenerator(db.vocabularyEntries.kanjiId, db.kanjis.id),
-  );
+  static $KanjisTable _kanjiIdTable(_$AppDatabase db) =>
+      db.kanjis.createAlias('vocabulary_entries__kanji_id__kanjis__id');
 
   $$KanjisTableProcessedTableManager? get kanjiId {
     final $_column = $_itemColumn<int>('kanji_id');
@@ -5051,10 +4547,7 @@ final class $$VocabularyEntriesTableReferences
   _vocabTranslationsRefsTable(_$AppDatabase db) =>
       MultiTypedResultKey.fromTable(
         db.vocabTranslations,
-        aliasName: $_aliasNameGenerator(
-          db.vocabularyEntries.id,
-          db.vocabTranslations.vocabId,
-        ),
+        aliasName: 'vocabulary_entries__id__vocab_translations__vocab_id',
       );
 
   $$VocabTranslationsTableProcessedTableManager get vocabTranslationsRefs {
@@ -5074,10 +4567,7 @@ final class $$VocabularyEntriesTableReferences
   static MultiTypedResultKey<$SentencesTable, List<Sentence>>
   _sentencesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
     db.sentences,
-    aliasName: $_aliasNameGenerator(
-      db.vocabularyEntries.id,
-      db.sentences.vocabId,
-    ),
+    aliasName: 'vocabulary_entries__id__sentences__vocab_id',
   );
 
   $$SentencesTableProcessedTableManager get sentencesRefs {
@@ -5568,350 +5058,6 @@ typedef $$VocabularyEntriesTableProcessedTableManager =
         bool sentencesRefs,
       })
     >;
-typedef $$GrammarLessonsTableCreateCompanionBuilder =
-    GrammarLessonsCompanion Function({
-      Value<int> id,
-      required String locale,
-      required String chapter,
-      required String title,
-      required String contentMd,
-      required int orderIndex,
-      Value<String> metadata,
-    });
-typedef $$GrammarLessonsTableUpdateCompanionBuilder =
-    GrammarLessonsCompanion Function({
-      Value<int> id,
-      Value<String> locale,
-      Value<String> chapter,
-      Value<String> title,
-      Value<String> contentMd,
-      Value<int> orderIndex,
-      Value<String> metadata,
-    });
-
-final class $$GrammarLessonsTableReferences
-    extends BaseReferences<_$AppDatabase, $GrammarLessonsTable, GrammarLesson> {
-  $$GrammarLessonsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static MultiTypedResultKey<$ExercisesTable, List<Exercise>>
-  _exercisesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.exercises,
-    aliasName: $_aliasNameGenerator(
-      db.grammarLessons.id,
-      db.exercises.lessonId,
-    ),
-  );
-
-  $$ExercisesTableProcessedTableManager get exercisesRefs {
-    final manager = $$ExercisesTableTableManager(
-      $_db,
-      $_db.exercises,
-    ).filter((f) => f.lessonId.id.sqlEquals($_itemColumn<int>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_exercisesRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
-
-class $$GrammarLessonsTableFilterComposer
-    extends Composer<_$AppDatabase, $GrammarLessonsTable> {
-  $$GrammarLessonsTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get locale => $composableBuilder(
-    column: $table.locale,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get chapter => $composableBuilder(
-    column: $table.chapter,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get title => $composableBuilder(
-    column: $table.title,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get contentMd => $composableBuilder(
-    column: $table.contentMd,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get orderIndex => $composableBuilder(
-    column: $table.orderIndex,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get metadata => $composableBuilder(
-    column: $table.metadata,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  Expression<bool> exercisesRefs(
-    Expression<bool> Function($$ExercisesTableFilterComposer f) f,
-  ) {
-    final $$ExercisesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.exercises,
-      getReferencedColumn: (t) => t.lessonId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ExercisesTableFilterComposer(
-            $db: $db,
-            $table: $db.exercises,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-}
-
-class $$GrammarLessonsTableOrderingComposer
-    extends Composer<_$AppDatabase, $GrammarLessonsTable> {
-  $$GrammarLessonsTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get locale => $composableBuilder(
-    column: $table.locale,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get chapter => $composableBuilder(
-    column: $table.chapter,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get title => $composableBuilder(
-    column: $table.title,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get contentMd => $composableBuilder(
-    column: $table.contentMd,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get orderIndex => $composableBuilder(
-    column: $table.orderIndex,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get metadata => $composableBuilder(
-    column: $table.metadata,
-    builder: (column) => ColumnOrderings(column),
-  );
-}
-
-class $$GrammarLessonsTableAnnotationComposer
-    extends Composer<_$AppDatabase, $GrammarLessonsTable> {
-  $$GrammarLessonsTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  GeneratedColumn<int> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
-
-  GeneratedColumn<String> get locale =>
-      $composableBuilder(column: $table.locale, builder: (column) => column);
-
-  GeneratedColumn<String> get chapter =>
-      $composableBuilder(column: $table.chapter, builder: (column) => column);
-
-  GeneratedColumn<String> get title =>
-      $composableBuilder(column: $table.title, builder: (column) => column);
-
-  GeneratedColumn<String> get contentMd =>
-      $composableBuilder(column: $table.contentMd, builder: (column) => column);
-
-  GeneratedColumn<int> get orderIndex => $composableBuilder(
-    column: $table.orderIndex,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get metadata =>
-      $composableBuilder(column: $table.metadata, builder: (column) => column);
-
-  Expression<T> exercisesRefs<T extends Object>(
-    Expression<T> Function($$ExercisesTableAnnotationComposer a) f,
-  ) {
-    final $$ExercisesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.exercises,
-      getReferencedColumn: (t) => t.lessonId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ExercisesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.exercises,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-}
-
-class $$GrammarLessonsTableTableManager
-    extends
-        RootTableManager<
-          _$AppDatabase,
-          $GrammarLessonsTable,
-          GrammarLesson,
-          $$GrammarLessonsTableFilterComposer,
-          $$GrammarLessonsTableOrderingComposer,
-          $$GrammarLessonsTableAnnotationComposer,
-          $$GrammarLessonsTableCreateCompanionBuilder,
-          $$GrammarLessonsTableUpdateCompanionBuilder,
-          (GrammarLesson, $$GrammarLessonsTableReferences),
-          GrammarLesson,
-          PrefetchHooks Function({bool exercisesRefs})
-        > {
-  $$GrammarLessonsTableTableManager(
-    _$AppDatabase db,
-    $GrammarLessonsTable table,
-  ) : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$GrammarLessonsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$GrammarLessonsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$GrammarLessonsTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<String> locale = const Value.absent(),
-                Value<String> chapter = const Value.absent(),
-                Value<String> title = const Value.absent(),
-                Value<String> contentMd = const Value.absent(),
-                Value<int> orderIndex = const Value.absent(),
-                Value<String> metadata = const Value.absent(),
-              }) => GrammarLessonsCompanion(
-                id: id,
-                locale: locale,
-                chapter: chapter,
-                title: title,
-                contentMd: contentMd,
-                orderIndex: orderIndex,
-                metadata: metadata,
-              ),
-          createCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                required String locale,
-                required String chapter,
-                required String title,
-                required String contentMd,
-                required int orderIndex,
-                Value<String> metadata = const Value.absent(),
-              }) => GrammarLessonsCompanion.insert(
-                id: id,
-                locale: locale,
-                chapter: chapter,
-                title: title,
-                contentMd: contentMd,
-                orderIndex: orderIndex,
-                metadata: metadata,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$GrammarLessonsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({exercisesRefs = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [if (exercisesRefs) db.exercises],
-              addJoins: null,
-              getPrefetchedDataCallback: (items) async {
-                return [
-                  if (exercisesRefs)
-                    await $_getPrefetchedData<
-                      GrammarLesson,
-                      $GrammarLessonsTable,
-                      Exercise
-                    >(
-                      currentTable: table,
-                      referencedTable: $$GrammarLessonsTableReferences
-                          ._exercisesRefsTable(db),
-                      managerFromTypedResult: (p0) =>
-                          $$GrammarLessonsTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).exercisesRefs,
-                      referencedItemsForCurrentItem: (item, referencedItems) =>
-                          referencedItems.where((e) => e.lessonId == item.id),
-                      typedResults: items,
-                    ),
-                ];
-              },
-            );
-          },
-        ),
-      );
-}
-
-typedef $$GrammarLessonsTableProcessedTableManager =
-    ProcessedTableManager<
-      _$AppDatabase,
-      $GrammarLessonsTable,
-      GrammarLesson,
-      $$GrammarLessonsTableFilterComposer,
-      $$GrammarLessonsTableOrderingComposer,
-      $$GrammarLessonsTableAnnotationComposer,
-      $$GrammarLessonsTableCreateCompanionBuilder,
-      $$GrammarLessonsTableUpdateCompanionBuilder,
-      (GrammarLesson, $$GrammarLessonsTableReferences),
-      GrammarLesson,
-      PrefetchHooks Function({bool exercisesRefs})
-    >;
 typedef $$ExercisesTableCreateCompanionBuilder =
     ExercisesCompanion Function({
       Value<int> id,
@@ -5922,7 +5068,6 @@ typedef $$ExercisesTableCreateCompanionBuilder =
       required String prompt,
       required String answer,
       Value<String> distractors,
-      Value<int?> lessonId,
     });
 typedef $$ExercisesTableUpdateCompanionBuilder =
     ExercisesCompanion Function({
@@ -5934,32 +5079,7 @@ typedef $$ExercisesTableUpdateCompanionBuilder =
       Value<String> prompt,
       Value<String> answer,
       Value<String> distractors,
-      Value<int?> lessonId,
     });
-
-final class $$ExercisesTableReferences
-    extends BaseReferences<_$AppDatabase, $ExercisesTable, Exercise> {
-  $$ExercisesTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $GrammarLessonsTable _lessonIdTable(_$AppDatabase db) =>
-      db.grammarLessons.createAlias(
-        $_aliasNameGenerator(db.exercises.lessonId, db.grammarLessons.id),
-      );
-
-  $$GrammarLessonsTableProcessedTableManager? get lessonId {
-    final $_column = $_itemColumn<int>('lesson_id');
-    if ($_column == null) return null;
-    final manager = $$GrammarLessonsTableTableManager(
-      $_db,
-      $_db.grammarLessons,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_lessonIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
 
 class $$ExercisesTableFilterComposer
     extends Composer<_$AppDatabase, $ExercisesTable> {
@@ -6009,29 +5129,6 @@ class $$ExercisesTableFilterComposer
     column: $table.distractors,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$GrammarLessonsTableFilterComposer get lessonId {
-    final $$GrammarLessonsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.lessonId,
-      referencedTable: $db.grammarLessons,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GrammarLessonsTableFilterComposer(
-            $db: $db,
-            $table: $db.grammarLessons,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$ExercisesTableOrderingComposer
@@ -6082,29 +5179,6 @@ class $$ExercisesTableOrderingComposer
     column: $table.distractors,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$GrammarLessonsTableOrderingComposer get lessonId {
-    final $$GrammarLessonsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.lessonId,
-      referencedTable: $db.grammarLessons,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GrammarLessonsTableOrderingComposer(
-            $db: $db,
-            $table: $db.grammarLessons,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$ExercisesTableAnnotationComposer
@@ -6141,29 +5215,6 @@ class $$ExercisesTableAnnotationComposer
     column: $table.distractors,
     builder: (column) => column,
   );
-
-  $$GrammarLessonsTableAnnotationComposer get lessonId {
-    final $$GrammarLessonsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.lessonId,
-      referencedTable: $db.grammarLessons,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GrammarLessonsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.grammarLessons,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$ExercisesTableTableManager
@@ -6177,9 +5228,9 @@ class $$ExercisesTableTableManager
           $$ExercisesTableAnnotationComposer,
           $$ExercisesTableCreateCompanionBuilder,
           $$ExercisesTableUpdateCompanionBuilder,
-          (Exercise, $$ExercisesTableReferences),
+          (Exercise, BaseReferences<_$AppDatabase, $ExercisesTable, Exercise>),
           Exercise,
-          PrefetchHooks Function({bool lessonId})
+          PrefetchHooks Function()
         > {
   $$ExercisesTableTableManager(_$AppDatabase db, $ExercisesTable table)
     : super(
@@ -6202,7 +5253,6 @@ class $$ExercisesTableTableManager
                 Value<String> prompt = const Value.absent(),
                 Value<String> answer = const Value.absent(),
                 Value<String> distractors = const Value.absent(),
-                Value<int?> lessonId = const Value.absent(),
               }) => ExercisesCompanion(
                 id: id,
                 locale: locale,
@@ -6212,7 +5262,6 @@ class $$ExercisesTableTableManager
                 prompt: prompt,
                 answer: answer,
                 distractors: distractors,
-                lessonId: lessonId,
               ),
           createCompanionCallback:
               ({
@@ -6224,7 +5273,6 @@ class $$ExercisesTableTableManager
                 required String prompt,
                 required String answer,
                 Value<String> distractors = const Value.absent(),
-                Value<int?> lessonId = const Value.absent(),
               }) => ExercisesCompanion.insert(
                 id: id,
                 locale: locale,
@@ -6234,57 +5282,11 @@ class $$ExercisesTableTableManager
                 prompt: prompt,
                 answer: answer,
                 distractors: distractors,
-                lessonId: lessonId,
               ),
           withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$ExercisesTableReferences(db, table, e),
-                ),
-              )
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
               .toList(),
-          prefetchHooksCallback: ({lessonId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (lessonId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.lessonId,
-                                referencedTable: $$ExercisesTableReferences
-                                    ._lessonIdTable(db),
-                                referencedColumn: $$ExercisesTableReferences
-                                    ._lessonIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -6299,9 +5301,9 @@ typedef $$ExercisesTableProcessedTableManager =
       $$ExercisesTableAnnotationComposer,
       $$ExercisesTableCreateCompanionBuilder,
       $$ExercisesTableUpdateCompanionBuilder,
-      (Exercise, $$ExercisesTableReferences),
+      (Exercise, BaseReferences<_$AppDatabase, $ExercisesTable, Exercise>),
       Exercise,
-      PrefetchHooks Function({bool lessonId})
+      PrefetchHooks Function()
     >;
 typedef $$ProgressEntriesTableCreateCompanionBuilder =
     ProgressEntriesCompanion Function({
@@ -6527,9 +5529,8 @@ final class $$KanjiTranslationsTableReferences
     super.$_typedResult,
   );
 
-  static $KanjisTable _kanjiIdTable(_$AppDatabase db) => db.kanjis.createAlias(
-    $_aliasNameGenerator(db.kanjiTranslations.kanjiId, db.kanjis.id),
-  );
+  static $KanjisTable _kanjiIdTable(_$AppDatabase db) =>
+      db.kanjis.createAlias('kanji_translations__kanji_id__kanjis__id');
 
   $$KanjisTableProcessedTableManager get kanjiId {
     final $_column = $_itemColumn<int>('kanji_id')!;
@@ -6823,13 +5824,9 @@ final class $$VocabTranslationsTableReferences
     super.$_typedResult,
   );
 
-  static $VocabularyEntriesTable _vocabIdTable(_$AppDatabase db) =>
-      db.vocabularyEntries.createAlias(
-        $_aliasNameGenerator(
-          db.vocabTranslations.vocabId,
-          db.vocabularyEntries.id,
-        ),
-      );
+  static $VocabularyEntriesTable _vocabIdTable(_$AppDatabase db) => db
+      .vocabularyEntries
+      .createAlias('vocab_translations__vocab_id__vocabulary_entries__id');
 
   $$VocabularyEntriesTableProcessedTableManager get vocabId {
     final $_column = $_itemColumn<int>('vocab_id')!;
@@ -7317,10 +6314,9 @@ final class $$SentencesTableReferences
     extends BaseReferences<_$AppDatabase, $SentencesTable, Sentence> {
   $$SentencesTableReferences(super.$_db, super.$_table, super.$_typedResult);
 
-  static $VocabularyEntriesTable _vocabIdTable(_$AppDatabase db) =>
-      db.vocabularyEntries.createAlias(
-        $_aliasNameGenerator(db.sentences.vocabId, db.vocabularyEntries.id),
-      );
+  static $VocabularyEntriesTable _vocabIdTable(_$AppDatabase db) => db
+      .vocabularyEntries
+      .createAlias('sentences__vocab_id__vocabulary_entries__id');
 
   $$VocabularyEntriesTableProcessedTableManager get vocabId {
     final $_column = $_itemColumn<int>('vocab_id')!;
@@ -7343,10 +6339,7 @@ final class $$SentencesTableReferences
   _sentenceTranslationsRefsTable(_$AppDatabase db) =>
       MultiTypedResultKey.fromTable(
         db.sentenceTranslations,
-        aliasName: $_aliasNameGenerator(
-          db.sentences.id,
-          db.sentenceTranslations.sentenceId,
-        ),
+        aliasName: 'sentences__id__sentence_translations__sentence_id',
       );
 
   $$SentenceTranslationsTableProcessedTableManager
@@ -7782,13 +6775,8 @@ final class $$SentenceTranslationsTableReferences
     super.$_typedResult,
   );
 
-  static $SentencesTable _sentenceIdTable(_$AppDatabase db) =>
-      db.sentences.createAlias(
-        $_aliasNameGenerator(
-          db.sentenceTranslations.sentenceId,
-          db.sentences.id,
-        ),
-      );
+  static $SentencesTable _sentenceIdTable(_$AppDatabase db) => db.sentences
+      .createAlias('sentence_translations__sentence_id__sentences__id');
 
   $$SentencesTableProcessedTableManager get sentenceId {
     final $_column = $_itemColumn<int>('sentence_id')!;
@@ -8069,8 +7057,6 @@ class $AppDatabaseManager {
       $$KanasTableTableManager(_db, _db.kanas);
   $$VocabularyEntriesTableTableManager get vocabularyEntries =>
       $$VocabularyEntriesTableTableManager(_db, _db.vocabularyEntries);
-  $$GrammarLessonsTableTableManager get grammarLessons =>
-      $$GrammarLessonsTableTableManager(_db, _db.grammarLessons);
   $$ExercisesTableTableManager get exercises =>
       $$ExercisesTableTableManager(_db, _db.exercises);
   $$ProgressEntriesTableTableManager get progressEntries =>
