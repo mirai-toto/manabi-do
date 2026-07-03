@@ -63,6 +63,11 @@ final directories = <_widgetbook.WidgetbookNode>[
             builder: _manabi_do_widgetbook_characters_use_cases
                 .buildKanjiDrawingCanvasWithGhost,
           ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'With stroke results',
+            builder: _manabi_do_widgetbook_characters_use_cases
+                .buildKanjiDrawingCanvasWithResults,
+          ),
         ],
       ),
       _widgetbook.WidgetbookComponent(
