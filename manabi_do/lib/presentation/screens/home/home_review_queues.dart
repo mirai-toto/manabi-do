@@ -43,10 +43,20 @@ Future<List<PracticeItem>> loadKanaQueue(AppDatabase db, WidgetRef ref) async {
 Future<List<PracticeItem>> loadKanjiQueue(AppDatabase db, WidgetRef ref) async {
   final settings = await ref.read(srsSettingsProvider.future);
   final mcqSettings = ref.read(mcqSettingsProvider);
+  final locale = ref.read(localeProvider).languageCode;
   final pairs = await db.getAllDueKanjiSrsSession(
     newCardLimit: settings.newCharactersPerDay,
   );
   final allKanji = await db.getAllKanji();
+  final kanjiTranslations = locale != 'en'
+      ? await db.getKanjiTranslations(
+          allKanji.map((k) => k.id).toList(),
+          locale,
+        )
+      : <int, String>{};
+  String meaningOf(Kanji k) => kanjiTranslations[k.id]?.isNotEmpty == true
+      ? kanjiTranslations[k.id]!
+      : k.meaning;
   final rng = Random();
 
   return pairs.map((pair) {
@@ -63,7 +73,7 @@ Future<List<PracticeItem>> loadKanjiQueue(AppDatabase db, WidgetRef ref) async {
         card: card,
         buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
           japanese: k.character,
-          answer: k.meaning,
+          answer: meaningOf(k),
           card: card,
           index: index,
           total: total,
@@ -80,6 +90,7 @@ Future<List<PracticeItem>> loadKanjiQueue(AppDatabase db, WidgetRef ref) async {
         card: card,
         buildBody: (index, total, onAnswer) => KanjiDrawingBody(
           kanji: k,
+          meaning: meaningOf(k),
           card: card,
           index: index,
           total: total,
@@ -99,7 +110,7 @@ Future<List<PracticeItem>> loadKanjiQueue(AppDatabase db, WidgetRef ref) async {
       options.length,
       (i) => McqOption(
         letter: String.fromCharCode(65 + i),
-        text: isKanjiToMeaning ? options[i].meaning : options[i].character,
+        text: isKanjiToMeaning ? meaningOf(options[i]) : options[i].character,
         useJpFont: !isKanjiToMeaning,
       ),
     );
@@ -112,7 +123,7 @@ Future<List<PracticeItem>> loadKanjiQueue(AppDatabase db, WidgetRef ref) async {
         builder: (ctx) => PracticeMcqBody(
           question: isKanjiToMeaning
               ? ctx.l10n.mcqSelectMeaning
-              : ctx.l10n.mcqSelectKanji(k.meaning),
+              : ctx.l10n.mcqSelectKanji(meaningOf(k)),
           japanesePrompt: isKanjiToMeaning ? k.character : null,
           options: mcqOptions,
           correctIndex: correctIndex,

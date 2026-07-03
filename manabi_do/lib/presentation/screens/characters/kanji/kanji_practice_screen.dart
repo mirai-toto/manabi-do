@@ -4,6 +4,7 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
+import '../../../../core/providers/locale_provider.dart';
 import '../../../../core/providers/srs_settings_provider.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_tokens.dart';
@@ -88,6 +89,7 @@ class _KanjiQueueBuilder {
   }) async {
     final color = levelColor(level);
     final rng = Random();
+    final locale = ref.read(localeProvider).languageCode;
 
     final mcqSettings = ref.read(mcqSettingsProvider);
     final flashcardSettings = ref.read(flashcardSettingsProvider);
@@ -127,6 +129,14 @@ class _KanjiQueueBuilder {
         ? allPool.where((k) => allowedIds!.contains(k.id)).toList()
         : allPool;
 
+    final allIds = [...pairs.map((p) => p.$1.id), ...pool.map((k) => k.id)];
+    final kanjiTranslations = locale != 'en'
+        ? await db.getKanjiTranslations(allIds.toSet().toList(), locale)
+        : <int, String>{};
+    String meaningOf(Kanji k) => kanjiTranslations[k.id]?.isNotEmpty == true
+        ? kanjiTranslations[k.id]!
+        : k.meaning;
+
     final availableTypes = switch (exerciseFilter) {
       ExerciseFilter.flashcardOnly => [_QuizType.flashcard],
       ExerciseFilter.mcqOnly => [
@@ -148,7 +158,7 @@ class _KanjiQueueBuilder {
           buildBody: (index, total, onAnswer) => Builder(
             builder: (ctx) => PracticeFlashcardBody(
               japanese: kanji.character,
-              answer: kanji.meaning,
+              answer: meaningOf(kanji),
               isFreeMode: freeMode,
               card: card,
               index: index,
@@ -173,6 +183,7 @@ class _KanjiQueueBuilder {
           buildBody: (index, total, onAnswer) => Builder(
             builder: (ctx) => KanjiDrawingBody(
               kanji: kanji,
+              meaning: meaningOf(kanji),
               card: card,
               isFreeMode: freeMode,
               index: index,
@@ -200,7 +211,7 @@ class _KanjiQueueBuilder {
         options.length,
         (i) => McqOption(
           letter: String.fromCharCode(65 + i),
-          text: isKanjiToMeaning ? options[i].meaning : options[i].character,
+          text: isKanjiToMeaning ? meaningOf(options[i]) : options[i].character,
           useJpFont: !isKanjiToMeaning,
         ),
       );
@@ -212,7 +223,7 @@ class _KanjiQueueBuilder {
         buildBody: (index, total, onAnswer) => Builder(
           builder: (ctx) => _KanjiMcqBody(
             isKanjiToMeaning: isKanjiToMeaning,
-            kanjiMeaning: kanji.meaning,
+            kanjiMeaning: meaningOf(kanji),
             kanjiCharacter: kanji.character,
             options: mcqOptions,
             correctIndex: correctIndex,
@@ -299,6 +310,8 @@ class KanjiDrawingBody extends ConsumerWidget {
   final void Function(Rating) onAnswer;
   final VoidCallback? onDetailTap;
 
+  final String? meaning;
+
   const KanjiDrawingBody({
     super.key,
     required this.kanji,
@@ -307,6 +320,7 @@ class KanjiDrawingBody extends ConsumerWidget {
     required this.total,
     required this.color,
     required this.onAnswer,
+    this.meaning,
     this.isFreeMode = false,
     this.onDetailTap,
   });
@@ -360,7 +374,7 @@ class KanjiDrawingBody extends ConsumerWidget {
               data: (refStrokes) => DrawingExercise(
                 referenceStrokes: refStrokes,
                 kanjiId: kanji.id,
-                label: kanji.meaning,
+                label: meaning ?? kanji.meaning,
                 onReading: kanji.onReading,
                 kunReading: kanji.kunReading,
                 color: color,
