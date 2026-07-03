@@ -58,9 +58,9 @@ Drill-down state (selected level, selected group) is lifted into Riverpod provid
 
 ## Data Model
 
-Two bundled SQLite databases are copied from assets on first run and opened via Drift.
+Two SQLite files are bundled as assets and copied to the app's documents directory on first run. `manabi.db` is an empty placeholder; all content lives in `manabi_do_content.db`.
 
-### `manabi.db` — Characters & Vocabulary
+### `manabi_do_content.db` — All content
 
 **`kanjis`**
 - id, character, meaning (English fallback), on_reading, kun_reading, jlpt_level
@@ -81,12 +81,11 @@ Two bundled SQLite databases are copied from assets on first run and opened via 
 
 **`sentences`**
 - id, japanese, target_word, vocab_id FK, furigana_before, furigana_after, furigana
+- No `jlpt_level` column — level is inherited via `vocab_id → vocabulary_entries.jlpt_level`
 
 **`sentence_translations`**
 - sentence_id FK, locale, translation
 - Primary key: (sentence_id, locale); English is the fallback locale
-
-### `manabi_do_content.db` — Grammar & Exercises
 
 **`grammar_lessons`**
 - id, locale, chapter, title, content_md, order_index, metadata (JSON)
@@ -158,6 +157,7 @@ ARB files under `lib/l10n/`. Code-generated accessors via `AppLocalizations`. Co
 |---|---|---|
 | Kanjidic2 | Readings, meanings, JLPT level | CC BY-SA 4.0 |
 | KanjiVG | Stroke order SVG | CC BY-SA 3.0 |
-| JMdict | Vocabulary, sentences | CC BY-SA 4.0 |
+| JMdict | Vocabulary | CC BY-SA 4.0 |
+| Tatoeba | Example sentences | CC BY 2.0 |
 | Kana | Hardcoded (46+46+variants) | — |
 | Grammar | Created manually | — |
