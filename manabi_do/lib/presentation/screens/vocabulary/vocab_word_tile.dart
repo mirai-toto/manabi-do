@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/providers/locale_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/pos_label.dart';
-import '../../providers/database_provider.dart';
+import '../../providers/vocab_provider.dart';
 import '../../widgets/widgets.dart';
-
-final _localizedVocabMeaningProvider = FutureProvider.family<String, int>((
-  ref,
-  vocabId,
-) async {
-  final locale = ref.watch(localeProvider).languageCode;
-  if (locale == 'en') return '';
-  final db = ref.watch(databaseProvider);
-  final tr = await db.getVocabTranslations([vocabId], locale);
-  return tr[vocabId] ?? '';
-});
 
 class VocabWordTile extends ConsumerStatefulWidget {
   final VocabularyEntry entry;
@@ -36,9 +24,7 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final localized = ref.watch(
-      _localizedVocabMeaningProvider(widget.entry.id),
-    );
+    final localized = ref.watch(localizedVocabMeaningProvider(widget.entry.id));
     final meaning = localized.asData?.value.isNotEmpty == true
         ? localized.asData!.value
         : widget.entry.meaning;

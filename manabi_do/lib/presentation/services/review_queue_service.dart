@@ -3,18 +3,48 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/providers/locale_provider.dart';
-import '../../../core/providers/srs_settings_provider.dart';
-import '../../../core/theme/jlpt_level.dart';
-import '../../../data/database/app_database.dart';
-import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
-import '../../providers/mcq_settings_provider.dart';
-import '../../providers/sentence_settings_provider.dart';
-import '../../widgets/exercise/mcq_card.dart';
-import '../characters/kanji/kanji_practice_screen.dart';
-import '../practice/practice_session_screen.dart';
-import '../practice/sentence_cloze_body.dart';
+import '../../core/providers/locale_provider.dart';
+import '../../core/providers/srs_settings_provider.dart';
+import '../../core/theme/jlpt_level.dart';
+import '../../data/database/app_database.dart';
+import '../../l10n/l10n.dart';
+import '../providers/database_provider.dart';
+import '../providers/mcq_settings_provider.dart';
+import '../providers/sentence_settings_provider.dart';
+import '../screens/characters/kanji/kanji_practice_screen.dart';
+import '../screens/practice/practice_session_screen.dart';
+import '../screens/practice/sentence_cloze_body.dart';
+import '../widgets/exercise/mcq_card.dart';
+
+Future<List<PracticeItem>> loadKanaPracticeQueue(
+  String type,
+  WidgetRef ref,
+) async {
+  final db = ref.read(databaseProvider);
+  final settings = await ref.read(srsSettingsProvider.future);
+  final color = levelColor('kana');
+  final queue = await db.getKanaSrsSession(
+    type,
+    newCardLimit: settings.newCharactersPerDay,
+  );
+  return queue.map((pair) {
+    final (kana, card) = pair;
+    return PracticeItem(
+      id: kana.id,
+      srsType: type,
+      card: card,
+      buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+        japanese: kana.character,
+        answer: kana.romaji,
+        card: card,
+        index: index,
+        total: total,
+        color: color,
+        onAnswer: onAnswer,
+      ),
+    );
+  }).toList();
+}
 
 Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
   final db = ref.read(databaseProvider);
