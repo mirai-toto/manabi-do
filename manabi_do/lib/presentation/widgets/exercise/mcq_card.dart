@@ -7,6 +7,7 @@ import '../../../l10n/l10n.dart';
 import '../common/furigana_text.dart';
 import '../common/pill_badge.dart';
 import '../common/speak_button.dart';
+import '../../providers/mcq_settings_provider.dart';
 
 enum McqOptionState { idle, selected, correct, wrong }
 
@@ -144,6 +145,9 @@ class _ExPrompt extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
+    final showFurigana = ref.watch(
+      mcqSettingsProvider.select((s) => s.showPromptFurigana),
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,7 +165,7 @@ class _ExPrompt extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              japaneseReading != null
+              showFurigana && japaneseReading != null
                   ? FuriganaText(
                       word: japanesePrompt!,
                       reading: japaneseReading!,

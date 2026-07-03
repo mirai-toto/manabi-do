@@ -298,6 +298,8 @@
   "sentencePractice": "Sätze",
 
   "sentenceSettingsLabel": "Satzübung",
+  "showMcqFuriganaLabel": "Furigana in der Aufgabe",
+  "showMcqFuriganaSubtitle": "Lesung über Kanji im japanischen Wort anzeigen",
   "showSentenceFuriganaLabel": "Furigana im Satz",
   "showSentenceFuriganaSubtitle": "Lesung über Kanji im Satz anzeigen",
   "showChoiceFuriganaLabel": "Furigana in Antworten",

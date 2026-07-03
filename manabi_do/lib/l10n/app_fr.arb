@@ -298,6 +298,8 @@
   "sentencePractice": "Phrases",
 
   "sentenceSettingsLabel": "Exercice de phrases",
+  "showMcqFuriganaLabel": "Furigana dans l'énoncé",
+  "showMcqFuriganaSubtitle": "Afficher la lecture au-dessus des kanji du mot",
   "showSentenceFuriganaLabel": "Furigana dans la phrase",
   "showSentenceFuriganaSubtitle": "Afficher la lecture au-dessus des kanji",
   "showChoiceFuriganaLabel": "Furigana dans les choix",

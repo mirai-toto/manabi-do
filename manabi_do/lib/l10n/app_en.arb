@@ -307,6 +307,8 @@
   "sentencePractice": "Sentences",
 
   "sentenceSettingsLabel": "Sentence exercise",
+  "showMcqFuriganaLabel": "Furigana in prompt",
+  "showMcqFuriganaSubtitle": "Show reading above kanji in the Japanese word",
   "showSentenceFuriganaLabel": "Furigana in question",
   "showSentenceFuriganaSubtitle": "Show reading above kanji in the sentence",
   "showChoiceFuriganaLabel": "Furigana in choices",

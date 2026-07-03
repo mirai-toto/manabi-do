@@ -173,6 +173,13 @@ class PracticeSettingsSheet extends ConsumerWidget {
                   onChanged: (v) => updateMcq(mcq.copyWith(autoAdvance: v)),
                 ),
               ],
+              _SwitchRow(
+                label: l.showMcqFuriganaLabel,
+                subtitle: l.showMcqFuriganaSubtitle,
+                value: mcq.showPromptFurigana,
+                onChanged: (v) =>
+                    updateMcq(mcq.copyWith(showPromptFurigana: v)),
+              ),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
