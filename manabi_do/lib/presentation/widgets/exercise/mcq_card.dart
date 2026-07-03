@@ -4,7 +4,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/furigana_text.dart';
+import '../common/japanese_text.dart';
 import '../common/pill_badge.dart';
 import '../common/speak_button.dart';
 import '../../providers/mcq_settings_provider.dart';
@@ -165,21 +165,15 @@ class _ExPrompt extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              showFurigana && japaneseReading != null
-                  ? FuriganaText(
-                      word: japanesePrompt!,
-                      reading: japaneseReading!,
-                      wordStyle: AppTextStyles.jpLarge.copyWith(
-                        color: t.onSurface,
-                      ),
-                      rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                        color: t.onSurfaceVariant,
-                      ),
-                    )
-                  : Text(
-                      japanesePrompt!,
-                      style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
-                    ),
+              JapaneseText(
+                word: japanesePrompt!,
+                reading: japaneseReading ?? japanesePrompt!,
+                style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
+                rubyStyle: AppTextStyles.jpFurigana.copyWith(
+                  color: t.onSurfaceVariant,
+                ),
+                showFurigana: showFurigana,
+              ),
               const SizedBox(width: AppDimens.spaceSm),
               SpeakButton(text: japanesePrompt!, color: t.onSurfaceVariant),
             ],

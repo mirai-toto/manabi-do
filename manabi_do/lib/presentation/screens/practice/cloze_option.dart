@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../widgets/common/furigana_text.dart';
+import '../../widgets/common/japanese_text.dart';
 import '../../widgets/exercise/mcq_card.dart';
 
 class ClozeOption extends StatelessWidget {
@@ -77,14 +77,13 @@ class ClozeOption extends StatelessWidget {
                   LetterCircle(letter: option.letter, color: contentColor),
                   const SizedBox(width: AppDimens.spaceSm + 4),
                   Expanded(
-                    child: showFurigana && option.reading != null
-                        ? FuriganaText(
-                            word: option.text,
-                            reading: option.reading!,
-                            wordStyle: wordStyle,
-                            rubyStyle: rubyStyle,
-                          )
-                        : Text(option.text, style: wordStyle),
+                    child: JapaneseText(
+                      word: option.text,
+                      reading: option.reading ?? option.text,
+                      style: wordStyle,
+                      rubyStyle: rubyStyle,
+                      showFurigana: showFurigana,
+                    ),
                   ),
                 ],
               ),

@@ -3,6 +3,10 @@ import 'package:fsrs/fsrs.dart';
 import '../../data/database/app_database.dart';
 import 'database_provider.dart';
 
+final kanjiSearchProvider = FutureProvider.family<List<Kanji>, String>(
+  (ref, query) => ref.read(databaseProvider).searchKanji(query),
+);
+
 class KanjiLevelData {
   final String level;
   final List<Kanji> kanji;

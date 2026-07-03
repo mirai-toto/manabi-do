@@ -10,7 +10,7 @@ import '../presentation/widgets/common/app_text_field.dart';
 import '../presentation/widgets/common/card_container.dart';
 import '../presentation/widgets/common/chapter_list_view.dart';
 import '../presentation/widgets/common/difficulty_dots.dart';
-import '../presentation/widgets/common/furigana_text.dart';
+import '../presentation/widgets/common/japanese_text.dart';
 import '../presentation/widgets/common/jlpt_level_card.dart';
 import '../presentation/widgets/common/pill_badge.dart';
 import '../presentation/widgets/common/practice_button.dart';
@@ -154,36 +154,36 @@ Widget buildDifficultyDotsFull(BuildContext context) {
   );
 }
 
-// ── FuriganaText ──────────────────────────────────────────────────────────────
+// ── JapaneseText ──────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'All kanji', type: FuriganaText, path: 'Common')
-Widget buildFuriganaTextAllKanji(BuildContext context) {
-  return FuriganaText(
+@widgetbook.UseCase(name: 'All kanji', type: JapaneseText, path: 'Common')
+Widget buildJapaneseTextAllKanji(BuildContext context) {
+  return JapaneseText(
     word: '日本語',
     reading: 'にほんご',
-    wordStyle: const TextStyle(fontSize: 28),
+    style: const TextStyle(fontSize: 28),
   );
 }
 
 @widgetbook.UseCase(
   name: 'Mixed kanji/kana',
-  type: FuriganaText,
+  type: JapaneseText,
   path: 'Common',
 )
-Widget buildFuriganaTextMixed(BuildContext context) {
-  return FuriganaText(
+Widget buildJapaneseTextMixed(BuildContext context) {
+  return JapaneseText(
     word: '食べる',
     reading: 'たべる',
-    wordStyle: const TextStyle(fontSize: 28),
+    style: const TextStyle(fontSize: 28),
   );
 }
 
-@widgetbook.UseCase(name: 'Kana only', type: FuriganaText, path: 'Common')
-Widget buildFuriganaTextKana(BuildContext context) {
-  return FuriganaText(
+@widgetbook.UseCase(name: 'Kana only', type: JapaneseText, path: 'Common')
+Widget buildJapaneseTextKana(BuildContext context) {
+  return JapaneseText(
     word: 'たべる',
     reading: 'たべる',
-    wordStyle: const TextStyle(fontSize: 28),
+    style: const TextStyle(fontSize: 28),
   );
 }
 

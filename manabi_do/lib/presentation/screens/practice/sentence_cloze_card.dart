@@ -6,7 +6,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
-import '../../widgets/common/furigana_text.dart';
+import '../../widgets/common/japanese_text.dart';
 import '../../widgets/common/pill_badge.dart';
 import '../../widgets/exercise/mcq_card.dart';
 import 'cloze_option.dart';
@@ -70,12 +70,18 @@ class SentenceClozeCard extends StatelessWidget {
         sentence.japanese,
         sentence.targetWord,
       );
-      beforeSpans = showSentenceFurigana
-          ? furiganaSpans(beforeAnnot, sentenceStyle, rubyStyle)
-          : plainSpans(_stripAnnotation(beforeAnnot), sentenceStyle, rubyStyle);
-      afterSpans = showSentenceFurigana
-          ? furiganaSpans(afterAnnot, sentenceStyle, rubyStyle)
-          : plainSpans(_stripAnnotation(afterAnnot), sentenceStyle, rubyStyle);
+      beforeSpans = furiganaSpans(
+        beforeAnnot,
+        sentenceStyle,
+        rubyStyle,
+        showFurigana: showSentenceFurigana,
+      );
+      afterSpans = furiganaSpans(
+        afterAnnot,
+        sentenceStyle,
+        rubyStyle,
+        showFurigana: showSentenceFurigana,
+      );
       targetSpans = answered
           ? furiganaSpans(targetAnnot, targetStyle, targetRubyStyle)
           : [_blankSpan(color)];
@@ -85,17 +91,22 @@ class SentenceClozeCard extends StatelessWidget {
           .split(sentence.targetWord)
           .skip(1)
           .join(sentence.targetWord);
-      if (showSentenceFurigana) {
-        beforeSpans = sentence.furiganaBefore != null
-            ? furiganaSpans(sentence.furiganaBefore!, sentenceStyle, rubyStyle)
-            : plainSpans(rawBefore, sentenceStyle, rubyStyle);
-        afterSpans = sentence.furiganaAfter != null
-            ? furiganaSpans(sentence.furiganaAfter!, sentenceStyle, rubyStyle)
-            : plainSpans(rawAfter, sentenceStyle, rubyStyle);
-      } else {
-        beforeSpans = plainSpans(rawBefore, sentenceStyle, rubyStyle);
-        afterSpans = plainSpans(rawAfter, sentenceStyle, rubyStyle);
-      }
+      beforeSpans = (showSentenceFurigana && sentence.furiganaBefore != null)
+          ? furiganaSpans(sentence.furiganaBefore!, sentenceStyle, rubyStyle)
+          : furiganaSpans(
+              rawBefore,
+              sentenceStyle,
+              rubyStyle,
+              showFurigana: false,
+            );
+      afterSpans = (showSentenceFurigana && sentence.furiganaAfter != null)
+          ? furiganaSpans(sentence.furiganaAfter!, sentenceStyle, rubyStyle)
+          : furiganaSpans(
+              rawAfter,
+              sentenceStyle,
+              rubyStyle,
+              showFurigana: false,
+            );
       if (answered) {
         final segs = parseFurigana(
           sentence.targetWord,
@@ -338,133 +349,6 @@ class _CopyOption extends StatelessWidget {
   }
 }
 
-// ── Furigana span helpers ─────────────────────────────────────────────────────
-
-// Every segment — annotated kanji or plain kana/punctuation — becomes a
-// WidgetSpan with the same Column(ruby, text) structure so all characters
-// share identical height and sit on the same visual baseline in RichText.
-// Kana/punctuation segments are split per character so line-wrapping can
-// still occur at character boundaries inside a RichText.
-List<InlineSpan> furiganaSpans(
-  String annotated,
-  TextStyle textStyle,
-  TextStyle rubyStyle,
-) {
-  final segments = parseFuriganaAnnotation(annotated);
-  final spans = <InlineSpan>[];
-  for (final seg in segments) {
-    if (seg.ruby != null) {
-      spans.add(rubySpan(seg.text, seg.ruby!, textStyle, rubyStyle));
-    } else {
-      for (int i = 0; i < seg.text.length; i++) {
-        spans.add(rubySpan(seg.text[i], '', textStyle, rubyStyle));
-      }
-    }
-  }
-  return spans;
-}
-
-List<InlineSpan> plainSpans(
-  String text,
-  TextStyle textStyle,
-  TextStyle rubyStyle,
-) {
-  return List.generate(
-    text.length,
-    (i) => rubySpan(text[i], '', textStyle, rubyStyle),
-  );
-}
-
-/// Splits a full-sentence `{kanji|reading}` annotation into (before, target,
-/// after) by tracking each segment's position in [japanese] and cutting at
-/// [targetWord]'s character range. Segments that straddle a boundary (a rare
-/// pykakasi compound spanning the cut point) are placed in [target].
-(String, String, String) splitSentenceAnnotation(
-  String furigana,
-  String japanese,
-  String targetWord,
-) {
-  final wordStart = japanese.indexOf(targetWord);
-  if (wordStart == -1) return (furigana, '', '');
-  final wordEnd = wordStart + targetWord.length;
-
-  final before = StringBuffer();
-  final target = StringBuffer();
-  final after = StringBuffer();
-
-  int pos = 0;
-  int i = 0;
-  final regex = RegExp(r'\{([^|]+)\|([^}]*)\}');
-
-  while (i < furigana.length) {
-    final match = regex.matchAsPrefix(furigana, i);
-    if (match != null) {
-      final kanji = match.group(1)!;
-      final segEnd = pos + kanji.length;
-      final form = match.group(0)!;
-      if (segEnd <= wordStart) {
-        before.write(form);
-      } else if (pos >= wordEnd) {
-        after.write(form);
-      } else if (pos >= wordStart && segEnd <= wordEnd) {
-        target.write(form);
-      } else {
-        // Segment straddles the word boundary. Distribute the reading
-        // proportionally across individual kanji so each character keeps
-        // its own annotation rather than losing furigana entirely.
-        final reading = match.group(2)!;
-        int readPos = 0;
-        for (int k = 0; k < kanji.length; k++) {
-          final charPos = pos + k;
-          final ch = kanji[k];
-          final String annotatedChar;
-          if (reading.isEmpty) {
-            annotatedChar = ch;
-          } else {
-            final remaining = kanji.length - k;
-            final charsLeft = reading.length - readPos;
-            final share = (charsLeft / remaining).ceil();
-            final charReading = reading.substring(
-              readPos,
-              (readPos + share).clamp(0, reading.length),
-            );
-            readPos += charReading.length;
-            annotatedChar = charReading.isNotEmpty ? '{$ch|$charReading}' : ch;
-          }
-          if (charPos < wordStart) {
-            before.write(annotatedChar);
-          } else if (charPos < wordEnd) {
-            target.write(annotatedChar);
-          } else {
-            after.write(annotatedChar);
-          }
-        }
-      }
-      pos = segEnd;
-      i = match.end;
-    } else {
-      final char = furigana[i];
-      final segEnd = pos + 1;
-      if (segEnd <= wordStart) {
-        before.write(char);
-      } else if (pos >= wordEnd) {
-        after.write(char);
-      } else {
-        target.write(char);
-      }
-      pos = segEnd;
-      i++;
-    }
-  }
-
-  return (before.toString(), target.toString(), after.toString());
-}
-
-String _stripAnnotation(String annotated) => annotated.replaceAllMapped(
-  RegExp(r'\{([^|]+)\|[^}]*\}'),
-  (m) => m.group(1)!,
-);
-
 WidgetSpan _blankSpan(Color color) => WidgetSpan(
   alignment: PlaceholderAlignment.bottom,
   child: Container(
@@ -473,21 +357,5 @@ WidgetSpan _blankSpan(Color color) => WidgetSpan(
     decoration: BoxDecoration(
       border: Border(bottom: BorderSide(color: color, width: 2.5)),
     ),
-  ),
-);
-
-WidgetSpan rubySpan(
-  String text,
-  String ruby,
-  TextStyle textStyle,
-  TextStyle rubyStyle,
-) => WidgetSpan(
-  alignment: PlaceholderAlignment.bottom,
-  child: Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Text(ruby, style: rubyStyle),
-      Text(text, style: textStyle),
-    ],
   ),
 );

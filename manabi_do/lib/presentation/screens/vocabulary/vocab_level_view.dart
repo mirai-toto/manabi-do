@@ -8,17 +8,13 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../core/srs/srs_level.dart';
 import '../../../data/database/app_database.dart';
-import '../../../core/providers/srs_settings_provider.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
 import '../../providers/vocab_list_provider.dart';
 import '../../widgets/common/progress_row.dart';
 import '../../widgets/common/practice_button.dart';
 import '../practice/practice_selection_screen.dart';
 import 'vocab_practice_screen.dart';
 import 'vocab_word_tile.dart';
-
-const _kVocabGroupSize = 30;
 
 class VocabLevelView extends ConsumerWidget {
   final String level;
@@ -46,25 +42,23 @@ class VocabLevelView extends ConsumerWidget {
         groupIndex: groupIndex,
         color: color,
         entries: value
-            .skip(groupIndex * _kVocabGroupSize)
-            .take(_kVocabGroupSize)
+            .skip(groupIndex * kVocabGroupSize)
+            .take(kVocabGroupSize)
             .toList(),
         srsCards: srsCards,
         onBack: onBack,
-        ref: ref,
       ),
     };
   }
 }
 
-class _LevelContent extends StatelessWidget {
+class _LevelContent extends ConsumerWidget {
   final String level;
   final int groupIndex;
   final Color color;
   final List<VocabularyEntry> entries;
   final Map<int, Card> srsCards;
   final VoidCallback onBack;
-  final WidgetRef ref;
 
   const _LevelContent({
     required this.level,
@@ -73,24 +67,27 @@ class _LevelContent extends StatelessWidget {
     required this.entries,
     required this.srsCards,
     required this.onBack,
-    required this.ref,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
+    final l = context.l10n;
+
     final learnedCount = entries.where((e) {
-      final level = srsLevel(srsCards[e.id]);
-      return level != SrsLevel.newCard && level != SrsLevel.learning;
+      final lvl = srsLevel(srsCards[e.id]);
+      return lvl != SrsLevel.newCard && lvl != SrsLevel.learning;
     }).length;
 
     final groupIds = entries.map((e) => e.id).toSet();
-    final start = groupIndex * _kVocabGroupSize;
+    final start = groupIndex * kVocabGroupSize;
+    final countsFuture = ref.read(
+      vocabGroupSrsCountProvider((level: level, groupIndex: groupIndex)).future,
+    );
 
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
       children: [
-        // Header
         Padding(
           padding: const EdgeInsets.fromLTRB(
             AppDimens.spaceSm,
@@ -110,7 +107,7 @@ class _LevelContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '$level · ${context.l10n.groupN(groupIndex + 1)}',
+                      '$level · ${l.groupN(groupIndex + 1)}',
                       style: AppTextStyles.labelSmall.copyWith(
                         color: color,
                         fontWeight: FontWeight.w700,
@@ -131,7 +128,6 @@ class _LevelContent extends StatelessWidget {
         PracticeButton(
           color: color,
           onTap: () {
-            final l = context.l10n;
             final groupTitle = l.groupN(groupIndex + 1);
             Navigator.of(context).push(
               MaterialPageRoute<void>(
@@ -142,24 +138,7 @@ class _LevelContent extends StatelessWidget {
                     PracticeMode(
                       icon: Icons.calendar_today_rounded,
                       title: l.dailyTraining,
-                      counts: () async {
-                        final settings = await ref.read(
-                          srsSettingsProvider.future,
-                        );
-                        final full = await ref
-                            .read(databaseProvider)
-                            .getVocabSrsSession(
-                              level,
-                              newCardLimit: settings.newVocabPerDay,
-                            );
-                        final session = full
-                            .where((p) => groupIds.contains(p.$1.id))
-                            .toList();
-                        return (
-                          session.where((p) => p.$2 != null).length,
-                          session.where((p) => p.$2 == null).length,
-                        );
-                      },
+                      counts: () => countsFuture,
                       onTap: () async => Navigator.of(ctx).push(
                         MaterialPageRoute<void>(
                           builder: (_) => VocabPracticeScreen(
@@ -214,7 +193,6 @@ class _LevelContent extends StatelessWidget {
             );
           },
         ),
-        // Word list
         for (int i = 0; i < entries.length; i++) ...[
           if (i > 0)
             Divider(

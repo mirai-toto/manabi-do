@@ -1,7 +1,5 @@
 import 'package:drift/drift.dart';
 
-import 'grammar_lessons_table.dart';
-
 class Exercises extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get locale => text()();
@@ -12,6 +10,4 @@ class Exercises extends Table {
   TextColumn get answer => text()();
   TextColumn get distractors =>
       text().withDefault(const Constant('[]'))(); // JSON array
-  IntColumn get lessonId =>
-      integer().nullable().references(GrammarLessons, #id)();
 }
