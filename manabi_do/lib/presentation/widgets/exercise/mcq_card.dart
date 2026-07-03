@@ -4,8 +4,10 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/furigana_text.dart';
 import '../common/pill_badge.dart';
 import '../common/speak_button.dart';
+import '../../providers/mcq_settings_provider.dart';
 
 enum McqOptionState { idle, selected, correct, wrong }
 
@@ -36,6 +38,7 @@ class McqOption {
 class McqCard extends StatelessWidget {
   final String question;
   final String? japanesePrompt;
+  final String? japaneseReading;
   final List<McqOption> options;
   final ValueChanged<int>? onOptionTap;
   final bool compactGrid;
@@ -44,6 +47,7 @@ class McqCard extends StatelessWidget {
     super.key,
     required this.question,
     this.japanesePrompt,
+    this.japaneseReading,
     required this.options,
     this.onOptionTap,
     this.compactGrid = false,
@@ -71,7 +75,11 @@ class McqCard extends StatelessWidget {
         children: [
           _ExTypeBadge(),
           const SizedBox(height: AppDimens.spaceMd),
-          _ExPrompt(question: question, japanesePrompt: japanesePrompt),
+          _ExPrompt(
+            question: question,
+            japanesePrompt: japanesePrompt,
+            japaneseReading: japaneseReading,
+          ),
           const SizedBox(height: AppDimens.spaceLg),
           if (compactGrid)
             GridView.count(
@@ -126,12 +134,20 @@ class _ExTypeBadge extends StatelessWidget {
 class _ExPrompt extends ConsumerWidget {
   final String question;
   final String? japanesePrompt;
+  final String? japaneseReading;
 
-  const _ExPrompt({required this.question, this.japanesePrompt});
+  const _ExPrompt({
+    required this.question,
+    this.japanesePrompt,
+    this.japaneseReading,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
+    final showFurigana = ref.watch(
+      mcqSettingsProvider.select((s) => s.showPromptFurigana),
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,10 +165,21 @@ class _ExPrompt extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                japanesePrompt!,
-                style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
-              ),
+              showFurigana && japaneseReading != null
+                  ? FuriganaText(
+                      word: japanesePrompt!,
+                      reading: japaneseReading!,
+                      wordStyle: AppTextStyles.jpLarge.copyWith(
+                        color: t.onSurface,
+                      ),
+                      rubyStyle: AppTextStyles.jpFurigana.copyWith(
+                        color: t.onSurfaceVariant,
+                      ),
+                    )
+                  : Text(
+                      japanesePrompt!,
+                      style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
+                    ),
               const SizedBox(width: AppDimens.spaceSm),
               SpeakButton(text: japanesePrompt!, color: t.onSurfaceVariant),
             ],

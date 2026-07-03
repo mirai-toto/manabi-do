@@ -228,23 +228,36 @@ class AppDatabase extends _$AppDatabase {
     return result;
   }
 
+  // sentence_translations uses ISO 639-2 (3-letter) codes; map from 639-1.
+  static const _iso1To2 = {
+    'en': 'eng',
+    'fr': 'fra',
+    'de': 'deu',
+    'es': 'spa',
+    'pt': 'por',
+    'it': 'ita',
+    'ru': 'rus',
+  };
+
   Future<Map<int, String>> getSentenceTranslations(
     List<int> sentenceIds,
-    String locale,
-  ) async {
+    String locale, {
+    bool nativeOnly = false,
+  }) async {
     if (sentenceIds.isEmpty) return {};
-    // Try requested locale first, fall back to English
+    final locale3 = _iso1To2[locale] ?? locale;
     final rows =
         await (select(sentenceTranslations)..where(
               (t) =>
                   t.sentenceId.isIn(sentenceIds) &
-                  (t.locale.equals(locale) | t.locale.equals('eng')),
+                  (nativeOnly
+                      ? t.locale.equals(locale3)
+                      : (t.locale.equals(locale3) | t.locale.equals('eng'))),
             ))
             .get();
     final result = <int, String>{};
     for (final row in rows) {
-      // Prefer the requested locale over the English fallback
-      if (!result.containsKey(row.sentenceId) || row.locale == locale) {
+      if (!result.containsKey(row.sentenceId) || row.locale == locale3) {
         result[row.sentenceId] = row.translation;
       }
     }

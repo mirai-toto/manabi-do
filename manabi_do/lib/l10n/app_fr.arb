@@ -238,7 +238,7 @@
     "placeholders": { "total": { "type": "int" } }
   },
   "vocabSubtitleShort": "Mots à découvrir",
-  "reviewsDue": "{count} révisions en attente",
+  "reviewsDue": "{count} révisions",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }
   },
@@ -257,6 +257,8 @@
   "japaneseBasics": "Bases du japonais",
   "japaneseBasicsSubtitle": "Fondamentaux de la langue",
   "grammarSubtitle": "Bases & JLPT N5–N1",
+  "grammarLockedTitle": "La grammaire arrive bientôt",
+  "grammarLockedSubtitle": "Nous travaillons activement sur la section grammaire. Restez connecté !",
   "searchKanji": "Rechercher un kanji",
   "searchKanjiHint": "Kanji, lecture ou signification…",
   "searchKanjiPrompt": "Rechercher par kanji, lecture ou signification",
@@ -296,6 +298,8 @@
   "sentencePractice": "Phrases",
 
   "sentenceSettingsLabel": "Exercice de phrases",
+  "showMcqFuriganaLabel": "Furigana dans l'énoncé",
+  "showMcqFuriganaSubtitle": "Afficher la lecture au-dessus des kanji du mot",
   "showSentenceFuriganaLabel": "Furigana dans la phrase",
   "showSentenceFuriganaSubtitle": "Afficher la lecture au-dessus des kanji",
   "showChoiceFuriganaLabel": "Furigana dans les choix",
@@ -303,5 +307,7 @@
   "translationModeLabel": "Traduction",
   "translationModeAlways": "Toujours",
   "translationModeOnDemand": "Bouton",
-  "translationModeNever": "Jamais"
+  "translationModeNever": "Jamais",
+  "nativeTranslationOnlyLabel": "Ma langue uniquement",
+  "nativeTranslationOnlySubtitle": "Ignorer les phrases sans traduction dans votre langue"
 }

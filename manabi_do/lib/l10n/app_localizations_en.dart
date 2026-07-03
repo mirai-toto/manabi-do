@@ -502,7 +502,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String reviewsDue(int count) {
-    return '$count reviews waiting';
+    return '$count reviews';
   }
 
   @override
@@ -542,6 +542,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get grammarSubtitle => 'Basics & JLPT N5–N1';
+
+  @override
+  String get grammarLockedTitle => 'Grammar is coming soon';
+
+  @override
+  String get grammarLockedSubtitle =>
+      'We\'re actively working on the grammar section. Stay tuned!';
 
   @override
   String get searchKanji => 'Search kanji';
@@ -641,6 +648,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sentenceSettingsLabel => 'Sentence exercise';
 
   @override
+  String get showMcqFuriganaLabel => 'Furigana in prompt';
+
+  @override
+  String get showMcqFuriganaSubtitle =>
+      'Show reading above kanji in the Japanese word';
+
+  @override
   String get showSentenceFuriganaLabel => 'Furigana in question';
 
   @override
@@ -665,4 +679,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get translationModeNever => 'Never';
+
+  @override
+  String get nativeTranslationOnlyLabel => 'My language only';
+
+  @override
+  String get nativeTranslationOnlySubtitle =>
+      'Skip sentences with no translation in your language';
 }

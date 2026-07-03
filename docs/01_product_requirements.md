@@ -97,9 +97,29 @@ Exercises are attached to grammar lessons and are generic across content types.
 | MCQ | One question, N choices, one correct answer |
 | Flashcard | Card shown, user self-assesses (known / not known) |
 | Drawing | User traces stroke order on a canvas (kana/kanji) |
+| Sentence cloze | A Japanese sentence with the target word blanked out; user picks the correct word from multiple choices |
 | Lesson reader | Inline reading card within an exercise flow |
 
 The system is designed to be extensible — new types can be added without a full rewrite.
+
+### Difficulty layers
+
+Difficulty is controlled at two independent levels:
+
+**1. Content difficulty — JLPT level (N5 → N1)**
+Content (kanji, vocab, sentences) is tagged N5 (beginner) through N1 (advanced). Users browse and practice within a chosen level. In the home SRS session, new kanji cards are always introduced from the lowest level that still has unseen items, ensuring a natural progression.
+
+**2. Exercise type difficulty — cognitive demand**
+Within a session, exercise types vary in how much active recall they require:
+
+| Exercise | Demand | Notes |
+|----------|--------|-------|
+| Flashcard | Low | Passive recognition; user self-assesses |
+| MCQ | Medium | Must select correct answer from options |
+| Sentence cloze | Medium–High | Contextual; requires understanding word usage in a sentence |
+| Drawing | High | Active production; must reproduce correct stroke order |
+
+For kanji and vocab free-practice sessions, users can filter to a single exercise type (flashcard-only, MCQ-only) or use mixed mode. Home SRS sessions use a mixed mode weighted by what each item needs.
 
 ---
 

@@ -9,7 +9,7 @@ import '../../providers/home_provider.dart';
 import '../../widgets/widgets.dart';
 import '../practice/practice_session_screen.dart';
 import 'home_domain_cards.dart';
-import 'home_review_queues.dart';
+import '../../services/review_queue_service.dart';
 
 const _kTabCharacters = 1;
 const _kTabVocabulary = 2;

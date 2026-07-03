@@ -17,6 +17,7 @@ class DomainCard extends StatelessWidget {
   final int newCount;
   final VoidCallback? onTap;
   final VoidCallback? onPractice;
+  final bool stackActivity;
 
   const DomainCard({
     super.key,
@@ -30,6 +31,7 @@ class DomainCard extends StatelessWidget {
     this.newCount = 0,
     this.onTap,
     this.onPractice,
+    this.stackActivity = false,
   });
 
   @override
@@ -41,11 +43,11 @@ class DomainCard extends StatelessWidget {
     final hasActivity = hasDue || hasNew;
     final hasPractice = onPractice != null;
 
-    final activityParts = [
-      if (hasDue) l.reviewsDue(dueCount),
-      if (hasNew) l.nNew(newCount),
-    ];
-    final statusText = hasActivity ? activityParts.join(' · ') : statLabel;
+    final dueText = hasDue ? l.reviewsDue(dueCount) : null;
+    final newText = hasNew ? l.nNew(newCount) : null;
+    final statusText = hasActivity
+        ? [if (hasDue) dueText!, if (hasNew) newText!].join(' · ')
+        : statLabel;
 
     return Semantics(
       label: hasActivity ? '$title. $statusText' : '$title. $statLabel',
@@ -57,6 +59,7 @@ class DomainCard extends StatelessWidget {
         ),
         onTap: hasPractice ? onPractice : onTap,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               height: 110,
@@ -105,45 +108,14 @@ class DomainCard extends StatelessWidget {
                 vertical: AppDimens.spaceMd,
               ),
               child: hasPractice
-                  ? Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            statusText,
-                            style: AppTextStyles.bodySmall.copyWith(
-                              color: hasActivity
-                                  ? progressColor
-                                  : t.onSurfaceVariant,
-                              fontWeight: hasActivity
-                                  ? FontWeight.w600
-                                  : FontWeight.normal,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          hasDue && hasNew
-                              ? l.reviewAndStudy
-                              : hasDue
-                              ? l.reviewNow
-                              : hasNew
-                              ? l.studyNow
-                              : l.practice,
-                          style: AppTextStyles.labelSmall.copyWith(
-                            color: hasActivity
-                                ? progressColor
-                                : t.onSurfaceVariant,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        if (hasActivity) ...[
-                          const SizedBox(width: AppDimens.spaceXxs),
-                          Icon(
-                            Icons.arrow_forward_rounded,
-                            color: progressColor,
-                            size: 14,
-                          ),
-                        ],
-                      ],
+                  ? _buildStatus(
+                      t,
+                      stackActivity && hasDue && hasNew,
+                      hasActivity,
+                      statusText,
+                      dueText,
+                      newText,
+                      progressColor,
                     )
                   : Row(
                       children: [
@@ -169,5 +141,30 @@ class DomainCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildStatus(
+    AppTokens t,
+    bool stacked,
+    bool hasActivity,
+    String statusText,
+    String? dueText,
+    String? newText,
+    Color progressColor,
+  ) {
+    final style = AppTextStyles.bodySmall.copyWith(
+      color: hasActivity ? progressColor : t.onSurfaceVariant,
+      fontWeight: hasActivity ? FontWeight.w600 : FontWeight.normal,
+    );
+    if (stacked) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(dueText!, style: style),
+          Text(newText!, style: style),
+        ],
+      );
+    }
+    return Text(statusText, style: style);
   }
 }

@@ -29,6 +29,18 @@ final localizedKanjiVocabProvider =
       return entries.map((e) => (e, tr[e.id] ?? e.meaning)).toList();
     });
 
+/// Returns the localized meaning for a single vocab entry. Falls back to English.
+final localizedVocabMeaningProvider = FutureProvider.family<String, int>((
+  ref,
+  vocabId,
+) async {
+  final locale = ref.watch(localeProvider).languageCode;
+  if (locale == 'en') return '';
+  final db = ref.watch(databaseProvider);
+  final tr = await db.getVocabTranslations([vocabId], locale);
+  return tr[vocabId] ?? '';
+});
+
 /// Returns the localized meaning for a single kanji. Falls back to English.
 final localizedKanjiMeaningProvider = FutureProvider.family<String, int>((
   ref,

@@ -173,6 +173,13 @@ class PracticeSettingsSheet extends ConsumerWidget {
                   onChanged: (v) => updateMcq(mcq.copyWith(autoAdvance: v)),
                 ),
               ],
+              _SwitchRow(
+                label: l.showMcqFuriganaLabel,
+                subtitle: l.showMcqFuriganaSubtitle,
+                value: mcq.showPromptFurigana,
+                onChanged: (v) =>
+                    updateMcq(mcq.copyWith(showPromptFurigana: v)),
+              ),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
@@ -218,6 +225,13 @@ class PracticeSettingsSheet extends ConsumerWidget {
                 value: sentence.showChoiceFurigana,
                 onChanged: (v) =>
                     updateSentence(sentence.copyWith(showChoiceFurigana: v)),
+              ),
+              _SwitchRow(
+                label: l.nativeTranslationOnlyLabel,
+                subtitle: l.nativeTranslationOnlySubtitle,
+                value: sentence.nativeTranslationOnly,
+                onChanged: (v) =>
+                    updateSentence(sentence.copyWith(nativeTranslationOnly: v)),
               ),
               const SizedBox(height: AppDimens.spaceXs),
               _SectionLabel(l.translationModeLabel),

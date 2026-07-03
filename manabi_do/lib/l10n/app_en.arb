@@ -247,7 +247,7 @@
     "placeholders": { "total": { "type": "int" } }
   },
   "vocabSubtitleShort": "Words to discover",
-  "reviewsDue": "{count} reviews waiting",
+  "reviewsDue": "{count} reviews",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }
   },
@@ -266,6 +266,8 @@
   "japaneseBasics": "Japanese Basics",
   "japaneseBasicsSubtitle": "Language fundamentals",
   "grammarSubtitle": "Basics & JLPT N5–N1",
+  "grammarLockedTitle": "Grammar is coming soon",
+  "grammarLockedSubtitle": "We're actively working on the grammar section. Stay tuned!",
   "searchKanji": "Search kanji",
   "searchKanjiHint": "Kanji, reading, or meaning…",
   "searchKanjiPrompt": "Search by kanji, reading, or meaning",
@@ -305,6 +307,8 @@
   "sentencePractice": "Sentences",
 
   "sentenceSettingsLabel": "Sentence exercise",
+  "showMcqFuriganaLabel": "Furigana in prompt",
+  "showMcqFuriganaSubtitle": "Show reading above kanji in the Japanese word",
   "showSentenceFuriganaLabel": "Furigana in question",
   "showSentenceFuriganaSubtitle": "Show reading above kanji in the sentence",
   "showChoiceFuriganaLabel": "Furigana in choices",
@@ -312,5 +316,7 @@
   "translationModeLabel": "Translation",
   "translationModeAlways": "Always",
   "translationModeOnDemand": "Button",
-  "translationModeNever": "Never"
+  "translationModeNever": "Never",
+  "nativeTranslationOnlyLabel": "My language only",
+  "nativeTranslationOnlySubtitle": "Skip sentences with no translation in your language"
 }

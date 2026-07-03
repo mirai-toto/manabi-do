@@ -238,7 +238,7 @@
     "placeholders": { "total": { "type": "int" } }
   },
   "vocabSubtitleShort": "Wörter entdecken",
-  "reviewsDue": "{count} Wiederholungen ausstehend",
+  "reviewsDue": "{count} Wiederholungen",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }
   },
@@ -257,6 +257,8 @@
   "japaneseBasics": "Japanische Grundlagen",
   "japaneseBasicsSubtitle": "Sprachliche Grundlagen",
   "grammarSubtitle": "Grundlagen & JLPT N5–N1",
+  "grammarLockedTitle": "Grammatik kommt bald",
+  "grammarLockedSubtitle": "Wir arbeiten aktiv an der Grammatik-Sektion. Bleib dran!",
   "searchKanji": "Kanji suchen",
   "searchKanjiHint": "Kanji, Lesung oder Bedeutung…",
   "searchKanjiPrompt": "Nach Kanji, Lesung oder Bedeutung suchen",
@@ -296,6 +298,8 @@
   "sentencePractice": "Sätze",
 
   "sentenceSettingsLabel": "Satzübung",
+  "showMcqFuriganaLabel": "Furigana in der Aufgabe",
+  "showMcqFuriganaSubtitle": "Lesung über Kanji im japanischen Wort anzeigen",
   "showSentenceFuriganaLabel": "Furigana im Satz",
   "showSentenceFuriganaSubtitle": "Lesung über Kanji im Satz anzeigen",
   "showChoiceFuriganaLabel": "Furigana in Antworten",
@@ -303,5 +307,7 @@
   "translationModeLabel": "Übersetzung",
   "translationModeAlways": "Immer",
   "translationModeOnDemand": "Schaltfläche",
-  "translationModeNever": "Nie"
+  "translationModeNever": "Nie",
+  "nativeTranslationOnlyLabel": "Nur meine Sprache",
+  "nativeTranslationOnlySubtitle": "Sätze ohne Übersetzung in Ihrer Sprache überspringen"
 }

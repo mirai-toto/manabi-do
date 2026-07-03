@@ -39,10 +39,9 @@ class VocabPracticeScreen extends StatelessWidget {
     return PracticeSessionScreen(
       title: levelLabel(level, context),
       color: levelColor(level),
-      loadQueue: (db, ref) => ref
+      loadQueue: (ref) => ref
           .read(vocabSessionServiceProvider)
           .buildQueue(
-            db: db,
             ref: ref,
             level: level,
             allowedIds: allowedIds,

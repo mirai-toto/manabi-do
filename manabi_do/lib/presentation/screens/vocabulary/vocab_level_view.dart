@@ -131,7 +131,6 @@ class _LevelContent extends StatelessWidget {
         PracticeButton(
           color: color,
           onTap: () {
-            final db = ref.read(databaseProvider);
             final l = context.l10n;
             final groupTitle = l.groupN(groupIndex + 1);
             Navigator.of(context).push(
@@ -147,10 +146,12 @@ class _LevelContent extends StatelessWidget {
                         final settings = await ref.read(
                           srsSettingsProvider.future,
                         );
-                        final full = await db.getVocabSrsSession(
-                          level,
-                          newCardLimit: settings.newVocabPerDay,
-                        );
+                        final full = await ref
+                            .read(databaseProvider)
+                            .getVocabSrsSession(
+                              level,
+                              newCardLimit: settings.newVocabPerDay,
+                            );
                         final session = full
                             .where((p) => groupIds.contains(p.$1.id))
                             .toList();

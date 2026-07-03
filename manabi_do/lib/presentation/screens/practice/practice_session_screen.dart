@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
+import 'package:fsrs/fsrs.dart' show Rating;
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
 import '../../providers/home_provider.dart';
+import '../../services/srs_service.dart';
 import '../../widgets/common/confirm_dialog.dart';
 import '../../widgets/exercise/summary_card.dart';
 import 'practice_item.dart';
@@ -40,7 +40,6 @@ class PracticeSessionScreen extends ConsumerStatefulWidget {
 }
 
 class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
-  final _scheduler = Scheduler();
   List<PracticeItem>? _queue;
   List<PracticeItem>? _completedQueue;
   int _index = 0;
@@ -68,8 +67,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
   }
 
   Future<void> _loadSession() async {
-    final db = ref.read(databaseProvider);
-    final items = await widget.loadQueue(db, ref);
+    final items = await widget.loadQueue(ref);
     setState(() {
       _queue = items;
       _completedQueue = null;
@@ -97,16 +95,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
   Future<void> _answer(Rating rating) async {
     final item = _queue![_index];
     if (widget.persistSrs && !_isRetry) {
-      final fsrsCard =
-          item.card ??
-          Card(
-            cardId: DateTime.now().millisecondsSinceEpoch,
-            due: DateTime.now(),
-          );
-      final result = _scheduler.reviewCard(fsrsCard, rating);
-      await ref
-          .read(databaseProvider)
-          .upsertSrsCard(item.srsType, item.id, result.card);
+      await srsService.review(ref, item.srsType, item.id, item.card, rating);
     }
     setState(() {
       if (rating == Rating.again) {

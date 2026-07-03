@@ -84,7 +84,7 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
       data: (queue) => _index >= queue.length
           ? _DoneScreen(
               color: widget.color,
-              queue: queue,
+              count: queue.length,
               elapsed: _elapsed(),
               onRestart: _restart,
               onExit: () => Navigator.of(context).pop(),
@@ -92,7 +92,8 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
           : _ActiveScreen(
               level: widget.level,
               color: widget.color,
-              kanji: queue[_index],
+              kanji: queue[_index].$1,
+              meaning: queue[_index].$2,
               index: _index,
               total: queue.length,
               onAdvance: _advance,
@@ -107,6 +108,7 @@ class _ActiveScreen extends ConsumerWidget {
   final String level;
   final Color color;
   final Kanji kanji;
+  final String meaning;
   final int index;
   final int total;
   final VoidCallback onAdvance;
@@ -115,6 +117,7 @@ class _ActiveScreen extends ConsumerWidget {
     required this.level,
     required this.color,
     required this.kanji,
+    required this.meaning,
     required this.index,
     required this.total,
     required this.onAdvance,
@@ -178,7 +181,7 @@ class _ActiveScreen extends ConsumerWidget {
                 data: (refStrokes) => DrawingExercise(
                   referenceStrokes: refStrokes,
                   kanjiId: kanji.id,
-                  label: kanji.meaning,
+                  label: meaning,
                   onReading: kanji.onReading,
                   kunReading: kanji.kunReading,
                   color: color,
@@ -197,14 +200,14 @@ class _ActiveScreen extends ConsumerWidget {
 
 class _DoneScreen extends StatelessWidget {
   final Color color;
-  final List<Kanji> queue;
+  final int count;
   final String elapsed;
   final VoidCallback onRestart;
   final VoidCallback onExit;
 
   const _DoneScreen({
     required this.color,
-    required this.queue,
+    required this.count,
     required this.elapsed,
     required this.onRestart,
     required this.onExit,
@@ -231,7 +234,7 @@ class _DoneScreen extends StatelessWidget {
               ),
               const SizedBox(height: AppDimens.spaceXs),
               Text(
-                l.kanjiPracticed(queue.length),
+                l.kanjiPracticed(count),
                 style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant),
               ),
               const SizedBox(height: AppDimens.spaceXs),

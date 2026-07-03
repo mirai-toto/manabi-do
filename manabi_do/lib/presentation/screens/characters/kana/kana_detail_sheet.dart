@@ -8,7 +8,7 @@ import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../domain/data/kana_data.dart';
 import '../../../../l10n/l10n.dart';
-import '../../../providers/database_provider.dart';
+import '../../../services/srs_service.dart';
 import '../../../widgets/widgets.dart';
 
 class KanaDetailSheet extends ConsumerStatefulWidget {
@@ -38,9 +38,7 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
   }
 
   Future<void> _loadCard() async {
-    final card = await ref
-        .read(databaseProvider)
-        .getSrsCard(widget.type, widget.entry.id);
+    final card = await srsService.getCard(ref, widget.type, widget.entry.id);
     if (mounted) {
       setState(() {
         _srsCard = card;
@@ -57,7 +55,7 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
       body: l.resetKanaBody,
     );
     if (!confirmed) return;
-    await ref.read(databaseProvider).resetSrsCard(widget.type, widget.entry.id);
+    await srsService.resetCard(ref, widget.type, widget.entry.id);
     if (mounted) setState(() => _srsCard = null);
   }
 
