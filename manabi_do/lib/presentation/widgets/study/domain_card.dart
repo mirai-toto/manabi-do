@@ -101,41 +101,43 @@ class DomainCard extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              color: t.cardBackground,
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.spaceLg,
-                vertical: AppDimens.spaceMd,
-              ),
-              child: hasPractice
-                  ? _buildStatus(
-                      t,
-                      stackActivity && hasDue && hasNew,
-                      hasActivity,
-                      statusText,
-                      dueText,
-                      newText,
-                      progressColor,
-                    )
-                  : Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            statLabel,
-                            style: AppTextStyles.bodySmall.copyWith(
-                              color: t.onSurfaceVariant,
+            Expanded(
+              child: Container(
+                color: t.cardBackground,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.spaceLg,
+                  vertical: AppDimens.spaceMd,
+                ),
+                child: hasPractice
+                    ? _buildStatus(
+                        t,
+                        stackActivity && hasDue && hasNew,
+                        hasActivity,
+                        statusText,
+                        dueText,
+                        newText,
+                        progressColor,
+                      )
+                    : Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              statLabel,
+                              style: AppTextStyles.bodySmall.copyWith(
+                                color: t.onSurfaceVariant,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(width: AppDimens.spaceMd),
-                        Expanded(
-                          child: AppProgressBar(
-                            progress: progress,
-                            color: progressColor,
+                          const SizedBox(width: AppDimens.spaceMd),
+                          Expanded(
+                            child: AppProgressBar(
+                              progress: progress,
+                              color: progressColor,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+              ),
             ),
           ],
         ),
