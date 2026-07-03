@@ -55,6 +55,7 @@ class DomainCard extends StatelessWidget {
       excludeSemantics: true,
       child: TappableSurface(
         decoration: BoxDecoration(
+          color: t.cardBackground,
           borderRadius: BorderRadius.circular(AppDimens.radiusXl),
         ),
         onTap: hasPractice ? onPractice : onTap,
@@ -101,43 +102,40 @@ class DomainCard extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: Container(
-                color: t.cardBackground,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.spaceLg,
-                  vertical: AppDimens.spaceMd,
-                ),
-                child: hasPractice
-                    ? _buildStatus(
-                        t,
-                        stackActivity && hasDue && hasNew,
-                        hasActivity,
-                        statusText,
-                        dueText,
-                        newText,
-                        progressColor,
-                      )
-                    : Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              statLabel,
-                              style: AppTextStyles.bodySmall.copyWith(
-                                color: t.onSurfaceVariant,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: AppDimens.spaceMd),
-                          Expanded(
-                            child: AppProgressBar(
-                              progress: progress,
-                              color: progressColor,
-                            ),
-                          ),
-                        ],
-                      ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceLg,
+                vertical: AppDimens.spaceMd,
               ),
+              child: hasPractice
+                  ? _buildStatus(
+                      t,
+                      stackActivity && hasDue && hasNew,
+                      hasActivity,
+                      statusText,
+                      dueText,
+                      newText,
+                      progressColor,
+                    )
+                  : Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            statLabel,
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: t.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: AppDimens.spaceMd),
+                        Expanded(
+                          child: AppProgressBar(
+                            progress: progress,
+                            color: progressColor,
+                          ),
+                        ),
+                      ],
+                    ),
             ),
           ],
         ),
