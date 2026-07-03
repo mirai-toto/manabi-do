@@ -316,5 +316,7 @@
   "translationModeLabel": "Translation",
   "translationModeAlways": "Always",
   "translationModeOnDemand": "Button",
-  "translationModeNever": "Never"
+  "translationModeNever": "Never",
+  "nativeTranslationOnlyLabel": "My language only",
+  "nativeTranslationOnlySubtitle": "Skip sentences with no translation in your language"
 }

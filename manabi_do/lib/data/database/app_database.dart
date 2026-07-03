@@ -241,15 +241,18 @@ class AppDatabase extends _$AppDatabase {
 
   Future<Map<int, String>> getSentenceTranslations(
     List<int> sentenceIds,
-    String locale,
-  ) async {
+    String locale, {
+    bool nativeOnly = false,
+  }) async {
     if (sentenceIds.isEmpty) return {};
     final locale3 = _iso1To2[locale] ?? locale;
     final rows =
         await (select(sentenceTranslations)..where(
               (t) =>
                   t.sentenceId.isIn(sentenceIds) &
-                  (t.locale.equals(locale3) | t.locale.equals('eng')),
+                  (nativeOnly
+                      ? t.locale.equals(locale3)
+                      : (t.locale.equals(locale3) | t.locale.equals('eng'))),
             ))
             .get();
     final result = <int, String>{};

@@ -226,6 +226,13 @@ class PracticeSettingsSheet extends ConsumerWidget {
                 onChanged: (v) =>
                     updateSentence(sentence.copyWith(showChoiceFurigana: v)),
               ),
+              _SwitchRow(
+                label: l.nativeTranslationOnlyLabel,
+                subtitle: l.nativeTranslationOnlySubtitle,
+                value: sentence.nativeTranslationOnly,
+                onChanged: (v) =>
+                    updateSentence(sentence.copyWith(nativeTranslationOnly: v)),
+              ),
               const SizedBox(height: AppDimens.spaceXs),
               _SectionLabel(l.translationModeLabel),
               const SizedBox(height: AppDimens.spaceXs),

@@ -1347,6 +1347,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Never'**
   String get translationModeNever;
+
+  /// No description provided for @nativeTranslationOnlyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'My language only'**
+  String get nativeTranslationOnlyLabel;
+
+  /// No description provided for @nativeTranslationOnlySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip sentences with no translation in your language'**
+  String get nativeTranslationOnlySubtitle;
 }
 
 class _AppLocalizationsDelegate

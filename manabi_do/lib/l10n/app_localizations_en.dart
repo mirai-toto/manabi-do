@@ -679,4 +679,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get translationModeNever => 'Never';
+
+  @override
+  String get nativeTranslationOnlyLabel => 'My language only';
+
+  @override
+  String get nativeTranslationOnlySubtitle =>
+      'Skip sentences with no translation in your language';
 }

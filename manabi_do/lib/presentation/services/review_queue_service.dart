@@ -185,6 +185,7 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
   final allTranslations = locale != 'en'
       ? await db.getVocabTranslations(allIds, locale)
       : <int, String>{};
+  final nativeOnly = sentenceSettings.nativeTranslationOnly && locale != 'en';
   final sentencesByVocabId = await db.getSentencesBatch(ids);
   final allSentenceIds = sentencesByVocabId.values
       .expand((list) => list)
@@ -193,6 +194,7 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
   final sentenceTranslations = await db.getSentenceTranslations(
     allSentenceIds,
     locale,
+    nativeOnly: nativeOnly,
   );
   final rng = Random();
 
@@ -204,7 +206,12 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
   return pairs.map((pair) {
     final (entry, card) = pair;
     final color = levelColor(entry.jlptLevel);
-    final sentences = sentencesByVocabId[entry.id] ?? [];
+    final allSentences = sentencesByVocabId[entry.id] ?? [];
+    final sentences = nativeOnly
+        ? allSentences
+              .where((s) => sentenceTranslations.containsKey(s.id))
+              .toList()
+        : allSentences;
     final hasSentence = sentences.isNotEmpty;
     final typeCount = hasSentence ? 4 : 3;
     final quizType = rng.nextInt(typeCount);

@@ -307,5 +307,7 @@
   "translationModeLabel": "Übersetzung",
   "translationModeAlways": "Immer",
   "translationModeOnDemand": "Schaltfläche",
-  "translationModeNever": "Nie"
+  "translationModeNever": "Nie",
+  "nativeTranslationOnlyLabel": "Nur meine Sprache",
+  "nativeTranslationOnlySubtitle": "Sätze ohne Übersetzung in Ihrer Sprache überspringen"
 }

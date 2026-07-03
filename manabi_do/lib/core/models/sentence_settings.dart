@@ -7,6 +7,7 @@ class SentenceSettings {
   final bool showSentenceFurigana;
   final bool showChoiceFurigana;
   final TranslationMode translationMode;
+  final bool nativeTranslationOnly;
 
   const SentenceSettings({
     this.sessionLength = 20,
@@ -15,6 +16,7 @@ class SentenceSettings {
     this.showSentenceFurigana = true,
     this.showChoiceFurigana = false,
     this.translationMode = TranslationMode.onDemand,
+    this.nativeTranslationOnly = false,
   });
 
   static const defaults = SentenceSettings();
@@ -27,6 +29,7 @@ class SentenceSettings {
     bool? showSentenceFurigana,
     bool? showChoiceFurigana,
     TranslationMode? translationMode,
+    bool? nativeTranslationOnly,
   }) => SentenceSettings(
     sessionLength: clearSessionLength
         ? null
@@ -36,6 +39,7 @@ class SentenceSettings {
     showSentenceFurigana: showSentenceFurigana ?? this.showSentenceFurigana,
     showChoiceFurigana: showChoiceFurigana ?? this.showChoiceFurigana,
     translationMode: translationMode ?? this.translationMode,
+    nativeTranslationOnly: nativeTranslationOnly ?? this.nativeTranslationOnly,
   );
 
   Map<String, dynamic> toJson() => {
@@ -45,6 +49,7 @@ class SentenceSettings {
     'showSentenceFurigana': showSentenceFurigana,
     'showChoiceFurigana': showChoiceFurigana,
     'translationMode': translationMode.index,
+    'nativeTranslationOnly': nativeTranslationOnly,
   };
 
   factory SentenceSettings.fromJson(Map<String, dynamic> json) =>
@@ -56,5 +61,6 @@ class SentenceSettings {
         showChoiceFurigana: json['showChoiceFurigana'] as bool? ?? false,
         translationMode:
             TranslationMode.values[json['translationMode'] as int? ?? 1],
+        nativeTranslationOnly: json['nativeTranslationOnly'] as bool? ?? false,
       );
 }

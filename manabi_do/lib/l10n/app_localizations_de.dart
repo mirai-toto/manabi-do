@@ -682,4 +682,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get translationModeNever => 'Nie';
+
+  @override
+  String get nativeTranslationOnlyLabel => 'Nur meine Sprache';
+
+  @override
+  String get nativeTranslationOnlySubtitle =>
+      'Sätze ohne Übersetzung in Ihrer Sprache überspringen';
 }

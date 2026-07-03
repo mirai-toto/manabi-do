@@ -307,5 +307,7 @@
   "translationModeLabel": "Traduction",
   "translationModeAlways": "Toujours",
   "translationModeOnDemand": "Bouton",
-  "translationModeNever": "Jamais"
+  "translationModeNever": "Jamais",
+  "nativeTranslationOnlyLabel": "Ma langue uniquement",
+  "nativeTranslationOnlySubtitle": "Ignorer les phrases sans traduction dans votre langue"
 }
