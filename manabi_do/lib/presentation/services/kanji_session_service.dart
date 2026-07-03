@@ -15,7 +15,7 @@ import '../providers/mcq_settings_provider.dart';
 import '../screens/characters/kanji/kanji_detail_screen.dart';
 import '../screens/characters/kanji/kanji_practice_screen.dart';
 import '../screens/practice/practice_session_screen.dart';
-import '../widgets/exercise/mcq_card.dart';
+import 'session_item_builders.dart';
 
 class KanjiSessionService {
   const KanjiSessionService();
@@ -142,19 +142,16 @@ class KanjiSessionService {
 
       // MCQ: kanjiToMeaning or meaningToKanji
       final isKanjiToMeaning = type == _QuizType.kanjiToMeaning;
-      final n = mcqSettings.mcqChoiceCount;
-      final distractors = pool.where((k) => k.id != kanji.id).toList()
-        ..shuffle(rng);
-      final options = [kanji, ...distractors.take(n - 1)]..shuffle(rng);
-      final correctIndex = options.indexWhere((k) => k.id == kanji.id);
-      final mcqOptions = List.generate(
-        options.length,
-        (i) => McqOption(
-          letter: String.fromCharCode(65 + i),
-          text: isKanjiToMeaning ? meaningOf(options[i]) : options[i].character,
-          useJpFont: !isKanjiToMeaning,
-        ),
+      final kanjiMcq = buildKanjiMcqOptions(
+        target: kanji,
+        pool: pool,
+        n: mcqSettings.mcqChoiceCount,
+        isKanjiToMeaning: isKanjiToMeaning,
+        meaningOf: meaningOf,
+        rng: rng,
       );
+      final mcqOptions = kanjiMcq.options;
+      final correctIndex = kanjiMcq.correctIndex;
 
       return PracticeItem(
         id: kanji.id,

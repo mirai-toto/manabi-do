@@ -55,6 +55,7 @@ class DomainCard extends StatelessWidget {
       excludeSemantics: true,
       child: TappableSurface(
         decoration: BoxDecoration(
+          color: t.cardBackground,
           borderRadius: BorderRadius.circular(AppDimens.radiusXl),
         ),
         onTap: hasPractice ? onPractice : onTap,
@@ -102,7 +103,6 @@ class DomainCard extends StatelessWidget {
               ),
             ),
             Container(
-              color: t.cardBackground,
               padding: const EdgeInsets.symmetric(
                 horizontal: AppDimens.spaceLg,
                 vertical: AppDimens.spaceMd,

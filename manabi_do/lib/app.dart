@@ -18,6 +18,7 @@ class ManabiDoApp extends ConsumerWidget {
     final locale = ref.watch(localeProvider);
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Manabi Do',
       localizationsDelegates: const [
         AppLocalizations.delegate,

@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+
 import '../../../core/providers/locale_provider.dart';
-import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -12,10 +10,8 @@ import '../../../l10n/l10n.dart';
 import '../../services/srs_service.dart';
 import '../../widgets/widgets.dart';
 import 'language_picker_sheet.dart';
-
-final _packageInfoProvider = FutureProvider<PackageInfo>(
-  (_) => PackageInfo.fromPlatform(),
-);
+import 'settings_about_section.dart';
+import 'settings_practice_card.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -67,20 +63,11 @@ class SettingsScreen extends ConsumerWidget {
     final themeMode =
         ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system;
     final locale = ref.watch(localeProvider);
-    final pkgAsync = ref.watch(_packageInfoProvider);
-    final srs = ref.watch(srsSettingsProvider);
 
     final currentLang = languages.firstWhere(
       (e) => e.code == locale.languageCode,
       orElse: () => languages.first,
     );
-    final version = pkgAsync.when(
-      data: (p) => p.version,
-      loading: () => '—',
-      error: (_, _) => '—',
-    );
-    final newChars = srs.asData?.value.newCharactersPerDay ?? 10;
-    final newVocab = srs.asData?.value.newVocabPerDay ?? 10;
 
     return Align(
       alignment: Alignment.topCenter,
@@ -94,40 +81,7 @@ class SettingsScreen extends ConsumerWidget {
 
             SectionLabel(l.settingsPractice),
             const SizedBox(height: AppDimens.spaceSm),
-            SettingsCard(
-              children: [
-                SettingsStepper(
-                  icon: Icons.auto_stories_rounded,
-                  label: l.settingsPracticeNewCharacters,
-                  value: newChars,
-                  onDecrement: newChars > 0
-                      ? () => ref
-                            .read(srsSettingsProvider.notifier)
-                            .setNewCharactersPerDay((newChars - 5).clamp(0, 50))
-                      : null,
-                  onIncrement: newChars < 50
-                      ? () => ref
-                            .read(srsSettingsProvider.notifier)
-                            .setNewCharactersPerDay(newChars + 5)
-                      : null,
-                ),
-                SettingsStepper(
-                  icon: Icons.translate_rounded,
-                  label: l.settingsPracticeNewVocab,
-                  value: newVocab,
-                  onDecrement: newVocab > 0
-                      ? () => ref
-                            .read(srsSettingsProvider.notifier)
-                            .setNewVocabPerDay((newVocab - 5).clamp(0, 50))
-                      : null,
-                  onIncrement: newVocab < 50
-                      ? () => ref
-                            .read(srsSettingsProvider.notifier)
-                            .setNewVocabPerDay(newVocab + 5)
-                      : null,
-                ),
-              ],
-            ),
+            const SettingsPracticeCard(),
 
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsAppearance),
@@ -184,16 +138,6 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [
-                if (kDebugMode)
-                  SettingsTile(
-                    leading: Icon(
-                      Icons.science_outlined,
-                      size: 20,
-                      color: t.onSurfaceVariant,
-                    ),
-                    label: 'Seed fake reviews (debug)',
-                    onTap: () => srsService.seedFakeReviews(ref),
-                  ),
                 SettingsTile(
                   leading: Icon(
                     Icons.delete_outline_rounded,
@@ -208,46 +152,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.aboutTitle),
-            const SizedBox(height: AppDimens.spaceSm),
-            SettingsCard(
-              children: [
-                SettingsInfo(
-                  icon: Icons.info_outline_rounded,
-                  label: l.aboutVersion(version),
-                ),
-                SettingsTile(
-                  leading: Icon(
-                    Icons.article_outlined,
-                    size: 20,
-                    color: t.onSurfaceVariant,
-                  ),
-                  label: l.aboutOpenSourceLicenses,
-                  onTap: () => showLicensePage(
-                    context: context,
-                    applicationName: l.appTitle,
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.aboutDataSources),
-            const SizedBox(height: AppDimens.spaceSm),
-            _AttributionCard(
-              notice: l.aboutEdrdgNotice,
-              link: l.aboutEdrdgLink,
-            ),
-            const SizedBox(height: AppDimens.spaceSm),
-            _AttributionCard(
-              notice: l.aboutKanjiVgNotice,
-              link: l.aboutKanjiVgLink,
-            ),
-            const SizedBox(height: AppDimens.spaceSm),
-            _AttributionCard(
-              notice: l.aboutTatoebaNotice,
-              link: l.aboutTatoebaLink,
-            ),
+            const SettingsAboutSection(),
             const SizedBox(height: AppDimens.spaceLg),
           ],
         ),
@@ -272,37 +177,6 @@ class _ScreenHeader extends StatelessWidget {
             ),
           ),
           Icon(Icons.settings_rounded, color: t.onSurfaceVariant, size: 26),
-        ],
-      ),
-    );
-  }
-}
-
-class _AttributionCard extends StatelessWidget {
-  final String notice;
-  final String link;
-  const _AttributionCard({required this.notice, required this.link});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppDimens.spaceMd),
-      decoration: BoxDecoration(
-        color: t.cardBackground,
-        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: t.outlineVariant),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            notice,
-            style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-          ),
-          const SizedBox(height: AppDimens.spaceSm),
-          Text(link, style: AppTextStyles.bodySmall.copyWith(color: t.primary)),
         ],
       ),
     );

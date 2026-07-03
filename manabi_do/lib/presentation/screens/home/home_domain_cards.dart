@@ -101,12 +101,15 @@ class HomeDomainCards extends StatelessWidget {
       onTap: onGrammarTap,
     );
 
-    final kanaKanjiRow = Row(
-      children: [
-        Expanded(child: kanaCard),
-        const SizedBox(width: AppDimens.spaceSm),
-        Expanded(child: kanjiCard),
-      ],
+    final kanaKanjiRow = IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(child: kanaCard),
+          const SizedBox(width: AppDimens.spaceSm),
+          Expanded(child: kanjiCard),
+        ],
+      ),
     );
 
     return LayoutBuilder(

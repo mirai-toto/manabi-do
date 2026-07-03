@@ -8,7 +8,7 @@ import '../widgets/widgets.dart';
 import 'characters/characters_screen.dart';
 import 'grammar/grammar_screen.dart';
 import 'home/home_screen.dart';
-import 'more/more_screen.dart';
+import 'settings/settings_screen.dart';
 import 'vocabulary/vocabulary_screen.dart';
 
 class ShellScreen extends ConsumerStatefulWidget {

@@ -23,10 +23,13 @@ class TappableSurface extends StatelessWidget {
     return ClipRRect(
       borderRadius: radius is BorderRadius ? radius : BorderRadius.zero,
       child: Material(
-        color: Colors.transparent,
+        color: decoration.color ?? Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          child: Ink(decoration: decoration, child: child),
+          child: Ink(
+            decoration: decoration.copyWith(color: null),
+            child: child,
+          ),
         ),
       ),
     );

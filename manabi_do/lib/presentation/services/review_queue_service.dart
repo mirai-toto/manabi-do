@@ -14,7 +14,7 @@ import '../providers/sentence_settings_provider.dart';
 import '../screens/characters/kanji/kanji_practice_screen.dart';
 import '../screens/practice/practice_session_screen.dart';
 import '../screens/practice/sentence_cloze_body.dart';
-import '../widgets/exercise/mcq_card.dart';
+import 'session_item_builders.dart';
 
 Future<List<PracticeItem>> loadKanaPracticeQueue(
   String type,
@@ -132,19 +132,16 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
     }
 
     final isKanjiToMeaning = quizType == 1;
-    final n = mcqSettings.mcqChoiceCount;
-    final distractors = allKanji.where((d) => d.id != k.id).toList()
-      ..shuffle(rng);
-    final options = [k, ...distractors.take(n - 1)]..shuffle(rng);
-    final correctIndex = options.indexWhere((d) => d.id == k.id);
-    final mcqOptions = List.generate(
-      options.length,
-      (i) => McqOption(
-        letter: String.fromCharCode(65 + i),
-        text: isKanjiToMeaning ? meaningOf(options[i]) : options[i].character,
-        useJpFont: !isKanjiToMeaning,
-      ),
+    final kanjiMcq = buildKanjiMcqOptions(
+      target: k,
+      pool: allKanji,
+      n: mcqSettings.mcqChoiceCount,
+      isKanjiToMeaning: isKanjiToMeaning,
+      meaningOf: meaningOf,
+      rng: rng,
     );
+    final mcqOptions = kanjiMcq.options;
+    final correctIndex = kanjiMcq.correctIndex;
 
     return PracticeItem(
       id: k.id,
@@ -236,18 +233,15 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
     }
 
     if (quizType == 2) {
-      final n = mcqSettings.mcqChoiceCount;
-      final distractors = allVocab.where((v) => v.id != entry.id).toList()
-        ..shuffle(rng);
-      final optionEntries = [entry, ...distractors.take(n - 1)]..shuffle(rng);
-      final correctIndex = optionEntries.indexWhere((v) => v.id == entry.id);
-      final mcqOptions = List.generate(
-        optionEntries.length,
-        (i) => McqOption(
-          letter: String.fromCharCode(65 + i),
-          text: meaningOf(optionEntries[i]),
-        ),
+      final vocabMcq = buildVocabMcqOptions(
+        target: entry,
+        pool: allVocab,
+        n: mcqSettings.mcqChoiceCount,
+        meaningOf: meaningOf,
+        rng: rng,
       );
+      final mcqOptions = vocabMcq.options;
+      final correctIndex = vocabMcq.correctIndex;
       return PracticeItem(
         id: entry.id,
         srsType: 'vocabulary',
@@ -271,20 +265,14 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
 
     // quizType == 3: sentence cloze
     final sentence = sentences[rng.nextInt(sentences.length)];
-    final n = sentenceSettings.mcqChoiceCount;
-    final distractors = allVocab.where((v) => v.id != entry.id).toList()
-      ..shuffle(rng);
-    final optionEntries = [entry, ...distractors.take(n - 1)]..shuffle(rng);
-    final correctIndex = optionEntries.indexWhere((v) => v.id == entry.id);
-    final clozeOptions = List.generate(
-      optionEntries.length,
-      (i) => McqOption(
-        letter: String.fromCharCode(65 + i),
-        text: optionEntries[i].word,
-        reading: optionEntries[i].reading,
-        useJpFont: true,
-      ),
+    final cloze = buildClozeOptions(
+      target: entry,
+      pool: allVocab,
+      n: sentenceSettings.mcqChoiceCount,
+      rng: rng,
     );
+    final clozeOptions = cloze.options;
+    final correctIndex = cloze.correctIndex;
     return PracticeItem(
       id: entry.id,
       srsType: 'vocabulary',
