@@ -14,7 +14,7 @@ import '../providers/mcq_settings_provider.dart';
 import '../providers/sentence_settings_provider.dart';
 import '../screens/practice/practice_session_screen.dart';
 import '../screens/practice/sentence_cloze_body.dart';
-import '../widgets/exercise/mcq_card.dart';
+import 'session_item_builders.dart';
 
 class VocabSessionService {
   const VocabSessionService();
@@ -152,20 +152,14 @@ class VocabSessionService {
             : allEntSentences;
         final sentence = sentences[rng.nextInt(sentences.length)];
         final translation = sentenceTranslations[sentence.id];
-        final n = sentenceSettings.mcqChoiceCount;
-        final distractors = pool.where((v) => v.id != entry.id).toList()
-          ..shuffle(rng);
-        final optionEntries = [entry, ...distractors.take(n - 1)]..shuffle(rng);
-        final correctIndex = optionEntries.indexWhere((v) => v.id == entry.id);
-        final clozeOptions = List.generate(
-          optionEntries.length,
-          (i) => McqOption(
-            letter: String.fromCharCode(65 + i),
-            text: optionEntries[i].word,
-            reading: optionEntries[i].reading,
-            useJpFont: true,
-          ),
+        final cloze = buildClozeOptions(
+          target: entry,
+          pool: pool,
+          n: sentenceSettings.mcqChoiceCount,
+          rng: rng,
         );
+        final clozeOptions = cloze.options;
+        final correctIndex = cloze.correctIndex;
         return PracticeItem(
           id: entry.id,
           srsType: 'vocabulary',
@@ -190,18 +184,15 @@ class VocabSessionService {
     if (mcqOnly) {
       return pairs.map((pair) {
         final (entry, card) = pair;
-        final n = mcqSettings.mcqChoiceCount;
-        final distractors = pool.where((v) => v.id != entry.id).toList()
-          ..shuffle(rng);
-        final optionEntries = [entry, ...distractors.take(n - 1)]..shuffle(rng);
-        final correctIndex = optionEntries.indexWhere((v) => v.id == entry.id);
-        final mcqOptions = List.generate(
-          optionEntries.length,
-          (i) => McqOption(
-            letter: String.fromCharCode(65 + i),
-            text: meaningOf(optionEntries[i]),
-          ),
+        final vocabMcq = buildVocabMcqOptions(
+          target: entry,
+          pool: pool,
+          n: mcqSettings.mcqChoiceCount,
+          meaningOf: meaningOf,
+          rng: rng,
         );
+        final mcqOptions = vocabMcq.options;
+        final correctIndex = vocabMcq.correctIndex;
         return PracticeItem(
           id: entry.id,
           srsType: 'vocabulary',
@@ -248,20 +239,14 @@ class VocabSessionService {
     ) {
       final sentence = sentences[rng.nextInt(sentences.length)];
       final translation = sentenceTranslations[sentence.id];
-      final n = sentenceSettings.mcqChoiceCount;
-      final distractors = pool.where((v) => v.id != entry.id).toList()
-        ..shuffle(rng);
-      final optionEntries = [entry, ...distractors.take(n - 1)]..shuffle(rng);
-      final correctIndex = optionEntries.indexWhere((v) => v.id == entry.id);
-      final clozeOptions = List.generate(
-        optionEntries.length,
-        (i) => McqOption(
-          letter: String.fromCharCode(65 + i),
-          text: optionEntries[i].word,
-          reading: optionEntries[i].reading,
-          useJpFont: true,
-        ),
+      final cloze = buildClozeOptions(
+        target: entry,
+        pool: pool,
+        n: sentenceSettings.mcqChoiceCount,
+        rng: rng,
       );
+      final clozeOptions = cloze.options;
+      final correctIndex = cloze.correctIndex;
       return PracticeItem(
         id: entry.id,
         srsType: 'vocabulary',
@@ -317,18 +302,15 @@ class VocabSessionService {
       }
 
       if (quizType == 2) {
-        final n = mcqSettings.mcqChoiceCount;
-        final distractors = pool.where((v) => v.id != entry.id).toList()
-          ..shuffle(rng);
-        final optionEntries = [entry, ...distractors.take(n - 1)]..shuffle(rng);
-        final correctIndex = optionEntries.indexWhere((v) => v.id == entry.id);
-        final mcqOptions = List.generate(
-          optionEntries.length,
-          (i) => McqOption(
-            letter: String.fromCharCode(65 + i),
-            text: meaningOf(optionEntries[i]),
-          ),
+        final vocabMcq = buildVocabMcqOptions(
+          target: entry,
+          pool: pool,
+          n: mcqSettings.mcqChoiceCount,
+          meaningOf: meaningOf,
+          rng: rng,
         );
+        final mcqOptions = vocabMcq.options;
+        final correctIndex = vocabMcq.correctIndex;
         return PracticeItem(
           id: entry.id,
           srsType: 'vocabulary',
