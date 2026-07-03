@@ -20,6 +20,25 @@ The content DB is bundled as a Flutter asset. On first launch it is copied to th
 
 Vocab seed generation script: `tools/generate_vocab_seed.py`
 
+## Content organisation by JLPT level
+
+All three content types are queryable by JLPT level (N5–N1):
+
+- **Kanji** — `kanjis.jlpt_level` column; queried directly.
+- **Vocabulary** — `vocabulary_entries.jlpt_level` column; queried directly.
+- **Sentences** — no `jlpt_level` column; level is inherited via `sentences.vocab_id → vocabulary_entries.jlpt_level`. The app filters sentences by level through this join.
+
+Sentence distribution by inherited level:
+
+| Level | Sentences |
+|-------|-----------|
+| N5 | 1 765 |
+| N4 | 1 623 |
+| N3 | 5 128 |
+| N2 | 3 981 |
+| N1 | 7 661 |
+| **Total** | **20 158** |
+
 ## Translation coverage
 
 Translations are stored in three tables: `kanji_translations`, `vocab_translations`, `sentence_translations`.
