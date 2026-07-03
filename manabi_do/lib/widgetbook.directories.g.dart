@@ -16,6 +16,8 @@ import 'package:manabi_do/widgetbook/common_use_cases.dart'
     as _manabi_do_widgetbook_common_use_cases;
 import 'package:manabi_do/widgetbook/exercise_use_cases.dart'
     as _manabi_do_widgetbook_exercise_use_cases;
+import 'package:manabi_do/widgetbook/grammar_use_cases.dart'
+    as _manabi_do_widgetbook_grammar_use_cases;
 import 'package:manabi_do/widgetbook/navigation_use_cases.dart'
     as _manabi_do_widgetbook_navigation_use_cases;
 import 'package:manabi_do/widgetbook/settings_use_cases.dart'
@@ -482,6 +484,36 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Perfect score',
             builder: _manabi_do_widgetbook_exercise_use_cases
                 .buildSummaryCardPerfect,
+          ),
+        ],
+      ),
+    ],
+  ),
+  _widgetbook.WidgetbookFolder(
+    name: 'Grammar',
+    children: [
+      _widgetbook.WidgetbookFolder(
+        name: 'Blocks',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'PatternBlock',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Multiple lines',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildPatternBlockMulti,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'N4 accent colour',
+                builder:
+                    _manabi_do_widgetbook_grammar_use_cases.buildPatternBlockN4,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Single line',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildPatternBlockSingle,
+              ),
+            ],
           ),
         ],
       ),
