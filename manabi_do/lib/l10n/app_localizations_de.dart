@@ -546,6 +546,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get grammarSubtitle => 'Grundlagen & JLPT N5–N1';
 
   @override
+  String get grammarLockedTitle => 'Grammatik kommt bald';
+
+  @override
+  String get grammarLockedSubtitle =>
+      'Wir arbeiten aktiv an der Grammatik-Sektion. Bleib dran!';
+
+  @override
   String get searchKanji => 'Kanji suchen';
 
   @override

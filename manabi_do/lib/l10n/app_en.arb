@@ -266,6 +266,8 @@
   "japaneseBasics": "Japanese Basics",
   "japaneseBasicsSubtitle": "Language fundamentals",
   "grammarSubtitle": "Basics & JLPT N5–N1",
+  "grammarLockedTitle": "Grammar is coming soon",
+  "grammarLockedSubtitle": "We're actively working on the grammar section. Stay tuned!",
   "searchKanji": "Search kanji",
   "searchKanjiHint": "Kanji, reading, or meaning…",
   "searchKanjiPrompt": "Search by kanji, reading, or meaning",

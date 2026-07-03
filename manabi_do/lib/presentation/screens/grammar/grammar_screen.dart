@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,6 +10,8 @@ import '../../../l10n/l10n.dart';
 import '../../providers/home_provider.dart';
 import '../../widgets/widgets.dart';
 import 'grammar_chapter_list.dart';
+
+const _grammarEnabled = false;
 
 const _levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
@@ -20,7 +24,7 @@ class GrammarScreen extends ConsumerWidget {
     final t = context.tokens;
     final selectedLevel = ref.watch(grammarSelectedLevelProvider);
 
-    return Column(
+    final content = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SectionHeader(
@@ -43,6 +47,66 @@ class GrammarScreen extends ConsumerWidget {
                 ),
         ),
       ],
+    );
+
+    if (_grammarEnabled) return content;
+
+    return Stack(
+      children: [
+        ImageFiltered(
+          imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+          child: IgnorePointer(child: content),
+        ),
+        Positioned.fill(child: Center(child: _GrammarLockedOverlay())),
+      ],
+    );
+  }
+}
+
+// ── Lock overlay ───────────────────────────────────────────────────────────────
+
+class _GrammarLockedOverlay extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final t = context.tokens;
+    return Padding(
+      padding: const EdgeInsets.all(AppDimens.spaceLg),
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimens.spaceLg,
+          vertical: AppDimens.spaceLg,
+        ),
+        decoration: BoxDecoration(
+          color: t.cardBackground,
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.15),
+              blurRadius: 24,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.lock_outline_rounded, size: 40, color: t.primary),
+            const SizedBox(height: AppDimens.spaceMd),
+            Text(
+              l.grammarLockedTitle,
+              style: AppTextStyles.titleLarge.copyWith(color: t.onSurface),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: AppDimens.spaceSm),
+            Text(
+              l.grammarLockedSubtitle,
+              style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
