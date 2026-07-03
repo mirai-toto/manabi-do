@@ -7,7 +7,6 @@ import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
-import '../../../providers/database_provider.dart';
 import '../../../providers/kanji_provider.dart';
 import '../../../widgets/widgets.dart';
 import 'kanji_detail_screen.dart';
@@ -24,8 +23,7 @@ class KanjiLevelSelector extends ConsumerStatefulWidget {
 
 class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
   final _controller = TextEditingController();
-  List<Kanji> _results = [];
-  bool _searching = false;
+  String _query = '';
 
   @override
   void dispose() {
@@ -33,27 +31,11 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
     super.dispose();
   }
 
-  Future<void> _search(String query) async {
-    final q = query.trim();
-    if (q.isEmpty) {
-      setState(() {
-        _results = [];
-        _searching = false;
-      });
-      return;
-    }
-    final results = await ref.read(databaseProvider).searchKanji(q);
-    if (mounted) {
-      setState(() {
-        _results = results;
-        _searching = true;
-      });
-    }
-  }
+  void _search(String query) => setState(() => _query = query.trim());
 
   void _clear() {
     _controller.clear();
-    _search('');
+    setState(() => _query = '');
   }
 
   @override
@@ -69,12 +51,12 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
           controller: _controller,
           onChanged: _search,
           prefixIcon: Icon(Icons.search_rounded, color: t.onSurfaceVariant),
-          suffixIcon: _controller.text.isNotEmpty
+          suffixIcon: _query.isNotEmpty
               ? IconButton(icon: const Icon(Icons.clear), onPressed: _clear)
               : null,
         ),
         const SizedBox(height: AppDimens.spaceMd),
-        if (!_searching) ...[
+        if (_query.isEmpty) ...[
           SectionLabel(l.selectLevel),
           const SizedBox(height: AppDimens.spaceSm),
           for (final code in _kanjiLevels)
@@ -83,18 +65,30 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
               subtitle: _subtitle(context, code),
               onTap: () => widget.onSelect(code),
             ),
-        ] else if (_results.isEmpty)
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(AppDimens.spaceLg),
-              child: Text(
-                l.noResults,
-                style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant),
+        ] else
+          ref
+              .watch(kanjiSearchProvider(_query))
+              .when(
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (e, s) => const SizedBox.shrink(),
+                data: (results) => results.isEmpty
+                    ? Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(AppDimens.spaceLg),
+                          child: Text(
+                            l.noResults,
+                            style: AppTextStyles.body.copyWith(
+                              color: t.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Column(
+                        children: results
+                            .map((k) => _KanjiResultTile(kanji: k))
+                            .toList(),
+                      ),
               ),
-            ),
-          )
-        else
-          for (final kanji in _results) _KanjiResultTile(kanji: kanji),
       ],
     );
   }
