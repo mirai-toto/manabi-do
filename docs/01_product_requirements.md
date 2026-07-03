@@ -1,199 +1,131 @@
-# Product Requirements — Japanese Learning App
+# Product Requirements — Manabi Do
 
 ## Target Platforms
 
-Flutter — iOS, Android, macOS, Windows, Linux
-Full offline — no backend, ever. OAuth delegates authentication to third-party providers.
+Flutter — iOS, Android, macOS, Windows, Linux.
+Full offline — no backend. All data and progress live on-device in SQLite.
 
 ---
 
 ## Target Users
 
-**Initial phase:** Learners who already have a basic foundation in Japanese — they know all kana, some kanji, and have basic vocabulary. They are not absolute beginners.
-
-This assumption has direct consequences on build priority:
-- Grammar lessons are the core value proposition and the first thing to build
-- Characters and vocabulary sections support grammar but are not the entry point
-- The app does not need to hand-hold users through kana recognition or stroke order in the initial phase
-
----
-
-## Authentication
-
-- **No backend, no password storage** — authentication is fully delegated to OAuth providers
-- Supported providers: Google, Sign in with Apple (required on iOS/macOS whenever any third-party login is offered)
-- **Continue as guest** option — full access, progress stored locally only
-- Authenticated users get the same local experience; sync is a future concern
-- Mock implementation for now: both login and guest navigate directly to the home screen
+Learners with a basic Japanese foundation — they know all kana, some kanji, and have basic vocabulary. The app is not designed for absolute beginners.
 
 ---
 
 ## UX Flow
 
 ```
-Landing screen
-  ├── Continue as guest  →  Home
-  └── Sign in            →  OAuth provider picker (Google, Apple)
-                         →  Home
+App launch → Home (ShellScreen)
 
-Home
-  ├── Characters  →  Kana tab / Kanji tab
-  ├── Vocabulary  →  Word list  →  Word detail
-  └── Grammar     →  Chapter list  →  Lesson list  →  Lesson reader  →  Exercises
+ShellScreen tabs
+  ├── Home       → domain cards + streak + SRS practice sessions
+  ├── Characters → Kana tab / Kanji tab
+  ├── Vocabulary → level selector → word list → word detail
+  ├── Grammar    → chapter list → lesson list → lesson reader → exercises
+  └── Settings   → theme, language, SRS settings
 ```
 
-### Landing screen
-Login/register entry point. Two actions: "Continue as guest" and "Sign in". Clean, minimal — not an onboarding flow.
-
-### Home
-Three section cards (Characters, Vocabulary, Grammar). Grammar is visually prominent as the primary section.
-
-### Grammar (priority section)
-- **Chapter list** — all chapters as cards with title, lesson count, and progress bar
-- **Lesson list** — lessons within a chapter with title, difficulty, and known/unknown indicator
-- **Lesson reader** — scrollable Markdown content with inline images. "Practice" button at the bottom leads to exercises
-- **Exercise flow** — lessons play through exercises one by one. Summary screen at the end. Known/unknown toggle per exercise independent of correctness
-
-### Characters
-- **Kana tab** — grid of all 46+46 characters grouped by row. Tap → character card with romaji and known/unknown toggle
-- **Kanji tab** — list filterable by N5/N4. Tap → detail with stroke order animation, on/kun readings, example words, known/unknown toggle
-
-### Vocabulary
-- Scrollable list filterable by JLPT level
-- Each entry: kanji form, kana reading, meaning
-- Tap → detail with part of speech, link to related kanji, known/unknown toggle
-
-### Cross-cutting UX principles
-- Japanese characters are always displayed large enough to read clearly
-- Known/unknown toggle is the primary persistent interaction — visible everywhere
-- No onboarding, no gamification, no streaks in the initial phase
-- No score pressure — the toggle is self-assessed, not pass/fail
-
----
-
-## Responsive Design
-
-Mobile-first. The layout adapts at two breakpoints:
-
-| Width | Layout | Navigation |
-|---|---|---|
-| < 600px | Single column | Bottom navigation bar |
-| 600–1200px | Tablet | Navigation rail (left side) |
-| > 1200px | Desktop | Navigation drawer (persistent sidebar) |
-
-No fixed pixel sizes in widgets — layouts use `LayoutBuilder`, `Flexible`, and `Expanded`. Minimum touch target size: 48px.
-
----
-
-## Design System
-
-**Material 3** — chosen for ecosystem breadth, pre-built adaptive navigation components, and `flutter_markdown` compatibility.
-
-- Seed color: indigo (`#6B4EFF`)
-- `useMaterial3: true`
-- Default desktop window size: 390×844 (iPhone 14 portrait) to develop and test in mobile proportions
+No landing screen, no login, no onboarding — the app opens directly on the Home tab.
 
 ---
 
 ## App Sections
 
-### 1. Characters
+### Home
 
-#### Kana
-- Full hiragana + katakana list with romaji
-- Hardcoded data (46 + 46 characters)
-- No stroke order
+Four domain cards: Kana, Kanji, Vocabulary, Grammar. Each card shows the total item count and the current SRS queue (due + new). Kana, Kanji, and Vocabulary cards have a practice button that launches an SRS session. A streak pill shows the number of consecutive review days.
 
-#### Kanji
-- N5 and N4 groups
-- Animated stroke order (SVG)
-- On/kun readings
-- Associated word examples
-- Data from Kanjidic2 + KanjiVG + JMdict
+Grammar is shown as a card that navigates to the Grammar tab. SRS practice for grammar is not yet implemented ("coming soon").
+
+### Characters
+
+Two tabs: Kana and Kanji.
+
+**Kana tab** — grid of hiragana and katakana grouped by row (gojuuon, dakuten). Tap a character to open a detail sheet with romaji, SRS level indicator, and a known/unknown toggle. Practice button opens an SRS flashcard session.
+
+**Kanji tab** — list filterable by JLPT level (N5→N1). Shows each kanji with SRS level color. Tap → detail screen with:
+- Animated stroke order (SVG from bundled assets)
+- On/kun readings (locale-translated)
+- Example vocabulary words with sentences
+- TTS playback on example words
+- Known/unknown toggle + SRS level indicator
+
+### Vocabulary
+
+Level selector (N5/N4/N3/N2/N1). Word list shows kanji form, kana reading, meaning, SRS level. Tap → detail with part of speech, related kanji link, example sentences with furigana, known/unknown toggle. Practice button opens an SRS flashcard session for that level.
+
+### Grammar
+
+Chapter list → lesson list → lesson reader (scrollable Markdown content). "Practice" button at the bottom leads to exercises. Lessons are stored in SQLite, loaded from bundled Markdown assets at first run.
 
 ---
 
-### 2. Vocabulary
+## SRS System
 
-- N5 and N4 vocabulary lists
-- Each word has: kanji form, kana reading, meaning, JLPT level, part of speech
-- Words linked to relevant kanji where applicable
-- Data from JMdict
+Spaced repetition using the FSRS algorithm (`package:fsrs`). Applies to kana, kanji, and vocabulary.
 
-### 3. Grammar
+Six SRS levels, each with a distinct color:
 
-- 17 chapters covering N5/N4 Japanese concepts
-- Each chapter contains one or more lessons
-- Each lesson contains a course + associated exercises
-- Content created manually by the developer
+| Level | Description |
+|---|---|
+| New | Never seen |
+| Learning | In early learning phase |
+| Apprentice | Short interval (< 7 days stability) |
+| Familiar | Medium interval (7–21 days stability) |
+| Mastered | Long interval (21–90 days stability) |
+| Expert | Very long interval (90+ days stability) |
+
+New cards per day are rate-limited. For kanji, new cards are introduced from the lowest JLPT level that still has unseen items (N5 → N4 → N3 → N2 → N1).
+
+Progress also tracks a simple known/unknown toggle independently of SRS (stored in `progress_entries`).
+
+---
+
+## Streak
+
+A streak counter shows the number of consecutive calendar days on which at least one SRS review was completed. Displayed as a pill on the Home screen.
 
 ---
 
 ## Exercise System
 
-The exercise system is generic and applies to all sections.
-Exercises are hardcoded, not dynamically generated.
-
-### Exercise Types
+Exercises are attached to grammar lessons and are generic across content types.
 
 | Type | Description |
 |---|---|
-| MCQ | One question, N choices, one correct answer. Single or multi (chained quiz) |
-| Flashcard | A card is shown, the user self-assesses (known / not known) |
-| True/False | Simple assertion to validate or invalidate |
-| Free writing | The user types their answer, compared against the correct answer |
-| Matching | Connect pairs (drag & drop or tap-tap) |
-| Ordering | Put elements back in the correct order |
+| MCQ | One question, N choices, one correct answer |
+| Flashcard | Card shown, user self-assesses (known / not known) |
+| Drawing | User traces stroke order on a canvas (kana/kanji) |
+| Lesson reader | Inline reading card within an exercise flow |
 
-The system is designed to be extensible — other types can be added without a full rewrite.
+The system is designed to be extensible — new types can be added without a full rewrite.
 
 ---
 
-## Progress
+## Localization
 
-- Each item has a simple toggle: known / not known
-- No SRS (spaced repetition) for now
-- Progress is stored locally in SQLite
-- Progress is locale-agnostic — carries across languages
+UI language: English, French, German. Selectable in Settings.
+
+Kanji meanings and vocabulary meanings are locale-translated via separate translation tables. Sentences have per-locale translations with English as fallback.
+
+Progress and SRS state are locale-agnostic — they carry across language switches.
 
 ---
 
-## Lesson Content
+## Responsive Design
 
-- Source format: Markdown with YAML frontmatter for metadata
-- Images embedded as local assets
-- Folder structure carries the chapter / lesson hierarchy
-- Loaded into SQLite at build time via a preprocessing script
+Mobile-first. Two layout breakpoints:
 
-### Folder Structure
+| Width | Navigation |
+|---|---|
+| < 600px | Bottom navigation bar |
+| ≥ 600px | Navigation rail (left side) |
 
-```
-content/
-  en/
-    chapters/
-      01_verbs/
-        meta.json
-        01_groups.md
-        02_polite_form.md
-      02_directions_places/
-        meta.json
-        01_particles.md
-  fr/
-    chapters/
-      01_verbs/
-        meta.json
-        01_groups.md
-  assets/
-    godan_conjugation.png
-```
+The navigation rail and bottom bar are hidden during active practice sessions. Escape key navigates back on desktop/Linux.
 
-### Lesson Frontmatter
-
-```markdown
 ---
-title: い adjectives
-prerequisites: [01_verbs/03_conjugations]
-tags: [adjectives, conjugation]
-difficulty: 1
----
-```
+
+## Design System
+
+Material 3 (`useMaterial3: true`). Seed color: indigo (`#6B4EFF`). Light and dark theme, switchable in Settings. Default desktop window size: 390×844 (iPhone 14 portrait).

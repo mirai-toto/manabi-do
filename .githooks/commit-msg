@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Mirrors CI: commitlint (conventional commits).
+commitlint --edit "$1"

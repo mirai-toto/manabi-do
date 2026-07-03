@@ -52,7 +52,9 @@ Future<List<PracticeItem>> loadKanjiQueue(AppDatabase db, WidgetRef ref) async {
   return pairs.map((pair) {
     final (k, card) = pair;
     final color = levelColor(k.jlptLevel);
-    final quizType = rng.nextInt(4); // 0: flashcard, 1: MCQ kanji→meaning, 2: MCQ meaning→kanji, 3: drawing
+    final quizType = rng.nextInt(
+      4,
+    ); // 0: flashcard, 1: MCQ kanji→meaning, 2: MCQ meaning→kanji, 3: drawing
 
     if (quizType == 0) {
       return PracticeItem(
@@ -145,14 +147,16 @@ Future<List<PracticeItem>> loadVocabQueue(AppDatabase db, WidgetRef ref) async {
       .expand((list) => list)
       .map((s) => s.id)
       .toList();
-  final sentenceTranslations =
-      await db.getSentenceTranslations(allSentenceIds, locale);
+  final sentenceTranslations = await db.getSentenceTranslations(
+    allSentenceIds,
+    locale,
+  );
   final rng = Random();
 
   String meaningOf(VocabularyEntry v) =>
       allTranslations[v.id]?.isNotEmpty == true
-          ? allTranslations[v.id]!
-          : v.meaning;
+      ? allTranslations[v.id]!
+      : v.meaning;
 
   return pairs.map((pair) {
     final (entry, card) = pair;

@@ -30,6 +30,18 @@ Offline Japanese learning app for Android, iOS, Windows, and Linux. Covers kana,
 
 ## Development
 
+### Git hooks
+
+Run once after cloning to activate the local hooks (mirrors CI checks):
+
+```bash
+git config core.hooksPath .githooks
+```
+
+This enables:
+- **pre-commit** — `flutter analyze` + `dart format` check
+- **commit-msg** — conventional commit linting via `commitlint`
+
 ### Linux
 
 No local Flutter installation needed — everything runs inside Docker.
