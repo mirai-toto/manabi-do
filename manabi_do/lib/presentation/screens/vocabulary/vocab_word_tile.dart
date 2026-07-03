@@ -52,10 +52,10 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: FuriganaText(
+                    child: JapaneseText(
                       word: widget.entry.word,
                       reading: widget.entry.reading,
-                      wordStyle: AppTextStyles.jpMedium.copyWith(
+                      style: AppTextStyles.jpMedium.copyWith(
                         color: t.onSurface,
                       ),
                       rubyStyle: AppTextStyles.jpFurigana.copyWith(

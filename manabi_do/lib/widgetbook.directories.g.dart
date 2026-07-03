@@ -245,22 +245,22 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'FuriganaText',
+        name: 'JapaneseText',
         useCases: [
           _widgetbook.WidgetbookUseCase(
             name: 'All kanji',
             builder: _manabi_do_widgetbook_common_use_cases
-                .buildFuriganaTextAllKanji,
+                .buildJapaneseTextAllKanji,
           ),
           _widgetbook.WidgetbookUseCase(
             name: 'Kana only',
             builder:
-                _manabi_do_widgetbook_common_use_cases.buildFuriganaTextKana,
+                _manabi_do_widgetbook_common_use_cases.buildJapaneseTextKana,
           ),
           _widgetbook.WidgetbookUseCase(
             name: 'Mixed kanji/kana',
             builder:
-                _manabi_do_widgetbook_common_use_cases.buildFuriganaTextMixed,
+                _manabi_do_widgetbook_common_use_cases.buildJapaneseTextMixed,
           ),
         ],
       ),
