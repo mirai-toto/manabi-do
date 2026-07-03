@@ -72,14 +72,14 @@ Gaps: mainly N1 — 735 missing FR vocab, ~233 missing DE vocab. N2–N5 nearly 
 
 ### Sentence translations (20 158 EN source sentences)
 
-| Level | Count | FR | DE | ES | RU |
-|-------|-------|----|----|----|----|
-| N5 | 1 765 | 30% | 34% | 28% | 25% |
-| N4 | 1 623 | 24% | 29% | 21% | 17% |
-| N3 | 5 128 | 23% | 26% | 20% | 17% |
-| N2 | 3 981 | 17% | 24% | 14% | 13% |
-| N1 | 7 661 | 18% | 24% | 14% | 12% |
-| **Total** | **20 158** | **20%** | **26%** | **17%** | **15%** |
+| Level | Count | EN | FR | DE | ES | RU |
+|-------|-------|----|----|----|----|----|
+| N5 | 1 765 | 100% | 30% | 34% | 28% | 25% |
+| N4 | 1 623 | 100% | 24% | 29% | 21% | 17% |
+| N3 | 5 128 | 100% | 23% | 26% | 20% | 17% |
+| N2 | 3 981 | 100% | 17% | 24% | 14% | 13% |
+| N1 | 7 661 | 100% | 18% | 24% | 14% | 12% |
+| **Total** | **20 158** | **100%** | **20%** | **26%** | **17%** | **15%** |
 
 Sentences come from Tatoeba where translations depend on community contributions. Coverage is sparse across all non-English locales — the app falls back to the English sentence when no translation exists for the user's locale (configurable via the "My language only" setting).
 
