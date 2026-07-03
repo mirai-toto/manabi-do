@@ -278,9 +278,7 @@ class AppDatabase extends _$AppDatabase {
 
   Stream<int> watchKanjiDueCount() => (select(srsCards)).watch().map(
     (rows) => rows
-        .where(
-          (r) => r.itemType == 'kanji' && !r.due.isAfter(DateTime.now()),
-        )
+        .where((r) => r.itemType == 'kanji' && !r.due.isAfter(DateTime.now()))
         .length,
   );
 
@@ -355,6 +353,7 @@ class AppDatabase extends _$AppDatabase {
           )..where((s) => s.itemType.equals(type))).get().then((r) => r.length);
           return (total - seen).clamp(0, total);
         }
+
         final unseenH = await countUnseen('hiragana');
         final unseenK = await countUnseen('katakana');
         return min(unseenH + unseenK, remaining);
@@ -373,8 +372,7 @@ class AppDatabase extends _$AppDatabase {
         final unseenByLevel = <String, int>{};
         for (final k in allKanji) {
           if (!seenIds.contains(k.id)) {
-            unseenByLevel[k.jlptLevel] =
-                (unseenByLevel[k.jlptLevel] ?? 0) + 1;
+            unseenByLevel[k.jlptLevel] = (unseenByLevel[k.jlptLevel] ?? 0) + 1;
           }
         }
         for (final level in const ['N5', 'N4', 'N3', 'N2', 'N1']) {
@@ -434,8 +432,18 @@ class AppDatabase extends _$AppDatabase {
     final hiragana = await getKanaByType('hiragana');
     final katakana = await getKanaByType('katakana');
     // Due cards only (no new cards yet)
-    final h = await _buildSrsSession('hiragana', hiragana, (k) => k.id, newCardLimit: 0);
-    final k = await _buildSrsSession('katakana', katakana, (k) => k.id, newCardLimit: 0);
+    final h = await _buildSrsSession(
+      'hiragana',
+      hiragana,
+      (k) => k.id,
+      newCardLimit: 0,
+    );
+    final k = await _buildSrsSession(
+      'katakana',
+      katakana,
+      (k) => k.id,
+      newCardLimit: 0,
+    );
     if (newCardLimit <= 0) return [...h, ...k];
     // Shared budget across both kana types
     final seenH = await _countSeenToday('hiragana');
@@ -452,10 +460,10 @@ class AppDatabase extends _$AppDatabase {
     final leftover = remaining - newH.length;
     final newK = leftover > 0
         ? katakana
-            .where((item) => kCards[item.id] == null)
-            .take(leftover)
-            .map((item) => (item, null as Card?))
-            .toList()
+              .where((item) => kCards[item.id] == null)
+              .take(leftover)
+              .map((item) => (item, null as Card?))
+              .toList()
         : <(Kana, Card?)>[];
     return [...h, ...k, ...newH, ...newK];
   }
