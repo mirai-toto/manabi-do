@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
 import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
@@ -12,7 +13,6 @@ import '../../../services/kanji_session_service.dart';
 import '../../../widgets/characters/kanji_strokes_provider.dart';
 import '../../../widgets/exercise/drawing_exercise.dart';
 import '../../practice/practice_session_screen.dart';
-import '../../practice/practice_settings_sheet.dart';
 
 // ── Screen ────────────────────────────────────────────────────────────────────
 
@@ -108,21 +108,10 @@ class KanjiDrawingBody extends ConsumerWidget {
                 ),
               ),
               const SizedBox(width: AppDimens.spaceXs),
-              SizedBox(
-                width: 32,
-                height: 32,
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  iconSize: 18,
-                  icon: Icon(Icons.tune_rounded, color: t.onSurfaceVariant),
-                  onPressed: () => showModalBottomSheet<void>(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (_) => PracticeSettingsSheet(
-                      contexts: const {SettingsContext.writing},
-                      showAutoAdvance: isFreeMode,
-                    ),
-                  ),
+              Text(
+                '${index + 1} / $total',
+                style: AppTextStyles.bodySmall.copyWith(
+                  color: t.onSurfaceVariant,
                 ),
               ),
             ],
