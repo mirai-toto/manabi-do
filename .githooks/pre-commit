@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# Mirrors CI: flutter analyze + dart format check (manabi_do/).
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT/manabi_do"
+
+echo "▶ flutter analyze"
+flutter analyze
+
+echo "▶ dart format check"
+dart format --output=none --set-exit-if-changed .
