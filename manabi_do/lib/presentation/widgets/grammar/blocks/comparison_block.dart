@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+
+import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_tokens.dart';
+import '../../common/card_container.dart';
+import '../../common/japanese_text.dart';
+import '../../common/pill_badge.dart';
+
+class ComparisonSide {
+  final String label;
+  final String description;
+  final String exampleJp;
+  final String exampleEn;
+
+  const ComparisonSide({
+    required this.label,
+    required this.description,
+    required this.exampleJp,
+    required this.exampleEn,
+  });
+}
+
+class ComparisonBlock extends StatelessWidget {
+  final ComparisonSide left;
+  final ComparisonSide right;
+
+  const ComparisonBlock({super.key, required this.left, required this.right});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final stacked = constraints.maxWidth < 380;
+        final children = [
+          Flexible(child: _SideCard(side: left)),
+          SizedBox(
+            width: stacked ? 0 : AppDimens.spaceSm,
+            height: stacked ? AppDimens.spaceSm : 0,
+          ),
+          Flexible(child: _SideCard(side: right)),
+        ];
+        return stacked
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: children,
+              )
+            : Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: children,
+              );
+      },
+    );
+  }
+}
+
+class _SideCard extends StatelessWidget {
+  final ComparisonSide side;
+  const _SideCard({required this.side});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    return CardContainer(
+      padding: const EdgeInsets.all(AppDimens.spaceMd),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PillBadge(
+            label: side.label,
+            color: t.onPrimaryContainer,
+            background: t.primaryContainer,
+          ),
+          const SizedBox(height: AppDimens.spaceSm),
+          Text(
+            side.description,
+            style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+          ),
+          const SizedBox(height: AppDimens.spaceSm),
+          JapaneseText(
+            word: side.exampleJp,
+            reading: '',
+            style: AppTextStyles.jpBody.copyWith(color: t.onSurface),
+          ),
+          const SizedBox(height: AppDimens.spaceXs),
+          Text(
+            side.exampleEn,
+            style: AppTextStyles.bodySmall.copyWith(
+              color: t.onSurfaceVariant,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -65,6 +65,31 @@ Widget buildKanjiDrawingCanvasWithGhost(BuildContext context) {
         child: KanjiDrawingCanvas(
           onStrokesChanged: (_) {},
           referenceStrokes: strokes,
+          ghostEnabled: true,
+        ),
+      );
+    },
+  );
+}
+
+@widgetbook.UseCase(
+  name: 'With stroke results',
+  type: KanjiDrawingCanvas,
+  path: 'Characters',
+)
+Widget buildKanjiDrawingCanvasWithResults(BuildContext context) {
+  return Consumer(
+    builder: (context, ref, _) {
+      final strokes = ref.watch(kanjiStrokesProvider(_water)).asData?.value;
+      return Center(
+        child: KanjiDrawingCanvas(
+          onStrokesChanged: (_) {},
+          referenceStrokes: strokes,
+          ghostEnabled: true,
+          snapToReference: true,
+          strokeResults: strokes != null
+              ? List.generate(strokes.length, (i) => i.isEven)
+              : null,
         ),
       );
     },
