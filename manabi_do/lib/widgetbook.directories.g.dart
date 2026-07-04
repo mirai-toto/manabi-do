@@ -501,6 +501,70 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'Blocks',
         children: [
           _widgetbook.WidgetbookComponent(
+            name: 'ComparisonBlock',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'から vs ので',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildComparisonBlock,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'ConjugationTableBlock',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Verb (ます-form)',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildConjugationTableVerb,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'い-adjective',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildConjugationTableAdj,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'ExampleTableBlock',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: '2 columns (no romaji)',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildExampleTable2Col,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: '3 columns',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildExampleTable3Col,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'ListBlock',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Bullet',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildListBlockBullet,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Numbered',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildListBlockNumbered,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'NoteBlock',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder: _manabi_do_widgetbook_grammar_use_cases.buildNoteBlock,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'PatternBlock',
             useCases: [
               _widgetbook.WidgetbookUseCase(
@@ -517,6 +581,56 @@ final directories = <_widgetbook.WidgetbookNode>[
                 name: 'Single line',
                 builder: _manabi_do_widgetbook_grammar_use_cases
                     .buildPatternBlockSingle,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'SectionTitleBlock',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'N1 accent',
+                builder:
+                    _manabi_do_widgetbook_grammar_use_cases.buildSectionTitleN1,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'N5 accent',
+                builder:
+                    _manabi_do_widgetbook_grammar_use_cases.buildSectionTitleN5,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'TextBlock',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom colour',
+                builder:
+                    _manabi_do_widgetbook_grammar_use_cases.buildTextBlockColor,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom style',
+                builder:
+                    _manabi_do_widgetbook_grammar_use_cases.buildTextBlockStyle,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildTextBlockDefault,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'VocabTableBlock',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'With counter',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildVocabTableCounter,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With verb group',
+                builder: _manabi_do_widgetbook_grammar_use_cases
+                    .buildVocabTableGroup,
               ),
             ],
           ),
