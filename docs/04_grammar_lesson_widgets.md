@@ -244,6 +244,30 @@ example sentence using `JapaneseText`.
 
 ---
 
+### `list`
+
+A bullet or numbered list of items. Each item supports the same inline
+**bold** and *italic* markers as the `text` block.
+
+```json
+{
+  "type": "list",
+  "style": "bullet",
+  "items": [
+    "Ends in a **u-sound** (く、ぐ、す、つ、ぬ、ぶ、む、る)",
+    "The dictionary form ends in *any* hiragana from the う column.",
+    "Exception: Group 2 verbs that also end in る must be memorised."
+  ]
+}
+```
+
+`style` is either `"bullet"` (• prefix) or `"numbered"` (1. 2. 3. prefix).
+
+**Widget:** `ListBlock` (new) — a `Column` of rows, each with a fixed-width
+prefix and a `RichText` body that shares the inline parser with `TextBlock`.
+
+---
+
 ### `divider`
 
 A visual separator between major sub-sections within a long lesson.
