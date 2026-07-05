@@ -1,8 +1,66 @@
 ---
-description: Launch this Flutter app (or its widgetbook) as a web build and screenshot it with headless Chromium, for visual inspection in a container with no Flutter SDK, no GPU, and a restricted egress proxy. Use whenever asked to "see", "look at", or "screenshot" the UI, or to visually verify a change.
+description: Launch this Flutter app (or its widgetbook) as a web build and screenshot it with headless Chromium, for visual inspection. Two environments covered: Claude web container (no Flutter SDK, restricted proxy) and local WSL2 (Flutter pre-installed, no restrictions). Use whenever asked to "see", "look at", or "screenshot" the UI, or to visually verify a change.
 ---
 
 # Running manabi_do (or its widgetbook) headless and screenshotting it
+
+---
+
+## WSL2 / Local Linux path
+
+Flutter SDK is pre-installed. No proxy restrictions.
+
+### 1. Build
+
+```bash
+cd /home/wsluser/manabi-do/manabi_do
+flutter build web -t lib/main.dart --no-web-resources-cdn --debug
+```
+
+Swap `-t lib/main.dart` for `-t lib/widgetbook.dart` for the widgetbook.
+
+### 2. Serve
+
+```bash
+pkill -f "http.server 8767" 2>/dev/null || true
+setsid nohup python3 -m http.server 8767 --bind 0.0.0.0 \
+  --directory build/web > /tmp/webserver.log 2>&1 < /dev/null & disown
+curl -sf http://localhost:8767 | head -2
+```
+
+### 3. Screenshot with Playwright
+
+Playwright lives in `/tmp/pw-test/` (first time: `cd /tmp/pw-test && npm install playwright && npx playwright install chromium`).
+
+A reusable base script lives at `scripts/screenshot.js` in the repo root. Run it with:
+
+```bash
+NODE_PATH=/tmp/pw-test/node_modules node scripts/screenshot.js [port] [output_path]
+# e.g.
+NODE_PATH=/tmp/pw-test/node_modules node scripts/screenshot.js 8768 /tmp/home.png
+```
+
+For multi-step navigation (click through screens), write a new script in `scripts/` that requires the same playwright setup:
+- Font: `/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf` (liberation fonts not installed)
+- `waitUntil: 'load'` — do NOT use `'networkidle'`, Flutter web never reaches it
+- 5 s initial wait after load for the canvas to fully render
+- Navigate by pixel coords from a prior screenshot — Flutter canvas has no DOM selectors
+
+### 4. Notes specific to WSL2
+
+- `kDebugMode` is always `false` on web builds. To bypass the `_grammarEnabled = false` gate in `grammar_screen.dart`, flip it to `true` temporarily. **Revert before committing.**
+- Japanese characters (NotoSansJP) appear as tofu boxes in headless Chromium screenshots — screenshot-only artifact, works fine in a real browser.
+- Read screenshots with the Read tool — Claude can view PNG images directly.
+
+---
+
+## Claude web container path
+
+This container has no Flutter SDK, no GPU, `kill`/`pkill` are blocked by the
+sandbox, and outbound network only reaches a fixed allowlist through a proxy
+(GitHub is allowed, `gstatic.com` is not). Flutter web's default behavior
+assumes none of that. Below is the path that actually works, in order —
+follow it, don't rediscover it.
 
 This container has no Flutter SDK, no GPU, `kill`/`pkill` are blocked by the
 sandbox, and outbound network only reaches a fixed allowlist through a proxy
