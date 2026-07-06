@@ -131,21 +131,27 @@ class _GroupCard extends StatelessWidget {
               group.rule!,
               style: AppTextStyles.bodySmall.copyWith(
                 color: t.onSurfaceVariant,
+                fontSize: 13,
                 fontStyle: FontStyle.italic,
               ),
             ),
           ],
-          const SizedBox(height: AppDimens.spaceSm),
+          const SizedBox(height: 8),
           Divider(height: 1, thickness: 1, color: t.outlineVariant),
-          const SizedBox(height: AppDimens.spaceSm),
-          // Rows
-          ...group.rows.map(
-            (row) => _TransformRowWidget(
-              row: row,
+          // Rows with hairline separators between them
+          for (int i = 0; i < group.rows.length; i++) ...[
+            if (i > 0)
+              Divider(
+                height: 1,
+                thickness: 0.5,
+                color: t.outlineVariant.withValues(alpha: 0.4),
+              ),
+            _TransformRowWidget(
+              row: group.rows[i],
               accentColor: accentColor,
               tokens: t,
             ),
-          ),
+          ],
           // Note chip
           if (group.note != null) ...[
             const SizedBox(height: AppDimens.spaceXs),
@@ -212,69 +218,59 @@ class _TransformRowWidget extends StatelessWidget {
     );
     final romajiStyle = AppTextStyles.bodySmall.copyWith(
       color: t.onSurfaceVariant,
+      fontSize: 13,
+      height: 1.3,
     );
     final englishStyle = AppTextStyles.bodySmall.copyWith(
-      color: t.onSurfaceVariant,
+      color: t.onSurfaceVariant.withValues(alpha: 0.75),
+      fontSize: 13,
       fontStyle: FontStyle.italic,
+      height: 1.3,
     );
 
-    final hasGloss = row.romaji != null || row.english != null;
-
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppDimens.spaceMd),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      padding: const EdgeInsets.symmetric(vertical: 14),
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: RichText(
-                  text: TextSpan(children: _baseSpans(jpNormal, jpStruck)),
-                ),
+          // Fixed-width dict form — keeps arrow close regardless of content width
+          SizedBox(
+            width: 88,
+            child: RichText(
+              text: TextSpan(children: _baseSpans(jpNormal, jpStruck)),
+            ),
+          ),
+          // Arrow nudged 2px down to sit at the JP text baseline
+          SizedBox(
+            width: _kArrowWidth,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Text(
+                '→',
+                style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant),
               ),
-              SizedBox(
-                width: _kArrowWidth,
-                child: Center(
-                  child: Text(
-                    '→',
-                    style: AppTextStyles.body.copyWith(
-                      color: t.onSurfaceVariant,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: RichText(
+            ),
+          ),
+          // Result + gloss stacked together in the remaining space
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(
                   text: TextSpan(children: _resultSpans(jpNormal, jpAccent)),
                 ),
-              ),
-            ],
-          ),
-          // Gloss pinned under the result column (offset by base + arrow)
-          if (hasGloss)
-            Row(
-              children: [
-                const Expanded(child: SizedBox.shrink()),
-                const SizedBox(width: _kArrowWidth),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: AppDimens.spaceXs),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (row.romaji != null)
-                          Text(row.romaji!, style: romajiStyle),
-                        if (row.english != null)
-                          Text(row.english!, style: englishStyle),
-                      ],
-                    ),
-                  ),
-                ),
+                if (row.romaji != null) ...[
+                  const SizedBox(height: 4),
+                  Text(row.romaji!, style: romajiStyle),
+                ],
+                if (row.english != null) ...[
+                  const SizedBox(height: 2),
+                  Text(row.english!, style: englishStyle),
+                ],
               ],
             ),
+          ),
         ],
       ),
     );
