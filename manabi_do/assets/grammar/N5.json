@@ -1410,6 +1410,251 @@
           ]
         }
       ]
+    },
+    {
+      "id": "obligation-opinion",
+      "title": "Obligation & Opinion",
+      "lessons": [
+        {
+          "id": "ta-hou-ga-ii",
+          "title": "たほうがいい — Should / Shouldn't",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**たほうがいい** expresses advice — suggesting that a course of action would be in the listener's best interest. The affirmative uses the past plain form; the negative uses the negative plain form."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Past plain] + ほうがいいです       ← you should do",
+                "[Negative plain] + ほうがいいです   ← you shouldn't do"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "早く寝たほうがいいです。", "romaji": "Hayaku neta hō ga ii desu.", "english": "You should sleep early." },
+                { "japanese": "タバコを吸わないほうがいいです。", "romaji": "Tabako wo suwanai hō ga ii desu.", "english": "You shouldn't smoke." },
+                { "japanese": "傘を持っていったほうがいいですよ。", "romaji": "Kasa wo motte itta hō ga ii desu yo.", "english": "You should take an umbrella." },
+                { "japanese": "無理をしないほうがいいです。", "romaji": "Muri wo shinai hō ga ii desu.", "english": "You shouldn't push yourself too hard." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "たほうがいい is advice, not a command. It signals that the speaker genuinely thinks this is in the listener's interest. For stronger obligation, use なければなりません."
+            }
+          ]
+        },
+        {
+          "id": "obligation-must",
+          "title": "Must & Don't Have To",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Two patterns cover what is required and what is not. **なければなりません** states that something must be done. **なくてもいいです** is its inverse — the action is not required."
+            },
+            {
+              "type": "comparison",
+              "left": {
+                "label": "なければなりません",
+                "description": "Must do — the action is an obligation. Formal, used in writing and polite speech.",
+                "example_jp": "薬を毎日飲まなければなりません。",
+                "example_en": "I have to take medicine every day."
+              },
+              "right": {
+                "label": "なくてもいいです",
+                "description": "Don't have to — the action is optional. Giving permission not to do something.",
+                "example_jp": "今日は来なくてもいいです。",
+                "example_en": "You don't have to come today."
+              }
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Neg. stem] + なければなりません   ← must (formal / polite)",
+                "[Neg. stem] + ないといけません     ← must (casual spoken)",
+                "[Neg. te-form] + もいいです        ← don't have to"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "明日までにレポートを出さなければなりません。", "romaji": "Ashita made ni repōto wo dasanakereba narimasen.", "english": "I must submit the report by tomorrow." },
+                { "japanese": "もっと練習しないといけません。", "romaji": "Motto renshū shinai to ikemasen.", "english": "I need to practice more." },
+                { "japanese": "全部食べなくてもいいですよ。", "romaji": "Zenbu tabenakute mo ii desu yo.", "english": "You don't have to eat everything." },
+                { "japanese": "ネクタイをしなくてもいいです。", "romaji": "Nekutai wo shinakute mo ii desu.", "english": "You don't need to wear a tie." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "なきゃ and なくちゃ are heavily contracted casual forms of なければならない — you will hear them constantly in everyday speech and anime. They are not appropriate in formal writing."
+            }
+          ]
+        },
+        {
+          "id": "to-omoimasu",
+          "title": "と思います — I Think That",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**と思います** expresses personal opinion or belief. The と marks the boundary of the thought being reported. It makes statements sound appropriately tentative — stating something flatly without it can feel blunt."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Plain form] + と思います   ← I think that ~"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "明日は雨が降ると思います。", "romaji": "Ashita wa ame ga furu to omoimasu.", "english": "I think it will rain tomorrow." },
+                { "japanese": "彼は来ないと思います。", "romaji": "Kare wa konai to omoimasu.", "english": "I think he won't come." },
+                { "japanese": "この映画は面白いと思います。", "romaji": "Kono eiga wa omoshiroi to omoimasu.", "english": "I think this movie is interesting." },
+                { "japanese": "もう少し考えたほうがいいと思います。", "romaji": "Mō sukoshi kangaeta hō ga ii to omoimasu.", "english": "I think you should think it over a bit more." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "The clause before と is always in the **plain form**, not the polite form. 来ます**と**思います is wrong — it should be 来る**と**思います. The politeness is carried by the final と思います alone."
+            }
+          ]
+        },
+        {
+          "id": "tsumori-yotei",
+          "title": "つもり & 予定 — Intention and Plans",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Both **つもり** and **予定** express future plans, but they differ in who made the decision and how fixed it is."
+            },
+            {
+              "type": "comparison",
+              "left": {
+                "label": "つもりです",
+                "description": "Personal intention — an internal decision already made in your own mind. Not dependent on others.",
+                "example_jp": "来年、日本に行くつもりです。",
+                "example_en": "I intend to go to Japan next year."
+              },
+              "right": {
+                "label": "予定です",
+                "description": "Scheduled plan — often external, fixed, or coordinated with others. Suits appointments and timetables.",
+                "example_jp": "三時に会議が始まる予定です。",
+                "example_en": "The meeting is scheduled to start at 3."
+              }
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Dictionary form] + つもりです      ← intend to (personal decision)",
+                "[Negative plain] + つもりです       ← intend not to",
+                "[Dictionary form] + 予定です        ← scheduled to (arranged plan)",
+                "[Noun] + の + 予定です              ← have a plan for ~"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "もうお酒を飲まないつもりです。", "romaji": "Mō osake wo nomanai tsumori desu.", "english": "I intend not to drink anymore." },
+                { "japanese": "来月、出張の予定です。", "romaji": "Raigetsu, shutchō no yotei desu.", "english": "I have a business trip planned next month." },
+                { "japanese": "飛行機は六時に到着する予定です。", "romaji": "Hikōki wa rokuji ni tōchaku suru yotei desu.", "english": "The plane is scheduled to arrive at 6." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "If you made a reservation or appointment, use 予定. If you have decided something for yourself regardless of others, use つもり."
+            }
+          ]
+        },
+        {
+          "id": "n-desu",
+          "title": "んです — Explanation",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**んです** (written のです) adds an explanatory nuance to a statement. It signals that what you are saying is the reason behind something, the context for a situation, or a request for explanation — not just a bare fact."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Plain form verb / い-adj] + んです",
+                "[な-adj / noun] + な + んです"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "頭が痛いんです。", "romaji": "Atama ga itai n desu.", "english": "(You see,) I have a headache." },
+                { "japanese": "どうして遅れたんですか。", "romaji": "Dōshite okureta n desu ka.", "english": "Why were you late? (explain it to me)" },
+                { "japanese": "実は、昨日転んだんです。", "romaji": "Jitsu wa, kinō koronda n desu.", "english": "The thing is, I fell yesterday." },
+                { "japanese": "ちょっと聞いてもいいんですが…", "romaji": "Chotto kiite mo ii n desu ga…", "english": "I was wondering if I could ask you something…" }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "Without んです, 頭が痛いです is a plain statement of fact. With it, 頭が痛いんです implies \"I'm telling you this because it's relevant — that's why I look unwell / can't attend.\" Use it when you want to signal context, not just information."
+            }
+          ]
+        },
+        {
+          "id": "naka-chuu-juu",
+          "title": "中 — During / Throughout",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "The kanji **中** attaches to nouns with two different readings and two different meanings. The verb or context usually makes the reading clear."
+            },
+            {
+              "type": "comparison",
+              "left": {
+                "label": "〜中 (ちゅう)",
+                "description": "Currently in that activity or state — happening right now.",
+                "example_jp": "会議中です。",
+                "example_en": "I'm in a meeting right now."
+              },
+              "right": {
+                "label": "〜中 (じゅう)",
+                "description": "Spanning the whole thing — throughout all of a time or space.",
+                "example_jp": "一日中働いています。",
+                "example_en": "I've been working all day long."
+              }
+            },
+            {
+              "type": "vocab_table",
+              "columns": ["japanese", "reading", "english"],
+              "rows": [
+                { "japanese": "会議中", "reading": "かいぎちゅう", "english": "in a meeting" },
+                { "japanese": "勉強中", "reading": "べんきょうちゅう", "english": "currently studying" },
+                { "japanese": "使用中", "reading": "しようちゅう", "english": "in use / occupied" },
+                { "japanese": "工事中", "reading": "こうじちゅう", "english": "under construction" },
+                { "japanese": "世界中", "reading": "せかいじゅう", "english": "throughout the world" },
+                { "japanese": "一日中", "reading": "いちにちじゅう", "english": "all day long" },
+                { "japanese": "日本中", "reading": "にほんじゅう", "english": "all over Japan" },
+                { "japanese": "年中", "reading": "ねんじゅう", "english": "all year round" }
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "すみません、今、電話中です。", "romaji": "Sumimasen, ima, denwa chū desu.", "english": "Sorry, I'm on the phone right now." },
+                { "japanese": "使用中のため入れません。", "romaji": "Shiyō chū no tame hairemasen.", "english": "Cannot enter — currently in use." },
+                { "japanese": "世界中の人が知っています。", "romaji": "Sekai jū no hito ga shitte imasu.", "english": "People all over the world know about it." },
+                { "japanese": "日本中を旅行しました。", "romaji": "Nihon jū wo ryokō shimashita.", "english": "I travelled all over Japan." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "ちゅう = the activity is in progress right now (a slice of time). じゅう = no part is excluded (the full extent of a time or space). 勉強中 = studying at this moment. 一日中勉強した = studied without stopping for the entire day."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
