@@ -38,27 +38,29 @@ class ComparisonBlock extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final stacked = constraints.maxWidth < 380;
-        final children = [
-          Flexible(
-            child: _SideCard(side: left, accentColor: accentColor),
-          ),
-          SizedBox(
-            width: stacked ? 0 : AppDimens.spaceSm,
-            height: stacked ? AppDimens.spaceSm : 0,
-          ),
-          Flexible(
-            child: _SideCard(side: right, accentColor: accentColor),
-          ),
-        ];
-        return stacked
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: children,
-              )
-            : Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: children,
-              );
+        if (stacked) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _SideCard(side: left, accentColor: accentColor),
+              const SizedBox(height: AppDimens.spaceSm),
+              _SideCard(side: right, accentColor: accentColor),
+            ],
+          );
+        }
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(
+              child: _SideCard(side: left, accentColor: accentColor),
+            ),
+            const SizedBox(width: AppDimens.spaceSm),
+            Flexible(
+              child: _SideCard(side: right, accentColor: accentColor),
+            ),
+          ],
+        );
       },
     );
   }
