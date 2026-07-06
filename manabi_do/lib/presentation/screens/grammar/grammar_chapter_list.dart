@@ -32,6 +32,7 @@ class GrammarChapterList extends ConsumerWidget {
     final title = level == 'basics'
         ? l.japaneseBasics
         : levelLabel(level, context);
+    final color = _levelColor(level);
 
     return chaptersAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -40,11 +41,11 @@ class GrammarChapterList extends ConsumerWidget {
         title: title,
         sectionLabel: l.grammarChapters,
         items: chapters.map((c) => c.title).toList(),
+        accentColor: color,
         onBack: onBack,
         onItemTap: (i) {
           final chapter = chapters[i];
           if (chapter.isJson) {
-            final color = _levelColor(level);
             if (chapter.lessons.length == 1) {
               Navigator.of(context).push(
                 MaterialPageRoute<void>(

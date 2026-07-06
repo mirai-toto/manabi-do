@@ -119,6 +119,7 @@ Widget buildChapterListView(BuildContext context) {
         'Food & Restaurants',
         'Places & Directions',
       ],
+      accentColor: levelColor('N5'),
       onBack: () {},
       onItemTap: (_) {},
     ),

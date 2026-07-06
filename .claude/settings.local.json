@@ -12,7 +12,8 @@
       "Bash(sed -i 's|'\\\\''app_button.dart'\\\\''|'\\\\''../common/app_button.dart'\\\\''|g' /home/wsluser/manabi-do/manabi_do/lib/presentation/widgets/exercise/lesson_reader_card.dart /home/wsluser/manabi-do/manabi_do/lib/presentation/widgets/exercise/summary_card.dart)",
       "Bash(flutter analyze *)",
       "Bash(dart analyze *)",
-      "Bash(dart format *)"
+      "Bash(dart format *)",
+      "Bash(git apply *)"
     ]
   }
 }
