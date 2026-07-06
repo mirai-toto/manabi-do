@@ -87,7 +87,7 @@ class TransformCardsBlock extends StatelessWidget {
         items.add(
           Padding(
             padding: const EdgeInsets.only(top: AppDimens.spaceXs),
-            child: _NoteChip(text: group.note!, tokens: t),
+            child: _NoteChip(text: group.note!, tokens: t, accentColor: color),
           ),
         );
       }
@@ -302,26 +302,28 @@ class _TransformRowWidget extends StatelessWidget {
 class _NoteChip extends StatelessWidget {
   final String text;
   final AppTokens tokens;
+  final Color? accentColor;
 
-  const _NoteChip({required this.text, required this.tokens});
+  const _NoteChip({required this.text, required this.tokens, this.accentColor});
 
   @override
   Widget build(BuildContext context) {
     final t = tokens;
+    final color = accentColor ?? t.primary;
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppDimens.spaceSm,
         vertical: AppDimens.spaceXs,
       ),
       decoration: BoxDecoration(
-        color: t.surfaceContainer,
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-        border: Border.all(color: t.outlineVariant),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(Icons.info_outline_rounded, size: 13, color: t.onSurfaceVariant),
+          Icon(Icons.info_outline_rounded, size: 13, color: color),
           const SizedBox(width: AppDimens.spaceXs),
           Expanded(
             child: Text(
