@@ -2,6 +2,10 @@
 description: Launch this Flutter app (or its widgetbook) as a web build and screenshot it with headless Chromium, for visual inspection. Two environments covered: Claude web container (no Flutter SDK, restricted proxy) and local WSL2 (Flutter pre-installed, no restrictions). Use whenever asked to "see", "look at", or "screenshot" the UI, or to visually verify a change.
 ---
 
+## IMPORTANT: never take screenshots proactively
+
+Do **not** run `rebuild_and_screenshot.sh` or any screenshot script on your own initiative. Screenshots take ~2 minutes to build and are only useful when the user explicitly asks to see them. Wait for the user to say "screenshot", "show me", "what does it look like", etc.
+
 # Running manabi_do (or its widgetbook) headless and screenshotting it
 
 ---
