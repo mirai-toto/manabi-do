@@ -127,6 +127,140 @@
           ]
         }
       ]
+    },
+    {
+      "id": "particles-space",
+      "title": "Particles — Space & Direction",
+      "lessons": [
+        {
+          "id": "direction-he-ni",
+          "title": "へ and に — Direction",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Both **へ** and **に** can mark a destination when paired with a movement verb. They are often interchangeable, but each has a different focus: へ points at the direction of travel, に points at the arrival point. In everyday speech, に is more common."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Place] へ + [movement verb]   ← focus on the direction, the journey",
+                "[Place] に + [movement verb]   ← focus on the destination, arrival"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "学校へ行きます。", "romaji": "Gakkō e ikimasu.", "english": "I go to school." },
+                { "japanese": "東京に来ました。", "romaji": "Tōkyō ni kimashita.", "english": "I came to Tokyo." },
+                { "japanese": "家に帰ります。", "romaji": "Uchi ni kaerimasu.", "english": "I go home." },
+                { "japanese": "駅のほうへ歩きました。", "romaji": "Eki no hō e arukimashita.", "english": "I walked toward the station." },
+                { "japanese": "日本に引っ越しました。", "romaji": "Nihon ni hikkoshimashita.", "english": "I moved to Japan." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "に is required — not interchangeable with へ — with arrival verbs like 着く (to arrive) and 帰る (to return). These verbs already imply reaching a point, so に locks in the destination. 家に帰る = arrive back home. 家へ帰る = head toward home."
+            }
+          ]
+        },
+        {
+          "id": "de-location",
+          "title": "で — Location of an Action",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**で** marks *where an action takes place* — the venue or instrument of an activity. This is different from に, which marks *where something exists*. The verb is what tells you which particle to use."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Place] で + [action verb]   ← an action happens here",
+                "[Place] に + [existence verb] ← something exists here (います / あります)"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "図書館で勉強します。", "romaji": "Toshokan de benkyō shimasu.", "english": "I study at the library." },
+                { "japanese": "公園で走りました。", "romaji": "Kōen de hashirimashita.", "english": "I ran in the park." },
+                { "japanese": "電車で本を読みます。", "romaji": "Densha de hon wo yomimasu.", "english": "I read books on the train." },
+                { "japanese": "日本語で話してください。", "romaji": "Nihongo de hanashite kudasai.", "english": "Please speak in Japanese." }
+              ]
+            },
+            {
+              "type": "comparison",
+              "left": {
+                "label": "で — action",
+                "description": "Where something happens. Use with action verbs — running, studying, eating.",
+                "example_jp": "公園で走ります。",
+                "example_en": "I run in the park."
+              },
+              "right": {
+                "label": "に — existence",
+                "description": "Where something is. Use with います and あります — existing, being.",
+                "example_jp": "公園にいます。",
+                "example_en": "I am in the park."
+              }
+            },
+            {
+              "type": "note",
+              "content": "で vs に for location is one of the most common early errors. The verb tells you which to use: action verbs → で, existence verbs (います/あります) → に."
+            }
+          ]
+        },
+        {
+          "id": "iru-aru",
+          "title": "いる and ある — Existence",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Japanese uses two different verbs to express \"there is\" or \"to be,\" and the choice depends entirely on what kind of thing exists. **いる** is for living things. **ある** is for everything else."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Living thing] が [Place] に います   → there is/are (animate)",
+                "[Object/thing] が [Place] に あります  → there is/are (inanimate)"
+              ]
+            },
+            {
+              "type": "comparison",
+              "left": {
+                "label": "います",
+                "description": "People, animals — anything that moves under its own power.",
+                "example_jp": "猫が部屋にいます。",
+                "example_en": "There is a cat in the room."
+              },
+              "right": {
+                "label": "あります",
+                "description": "Objects, plants, buildings, and even scheduled events like meetings.",
+                "example_jp": "本が机の上にあります。",
+                "example_en": "There is a book on the desk."
+              }
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "駅の前に銀行があります。", "romaji": "Eki no mae ni ginkō ga arimasu.", "english": "There's a bank in front of the station." },
+                { "japanese": "友達が外にいます。", "romaji": "Tomodachi ga soto ni imasu.", "english": "My friend is outside." },
+                { "japanese": "財布がバッグの中にあります。", "romaji": "Saifu ga baggu no naka ni arimasu.", "english": "My wallet is inside the bag." },
+                { "japanese": "明日、会議があります。", "romaji": "Ashita, kaigi ga arimasu.", "english": "There is a meeting tomorrow." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "あります is used for scheduled events too — 会議があります (there's a meeting), 授業があります (there's a class). Events are treated as inanimate things that exist on the calendar."
+            },
+            {
+              "type": "note",
+              "content": "Using ある for people — 友達が外にある — sounds wrong at best and rude at worst. The animate/inanimate distinction is instinctive for native speakers."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
