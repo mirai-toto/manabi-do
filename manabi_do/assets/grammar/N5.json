@@ -854,6 +854,149 @@
           ]
         }
       ]
+    },
+    {
+      "id": "desire-probability",
+      "title": "Desire & Probability",
+      "lessons": [
+        {
+          "id": "tai-want-to-do",
+          "title": "Want to Do — たい",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**たい** attaches to the verb stem and expresses the speaker's personal desire to do something. It conjugates exactly like an い-adjective — the same stem changes apply."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Verb stem] + たいです        (want to do)",
+                "[Verb stem] + たくないです    (don't want to do)",
+                "[Verb stem] + たかったです    (wanted to do)"
+              ]
+            },
+            {
+              "type": "conjugation_table",
+              "label": "食べる (taberu) → 食べたい",
+              "rows": [
+                { "form": "want to", "japanese": "食べたいです", "romaji": "tabetai desu", "english": "want to eat" },
+                { "form": "don't want to", "japanese": "食べたくないです", "romaji": "tabetakunai desu", "english": "don't want to eat" },
+                { "form": "wanted to", "japanese": "食べたかったです", "romaji": "tabetakatta desu", "english": "wanted to eat" }
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "日本に行きたいです。", "romaji": "Nihon ni ikitai desu.", "english": "I want to go to Japan." },
+                { "japanese": "今日は外出したくないです。", "romaji": "Kyō wa gaishutsu shitakunai desu.", "english": "I don't want to go out today." },
+                { "japanese": "何が食べたいですか。", "romaji": "Nani ga tabetai desu ka.", "english": "What do you want to eat?" },
+                { "japanese": "子どもの頃、医者になりたかったです。", "romaji": "Kodomo no koro, isha ni naritakatta desu.", "english": "When I was a child, I wanted to become a doctor." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "The direct object of たい often takes が instead of を — 寿司**が**食べたい sounds slightly more natural than 寿司**を**食べたい, though both are correct. Think of が as pairing the desire with its target."
+            },
+            {
+              "type": "note",
+              "content": "たい describes *your own* desire. Saying 田中さんは行きたい directly implies you know their inner feelings, which can sound presumptuous. For third-person desire, use 田中さんは行きたがっている (seems to want to go)."
+            }
+          ]
+        },
+        {
+          "id": "hoshii-want-something",
+          "title": "Want Something — ほしい",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**ほしい** expresses desire for a *thing* — a noun, not an action. It is an い-adjective and conjugates the same way. The object is always marked with が."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Object] が ほしいです        (want something)",
+                "[Object] が ほしくないです    (don't want something)",
+                "[Object] が ほしかったです    (wanted something)"
+              ]
+            },
+            {
+              "type": "comparison",
+              "left": {
+                "label": "たい — action",
+                "description": "Attaches to a verb stem. Expresses the desire to *do* something.",
+                "example_jp": "寿司が食べたいです。",
+                "example_en": "I want to eat sushi."
+              },
+              "right": {
+                "label": "ほしい — object",
+                "description": "Follows a noun with が. Expresses the desire to *have* something.",
+                "example_jp": "新しいカメラがほしいです。",
+                "example_en": "I want a new camera."
+              }
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "新しいカメラがほしいです。", "romaji": "Atarashii kamera ga hoshii desu.", "english": "I want a new camera." },
+                { "japanese": "今は何もほしくないです。", "romaji": "Ima wa nani mo hoshikunai desu.", "english": "I don't want anything right now." },
+                { "japanese": "子どもの頃、犬がほしかったです。", "romaji": "Kodomo no koro, inu ga hoshikatta desu.", "english": "When I was a child, I wanted a dog." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "ほしい carries the same register restriction as たい — use it for your own desires only. For someone else wanting something, say ほしがっている (seems to want)."
+            }
+          ]
+        },
+        {
+          "id": "deshou-kamoshirenai",
+          "title": "Probability — でしょう / かもしれない",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "These two forms express degrees of certainty about something unconfirmed. **でしょう** is fairly confident — the speaker's informed expectation. **かもしれない** is genuinely uncertain — the speaker is leaving room for doubt."
+            },
+            {
+              "type": "comparison",
+              "left": {
+                "label": "でしょう",
+                "description": "Probably — the speaker is fairly confident. Based on evidence or reasoning.",
+                "example_jp": "明日は晴れるでしょう。",
+                "example_en": "It will probably be sunny tomorrow."
+              },
+              "right": {
+                "label": "かもしれない",
+                "description": "Might — the speaker is genuinely uncertain. Real possibility but not expected.",
+                "example_jp": "彼は来ないかもしれません。",
+                "example_en": "He might not come."
+              }
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Plain form] + でしょう          ← probably (fairly confident)",
+                "[Plain form] + かもしれません    ← might (uncertain)"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "このレストランは高いでしょう。", "romaji": "Kono resutoran wa takai deshō.", "english": "This restaurant is probably expensive." },
+                { "japanese": "電車が遅れているかもしれません。", "romaji": "Densha ga okurete iru kamo shiremasen.", "english": "The train might be running late." },
+                { "japanese": "彼女はもう知っているでしょう。", "romaji": "Kanojo wa mō shitte iru deshō.", "english": "She probably already knows." },
+                { "japanese": "明日、雨が降るかもしれません。", "romaji": "Ashita, ame ga furu kamo shiremasen.", "english": "It might rain tomorrow." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "でしょう with a rising intonation becomes a soft question tag — そうでしょう？ means \"That's right, isn't it?\" / \"Don't you think?\" This is a completely separate use from the probability meaning."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
