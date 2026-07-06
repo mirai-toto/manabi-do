@@ -31,11 +31,12 @@ const shot = async (page, name) => {
   console.log(`saved ${name}.png`);
 };
 
-// Chapter y-coords on the basics chapter list screen (5 chapters, ~57px apart)
-const CHAPTER_Y = [202, 259, 316, 373, 430];
+// Chapter y-coords on the basics chapter list screen.
+// Row height: 36px badge + 2×24px (spaceLg) padding = 84px. Gap: spaceSm=8px. Spacing ~73px.
+const CHAPTER_Y = [210, 283, 356, 429, 502];
 
-// Chapters with multiple lessons and their lesson y-coords on the lesson list screen
-// Lesson list items start at ~88px (after AppBar), ~72px apart
+// Chapters with multiple lessons and their lesson y-coords on the lesson list screen.
+// Row height: 36px badge + 2×24px (spaceLg) padding = 84px. Gap: spaceSm=8px → spacing ~88px.
 const MULTI_LESSON_CHAPTERS = {
   1: { name: 'sentence_structure', lessonCount: 4 },
   3: { name: 'small_kana',         lessonCount: 3 },
@@ -77,9 +78,9 @@ const MULTI_LESSON_CHAPTERS = {
       const { name, lessonCount } = MULTI_LESSON_CHAPTERS[i];
       await shot(page, `03_${name}_lessons`);
 
-      // Click each lesson (items start at y≈88, ~72px apart)
+      // Click each lesson (items start at y≈96, ~88px apart after spaceLg padding)
       for (let j = 0; j < lessonCount; j++) {
-        const lessonY = 88 + j * 72;
+        const lessonY = 96 + j * 88;
         await page.mouse.click(195, lessonY);
         await page.waitForTimeout(2000);
         await shot(page, `03_${name}_lesson_${j + 1}`);
