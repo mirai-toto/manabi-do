@@ -1306,6 +1306,110 @@
           ]
         }
       ]
+    },
+    {
+      "id": "comparison",
+      "title": "Comparison",
+      "lessons": [
+        {
+          "id": "yori-more-than",
+          "title": "A は B より ～ — More Than",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**より** marks the baseline of comparison — what you are comparing *against*. What comes before より is the lesser item; what comes before the adjective is the greater one."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "A は B より [adjective] です       ← A is more ~ than B",
+                "B より A のほうが [adjective] です  ← A is more ~ than B (emphatic)"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "東京は大阪より大きいです。", "romaji": "Tōkyō wa Ōsaka yori ōkii desu.", "english": "Tokyo is bigger than Osaka." },
+                { "japanese": "バスより電車のほうが速いです。", "romaji": "Basu yori densha no hō ga hayai desu.", "english": "The train is faster than the bus." },
+                { "japanese": "夏より冬のほうが好きです。", "romaji": "Natsu yori fuyu no hō ga suki desu.", "english": "I prefer winter to summer." },
+                { "japanese": "昨日より今日のほうが寒いです。", "romaji": "Kinō yori kyō no hō ga samui desu.", "english": "Today is colder than yesterday." },
+                { "japanese": "肉より魚のほうが好きです。", "romaji": "Niku yori sakana no hō ga suki desu.", "english": "I like fish more than meat." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "Adding のほうが after the item being elevated makes the comparison more explicit and emphatic. Both structures are grammatically correct — のほうが is simply more common in natural speech."
+            }
+          ]
+        },
+        {
+          "id": "dochira-which",
+          "title": "どちらが ～ — Which is More ~?",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "To ask which of **two** things has a quality more than the other, use **どちら** (or どっち in casual speech) before が. The answer uses のほうが to identify the winner, or どちらも when both are equal."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "A と B と どちらが [adjective] ですか   ← which is more ~?",
+                "  → A のほうが [adjective] です         ← A is more ~",
+                "  → どちらも [adjective] です           ← both are equally ~"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "犬と猫とどちらが好きですか。", "romaji": "Inu to neko to dochira ga suki desu ka.", "english": "Which do you like more, dogs or cats?" },
+                { "japanese": "猫のほうが好きです。", "romaji": "Neko no hō ga suki desu.", "english": "I like cats more." },
+                { "japanese": "コーヒーと紅茶とどちらを飲みますか。", "romaji": "Koohii to kōcha to dochira wo nomimasu ka.", "english": "Which would you like, coffee or tea?" },
+                { "japanese": "どちらも好きです。", "romaji": "Dochira mo suki desu.", "english": "I like both equally." },
+                { "japanese": "電車とバスとどちらが便利ですか。", "romaji": "Densha to basu to dochira ga benri desu ka.", "english": "Which is more convenient, the train or the bus?" }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "どちら is the polite form; どっち is casual and more common in everyday conversation. Use どちら with people you don't know well or in formal situations."
+            }
+          ]
+        },
+        {
+          "id": "ichiban-superlative",
+          "title": "いちばん ～ — The Most ~",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**いちばん** (一番) means \"number one\" and acts as a superlative marker. It goes directly before the adjective or adverb — no change to the adjective itself."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Group] の中で、[item] が いちばん [adjective] です",
+                "",
+                "  の中で (no naka de) = \"among\" — optional but common"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "クラスで田中さんが一番背が高いです。", "romaji": "Kurasu de Tanaka-san ga ichiban se ga takai desu.", "english": "Tanaka is the tallest in the class." },
+                { "japanese": "日本で一番高い山は富士山です。", "romaji": "Nihon de ichiban takai yama wa Fujisan desu.", "english": "Mt. Fuji is the tallest mountain in Japan." },
+                { "japanese": "何の科目がいちばん好きですか。", "romaji": "Nani no kamoku ga ichiban suki desu ka.", "english": "Which subject do you like the most?" },
+                { "japanese": "このメニューの中で一番安い料理はどれですか。", "romaji": "Kono menyū no naka de ichiban yasui ryōri wa dore desu ka.", "english": "Which dish on this menu is the cheapest?" },
+                { "japanese": "世界で一番大きい国はどこですか。", "romaji": "Sekai de ichiban ōkii kuni wa doko desu ka.", "english": "Which is the largest country in the world?" }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "いちばん can modify adjectives (一番高い), adverbs (一番速く), and nouns when paired with suki/kirai (一番好きな食べ物). It is one of the simplest patterns at N5 — the adjective needs no modification at all."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
