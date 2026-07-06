@@ -387,6 +387,142 @@
           ]
         }
       ]
+    },
+    {
+      "id": "time",
+      "title": "Time",
+      "lessons": [
+        {
+          "id": "telling-time",
+          "title": "Telling Time",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Time in Japanese is stated with **時** (じ, hour) and **分** (ふん/ぷん, minute). The structure is simple: hour first, then minute, then です. AM and PM go before the time."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Hour] 時 [Minute] 分 です",
+                "",
+                "ごぜん (AM) / ごご (PM) + [Hour] 時 [Minute] 分"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "今、三時です。", "romaji": "Ima, sanji desu.", "english": "It's 3 o'clock." },
+                { "japanese": "九時十五分に始まります。", "romaji": "Kuji jūgofun ni hajimarimasu.", "english": "It starts at 9:15." },
+                { "japanese": "十二時半に昼ごはんを食べます。", "romaji": "Jūniji han ni hirugohan wo tabemasu.", "english": "I eat lunch at 12:30." },
+                { "japanese": "午後七時に帰ります。", "romaji": "Gogo shichiji ni kaerimasu.", "english": "I'll be home at 7 PM." },
+                { "japanese": "午前六時に起きます。", "romaji": "Gozen rokuji ni okimasu.", "english": "I wake up at 6 AM." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "半 (はん) means \"half past\" — 三時半 = 3:30. ごぜん and ごご come *before* the time: 午前九時 = 9 AM, 午後三時 = 3 PM. Without them, meaning comes from context."
+            },
+            {
+              "type": "note",
+              "content": "Minute readings change based on the number. 一分 (ippun), 三分 (sanpun), 六分 (roppun), 八分 (happun), 十分 (juppun). These follow the same phonetic rules as counters — they become natural through listening."
+            }
+          ]
+        },
+        {
+          "id": "time-particles",
+          "title": "Time Particles — に, から, まで",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Three particles handle time relationships. **に** pins an action to a specific point — at a clock time or calendar date. **から** marks a start point. **まで** marks an end point. から and まで are often paired."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Specific time] に + [action]          ← at a specific time",
+                "[Start] から [End] まで + [action]     ← from A until B",
+                "[Start] から + [action]                ← from / since A (no end given)"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "七時に起きます。", "romaji": "Shichiji ni okimasu.", "english": "I wake up at 7." },
+                { "japanese": "月曜日に病院へ行きます。", "romaji": "Getsuyōbi ni byōin e ikimasu.", "english": "I go to the hospital on Monday." },
+                { "japanese": "九時から五時まで働きます。", "romaji": "Kuji kara goji made hatarakimasu.", "english": "I work from 9 to 5." },
+                { "japanese": "授業は十時から始まります。", "romaji": "Jugyō wa jūji kara hajimarimasu.", "english": "Class starts from 10." },
+                { "japanese": "去年から日本語を勉強しています。", "romaji": "Kyonen kara nihongo wo benkyō shite imasu.", "english": "I've been studying Japanese since last year." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "に is **not** used with relative time words like 今日, 明日, 毎日, 来週. These words are already time-referencing and don't need に. Say 明日行きます — never 明日**に**行きます. Think of に as \"at a specific clock or calendar point.\" If the word is relative, drop the に."
+            }
+          ]
+        },
+        {
+          "id": "relative-time",
+          "title": "Relative Time Words",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "These words are the building blocks of everyday temporal reference. None of them take the particle に — they are inherently time-referencing on their own."
+            },
+            {
+              "type": "section_title",
+              "content": "Days"
+            },
+            {
+              "type": "vocab_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "今日", "romaji": "kyō", "english": "today" },
+                { "japanese": "明日", "romaji": "ashita", "english": "tomorrow" },
+                { "japanese": "昨日", "romaji": "kinō", "english": "yesterday" },
+                { "japanese": "明後日", "romaji": "asatte", "english": "the day after tomorrow" },
+                { "japanese": "一昨日", "romaji": "ototoi", "english": "the day before yesterday" }
+              ]
+            },
+            {
+              "type": "section_title",
+              "content": "Weeks, Months, Years"
+            },
+            {
+              "type": "vocab_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "今週", "romaji": "konshū", "english": "this week" },
+                { "japanese": "来週", "romaji": "raishū", "english": "next week" },
+                { "japanese": "先週", "romaji": "senshū", "english": "last week" },
+                { "japanese": "今月", "romaji": "kongetsu", "english": "this month" },
+                { "japanese": "来月", "romaji": "raigetsu", "english": "next month" },
+                { "japanese": "先月", "romaji": "sengetsu", "english": "last month" },
+                { "japanese": "今年", "romaji": "kotoshi", "english": "this year" },
+                { "japanese": "来年", "romaji": "rainen", "english": "next year" },
+                { "japanese": "去年", "romaji": "kyonen", "english": "last year" }
+              ]
+            },
+            {
+              "type": "section_title",
+              "content": "Frequency"
+            },
+            {
+              "type": "vocab_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "毎日", "romaji": "mainichi", "english": "every day" },
+                { "japanese": "毎週", "romaji": "maishū", "english": "every week" },
+                { "japanese": "毎月", "romaji": "maitsuki", "english": "every month" },
+                { "japanese": "毎年", "romaji": "maitoshi", "english": "every year" },
+                { "japanese": "毎朝", "romaji": "maiasa", "english": "every morning" },
+                { "japanese": "毎晩", "romaji": "maiban", "english": "every evening" }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
