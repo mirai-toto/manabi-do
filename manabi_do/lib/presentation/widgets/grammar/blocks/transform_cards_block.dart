@@ -106,39 +106,53 @@ class _GroupCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header
-          Row(
-            children: [
-              PillBadge(
-                label: group.label,
-                color: Colors.white,
-                background: accentColor,
-              ),
-              if (group.tag != null) ...[
-                const SizedBox(width: AppDimens.spaceXs),
-                Text(
-                  '· ${group.tag}',
-                  style: AppTextStyles.labelSmall.copyWith(
-                    color: t.onSurfaceVariant,
-                  ),
-                ),
-              ],
-            ],
-          ),
-          if (group.rule != null) ...[
-            const SizedBox(height: AppDimens.spaceXs),
-            Text(
-              group.rule!,
-              style: AppTextStyles.bodySmall.copyWith(
-                color: t.onSurfaceVariant,
-                fontSize: 13,
-                fontStyle: FontStyle.italic,
-              ),
+          // Header + rule — padded, divider stretches full width below
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppDimens.spaceMd,
+              AppDimens.spaceMd,
+              AppDimens.spaceMd,
+              0,
             ),
-          ],
-          const SizedBox(height: 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    PillBadge(
+                      label: group.label,
+                      color: Colors.white,
+                      background: accentColor,
+                    ),
+                    if (group.tag != null) ...[
+                      const SizedBox(width: AppDimens.spaceXs),
+                      Text(
+                        '· ${group.tag}',
+                        style: AppTextStyles.labelSmall.copyWith(
+                          color: t.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+                if (group.rule != null) ...[
+                  const SizedBox(height: AppDimens.spaceXs),
+                  Text(
+                    group.rule!,
+                    style: AppTextStyles.bodySmall.copyWith(
+                      color: t.onSurfaceVariant,
+                      fontSize: 13,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 8),
+              ],
+            ),
+          ),
           Divider(height: 1, thickness: 1, color: t.outlineVariant),
-          // Rows with hairline separators between them
+          // Rows — horizontally padded, dividers full-width
           for (int i = 0; i < group.rows.length; i++) ...[
             if (i > 0)
               Divider(
@@ -146,17 +160,30 @@ class _GroupCard extends StatelessWidget {
                 thickness: 0.5,
                 color: t.outlineVariant.withValues(alpha: 0.4),
               ),
-            _TransformRowWidget(
-              row: group.rows[i],
-              accentColor: accentColor,
-              tokens: t,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceMd,
+              ),
+              child: _TransformRowWidget(
+                row: group.rows[i],
+                accentColor: accentColor,
+                tokens: t,
+              ),
             ),
           ],
           // Note chip
-          if (group.note != null) ...[
-            const SizedBox(height: AppDimens.spaceXs),
-            _NoteChip(text: group.note!, tokens: t),
-          ],
+          if (group.note != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppDimens.spaceMd,
+                AppDimens.spaceXs,
+                AppDimens.spaceMd,
+                AppDimens.spaceMd,
+              ),
+              child: _NoteChip(text: group.note!, tokens: t),
+            ),
+          // Bottom breathing room when no note
+          if (group.note == null) const SizedBox(height: AppDimens.spaceSm),
         ],
       ),
     );
