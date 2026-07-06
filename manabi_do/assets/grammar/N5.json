@@ -746,6 +746,114 @@
           ]
         }
       ]
+    },
+    {
+      "id": "duration-frequency",
+      "title": "Duration & Frequency",
+      "lessons": [
+        {
+          "id": "duration-aida",
+          "title": "Duration — 間",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**間** expresses a span of time — how long something lasted or how long an action continued. It attaches directly after the duration amount."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Duration] + 間 + [action / state]",
+                "",
+                "  三時間   (sanjikan)    — for three hours",
+                "  一週間   (isshūkan)    — for one week",
+                "  二年間   (ninenkan)    — for two years",
+                "  十分間   (juppunkan)   — for ten minutes"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "三時間勉強しました。", "romaji": "Sanjikan benkyō shimashita.", "english": "I studied for three hours." },
+                { "japanese": "一週間日本にいました。", "romaji": "Isshūkan nihon ni imashita.", "english": "I was in Japan for one week." },
+                { "japanese": "二年間日本語を学んでいます。", "romaji": "Ninenkan nihongo wo manande imasu.", "english": "I have been learning Japanese for two years." },
+                { "japanese": "十分間待ちました。", "romaji": "Juppunkan machimashita.", "english": "I waited for ten minutes." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "間 has two readings. Combined with numbers it reads **かん** (三時間, 一週間). Used alone or in short phrases it can read **あいだ** (この間 = recently, the other day). In duration expressions, かん is almost always correct."
+            }
+          ]
+        },
+        {
+          "id": "frequency-kai",
+          "title": "Frequency — 回",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**回** (かい) counts the number of times something occurs. Pair it with a time frame and a number to express how often an action happens."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Time period] に [number] 回 + [action]",
+                "",
+                "  週に三回    — three times a week",
+                "  一日に二回  — twice a day",
+                "  月に一度    — once a month (一度 = one time, softer alternative to 一回)"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "週に三回ジムに行きます。", "romaji": "Shū ni sankai jimu ni ikimasu.", "english": "I go to the gym three times a week." },
+                { "japanese": "一日に二回薬を飲みます。", "romaji": "Ichinichi ni nikai kusuri wo nomimasu.", "english": "I take medicine twice a day." },
+                { "japanese": "月に一度、家族に電話します。", "romaji": "Tsuki ni ichido, kazoku ni denwa shimasu.", "english": "I call my family once a month." },
+                { "japanese": "年に一回しか会いません。", "romaji": "Nen ni ikkai shika aimasen.", "english": "We only meet once a year." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "回 triggers phonetic changes with certain numbers. 一回 (ikkai), 六回 (rokkai), 八回 (hakkai), 十回 (jukkai) — a geminate っ appears before k. You will pick these up naturally from listening; don't memorise the full table upfront."
+            }
+          ]
+        },
+        {
+          "id": "kakaru",
+          "title": "かかる — Time and Cost",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**かかる** is the verb for expressing that something *requires* a certain amount of time or money. It is not used for effort or energy — only for measurable time and cost."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Time / cost] が かかります     ← it takes / it costs",
+                "[Destination] まで [time] かかります  ← it takes [time] to reach",
+                "どのぐらいかかりますか           ← how long / how much does it take?"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "駅まで十分かかります。", "romaji": "Eki made juppun kakarimasu.", "english": "It takes ten minutes to the station." },
+                { "japanese": "この仕事は三時間かかりました。", "romaji": "Kono shigoto wa sanjikan kakarimashita.", "english": "This job took three hours." },
+                { "japanese": "修理に五千円かかりました。", "romaji": "Shūri ni gosen-en kakarimashita.", "english": "The repair cost 5,000 yen." },
+                { "japanese": "日本までどのぐらいかかりますか。", "romaji": "Nihon made dono gurai kakarimasu ka.", "english": "How long does it take to get to Japan?" },
+                { "japanese": "このプロジェクトはお金がかかります。", "romaji": "Kono purojekuto wa okane ga kakarimasu.", "english": "This project costs money." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "かかる pairs naturally with まで (up to / until). 駅まで何分かかりますか is the most natural way to ask travel time in Japanese — you will use it constantly."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
