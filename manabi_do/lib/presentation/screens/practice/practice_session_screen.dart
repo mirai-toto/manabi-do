@@ -7,7 +7,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/home_provider.dart';
-import '../../services/srs_service.dart';
+import '../../providers/practice_session_provider.dart';
 import '../../widgets/common/confirm_dialog.dart';
 import '../../widgets/exercise/summary_card.dart';
 import 'practice_item.dart';
@@ -40,14 +40,6 @@ class PracticeSessionScreen extends ConsumerStatefulWidget {
 }
 
 class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
-  List<PracticeItem>? _queue;
-  List<PracticeItem>? _completedQueue;
-  int _index = 0;
-  int _gotIt = 0;
-  int _notYet = 0;
-  bool _done = false;
-  bool _isRetry = false;
-  late DateTime _startedAt;
   late final PracticeActiveNotifier _practiceNotifier;
 
   @override
@@ -57,7 +49,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _practiceNotifier.setActive(true);
     });
-    _loadSession();
+    _initSession();
   }
 
   @override
@@ -66,50 +58,11 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
     super.dispose();
   }
 
-  Future<void> _loadSession() async {
+  Future<void> _initSession() async {
     final items = await widget.loadQueue(ref);
-    setState(() {
-      _queue = items;
-      _completedQueue = null;
-      _index = 0;
-      _gotIt = 0;
-      _notYet = 0;
-      _done = items.isEmpty;
-      _isRetry = false;
-      _startedAt = DateTime.now();
-    });
-  }
-
-  void _retrySession() {
-    setState(() {
-      _queue = List.from(_completedQueue!);
-      _index = 0;
-      _gotIt = 0;
-      _notYet = 0;
-      _done = false;
-      _isRetry = true;
-      _startedAt = DateTime.now();
-    });
-  }
-
-  Future<void> _answer(Rating rating) async {
-    final item = _queue![_index];
-    if (widget.persistSrs && !_isRetry) {
-      await srsService.review(ref, item.srsType, item.id, item.card, rating);
+    if (mounted) {
+      ref.read(practiceSessionProvider.notifier).init(items);
     }
-    setState(() {
-      if (rating == Rating.again) {
-        _notYet++;
-      } else {
-        _gotIt++;
-      }
-      if (_index + 1 >= _queue!.length) {
-        _completedQueue = List.from(_queue!);
-        _done = true;
-      } else {
-        _index++;
-      }
-    });
   }
 
   void _onExit() => Navigator.of(context).pop();
@@ -126,15 +79,11 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
     if (confirmed && mounted) _onExit();
   }
 
-  String _formatDuration(Duration d) {
-    final m = d.inMinutes;
-    final s = d.inSeconds % 60;
-    return m > 0 ? '${m}m ${s}s' : '${s}s';
-  }
-
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+    final session = ref.watch(practiceSessionProvider);
+    final notifier = ref.read(practiceSessionProvider.notifier);
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -143,7 +92,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.close_rounded, color: t.onSurface),
-          onPressed: _done ? _onExit : _confirmExit,
+          onPressed: session.done ? _onExit : _confirmExit,
         ),
         title: Text(
           widget.title,
@@ -164,29 +113,39 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
           ),
         ],
       ),
-      body: _queue == null
+      body: session.isLoading
           ? const Center(child: CircularProgressIndicator())
-          : _done
-          ? SingleChildScrollView(
-              padding: const EdgeInsets.all(AppDimens.spaceMd),
-              child: SummaryCard(
-                score: _gotIt,
-                total: _queue!.length,
-                title: context.l10n.sessionComplete,
-                subtitle: widget.title,
-                correct: _gotIt,
-                missed: _notYet,
-                timeSpent: _formatDuration(
-                  DateTime.now().difference(_startedAt),
-                ),
-                onRetry: _retrySession,
-                onNext: _onExit,
-              ),
-            )
+          : session.done
+          ? _buildSummary(session, notifier)
           : KeyedSubtree(
-              key: ValueKey(_index),
-              child: _queue![_index].buildBody(_index, _queue!.length, _answer),
+              key: ValueKey(session.index),
+              child: session.currentItem!.buildBody(
+                session.index,
+                session.queue!.length,
+                (Rating rating) =>
+                    notifier.answer(rating, persistSrs: widget.persistSrs),
+              ),
             ),
+    );
+  }
+
+  Widget _buildSummary(
+    PracticeSessionState session,
+    PracticeSessionNotifier notifier,
+  ) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(AppDimens.spaceMd),
+      child: SummaryCard(
+        score: session.gotIt,
+        total: session.queue!.length,
+        title: context.l10n.sessionComplete,
+        subtitle: widget.title,
+        correct: session.gotIt,
+        missed: session.notYet,
+        timeSpent: session.formattedDuration,
+        onRetry: notifier.retry,
+        onNext: _onExit,
+      ),
     );
   }
 }
