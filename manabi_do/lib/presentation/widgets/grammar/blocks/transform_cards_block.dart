@@ -210,17 +210,18 @@ class _TransformRowWidget extends StatelessWidget {
       fontWeight: FontWeight.w700,
       fontSize: 17,
     );
-    final glossStyle = AppTextStyles.bodySmall.copyWith(
+    final romajiStyle = AppTextStyles.bodySmall.copyWith(
       color: t.onSurfaceVariant,
     );
+    final englishStyle = AppTextStyles.bodySmall.copyWith(
+      color: t.onSurfaceVariant,
+      fontStyle: FontStyle.italic,
+    );
 
-    final gloss = [
-      if (row.romaji != null) row.romaji!,
-      if (row.english != null) row.english!,
-    ].join(' · ');
+    final hasGloss = row.romaji != null || row.english != null;
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppDimens.spaceSm),
+      padding: const EdgeInsets.only(bottom: AppDimens.spaceMd),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -251,10 +252,28 @@ class _TransformRowWidget extends StatelessWidget {
               ),
             ],
           ),
-          if (gloss.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(top: AppDimens.spaceXs),
-              child: Text(gloss, style: glossStyle),
+          // Gloss pinned under the result column (offset by base + arrow)
+          if (hasGloss)
+            Row(
+              children: [
+                const Expanded(child: SizedBox.shrink()),
+                const SizedBox(width: _kArrowWidth),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: AppDimens.spaceXs),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (row.romaji != null)
+                          Text(row.romaji!, style: romajiStyle),
+                        if (row.english != null)
+                          Text(row.english!, style: englishStyle),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
         ],
       ),
