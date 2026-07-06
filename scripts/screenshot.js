@@ -24,12 +24,14 @@ const fs = require('fs');
 const PORT = process.argv[2] || '8767';
 const OUTPUT = process.argv[3] || `${__dirname}/../screenshots/screenshot.png`;
 const URL = `http://localhost:${PORT}`;
-const FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
+const FONT = process.env.SCREENSHOT_FONT || '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
+const CHROMIUM_PATH = process.env.CHROMIUM_PATH || undefined;
 
 (async () => {
   fs.mkdirSync(require('path').dirname(OUTPUT), { recursive: true });
   const font = fs.readFileSync(FONT);
   const browser = await chromium.launch({
+    ...(CHROMIUM_PATH ? { executablePath: CHROMIUM_PATH } : {}),
     args: [
       '--no-sandbox',
       '--use-gl=swiftshader',

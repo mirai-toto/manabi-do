@@ -16,7 +16,8 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.argv[2] || '8767';
-const FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
+const FONT = process.env.SCREENSHOT_FONT || '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
+const CHROMIUM_PATH = process.env.CHROMIUM_PATH || undefined;
 const OUT_DIR = path.join(__dirname, '../screenshots/grammar');
 
 const BACK = async (page) => {
@@ -45,6 +46,7 @@ const MULTI_LESSON_CHAPTERS = {
   const font = fs.readFileSync(FONT);
 
   const browser = await chromium.launch({
+    ...(CHROMIUM_PATH ? { executablePath: CHROMIUM_PATH } : {}),
     args: ['--no-sandbox', '--use-gl=swiftshader', '--disable-gpu-sandbox', '--enable-webgl', '--ignore-gpu-blocklist'],
   });
   const page = await browser.newPage({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
