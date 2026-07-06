@@ -10,7 +10,7 @@ import 'grammar_lesson_list_screen.dart';
 import 'grammar_lesson_screen.dart';
 
 // Levels that have been migrated to JSON block format.
-const _jsonLevels = {'basics'};
+const _jsonLevels = {'basics', 'N5'};
 
 class GrammarChapterList extends ConsumerWidget {
   final String level;

@@ -1,0 +1,132 @@
+{
+  "level": "N5",
+  "chapters": [
+    {
+      "id": "verbs",
+      "title": "Verbs",
+      "lessons": [
+        {
+          "id": "verb-groups",
+          "title": "Verb Groups",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Every Japanese verb belongs to one of three groups. The group determines *every* conjugation rule — get it right and the rest is predictable."
+            },
+            {
+              "type": "list",
+              "style": "bullet",
+              "items": [
+                "**Group 1 — Godan (五段):** ends in any う-column sound — く, ぐ, す, つ, ぬ, ぶ, む, う, or る*. The stem changes shape across forms following phonetic patterns.",
+                "**Group 2 — Ichidan (一段):** ends in る, with an い or え vowel immediately before it. The stem never changes — you only remove the る.",
+                "**Group 3 — Irregular:** only する (to do) and くる (to come). Both must be memorised."
+              ]
+            },
+            {
+              "type": "vocab_table",
+              "columns": ["japanese", "romaji", "english", "group"],
+              "rows": [
+                { "japanese": "書く", "romaji": "kaku", "english": "to write", "group": "1" },
+                { "japanese": "話す", "romaji": "hanasu", "english": "to speak", "group": "1" },
+                { "japanese": "待つ", "romaji": "matsu", "english": "to wait", "group": "1" },
+                { "japanese": "帰る", "romaji": "kaeru", "english": "to return home", "group": "1 *" },
+                { "japanese": "食べる", "romaji": "taberu", "english": "to eat", "group": "2" },
+                { "japanese": "見る", "romaji": "miru", "english": "to see", "group": "2" },
+                { "japanese": "起きる", "romaji": "okiru", "english": "to wake up", "group": "2" },
+                { "japanese": "する", "romaji": "suru", "english": "to do", "group": "3" },
+                { "japanese": "来る", "romaji": "kuru", "english": "to come", "group": "3" }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "る-ending Group 1 verbs look identical to Group 2 in dictionary form. 帰る (kaeru), 走る (hashiru), 知る (shiru), 切る (kiru) are all Group 1. There is no reliable visual test — when in doubt, check a dictionary. Recognition comes with exposure."
+            }
+          ]
+        },
+        {
+          "id": "polite-present",
+          "title": "Polite Present — ます",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "The **ます form** is how you speak politely. It is the default for conversations with people you do not know well, in formal situations, and in service environments. It covers both present habit and future intention — Japanese does not separate these two ideas."
+            },
+            {
+              "type": "section_title",
+              "content": "Formation"
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "Group 1: change the final u-vowel to i-vowel + ます",
+                "  書く  → 書き + ます  → 書きます",
+                "  話す  → 話し + ます  → 話します",
+                "  待つ  → 待ち + ます  → 待ちます",
+                "",
+                "Group 2: remove る + ます",
+                "  食べる → 食べ + ます → 食べます",
+                "  見る   → 見 + ます   → 見ます",
+                "",
+                "Group 3:",
+                "  する → します",
+                "  来る → 来ます (きます)",
+                "",
+                "Negative: replace ます with ません"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "毎朝コーヒーを飲みます。", "romaji": "Maiasa koohii wo nomimasu.", "english": "I drink coffee every morning." },
+                { "japanese": "明日、友達に会います。", "romaji": "Ashita, tomodachi ni aimasu.", "english": "I'll meet a friend tomorrow." },
+                { "japanese": "肉を食べません。", "romaji": "Niku wo tabemasen.", "english": "I don't eat meat." },
+                { "japanese": "日本語を勉強します。", "romaji": "Nihongo wo benkyō shimasu.", "english": "I study Japanese." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "ます covers both habits and planned future actions. Context makes the meaning clear — Japanese has no separate future tense."
+            },
+            {
+              "type": "note",
+              "content": "ます is polite but not formal. Use it with a shop clerk, a new acquaintance, or a teacher. Among close friends, speakers drop to the plain (dictionary) form. Both are grammatically correct — register determines which fits."
+            }
+          ]
+        },
+        {
+          "id": "polite-past",
+          "title": "Polite Past — ました",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "The past tense is formed by replacing **ます** with **ました**. The negative past uses **ませんでした**. Both follow the same stem rules as the present tense — there is nothing new to memorise for the stem."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "Affirmative past: [stem] + ました",
+                "Negative past:    [stem] + ませんでした"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "昨日、映画を見ました。", "romaji": "Kinō, eiga wo mimashita.", "english": "I watched a movie yesterday." },
+                { "japanese": "朝ごはんを食べませんでした。", "romaji": "Asagohan wo tabemasen deshita.", "english": "I didn't eat breakfast." },
+                { "japanese": "先週、東京に行きました。", "romaji": "Senshū, Tōkyō ni ikimashita.", "english": "I went to Tokyo last week." },
+                { "japanese": "レポートを書きませんでした。", "romaji": "Repōto wo kakimasen deshita.", "english": "I didn't write the report." },
+                { "japanese": "先生に電話しました。", "romaji": "Sensei ni denwa shimashita.", "english": "I called the teacher." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "Japanese past tense is clean — no distinction between simple past (\"I ate\") and perfect (\"I have eaten\") in the polite form. Time words and context carry that distinction."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
