@@ -18,3 +18,6 @@ docker-compose.override.yml
 
 # JMdict / KANJIDIC2 source files — large offline downloads, not committed
 manabi_do/tool/data/
+
+# Screenshots — local only
+screenshots/

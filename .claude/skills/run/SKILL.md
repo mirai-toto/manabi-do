@@ -45,6 +45,7 @@ For multi-step navigation (click through screens), write a new script in `script
 - `waitUntil: 'load'` — do NOT use `'networkidle'`, Flutter web never reaches it
 - 5 s initial wait after load for the canvas to fully render
 - Navigate by pixel coords from a prior screenshot — Flutter canvas has no DOM selectors
+- Always pass `colorScheme: 'dark'` to `browser.newPage()` — Flutter reads `MediaQuery.platformBrightness` from the browser, which defaults to light in headless Chromium
 
 ### 4. Notes specific to WSL2
 

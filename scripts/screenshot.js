@@ -4,7 +4,7 @@
  * Usage:
  *   node scripts/screenshot.js [port] [output]
  *
- * Defaults: port=8768, output=/tmp/screenshot.png
+ * Defaults: port=8767, output=screenshots/screenshot.png (repo root)
  *
  * Before running:
  *   1. Build: cd manabi_do && flutter build web -t lib/main.dart --no-web-resources-cdn --debug
@@ -22,11 +22,12 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 
 const PORT = process.argv[2] || '8767';
-const OUTPUT = process.argv[3] || '/tmp/screenshot.png';
+const OUTPUT = process.argv[3] || `${__dirname}/../screenshots/screenshot.png`;
 const URL = `http://localhost:${PORT}`;
 const FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
 
 (async () => {
+  fs.mkdirSync(require('path').dirname(OUTPUT), { recursive: true });
   const font = fs.readFileSync(FONT);
   const browser = await chromium.launch({
     args: [
@@ -38,7 +39,7 @@ const FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
     ],
   });
 
-  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
 
   // Intercept gstatic font requests — may be blocked or slow
   await page.route('https://fonts.gstatic.com/**', route =>
