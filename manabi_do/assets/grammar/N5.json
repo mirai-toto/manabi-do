@@ -56,22 +56,39 @@
               "content": "Formation"
             },
             {
-              "type": "pattern",
-              "lines": [
-                "Group 1: change the final u-vowel to i-vowel + ます",
-                "  書く  → 書き + ます  → 書きます",
-                "  話す  → 話し + ます  → 話します",
-                "  待つ  → 待ち + ます  → 待ちます",
-                "",
-                "Group 2: remove る + ます",
-                "  食べる → 食べ + ます → 食べます",
-                "  見る   → 見 + ます   → 見ます",
-                "",
-                "Group 3:",
-                "  する → します",
-                "  来る → 来ます (きます)",
-                "",
-                "Negative: replace ます with ません"
+              "type": "transform_cards",
+              "groups": [
+                {
+                  "label": "Group 1",
+                  "tag": "Godan",
+                  "rule": "change the final u-vowel to i-vowel, then add ます",
+                  "rows": [
+                    { "base": "書く", "old": "く", "new": "きます", "result": "書きます", "romaji": "kakimasu", "english": "to write" },
+                    { "base": "話す", "old": "す", "new": "します", "result": "話します", "romaji": "hanashimasu", "english": "to speak" },
+                    { "base": "待つ", "old": "つ", "new": "ちます", "result": "待ちます", "romaji": "machimasu", "english": "to wait" },
+                    { "base": "飲む", "old": "む", "new": "みます", "result": "飲みます", "romaji": "nomimasu", "english": "to drink" },
+                    { "base": "帰る", "old": "る", "new": "ります", "result": "帰ります", "romaji": "kaerimasu", "english": "to return home" }
+                  ],
+                  "note": "Negative: replace ます with ません — the stem stays the same"
+                },
+                {
+                  "label": "Group 2",
+                  "tag": "Ichidan",
+                  "rule": "remove る, add ます directly to the stem",
+                  "rows": [
+                    { "base": "食べる", "old": "る", "new": "ます", "result": "食べます", "romaji": "tabemasu", "english": "to eat" },
+                    { "base": "見る", "old": "る", "new": "ます", "result": "見ます", "romaji": "mimasu", "english": "to see" },
+                    { "base": "起きる", "old": "る", "new": "ます", "result": "起きます", "romaji": "okimasu", "english": "to wake up" }
+                  ]
+                },
+                {
+                  "label": "Group 3",
+                  "tag": "Irregular",
+                  "rows": [
+                    { "base": "する", "result": "します", "romaji": "shimasu", "english": "to do" },
+                    { "base": "来る", "result": "来ます", "romaji": "kimasu", "english": "to come" }
+                  ]
+                }
               ]
             },
             {
@@ -1011,40 +1028,68 @@
               "content": "The **て-form** is one of the most versatile verb forms in Japanese. It acts as a connector between clauses and is the base for dozens of grammar patterns. Mastering it early pays off through all of N5 and beyond."
             },
             {
-              "type": "pattern",
-              "lines": [
-                "Group 1 — stem changes by final syllable:",
-                "  く  → いて    書く  → 書いて",
-                "  ぐ  → いで    泳ぐ  → 泳いで",
-                "  す  → して    話す  → 話して",
-                "  つ/る/う → って  待つ → 待って, 帰る → 帰って",
-                "  む/ぬ/ぶ → んで  飲む → 飲んで, 遊ぶ → 遊んで",
-                "",
-                "Group 2 — remove る, add て:",
-                "  食べる → 食べて,  見る → 見て,  起きる → 起きて",
-                "",
-                "Group 3 — irregular:",
-                "  する → して,  来る → 来て (きて)"
-              ]
-            },
-            {
-              "type": "vocab_table",
-              "columns": ["japanese", "romaji", "て-form", "group"],
-              "rows": [
-                { "japanese": "書く", "romaji": "kaku", "て-form": "書いて (kaite)", "group": "1" },
-                { "japanese": "話す", "romaji": "hanasu", "て-form": "話して (hanashite)", "group": "1" },
-                { "japanese": "待つ", "romaji": "matsu", "て-form": "待って (matte)", "group": "1" },
-                { "japanese": "飲む", "romaji": "nomu", "て-form": "飲んで (nonde)", "group": "1" },
-                { "japanese": "行く", "romaji": "iku", "て-form": "行って (itte) ※", "group": "1" },
-                { "japanese": "食べる", "romaji": "taberu", "て-form": "食べて (tabete)", "group": "2" },
-                { "japanese": "見る", "romaji": "miru", "て-form": "見て (mite)", "group": "2" },
-                { "japanese": "する", "romaji": "suru", "て-form": "して (shite)", "group": "3" },
-                { "japanese": "来る", "romaji": "kuru", "て-form": "来て (kite)", "group": "3" }
+              "type": "transform_cards",
+              "groups": [
+                {
+                  "label": "Group 1",
+                  "tag": "く · ぐ",
+                  "rule": "く → いて / ぐ → いで",
+                  "rows": [
+                    { "base": "書く", "old": "く", "new": "いて", "result": "書いて", "romaji": "kaite", "english": "to write" },
+                    { "base": "泳ぐ", "old": "ぐ", "new": "いで", "result": "泳いで", "romaji": "oyoide", "english": "to swim" }
+                  ],
+                  "note": "Exception: 行く → 行って (not 行いて)"
+                },
+                {
+                  "label": "Group 1",
+                  "tag": "す",
+                  "rule": "す → して",
+                  "rows": [
+                    { "base": "話す", "old": "す", "new": "して", "result": "話して", "romaji": "hanashite", "english": "to speak" }
+                  ]
+                },
+                {
+                  "label": "Group 1",
+                  "tag": "つ · る · う",
+                  "rule": "→ って (double consonant)",
+                  "rows": [
+                    { "base": "待つ", "old": "つ", "new": "って", "result": "待って", "romaji": "matte", "english": "to wait" },
+                    { "base": "帰る", "old": "る", "new": "って", "result": "帰って", "romaji": "kaette", "english": "to return" },
+                    { "base": "買う", "old": "う", "new": "って", "result": "買って", "romaji": "katte", "english": "to buy" }
+                  ]
+                },
+                {
+                  "label": "Group 1",
+                  "tag": "む · ぬ · ぶ",
+                  "rule": "→ んで",
+                  "rows": [
+                    { "base": "飲む", "old": "む", "new": "んで", "result": "飲んで", "romaji": "nonde", "english": "to drink" },
+                    { "base": "遊ぶ", "old": "ぶ", "new": "んで", "result": "遊んで", "romaji": "asonde", "english": "to play" }
+                  ]
+                },
+                {
+                  "label": "Group 2",
+                  "tag": "Ichidan",
+                  "rule": "remove る, add て",
+                  "rows": [
+                    { "base": "食べる", "old": "る", "new": "て", "result": "食べて", "romaji": "tabete", "english": "to eat" },
+                    { "base": "見る", "old": "る", "new": "て", "result": "見て", "romaji": "mite", "english": "to see" },
+                    { "base": "起きる", "old": "る", "new": "て", "result": "起きて", "romaji": "okite", "english": "to wake up" }
+                  ]
+                },
+                {
+                  "label": "Group 3",
+                  "tag": "Irregular",
+                  "rows": [
+                    { "base": "する", "result": "して", "romaji": "shite", "english": "to do" },
+                    { "base": "来る", "result": "来て", "romaji": "kite", "english": "to come" }
+                  ]
+                }
               ]
             },
             {
               "type": "note",
-              "content": "行く (to go) is the one Group 1 exception — it becomes 行って, not 行いて. Everything else follows the chart above without exception."
+              "content": "行く (to go) is the one Group 1 exception — it becomes 行って, not 行いて. Everything else follows the cards above without exception."
             }
           ]
         },

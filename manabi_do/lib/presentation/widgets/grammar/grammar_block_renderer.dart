@@ -10,6 +10,7 @@ import 'blocks/note_block.dart';
 import 'blocks/pattern_block.dart';
 import 'blocks/section_title_block.dart';
 import 'blocks/text_block.dart';
+import 'blocks/transform_cards_block.dart';
 import 'blocks/vocab_table_block.dart';
 
 class GrammarBlockRenderer extends StatelessWidget {
@@ -73,6 +74,12 @@ class GrammarBlockRenderer extends StatelessWidget {
       'list' => ListBlock(
         style: d['style'] == 'bullet' ? ListStyle.bullet : ListStyle.numbered,
         items: (d['items'] as List<dynamic>).cast<String>(),
+        accentColor: levelColor,
+      ),
+      'transform_cards' => TransformCardsBlock(
+        groups: (d['groups'] as List<dynamic>)
+            .map((g) => TransformGroup.fromJson(Map<String, dynamic>.from(g)))
+            .toList(),
         accentColor: levelColor,
       ),
       'divider' => const Divider(),
