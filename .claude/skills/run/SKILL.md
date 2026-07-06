@@ -50,7 +50,7 @@ For multi-step navigation (click through screens), write a new script in `script
 ### 4. Notes specific to WSL2
 
 - `kDebugMode` is always `false` on web builds. To bypass the `_grammarEnabled = false` gate in `grammar_screen.dart`, flip it to `true` temporarily. **Revert before committing.**
-- Japanese characters (NotoSansJP) appear as tofu boxes in headless Chromium screenshots — screenshot-only artifact, works fine in a real browser.
+- **Hiragana/Katakana appear as tofu boxes** in all screenshots (headless and WSLg-headed). Root cause: CanvasKit + SwiftShader software GL cannot rasterize kana glyph outlines. CJK ideographs render fine. Not fixable without a real GPU or the HTML renderer (removed in Flutter 3.22+). Screenshots are still useful for layout/navigation review — just not for reading Japanese kana content.
 - Read screenshots with the Read tool — Claude can view PNG images directly.
 
 ---
