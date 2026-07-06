@@ -1,6 +1,9 @@
 /**
  * Screenshot each bottom-nav tab of the manabi_do web build.
- * Usage: node scripts/screenshot_tabs.js [port] [outputDir]
+ * Usage: NODE_PATH=/tmp/pw-test/node_modules node scripts/screenshot_tab.js [port] [outputDir]
+ *
+ * Note: the grammar tab requires the app to be built with _grammarEnabled = true,
+ * otherwise it renders the lock overlay.
  */
 const { chromium } = require('playwright');
 const fs = require('fs');
@@ -12,13 +15,13 @@ const URL = `http://localhost:${PORT}`;
 const FONT = process.env.SCREENSHOT_FONT || '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
 const CHROMIUM_PATH = process.env.CHROMIUM_PATH || undefined;
 
-// Bottom nav tab x-coords (from a 390-wide viewport screenshot), y is fixed near bottom
+// Bottom nav tab coords (390×844 viewport). y=797 confirmed working across scripts.
 const TABS = [
-  { name: 'home', x: 45, y: 810 },
-  { name: 'characters', x: 120, y: 810 },
-  { name: 'vocabulary', x: 195, y: 810 },
-  { name: 'grammar', x: 270, y: 810 },
-  { name: 'settings', x: 344, y: 810 },
+  { name: 'home',       x:  45, y: 797 },
+  { name: 'characters', x: 120, y: 797 },
+  { name: 'vocabulary', x: 195, y: 797 },
+  { name: 'grammar',    x: 270, y: 797 },
+  { name: 'settings',   x: 344, y: 797 },
 ];
 
 (async () => {
@@ -54,4 +57,3 @@ const TABS = [
 
   await browser.close();
 })();
-
