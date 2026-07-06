@@ -93,7 +93,7 @@ class _DataRow extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppDimens.spaceMd,
-          vertical: AppDimens.spaceSm,
+          vertical: AppDimens.spaceMd,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

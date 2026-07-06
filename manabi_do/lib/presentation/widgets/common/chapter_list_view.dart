@@ -75,7 +75,10 @@ class ChapterListView extends StatelessWidget {
                   ),
                   onTap: () => onItemTap(i),
                   child: Padding(
-                    padding: const EdgeInsets.all(AppDimens.spaceMd),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDimens.spaceMd,
+                      vertical: AppDimens.spaceLg,
+                    ),
                     child: Row(
                       children: [
                         NumberBadge(number: i + 1, color: accentColor),

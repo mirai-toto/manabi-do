@@ -30,7 +30,7 @@ class GrammarBlockRenderer extends StatelessWidget {
         vertical: AppDimens.spaceMd,
       ),
       itemCount: blocks.length,
-      separatorBuilder: (_, _) => const SizedBox(height: AppDimens.spaceMd),
+      separatorBuilder: (_, _) => const SizedBox(height: AppDimens.spaceLg),
       itemBuilder: (context, i) => _buildBlock(blocks[i]),
     );
   }
