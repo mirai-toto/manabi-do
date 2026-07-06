@@ -67,7 +67,7 @@ List<FuriganaSegment> parseFuriganaAnnotation(String annotated) {
 List<FuriganaSegment> parseFurigana(String word, String reading) {
   final wordSegs = _segmentWord(word);
 
-  if (!wordSegs.any((s) => s.isKanji)) {
+  if (!wordSegs.any((s) => s.isKanji) || reading.isEmpty) {
     return [FuriganaSegment(text: word)];
   }
 

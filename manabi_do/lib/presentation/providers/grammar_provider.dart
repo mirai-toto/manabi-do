@@ -1,19 +1,39 @@
+import 'dart:convert';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../data/grammar/grammar_models.dart';
+
+export '../../data/grammar/grammar_models.dart';
+
 class GrammarChapter {
   final String title;
+
+  // Markdown path: non-empty, lessons is empty.
   final String content;
-  const GrammarChapter({required this.title, required this.content});
+
+  // JSON path: non-empty, content is empty.
+  final List<GrammarLesson> lessons;
+
+  const GrammarChapter({
+    required this.title,
+    this.content = '',
+    this.lessons = const [],
+  });
+
+  bool get isJson => lessons.isNotEmpty;
 }
+
+// ── Markdown provider (N5, still MD-based) ────────────────────────────────────
 
 final grammarChaptersProvider =
     FutureProvider.family<List<GrammarChapter>, String>((ref, level) async {
       final raw = await rootBundle.loadString('assets/grammar/$level.md');
-      return _parseChapters(raw);
+      return _parseMarkdownChapters(raw);
     });
 
-List<GrammarChapter> _parseChapters(String raw) {
+List<GrammarChapter> _parseMarkdownChapters(String raw) {
   final chapters = <GrammarChapter>[];
   final lines = raw.split('\n');
   int? startLine;
@@ -36,3 +56,17 @@ List<GrammarChapter> _parseChapters(String raw) {
   }
   return chapters;
 }
+
+// ── JSON provider (basics, and future levels) ───────────────────────────���─────
+
+final grammarJsonChaptersProvider =
+    FutureProvider.family<List<GrammarChapter>, String>((ref, level) async {
+      final raw = await rootBundle.loadString('assets/grammar/$level.json');
+      final data = jsonDecode(raw) as Map<String, dynamic>;
+      return (data['chapters'] as List<dynamic>).map((c) {
+        final lessons = (c['lessons'] as List<dynamic>)
+            .map((l) => GrammarLesson.fromJson(Map<String, dynamic>.from(l)))
+            .toList();
+        return GrammarChapter(title: c['title'] as String, lessons: lessons);
+      }).toList();
+    });
