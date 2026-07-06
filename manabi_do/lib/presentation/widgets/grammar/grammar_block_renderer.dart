@@ -38,7 +38,10 @@ class GrammarBlockRenderer extends StatelessWidget {
   Widget _buildBlock(GrammarBlock block) {
     final d = block.data;
     return switch (block.type) {
-      'text' => TextBlock(content: d['content'] as String),
+      'text' => TextBlock(
+        content: d['content'] as String,
+        accentColor: levelColor,
+      ),
       'section_title' => SectionTitleBlock(
         content: d['content'] as String,
         color: levelColor,

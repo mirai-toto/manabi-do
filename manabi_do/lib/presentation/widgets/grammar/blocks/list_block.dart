@@ -49,7 +49,13 @@ class ListBlock extends StatelessWidget {
               ),
               Expanded(
                 child: RichText(
-                  text: TextSpan(children: TextBlock.buildSpans(item, base)),
+                  text: TextSpan(
+                    children: TextBlock.buildSpans(
+                      item,
+                      base,
+                      accentColor: accentColor,
+                    ),
+                  ),
                 ),
               ),
             ],

@@ -15,8 +15,15 @@ class TextBlock extends StatelessWidget {
   final String content;
   final TextStyle? style;
   final Color? color;
+  final Color? accentColor;
 
-  const TextBlock({super.key, required this.content, this.style, this.color});
+  const TextBlock({
+    super.key,
+    required this.content,
+    this.style,
+    this.color,
+    this.accentColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +31,18 @@ class TextBlock extends StatelessWidget {
     final base = (style ?? AppTextStyles.body).copyWith(
       color: color ?? style?.color ?? t.onSurface,
     );
-    return RichText(text: TextSpan(children: buildSpans(content, base)));
+    return RichText(
+      text: TextSpan(
+        children: buildSpans(content, base, accentColor: accentColor),
+      ),
+    );
   }
 
-  static List<TextSpan> buildSpans(String text, TextStyle base) {
+  static List<TextSpan> buildSpans(
+    String text,
+    TextStyle base, {
+    Color? accentColor,
+  }) {
     final spans = <TextSpan>[];
     final pattern = RegExp(r'\*\*(.+?)\*\*|\*(.+?)\*');
     int last = 0;
@@ -41,7 +56,10 @@ class TextBlock extends StatelessWidget {
         spans.add(
           TextSpan(
             text: match.group(1),
-            style: base.copyWith(fontWeight: FontWeight.w700),
+            style: base.copyWith(
+              fontWeight: FontWeight.w700,
+              color: accentColor,
+            ),
           ),
         );
       } else {
