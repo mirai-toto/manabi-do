@@ -51,10 +51,12 @@ class GrammarBlockRenderer extends StatelessWidget {
       'example_table' => ExampleTableBlock(
         columns: (d['columns'] as List<dynamic>).cast<String>(),
         rows: _toRows(d['rows']),
+        accentColor: levelColor,
       ),
       'vocab_table' => VocabTableBlock(
         columns: (d['columns'] as List<dynamic>).cast<String>(),
         rows: _toRows(d['rows']),
+        accentColor: levelColor,
       ),
       'conjugation_table' => ConjugationTableBlock(
         label: d['label'] as String,
@@ -63,10 +65,12 @@ class GrammarBlockRenderer extends StatelessWidget {
       'comparison' => ComparisonBlock(
         left: _parseSide(d['left'] as Map<String, dynamic>),
         right: _parseSide(d['right'] as Map<String, dynamic>),
+        accentColor: levelColor,
       ),
       'list' => ListBlock(
         style: d['style'] == 'bullet' ? ListStyle.bullet : ListStyle.numbered,
         items: (d['items'] as List<dynamic>).cast<String>(),
+        accentColor: levelColor,
       ),
       'divider' => const Divider(),
       _ => const SizedBox.shrink(),

@@ -8,11 +8,17 @@ import 'grammar_table.dart';
 class VocabTableBlock extends StatelessWidget {
   final List<String> columns;
   final List<Map<String, String>> rows;
+  final Color? accentColor;
 
-  const VocabTableBlock({super.key, required this.columns, required this.rows});
+  const VocabTableBlock({
+    super.key,
+    required this.columns,
+    required this.rows,
+    this.accentColor,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GrammarTable(columns: columns, rows: rows);
+    return GrammarTable(columns: columns, rows: rows, accentColor: accentColor);
   }
 }

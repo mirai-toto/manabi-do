@@ -10,16 +10,22 @@ enum ListStyle { bullet, numbered }
 class ListBlock extends StatelessWidget {
   final ListStyle style;
   final List<String> items;
+  final Color? accentColor;
 
-  const ListBlock({super.key, required this.style, required this.items});
+  const ListBlock({
+    super.key,
+    required this.style,
+    required this.items,
+    this.accentColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
     final base = AppTextStyles.body.copyWith(color: t.onSurface);
     final prefixStyle = AppTextStyles.body.copyWith(
-      color: t.onSurfaceVariant,
-      fontWeight: FontWeight.w600,
+      color: accentColor ?? t.onSurfaceVariant,
+      fontWeight: FontWeight.w700,
     );
     final prefixWidth = style == ListStyle.numbered ? 28.0 : 20.0;
 

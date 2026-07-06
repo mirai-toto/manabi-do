@@ -24,8 +24,14 @@ class ComparisonSide {
 class ComparisonBlock extends StatelessWidget {
   final ComparisonSide left;
   final ComparisonSide right;
+  final Color? accentColor;
 
-  const ComparisonBlock({super.key, required this.left, required this.right});
+  const ComparisonBlock({
+    super.key,
+    required this.left,
+    required this.right,
+    this.accentColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +39,16 @@ class ComparisonBlock extends StatelessWidget {
       builder: (context, constraints) {
         final stacked = constraints.maxWidth < 380;
         final children = [
-          Flexible(child: _SideCard(side: left)),
+          Flexible(
+            child: _SideCard(side: left, accentColor: accentColor),
+          ),
           SizedBox(
             width: stacked ? 0 : AppDimens.spaceSm,
             height: stacked ? AppDimens.spaceSm : 0,
           ),
-          Flexible(child: _SideCard(side: right)),
+          Flexible(
+            child: _SideCard(side: right, accentColor: accentColor),
+          ),
         ];
         return stacked
             ? Column(
@@ -56,7 +66,8 @@ class ComparisonBlock extends StatelessWidget {
 
 class _SideCard extends StatelessWidget {
   final ComparisonSide side;
-  const _SideCard({required this.side});
+  final Color? accentColor;
+  const _SideCard({required this.side, this.accentColor});
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +79,8 @@ class _SideCard extends StatelessWidget {
         children: [
           PillBadge(
             label: side.label,
-            color: t.onPrimaryContainer,
-            background: t.primaryContainer,
+            color: Colors.white,
+            background: accentColor ?? t.primary,
           ),
           const SizedBox(height: AppDimens.spaceSm),
           Text(
