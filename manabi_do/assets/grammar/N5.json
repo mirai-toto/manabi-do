@@ -997,6 +997,162 @@
           ]
         }
       ]
+    },
+    {
+      "id": "te-form",
+      "title": "て-form",
+      "lessons": [
+        {
+          "id": "forming-te-form",
+          "title": "Forming the て-form",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "The **て-form** is one of the most versatile verb forms in Japanese. It acts as a connector between clauses and is the base for dozens of grammar patterns. Mastering it early pays off through all of N5 and beyond."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "Group 1 — stem changes by final syllable:",
+                "  く  → いて    書く  → 書いて",
+                "  ぐ  → いで    泳ぐ  → 泳いで",
+                "  す  → して    話す  → 話して",
+                "  つ/る/う → って  待つ → 待って, 帰る → 帰って",
+                "  む/ぬ/ぶ → んで  飲む → 飲んで, 遊ぶ → 遊んで",
+                "",
+                "Group 2 — remove る, add て:",
+                "  食べる → 食べて,  見る → 見て,  起きる → 起きて",
+                "",
+                "Group 3 — irregular:",
+                "  する → して,  来る → 来て (きて)"
+              ]
+            },
+            {
+              "type": "vocab_table",
+              "columns": ["japanese", "romaji", "て-form", "group"],
+              "rows": [
+                { "japanese": "書く", "romaji": "kaku", "て-form": "書いて (kaite)", "group": "1" },
+                { "japanese": "話す", "romaji": "hanasu", "て-form": "話して (hanashite)", "group": "1" },
+                { "japanese": "待つ", "romaji": "matsu", "て-form": "待って (matte)", "group": "1" },
+                { "japanese": "飲む", "romaji": "nomu", "て-form": "飲んで (nonde)", "group": "1" },
+                { "japanese": "行く", "romaji": "iku", "て-form": "行って (itte) ※", "group": "1" },
+                { "japanese": "食べる", "romaji": "taberu", "て-form": "食べて (tabete)", "group": "2" },
+                { "japanese": "見る", "romaji": "miru", "て-form": "見て (mite)", "group": "2" },
+                { "japanese": "する", "romaji": "suru", "て-form": "して (shite)", "group": "3" },
+                { "japanese": "来る", "romaji": "kuru", "て-form": "来て (kite)", "group": "3" }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "行く (to go) is the one Group 1 exception — it becomes 行って, not 行いて. Everything else follows the chart above without exception."
+            }
+          ]
+        },
+        {
+          "id": "te-kudasai",
+          "title": "てください — Please Do",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "The most direct and natural way to make a polite request is **て-form + ください**. It is appropriate in almost any polite context — shops, classrooms, public signs."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[て-form] + ください   ← please do ~"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "ここに名前を書いてください。", "romaji": "Koko ni namae wo kaite kudasai.", "english": "Please write your name here." },
+                { "japanese": "もう一度言ってください。", "romaji": "Mō ichido itte kudasai.", "english": "Please say it one more time." },
+                { "japanese": "静かにしてください。", "romaji": "Shizuka ni shite kudasai.", "english": "Please be quiet." },
+                { "japanese": "窓を閉めてください。", "romaji": "Mado wo shimete kudasai.", "english": "Please close the window." },
+                { "japanese": "右に曲がってください。", "romaji": "Migi ni magatte kudasai.", "english": "Please turn right." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "Register options: drop ください entirely for casual requests — 書いて means \"write this\" among friends. Use ていただけますか for more deferential situations, like addressing a superior or making a formal request."
+            }
+          ]
+        },
+        {
+          "id": "permission-prohibition",
+          "title": "Permission & Prohibition",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Two て-form patterns cover what is and is not allowed. **てもいいです** gives permission or asks for it. **てはいけません** states that something is not permitted."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[て-form] + もいいです      ← it is okay to / you may",
+                "[て-form] + もいいですか    ← may I / is it okay to?",
+                "[て-form] + はいけません    ← you must not / it is not allowed"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "ここで写真を撮ってもいいですか。", "romaji": "Koko de shashin wo totte mo ii desu ka.", "english": "May I take photos here?" },
+                { "japanese": "窓を開けてもいいですよ。", "romaji": "Mado wo akete mo ii desu yo.", "english": "You may open the window." },
+                { "japanese": "ここでタバコを吸ってはいけません。", "romaji": "Koko de tabako wo sutte wa ikemasen.", "english": "You must not smoke here." },
+                { "japanese": "試験中にスマホを使ってはいけません。", "romaji": "Shiken chū ni sumaho wo tsukatte wa ikemasen.", "english": "You must not use your phone during the exam." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "In casual speech, てもいいです shortens to ていい. てはいけない contracts to ちゃいけない (from ては → ちゃ). Both are common in everyday conversation but not appropriate in formal writing."
+            }
+          ]
+        },
+        {
+          "id": "giving-receiving",
+          "title": "Giving & Receiving Actions",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Japanese tracks the *direction* of a favour with precision. Three て-form patterns each handle one direction — outward from you, inward to you, or arriving unsolicited."
+            },
+            {
+              "type": "list",
+              "style": "bullet",
+              "items": [
+                "**てあげる** — I (or someone) do something *for* someone else. The benefit flows outward.",
+                "**てもらう** — I receive an action *from* someone. I am the beneficiary, often having asked.",
+                "**てくれる** — Someone does something for me on their own initiative. The benefit arrives without me requesting it."
+              ]
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[て-form] + あげます   ← I do for them (benefit flows out)",
+                "[て-form] + もらいます ← I receive the action (benefit flows in)",
+                "[て-form] + くれます   ← they do for me, their initiative"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "友達の荷物を持ってあげました。", "romaji": "Tomodachi no nimotsu wo motte agemashita.", "english": "I carried my friend's bags for them." },
+                { "japanese": "先生に漢字を教えてもらいました。", "romaji": "Sensei ni kanji wo oshiete moraimashita.", "english": "I had the teacher teach me kanji." },
+                { "japanese": "母が弁当を作ってくれました。", "romaji": "Haha ga bentō wo tsukutte kuremashita.", "english": "My mother made me a bento (for my benefit)." },
+                { "japanese": "田中さんが駅まで送ってくれました。", "romaji": "Tanaka-san ga eki made okutte kuremashita.", "english": "Tanaka kindly drove me to the station." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "The key question: *who is the beneficiary?* Benefit goes to someone else → あげる. Benefit comes to me, I requested it → もらう. Benefit comes to me, their own initiative → くれる."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
