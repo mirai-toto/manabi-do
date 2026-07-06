@@ -1153,6 +1153,159 @@
           ]
         }
       ]
+    },
+    {
+      "id": "temporality",
+      "title": "Temporality",
+      "lessons": [
+        {
+          "id": "te-iru",
+          "title": "ている — Ongoing Action and State",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**ている** is one of the most frequently used patterns in Japanese. The same form carries three distinct meanings — context and the verb itself determine which reading applies."
+            },
+            {
+              "type": "list",
+              "style": "numbered",
+              "items": [
+                "**In progress** — an action happening right now, like English \"-ing\"",
+                "**Resultant state** — the lasting result of a completed action",
+                "**Habitual** — something done regularly as a routine"
+              ]
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[て-form] + います"
+              ]
+            },
+            {
+              "type": "vocab_table",
+              "columns": ["japanese", "romaji", "english", "type"],
+              "rows": [
+                { "japanese": "今、本を読んでいます。", "romaji": "Ima, hon wo yonde imasu.", "english": "I am reading a book now.", "type": "in progress" },
+                { "japanese": "彼女は結婚しています。", "romaji": "Kanojo wa kekkon shite imasu.", "english": "She is married.", "type": "resultant state" },
+                { "japanese": "毎朝、走っています。", "romaji": "Maiasa, hashitte imasu.", "english": "I run every morning.", "type": "habitual" },
+                { "japanese": "窓が開いています。", "romaji": "Mado ga aite imasu.", "english": "The window is open.", "type": "resultant state" },
+                { "japanese": "田中さんはあそこに座っています。", "romaji": "Tanaka-san wa asoko ni suwatte imasu.", "english": "Tanaka is sitting over there.", "type": "resultant state" }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "The resultant-state meaning catches learners who expect ている to always mean \"currently doing.\" 結婚しています = \"is in a married state,\" not \"is getting married right now.\" 知っています = \"I know\" (not \"I am knowing\"). 着ています = \"is wearing\" (the result of having put it on)."
+            }
+          ]
+        },
+        {
+          "id": "te-kara",
+          "title": "てから — After Doing",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**てから** expresses a strict sequence: action A must be fully completed before action B can begin. The completion of A is what makes B possible or appropriate."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[て-form] + から、[next action]"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "手を洗ってから、食べます。", "romaji": "Te wo aratte kara, tabemasu.", "english": "I eat after washing my hands." },
+                { "japanese": "宿題をしてから、ゲームをします。", "romaji": "Shukudai wo shite kara, gēmu wo shimasu.", "english": "I play games after doing homework." },
+                { "japanese": "大学を卒業してから、働き始めました。", "romaji": "Daigaku wo sotsugyō shite kara, hataraki hajimemashita.", "english": "I started working after graduating from university." },
+                { "japanese": "シャワーを浴びてから、寝ます。", "romaji": "Shawā wo abite kara, nemasu.", "english": "I sleep after taking a shower." }
+              ]
+            },
+            {
+              "type": "comparison",
+              "left": {
+                "label": "てから",
+                "description": "A must be fully done before B. Completion is required — the sequence is strict.",
+                "example_jp": "食べてから、歯を磨きます。",
+                "example_en": "I brush my teeth after eating."
+              },
+              "right": {
+                "label": "後で",
+                "description": "\"Later, after A\" — B happens sometime after, with no strict completion implied.",
+                "example_jp": "後で電話します。",
+                "example_en": "I'll call later."
+              }
+            }
+          ]
+        },
+        {
+          "id": "mae-ni-ato-de",
+          "title": "前に / 後で — Before / After",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**前に** and **後で** describe timing relative to another action. They are more flexible than てから — no strict completion is implied. The verb form before each one is different, and the reason is logical."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Dictionary form] + 前に、[action]       ← before doing (action hasn't happened yet)",
+                "[Past plain form] + 後で、[action]       ← after doing (action has been completed)",
+                "[Noun] + の前に / の後で                  ← before / after a noun (event, class, etc.)"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "寝る前に歯を磨きます。", "romaji": "Neru mae ni ha wo migakimasu.", "english": "I brush my teeth before sleeping." },
+                { "japanese": "食べた後で、散歩します。", "romaji": "Tabeta ato de, sanpo shimasu.", "english": "I take a walk after eating." },
+                { "japanese": "授業の前に、単語を復習しました。", "romaji": "Jugyō no mae ni, tango wo fukushū shimashita.", "english": "I reviewed vocabulary before class." },
+                { "japanese": "映画の後で、カフェに行きましょう。", "romaji": "Eiga no ato de, kafe ni ikimashō.", "english": "Let's go to a café after the movie." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "前に takes the dictionary form because the action has *not yet happened* at that point in time — it is still in the future relative to the reference moment. 後で takes the past plain form because the action *has been completed* before the next one starts."
+            }
+          ]
+        },
+        {
+          "id": "nagara",
+          "title": "ながら — While Doing",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "**ながら** attaches to the verb stem to describe two actions happening simultaneously. The ながら clause is always the *secondary* action — the main verb at the end of the sentence is what the subject is primarily doing."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Verb stem] + ながら、[main action]",
+                "",
+                "  聴く  → 聴き + ながら",
+                "  歩く  → 歩き + ながら",
+                "  飲む  → 飲み + ながら"
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "音楽を聴きながら勉強します。", "romaji": "Ongaku wo kikinagara benkyō shimasu.", "english": "I study while listening to music." },
+                { "japanese": "歩きながら電話で話しました。", "romaji": "Arukinagara denwa de hanashimashita.", "english": "I talked on the phone while walking." },
+                { "japanese": "テレビを見ながら夕ごはんを食べます。", "romaji": "Terebi wo minagara yūgohan wo tabemasu.", "english": "I eat dinner while watching TV." },
+                { "japanese": "コーヒーを飲みながら新聞を読みました。", "romaji": "Koohii wo nominagara shinbun wo yomimashita.", "english": "I read the newspaper while drinking coffee." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "ながら requires the *same subject* for both actions. \"I study while she watches TV\" cannot use ながら — a different subject performing the secondary action requires a different structure."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
