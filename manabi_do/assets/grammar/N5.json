@@ -261,6 +261,132 @@
           ]
         }
       ]
+    },
+    {
+      "id": "counting",
+      "title": "Counting",
+      "lessons": [
+        {
+          "id": "basic-numbers",
+          "title": "Basic Numbers",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Japanese numbers are straightforward up to 10,000. The same digits combine and stack to form larger values — 十一 is 10+1, 百二十三 is 100+20+3. Learn the base set and the rest follows."
+            },
+            {
+              "type": "vocab_table",
+              "columns": ["#", "japanese", "reading", "alternate"],
+              "rows": [
+                { "#": "1", "japanese": "一", "reading": "いち", "alternate": "ひと (with some counters)" },
+                { "#": "2", "japanese": "二", "reading": "に", "alternate": "ふた (with some counters)" },
+                { "#": "3", "japanese": "三", "reading": "さん", "alternate": "—" },
+                { "#": "4", "japanese": "四", "reading": "よん", "alternate": "し" },
+                { "#": "5", "japanese": "五", "reading": "ご", "alternate": "—" },
+                { "#": "6", "japanese": "六", "reading": "ろく", "alternate": "—" },
+                { "#": "7", "japanese": "七", "reading": "なな", "alternate": "しち" },
+                { "#": "8", "japanese": "八", "reading": "はち", "alternate": "—" },
+                { "#": "9", "japanese": "九", "reading": "きゅう", "alternate": "く" },
+                { "#": "10", "japanese": "十", "reading": "じゅう", "alternate": "—" },
+                { "#": "100", "japanese": "百", "reading": "ひゃく", "alternate": "—" },
+                { "#": "1,000", "japanese": "千", "reading": "せん", "alternate": "—" },
+                { "#": "10,000", "japanese": "万", "reading": "まん", "alternate": "—" }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "4 (し) and 9 (く) are avoided in some contexts — し sounds like 死 (death) and く like 苦 (suffering). Hospital rooms sometimes skip these numbers. This is cultural awareness, not grammar."
+            }
+          ]
+        },
+        {
+          "id": "counters",
+          "title": "Counters",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "Japanese does not use bare numbers to count objects. Numbers pair with **counters** — suffixes that classify what is being counted. The number reading also changes depending on which counter follows."
+            },
+            {
+              "type": "pattern",
+              "lines": [
+                "[Number] + [Counter]",
+                "",
+                "  三人 (sannin)   — three people",
+                "  二枚 (nimai)    — two sheets",
+                "  一杯 (ippai)    — one cup"
+              ]
+            },
+            {
+              "type": "vocab_table",
+              "columns": ["japanese", "reading", "used for", "example"],
+              "rows": [
+                { "japanese": "人", "reading": "にん / り", "used for": "people", "example": "三人 (sannin) / 一人 (hitori)" },
+                { "japanese": "個", "reading": "こ", "used for": "small, general objects", "example": "二個 (niko)" },
+                { "japanese": "枚", "reading": "まい", "used for": "flat, thin things", "example": "一枚 (ichimai)" },
+                { "japanese": "本", "reading": "ほん", "used for": "long, cylindrical things", "example": "三本 (sanbon)" },
+                { "japanese": "冊", "reading": "さつ", "used for": "bound books", "example": "二冊 (nisatsu)" },
+                { "japanese": "匹", "reading": "ひき", "used for": "small animals", "example": "一匹 (ippiki)" },
+                { "japanese": "台", "reading": "だい", "used for": "machines, vehicles", "example": "二台 (nidai)" },
+                { "japanese": "杯", "reading": "はい", "used for": "cups, glasses, bowls", "example": "一杯 (ippai)" }
+              ]
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "学生が三人います。", "romaji": "Gakusei ga sannin imasu.", "english": "There are 3 students." },
+                { "japanese": "りんごを二個買いました。", "romaji": "Ringo wo niko kaimashita.", "english": "I bought 2 apples." },
+                { "japanese": "紙を一枚ください。", "romaji": "Kami wo ichimai kudasai.", "english": "Please give me one sheet of paper." },
+                { "japanese": "コーヒーを一杯飲みました。", "romaji": "Koohii wo ippai nomimashita.", "english": "I drank one cup of coffee." },
+                { "japanese": "車を二台持っています。", "romaji": "Kuruma wo nidai motte imasu.", "english": "I have two cars." }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "Number + counter combinations trigger phonetic changes. 一本 (ippon), 三本 (sanbon), 六本 (roppon) — the pattern follows Japanese sound rules. Don't try to memorise all variants at once. Learn the counter first and pick up the sound changes through exposure."
+            }
+          ]
+        },
+        {
+          "id": "how-many",
+          "title": "Asking How Many — いくつ / 何～",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "There are two ways to ask \"how many\" in Japanese. Use **いくつ** when the category is unspecified or you want a general count. Use **何** (なん) directly before the counter when the category is already known."
+            },
+            {
+              "type": "comparison",
+              "left": {
+                "label": "いくつ",
+                "description": "General count — used when the category is unspecified, or for things without a fixed counter.",
+                "example_jp": "りんごがいくつありますか。",
+                "example_en": "How many apples are there?"
+              },
+              "right": {
+                "label": "何 + counter",
+                "description": "Category-specific — attach 何 (nan) directly before the counter you would normally use.",
+                "example_jp": "何人いますか。",
+                "example_en": "How many people are there?"
+              }
+            },
+            {
+              "type": "example_table",
+              "columns": ["japanese", "romaji", "english"],
+              "rows": [
+                { "japanese": "何冊読みましたか。", "romaji": "Nansatsu yomimashita ka.", "english": "How many books did you read?" },
+                { "japanese": "何枚ありますか。", "romaji": "Nanmai arimasu ka.", "english": "How many sheets are there?" },
+                { "japanese": "これはいくらですか。", "romaji": "Kore wa ikura desu ka.", "english": "How much is this?" }
+              ]
+            },
+            {
+              "type": "note",
+              "content": "いくつ is also used informally to ask someone's age — お子さんはいくつですか (How old is your child?). The direct \"how old\" question is 何歳 (nansai)."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
