@@ -37,14 +37,14 @@ class GrammarLessonListScreen extends StatelessWidget {
       body: ListView.separated(
         padding: const EdgeInsets.all(AppDimens.spaceMd),
         itemCount: chapter.lessons.length,
-        separatorBuilder: (_, _) => const SizedBox(height: AppDimens.spaceXs),
+        separatorBuilder: (_, _) => const SizedBox(height: AppDimens.spaceSm),
         itemBuilder: (context, i) {
           final lesson = chapter.lessons[i];
           return TappableSurface(
             decoration: BoxDecoration(
               color: t.cardBackground,
               borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-              border: Border.all(color: t.outlineVariant),
+              border: Border.all(color: levelColor.withValues(alpha: 0.35)),
             ),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
@@ -56,16 +56,18 @@ class GrammarLessonListScreen extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.spaceMd,
-                vertical: AppDimens.spaceMd,
-              ),
+              padding: const EdgeInsets.all(AppDimens.spaceMd),
               child: Row(
                 children: [
+                  NumberBadge(number: i + 1, color: levelColor),
+                  const SizedBox(width: AppDimens.spaceMd),
                   Expanded(
                     child: Text(
                       lesson.title,
-                      style: AppTextStyles.body.copyWith(color: t.onSurface),
+                      style: AppTextStyles.body.copyWith(
+                        color: t.onSurface,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),

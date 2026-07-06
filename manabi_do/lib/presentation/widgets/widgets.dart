@@ -9,6 +9,7 @@ export 'common/confirm_dialog.dart';
 export 'common/difficulty_dots.dart';
 export 'common/japanese_text.dart';
 export 'common/jlpt_level_card.dart';
+export 'common/number_badge.dart';
 export 'common/pill_badge.dart';
 export 'common/practice_button.dart';
 export 'common/progress_bar.dart';
