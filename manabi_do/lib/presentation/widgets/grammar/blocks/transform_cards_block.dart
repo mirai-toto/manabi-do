@@ -78,17 +78,24 @@ class TransformCardsBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = accentColor ?? context.tokens.primary;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: groups.asMap().entries.map((e) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: e.key < groups.length - 1 ? AppDimens.spaceSm : 0,
+    final t = context.tokens;
+    final items = <Widget>[];
+    for (int i = 0; i < groups.length; i++) {
+      final group = groups[i];
+      items.add(_GroupCard(group: group, accentColor: color));
+      if (group.note != null) {
+        items.add(
+          Padding(
+            padding: const EdgeInsets.only(top: AppDimens.spaceXs),
+            child: _NoteChip(text: group.note!, tokens: t),
           ),
-          child: _GroupCard(group: e.value, accentColor: color),
         );
-      }).toList(),
-    );
+      }
+      if (i < groups.length - 1) {
+        items.add(const SizedBox(height: AppDimens.spaceSm));
+      }
+    }
+    return Column(mainAxisSize: MainAxisSize.min, children: items);
   }
 }
 
@@ -171,19 +178,7 @@ class _GroupCard extends StatelessWidget {
               ),
             ),
           ],
-          // Note chip
-          if (group.note != null)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppDimens.spaceMd,
-                AppDimens.spaceXs,
-                AppDimens.spaceMd,
-                AppDimens.spaceMd,
-              ),
-              child: _NoteChip(text: group.note!, tokens: t),
-            ),
-          // Bottom breathing room when no note
-          if (group.note == null) const SizedBox(height: AppDimens.spaceSm),
+          const SizedBox(height: AppDimens.spaceSm),
         ],
       ),
     );
