@@ -24,17 +24,67 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "romaji", "english", "group"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english",
+                "group"
+              ],
               "rows": [
-                { "japanese": "書く", "romaji": "kaku", "english": "to write", "group": "1" },
-                { "japanese": "話す", "romaji": "hanasu", "english": "to speak", "group": "1" },
-                { "japanese": "待つ", "romaji": "matsu", "english": "to wait", "group": "1" },
-                { "japanese": "帰る", "romaji": "kaeru", "english": "to return home", "group": "1 *" },
-                { "japanese": "食べる", "romaji": "taberu", "english": "to eat", "group": "2" },
-                { "japanese": "見る", "romaji": "miru", "english": "to see", "group": "2" },
-                { "japanese": "起きる", "romaji": "okiru", "english": "to wake up", "group": "2" },
-                { "japanese": "する", "romaji": "suru", "english": "to do", "group": "3" },
-                { "japanese": "来る", "romaji": "kuru", "english": "to come", "group": "3" }
+                {
+                  "japanese": "書く",
+                  "romaji": "kaku",
+                  "english": "to write",
+                  "group": "1"
+                },
+                {
+                  "japanese": "話す",
+                  "romaji": "hanasu",
+                  "english": "to speak",
+                  "group": "1"
+                },
+                {
+                  "japanese": "待つ",
+                  "romaji": "matsu",
+                  "english": "to wait",
+                  "group": "1"
+                },
+                {
+                  "japanese": "帰る",
+                  "romaji": "kaeru",
+                  "english": "to return home",
+                  "group": "1 *"
+                },
+                {
+                  "japanese": "食べる",
+                  "romaji": "taberu",
+                  "english": "to eat",
+                  "group": "2"
+                },
+                {
+                  "japanese": "見る",
+                  "romaji": "miru",
+                  "english": "to see",
+                  "group": "2"
+                },
+                {
+                  "japanese": "起きる",
+                  "romaji": "okiru",
+                  "english": "to wake up",
+                  "group": "2"
+                },
+                {
+                  "japanese": "する",
+                  "romaji": "suru",
+                  "english": "to do",
+                  "group": "3"
+                },
+                {
+                  "japanese": "来る",
+                  "romaji": "kuru",
+                  "english": "to come",
+                  "group": "3"
+                }
               ]
             },
             {
@@ -63,42 +113,131 @@
                   "tag": "Godan",
                   "rule": "change the final u-vowel to i-vowel, then add ます",
                   "rows": [
-                    { "base": "書く", "old": "く", "new": "きます", "result": "書きます", "romaji": "kakimasu", "english": "to write" },
-                    { "base": "話す", "old": "す", "new": "します", "result": "話します", "romaji": "hanashimasu", "english": "to speak" },
-                    { "base": "待つ", "old": "つ", "new": "ちます", "result": "待ちます", "romaji": "machimasu", "english": "to wait" },
-                    { "base": "飲む", "old": "む", "new": "みます", "result": "飲みます", "romaji": "nomimasu", "english": "to drink" },
-                    { "base": "帰る", "old": "る", "new": "ります", "result": "帰ります", "romaji": "kaerimasu", "english": "to return home" }
+                    {
+                      "base": "書く",
+                      "old": "く",
+                      "new": "きます",
+                      "result": "書きます",
+                      "romaji": "kakimasu",
+                      "english": "to write"
+                    },
+                    {
+                      "base": "話す",
+                      "old": "す",
+                      "new": "します",
+                      "result": "話します",
+                      "romaji": "hanashimasu",
+                      "english": "to speak"
+                    },
+                    {
+                      "base": "待つ",
+                      "old": "つ",
+                      "new": "ちます",
+                      "result": "待ちます",
+                      "romaji": "machimasu",
+                      "english": "to wait"
+                    },
+                    {
+                      "base": "飲む",
+                      "old": "む",
+                      "new": "みます",
+                      "result": "飲みます",
+                      "romaji": "nomimasu",
+                      "english": "to drink"
+                    },
+                    {
+                      "base": "帰る",
+                      "old": "る",
+                      "new": "ります",
+                      "result": "帰ります",
+                      "romaji": "kaerimasu",
+                      "english": "to return home"
+                    }
                   ],
-                  "note": "Negative: replace ます with ません — the stem stays the same"
+                  "note": "Negative: replace ます with ません — the stem stays the same",
+                  "description": "The most common group — the majority of Japanese verbs fall here."
                 },
                 {
                   "label": "Group 2",
                   "tag": "Ichidan",
                   "rule": "remove る, add ます directly to the stem",
                   "rows": [
-                    { "base": "食べる", "old": "る", "new": "ます", "result": "食べます", "romaji": "tabemasu", "english": "to eat" },
-                    { "base": "見る", "old": "る", "new": "ます", "result": "見ます", "romaji": "mimasu", "english": "to see" },
-                    { "base": "起きる", "old": "る", "new": "ます", "result": "起きます", "romaji": "okimasu", "english": "to wake up" }
-                  ]
+                    {
+                      "base": "食べる",
+                      "old": "る",
+                      "new": "ます",
+                      "result": "食べます",
+                      "romaji": "tabemasu",
+                      "english": "to eat"
+                    },
+                    {
+                      "base": "見る",
+                      "old": "る",
+                      "new": "ます",
+                      "result": "見ます",
+                      "romaji": "mimasu",
+                      "english": "to see"
+                    },
+                    {
+                      "base": "起きる",
+                      "old": "る",
+                      "new": "ます",
+                      "result": "起きます",
+                      "romaji": "okimasu",
+                      "english": "to wake up"
+                    }
+                  ],
+                  "description": "Fewer verbs, but much simpler to conjugate."
                 },
                 {
                   "label": "Group 3",
                   "tag": "Irregular",
                   "rows": [
-                    { "base": "する", "result": "します", "romaji": "shimasu", "english": "to do" },
-                    { "base": "来る", "result": "来ます", "romaji": "kimasu", "english": "to come" }
-                  ]
+                    {
+                      "base": "する",
+                      "result": "します",
+                      "romaji": "shimasu",
+                      "english": "to do"
+                    },
+                    {
+                      "base": "来る",
+                      "result": "来ます",
+                      "romaji": "kimasu",
+                      "english": "to come"
+                    }
+                  ],
+                  "description": "Only two verbs in Japanese are truly irregular — memorise them as-is."
                 }
               ]
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "毎朝コーヒーを飲みます。", "romaji": "Maiasa koohii wo nomimasu.", "english": "I drink coffee every morning." },
-                { "japanese": "明日、友達に会います。", "romaji": "Ashita, tomodachi ni aimasu.", "english": "I'll meet a friend tomorrow." },
-                { "japanese": "肉を食べません。", "romaji": "Niku wo tabemasen.", "english": "I don't eat meat." },
-                { "japanese": "日本語を勉強します。", "romaji": "Nihongo wo benkyō shimasu.", "english": "I study Japanese." }
+                {
+                  "japanese": "毎朝コーヒーを飲みます。",
+                  "romaji": "Maiasa koohii wo nomimasu.",
+                  "english": "I drink coffee every morning."
+                },
+                {
+                  "japanese": "明日、友達に会います。",
+                  "romaji": "Ashita, tomodachi ni aimasu.",
+                  "english": "I'll meet a friend tomorrow."
+                },
+                {
+                  "japanese": "肉を食べません。",
+                  "romaji": "Niku wo tabemasen.",
+                  "english": "I don't eat meat."
+                },
+                {
+                  "japanese": "日本語を勉強します。",
+                  "romaji": "Nihongo wo benkyō shimasu.",
+                  "english": "I study Japanese."
+                }
               ]
             },
             {
@@ -128,13 +267,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "昨日、映画を見ました。", "romaji": "Kinō, eiga wo mimashita.", "english": "I watched a movie yesterday." },
-                { "japanese": "朝ごはんを食べませんでした。", "romaji": "Asagohan wo tabemasen deshita.", "english": "I didn't eat breakfast." },
-                { "japanese": "先週、東京に行きました。", "romaji": "Senshū, Tōkyō ni ikimashita.", "english": "I went to Tokyo last week." },
-                { "japanese": "レポートを書きませんでした。", "romaji": "Repōto wo kakimasen deshita.", "english": "I didn't write the report." },
-                { "japanese": "先生に電話しました。", "romaji": "Sensei ni denwa shimashita.", "english": "I called the teacher." }
+                {
+                  "japanese": "昨日、映画を見ました。",
+                  "romaji": "Kinō, eiga wo mimashita.",
+                  "english": "I watched a movie yesterday."
+                },
+                {
+                  "japanese": "朝ごはんを食べませんでした。",
+                  "romaji": "Asagohan wo tabemasen deshita.",
+                  "english": "I didn't eat breakfast."
+                },
+                {
+                  "japanese": "先週、東京に行きました。",
+                  "romaji": "Senshū, Tōkyō ni ikimashita.",
+                  "english": "I went to Tokyo last week."
+                },
+                {
+                  "japanese": "レポートを書きませんでした。",
+                  "romaji": "Repōto wo kakimasen deshita.",
+                  "english": "I didn't write the report."
+                },
+                {
+                  "japanese": "先生に電話しました。",
+                  "romaji": "Sensei ni denwa shimashita.",
+                  "english": "I called the teacher."
+                }
               ]
             },
             {
@@ -166,13 +329,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "学校へ行きます。", "romaji": "Gakkō e ikimasu.", "english": "I go to school." },
-                { "japanese": "東京に来ました。", "romaji": "Tōkyō ni kimashita.", "english": "I came to Tokyo." },
-                { "japanese": "家に帰ります。", "romaji": "Uchi ni kaerimasu.", "english": "I go home." },
-                { "japanese": "駅のほうへ歩きました。", "romaji": "Eki no hō e arukimashita.", "english": "I walked toward the station." },
-                { "japanese": "日本に引っ越しました。", "romaji": "Nihon ni hikkoshimashita.", "english": "I moved to Japan." }
+                {
+                  "japanese": "学校へ行きます。",
+                  "romaji": "Gakkō e ikimasu.",
+                  "english": "I go to school."
+                },
+                {
+                  "japanese": "東京に来ました。",
+                  "romaji": "Tōkyō ni kimashita.",
+                  "english": "I came to Tokyo."
+                },
+                {
+                  "japanese": "家に帰ります。",
+                  "romaji": "Uchi ni kaerimasu.",
+                  "english": "I go home."
+                },
+                {
+                  "japanese": "駅のほうへ歩きました。",
+                  "romaji": "Eki no hō e arukimashita.",
+                  "english": "I walked toward the station."
+                },
+                {
+                  "japanese": "日本に引っ越しました。",
+                  "romaji": "Nihon ni hikkoshimashita.",
+                  "english": "I moved to Japan."
+                }
               ]
             },
             {
@@ -198,12 +385,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "図書館で勉強します。", "romaji": "Toshokan de benkyō shimasu.", "english": "I study at the library." },
-                { "japanese": "公園で走りました。", "romaji": "Kōen de hashirimashita.", "english": "I ran in the park." },
-                { "japanese": "電車で本を読みます。", "romaji": "Densha de hon wo yomimasu.", "english": "I read books on the train." },
-                { "japanese": "日本語で話してください。", "romaji": "Nihongo de hanashite kudasai.", "english": "Please speak in Japanese." }
+                {
+                  "japanese": "図書館で勉強します。",
+                  "romaji": "Toshokan de benkyō shimasu.",
+                  "english": "I study at the library."
+                },
+                {
+                  "japanese": "公園で走りました。",
+                  "romaji": "Kōen de hashirimashita.",
+                  "english": "I ran in the park."
+                },
+                {
+                  "japanese": "電車で本を読みます。",
+                  "romaji": "Densha de hon wo yomimasu.",
+                  "english": "I read books on the train."
+                },
+                {
+                  "japanese": "日本語で話してください。",
+                  "romaji": "Nihongo de hanashite kudasai.",
+                  "english": "Please speak in Japanese."
+                }
               ]
             },
             {
@@ -259,12 +466,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "駅の前に銀行があります。", "romaji": "Eki no mae ni ginkō ga arimasu.", "english": "There's a bank in front of the station." },
-                { "japanese": "友達が外にいます。", "romaji": "Tomodachi ga soto ni imasu.", "english": "My friend is outside." },
-                { "japanese": "財布がバッグの中にあります。", "romaji": "Saifu ga baggu no naka ni arimasu.", "english": "My wallet is inside the bag." },
-                { "japanese": "明日、会議があります。", "romaji": "Ashita, kaigi ga arimasu.", "english": "There is a meeting tomorrow." }
+                {
+                  "japanese": "駅の前に銀行があります。",
+                  "romaji": "Eki no mae ni ginkō ga arimasu.",
+                  "english": "There's a bank in front of the station."
+                },
+                {
+                  "japanese": "友達が外にいます。",
+                  "romaji": "Tomodachi ga soto ni imasu.",
+                  "english": "My friend is outside."
+                },
+                {
+                  "japanese": "財布がバッグの中にあります。",
+                  "romaji": "Saifu ga baggu no naka ni arimasu.",
+                  "english": "My wallet is inside the bag."
+                },
+                {
+                  "japanese": "明日、会議があります。",
+                  "romaji": "Ashita, kaigi ga arimasu.",
+                  "english": "There is a meeting tomorrow."
+                }
               ]
             },
             {
@@ -293,21 +520,91 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["#", "japanese", "reading", "alternate"],
+              "columns": [
+                "#",
+                "japanese",
+                "reading",
+                "alternate"
+              ],
               "rows": [
-                { "#": "1", "japanese": "一", "reading": "いち", "alternate": "ひと (with some counters)" },
-                { "#": "2", "japanese": "二", "reading": "に", "alternate": "ふた (with some counters)" },
-                { "#": "3", "japanese": "三", "reading": "さん", "alternate": "—" },
-                { "#": "4", "japanese": "四", "reading": "よん", "alternate": "し" },
-                { "#": "5", "japanese": "五", "reading": "ご", "alternate": "—" },
-                { "#": "6", "japanese": "六", "reading": "ろく", "alternate": "—" },
-                { "#": "7", "japanese": "七", "reading": "なな", "alternate": "しち" },
-                { "#": "8", "japanese": "八", "reading": "はち", "alternate": "—" },
-                { "#": "9", "japanese": "九", "reading": "きゅう", "alternate": "く" },
-                { "#": "10", "japanese": "十", "reading": "じゅう", "alternate": "—" },
-                { "#": "100", "japanese": "百", "reading": "ひゃく", "alternate": "—" },
-                { "#": "1,000", "japanese": "千", "reading": "せん", "alternate": "—" },
-                { "#": "10,000", "japanese": "万", "reading": "まん", "alternate": "—" }
+                {
+                  "#": "1",
+                  "japanese": "一",
+                  "reading": "いち",
+                  "alternate": "ひと (with some counters)"
+                },
+                {
+                  "#": "2",
+                  "japanese": "二",
+                  "reading": "に",
+                  "alternate": "ふた (with some counters)"
+                },
+                {
+                  "#": "3",
+                  "japanese": "三",
+                  "reading": "さん",
+                  "alternate": "—"
+                },
+                {
+                  "#": "4",
+                  "japanese": "四",
+                  "reading": "よん",
+                  "alternate": "し"
+                },
+                {
+                  "#": "5",
+                  "japanese": "五",
+                  "reading": "ご",
+                  "alternate": "—"
+                },
+                {
+                  "#": "6",
+                  "japanese": "六",
+                  "reading": "ろく",
+                  "alternate": "—"
+                },
+                {
+                  "#": "7",
+                  "japanese": "七",
+                  "reading": "なな",
+                  "alternate": "しち"
+                },
+                {
+                  "#": "8",
+                  "japanese": "八",
+                  "reading": "はち",
+                  "alternate": "—"
+                },
+                {
+                  "#": "9",
+                  "japanese": "九",
+                  "reading": "きゅう",
+                  "alternate": "く"
+                },
+                {
+                  "#": "10",
+                  "japanese": "十",
+                  "reading": "じゅう",
+                  "alternate": "—"
+                },
+                {
+                  "#": "100",
+                  "japanese": "百",
+                  "reading": "ひゃく",
+                  "alternate": "—"
+                },
+                {
+                  "#": "1,000",
+                  "japanese": "千",
+                  "reading": "せん",
+                  "alternate": "—"
+                },
+                {
+                  "#": "10,000",
+                  "japanese": "万",
+                  "reading": "まん",
+                  "alternate": "—"
+                }
               ]
             },
             {
@@ -336,27 +633,96 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "reading", "used for", "example"],
+              "columns": [
+                "japanese",
+                "reading",
+                "used for",
+                "example"
+              ],
               "rows": [
-                { "japanese": "人", "reading": "にん / り", "used for": "people", "example": "三人 (sannin) / 一人 (hitori)" },
-                { "japanese": "個", "reading": "こ", "used for": "small, general objects", "example": "二個 (niko)" },
-                { "japanese": "枚", "reading": "まい", "used for": "flat, thin things", "example": "一枚 (ichimai)" },
-                { "japanese": "本", "reading": "ほん", "used for": "long, cylindrical things", "example": "三本 (sanbon)" },
-                { "japanese": "冊", "reading": "さつ", "used for": "bound books", "example": "二冊 (nisatsu)" },
-                { "japanese": "匹", "reading": "ひき", "used for": "small animals", "example": "一匹 (ippiki)" },
-                { "japanese": "台", "reading": "だい", "used for": "machines, vehicles", "example": "二台 (nidai)" },
-                { "japanese": "杯", "reading": "はい", "used for": "cups, glasses, bowls", "example": "一杯 (ippai)" }
+                {
+                  "japanese": "人",
+                  "reading": "にん / り",
+                  "used for": "people",
+                  "example": "三人 (sannin) / 一人 (hitori)"
+                },
+                {
+                  "japanese": "個",
+                  "reading": "こ",
+                  "used for": "small, general objects",
+                  "example": "二個 (niko)"
+                },
+                {
+                  "japanese": "枚",
+                  "reading": "まい",
+                  "used for": "flat, thin things",
+                  "example": "一枚 (ichimai)"
+                },
+                {
+                  "japanese": "本",
+                  "reading": "ほん",
+                  "used for": "long, cylindrical things",
+                  "example": "三本 (sanbon)"
+                },
+                {
+                  "japanese": "冊",
+                  "reading": "さつ",
+                  "used for": "bound books",
+                  "example": "二冊 (nisatsu)"
+                },
+                {
+                  "japanese": "匹",
+                  "reading": "ひき",
+                  "used for": "small animals",
+                  "example": "一匹 (ippiki)"
+                },
+                {
+                  "japanese": "台",
+                  "reading": "だい",
+                  "used for": "machines, vehicles",
+                  "example": "二台 (nidai)"
+                },
+                {
+                  "japanese": "杯",
+                  "reading": "はい",
+                  "used for": "cups, glasses, bowls",
+                  "example": "一杯 (ippai)"
+                }
               ]
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "学生が三人います。", "romaji": "Gakusei ga sannin imasu.", "english": "There are 3 students." },
-                { "japanese": "りんごを二個買いました。", "romaji": "Ringo wo niko kaimashita.", "english": "I bought 2 apples." },
-                { "japanese": "紙を一枚ください。", "romaji": "Kami wo ichimai kudasai.", "english": "Please give me one sheet of paper." },
-                { "japanese": "コーヒーを一杯飲みました。", "romaji": "Koohii wo ippai nomimashita.", "english": "I drank one cup of coffee." },
-                { "japanese": "車を二台持っています。", "romaji": "Kuruma wo nidai motte imasu.", "english": "I have two cars." }
+                {
+                  "japanese": "学生が三人います。",
+                  "romaji": "Gakusei ga sannin imasu.",
+                  "english": "There are 3 students."
+                },
+                {
+                  "japanese": "りんごを二個買いました。",
+                  "romaji": "Ringo wo niko kaimashita.",
+                  "english": "I bought 2 apples."
+                },
+                {
+                  "japanese": "紙を一枚ください。",
+                  "romaji": "Kami wo ichimai kudasai.",
+                  "english": "Please give me one sheet of paper."
+                },
+                {
+                  "japanese": "コーヒーを一杯飲みました。",
+                  "romaji": "Koohii wo ippai nomimashita.",
+                  "english": "I drank one cup of coffee."
+                },
+                {
+                  "japanese": "車を二台持っています。",
+                  "romaji": "Kuruma wo nidai motte imasu.",
+                  "english": "I have two cars."
+                }
               ]
             },
             {
@@ -390,11 +756,27 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "何冊読みましたか。", "romaji": "Nansatsu yomimashita ka.", "english": "How many books did you read?" },
-                { "japanese": "何枚ありますか。", "romaji": "Nanmai arimasu ka.", "english": "How many sheets are there?" },
-                { "japanese": "これはいくらですか。", "romaji": "Kore wa ikura desu ka.", "english": "How much is this?" }
+                {
+                  "japanese": "何冊読みましたか。",
+                  "romaji": "Nansatsu yomimashita ka.",
+                  "english": "How many books did you read?"
+                },
+                {
+                  "japanese": "何枚ありますか。",
+                  "romaji": "Nanmai arimasu ka.",
+                  "english": "How many sheets are there?"
+                },
+                {
+                  "japanese": "これはいくらですか。",
+                  "romaji": "Kore wa ikura desu ka.",
+                  "english": "How much is this?"
+                }
               ]
             },
             {
@@ -427,13 +809,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "今、三時です。", "romaji": "Ima, sanji desu.", "english": "It's 3 o'clock." },
-                { "japanese": "九時十五分に始まります。", "romaji": "Kuji jūgofun ni hajimarimasu.", "english": "It starts at 9:15." },
-                { "japanese": "十二時半に昼ごはんを食べます。", "romaji": "Jūniji han ni hirugohan wo tabemasu.", "english": "I eat lunch at 12:30." },
-                { "japanese": "午後七時に帰ります。", "romaji": "Gogo shichiji ni kaerimasu.", "english": "I'll be home at 7 PM." },
-                { "japanese": "午前六時に起きます。", "romaji": "Gozen rokuji ni okimasu.", "english": "I wake up at 6 AM." }
+                {
+                  "japanese": "今、三時です。",
+                  "romaji": "Ima, sanji desu.",
+                  "english": "It's 3 o'clock."
+                },
+                {
+                  "japanese": "九時十五分に始まります。",
+                  "romaji": "Kuji jūgofun ni hajimarimasu.",
+                  "english": "It starts at 9:15."
+                },
+                {
+                  "japanese": "十二時半に昼ごはんを食べます。",
+                  "romaji": "Jūniji han ni hirugohan wo tabemasu.",
+                  "english": "I eat lunch at 12:30."
+                },
+                {
+                  "japanese": "午後七時に帰ります。",
+                  "romaji": "Gogo shichiji ni kaerimasu.",
+                  "english": "I'll be home at 7 PM."
+                },
+                {
+                  "japanese": "午前六時に起きます。",
+                  "romaji": "Gozen rokuji ni okimasu.",
+                  "english": "I wake up at 6 AM."
+                }
               ]
             },
             {
@@ -464,13 +870,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "七時に起きます。", "romaji": "Shichiji ni okimasu.", "english": "I wake up at 7." },
-                { "japanese": "月曜日に病院へ行きます。", "romaji": "Getsuyōbi ni byōin e ikimasu.", "english": "I go to the hospital on Monday." },
-                { "japanese": "九時から五時まで働きます。", "romaji": "Kuji kara goji made hatarakimasu.", "english": "I work from 9 to 5." },
-                { "japanese": "授業は十時から始まります。", "romaji": "Jugyō wa jūji kara hajimarimasu.", "english": "Class starts from 10." },
-                { "japanese": "去年から日本語を勉強しています。", "romaji": "Kyonen kara nihongo wo benkyō shite imasu.", "english": "I've been studying Japanese since last year." }
+                {
+                  "japanese": "七時に起きます。",
+                  "romaji": "Shichiji ni okimasu.",
+                  "english": "I wake up at 7."
+                },
+                {
+                  "japanese": "月曜日に病院へ行きます。",
+                  "romaji": "Getsuyōbi ni byōin e ikimasu.",
+                  "english": "I go to the hospital on Monday."
+                },
+                {
+                  "japanese": "九時から五時まで働きます。",
+                  "romaji": "Kuji kara goji made hatarakimasu.",
+                  "english": "I work from 9 to 5."
+                },
+                {
+                  "japanese": "授業は十時から始まります。",
+                  "romaji": "Jugyō wa jūji kara hajimarimasu.",
+                  "english": "Class starts from 10."
+                },
+                {
+                  "japanese": "去年から日本語を勉強しています。",
+                  "romaji": "Kyonen kara nihongo wo benkyō shite imasu.",
+                  "english": "I've been studying Japanese since last year."
+                }
               ]
             },
             {
@@ -493,13 +923,37 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "今日", "romaji": "kyō", "english": "today" },
-                { "japanese": "明日", "romaji": "ashita", "english": "tomorrow" },
-                { "japanese": "昨日", "romaji": "kinō", "english": "yesterday" },
-                { "japanese": "明後日", "romaji": "asatte", "english": "the day after tomorrow" },
-                { "japanese": "一昨日", "romaji": "ototoi", "english": "the day before yesterday" }
+                {
+                  "japanese": "今日",
+                  "romaji": "kyō",
+                  "english": "today"
+                },
+                {
+                  "japanese": "明日",
+                  "romaji": "ashita",
+                  "english": "tomorrow"
+                },
+                {
+                  "japanese": "昨日",
+                  "romaji": "kinō",
+                  "english": "yesterday"
+                },
+                {
+                  "japanese": "明後日",
+                  "romaji": "asatte",
+                  "english": "the day after tomorrow"
+                },
+                {
+                  "japanese": "一昨日",
+                  "romaji": "ototoi",
+                  "english": "the day before yesterday"
+                }
               ]
             },
             {
@@ -508,17 +962,57 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "今週", "romaji": "konshū", "english": "this week" },
-                { "japanese": "来週", "romaji": "raishū", "english": "next week" },
-                { "japanese": "先週", "romaji": "senshū", "english": "last week" },
-                { "japanese": "今月", "romaji": "kongetsu", "english": "this month" },
-                { "japanese": "来月", "romaji": "raigetsu", "english": "next month" },
-                { "japanese": "先月", "romaji": "sengetsu", "english": "last month" },
-                { "japanese": "今年", "romaji": "kotoshi", "english": "this year" },
-                { "japanese": "来年", "romaji": "rainen", "english": "next year" },
-                { "japanese": "去年", "romaji": "kyonen", "english": "last year" }
+                {
+                  "japanese": "今週",
+                  "romaji": "konshū",
+                  "english": "this week"
+                },
+                {
+                  "japanese": "来週",
+                  "romaji": "raishū",
+                  "english": "next week"
+                },
+                {
+                  "japanese": "先週",
+                  "romaji": "senshū",
+                  "english": "last week"
+                },
+                {
+                  "japanese": "今月",
+                  "romaji": "kongetsu",
+                  "english": "this month"
+                },
+                {
+                  "japanese": "来月",
+                  "romaji": "raigetsu",
+                  "english": "next month"
+                },
+                {
+                  "japanese": "先月",
+                  "romaji": "sengetsu",
+                  "english": "last month"
+                },
+                {
+                  "japanese": "今年",
+                  "romaji": "kotoshi",
+                  "english": "this year"
+                },
+                {
+                  "japanese": "来年",
+                  "romaji": "rainen",
+                  "english": "next year"
+                },
+                {
+                  "japanese": "去年",
+                  "romaji": "kyonen",
+                  "english": "last year"
+                }
               ]
             },
             {
@@ -527,14 +1021,42 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "毎日", "romaji": "mainichi", "english": "every day" },
-                { "japanese": "毎週", "romaji": "maishū", "english": "every week" },
-                { "japanese": "毎月", "romaji": "maitsuki", "english": "every month" },
-                { "japanese": "毎年", "romaji": "maitoshi", "english": "every year" },
-                { "japanese": "毎朝", "romaji": "maiasa", "english": "every morning" },
-                { "japanese": "毎晩", "romaji": "maiban", "english": "every evening" }
+                {
+                  "japanese": "毎日",
+                  "romaji": "mainichi",
+                  "english": "every day"
+                },
+                {
+                  "japanese": "毎週",
+                  "romaji": "maishū",
+                  "english": "every week"
+                },
+                {
+                  "japanese": "毎月",
+                  "romaji": "maitsuki",
+                  "english": "every month"
+                },
+                {
+                  "japanese": "毎年",
+                  "romaji": "maitoshi",
+                  "english": "every year"
+                },
+                {
+                  "japanese": "毎朝",
+                  "romaji": "maiasa",
+                  "english": "every morning"
+                },
+                {
+                  "japanese": "毎晩",
+                  "romaji": "maiban",
+                  "english": "every evening"
+                }
               ]
             }
           ]
@@ -557,20 +1079,60 @@
               "type": "conjugation_table",
               "label": "高い (takai) — tall / expensive",
               "rows": [
-                { "form": "present", "japanese": "高いです", "romaji": "takai desu", "english": "is tall" },
-                { "form": "negative", "japanese": "高くないです", "romaji": "takakunai desu", "english": "is not tall" },
-                { "form": "past", "japanese": "高かったです", "romaji": "takakatta desu", "english": "was tall" },
-                { "form": "past negative", "japanese": "高くなかったです", "romaji": "takakunakatta desu", "english": "was not tall" }
+                {
+                  "form": "present",
+                  "japanese": "高いです",
+                  "romaji": "takai desu",
+                  "english": "is tall"
+                },
+                {
+                  "form": "negative",
+                  "japanese": "高くないです",
+                  "romaji": "takakunai desu",
+                  "english": "is not tall"
+                },
+                {
+                  "form": "past",
+                  "japanese": "高かったです",
+                  "romaji": "takakatta desu",
+                  "english": "was tall"
+                },
+                {
+                  "form": "past negative",
+                  "japanese": "高くなかったです",
+                  "romaji": "takakunakatta desu",
+                  "english": "was not tall"
+                }
               ]
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "この本は面白いです。", "romaji": "Kono hon wa omoshiroi desu.", "english": "This book is interesting." },
-                { "japanese": "今日は寒くないです。", "romaji": "Kyō wa samukunai desu.", "english": "It's not cold today." },
-                { "japanese": "子どもの頃、背が高かったです。", "romaji": "Kodomo no koro, se ga takakatta desu.", "english": "I was tall as a child." },
-                { "japanese": "昨日の映画は長くなかったです。", "romaji": "Kinō no eiga wa nagakunakatta desu.", "english": "Yesterday's movie wasn't long." }
+                {
+                  "japanese": "この本は面白いです。",
+                  "romaji": "Kono hon wa omoshiroi desu.",
+                  "english": "This book is interesting."
+                },
+                {
+                  "japanese": "今日は寒くないです。",
+                  "romaji": "Kyō wa samukunai desu.",
+                  "english": "It's not cold today."
+                },
+                {
+                  "japanese": "子どもの頃、背が高かったです。",
+                  "romaji": "Kodomo no koro, se ga takakatta desu.",
+                  "english": "I was tall as a child."
+                },
+                {
+                  "japanese": "昨日の映画は長くなかったです。",
+                  "romaji": "Kinō no eiga wa nagakunakatta desu.",
+                  "english": "Yesterday's movie wasn't long."
+                }
               ]
             },
             {
@@ -606,20 +1168,60 @@
               "type": "conjugation_table",
               "label": "静か (shizuka) — quiet",
               "rows": [
-                { "form": "present", "japanese": "静かです", "romaji": "shizuka desu", "english": "is quiet" },
-                { "form": "negative", "japanese": "静かじゃないです", "romaji": "shizuka ja nai desu", "english": "is not quiet" },
-                { "form": "past", "japanese": "静かでした", "romaji": "shizuka deshita", "english": "was quiet" },
-                { "form": "past negative", "japanese": "静かじゃなかったです", "romaji": "shizuka ja nakatta desu", "english": "was not quiet" }
+                {
+                  "form": "present",
+                  "japanese": "静かです",
+                  "romaji": "shizuka desu",
+                  "english": "is quiet"
+                },
+                {
+                  "form": "negative",
+                  "japanese": "静かじゃないです",
+                  "romaji": "shizuka ja nai desu",
+                  "english": "is not quiet"
+                },
+                {
+                  "form": "past",
+                  "japanese": "静かでした",
+                  "romaji": "shizuka deshita",
+                  "english": "was quiet"
+                },
+                {
+                  "form": "past negative",
+                  "japanese": "静かじゃなかったです",
+                  "romaji": "shizuka ja nakatta desu",
+                  "english": "was not quiet"
+                }
               ]
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "彼女は親切な人です。", "romaji": "Kanojo wa shinsetsu na hito desu.", "english": "She is a kind person." },
-                { "japanese": "昨日は暇でした。", "romaji": "Kinō wa hima deshita.", "english": "I was free yesterday." },
-                { "japanese": "部屋はきれいじゃないです。", "romaji": "Heya wa kirei ja nai desu.", "english": "The room isn't clean." },
-                { "japanese": "この仕事は大変でした。", "romaji": "Kono shigoto wa taihen deshita.", "english": "This job was tough." }
+                {
+                  "japanese": "彼女は親切な人です。",
+                  "romaji": "Kanojo wa shinsetsu na hito desu.",
+                  "english": "She is a kind person."
+                },
+                {
+                  "japanese": "昨日は暇でした。",
+                  "romaji": "Kinō wa hima deshita.",
+                  "english": "I was free yesterday."
+                },
+                {
+                  "japanese": "部屋はきれいじゃないです。",
+                  "romaji": "Heya wa kirei ja nai desu.",
+                  "english": "The room isn't clean."
+                },
+                {
+                  "japanese": "この仕事は大変でした。",
+                  "romaji": "Kono shigoto wa taihen deshita.",
+                  "english": "This job was tough."
+                }
               ]
             },
             {
@@ -650,12 +1252,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "安くておいしいです。", "romaji": "Yasukute oishii desu.", "english": "It's cheap and delicious." },
-                { "japanese": "静かで広い部屋です。", "romaji": "Shizuka de hiroi heya desu.", "english": "It's a quiet and spacious room." },
-                { "japanese": "この映画は長くてつまらなかったです。", "romaji": "Kono eiga wa nagakute tsumaranakatta desu.", "english": "This movie was long and boring." },
-                { "japanese": "彼女は親切で頭がいいです。", "romaji": "Kanojo wa shinsetsu de atama ga ii desu.", "english": "She is kind and smart." }
+                {
+                  "japanese": "安くておいしいです。",
+                  "romaji": "Yasukute oishii desu.",
+                  "english": "It's cheap and delicious."
+                },
+                {
+                  "japanese": "静かで広い部屋です。",
+                  "romaji": "Shizuka de hiroi heya desu.",
+                  "english": "It's a quiet and spacious room."
+                },
+                {
+                  "japanese": "この映画は長くてつまらなかったです。",
+                  "romaji": "Kono eiga wa nagakute tsumaranakatta desu.",
+                  "english": "This movie was long and boring."
+                },
+                {
+                  "japanese": "彼女は親切で頭がいいです。",
+                  "romaji": "Kanojo wa shinsetsu de atama ga ii desu.",
+                  "english": "She is kind and smart."
+                }
               ]
             },
             {
@@ -702,11 +1324,27 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "急いでいるから、あとで話しましょう。", "romaji": "Isoide iru kara, ato de hanashimashō.", "english": "I'm in a hurry, so let's talk later." },
-                { "japanese": "明日試験があるので、勉強します。", "romaji": "Ashita shiken ga aru node, benkyō shimasu.", "english": "I have an exam tomorrow, so I'll study." },
-                { "japanese": "お腹が痛いので、休んでもいいですか。", "romaji": "Onaka ga itai node, yasunde mo ii desu ka.", "english": "My stomach hurts, so may I rest?" }
+                {
+                  "japanese": "急いでいるから、あとで話しましょう。",
+                  "romaji": "Isoide iru kara, ato de hanashimashō.",
+                  "english": "I'm in a hurry, so let's talk later."
+                },
+                {
+                  "japanese": "明日試験があるので、勉強します。",
+                  "romaji": "Ashita shiken ga aru node, benkyō shimasu.",
+                  "english": "I have an exam tomorrow, so I'll study."
+                },
+                {
+                  "japanese": "お腹が痛いので、休んでもいいですか。",
+                  "romaji": "Onaka ga itai node, yasunde mo ii desu ka.",
+                  "english": "My stomach hurts, so may I rest?"
+                }
               ]
             },
             {
@@ -725,31 +1363,107 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "何 (なに / なん)", "romaji": "nani / nan", "english": "what" },
-                { "japanese": "誰", "romaji": "dare", "english": "who" },
-                { "japanese": "どこ", "romaji": "doko", "english": "where" },
-                { "japanese": "いつ", "romaji": "itsu", "english": "when" },
-                { "japanese": "どう", "romaji": "dō", "english": "how (in what way)" },
-                { "japanese": "なぜ", "romaji": "naze", "english": "why (formal / written)" },
-                { "japanese": "どうして", "romaji": "dōshite", "english": "why (spoken, casual)" },
-                { "japanese": "どんな", "romaji": "donna", "english": "what kind of" },
-                { "japanese": "どれ", "romaji": "dore", "english": "which one (of three or more)" },
-                { "japanese": "どちら / どっち", "romaji": "dochira / docchi", "english": "which (of two) / which way" },
-                { "japanese": "いくら", "romaji": "ikura", "english": "how much (price)" }
+                {
+                  "japanese": "何 (なに / なん)",
+                  "romaji": "nani / nan",
+                  "english": "what"
+                },
+                {
+                  "japanese": "誰",
+                  "romaji": "dare",
+                  "english": "who"
+                },
+                {
+                  "japanese": "どこ",
+                  "romaji": "doko",
+                  "english": "where"
+                },
+                {
+                  "japanese": "いつ",
+                  "romaji": "itsu",
+                  "english": "when"
+                },
+                {
+                  "japanese": "どう",
+                  "romaji": "dō",
+                  "english": "how (in what way)"
+                },
+                {
+                  "japanese": "なぜ",
+                  "romaji": "naze",
+                  "english": "why (formal / written)"
+                },
+                {
+                  "japanese": "どうして",
+                  "romaji": "dōshite",
+                  "english": "why (spoken, casual)"
+                },
+                {
+                  "japanese": "どんな",
+                  "romaji": "donna",
+                  "english": "what kind of"
+                },
+                {
+                  "japanese": "どれ",
+                  "romaji": "dore",
+                  "english": "which one (of three or more)"
+                },
+                {
+                  "japanese": "どちら / どっち",
+                  "romaji": "dochira / docchi",
+                  "english": "which (of two) / which way"
+                },
+                {
+                  "japanese": "いくら",
+                  "romaji": "ikura",
+                  "english": "how much (price)"
+                }
               ]
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "これは何ですか。", "romaji": "Kore wa nan desu ka.", "english": "What is this?" },
-                { "japanese": "トイレはどこですか。", "romaji": "Toire wa doko desu ka.", "english": "Where is the restroom?" },
-                { "japanese": "誰が来ましたか。", "romaji": "Dare ga kimashita ka.", "english": "Who came?" },
-                { "japanese": "どんな音楽が好きですか。", "romaji": "Donna ongaku ga suki desu ka.", "english": "What kind of music do you like?" },
-                { "japanese": "なぜ日本語を勉強していますか。", "romaji": "Naze nihongo wo benkyō shite imasu ka.", "english": "Why are you studying Japanese?" },
-                { "japanese": "これはいくらですか。", "romaji": "Kore wa ikura desu ka.", "english": "How much is this?" }
+                {
+                  "japanese": "これは何ですか。",
+                  "romaji": "Kore wa nan desu ka.",
+                  "english": "What is this?"
+                },
+                {
+                  "japanese": "トイレはどこですか。",
+                  "romaji": "Toire wa doko desu ka.",
+                  "english": "Where is the restroom?"
+                },
+                {
+                  "japanese": "誰が来ましたか。",
+                  "romaji": "Dare ga kimashita ka.",
+                  "english": "Who came?"
+                },
+                {
+                  "japanese": "どんな音楽が好きですか。",
+                  "romaji": "Donna ongaku ga suki desu ka.",
+                  "english": "What kind of music do you like?"
+                },
+                {
+                  "japanese": "なぜ日本語を勉強していますか。",
+                  "romaji": "Naze nihongo wo benkyō shite imasu ka.",
+                  "english": "Why are you studying Japanese?"
+                },
+                {
+                  "japanese": "これはいくらですか。",
+                  "romaji": "Kore wa ikura desu ka.",
+                  "english": "How much is this?"
+                }
               ]
             },
             {
@@ -789,12 +1503,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "三時間勉強しました。", "romaji": "Sanjikan benkyō shimashita.", "english": "I studied for three hours." },
-                { "japanese": "一週間日本にいました。", "romaji": "Isshūkan nihon ni imashita.", "english": "I was in Japan for one week." },
-                { "japanese": "二年間日本語を学んでいます。", "romaji": "Ninenkan nihongo wo manande imasu.", "english": "I have been learning Japanese for two years." },
-                { "japanese": "十分間待ちました。", "romaji": "Juppunkan machimashita.", "english": "I waited for ten minutes." }
+                {
+                  "japanese": "三時間勉強しました。",
+                  "romaji": "Sanjikan benkyō shimashita.",
+                  "english": "I studied for three hours."
+                },
+                {
+                  "japanese": "一週間日本にいました。",
+                  "romaji": "Isshūkan nihon ni imashita.",
+                  "english": "I was in Japan for one week."
+                },
+                {
+                  "japanese": "二年間日本語を学んでいます。",
+                  "romaji": "Ninenkan nihongo wo manande imasu.",
+                  "english": "I have been learning Japanese for two years."
+                },
+                {
+                  "japanese": "十分間待ちました。",
+                  "romaji": "Juppunkan machimashita.",
+                  "english": "I waited for ten minutes."
+                }
               ]
             },
             {
@@ -823,12 +1557,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "週に三回ジムに行きます。", "romaji": "Shū ni sankai jimu ni ikimasu.", "english": "I go to the gym three times a week." },
-                { "japanese": "一日に二回薬を飲みます。", "romaji": "Ichinichi ni nikai kusuri wo nomimasu.", "english": "I take medicine twice a day." },
-                { "japanese": "月に一度、家族に電話します。", "romaji": "Tsuki ni ichido, kazoku ni denwa shimasu.", "english": "I call my family once a month." },
-                { "japanese": "年に一回しか会いません。", "romaji": "Nen ni ikkai shika aimasen.", "english": "We only meet once a year." }
+                {
+                  "japanese": "週に三回ジムに行きます。",
+                  "romaji": "Shū ni sankai jimu ni ikimasu.",
+                  "english": "I go to the gym three times a week."
+                },
+                {
+                  "japanese": "一日に二回薬を飲みます。",
+                  "romaji": "Ichinichi ni nikai kusuri wo nomimasu.",
+                  "english": "I take medicine twice a day."
+                },
+                {
+                  "japanese": "月に一度、家族に電話します。",
+                  "romaji": "Tsuki ni ichido, kazoku ni denwa shimasu.",
+                  "english": "I call my family once a month."
+                },
+                {
+                  "japanese": "年に一回しか会いません。",
+                  "romaji": "Nen ni ikkai shika aimasen.",
+                  "english": "We only meet once a year."
+                }
               ]
             },
             {
@@ -855,13 +1609,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "駅まで十分かかります。", "romaji": "Eki made juppun kakarimasu.", "english": "It takes ten minutes to the station." },
-                { "japanese": "この仕事は三時間かかりました。", "romaji": "Kono shigoto wa sanjikan kakarimashita.", "english": "This job took three hours." },
-                { "japanese": "修理に五千円かかりました。", "romaji": "Shūri ni gosen-en kakarimashita.", "english": "The repair cost 5,000 yen." },
-                { "japanese": "日本までどのぐらいかかりますか。", "romaji": "Nihon made dono gurai kakarimasu ka.", "english": "How long does it take to get to Japan?" },
-                { "japanese": "このプロジェクトはお金がかかります。", "romaji": "Kono purojekuto wa okane ga kakarimasu.", "english": "This project costs money." }
+                {
+                  "japanese": "駅まで十分かかります。",
+                  "romaji": "Eki made juppun kakarimasu.",
+                  "english": "It takes ten minutes to the station."
+                },
+                {
+                  "japanese": "この仕事は三時間かかりました。",
+                  "romaji": "Kono shigoto wa sanjikan kakarimashita.",
+                  "english": "This job took three hours."
+                },
+                {
+                  "japanese": "修理に五千円かかりました。",
+                  "romaji": "Shūri ni gosen-en kakarimashita.",
+                  "english": "The repair cost 5,000 yen."
+                },
+                {
+                  "japanese": "日本までどのぐらいかかりますか。",
+                  "romaji": "Nihon made dono gurai kakarimasu ka.",
+                  "english": "How long does it take to get to Japan?"
+                },
+                {
+                  "japanese": "このプロジェクトはお金がかかります。",
+                  "romaji": "Kono purojekuto wa okane ga kakarimasu.",
+                  "english": "This project costs money."
+                }
               ]
             },
             {
@@ -896,19 +1674,54 @@
               "type": "conjugation_table",
               "label": "食べる (taberu) → 食べたい",
               "rows": [
-                { "form": "want to", "japanese": "食べたいです", "romaji": "tabetai desu", "english": "want to eat" },
-                { "form": "don't want to", "japanese": "食べたくないです", "romaji": "tabetakunai desu", "english": "don't want to eat" },
-                { "form": "wanted to", "japanese": "食べたかったです", "romaji": "tabetakatta desu", "english": "wanted to eat" }
+                {
+                  "form": "want to",
+                  "japanese": "食べたいです",
+                  "romaji": "tabetai desu",
+                  "english": "want to eat"
+                },
+                {
+                  "form": "don't want to",
+                  "japanese": "食べたくないです",
+                  "romaji": "tabetakunai desu",
+                  "english": "don't want to eat"
+                },
+                {
+                  "form": "wanted to",
+                  "japanese": "食べたかったです",
+                  "romaji": "tabetakatta desu",
+                  "english": "wanted to eat"
+                }
               ]
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "日本に行きたいです。", "romaji": "Nihon ni ikitai desu.", "english": "I want to go to Japan." },
-                { "japanese": "今日は外出したくないです。", "romaji": "Kyō wa gaishutsu shitakunai desu.", "english": "I don't want to go out today." },
-                { "japanese": "何が食べたいですか。", "romaji": "Nani ga tabetai desu ka.", "english": "What do you want to eat?" },
-                { "japanese": "子どもの頃、医者になりたかったです。", "romaji": "Kodomo no koro, isha ni naritakatta desu.", "english": "When I was a child, I wanted to become a doctor." }
+                {
+                  "japanese": "日本に行きたいです。",
+                  "romaji": "Nihon ni ikitai desu.",
+                  "english": "I want to go to Japan."
+                },
+                {
+                  "japanese": "今日は外出したくないです。",
+                  "romaji": "Kyō wa gaishutsu shitakunai desu.",
+                  "english": "I don't want to go out today."
+                },
+                {
+                  "japanese": "何が食べたいですか。",
+                  "romaji": "Nani ga tabetai desu ka.",
+                  "english": "What do you want to eat?"
+                },
+                {
+                  "japanese": "子どもの頃、医者になりたかったです。",
+                  "romaji": "Kodomo no koro, isha ni naritakatta desu.",
+                  "english": "When I was a child, I wanted to become a doctor."
+                }
               ]
             },
             {
@@ -954,11 +1767,27 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "新しいカメラがほしいです。", "romaji": "Atarashii kamera ga hoshii desu.", "english": "I want a new camera." },
-                { "japanese": "今は何もほしくないです。", "romaji": "Ima wa nani mo hoshikunai desu.", "english": "I don't want anything right now." },
-                { "japanese": "子どもの頃、犬がほしかったです。", "romaji": "Kodomo no koro, inu ga hoshikatta desu.", "english": "When I was a child, I wanted a dog." }
+                {
+                  "japanese": "新しいカメラがほしいです。",
+                  "romaji": "Atarashii kamera ga hoshii desu.",
+                  "english": "I want a new camera."
+                },
+                {
+                  "japanese": "今は何もほしくないです。",
+                  "romaji": "Ima wa nani mo hoshikunai desu.",
+                  "english": "I don't want anything right now."
+                },
+                {
+                  "japanese": "子どもの頃、犬がほしかったです。",
+                  "romaji": "Kodomo no koro, inu ga hoshikatta desu.",
+                  "english": "When I was a child, I wanted a dog."
+                }
               ]
             },
             {
@@ -999,12 +1828,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "このレストランは高いでしょう。", "romaji": "Kono resutoran wa takai deshō.", "english": "This restaurant is probably expensive." },
-                { "japanese": "電車が遅れているかもしれません。", "romaji": "Densha ga okurete iru kamo shiremasen.", "english": "The train might be running late." },
-                { "japanese": "彼女はもう知っているでしょう。", "romaji": "Kanojo wa mō shitte iru deshō.", "english": "She probably already knows." },
-                { "japanese": "明日、雨が降るかもしれません。", "romaji": "Ashita, ame ga furu kamo shiremasen.", "english": "It might rain tomorrow." }
+                {
+                  "japanese": "このレストランは高いでしょう。",
+                  "romaji": "Kono resutoran wa takai deshō.",
+                  "english": "This restaurant is probably expensive."
+                },
+                {
+                  "japanese": "電車が遅れているかもしれません。",
+                  "romaji": "Densha ga okurete iru kamo shiremasen.",
+                  "english": "The train might be running late."
+                },
+                {
+                  "japanese": "彼女はもう知っているでしょう。",
+                  "romaji": "Kanojo wa mō shitte iru deshō.",
+                  "english": "She probably already knows."
+                },
+                {
+                  "japanese": "明日、雨が降るかもしれません。",
+                  "romaji": "Ashita, ame ga furu kamo shiremasen.",
+                  "english": "It might rain tomorrow."
+                }
               ]
             },
             {
@@ -1035,8 +1884,22 @@
                   "tag": "く · ぐ",
                   "rule": "く → いて / ぐ → いで",
                   "rows": [
-                    { "base": "書く", "old": "く", "new": "いて", "result": "書いて", "romaji": "kaite", "english": "to write" },
-                    { "base": "泳ぐ", "old": "ぐ", "new": "いで", "result": "泳いで", "romaji": "oyoide", "english": "to swim" }
+                    {
+                      "base": "書く",
+                      "old": "く",
+                      "new": "いて",
+                      "result": "書いて",
+                      "romaji": "kaite",
+                      "english": "to write"
+                    },
+                    {
+                      "base": "泳ぐ",
+                      "old": "ぐ",
+                      "new": "いで",
+                      "result": "泳いで",
+                      "romaji": "oyoide",
+                      "english": "to swim"
+                    }
                   ],
                   "note": "Exception: 行く → 行って (not 行いて)"
                 },
@@ -1045,7 +1908,14 @@
                   "tag": "す",
                   "rule": "す → して",
                   "rows": [
-                    { "base": "話す", "old": "す", "new": "して", "result": "話して", "romaji": "hanashite", "english": "to speak" }
+                    {
+                      "base": "話す",
+                      "old": "す",
+                      "new": "して",
+                      "result": "話して",
+                      "romaji": "hanashite",
+                      "english": "to speak"
+                    }
                   ]
                 },
                 {
@@ -1053,9 +1923,30 @@
                   "tag": "つ · る · う",
                   "rule": "→ って (double consonant)",
                   "rows": [
-                    { "base": "待つ", "old": "つ", "new": "って", "result": "待って", "romaji": "matte", "english": "to wait" },
-                    { "base": "帰る", "old": "る", "new": "って", "result": "帰って", "romaji": "kaette", "english": "to return" },
-                    { "base": "買う", "old": "う", "new": "って", "result": "買って", "romaji": "katte", "english": "to buy" }
+                    {
+                      "base": "待つ",
+                      "old": "つ",
+                      "new": "って",
+                      "result": "待って",
+                      "romaji": "matte",
+                      "english": "to wait"
+                    },
+                    {
+                      "base": "帰る",
+                      "old": "る",
+                      "new": "って",
+                      "result": "帰って",
+                      "romaji": "kaette",
+                      "english": "to return"
+                    },
+                    {
+                      "base": "買う",
+                      "old": "う",
+                      "new": "って",
+                      "result": "買って",
+                      "romaji": "katte",
+                      "english": "to buy"
+                    }
                   ]
                 },
                 {
@@ -1063,8 +1954,22 @@
                   "tag": "む · ぬ · ぶ",
                   "rule": "→ んで",
                   "rows": [
-                    { "base": "飲む", "old": "む", "new": "んで", "result": "飲んで", "romaji": "nonde", "english": "to drink" },
-                    { "base": "遊ぶ", "old": "ぶ", "new": "んで", "result": "遊んで", "romaji": "asonde", "english": "to play" }
+                    {
+                      "base": "飲む",
+                      "old": "む",
+                      "new": "んで",
+                      "result": "飲んで",
+                      "romaji": "nonde",
+                      "english": "to drink"
+                    },
+                    {
+                      "base": "遊ぶ",
+                      "old": "ぶ",
+                      "new": "んで",
+                      "result": "遊んで",
+                      "romaji": "asonde",
+                      "english": "to play"
+                    }
                   ]
                 },
                 {
@@ -1072,17 +1977,48 @@
                   "tag": "Ichidan",
                   "rule": "remove る, add て",
                   "rows": [
-                    { "base": "食べる", "old": "る", "new": "て", "result": "食べて", "romaji": "tabete", "english": "to eat" },
-                    { "base": "見る", "old": "る", "new": "て", "result": "見て", "romaji": "mite", "english": "to see" },
-                    { "base": "起きる", "old": "る", "new": "て", "result": "起きて", "romaji": "okite", "english": "to wake up" }
+                    {
+                      "base": "食べる",
+                      "old": "る",
+                      "new": "て",
+                      "result": "食べて",
+                      "romaji": "tabete",
+                      "english": "to eat"
+                    },
+                    {
+                      "base": "見る",
+                      "old": "る",
+                      "new": "て",
+                      "result": "見て",
+                      "romaji": "mite",
+                      "english": "to see"
+                    },
+                    {
+                      "base": "起きる",
+                      "old": "る",
+                      "new": "て",
+                      "result": "起きて",
+                      "romaji": "okite",
+                      "english": "to wake up"
+                    }
                   ]
                 },
                 {
                   "label": "Group 3",
                   "tag": "Irregular",
                   "rows": [
-                    { "base": "する", "result": "して", "romaji": "shite", "english": "to do" },
-                    { "base": "来る", "result": "来て", "romaji": "kite", "english": "to come" }
+                    {
+                      "base": "する",
+                      "result": "して",
+                      "romaji": "shite",
+                      "english": "to do"
+                    },
+                    {
+                      "base": "来る",
+                      "result": "来て",
+                      "romaji": "kite",
+                      "english": "to come"
+                    }
                   ]
                 }
               ]
@@ -1109,13 +2045,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "ここに名前を書いてください。", "romaji": "Koko ni namae wo kaite kudasai.", "english": "Please write your name here." },
-                { "japanese": "もう一度言ってください。", "romaji": "Mō ichido itte kudasai.", "english": "Please say it one more time." },
-                { "japanese": "静かにしてください。", "romaji": "Shizuka ni shite kudasai.", "english": "Please be quiet." },
-                { "japanese": "窓を閉めてください。", "romaji": "Mado wo shimete kudasai.", "english": "Please close the window." },
-                { "japanese": "右に曲がってください。", "romaji": "Migi ni magatte kudasai.", "english": "Please turn right." }
+                {
+                  "japanese": "ここに名前を書いてください。",
+                  "romaji": "Koko ni namae wo kaite kudasai.",
+                  "english": "Please write your name here."
+                },
+                {
+                  "japanese": "もう一度言ってください。",
+                  "romaji": "Mō ichido itte kudasai.",
+                  "english": "Please say it one more time."
+                },
+                {
+                  "japanese": "静かにしてください。",
+                  "romaji": "Shizuka ni shite kudasai.",
+                  "english": "Please be quiet."
+                },
+                {
+                  "japanese": "窓を閉めてください。",
+                  "romaji": "Mado wo shimete kudasai.",
+                  "english": "Please close the window."
+                },
+                {
+                  "japanese": "右に曲がってください。",
+                  "romaji": "Migi ni magatte kudasai.",
+                  "english": "Please turn right."
+                }
               ]
             },
             {
@@ -1142,12 +2102,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "ここで写真を撮ってもいいですか。", "romaji": "Koko de shashin wo totte mo ii desu ka.", "english": "May I take photos here?" },
-                { "japanese": "窓を開けてもいいですよ。", "romaji": "Mado wo akete mo ii desu yo.", "english": "You may open the window." },
-                { "japanese": "ここでタバコを吸ってはいけません。", "romaji": "Koko de tabako wo sutte wa ikemasen.", "english": "You must not smoke here." },
-                { "japanese": "試験中にスマホを使ってはいけません。", "romaji": "Shiken chū ni sumaho wo tsukatte wa ikemasen.", "english": "You must not use your phone during the exam." }
+                {
+                  "japanese": "ここで写真を撮ってもいいですか。",
+                  "romaji": "Koko de shashin wo totte mo ii desu ka.",
+                  "english": "May I take photos here?"
+                },
+                {
+                  "japanese": "窓を開けてもいいですよ。",
+                  "romaji": "Mado wo akete mo ii desu yo.",
+                  "english": "You may open the window."
+                },
+                {
+                  "japanese": "ここでタバコを吸ってはいけません。",
+                  "romaji": "Koko de tabako wo sutte wa ikemasen.",
+                  "english": "You must not smoke here."
+                },
+                {
+                  "japanese": "試験中にスマホを使ってはいけません。",
+                  "romaji": "Shiken chū ni sumaho wo tsukatte wa ikemasen.",
+                  "english": "You must not use your phone during the exam."
+                }
               ]
             },
             {
@@ -1183,12 +2163,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "友達の荷物を持ってあげました。", "romaji": "Tomodachi no nimotsu wo motte agemashita.", "english": "I carried my friend's bags for them." },
-                { "japanese": "先生に漢字を教えてもらいました。", "romaji": "Sensei ni kanji wo oshiete moraimashita.", "english": "I had the teacher teach me kanji." },
-                { "japanese": "母が弁当を作ってくれました。", "romaji": "Haha ga bentō wo tsukutte kuremashita.", "english": "My mother made me a bento (for my benefit)." },
-                { "japanese": "田中さんが駅まで送ってくれました。", "romaji": "Tanaka-san ga eki made okutte kuremashita.", "english": "Tanaka kindly drove me to the station." }
+                {
+                  "japanese": "友達の荷物を持ってあげました。",
+                  "romaji": "Tomodachi no nimotsu wo motte agemashita.",
+                  "english": "I carried my friend's bags for them."
+                },
+                {
+                  "japanese": "先生に漢字を教えてもらいました。",
+                  "romaji": "Sensei ni kanji wo oshiete moraimashita.",
+                  "english": "I had the teacher teach me kanji."
+                },
+                {
+                  "japanese": "母が弁当を作ってくれました。",
+                  "romaji": "Haha ga bentō wo tsukutte kuremashita.",
+                  "english": "My mother made me a bento (for my benefit)."
+                },
+                {
+                  "japanese": "田中さんが駅まで送ってくれました。",
+                  "romaji": "Tanaka-san ga eki made okutte kuremashita.",
+                  "english": "Tanaka kindly drove me to the station."
+                }
               ]
             },
             {
@@ -1228,13 +2228,43 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "romaji", "english", "type"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english",
+                "type"
+              ],
               "rows": [
-                { "japanese": "今、本を読んでいます。", "romaji": "Ima, hon wo yonde imasu.", "english": "I am reading a book now.", "type": "in progress" },
-                { "japanese": "彼女は結婚しています。", "romaji": "Kanojo wa kekkon shite imasu.", "english": "She is married.", "type": "resultant state" },
-                { "japanese": "毎朝、走っています。", "romaji": "Maiasa, hashitte imasu.", "english": "I run every morning.", "type": "habitual" },
-                { "japanese": "窓が開いています。", "romaji": "Mado ga aite imasu.", "english": "The window is open.", "type": "resultant state" },
-                { "japanese": "田中さんはあそこに座っています。", "romaji": "Tanaka-san wa asoko ni suwatte imasu.", "english": "Tanaka is sitting over there.", "type": "resultant state" }
+                {
+                  "japanese": "今、本を読んでいます。",
+                  "romaji": "Ima, hon wo yonde imasu.",
+                  "english": "I am reading a book now.",
+                  "type": "in progress"
+                },
+                {
+                  "japanese": "彼女は結婚しています。",
+                  "romaji": "Kanojo wa kekkon shite imasu.",
+                  "english": "She is married.",
+                  "type": "resultant state"
+                },
+                {
+                  "japanese": "毎朝、走っています。",
+                  "romaji": "Maiasa, hashitte imasu.",
+                  "english": "I run every morning.",
+                  "type": "habitual"
+                },
+                {
+                  "japanese": "窓が開いています。",
+                  "romaji": "Mado ga aite imasu.",
+                  "english": "The window is open.",
+                  "type": "resultant state"
+                },
+                {
+                  "japanese": "田中さんはあそこに座っています。",
+                  "romaji": "Tanaka-san wa asoko ni suwatte imasu.",
+                  "english": "Tanaka is sitting over there.",
+                  "type": "resultant state"
+                }
               ]
             },
             {
@@ -1259,12 +2289,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "手を洗ってから、食べます。", "romaji": "Te wo aratte kara, tabemasu.", "english": "I eat after washing my hands." },
-                { "japanese": "宿題をしてから、ゲームをします。", "romaji": "Shukudai wo shite kara, gēmu wo shimasu.", "english": "I play games after doing homework." },
-                { "japanese": "大学を卒業してから、働き始めました。", "romaji": "Daigaku wo sotsugyō shite kara, hataraki hajimemashita.", "english": "I started working after graduating from university." },
-                { "japanese": "シャワーを浴びてから、寝ます。", "romaji": "Shawā wo abite kara, nemasu.", "english": "I sleep after taking a shower." }
+                {
+                  "japanese": "手を洗ってから、食べます。",
+                  "romaji": "Te wo aratte kara, tabemasu.",
+                  "english": "I eat after washing my hands."
+                },
+                {
+                  "japanese": "宿題をしてから、ゲームをします。",
+                  "romaji": "Shukudai wo shite kara, gēmu wo shimasu.",
+                  "english": "I play games after doing homework."
+                },
+                {
+                  "japanese": "大学を卒業してから、働き始めました。",
+                  "romaji": "Daigaku wo sotsugyō shite kara, hataraki hajimemashita.",
+                  "english": "I started working after graduating from university."
+                },
+                {
+                  "japanese": "シャワーを浴びてから、寝ます。",
+                  "romaji": "Shawā wo abite kara, nemasu.",
+                  "english": "I sleep after taking a shower."
+                }
               ]
             },
             {
@@ -1302,12 +2352,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "寝る前に歯を磨きます。", "romaji": "Neru mae ni ha wo migakimasu.", "english": "I brush my teeth before sleeping." },
-                { "japanese": "食べた後で、散歩します。", "romaji": "Tabeta ato de, sanpo shimasu.", "english": "I take a walk after eating." },
-                { "japanese": "授業の前に、単語を復習しました。", "romaji": "Jugyō no mae ni, tango wo fukushū shimashita.", "english": "I reviewed vocabulary before class." },
-                { "japanese": "映画の後で、カフェに行きましょう。", "romaji": "Eiga no ato de, kafe ni ikimashō.", "english": "Let's go to a café after the movie." }
+                {
+                  "japanese": "寝る前に歯を磨きます。",
+                  "romaji": "Neru mae ni ha wo migakimasu.",
+                  "english": "I brush my teeth before sleeping."
+                },
+                {
+                  "japanese": "食べた後で、散歩します。",
+                  "romaji": "Tabeta ato de, sanpo shimasu.",
+                  "english": "I take a walk after eating."
+                },
+                {
+                  "japanese": "授業の前に、単語を復習しました。",
+                  "romaji": "Jugyō no mae ni, tango wo fukushū shimashita.",
+                  "english": "I reviewed vocabulary before class."
+                },
+                {
+                  "japanese": "映画の後で、カフェに行きましょう。",
+                  "romaji": "Eiga no ato de, kafe ni ikimashō.",
+                  "english": "Let's go to a café after the movie."
+                }
               ]
             },
             {
@@ -1336,12 +2406,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "音楽を聴きながら勉強します。", "romaji": "Ongaku wo kikinagara benkyō shimasu.", "english": "I study while listening to music." },
-                { "japanese": "歩きながら電話で話しました。", "romaji": "Arukinagara denwa de hanashimashita.", "english": "I talked on the phone while walking." },
-                { "japanese": "テレビを見ながら夕ごはんを食べます。", "romaji": "Terebi wo minagara yūgohan wo tabemasu.", "english": "I eat dinner while watching TV." },
-                { "japanese": "コーヒーを飲みながら新聞を読みました。", "romaji": "Koohii wo nominagara shinbun wo yomimashita.", "english": "I read the newspaper while drinking coffee." }
+                {
+                  "japanese": "音楽を聴きながら勉強します。",
+                  "romaji": "Ongaku wo kikinagara benkyō shimasu.",
+                  "english": "I study while listening to music."
+                },
+                {
+                  "japanese": "歩きながら電話で話しました。",
+                  "romaji": "Arukinagara denwa de hanashimashita.",
+                  "english": "I talked on the phone while walking."
+                },
+                {
+                  "japanese": "テレビを見ながら夕ごはんを食べます。",
+                  "romaji": "Terebi wo minagara yūgohan wo tabemasu.",
+                  "english": "I eat dinner while watching TV."
+                },
+                {
+                  "japanese": "コーヒーを飲みながら新聞を読みました。",
+                  "romaji": "Koohii wo nominagara shinbun wo yomimashita.",
+                  "english": "I read the newspaper while drinking coffee."
+                }
               ]
             },
             {
@@ -1373,13 +2463,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "東京は大阪より大きいです。", "romaji": "Tōkyō wa Ōsaka yori ōkii desu.", "english": "Tokyo is bigger than Osaka." },
-                { "japanese": "バスより電車のほうが速いです。", "romaji": "Basu yori densha no hō ga hayai desu.", "english": "The train is faster than the bus." },
-                { "japanese": "夏より冬のほうが好きです。", "romaji": "Natsu yori fuyu no hō ga suki desu.", "english": "I prefer winter to summer." },
-                { "japanese": "昨日より今日のほうが寒いです。", "romaji": "Kinō yori kyō no hō ga samui desu.", "english": "Today is colder than yesterday." },
-                { "japanese": "肉より魚のほうが好きです。", "romaji": "Niku yori sakana no hō ga suki desu.", "english": "I like fish more than meat." }
+                {
+                  "japanese": "東京は大阪より大きいです。",
+                  "romaji": "Tōkyō wa Ōsaka yori ōkii desu.",
+                  "english": "Tokyo is bigger than Osaka."
+                },
+                {
+                  "japanese": "バスより電車のほうが速いです。",
+                  "romaji": "Basu yori densha no hō ga hayai desu.",
+                  "english": "The train is faster than the bus."
+                },
+                {
+                  "japanese": "夏より冬のほうが好きです。",
+                  "romaji": "Natsu yori fuyu no hō ga suki desu.",
+                  "english": "I prefer winter to summer."
+                },
+                {
+                  "japanese": "昨日より今日のほうが寒いです。",
+                  "romaji": "Kinō yori kyō no hō ga samui desu.",
+                  "english": "Today is colder than yesterday."
+                },
+                {
+                  "japanese": "肉より魚のほうが好きです。",
+                  "romaji": "Niku yori sakana no hō ga suki desu.",
+                  "english": "I like fish more than meat."
+                }
               ]
             },
             {
@@ -1406,13 +2520,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "犬と猫とどちらが好きですか。", "romaji": "Inu to neko to dochira ga suki desu ka.", "english": "Which do you like more, dogs or cats?" },
-                { "japanese": "猫のほうが好きです。", "romaji": "Neko no hō ga suki desu.", "english": "I like cats more." },
-                { "japanese": "コーヒーと紅茶とどちらを飲みますか。", "romaji": "Koohii to kōcha to dochira wo nomimasu ka.", "english": "Which would you like, coffee or tea?" },
-                { "japanese": "どちらも好きです。", "romaji": "Dochira mo suki desu.", "english": "I like both equally." },
-                { "japanese": "電車とバスとどちらが便利ですか。", "romaji": "Densha to basu to dochira ga benri desu ka.", "english": "Which is more convenient, the train or the bus?" }
+                {
+                  "japanese": "犬と猫とどちらが好きですか。",
+                  "romaji": "Inu to neko to dochira ga suki desu ka.",
+                  "english": "Which do you like more, dogs or cats?"
+                },
+                {
+                  "japanese": "猫のほうが好きです。",
+                  "romaji": "Neko no hō ga suki desu.",
+                  "english": "I like cats more."
+                },
+                {
+                  "japanese": "コーヒーと紅茶とどちらを飲みますか。",
+                  "romaji": "Koohii to kōcha to dochira wo nomimasu ka.",
+                  "english": "Which would you like, coffee or tea?"
+                },
+                {
+                  "japanese": "どちらも好きです。",
+                  "romaji": "Dochira mo suki desu.",
+                  "english": "I like both equally."
+                },
+                {
+                  "japanese": "電車とバスとどちらが便利ですか。",
+                  "romaji": "Densha to basu to dochira ga benri desu ka.",
+                  "english": "Which is more convenient, the train or the bus?"
+                }
               ]
             },
             {
@@ -1439,13 +2577,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "クラスで田中さんが一番背が高いです。", "romaji": "Kurasu de Tanaka-san ga ichiban se ga takai desu.", "english": "Tanaka is the tallest in the class." },
-                { "japanese": "日本で一番高い山は富士山です。", "romaji": "Nihon de ichiban takai yama wa Fujisan desu.", "english": "Mt. Fuji is the tallest mountain in Japan." },
-                { "japanese": "何の科目がいちばん好きですか。", "romaji": "Nani no kamoku ga ichiban suki desu ka.", "english": "Which subject do you like the most?" },
-                { "japanese": "このメニューの中で一番安い料理はどれですか。", "romaji": "Kono menyū no naka de ichiban yasui ryōri wa dore desu ka.", "english": "Which dish on this menu is the cheapest?" },
-                { "japanese": "世界で一番大きい国はどこですか。", "romaji": "Sekai de ichiban ōkii kuni wa doko desu ka.", "english": "Which is the largest country in the world?" }
+                {
+                  "japanese": "クラスで田中さんが一番背が高いです。",
+                  "romaji": "Kurasu de Tanaka-san ga ichiban se ga takai desu.",
+                  "english": "Tanaka is the tallest in the class."
+                },
+                {
+                  "japanese": "日本で一番高い山は富士山です。",
+                  "romaji": "Nihon de ichiban takai yama wa Fujisan desu.",
+                  "english": "Mt. Fuji is the tallest mountain in Japan."
+                },
+                {
+                  "japanese": "何の科目がいちばん好きですか。",
+                  "romaji": "Nani no kamoku ga ichiban suki desu ka.",
+                  "english": "Which subject do you like the most?"
+                },
+                {
+                  "japanese": "このメニューの中で一番安い料理はどれですか。",
+                  "romaji": "Kono menyū no naka de ichiban yasui ryōri wa dore desu ka.",
+                  "english": "Which dish on this menu is the cheapest?"
+                },
+                {
+                  "japanese": "世界で一番大きい国はどこですか。",
+                  "romaji": "Sekai de ichiban ōkii kuni wa doko desu ka.",
+                  "english": "Which is the largest country in the world?"
+                }
               ]
             },
             {
@@ -1477,12 +2639,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "早く寝たほうがいいです。", "romaji": "Hayaku neta hō ga ii desu.", "english": "You should sleep early." },
-                { "japanese": "タバコを吸わないほうがいいです。", "romaji": "Tabako wo suwanai hō ga ii desu.", "english": "You shouldn't smoke." },
-                { "japanese": "傘を持っていったほうがいいですよ。", "romaji": "Kasa wo motte itta hō ga ii desu yo.", "english": "You should take an umbrella." },
-                { "japanese": "無理をしないほうがいいです。", "romaji": "Muri wo shinai hō ga ii desu.", "english": "You shouldn't push yourself too hard." }
+                {
+                  "japanese": "早く寝たほうがいいです。",
+                  "romaji": "Hayaku neta hō ga ii desu.",
+                  "english": "You should sleep early."
+                },
+                {
+                  "japanese": "タバコを吸わないほうがいいです。",
+                  "romaji": "Tabako wo suwanai hō ga ii desu.",
+                  "english": "You shouldn't smoke."
+                },
+                {
+                  "japanese": "傘を持っていったほうがいいですよ。",
+                  "romaji": "Kasa wo motte itta hō ga ii desu yo.",
+                  "english": "You should take an umbrella."
+                },
+                {
+                  "japanese": "無理をしないほうがいいです。",
+                  "romaji": "Muri wo shinai hō ga ii desu.",
+                  "english": "You shouldn't push yourself too hard."
+                }
               ]
             },
             {
@@ -1524,12 +2706,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "明日までにレポートを出さなければなりません。", "romaji": "Ashita made ni repōto wo dasanakereba narimasen.", "english": "I must submit the report by tomorrow." },
-                { "japanese": "もっと練習しないといけません。", "romaji": "Motto renshū shinai to ikemasen.", "english": "I need to practice more." },
-                { "japanese": "全部食べなくてもいいですよ。", "romaji": "Zenbu tabenakute mo ii desu yo.", "english": "You don't have to eat everything." },
-                { "japanese": "ネクタイをしなくてもいいです。", "romaji": "Nekutai wo shinakute mo ii desu.", "english": "You don't need to wear a tie." }
+                {
+                  "japanese": "明日までにレポートを出さなければなりません。",
+                  "romaji": "Ashita made ni repōto wo dasanakereba narimasen.",
+                  "english": "I must submit the report by tomorrow."
+                },
+                {
+                  "japanese": "もっと練習しないといけません。",
+                  "romaji": "Motto renshū shinai to ikemasen.",
+                  "english": "I need to practice more."
+                },
+                {
+                  "japanese": "全部食べなくてもいいですよ。",
+                  "romaji": "Zenbu tabenakute mo ii desu yo.",
+                  "english": "You don't have to eat everything."
+                },
+                {
+                  "japanese": "ネクタイをしなくてもいいです。",
+                  "romaji": "Nekutai wo shinakute mo ii desu.",
+                  "english": "You don't need to wear a tie."
+                }
               ]
             },
             {
@@ -1554,12 +2756,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "明日は雨が降ると思います。", "romaji": "Ashita wa ame ga furu to omoimasu.", "english": "I think it will rain tomorrow." },
-                { "japanese": "彼は来ないと思います。", "romaji": "Kare wa konai to omoimasu.", "english": "I think he won't come." },
-                { "japanese": "この映画は面白いと思います。", "romaji": "Kono eiga wa omoshiroi to omoimasu.", "english": "I think this movie is interesting." },
-                { "japanese": "もう少し考えたほうがいいと思います。", "romaji": "Mō sukoshi kangaeta hō ga ii to omoimasu.", "english": "I think you should think it over a bit more." }
+                {
+                  "japanese": "明日は雨が降ると思います。",
+                  "romaji": "Ashita wa ame ga furu to omoimasu.",
+                  "english": "I think it will rain tomorrow."
+                },
+                {
+                  "japanese": "彼は来ないと思います。",
+                  "romaji": "Kare wa konai to omoimasu.",
+                  "english": "I think he won't come."
+                },
+                {
+                  "japanese": "この映画は面白いと思います。",
+                  "romaji": "Kono eiga wa omoshiroi to omoimasu.",
+                  "english": "I think this movie is interesting."
+                },
+                {
+                  "japanese": "もう少し考えたほうがいいと思います。",
+                  "romaji": "Mō sukoshi kangaeta hō ga ii to omoimasu.",
+                  "english": "I think you should think it over a bit more."
+                }
               ]
             },
             {
@@ -1602,11 +2824,27 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "もうお酒を飲まないつもりです。", "romaji": "Mō osake wo nomanai tsumori desu.", "english": "I intend not to drink anymore." },
-                { "japanese": "来月、出張の予定です。", "romaji": "Raigetsu, shutchō no yotei desu.", "english": "I have a business trip planned next month." },
-                { "japanese": "飛行機は六時に到着する予定です。", "romaji": "Hikōki wa rokuji ni tōchaku suru yotei desu.", "english": "The plane is scheduled to arrive at 6." }
+                {
+                  "japanese": "もうお酒を飲まないつもりです。",
+                  "romaji": "Mō osake wo nomanai tsumori desu.",
+                  "english": "I intend not to drink anymore."
+                },
+                {
+                  "japanese": "来月、出張の予定です。",
+                  "romaji": "Raigetsu, shutchō no yotei desu.",
+                  "english": "I have a business trip planned next month."
+                },
+                {
+                  "japanese": "飛行機は六時に到着する予定です。",
+                  "romaji": "Hikōki wa rokuji ni tōchaku suru yotei desu.",
+                  "english": "The plane is scheduled to arrive at 6."
+                }
               ]
             },
             {
@@ -1632,12 +2870,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "頭が痛いんです。", "romaji": "Atama ga itai n desu.", "english": "(You see,) I have a headache." },
-                { "japanese": "どうして遅れたんですか。", "romaji": "Dōshite okureta n desu ka.", "english": "Why were you late? (explain it to me)" },
-                { "japanese": "実は、昨日転んだんです。", "romaji": "Jitsu wa, kinō koronda n desu.", "english": "The thing is, I fell yesterday." },
-                { "japanese": "ちょっと聞いてもいいんですが…", "romaji": "Chotto kiite mo ii n desu ga…", "english": "I was wondering if I could ask you something…" }
+                {
+                  "japanese": "頭が痛いんです。",
+                  "romaji": "Atama ga itai n desu.",
+                  "english": "(You see,) I have a headache."
+                },
+                {
+                  "japanese": "どうして遅れたんですか。",
+                  "romaji": "Dōshite okureta n desu ka.",
+                  "english": "Why were you late? (explain it to me)"
+                },
+                {
+                  "japanese": "実は、昨日転んだんです。",
+                  "romaji": "Jitsu wa, kinō koronda n desu.",
+                  "english": "The thing is, I fell yesterday."
+                },
+                {
+                  "japanese": "ちょっと聞いてもいいんですが…",
+                  "romaji": "Chotto kiite mo ii n desu ga…",
+                  "english": "I was wondering if I could ask you something…"
+                }
               ]
             },
             {
@@ -1671,26 +2929,82 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "reading", "english"],
+              "columns": [
+                "japanese",
+                "reading",
+                "english"
+              ],
               "rows": [
-                { "japanese": "会議中", "reading": "かいぎちゅう", "english": "in a meeting" },
-                { "japanese": "勉強中", "reading": "べんきょうちゅう", "english": "currently studying" },
-                { "japanese": "使用中", "reading": "しようちゅう", "english": "in use / occupied" },
-                { "japanese": "工事中", "reading": "こうじちゅう", "english": "under construction" },
-                { "japanese": "世界中", "reading": "せかいじゅう", "english": "throughout the world" },
-                { "japanese": "一日中", "reading": "いちにちじゅう", "english": "all day long" },
-                { "japanese": "日本中", "reading": "にほんじゅう", "english": "all over Japan" },
-                { "japanese": "年中", "reading": "ねんじゅう", "english": "all year round" }
+                {
+                  "japanese": "会議中",
+                  "reading": "かいぎちゅう",
+                  "english": "in a meeting"
+                },
+                {
+                  "japanese": "勉強中",
+                  "reading": "べんきょうちゅう",
+                  "english": "currently studying"
+                },
+                {
+                  "japanese": "使用中",
+                  "reading": "しようちゅう",
+                  "english": "in use / occupied"
+                },
+                {
+                  "japanese": "工事中",
+                  "reading": "こうじちゅう",
+                  "english": "under construction"
+                },
+                {
+                  "japanese": "世界中",
+                  "reading": "せかいじゅう",
+                  "english": "throughout the world"
+                },
+                {
+                  "japanese": "一日中",
+                  "reading": "いちにちじゅう",
+                  "english": "all day long"
+                },
+                {
+                  "japanese": "日本中",
+                  "reading": "にほんじゅう",
+                  "english": "all over Japan"
+                },
+                {
+                  "japanese": "年中",
+                  "reading": "ねんじゅう",
+                  "english": "all year round"
+                }
               ]
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "すみません、今、電話中です。", "romaji": "Sumimasen, ima, denwa chū desu.", "english": "Sorry, I'm on the phone right now." },
-                { "japanese": "使用中のため入れません。", "romaji": "Shiyō chū no tame hairemasen.", "english": "Cannot enter — currently in use." },
-                { "japanese": "世界中の人が知っています。", "romaji": "Sekai jū no hito ga shitte imasu.", "english": "People all over the world know about it." },
-                { "japanese": "日本中を旅行しました。", "romaji": "Nihon jū wo ryokō shimashita.", "english": "I travelled all over Japan." }
+                {
+                  "japanese": "すみません、今、電話中です。",
+                  "romaji": "Sumimasen, ima, denwa chū desu.",
+                  "english": "Sorry, I'm on the phone right now."
+                },
+                {
+                  "japanese": "使用中のため入れません。",
+                  "romaji": "Shiyō chū no tame hairemasen.",
+                  "english": "Cannot enter — currently in use."
+                },
+                {
+                  "japanese": "世界中の人が知っています。",
+                  "romaji": "Sekai jū no hito ga shitte imasu.",
+                  "english": "People all over the world know about it."
+                },
+                {
+                  "japanese": "日本中を旅行しました。",
+                  "romaji": "Nihon jū wo ryokō shimashita.",
+                  "english": "I travelled all over Japan."
+                }
               ]
             },
             {

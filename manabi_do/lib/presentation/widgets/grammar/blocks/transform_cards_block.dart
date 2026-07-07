@@ -38,6 +38,7 @@ class TransformRow {
 class TransformGroup {
   final String label;
   final String? tag;
+  final String? description;
   final String? rule;
   final List<TransformRow> rows;
   final String? note;
@@ -45,6 +46,7 @@ class TransformGroup {
   const TransformGroup({
     required this.label,
     this.tag,
+    this.description,
     this.rule,
     required this.rows,
     this.note,
@@ -53,6 +55,7 @@ class TransformGroup {
   factory TransformGroup.fromJson(Map<String, dynamic> d) => TransformGroup(
     label: d['label'] as String,
     tag: d['tag'] as String?,
+    description: d['description'] as String?,
     rule: d['rule'] as String?,
     rows: (d['rows'] as List<dynamic>)
         .map((r) => TransformRow.fromJson(Map<String, dynamic>.from(r)))
@@ -143,6 +146,13 @@ class _GroupCard extends StatelessWidget {
                     ],
                   ],
                 ),
+                if (group.description != null) ...[
+                  const SizedBox(height: AppDimens.spaceXs),
+                  Text(
+                    group.description!,
+                    style: AppTextStyles.bodySmall.copyWith(color: t.onSurface),
+                  ),
+                ],
                 if (group.rule != null) ...[
                   const SizedBox(height: AppDimens.spaceXs),
                   Text(
