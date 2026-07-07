@@ -52,10 +52,10 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - Border radii via `AppDimens.radius*` — never raw values
 
 ### Specific items
-- Scattered `EdgeInsets.all(8)` / `SizedBox(height: 16)` / raw pixel values throughout widget files
-- Some screens define one-off `TextStyle`s instead of extending `AppTextStyles`
-- A few hardcoded colors in older screens predating the token system
-- `transform_cards_block.dart` uses raw `14.0` for row padding and `13.0` for font sizes — should be pulled into `AppDimens` / `AppTextStyles`
+- ✅ `Color(0xFF795548)` for "basics" grammar level — added `'basics'` to `levelColor()`, removed inline hardcodes from `grammar_chapter_list.dart` and `grammar_screen.dart`
+- ✅ Raw `SizedBox(height: 2/4)` and `EdgeInsets.all(4)` across 8 files — replaced with `AppDimens.spaceXxs` / `AppDimens.spaceXs`
+- Remaining one-offs (acceptable): emoji font sizes (`fontSize: 28/22` with `fontFamily: NotoColorEmoji`), `fontSize: 26` for sentence text in `sentence_cloze_card.dart`, `SizedBox` values of 6/10/12 with no matching constant, `Color(0x33ffffff)` white overlay in `kanji_hero.dart`
+- Constructor default `Color(0xFF795548)` in `grammar_lesson_screen.dart` — Dart const constraint prevents using `levelColor()` as a default; acceptable since callers always pass explicitly
 
 ---
 
