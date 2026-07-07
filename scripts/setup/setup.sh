@@ -3,7 +3,7 @@
 # Safe to run multiple times — skips install if already present.
 set -e
 
-PW_DIR="$(cd "$(dirname "$0")" && pwd)/pw"
+PW_DIR="$(cd "$(dirname "$0")/.." && pwd)/pw"
 
 if [ -d "$PW_DIR/node_modules/playwright" ]; then
   echo "Playwright already installed at $PW_DIR"

@@ -4,7 +4,7 @@
 # Defaults to port 8767.
 set -e
 
-REPO="$(cd "$(dirname "$0")/.." && pwd)"
+REPO="$(cd "$(dirname "$0")/../.." && pwd)"
 APP="$REPO/manabi_do"
 PORT="${1:-8767}"
 

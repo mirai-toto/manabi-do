@@ -4,18 +4,24 @@
 
 ```
 scripts/
-  screenshot/               # Playwright screenshot scripts
+  build/
+    build_web.sh            # Flutter web build + local HTTP server
+  run/
+    linux.sh                # Launch app on Linux
+    widgetbook-linux.sh     # Launch widgetbook on Linux
+    windows.ps1             # Launch app on Windows
+    widgetbook-windows.ps1  # Launch widgetbook on Windows
+  screenshot/
     screenshot.js           # Single screenshot of the home screen
     screenshot_tab.js       # Screenshots every bottom-nav tab
     screenshot_grammar.js   # Screenshots the full grammar flow
     screenshot_grammar_n5.js  # Screenshots N5 grammar lessons
-  run/                      # Dev launch shortcuts
-    linux.sh / widgetbook-linux.sh
-    windows.ps1 / widgetbook-windows.ps1
-  setup.sh                  # One-time Playwright install (auto-called by rebuild_and_screenshot.sh)
-  build_web.sh              # Flutter web build + local HTTP server
-  rebuild_and_screenshot.sh # Full pipeline: build + all screenshots
+  setup/
+    setup.sh                # One-time Playwright install (auto-called by rebuild_and_screenshot.sh)
+    setup-android-signing.sh  # Android signing key setup
   pw/                       # Playwright install dir (gitignored)
+  rebuild_and_screenshot.sh # Full pipeline: build + all screenshots
+  README.md
 ```
 
 Screenshots are saved to `screenshots/` (gitignored) at the repo root.
@@ -66,7 +72,7 @@ node scripts/screenshot/screenshot_grammar.js [port]
 
 ```bash
 # Build Flutter web and serve locally
-bash scripts/build_web.sh [port]   # defaults to 8767
+bash scripts/build/build_web.sh [port]   # defaults to 8767
 
 # Launch the app (Linux)
 bash scripts/run/linux.sh
