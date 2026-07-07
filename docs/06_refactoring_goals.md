@@ -29,8 +29,8 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - ✅ `kanji_detail_screen.dart` (`_KanjiSrsSection`) — converted to `ConsumerWidget` watching `kanjiSrsCardsProvider`; eliminated `initState`, `_load`, and local state
 
 #### Services that mix too many concerns
-- `vocab_session_service.dart` (345 lines) — DB queries + filtering + shuffling + settings reads + item building all in one class; split into focused collaborators
-- `kanji_session_service.dart` (189 lines) — same pattern as above
+- ✅ `vocab_session_service.dart` — monolithic `buildQueue` split into `_buildFlashcardItems`, `_buildMcqItems`, `_buildSentenceItems`, `_buildMixedItems`
+- ✅ `kanji_session_service.dart` — `buildQueue` dispatch loop split into `_buildFlashcardItem`, `_buildDrawingItem`, `_buildMcqItem`
 - `srs_service.dart` — SRS scheduling algorithm tangled with DB persistence; separate the pure scheduling logic from the data layer
 
 #### Missing repository layer
