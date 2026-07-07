@@ -323,8 +323,8 @@
             {
               "type": "pattern",
               "lines": [
-                "[Place] へ + [movement verb]   ← focus on the direction, the journey",
-                "[Place] に + [movement verb]   ← focus on the destination, arrival"
+                "[Place] **へ** + [movement verb]   ← focus on the direction, the journey",
+                "[Place] **に** + [movement verb]   ← focus on the destination, arrival"
               ]
             },
             {
@@ -379,8 +379,8 @@
             {
               "type": "pattern",
               "lines": [
-                "[Place] で + [action verb]   ← an action happens here",
-                "[Place] に + [existence verb] ← something exists here (います / あります)"
+                "[Place] **で** + [action verb]    ← an action happens here",
+                "[Place] **に** + [existence verb] ← something exists here (います / あります)"
               ]
             },
             {
@@ -445,8 +445,8 @@
             {
               "type": "pattern",
               "lines": [
-                "[Living thing] が [Place] に います   → there is/are (animate)",
-                "[Object/thing] が [Place] に あります  → there is/are (inanimate)"
+                "[Living thing] が [Place] **に います**   → there is/are (animate)",
+                "[Object/thing] が [Place] **に あります**  → there is/are (inanimate)"
               ]
             },
             {
@@ -624,11 +624,32 @@
             {
               "type": "pattern",
               "lines": [
-                "[Number] + [Counter]",
-                "",
-                "  三人 (sannin)   — three people",
-                "  二枚 (nimai)    — two sheets",
-                "  一杯 (ippai)    — one cup"
+                "[Number] + **[Counter]**"
+              ]
+            },
+            {
+              "type": "vocab_table",
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
+              "rows": [
+                {
+                  "japanese": "三人",
+                  "romaji": "sannin",
+                  "english": "three people"
+                },
+                {
+                  "japanese": "二枚",
+                  "romaji": "nimai",
+                  "english": "two sheets"
+                },
+                {
+                  "japanese": "一杯",
+                  "romaji": "ippai",
+                  "english": "one cup"
+                }
               ]
             },
             {
@@ -802,9 +823,8 @@
             {
               "type": "pattern",
               "lines": [
-                "[Hour] 時 [Minute] 分 です",
-                "",
-                "ごぜん (AM) / ごご (PM) + [Hour] 時 [Minute] 分"
+                "[Hour] **時** [Minute] **分** です",
+                "ごぜん (AM) / ごご (PM) + [Hour] **時** [Minute] **分**"
               ]
             },
             {
@@ -863,9 +883,9 @@
             {
               "type": "pattern",
               "lines": [
-                "[Specific time] に + [action]          ← at a specific time",
-                "[Start] から [End] まで + [action]     ← from A until B",
-                "[Start] から + [action]                ← from / since A (no end given)"
+                "[Specific time] **に** + [action]          ← at a specific time",
+                "[Start] **から** [End] **まで** + [action]  ← from A until B",
+                "[Start] **から** + [action]                ← from / since A (no end given)"
               ]
             },
             {
@@ -1241,13 +1261,33 @@
             {
               "type": "pattern",
               "lines": [
-                "い-adjective: [stem] + くて + [next clause]",
-                "  安い  → 安くて",
-                "  面白い → 面白くて",
-                "",
-                "な-adjective: [な-adj] + で + [next clause]",
-                "  静か → 静かで",
-                "  便利 → 便利で"
+                "い-adjective: [stem] + **くて** + [next clause]",
+                "な-adjective: [な-adj] + **で** + [next clause]"
+              ]
+            },
+            {
+              "type": "vocab_table",
+              "columns": [
+                "japanese",
+                "english"
+              ],
+              "rows": [
+                {
+                  "japanese": "安い → 安くて",
+                  "english": "cheap → cheap and…"
+                },
+                {
+                  "japanese": "面白い → 面白くて",
+                  "english": "interesting → interesting and…"
+                },
+                {
+                  "japanese": "静か → 静かで",
+                  "english": "quiet → quiet and…"
+                },
+                {
+                  "japanese": "便利 → 便利で",
+                  "english": "convenient → convenient and…"
+                }
               ]
             },
             {
@@ -1318,8 +1358,8 @@
             {
               "type": "pattern",
               "lines": [
-                "[Reason — plain form] + から、[Result]   ← subjective, casual",
-                "[Reason — plain form] + ので、[Result]   ← objective, polite"
+                "[Reason — plain form] + **から**、[Result]   ← subjective, casual",
+                "[Reason — plain form] + **ので**、[Result]   ← objective, polite"
               ]
             },
             {
@@ -1493,12 +1533,37 @@
             {
               "type": "pattern",
               "lines": [
-                "[Duration] + 間 + [action / state]",
-                "",
-                "  三時間   (sanjikan)    — for three hours",
-                "  一週間   (isshūkan)    — for one week",
-                "  二年間   (ninenkan)    — for two years",
-                "  十分間   (juppunkan)   — for ten minutes"
+                "[Duration] + **間** + [action / state]"
+              ]
+            },
+            {
+              "type": "vocab_table",
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
+              "rows": [
+                {
+                  "japanese": "三時間",
+                  "romaji": "sanjikan",
+                  "english": "for three hours"
+                },
+                {
+                  "japanese": "一週間",
+                  "romaji": "isshūkan",
+                  "english": "for one week"
+                },
+                {
+                  "japanese": "二年間",
+                  "romaji": "ninenkan",
+                  "english": "for two years"
+                },
+                {
+                  "japanese": "十分間",
+                  "romaji": "juppunkan",
+                  "english": "for ten minutes"
+                }
               ]
             },
             {
@@ -1548,11 +1613,28 @@
             {
               "type": "pattern",
               "lines": [
-                "[Time period] に [number] 回 + [action]",
-                "",
-                "  週に三回    — three times a week",
-                "  一日に二回  — twice a day",
-                "  月に一度    — once a month (一度 = one time, softer alternative to 一回)"
+                "[Time period] に [number] **回** + [action]"
+              ]
+            },
+            {
+              "type": "vocab_table",
+              "columns": [
+                "japanese",
+                "english"
+              ],
+              "rows": [
+                {
+                  "japanese": "週に三回",
+                  "english": "three times a week"
+                },
+                {
+                  "japanese": "一日に二回",
+                  "english": "twice a day"
+                },
+                {
+                  "japanese": "月に一度",
+                  "english": "once a month (一度 = one time, softer)"
+                }
               ]
             },
             {
@@ -1602,9 +1684,9 @@
             {
               "type": "pattern",
               "lines": [
-                "[Time / cost] が かかります     ← it takes / it costs",
-                "[Destination] まで [time] かかります  ← it takes [time] to reach",
-                "どのぐらいかかりますか           ← how long / how much does it take?"
+                "[Time / cost] が **かかります**     ← it takes / it costs",
+                "[Destination] まで [time] **かかります**  ← it takes [time] to reach",
+                "どのぐらい**かかりますか**           ← how long / how much does it take?"
               ]
             },
             {
@@ -1665,9 +1747,9 @@
             {
               "type": "pattern",
               "lines": [
-                "[Verb stem] + たいです        (want to do)",
-                "[Verb stem] + たくないです    (don't want to do)",
-                "[Verb stem] + たかったです    (wanted to do)"
+                "[Verb stem] + **たいです**        (want to do)",
+                "[Verb stem] + **たくないです**    (don't want to do)",
+                "[Verb stem] + **たかったです**    (wanted to do)"
               ]
             },
             {
@@ -1745,9 +1827,9 @@
             {
               "type": "pattern",
               "lines": [
-                "[Object] が ほしいです        (want something)",
-                "[Object] が ほしくないです    (don't want something)",
-                "[Object] が ほしかったです    (wanted something)"
+                "[Object] が **ほしいです**        (want something)",
+                "[Object] が **ほしくないです**    (don't want something)",
+                "[Object] が **ほしかったです**    (wanted something)"
               ]
             },
             {
@@ -1822,8 +1904,8 @@
             {
               "type": "pattern",
               "lines": [
-                "[Plain form] + でしょう          ← probably (fairly confident)",
-                "[Plain form] + かもしれません    ← might (uncertain)"
+                "[Plain form] + **でしょう**          ← probably (fairly confident)",
+                "[Plain form] + **かもしれません**    ← might (uncertain)"
               ]
             },
             {
@@ -2040,7 +2122,7 @@
             {
               "type": "pattern",
               "lines": [
-                "[て-form] + ください   ← please do ~"
+                "[て-form] + **ください**   ← please do ~"
               ]
             },
             {
@@ -2095,9 +2177,9 @@
             {
               "type": "pattern",
               "lines": [
-                "[て-form] + もいいです      ← it is okay to / you may",
-                "[て-form] + もいいですか    ← may I / is it okay to?",
-                "[て-form] + はいけません    ← you must not / it is not allowed"
+                "[て-form] + **もいいです**      ← it is okay to / you may",
+                "[て-form] + **もいいですか**    ← may I / is it okay to?",
+                "[て-form] + **はいけません**    ← you must not / it is not allowed"
               ]
             },
             {
@@ -2156,9 +2238,9 @@
             {
               "type": "pattern",
               "lines": [
-                "[て-form] + あげます   ← I do for them (benefit flows out)",
-                "[て-form] + もらいます ← I receive the action (benefit flows in)",
-                "[て-form] + くれます   ← they do for me, their initiative"
+                "[て-form] + **あげます**   ← I do for them (benefit flows out)",
+                "[て-form] + **もらいます** ← I receive the action (benefit flows in)",
+                "[て-form] + **くれます**   ← they do for me, their initiative"
               ]
             },
             {
@@ -2223,7 +2305,7 @@
             {
               "type": "pattern",
               "lines": [
-                "[て-form] + います"
+                "[て-form] + **います**"
               ]
             },
             {
@@ -2284,7 +2366,7 @@
             {
               "type": "pattern",
               "lines": [
-                "[て-form] + から、[next action]"
+                "[て-form] + **から**、[next action]"
               ]
             },
             {
@@ -2345,9 +2427,9 @@
             {
               "type": "pattern",
               "lines": [
-                "[Dictionary form] + 前に、[action]       ← before doing (action hasn't happened yet)",
-                "[Past plain form] + 後で、[action]       ← after doing (action has been completed)",
-                "[Noun] + の前に / の後で                  ← before / after a noun (event, class, etc.)"
+                "[Dictionary form] + **前に**、[action]       ← before doing (action hasn't happened yet)",
+                "[Past plain form] + **後で**、[action]       ← after doing (action has been completed)",
+                "[Noun] + の**前に** / の**後で**              ← before / after a noun (event, class, etc.)"
               ]
             },
             {
@@ -2397,11 +2479,7 @@
             {
               "type": "pattern",
               "lines": [
-                "[Verb stem] + ながら、[main action]",
-                "",
-                "  聴く  → 聴き + ながら",
-                "  歩く  → 歩き + ながら",
-                "  飲む  → 飲み + ながら"
+                "[Verb stem] + **ながら**、[main action]"
               ]
             },
             {
@@ -2457,8 +2535,8 @@
             {
               "type": "pattern",
               "lines": [
-                "A は B より [adjective] です       ← A is more ~ than B",
-                "B より A のほうが [adjective] です  ← A is more ~ than B (emphatic)"
+                "A は B **より** [adjective] です       ← A is more ~ than B",
+                "B **より** A **のほうが** [adjective] です  ← A is more ~ than B (emphatic)"
               ]
             },
             {
@@ -2513,9 +2591,9 @@
             {
               "type": "pattern",
               "lines": [
-                "A と B と どちらが [adjective] ですか   ← which is more ~?",
-                "  → A のほうが [adjective] です         ← A is more ~",
-                "  → どちらも [adjective] です           ← both are equally ~"
+                "A と B と **どちらが** [adjective] ですか   ← which is more ~?",
+                "  → A **のほうが** [adjective] です         ← A is more ~",
+                "  → **どちらも** [adjective] です           ← both are equally ~"
               ]
             },
             {
@@ -2570,8 +2648,7 @@
             {
               "type": "pattern",
               "lines": [
-                "[Group] の中で、[item] が いちばん [adjective] です",
-                "",
+                "[Group] の中で、[item] が **いちばん** [adjective] です",
                 "  の中で (no naka de) = \"among\" — optional but common"
               ]
             },
@@ -2633,8 +2710,8 @@
             {
               "type": "pattern",
               "lines": [
-                "[Past plain] + ほうがいいです       ← you should do",
-                "[Negative plain] + ほうがいいです   ← you shouldn't do"
+                "[Past plain] + **ほうがいいです**       ← you should do",
+                "[Negative plain] + **ほうがいいです**   ← you shouldn't do"
               ]
             },
             {
@@ -2699,9 +2776,9 @@
             {
               "type": "pattern",
               "lines": [
-                "[Neg. stem] + なければなりません   ← must (formal / polite)",
-                "[Neg. stem] + ないといけません     ← must (casual spoken)",
-                "[Neg. te-form] + もいいです        ← don't have to"
+                "[Neg. stem] + **なければなりません**   ← must (formal / polite)",
+                "[Neg. stem] + **ないといけません**     ← must (casual spoken)",
+                "[Neg. te-form] + **もいいです**        ← don't have to"
               ]
             },
             {
@@ -2751,7 +2828,7 @@
             {
               "type": "pattern",
               "lines": [
-                "[Plain form] + と思います   ← I think that ~"
+                "[Plain form verb / い-adj] + **と思います**   ← I think that ~"
               ]
             },
             {
@@ -2816,10 +2893,10 @@
             {
               "type": "pattern",
               "lines": [
-                "[Dictionary form] + つもりです      ← intend to (personal decision)",
-                "[Negative plain] + つもりです       ← intend not to",
-                "[Dictionary form] + 予定です        ← scheduled to (arranged plan)",
-                "[Noun] + の + 予定です              ← have a plan for ~"
+                "[Dictionary form] + **つもりです**      ← intend to (personal decision)",
+                "[Negative plain] + **つもりです**       ← intend not to",
+                "[Dictionary form] + **予定です**        ← scheduled to (arranged plan)",
+                "[Noun] + の + **予定です**              ← have a plan for ~"
               ]
             },
             {
@@ -2864,8 +2941,8 @@
             {
               "type": "pattern",
               "lines": [
-                "[Plain form verb / い-adj] + んです",
-                "[な-adj / noun] + な + んです"
+                "[Plain form verb / い-adj] + **んです**",
+                "[な-adj / noun] + な + **んです**"
               ]
             },
             {

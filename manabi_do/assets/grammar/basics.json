@@ -31,20 +31,52 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["part", "script", "role"],
+              "columns": [
+                "part",
+                "script",
+                "role"
+              ],
               "rows": [
-                { "part": "私", "script": "Kanji", "role": "I / me" },
-                { "part": "は", "script": "Hiragana", "role": "topic particle" },
-                { "part": "コーヒー", "script": "Katakana", "role": "coffee (loanword)" },
-                { "part": "が", "script": "Hiragana", "role": "subject particle" },
-                { "part": "好きです。", "script": "Kanji + Hiragana", "role": "like + polite ending" }
+                {
+                  "part": "私",
+                  "script": "Kanji",
+                  "role": "I / me"
+                },
+                {
+                  "part": "は",
+                  "script": "Hiragana",
+                  "role": "topic particle"
+                },
+                {
+                  "part": "コーヒー",
+                  "script": "Katakana",
+                  "role": "coffee (loanword)"
+                },
+                {
+                  "part": "が",
+                  "script": "Hiragana",
+                  "role": "subject particle"
+                },
+                {
+                  "part": "好きです。",
+                  "script": "Kanji + Hiragana",
+                  "role": "like + polite ending"
+                }
               ]
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "私はコーヒーが好きです。", "romaji": "Watashi wa koohii ga suki desu.", "english": "I like coffee." }
+                {
+                  "japanese": "私はコーヒーが好きです。",
+                  "romaji": "Watashi wa koohii ga suki desu.",
+                  "english": "I like coffee."
+                }
               ]
             },
             {
@@ -69,12 +101,32 @@
             },
             {
               "type": "example_table",
-              "columns": ["english", "japanese", "romaji"],
+              "columns": [
+                "english",
+                "japanese",
+                "romaji"
+              ],
               "rows": [
-                { "english": "I drink coffee.", "japanese": "私はコーヒーを飲みます。", "romaji": "Watashi wa koohii wo nomimasu." },
-                { "english": "She reads books.", "japanese": "彼女は本を読みます。", "romaji": "Kanojo wa hon wo yomimasu." },
-                { "english": "He bought a bag.", "japanese": "彼はかばんを買いました。", "romaji": "Kare wa kaban wo kaimashita." },
-                { "english": "The dog is chasing the cat.", "japanese": "犬が猫を追いかけています。", "romaji": "Inu ga neko wo oikakete imasu." }
+                {
+                  "english": "I drink coffee.",
+                  "japanese": "私はコーヒーを飲みます。",
+                  "romaji": "Watashi wa koohii wo nomimasu."
+                },
+                {
+                  "english": "She reads books.",
+                  "japanese": "彼女は本を読みます。",
+                  "romaji": "Kanojo wa hon wo yomimasu."
+                },
+                {
+                  "english": "He bought a bag.",
+                  "japanese": "彼はかばんを買いました。",
+                  "romaji": "Kare wa kaban wo kaimashita."
+                },
+                {
+                  "english": "The dog is chasing the cat.",
+                  "japanese": "犬が猫を追いかけています。",
+                  "romaji": "Inu ga neko wo oikakete imasu."
+                }
               ]
             },
             {
@@ -98,16 +150,36 @@
             {
               "type": "pattern",
               "lines": [
-                "[Topic] は [Subject] が [Predicate]"
+                "[Topic] **は** [Subject] **が** [Predicate]"
               ]
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "romaji", "english", "note"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english",
+                "note"
+              ],
               "rows": [
-                { "japanese": "猫は魚が好きです。", "romaji": "Neko wa sakana ga suki desu.", "english": "Cats like fish.", "note": "猫は = topic; 魚が = subject of 好き" },
-                { "japanese": "私は頭が痛いです。", "romaji": "Watashi wa atama ga itai desu.", "english": "My head hurts.", "note": "私は = topic; 頭が = subject of 痛い" },
-                { "japanese": "象は鼻が長い。", "romaji": "Zō wa hana ga nagai.", "english": "Elephants have long trunks.", "note": "象は = topic; 鼻が = subject of 長い" }
+                {
+                  "japanese": "猫は魚が好きです。",
+                  "romaji": "Neko wa sakana ga suki desu.",
+                  "english": "Cats like fish.",
+                  "note": "猫は = topic; 魚が = subject of 好き"
+                },
+                {
+                  "japanese": "私は頭が痛いです。",
+                  "romaji": "Watashi wa atama ga itai desu.",
+                  "english": "My head hurts.",
+                  "note": "私は = topic; 頭が = subject of 痛い"
+                },
+                {
+                  "japanese": "象は鼻が長い。",
+                  "romaji": "Zō wa hana ga nagai.",
+                  "english": "Elephants have long trunks.",
+                  "note": "象は = topic; 鼻が = subject of 長い"
+                }
               ]
             },
             {
@@ -130,13 +202,37 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "大きい犬", "romaji": "ōkii inu", "english": "big dog" },
-                { "japanese": "赤い車", "romaji": "akai kuruma", "english": "red car" },
-                { "japanese": "私が買った本", "romaji": "watashi ga katta hon", "english": "the book I bought" },
-                { "japanese": "昨日見た映画", "romaji": "kinō mita eiga", "english": "the movie I watched yesterday" },
-                { "japanese": "田中さんが作ったケーキ", "romaji": "Tanaka-san ga tsukutta kēki", "english": "the cake that Tanaka made" }
+                {
+                  "japanese": "大きい犬",
+                  "romaji": "ōkii inu",
+                  "english": "big dog"
+                },
+                {
+                  "japanese": "赤い車",
+                  "romaji": "akai kuruma",
+                  "english": "red car"
+                },
+                {
+                  "japanese": "私が買った本",
+                  "romaji": "watashi ga katta hon",
+                  "english": "the book I bought"
+                },
+                {
+                  "japanese": "昨日見た映画",
+                  "romaji": "kinō mita eiga",
+                  "english": "the movie I watched yesterday"
+                },
+                {
+                  "japanese": "田中さんが作ったケーキ",
+                  "romaji": "Tanaka-san ga tsukutta kēki",
+                  "english": "the cake that Tanaka made"
+                }
               ]
             },
             {
@@ -155,12 +251,32 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["japanese", "romaji", "implied subject"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "implied subject"
+              ],
               "rows": [
-                { "japanese": "食べます。", "romaji": "Tabemasu.", "implied subject": "I / you / we" },
-                { "japanese": "行きますか。", "romaji": "Ikimasu ka.", "implied subject": "you" },
-                { "japanese": "わかりました。", "romaji": "Wakarimashita.", "implied subject": "I" },
-                { "japanese": "来ましたよ。", "romaji": "Kimashita yo.", "implied subject": "they / someone" }
+                {
+                  "japanese": "食べます。",
+                  "romaji": "Tabemasu.",
+                  "implied subject": "I / you / we"
+                },
+                {
+                  "japanese": "行きますか。",
+                  "romaji": "Ikimasu ka.",
+                  "implied subject": "you"
+                },
+                {
+                  "japanese": "わかりました。",
+                  "romaji": "Wakarimashita.",
+                  "implied subject": "I"
+                },
+                {
+                  "japanese": "来ましたよ。",
+                  "romaji": "Kimashita yo.",
+                  "implied subject": "they / someone"
+                }
               ]
             },
             {
@@ -189,15 +305,47 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["symbol", "name", "use"],
+              "columns": [
+                "symbol",
+                "name",
+                "use"
+              ],
               "rows": [
-                { "symbol": "。", "name": "Kuten", "use": "Sentence-ending period" },
-                { "symbol": "、", "name": "Touten", "use": "Comma — marks a pause within a sentence" },
-                { "symbol": "「 」", "name": "Kagikakko", "use": "Primary quotation marks" },
-                { "symbol": "『 』", "name": "Nijū kagikakko", "use": "Nested quotation marks, or book and work titles" },
-                { "symbol": "・", "name": "Nakaguro", "use": "Separates list items or parts of a foreign name" },
-                { "symbol": "ー", "name": "Chōonpu", "use": "Extends a vowel sound in katakana words" },
-                { "symbol": "！ ？", "name": "Full-width forms", "use": "Same function as English, but full-width for alignment" }
+                {
+                  "symbol": "。",
+                  "name": "Kuten",
+                  "use": "Sentence-ending period"
+                },
+                {
+                  "symbol": "、",
+                  "name": "Touten",
+                  "use": "Comma — marks a pause within a sentence"
+                },
+                {
+                  "symbol": "「 」",
+                  "name": "Kagikakko",
+                  "use": "Primary quotation marks"
+                },
+                {
+                  "symbol": "『 』",
+                  "name": "Nijū kagikakko",
+                  "use": "Nested quotation marks, or book and work titles"
+                },
+                {
+                  "symbol": "・",
+                  "name": "Nakaguro",
+                  "use": "Separates list items or parts of a foreign name"
+                },
+                {
+                  "symbol": "ー",
+                  "name": "Chōonpu",
+                  "use": "Extends a vowel sound in katakana words"
+                },
+                {
+                  "symbol": "！ ？",
+                  "name": "Full-width forms",
+                  "use": "Same function as English, but full-width for alignment"
+                }
               ]
             },
             {
@@ -210,11 +358,27 @@
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "「おはよう」と言いました。", "romaji": "\"Ohayō\" to iimashita.", "english": "She said \"Good morning.\"" },
-                { "japanese": "私はりんご、みかん、ぶどうを買いました。", "romaji": "Watashi wa ringo, mikan, budō wo kaimashita.", "english": "I bought apples, oranges, and grapes." },
-                { "japanese": "スミス・ジョン", "romaji": "Sumisu Jon", "english": "John Smith (foreign name with nakaguro)" }
+                {
+                  "japanese": "「おはよう」と言いました。",
+                  "romaji": "\"Ohayō\" to iimashita.",
+                  "english": "She said \"Good morning.\""
+                },
+                {
+                  "japanese": "私はりんご、みかん、ぶどうを買いました。",
+                  "romaji": "Watashi wa ringo, mikan, budō wo kaimashita.",
+                  "english": "I bought apples, oranges, and grapes."
+                },
+                {
+                  "japanese": "スミス・ジョン",
+                  "romaji": "Sumisu Jon",
+                  "english": "John Smith (foreign name with nakaguro)"
+                }
               ]
             },
             {
@@ -244,19 +408,43 @@
             {
               "type": "pattern",
               "lines": [
-                "[kana] + っ + [kana starting with a consonant]",
+                "[kana] + **っ** + [kana starting with a consonant]",
                 "→ the pause doubles the following consonant"
               ]
             },
             {
               "type": "example_table",
-              "columns": ["japanese", "romaji", "english"],
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
               "rows": [
-                { "japanese": "きって", "romaji": "kitte", "english": "postage stamp" },
-                { "japanese": "ざっし", "romaji": "zasshi", "english": "magazine" },
-                { "japanese": "いっぽ", "romaji": "ippo", "english": "one step" },
-                { "japanese": "きっぷ", "romaji": "kippu", "english": "ticket" },
-                { "japanese": "ちょっと", "romaji": "chotto", "english": "a little / just a moment" }
+                {
+                  "japanese": "きって",
+                  "romaji": "kitte",
+                  "english": "postage stamp"
+                },
+                {
+                  "japanese": "ざっし",
+                  "romaji": "zasshi",
+                  "english": "magazine"
+                },
+                {
+                  "japanese": "いっぽ",
+                  "romaji": "ippo",
+                  "english": "one step"
+                },
+                {
+                  "japanese": "きっぷ",
+                  "romaji": "kippu",
+                  "english": "ticket"
+                },
+                {
+                  "japanese": "ちょっと",
+                  "romaji": "chotto",
+                  "english": "a little / just a moment"
+                }
               ]
             },
             {
@@ -276,17 +464,42 @@
             {
               "type": "pattern",
               "lines": [
-                "[consonant + i kana] + ゃ / ゅ / ょ → one syllable, not two"
+                "[consonant + i kana] + **ゃ / ゅ / ょ** → one syllable, not two"
               ]
             },
             {
               "type": "vocab_table",
-              "columns": ["written", "romaji", "one syllable", "common mistake"],
+              "columns": [
+                "written",
+                "romaji",
+                "one syllable",
+                "common mistake"
+              ],
               "rows": [
-                { "written": "きゃ", "romaji": "kya", "one syllable": "yes", "common mistake": "not ki-ya" },
-                { "written": "しゅ", "romaji": "shu", "one syllable": "yes", "common mistake": "not shi-yu" },
-                { "written": "にょ", "romaji": "nyo", "one syllable": "yes", "common mistake": "—" },
-                { "written": "びょういん", "romaji": "byōin", "one syllable": "4 mora: びょ・う・い・ん", "common mistake": "often read as 5" }
+                {
+                  "written": "きゃ",
+                  "romaji": "kya",
+                  "one syllable": "yes",
+                  "common mistake": "not ki-ya"
+                },
+                {
+                  "written": "しゅ",
+                  "romaji": "shu",
+                  "one syllable": "yes",
+                  "common mistake": "not shi-yu"
+                },
+                {
+                  "written": "にょ",
+                  "romaji": "nyo",
+                  "one syllable": "yes",
+                  "common mistake": "—"
+                },
+                {
+                  "written": "びょういん",
+                  "romaji": "byōin",
+                  "one syllable": "4 mora: びょ・う・い・ん",
+                  "common mistake": "often read as 5"
+                }
               ]
             },
             {
@@ -305,12 +518,42 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["short", "romaji", "long", "romaji ", "difference"],
+              "columns": [
+                "short",
+                "romaji",
+                "long",
+                "romaji ",
+                "difference"
+              ],
               "rows": [
-                { "short": "おじさん", "romaji": "ojisan", "long": "おじいさん", "romaji ": "ojiisan", "difference": "uncle vs grandfather" },
-                { "short": "ここ", "romaji": "koko", "long": "こうこう", "romaji ": "kōkō", "difference": "here vs high school" },
-                { "short": "おばさん", "romaji": "obasan", "long": "おばあさん", "romaji ": "obaasan", "difference": "aunt vs grandmother" },
-                { "short": "ビル", "romaji": "biru", "long": "ビール", "romaji ": "bīru", "difference": "building vs beer" }
+                {
+                  "short": "おじさん",
+                  "romaji": "ojisan",
+                  "long": "おじいさん",
+                  "romaji ": "ojiisan",
+                  "difference": "uncle vs grandfather"
+                },
+                {
+                  "short": "ここ",
+                  "romaji": "koko",
+                  "long": "こうこう",
+                  "romaji ": "kōkō",
+                  "difference": "here vs high school"
+                },
+                {
+                  "short": "おばさん",
+                  "romaji": "obasan",
+                  "long": "おばあさん",
+                  "romaji ": "obaasan",
+                  "difference": "aunt vs grandmother"
+                },
+                {
+                  "short": "ビル",
+                  "romaji": "biru",
+                  "long": "ビール",
+                  "romaji ": "bīru",
+                  "difference": "building vs beer"
+                }
               ]
             },
             {
@@ -320,13 +563,38 @@
             {
               "type": "pattern",
               "lines": [
-                "Hiragana: repeat the vowel (or use お + う for the ō sound)",
-                "  おかあさん = okaasan  (mother)",
-                "  こうこう   = kōkō     (high school)",
-                "",
-                "Katakana: use ー (chōonpu)",
-                "  コーヒー = koohii   (coffee)",
-                "  スーパー = suupaa   (supermarket)"
+                "Hiragana: repeat the vowel (or **お + う** for the ō sound)",
+                "Katakana: use **ー** (chōonpu)"
+              ]
+            },
+            {
+              "type": "vocab_table",
+              "columns": [
+                "japanese",
+                "romaji",
+                "english"
+              ],
+              "rows": [
+                {
+                  "japanese": "おかあさん",
+                  "romaji": "okaasan",
+                  "english": "mother"
+                },
+                {
+                  "japanese": "こうこう",
+                  "romaji": "kōkō",
+                  "english": "high school"
+                },
+                {
+                  "japanese": "コーヒー",
+                  "romaji": "koohii",
+                  "english": "coffee"
+                },
+                {
+                  "japanese": "スーパー",
+                  "romaji": "suupaa",
+                  "english": "supermarket"
+                }
               ]
             },
             {
@@ -359,14 +627,49 @@
             },
             {
               "type": "vocab_table",
-              "columns": ["word", "reading", "pitch", "english"],
+              "columns": [
+                "word",
+                "reading",
+                "pitch",
+                "english"
+              ],
               "rows": [
-                { "word": "橋", "reading": "hashi", "pitch": "L-H", "english": "bridge" },
-                { "word": "箸", "reading": "hashi", "pitch": "H-L", "english": "chopsticks" },
-                { "word": "端", "reading": "hashi", "pitch": "H-L", "english": "edge" },
-                { "word": "雨", "reading": "ame", "pitch": "L-H", "english": "rain" },
-                { "word": "飴", "reading": "ame", "pitch": "H-L", "english": "candy" },
-                { "word": "東京", "reading": "tōkyō", "pitch": "L-H-H-L", "english": "Tokyo" }
+                {
+                  "word": "橋",
+                  "reading": "hashi",
+                  "pitch": "L-H",
+                  "english": "bridge"
+                },
+                {
+                  "word": "箸",
+                  "reading": "hashi",
+                  "pitch": "H-L",
+                  "english": "chopsticks"
+                },
+                {
+                  "word": "端",
+                  "reading": "hashi",
+                  "pitch": "H-L",
+                  "english": "edge"
+                },
+                {
+                  "word": "雨",
+                  "reading": "ame",
+                  "pitch": "L-H",
+                  "english": "rain"
+                },
+                {
+                  "word": "飴",
+                  "reading": "ame",
+                  "pitch": "H-L",
+                  "english": "candy"
+                },
+                {
+                  "word": "東京",
+                  "reading": "tōkyō",
+                  "pitch": "L-H-H-L",
+                  "english": "Tokyo"
+                }
               ]
             },
             {
