@@ -1,9 +1,10 @@
 // Receives a pre-built item queue and tracks progress through it: current item,
 // got-it/not-yet score, and SRS result written to DB on each answer.
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
+import 'package:fsrs/fsrs.dart' show Rating;
 
 import '../screens/practice/practice_item.dart';
+import '../services/srs_service.dart';
 import 'database_provider.dart';
 
 final practiceSessionProvider =
@@ -86,16 +87,9 @@ class PracticeSessionNotifier extends Notifier<PracticeSessionState> {
     if (item == null) return;
 
     if (persistSrs && !s.isRetry) {
-      final card =
-          item.card ??
-          Card(
-            cardId: DateTime.now().millisecondsSinceEpoch,
-            due: DateTime.now(),
-          );
-      final result = Scheduler().reviewCard(card, rating);
       await ref
           .read(databaseProvider)
-          .upsertSrsCard(item.srsType, item.id, result.card);
+          .upsertSrsCard(item.srsType, item.id, applyRating(item.card, rating));
     }
 
     final isLast = s.index + 1 >= s.queue!.length;

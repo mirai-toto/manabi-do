@@ -3,10 +3,17 @@ import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
 
 import '../providers/database_provider.dart';
 
+// Pure scheduling: applies a rating to an existing card (or creates a new one)
+// and returns the updated card. No DB access, safe to call from anywhere.
+Card applyRating(Card? existing, Rating rating) {
+  final card =
+      existing ??
+      Card(cardId: DateTime.now().millisecondsSinceEpoch, due: DateTime.now());
+  return Scheduler().reviewCard(card, rating).card;
+}
+
 class SrsService {
   const SrsService();
-
-  static final _scheduler = Scheduler();
 
   Future<Card?> getCard(WidgetRef ref, String type, int id) =>
       ref.read(databaseProvider).getSrsCard(type, id);
@@ -26,16 +33,9 @@ class SrsService {
     int id,
     Card? existingCard,
     Rating rating,
-  ) {
-    final card =
-        existingCard ??
-        Card(
-          cardId: DateTime.now().millisecondsSinceEpoch,
-          due: DateTime.now(),
-        );
-    final result = _scheduler.reviewCard(card, rating);
-    return ref.read(databaseProvider).upsertSrsCard(srsType, id, result.card);
-  }
+  ) => ref
+      .read(databaseProvider)
+      .upsertSrsCard(srsType, id, applyRating(existingCard, rating));
 }
 
 const srsService = SrsService();
