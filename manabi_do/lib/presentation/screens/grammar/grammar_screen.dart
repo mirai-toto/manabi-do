@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/home_provider.dart';
 import '../../widgets/widgets.dart';
@@ -157,7 +158,7 @@ class _BasicsCard extends StatelessWidget {
   final VoidCallback onTap;
   const _BasicsCard({required this.onTap});
 
-  static const _color = Color(0xFF795548);
+  static final _color = levelColor('basics');
 
   @override
   Widget build(BuildContext context) {

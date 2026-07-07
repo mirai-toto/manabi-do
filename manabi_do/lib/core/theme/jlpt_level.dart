@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 Color levelColor(String level) => switch (level) {
+  'basics' => const Color(0xFF795548), // brown — introductory content
   'kana' => const Color(0xFF00897B), // teal — pre-JLPT alphabet
   'N5' => const Color(0xFF1E88E5), // srsExpert    — easy, mastered territory
   'N4' => const Color(0xFF43A047), // srsMastered
