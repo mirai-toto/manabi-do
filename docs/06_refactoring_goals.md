@@ -22,10 +22,10 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 
 #### ✅ Done
 - `practice_session_screen.dart` — extracted queue state, index, score counters, retry logic and SRS call into `PracticeSessionNotifier`
+- `vocabulary_screen.dart` — `allLoaded`/`sum` loop replaced by `vocabTotalCountProvider`
+- `vocab_level_view.dart` — `learnedCount` SRS filter replaced by `vocabGroupLearnedCountProvider`
 
 #### Screens with inline business logic
-- `vocabulary_screen.dart` — `allLoaded` flag and `sum` computed inline in `build()`; move to a provider selector
-- `vocab_level_view.dart` — `learnedCount` computed with SRS level checks inline in `build()`; move to a memoized provider
 - `kanji_detail_screen.dart` (`_KanjiSrsSection`) — manual `setState` with service calls in `initState`; move card state to a provider
 
 #### Services that mix too many concerns
