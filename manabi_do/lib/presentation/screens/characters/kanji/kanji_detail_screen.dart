@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart' hide Card;
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
@@ -102,35 +101,11 @@ class _KanjiBody extends StatelessWidget {
   }
 }
 
-class _KanjiSrsSection extends ConsumerStatefulWidget {
+class _KanjiSrsSection extends ConsumerWidget {
   final int kanjiId;
   const _KanjiSrsSection({required this.kanjiId});
 
-  @override
-  ConsumerState<_KanjiSrsSection> createState() => _KanjiSrsSectionState();
-}
-
-class _KanjiSrsSectionState extends ConsumerState<_KanjiSrsSection> {
-  Card? _card;
-  bool _loaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    final card = await srsService.getCard(ref, 'kanji', widget.kanjiId);
-    if (mounted) {
-      setState(() {
-        _card = card;
-        _loaded = true;
-      });
-    }
-  }
-
-  Future<void> _reset() async {
+  Future<void> _reset(BuildContext context, WidgetRef ref) async {
     final l = context.l10n;
     final confirmed = await showConfirmDialog(
       context,
@@ -138,14 +113,16 @@ class _KanjiSrsSectionState extends ConsumerState<_KanjiSrsSection> {
       body: l.resetKanaBody,
     );
     if (!confirmed) return;
-    await srsService.resetCard(ref, 'kanji', widget.kanjiId);
-    if (mounted) setState(() => _card = null);
+    await srsService.resetCard(ref, 'kanji', kanjiId);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
+    final srsCardsAsync = ref.watch(kanjiSrsCardsProvider);
+    final loaded = srsCardsAsync.asData != null;
+    final card = srsCardsAsync.asData?.value[kanjiId];
 
     return Column(
       children: [
@@ -156,8 +133,8 @@ class _KanjiSrsSectionState extends ConsumerState<_KanjiSrsSection> {
             color: t.surfaceContainer,
             borderRadius: BorderRadius.circular(AppDimens.radiusMd),
           ),
-          child: _loaded
-              ? ReviewProgressInfo(srsCard: _card)
+          child: loaded
+              ? ReviewProgressInfo(srsCard: card)
               : const Center(
                   child: SizedBox(
                     width: 20,
@@ -166,12 +143,12 @@ class _KanjiSrsSectionState extends ConsumerState<_KanjiSrsSection> {
                   ),
                 ),
         ),
-        if (_loaded && _card != null) ...[
+        if (loaded && card != null) ...[
           const SizedBox(height: AppDimens.spaceXs),
           SizedBox(
             width: double.infinity,
             child: TextButton.icon(
-              onPressed: _reset,
+              onPressed: () => _reset(context, ref),
               icon: Icon(Icons.restart_alt_rounded, size: 18, color: t.error),
               label: Text(
                 l.settingsResetProgress,

@@ -26,7 +26,7 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - `vocab_level_view.dart` — `learnedCount` SRS filter replaced by `vocabGroupLearnedCountProvider`
 
 #### Screens with inline business logic
-- `kanji_detail_screen.dart` (`_KanjiSrsSection`) — manual `setState` with service calls in `initState`; move card state to a provider
+- ✅ `kanji_detail_screen.dart` (`_KanjiSrsSection`) — converted to `ConsumerWidget` watching `kanjiSrsCardsProvider`; eliminated `initState`, `_load`, and local state
 
 #### Services that mix too many concerns
 - `vocab_session_service.dart` (345 lines) — DB queries + filtering + shuffling + settings reads + item building all in one class; split into focused collaborators
