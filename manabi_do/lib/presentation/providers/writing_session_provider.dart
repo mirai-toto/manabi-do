@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers/locale_provider.dart';
@@ -19,20 +20,11 @@ class WritingSessionArgs {
   bool operator ==(Object other) =>
       other is WritingSessionArgs &&
       other.level == level &&
-      _listEquals(other.kanjiIds, kanjiIds);
+      listEquals(other.kanjiIds, kanjiIds);
 
   @override
   int get hashCode =>
       Object.hash(level, kanjiIds == null ? null : Object.hashAll(kanjiIds!));
-
-  static bool _listEquals(List<int>? a, List<int>? b) {
-    if (a == null && b == null) return true;
-    if (a == null || b == null || a.length != b.length) return false;
-    for (var i = 0; i < a.length; i++) {
-      if (a[i] != b[i]) return false;
-    }
-    return true;
-  }
 }
 
 // ── Provider ──────────────────────────────────────────────────────────────────

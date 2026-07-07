@@ -33,7 +33,7 @@ class VocabLevelView extends ConsumerWidget {
 
     return switch (vocabAsync) {
       AsyncLoading() => const Center(child: CircularProgressIndicator()),
-      AsyncError(:final error) => Center(child: Text('Error: $error')),
+      AsyncError() => const SizedBox.shrink(),
       AsyncData(:final value) => _LevelContent(
         level: level,
         groupIndex: groupIndex,

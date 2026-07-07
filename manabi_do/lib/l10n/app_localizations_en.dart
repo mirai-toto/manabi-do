@@ -686,4 +686,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get nativeTranslationOnlySubtitle =>
       'Skip sentences with no translation in your language';
+
+  @override
+  String get japanese => 'Japanese';
+
+  @override
+  String get copy => 'Copy';
 }

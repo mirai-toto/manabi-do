@@ -309,5 +309,8 @@
   "translationModeOnDemand": "Bouton",
   "translationModeNever": "Jamais",
   "nativeTranslationOnlyLabel": "Ma langue uniquement",
-  "nativeTranslationOnlySubtitle": "Ignorer les phrases sans traduction dans votre langue"
+  "nativeTranslationOnlySubtitle": "Ignorer les phrases sans traduction dans votre langue",
+
+  "japanese": "Japonais",
+  "copy": "Copier"
 }
