@@ -6,7 +6,7 @@
  *   - Each individual lesson
  *
  * Usage:
- *   NODE_PATH=/tmp/pw-test/node_modules node scripts/screenshot_grammar.js [port]
+ *   NODE_PATH=scripts/pw/node_modules node scripts/screenshot_grammar.js [port]
  *
  * Requires the app to be built with _grammarEnabled = true and served on the given port.
  */
