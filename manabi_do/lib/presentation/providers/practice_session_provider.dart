@@ -1,3 +1,5 @@
+// Receives a pre-built item queue and tracks progress through it: current item,
+// got-it/not-yet score, and SRS result written to DB on each answer.
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
 

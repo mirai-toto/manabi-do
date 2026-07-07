@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart' hide Card;
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
-import '../../../core/srs/srs_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/vocab_list_provider.dart';
@@ -31,7 +29,6 @@ class VocabLevelView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final vocabAsync = ref.watch(vocabByLevelProvider(level));
-    final srsCards = ref.watch(vocabSrsCardsProvider).asData?.value ?? {};
     final color = levelColor(level);
 
     return switch (vocabAsync) {
@@ -45,7 +42,6 @@ class VocabLevelView extends ConsumerWidget {
             .skip(groupIndex * kVocabGroupSize)
             .take(kVocabGroupSize)
             .toList(),
-        srsCards: srsCards,
         onBack: onBack,
       ),
     };
@@ -57,7 +53,6 @@ class _LevelContent extends ConsumerWidget {
   final int groupIndex;
   final Color color;
   final List<VocabularyEntry> entries;
-  final Map<int, Card> srsCards;
   final VoidCallback onBack;
 
   const _LevelContent({
@@ -65,7 +60,6 @@ class _LevelContent extends ConsumerWidget {
     required this.groupIndex,
     required this.color,
     required this.entries,
-    required this.srsCards,
     required this.onBack,
   });
 
@@ -74,10 +68,9 @@ class _LevelContent extends ConsumerWidget {
     final t = context.tokens;
     final l = context.l10n;
 
-    final learnedCount = entries.where((e) {
-      final lvl = srsLevel(srsCards[e.id]);
-      return lvl != SrsLevel.newCard && lvl != SrsLevel.learning;
-    }).length;
+    final learnedCount = ref.watch(
+      vocabGroupLearnedCountProvider((level: level, groupIndex: groupIndex)),
+    );
 
     final groupIds = entries.map((e) => e.id).toSet();
     final start = groupIndex * kVocabGroupSize;

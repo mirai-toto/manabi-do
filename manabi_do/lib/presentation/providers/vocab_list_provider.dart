@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart';
 
 import '../../core/providers/srs_settings_provider.dart';
+import '../../core/srs/srs_level.dart';
 import '../../data/database/app_database.dart';
 import 'database_provider.dart';
 
@@ -15,6 +16,38 @@ final vocabByLevelProvider =
 final vocabSrsCardsProvider = StreamProvider<Map<int, Card>>(
   (ref) => ref.watch(databaseProvider).watchAllSrsCardsForType('vocabulary'),
 );
+
+/// Total vocab count across all JLPT levels; null while any level is still loading.
+const _allLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
+
+final vocabTotalCountProvider = Provider<int?>((ref) {
+  var sum = 0;
+  for (final lvl in _allLevels) {
+    final data = ref.watch(vocabByLevelProvider(lvl)).asData?.value;
+    if (data == null) return null;
+    sum += data.length;
+  }
+  return sum;
+});
+
+/// How many vocab entries in the given group have been learned (past new/learning).
+final vocabGroupLearnedCountProvider =
+    Provider.family<int, ({String level, int groupIndex})>((ref, args) {
+      final entries =
+          ref
+              .watch(vocabByLevelProvider(args.level))
+              .asData
+              ?.value
+              .skip(args.groupIndex * kVocabGroupSize)
+              .take(kVocabGroupSize)
+              .toList() ??
+          [];
+      final srsCards = ref.watch(vocabSrsCardsProvider).asData?.value ?? {};
+      return entries.where((e) {
+        final lvl = srsLevel(srsCards[e.id]);
+        return lvl != SrsLevel.newCard && lvl != SrsLevel.learning;
+      }).length;
+    });
 
 /// Returns (reviewCount, newCount) for the given vocab group.
 final vocabGroupSrsCountProvider =
