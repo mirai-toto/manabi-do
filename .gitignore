@@ -21,3 +21,6 @@ manabi_do/tool/data/
 
 # Screenshots — local only
 screenshots/
+
+# Playwright install (auto-installed by scripts/setup/setup.sh)
+scripts/pw/
