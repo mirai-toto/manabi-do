@@ -24,7 +24,7 @@ class SegmentedTabBar extends StatelessWidget {
         AppDimens.spaceSm,
       ),
       child: Container(
-        padding: const EdgeInsets.all(4),
+        padding: const EdgeInsets.all(AppDimens.spaceXs),
         decoration: BoxDecoration(
           color: t.surfaceContainer,
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),

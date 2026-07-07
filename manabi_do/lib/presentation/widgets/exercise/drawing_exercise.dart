@@ -111,180 +111,186 @@ class _DrawingExerciseState extends ConsumerState<DrawingExercise>
             ),
           ),
           const SizedBox(height: AppDimens.spaceSm),
-          if (!_done) ...[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton.icon(
-                  onPressed: _strokes.isEmpty
-                      ? null
-                      : () => _canvasKey.currentState?.undo(),
-                  icon: const Icon(Icons.undo_rounded, size: 16),
-                  label: Text(l.drawingUndo),
-                ),
-                const SizedBox(width: AppDimens.spaceSm),
-                TextButton.icon(
-                  onPressed: _strokes.isEmpty
-                      ? null
-                      : () => _canvasKey.currentState?.clear(),
-                  icon: const Icon(Icons.delete_outline_rounded, size: 16),
-                  label: Text(l.drawingClear),
-                ),
-                if (!s.ghostKanji) ...[
-                  const SizedBox(width: AppDimens.spaceSm),
-                  TextButton.icon(
-                    onPressed: _done ? null : _onHint,
-                    icon: const Icon(Icons.help_outline_rounded, size: 16),
-                    label: Text(_hintLevel == 0 ? '?' : '??'),
-                    style: _hintsUsed
-                        ? TextButton.styleFrom(foregroundColor: t.hintStroke)
-                        : null,
-                  ),
-                ],
-              ],
+          if (!_done)
+            _buildActiveControls(context, s)
+          else
+            _buildDoneArea(context, s),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActiveControls(BuildContext context, DrawingSettings s) {
+    final l = context.l10n;
+    final t = context.tokens;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton.icon(
+          onPressed: _strokes.isEmpty
+              ? null
+              : () => _canvasKey.currentState?.undo(),
+          icon: const Icon(Icons.undo_rounded, size: 16),
+          label: Text(l.drawingUndo),
+        ),
+        const SizedBox(width: AppDimens.spaceSm),
+        TextButton.icon(
+          onPressed: _strokes.isEmpty
+              ? null
+              : () => _canvasKey.currentState?.clear(),
+          icon: const Icon(Icons.delete_outline_rounded, size: 16),
+          label: Text(l.drawingClear),
+        ),
+        if (!s.ghostKanji) ...[
+          const SizedBox(width: AppDimens.spaceSm),
+          TextButton.icon(
+            onPressed: _onHint,
+            icon: const Icon(Icons.help_outline_rounded, size: 16),
+            label: Text(_hintLevel == 0 ? '?' : '??'),
+            style: _hintsUsed
+                ? TextButton.styleFrom(foregroundColor: t.hintStroke)
+                : null,
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildDoneArea(BuildContext context, DrawingSettings s) {
+    final l = context.l10n;
+    final t = context.tokens;
+    final refStrokes = widget.referenceStrokes;
+    final showSrsActions =
+        widget.onRate != null &&
+        !_hintsUsed &&
+        !(widget.isFreeMode &&
+            ref.read(drawingSettingsProvider).autoAdvance &&
+            _done);
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (_hintsUsed)
+          Text(
+            l.hintUsedFeedback,
+            style: AppTextStyles.body.copyWith(
+              color: t.error,
+              fontWeight: FontWeight.w600,
             ),
-          ] else ...[
-            if (_hintsUsed) ...[
-              Text(
-                l.hintUsedFeedback,
-                style: AppTextStyles.body.copyWith(
-                  color: t.error,
-                  fontWeight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ] else ...[
-              Text(
-                l.drawingStrokeResult(_mistakeCount, refStrokes.length),
-                style: AppTextStyles.body.copyWith(
-                  color: _allCorrect ? t.success : t.error,
-                  fontWeight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              if (!_allCorrect) ...[
-                const SizedBox(height: AppDimens.spaceSm),
-                Center(
-                  child: StrokeOrderAnimator(
-                    kanjiId: widget.kanjiId,
-                    size: 120,
-                  ),
-                ),
-              ],
-            ],
+            textAlign: TextAlign.center,
+          )
+        else ...[
+          Text(
+            l.drawingStrokeResult(_mistakeCount, refStrokes.length),
+            style: AppTextStyles.body.copyWith(
+              color: _allCorrect ? t.success : t.error,
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          if (!_allCorrect) ...[
             const SizedBox(height: AppDimens.spaceSm),
-            if (widget.onRate != null &&
-                !_hintsUsed &&
-                !(widget.isFreeMode &&
-                    ref.read(drawingSettingsProvider).autoAdvance &&
-                    _done)) ...[
-              FlashCardActions(
-                card: widget.card,
-                question: widget.question,
-                onRate: widget.onRate!,
-              ),
-              const SizedBox(height: AppDimens.spaceSm),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton.icon(
-                    onPressed: _reset,
-                    icon: const Icon(Icons.replay_rounded, size: 16),
-                    label: Text(l.retry),
-                    style: TextButton.styleFrom(
-                      foregroundColor: t.onSurfaceVariant,
-                    ),
-                  ),
-                  if (widget.onDetailTap != null) ...[
-                    const SizedBox(width: AppDimens.spaceSm),
-                    TextButton.icon(
-                      onPressed: widget.onDetailTap,
-                      icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                      label: Text(l.viewDetail),
-                      style: TextButton.styleFrom(
-                        foregroundColor: t.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ] else if (widget.onRate == null) ...[
-              if (widget.onNext != null) ...[
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton(
-                        onPressed: _reset,
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: AppDimens.spaceMd,
-                          ),
-                          side: BorderSide(color: widget.color),
-                          foregroundColor: widget.color,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                              AppDimens.radiusMd,
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          l.retry,
-                          style: AppTextStyles.body.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: AppDimens.spaceSm),
-                    Expanded(
-                      child: FilledButton(
-                        onPressed: widget.onNext,
-                        style: FilledButton.styleFrom(
-                          backgroundColor: widget.color,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: AppDimens.spaceMd,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                              AppDimens.radiusMd,
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          l.next,
-                          style: AppTextStyles.body.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ] else ...[
-                FilledButton(
-                  onPressed: _reset,
-                  style: FilledButton.styleFrom(
-                    backgroundColor: widget.color,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: AppDimens.spaceMd,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-                    ),
-                  ),
-                  child: Text(
-                    l.retry,
-                    style: AppTextStyles.body.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
-            ],
+            Center(
+              child: StrokeOrderAnimator(kanjiId: widget.kanjiId, size: 120),
+            ),
           ],
         ],
+        const SizedBox(height: AppDimens.spaceSm),
+        if (showSrsActions) ...[
+          FlashCardActions(
+            card: widget.card,
+            question: widget.question,
+            onRate: widget.onRate!,
+          ),
+          const SizedBox(height: AppDimens.spaceSm),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton.icon(
+                onPressed: _reset,
+                icon: const Icon(Icons.replay_rounded, size: 16),
+                label: Text(l.retry),
+                style: TextButton.styleFrom(
+                  foregroundColor: t.onSurfaceVariant,
+                ),
+              ),
+              if (widget.onDetailTap != null) ...[
+                const SizedBox(width: AppDimens.spaceSm),
+                TextButton.icon(
+                  onPressed: widget.onDetailTap,
+                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                  label: Text(l.viewDetail),
+                  style: TextButton.styleFrom(
+                    foregroundColor: t.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ] else if (widget.onRate == null)
+          _buildWritingModeActions(context),
+      ],
+    );
+  }
+
+  Widget _buildWritingModeActions(BuildContext context) {
+    final l = context.l10n;
+    final retryStyle = OutlinedButton.styleFrom(
+      padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+      side: BorderSide(color: widget.color),
+      foregroundColor: widget.color,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+      ),
+    );
+    final nextStyle = FilledButton.styleFrom(
+      backgroundColor: widget.color,
+      padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+      ),
+    );
+
+    if (widget.onNext != null) {
+      return Row(
+        children: [
+          Expanded(
+            child: OutlinedButton(
+              onPressed: _reset,
+              style: retryStyle,
+              child: Text(
+                l.retry,
+                style: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+          const SizedBox(width: AppDimens.spaceSm),
+          Expanded(
+            child: FilledButton(
+              onPressed: widget.onNext,
+              style: nextStyle,
+              child: Text(
+                l.next,
+                style: AppTextStyles.body.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
+    return FilledButton(
+      onPressed: _reset,
+      style: nextStyle,
+      child: Text(
+        l.retry,
+        style: AppTextStyles.body.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }

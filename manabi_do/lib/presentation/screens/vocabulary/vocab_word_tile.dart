@@ -69,7 +69,7 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
                   ),
                 ],
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: AppDimens.spaceXxs),
               GestureDetector(
                 onTap: overflows
                     ? () => setState(() => _expanded = !_expanded)

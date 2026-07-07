@@ -32,7 +32,7 @@ class GrammarChapterList extends ConsumerWidget {
     final title = level == 'basics'
         ? l.japaneseBasics
         : levelLabel(level, context);
-    final color = _levelColor(level);
+    final color = levelColor(level);
 
     return chaptersAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -79,10 +79,5 @@ class GrammarChapterList extends ConsumerWidget {
         },
       ),
     );
-  }
-
-  Color _levelColor(String level) {
-    if (level == 'basics') return const Color(0xFF795548);
-    return levelColor(level);
   }
 }

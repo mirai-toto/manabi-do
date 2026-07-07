@@ -24,3 +24,4 @@ screenshots/
 
 # Playwright install (auto-installed by scripts/setup/setup.sh)
 scripts/pw/
+node_modules/

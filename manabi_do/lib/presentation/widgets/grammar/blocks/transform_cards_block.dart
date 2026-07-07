@@ -38,6 +38,7 @@ class TransformRow {
 class TransformGroup {
   final String label;
   final String? tag;
+  final String? description;
   final String? rule;
   final List<TransformRow> rows;
   final String? note;
@@ -45,6 +46,7 @@ class TransformGroup {
   const TransformGroup({
     required this.label,
     this.tag,
+    this.description,
     this.rule,
     required this.rows,
     this.note,
@@ -53,6 +55,7 @@ class TransformGroup {
   factory TransformGroup.fromJson(Map<String, dynamic> d) => TransformGroup(
     label: d['label'] as String,
     tag: d['tag'] as String?,
+    description: d['description'] as String?,
     rule: d['rule'] as String?,
     rows: (d['rows'] as List<dynamic>)
         .map((r) => TransformRow.fromJson(Map<String, dynamic>.from(r)))
@@ -81,7 +84,12 @@ class TransformCardsBlock extends StatelessWidget {
     final t = context.tokens;
     final items = <Widget>[];
     for (int i = 0; i < groups.length; i++) {
+      if (i > 0) items.add(const SizedBox(height: AppDimens.spaceLg));
       final group = groups[i];
+      if (group.description != null) {
+        items.add(_GroupHeading(group: group, tokens: t));
+        items.add(const SizedBox(height: AppDimens.spaceSm));
+      }
       items.add(_GroupCard(group: group, accentColor: color));
       if (group.note != null) {
         items.add(
@@ -91,11 +99,25 @@ class TransformCardsBlock extends StatelessWidget {
           ),
         );
       }
-      if (i < groups.length - 1) {
-        items.add(const SizedBox(height: AppDimens.spaceSm));
-      }
     }
     return Column(mainAxisSize: MainAxisSize.min, children: items);
+  }
+}
+
+class _GroupHeading extends StatelessWidget {
+  final TransformGroup group;
+  final AppTokens tokens;
+
+  const _GroupHeading({required this.group, required this.tokens});
+
+  @override
+  Widget build(BuildContext context) {
+    final description = group.description;
+    if (description == null) return const SizedBox.shrink();
+    return Text(
+      description,
+      style: AppTextStyles.bodySmall.copyWith(color: tokens.onSurfaceVariant),
+    );
   }
 }
 
@@ -113,7 +135,6 @@ class _GroupCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header + rule — padded, divider stretches full width below
           Padding(
             padding: const EdgeInsets.fromLTRB(
               AppDimens.spaceMd,
@@ -133,9 +154,9 @@ class _GroupCard extends StatelessWidget {
                       background: accentColor,
                     ),
                     if (group.tag != null) ...[
-                      const SizedBox(width: AppDimens.spaceXs),
+                      const SizedBox(width: AppDimens.spaceSm),
                       Text(
-                        '· ${group.tag}',
+                        group.tag!,
                         style: AppTextStyles.labelSmall.copyWith(
                           color: t.onSurfaceVariant,
                         ),
@@ -154,7 +175,7 @@ class _GroupCard extends StatelessWidget {
                     ),
                   ),
                 ],
-                const SizedBox(height: 8),
+                const SizedBox(height: AppDimens.spaceSm),
               ],
             ),
           ),
@@ -283,11 +304,11 @@ class _TransformRowWidget extends StatelessWidget {
                   text: TextSpan(children: _resultSpans(jpNormal, jpAccent)),
                 ),
                 if (row.romaji != null) ...[
-                  const SizedBox(height: 4),
+                  const SizedBox(height: AppDimens.spaceXs),
                   Text(row.romaji!, style: romajiStyle),
                 ],
                 if (row.english != null) ...[
-                  const SizedBox(height: 2),
+                  const SizedBox(height: AppDimens.spaceXxs),
                   Text(row.english!, style: englishStyle),
                 ],
               ],

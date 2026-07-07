@@ -4,6 +4,7 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 
+import '../../core/models/mcq_settings.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
 import '../../core/theme/jlpt_level.dart';
@@ -39,6 +40,7 @@ class KanjiSessionService {
       _ => mcqSettings.sessionLength,
     };
 
+    // Fetch pairs: (kanji, SRS card) for the items to quiz on.
     final List<(Kanji, Card?)> pairs;
     if (freeMode) {
       final all = await db.getKanjiByLevel(level);
@@ -56,19 +58,19 @@ class KanjiSessionService {
         level,
         newCardLimit: settings.newCharactersPerDay,
       );
-      final filteredPairs = allowedIds != null
+      final filtered = allowedIds != null
           ? allPairs.where((p) => allowedIds.contains(p.$1.id)).toList()
           : allPairs;
       pairs = sessionLimit != null
-          ? filteredPairs.take(sessionLimit).toList()
-          : filteredPairs;
+          ? filtered.take(sessionLimit).toList()
+          : filtered;
     }
 
+    // Pool (for MCQ distractors) and translations.
     final allPool = await db.getKanjiByLevel(level);
     final pool = allowedIds != null
         ? allPool.where((k) => allowedIds.contains(k.id)).toList()
         : allPool;
-
     final allIds = [...pairs.map((p) => p.$1.id), ...pool.map((k) => k.id)];
     final kanjiTranslations = locale != 'en'
         ? await db.getKanjiTranslations(allIds.toSet().toList(), locale)
@@ -89,98 +91,144 @@ class KanjiSessionService {
     return pairs.map((pair) {
       final (kanji, card) = pair;
       final type = availableTypes[rng.nextInt(availableTypes.length)];
-
-      if (type == _QuizType.flashcard) {
-        return PracticeItem(
-          id: kanji.id,
-          srsType: 'kanji',
+      return switch (type) {
+        _QuizType.flashcard => _buildFlashcardItem(
+          kanji: kanji,
           card: card,
-          buildBody: (index, total, onAnswer) => Builder(
-            builder: (ctx) => PracticeFlashcardBody(
-              japanese: kanji.character,
-              answer: meaningOf(kanji),
-              isFreeMode: freeMode,
-              card: card,
-              index: index,
-              total: total,
-              color: color,
-              onAnswer: onAnswer,
-              onDetailTap: () => Navigator.of(ctx).push(
-                MaterialPageRoute(
-                  builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-                ),
-              ),
-            ),
-          ),
-        );
-      }
-
-      if (type == _QuizType.drawing) {
-        return PracticeItem(
-          id: kanji.id,
-          srsType: 'kanji',
+          color: color,
+          freeMode: freeMode,
+          meaningOf: meaningOf,
+        ),
+        _QuizType.drawing => _buildDrawingItem(
+          kanji: kanji,
           card: card,
-          buildBody: (index, total, onAnswer) => Builder(
-            builder: (ctx) => KanjiDrawingBody(
-              kanji: kanji,
-              meaning: meaningOf(kanji),
-              card: card,
-              isFreeMode: freeMode,
-              index: index,
-              total: total,
-              color: color,
-              onAnswer: onAnswer,
-              onDetailTap: () => Navigator.of(ctx).push(
-                MaterialPageRoute(
-                  builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-                ),
-              ),
-            ),
-          ),
-        );
-      }
+          color: color,
+          freeMode: freeMode,
+          meaningOf: meaningOf,
+        ),
+        _QuizType.kanjiToMeaning || _QuizType.meaningToKanji => _buildMcqItem(
+          kanji: kanji,
+          card: card,
+          color: color,
+          pool: pool,
+          freeMode: freeMode,
+          isKanjiToMeaning: type == _QuizType.kanjiToMeaning,
+          mcqSettings: mcqSettings,
+          meaningOf: meaningOf,
+          rng: rng,
+        ),
+      };
+    }).toList();
+  }
 
-      // MCQ: kanjiToMeaning or meaningToKanji
-      final isKanjiToMeaning = type == _QuizType.kanjiToMeaning;
-      final kanjiMcq = buildKanjiMcqOptions(
-        target: kanji,
-        pool: pool,
-        n: mcqSettings.mcqChoiceCount,
-        isKanjiToMeaning: isKanjiToMeaning,
-        meaningOf: meaningOf,
-        rng: rng,
-      );
-      final mcqOptions = kanjiMcq.options;
-      final correctIndex = kanjiMcq.correctIndex;
-
-      return PracticeItem(
-        id: kanji.id,
-        srsType: 'kanji',
-        card: card,
-        buildBody: (index, total, onAnswer) => Builder(
-          builder: (ctx) => PracticeMcqBody(
-            question: isKanjiToMeaning
-                ? ctx.l10n.mcqSelectMeaning
-                : ctx.l10n.mcqSelectKanji(meaningOf(kanji)),
-            japanesePrompt: isKanjiToMeaning ? kanji.character : null,
-            options: mcqOptions,
-            correctIndex: correctIndex,
-            isFreeMode: freeMode,
-            card: card,
-            index: index,
-            total: total,
-            color: color,
-            onAnswer: onAnswer,
-            onDetailTap: () => Navigator.of(ctx).push(
-              MaterialPageRoute(
-                builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-              ),
+  PracticeItem _buildFlashcardItem({
+    required Kanji kanji,
+    required Card? card,
+    required Color color,
+    required bool freeMode,
+    required String Function(Kanji) meaningOf,
+  }) {
+    return PracticeItem(
+      id: kanji.id,
+      srsType: 'kanji',
+      card: card,
+      buildBody: (index, total, onAnswer) => Builder(
+        builder: (ctx) => PracticeFlashcardBody(
+          japanese: kanji.character,
+          answer: meaningOf(kanji),
+          isFreeMode: freeMode,
+          card: card,
+          index: index,
+          total: total,
+          color: color,
+          onAnswer: onAnswer,
+          onDetailTap: () => Navigator.of(ctx).push(
+            MaterialPageRoute(
+              builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
             ),
-            compactGrid: !isKanjiToMeaning,
           ),
         ),
-      );
-    }).toList();
+      ),
+    );
+  }
+
+  PracticeItem _buildDrawingItem({
+    required Kanji kanji,
+    required Card? card,
+    required Color color,
+    required bool freeMode,
+    required String Function(Kanji) meaningOf,
+  }) {
+    return PracticeItem(
+      id: kanji.id,
+      srsType: 'kanji',
+      card: card,
+      buildBody: (index, total, onAnswer) => Builder(
+        builder: (ctx) => KanjiDrawingBody(
+          kanji: kanji,
+          meaning: meaningOf(kanji),
+          card: card,
+          isFreeMode: freeMode,
+          index: index,
+          total: total,
+          color: color,
+          onAnswer: onAnswer,
+          onDetailTap: () => Navigator.of(ctx).push(
+            MaterialPageRoute(
+              builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  PracticeItem _buildMcqItem({
+    required Kanji kanji,
+    required Card? card,
+    required Color color,
+    required List<Kanji> pool,
+    required bool freeMode,
+    required bool isKanjiToMeaning,
+    required McqSettings mcqSettings,
+    required String Function(Kanji) meaningOf,
+    required Random rng,
+  }) {
+    final kanjiMcq = buildKanjiMcqOptions(
+      target: kanji,
+      pool: pool,
+      n: mcqSettings.mcqChoiceCount,
+      isKanjiToMeaning: isKanjiToMeaning,
+      meaningOf: meaningOf,
+      rng: rng,
+    );
+    return PracticeItem(
+      id: kanji.id,
+      srsType: 'kanji',
+      card: card,
+      buildBody: (index, total, onAnswer) => Builder(
+        builder: (ctx) => PracticeMcqBody(
+          question: isKanjiToMeaning
+              ? ctx.l10n.mcqSelectMeaning
+              : ctx.l10n.mcqSelectKanji(meaningOf(kanji)),
+          japanesePrompt: isKanjiToMeaning ? kanji.character : null,
+          options: kanjiMcq.options,
+          correctIndex: kanjiMcq.correctIndex,
+          isFreeMode: freeMode,
+          card: card,
+          index: index,
+          total: total,
+          color: color,
+          onAnswer: onAnswer,
+          onDetailTap: () => Navigator.of(ctx).push(
+            MaterialPageRoute(
+              builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
+            ),
+          ),
+          compactGrid: !isKanjiToMeaning,
+        ),
+      ),
+    );
   }
 }
 

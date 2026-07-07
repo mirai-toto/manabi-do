@@ -21,18 +21,10 @@ class VocabularyScreen extends ConsumerWidget {
     final selectedLevel = ref.watch(vocabSelectedLevelProvider);
     final selectedGroup = ref.watch(vocabSelectedGroupProvider);
 
-    const levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
-    var allLoaded = true;
-    var sum = 0;
-    for (final lvl in levels) {
-      final data = ref.watch(vocabByLevelProvider(lvl)).asData?.value;
-      if (data == null) {
-        allLoaded = false;
-        break;
-      }
-      sum += data.length;
-    }
-    final subtitle = allLoaded ? l.vocabSubtitle(sum) : l.vocabSubtitleShort;
+    final total = ref.watch(vocabTotalCountProvider);
+    final subtitle = total != null
+        ? l.vocabSubtitle(total)
+        : l.vocabSubtitleShort;
 
     Widget body;
     if (selectedLevel == null) {

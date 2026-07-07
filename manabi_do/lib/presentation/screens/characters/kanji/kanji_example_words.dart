@@ -125,7 +125,7 @@ class _WordRow extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: AppDimens.spaceXxs),
               Text(
                 posLabel(entry.partOfSpeech, context),
                 style: AppTextStyles.labelSmall.copyWith(
@@ -160,7 +160,7 @@ class _WordLabel extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 2),
+        const SizedBox(height: AppDimens.spaceXxs),
         Text(
           reading,
           style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),

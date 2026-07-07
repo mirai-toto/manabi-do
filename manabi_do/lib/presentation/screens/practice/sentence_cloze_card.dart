@@ -167,7 +167,7 @@ class SentenceClozeCard extends StatelessWidget {
                         size: 14,
                         color: showTranslation ? color : t.onSurfaceVariant,
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: AppDimens.spaceXs),
                       Text(
                         showTranslation ? 'Hide' : 'Translation',
                         style: AppTextStyles.labelSmall.copyWith(
@@ -242,6 +242,7 @@ class SentenceClozeCard extends StatelessWidget {
   }
 
   void _showCopyDialog(BuildContext context, AppTokens t) {
+    final l = context.l10n;
     final japaneseText = answered
         ? sentence.japanese
         : sentence.japanese.replaceFirst(sentence.targetWord, '___');
@@ -260,7 +261,7 @@ class SentenceClozeCard extends StatelessWidget {
               Icon(Icons.copy_rounded, size: 18, color: t.onSurfaceVariant),
               const SizedBox(width: AppDimens.spaceXs),
               Text(
-                'Copy',
+                l.copy,
                 style: AppTextStyles.title.copyWith(color: t.onSurface),
               ),
             ],
@@ -270,14 +271,14 @@ class SentenceClozeCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _CopyOption(
-                label: 'Japanese',
+                label: l.japanese,
                 preview: japaneseText,
                 onTap: () => copy(japaneseText),
                 t: t,
               ),
               if (translation != null)
                 _CopyOption(
-                  label: 'Translation',
+                  label: l.translationModeLabel,
                   preview: translation!,
                   onTap: () => copy(translation!),
                   t: t,
@@ -287,7 +288,7 @@ class SentenceClozeCard extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(ctx).pop(),
-              child: const Text('Cancel'),
+              child: Text(l.cancel),
             ),
           ],
         );
@@ -331,7 +332,7 @@ class _CopyOption extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: AppDimens.spaceXxs),
                   Text(
                     preview,
                     style: AppTextStyles.body.copyWith(color: t.onSurface),

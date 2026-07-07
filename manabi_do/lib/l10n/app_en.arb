@@ -318,5 +318,8 @@
   "translationModeOnDemand": "Button",
   "translationModeNever": "Never",
   "nativeTranslationOnlyLabel": "My language only",
-  "nativeTranslationOnlySubtitle": "Skip sentences with no translation in your language"
+  "nativeTranslationOnlySubtitle": "Skip sentences with no translation in your language",
+
+  "japanese": "Japanese",
+  "copy": "Copy"
 }

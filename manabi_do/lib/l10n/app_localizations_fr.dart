@@ -691,4 +691,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get nativeTranslationOnlySubtitle =>
       'Ignorer les phrases sans traduction dans votre langue';
+
+  @override
+  String get japanese => 'Japonais';
+
+  @override
+  String get copy => 'Copier';
 }

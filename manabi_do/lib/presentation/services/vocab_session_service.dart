@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/models/mcq_settings.dart';
+import '../../core/models/sentence_settings.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
 import '../../core/theme/jlpt_level.dart';
@@ -32,25 +34,21 @@ class VocabSessionService {
     final locale = ref.read(localeProvider).languageCode;
     final color = levelColor(level);
     final rng = Random();
-    final flashcardSettings = ref.read(flashcardSettingsProvider);
     final mcqSettings = ref.read(mcqSettingsProvider);
     final sentenceSettings = ref.read(sentenceSettingsProvider);
+    final flashcardSettings = ref.read(flashcardSettingsProvider);
 
-    final bool useFreeModeLoading = freeMode || mcqOnly || flashcardOnly;
+    final int? sessionLimit = sentenceOnly
+        ? sentenceSettings.sessionLength
+        : mcqOnly
+        ? mcqSettings.sessionLength
+        : flashcardSettings.sessionLength;
 
-    final int? sessionLimit;
-    if (mcqOnly) {
-      sessionLimit = mcqSettings.sessionLength;
-    } else if (flashcardOnly) {
-      sessionLimit = flashcardSettings.sessionLength;
-    } else if (sentenceOnly) {
-      sessionLimit = sentenceSettings.sessionLength;
-    } else {
-      sessionLimit = flashcardSettings.sessionLength;
-    }
-
+    // Fetch pairs: (entry, SRS card) for the items to quiz on.
     final List<(VocabularyEntry, dynamic)> pairs;
-    if (useFreeModeLoading) {
+    if (sentenceOnly) {
+      pairs = [];
+    } else if (freeMode || mcqOnly || flashcardOnly) {
       final all = await db.getVocabByLevel(level);
       final filtered = allowedIds != null
           ? all.where((v) => allowedIds.contains(v.id)).toList()
@@ -60,8 +58,6 @@ class VocabSessionService {
           ? filtered.take(sessionLimit).toList()
           : filtered;
       pairs = limited.map((v) => (v, null)).toList();
-    } else if (sentenceOnly) {
-      pairs = [];
     } else {
       final settings = await ref.read(srsSettingsProvider.future);
       final allPairs = await db.getVocabSrsSession(
@@ -76,13 +72,13 @@ class VocabSessionService {
           : filtered;
     }
 
+    // Pool (for MCQ distractors) and translations — shared across all modes.
     final allPool = await db.getVocabByLevel(level);
     final pool = allowedIds != null
         ? allPool.where((v) => allowedIds.contains(v.id)).toList()
         : allPool;
-    final poolIds = pool.map((v) => v.id).toList();
     final translations = locale != 'en'
-        ? await db.getVocabTranslations(poolIds, locale)
+        ? await db.getVocabTranslations(pool.map((v) => v.id).toList(), locale)
         : <int, String>{};
 
     String meaningOf(VocabularyEntry v) =>
@@ -91,137 +87,134 @@ class VocabSessionService {
         : v.meaning;
 
     if (flashcardOnly) {
-      return pairs.map((pair) {
-        final (entry, card) = pair;
-        final isReversed = rng.nextBool();
-        return PracticeItem(
-          id: entry.id,
-          srsType: 'vocabulary',
+      return _buildFlashcardItems(
+        pairs: pairs,
+        color: color,
+        rng: rng,
+        isFreeMode: true,
+        meaningOf: meaningOf,
+      );
+    }
+    if (sentenceOnly) {
+      return _buildSentenceItems(
+        db: db,
+        pool: pool,
+        color: color,
+        locale: locale,
+        rng: rng,
+        sessionLimit: sessionLimit,
+        sentenceSettings: sentenceSettings,
+      );
+    }
+    if (mcqOnly) {
+      return _buildMcqItems(
+        pairs: pairs,
+        pool: pool,
+        color: color,
+        rng: rng,
+        mcqSettings: mcqSettings,
+        isFreeMode: true,
+        meaningOf: meaningOf,
+      );
+    }
+    return _buildMixedItems(
+      db: db,
+      pairs: pairs,
+      pool: pool,
+      color: color,
+      locale: locale,
+      rng: rng,
+      freeMode: freeMode,
+      mcqSettings: mcqSettings,
+      sentenceSettings: sentenceSettings,
+      meaningOf: meaningOf,
+    );
+  }
+
+  List<PracticeItem> _buildFlashcardItems({
+    required List<(VocabularyEntry, dynamic)> pairs,
+    required Color color,
+    required Random rng,
+    required bool isFreeMode,
+    required String Function(VocabularyEntry) meaningOf,
+  }) {
+    return pairs.map((pair) {
+      final (entry, card) = pair;
+      final isReversed = rng.nextBool();
+      return PracticeItem(
+        id: entry.id,
+        srsType: 'vocabulary',
+        card: card,
+        buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+          japanese: entry.word,
+          label: entry.reading != entry.word ? entry.reading : null,
+          answer: meaningOf(entry),
+          isReversed: isReversed,
+          isFreeMode: isFreeMode,
           card: card,
-          buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
-            japanese: entry.word,
-            label: entry.reading != entry.word ? entry.reading : null,
-            answer: meaningOf(entry),
-            isReversed: isReversed,
-            isFreeMode: true,
+          index: index,
+          total: total,
+          color: color,
+          onAnswer: onAnswer,
+        ),
+      );
+    }).toList();
+  }
+
+  List<PracticeItem> _buildMcqItems({
+    required List<(VocabularyEntry, dynamic)> pairs,
+    required List<VocabularyEntry> pool,
+    required Color color,
+    required Random rng,
+    required McqSettings mcqSettings,
+    required bool isFreeMode,
+    required String Function(VocabularyEntry) meaningOf,
+  }) {
+    return pairs.map((pair) {
+      final (entry, card) = pair;
+      final vocabMcq = buildVocabMcqOptions(
+        target: entry,
+        pool: pool,
+        n: mcqSettings.mcqChoiceCount,
+        meaningOf: meaningOf,
+        rng: rng,
+      );
+      return PracticeItem(
+        id: entry.id,
+        srsType: 'vocabulary',
+        card: card,
+        buildBody: (index, total, onAnswer) => Builder(
+          builder: (context) => PracticeMcqBody(
+            question: context.l10n.mcqSelectWordMeaning,
+            japanesePrompt: entry.word,
+            japaneseReading: entry.reading != entry.word ? entry.reading : null,
+            options: vocabMcq.options,
+            correctIndex: vocabMcq.correctIndex,
+            isFreeMode: isFreeMode,
             card: card,
             index: index,
             total: total,
             color: color,
             onAnswer: onAnswer,
           ),
-        );
-      }).toList();
-    }
-
-    if (sentenceOnly) {
-      final nativeOnly =
-          sentenceSettings.nativeTranslationOnly && locale != 'en';
-      final all = await db.getVocabByLevel(level);
-      final filtered = allowedIds != null
-          ? all.where((v) => allowedIds.contains(v.id)).toList()
-          : all;
-      final allIds = filtered.map((v) => v.id).toList();
-      final allSentencesByVocabId = await db.getSentencesBatch(allIds);
-      final allSentenceIds = allSentencesByVocabId.values
-          .expand((list) => list)
-          .map((s) => s.id)
-          .toList();
-      final sentenceTranslations = await db.getSentenceTranslations(
-        allSentenceIds,
-        locale,
-        nativeOnly: nativeOnly,
+        ),
       );
-      final withSentences = filtered.where((v) {
-        final ss = allSentencesByVocabId[v.id] ?? [];
-        if (ss.isEmpty) return false;
-        if (nativeOnly) {
-          return ss.any((s) => sentenceTranslations.containsKey(s.id));
-        }
-        return true;
-      }).toList()..shuffle(rng);
-      final limited = sessionLimit != null
-          ? withSentences.take(sessionLimit).toList()
-          : withSentences;
-      return limited.map((entry) {
-        final allEntSentences = allSentencesByVocabId[entry.id]!;
-        final sentences = nativeOnly
-            ? allEntSentences
-                  .where((s) => sentenceTranslations.containsKey(s.id))
-                  .toList()
-            : allEntSentences;
-        final sentence = sentences[rng.nextInt(sentences.length)];
-        final translation = sentenceTranslations[sentence.id];
-        final cloze = buildClozeOptions(
-          target: entry,
-          pool: pool,
-          n: sentenceSettings.mcqChoiceCount,
-          rng: rng,
-        );
-        final clozeOptions = cloze.options;
-        final correctIndex = cloze.correctIndex;
-        return PracticeItem(
-          id: entry.id,
-          srsType: 'vocabulary',
-          card: null,
-          buildBody: (index, total, onAnswer) => SentenceClozeBody(
-            sentence: sentence,
-            translation: translation,
-            targetReading: entry.reading,
-            options: clozeOptions,
-            correctIndex: correctIndex,
-            isFreeMode: true,
-            card: null,
-            index: index,
-            total: total,
-            color: color,
-            onAnswer: onAnswer,
-          ),
-        );
-      }).toList();
-    }
+    }).toList();
+  }
 
-    if (mcqOnly) {
-      return pairs.map((pair) {
-        final (entry, card) = pair;
-        final vocabMcq = buildVocabMcqOptions(
-          target: entry,
-          pool: pool,
-          n: mcqSettings.mcqChoiceCount,
-          meaningOf: meaningOf,
-          rng: rng,
-        );
-        final mcqOptions = vocabMcq.options;
-        final correctIndex = vocabMcq.correctIndex;
-        return PracticeItem(
-          id: entry.id,
-          srsType: 'vocabulary',
-          card: card,
-          buildBody: (index, total, onAnswer) => Builder(
-            builder: (context) => PracticeMcqBody(
-              question: context.l10n.mcqSelectWordMeaning,
-              japanesePrompt: entry.word,
-              japaneseReading: entry.reading != entry.word
-                  ? entry.reading
-                  : null,
-              options: mcqOptions,
-              correctIndex: correctIndex,
-              isFreeMode: true,
-              card: card,
-              index: index,
-              total: total,
-              color: color,
-              onAnswer: onAnswer,
-            ),
-          ),
-        );
-      }).toList();
-    }
-
-    // Mixed mode (SRS): JP↔EN flashcard, MCQ, sentence cloze
+  Future<List<PracticeItem>> _buildSentenceItems({
+    required AppDatabase db,
+    required List<VocabularyEntry> pool,
+    required Color color,
+    required String locale,
+    required Random rng,
+    required int? sessionLimit,
+    required SentenceSettings sentenceSettings,
+  }) async {
     final nativeOnly = sentenceSettings.nativeTranslationOnly && locale != 'en';
-    final sessionIds = pairs.map((p) => p.$1.id).toList();
-    final sentencesByVocabId = await db.getSentencesBatch(sessionIds);
+    final sentencesByVocabId = await db.getSentencesBatch(
+      pool.map((v) => v.id).toList(),
+    );
     final allSentenceIds = sentencesByVocabId.values
         .expand((list) => list)
         .map((s) => s.id)
@@ -232,40 +225,78 @@ class VocabSessionService {
       nativeOnly: nativeOnly,
     );
 
-    PracticeItem buildClozeItem(
-      VocabularyEntry entry,
-      dynamic card,
-      List<Sentence> sentences,
-    ) {
+    final withSentences = pool.where((v) {
+      final ss = sentencesByVocabId[v.id] ?? [];
+      if (ss.isEmpty) return false;
+      if (nativeOnly) {
+        return ss.any((s) => sentenceTranslations.containsKey(s.id));
+      }
+      return true;
+    }).toList()..shuffle(rng);
+    final limited = sessionLimit != null
+        ? withSentences.take(sessionLimit).toList()
+        : withSentences;
+
+    return limited.map((entry) {
+      final allEntSentences = sentencesByVocabId[entry.id]!;
+      final sentences = nativeOnly
+          ? allEntSentences
+                .where((s) => sentenceTranslations.containsKey(s.id))
+                .toList()
+          : allEntSentences;
       final sentence = sentences[rng.nextInt(sentences.length)];
-      final translation = sentenceTranslations[sentence.id];
       final cloze = buildClozeOptions(
         target: entry,
         pool: pool,
         n: sentenceSettings.mcqChoiceCount,
         rng: rng,
       );
-      final clozeOptions = cloze.options;
-      final correctIndex = cloze.correctIndex;
       return PracticeItem(
         id: entry.id,
         srsType: 'vocabulary',
-        card: card,
+        card: null,
         buildBody: (index, total, onAnswer) => SentenceClozeBody(
           sentence: sentence,
-          translation: translation,
+          translation: sentenceTranslations[sentence.id],
           targetReading: entry.reading,
-          options: clozeOptions,
-          correctIndex: correctIndex,
-          isFreeMode: freeMode,
-          card: card,
+          options: cloze.options,
+          correctIndex: cloze.correctIndex,
+          isFreeMode: true,
+          card: null,
           index: index,
           total: total,
           color: color,
           onAnswer: onAnswer,
         ),
       );
-    }
+    }).toList();
+  }
+
+  Future<List<PracticeItem>> _buildMixedItems({
+    required AppDatabase db,
+    required List<(VocabularyEntry, dynamic)> pairs,
+    required List<VocabularyEntry> pool,
+    required Color color,
+    required String locale,
+    required Random rng,
+    required bool freeMode,
+    required McqSettings mcqSettings,
+    required SentenceSettings sentenceSettings,
+    required String Function(VocabularyEntry) meaningOf,
+  }) async {
+    final nativeOnly = sentenceSettings.nativeTranslationOnly && locale != 'en';
+    final sentencesByVocabId = await db.getSentencesBatch(
+      pairs.map((p) => p.$1.id).toList(),
+    );
+    final allSentenceIds = sentencesByVocabId.values
+        .expand((list) => list)
+        .map((s) => s.id)
+        .toList();
+    final sentenceTranslations = await db.getSentenceTranslations(
+      allSentenceIds,
+      locale,
+      nativeOnly: nativeOnly,
+    );
 
     return pairs.map((pair) {
       final (entry, card) = pair;
@@ -275,11 +306,9 @@ class VocabSessionService {
                 .where((s) => sentenceTranslations.containsKey(s.id))
                 .toList()
           : allSentences;
-      final hasSentence = sentences.isNotEmpty;
 
       // 0: JP→EN flashcard, 1: EN→JP flashcard, 2: MCQ, 3: sentence cloze
-      final typeCount = hasSentence ? 4 : 3;
-      final quizType = rng.nextInt(typeCount);
+      final quizType = rng.nextInt(sentences.isNotEmpty ? 4 : 3);
 
       if (quizType == 0 || quizType == 1) {
         return PracticeItem(
@@ -309,8 +338,6 @@ class VocabSessionService {
           meaningOf: meaningOf,
           rng: rng,
         );
-        final mcqOptions = vocabMcq.options;
-        final correctIndex = vocabMcq.correctIndex;
         return PracticeItem(
           id: entry.id,
           srsType: 'vocabulary',
@@ -322,8 +349,8 @@ class VocabSessionService {
               japaneseReading: entry.reading != entry.word
                   ? entry.reading
                   : null,
-              options: mcqOptions,
-              correctIndex: correctIndex,
+              options: vocabMcq.options,
+              correctIndex: vocabMcq.correctIndex,
               isFreeMode: freeMode,
               card: card,
               index: index,
@@ -335,7 +362,32 @@ class VocabSessionService {
         );
       }
 
-      return buildClozeItem(entry, card, sentences);
+      // quizType == 3: sentence cloze
+      final sentence = sentences[rng.nextInt(sentences.length)];
+      final cloze = buildClozeOptions(
+        target: entry,
+        pool: pool,
+        n: sentenceSettings.mcqChoiceCount,
+        rng: rng,
+      );
+      return PracticeItem(
+        id: entry.id,
+        srsType: 'vocabulary',
+        card: card,
+        buildBody: (index, total, onAnswer) => SentenceClozeBody(
+          sentence: sentence,
+          translation: sentenceTranslations[sentence.id],
+          targetReading: entry.reading,
+          options: cloze.options,
+          correctIndex: cloze.correctIndex,
+          isFreeMode: freeMode,
+          card: card,
+          index: index,
+          total: total,
+          color: color,
+          onAnswer: onAnswer,
+        ),
+      );
     }).toList();
   }
 }

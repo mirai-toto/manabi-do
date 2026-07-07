@@ -1359,6 +1359,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Skip sentences with no translation in your language'**
   String get nativeTranslationOnlySubtitle;
+
+  /// No description provided for @japanese.
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese'**
+  String get japanese;
+
+  /// No description provided for @copy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get copy;
 }
 
 class _AppLocalizationsDelegate
