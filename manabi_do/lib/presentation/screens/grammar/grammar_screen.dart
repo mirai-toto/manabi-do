@@ -202,7 +202,7 @@ class _BasicsCard extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: AppDimens.spaceXs),
                   Text(
                     l.japaneseBasicsSubtitle,
                     style: AppTextStyles.bodySmall.copyWith(

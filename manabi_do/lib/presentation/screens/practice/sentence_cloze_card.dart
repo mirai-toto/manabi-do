@@ -167,7 +167,7 @@ class SentenceClozeCard extends StatelessWidget {
                         size: 14,
                         color: showTranslation ? color : t.onSurfaceVariant,
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: AppDimens.spaceXs),
                       Text(
                         showTranslation ? 'Hide' : 'Translation',
                         style: AppTextStyles.labelSmall.copyWith(
@@ -331,7 +331,7 @@ class _CopyOption extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: AppDimens.spaceXxs),
                   Text(
                     preview,
                     style: AppTextStyles.body.copyWith(color: t.onSurface),

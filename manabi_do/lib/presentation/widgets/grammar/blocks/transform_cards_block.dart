@@ -283,11 +283,11 @@ class _TransformRowWidget extends StatelessWidget {
                   text: TextSpan(children: _resultSpans(jpNormal, jpAccent)),
                 ),
                 if (row.romaji != null) ...[
-                  const SizedBox(height: 4),
+                  const SizedBox(height: AppDimens.spaceXs),
                   Text(row.romaji!, style: romajiStyle),
                 ],
                 if (row.english != null) ...[
-                  const SizedBox(height: 2),
+                  const SizedBox(height: AppDimens.spaceXxs),
                   Text(row.english!, style: englishStyle),
                 ],
               ],
