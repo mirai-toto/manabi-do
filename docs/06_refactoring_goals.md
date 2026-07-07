@@ -31,10 +31,10 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 #### Services that mix too many concerns
 - ✅ `vocab_session_service.dart` — monolithic `buildQueue` split into `_buildFlashcardItems`, `_buildMcqItems`, `_buildSentenceItems`, `_buildMixedItems`
 - ✅ `kanji_session_service.dart` — `buildQueue` dispatch loop split into `_buildFlashcardItem`, `_buildDrawingItem`, `_buildMcqItem`
-- `srs_service.dart` — SRS scheduling algorithm tangled with DB persistence; separate the pure scheduling logic from the data layer
+- ✅ `srs_service.dart` — `applyRating(Card?, Rating) -> Card` extracted as a pure function; `PracticeSessionNotifier` now uses it instead of duplicating the scheduler logic
 
 #### Missing repository layer
-- Providers currently call Isar directly with no repository intermediary; introduce a thin repository layer so providers depend on an interface, not a concrete DB implementation
+- `AppDatabase` (Drift) already exposes domain-level methods (`getVocabByLevel`, `watchKanjiDueCount`, `getVocabSrsSession`, etc.) — it effectively IS the repository. Wrapping it in a second layer would be ~31 mechanical forwarding lines with no behaviour change. Deferred until unit testing is introduced; mock repositories become valuable then.
 
 ---
 
