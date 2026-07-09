@@ -180,7 +180,7 @@ class _GroupCard extends StatelessWidget {
             ),
           ),
           Divider(height: 1, thickness: 1, color: t.outlineVariant),
-          // Rows — horizontally padded, dividers full-width
+          // Rows: horizontally padded, dividers full-width
           for (int i = 0; i < group.rows.length; i++) ...[
             if (i > 0)
               Divider(
@@ -276,7 +276,7 @@ class _TransformRowWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Fixed-width dict form — keeps arrow close regardless of content width
+          // Fixed-width dict form: keeps arrow close regardless of content width
           SizedBox(
             width: 88,
             child: RichText(

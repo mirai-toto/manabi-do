@@ -31,6 +31,6 @@ class VocabLevelSelector extends ConsumerWidget {
 
   String? _subtitle(BuildContext context, WidgetRef ref, String code) {
     final count = ref.watch(vocabByLevelProvider(code)).asData?.value.length;
-    return count != null ? context.l10n.nWords(count) : '—';
+    return count != null ? context.l10n.nWords(count) : null;
   }
 }

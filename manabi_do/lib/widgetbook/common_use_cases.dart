@@ -224,7 +224,7 @@ Widget buildSectionLabel(BuildContext context) {
 Widget buildSectionHeader(BuildContext context) {
   return SectionHeader(
     title: 'Kanji',
-    subtitle: 'N5 — N1 characters with stroke order',
+    subtitle: 'N5–N1 characters with stroke order',
     glyph: '漢',
     color: Theme.of(context).colorScheme.primary,
   );

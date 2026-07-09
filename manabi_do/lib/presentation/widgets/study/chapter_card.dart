@@ -101,7 +101,7 @@ class ChapterCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      _progress > 0 ? '${(_progress * 100).round()}%' : '—',
+                      _progress > 0 ? '${(_progress * 100).round()}%' : '',
                       style: AppTextStyles.labelSmall.copyWith(
                         color: t.onSurfaceVariant,
                       ),

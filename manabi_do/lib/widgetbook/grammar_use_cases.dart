@@ -38,8 +38,7 @@ Widget buildTextBlockColor(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: TextBlock(
-      content:
-          'This text uses *onSurfaceVariant* — useful for secondary prose.',
+      content: 'This text uses *onSurfaceVariant*: useful for secondary prose.',
       color: t.onSurfaceVariant,
     ),
   );
@@ -98,7 +97,7 @@ Widget buildNoteBlock(BuildContext context) {
     padding: const EdgeInsets.all(16),
     child: NoteBlock(
       content:
-          '～ます covers both present habits and future actions — '
+          '～ます covers both present habits and future actions: '
           'Japanese does not separate these two meanings.',
     ),
   );
@@ -231,7 +230,7 @@ Widget buildConjugationTableAdj(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: ConjugationTableBlock(
-      label: 'い-Adjectives — 高い',
+      label: 'い-Adjectives · 高い',
       rows: const [
         {
           'form': 'Present',
@@ -271,7 +270,7 @@ Widget buildConjugationTableVerb(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: ConjugationTableBlock(
-      label: 'Group 1 Verb — 書く',
+      label: 'Group 1 Verb · 書く',
       rows: const [
         {
           'form': 'Present',

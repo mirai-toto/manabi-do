@@ -12,7 +12,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appTitle => 'Manabi Do';
 
   @override
-  String get tagline => 'Apprends le japonais — hors ligne, à ton rythme';
+  String get tagline => 'Apprends le japonais · hors ligne, à ton rythme';
 
   @override
   String get signInWithGoogle => 'Connecte-toi avec Google';
@@ -394,7 +394,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get practiceEmpty => 'Rien à revoir — reviens demain !';
+  String get practiceEmpty => 'Rien à revoir · reviens demain !';
 
   @override
   String get practiceDone => 'Terminer';
@@ -638,7 +638,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Passer au kanji suivant automatiquement quand tout est correct';
 
   @override
-  String get hintUsedFeedback => 'Indice utilisé — marqué comme raté';
+  String get hintUsedFeedback => 'Indice utilisé · marqué comme raté';
 
   @override
   String get flashcardPractice => 'Cartes mémoire';

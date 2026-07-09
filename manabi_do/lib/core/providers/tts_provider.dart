@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-// flutter_tts supports Android, iOS, macOS, Windows, and web — not Linux.
+// flutter_tts supports Android, iOS, macOS, Windows, and web: not Linux.
 final _ttsSupported =
     kIsWeb ||
     Platform.isAndroid ||

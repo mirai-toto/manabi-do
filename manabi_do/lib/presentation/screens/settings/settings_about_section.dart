@@ -21,8 +21,8 @@ class SettingsAboutSection extends ConsumerWidget {
     final pkgAsync = ref.watch(packageInfoProvider);
     final version = pkgAsync.when(
       data: (p) => p.version,
-      loading: () => '—',
-      error: (_, _) => '—',
+      loading: () => '',
+      error: (_, _) => '',
     );
 
     return Column(

@@ -72,7 +72,7 @@ class VocabSessionService {
           : filtered;
     }
 
-    // Pool (for MCQ distractors) and translations — shared across all modes.
+    // Pool (for MCQ distractors) and translations: shared across all modes.
     final allPool = await db.getVocabByLevel(level);
     final pool = allowedIds != null
         ? allPool.where((v) => allowedIds.contains(v.id)).toList()

@@ -109,7 +109,7 @@ abstract class AppLocalizations {
   /// No description provided for @tagline.
   ///
   /// In en, this message translates to:
-  /// **'Learn Japanese — offline, at your pace'**
+  /// **'Learn Japanese · offline, at your pace'**
   String get tagline;
 
   /// No description provided for @signInWithGoogle.
@@ -823,7 +823,7 @@ abstract class AppLocalizations {
   /// No description provided for @practiceEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Nothing to review — come back tomorrow!'**
+  /// **'Nothing to review · come back tomorrow!'**
   String get practiceEmpty;
 
   /// No description provided for @practiceDone.
@@ -1261,7 +1261,7 @@ abstract class AppLocalizations {
   /// No description provided for @hintUsedFeedback.
   ///
   /// In en, this message translates to:
-  /// **'Hint used — marked as missed'**
+  /// **'Hint used · marked as missed'**
   String get hintUsedFeedback;
 
   /// No description provided for @flashcardPractice.

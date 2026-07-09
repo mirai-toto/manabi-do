@@ -15,11 +15,11 @@
             },
             {
               "type": "text",
-              "content": "**Hiragana** (ひらがな) is the backbone of the written language — 46 base characters, each representing one syllable. It covers native Japanese words, grammatical particles, verb endings, and anything with no kanji equivalent. If you know no kanji, you can write everything in hiragana and be understood."
+              "content": "**Hiragana** (ひらがな) is the backbone of the written language : 46 base characters, each representing one syllable. It covers native Japanese words, grammatical particles, verb endings, and anything with no kanji equivalent. If you know no kanji, you can write everything in hiragana and be understood."
             },
             {
               "type": "text",
-              "content": "**Katakana** (カタカナ) represents the exact same sounds as hiragana but is visually distinct — angular where hiragana is rounded. It marks foreign loanwords, borrowed proper nouns, scientific terms, and onomatopoeia. Seeing katakana is a reliable signal: this word came from somewhere else."
+              "content": "**Katakana** (カタカナ) represents the exact same sounds as hiragana but is visually distinct : angular where hiragana is rounded. It marks foreign loanwords, borrowed proper nouns, scientific terms, and onomatopoeia. Seeing katakana is a reliable signal: this word came from somewhere else."
             },
             {
               "type": "text",
@@ -97,7 +97,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Japanese is a **Subject–Object–Verb** language — the verb always comes last. This is the single biggest structural difference from English, and it affects everything: you have to hold the subject and object in your head before the action resolves at the end of the sentence."
+              "content": "Japanese is a **Subject–Object–Verb** language : the verb always comes last. This is the single biggest structural difference from English, and it affects everything: you have to hold the subject and object in your head before the action resolves at the end of the sentence."
             },
             {
               "type": "example_table",
@@ -131,7 +131,7 @@
             },
             {
               "type": "note",
-              "content": "Modifiers — adjectives, relative clauses, entire subordinate phrases — also always come *before* the noun they describe, not after. This means long sentences stack up heavily at the beginning and resolve at the end."
+              "content": "Modifiers : adjectives, relative clauses, entire subordinate phrases : also always come *before* the noun they describe, not after. This means long sentences stack up heavily at the beginning and resolve at the end."
             },
             {
               "type": "note",
@@ -145,7 +145,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Japanese draws a distinction that English collapses into one slot. **は** marks the *topic* — what the sentence is *about*. **が** marks the *subject* — who or what *performs* or *experiences* the predicate."
+              "content": "Japanese draws a distinction that English collapses into one slot. **は** marks the *topic* : what the sentence is *about*. **が** marks the *subject* : who or what *performs* or *experiences* the predicate."
             },
             {
               "type": "pattern",
@@ -184,11 +184,11 @@
             },
             {
               "type": "note",
-              "content": "は often translates as \"as for ~\" or \"speaking of ~\" — it sets the frame for everything that follows. が identifies *who* is doing or experiencing something. Many beginners use が everywhere at first; は is how you signal that you are talking *about* something, not just naming it."
+              "content": "は often translates as \"as for ~\" or \"speaking of ~\" : it sets the frame for everything that follows. が identifies *who* is doing or experiencing something. Many beginners use が everywhere at first; は is how you signal that you are talking *about* something, not just naming it."
             },
             {
               "type": "note",
-              "content": "Common mistake: using が when は is correct makes sentences sound like new information or contrast is being introduced. 私**が**田中です would mean \"It is *I* who is Tanaka\" — implying there was a question about which person. 私**は**田中です is simply \"I am Tanaka.\""
+              "content": "Common mistake: using が when は is correct makes sentences sound like new information or contrast is being introduced. 私**が**田中です would mean \"It is *I* who is Tanaka\" : implying there was a question about which person. 私**は**田中です is simply \"I am Tanaka.\""
             }
           ]
         },
@@ -198,7 +198,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "In English, modifiers can appear on either side of a noun. In Japanese, they always come *before* the noun they describe — adjectives, relative clauses, and entire subordinate phrases all stack up before their noun."
+              "content": "In English, modifiers can appear on either side of a noun. In Japanese, they always come *before* the noun they describe : adjectives, relative clauses, and entire subordinate phrases all stack up before their noun."
             },
             {
               "type": "example_table",
@@ -237,7 +237,7 @@
             },
             {
               "type": "note",
-              "content": "Relative clauses in Japanese require no relative pronoun — no \"that\", \"which\", or \"who\". You simply place the entire clause before the noun: 昨日読んだ stacks directly onto any following noun."
+              "content": "Relative clauses in Japanese require no relative pronoun : no \"that\", \"which\", or \"who\". You simply place the entire clause before the noun: 昨日読んだ stacks directly onto any following noun."
             }
           ]
         },
@@ -247,7 +247,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Japanese regularly omits the subject when it is clear from context. This is called *pro-drop*, and it is the rule rather than the exception in natural speech. Writing or saying わかりました is not incomplete — the subject is understood."
+              "content": "Japanese regularly omits the subject when it is clear from context. This is called *pro-drop*, and it is the rule rather than the exception in natural speech. Writing or saying わかりました is not incomplete : the subject is understood."
             },
             {
               "type": "vocab_table",
@@ -281,7 +281,7 @@
             },
             {
               "type": "note",
-              "content": "What looks like ambiguity is resolved by context. Once \"I\" or \"she\" has been established as the topic, Japanese speakers do not keep repeating it. If you cannot tell who the subject is in a real conversation, that is normal — context does the work."
+              "content": "What looks like ambiguity is resolved by context. Once \"I\" or \"she\" has been established as the topic, Japanese speakers do not keep repeating it. If you cannot tell who the subject is in a real conversation, that is normal : context does the work."
             }
           ]
         }
@@ -319,7 +319,7 @@
                 {
                   "symbol": "、",
                   "name": "Touten",
-                  "use": "Comma — marks a pause within a sentence"
+                  "use": "Comma : marks a pause within a sentence"
                 },
                 {
                   "symbol": "「 」",
@@ -350,7 +350,7 @@
             },
             {
               "type": "note",
-              "content": "In Japanese fiction and manga, 「」kagikakko are the standard dialogue markers — not Western-style quotation marks. You will encounter them constantly in native texts."
+              "content": "In Japanese fiction and manga, 「」kagikakko are the standard dialogue markers : not Western-style quotation marks. You will encounter them constantly in native texts."
             },
             {
               "type": "section_title",
@@ -387,7 +387,7 @@
             },
             {
               "type": "text",
-              "content": "Modern Japanese is written horizontally, left to right. Traditional texts — novels, some newspapers, manga speech bubbles — run *vertically* in columns read right to left. Both directions are in active use today."
+              "content": "Modern Japanese is written horizontally, left to right. Traditional texts : novels, some newspapers, manga speech bubbles : run *vertically* in columns read right to left. Both directions are in active use today."
             }
           ]
         }
@@ -399,11 +399,11 @@
       "lessons": [
         {
           "id": "double-consonant",
-          "title": "っ — Double Consonant",
+          "title": "っ : Double Consonant",
           "blocks": [
             {
               "type": "text",
-              "content": "A small っ signals a short, sharp pause before the following consonant, which is then held slightly longer. It occupies one full mora — one beat of rhythm — like any other kana."
+              "content": "A small っ signals a short, sharp pause before the following consonant, which is then held slightly longer. It occupies one full mora : one beat of rhythm : like any other kana."
             },
             {
               "type": "pattern",
@@ -449,13 +449,13 @@
             },
             {
               "type": "note",
-              "content": "Common mistake: without the っ, the meaning changes entirely. きて (*kite*) = \"come!\" — completely different from きって (*kitte*, postage stamp). Treat っ as a real beat of silence, not an ornament."
+              "content": "Common mistake: without the っ, the meaning changes entirely. きて (*kite*) = \"come!\" : completely different from きって (*kitte*, postage stamp). Treat っ as a real beat of silence, not an ornament."
             }
           ]
         },
         {
           "id": "compound-sounds",
-          "title": "ゃゅょ — Compound Sounds",
+          "title": "ゃゅょ : Compound Sounds",
           "blocks": [
             {
               "type": "text",
@@ -492,7 +492,7 @@
                   "written": "にょ",
                   "romaji": "nyo",
                   "one syllable": "yes",
-                  "common mistake": "—"
+                  "common mistake": ":"
                 },
                 {
                   "written": "びょういん",
@@ -504,7 +504,7 @@
             },
             {
               "type": "note",
-              "content": "びょういん (hospital) and びよういん (beauty salon) are frequently confused — the first has a small よ (one syllable), the second has a full-size よ (two syllables). The written distinction is crucial."
+              "content": "びょういん (hospital) and びよういん (beauty salon) are frequently confused : the first has a small よ (one syllable), the second has a full-size よ (two syllables). The written distinction is crucial."
             }
           ]
         },
@@ -514,7 +514,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Holding a vowel for one extra mora changes meaning. Vowel length is phonemically significant in Japanese — two otherwise identical words can differ only in how long a vowel is held."
+              "content": "Holding a vowel for one extra mora changes meaning. Vowel length is phonemically significant in Japanese : two otherwise identical words can differ only in how long a vowel is held."
             },
             {
               "type": "vocab_table",
@@ -599,7 +599,7 @@
             },
             {
               "type": "note",
-              "content": "The ー mark only appears in katakana. In hiragana words, the long vowel is spelled out explicitly (ああ, おう, etc.). The difference between おじさん and おじいさん is one extra い — easy to miss in handwriting."
+              "content": "The ー mark only appears in katakana. In hiragana words, the long vowel is spelled out explicitly (ああ, おう, etc.). The difference between おじさん and おじいさん is one extra い : easy to miss in handwriting."
             }
           ]
         }
@@ -674,7 +674,7 @@
             },
             {
               "type": "note",
-              "content": "橋 and 箸 look identical in romaji and share the same kanji sounds — pitch is the *only* distinguishing feature. In a real sentence, context almost always resolves meaning before pitch even matters."
+              "content": "橋 and 箸 look identical in romaji and share the same kanji sounds : pitch is the *only* distinguishing feature. In a real sentence, context almost always resolves meaning before pitch even matters."
             },
             {
               "type": "section_title",
@@ -682,7 +682,7 @@
             },
             {
               "type": "text",
-              "content": "Getting pitch accent wrong does not prevent communication. Native speakers adjust easily for non-native speech. Pitch is best absorbed through listening — it improves naturally with exposure and can be studied deliberately at intermediate level. For now, focus on vocabulary, grammar, and reading."
+              "content": "Getting pitch accent wrong does not prevent communication. Native speakers adjust easily for non-native speech. Pitch is best absorbed through listening : it improves naturally with exposure and can be studied deliberately at intermediate level. For now, focus on vocabulary, grammar, and reading."
             }
           ]
         }

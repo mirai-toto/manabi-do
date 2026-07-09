@@ -11,15 +11,15 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Every Japanese verb belongs to one of three groups. The group determines *every* conjugation rule — get it right and the rest is predictable."
+              "content": "Every Japanese verb belongs to one of three groups. The group determines *every* conjugation rule : get it right and the rest is predictable."
             },
             {
               "type": "list",
               "style": "bullet",
               "items": [
-                "**Group 1 — Godan (五段):** ends in any う-column sound — く, ぐ, す, つ, ぬ, ぶ, む, う, or る*. The stem changes shape across forms following phonetic patterns.",
-                "**Group 2 — Ichidan (一段):** ends in る, with an い or え vowel immediately before it. The stem never changes — you only remove the る.",
-                "**Group 3 — Irregular:** only する (to do) and くる (to come). Both must be memorised."
+                "**Group 1 : Godan (五段):** ends in any う-column sound : く, ぐ, す, つ, ぬ, ぶ, む, う, or る*. The stem changes shape across forms following phonetic patterns.",
+                "**Group 2 : Ichidan (一段):** ends in る, with an い or え vowel immediately before it. The stem never changes : you only remove the る.",
+                "**Group 3 : Irregular:** only する (to do) and くる (to come). Both must be memorised."
               ]
             },
             {
@@ -89,17 +89,17 @@
             },
             {
               "type": "note",
-              "content": "る-ending Group 1 verbs look identical to Group 2 in dictionary form. 帰る (kaeru), 走る (hashiru), 知る (shiru), 切る (kiru) are all Group 1. There is no reliable visual test — when in doubt, check a dictionary. Recognition comes with exposure."
+              "content": "る-ending Group 1 verbs look identical to Group 2 in dictionary form. 帰る (kaeru), 走る (hashiru), 知る (shiru), 切る (kiru) are all Group 1. There is no reliable visual test : when in doubt, check a dictionary. Recognition comes with exposure."
             }
           ]
         },
         {
           "id": "polite-present",
-          "title": "Polite Present — ます",
+          "title": "Polite Present : ます",
           "blocks": [
             {
               "type": "text",
-              "content": "The **ます form** is how you speak politely. It is the default for conversations with people you do not know well, in formal situations, and in service environments. It covers both present habit and future intention — Japanese does not separate these two ideas."
+              "content": "The **ます form** is how you speak politely. It is the default for conversations with people you do not know well, in formal situations, and in service environments. It covers both present habit and future intention : Japanese does not separate these two ideas."
             },
             {
               "type": "section_title",
@@ -154,8 +154,8 @@
                       "english": "to return home"
                     }
                   ],
-                  "note": "Negative: replace ます with ません — the stem stays the same",
-                  "description": "The most common group — the majority of Japanese verbs fall here."
+                  "note": "Negative: replace ます with ません : the stem stays the same",
+                  "description": "The most common group : the majority of Japanese verbs fall here."
                 },
                 {
                   "label": "Group 2",
@@ -206,7 +206,7 @@
                       "english": "to come"
                     }
                   ],
-                  "description": "Only two verbs in Japanese are truly irregular — memorise them as-is."
+                  "description": "Only two verbs in Japanese are truly irregular : memorise them as-is."
                 }
               ]
             },
@@ -242,21 +242,21 @@
             },
             {
               "type": "note",
-              "content": "ます covers both habits and planned future actions. Context makes the meaning clear — Japanese has no separate future tense."
+              "content": "ます covers both habits and planned future actions. Context makes the meaning clear : Japanese has no separate future tense."
             },
             {
               "type": "note",
-              "content": "ます is polite but not formal. Use it with a shop clerk, a new acquaintance, or a teacher. Among close friends, speakers drop to the plain (dictionary) form. Both are grammatically correct — register determines which fits."
+              "content": "ます is polite but not formal. Use it with a shop clerk, a new acquaintance, or a teacher. Among close friends, speakers drop to the plain (dictionary) form. Both are grammatically correct : register determines which fits."
             }
           ]
         },
         {
           "id": "polite-past",
-          "title": "Polite Past — ました",
+          "title": "Polite Past : ました",
           "blocks": [
             {
               "type": "text",
-              "content": "The past tense is formed by replacing **ます** with **ました**. The negative past uses **ませんでした**. Both follow the same stem rules as the present tense — there is nothing new to memorise for the stem."
+              "content": "The past tense is formed by replacing **ます** with **ました**. The negative past uses **ませんでした**. Both follow the same stem rules as the present tense : there is nothing new to memorise for the stem."
             },
             {
               "type": "pattern",
@@ -302,7 +302,7 @@
             },
             {
               "type": "note",
-              "content": "Japanese past tense is clean — no distinction between simple past (\"I ate\") and perfect (\"I have eaten\") in the polite form. Time words and context carry that distinction."
+              "content": "Japanese past tense is clean : no distinction between simple past (\"I ate\") and perfect (\"I have eaten\") in the polite form. Time words and context carry that distinction."
             }
           ]
         }
@@ -310,11 +310,11 @@
     },
     {
       "id": "particles-space",
-      "title": "Particles — Space & Direction",
+      "title": "Particles : Space & Direction",
       "lessons": [
         {
           "id": "direction-he-ni",
-          "title": "へ and に — Direction",
+          "title": "へ and に : Direction",
           "blocks": [
             {
               "type": "text",
@@ -364,17 +364,17 @@
             },
             {
               "type": "note",
-              "content": "に is required — not interchangeable with へ — with arrival verbs like 着く (to arrive) and 帰る (to return). These verbs already imply reaching a point, so に locks in the destination. 家に帰る = arrive back home. 家へ帰る = head toward home."
+              "content": "に is required : not interchangeable with へ : with arrival verbs like 着く (to arrive) and 帰る (to return). These verbs already imply reaching a point, so に locks in the destination. 家に帰る = arrive back home. 家へ帰る = head toward home."
             }
           ]
         },
         {
           "id": "de-location",
-          "title": "で — Location of an Action",
+          "title": "で : Location of an Action",
           "blocks": [
             {
               "type": "text",
-              "content": "**で** marks *where an action takes place* — the venue or instrument of an activity. This is different from に, which marks *where something exists*. The verb is what tells you which particle to use."
+              "content": "**で** marks *where an action takes place* : the venue or instrument of an activity. This is different from に, which marks *where something exists*. The verb is what tells you which particle to use."
             },
             {
               "type": "pattern",
@@ -416,14 +416,14 @@
             {
               "type": "comparison",
               "left": {
-                "label": "で — action",
-                "description": "Where something happens. Use with action verbs — running, studying, eating.",
+                "label": "で : action",
+                "description": "Where something happens. Use with action verbs : running, studying, eating.",
                 "example_jp": "公園で走ります。",
                 "example_en": "I run in the park."
               },
               "right": {
-                "label": "に — existence",
-                "description": "Where something is. Use with います and あります — existing, being.",
+                "label": "に : existence",
+                "description": "Where something is. Use with います and あります : existing, being.",
                 "example_jp": "公園にいます。",
                 "example_en": "I am in the park."
               }
@@ -436,7 +436,7 @@
         },
         {
           "id": "iru-aru",
-          "title": "いる and ある — Existence",
+          "title": "いる and ある : Existence",
           "blocks": [
             {
               "type": "text",
@@ -453,7 +453,7 @@
               "type": "comparison",
               "left": {
                 "label": "います",
-                "description": "People, animals — anything that moves under its own power.",
+                "description": "People, animals : anything that moves under its own power.",
                 "example_jp": "猫が部屋にいます。",
                 "example_en": "There is a cat in the room."
               },
@@ -496,11 +496,11 @@
             },
             {
               "type": "note",
-              "content": "あります is used for scheduled events too — 会議があります (there's a meeting), 授業があります (there's a class). Events are treated as inanimate things that exist on the calendar."
+              "content": "あります is used for scheduled events too : 会議があります (there's a meeting), 授業があります (there's a class). Events are treated as inanimate things that exist on the calendar."
             },
             {
               "type": "note",
-              "content": "Using ある for people — 友達が外にある — sounds wrong at best and rude at worst. The animate/inanimate distinction is instinctive for native speakers."
+              "content": "Using ある for people : 友達が外にある : sounds wrong at best and rude at worst. The animate/inanimate distinction is instinctive for native speakers."
             }
           ]
         }
@@ -516,7 +516,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Japanese numbers are straightforward up to 10,000. The same digits combine and stack to form larger values — 十一 is 10+1, 百二十三 is 100+20+3. Learn the base set and the rest follows."
+              "content": "Japanese numbers are straightforward up to 10,000. The same digits combine and stack to form larger values : 十一 is 10+1, 百二十三 is 100+20+3. Learn the base set and the rest follows."
             },
             {
               "type": "vocab_table",
@@ -543,7 +543,7 @@
                   "#": "3",
                   "japanese": "三",
                   "reading": "さん",
-                  "alternate": "—"
+                  "alternate": ":"
                 },
                 {
                   "#": "4",
@@ -555,13 +555,13 @@
                   "#": "5",
                   "japanese": "五",
                   "reading": "ご",
-                  "alternate": "—"
+                  "alternate": ":"
                 },
                 {
                   "#": "6",
                   "japanese": "六",
                   "reading": "ろく",
-                  "alternate": "—"
+                  "alternate": ":"
                 },
                 {
                   "#": "7",
@@ -573,7 +573,7 @@
                   "#": "8",
                   "japanese": "八",
                   "reading": "はち",
-                  "alternate": "—"
+                  "alternate": ":"
                 },
                 {
                   "#": "9",
@@ -585,31 +585,31 @@
                   "#": "10",
                   "japanese": "十",
                   "reading": "じゅう",
-                  "alternate": "—"
+                  "alternate": ":"
                 },
                 {
                   "#": "100",
                   "japanese": "百",
                   "reading": "ひゃく",
-                  "alternate": "—"
+                  "alternate": ":"
                 },
                 {
                   "#": "1,000",
                   "japanese": "千",
                   "reading": "せん",
-                  "alternate": "—"
+                  "alternate": ":"
                 },
                 {
                   "#": "10,000",
                   "japanese": "万",
                   "reading": "まん",
-                  "alternate": "—"
+                  "alternate": ":"
                 }
               ]
             },
             {
               "type": "note",
-              "content": "4 (し) and 9 (く) are avoided in some contexts — し sounds like 死 (death) and く like 苦 (suffering). Hospital rooms sometimes skip these numbers. This is cultural awareness, not grammar."
+              "content": "4 (し) and 9 (く) are avoided in some contexts : し sounds like 死 (death) and く like 苦 (suffering). Hospital rooms sometimes skip these numbers. This is cultural awareness, not grammar."
             }
           ]
         },
@@ -619,7 +619,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Japanese does not use bare numbers to count objects. Numbers pair with **counters** — suffixes that classify what is being counted. The number reading also changes depending on which counter follows."
+              "content": "Japanese does not use bare numbers to count objects. Numbers pair with **counters** : suffixes that classify what is being counted. The number reading also changes depending on which counter follows."
             },
             {
               "type": "pattern",
@@ -748,13 +748,13 @@
             },
             {
               "type": "note",
-              "content": "Number + counter combinations trigger phonetic changes. 一本 (ippon), 三本 (sanbon), 六本 (roppon) — the pattern follows Japanese sound rules. Don't try to memorise all variants at once. Learn the counter first and pick up the sound changes through exposure."
+              "content": "Number + counter combinations trigger phonetic changes. 一本 (ippon), 三本 (sanbon), 六本 (roppon) : the pattern follows Japanese sound rules. Don't try to memorise all variants at once. Learn the counter first and pick up the sound changes through exposure."
             }
           ]
         },
         {
           "id": "how-many",
-          "title": "Asking How Many — いくつ / 何～",
+          "title": "Asking How Many : いくつ / 何～",
           "blocks": [
             {
               "type": "text",
@@ -764,13 +764,13 @@
               "type": "comparison",
               "left": {
                 "label": "いくつ",
-                "description": "General count — used when the category is unspecified, or for things without a fixed counter.",
+                "description": "General count : used when the category is unspecified, or for things without a fixed counter.",
                 "example_jp": "りんごがいくつありますか。",
                 "example_en": "How many apples are there?"
               },
               "right": {
                 "label": "何 + counter",
-                "description": "Category-specific — attach 何 (nan) directly before the counter you would normally use.",
+                "description": "Category-specific : attach 何 (nan) directly before the counter you would normally use.",
                 "example_jp": "何人いますか。",
                 "example_en": "How many people are there?"
               }
@@ -802,7 +802,7 @@
             },
             {
               "type": "note",
-              "content": "いくつ is also used informally to ask someone's age — お子さんはいくつですか (How old is your child?). The direct \"how old\" question is 何歳 (nansai)."
+              "content": "いくつ is also used informally to ask someone's age : お子さんはいくつですか (How old is your child?). The direct \"how old\" question is 何歳 (nansai)."
             }
           ]
         }
@@ -864,21 +864,21 @@
             },
             {
               "type": "note",
-              "content": "半 (はん) means \"half past\" — 三時半 = 3:30. ごぜん and ごご come *before* the time: 午前九時 = 9 AM, 午後三時 = 3 PM. Without them, meaning comes from context."
+              "content": "半 (はん) means \"half past\" : 三時半 = 3:30. ごぜん and ごご come *before* the time: 午前九時 = 9 AM, 午後三時 = 3 PM. Without them, meaning comes from context."
             },
             {
               "type": "note",
-              "content": "Minute readings change based on the number. 一分 (ippun), 三分 (sanpun), 六分 (roppun), 八分 (happun), 十分 (juppun). These follow the same phonetic rules as counters — they become natural through listening."
+              "content": "Minute readings change based on the number. 一分 (ippun), 三分 (sanpun), 六分 (roppun), 八分 (happun), 十分 (juppun). These follow the same phonetic rules as counters : they become natural through listening."
             }
           ]
         },
         {
           "id": "time-particles",
-          "title": "Time Particles — に, から, まで",
+          "title": "Time Particles : に, から, まで",
           "blocks": [
             {
               "type": "text",
-              "content": "Three particles handle time relationships. **に** pins an action to a specific point — at a clock time or calendar date. **から** marks a start point. **まで** marks an end point. から and まで are often paired."
+              "content": "Three particles handle time relationships. **に** pins an action to a specific point : at a clock time or calendar date. **から** marks a start point. **まで** marks an end point. から and まで are often paired."
             },
             {
               "type": "pattern",
@@ -925,7 +925,7 @@
             },
             {
               "type": "note",
-              "content": "に is **not** used with relative time words like 今日, 明日, 毎日, 来週. These words are already time-referencing and don't need に. Say 明日行きます — never 明日**に**行きます. Think of に as \"at a specific clock or calendar point.\" If the word is relative, drop the に."
+              "content": "に is **not** used with relative time words like 今日, 明日, 毎日, 来週. These words are already time-referencing and don't need に. Say 明日行きます : never 明日**に**行きます. Think of に as \"at a specific clock or calendar point.\" If the word is relative, drop the に."
             }
           ]
         },
@@ -935,7 +935,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "These words are the building blocks of everyday temporal reference. None of them take the particle に — they are inherently time-referencing on their own."
+              "content": "These words are the building blocks of everyday temporal reference. None of them take the particle に : they are inherently time-referencing on their own."
             },
             {
               "type": "section_title",
@@ -1093,11 +1093,11 @@
           "blocks": [
             {
               "type": "text",
-              "content": "**い-adjectives** end in い and conjugate directly — the い changes to signal tense and polarity. They can modify nouns directly and stand as predicates without any additional linking word."
+              "content": "**い-adjectives** end in い and conjugate directly : the い changes to signal tense and polarity. They can modify nouns directly and stand as predicates without any additional linking word."
             },
             {
               "type": "conjugation_table",
-              "label": "高い (takai) — tall / expensive",
+              "label": "高い (takai) : tall / expensive",
               "rows": [
                 {
                   "form": "present",
@@ -1167,7 +1167,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "**な-adjectives** behave more like nouns than adjectives. They need **な** when directly modifying a noun, but conjugate by changing the following です — the adjective stem itself never changes."
+              "content": "**な-adjectives** behave more like nouns than adjectives. They need **な** when directly modifying a noun, but conjugate by changing the following です : the adjective stem itself never changes."
             },
             {
               "type": "comparison",
@@ -1186,7 +1186,7 @@
             },
             {
               "type": "conjugation_table",
-              "label": "静か (shizuka) — quiet",
+              "label": "静か (shizuka) : quiet",
               "rows": [
                 {
                   "form": "present",
@@ -1246,13 +1246,13 @@
             },
             {
               "type": "note",
-              "content": "Not all adjectives ending in い are い-adjectives. きれい (beautiful), きらい (disliked), ゆうめい (famous) are all な-adjectives — they end in the *sound* い but conjugate like な-adjectives. When in doubt, check a dictionary."
+              "content": "Not all adjectives ending in い are い-adjectives. きれい (beautiful), きらい (disliked), ゆうめい (famous) are all な-adjectives : they end in the *sound* い but conjugate like な-adjectives. When in doubt, check a dictionary."
             }
           ]
         },
         {
           "id": "chaining-adjectives",
-          "title": "Chaining Adjectives — くて / で",
+          "title": "Chaining Adjectives : くて / で",
           "blocks": [
             {
               "type": "text",
@@ -1322,7 +1322,7 @@
             },
             {
               "type": "note",
-              "content": "The chained form expresses a neutral list — \"X and Y\" — not a causal connection. To say \"it's cheap *so* I'll buy it,\" use から or ので, not くて."
+              "content": "The chained form expresses a neutral list : \"X and Y\" : not a causal connection. To say \"it's cheap *so* I'll buy it,\" use から or ので, not くて."
             }
           ]
         }
@@ -1334,23 +1334,23 @@
       "lessons": [
         {
           "id": "kara-node",
-          "title": "から vs ので — Because",
+          "title": "から vs ので : Because",
           "blocks": [
             {
               "type": "text",
-              "content": "Both **から** and **ので** translate as \"because,\" but they carry different weight. から states a reason directly and assertively. ので presents a reason as soft and objective — the natural consequence of a situation. Register and relationship determine which fits."
+              "content": "Both **から** and **ので** translate as \"because,\" but they carry different weight. から states a reason directly and assertively. ので presents a reason as soft and objective : the natural consequence of a situation. Register and relationship determine which fits."
             },
             {
               "type": "comparison",
               "left": {
                 "label": "から",
-                "description": "Assertive and personal — \"my reason is X.\" Casual, direct. Use with friends or when stating feelings.",
+                "description": "Assertive and personal : \"my reason is X.\" Casual, direct. Use with friends or when stating feelings.",
                 "example_jp": "疲れたから、休みます。",
                 "example_en": "I'm resting because I'm tired."
               },
               "right": {
                 "label": "ので",
-                "description": "Soft and objective — \"given that X, naturally Y.\" Polite and indirect. Use for requests, apologies, workplace.",
+                "description": "Soft and objective : \"given that X, naturally Y.\" Polite and indirect. Use for requests, apologies, workplace.",
                 "example_jp": "雨が降っているので、家にいます。",
                 "example_en": "I'm staying home because it's raining."
               }
@@ -1358,8 +1358,8 @@
             {
               "type": "pattern",
               "lines": [
-                "[Reason — plain form] + **から**、[Result]   ← subjective, casual",
-                "[Reason — plain form] + **ので**、[Result]   ← objective, polite"
+                "[Reason : plain form] + **から**、[Result]   ← subjective, casual",
+                "[Reason : plain form] + **ので**、[Result]   ← objective, polite"
               ]
             },
             {
@@ -1399,7 +1399,7 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Japanese **question words** (疑問詞) slot into the sentence exactly where the unknown information would go. The rest of the sentence structure stays the same — there is no subject-verb inversion like in English."
+              "content": "Japanese **question words** (疑問詞) slot into the sentence exactly where the unknown information would go. The rest of the sentence structure stays the same : there is no subject-verb inversion like in English."
             },
             {
               "type": "vocab_table",
@@ -1508,7 +1508,7 @@
             },
             {
               "type": "note",
-              "content": "何 reads as なに before most words, but switches to なん before sounds starting with t, d, or n — and before counters. 何時 (nanji), 何人 (nannin), 何番 (nanban). The switch is phonetic, not grammatical."
+              "content": "何 reads as なに before most words, but switches to なん before sounds starting with t, d, or n : and before counters. 何時 (nanji), 何人 (nannin), 何番 (nanban). The switch is phonetic, not grammatical."
             },
             {
               "type": "note",
@@ -1524,11 +1524,11 @@
       "lessons": [
         {
           "id": "duration-aida",
-          "title": "Duration — 間",
+          "title": "Duration : 間",
           "blocks": [
             {
               "type": "text",
-              "content": "**間** expresses a span of time — how long something lasted or how long an action continued. It attaches directly after the duration amount."
+              "content": "**間** expresses a span of time : how long something lasted or how long an action continued. It attaches directly after the duration amount."
             },
             {
               "type": "pattern",
@@ -1604,7 +1604,7 @@
         },
         {
           "id": "frequency-kai",
-          "title": "Frequency — 回",
+          "title": "Frequency : 回",
           "blocks": [
             {
               "type": "text",
@@ -1669,17 +1669,17 @@
             },
             {
               "type": "note",
-              "content": "回 triggers phonetic changes with certain numbers. 一回 (ikkai), 六回 (rokkai), 八回 (hakkai), 十回 (jukkai) — a geminate っ appears before k. You will pick these up naturally from listening; don't memorise the full table upfront."
+              "content": "回 triggers phonetic changes with certain numbers. 一回 (ikkai), 六回 (rokkai), 八回 (hakkai), 十回 (jukkai) : a geminate っ appears before k. You will pick these up naturally from listening; don't memorise the full table upfront."
             }
           ]
         },
         {
           "id": "kakaru",
-          "title": "かかる — Time and Cost",
+          "title": "かかる : Time and Cost",
           "blocks": [
             {
               "type": "text",
-              "content": "**かかる** is the verb for expressing that something *requires* a certain amount of time or money. It is not used for effort or energy — only for measurable time and cost."
+              "content": "**かかる** is the verb for expressing that something *requires* a certain amount of time or money. It is not used for effort or energy : only for measurable time and cost."
             },
             {
               "type": "pattern",
@@ -1726,7 +1726,7 @@
             },
             {
               "type": "note",
-              "content": "かかる pairs naturally with まで (up to / until). 駅まで何分かかりますか is the most natural way to ask travel time in Japanese — you will use it constantly."
+              "content": "かかる pairs naturally with まで (up to / until). 駅まで何分かかりますか is the most natural way to ask travel time in Japanese : you will use it constantly."
             }
           ]
         }
@@ -1738,11 +1738,11 @@
       "lessons": [
         {
           "id": "tai-want-to-do",
-          "title": "Want to Do — たい",
+          "title": "Want to Do : たい",
           "blocks": [
             {
               "type": "text",
-              "content": "**たい** attaches to the verb stem and expresses the speaker's personal desire to do something. It conjugates exactly like an い-adjective — the same stem changes apply."
+              "content": "**たい** attaches to the verb stem and expresses the speaker's personal desire to do something. It conjugates exactly like an い-adjective : the same stem changes apply."
             },
             {
               "type": "pattern",
@@ -1808,7 +1808,7 @@
             },
             {
               "type": "note",
-              "content": "The direct object of たい often takes が instead of を — 寿司**が**食べたい sounds slightly more natural than 寿司**を**食べたい, though both are correct. Think of が as pairing the desire with its target."
+              "content": "The direct object of たい often takes が instead of を : 寿司**が**食べたい sounds slightly more natural than 寿司**を**食べたい, though both are correct. Think of が as pairing the desire with its target."
             },
             {
               "type": "note",
@@ -1818,11 +1818,11 @@
         },
         {
           "id": "hoshii-want-something",
-          "title": "Want Something — ほしい",
+          "title": "Want Something : ほしい",
           "blocks": [
             {
               "type": "text",
-              "content": "**ほしい** expresses desire for a *thing* — a noun, not an action. It is an い-adjective and conjugates the same way. The object is always marked with が."
+              "content": "**ほしい** expresses desire for a *thing* : a noun, not an action. It is an い-adjective and conjugates the same way. The object is always marked with が."
             },
             {
               "type": "pattern",
@@ -1835,13 +1835,13 @@
             {
               "type": "comparison",
               "left": {
-                "label": "たい — action",
+                "label": "たい : action",
                 "description": "Attaches to a verb stem. Expresses the desire to *do* something.",
                 "example_jp": "寿司が食べたいです。",
                 "example_en": "I want to eat sushi."
               },
               "right": {
-                "label": "ほしい — object",
+                "label": "ほしい : object",
                 "description": "Follows a noun with が. Expresses the desire to *have* something.",
                 "example_jp": "新しいカメラがほしいです。",
                 "example_en": "I want a new camera."
@@ -1874,29 +1874,29 @@
             },
             {
               "type": "note",
-              "content": "ほしい carries the same register restriction as たい — use it for your own desires only. For someone else wanting something, say ほしがっている (seems to want)."
+              "content": "ほしい carries the same register restriction as たい : use it for your own desires only. For someone else wanting something, say ほしがっている (seems to want)."
             }
           ]
         },
         {
           "id": "deshou-kamoshirenai",
-          "title": "Probability — でしょう / かもしれない",
+          "title": "Probability : でしょう / かもしれない",
           "blocks": [
             {
               "type": "text",
-              "content": "These two forms express degrees of certainty about something unconfirmed. **でしょう** is fairly confident — the speaker's informed expectation. **かもしれない** is genuinely uncertain — the speaker is leaving room for doubt."
+              "content": "These two forms express degrees of certainty about something unconfirmed. **でしょう** is fairly confident : the speaker's informed expectation. **かもしれない** is genuinely uncertain : the speaker is leaving room for doubt."
             },
             {
               "type": "comparison",
               "left": {
                 "label": "でしょう",
-                "description": "Probably — the speaker is fairly confident. Based on evidence or reasoning.",
+                "description": "Probably : the speaker is fairly confident. Based on evidence or reasoning.",
                 "example_jp": "明日は晴れるでしょう。",
                 "example_en": "It will probably be sunny tomorrow."
               },
               "right": {
                 "label": "かもしれない",
-                "description": "Might — the speaker is genuinely uncertain. Real possibility but not expected.",
+                "description": "Might : the speaker is genuinely uncertain. Real possibility but not expected.",
                 "example_jp": "彼は来ないかもしれません。",
                 "example_en": "He might not come."
               }
@@ -1940,7 +1940,7 @@
             },
             {
               "type": "note",
-              "content": "でしょう with a rising intonation becomes a soft question tag — そうでしょう？ means \"That's right, isn't it?\" / \"Don't you think?\" This is a completely separate use from the probability meaning."
+              "content": "でしょう with a rising intonation becomes a soft question tag : そうでしょう？ means \"That's right, isn't it?\" / \"Don't you think?\" This is a completely separate use from the probability meaning."
             }
           ]
         }
@@ -1963,7 +1963,7 @@
               "groups": [
                 {
                   "label": "Group 1",
-                  "tag": "く · ぐ",
+                  "tag": "く : ぐ",
                   "rule": "く → いて / ぐ → いで",
                   "rows": [
                     {
@@ -2002,7 +2002,7 @@
                 },
                 {
                   "label": "Group 1",
-                  "tag": "つ · る · う",
+                  "tag": "つ : る : う",
                   "rule": "→ って (double consonant)",
                   "rows": [
                     {
@@ -2033,7 +2033,7 @@
                 },
                 {
                   "label": "Group 1",
-                  "tag": "む · ぬ · ぶ",
+                  "tag": "む : ぬ : ぶ",
                   "rule": "→ んで",
                   "rows": [
                     {
@@ -2107,17 +2107,17 @@
             },
             {
               "type": "note",
-              "content": "行く (to go) is the one Group 1 exception — it becomes 行って, not 行いて. Everything else follows the cards above without exception."
+              "content": "行く (to go) is the one Group 1 exception : it becomes 行って, not 行いて. Everything else follows the cards above without exception."
             }
           ]
         },
         {
           "id": "te-kudasai",
-          "title": "てください — Please Do",
+          "title": "てください : Please Do",
           "blocks": [
             {
               "type": "text",
-              "content": "The most direct and natural way to make a polite request is **て-form + ください**. It is appropriate in almost any polite context — shops, classrooms, public signs."
+              "content": "The most direct and natural way to make a polite request is **て-form + ください**. It is appropriate in almost any polite context : shops, classrooms, public signs."
             },
             {
               "type": "pattern",
@@ -2162,7 +2162,7 @@
             },
             {
               "type": "note",
-              "content": "Register options: drop ください entirely for casual requests — 書いて means \"write this\" among friends. Use ていただけますか for more deferential situations, like addressing a superior or making a formal request."
+              "content": "Register options: drop ください entirely for casual requests : 書いて means \"write this\" among friends. Use ていただけますか for more deferential situations, like addressing a superior or making a formal request."
             }
           ]
         },
@@ -2224,15 +2224,15 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Japanese tracks the *direction* of a favour with precision. Three て-form patterns each handle one direction — outward from you, inward to you, or arriving unsolicited."
+              "content": "Japanese tracks the *direction* of a favour with precision. Three て-form patterns each handle one direction : outward from you, inward to you, or arriving unsolicited."
             },
             {
               "type": "list",
               "style": "bullet",
               "items": [
-                "**てあげる** — I (or someone) do something *for* someone else. The benefit flows outward.",
-                "**てもらう** — I receive an action *from* someone. I am the beneficiary, often having asked.",
-                "**てくれる** — Someone does something for me on their own initiative. The benefit arrives without me requesting it."
+                "**てあげる** : I (or someone) do something *for* someone else. The benefit flows outward.",
+                "**てもらう** : I receive an action *from* someone. I am the beneficiary, often having asked.",
+                "**てくれる** : Someone does something for me on their own initiative. The benefit arrives without me requesting it."
               ]
             },
             {
@@ -2287,19 +2287,19 @@
       "lessons": [
         {
           "id": "te-iru",
-          "title": "ている — Ongoing Action and State",
+          "title": "ている : Ongoing Action and State",
           "blocks": [
             {
               "type": "text",
-              "content": "**ている** is one of the most frequently used patterns in Japanese. The same form carries three distinct meanings — context and the verb itself determine which reading applies."
+              "content": "**ている** is one of the most frequently used patterns in Japanese. The same form carries three distinct meanings : context and the verb itself determine which reading applies."
             },
             {
               "type": "list",
               "style": "numbered",
               "items": [
-                "**In progress** — an action happening right now, like English \"-ing\"",
-                "**Resultant state** — the lasting result of a completed action",
-                "**Habitual** — something done regularly as a routine"
+                "**In progress** : an action happening right now, like English \"-ing\"",
+                "**Resultant state** : the lasting result of a completed action",
+                "**Habitual** : something done regularly as a routine"
               ]
             },
             {
@@ -2357,7 +2357,7 @@
         },
         {
           "id": "te-kara",
-          "title": "てから — After Doing",
+          "title": "てから : After Doing",
           "blocks": [
             {
               "type": "text",
@@ -2403,13 +2403,13 @@
               "type": "comparison",
               "left": {
                 "label": "てから",
-                "description": "A must be fully done before B. Completion is required — the sequence is strict.",
+                "description": "A must be fully done before B. Completion is required : the sequence is strict.",
                 "example_jp": "食べてから、歯を磨きます。",
                 "example_en": "I brush my teeth after eating."
               },
               "right": {
                 "label": "後で",
-                "description": "\"Later, after A\" — B happens sometime after, with no strict completion implied.",
+                "description": "\"Later, after A\" : B happens sometime after, with no strict completion implied.",
                 "example_jp": "後で電話します。",
                 "example_en": "I'll call later."
               }
@@ -2418,11 +2418,11 @@
         },
         {
           "id": "mae-ni-ato-de",
-          "title": "前に / 後で — Before / After",
+          "title": "前に / 後で : Before / After",
           "blocks": [
             {
               "type": "text",
-              "content": "**前に** and **後で** describe timing relative to another action. They are more flexible than てから — no strict completion is implied. The verb form before each one is different, and the reason is logical."
+              "content": "**前に** and **後で** describe timing relative to another action. They are more flexible than てから : no strict completion is implied. The verb form before each one is different, and the reason is logical."
             },
             {
               "type": "pattern",
@@ -2464,17 +2464,17 @@
             },
             {
               "type": "note",
-              "content": "前に takes the dictionary form because the action has *not yet happened* at that point in time — it is still in the future relative to the reference moment. 後で takes the past plain form because the action *has been completed* before the next one starts."
+              "content": "前に takes the dictionary form because the action has *not yet happened* at that point in time : it is still in the future relative to the reference moment. 後で takes the past plain form because the action *has been completed* before the next one starts."
             }
           ]
         },
         {
           "id": "nagara",
-          "title": "ながら — While Doing",
+          "title": "ながら : While Doing",
           "blocks": [
             {
               "type": "text",
-              "content": "**ながら** attaches to the verb stem to describe two actions happening simultaneously. The ながら clause is always the *secondary* action — the main verb at the end of the sentence is what the subject is primarily doing."
+              "content": "**ながら** attaches to the verb stem to describe two actions happening simultaneously. The ながら clause is always the *secondary* action : the main verb at the end of the sentence is what the subject is primarily doing."
             },
             {
               "type": "pattern",
@@ -2514,7 +2514,7 @@
             },
             {
               "type": "note",
-              "content": "ながら requires the *same subject* for both actions. \"I study while she watches TV\" cannot use ながら — a different subject performing the secondary action requires a different structure."
+              "content": "ながら requires the *same subject* for both actions. \"I study while she watches TV\" cannot use ながら : a different subject performing the secondary action requires a different structure."
             }
           ]
         }
@@ -2526,11 +2526,11 @@
       "lessons": [
         {
           "id": "yori-more-than",
-          "title": "A は B より ～ — More Than",
+          "title": "A は B より ～ : More Than",
           "blocks": [
             {
               "type": "text",
-              "content": "**より** marks the baseline of comparison — what you are comparing *against*. What comes before より is the lesser item; what comes before the adjective is the greater one."
+              "content": "**より** marks the baseline of comparison : what you are comparing *against*. What comes before より is the lesser item; what comes before the adjective is the greater one."
             },
             {
               "type": "pattern",
@@ -2576,13 +2576,13 @@
             },
             {
               "type": "note",
-              "content": "Adding のほうが after the item being elevated makes the comparison more explicit and emphatic. Both structures are grammatically correct — のほうが is simply more common in natural speech."
+              "content": "Adding のほうが after the item being elevated makes the comparison more explicit and emphatic. Both structures are grammatically correct : のほうが is simply more common in natural speech."
             }
           ]
         },
         {
           "id": "dochira-which",
-          "title": "どちらが ～ — Which is More ~?",
+          "title": "どちらが ～ : Which is More ~?",
           "blocks": [
             {
               "type": "text",
@@ -2639,17 +2639,17 @@
         },
         {
           "id": "ichiban-superlative",
-          "title": "いちばん ～ — The Most ~",
+          "title": "いちばん ～ : The Most ~",
           "blocks": [
             {
               "type": "text",
-              "content": "**いちばん** (一番) means \"number one\" and acts as a superlative marker. It goes directly before the adjective or adverb — no change to the adjective itself."
+              "content": "**いちばん** (一番) means \"number one\" and acts as a superlative marker. It goes directly before the adjective or adverb : no change to the adjective itself."
             },
             {
               "type": "pattern",
               "lines": [
                 "[Group] の中で、[item] が **いちばん** [adjective] です",
-                "  の中で (no naka de) = \"among\" — optional but common"
+                "  の中で (no naka de) = \"among\" : optional but common"
               ]
             },
             {
@@ -2689,7 +2689,7 @@
             },
             {
               "type": "note",
-              "content": "いちばん can modify adjectives (一番高い), adverbs (一番速く), and nouns when paired with suki/kirai (一番好きな食べ物). It is one of the simplest patterns at N5 — the adjective needs no modification at all."
+              "content": "いちばん can modify adjectives (一番高い), adverbs (一番速く), and nouns when paired with suki/kirai (一番好きな食べ物). It is one of the simplest patterns at N5 : the adjective needs no modification at all."
             }
           ]
         }
@@ -2701,11 +2701,11 @@
       "lessons": [
         {
           "id": "ta-hou-ga-ii",
-          "title": "たほうがいい — Should / Shouldn't",
+          "title": "たほうがいい : Should / Shouldn't",
           "blocks": [
             {
               "type": "text",
-              "content": "**たほうがいい** expresses advice — suggesting that a course of action would be in the listener's best interest. The affirmative uses the past plain form; the negative uses the negative plain form."
+              "content": "**たほうがいい** expresses advice : suggesting that a course of action would be in the listener's best interest. The affirmative uses the past plain form; the negative uses the negative plain form."
             },
             {
               "type": "pattern",
@@ -2756,19 +2756,19 @@
           "blocks": [
             {
               "type": "text",
-              "content": "Two patterns cover what is required and what is not. **なければなりません** states that something must be done. **なくてもいいです** is its inverse — the action is not required."
+              "content": "Two patterns cover what is required and what is not. **なければなりません** states that something must be done. **なくてもいいです** is its inverse : the action is not required."
             },
             {
               "type": "comparison",
               "left": {
                 "label": "なければなりません",
-                "description": "Must do — the action is an obligation. Formal, used in writing and polite speech.",
+                "description": "Must do : the action is an obligation. Formal, used in writing and polite speech.",
                 "example_jp": "薬を毎日飲まなければなりません。",
                 "example_en": "I have to take medicine every day."
               },
               "right": {
                 "label": "なくてもいいです",
-                "description": "Don't have to — the action is optional. Giving permission not to do something.",
+                "description": "Don't have to : the action is optional. Giving permission not to do something.",
                 "example_jp": "今日は来なくてもいいです。",
                 "example_en": "You don't have to come today."
               }
@@ -2813,17 +2813,17 @@
             },
             {
               "type": "note",
-              "content": "なきゃ and なくちゃ are heavily contracted casual forms of なければならない — you will hear them constantly in everyday speech and anime. They are not appropriate in formal writing."
+              "content": "なきゃ and なくちゃ are heavily contracted casual forms of なければならない : you will hear them constantly in everyday speech and anime. They are not appropriate in formal writing."
             }
           ]
         },
         {
           "id": "to-omoimasu",
-          "title": "と思います — I Think That",
+          "title": "と思います : I Think That",
           "blocks": [
             {
               "type": "text",
-              "content": "**と思います** expresses personal opinion or belief. The と marks the boundary of the thought being reported. It makes statements sound appropriately tentative — stating something flatly without it can feel blunt."
+              "content": "**と思います** expresses personal opinion or belief. The と marks the boundary of the thought being reported. It makes statements sound appropriately tentative : stating something flatly without it can feel blunt."
             },
             {
               "type": "pattern",
@@ -2863,13 +2863,13 @@
             },
             {
               "type": "note",
-              "content": "The clause before と is always in the **plain form**, not the polite form. 来ます**と**思います is wrong — it should be 来る**と**思います. The politeness is carried by the final と思います alone."
+              "content": "The clause before と is always in the **plain form**, not the polite form. 来ます**と**思います is wrong : it should be 来る**と**思います. The politeness is carried by the final と思います alone."
             }
           ]
         },
         {
           "id": "tsumori-yotei",
-          "title": "つもり & 予定 — Intention and Plans",
+          "title": "つもり & 予定 : Intention and Plans",
           "blocks": [
             {
               "type": "text",
@@ -2879,13 +2879,13 @@
               "type": "comparison",
               "left": {
                 "label": "つもりです",
-                "description": "Personal intention — an internal decision already made in your own mind. Not dependent on others.",
+                "description": "Personal intention : an internal decision already made in your own mind. Not dependent on others.",
                 "example_jp": "来年、日本に行くつもりです。",
                 "example_en": "I intend to go to Japan next year."
               },
               "right": {
                 "label": "予定です",
-                "description": "Scheduled plan — often external, fixed, or coordinated with others. Suits appointments and timetables.",
+                "description": "Scheduled plan : often external, fixed, or coordinated with others. Suits appointments and timetables.",
                 "example_jp": "三時に会議が始まる予定です。",
                 "example_en": "The meeting is scheduled to start at 3."
               }
@@ -2932,11 +2932,11 @@
         },
         {
           "id": "n-desu",
-          "title": "んです — Explanation",
+          "title": "んです : Explanation",
           "blocks": [
             {
               "type": "text",
-              "content": "**んです** (written のです) adds an explanatory nuance to a statement. It signals that what you are saying is the reason behind something, the context for a situation, or a request for explanation — not just a bare fact."
+              "content": "**んです** (written のです) adds an explanatory nuance to a statement. It signals that what you are saying is the reason behind something, the context for a situation, or a request for explanation : not just a bare fact."
             },
             {
               "type": "pattern",
@@ -2977,13 +2977,13 @@
             },
             {
               "type": "note",
-              "content": "Without んです, 頭が痛いです is a plain statement of fact. With it, 頭が痛いんです implies \"I'm telling you this because it's relevant — that's why I look unwell / can't attend.\" Use it when you want to signal context, not just information."
+              "content": "Without んです, 頭が痛いです is a plain statement of fact. With it, 頭が痛いんです implies \"I'm telling you this because it's relevant : that's why I look unwell / can't attend.\" Use it when you want to signal context, not just information."
             }
           ]
         },
         {
           "id": "naka-chuu-juu",
-          "title": "中 — During / Throughout",
+          "title": "中 : During / Throughout",
           "blocks": [
             {
               "type": "text",
@@ -2993,13 +2993,13 @@
               "type": "comparison",
               "left": {
                 "label": "〜中 (ちゅう)",
-                "description": "Currently in that activity or state — happening right now.",
+                "description": "Currently in that activity or state : happening right now.",
                 "example_jp": "会議中です。",
                 "example_en": "I'm in a meeting right now."
               },
               "right": {
                 "label": "〜中 (じゅう)",
-                "description": "Spanning the whole thing — throughout all of a time or space.",
+                "description": "Spanning the whole thing : throughout all of a time or space.",
                 "example_jp": "一日中働いています。",
                 "example_en": "I've been working all day long."
               }
@@ -3070,7 +3070,7 @@
                 {
                   "japanese": "使用中のため入れません。",
                   "romaji": "Shiyō chū no tame hairemasen.",
-                  "english": "Cannot enter — currently in use."
+                  "english": "Cannot enter : currently in use."
                 },
                 {
                   "japanese": "世界中の人が知っています。",

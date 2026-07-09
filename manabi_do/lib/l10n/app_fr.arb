@@ -3,7 +3,7 @@
 
   "appTitle": "Manabi Do",
 
-  "tagline": "Apprends le japonais — hors ligne, à ton rythme",
+  "tagline": "Apprends le japonais · hors ligne, à ton rythme",
   "signInWithGoogle": "Connecte-toi avec Google",
   "signInWithApple": "Connecte-toi avec Apple",
   "continueAsGuest": "Continuer sans compte →",
@@ -182,7 +182,7 @@
   "@practiceNotYet": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "practiceEmpty": "Rien à revoir — reviens demain !",
+  "practiceEmpty": "Rien à revoir · reviens demain !",
   "practiceDone": "Terminer",
   "quitPracticeTitle": "Quitter la session ?",
   "quitPracticeBody": "Les éléments restants ne seront pas révisés.",
@@ -292,7 +292,7 @@
   "autoAdvanceLabel": "Avance automatique",
   "autoAdvanceSubtitle": "Passer au kanji suivant automatiquement quand tout est correct",
 
-  "hintUsedFeedback": "Indice utilisé — marqué comme raté",
+  "hintUsedFeedback": "Indice utilisé · marqué comme raté",
 
   "flashcardPractice": "Cartes mémoire",
   "mcqPractice": "Choix multiple",

@@ -3,7 +3,7 @@
 
   "appTitle": "Manabi Do",
 
-  "tagline": "Japanisch lernen — offline, in deinem Tempo",
+  "tagline": "Japanisch lernen · offline, in deinem Tempo",
   "signInWithGoogle": "Mit Google anmelden",
   "signInWithApple": "Mit Apple anmelden",
   "continueAsGuest": "Als Gast fortfahren →",
@@ -17,6 +17,7 @@
   "tabKatakana": "Katakana",
   "tabKanji": "Kanji",
   "kana": "Kana",
+  "japanese": "Japanisch",
 
   "skipKana": "Überspringen (aus Übung ausschließen)",
   "skippedKana": "Übersprungen",
@@ -59,6 +60,7 @@
   "writingPractice": "Schreibübung",
   "next": "Weiter →",
   "kanjiPracticed": "{count} Kanji geübt",
+  "copy": "Kopieren",
   "correct": "Richtig",
   "missed": "Falsch",
   "timeSpent": "Benötigte Zeit",
@@ -182,7 +184,7 @@
   "@practiceNotYet": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "practiceEmpty": "Nichts zu wiederholen — komm morgen wieder!",
+  "practiceEmpty": "Nichts zu wiederholen · komm morgen wieder!",
   "practiceDone": "Fertig",
   "quitPracticeTitle": "Sitzung verlassen?",
   "quitPracticeBody": "Die verbleibenden Elemente werden nicht geübt.",
@@ -292,7 +294,7 @@
   "autoAdvanceLabel": "Auto-Weiter",
   "autoAdvanceSubtitle": "Automatisch zum nächsten Kanji wechseln, wenn alles korrekt ist",
 
-  "hintUsedFeedback": "Hinweis benutzt — als falsch markiert",
+  "hintUsedFeedback": "Hinweis benutzt · als falsch markiert",
 
   "flashcardPractice": "Karteikarten",
   "mcqPractice": "Multiple Choice",

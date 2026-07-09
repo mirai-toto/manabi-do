@@ -205,7 +205,7 @@ String stripAnnotation(String annotated) => annotated.replaceAllMapped(
 }
 
 /// Builds a single character + ruby annotation as a [WidgetSpan].
-/// Every character — annotated or plain — uses this same Column structure so
+/// Every character, annotated or plain, uses this same Column structure so
 /// all characters in a RichText share identical height and sit on the same
 /// visual baseline. Pass an empty string for [ruby] on unannotated characters.
 WidgetSpan rubySpan(

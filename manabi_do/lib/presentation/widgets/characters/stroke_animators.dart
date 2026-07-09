@@ -135,7 +135,7 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
         height: widget.size,
         child: Center(
           child: Text(
-            '—',
+            '',
             style: TextStyle(color: t.onSurfaceVariant, fontSize: 32),
           ),
         ),

@@ -393,7 +393,7 @@ class _DrawingExerciseState extends ConsumerState<DrawingExercise>
     if (_pendingWrong) return;
 
     if (strokes.length <= _strokeResults.length) {
-      // Undo or clear — trim results to match (runs even when _done to unblock wrong last stroke)
+      // Undo or clear: trim results to match (runs even when _done to unblock wrong last stroke)
       setState(() {
         _strokes = strokes;
         _strokeResults = _strokeResults.take(strokes.length).toList();
@@ -420,7 +420,7 @@ class _DrawingExerciseState extends ConsumerState<DrawingExercise>
     );
 
     if (!result) {
-      // Don't commit false to _strokeResults — avoids _done flipping true prematurely
+      // Don't commit false to _strokeResults: avoids _done flipping true prematurely
       setState(() => _mistakeCount++);
       _wrongFade.forward(from: 0).then((_) {
         if (mounted) _canvasKey.currentState?.undo();

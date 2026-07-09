@@ -12,7 +12,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'Manabi Do';
 
   @override
-  String get tagline => 'Learn Japanese — offline, at your pace';
+  String get tagline => 'Learn Japanese · offline, at your pace';
 
   @override
   String get signInWithGoogle => 'Sign in with Google';
@@ -393,7 +393,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get practiceEmpty => 'Nothing to review — come back tomorrow!';
+  String get practiceEmpty => 'Nothing to review · come back tomorrow!';
 
   @override
   String get practiceDone => 'Done';
@@ -633,7 +633,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Move to next kanji automatically when all correct';
 
   @override
-  String get hintUsedFeedback => 'Hint used — marked as missed';
+  String get hintUsedFeedback => 'Hint used · marked as missed';
 
   @override
   String get flashcardPractice => 'Flashcard';

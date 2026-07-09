@@ -6,11 +6,11 @@ import '../../../../core/theme/app_tokens.dart';
 import '../../common/card_container.dart';
 
 /// Shared table renderer used by [ExampleTableBlock], [VocabTableBlock], and
-/// [ConjugationTableBlock]. Not a block itself — use the typed wrappers.
+/// [ConjugationTableBlock]. Not a block itself: use the typed wrappers.
 ///
 /// Columns named `'japanese'` are rendered in [AppTextStyles.jpBody].
 /// When [boldFirstColumn] is true the first column gets a semi-bold label
-/// style — used for the conjugation `form` column.
+/// style: used for the conjugation `form` column.
 class GrammarTable extends StatelessWidget {
   final List<String> columns;
   final List<Map<String, String>> rows;

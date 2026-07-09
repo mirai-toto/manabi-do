@@ -95,7 +95,7 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
 
   String? _subtitle(BuildContext context, String code) {
     final data = ref.watch(kanjiListProvider(code)).asData?.value;
-    return data != null ? context.l10n.nKanji(data.total) : '—';
+    return data != null ? context.l10n.nKanji(data.total) : null;
   }
 }
 

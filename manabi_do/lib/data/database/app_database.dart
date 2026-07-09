@@ -522,7 +522,7 @@ class AppDatabase extends _$AppDatabase {
     return [...due, ...newOnes];
   }
 
-  /// All due vocabulary across every JLPT level — no new cards, for home screen review.
+  /// All due vocabulary across every JLPT level: no new cards, for home screen review.
   Future<List<(VocabularyEntry, Card?)>> getAllDueVocabSrsSession({
     int newCardLimit = 0,
   }) async {
@@ -626,13 +626,13 @@ class AppDatabase extends _$AppDatabase {
       (old) => SrsCardsCompanion.custom(
         due: Variable(card.due),
         cardJson: Variable(jsonEncode(card.toMap())),
-        // firstSeenAt intentionally omitted — never overwrite the original date
+        // firstSeenAt intentionally omitted: never overwrite the original date
       ),
       target: [srsCards.itemType, srsCards.itemId],
     ),
   );
 
-  /// Debug only — inserts past-due SRS cards for a sample of items.
+  /// Debug only: inserts past-due SRS cards for a sample of items.
   Future<void> seedFakeReviews() async {
     final yesterday = DateTime.now().subtract(const Duration(days: 1));
 

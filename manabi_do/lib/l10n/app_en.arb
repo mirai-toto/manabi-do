@@ -4,7 +4,7 @@
   "appTitle": "Manabi Do",
   "@appTitle": { "description": "The name of the application" },
 
-  "tagline": "Learn Japanese — offline, at your pace",
+  "tagline": "Learn Japanese · offline, at your pace",
   "signInWithGoogle": "Sign in with Google",
   "signInWithApple": "Sign in with Apple",
   "continueAsGuest": "Continue as guest →",
@@ -191,7 +191,7 @@
   "@practiceNotYet": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "practiceEmpty": "Nothing to review — come back tomorrow!",
+  "practiceEmpty": "Nothing to review · come back tomorrow!",
   "practiceDone": "Done",
   "quitPracticeTitle": "Leave session?",
   "quitPracticeBody": "Your remaining items won't be reviewed.",
@@ -301,7 +301,7 @@
   "autoAdvanceLabel": "Auto-advance",
   "autoAdvanceSubtitle": "Move to next kanji automatically when all correct",
 
-  "hintUsedFeedback": "Hint used — marked as missed",
+  "hintUsedFeedback": "Hint used · marked as missed",
 
   "flashcardPractice": "Flashcard",
   "mcqPractice": "Multiple Choice",
