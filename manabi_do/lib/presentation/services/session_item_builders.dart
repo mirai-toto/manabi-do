@@ -3,6 +3,24 @@ import 'dart:math';
 import '../../data/database/app_database.dart';
 import '../widgets/exercise/mcq_card.dart';
 
+({List<McqOption> options, int correctIndex}) buildKanaMcqOptions({
+  required Kana target,
+  required List<Kana> pool,
+  required int n,
+  required Random rng,
+}) {
+  final distractors = pool.where((k) => k.id != target.id).toList()
+    ..shuffle(rng);
+  final options = [target, ...distractors.take(n - 1)]..shuffle(rng);
+  final correctIndex = options.indexWhere((k) => k.id == target.id);
+  final mcqOptions = List.generate(
+    options.length,
+    (i) =>
+        McqOption(letter: String.fromCharCode(65 + i), text: options[i].romaji),
+  );
+  return (options: mcqOptions, correctIndex: correctIndex);
+}
+
 ({List<McqOption> options, int correctIndex}) buildKanjiMcqOptions({
   required Kanji target,
   required List<Kanji> pool,

@@ -451,6 +451,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get mcqSelectKanaReading => 'What is the reading of this kana?';
+
+  @override
   String get mcqSelectMeaning => 'What does this kanji mean?';
 
   @override
