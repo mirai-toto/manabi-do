@@ -220,6 +220,8 @@
     }
   },
 
+  "mcqSelectKanaReading": "What is the reading of this kana?",
+
   "mcqSelectMeaning": "What does this kanji mean?",
   "mcqSelectWordMeaning": "What does this word mean?",
   "mcqSelectKanji": "Select the kanji for: \"{meaning}\"",
