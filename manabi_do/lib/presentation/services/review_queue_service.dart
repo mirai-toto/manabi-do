@@ -22,13 +22,43 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
 ) async {
   final db = ref.read(databaseProvider);
   final settings = await ref.read(srsSettingsProvider.future);
+  final mcqSettings = ref.read(mcqSettingsProvider);
   final color = levelColor('kana');
   final queue = await db.getKanaSrsSession(
     type,
     newCardLimit: settings.newCharactersPerDay,
   );
+  final allKana = await db.getKanaByType(type);
+  final rng = Random();
+
   return queue.map((pair) {
     final (kana, card) = pair;
+    if (rng.nextBool()) {
+      final kanaMcq = buildKanaMcqOptions(
+        target: kana,
+        pool: allKana,
+        n: mcqSettings.mcqChoiceCount,
+        rng: rng,
+      );
+      return PracticeItem(
+        id: kana.id,
+        srsType: type,
+        card: card,
+        buildBody: (index, total, onAnswer) => Builder(
+          builder: (ctx) => PracticeMcqBody(
+            question: ctx.l10n.mcqSelectKanaReading,
+            japanesePrompt: kana.character,
+            options: kanaMcq.options,
+            correctIndex: kanaMcq.correctIndex,
+            card: card,
+            index: index,
+            total: total,
+            color: color,
+            onAnswer: onAnswer,
+          ),
+        ),
+      );
+    }
     return PracticeItem(
       id: kana.id,
       srsType: type,
@@ -49,12 +79,44 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
 Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
   final db = ref.read(databaseProvider);
   final settings = await ref.read(srsSettingsProvider.future);
+  final mcqSettings = ref.read(mcqSettingsProvider);
   final pairs = await db.getAllDueKanaSrsSession(
     newCardLimit: settings.newCharactersPerDay,
   );
+  final allHiragana = await db.getKanaByType('hiragana');
+  final allKatakana = await db.getKanaByType('katakana');
   final color = levelColor('kana');
-  return pairs.map((pair) {
+  final rng = Random();
+
+  return (pairs.map((pair) {
     final (k, card) = pair;
+    if (rng.nextBool()) {
+      final pool = k.type == 'hiragana' ? allHiragana : allKatakana;
+      final kanaMcq = buildKanaMcqOptions(
+        target: k,
+        pool: pool,
+        n: mcqSettings.mcqChoiceCount,
+        rng: rng,
+      );
+      return PracticeItem(
+        id: k.id,
+        srsType: k.type,
+        card: card,
+        buildBody: (index, total, onAnswer) => Builder(
+          builder: (ctx) => PracticeMcqBody(
+            question: ctx.l10n.mcqSelectKanaReading,
+            japanesePrompt: k.character,
+            options: kanaMcq.options,
+            correctIndex: kanaMcq.correctIndex,
+            card: card,
+            index: index,
+            total: total,
+            color: color,
+            onAnswer: onAnswer,
+          ),
+        ),
+      );
+    }
     return PracticeItem(
       id: k.id,
       srsType: k.type,
@@ -69,7 +131,7 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
         onAnswer: onAnswer,
       ),
     );
-  }).toList()..shuffle();
+  }).toList())..shuffle(rng);
 }
 
 Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {

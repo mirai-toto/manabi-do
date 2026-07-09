@@ -928,6 +928,12 @@ abstract class AppLocalizations {
   /// **'{correct} / {total} strokes correct'**
   String drawingStrokeResult(int correct, int total);
 
+  /// No description provided for @mcqSelectKanaReading.
+  ///
+  /// In en, this message translates to:
+  /// **'What is the reading of this kana?'**
+  String get mcqSelectKanaReading;
+
   /// No description provided for @mcqSelectMeaning.
   ///
   /// In en, this message translates to:

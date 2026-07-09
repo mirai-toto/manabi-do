@@ -211,6 +211,8 @@
     }
   },
 
+  "mcqSelectKanaReading": "Quelle est la lecture de ce kana ?",
+
   "mcqSelectMeaning": "Ce kanji veut dire ?",
   "mcqSelectWordMeaning": "Que signifie ce mot ?",
   "mcqSelectKanji": "Quel kanji pour \"{meaning}\" ?",

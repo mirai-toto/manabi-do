@@ -1,17 +1,22 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'shared_preferences_provider.dart';
 
 const _kLocaleKey = 'app_locale';
+const _kSupportedLocales = ['en', 'fr', 'de'];
 
 class LocaleNotifier extends Notifier<Locale> {
   @override
   Locale build() {
     final prefs = ref.read(sharedPreferencesProvider);
     final saved = prefs.getString(_kLocaleKey);
-    return saved != null ? Locale(saved) : const Locale('en');
+    if (saved != null) return Locale(saved);
+    final deviceCode = PlatformDispatcher.instance.locale.languageCode;
+    if (_kSupportedLocales.contains(deviceCode)) return Locale(deviceCode);
+    return const Locale('en');
   }
 
   Future<void> setLocale(Locale locale) async {
