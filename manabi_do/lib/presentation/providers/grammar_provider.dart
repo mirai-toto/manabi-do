@@ -34,7 +34,7 @@ Future<String> _loadAssetWithFallback(String primary, String fallback) async {
   }
 }
 
-// ── Markdown provider (N5, still MD-based) ────────────────────────────────────
+// ── Markdown provider (legacy, unused — kept for future non-JSON levels) ─────
 
 final grammarChaptersProvider =
     FutureProvider.family<List<GrammarChapter>, String>((ref, level) async {

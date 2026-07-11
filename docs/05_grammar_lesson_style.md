@@ -1,6 +1,6 @@
 # Grammar Lesson Style Guide
 
-This document defines the voice, structure, and quality bar for all grammar lesson content in Manabi Do. It applies to the Markdown source files today and will carry forward when lessons migrate to the JSON block format.
+This document defines the voice, structure, and quality bar for all grammar lesson content in Manabi Do. Content is authored in Markdown (`.md` files as drafts) and then expressed as JSON block files (`.json`) for the app. See `docs/04_grammar_lesson_widgets.md` for the block spec.
 
 ---
 
@@ -161,9 +161,9 @@ When writing content for a new JLPT level:
 
 ---
 
-## JSON Block Migration
+## Markdown to JSON Mapping
 
-When a level is ready to migrate from Markdown to JSON blocks (see `docs/04_grammar_lesson_widgets.md`), each `###` section maps directly to one `lesson` object, and the internal content maps to blocks as follows:
+`basics` and `N5` are already migrated. When writing content for a new level, author it in Markdown first, then convert to JSON blocks. Each `###` section maps to one `lesson` object, and the internal content maps to blocks as follows:
 
 | Markdown element | JSON block type |
 |---|---|

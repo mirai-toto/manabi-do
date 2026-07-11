@@ -57,7 +57,7 @@ Level selector (N5/N4/N3/N2/N1). Word list shows kanji form, kana reading, meani
 
 ### Grammar
 
-Chapter list → lesson list → lesson reader (scrollable Markdown content). "Practice" button at the bottom leads to exercises. Lessons are stored in SQLite, loaded from bundled Markdown assets at first run.
+Chapter list → lesson list → lesson reader (block-rendered content). Lessons are loaded at runtime from bundled JSON asset files. Grammar is currently behind a feature flag and only accessible in debug mode.
 
 ---
 

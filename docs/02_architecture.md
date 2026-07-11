@@ -87,11 +87,10 @@ Two SQLite files are bundled as assets and copied to the app's documents directo
 - sentence_id FK, locale, translation
 - Primary key: (sentence_id, locale); English is the fallback locale
 
-**`grammar_lessons`**
-- id, locale, chapter, title, content_md, order_index, metadata (JSON)
-
 **`exercises`**
 - id, locale, type, source (kana/kanji/vocabulary/grammar), source_id, prompt, answer, distractors (JSON), lesson_id FK
+
+Note: the `grammar_lessons` table is no longer used. Grammar content is now loaded at runtime from bundled JSON asset files (see Grammar Asset Format below).
 
 ### User Progress (written at runtime)
 
@@ -131,15 +130,15 @@ Stroke order SVGs are bundled as individual files under `assets/kanji_svg/`. The
 
 ## Grammar Asset Format
 
-Grammar lessons are stored as Markdown files under `manabi_do/assets/grammar/`:
+Grammar lessons are stored as JSON files under `manabi_do/assets/grammar/`:
 
 ```
 assets/grammar/
-  basics.md
-  N5.md
+  basics.json
+  N5.json
 ```
 
-These files are loaded and parsed into the `grammar_lessons` and `exercises` tables in `manabi_do_content.db` at build time by the preprocessing tool (`tool/gen_translations.dart`).
+Each file follows the block format defined in `docs/04_grammar_lesson_widgets.md`. Files are loaded at runtime via `rootBundle.loadString` and parsed by `grammarJsonChaptersProvider`. No preprocessing tool or SQLite import step is involved.
 
 ---
 

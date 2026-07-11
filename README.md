@@ -75,7 +75,6 @@ Output: `build\windows\x64\runner\Release\manabi_do.exe`
 ## Project structure
 
 ```
-grammar/          # Grammar curriculum outlines per JLPT level (N5–N1)
 manabi_do/
   lib/
     core/         # Theme tokens, dimensions, SRS helpers
