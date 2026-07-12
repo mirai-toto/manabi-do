@@ -647,7 +647,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get mcqPractice => 'Choix multiple';
 
   @override
-  String get freePractice => 'Pratique libre';
+  String get freePractice => 'Entraînement libre';
 
   @override
   String get sentencePractice => 'Phrases';
