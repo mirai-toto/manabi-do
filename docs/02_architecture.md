@@ -81,7 +81,7 @@ content/  ← versioned JSON snapshot, committed to git
 manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
 ```
 
-`content/` JSON files are currently derived from online sources. They are committed to git as a versioned snapshot and can diverge from upstream as manual edits accumulate. A `tools/sync_content.py` script to re-seed `content/` from online sources is planned but not yet implemented. See `content/README.md` for the full rebuild workflow.
+`content/` JSON files are committed to git as a versioned snapshot and can diverge from upstream as manual edits accumulate. `tools/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from online sources; `tools/generate.py --sync` is the end-to-end rebuild entry point. See `content/README.md` for the full rebuild workflow.
 
 ---
 

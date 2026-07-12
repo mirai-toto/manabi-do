@@ -104,7 +104,7 @@ Primary key: (sentence_id, locale). English (`eng`) is the fallback locale.
 | blocks_json | TEXT       | JSON array of `{type, data}` blocks |
 | order_index | INTEGER    | Position within chapter             |
 
-Compiled from `content/grammar/` by `tools/build_content_db.py`. App-side integration pending (Phase 3) — grammar is currently still loaded from bundled JSON assets.
+Compiled from `content/grammar/` by `tools/build_content_db.py`. Read at runtime by `grammarChaptersProvider` via `AppDatabase.getGrammarLessonsForLevel`.
 
 **`exercises`**
 
@@ -158,7 +158,7 @@ Primary key: (item_type, item_id).
 | Stroke order diagrams     | KanjiVG by Ulrich Apel                                                                                                                                                         | CC BY-SA 3.0 |
 | Grammar lessons           | Hand-authored in `content/grammar/`                                                                                                                                            | —            |
 
-These sources feed into `content/` JSON files (committed) via the content pipeline. See `content/README.md` for the full rebuild workflow and the planned `tools/sync_content.py` for re-seeding from upstream.
+These sources feed into `content/` JSON files (committed) via the content pipeline. See `content/README.md` for the full rebuild workflow. `tools/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from upstream; run via `tools/generate.py --sync`.
 
 ## Content organisation by JLPT level
 
