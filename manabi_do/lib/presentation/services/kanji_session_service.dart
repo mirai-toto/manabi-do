@@ -66,11 +66,9 @@ class KanjiSessionService {
           : filtered;
     }
 
-    // Pool (for MCQ distractors) and translations.
+    // Pool (for MCQ distractors) — always the full level, never group-filtered.
     final allPool = await db.getKanjiByLevel(level);
-    final pool = allowedIds != null
-        ? allPool.where((k) => allowedIds.contains(k.id)).toList()
-        : allPool;
+    final pool = allPool;
     final allIds = [...pairs.map((p) => p.$1.id), ...pool.map((k) => k.id)];
     final kanjiTranslations = locale != 'en'
         ? await db.getKanjiTranslations(allIds.toSet().toList(), locale)
