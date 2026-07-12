@@ -6,7 +6,13 @@
 | --------------------------------------- | ----------------------------------------------------------- |
 | `manabi_do/assets/manabi_do_content.db` | Main content DB — kanji, vocab, sentences, all translations |
 
-The content DB is bundled as a Flutter asset. On first launch it is copied to the app's documents directory and used as the live SQLite database. Edits to the asset file only affect fresh installs/reinstalls; existing installs carry their own on-device copy.
+The content DB is bundled as a Flutter asset. On first launch it is copied to a platform-specific directory and used as the live SQLite database:
+
+- **Linux debug** — repo root (located via `.git` detection)
+- **Linux release** — `~/.local/share/<app>/` (XDG application support directory)
+- **All other platforms** — `getApplicationDocumentsDirectory()`
+
+Edits to the asset file only affect fresh installs/reinstalls; existing installs carry their own on-device copy. If the bundled version marker changes, SRS progress is migrated automatically before the old DB is replaced.
 
 ## Schema
 
@@ -104,7 +110,7 @@ Primary key: (sentence_id, locale). English (`eng`) is the fallback locale.
 | blocks_json | TEXT       | JSON array of `{type, data}` blocks |
 | order_index | INTEGER    | Position within chapter             |
 
-Compiled from `content/grammar/` by `tools/build_content_db.py`. Read at runtime by `grammarChaptersProvider` via `AppDatabase.getGrammarLessonsForLevel`.
+Compiled from `content/grammar/` by `tools/build_content_db.py`. The table is populated in the DB but the app currently reads grammar from bundled JSON assets (`grammarJsonChaptersProvider`). Migrating the app to read from this table is Phase 3 of the grammar pipeline (see plan).
 
 **`exercises`**
 

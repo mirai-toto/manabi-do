@@ -59,7 +59,13 @@ Drill-down state (selected level, selected group) is lifted into Riverpod provid
 
 ## Data Model
 
-A single SQLite file — `manabi_do_content.db` — is bundled as an asset and copied to the app's documents directory on first run.
+A single SQLite file — `manabi_do_content.db` — is bundled as an asset and copied to a platform-specific directory on first run:
+
+- **Linux debug** — repo root (located via `.git` detection), so the DB sits next to the source and is easy to inspect
+- **Linux release** — `~/.local/share/<app>/` (XDG application support directory)
+- **All other platforms** — `getApplicationDocumentsDirectory()`
+
+If the bundled DB version marker changes, the existing DB is replaced and SRS progress is migrated across automatically.
 
 `manabi_do_content.db` tables: `kanjis`, `kanji_translations`, `kanas`, `vocabulary_entries`, `vocab_translations`, `sentences`, `sentence_translations`, `grammar_lessons`, `exercises`.
 

@@ -52,8 +52,9 @@ When a GitHub Release is published.
 - Decode the release keystore from secrets
 - Build the signed Android App Bundle (AAB)
 - Upload the AAB to the GitHub Release
+- Deploy the AAB to the Play Store internal track via Fastlane
 
-Guarantees artifacts are signed and match the released version.
+Guarantees artifacts are signed, versioned, and available on the internal track without manual upload.
 
 ---
 
@@ -85,7 +86,6 @@ Pushes to `main` that modify the `docs/` directory.
 
 ## Key Principle
 
-**Releases define versions.
-Humans upload to the Play Store.**
+**Releases define versions. CI deploys to internal track. Humans promote to production.**
 
-Automation handles versioning, tagging, and building. Play Store uploads remain a manual step.
+Automation handles versioning, tagging, building, and Play Store internal track deployment. Promotion to production remains a manual step.
