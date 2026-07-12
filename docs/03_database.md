@@ -9,6 +9,145 @@
 
 The content DB is bundled as a Flutter asset. On first launch it is copied to the app's documents directory and used as the live SQLite database. Edits to the asset file only affect fresh installs/reinstalls; existing installs carry their own on-device copy.
 
+## Schema
+
+### `manabi_do_content.db` — All content
+
+**`kanjis`**
+
+| Column | Type | Notes |
+|---|---|---|
+| id | INTEGER PK | Unicode codepoint |
+| character | TEXT | |
+| meaning | TEXT | English fallback |
+| on_reading | TEXT | |
+| kun_reading | TEXT | |
+| jlpt_level | TEXT | `N5`–`N1` |
+
+**`kanji_translations`**
+
+| Column | Type | Notes |
+|---|---|---|
+| kanji_id | INTEGER FK | → `kanjis.id` |
+| locale | TEXT | `en`, `fr`, `de`, … |
+| meaning | TEXT | |
+
+Primary key: (kanji_id, locale)
+
+**`kanas`**
+
+| Column | Type | Notes |
+|---|---|---|
+| id | INTEGER PK | |
+| character | TEXT | |
+| romaji | TEXT | |
+| type | TEXT | `hiragana` \| `katakana` |
+| row | TEXT | Row label, e.g. `Vowels`, `K` |
+| kana_group | TEXT | `gojuuon` \| `dakuten` |
+| slot | INTEGER | Column position 0–4 |
+
+**`vocabulary_entries`**
+
+| Column | Type | Notes |
+|---|---|---|
+| id | INTEGER PK | |
+| word | TEXT | |
+| reading | TEXT | |
+| meaning | TEXT | English fallback |
+| jlpt_level | TEXT | `N5`–`N1` |
+| part_of_speech | TEXT | |
+| kanji_id | INTEGER FK | → `kanjis.id`, nullable |
+
+**`vocab_translations`**
+
+| Column | Type | Notes |
+|---|---|---|
+| vocab_id | INTEGER FK | → `vocabulary_entries.id` |
+| locale | TEXT | `en`, `fr`, `de`, … |
+| meaning | TEXT | |
+
+Primary key: (vocab_id, locale)
+
+**`sentences`**
+
+| Column | Type | Notes |
+|---|---|---|
+| id | INTEGER PK | |
+| japanese | TEXT | |
+| target_word | TEXT | Vocab word the sentence demonstrates |
+| vocab_id | INTEGER FK | → `vocabulary_entries.id` |
+| furigana_before | TEXT | nullable |
+| furigana_after | TEXT | nullable |
+| furigana | TEXT | Full annotated string, nullable |
+
+No `jlpt_level` column — level is inherited via `vocab_id → vocabulary_entries.jlpt_level`.
+
+**`sentence_translations`**
+
+| Column | Type | Notes |
+|---|---|---|
+| sentence_id | INTEGER FK | → `sentences.id` |
+| locale | TEXT | `eng`, `fra`, `deu`, … |
+| translation | TEXT | |
+
+Primary key: (sentence_id, locale). English (`eng`) is the fallback locale.
+
+**`grammar_lessons`**
+
+| Column | Type | Notes |
+|---|---|---|
+| id | INTEGER PK | |
+| level | TEXT | `basics`, `N5`, … |
+| path | TEXT | Relative to `content/grammar/` |
+| chapter | TEXT | Chapter title |
+| title | TEXT | Lesson title |
+| blocks_json | TEXT | JSON array of `{type, data}` blocks |
+| order_index | INTEGER | Position within chapter |
+
+Compiled from `content/grammar/` by `tools/build_content_db.py`. App-side integration pending (Phase 3) — grammar is currently still loaded from bundled JSON assets.
+
+**`exercises`**
+
+| Column | Type | Notes |
+|---|---|---|
+| id | INTEGER PK | |
+| locale | TEXT | |
+| type | TEXT | `mcq`, `flashcard`, `drawing`, … |
+| source | TEXT | `kana`, `kanji`, `vocabulary`, `grammar` |
+| source_id | INTEGER | Row ID in the source table |
+| prompt | TEXT | |
+| answer | TEXT | |
+| distractors | TEXT | JSON array of wrong answers |
+| lesson_id | INTEGER FK | → `grammar_lessons.id`, nullable |
+
+### User progress (written at runtime)
+
+**`progress_entries`**
+
+| Column | Type | Notes |
+|---|---|---|
+| id | INTEGER PK | |
+| item_type | TEXT | `ItemType` enum name |
+| item_id | INTEGER | Row ID in the source table |
+| is_known | BOOLEAN | |
+| toggled_at | DATETIME | |
+
+Unique key: (item_type, item_id). Simple known/unknown toggle, locale-agnostic.
+
+**`srs_cards`**
+
+| Column | Type | Notes |
+|---|---|---|
+| item_type | TEXT | `hiragana`, `katakana`, `kanji`, `vocabulary` |
+| item_id | INTEGER | Row ID in the source table |
+| due | DATETIME | Next review date |
+| first_seen_at | DATETIME | Set once on insert, never overwritten |
+| card_json | TEXT | Full FSRS `Card` serialized via `card.toMap()` |
+
+Primary key: (item_type, item_id).
+
+---
+
 ## Data sources
 
 | Content | Source | License |
