@@ -74,9 +74,6 @@ class _LevelContent extends ConsumerWidget {
 
     final groupIds = entries.map((e) => e.id).toSet();
     final start = groupIndex * kVocabGroupSize;
-    final countsFuture = ref.read(
-      vocabGroupSrsCountProvider((level: level, groupIndex: groupIndex)).future,
-    );
 
     return ListView(
       padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
@@ -129,14 +126,14 @@ class _LevelContent extends ConsumerWidget {
                   color: color,
                   modes: [
                     PracticeMode(
-                      icon: Icons.calendar_today_rounded,
-                      title: l.dailyTraining,
-                      counts: () => countsFuture,
+                      icon: Icons.shuffle_rounded,
+                      title: l.freePractice,
                       onTap: () async => Navigator.of(ctx).push(
                         MaterialPageRoute<void>(
                           builder: (_) => VocabPracticeScreen(
                             level: level,
                             allowedIds: groupIds,
+                            freeMode: true,
                           ),
                         ),
                       ),

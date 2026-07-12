@@ -13,7 +13,15 @@
       "Bash(flutter analyze *)",
       "Bash(dart analyze *)",
       "Bash(dart format *)",
-      "Bash(git apply *)"
+      "Bash(git apply *)",
+      "Bash(python3 tools/build_content_db.py --no-sentences)",
+      "Bash(python3 *)",
+      "Bash(mkdir -p /tmp/content_backup)",
+      "Bash(cp content/characters/kanji_n*.json content/vocabulary/vocab_n*.json /tmp/content_backup/)",
+      "Bash(rm content/characters/kanji_n*.json content/vocabulary/vocab_n*.json)",
+      "Read(//tmp/**)",
+      "Bash(grep -E \"\\\\.py$|\\\\.dart$|kanji_n\")",
+      "Bash(curl *)"
     ]
   }
 }

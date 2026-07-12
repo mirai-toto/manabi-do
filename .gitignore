@@ -1,6 +1,11 @@
 # Raw source data — large downloads, not committed (see data/)
 /data/
 
+# Dev-mode live DB (stored at repo root when running flutter run -d linux)
+manabi_do.db
+manabi_do.db.version
+manabi_do.sqlite
+
 # OS
 .DS_Store
 Thumbs.db
