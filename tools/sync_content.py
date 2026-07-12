@@ -4,7 +4,9 @@ Re-seed content/characters/kanji_n*.json and content/vocabulary/vocab_n*.json
 from online sources, downloading and caching raw data to data/.
 
 Sources:
-  - Kanji:  KANJIDIC2 (EDRDG) — readings, meanings, JLPT level
+  - Kanji levels:    davidluzgouveia/kanji-data (GitHub) — modern N1–N5 assignment
+                     (based on Jonathan Waller's JLPT lists, jlpt_new field)
+  - Kanji readings/meanings: KANJIDIC2 (EDRDG)
   - Vocab:  Bluskyo/JLPT_Vocabulary (JLPT level + reading)
             + JMdict-simplified (meanings in all languages, POS)
 
@@ -13,13 +15,6 @@ Run from the repo root:
 
 Flags:
     --force   Re-download source files even if already cached in data/
-
-Known limitation — kanji N2/N3 split:
-    KANJIDIC2 uses the old 4-level JLPT system. Old level 2 covers what is now
-    both N2 and N3 (~734 kanji). This script maps old level 2 → N3, so after
-    a sync N3 will have ~734 entries and N2 will be empty. The current committed
-    JSON files preserve the correct 367/367 split; use them as the reference and
-    manually redistribute entries after a sync if needed.
 
 Note:
     content/characters/kana.json is static (kana never changes) and is not
@@ -43,13 +38,18 @@ DATA_DIR   = "data"
 CHARS_DIR  = "content/characters"
 VOCAB_DIR  = "content/vocabulary"
 
-BLUSKYO_PATH   = os.path.join(DATA_DIR, "bluskyo_vocab.json")
-JMDICT_PATH    = os.path.join(DATA_DIR, "jmdict.json")
-KANJIDIC2_PATH = os.path.join(DATA_DIR, "kanjidic2.xml")
+BLUSKYO_PATH    = os.path.join(DATA_DIR, "bluskyo_vocab.json")
+JMDICT_PATH     = os.path.join(DATA_DIR, "jmdict.json")
+KANJIDIC2_PATH  = os.path.join(DATA_DIR, "kanjidic2.xml")
+KANJI_DATA_PATH = os.path.join(DATA_DIR, "kanji_data.json")
 
 BLUSKYO_URL    = "https://raw.githubusercontent.com/Bluskyo/JLPT_Vocabulary/main/data/vocab/results/JLPT_vocab_ALL.json"
 JMDICT_API_URL = "https://api.github.com/repos/scriptin/jmdict-simplified/releases/latest"
 KANJIDIC2_URL  = "https://www.edrdg.org/kanjidic/kanjidic2.xml.gz"
+KANJI_DATA_URL = "https://raw.githubusercontent.com/davidluzgouveia/kanji-data/master/kanji.json"
+
+# davidluzgouveia/kanji-data jlpt_new: 5=N5, 4=N4, 3=N3, 2=N2, 1=N1
+JLPT_NEW_TO_STR: dict[int, str] = {5: "N5", 4: "N4", 3: "N3", 2: "N2", 1: "N1"}
 
 # JMdict ISO 639-2/3 → BCP-47
 LANG_MAP: dict[str, str] = {
@@ -65,9 +65,6 @@ LANG_MAP: dict[str, str] = {
     "por": "pt",
 }
 
-# KANJIDIC2 old JLPT (1–4) → new JLPT (N1–N5).
-# Old level 2 = N2+N3 combined → mapped to N3 (see module docstring).
-JLPT_OLD_TO_NEW: dict[int, str] = {4: "N5", 3: "N4", 2: "N3", 1: "N1"}
 
 _POS_MAP: dict[str, str] = {
     "n":       "noun",
@@ -160,53 +157,66 @@ def _fetch_kanjidic2(dest: str) -> None:
     print(f" {len(xml_bytes) // 1024} KB")
 
 
+def _fetch_kanji_data(dest: str) -> None:
+    data = _get_bytes(KANJI_DATA_URL, "davidluzgouveia/kanji-data")
+    with open(dest, "wb") as f:
+        f.write(data)
+
+
 # ── Kanji ─────────────────────────────────────────────────────────────────────
 
 def generate_kanji(force: bool) -> set[int]:
     print("\n── Kanji ────────────────────────────────────────────────────")
+    _ensure(KANJI_DATA_PATH, force, _fetch_kanji_data)
     _ensure(KANJIDIC2_PATH, force, _fetch_kanjidic2)
+
+    print("  Loading kanji level list…", end="", flush=True)
+    with open(KANJI_DATA_PATH, encoding="utf-8") as f:
+        kanji_data: dict[str, dict] = json.load(f)
+    # character → level string; skip entries with no modern JLPT level
+    char_to_level: dict[str, str] = {}
+    for char, info in kanji_data.items():
+        lvl = JLPT_NEW_TO_STR.get(info.get("jlpt_new"))
+        if lvl:
+            char_to_level[char] = lvl
+    print(f" {len(char_to_level)} kanji with JLPT level")
 
     print("  Parsing KANJIDIC2…", end="", flush=True)
     root = ET.parse(KANJIDIC2_PATH).getroot()
-    print(" done")
+    kanjidic2_index: dict[str, ET.Element] = {
+        ch.findtext("literal") or "": ch for ch in root.findall("character")
+    }
+    print(f" {len(kanjidic2_index)} entries")
 
     by_level: dict[str, list[dict]] = {l: [] for l in ["N5", "N4", "N3", "N2", "N1"]}
     kanji_ids: set[int] = set()
 
-    for character in root.findall("character"):
-        literal = character.findtext("literal") or ""
-        if not literal:
-            continue
-        jlpt_text = character.findtext("misc/jlpt")
-        if not jlpt_text:
-            continue
-        level = JLPT_OLD_TO_NEW.get(int(jlpt_text))
-        if level is None:
-            continue
-
-        kanji_id = ord(literal)
+    for char, level in char_to_level.items():
+        kanji_id = ord(char)
         kanji_ids.add(kanji_id)
 
         on_readings: list[str] = []
         kun_readings: list[str] = []
         meanings: dict[str, list[str]] = {}
 
-        for rmgroup in character.findall("reading_meaning/rmgroup"):
-            for reading in rmgroup.findall("reading"):
-                r_type = reading.get("r_type", "")
-                text = reading.text or ""
-                if r_type == "ja_on":
-                    on_readings.append(text)
-                elif r_type == "ja_kun":
-                    kun_readings.append(text)
-            for meaning in rmgroup.findall("meaning"):
-                lang_attr = meaning.get("m_lang", "")
-                lang = "en" if lang_attr == "" else LANG_MAP.get(lang_attr, lang_attr)
-                meanings.setdefault(lang, []).append(meaning.text or "")
+        character = kanjidic2_index.get(char)
+        if character is not None:
+            for rmgroup in character.findall("reading_meaning/rmgroup"):
+                for reading in rmgroup.findall("reading"):
+                    r_type = reading.get("r_type", "")
+                    text = reading.text or ""
+                    if r_type == "ja_on":
+                        on_readings.append(text)
+                    elif r_type == "ja_kun":
+                        kun_readings.append(text)
+                for meaning in rmgroup.findall("meaning"):
+                    lang_attr = meaning.get("m_lang", "")
+                    lang = "en" if lang_attr == "" else LANG_MAP.get(lang_attr, lang_attr)
+                    meanings.setdefault(lang, []).append(meaning.text or "")
 
         by_level[level].append({
             "id": kanji_id,
-            "character": literal,
+            "character": char,
             "jlpt": level,
             "on": on_readings,
             "kun": kun_readings,
