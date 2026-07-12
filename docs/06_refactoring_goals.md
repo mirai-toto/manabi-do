@@ -50,12 +50,12 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 
 ---
 
-## 4. Code Simplification
+## 4. Code Simplification ✅
 
 **Rule:** Delete complexity that isn't earning its keep. Prefer the obvious path.
 
 - ✅ `vocab_session_service.dart` / `kanji_session_service.dart` — shared distractor-picking logic extracted into `_pickDistractors<T>` in `session_item_builders.dart`
-- [ ] `writing_session_provider.dart` — DB queries + shuffling + locale lookups + transforms in one provider; split by concern
+- ✅ `writing_session_provider.dart` — extracted into `WritingSessionService`; provider is now a thin wrapper
 
 ---
 
