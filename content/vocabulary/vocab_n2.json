@@ -55,13 +55,13 @@
     "kanjiId": 19978,
     "jlpt": "N2",
     "meanings": {
-      "en": "top and bottom; high and low; above and below; upper and lower ends; up and down; going up and down; rising and falling; fluctuating; going and coming back; upper and lower classes; ruler and ruled; the government and the people; first and second volumes; top and bottom; two-piece (outfit)",
-      "fr": "haut et bas",
-      "de": "auf und ab gehen; hoch und nieder gehen; Oben und Unten; Auf und Ab; vertikales Schwanken; etw. für Oben und Unten",
+      "en": "top and bottom; up and down; high and low; above and below; upper and lower ends; upside-down",
+      "fr": "de haut en bas; en haut et en bas; vertical; verticalement; à l'envers",
+      "de": "oben und unten",
       "hu": "nagyok és kicsinyek",
-      "ru": "1) верх и низ; {～に} вверху и внизу; высоко и низко; 2) подъём и спуск; поднятие и падение; колебание; {～する} идти то вверх, то вниз; подниматься и опускаться; колебаться (напр. о ценах, температуре); 3) туда и обратно; {～する} идти (ехать) туда и обратно (в оба конца); 4) верхи и низы, высшие и низшие; 5) 1-й и 2-й тома (если их только два)",
-      "sl": "visok in nizek; visoko in nizko; gor in dol; prvi in drugi del knjige",
-      "es": "Vertical; fluctuación; revés"
+      "ru": "1) верх и низ; {～になる} быть перевёрнутым вверх дном (вверх ногами); 2): 着物の上下 пиджак и брюки",
+      "sl": "visoko-nizko; gor-dol",
+      "es": "orden vertical; subida y caída; fluctuación"
     }
   },
   {
@@ -262,12 +262,13 @@
     "kanjiId": 28508,
     "jlpt": "N2",
     "meanings": {
-      "en": "to dive (into or under water); to get under; to get into; to get in; to creep into; to crawl under; to bury oneself; to burrow into; to dig oneself into; to snuggle under; to hide oneself (esp. from the government); to conceal oneself; to go underground",
-      "fr": "plonger (dans ou sous l'eau); se mettre sous; entrer dans; se glisser dans; ramper sous; s'enterrer; s'enfouir dans; s'enfoncer dans; se blottir sous; se cacher (surtout du gouvernement); entrer dans la clandestinité",
-      "de": "tauchen; untertauchen; sich verkriechen; sich absetzen; untertauchen",
+      "en": "to go under; to pass under; to go through; to pass through; to dive (into or under the water); to evade; to get around; to slip past; to survive; to surmount",
+      "fr": "passer à travers; passer sous; éviter; esquiver; se cacher; se soustraire à; plonger (dans ou sous l'eau); s'enfoncer sous le sol",
+      "de": "durchgehen; tauchen; durchschlüpfen; umgehen; ausweichen; entwischen; sich entziehen",
       "hu": "elsodor; hajt; sodródik; átpaszíroz; kitér; beburkol; elpáhol; elrejtőzik; elver",
-      "ru": "1) нырять; 2) (см.) もぐりこむ; 3) делать (что-л.) тайком",
-      "es": "bucear (en el agua); zambullirse; ir (por debajo tierra)"
+      "ru": "1) проходить, пролезать (под чем-л.); 2) нырять; 3) (перен.) избегать (чего-л.); уклоняться (от чего-л.)",
+      "sl": "iti skozi; iti pod; potopiti se",
+      "es": "atravesar; pasar por debajo; pasar a través"
     }
   },
   {
@@ -309,12 +310,11 @@
     "kanjiId": 30427,
     "jlpt": "N2",
     "meanings": {
-      "en": "to serve (in a bowl, on a plate, etc.); to dish out; to dish up; to fill (a bowl) with; to pile up; to heap up; to fill up; to stack up; to administer (medicine, poison); to dose out; to prescribe; to put into (e.g. information in a report, meaning in a statement); to mark out (e.g. scale); to graduate (e.g. thermometer); to exaggerate; to apply heavy makeup",
-      "fr": "donner, administrer (un remède); servir (nourriture); accumuler; empiler",
-      "de": "auffüllen; füllen; aufhäufen; anhäufen; verabreichen; geben; markieren; mit einer Skala versehen; zurechtmachen; herrichten; schminken; aufbauschen; übertreiben",
-      "hu": "szolgál; betölt; feltöltődik; kitölt; megtelik; teletölt",
-      "ru": "1) накладывать (напр. еду на тарелку); насыпать кучей; 2) давать, прописывать (лекарство); 3): [毒を]盛る отравлять; 4) градуировать",
-      "es": "amontonar; apilar"
+      "en": "to become vigorous; to gain force; to become more active; to prosper; to thrive; to flourish; to be in heat; to be in rut; to copulate",
+      "fr": "prospérer; copuler (animaux)",
+      "de": "gedeihen; blühen; an Einfluss gewinnen; brünstig sein; läufig sein; heiß sein; rinderig sein",
+      "hu": "gesztikulál; szóvirágokkal beszél; virágkorát éli; virágzik; virul; elhál",
+      "ru": "1) процветать; 2) быть в периоде течки; случаться"
     }
   },
   {
@@ -324,13 +324,10 @@
     "kanjiId": 33853,
     "jlpt": "N2",
     "meanings": {
-      "en": "joke; pun; jest; witticism; wordplay; smartly dressed; stylish; fashion-conscious; refined",
-      "fr": "bon mot (voir aussi shareta); calembour; jeu de mots",
-      "de": "Witz; Wortspiel",
-      "hu": "móka; tréfa; szellemes megjegyzés; szellemeskedés",
-      "ru": "1) шутка, каламбур, игра слов; острота; 2) (см.) おしゃれ",
-      "sl": "besedna igra; šala",
-      "es": "broma; chiste"
+      "en": "free and easy; open-hearted; relaxed; not fussy; frank",
+      "de": "Freiheit; Ungezwungenheit",
+      "hu": "nyílt; őszinte",
+      "ru": ": {～な} откровенный; свободный от условностей"
     }
   },
   {
@@ -403,12 +400,11 @@
     "kanjiId": 36864,
     "jlpt": "N2",
     "meanings": {
-      "en": "to put something out of the way; to move (something, someone) aside",
-      "de": "wegschaffen; aus dem Weg räumen",
-      "hu": "elbocsát; eltávolít; eltüntet; elmozdít; elsikkaszt; eltesz; elvisz; levon; kimozdít; kiszabadít",
-      "ru": "(диал.) убирать с дороги, удалять",
-      "sl": "odstraniti; vzeti vstran",
-      "es": "hacer a un lado; quitar del paso"
+      "en": "to refuse; to reject; to turn down; to dismiss; to repel; to repulse; to drive away; to beat off; to defeat; to make (someone) leave; to send away; to turn away; to force (someone) to leave their post; to oust; to remove; to expel",
+      "fr": "repousser",
+      "de": "jmdn. sich entfernen lassen; verjagen; zurücktreiben; zurückschlagen (den Feind); etw. zurückweisen; etwas ablehnen; jmdm. befehlen; sein Amt zu verlassen; jmdn. seines Amtes entheben",
+      "hu": "elutasít; visszataszít; visszautasít; visszaver; elhajít; elvet; felöklendez; kihány; kiselejtez; nem fogad el; taszít",
+      "ru": "1) отгонять назад; оттеснять; 2) отстранять, удалять; 3) отклонять, отвергать; отказывать"
     }
   },
   {
@@ -558,7 +554,13 @@
     "kanjiId": 24453,
     "jlpt": "N2",
     "meanings": {
-      "en": "appointment"
+      "en": "appointment",
+      "fr": "rendez-vous",
+      "de": "Treffen; Zusammenkunft; Verabredung; Stelldichein",
+      "hu": "megbeszélés; megbeszélt időpont",
+      "sl": "srečati se (ob določeni uri in času); dogovorjeno srečanje",
+      "es": "cita",
+      "sv": "avtalat möte"
     }
   },
   {
@@ -584,13 +586,8 @@
     "kanjiId": 22812,
     "jlpt": "N2",
     "meanings": {
-      "en": "night travel; walking around at night; night train; nightly procession of monsters, spirits, etc.",
-      "fr": "se promener le soir; train de nuit; voyage de nuit",
-      "de": "nächtliches Herumstreunen; Nachtzug (Abk.)",
-      "hu": "éjszakai vonat",
-      "ru": "1) хождение (езда, путешествие) ночью; {～する} идти (ехать) ночью; 2) (разг.) ночной поезд",
-      "sl": "nočni vlak; nočno potovanje",
-      "es": "nocturno"
+      "en": "the \"ya\" column of the Japanese syllabary table (ya, yu, yo)",
+      "hu": "éjszakai vonat"
     }
   },
   {
@@ -617,7 +614,14 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "eye"
+      "en": "idea",
+      "fr": "idée",
+      "de": "Idee",
+      "hu": "elgondolás; eszme; gondolat; képzet",
+      "ru": "((англ.) idea) идея; (см.) アイデア",
+      "sl": "ideja",
+      "es": "idea (eng:)",
+      "sv": "idé"
     }
   },
   {
@@ -627,7 +631,11 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "milli-; 10^-3"
+      "en": "milli-; 10^-3; millimetre; millimeter",
+      "fr": "milli-",
+      "ru": "1) ((лат.) milli) 0,001; 2) (см.) ミリメートル",
+      "sl": "(Msr) milimetrov; milimeter; milimetrov",
+      "es": "mili-; 10^-3"
     }
   },
   {
@@ -637,14 +645,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "idea",
-      "fr": "idée",
-      "de": "Idee",
-      "hu": "elgondolás; eszme; gondolat; képzet",
-      "ru": "((англ.) idea) идея; (см.) アイデア",
-      "sl": "ideja",
-      "es": "idea (eng:)",
-      "sv": "idé"
+      "en": "eye"
     }
   },
   {
@@ -664,8 +665,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "dear",
-      "de": "Reh; Hirsch; Rotwild; Cervida"
+      "en": "deer"
     }
   },
   {
@@ -1079,7 +1079,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "suspicious; dubious; questionable; dodgy; shady; fishy; doubtful; unsure; uncertain; unlikely; implausible; untrustworthy; unreliable; clumsy; awkward; shaky; poor; strange; weird; eerie; spooky; uncanny; ominous (e.g. weather); threatening; dangerous (e.g. financial situation); uncertain; suspicious (of a potential amorous relation); mysterious; bewitching; alluring; enticing; enchanting",
-      "fr": "douteux; incertain; soupçonneux; suspect",
+      "fr": "douteux; incertain; soupçonneux; suspect; douteux; incertain; soupçonneux; suspect; charmant; enchantant; mystèrieux",
       "de": "verdächtig; dubios; zweifelhaft; fragwürdig; merkwürdig; befremdlich; bedenklich; seltsam; sonderbar; mysteriös; wunderlich; ominös; unzuverlässig; unglaubwürdig; unsicher; schlecht",
       "hu": "bizonytalan; félreérthető; gyanús; habozó; kétes; kétkedő; kétséges; kétes hírű",
       "ru": "1) сомнительный; подозрительный; 2) странный, удивительный; загадочный, таинственный; 3) неуверенный, неловкий; ломаный (о языке)",
@@ -2105,13 +2105,12 @@
     "kanjiId": 22475,
     "jlpt": "N2",
     "meanings": {
-      "en": "to bury (e.g. in the ground); to fill up (e.g. audience fills a hall); to cause to be packed; to plug (a gap); to stop (a gap); to bridge (a difference, a gap); to fill (a seat, a vacant position); to fill out (a form, a sheet); to make up for (a loss, shortage, etc.); to make amends; to compensate for; to put cold water (in a bath); to cover; to scatter something over",
-      "fr": "boucher; combler; emplir; enfouir; ensevelir; enterrer; remplir",
-      "de": "begraben; beerdigen; vergraben; zuschütten; füllen; ausfüllen; zustopfen; plombieren; decken; Wasser zugießen",
-      "hu": "elás; eltemet; betölt; feltöltődik; kiállít; kitölt; megtelik; megtölt; teletölt; betöm; dagad; eleget tesz; töm",
-      "ru": "1) закапывать, зарывать; 2) хоронить, погребать; 3) ((тж.) 塡める) заполнять, затыкать, забивать; 4) покрывать (дефицит, потери); (ср.) うめる【うめる】",
-      "sl": "zakopati; zapolniti (kaj s čim)",
-      "es": "enterrar; soterrar; rellenar; cubrir; paliar"
+      "en": "to cover; to bury (e.g. one's face in hands); to submerge; to fill (completely); to stuff; to pack; to cram; to fill up",
+      "fr": "cacher; combler; recouvrir",
+      "de": "vergraben; beerdigen; ausfüllen; zustopfen; verdecken",
+      "hu": "elás; eltemet",
+      "ru": "1) закапывать, зарывать; 2) засыпать; заполнять; прикрывать",
+      "es": "llenar (un hueco; etc.); taparse; enterrar; ocupar"
     }
   },
   {
@@ -2197,12 +2196,10 @@
     "kanjiId": 24680,
     "jlpt": "N2",
     "meanings": {
-      "en": "to regret",
-      "fr": "en vouloir à; haïr; maudire",
+      "en": "to bear a grudge against; to resent; to blame; to curse; to feel bitter towards",
+      "fr": "en vouloir à; haïr; maudire; en vouloir à; haïr; maudire; regretter",
       "hu": "átkoz; átkozódik; megátkoz",
-      "ru": "(кн.) сожалеть",
-      "de": "übel nehmen; ärgerlich sein; böse sein; jmdm. grollen; jmdm. etw. nachtragen; einen Groll hegen; beschuldigen; vorwerfen; bedauern; leider so sein",
-      "es": "resentir; odiar; detestar"
+      "ru": "быть в обиде (на кого-л.); сердиться (на кого-л.); питать злобу (к кому-л.); укорять, упрекать"
     }
   },
   {
@@ -2460,7 +2457,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "great; excellent; admirable; commendable; laudable; honorable; wonderful; outstanding; extraordinary; distinguished; important; high-ranking; powerful; eminent; famous; awful; terrible; serious; tremendous; great; mighty; severe; tiring; tough; hard; very; extremely",
-      "fr": "éminent; admirable; célèbre; grand",
+      "fr": "éminent; admirable; célèbre; grand; affreux; terrible; épouvantable",
       "de": "angesehen; bedeutend; groß; einflussreich; hervorragend; berühmt; außerordentlich; einzigartig; überragend; vortrefflich; schlimm; ernst; schrecklich; hart; unglaublich; erstaunlich; überraschend; schmerzlich; hart; unangenehm",
       "hu": "híres; neves; nevezetes; eminens; borzasztó; szörnyű; áhítatot keltő; áhítattal telt; félelmes; félelmetes; ijesztő; irtózatos; rémítő; rettenetes; tiszteletet keltő",
       "ru": "1) великий, выдающийся; 2) (прост.) сильный, ужасный",
@@ -2475,7 +2472,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "party; banquet; reception; feast; dinner",
-      "fr": "fête; sauterie(vx)",
+      "fr": "fête; sauterie(vx); fête; sauterie(vx); banquet",
       "de": "Festmahl; Bankett; Festessen; Dinner; Fest; Party",
       "hu": "buli; párt; lakoma",
       "ru": "банкет, [парадный] обед (ужин)",
@@ -3317,7 +3314,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "organ (musical instrument)",
-      "fr": "organe",
+      "fr": "orgue",
       "de": "Orgel; Harmonium",
       "hu": "emberi hang; érzékszerv; hírközlő szerv; orgánum; orgona",
       "ru": "((англ.) organ) орган",
@@ -3411,10 +3408,13 @@
     "kanjiId": 24481,
     "jlpt": "N2",
     "meanings": {
-      "en": "... and Company; Messrs; for the attention of ...",
-      "fr": "Messieurs X et Cie",
-      "de": "An die Firma …; An … (Ausdruck der bei Schreiben an Firmen und Institutionen an deren Namen gefügt wird)",
-      "ru": "(суф. к адресам учреждений, не переводится.)"
+      "en": "belly; abdomen; stomach",
+      "fr": "ventre; ventre; estomac",
+      "de": "Bauch; Magen; Leib (überwiegend von Frauen und Kinder gebraucht, ursprüngl. frauenspr.); Mahl; Mahlzeit; Watte; Seide",
+      "hu": "dölyf; étvágy; hajlandóság; gyomor; dölyf; étvágy; hajlandóság",
+      "ru": "(разг.) живот",
+      "es": "estómago; vientre",
+      "sv": "mage"
     }
   },
   {
@@ -3457,14 +3457,13 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "(wine) cellar",
+      "en": "curve; turn; bend; curveball; curve ball",
       "fr": "courbe; balle courbe (baseball)",
-      "de": "gebogene Linie; Kurve; Biegung; Krümmung; Curve-Ball",
-      "hu": "függvényábra; görbület; hajlat; kanyar; kanyarulat",
-      "ru": "((англ.) curb market) неофициальная биржа; сделка вне биржи; ((англ.) curve) (см.) カーヴ",
-      "es": "curva (eng: curve); recodo; hacer una curva; torcer; bola curva (baseball)",
-      "sv": "båge",
-      "sl": "ovinek; zavoj; krivulja; ovinek; zavoj"
+      "de": "eine Kurve machen",
+      "hu": "függvényábra",
+      "ru": "((англ.) curve) кривая [линия]; изгиб, поворот; дуга",
+      "es": "curva (eng: curve)",
+      "sv": "båge"
     }
   },
   {
@@ -3854,11 +3853,12 @@
     "kanjiId": 21453,
     "jlpt": "N2",
     "meanings": {
-      "en": "to return; to come back; to go back; to turn over; to become extremely; to become completely",
-      "fr": "retourner; revenir",
-      "de": "zurückkehren (in den ursprünglichen Zustand); zurückkommen; zurückgegeben werden; rückgängig machen",
-      "hu": "változtat; átfordít; átgondol; felfordít; forgat; megfordul; beszámol; felel; hoz; jelent; válaszol; viszonoz; visszafizet; visszajön; visszatér; magához tér; visszakerül; visszanyeri eszméletét; visszamegy",
-      "es": "cambiarse; invertirse; volcarse; regresar; volver"
+      "en": "to warp; to curve; to arch; to bend; to bend backward (body or body part, e.g. fingers)",
+      "fr": "être voilé; cambrer; courber; ployer; s'incurver; se cambrer; se courber; se pencher; se voûter; voiler",
+      "de": "sich biegen; sich krümmen; sich winden; sich werfen; sich zurückbeugen",
+      "hu": "csűr; elgörbül; feliszapol; kifeszít; meghajlít; megront; türemlik; görbít; görbül; hajlik; hajlít; kanyarodik; behajlít; hajol; kanyarog",
+      "ru": "1) коробиться; изгибаться; 2) отклоняться; откидываться назад (о ком-л.); 3) (перен.) уклоняться",
+      "sl": "zviti se; izkriviti se {les itd.}"
     }
   },
   {
@@ -4796,12 +4796,12 @@
     "kanjiId": 20206,
     "jlpt": "N2",
     "meanings": {
-      "en": "kana; Japanese syllabaries (i.e. hiragana and katakana)",
-      "fr": "kana; syllabaire japonais",
-      "de": "Kana; Hiragana und Katakana; die beiden japanischen Silbenschriften",
-      "ru": "кана (яп. слоговая азбука)",
-      "sl": "kana",
-      "es": "silabario japonés (alfabeto); kana"
+      "en": "alias; pseudonym; pen name; nom de plume",
+      "fr": "alias; pseudo; pseudonyme",
+      "de": "Pseudonym; angenommener Name; falscher Name; fiktiver Name; Alias; Kana; vorläufiger Name; Alias; Pseudonym; Nom de Plume",
+      "hu": "írói álnév",
+      "ru": "фиктивное (вымышленное) имя; вымышленное имя; псевдоним; кличка; (кн.) псевдоним",
+      "es": "seudónimo; alias"
     }
   },
   {
@@ -4907,13 +4907,12 @@
     "kanjiId": 34987,
     "jlpt": "N2",
     "meanings": {
-      "en": "to cover (with something); to put on (e.g. someone's head); to pour liquid (on something); to dash liquid (over something); to plate (something) with metal; to cover (with a dental crown); to add (e.g. music to a video); to include (into something); to speak (over someone else); to put the blame (on someone); to place the responsibility (on someone)",
-      "fr": "charger; couvrir de; recouvrir de; verser (liquide)",
-      "de": "bedecken; zudecken; abdecken; ablegen; ausbreiten; verhüllen; umhüllen; beschuldigen; seine Schuld abwälzen",
-      "hu": "beborít; befed; befog; betakar; biztosít; borít; fedez; felölel; kiterjed; közvetít; leplez; magába foglal; palástol; tudósít; véd; védelmez; felszólít; kér; megbíz; megrohamoz; megtámad; megterhel; megtölt; támad",
-      "ru": "1) покрывать, накрывать (чем-л.); надевать (на голову); 2) лить (что-л.), поливать (чем-л.); 3) сваливать (вину, ответственность и т. п.)",
-      "sl": "pokriti; nadeti; obleči; pokriti; zavarovati; dati (klobuk na glavo)",
-      "es": "cubrir; forrar; enfundar; echar"
+      "en": "to put clothes on (someone); to dress; to clothe; to cover; to coat; to plate; to gild; to veneer; to pin (e.g. a crime on someone); to lay (blame); to charge (with an offence); to give (a bad name); to remind someone of (their indebtedness)",
+      "fr": "couvrir; habiller; revêtir; imputer à",
+      "de": "jmdn. anziehen; jmdn. zudecken; jmdm. die Schuld zuschieben; jmdn. verantwortlich machen; jmdn. beschuldigen; jmdn. anklagen; plattieren; vergolden; versilbern; verchromen; mit etwas überziehen; lackieren; schlagen",
+      "ru": "1) надевать (что-л. на кого-л.); одевать (кого-л.); накрывать (чем-л.); 2) ((чаще) 被せる) покрывать (чем-л.); 3) ((тж.) 被せる) сваливать (вину), возводить (обвинение)",
+      "sl": "obleči se",
+      "es": "ponerse ropa; chapar; dorar; enchapar; acusar (de un crimen); dar (un mal nombre)"
     }
   },
   {
@@ -5048,7 +5047,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "calla (variety of arum lily)",
+      "en": "color; colour; color; character; characteristics; atmosphere; coloring (one's hair); dyeing",
       "fr": "couleur",
       "de": "Calla; Kalla; Zantedeschia; Farbe; Kragen; Paul Karrer (schweizer. Biochemiker; 1889-1971)",
       "hu": "csőbilincs; gallér; ingnyak; karima; perem; szorító; gallér",
@@ -5159,13 +5158,12 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "tile (e.g. roof)",
-      "fr": "tuile",
-      "de": "Dachziegel; Ziegel",
-      "ru": "((санскр.) kapala) черепица; изразец",
-      "sl": "strešnik; strešna opeka",
-      "es": "teja",
-      "sv": "taktegel"
+      "en": "gram; gramme",
+      "fr": "gramme",
+      "de": "H.C. Gram (dänischer Pathologe; 1853-1938); Gramm",
+      "hu": "gramm",
+      "sl": "(Msr) gramov; gramov",
+      "es": "gramo"
     }
   },
   {
@@ -5816,13 +5814,10 @@
     "kanjiId": 22522,
     "jlpt": "N2",
     "meanings": {
-      "en": "base; basis; foundation; footing; infrastructure; bedrock; platform",
-      "de": "Fundament; Grundlage; Basis",
-      "hu": "alap",
-      "ru": "основа, база, фундамент; {…を～とする} базироваться, основываться (на чём-л.)",
-      "fr": "base; fondement",
-      "sl": "osnova",
-      "es": "bases; cimientos; fundamentos"
+      "en": "(circuit) board; substrate",
+      "de": "Platine (für gedruckte Schaltungen); Wafer; Substrat (für integrierte Schaltungen)",
+      "hu": "alap; anyag; integrált áramkör alaplemeze; áramkör hordozólapja",
+      "ru": "основа, база, фундамент; {…を～とする} базироваться, основываться (на чём-л.)"
     }
   },
   {
@@ -6442,12 +6437,13 @@
     "kanjiId": 19979,
     "jlpt": "N2",
     "meanings": {
-      "en": "to descend; to go down; to come down; to be handed down (of an order, judgment, etc.); to pass (of time); to surrender; to capitulate; to be less than; to be inferior to; to have the runs; to have diarrhea; to pass (in stool); to be discharged from the body; to depreciate oneself; to be humble",
-      "fr": "descendre; diminuer",
-      "de": "hinuntergehen; hinuntersteigen; voranrücken; erteilt werden; gefällt werden; gegeben werden; geringer sein; Durchfall haben; sich zurückziehen; sich zur Ruhe setzen; sich ergeben; die Waffen strecken; kapitulieren",
-      "hu": "leemel; lenyel; levesz; leszármazik",
-      "ru": "1) ((тж.) 降る) спускаться [вниз]; сходить [вниз]; 2) быть менее; быть ниже; 3) слабить; 4) уходить в отставку; 5) уезжать (из Токио); 6) быть изданным (о приказе и т. п.); 7) ((чаще) 降る) (уст.) сдаваться; 8) ((тж.) 降る) приходить в упадок, вырождаться, деградировать; (ср.) くだらない, くだって",
-      "es": "bajar; descender"
+      "en": "to come down; to go down; to fall; to drop; to sink; to get lower; to hang; to dangle; to move back; to step back; to withdraw; to retire; to deteriorate; to fall off; to be downgraded; to get closer to the present day; to play a sagari; to extend downwards",
+      "fr": "baisser; pendre; reculer; se retirer; tomber",
+      "de": "herabhängen; herunterhängen; fallen; sinken; sich senken; verlassen; weggehen; sich zurückziehen; zurücktreten; rückwärts gehen; verliehen werden; bewilligt werden; gewährt werden",
+      "hu": "csökken; csökkent; hatálytalanít; visszavonul; süllyed",
+      "ru": "1) свешиваться, висеть; 2) спускаться, спадать; 3) падать, понижаться (о ценах, температуре); 4) уходить; 5) отступать [назад]; 6) быть пониженным (в должности и т. п.); 7) быть полученным (о разрешении, визе и т. п.); свешиваться; висеть2) падать; понижаться; снижаться",
+      "sl": "znižati se; nižati se; spustiti se; spuščati se; iti dol",
+      "es": "colgarse; disminuir; retirarse; caerse; volverse atrás; bajar; menguar; amainar; retirar; caer; retroceder"
     }
   },
   {
@@ -7127,7 +7123,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "to kick; to refuse; to reject; to stamp (on the ground); to firmly press one's feet (against something)",
-      "fr": "donner un coup de pied",
+      "fr": "donner un coup de pied; refuser; rejeter",
       "de": "treten; kicken; mit dem Fuß stoßen; abschlagen (z.B. eine Bitte)",
       "hu": "belerúg; elrúg; megrúg; rugdalódzik",
       "ru": "пинать; лягать; брыкать; подковать (в футболе); (обр.) отвергать (просьбу и т. п.)",
@@ -7298,7 +7294,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "limit; bounds",
-      "fr": "frontière; limite",
+      "fr": "frontière; limite; frontière; limite; bornes",
       "de": "Grenze; Begrenzung; Schranke; Limit",
       "hu": "határ; határérték; határpillér; limes",
       "ru": "предел[ы]; предельный размер; {…を～とする} ограничивать[ся] (чем-л.)",
@@ -7968,12 +7964,13 @@
     "kanjiId": 32005,
     "jlpt": "N2",
     "meanings": {
-      "en": "maple (tree); red leaves (of autumn); autumn colors; leaves changing color; layered colors in garments, resembling autumn colors; venison",
-      "de": "sich verfärben; bunt werden; rot werden; gelb werden (Laub); buntes Herbstlaub; rotes Herbstlaub (insbes. Schreibung 紅葉); gelbes Herbstlaub (insbes. Schreibung 黄葉); Ahorn; Acer; Rehfleisch; Hirschfleisch",
+      "en": "leaves turning red (in autumn); red leaves; autumn colours; fall colors",
+      "fr": "érable; couleurs d'automne; feuillage jaunie",
+      "de": "rot werden (Laub); sich rot verfärben; sich herbstlich verfärben; (rötliche)Laubfärbung; rote Blätter; buntes Herbstlaub",
       "hu": "jávor; jávorfa; juhar; juharfa",
-      "ru": "1): {～する} краснеть; алеть (о листве); 2) алые осенние листья (особенно клёна); 3) ((тж.) 楓) клён [осенью]; 4) оленье мясо, оленина",
-      "sl": "japonski javor; jesenske barve",
-      "es": "arce; hojas otoñales; hojas de maple rojas"
+      "ru": "алые (жёлтые) осенние листья; {～する} краснеть, окрашиваться в осенние тона (о листве)",
+      "sl": "jesenske barve",
+      "es": "hojas rojizas de otoño"
     }
   },
   {
@@ -8211,7 +8208,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "to know; to understand; to be aware of; to regard as; to take for; to (understand and) accept (a responsibility); to have a knowledge of (a skill, art, etc.); to have a command of; to know (how to do)",
-      "fr": "être informé; connaître; savoir",
+      "fr": "être informé; connaître; savoir; être informé; connaître; savoir; consentir; être d'accord",
       "de": "wissen; kennen; verstehen; betrachten als …; halten für …",
       "ru": "понимать, знать; быть сведущим, разбираться (в чём-л.)",
       "sl": "biti poučen, obveščen, informiran (o); utemeljen; neoporečen; izobražen; zelo inteligenten",
@@ -8330,18 +8327,6 @@
     }
   },
   {
-    "word": "こちらこそ",
-    "reading": "こちらこそ",
-    "pos": "expression",
-    "kanjiId": null,
-    "jlpt": "N2",
-    "meanings": {
-      "en": "it is I who should say so",
-      "fr": "c'est moi qui m'excuse",
-      "es": "igualmente (al ser presentado)"
-    }
-  },
-  {
     "word": "小遣い",
     "reading": "こづかい",
     "pos": "noun",
@@ -8363,13 +8348,8 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "cock; tap; spigot; faucet; cock (male fowl); cock (penis); (wrist) cock",
-      "fr": "cuisinier; robinet",
-      "de": "Hahn; Zapfen; Koch; Küchenmeister",
-      "hu": "csap; dugasz; dugó; söntés; hordócsap; fasz; vakmerőség",
-      "ru": "((англ.) cock) кран (напр. водопровода); II ((голл.) Kok) повар; (мор.) кок",
-      "sl": "pipa",
-      "es": "(eng: cock) cocinero; gallo"
+      "en": "cook; chef",
+      "fr": "cuisinier; robinet"
     }
   },
   {
@@ -8396,7 +8376,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "classic (work, esp. book); the classics",
-      "fr": "classique (ex: \"un classique\"); classiques de la littérature; vieux livre",
+      "fr": "classique (ex: \"un classique\"); classiques de la littérature; vieux livre; vieux livre; classique (ex: \"un classique\"); classiques de la littérature; vieux livre",
       "de": "klassisches Werk; Klassiker; Klassik; klassische Literatur; klassische Dichtung",
       "hu": "latin és görög nyelv, irodalom; klasszikus",
       "ru": "древние книги; классики, классическая литература; {～的} классический",
@@ -8425,13 +8405,13 @@
     "kanjiId": 35328,
     "jlpt": "N2",
     "meanings": {
-      "en": "to have someone send (a message, parcel, etc.); to send (via someone else); to leave (a message) with someone; to use as an excuse; to make a pretext of",
-      "fr": "confier un mot à qn",
-      "de": "eine Botschaft senden; benachrichtigen; jmdn. wissen lassen; jmdm. sagen lassen; jmdm. etw. zukommen lassen",
-      "hu": "üzen",
-      "ru": "1) ((тж.) 言付ける) передавать [на. словах]; 2) ((тж.) 事付ける) посылать (что-л. с кем-л.), поручать (кому-л. что-л.)",
-      "sl": "pustiti sporočilo {nekomu za nekoga}",
-      "es": "encargar; encomendar"
+      "en": "to tell (to do); to order; to direct; to instruct; to tell (on someone); to report; to snitch; to often say; to be used to saying",
+      "fr": "charger de; commander; diriger; raconter; rapporter à (quelqu'un)",
+      "de": "anweisen; anleiten; anordnen; bestellen; heißen; anzeigen; denunzieren; petzen",
+      "hu": "utasít; beárul; igazgat; felszólít; megbíz; megtámad; megtölt; küld",
+      "ru": "1) приказывать, наказывать (что-л.) сделать; отдавать приказания; 2) наговаривать, жаловаться (на кого-л.)",
+      "sl": "reči, (za)povedati, da(ja)ti naročila; ukaz",
+      "es": "ordenar; divulgar; soplar; delatar"
     }
   },
   {
@@ -8472,7 +8452,11 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "rubbish; trash; garbage"
+      "en": "rubbish; trash; garbage; refuse; worthless thing",
+      "de": "Abfall; Müll; Asche; Dreck; Staub; Unrat; Kehricht; Schmutz",
+      "hu": "szemét; hulladék; limlom; vacak; selejt; visszautasított dolog",
+      "ru": "мусор, хлам; мусор, сор; сор, мусор; отбросы; хлам",
+      "es": "basura; desperdicio; porquería"
     }
   },
   {
@@ -9733,7 +9717,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "urgent; pressing; immediate; prompt; express; urgently; promptly; at once; right away; without delay; as soon as possible",
-      "fr": "d'urgence; urgent",
+      "fr": "d'urgence; urgent; d'urgence; urgent; pressant",
       "de": "Dringlichkeit; dringend; dringlich; drängend; schnellstens; so schnell wie möglich; baldmöglichst",
       "hu": "halasztást nem tűrő; mángorlás; nógatás; sürgetés",
       "ru": ": {～の} спешный, срочный, неотложный",
@@ -9780,7 +9764,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "bringing; taking; carrying",
-      "fr": "apport; choses que l'on prend avec soi",
+      "fr": "apport; choses que l'on prend avec soi; apport; choses que l'on prend avec soi; apporter; porter; se munir",
       "de": "mitbringen; mitnehmen; mitführen; holen; bringen; Mitbringen; Mitnehmen; Mitführen; Holen; Bringen",
       "hu": "elfogadás; szállítás; várbevétel; vitel",
       "ru": ": {～する} приносить с собой; A氏持参 (надпись на конверте) через [любезное] посредство г-на А",
@@ -10310,7 +10294,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "plain; simple; subdued; sober; reserved (behaviour, attitude, etc.); modest; quiet; unobtrusive; quite; a (little) bit",
-      "fr": "discret; modeste; sobre",
+      "fr": "discret; modeste; sobre; discret; modeste; sobre; ordinaire; simple; sans éclat",
       "de": "Einfachheit; Schlichtheit; Anspruchslosigkeit; Bescheidenheit; Zurückhaltung; Verschlossenheit; Bodenbeschaffenheit; Bodenfruchtbarkeit; einfach; schlicht; unauffällig; dezent; man sieht es jmdm. od. etw. nicht an, aber …; schlicht; unauffällig; anspruchslos; einfach; seriös; brav; dezent; bescheiden; still; verschlossen; zurückhaltend",
       "hu": "egyszerű; valóságos; csökkentett; diszkrét mintájú; diszkrét színezetű; enyhített; leigázott; szelíd; higgadt; komoly",
       "ru": "1): {～な} простой, скромный, не бросающийся в глаза; 2): {～な} умеренный",
@@ -10590,12 +10574,13 @@
     "kanjiId": 20303,
     "jlpt": "N2",
     "meanings": {
-      "en": "dwelling; house; residence; address",
-      "de": "Wohnung",
+      "en": "dwelling; house; residence; address; living; life",
+      "fr": "adresse; habitation; maison; résidence",
+      "de": "Wohnung; Wohnsitz; Adresse",
       "hu": "lakóhely; bástya; épület; ház; lakóház; porta; színház; tartózkodási hely; beszéd; címzés",
-      "ru": "жилище, дом; местожительство; {～する} проживать, жить",
-      "sl": "hiša; rezidenca",
-      "es": "vivienda"
+      "ru": "жилище, дом, квартира; местожительство",
+      "sl": "stanovanje; bivališče",
+      "es": "vivienda; residencia"
     }
   },
   {
@@ -10621,7 +10606,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "meeting up; gathering; assembly; set",
-      "fr": "attroupement; rassemblement",
+      "fr": "attroupement; rassemblement; attroupement; rassemblement; ensemble; set; série",
       "de": "sich versammeln; zusammenkommen; sich treffen; Versammlung; Treffen; Zusammenkunft; Menge",
       "hu": "duzzasztás; gennyesedés; összejövetel; gyülekezet; összeszerelés; állhatatos; beigazítás; berakás; díszlet; készülék; rendes; szerviz",
       "ru": "1) сбор; {～する} собираться; 2) собрание; сходка",
@@ -11173,7 +11158,13 @@
     "kanjiId": 28040,
     "jlpt": "N2",
     "meanings": {
-      "en": "negative; passive; half-hearted"
+      "en": "negative; passive; half-hearted; unmotivated",
+      "fr": "négatif; passif",
+      "de": "negativ; passiv; konservativ",
+      "ru": "1) негативный; 2) пассивный; бездеятельный",
+      "sl": "pasiven; trpen; nepodjeten",
+      "es": "negativo; poco entusiasta; pasivo; desmotivado",
+      "sv": "passiv"
     }
   },
   {
@@ -11722,7 +11713,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "private (establishment)",
-      "fr": "privé (par opposition à public)",
+      "fr": "privé (par opposition à public); privé (par opposition à public); (établissement) privé",
       "de": "privat; Privat…; nicht öffentlich; privater Besitz; privat (die korrekte Aussprache der Zeichen ist shiritsudas ist jedoch Homonym zu shiritsu = städtischdeshalb wird wegen der Eindeutigkeit manchmal diese Aussprache benutzt)",
       "hu": "belépni tilos; magán-; magánterület; nem nyilvános; privát",
       "ru": ": {～[の]} частный (содержащийся на частные средства)",
@@ -13066,7 +13057,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "growth (of a plant)",
-      "fr": "croissance; développement",
+      "fr": "croissance; développement; croissance; développement; accroissement",
       "de": "Wachstum; Wachsen; Wuchs; Entwicklung (wachsen und herangezogen werden; insbes. für Pflanzen benutzt)",
       "hu": "fejlemény; gyarapodás; hajtás; kifejlődés; növekedés; növekmény; növés; szaporulat; szerves képződmény; termés",
       "ru": "рост; {～する} расти; возрастать",
@@ -13082,7 +13073,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "political party",
-      "fr": "membre d'un parti politique",
+      "fr": "membre d'un parti politique; parti politique",
       "de": "politische Partei",
       "ru": "[политическая] партия",
       "es": "(miembro de un) partido político"
@@ -13503,7 +13494,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "whole (body); full-length (e.g. portrait); systemic",
-      "fr": "en pied (portrait); le corps tout entier",
+      "fr": "en pied (portrait); le corps tout entier; systémique",
       "de": "am ganzen Körper; der ganze Körper",
       "ru": "всё тело, весь организм; (фото) во весь рост; {～的} (мед.) органический, конституциональный; {～に} по всему телу; во всём организме",
       "es": "de cuerpo entero; todo el cuerpo"
@@ -14001,7 +13992,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "measurement; surveying",
-      "fr": "enquête (ex: sondage); mesure",
+      "fr": "enquête (ex: sondage); mesure; enquête (ex: sondage); mesure; arpentage",
       "de": "messen; vermessen; Messung; Vermessung",
       "hu": "felmérés",
       "ru": "измерение; топографическая съёмка; промер глубины лотом; {～する} измерять, мерить; производить [топографическую] съёмку (местности)",
@@ -14470,7 +14461,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "considerably; greatly; a lot",
-      "fr": "assez; considérablement; plutôt; sensiblement",
+      "fr": "assez; considérablement; plutôt; sensiblement; assez; considérablement; plutôt; sensiblement; fortement; très; beaucoup",
       "de": "ziemlich; bedeutend; sehr; beträchtlich; erheblich; recht; in hohem Grade",
       "hu": "meglehetősen",
       "ru": "[довольно] много; очень, весьма, значительно; (см.) だいぶ",
@@ -14724,13 +14715,13 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "to burn; to kindle; to light (a fire); to make (a fire); to heat (a bath); to light (a stove); to stoke (a boiler); to use (a camera flash)",
-      "fr": "bruler; cuire; démarrer un feu; embraser",
-      "de": "heizen; verbrennen; Feuer machen",
-      "hu": "elég; eléget; világít; felcsillan; meggyullad",
-      "ru": "разводить (огонь); топить (печь); жечь (топливо)",
-      "sl": "prižgati; zanetiti; zažigati",
-      "es": "quemar; prender fuego"
+      "en": "to burn; to roast; to broil; to grill; to bake; to toast; to barbecue; to heat; to heat up; to make (charcoal, pottery, bricks, etc.); to bake; to fire; to burn; to tan (i.e. suntan); to burn; to print (a photo); to burn (an optical disc); to be jealous of; to be envious of; to envy",
+      "fr": "cuire; griller; rôtir",
+      "de": "etw. verbrennen; ins Feuer werfen; braten; rösten; backen; toasten; braun werden; Teint bekommen; brennen (Keramik); Abzüge machen; auspinseln; sich verzehren nach etw; brennen (eine CD)",
+      "hu": "roston süt",
+      "ru": "1) жечь, сжигать; поджигать; обжигать (напр. руку); 2) раскалять; обжигать (напр. кирпичи); опаливать; 3) жарить, печь; 4) (фото) печатать; 5) завидовать; ревновать",
+      "sl": "peči; žgati",
+      "es": "hornear; asar; revelar (fotos); broncear"
     }
   },
   {
@@ -14880,7 +14871,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "derailment; digression; deviation",
-      "fr": "écart; digression; divagation; excursus; parenthèse",
+      "fr": "déraillement; écart; digression; divagation; excursus; parenthèse; écart; digression; divagation; excursus; parenthèse",
       "de": "entgleisen; abkommen; abschweifen; Entgleisung; Verirrung; Abirrung; Abweichung; Abschweifung; Abkommen vom Thema",
       "hu": "eltérés; kitérés; kisiklik a sínről; lefut a sínről",
       "ru": ": {～する} сходить с рельсов; (обр.) а) отклоняться от темы; б) не идти по проторённому пути",
@@ -15112,7 +15103,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "fresh water (i.e. not salt water)",
-      "fr": "eau fraîche",
+      "fr": "eau fraîche; eau fraîche; eau douce",
       "de": "Süßwasser",
       "hu": "édesvíz; friss víz",
       "ru": "пресная вода",
@@ -15128,7 +15119,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "suspension of water supply; water outage",
-      "fr": "manque d'eau; pénurie d'eau",
+      "fr": "manque d'eau; pénurie d'eau; manque d'eau; pénurie d'eau; coupure d'eau",
       "de": "Absperrung der Wasserleitung; Unterbrechung der Wasserzufuhr; das Wasser absperren",
       "ru": "приостановка подачи воды, недостаточное водоснабжение",
       "sl": "prekiniti dobavo vode; prekinitev dobave vode",
@@ -15371,13 +15362,8 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "chip; microchip; chip (in poker, roulette, etc.); casino token; chip (shot); (wood) chip; (potato) chip; crisp",
-      "fr": "pourboire; puce électronique",
-      "de": "Chip; Spielgeld; Chips; Pommes frites; Chips; Kartoffelchips; Chip; integrierter Schaltkreis; Steinsplitter; Trinkgeld; Tip (mit der Seite des Schlägers geschlagener Ball); Spitze (eines Filzstiftes)",
-      "hu": "borravaló; figyelmeztetés; meglegyintés; szemétdomb; forgács; gáncsvetés; játékpénz; pénzdarab; steksz; szilánk; trágya; utód; forgács",
-      "ru": "((англ.) chip); 1) (вчт.) чип (микросхема); 2) обломок, осколок; ((англ.) tip) чаевые",
-      "sl": "napitnina; nasvet",
-      "es": "(eng: tip; chip) propina; consejo; pedazo; chip"
+      "en": "tip; gratuity; foul tip; tip (of a ballpoint pen)",
+      "fr": "pourboire; puce électronique"
     }
   },
   {
@@ -15742,13 +15728,8 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "choke (hold); choke (of an engine)",
-      "fr": "choc; craie",
-      "de": "Kreide; Kreide; Billardkreide; Choke (Luftklappe im Vergaser)",
-      "hu": "állító ék; cönk; fékbak; támasztó ék",
-      "ru": "((англ.) chalk) мел[ок]",
-      "sl": "kreda",
-      "es": "tiza; gis; (chalk); creta (chock)"
+      "en": "chalk",
+      "fr": "choc; craie"
     }
   },
   {
@@ -16013,7 +15994,7 @@
     "kanjiId": 36890,
     "jlpt": "N2",
     "meanings": {
-      "en": "to be open (to traffic); to lead to; to communicate (with); to flow (liquid, current); to pass; to get through to; to be understood; to be comprehended; to be honored; to be good; to be well versed in; to be well-informed; to communicate clandestinely; to keep in touch (e.g. with the enemy); to form a liaison; to be intimate",
+      "en": "to be open (to traffic); to lead (to); to connect (to); to run (from, between; e.g. bus service); to extend (up to); to go (to); to reach; to flow (of a liquid, current, etc.); to pass (through); to get through (e.g. of a signal); to connect (e.g. of a call); to work (of a phone line); to be conveyed (of an intention, meaning, etc.); to be understood (by); to be comprehended; to get across (e.g. of an idea); to be well versed (in); to be proficient (in); to know a lot (about); to be familiar (with); to be widespread; to be commonly known; to be prevalent; to have an effect; to work; to be on par (with); to communicate secretly (with the enemy); to conspire (with); to betray; to have an affair (with); to have an illicit relationship; to be intimate (with); to be relevant (to); to concern; to have bowel movement; to (be able to) defacate; to convey (an intention, feeling, etc.); to get (something) across; to communicate; to make (someone) understand; to give out (e.g. a business card); to hand out (a name card); to do via (something); to go through (someone); to do by using; to span the entirety (of); to concern (all of); to extend (all across)",
       "fr": "être ouvert (à la circulation); mener à; conduire à; communiquer (avec); s'écouler; passer (à travers); être compris; être honoré; être bien; être bien versé dans; bien connaitre; être bien informé; être au courant de; communiquer clandestinement; rester en contact (par ex. avec l'ennemi); avoir une liaison; être intime",
       "de": "sich auskennen; Bescheid wissen; verstanden werden; sich verständigen können; erhört werden; führen; gehen nach; eröffnet werden; heimlich in Verbindung treten; sich heimlich in Verbindung setzen; in Verbindung stehen mit; einen Telefonanschluss bekommen; eine Verbindung bekommen; Strom einschalten",
       "hu": "kerül vmennyibe; kitesz vmennyit; odaszalad; vmennyibe kerül; vmennyire rúg; vmennyit kitesz; kommunikál",
@@ -16896,7 +16877,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "procedure; process; proceedings; formalities",
-      "fr": "formalité; procédure; processus administratif",
+      "fr": "formalité; procédure; processus administratif; formalité; procédure; processus administratif; démarche (légale)",
       "de": "Verfahren; Prozedur; Formalität; Ablauf; Verfahrensschritt; Unterprogramm; Subroutine",
       "hu": "(hivatalos) eljárás; eljárásmód; folyamat; művelet",
       "ru": "процедура; формальности; оформление (напр. пропуска); формальности; процедура",
@@ -17009,7 +16990,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "to shine on; to illuminate; to compare (with); to refer to",
-      "fr": "éclairer (quelque chose); illuminer",
+      "fr": "éclairer (quelque chose); illuminer; comparer (avec); se référer à",
       "de": "scheinen; bescheinen; beleuchten; Licht werfen; vergleichen; abgleichen; gegenüberstellen",
       "hu": "megvilágít",
       "ru": "1) освещать (что-л.); 2) сопоставлять",
@@ -17138,12 +17119,8 @@
     "kanjiId": 28857,
     "jlpt": "N2",
     "meanings": {
-      "en": "here and there; little by little; sporadically; scattered in drops; dots; spots",
-      "fr": "ça et là; petit à petit; sporadiquement; dispersé en gouttelettes; points; pois",
-      "de": "vereinzelt; verstreut; hier und dort; vereinzelt; verstreut; gesprenkelt; hier und dort; tropfend fallen",
-      "hu": "elszórtan; hellyel-közzel; szórványosan; azonnali; érzékeny pont; folt; pecsét; petty",
-      "ru": ": {～と[して]} (кн.); 1) там и сям, местами; отдельными точками; 2) каплями; 3) (см.) ぽつぽつ",
-      "es": "aquí y allí"
+      "en": "sparsely; drop-by-drop; on par with; as good as; (vertical) iteration mark used to represent repetition of the previous kanji (to be read using its kun'yomi)",
+      "es": "moteado; diseminado; esparcido; pequeño; igual; mismo"
     }
   },
   {
@@ -17266,13 +17243,10 @@
     "kanjiId": 32113,
     "jlpt": "N2",
     "meanings": {
-      "en": "Touitsu; Unification Church (abbr); The Holy Spirit Association for the Unification of World Christianity",
+      "en": "unity; consolidation; uniformity; unification; compatible",
       "fr": "consolidation; unification; uniformité; unité",
-      "de": "Einheit; Einheitlichkeit; Vereinheitlichung; Vereinigung",
-      "es": "estandarización (unificación)",
-      "hu": "egyformaság; egyöntetűség",
-      "ru": "единство; объединение; унификация; консолидация; координация, увязка; {～[の]ある}, {～した}, 統一の取れた единый; объединённый; унифицированный; координированный; {～する} объединять; унифицировать; координировать; {～的} объединяющий; унифицирующий",
-      "sl": "enotnost; zedinjenje; združitev; združiti; zediniti; standardizirati; poenotiti"
+      "de": "vereinheitlichen; vereinigen",
+      "es": "unificar; unir; ligar; cohesionar; uniformar"
     }
   },
   {
@@ -17836,13 +17810,14 @@
     "kanjiId": 30041,
     "jlpt": "N2",
     "meanings": {
-      "en": "to remain; to abide; to stay (in the one place); to be limited to; to be confined to; to only account for",
-      "fr": "demeurer; rester (dans un seul endroit); se limiter à; se borner à; rester; demeurer; se fixer; s'établir; s'installer",
-      "de": "bleiben; stehen bleiben; zum Stillstand kommen; anhalten; aufhören; sich niederlassen; behalten; sich beschränken; beschränkt sein",
-      "hu": "marad; megmarad; tartózkodik; felfüggeszt; feltartóztat; időt eltölt; megáll; megállít; megtámaszt; rögzít; szünetet tart; támaszt; támogat; tartóztat; visszatart; szorítkozik; abbahagy; marad; megmarad; tartózkodik; felfüggeszt; feltartóztat; időt eltölt; megáll; megállít; megtámaszt; rögzít; szünetet tart; támaszt; támogat; tartóztat; visszatart; abbahagy",
-      "ru": "1) останавливаться; 2) оставаться [на месте]; 3) ограничиваться",
-      "sl": "ostati na mestu",
-      "es": "detenerse; permanecer; quedarse; detenerse; limitarse; detener; parar; detener(se); permanecer; quedarse"
+      "en": "to stop (moving); to come to a stop; to stop (doing, working, being supplied); to come to a halt; to cease; to be stopped; to be suspended; to alight; to perch on",
+      "fr": "être limité à; demeurer; faire halte; marquer un temps d'arrêt; rester; stopper; s'établir; s'installer; se fixer; marquer un temps d'arrêt; stopper; faire halte; rester; demeurer; se fixer; s'établir; s'installer",
+      "de": "halten; anhalten; stehen bleiben; unterbrochen werden (Wasserzufuhr, Strom, Gas); befestigt werden; haften bleiben (im Gedächtnis); bleiben; sich niederlassen; sich setzen (Vogel); haften bleiben (im Gedächtnis)",
+      "hu": "befog; megáll; marad; megmarad; tartózkodik; felfüggeszt; feltartóztat; időt eltölt; megáll; megállít; megtámaszt; rögzít; szünetet tart; támaszt; támogat; tartóztat; visszatart; szorítkozik; abbahagy; marad; megmarad; tartózkodik; felfüggeszt; feltartóztat; időt eltölt; megáll; megállít; megtámaszt; rögzít; szünetet tart; támaszt; támogat; tartóztat; visszatart; abbahagy",
+      "ru": "останавливаться; оставаться там же; 1) останавливаться; 2) (см.) とまる【泊る】; 3) останавливаться; прекращаться; 4) быть преграждённым; 5) оставаться [там же (на месте)]; удерживаться; 6) садиться (о птицах, насекомых и т. п.)",
+      "sl": "biti pričvrščen; stati; ustaviti se",
+      "es": "detenerse; permanecer; quedarse; detenerse; limitarse; detener; parar; detener(se); permanecer; quedarse",
+      "sv": "stanna"
     }
   },
   {
@@ -18150,13 +18125,11 @@
     "kanjiId": 20013,
     "jlpt": "N2",
     "meanings": {
-      "en": "contents; interior; filling; substance; content; (sword) blade",
-      "fr": "contenu; lame (épée); substance; substance de remplissage (dents, cuisine)",
-      "de": "das Innere; Inhalt; Gehalt; Substanz; Füllung; Klinge",
-      "hu": "belföldi; belső; töltelék; tömés; szál",
-      "ru": "1) содержимое; (перен.) содержание; 2) засыпка, овощи (и т. п. (в супе):) начинка (в моти и т. п.); 3) ((тк.) 中身) клинок",
-      "sl": "vsebina; sestavina",
-      "es": "interior; contenido; relleno"
+      "en": "blow to a vital point of a person's body; striking techniques (judo)",
+      "de": "Schlagtechnik (z.B. im Jūdō oder Aikidō)",
+      "hu": "csapás; sztrájk; telér; ütés",
+      "ru": "(спорт.) удар в опасное место",
+      "es": "golpe de judo dirigido a un punto vital del adversario"
     }
   },
   {
@@ -18289,8 +18262,8 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "to stroke; to caress; to brush gently; to pat; to rub; to comb (hair); to smooth down",
-      "fr": "caresser (son chien, ou une personne); se peigner (délicatement)",
+      "en": "to stroke; to caress; to brush gently; to pet; to pat; to rub; to comb (hair); to smooth down",
+      "fr": "caresser (son chien, ou une personne); se peigner (délicatement); caresser (son chien, ou une personne); se peigner (délicatement); brosser doucement",
       "de": "streicheln; streichen; zärtlich über etw. hinwegfahren; reiben; sanft kämmen",
       "hu": "kibuliz; megbuliz; megkártyáz; simogat; smúzol; végigsimít vmit; vezérevezősként evez",
       "ru": "гладить, поглаживать; приглаживать; проводить рукой (по чему-л.)",
@@ -18617,14 +18590,11 @@
     "kanjiId": 34425,
     "jlpt": "N2",
     "meanings": {
-      "en": "rainbow",
-      "fr": "arc-en-ciel",
-      "de": "Regenbogen",
-      "hu": "szivárvány",
-      "es": "arcoiris",
-      "ru": "радуга",
-      "sl": "mavrica",
-      "sv": "regnbåge"
+      "en": "second; secondary; quadratic (function, equation, etc.); second-order; fictional (in relation to anime, manga, etc.); drawn; two-dimensional",
+      "fr": "secondaire; subalterne",
+      "de": "zweites …; zweites Mal; zweite Generation; Sekundär…; untergeordnet; zweite Ordnung; Quadrat…; quadratisch; … der zweite; zweit; sekundär",
+      "hu": "másodlagos",
+      "es": "secundario; subordinado"
     }
   },
   {
@@ -18694,14 +18664,14 @@
     "kanjiId": 37389,
     "jlpt": "N2",
     "meanings": {
-      "en": "dull (e.g. a knife); blunt; thickheaded; obtuse; stupid; dull (sound, color, etc.); dim (light); slow; sluggish; inert; lethargic; insensitive; dull (e.g. reflexes); unperceptive; unfeeling",
-      "fr": "bête; bouché; lent; lourd; stupide; émoussé (couteau); sourd (douleur)",
-      "de": "stumpf; glanzlos; matt; träge; schwerfällig; dumpf; empfindungslos; dickfellig; dickhäutig; schwach; trüb; blass",
-      "hu": "buta; fakó; tompa; unalmas; lassú; ostoba; hülye; kábult",
-      "ru": "(прям. и перен.) тупой; тусклый (о свете); глухой (о звуке)",
-      "sl": "top {rezilo}; počasen (miselno); butast",
-      "es": "insensible",
-      "sv": "slö; långsam; dum"
+      "en": "slow; late; too late",
+      "fr": "tard; tardif; lent",
+      "de": "spät; verspätet; langsam",
+      "hu": "hanyag; késedelmes; lassan",
+      "ru": "1) поздний; запоздалый; поздно; 2) медленный, медлительный; (ср.) おそく, おそかれはやかれ",
+      "sl": "počasen; pozen",
+      "es": "tarde; lento; lerdo; corto de mente; obtuso; lento; tardo; ganso; cachazudo; pánfilo",
+      "sv": "sen; långsam"
     }
   },
   {
@@ -18711,12 +18681,14 @@
     "kanjiId": 37389,
     "jlpt": "N2",
     "meanings": {
-      "en": "thickheaded; obtuse; stupid; slow; sluggish; inert; lethargic; indulgent (esp. to the opposite sex); doting",
-      "de": "langsam; träge; schleppend; beschränkt; begriffsstutzig; nachsichtig; vernarrt",
-      "hu": "buta; fakó; tompa; unalmas; lassú; ostoba; hülye; kábult",
-      "ru": "1) медлительный, медленный; мешкотный, вялый; 2) тупой, тупоголовый; тугодум; 3) влюбчивый; мягкий по отношению к женщинам",
-      "sl": "počasen; neumen",
-      "es": "maldición"
+      "en": "slow; late; too late",
+      "fr": "tard; tardif; lent",
+      "de": "spät; verspätet; langsam",
+      "hu": "hanyag; késedelmes; lassan",
+      "ru": "1) поздний; запоздалый; поздно; 2) медленный, медлительный; (ср.) おそく, おそかれはやかれ",
+      "sl": "počasen; pozen",
+      "es": "tarde; lento; lerdo; corto de mente; obtuso; lento; tardo; ganso; cachazudo; pánfilo",
+      "sv": "sen; långsam"
     }
   },
   {
@@ -18787,7 +18759,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "sudden; abrupt; unexpected; immediate; hasty; improvised; impromptu; offhand; impromptu skit; bandwagon fan; fair-weather fan",
+      "en": "sudden; abrupt; unexpected; immediate; improvised; hasty; impromptu; offhand; impromptu skit; bandwagon fan; fair-weather fan",
       "fr": "de but en blanc; imprévu; impromptu; improvisé; inattendu; soudain",
       "de": "plötzlich; mit einem Mal; auf einmal; überraschenderweise; ohne weitere Vorbereitung",
       "hu": "hirtelen; váratlan; összefüggéstelen",
@@ -19133,13 +19105,13 @@
     "kanjiId": 19978,
     "jlpt": "N2",
     "meanings": {
-      "en": "to ascend; to go up; to climb; to ascend (as a natural process, e.g. the Sun); to rise; to go to (the capital); to be promoted; to add up to; to advance (in price); to swim up (a river); to sail up; to come up (on the agenda)",
-      "fr": "être promu; escalader; gravir; grimper; monter; se lever (soleil); grimper; escalader; monter; gravir",
-      "de": "aufgehen; steigen; aufsteigen (Sonne, Rauch); hinaufsteigen; hinaufgehen; besteigen; ersteigen; klettern (Hügel, Berg); betragen; ausmachen; ergeben; sich belaufen; aufsteigen; aufstreben; emporkommen; aus der Provinz in die Hauptstadt gehen; flussaufwärts gehen; den Fluss hinauf fahren; eintreten; betreten (Palast, heilige Halle); in aller Leute Mund sein; aufgetischt werden",
-      "hu": "emelkedik; ered; feláll; felbukkan; felemelkedik; felszáll; kiemelkedik; növekszik; származik; felmegy; elősegít; feljön; felmerül; kikel; szerepel vmiként; szerepet játszik",
-      "ru": "подниматься; взбираться; идти вверх; 1) идти вверх; подниматься; взбираться; 2) подниматься, повышаться; возрастать; 3) ставиться (напр. о вопросе); подаваться (о блюде); 4) направляться в столицу; 5) подниматься вверх по течению",
-      "sl": "plezati; povzpeti se; vzpenjati se; vzpeti se; dvigati se; večati se",
-      "es": "elevar; ascender; subir; escalar; trepar; ir arriba; ir (a la capital); ser promovido; sumar a; avanzar (en precios); zarpar; ser mencionado (en la agenda); crecer; subir; escalar; trepar; ir arriba; ir (a la capital); ser promovido; sumar a; avanzar (en precios); zarpar; ser mencionado (en la agenda)"
+      "en": "to rise; to go up; to come up; to ascend; to be raised; to enter (esp. from outdoors); to come in; to go in; to enter (a school); to advance to the next grade; to get out (of water); to come ashore; to be washed ashore; to float atop the water; to surface from the sea (e.g. of a corpse); to rise to the surface; to increase; to be raised (e.g. of a salary); to rise; to improve; to make progress; to be promoted; to advance; to be made (of profit, etc.); to occur (esp. of a favourable result); to be adequate (to cover expenses, etc.); to be finished; to be done; to be over; to stop (of rain); to clear up (of weather); to stop (working properly); to cut out; to give out; to die; to win (in a card game, etc.); to be spoken loudly; to be raised loudly (of a voice); to get nervous; to get stage fright; to be offered (to the gods, etc.); to go; to visit; to eat; to drink; to serve (in one's master's home); to enter a red light district; to amuse oneself in a red light district; to visit a brothel; to arise vigorously (e.g. of voices in excitement); to become excited; to be in uproar (e.g. of a crowd); to be complete; to finish; adds the connotation of an action happening strongly or violently; above; north of",
+      "fr": "devenir célèbre; devenir prospère; être en hausse; être promu; augmenter; avoir de l'avancement; faire des progrès; flamber (prix); grimper; monter; monter en grade; s'élever; se lever; être à bout de souffle; être hors d'haleine; entrer (poli); débarquer; sortir de; être efficace; avoir un résultat; être terminé; cesser (de pleuvoir); à plat (batterie); prendre (boisson) (poli); perdre son sang-froid; avoir (le moral)",
+      "de": "steigen; aufsteigen; aufgehen; sich erhöhen; erhöht werden; ansteigen; hinaufgehen; hochgehen; hochfahren; hochsteigen; aus dem Wasser kommen; an Land gehen; eintreten; ins Haus kommen; aufrücken; fortschreiten; in einer Villa in den Dienst treten; in eine Schule eintreten; in eine Schule vorrücken; heben; hissen; steigen lassen; abbrennen (ein Feuerwerk); aufziehen (einen Vorhang); opfern; vor den Altar stellen; erscheinen; auftauchen; entdeckt werden; ermittelt werden; gefasst werden; sich erhöhen; steigen (Miete, Zinsen etc.); beenden; vollenden; enden; zu Ende gehen; aufhören; betragen; nicht teurer sein als …; zu fallen aufhören (Regen, Schnee); sich zu bewegen aufhören; beenden (ein Spiel); sich in den Norden begeben; essen; trinken; aufgeregt sein; die Fassung verlieren; besuchen; aufsuchen; zitiert werden; angeführt werden",
+      "hu": "bejön; emelkedik; felszáll; ered; feláll; felbukkan; felemelkedik; kiemelkedik; növekszik; származik; elősegít; halad; becsül; értékel; megbecsül; nagyra becsül",
+      "ru": "(как 2-й элемент сложн. гл. означает законченность действия, выраженного первым гл.:); (неперех.); 1) ((тж.) 揚がる) (прям. и перен.) подниматься, повышаться; 2) входить (в комнату, в дом); заходить (к кому-л.); 3) закончиться, прийти к концу; прекратиться; (ср.) みゃく【脈】(が上がった); 4) уснуть (о рыбе), подохнуть (о насекомых и пресмыкающихся); засохнуть, погибнуть (о растениях); (ср.) あがったり; 5) извлекаться (о доходах); 6) обходиться, стоить; 7) быть возложенным; 8) быть обнаруженным; быть схваченным (о преступнике); 9) быть в возбуждённом состоянии; 10) начать прясть (о шелковичных червях); 11) всасываться, впитываться; (перех.) есть, пить (о 2-м лице)",
+      "sl": "dvigniti se; povzpeti se; višati se; obiskati",
+      "es": "entrar; subir; elevarse; escalar; avanzar; apreciar; ser promovido; mejorar; visitar; ofrecerse; acumular; estar acabado; irse a la bancarrota; atraparse; amainar (lluvia); debilitarse (ej. una batería); fastidiarse"
     }
   },
   {
@@ -19383,7 +19355,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "to measure; to weigh; to survey; to time (sound, gauge, estimate); to conjecture; to infer; to surmise",
-      "fr": "étudier (une situation); inspecter; mesurer; peser",
+      "fr": "étudier (une situation); inspecter; mesurer; peser; conjecturer; déduire; inférer; présumer",
       "de": "messen; wiegen; abwiegen; messen; ausmessen; abmessen; ausloten; beurteilen; messen; wiegen; ausmessen; ausloten; rechnen; berechnen; schätzen; vermuten",
       "hu": "felbecsül; felmér; kimér; megmér; mér; befolyása van; mázsál; megmázsál; méreget; nehezedik; súlya van; vmennyi súlya van; áttekint; felülvizsgál; idejét méri; időt kiszámít; időt megállapít; időzít",
       "ru": "измерять; взвешивать; 1) измерять, мерить; вешать, взвешивать; 2) вычислять, подсчитывать; 3) оценивать (приблизительно); угадывать; (ср.) はかりがたい",
@@ -19399,7 +19371,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "to measure; to weigh; to survey; to time (sound, gauge, estimate); to conjecture; to infer; to surmise",
-      "fr": "étudier (une situation); inspecter; mesurer; peser",
+      "fr": "étudier (une situation); inspecter; mesurer; peser; conjecturer; déduire; inférer; présumer",
       "de": "messen; wiegen; abwiegen; messen; ausmessen; abmessen; ausloten; beurteilen; messen; wiegen; ausmessen; ausloten; rechnen; berechnen; schätzen; vermuten",
       "hu": "felbecsül; felmér; kimér; megmér; mér; befolyása van; mázsál; megmázsál; méreget; nehezedik; súlya van; vmennyi súlya van; áttekint; felülvizsgál; idejét méri; időt kiszámít; időt megállapít; időzít",
       "ru": "измерять; взвешивать; 1) измерять, мерить; вешать, взвешивать; 2) вычислять, подсчитывать; 3) оценивать (приблизительно); угадывать; (ср.) はかりがたい",
@@ -19553,11 +19525,13 @@
     "kanjiId": 26012,
     "jlpt": "N2",
     "meanings": {
-      "en": "diagonal",
-      "fr": "diagonal",
-      "de": "schräg; Schräge; Schrägheit; Schräge; Neigung",
-      "ru": ": ～の; косой; диагональный; наклонный; {～に} наискось; наклонно; {～にする} направлять вкось; (связ.:)",
-      "es": "de lado; en ángulo; ladeado"
+      "en": "slanting; tilted; sloping; diagonal; oblique; distorted (feeling); slanted (e.g. view of the world); bad (mood); amiss; awry",
+      "fr": "obliquité",
+      "de": "schräg; schief; abfallend; diagonal; geneigt; Schräge; Schiefheit; Abfallen; Neigung",
+      "hu": "átlós",
+      "ru": "1): {～[の]} косой; наклонный; {～に} наискось, по диагонали; наклонно; {～になる} наклоняться, быть наклонным; идти вкось; 2) (перен.) недовольный",
+      "sl": "poševnost; nagnjenost; nagnjen; poševen; diagionalen; naklon; nagib; diagonalnost",
+      "es": "inclinación"
     }
   },
   {
@@ -19675,14 +19649,9 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "bag",
-      "fr": "bogue (bug informatique); sac",
-      "de": "Hintergrund; hinten; Unterstützung; Unterstützer; Rückwärtsgehen; Rückwärtsfahren; Rückgabe; Verteidiger; Rückenschlag; Rückenschwimmen; Rückhand; Backhand; Bug; Programmierfehler; Pearl S. Buck (amerik. Schriftstellerin; 1892-1973; verbrachte lange Zeit in China; beschreibt v. a. chin. Alltagsleben); Tasche",
-      "hu": "elmaradt; ezelőtt; hát; hátul; régen; támla; vissza; retikül; -buzi; -őrült; bogár; mánia; poloska",
-      "ru": "((англ.) back); 1) задний план, фон; {…を～にして} на фоне (чего-л.); 2): {～する} двигаться в обратном направлении; пятиться, идти задним ходом; отступать; 3) поддержка, подкрепление; ((англ.) bag) [дамская] сумочка",
-      "sl": "ozadje; vrečka; hrošč; torba; vzvratna vožnja; ritenski vmik; hrbet; zadnji del; ozadje",
-      "es": "(eng: back) fondo; (eng: bag; bug) bolsa; bolso; cartera; maleta; insecto; bicho",
-      "sv": "baksida"
+      "en": "back; rear; background; backdrop; backing; support; backer; supporter; going backwards; reversing; backing up; reverse (gear); refunding; returning (e.g. profits); back (player); backstroke (swimming); backhand; doggy style (sexual position)",
+      "fr": "arrière-plan; arrières; dos; dos crawlé (natation); revers (tennis); soutien (protection, appui)",
+      "de": "zurücksetzen; rückwärts fahren"
     }
   },
   {
@@ -19693,7 +19662,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "firing (esp. a rocket or missile); launching; shooting; discharge; catapult; ejaculation",
-      "fr": "décharger; projeter; tirer (arme à feux); vider (seringue)",
+      "fr": "décharger; projeter; tirer (arme à feux); vider (seringue); éjaculation",
       "de": "abfeuern; abschießen; abdrücken; Abfeuern; Abschießen; Abdrücken; Feuer!; Raketenstart; Raketenabschuss",
       "hu": "elsülés; fűtés; kiégetés; lövés; tűz; tüzelés; gyalulás; elbocsátás; kirakodás; leszerelés; mentesség; teljesítés",
       "ru": "1) стрельба; выстрел; огонь; {～する} стрелять, вести огонь; 2) испускание; излучение; радиация; 3) запуск (ракеты)",
@@ -20104,13 +20073,10 @@
     "kanjiId": 19975,
     "jlpt": "N2",
     "meanings": {
-      "en": "banzai; hurray; hurrah; hooray; something to cheer about; something worthy of celebration; giving up; throwing one's hands up; eternal life and prosperity",
-      "fr": "10 000 ans (de régne pour l'empereur); félicitation; hourra; longue vie",
-      "de": "zehntausende Jahre; Ewigkeit; ewiges Leben; Banzai!; Hurra!; Er lebe hoch!; Herzlichen Glückwunsch!; Tod einer hochgestellten Persönlichkeit (als Ersatz für ein Tabuwort); Heben beider Arme (weil man ohnehin nichts mehr tun kann)",
-      "hu": "éljenzés; üdvrivalgás",
-      "ru": "да здравствует; десяти тысячи лет; ура; банзай!, ура!; да здравствует…!",
-      "sl": "Živel! (dobesedno: deset tisoč let); čestitati ob visokem jubileju; dvigniti roke v znak radosti ali kot čestitko ali voščilo",
-      "es": "¡viva!; ¡bravo!; hurra; larga vida; felicitaciones"
+      "en": "door-to-door manzai; form of comedy originally performed at people's homes by entertainers during the New Year festivities; precursor to modern day manzai",
+      "fr": "spectacle comique (Kansai)",
+      "de": "Tänzer, die zu Neujahr von Haus zu Haus ziehen und mit ihrer Kunst zum Neujahr gratulieren",
+      "ru": "1) ряженые, ходящие с песнями и танцами по домам на Новый год; (ср.) ばんざい; 2) (см.) まんざい【漫才】"
     }
   },
   {
@@ -20137,7 +20103,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "reflection; reconsideration; introspection; meditation; contemplation; regret; repentance; remorse; being sorry",
-      "fr": "contemplation; introspection; méditation; réflection",
+      "fr": "contemplation; introspection; méditation; réflection; regret; repentance; remords; être désolé",
       "de": "sich selbst prüfen; über sich selbst nachdenken; Selbstkritik; Selbstprüfung; Nachdenken über sich selbst; Reflexion",
       "hu": "elmélkedés; visszaverődés; szemlélődés",
       "ru": "1) самопроверка, самоанализ; самонаблюдение.; самокритика; {～する} проверять себя; оглядываться на самого себя; 2) обдумывание (уже сказанного, сделанного); размышление, рефлексия",
@@ -20294,7 +20260,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "with a glitter; with a sparkle; brand new; shiny and new; cleaned (of a plate, etc.); finished",
-      "fr": "étincelle; scintillement",
+      "fr": "étincelle; scintillement; éclat",
       "de": "glitzernd; glänzend; funkelnd; funkelnagelneu; nigelnagelneu; brandneu; glitzernd; glänzend; funkelnd; glitzernd; glänzend; funkelnd; funkelnagelneu; nigelnagelneu",
       "hu": "csillogás; ragyogás; szikra; szikrázás",
       "ru": "(ономат.:); {～する} блестеть, сверкать; (как опред.) сверкающий, блестящий",
@@ -20530,9 +20496,9 @@
     "kanjiId": 31558,
     "jlpt": "N2",
     "meanings": {
-      "en": "(taking) notes; copying",
+      "en": "writing down; taking notes; copying; noting; notes; writings; written examination; written test",
       "fr": "écrire; prendre des notes",
-      "de": "schriftlich; mitschreiben; sich Aufzeichnungen machen; sich Notizen machen; nachschreiben; Mitschreiben; Mitschrift; Aufzeichnung; Notiz",
+      "de": "mitschreiben; sich Aufzeichnungen machen; sich Notizen machen; nachschreiben; Mitschreiben; Mitschrift; Aufzeichnung; Notiz",
       "hu": "kiírás",
       "ru": "1) записывание; {～する} записывать; 2) записи",
       "sl": "pisanje; zapisovanje; zapisovati si; prepisovati",
@@ -20736,13 +20702,12 @@
     "kanjiId": 26085,
     "jlpt": "N2",
     "meanings": {
-      "en": "date (of a planned event, act, etc.); day; (number of) days",
-      "fr": "le nombre de jours",
-      "de": "Tag; Datum; Termin; Zeit",
-      "hu": "datolya; dátum; időpont; randi",
-      "ru": "дни",
-      "sl": "datum; dnevi",
-      "es": "día tras día"
+      "en": "daily; everyday; days (e.g. of one's youth); every day; day after day; day by day; from day to day",
+      "fr": "jour après jour; quotidiennement; tous les jours",
+      "de": "täglich; tagtäglich; alle Tage; jeden Tag; Tag für Tag; tagtäglich",
+      "hu": "mindennap",
+      "ru": "каждый день, ежедневно, день за днём, изо дня в день; {～[の]} ежедневный, повседневный; день за днём, изо дня в день; {～の} повседневный",
+      "es": "todos los días; a diario; diariamente; cada día; día tras día"
     }
   },
   {
@@ -20798,13 +20763,10 @@
     "kanjiId": 38911,
     "jlpt": "N2",
     "meanings": {
-      "en": "echo; reverberation; sound (esp. the distinctive sound of an object or activity, e.g. rain, gun, gallop, drum); noise; quality of a sound (e.g. a fine phrase, clear voice, resonant bell); feeling of a sound; emotion or feeling inspired by something heard or read",
-      "fr": "écho; bruit; réverbération; son",
-      "de": "Klang; Klangfärbung; Echo; Resonanz; Anklang; Erschütterung; Vibration; Einfluss; Effekt",
-      "hu": "becsületes; mélyen; zaj; visszaverődés; feltűnés; lárma",
-      "ru": "1) звук; шум; звон; грохот; 2) отзвук; эхо; 3) (перен.) отзвуки; влияние",
-      "sl": "odmev; zvok; hrup",
-      "es": "resonar; eco"
+      "en": "commotion; stir",
+      "de": "Dröhnen; Aufruhr; Unruhe",
+      "hu": "felbolydulás; izgalom; kavarás; keverés; sürgölődés",
+      "ru": "(кн.); 1) шум; шорох; 2) волнение"
     }
   },
   {
@@ -21846,14 +21808,8 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "broach (cutting tool)",
-      "fr": "broche",
-      "de": "Brosche; Räumahle; Räumnadel; Räumwerkzeug",
-      "hu": "bross; melltű",
-      "ru": "((англ.) broach) сверло, рейбол; ((англ.) brooch) брошка",
-      "sl": "sponka; broška; sponka; Japonska; broška",
-      "es": "(eng: brooch) broche; alfiler",
-      "sv": "brosch"
+      "en": "brooch",
+      "fr": "broche"
     }
   },
   {
@@ -21880,7 +21836,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "furoshiki; wrapping cloth; cloth wrapper",
-      "fr": "carré de tissus noué par les coins (porte affaire de toilettes, cadeau pour une visite, bentou, etc...)",
+      "fr": "carré de tissus noué par les coins (porte affaire de toilettes, cadeau pour une visite, bentou, etc...); carré de tissus noué par les coins (porte affaire de toilettes, cadeau pour une visite, bentou, etc...); tissu pour envelopper; emballage en tissu",
       "de": "Furoshiki; Einwickeltuch (zum Transport)",
       "ru": "фуросики (цветной платок для завязывания в него вещей)",
       "sl": "furošiki; kvadratni kos blaga za culo; blago za zavijanje",
@@ -22782,7 +22738,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "Botchan (1906 novel by Natsume Sōseki)",
+      "en": "(another's) son; boy; young master; green young man from a well-to-do family; young man innocent of the ways of the world",
       "fr": "fils (de quelqu'un d'autre)",
       "de": "Sohn; junger Herr (höfliche Bez.); Junge; Sohn; Muttersöhnchen; großes Kind; grüner Junge",
       "hu": "fiú",
@@ -22815,7 +22771,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "to dig; to excavate; to hollow; to delve into; to dig up (vegetables, treasure, etc.); to mine (coal, ore, etc.); to top; to take the active role in anal sex (with another man)",
-      "fr": "crsuer; excaver",
+      "fr": "creuser; excaver",
       "de": "graben; bohren; aushöhlen; ausschachten; ausgraben; mit der Wurzel ausgraben (eine Pflanze); anal penetrieren",
       "hu": "albérleti szobában lakik; bedöf; bifláz; élvez vmit; felás; feltúr; kiás; komál; leesik a tantusz; megás; megért; túr; veszi a lapot; vételen van; feltár",
       "ru": "1) копать; бурить; искать в земле; 2) выкапывать, добывать из земли; 3) ковырять; выковыривать; 4) (тех.) зондировать, брать пробу, разведывать",
@@ -22831,7 +22787,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "to carve; to engrave; to sculpt; to chisel; to tattoo",
-      "fr": "ciseler; creuser; graver; sculpter; trancher",
+      "fr": "ciseler; creuser; graver; sculpter; trancher; tatouer",
       "de": "höhlen; aushöhlen; durchbohren; ausstechen; eingravieren; hineinschnitzen; hineingraben; hauen; meißeln; schnitzen; schneiden; gravieren; stechen; tätowieren",
       "hu": "bevés; szoborral díszít; szobrászmunkát végez; bepaliz; vés; takarodót dobol; tetovál; ujjaival dobol",
       "ru": "(уст. см.) ほる【彫る】; 1) вырезать, гравировать; 2) делать татуировку",
@@ -23264,7 +23220,7 @@
     "kanjiId": 30495,
     "jlpt": "N2",
     "meanings": {
-      "en": "pitch black",
+      "en": "pitch-black; jet-black; black; strongly tanned; deeply sunburnt; sooty; black with dirt",
       "fr": "noir comme du charbon; noir de jais; tout noir",
       "de": "pechschwarz; kohlschwarz; rabenschwarz; schwarz wie Ebenholz; tintenschwarz; braungebrannt; schwärzlich und schmutzig; Tiefschwarz; Pechschwarz; Rabenschwarz; Kohlschwarz; tiefe Bräune (der Haut); Schwarz (von Schmutz, Dreck)",
       "ru": "абсолютно чёрный; : {～な} совершенно чёрный, чёрный как смоль",
@@ -23327,7 +23283,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "to deify; to enshrine; to pray; to worship",
-      "fr": "adorer; dédier; déifier; enchâsser",
+      "fr": "adorer; dédier; déifier; enchâsser; adorer; dédier; déifier; enchâsser; prier; vénérer",
       "de": "eine Totenmesse feiern; als Gottheit verehren; anbeten",
       "hu": "bálványoz; kegyelettel gondoz; kegyelettel őriz",
       "ru": "1) обожествлять (кого-л.), поклоняться (кому-л.); 2) (связ.:)",
@@ -23435,7 +23391,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "malathion (insecticide)",
+      "en": "marathon",
       "fr": "marathon",
       "de": "Malathon (Wz.); Malathion (Insektizid); Marathon; Marathonlauf (Langstreckenlauf über 42,2 km)",
       "hu": "maratoni futás; nagy teljesítmény; sárgásvörös szín",
@@ -23594,13 +23550,11 @@
     "kanjiId": 23724,
     "jlpt": "N2",
     "meanings": {
-      "en": "cape (on coast)",
-      "fr": "cap; pointe; promontoire",
-      "de": "Kap; Landzunge",
-      "hu": "földfok; körgallér; pelerin",
+      "en": "small peninsula; cape; promontory; headland",
+      "fr": "cap; promontoire",
+      "de": "Kap; Landzunge; Vorgebirge",
       "ru": "мыс",
-      "sl": "Misaki (priimek)",
-      "es": "cabo; punta"
+      "es": "cabo; promontorio"
     }
   },
   {
@@ -23901,13 +23855,13 @@
     "kanjiId": 21521,
     "jlpt": "N2",
     "meanings": {
-      "en": "to face; to go towards; to head towards",
-      "fr": "être en face de; faire face à; progresser vers; se diriger vers",
-      "de": "nach … gerichtet sein; sich zuwenden; sich richten nach; gehen; fahren; fliegen; den Weg einschlagen nach …; neigen; tendieren; eine Tendenz haben; sich widersetzen; widerstehen; Widerstand leisten; entgegentreten; sich entgegenstellen; losgehen auf",
-      "hu": "szembenéz vmivel",
-      "ru": "быть обращённым (куда-л.); обращаться2) отправляться; идти; развиваться (в каком-л. направлении); 1) быть обращённым (куда-л.); обращаться (к кому-л.) ((ср.) むかって 2); 2) идти против (кого-чего-л.); идти на (кого-что-л.); 3) направляться, отправляться; 4) развиваться в (каком-л.) направлении; приближаться (к чему-л.)",
-      "sl": "biti obrnjen k; na; gledati na; (od)iti v smer proti; nameriti se proti; biti na poti k",
-      "es": "encarar; ir hacia"
+      "en": "opposite side; other side; over there; ahead; beyond; (in the) distance; far away; far off; destination; there (somewhere distant, esp. abroad); the other party; the other side; from now; next (e.g. two weeks); coming ...; from ... onwards",
+      "fr": "l'autre partie; le côté opposé; par delà",
+      "de": "entgegengesetzte Seite; die entgegengesetzte Richtung; entfernte Seite; die gegenüberliegende Seite (von etw., das durch etw. wie Fluss, Berg o.a. getrennt ist); andere Seite; entferntes Gebiet; Ausland; die andere Partei; er; sie; das Nächste; das Kommende; die nächste Zeit; das Ziel; Eingang zur Rampe der Bühne; Eingang zum Blumensteg; Loge im ersten Stock gegenüber der Bühne",
+      "hu": "másvilág; túl",
+      "ru": "1) та сторона; [вон] там; {～の} расположенный (находящийся) напротив, противоположный; [вон] тот; {～に} [вон] там; на той стороне; напротив; 2) те, они, он; та сторона (напр. в переговорах); 3) место [назначения], цель (путешествия и т. п.); 4) (связ.:)",
+      "sl": "nasprotna stran; čez; nasproti; nasprotna smer",
+      "es": "más allá; por allí; dirección opuesta; el otro grupo"
     }
   },
   {
@@ -23997,13 +23951,12 @@
     "kanjiId": 33976,
     "jlpt": "N2",
     "meanings": {
-      "en": "to steam (food, towel, etc.); to be hot and humid; to be sultry",
-      "fr": "étuver; cuir à la vapeur",
-      "de": "dämpfen; dünsten; Wachfeuer anzünden und Kampfschreie ausstoßen, um die Stärke der eigenen Streitmacht für den bevorstehenden Angriff zu signalisieren; verdoppeln (des Glücksspieleinsatzes); schwül sein",
-      "hu": "gőzölög; párol",
-      "ru": "1) ((тж.) 餾す) варить на пару; тушить; 2) класть припарку (напр. на нарыв); 3) быть душным; парить",
-      "sl": "kuhati na pari; pariti; biti soparen",
-      "es": "causar o producir sudor"
+      "en": "to steam (food)",
+      "fr": "cuire à la vapeur",
+      "de": "dämpfen; dünsten; in Dampf kochen",
+      "hu": "gőzerővel dolgozik; gőzerővel halad; gőzöl",
+      "ru": "варить на пару",
+      "es": "cocinar al vapor; cocer al vapor; cocinar al vapor"
     }
   },
   {
@@ -24045,7 +23998,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "group; crowd; flock; herd; bevy; school; swarm; cluster (e.g. of stars); clump; pack (e.g. of dogs)",
-      "fr": "amas (étoiles); banc; bande; essaim; groupe; massif(fleurs, arbres); nuée; troupe; troupeau",
+      "fr": "amas (étoiles); banc; bande; essaim; groupe; massif (fleurs, arbres); nuée; troupe; troupeau",
       "de": "Herde; Viehherde; Gruppe; Haufen; Menge; Schar; Partei; Zug; Schwarm (z.B. Mücken); Schule (z.B. Wale); Pöbelhaufen; Pöbel; Brut; Bande; Horde; Masse; Meute; Volk",
       "hu": "csoport; csapat; csomó; halom; sereg; sokaság; tömeg; falka; gyapjú; pehely; pihe; csorda; női társaság; egyetem; tagozat; nyaláb; rakás",
       "ru": "толпа; группа; стадо (о рогатом скоте, свиньях и т. п.); табун (о лошадях); отара (об овцах); свора (о собаках, о волках); стая (о птицах); рой (о пчёлах); косяк (о рыбе) и т. п.)",
@@ -24217,7 +24170,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "animator",
+      "en": "meter; gauge; metre (unit of length); meter",
       "fr": "compteur; taximètre",
       "de": "Zubin Mehta (ind. Dirigent; 1936-); Messgerät; …Meter; Meter (Zeichen: m)",
       "hu": "fogyasztásmérő; mérőeszköz; mérőkészülék; mérőóra; méter; vízmennyiség-mérő; vízóra",
@@ -24826,7 +24779,7 @@
     "jlpt": "N2",
     "meanings": {
       "en": "government official",
-      "fr": "employé gouvernemental",
+      "fr": "employé gouvernemental; employé gouvernemental; fonctionnaire",
       "de": "Beamter; Inhaber eines öffentlichen Amtes; Bürokrat; Bürokratie",
       "ru": "должностное лицо; чиновник; {～になる} поступить на государственную службу",
       "es": "funcionario del gobierno"
@@ -24916,13 +24869,13 @@
     "kanjiId": 30772,
     "jlpt": "N2",
     "meanings": {
-      "en": "to get torn; to tear; to rip; to break; to wear out; to be broken off (of negotiations, etc.); to break down; to collapse; to fall into ruin",
-      "fr": "se déchirer; se détruire; être battu",
-      "de": "zerreißen; zerbrechen; misslingen; missglücken",
-      "hu": "elhasználódik; eltölt; elszakad",
-      "ru": "1) ломаться; разбиваться; рваться; разрушаться; снашиваться; 2) прорываться (напр. о нарыве), прерываться (напр. о переговорах, отношениях); 3) ((тж.) 敗れる) быть разбитым (побеждённым); 4) терпеть неудачу, проваливаться",
-      "sl": "raztrgati se (papir ipd.)",
-      "es": "rasgarse; desgarrarse; romperse; perder"
+      "en": "to break; to be smashed; to split; to crack; to fissure; to be torn; to be divided (opinion, vote, etc.); to split (e.g. of a party); to come to light; to become clear; to be identified; to be revealed; to become distorted (of sound); to clip; to be divisible (without a remainder); to drop below a minimum",
+      "fr": "être écrasé; être déchiré; se briser; se casser; se cliver; se fendre; se fissurer",
+      "de": "zerbrechen; springen; bersten; platzen; einen Riss bekommen; sich spalten; entdecken; identifiziert werden; erkennen; verzerrt werden (Ton)",
+      "hu": "betör; eltör; eltörik; felszakad; hasad; megváltozik; mutál; szakad; törik; hasít; reped; repeszt; széthasít; szétrepeszt; szétszakad; szétválik; betörik; csattan; csattant; pattan; pattant; eltörik (törékeny dolog, pl. üveg)",
+      "ru": "1) трескаться; разбиваться, раскалываться, ломаться; расщепляться; расседаться; распадаться (об организации); 2) делиться (на что-л.), быть кратным (чему-л.)",
+      "sl": "razbiti se; počiti",
+      "es": "romperse; fracturarse; rajarse; partirse; quebrarse; romperse"
     }
   },
   {
@@ -25165,13 +25118,13 @@
     "kanjiId": 32233,
     "jlpt": "N2",
     "meanings": {
-      "en": "loose; lenient; lax; gentle (curve, slope, etc.); slow; weak; soft; not firm; difficult; hard",
-      "fr": "lâche (nœud); ralenti",
-      "de": "lose; locker; nachsichtig; mild; weich; aufgeweicht; nicht fest; langsam; schwach; sanft; schwach (eine Biegung); schwunglos; großherzig",
-      "hu": "kilazult (csavar); könnyelmű; különálló; ritka; zavaros; lassú; megfontolt; nehézkes; ostoba; unalmas",
-      "ru": "свободный; неплотный; слабый; 1) нетугой, неплотный; 2) медленный; 3) (прям. и перен.) не резкий; не крутой",
-      "sl": "rahel; blag; spuščen; ohlapen; len",
-      "es": "suelto; holgado"
+      "en": "lukewarm; tepid; lenient",
+      "fr": "tiède",
+      "de": "lauwarm; nachsichtig; mild",
+      "hu": "közömbös; langymeleg; langyos; lagymatag",
+      "ru": "1) холодный (о чём-л. недостаточно горячем, напр. о пище, о ванне); слабый (об огне); тепловатый (о том, что должно быть холодным); 2) (см.) のろい【鈍い】",
+      "es": "tibio; templado; cálido",
+      "sv": "ljum"
     }
   },
   {
@@ -25242,12 +25195,11 @@
     "kanjiId": 24188,
     "jlpt": "N2",
     "meanings": {
-      "en": "young child; toddler; child over 1 but not yet of school age",
-      "fr": "bébé; enfant; nourrisson",
-      "de": "Kleinkind",
+      "en": "infant; baby; little child",
+      "fr": "bébé; nourrisson; petit enfant",
+      "de": "Kleinkind; Baby; Kindlein",
       "hu": "csecsemő",
-      "ru": "ребёнок, дитя, младенец",
-      "es": "infante; niño"
+      "ru": "младенец, дитя, малолетний ребёнок"
     }
   },
   {
@@ -25471,7 +25423,7 @@
     "kanjiId": 37204,
     "jlpt": "N2",
     "meanings": {
-      "en": "drunkard",
+      "en": "drunk person; (a) drunk; being drunk; getting drunk",
       "fr": "ivre; saoul",
       "de": "Betrunkener",
       "hu": "iszákos ember; részeges ember",
@@ -25653,7 +25605,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "ranch",
+      "en": "lunch; (Western-style) single-plate lunch set; plate lunch; lunch set",
       "fr": "déjeuner (lunch); lancement",
       "de": "Barkasse; Mittagessen; Lunch",
       "hu": "vízre bocsátás; ebéd; löncs",
@@ -26007,7 +25959,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "Revell",
+      "en": "level; standard; grade; class; rank; level (amount or quantity); level (plane); level (instrument); spirit level; surveyor's level",
       "fr": "niveau",
       "de": "Level; Niveau; Stufe",
       "hu": "egyforma; kiegyensúlyozott; felkelő; dorbézolás; felkelő; egyforma; kiegyensúlyozott",
@@ -26119,7 +26071,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "rocker; rock'n'roller",
+      "en": "locker",
       "fr": "consigne automatique; vestiaire",
       "de": "Schließfach; Spind",
       "hu": "öltözőszekrény; zárható láda; zárható szekrény",
@@ -26345,7 +26297,7 @@
     "kanjiId": null,
     "jlpt": "N2",
     "meanings": {
-      "en": "One Piece (manga series and media franchise)",
+      "en": "dress; one-piece (e.g. swimsuit)",
       "fr": "robe",
       "de": "einteilig; (einteiliges)Kleid; Einteiler; One Piece (Manga von Oda Eiichirō)",
       "hu": "ruha",

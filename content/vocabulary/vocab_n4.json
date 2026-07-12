@@ -6,14 +6,11 @@
     "kanjiId": 23383,
     "jlpt": "N4",
     "meanings": {
-      "en": "character (esp. kanji); letter; written text; handwriting; penmanship; the ... word (e.g. \"the L word\" = \"love\")",
-      "fr": "écriture; caractère; lettre",
-      "de": "Schriftzeichen; Buchstabe; Letter; Handschrift",
-      "hu": "betű; jellem; személyiség",
-      "ru": "1) буква; иероглиф; знак; 2) (перен.) почерк, начертание",
-      "sl": "črka; znak",
-      "es": "letra (carácter tipográfico)",
-      "sv": "tecken; bokstav"
+      "en": "section of village",
+      "fr": "hameau; partie d'un village",
+      "de": "Weiler; Gemeindeteil; Nachbarsgemeinde; Bauernschaft",
+      "ru": "посёлок; часть города (деревни)",
+      "es": "sección de una villa"
     }
   },
   {
@@ -39,13 +36,13 @@
     "kanjiId": 24066,
     "jlpt": "N4",
     "meanings": {
-      "en": "city",
-      "fr": "ville",
-      "de": "Stadt (als öffentliche Verwaltungseinheit)",
-      "hu": "város",
-      "ru": "город ((ср.) まち【町】); {～[の]} городской; муниципальный",
-      "es": "ciudad",
-      "sv": "stad"
+      "en": "market; fair",
+      "fr": "foire; marché",
+      "de": "Markt; Marktplatz; Markttag; Messe",
+      "hu": "helyesen; jól; korrekt; pontosan; tisztességes",
+      "ru": "рынок, базар",
+      "es": "mercado; feria",
+      "sv": "marknad"
     }
   },
   {
@@ -104,12 +101,10 @@
     "kanjiId": 27738,
     "jlpt": "N4",
     "meanings": {
-      "en": "to get dirty; to become dirty; to become sullied; to become corrupted; to lose one's chastity",
-      "fr": "se salir; devenir sale; devenir souillé; devenir corrompu; perdre sa chasteté",
-      "de": "schmutzig werden; schmutzig sein; verunreinigt sein (im Gegensatz zum Homographen kegareru meist im konkreten Sinn verwendet); unrechtmäßig sein; schmutzig sein",
-      "ru": "пачкаться, загрязняться",
-      "sl": "umazati se; biti umazan; onesnažen",
-      "es": "ensuciar"
+      "en": "to be violated; to be corrupted; to be polluted; to be stained",
+      "fr": "se salir (qqch)",
+      "de": "schmutzig werden; schmutzig sein; unrein werden; sich beschmutzen; sich dreckig machen; entehrt werden; geschändet werden; entweiht werden; geschändet werden (ein Frau); vergewaltigt werden; unrein sein (aufgrund von Trauer, Geburt, Menstruation u.Ä.)",
+      "ru": "загрязняться; пачкаться; 1) пачкаться, загрязняться; быть запачканным, быть грязным (загрязнённым); 2) быть запятнанным (осквернённым); быть обесчещенным"
     }
   },
   {
@@ -151,13 +146,11 @@
     "kanjiId": 20693,
     "jlpt": "N4",
     "meanings": {
-      "en": "I; me; you; manservant",
-      "fr": "moi (parole masculine)",
-      "de": "ich (vertraulich im Ton; Männersprache; kam in dieser Bedeutung während der Meiji-Zeit unter Studenten auf und ging dann in die Umgangssprache über); Kleiner; du (Anrede für kleine Jungen); (urspr.)Diener; Knecht",
-      "ru": "я (мужчина о себе)",
-      "sl": "jaz (za moške)",
-      "es": "yo; mí; tú (dirigiendose a los niños); sirviente",
-      "sv": "jag"
+      "en": "servant; manservant; menial",
+      "de": "Diener; Knecht",
+      "hu": "inas; segéd; szolga",
+      "ru": "(уст.) слуга",
+      "es": "sirviente"
     }
   },
   {
@@ -167,13 +160,11 @@
     "kanjiId": 21313,
     "jlpt": "N4",
     "meanings": {
-      "en": "enough; sufficient; plenty; adequate; satisfactory; sufficiently; fully; thoroughly; well; perfectly; division into ten",
-      "fr": "adéquat; assez; pas mal; satisfaisant; suffisant; division par 10; complètement; parfaitement; totalement",
-      "de": "Zehntel; ausreichend; genügend; vollständig; ganz; hinlänglich; in genügender Weise; genügend; ausreichend; reichlich; in zehn Teile teilen; in Zehntel zerlegen; zehnteln; ausreichend; genügend; vollständig; ganz; hinlänglich; Zehntel",
-      "hu": "eléggé; gazdagság; megfelelő; kielégítő; közepes osztályzat; kimerítően; teljes egészében; teljes terjedelmében; eléggé; gazdagság; megfelelő; kielégítő; közepes osztályzat; kimerítően; részletesen; teljes egészében; teljes terjedelmében",
-      "ru": ": {～に} достаточно, вдоволь; вполне; {～な} достаточный; полный; (ср.) じゅうぶん【十分】; 1): {～の} десятичный; {～する} делить на десять; 2) (см.) じゅうぶん【充分】",
-      "sl": "dosti; zadovoljujoče; popolno; dovolj; zadostno; zadosten; zadovoljiv",
-      "es": "suficiente; bastante; satisfactorio; adecuado; dividir en 10; perfecto; lleno; completo"
+      "en": "ten minutes",
+      "fr": "10 minutes",
+      "de": "zehn Minuten",
+      "ru": "десять минут; 10 минут",
+      "es": "10 minutos"
     }
   },
   {
@@ -183,13 +174,10 @@
     "kanjiId": 30067,
     "jlpt": "N4",
     "meanings": {
-      "en": "tatami mat; Japanese straw floor coverings",
-      "fr": "tatami",
-      "de": "Tatami",
-      "ru": "татами (соломенный мат стандартного размера, несколько больше 1,5 кв. м, очень плотный, служит для настилки полов)",
-      "sl": "tatami; talna rogoznica",
-      "es": "tatami; estera (cubierta japonesa de paja en el piso)",
-      "sv": "tatamimatta"
+      "en": "tatami mat (esp. as a measure of room size, either 1.82 sqm or 1.54 sqm)",
+      "fr": "tatami (unité de mesure de longueur)",
+      "ru": "1) (счётный суф. для соломенных матов); 2) (единица измерения жилой площади = несколько больше 1,5 кв. м)",
+      "es": "medida de superficie equivalente a 1,8 metros cuadrados aproximadamente"
     }
   },
   {
@@ -248,14 +236,14 @@
     "kanjiId": 27490,
     "jlpt": "N4",
     "meanings": {
-      "en": "to stop (an activity); to cease; to discontinue; to end; to quit; to cancel; to abandon; to give up; to abolish; to abstain; to refrain",
-      "fr": "cesser; stopper; terminer",
-      "de": "aufhören; aufgeben",
-      "hu": "befejez; befejeződik; bevégez; bevégződik; lezár; megszűnik; megszüntet; véget ér; véget vet; végződik; abbahagy; befog; megáll; abbamarad; lemond",
-      "ru": "прекращать; переставать; бросать; отказываться; 1) ((тж.) 廃める) прекращать; переставать, бросать (делать что-л.); 2) ((тж.) 罷める) оставлять (работу); уходить (со службы); 3) ((чаще) 廃める) упразднять; закрывать (учреждение)",
-      "sl": "prekiniti; prenehati; nehati; opustiti; zapustiti {delo}; dati odpoved {v službi}; pustiti",
-      "es": "parar; detener (algo); cesar; renunciar; ponerle fin a",
-      "sv": "sluta; avsluta"
+      "en": "to stop; to turn off; to park; to prevent; to suppress (a cough); to hold back (tears); to hold (one's breath); to relieve (pain); to stop (someone from doing something); to dissuade; to forbid; to prohibit; to notice; to be aware of; to concentrate on; to pay attention to; to remember; to bear in mind; to fix (in place); to fasten; to tack; to pin; to nail; to button; to staple; to detain; to keep in custody",
+      "fr": "arrêter (qqchose)",
+      "de": "anhalten; zum Stehen bringen; unterbrechen; abstellen; ausschalten; verbieten; abbringen; abhalten; aufhalten; befestigen; anhalten; stoppen; befestigen; festmachen; abhalten; aufhalten; hinterlassen; zurücklassen; festhalten; einschließen",
+      "hu": "befog; megáll; bekapcsol; csukódik; eltér; lecsavar; letér; akadályoz; fogva tart; marasztal; befog",
+      "ru": "1) ((тж.) 停める) останавливать (прекращать движение); 2) ((тк.) 止める) останавливать, задерживать, прекращать; выключать (газ, свет, радио и т. п.); 3) ((чаще) 止める) закреплять; 4) ((тк.) 止める) останавливать, удерживать (кого-л. от чего-л.); 5) ((тк.) 留める) задерживать (кого-л.); оставлять после уроков (школьника); ((ср.) とめる【泊める】); 6) ((чаще) 留める) (перен.) оставлять (что-л. (в памяти, в сердце и т. п.)",
+      "sl": "pričvrstiti; pritrditi; ustaviti",
+      "es": "parar; detener; parar; detener (algo); cesar; renunciar; ponerle fin a",
+      "sv": "stoppa"
     }
   },
   {
@@ -347,7 +335,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "considerably; greatly; a lot",
-      "fr": "assez; considérablement; plutôt; sensiblement",
+      "fr": "assez; considérablement; plutôt; sensiblement; assez; considérablement; plutôt; sensiblement; fortement; très; beaucoup",
       "de": "ziemlich; bedeutend; sehr; beträchtlich; erheblich; recht; in hohem Grade",
       "hu": "meglehetősen",
       "ru": "[довольно] много; очень, весьма, значительно; (см.) だいぶ",
@@ -443,7 +431,7 @@
     "kanjiId": null,
     "jlpt": "N4",
     "meanings": {
-      "en": "some",
+      "en": "yes; yeah; uh huh; hum; hmmm; well; erm; huh?; oof",
       "fr": "oui; ouais; oui... oui; hum; hmm; et bien; gémissement; plainte; grognement (de douleur)",
       "de": "ja; hum!; hmm! (als Zustimmung); mmh! (Stöhnen)",
       "ru": "1) да; 2) ох",
@@ -735,13 +723,13 @@
     "kanjiId": 31354,
     "jlpt": "N4",
     "meanings": {
-      "en": "to open (e.g. doors); to open (e.g. business, etc.); to be empty; to be vacant; to be available; to be free; to be open (e.g. neckline, etc.); to have been opened (of one's eyes, mouth, etc.); to come to an end; to open (one's eyes, mouth, etc.); to have a hole; to form a gap; to have an interval (between events)",
-      "fr": "être ouvert; se vider; être moins encombré; se désemplir; se lever (l'aube)",
-      "de": "sich öffnen; aufgehen; sich aufschließen; auffliegen; öffnen (ein Geschäft); beginnen (ein Gewerbe); aufgebraucht werden; leer sein; leer werden; frei werden (ein Zimmer, Gebäude od. Gelände); entstehen (ein Loch); vakant werden; frei werden (eine Stelle); nicht im Gebrauch sein; fertig sein und frei haben; für etw. frei sein; öffnen; offen sein; frei werden; leer werden",
-      "hu": "nyit; nyit; dereng; nyit",
-      "ru": "((редко) 明く); 1) открываться, раскрываться; 2) открываться (о начале чего-л.); (ср.) あく【空く】; быть пустым; быть свободным (о месте); 1) освобождаться, быть свободным; 2) кончаться, истекать (о сроке); (ср.) あく【開く】",
-      "sl": "odpreti se; biti prost (sedež, soba, čas itd.)",
-      "es": "abrirse; quedarse abierto; quedarse vacío; abrirse; quedarse vacío (desocupado); estar libre; tener tiempo libre; amanecer; abrirse; quedarse abierto; quedarse vacío; estar menos lleno"
+      "en": "to become less crowded; to thin out; to get empty; to be hungry",
+      "fr": "devenir moins chargé; se dégarnir; se vider; avoir faim",
+      "de": "leer sein; nicht voll sein; nicht besetzt sein; sich gut fühlen",
+      "hu": "nyit",
+      "ru": "быть пустым (незанятым, свободным) (о чём-либо)",
+      "sl": "biti prazen; izprazniti se",
+      "es": "abrirse; quedarse abierto; quedarse vacío; estar menos lleno"
     }
   },
   {
@@ -979,12 +967,14 @@
     "kanjiId": 37117,
     "jlpt": "N4",
     "meanings": {
-      "en": "Metropolis (of Tokyo); (Tokyo) Metropolitan District; metropolitan prefecture; counter for cities and towns; capital",
-      "fr": "métropolitain; municipal",
-      "de": "Hauptstadt; Metropole; Hauptstadtpräfektur; Stadt",
-      "hu": "érsek; fővárosi lakos; fővárosi; metropolita; városi",
-      "ru": "1): {～の} столичный, городской; 2) (см.) とちょう",
-      "sl": "mesto; metropola"
+      "en": "capital (esp. Kyoto, Japan's former capital); seat of government; capital (of music, fashion, etc.); city (e.g. of light); location of the Imperial Palace",
+      "fr": "capitale (ville)",
+      "de": "Hauptstadt; Regierungssitz; Stadt; Miyako",
+      "hu": "alaptőke; legfőbb; tőke",
+      "ru": "столица, столичный город",
+      "sl": "prestolnica",
+      "es": "capital",
+      "sv": "huvudstad"
     }
   },
   {
@@ -1302,13 +1292,9 @@
     "kanjiId": null,
     "jlpt": "N4",
     "meanings": {
-      "en": "albite",
+      "en": "part-time job; side job; part-time worker",
       "fr": "boulot; job; mi temps",
-      "de": "Albit; Natronfeldspat; Job; Nebenjob; Nebenverdienst; Teilzeitarbeit",
-      "ru": "((нем.) Arbeit) приработок; работа (гл. обр. о работе нуждающихся студентов); {～をする} работать (о студентах)",
-      "sl": "honorarno delo; študentsko delo; občasno delo ob študiju",
-      "es": "trabajo provisional; pluriempleo; trabajo a tiempo parcial",
-      "sv": "deltidsarbete; extraknäck"
+      "de": "jobben; nebenbei arbeiten; Teilzeit arbeiten"
     }
   },
   {
@@ -1575,7 +1561,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "rural area; countryside; the sticks; hometown",
-      "fr": "campagne; province; rural",
+      "fr": "campagne; province; rural; ville natale",
       "de": "Land (im Gegensatz zur Stadt); ländliches Gebiet; Provinz; Heimat; Herkunftsort",
       "hu": "falusi; mezőgazdasági",
       "ru": "1) деревня, сельская местность, провинция; {～の} деревенский, сельский, провинциальный; 2) родные места",
@@ -1739,14 +1725,14 @@
     "kanjiId": 35023,
     "jlpt": "N4",
     "meanings": {
-      "en": "opposite side; bottom; other side; side hidden from view; undersurface; reverse side; rear; back; behind; lining; inside; in the shadows; behind the scenes; offstage; behind (someone's) back; more (to something than meets the eye); hidden side (e.g. of one's personality); unknown circumstances; different side; proof; opposite (of a prediction, common sense, etc.); contrary; inverse (of a hypothesis, etc.); bottom (of an inning); last half (of an inning)",
-      "fr": "arrière; côté opposé; dos; dossier; doublure; envers; paume; pile; revers; semelle; verso",
-      "de": "Rückseite; Kehrseite; innere Seite; Hinterseite; Futter; verborgene Seite; verborgene Bedeutung; letzte Hälfte eines Innings; Sohle",
-      "hu": "hátrafelé; hátsó; hátul; hátulsó; hátvéd; belső; belül; ellenkező; fenék; hátsó rész; ülep",
-      "ru": "1) изнанка; оборотная (левая, задняя, внутренняя) сторона; 2) подкладка; 3) чёрный ход",
-      "sl": "hrbtna stran; zadaj; zadnja stran; notranjost",
-      "es": "reverso; lado equivocado; atrás; debajo de la superficie; dentro; lado opuesto; parte trasera; forro; palma de la mano; planta del pie; ultima mitad (de una entrada en béisbol)",
-      "sv": "baksida; undersida; insida; handflata"
+      "en": "inside; within; while (e.g. one is young); during; within (e.g. a day); in the course of; among; amongst; (out) of; between; in (secret, chaos, poverty, etc.); amidst; with (e.g. success); within oneself; one's feelings; inner thoughts; we; our company; our organization; one's home; one's family; my spouse; my husband; my wife; signed on behalf of (husband's name) by his wife; I; me; imperial palace grounds; emperor",
+      "fr": "dedans (spatial et temporel)",
+      "de": "innen; drinnen; innerhalb; Innenseite; Inneres; innen; drinnen; eigenes Haus; Zuhause; während; solange; bevor; unter; ich (Personalpron 1. Ps. sg.; überwiegend in Kansai von Frauen und Kindern gebraucht)",
+      "hu": "-ban; -ben; belsejében; belül; bizalmas tájékoztatás; vmin belül; benn; vminek a belsejében; bár; mialatt; míg; rövid idő; között",
+      "ru": "1): {～に} внутри; {～から} изнутри; 2): {～に} пока; {…の～に} в течение (чего-л.); 3): {…の～に} среди, из (нескольких); [мой (наш)] дом; {～の} мой; наш; домашний; {～で} дома; {～から} из дому; {～へ} домой; : {…の～に} в (каких-л. условиях)",
+      "sl": "izmed; znotraj",
+      "es": "dentro",
+      "sv": "inne; inuti; inomhus; inom; innanför; innandöme; inuti; insida"
     }
   },
   {
@@ -2147,7 +2133,7 @@
     "kanjiId": 35211,
     "jlpt": "N4",
     "meanings": {
-      "en": "visit (to someone affected by illness or misfortune); call; inquiry (about someone's health); expression of sympathy; letter of inquiry; letter of sympathy; get-well letter; gift (in token of one's sympathy)",
+      "en": "visit (to someone affected by illness or misfortune); call; inquiry (about someone's health); expression of sympathy; letter of inquiry; letter of sympathy; get-well letter; gift (in token of one's sympathy); dealing (a hit); striking (a blow); landing (an attack)",
       "fr": "visite d'un malade",
       "de": "Besuch; Krankenbesuch; Erkundigung nach der Gesundheit; Besuch bei jmdm. dem ein Unglück widerfahren ist; Erkundigung nach dem Befinden (bei jmdm., der krank ist, oder dem ein Unglück widerfahren ist); Brief, um sich nach jmds. Gesundheit zu erkundigen; Brief, um sich nach jmds Ergehen nach einem Unglück zu erkundigen; Geschenk für jmdn, dem ein Unglück widerfahren ist",
       "hu": "érdeklődés; kérdezősködés; nyomozás; tudakozódás; vizsgálat",
@@ -2453,14 +2439,13 @@
     "kanjiId": 37857,
     "jlpt": "N4",
     "meanings": {
-      "en": "model; pattern; paragon; exemplar",
+      "en": "mirror; looking-glass; barrel head; page added at the beginning of a document mentioning its purpose, date, author, etc.; mirror-shaped mochi",
       "fr": "miroir",
-      "de": "Vorbild; Muster; Ideal; Musterbeispiel; Modell",
-      "hu": "minta; sablon; motívum; példa",
-      "ru": "образец, пример",
+      "de": "Spiegel; Kagami・mochi; flaches, rundes Mochi; Deckel (eines Sakefasses); Deckblatt für verwaltungsinterne Papiere (mit z. B. Adresse, Titel, Datum, Verfassern etc.); Kagami・mono (japan. Geschichtswerke, die das Wort kagami im Titel tragen)",
+      "hu": "példakép; tükör",
+      "ru": "1) зеркало; 2) [верхнее] дно бочки",
       "sl": "ogledalo",
-      "es": "modelo",
-      "sv": "stilbildare"
+      "es": "espejo"
     }
   },
   {
@@ -2551,7 +2536,7 @@
     "kanjiId": 22533,
     "jlpt": "N4",
     "meanings": {
-      "en": "strength; solidity; firmness"
+      "en": "strength; solidity; firmness; armour; armor"
     }
   },
   {
@@ -2561,7 +2546,8 @@
     "kanjiId": 30828,
     "jlpt": "N4",
     "meanings": {
-      "en": "hardness"
+      "en": "hardness",
+      "de": "Härte; Verhärtung; Hartnäckigkeit"
     }
   },
   {
@@ -2767,13 +2753,11 @@
     "kanjiId": 24444,
     "jlpt": "N4",
     "meanings": {
-      "en": "he; him; boyfriend",
-      "fr": "il; lui; petit ami",
-      "de": "er (Personalpron. 3. Ps. mask. Sg.); fester Freund; Liebhaber",
-      "ru": "он; {～の} его",
-      "sl": "on; {nekoga} fant",
-      "es": "él; novio",
-      "sv": "han; pojkvän"
+      "en": "that; that thing; that person; then; that time; that place (over there); down there (i.e. one's genitals); period; menses",
+      "fr": "çà; celui-là; organes génitaux; menstruation; règles",
+      "de": "das dort; jenes; männliche Geschlechtsorgane; Periode einer Frau",
+      "ru": "1) [вон] то; это; 2) (прост.) он, она",
+      "es": "aquello; aquél; aquella"
     }
   },
   {
@@ -3028,7 +3012,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "rule; regulation",
-      "fr": "règles; règlements; réglementation; conventions",
+      "fr": "règles; règlements; réglementation; conventions; règle; règlement; réglementation",
       "de": "Bestimmung; Vorschrift; Festsetzung; Regel; Norm; Ordnung; System; Disziplin; Satzung; Statut",
       "hu": "rendelet; utasítás",
       "ru": "правило; правила, распорядок; устав; {～的} правильный; регулярный, систематический; методический",
@@ -3125,12 +3109,14 @@
     "kanjiId": 21531,
     "jlpt": "N4",
     "meanings": {
-      "en": "Mr; master; boy; Ms; miss; sir; madam",
-      "fr": "Monsieur (jeune); garçon; suffixe pour les noms de personne",
-      "hu": "kapitány",
-      "ru": "1) -кун (суф. к именам и фамилиям при фамильярном обращении или обращении к сверстнику); 2) товарищ, господин (в публичных выступлениях)",
-      "sl": ".",
-      "es": "sufijo para muchachos; de los mayores a los muchachos o entre muchachos"
+      "en": "you; buddy; pal; monarch; ruler; sovereign; (one's) master; he; she",
+      "fr": "toi (mon ami); tu",
+      "de": "du; Herrscher; Souverän; König",
+      "hu": "közös; közösségi; országos; vminek a párja; uralkodó; főnök; igazgató; tanár",
+      "ru": "1. ты; 2. (уст.) господин; государь; (ср.) きみがよ",
+      "sl": "ti (neformalno, moško)",
+      "es": "(fam) tú; ti; monarca; gobernante; soberano; maestro (de uno); (fam) tú; te; ti; monarca; gobernante; soberano; maestro (de uno)",
+      "sv": "du"
     }
   },
   {
@@ -3998,13 +3984,13 @@
     "kanjiId": 31859,
     "jlpt": "N4",
     "meanings": {
-      "en": "(husked grains of) rice; staple (product, etc.); necessity; (online) comment",
-      "fr": "riz (cru)",
-      "de": "(geschälter, ungekochter)Reis; Reis; Oryza sativa",
-      "ru": "рис (в зерне)",
-      "sl": "(nekuhan) riž",
-      "es": "arroz no cocinado",
-      "sv": "ris"
+      "en": "metre (unit of length); meter; meter; gauge",
+      "fr": "compteur; mètre",
+      "de": "Maître; Lehrer; Meister; Oberkellner (Abk.); Messgerät; Meter (Einheit des Meter-Kilogramm-Sekunde-Systems; Zeichen: m)",
+      "hu": "mérőeszköz; idomszer; mérce",
+      "sl": "meter",
+      "es": "metro",
+      "sv": "meter"
     }
   },
   {
@@ -4176,7 +4162,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "beginning; outset; first; onset",
-      "fr": "commencement; début; premier (-ni, -no)",
+      "fr": "commencement; début; premier (-ni, -no); commencement; début; premier",
       "de": "erster; Anfangs-…; ursprünglich; am Anfang; zuerst; anfangs; Allererster; Erster; Anfang; Beginn",
       "hu": "kezdet; első; beérkezés; roham",
       "ru": "начало; первый раз; вначале, сначала, первоначально; в первый раз; {～の} [самый] первый; начальный; {～から} с самого начала",
@@ -4548,7 +4534,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "failure; mistake; blunder",
-      "fr": "erreur; faillite; faire une bavure; insuccès",
+      "fr": "erreur; faillite; faire une bavure; insuccès; erreur; faillite; faire une bavure; insuccès; faute; ratage; fiasco; bévue; gaffe",
       "de": "keinen Erfolg haben; daneben gehen; misslingen; missraten; ein Fiasko erleiden; fehlschlagen; scheitern; versagen; Misserfolg; Misslingen; Fehlschlag; Fiasko; Versagen",
       "hu": "elmulasztás; leromlás",
       "ru": "неудача, неуспех; провал; ошибка; {～する} потерпеть неудачу, провалиться; ошибиться, промахнуться",
@@ -4762,7 +4748,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "hobby; pastime; tastes; preference; liking",
-      "fr": "goûts; intérêt; passe-temps; préférence",
+      "fr": "goûts; intérêt; passe-temps; préférence; goûts; intérêt; passe-temps; préférence; loisir",
       "de": "Hobby; Interesse; Geschmack; Vorliebe",
       "hu": "kedvezmény",
       "ru": "1) прелесть, интерес (чего-л.); {～のある} имеющий свою прелесть, представляющий интерес; 2) вкус, склонность, интерес (к чему-л.)",
@@ -5929,7 +5915,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "suffix for familiar person",
-      "fr": "désigne les enfants(nom+chan)",
+      "fr": "désigne les enfants (nom+chan)",
       "ru": "(диал. разг.) папа, папочка",
       "es": "sufijo cariñoso para las muchachas o de muchachas a muchachos"
     }
@@ -5991,7 +5977,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "parking lot; car park; carpark; parking garage",
-      "fr": "\"stationnement autorisé\"; parking",
+      "fr": "\"stationnement autorisé\"; parking; \"stationnement autorisé\"; parking; place de stationnement",
       "de": "Parkplatz; Stellplatz",
       "hu": "emeletes parkoló; parkolóház",
       "ru": "стоянка машин (место)",
@@ -6137,13 +6123,8 @@
     "kanjiId": 22971,
     "jlpt": "N4",
     "meanings": {
-      "en": "my dear; dear; honey",
-      "fr": "épouse; femme",
-      "de": "Rand; Kante; Ende; Giebel; Ehefrau; Frau; Gattin; Gemahlin; verheiratete Frau (unhöflich); Garnierung; Verzierung; dreieckige Wandfläche unterhalb des Giebels und oberhalb des giebelseitigen Daches",
-      "hu": "asszony",
-      "ru": "(уст.) муж, супруг",
-      "sl": "žena",
-      "es": "esposa"
+      "en": "wife; garnish (esp. one served with sashimi); trimmings; accompaniment; side (remark)",
+      "fr": "épouse; femme"
     }
   },
   {
@@ -6303,14 +6284,8 @@
     "kanjiId": 28857,
     "jlpt": "N4",
     "meanings": {
-      "en": "dot; spot; point; speck; mark; mark (in an exam, etc.); grade; score; points; point (in a game); score; goal; run; point; point; aspect; matter; detail; part; respect; way; viewpoint; (punctuation) mark (e.g. comma, period, decimal point); dot; \"dot\" stroke (in a Chinese character); counter for points, marks, goals, etc.; counter for goods, items, articles of clothing, works of art, etc.",
-      "fr": "marque; point",
-      "de": "Punkt; Tupfen; Fleck; Punkt; Zensur; Punkt; Matrixpunkt; Tropfenmuster; Punkt; Treffer; Tor; Dezimalpunkt; Dezimalkomma; Punkt; japanisches Komma; japanischer Betonungspunkt (neben den Zeichen); Punkt; Diskussionspunkt; Hinsicht; Beziehung; Standpunkt; Gesichtspunkt",
-      "hu": "csepp; folt; hely; pattanás; petty; pont; vidék; célpont; jel; nyom; szint; jellemvonás; lényeg; pont",
-      "ru": "1) точка (в частности, в иероглифах); 2) запятая; 3) отметка; балл; 4) полученный голос (при выборах); 5) (спорт.) очко; 6) точка, пятнышко, крапинка; 7) пункт, момент; 8) (счётн. суф.); а) (для пятен); б) (для предметов одежды, утвари и т. п.); 5点セット гарнитур из пяти предметов",
-      "sl": "(Msr) točk {mera za točke}; točka; pika; ocena; stališče; vidik",
-      "es": "mancha; marca; punto; calificación; puntaje; puntos; contador para mercancías o artículos",
-      "sv": "punkt; prick; fläck"
+      "en": "dot; point; mark; gidayū musicians",
+      "de": "Punkt; Gidayu-Begleitung"
     }
   },
   {
@@ -6898,7 +6873,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "sleeping in late; oversleeping; late riser; sleepyhead",
-      "fr": "faire la grasse matinée; se lever tard",
+      "fr": "faire la grasse matinée; se lever tard; faire la grasse matinée; se lever tard; dormeur",
       "de": "verschlafen; verpennen; zu spät aufstehen; Langschläfer; Spätaufsteher; Verschlafen; spätes Aufstehen; langes Schlafen",
       "ru": "1) соня; 2): {～する} прос[ы]пать; поздно вставать",
       "sl": "dolgo spati; predolgo spati; predolgo spanje",
@@ -7516,14 +7491,8 @@
     "kanjiId": null,
     "jlpt": "N4",
     "meanings": {
-      "en": "bill; check; invoice; bill; promissory note; bill; measure",
-      "fr": "building; facture; note",
-      "de": "Gebäude; Bürogebäude; Geschäftsgebäude; Hochhaus; Max Bill (schweizer. Architekt, Maler, Designer u. Plastiker; 1908-1994)",
-      "hu": "csőr; hirdetmény; jegyzék; plakát",
-      "ru": "(см.) ビルディング; ((англ.) bill); 1) счёт (документ); 2) вексель",
-      "sl": "stavba; poslopje; zgradba",
-      "es": "edificio (eng: building); factura (eng: bill)",
-      "sv": "byggnad"
+      "en": "multi-floor building; multi-storey building",
+      "fr": "building; facture; note"
     }
   },
   {
@@ -7822,13 +7791,8 @@
     "kanjiId": null,
     "jlpt": "N4",
     "meanings": {
-      "en": "bel (unit); B",
-      "fr": "sonnerie; sonnette",
-      "de": "Andrew Bell (brit. Geistlicher und Pädagoge; 1753-1838); Alexander Graham Bell (britisch-kanad. Erfinder; 1847-1922); Charles Bell (schott. Anatom; 1774-1842); Heinrich Böll (dtsch. Schriftsteller; 1917-1985); Klingel; Türglocke; Glocke",
-      "hu": "csengettyű; cserépbura; előreugró kőzet; felhólyagzás; gázharang; gazométer; hagymatető; harang alakú virág; harang; harangozás; jelzőcsengő; jelzőharang; kisharang; kolomp; kupola alakú főtezáródmány; kupolakapcsolás; szarvasbőgés; záróharang",
-      "ru": "((англ.) bell); 1) звонок; 2) колокольчик",
-      "sl": "Graham Bell; zvonec",
-      "es": "campana (eng: bell); B"
+      "en": "bell",
+      "fr": "sonnerie; sonnette"
     }
   },
   {
@@ -8016,13 +7980,12 @@
     "kanjiId": 22238,
     "jlpt": "N4",
     "meanings": {
-      "en": "to turn; to rotate; to revolve; to spin; to go around; to circle; to revolve around; to orbit; to make the rounds (of); to go around (several places); to travel around; to make a tour of; to patrol; to go by way of; to go via; to stop by (on the way); to take a roundabout route; to make a detour; to move around (to another place or position); to come around; to go over (e.g. to the opposing side); to come around (of one's turn); to be passed around (of a cup, circular, etc.); to function; to work well; to spread; to extend (to; e.g. of one's attention); to reach; to take effect (of alcohol, poison, etc.); to pass (a time); to turn (e.g. 5 o'clock); to earn interest; to ... around; to ... about",
-      "fr": "pivoter; tourner; visiter plusieurs lieux",
-      "de": "kreisen; sich drehen; rotieren; wirbeln; umlaufen; zirkulieren; herumgehen; abbiegen; an der Reihe sein; die Runde machen; um sich greifen; von einem Ort zum anderen gehen; eine Rundreise machen",
-      "hu": "esztergályoz; forgat; forgolódik; forog; kering",
-      "ru": "1) вертеться, кружиться, вращаться; поворачиваться, ворочаться; двигаться по кругу (по спирали); 2) делать обход; обходить, объезжать (ряд мест); совершать турне; 3) делать крюк (объезд); заходить, заезжать (куда-л.); 4) оказывать действие (о лекарстве, алкоголе); 5) передаваться (из рук в руки  о чём-л.); быть переведённым (на другую работу  о ком-л.); 6) (связ.:)",
-      "sl": "krožiti; obračati se",
-      "es": "girar; hacer girar; visitar muchos lugares"
+      "en": "to go around; to make a circle around; to surround; to circle; to enclose; to come around (of a season, anniversary, turn, etc.); to return; to repeat; to circulate (of blood, money, etc.); to travel around; to make a tour of; to concern (a matter); to surround",
+      "fr": "tourner autour; tourner en rond",
+      "de": "kreisen; sich drehen; rotieren; herumreisen; herumfahren; umlaufen; zirkulieren; sich wiederholen; sich beziehen",
+      "hu": "felel; jelent; jövedelmez; válaszol; visszahelyez; visszatér; visszatesz; harcol",
+      "ru": "1) (см.) まわる 1, 2; 2) обходить кругом (по кругу); (перен.) возвращаться (о временах года); 3) окружать",
+      "es": "girar; hacer girar; visitar muchos lugares; ir por ahí; girar; hacer girar; visitar muchos lugares"
     }
   },
   {
@@ -8048,7 +8011,9 @@
     "kanjiId": 30495,
     "jlpt": "N4",
     "meanings": {
-      "en": "middle; centre; center"
+      "en": "middle; centre; center; midpoint; heart",
+      "hu": "közbülső; közép-; centrum; középcsatár; központ",
+      "es": "medio; centro; en el medio; medio camino"
     }
   },
   {
@@ -8236,14 +8201,10 @@
     "kanjiId": 23064,
     "jlpt": "N4",
     "meanings": {
-      "en": "daughter; girl (i.e. a young, unmarried woman)",
-      "fr": "fille",
-      "de": "Tochter; junges Mädchen; junge Frau",
-      "hu": "lány",
-      "ru": "1) дочь; 2) девушка",
-      "sl": "hči; dekle",
-      "es": "(mi) hija; chica (i.e. una mujer joven y sin casar)",
-      "sv": "dotter"
+      "en": "unmarried woman; Miss; -ess; -ette",
+      "de": "Fräulein; junge Dame; Tochter",
+      "ru": "(суф. после имени) мадемуазель, мисс; (ср.) おじょうさん",
+      "es": "señorita"
     }
   },
   {
@@ -8319,7 +8280,7 @@
     "jlpt": "N4",
     "meanings": {
       "en": "to say; to be called; to do",
-      "fr": "dire; s'appeler",
+      "fr": "dire; s'appeler; faire",
       "de": "sagen; erzählen; aussprechen; heißen (besch.-höfl.)",
       "hu": "hívják vminek; vmi a neve; vminek hívják",
       "ru": "(тк. о себе); 1) говорить; 2) называться; 3) делать",
