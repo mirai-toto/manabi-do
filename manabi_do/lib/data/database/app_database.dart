@@ -267,6 +267,11 @@ class AppDatabase extends _$AppDatabase {
   Future<int> countTotalVocab() =>
       (select(vocabularyEntries)).get().then((r) => r.length);
 
+  Future<String?> getKanjiSvg(int kanjiId) =>
+      (select(kanjis)..where((k) => k.id.equals(kanjiId)))
+          .getSingleOrNull()
+          .then((row) => row?.svg);
+
   // ── Grammar queries ──────────────────────────────────────────────────────
 
   Future<List<GrammarLessonRow>> getGrammarLessonsForLevel(String level) =>

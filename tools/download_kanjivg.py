@@ -8,7 +8,7 @@ import urllib.request
 import glob
 
 CONTENT_DIR = os.path.join(os.path.dirname(__file__), '../content/characters')
-OUT_DIR     = os.path.join(os.path.dirname(__file__), '../manabi_do/assets/kanji_svg')
+OUT_DIR     = os.path.join(os.path.dirname(__file__), '../data/kanji_svg')
 BASE_URL    = 'https://raw.githubusercontent.com/KanjiVG/kanjivg/master/kanji/{}.svg'
 
 os.makedirs(OUT_DIR, exist_ok=True)

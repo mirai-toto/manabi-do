@@ -86,7 +86,7 @@ Streak is computed from `srs_cards.card_json` → `lastReview` dates: count cons
 
 ## Kanji SVG Assets
 
-Stroke order SVGs are bundled as individual files under `assets/kanji_svg/`. They are loaded at runtime by `KanjiStrokesProvider` and rendered as animated paths. The `kanjis` table does not store SVG data — it only stores text fields.
+Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db`. They are loaded at runtime by `KanjiStrokesProvider` via a DB query and rendered as animated paths. Source SVG files live in `data/kanji_svg/` (gitignored) and are embedded into the DB by `tools/build_content_db.py`.
 
 ---
 

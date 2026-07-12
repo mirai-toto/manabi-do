@@ -23,7 +23,7 @@ python3 tools/build_content_db.py
 
 Reads all files under `content/` and writes `manabi_do/assets/manabi_do_content.db`.
 
-On first run, downloads ~60 MB of Tatoeba sentence data into `data/tatoeba/` (cached for subsequent runs). Skip this with `--no-sentences` for a fast rebuild:
+Requires kanji SVGs to be present in `data/kanji_svg/` (see below). On first run, downloads ~60 MB of Tatoeba sentence data into `data/tatoeba/` (cached for subsequent runs). Skip sentences for a fast rebuild:
 
 ```bash
 python3 tools/build_content_db.py --no-sentences
@@ -54,10 +54,10 @@ Both scripts update `content/characters/kanji_n*.json` and `content/vocabulary/v
 
 ## Refresh kanji SVGs
 
-Only needed when kanji are added to `content/characters/`. Downloads missing SVGs from KanjiVG; already-present files are skipped.
+Required before the first DB rebuild on a fresh clone, and whenever kanji are added to `content/characters/`. Downloads missing SVGs from KanjiVG into `data/kanji_svg/`; already-present files are skipped.
 
 ```bash
 python3 tools/download_kanjivg.py
 ```
 
-Output goes to `manabi_do/assets/kanji_svg/`.
+SVGs are embedded into the DB by `build_content_db.py` — they are not bundled as individual asset files.

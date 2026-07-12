@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:xml/xml.dart';
+
+import '../../../presentation/providers/database_provider.dart';
 
 const double kanjiVgViewBox = 109;
 
@@ -24,9 +25,8 @@ final kanjiStrokesProvider = FutureProvider.family<List<Path>, int>((
   ref,
   kanjiId,
 ) async {
-  final hexCode = kanjiId.toRadixString(16).padLeft(5, '0');
-  final svgString = await rootBundle.loadString(
-    'assets/kanji_svg/$hexCode.svg',
-  );
-  return _parseStrokes(svgString);
+  final db = ref.read(databaseProvider);
+  final svg = await db.getKanjiSvg(kanjiId);
+  if (svg == null) return [];
+  return _parseStrokes(svg);
 });

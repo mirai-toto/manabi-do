@@ -25,7 +25,7 @@ from collections import defaultdict
 
 import pykakasi
 
-SCHEMA_VERSION = 12
+SCHEMA_VERSION = 13
 
 _kks = pykakasi.kakasi()
 
@@ -129,6 +129,7 @@ MAX_SENTENCE_LEN = 40
 TARGET_LANGS = {"eng", "fra", "deu", "spa", "ita", "por", "rus"}
 OUT_PATH = "manabi_do/assets/manabi_do_content.db"
 GRAMMAR_ROOT = "content/grammar"
+SVG_DIR = "data/kanji_svg"
 LEVELS = [("n5", "N5"), ("n4", "N4"), ("n3", "N3"), ("n2", "N2"), ("n1", "N1")]
 
 
@@ -140,7 +141,8 @@ def create_tables(db: sqlite3.Connection) -> None:
             meaning     TEXT NOT NULL,
             on_reading  TEXT NOT NULL,
             kun_reading TEXT NOT NULL,
-            jlpt_level  TEXT NOT NULL
+            jlpt_level  TEXT NOT NULL,
+            svg         TEXT
         );
 
         CREATE TABLE vocabulary_entries (
@@ -244,7 +246,7 @@ def insert_kanji(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
             tr_rows.append((kanji_id, locale, meaning))
 
     db.executemany(
-        "INSERT INTO kanjis VALUES (?, ?, ?, ?, ?, ?)",
+        "INSERT INTO kanjis (id, character, meaning, on_reading, kun_reading, jlpt_level) VALUES (?, ?, ?, ?, ?, ?)",
         kanji_rows,
     )
     db.executemany(
@@ -252,6 +254,23 @@ def insert_kanji(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
         tr_rows,
     )
     return len(entries)
+
+
+def insert_svgs(db: sqlite3.Connection) -> tuple[int, int]:
+    """Embed SVG content from SVG_DIR into kanjis.svg. Returns (inserted, missing)."""
+    ids: list[int] = [row[0] for row in db.execute("SELECT id FROM kanjis")]
+    inserted = 0
+    missing = 0
+    for kanji_id in ids:
+        path = os.path.join(SVG_DIR, f"{kanji_id:05x}.svg")
+        if not os.path.exists(path):
+            missing += 1
+            continue
+        with open(path, encoding="utf-8") as f:
+            svg = f.read()
+        db.execute("UPDATE kanjis SET svg = ? WHERE id = ?", (svg, kanji_id))
+        inserted += 1
+    return inserted, missing
 
 
 def insert_vocab(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
@@ -478,6 +497,12 @@ def main() -> None:
         print(f"Inserting {jlpt} kanji… ", end="", flush=True)
         n = insert_kanji(db, slug, jlpt)
         print(f"{n} entries")
+
+    print("Embedding kanji SVGs… ", end="", flush=True)
+    inserted, missing = insert_svgs(db)
+    print(f"{inserted} embedded, {missing} missing")
+    if missing:
+        print(f"  (run python3 tools/download_kanjivg.py to fetch missing SVGs)")
 
     for slug, jlpt in LEVELS:
         print(f"Inserting {jlpt} vocab… ", end="", flush=True)

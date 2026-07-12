@@ -22,6 +22,7 @@ The content DB is bundled as a Flutter asset. On first launch it is copied to th
 | on_reading  | TEXT       |                   |
 | kun_reading | TEXT       |                   |
 | jlpt_level  | TEXT       | `N5`–`N1`         |
+| svg         | TEXT       | KanjiVG SVG, nullable |
 
 **`kanji_translations`**
 

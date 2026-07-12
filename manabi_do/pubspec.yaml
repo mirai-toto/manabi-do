@@ -92,7 +92,6 @@ flutter:
   assets:
     - assets/manabi_do_content.db
     - assets/icons/
-    - assets/kanji_svg/
 
   fonts:
     - family: Inter
