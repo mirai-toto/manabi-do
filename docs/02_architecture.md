@@ -2,15 +2,15 @@
 
 ## Tech Stack
 
-| Component | Choice | Reason |
-|---|---|---|
-| Framework | Flutter | One codebase, 5 platforms, smooth animations for stroke order |
-| Language | Dart | Bundled with Flutter |
-| Database | SQLite via `drift` | Offline first, typed queries, managed migrations |
-| State management | Riverpod | Modern Flutter standard |
-| SRS | `package:fsrs` | FSRS algorithm for spaced repetition |
-| UI | Material 3 | Adaptive navigation components, markdown support |
-| i18n | `flutter_localizations` + `intl` | ARB-based, code-generated accessors |
+| Component        | Choice                           | Reason                                                        |
+| ---------------- | -------------------------------- | ------------------------------------------------------------- |
+| Framework        | Flutter                          | One codebase, 5 platforms, smooth animations for stroke order |
+| Language         | Dart                             | Bundled with Flutter                                          |
+| Database         | SQLite via `drift`               | Offline first, typed queries, managed migrations              |
+| State management | Riverpod                         | Modern Flutter standard                                       |
+| SRS              | `package:fsrs`                   | FSRS algorithm for spaced repetition                          |
+| UI               | Material 3                       | Adaptive navigation components, markdown support              |
+| i18n             | `flutter_localizations` + `intl` | ARB-based, code-generated accessors                           |
 
 ---
 
@@ -47,6 +47,7 @@ SQLite (two bundled .db files)
 5. Settings
 
 Navigation component:
+
 - Mobile (< 600px): `AppNavBar` (bottom navigation bar)
 - Wide (≥ 600px): `AppNavRail` (left navigation rail)
 

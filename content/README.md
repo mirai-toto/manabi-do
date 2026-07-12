@@ -35,10 +35,10 @@ python3 tools/build_content_db.py --no-sentences
 
 Only needed when updating kanji meanings or vocabulary translations from JMdict/KANJIDIC2. Requires two files placed in `data/` first:
 
-| File | Source |
-|---|---|
-| `data/jmdict.json` | [jmdict-simplified releases](https://github.com/scriptin/jmdict-simplified/releases) — download `jmdict-all-*.json.zip`, extract and rename |
-| `data/kanjidic2.xml` | [EDRDG](https://www.edrdg.org/kanjidic/kanjidic2.xml.gz) — decompress the `.gz` |
+| File                 | Source                                                                                                                                      |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data/jmdict.json`   | [jmdict-simplified releases](https://github.com/scriptin/jmdict-simplified/releases) — download `jmdict-all-*.json.zip`, extract and rename |
+| `data/kanjidic2.xml` | [EDRDG](https://www.edrdg.org/kanjidic/kanjidic2.xml.gz) — decompress the `.gz`                                                             |
 
 Then run either:
 

@@ -45,6 +45,7 @@ Two tabs: Kana and Kanji.
 **Kana tab** — grid of hiragana and katakana grouped by row (gojuuon, dakuten). Tap a character to open a detail sheet with romaji, SRS level indicator, and a known/unknown toggle. Practice button opens an SRS flashcard session.
 
 **Kanji tab** — list filterable by JLPT level (N5→N1). Shows each kanji with SRS level color. Tap → detail screen with:
+
 - Animated stroke order (SVG from bundled assets)
 - On/kun readings (locale-translated)
 - Example vocabulary words with sentences
@@ -67,14 +68,14 @@ Spaced repetition using the FSRS algorithm (`package:fsrs`). Applies to kana, ka
 
 Six SRS levels, each with a distinct color:
 
-| Level | Description |
-|---|---|
-| New | Never seen |
-| Learning | In early learning phase |
-| Apprentice | Short interval (< 7 days stability) |
-| Familiar | Medium interval (7–21 days stability) |
-| Mastered | Long interval (21–90 days stability) |
-| Expert | Very long interval (90+ days stability) |
+| Level      | Description                             |
+| ---------- | --------------------------------------- |
+| New        | Never seen                              |
+| Learning   | In early learning phase                 |
+| Apprentice | Short interval (< 7 days stability)     |
+| Familiar   | Medium interval (7–21 days stability)   |
+| Mastered   | Long interval (21–90 days stability)    |
+| Expert     | Very long interval (90+ days stability) |
 
 New cards per day are rate-limited. For kanji, new cards are introduced from the lowest JLPT level that still has unseen items (N5 → N4 → N3 → N2 → N1).
 
@@ -92,13 +93,13 @@ A streak counter shows the number of consecutive calendar days on which at least
 
 Exercises are attached to grammar lessons and are generic across content types.
 
-| Type | Description |
-|---|---|
-| MCQ | One question, N choices, one correct answer |
-| Flashcard | Card shown, user self-assesses (known / not known) |
-| Drawing | User traces stroke order on a canvas (kana/kanji) |
+| Type           | Description                                                                                             |
+| -------------- | ------------------------------------------------------------------------------------------------------- |
+| MCQ            | One question, N choices, one correct answer                                                             |
+| Flashcard      | Card shown, user self-assesses (known / not known)                                                      |
+| Drawing        | User traces stroke order on a canvas (kana/kanji)                                                       |
 | Sentence cloze | A Japanese sentence with the target word blanked out; user picks the correct word from multiple choices |
-| Lesson reader | Inline reading card within an exercise flow |
+| Lesson reader  | Inline reading card within an exercise flow                                                             |
 
 The system is designed to be extensible — new types can be added without a full rewrite.
 
@@ -112,12 +113,12 @@ Content (kanji, vocab, sentences) is tagged N5 (beginner) through N1 (advanced).
 **2. Exercise type difficulty — cognitive demand**
 Within a session, exercise types vary in how much active recall they require:
 
-| Exercise | Demand | Notes |
-|----------|--------|-------|
-| Flashcard | Low | Passive recognition; user self-assesses |
-| MCQ | Medium | Must select correct answer from options |
+| Exercise       | Demand      | Notes                                                       |
+| -------------- | ----------- | ----------------------------------------------------------- |
+| Flashcard      | Low         | Passive recognition; user self-assesses                     |
+| MCQ            | Medium      | Must select correct answer from options                     |
 | Sentence cloze | Medium–High | Contextual; requires understanding word usage in a sentence |
-| Drawing | High | Active production; must reproduce correct stroke order |
+| Drawing        | High        | Active production; must reproduce correct stroke order      |
 
 For kanji and vocab free-practice sessions, users can filter to a single exercise type (flashcard-only, MCQ-only) or use mixed mode. Home SRS sessions use a mixed mode weighted by what each item needs.
 
@@ -137,9 +138,9 @@ Progress and SRS state are locale-agnostic — they carry across language switch
 
 Mobile-first. Two layout breakpoints:
 
-| Width | Navigation |
-|---|---|
-| < 600px | Bottom navigation bar |
+| Width   | Navigation                  |
+| ------- | --------------------------- |
+| < 600px | Bottom navigation bar       |
 | ≥ 600px | Navigation rail (left side) |
 
 The navigation rail and bottom bar are hidden during active practice sessions. Escape key navigates back on desktop/Linux.

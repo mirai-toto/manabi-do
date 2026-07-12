@@ -19,6 +19,7 @@ manabi-do/
 ```
 
 Problems:
+
 - Tools split across two locations (`tools/` and `manabi_do/tool/`)
 - Source content (`content/`) lives inside the Flutter project
 - Grammar lessons bypass the build pipeline entirely (loaded raw from assets)
@@ -98,7 +99,7 @@ A chapter index lists either sub-chapters or lessons. Can nest to any depth.
 {
   "type": "chapters",
   "items": [
-    { "title": "Verbs",      "path": "N5/verbs/index.json" },
+    { "title": "Verbs", "path": "N5/verbs/index.json" },
     { "title": "Adjectives", "path": "N5/adjectives/index.json" }
   ]
 }
@@ -109,7 +110,7 @@ A chapter index lists either sub-chapters or lessons. Can nest to any depth.
   "type": "lessons",
   "items": [
     { "title": "Verb Groups", "path": "N5/verbs/verb-groups.json" },
-    { "title": "Masu Form",   "path": "N5/verbs/masu-form.json" }
+    { "title": "Masu Form", "path": "N5/verbs/masu-form.json" }
   ]
 }
 ```
@@ -123,8 +124,15 @@ All `path` values are relative to `content/grammar/`.
   "id": "verb-groups",
   "title": "Verb Groups",
   "blocks": [
-    { "type": "text", "content": "Every Japanese verb belongs to one of three groups..." },
-    { "type": "vocab_table", "columns": ["japanese", "romaji", "english", "group"], "rows": [] }
+    {
+      "type": "text",
+      "content": "Every Japanese verb belongs to one of three groups..."
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "romaji", "english", "group"],
+      "rows": []
+    }
   ]
 }
 ```
