@@ -5,7 +5,6 @@
 | File                                    | Purpose                                                     |
 | --------------------------------------- | ----------------------------------------------------------- |
 | `manabi_do/assets/manabi_do_content.db` | Main content DB — kanji, vocab, sentences, all translations |
-| `manabi_do/assets/manabi.db`            | Empty placeholder (unused)                                  |
 
 The content DB is bundled as a Flutter asset. On first launch it is copied to the app's documents directory and used as the live SQLite database. Edits to the asset file only affect fresh installs/reinstalls; existing installs carry their own on-device copy.
 

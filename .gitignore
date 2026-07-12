@@ -1,5 +1,5 @@
 # Raw source data — large downloads, not committed (see data/)
-data/
+/data/
 
 # OS
 .DS_Store

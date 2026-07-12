@@ -9,9 +9,6 @@ import '../../widgets/widgets.dart';
 import 'grammar_lesson_list_screen.dart';
 import 'grammar_lesson_screen.dart';
 
-// Levels that have been migrated to JSON block format.
-const _jsonLevels = {'basics', 'N5'};
-
 class GrammarChapterList extends ConsumerWidget {
   final String level;
   final VoidCallback onBack;
@@ -25,10 +22,7 @@ class GrammarChapterList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
-    final isJson = _jsonLevels.contains(level);
-    final chaptersAsync = isJson
-        ? ref.watch(grammarJsonChaptersProvider(level))
-        : ref.watch(grammarChaptersProvider(level));
+    final chaptersAsync = ref.watch(grammarChaptersProvider(level));
     final title = level == 'basics'
         ? l.japaneseBasics
         : levelLabel(level, context);
@@ -45,33 +39,22 @@ class GrammarChapterList extends ConsumerWidget {
         onBack: onBack,
         onItemTap: (i) {
           final chapter = chapters[i];
-          if (chapter.isJson) {
-            if (chapter.lessons.length == 1) {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => GrammarLessonScreen(
-                    title: chapter.title,
-                    blocks: chapter.lessons.first.blocks,
-                    levelColor: color,
-                  ),
-                ),
-              );
-            } else {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => GrammarLessonListScreen(
-                    chapter: chapter,
-                    levelColor: color,
-                  ),
-                ),
-              );
-            }
-          } else {
+          if (chapter.lessons.length == 1) {
             Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => GrammarLessonScreen(
                   title: chapter.title,
-                  content: chapter.content,
+                  blocks: chapter.lessons.first.blocks,
+                  levelColor: color,
+                ),
+              ),
+            );
+          } else {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => GrammarLessonListScreen(
+                  chapter: chapter,
+                  levelColor: color,
                 ),
               ),
             );

@@ -9,6 +9,7 @@ import 'db_connection_native.dart'
 
 import '../../domain/data/kana_data.dart';
 import 'tables/exercises_table.dart';
+import 'tables/grammar_lessons_table.dart';
 import 'tables/kanas_table.dart';
 import 'tables/kanjis_table.dart';
 import 'tables/progress_table.dart';
@@ -25,6 +26,7 @@ part 'app_database.g.dart';
     Kanas,
     VocabularyEntries,
     Exercises,
+    GrammarLessons,
     ProgressEntries,
     KanjiTranslations,
     VocabTranslations,
@@ -264,6 +266,14 @@ class AppDatabase extends _$AppDatabase {
 
   Future<int> countTotalVocab() =>
       (select(vocabularyEntries)).get().then((r) => r.length);
+
+  // ── Grammar queries ──────────────────────────────────────────────────────
+
+  Future<List<GrammarLessonRow>> getGrammarLessonsForLevel(String level) =>
+      (select(grammarLessons)
+            ..where((g) => g.level.equals(level))
+            ..orderBy([(g) => OrderingTerm.asc(g.orderIndex)]))
+          .get();
 
   Stream<int> watchCharactersDueCount() => (select(srsCards)).watch().map(
     (rows) => rows

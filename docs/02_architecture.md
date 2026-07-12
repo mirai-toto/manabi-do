@@ -59,7 +59,7 @@ Drill-down state (selected level, selected group) is lifted into Riverpod provid
 
 ## Data Model
 
-Two SQLite files are bundled as assets and copied to the app's documents directory on first run. `manabi.db` is an empty placeholder; all content lives in `manabi_do_content.db`.
+A single SQLite file — `manabi_do_content.db` — is bundled as an asset and copied to the app's documents directory on first run.
 
 `manabi_do_content.db` tables: `kanjis`, `kanji_translations`, `kanas`, `vocabulary_entries`, `vocab_translations`, `sentences`, `sentence_translations`, `grammar_lessons`, `exercises`.
 
