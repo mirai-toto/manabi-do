@@ -168,7 +168,7 @@ Every content type has a different resilience profile. This table maps where eac
 | Content | `content/` JSON (git) | DB | Raw source in `data/` (gitignored) | Recovery if DB lost |
 |---|---|---|---|---|
 | Kanji characters, readings, meanings | ✅ `kanji_n*.json` | ✅ `kanjis` | ✅ re-downloadable | Rebuild from `content/` |
-| Kanji stroke order SVGs | ❌ | ✅ `kanjis.svg` | ✅ re-downloadable | Re-download KanjiVG → rebuild DB |
+| Kanji stroke order SVGs | ✅ `kanji_svg/` | ✅ `kanjis.svg` | — (committed in `content/`) | Rebuild from `content/characters/kanji_svg/` |
 | Kana | ✅ `kana.json` | ✅ `kanas` | — (static) | Rebuild from `content/` |
 | Vocabulary words, readings, POS | ✅ `vocab_n*.json` | ✅ `vocabulary_entries` | ✅ re-downloadable | Rebuild from `content/` |
 | Vocabulary meanings (multilingual) | ✅ inside `vocab_n*.json` | ✅ `vocab_translations` | ✅ re-downloadable (250 MB) | Rebuild from `content/` |
@@ -176,7 +176,7 @@ Every content type has a different resilience profile. This table maps where eac
 | Sentence translations | ❌ | ✅ `sentence_translations` | ✅ re-downloadable | Re-download Tatoeba → rebuild DB |
 | Grammar lessons | ✅ `content/grammar/` | ✅ `grammar_lessons` | — (hand-authored) | Rebuild from `content/` |
 
-**Key insight:** sentences and SVGs have no committed fallback — they exist only in the DB and their gitignored raw source. All other content survives a DB loss via `content/` JSON. A full rebuild from scratch (including re-downloading all sources) takes a few minutes with `python3 tools/generate.py --sync`.
+**Key insight:** sentences are the only content with no committed fallback — they exist only in the DB and the gitignored Tatoeba download. All other content survives a DB loss via `content/` (JSON or SVG files). A full rebuild from scratch takes a few minutes with `python3 tools/generate.py --sync`.
 
 ## Content organisation by JLPT level
 

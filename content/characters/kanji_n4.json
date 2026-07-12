@@ -1,39 +1,58 @@
 [
   {
-    "id": 20250,
-    "character": "会",
+    "id": 19981,
+    "character": "不",
     "jlpt": "N4",
     "on": [
-      "カイ",
-      "エ"
+      "フ",
+      "ブ"
     ],
-    "kun": [
-      "あ.う",
-      "あ.わせる",
-      "あつ.まる"
-    ],
+    "kun": [],
     "meanings": {
-      "en": "meeting, meet, party, association, interview, join",
-      "fr": "réunion, rencontre, meeting, parti, association, entrevue, rejoindre",
-      "es": "asociación, reunión, encontrarse con, reunirse",
-      "pt": "encontro, reunião, festa, associação, entrevista, une"
+      "en": "negative, non-, bad, ugly, clumsy",
+      "fr": "négation, non, mauvais, laid, maladroit",
+      "es": "prefijo negativo: in-, des-",
+      "pt": "Prefixo negativo, negativa, não, feia, ruim, deselegante"
     }
   },
   {
-    "id": 21516,
-    "character": "同",
+    "id": 19990,
+    "character": "世",
     "jlpt": "N4",
     "on": [
-      "ドウ"
+      "セイ",
+      "セ",
+      "ソウ"
     ],
     "kun": [
-      "おな.じ"
+      "よ"
     ],
     "meanings": {
-      "en": "same, agree, equal",
-      "fr": "identique, similaire, égal",
-      "es": "mismo, igual, compañero, idéntico, similar",
-      "pt": "mesmo, concorda, igual"
+      "en": "generation, world, society, public",
+      "fr": "génération, monde, société, public",
+      "es": "generación, mundo, edad",
+      "pt": "geração, mundo, sociedade, pública"
+    }
+  },
+  {
+    "id": 20027,
+    "character": "主",
+    "jlpt": "N4",
+    "on": [
+      "シュ",
+      "ス",
+      "シュウ"
+    ],
+    "kun": [
+      "ぬし",
+      "おも",
+      "あるじ"
+    ],
+    "meanings": {
+      "en": "lord, chief, master, main thing, principal",
+      "fr": "maître, seigneur, chef, principal, propriétaire, mari",
+      "es": "señor, jefe, dueño, patrón",
+      "pt": "senhor, chefe, mestre, coisa principal, principal"
     }
   },
   {
@@ -57,294 +76,40 @@
     }
   },
   {
-    "id": 33258,
-    "character": "自",
+    "id": 20140,
+    "character": "京",
     "jlpt": "N4",
     "on": [
-      "ジ",
-      "シ"
+      "キョウ",
+      "ケイ",
+      "キン"
     ],
     "kun": [
-      "みずか.ら",
-      "おの.ずから",
-      "おの.ずと"
+      "みやこ"
     ],
     "meanings": {
-      "en": "oneself",
-      "fr": "soi-même",
-      "es": "uno mismo, por sí mismo, auto-",
-      "pt": "a si próprio"
+      "en": "capital, 10**16",
+      "fr": "capitale, 10**16",
+      "es": "capital",
+      "pt": "capital, 10 elevado a 16"
     }
   },
   {
-    "id": 31038,
-    "character": "社",
+    "id": 20181,
+    "character": "仕",
     "jlpt": "N4",
     "on": [
-      "シャ"
-    ],
-    "kun": [
-      "やしろ"
-    ],
-    "meanings": {
-      "en": "company, firm, office, association, shrine",
-      "fr": "temple shinto, compagnie, firme, bureau, association",
-      "es": "compañía, asociación, sociedad, santuario shintoísta",
-      "pt": "companhia, firme, escritório, associação, templo"
-    }
-  },
-  {
-    "id": 30330,
-    "character": "発",
-    "jlpt": "N4",
-    "on": [
-      "ハツ",
-      "ホツ"
-    ],
-    "kun": [
-      "た.つ",
-      "あば.く",
-      "おこ.る",
-      "つか.わす",
-      "はな.つ"
-    ],
-    "meanings": {
-      "en": "departure, discharge, publish, emit, start from, disclose, counter for gunshots",
-      "fr": "départ, décharge, dégagement, publier, émettre, partir de, divulguer, compteur de coups de feu",
-      "es": "abrir, exponer, suceder",
-      "pt": "liberar, partida, publicar, emitir, a partir de, revelar"
-    }
-  },
-  {
-    "id": 32773,
-    "character": "者",
-    "jlpt": "N4",
-    "on": [
-      "シャ"
-    ],
-    "kun": [
-      "もの"
-    ],
-    "meanings": {
-      "en": "someone, person",
-      "fr": "personne, quelqu'un",
-      "es": "persona",
-      "pt": "alguém, pessoa"
-    }
-  },
-  {
-    "id": 22320,
-    "character": "地",
-    "jlpt": "N4",
-    "on": [
-      "チ",
+      "シ",
       "ジ"
     ],
-    "kun": [],
-    "meanings": {
-      "en": "ground, earth",
-      "fr": "sol, terre",
-      "es": "suelo, tierra, terreno, posición",
-      "pt": "terra, chão"
-    }
-  },
-  {
-    "id": 26989,
-    "character": "業",
-    "jlpt": "N4",
-    "on": [
-      "ギョウ",
-      "ゴウ"
-    ],
     "kun": [
-      "わざ"
+      "つか.える"
     ],
     "meanings": {
-      "en": "business, vocation, arts, performance",
-      "fr": "activité, vocation, arts, représentation, karma",
-      "es": "negocio, industria, trabajo",
-      "pt": "negócios, vocação, artes, performance"
-    }
-  },
-  {
-    "id": 26041,
-    "character": "方",
-    "jlpt": "N4",
-    "on": [
-      "ホウ"
-    ],
-    "kun": [
-      "かた",
-      "-かた",
-      "-がた"
-    ],
-    "meanings": {
-      "en": "direction, person, alternative",
-      "fr": "direction, personne, alternative",
-      "es": "dirección, lado, cuadrado, método, manera, persona, forma de hacer",
-      "pt": "direção, pessoa, alternativa"
-    }
-  },
-  {
-    "id": 26032,
-    "character": "新",
-    "jlpt": "N4",
-    "on": [
-      "シン"
-    ],
-    "kun": [
-      "あたら.しい",
-      "あら.た",
-      "あら-",
-      "にい-"
-    ],
-    "meanings": {
-      "en": "new",
-      "fr": "nouveau",
-      "es": "nuevo, fresco",
-      "pt": "novo"
-    }
-  },
-  {
-    "id": 22580,
-    "character": "場",
-    "jlpt": "N4",
-    "on": [
-      "ジョウ",
-      "チョウ"
-    ],
-    "kun": [
-      "ば"
-    ],
-    "meanings": {
-      "en": "location, place",
-      "fr": "lieu, place, aire, champ (magnétique)",
-      "es": "lugar, situación, momento",
-      "pt": "localização, lugar"
-    }
-  },
-  {
-    "id": 21729,
-    "character": "員",
-    "jlpt": "N4",
-    "on": [
-      "イン"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "employee, member, number, the one in charge",
-      "fr": "employé, membre, nombre (de personnes), personne en charge",
-      "es": "empleado, miembro, personal",
-      "pt": "empregado, membro, número, encarregado"
-    }
-  },
-  {
-    "id": 31435,
-    "character": "立",
-    "jlpt": "N4",
-    "on": [
-      "リツ",
-      "リュウ",
-      "リットル"
-    ],
-    "kun": [
-      "た.つ",
-      "-た.つ",
-      "た.ち-",
-      "た.てる",
-      "-た.てる",
-      "た.て-",
-      "たて-",
-      "-た.て",
-      "-だ.て",
-      "-だ.てる"
-    ],
-    "meanings": {
-      "en": "stand up, rise, set up, erect",
-      "fr": "debout",
-      "es": "levantarse, alzarse, ponerse en pie, levantar, erigir, estar en pie",
-      "pt": "Ficar de pé, levantar-se"
-    }
-  },
-  {
-    "id": 38283,
-    "character": "開",
-    "jlpt": "N4",
-    "on": [
-      "カイ"
-    ],
-    "kun": [
-      "ひら.く",
-      "ひら.き",
-      "-びら.き",
-      "ひら.ける",
-      "あ.く",
-      "あ.ける"
-    ],
-    "meanings": {
-      "en": "open, unfold, unseal",
-      "fr": "ouvrir, s'ouvrir, briser le sceau",
-      "es": "abrir, desdoblar, dar comienzo, abrirse, estar abierto",
-      "pt": "abrir, desdobrar, deslacrar"
-    }
-  },
-  {
-    "id": 25163,
-    "character": "手",
-    "jlpt": "N4",
-    "on": [
-      "シュ",
-      "ズ"
-    ],
-    "kun": [
-      "て",
-      "て-",
-      "-て",
-      "た-"
-    ],
-    "meanings": {
-      "en": "hand",
-      "fr": "main",
-      "es": "mano",
-      "pt": "mão"
-    }
-  },
-  {
-    "id": 21147,
-    "character": "力",
-    "jlpt": "N4",
-    "on": [
-      "リョク",
-      "リキ",
-      "リイ"
-    ],
-    "kun": [
-      "ちから"
-    ],
-    "meanings": {
-      "en": "power, strength, strong, strain, bear up, exert",
-      "fr": "force, fort, puissance, tension, tenir le coup, s'efforcer, employer (force)",
-      "es": "potencia, poder, fuerza, energía, vigor, énfasis",
-      "pt": "força, forte, esforço, suportar, exercer"
-    }
-  },
-  {
-    "id": 21839,
-    "character": "問",
-    "jlpt": "N4",
-    "on": [
-      "モン"
-    ],
-    "kun": [
-      "と.う",
-      "と.い",
-      "とん"
-    ],
-    "meanings": {
-      "en": "question, ask, problem",
-      "fr": "question, demander, problème",
-      "es": "duda, pregunta, problema, preguntar, acusar",
-      "pt": "perguntar, pergunta, problema"
+      "en": "attend, doing, official, serve",
+      "fr": "servir, faire, officiel",
+      "es": "trabajo, servir, asistir",
+      "pt": "atender, ação, oficial, servir"
     }
   },
   {
@@ -374,149 +139,61 @@
     }
   },
   {
-    "id": 26126,
-    "character": "明",
+    "id": 20197,
+    "character": "以",
     "jlpt": "N4",
     "on": [
-      "メイ",
-      "ミョウ",
-      "ミン"
+      "イ"
     ],
     "kun": [
-      "あ.かり",
-      "あか.るい",
-      "あか.るむ",
-      "あか.らむ",
-      "あき.らか",
-      "あ.ける",
-      "-あ.け",
-      "あ.く",
-      "あ.くる",
-      "あ.かす"
+      "もっ.て"
     ],
     "meanings": {
-      "en": "bright, light",
-      "fr": "clair, lumière",
-      "es": "luz, brillo, claridad, listo, inteligente, claro, luminoso, iluminar, aclarar",
-      "pt": "brilhante, luz"
+      "en": "by means of, because, in view of, compared with",
+      "fr": "au moyen de, parce que, en vue de, comparé à",
+      "es": "además de, más que",
+      "pt": "Por meios de, porque, em visão de, comparada com"
     }
   },
   {
-    "id": 21205,
-    "character": "動",
+    "id": 20250,
+    "character": "会",
     "jlpt": "N4",
     "on": [
-      "ドウ"
+      "カイ",
+      "エ"
     ],
     "kun": [
-      "うご.く",
-      "うご.かす"
+      "あ.う",
+      "あ.わせる",
+      "あつ.まる"
     ],
     "meanings": {
-      "en": "move, motion, change, confusion, shift, shake",
-      "fr": "bouger, mouvement, changement, confusion, secouer",
-      "es": "mover, movimiento, moverse, trasladar",
-      "pt": "mover, movimento, mudança, jáfusão, trocar, agitar"
+      "en": "meeting, meet, party, association, interview, join",
+      "fr": "réunion, rencontre, meeting, parti, association, entrevue, rejoindre",
+      "es": "asociación, reunión, encontrarse con, reunirse",
+      "pt": "encontro, reunião, festa, associação, entrevista, une"
     }
   },
   {
-    "id": 20140,
-    "character": "京",
+    "id": 20303,
+    "character": "住",
     "jlpt": "N4",
     "on": [
-      "キョウ",
-      "ケイ",
-      "キン"
+      "ジュウ",
+      "ヂュウ",
+      "チュウ"
     ],
     "kun": [
-      "みやこ"
+      "す.む",
+      "す.まう",
+      "-ず.まい"
     ],
     "meanings": {
-      "en": "capital, 10**16",
-      "fr": "capitale, 10**16",
-      "es": "capital",
-      "pt": "capital, 10 elevado a 16"
-    }
-  },
-  {
-    "id": 30446,
-    "character": "目",
-    "jlpt": "N4",
-    "on": [
-      "モク",
-      "ボク"
-    ],
-    "kun": [
-      "め",
-      "-め",
-      "ま-"
-    ],
-    "meanings": {
-      "en": "eye, class, look, insight, experience, care, favor",
-      "fr": "oeil, regard, aperçu, numérateur ordinal, expérience, classe, faveur, pièce (Go)",
-      "es": "ojo, mirada, percepción",
-      "pt": "olho, classe, olhar, visão, experiência, atenção, favor"
-    }
-  },
-  {
-    "id": 36890,
-    "character": "通",
-    "jlpt": "N4",
-    "on": [
-      "ツウ",
-      "ツ"
-    ],
-    "kun": [
-      "とお.る",
-      "とお.り",
-      "-とお.り",
-      "-どお.り",
-      "とお.す",
-      "とお.し",
-      "-どお.し",
-      "かよ.う"
-    ],
-    "meanings": {
-      "en": "traffic, pass through, avenue, commute, counter for letters, notes, documents, etc.",
-      "fr": "circulation, passer par, avenue, trajet (travail), compteur de lettres, notes, ...",
-      "es": "atravesar, traspasar, hacer saber, pasar, ir y venir",
-      "pt": "tráfego, passar através de, avenida, comutar, sufixo para contagem de letras"
-    }
-  },
-  {
-    "id": 35328,
-    "character": "言",
-    "jlpt": "N4",
-    "on": [
-      "ゲン",
-      "ゴン"
-    ],
-    "kun": [
-      "い.う",
-      "こと"
-    ],
-    "meanings": {
-      "en": "say, word",
-      "fr": "dire",
-      "es": "palabras, decir",
-      "pt": "Dizer, palavras"
-    }
-  },
-  {
-    "id": 29702,
-    "character": "理",
-    "jlpt": "N4",
-    "on": [
-      "リ"
-    ],
-    "kun": [
-      "ことわり"
-    ],
-    "meanings": {
-      "en": "logic, arrangement, reason, justice, truth",
-      "fr": "logique, principe, raison, justice, vérité",
-      "es": "lógica, razón, preparar",
-      "pt": "lógica, arranjo, razão, justiça, verdade"
+      "en": "dwell, reside, live, inhabit",
+      "fr": "résider, vivre, habiter",
+      "es": "residir, vivir, habitar, residencia",
+      "pt": "reside, vida, habita"
     }
   },
   {
@@ -536,90 +213,6 @@
       "fr": "corps, substance, objet, réalité, compteur d'images",
       "es": "cuerpo, forma",
       "pt": "corpo, substância, objeto, realidade, sufixo para contagem de para imagens"
-    }
-  },
-  {
-    "id": 30000,
-    "character": "田",
-    "jlpt": "N4",
-    "on": [
-      "デン"
-    ],
-    "kun": [
-      "た"
-    ],
-    "meanings": {
-      "en": "rice field, rice paddy",
-      "fr": "rizière",
-      "es": "campo de arroz, arrozal",
-      "pt": "campo de arroz, arroz sem beneficiar"
-    }
-  },
-  {
-    "id": 20027,
-    "character": "主",
-    "jlpt": "N4",
-    "on": [
-      "シュ",
-      "ス",
-      "シュウ"
-    ],
-    "kun": [
-      "ぬし",
-      "おも",
-      "あるじ"
-    ],
-    "meanings": {
-      "en": "lord, chief, master, main thing, principal",
-      "fr": "maître, seigneur, chef, principal, propriétaire, mari",
-      "es": "señor, jefe, dueño, patrón",
-      "pt": "senhor, chefe, mestre, coisa principal, principal"
-    }
-  },
-  {
-    "id": 38988,
-    "character": "題",
-    "jlpt": "N4",
-    "on": [
-      "ダイ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "topic, subject",
-      "fr": "sujet",
-      "es": "objeto, tema, materia",
-      "pt": "tópico, assunto"
-    }
-  },
-  {
-    "id": 24847,
-    "character": "意",
-    "jlpt": "N4",
-    "on": [
-      "イ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "idea, mind, heart, taste, thought, desire, care, liking",
-      "fr": "idée, esprit, coeur, pensée, attention, goût, désir",
-      "es": "idea, sentimiento, razón, intención",
-      "pt": "idéia, mente, coração, gosto, pensamento, desejo, atenção"
-    }
-  },
-  {
-    "id": 19981,
-    "character": "不",
-    "jlpt": "N4",
-    "on": [
-      "フ",
-      "ブ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "negative, non-, bad, ugly, clumsy",
-      "fr": "négation, non, mauvais, laid, maladroit",
-      "es": "prefijo negativo: in-, des-",
-      "pt": "Prefixo negativo, negativa, não, feia, ruim, deselegante"
     }
   },
   {
@@ -643,20 +236,813 @@
     }
   },
   {
-    "id": 29992,
-    "character": "用",
+    "id": 20351,
+    "character": "使",
     "jlpt": "N4",
     "on": [
-      "ヨウ"
+      "シ"
     ],
     "kun": [
-      "もち.いる"
+      "つか.う",
+      "つか.い",
+      "-つか.い",
+      "-づか.い"
     ],
     "meanings": {
-      "en": "utilize, business, service, use, employ",
-      "fr": "se servir de, affaires, service, utiliser, employer",
-      "es": "uso, empleo, trabajo, usar, hacer uso de",
-      "pt": "utilizar, negócios, serviço, usar, empregar"
+      "en": "use, send on a mission, order, messenger, envoy, ambassador, cause",
+      "fr": "utiliser",
+      "es": "usar, manejar, emplear",
+      "pt": "Uso, usar"
+    }
+  },
+  {
+    "id": 20511,
+    "character": "借",
+    "jlpt": "N4",
+    "on": [
+      "シャク"
+    ],
+    "kun": [
+      "か.りる"
+    ],
+    "meanings": {
+      "en": "borrow, rent",
+      "fr": "emprunter, louer",
+      "es": "deuda, pedir prestado, alquilar",
+      "pt": "pedir emprestado, aluguel"
+    }
+  },
+  {
+    "id": 20803,
+    "character": "元",
+    "jlpt": "N4",
+    "on": [
+      "ゲン",
+      "ガン"
+    ],
+    "kun": [
+      "もと"
+    ],
+    "meanings": {
+      "en": "beginning, former time, origin",
+      "fr": "commencement, origine, ancien temps",
+      "es": "comienzo, principio, origen, jefe",
+      "pt": "começo, tempo anterior, origem"
+    }
+  },
+  {
+    "id": 20804,
+    "character": "兄",
+    "jlpt": "N4",
+    "on": [
+      "ケイ",
+      "キョウ"
+    ],
+    "kun": [
+      "あに"
+    ],
+    "meanings": {
+      "en": "elder brother, big brother",
+      "fr": "frère aîné, grand frère",
+      "es": "hermano mayor",
+      "pt": "irmão mais velho, irmão maior"
+    }
+  },
+  {
+    "id": 20844,
+    "character": "公",
+    "jlpt": "N4",
+    "on": [
+      "コウ",
+      "ク"
+    ],
+    "kun": [
+      "おおやけ"
+    ],
+    "meanings": {
+      "en": "public, prince, official, governmental",
+      "fr": "public, prince, officiel, gouvernemental",
+      "es": "público, imparcial, oficial",
+      "pt": "público, príncipe, oficial, governamental"
+    }
+  },
+  {
+    "id": 20889,
+    "character": "写",
+    "jlpt": "N4",
+    "on": [
+      "シャ",
+      "ジャ"
+    ],
+    "kun": [
+      "うつ.す",
+      "うつ.る",
+      "うつ-",
+      "うつ.し"
+    ],
+    "meanings": {
+      "en": "copy, be photographed, describe",
+      "fr": "copie, être photographié, décrire",
+      "es": "copiar, imitar, fotografiar",
+      "pt": "cópia, foto, descrever"
+    }
+  },
+  {
+    "id": 20908,
+    "character": "冬",
+    "jlpt": "N4",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "ふゆ"
+    ],
+    "meanings": {
+      "en": "winter",
+      "fr": "hiver",
+      "es": "invierno",
+      "pt": "Inverno"
+    }
+  },
+  {
+    "id": 20999,
+    "character": "切",
+    "jlpt": "N4",
+    "on": [
+      "セツ",
+      "サイ"
+    ],
+    "kun": [
+      "き.る",
+      "-き.る",
+      "き.り",
+      "-き.り",
+      "-ぎ.り",
+      "き.れる",
+      "-き.れる",
+      "き.れ",
+      "-き.れ",
+      "-ぎ.れ"
+    ],
+    "meanings": {
+      "en": "cut, cutoff, be sharp",
+      "fr": "couper, trancher, tranchant, passionné, sérieux",
+      "es": "cortar, urgente, apremiante, completo, cortar bien, agotarse",
+      "pt": "corte, talho, afiar"
+    }
+  },
+  {
+    "id": 21029,
+    "character": "別",
+    "jlpt": "N4",
+    "on": [
+      "ベツ"
+    ],
+    "kun": [
+      "わか.れる",
+      "わ.ける"
+    ],
+    "meanings": {
+      "en": "separate, branch off, diverge, fork, another, extra, specially",
+      "fr": "séparer, spécialement, diverger, extra, un autre",
+      "es": "separar, aparte, distinto, dividirse",
+      "pt": "separar, ramo desligado, divergir, garfo, outro, extra, especialmente"
+    }
+  },
+  {
+    "id": 21147,
+    "character": "力",
+    "jlpt": "N4",
+    "on": [
+      "リョク",
+      "リキ",
+      "リイ"
+    ],
+    "kun": [
+      "ちから"
+    ],
+    "meanings": {
+      "en": "power, strength, strong, strain, bear up, exert",
+      "fr": "force, fort, puissance, tension, tenir le coup, s'efforcer, employer (force)",
+      "es": "potencia, poder, fuerza, energía, vigor, énfasis",
+      "pt": "força, forte, esforço, suportar, exercer"
+    }
+  },
+  {
+    "id": 21193,
+    "character": "勉",
+    "jlpt": "N4",
+    "on": [
+      "ベン"
+    ],
+    "kun": [
+      "つと.める"
+    ],
+    "meanings": {
+      "en": "exertion, endeavour, encourage, strive, make effort, diligent",
+      "fr": "exercice",
+      "es": "esforzarse, ejercitarse",
+      "pt": "esforço"
+    }
+  },
+  {
+    "id": 21205,
+    "character": "動",
+    "jlpt": "N4",
+    "on": [
+      "ドウ"
+    ],
+    "kun": [
+      "うご.く",
+      "うご.かす"
+    ],
+    "meanings": {
+      "en": "move, motion, change, confusion, shift, shake",
+      "fr": "bouger, mouvement, changement, confusion, secouer",
+      "es": "mover, movimiento, moverse, trasladar",
+      "pt": "mover, movimento, mudança, jáfusão, trocar, agitar"
+    }
+  },
+  {
+    "id": 21307,
+    "character": "医",
+    "jlpt": "N4",
+    "on": [
+      "イ"
+    ],
+    "kun": [
+      "い.やす",
+      "い.する",
+      "くすし"
+    ],
+    "meanings": {
+      "en": "doctor, medicine",
+      "fr": "médecin, docteur",
+      "es": "doctor, médico, medicina, curar",
+      "pt": "doutor, remédio"
+    }
+  },
+  {
+    "id": 21435,
+    "character": "去",
+    "jlpt": "N4",
+    "on": [
+      "キョ",
+      "コ"
+    ],
+    "kun": [
+      "さ.る",
+      "-さ.る"
+    ],
+    "meanings": {
+      "en": "gone, past, quit, leave, elapse, eliminate, divorce",
+      "fr": "parti, passé, quitter, s'écouler, éliminer, divorce",
+      "es": "pasado, ido, dejar, abandonar, partir",
+      "pt": "foi, passado, deixar, passar, eliminar, divórcio"
+    }
+  },
+  {
+    "id": 21475,
+    "character": "口",
+    "jlpt": "N4",
+    "on": [
+      "コウ",
+      "ク"
+    ],
+    "kun": [
+      "くち"
+    ],
+    "meanings": {
+      "en": "mouth",
+      "fr": "bouche",
+      "es": "boca, orificio, apertura",
+      "pt": "boca"
+    }
+  },
+  {
+    "id": 21476,
+    "character": "古",
+    "jlpt": "N4",
+    "on": [
+      "コ"
+    ],
+    "kun": [
+      "ふる.い",
+      "ふる-",
+      "-ふる.す"
+    ],
+    "meanings": {
+      "en": "old",
+      "fr": "vieux",
+      "es": "viejo, antiguo, desgastar",
+      "pt": "velho"
+    }
+  },
+  {
+    "id": 21488,
+    "character": "台",
+    "jlpt": "N4",
+    "on": [
+      "ダイ",
+      "タイ"
+    ],
+    "kun": [
+      "うてな",
+      "われ",
+      "つかさ"
+    ],
+    "meanings": {
+      "en": "pedestal, a stand, counter for machines and vehicles",
+      "fr": "piédestal, socle, compteur de voitures ou machines",
+      "es": "estante, banco, tribuna, pedestal, contador para maquinas y vehículos",
+      "pt": "pedestal, stand, sufixo para contagem de para máquinas e veículos"
+    }
+  },
+  {
+    "id": 21516,
+    "character": "同",
+    "jlpt": "N4",
+    "on": [
+      "ドウ"
+    ],
+    "kun": [
+      "おな.じ"
+    ],
+    "meanings": {
+      "en": "same, agree, equal",
+      "fr": "identique, similaire, égal",
+      "es": "mismo, igual, compañero, idéntico, similar",
+      "pt": "mesmo, concorda, igual"
+    }
+  },
+  {
+    "id": 21619,
+    "character": "味",
+    "jlpt": "N4",
+    "on": [
+      "ミ"
+    ],
+    "kun": [
+      "あじ",
+      "あじ.わう"
+    ],
+    "meanings": {
+      "en": "flavor, taste",
+      "fr": "goût, saveur",
+      "es": "sabor, gusto, experiencia",
+      "pt": "sabor, gosto"
+    }
+  },
+  {
+    "id": 21697,
+    "character": "品",
+    "jlpt": "N4",
+    "on": [
+      "ヒン",
+      "ホン"
+    ],
+    "kun": [
+      "しな"
+    ],
+    "meanings": {
+      "en": "goods, refinement, dignity, article, counter for meal courses",
+      "fr": "marchandise, dignité, raffinement, article, compteur de plats",
+      "es": "producto, artículo, bienes",
+      "pt": "bens, refinamento, dignidade, artigo, sufixo para contagem de para pratos de refeição"
+    }
+  },
+  {
+    "id": 21729,
+    "character": "員",
+    "jlpt": "N4",
+    "on": [
+      "イン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "employee, member, number, the one in charge",
+      "fr": "employé, membre, nombre (de personnes), personne en charge",
+      "es": "empleado, miembro, personal",
+      "pt": "empregado, membro, número, encarregado"
+    }
+  },
+  {
+    "id": 21839,
+    "character": "問",
+    "jlpt": "N4",
+    "on": [
+      "モン"
+    ],
+    "kun": [
+      "と.う",
+      "と.い",
+      "とん"
+    ],
+    "meanings": {
+      "en": "question, ask, problem",
+      "fr": "question, demander, problème",
+      "es": "duda, pregunta, problema, preguntar, acusar",
+      "pt": "perguntar, pergunta, problema"
+    }
+  },
+  {
+    "id": 22259,
+    "character": "図",
+    "jlpt": "N4",
+    "on": [
+      "ズ",
+      "ト"
+    ],
+    "kun": [
+      "え",
+      "はか.る"
+    ],
+    "meanings": {
+      "en": "map, drawing, plan, extraordinary, audacious",
+      "fr": "carte, dessin, plan, inattendu, accidentellement",
+      "es": "dibujo, ilustración, consulta, estrategia, planear, diseñar",
+      "pt": "mapa, desenho, plano, inesperado, acidentalmente"
+    }
+  },
+  {
+    "id": 22320,
+    "character": "地",
+    "jlpt": "N4",
+    "on": [
+      "チ",
+      "ジ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "ground, earth",
+      "fr": "sol, terre",
+      "es": "suelo, tierra, terreno, posición",
+      "pt": "terra, chão"
+    }
+  },
+  {
+    "id": 22530,
+    "character": "堂",
+    "jlpt": "N4",
+    "on": [
+      "ドウ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "public chamber, hall",
+      "fr": "édifice public, temple, salle, hall, grandiose (bâtiment)",
+      "es": "templo, salón, vestíbulo",
+      "pt": "câmara pública, corredor"
+    }
+  },
+  {
+    "id": 22580,
+    "character": "場",
+    "jlpt": "N4",
+    "on": [
+      "ジョウ",
+      "チョウ"
+    ],
+    "kun": [
+      "ば"
+    ],
+    "meanings": {
+      "en": "location, place",
+      "fr": "lieu, place, aire, champ (magnétique)",
+      "es": "lugar, situación, momento",
+      "pt": "localização, lugar"
+    }
+  },
+  {
+    "id": 22770,
+    "character": "売",
+    "jlpt": "N4",
+    "on": [
+      "バイ"
+    ],
+    "kun": [
+      "う.る",
+      "う.れる"
+    ],
+    "meanings": {
+      "en": "sell",
+      "fr": "vendre",
+      "es": "vender, ensanchar, propagar, ser vendido",
+      "pt": "Vender"
+    }
+  },
+  {
+    "id": 22799,
+    "character": "夏",
+    "jlpt": "N4",
+    "on": [
+      "カ",
+      "ガ",
+      "ゲ"
+    ],
+    "kun": [
+      "なつ"
+    ],
+    "meanings": {
+      "en": "summer",
+      "fr": "été",
+      "es": "verano",
+      "pt": "verão"
+    }
+  },
+  {
+    "id": 22805,
+    "character": "夕",
+    "jlpt": "N4",
+    "on": [
+      "セキ"
+    ],
+    "kun": [
+      "ゆう"
+    ],
+    "meanings": {
+      "en": "evening",
+      "fr": "soirée",
+      "es": "tarde, noche",
+      "pt": "Noite"
+    }
+  },
+  {
+    "id": 22810,
+    "character": "多",
+    "jlpt": "N4",
+    "on": [
+      "タ"
+    ],
+    "kun": [
+      "おお.い",
+      "まさ.に",
+      "まさ.る"
+    ],
+    "meanings": {
+      "en": "many, frequent, much",
+      "fr": "beaucoup, nombreux, fréquent",
+      "es": "abundante, mucho",
+      "pt": "muitos, frequentar, muito"
+    }
+  },
+  {
+    "id": 22812,
+    "character": "夜",
+    "jlpt": "N4",
+    "on": [
+      "ヤ"
+    ],
+    "kun": [
+      "よ",
+      "よる"
+    ],
+    "meanings": {
+      "en": "night, evening",
+      "fr": "nuit, soirée",
+      "es": "noche, tarde",
+      "pt": "noite, à noite"
+    }
+  },
+  {
+    "id": 22969,
+    "character": "妹",
+    "jlpt": "N4",
+    "on": [
+      "マイ"
+    ],
+    "kun": [
+      "いもうと"
+    ],
+    "meanings": {
+      "en": "younger sister",
+      "fr": "soeur cadette",
+      "es": "hermana menor",
+      "pt": "irmã mais jovem"
+    }
+  },
+  {
+    "id": 22985,
+    "character": "姉",
+    "jlpt": "N4",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "あね",
+      "はは"
+    ],
+    "meanings": {
+      "en": "elder sister",
+      "fr": "soeur aînée",
+      "es": "hermana mayor",
+      "pt": "irmã mais velha"
+    }
+  },
+  {
+    "id": 22987,
+    "character": "始",
+    "jlpt": "N4",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "はじ.める",
+      "-はじ.める",
+      "はじ.まる"
+    ],
+    "meanings": {
+      "en": "commence, begin",
+      "fr": "commencer, débuter",
+      "es": "comenzar, empezar, empezar (trans.), empezar (intrans.)",
+      "pt": "iniciar, começar"
+    }
+  },
+  {
+    "id": 23383,
+    "character": "字",
+    "jlpt": "N4",
+    "on": [
+      "ジ"
+    ],
+    "kun": [
+      "あざ",
+      "あざな",
+      "-な"
+    ],
+    "meanings": {
+      "en": "character, letter, word, section of village",
+      "fr": "caractère, lettre, mot, hameau",
+      "es": "carácter, letra, palabra",
+      "pt": "caracter, letra, palavra, seção de aldeia"
+    }
+  },
+  {
+    "id": 23433,
+    "character": "安",
+    "jlpt": "N4",
+    "on": [
+      "アン"
+    ],
+    "kun": [
+      "やす.い",
+      "やす.まる",
+      "やす",
+      "やす.らか"
+    ],
+    "meanings": {
+      "en": "relax, cheap, low, quiet, rested, contented, peaceful",
+      "fr": "paisible, calme, tranquille, pas cher, reposant, satisfait",
+      "es": "barato, tranquilo, pacífico",
+      "pt": "relaxar, calmo, baixo, barato, descansado, pacífico, satisfeito"
+    }
+  },
+  {
+    "id": 23460,
+    "character": "室",
+    "jlpt": "N4",
+    "on": [
+      "シツ"
+    ],
+    "kun": [
+      "むろ"
+    ],
+    "meanings": {
+      "en": "room, apartment, chamber, greenhouse, cellar",
+      "fr": "pièce, appartement, chambre, serre, cave",
+      "es": "habitación, cuarto, caverna, guarida, gruta",
+      "pt": "quarto, apartamento, câmara, estufa, porão"
+    }
+  },
+  {
+    "id": 23478,
+    "character": "家",
+    "jlpt": "N4",
+    "on": [
+      "カ",
+      "ケ"
+    ],
+    "kun": [
+      "いえ",
+      "や",
+      "うち"
+    ],
+    "meanings": {
+      "en": "house, home, family, professional, expert, performer",
+      "fr": "maison",
+      "es": "casa, hogar, especialista",
+      "pt": "casa, lar"
+    }
+  },
+  {
+    "id": 23569,
+    "character": "少",
+    "jlpt": "N4",
+    "on": [
+      "ショウ"
+    ],
+    "kun": [
+      "すく.ない",
+      "すこ.し"
+    ],
+    "meanings": {
+      "en": "few, little",
+      "fr": "un petit peu, un peu",
+      "es": "poco, pequeño, un poco, apenas",
+      "pt": "poucos, pequenos"
+    }
+  },
+  {
+    "id": 23627,
+    "character": "屋",
+    "jlpt": "N4",
+    "on": [
+      "オク"
+    ],
+    "kun": [
+      "や"
+    ],
+    "meanings": {
+      "en": "roof, house, shop, dealer, seller",
+      "fr": "toit, maison, échoppe, négociant, vendeur",
+      "es": "casa, tejado, tienda",
+      "pt": "teto, casa, loja, negociante, vendedor"
+    }
+  },
+  {
+    "id": 24037,
+    "character": "工",
+    "jlpt": "N4",
+    "on": [
+      "コウ",
+      "ク",
+      "グ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "craft, construction, katakana e radical (no. 48)",
+      "fr": "ingénierie, industrie, construction, radical katakana E (no. 48)",
+      "es": "construcción, fabricación, obrero",
+      "pt": "ofício, construção"
+    }
+  },
+  {
+    "id": 24112,
+    "character": "帰",
+    "jlpt": "N4",
+    "on": [
+      "キ"
+    ],
+    "kun": [
+      "かえ.る",
+      "かえ.す",
+      "おく.る",
+      "とつ.ぐ"
+    ],
+    "meanings": {
+      "en": "homecoming, arrive at, lead to, result in",
+      "fr": "retour à la maison, arriver à, mener à, aboutir à, renvoyer",
+      "es": "regreso, vuelta, retorno, regresar, volver",
+      "pt": "Retôrno a casa, chegar em, conduzir-se, resultar"
+    }
+  },
+  {
+    "id": 24195,
+    "character": "広",
+    "jlpt": "N4",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "ひろ.い",
+      "ひろ.まる",
+      "ひろ.める",
+      "ひろ.がる",
+      "ひろ.げる"
+    ],
+    "meanings": {
+      "en": "wide, broad, spacious",
+      "fr": "vaste, large, spacieux",
+      "es": "amplio, ancho, espacioso, ensancharse, ensanchar, extenderse, extender",
+      "pt": "largo, vasto, espaçoso"
+    }
+  },
+  {
+    "id": 24215,
+    "character": "店",
+    "jlpt": "N4",
+    "on": [
+      "テン"
+    ],
+    "kun": [
+      "みせ",
+      "たな"
+    ],
+    "meanings": {
+      "en": "store, shop",
+      "fr": "magasin, échoppe",
+      "es": "tienda, establecimiento",
+      "pt": "loja, comércio"
     }
   },
   {
@@ -677,6 +1063,46 @@
       "fr": "degré, occurrence, fois, compteur d'occurrences",
       "es": "grado, vez, veces",
       "pt": "graus, ocorrência, tempo, sufixo para contagem de para ocorrências"
+    }
+  },
+  {
+    "id": 24314,
+    "character": "建",
+    "jlpt": "N4",
+    "on": [
+      "ケン",
+      "コン"
+    ],
+    "kun": [
+      "た.てる",
+      "た.て",
+      "-だ.て",
+      "た.つ"
+    ],
+    "meanings": {
+      "en": "build",
+      "fr": "construire",
+      "es": "construir, edificar, levantarse, ser construido",
+      "pt": "Construção"
+    }
+  },
+  {
+    "id": 24351,
+    "character": "弟",
+    "jlpt": "N4",
+    "on": [
+      "テイ",
+      "ダイ",
+      "デ"
+    ],
+    "kun": [
+      "おとうと"
+    ],
+    "meanings": {
+      "en": "younger brother, faithful service to elders",
+      "fr": "frère cadet, apprenti, disciple, service déférent aux ainés",
+      "es": "hermano menor",
+      "pt": "irmão mais jovem"
     }
   },
   {
@@ -702,76 +1128,39 @@
     }
   },
   {
-    "id": 20844,
-    "character": "公",
+    "id": 24453,
+    "character": "待",
     "jlpt": "N4",
     "on": [
-      "コウ",
-      "ク"
+      "タイ"
     ],
     "kun": [
-      "おおやけ"
+      "ま.つ",
+      "-ま.ち"
     ],
     "meanings": {
-      "en": "public, prince, official, governmental",
-      "fr": "public, prince, officiel, gouvernemental",
-      "es": "público, imparcial, oficial",
-      "pt": "público, príncipe, oficial, governamental"
+      "en": "wait, depend on",
+      "fr": "attendre, compter sur",
+      "es": "esperar, aguardar",
+      "pt": "esperar, contar com"
     }
   },
   {
-    "id": 25345,
-    "character": "持",
+    "id": 24515,
+    "character": "心",
     "jlpt": "N4",
     "on": [
-      "ジ"
+      "シン"
     ],
     "kun": [
-      "も.つ",
-      "-も.ち",
-      "も.てる"
+      "こころ",
+      "-ごころ"
     ],
     "meanings": {
-      "en": "hold, have",
-      "fr": "avoir, tenir",
-      "es": "duración, propiedad, cargo, sostener, mantener",
-      "pt": "segurar, ter"
-    }
-  },
-  {
-    "id": 37326,
-    "character": "野",
-    "jlpt": "N4",
-    "on": [
-      "ヤ",
-      "ショ"
-    ],
-    "kun": [
-      "の",
-      "の-"
-    ],
-    "meanings": {
-      "en": "plains, field, rustic, civilian life",
-      "fr": "sauvage, champ, rustique, vie civile",
-      "es": "campo, llano, extensión, rango, natural, civil, no oficial",
-      "pt": "planícies, campo, rústico, vida de civil"
-    }
-  },
-  {
-    "id": 20197,
-    "character": "以",
-    "jlpt": "N4",
-    "on": [
-      "イ"
-    ],
-    "kun": [
-      "もっ.て"
-    ],
-    "meanings": {
-      "en": "by means of, because, in view of, compared with",
-      "fr": "au moyen de, parce que, en vue de, comparé à",
-      "es": "además de, más que",
-      "pt": "Por meios de, porque, em visão de, comparada com"
+      "en": "heart, mind, spirit, heart radical (no. 61)",
+      "fr": "coeur, esprit, radical coeur (no. 61)",
+      "es": "corazón, centro",
+      "pt": "coração, mente, espírito"
     }
   },
   {
@@ -794,150 +1183,103 @@
     }
   },
   {
-    "id": 23478,
-    "character": "家",
+    "id": 24613,
+    "character": "急",
     "jlpt": "N4",
     "on": [
-      "カ",
-      "ケ"
+      "キュウ"
     ],
     "kun": [
-      "いえ",
-      "や",
-      "うち"
+      "いそ.ぐ",
+      "いそ.ぎ",
+      "せ.く"
     ],
     "meanings": {
-      "en": "house, home, family, professional, expert, performer",
-      "fr": "maison",
-      "es": "casa, hogar, especialista",
-      "pt": "casa, lar"
+      "en": "hurry, emergency, sudden, steep",
+      "fr": "urgence, se dépêcher, soudain, raide, abrupt, aigu",
+      "es": "prisa, urgencia, apresurarse, darse prisa",
+      "pt": "apressar, emergência, repentina"
     }
   },
   {
-    "id": 19990,
-    "character": "世",
+    "id": 24746,
+    "character": "悪",
     "jlpt": "N4",
     "on": [
-      "セイ",
-      "セ",
-      "ソウ"
+      "アク",
+      "オ"
     ],
     "kun": [
-      "よ"
+      "わる.い",
+      "わる-",
+      "あ.し",
+      "にく.い",
+      "-にく.い",
+      "ああ",
+      "いずくに",
+      "いずくんぞ",
+      "にく.む"
     ],
     "meanings": {
-      "en": "generation, world, society, public",
-      "fr": "génération, monde, société, public",
-      "es": "generación, mundo, edad",
-      "pt": "geração, mundo, sociedade, pública"
+      "en": "bad, vice, rascal, false, evil, wrong",
+      "fr": "mauvais, vice, vaurien, faux, mal",
+      "es": "malo, incorrecto, equivocado, odio, mal",
+      "pt": "mal, ruim, falso, mau, errado"
     }
   },
   {
-    "id": 22810,
-    "character": "多",
+    "id": 24847,
+    "character": "意",
     "jlpt": "N4",
     "on": [
-      "タ"
-    ],
-    "kun": [
-      "おお.い",
-      "まさ.に",
-      "まさ.る"
-    ],
-    "meanings": {
-      "en": "many, frequent, much",
-      "fr": "beaucoup, nombreux, fréquent",
-      "es": "abundante, mucho",
-      "pt": "muitos, frequentar, muito"
-    }
-  },
-  {
-    "id": 27491,
-    "character": "正",
-    "jlpt": "N4",
-    "on": [
-      "セイ",
-      "ショウ"
-    ],
-    "kun": [
-      "ただ.しい",
-      "ただ.す",
-      "まさ",
-      "まさ.に"
-    ],
-    "meanings": {
-      "en": "correct, justice, righteous, 10**40",
-      "fr": "correct, positif, juste, droit, 10**40",
-      "es": "correcto, justo, arreglar, enderezar",
-      "pt": "corrigir, justiça, correto, direito, 10 elevado a 40"
-    }
-  },
-  {
-    "id": 23433,
-    "character": "安",
-    "jlpt": "N4",
-    "on": [
-      "アン"
-    ],
-    "kun": [
-      "やす.い",
-      "やす.まる",
-      "やす",
-      "やす.らか"
-    ],
-    "meanings": {
-      "en": "relax, cheap, low, quiet, rested, contented, peaceful",
-      "fr": "paisible, calme, tranquille, pas cher, reposant, satisfait",
-      "es": "barato, tranquilo, pacífico",
-      "pt": "relaxar, calmo, baixo, barato, descansado, pacífico, satisfeito"
-    }
-  },
-  {
-    "id": 38498,
-    "character": "院",
-    "jlpt": "N4",
-    "on": [
-      "イン"
+      "イ"
     ],
     "kun": [],
     "meanings": {
-      "en": "Inst., institution, temple, mansion, school",
-      "fr": "temple, institution, résidence, école, hôpital",
-      "es": "institución, templo, hospital",
-      "pt": "instituição, templo, mansão, escola"
+      "en": "idea, mind, heart, taste, thought, desire, care, liking",
+      "fr": "idée, esprit, coeur, pensée, attention, goût, désir",
+      "es": "idea, sentimiento, razón, intención",
+      "pt": "idéia, mente, coração, gosto, pensamento, desejo, atenção"
     }
   },
   {
-    "id": 24515,
-    "character": "心",
+    "id": 25163,
+    "character": "手",
     "jlpt": "N4",
     "on": [
-      "シン"
+      "シュ",
+      "ズ"
     ],
     "kun": [
-      "こころ",
-      "-ごころ"
+      "て",
+      "て-",
+      "-て",
+      "た-"
     ],
     "meanings": {
-      "en": "heart, mind, spirit, heart radical (no. 61)",
-      "fr": "coeur, esprit, radical coeur (no. 61)",
-      "es": "corazón, centro",
-      "pt": "coração, mente, espírito"
+      "en": "hand",
+      "fr": "main",
+      "es": "mano",
+      "pt": "mão"
     }
   },
   {
-    "id": 30028,
-    "character": "界",
+    "id": 25345,
+    "character": "持",
     "jlpt": "N4",
     "on": [
-      "カイ"
+      "ジ"
     ],
-    "kun": [],
+    "kun": [
+      "も.つ",
+      "-も.ち",
+      "も.てる"
+    ],
     "meanings": {
-      "en": "world, boundary",
-      "fr": "monde",
-      "es": "borde, frontera, extensión, ámbito",
-      "pt": "mundo"
+      "en": "hold, have",
+      "fr": "avoir, tenir",
+      "es": "duración, propiedad, cargo, sostener, mantener",
+      "pt": "segurar, ter"
     }
   },
   {
@@ -978,496 +1320,209 @@
     }
   },
   {
-    "id": 20803,
-    "character": "元",
+    "id": 26009,
+    "character": "料",
     "jlpt": "N4",
     "on": [
-      "ゲン",
-      "ガン"
-    ],
-    "kun": [
-      "もと"
-    ],
-    "meanings": {
-      "en": "beginning, former time, origin",
-      "fr": "commencement, origine, ancien temps",
-      "es": "comienzo, principio, origen, jefe",
-      "pt": "começo, tempo anterior, origem"
-    }
-  },
-  {
-    "id": 37325,
-    "character": "重",
-    "jlpt": "N4",
-    "on": [
-      "ジュウ",
-      "チョウ"
-    ],
-    "kun": [
-      "え",
-      "おも.い",
-      "おも.り",
-      "おも.なう",
-      "かさ.ねる",
-      "かさ.なる",
-      "おも"
-    ],
-    "meanings": {
-      "en": "heavy, important, esteem, respect, heap up, pile up, nest of boxes, -fold",
-      "fr": "lourd, empiler, entasser, s'emboîter, - couches",
-      "es": "pesado, importante, apilar, amontonar",
-      "pt": "pesado, empilhar, pilha de caixas, -dobrar"
-    }
-  },
-  {
-    "id": 36817,
-    "character": "近",
-    "jlpt": "N4",
-    "on": [
-      "キン",
-      "コン"
-    ],
-    "kun": [
-      "ちか.い"
-    ],
-    "meanings": {
-      "en": "near, early, akin, tantamount",
-      "fr": "près, tôt, proche, équivalent à",
-      "es": "cerca, cercano",
-      "pt": "perto, cedo, consangüíneo, equivalente"
-    }
-  },
-  {
-    "id": 32771,
-    "character": "考",
-    "jlpt": "N4",
-    "on": [
-      "コウ"
-    ],
-    "kun": [
-      "かんが.える",
-      "かんが.え"
-    ],
-    "meanings": {
-      "en": "consider, think over",
-      "fr": "réfléchir, considérer",
-      "es": "idea, pensar, investigar, considerar",
-      "pt": "considerar, refletir"
-    }
-  },
-  {
-    "id": 30011,
-    "character": "画",
-    "jlpt": "N4",
-    "on": [
-      "ガ",
-      "カク",
-      "エ",
-      "カイ"
-    ],
-    "kun": [
-      "えが.く",
-      "かく.する",
-      "かぎ.る",
-      "はかりごと",
-      "はか.る"
-    ],
-    "meanings": {
-      "en": "brush-stroke, picture",
-      "fr": "trait de plume, dessin, écran, compteur de traits de kanji",
-      "es": "dibujo, trazo, puntuar, interrumpir",
-      "pt": "gravura"
-    }
-  },
-  {
-    "id": 28023,
-    "character": "海",
-    "jlpt": "N4",
-    "on": [
-      "カイ"
-    ],
-    "kun": [
-      "うみ"
-    ],
-    "meanings": {
-      "en": "sea, ocean",
-      "fr": "mer, océan",
-      "es": "mar, océano, playa",
-      "pt": "oceano, mar"
-    }
-  },
-  {
-    "id": 22770,
-    "character": "売",
-    "jlpt": "N4",
-    "on": [
-      "バイ"
-    ],
-    "kun": [
-      "う.る",
-      "う.れる"
-    ],
-    "meanings": {
-      "en": "sell",
-      "fr": "vendre",
-      "es": "vender, ensanchar, propagar, ser vendido",
-      "pt": "Vender"
-    }
-  },
-  {
-    "id": 30693,
-    "character": "知",
-    "jlpt": "N4",
-    "on": [
-      "チ"
-    ],
-    "kun": [
-      "し.る",
-      "し.らせる"
-    ],
-    "meanings": {
-      "en": "know, wisdom",
-      "fr": "savoir, sagesse",
-      "es": "conocer, saber, entender",
-      "pt": "saber, sabedoria"
-    }
-  },
-  {
-    "id": 36947,
-    "character": "道",
-    "jlpt": "N4",
-    "on": [
-      "ドウ",
-      "トウ"
-    ],
-    "kun": [
-      "みち",
-      "いう"
-    ],
-    "meanings": {
-      "en": "road-way, street, district, journey, course, moral, teachings",
-      "fr": "voie, route, rue, région, voyage, morale, enseignements",
-      "es": "camino, razón, modo, decir, senda, método",
-      "pt": "Caminho, estrada, rua, distrito, viagem, curso, moral, ensinamentos, filosofia"
-    }
-  },
-  {
-    "id": 38598,
-    "character": "集",
-    "jlpt": "N4",
-    "on": [
-      "シュウ"
-    ],
-    "kun": [
-      "あつ.まる",
-      "あつ.める",
-      "つど.う"
-    ],
-    "meanings": {
-      "en": "gather, meet, congregate, swarm, flock",
-      "fr": "rassembler, réunir, collection, grouiller, attroupement",
-      "es": "reunir, coleccionar, reunirse",
-      "pt": "juntar, reunião, congregar, enxame, bando"
-    }
-  },
-  {
-    "id": 21029,
-    "character": "別",
-    "jlpt": "N4",
-    "on": [
-      "ベツ"
-    ],
-    "kun": [
-      "わか.れる",
-      "わ.ける"
-    ],
-    "meanings": {
-      "en": "separate, branch off, diverge, fork, another, extra, specially",
-      "fr": "séparer, spécialement, diverger, extra, un autre",
-      "es": "separar, aparte, distinto, dividirse",
-      "pt": "separar, ramo desligado, divergir, garfo, outro, extra, especialmente"
-    }
-  },
-  {
-    "id": 29289,
-    "character": "物",
-    "jlpt": "N4",
-    "on": [
-      "ブツ",
-      "モツ"
-    ],
-    "kun": [
-      "もの",
-      "もの-"
-    ],
-    "meanings": {
-      "en": "thing, object, matter",
-      "fr": "objet, chose, matière",
-      "es": "cosa, objeto, materia",
-      "pt": "coisa, objeto, matéria"
-    }
-  },
-  {
-    "id": 20351,
-    "character": "使",
-    "jlpt": "N4",
-    "on": [
-      "シ"
-    ],
-    "kun": [
-      "つか.う",
-      "つか.い",
-      "-つか.い",
-      "-づか.い"
-    ],
-    "meanings": {
-      "en": "use, send on a mission, order, messenger, envoy, ambassador, cause",
-      "fr": "utiliser",
-      "es": "usar, manejar, emplear",
-      "pt": "Uso, usar"
-    }
-  },
-  {
-    "id": 21697,
-    "character": "品",
-    "jlpt": "N4",
-    "on": [
-      "ヒン",
-      "ホン"
-    ],
-    "kun": [
-      "しな"
-    ],
-    "meanings": {
-      "en": "goods, refinement, dignity, article, counter for meal courses",
-      "fr": "marchandise, dignité, raffinement, article, compteur de plats",
-      "es": "producto, artículo, bienes",
-      "pt": "bens, refinamento, dignidade, artigo, sufixo para contagem de para pratos de refeição"
-    }
-  },
-  {
-    "id": 35336,
-    "character": "計",
-    "jlpt": "N4",
-    "on": [
-      "ケイ"
-    ],
-    "kun": [
-      "はか.る",
-      "はか.らう"
-    ],
-    "meanings": {
-      "en": "plot, plan, scheme, measure",
-      "fr": "planifier, projeter, calcul, mesure",
-      "es": "medida, cuenta, contar, pensar, medir, pesar",
-      "pt": "desenho, plano, esquema, medida"
-    }
-  },
-  {
-    "id": 27515,
-    "character": "死",
-    "jlpt": "N4",
-    "on": [
-      "シ"
-    ],
-    "kun": [
-      "し.ぬ",
-      "し.に-"
-    ],
-    "meanings": {
-      "en": "death, die",
-      "fr": "mort, mourir",
-      "es": "muerte, morir",
-      "pt": "morte, dados"
-    }
-  },
-  {
-    "id": 29305,
-    "character": "特",
-    "jlpt": "N4",
-    "on": [
-      "トク"
+      "リョウ"
     ],
     "kun": [],
     "meanings": {
-      "en": "special",
-      "fr": "spécial",
-      "es": "especial",
-      "pt": "Especial"
+      "en": "fee, materials",
+      "fr": "redevance, recette, frais, prix, matériau",
+      "es": "material, precio",
+      "pt": "taxa, materiais"
     }
   },
   {
-    "id": 31169,
-    "character": "私",
-    "jlpt": "N4",
-    "on": [
-      "シ"
-    ],
-    "kun": [
-      "わたくし",
-      "わたし"
-    ],
-    "meanings": {
-      "en": "private, I, me",
-      "fr": "privé, je, moi",
-      "es": "yo, privado, secreto",
-      "pt": "particular, Eu, me"
-    }
-  },
-  {
-    "id": 22987,
-    "character": "始",
-    "jlpt": "N4",
-    "on": [
-      "シ"
-    ],
-    "kun": [
-      "はじ.める",
-      "-はじ.める",
-      "はじ.まる"
-    ],
-    "meanings": {
-      "en": "commence, begin",
-      "fr": "commencer, débuter",
-      "es": "comenzar, empezar, empezar (trans.), empezar (intrans.)",
-      "pt": "iniciar, começar"
-    }
-  },
-  {
-    "id": 26397,
-    "character": "朝",
-    "jlpt": "N4",
-    "on": [
-      "チョウ"
-    ],
-    "kun": [
-      "あさ"
-    ],
-    "meanings": {
-      "en": "morning, dynasty, regime, epoch, period, (North) Korea",
-      "fr": "matin, dynastie, régime, période, époque, Corée (Nord)",
-      "es": "mañana, amanecer, corte imperial",
-      "pt": "manhã, disnastia, regime, época, período, Coréia do Norte"
-    }
-  },
-  {
-    "id": 36939,
-    "character": "運",
-    "jlpt": "N4",
-    "on": [
-      "ウン"
-    ],
-    "kun": [
-      "はこ.ぶ"
-    ],
-    "meanings": {
-      "en": "carry, luck, destiny, fate, lot, transport, progress, advance",
-      "fr": "porter, chance, destin, destinée, sort, progrès",
-      "es": "suerte, destino, transportar",
-      "pt": "carregar, sorte, destino, objetivo, transportar, progresso, avanço"
-    }
-  },
-  {
-    "id": 32066,
-    "character": "終",
-    "jlpt": "N4",
-    "on": [
-      "シュウ"
-    ],
-    "kun": [
-      "お.わる",
-      "-お.わる",
-      "おわ.る",
-      "お.える",
-      "つい",
-      "つい.に"
-    ],
-    "meanings": {
-      "en": "end, finish",
-      "fr": "finir, fin",
-      "es": "fin, final, terminar, acabar, finalizar",
-      "pt": "fim, terminar"
-    }
-  },
-  {
-    "id": 21488,
-    "character": "台",
-    "jlpt": "N4",
-    "on": [
-      "ダイ",
-      "タイ"
-    ],
-    "kun": [
-      "うてな",
-      "われ",
-      "つかさ"
-    ],
-    "meanings": {
-      "en": "pedestal, a stand, counter for machines and vehicles",
-      "fr": "piédestal, socle, compteur de voitures ou machines",
-      "es": "estante, banco, tribuna, pedestal, contador para maquinas y vehículos",
-      "pt": "pedestal, stand, sufixo para contagem de para máquinas e veículos"
-    }
-  },
-  {
-    "id": 24195,
-    "character": "広",
-    "jlpt": "N4",
-    "on": [
-      "コウ"
-    ],
-    "kun": [
-      "ひろ.い",
-      "ひろ.まる",
-      "ひろ.める",
-      "ひろ.がる",
-      "ひろ.げる"
-    ],
-    "meanings": {
-      "en": "wide, broad, spacious",
-      "fr": "vaste, large, spacieux",
-      "es": "amplio, ancho, espacioso, ensancharse, ensanchar, extenderse, extender",
-      "pt": "largo, vasto, espaçoso"
-    }
-  },
-  {
-    "id": 20303,
-    "character": "住",
-    "jlpt": "N4",
-    "on": [
-      "ジュウ",
-      "ヂュウ",
-      "チュウ"
-    ],
-    "kun": [
-      "す.む",
-      "す.まう",
-      "-ず.まい"
-    ],
-    "meanings": {
-      "en": "dwell, reside, live, inhabit",
-      "fr": "résider, vivre, habiter",
-      "es": "residir, vivir, habitar, residencia",
-      "pt": "reside, vida, habita"
-    }
-  },
-  {
-    "id": 30495,
-    "character": "真",
+    "id": 26032,
+    "character": "新",
     "jlpt": "N4",
     "on": [
       "シン"
     ],
     "kun": [
-      "ま",
-      "ま-",
-      "まこと"
+      "あたら.しい",
+      "あら.た",
+      "あら-",
+      "にい-"
     ],
     "meanings": {
-      "en": "true, reality, Buddhist sect",
-      "fr": "exact, vrai, réalité, secte bouddhiste",
-      "es": "verdad, realidad, puro, genuino, verdadero",
-      "pt": "verdadeiro, realidade, seita do Budismo"
+      "en": "new",
+      "fr": "nouveau",
+      "es": "nuevo, fresco",
+      "pt": "novo"
+    }
+  },
+  {
+    "id": 26041,
+    "character": "方",
+    "jlpt": "N4",
+    "on": [
+      "ホウ"
+    ],
+    "kun": [
+      "かた",
+      "-かた",
+      "-がた"
+    ],
+    "meanings": {
+      "en": "direction, person, alternative",
+      "fr": "direction, personne, alternative",
+      "es": "dirección, lado, cuadrado, método, manera, persona, forma de hacer",
+      "pt": "direção, pessoa, alternativa"
+    }
+  },
+  {
+    "id": 26053,
+    "character": "旅",
+    "jlpt": "N4",
+    "on": [
+      "リョ"
+    ],
+    "kun": [
+      "たび"
+    ],
+    "meanings": {
+      "en": "trip, travel",
+      "fr": "voyage",
+      "es": "viaje, trayecto, excursión",
+      "pt": "viagem, jornada"
+    }
+  },
+  {
+    "id": 26063,
+    "character": "族",
+    "jlpt": "N4",
+    "on": [
+      "ゾク"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "tribe, family",
+      "fr": "tribu, famille",
+      "es": "tribu, familia",
+      "pt": "tribo, família"
+    }
+  },
+  {
+    "id": 26089,
+    "character": "早",
+    "jlpt": "N4",
+    "on": [
+      "ソウ",
+      "サッ"
+    ],
+    "kun": [
+      "はや.い",
+      "はや",
+      "はや-",
+      "はや.まる",
+      "はや.める",
+      "さ-"
+    ],
+    "meanings": {
+      "en": "early, fast",
+      "fr": "tôt, rapide",
+      "es": "temprano, rápido, pronto, apresurarse, precipitarse, acelerar",
+      "pt": "cedo, rápido"
+    }
+  },
+  {
+    "id": 26126,
+    "character": "明",
+    "jlpt": "N4",
+    "on": [
+      "メイ",
+      "ミョウ",
+      "ミン"
+    ],
+    "kun": [
+      "あ.かり",
+      "あか.るい",
+      "あか.るむ",
+      "あか.らむ",
+      "あき.らか",
+      "あ.ける",
+      "-あ.け",
+      "あ.く",
+      "あ.くる",
+      "あ.かす"
+    ],
+    "meanings": {
+      "en": "bright, light",
+      "fr": "clair, lumière",
+      "es": "luz, brillo, claridad, listo, inteligente, claro, luminoso, iluminar, aclarar",
+      "pt": "brilhante, luz"
+    }
+  },
+  {
+    "id": 26144,
+    "character": "映",
+    "jlpt": "N4",
+    "on": [
+      "エイ"
+    ],
+    "kun": [
+      "うつ.る",
+      "うつ.す",
+      "は.える",
+      "-ば.え"
+    ],
+    "meanings": {
+      "en": "reflect, reflection, projection",
+      "fr": "projection, refléter, réflexion",
+      "es": "reflejo, reflexión, reflejar, reflejarse, proyectarse, proyectar",
+      "pt": "reflitir, reflexão, projeção"
+    }
+  },
+  {
+    "id": 26149,
+    "character": "春",
+    "jlpt": "N4",
+    "on": [
+      "シュン"
+    ],
+    "kun": [
+      "はる"
+    ],
+    "meanings": {
+      "en": "springtime, spring (season)",
+      "fr": "printemps",
+      "es": "primavera, comienzo del año, tiempos de juventud",
+      "pt": "primaveril, primavera (estação)"
+    }
+  },
+  {
+    "id": 26172,
+    "character": "昼",
+    "jlpt": "N4",
+    "on": [
+      "チュウ"
+    ],
+    "kun": [
+      "ひる"
+    ],
+    "meanings": {
+      "en": "daytime, noon",
+      "fr": "journée, midi",
+      "es": "día, mediodía",
+      "pt": "dia, meio-dia"
+    }
+  },
+  {
+    "id": 26332,
+    "character": "曜",
+    "jlpt": "N4",
+    "on": [
+      "ヨウ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "weekday",
+      "fr": "jour de la semaine",
+      "es": "día de la semana, brillar, resplandecer",
+      "pt": "dia útil"
     }
   },
   {
@@ -1489,152 +1544,92 @@
     }
   },
   {
-    "id": 21475,
-    "character": "口",
+    "id": 26381,
+    "character": "服",
     "jlpt": "N4",
     "on": [
-      "コウ",
-      "ク"
+      "フク"
     ],
-    "kun": [
-      "くち"
-    ],
+    "kun": [],
     "meanings": {
-      "en": "mouth",
-      "fr": "bouche",
-      "es": "boca, orificio, apertura",
-      "pt": "boca"
+      "en": "clothing, admit, obey, discharge",
+      "fr": "habillement, admettre, obéir, libérer (renvoi), avaler (médicament)",
+      "es": "ropa, admitir, obedecer",
+      "pt": "vestuário, permitir, obedecer, descarregar"
     }
   },
   {
-    "id": 23569,
-    "character": "少",
-    "jlpt": "N4",
-    "on": [
-      "ショウ"
-    ],
-    "kun": [
-      "すく.ない",
-      "すこ.し"
-    ],
-    "meanings": {
-      "en": "few, little",
-      "fr": "un petit peu, un peu",
-      "es": "poco, pequeño, un poco, apenas",
-      "pt": "poucos, pequenos"
-    }
-  },
-  {
-    "id": 30010,
-    "character": "町",
+    "id": 26397,
+    "character": "朝",
     "jlpt": "N4",
     "on": [
       "チョウ"
     ],
     "kun": [
-      "まち"
+      "あさ"
     ],
     "meanings": {
-      "en": "town, village, block, street",
-      "fr": "quartier, ville, village, rue",
-      "es": "pueblo, ciudad, bloque, calle",
-      "pt": "aldeia, cidade, bloco, rua"
+      "en": "morning, dynasty, regime, epoch, period, (North) Korea",
+      "fr": "matin, dynastie, régime, période, époque, Corée (Nord)",
+      "es": "mañana, amanecer, corte imperial",
+      "pt": "manhã, disnastia, regime, época, período, Coréia do Norte"
     }
   },
   {
-    "id": 26009,
-    "character": "料",
+    "id": 26989,
+    "character": "業",
     "jlpt": "N4",
     "on": [
-      "リョウ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "fee, materials",
-      "fr": "redevance, recette, frais, prix, matériau",
-      "es": "material, precio",
-      "pt": "taxa, materiais"
-    }
-  },
-  {
-    "id": 24037,
-    "character": "工",
-    "jlpt": "N4",
-    "on": [
-      "コウ",
-      "ク",
-      "グ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "craft, construction, katakana e radical (no. 48)",
-      "fr": "ingénierie, industrie, construction, radical katakana E (no. 48)",
-      "es": "construcción, fabricación, obrero",
-      "pt": "ofício, construção"
-    }
-  },
-  {
-    "id": 24314,
-    "character": "建",
-    "jlpt": "N4",
-    "on": [
-      "ケン",
-      "コン"
+      "ギョウ",
+      "ゴウ"
     ],
     "kun": [
-      "た.てる",
-      "た.て",
-      "-だ.て",
-      "た.つ"
+      "わざ"
     ],
     "meanings": {
-      "en": "build",
-      "fr": "construire",
-      "es": "construir, edificar, levantarse, ser construido",
-      "pt": "Construção"
+      "en": "business, vocation, arts, performance",
+      "fr": "activité, vocation, arts, représentation, karma",
+      "es": "negocio, industria, trabajo",
+      "pt": "negócios, vocação, artes, performance"
     }
   },
   {
-    "id": 31354,
-    "character": "空",
+    "id": 27005,
+    "character": "楽",
     "jlpt": "N4",
     "on": [
-      "クウ"
+      "ガク",
+      "ラク",
+      "ゴウ"
     ],
     "kun": [
-      "そら",
-      "あ.く",
-      "あ.き",
-      "あ.ける",
-      "から",
-      "す.く",
-      "す.かす",
-      "むな.しい"
+      "たの.しい",
+      "たの.しむ",
+      "この.む"
     ],
     "meanings": {
-      "en": "empty, sky, void, vacant, vacuum",
-      "fr": "vide, ciel, vacant, creux",
-      "es": "cielo, atmósfera, vacío, vacante, quedarse vacío, vaciar",
-      "pt": "esvaziar, ceú, desocupado, vazio, vácuo"
+      "en": "music, comfort, ease",
+      "fr": "musique, agréable, confort",
+      "es": "música, divertido, fácil, agradable, disfrutar, divertirse",
+      "pt": "música, conforto, facilidade"
     }
   },
   {
-    "id": 24613,
-    "character": "急",
+    "id": 27468,
+    "character": "歌",
     "jlpt": "N4",
     "on": [
-      "キュウ"
+      "カ"
     ],
     "kun": [
-      "いそ.ぐ",
-      "いそ.ぎ",
-      "せ.く"
+      "うた",
+      "うた.う"
     ],
     "meanings": {
-      "en": "hurry, emergency, sudden, steep",
-      "fr": "urgence, se dépêcher, soudain, raide, abrupt, aigu",
-      "es": "prisa, urgencia, apresurarse, darse prisa",
-      "pt": "apressar, emergência, repentina"
+      "en": "song, sing",
+      "fr": "chanson, chanter",
+      "es": "canción, cantar",
+      "pt": "canção, cantar"
     }
   },
   {
@@ -1668,47 +1663,994 @@
     }
   },
   {
-    "id": 36865,
-    "character": "送",
+    "id": 27491,
+    "character": "正",
+    "jlpt": "N4",
+    "on": [
+      "セイ",
+      "ショウ"
+    ],
+    "kun": [
+      "ただ.しい",
+      "ただ.す",
+      "まさ",
+      "まさ.に"
+    ],
+    "meanings": {
+      "en": "correct, justice, righteous, 10**40",
+      "fr": "correct, positif, juste, droit, 10**40",
+      "es": "correcto, justo, arreglar, enderezar",
+      "pt": "corrigir, justiça, correto, direito, 10 elevado a 40"
+    }
+  },
+  {
+    "id": 27497,
+    "character": "歩",
+    "jlpt": "N4",
+    "on": [
+      "ホ",
+      "ブ",
+      "フ"
+    ],
+    "kun": [
+      "ある.く",
+      "あゆ.む"
+    ],
+    "meanings": {
+      "en": "walk, counter for steps",
+      "fr": "marcher, compteur de pas",
+      "es": "camino, caminar, razón, proporción, ir a pie",
+      "pt": "passeio"
+    }
+  },
+  {
+    "id": 27515,
+    "character": "死",
+    "jlpt": "N4",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "し.ぬ",
+      "し.に-"
+    ],
+    "meanings": {
+      "en": "death, die",
+      "fr": "mort, mourir",
+      "es": "muerte, morir",
+      "pt": "morte, dados"
+    }
+  },
+  {
+    "id": 27880,
+    "character": "注",
+    "jlpt": "N4",
+    "on": [
+      "チュウ"
+    ],
+    "kun": [
+      "そそ.ぐ",
+      "さ.す",
+      "つ.ぐ"
+    ],
+    "meanings": {
+      "en": "pour, irrigate, shed (tears), flow into, concentrate on, notes, comment, annotate",
+      "fr": "verser, se jeter dans, arroser, servir (boisson), note, remarque, annotation, commentaire",
+      "es": "derramar, verter, regar, concentrarse",
+      "pt": "derramar, irrigar, verter (lágrimas), desaguar, colocar em(copos), notas, comentário, anotar"
+    }
+  },
+  {
+    "id": 27915,
+    "character": "洋",
+    "jlpt": "N4",
+    "on": [
+      "ヨウ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "ocean, sea, foreign, Western style",
+      "fr": "océan, style occidental",
+      "es": "océano, de estilo occidental, cada una de las dos mitades del mundo",
+      "pt": "oceano, estilo ocidental"
+    }
+  },
+  {
+    "id": 28023,
+    "character": "海",
+    "jlpt": "N4",
+    "on": [
+      "カイ"
+    ],
+    "kun": [
+      "うみ"
+    ],
+    "meanings": {
+      "en": "sea, ocean",
+      "fr": "mer, océan",
+      "es": "mar, océano, playa",
+      "pt": "oceano, mar"
+    }
+  },
+  {
+    "id": 28450,
+    "character": "漢",
+    "jlpt": "N4",
+    "on": [
+      "カン"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "Sino-, China",
+      "fr": "sino-, Chine",
+      "es": "antigua región de China, China, hombre",
+      "pt": "Sino-, China"
+    }
+  },
+  {
+    "id": 29275,
+    "character": "牛",
+    "jlpt": "N4",
+    "on": [
+      "ギュウ"
+    ],
+    "kun": [
+      "うし"
+    ],
+    "meanings": {
+      "en": "cow",
+      "fr": "vache",
+      "es": "vaca, ganado",
+      "pt": "Vaca"
+    }
+  },
+  {
+    "id": 29289,
+    "character": "物",
+    "jlpt": "N4",
+    "on": [
+      "ブツ",
+      "モツ"
+    ],
+    "kun": [
+      "もの",
+      "もの-"
+    ],
+    "meanings": {
+      "en": "thing, object, matter",
+      "fr": "objet, chose, matière",
+      "es": "cosa, objeto, materia",
+      "pt": "coisa, objeto, matéria"
+    }
+  },
+  {
+    "id": 29305,
+    "character": "特",
+    "jlpt": "N4",
+    "on": [
+      "トク"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "special",
+      "fr": "spécial",
+      "es": "especial",
+      "pt": "Especial"
+    }
+  },
+  {
+    "id": 29356,
+    "character": "犬",
+    "jlpt": "N4",
+    "on": [
+      "ケン"
+    ],
+    "kun": [
+      "いぬ",
+      "いぬ-"
+    ],
+    "meanings": {
+      "en": "dog",
+      "fr": "chien",
+      "es": "perro",
+      "pt": "Cão"
+    }
+  },
+  {
+    "id": 29702,
+    "character": "理",
+    "jlpt": "N4",
+    "on": [
+      "リ"
+    ],
+    "kun": [
+      "ことわり"
+    ],
+    "meanings": {
+      "en": "logic, arrangement, reason, justice, truth",
+      "fr": "logique, principe, raison, justice, vérité",
+      "es": "lógica, razón, preparar",
+      "pt": "lógica, arranjo, razão, justiça, verdade"
+    }
+  },
+  {
+    "id": 29992,
+    "character": "用",
+    "jlpt": "N4",
+    "on": [
+      "ヨウ"
+    ],
+    "kun": [
+      "もち.いる"
+    ],
+    "meanings": {
+      "en": "utilize, business, service, use, employ",
+      "fr": "se servir de, affaires, service, utiliser, employer",
+      "es": "uso, empleo, trabajo, usar, hacer uso de",
+      "pt": "utilizar, negócios, serviço, usar, empregar"
+    }
+  },
+  {
+    "id": 30000,
+    "character": "田",
+    "jlpt": "N4",
+    "on": [
+      "デン"
+    ],
+    "kun": [
+      "た"
+    ],
+    "meanings": {
+      "en": "rice field, rice paddy",
+      "fr": "rizière",
+      "es": "campo de arroz, arrozal",
+      "pt": "campo de arroz, arroz sem beneficiar"
+    }
+  },
+  {
+    "id": 30010,
+    "character": "町",
+    "jlpt": "N4",
+    "on": [
+      "チョウ"
+    ],
+    "kun": [
+      "まち"
+    ],
+    "meanings": {
+      "en": "town, village, block, street",
+      "fr": "quartier, ville, village, rue",
+      "es": "pueblo, ciudad, bloque, calle",
+      "pt": "aldeia, cidade, bloco, rua"
+    }
+  },
+  {
+    "id": 30011,
+    "character": "画",
+    "jlpt": "N4",
+    "on": [
+      "ガ",
+      "カク",
+      "エ",
+      "カイ"
+    ],
+    "kun": [
+      "えが.く",
+      "かく.する",
+      "かぎ.る",
+      "はかりごと",
+      "はか.る"
+    ],
+    "meanings": {
+      "en": "brush-stroke, picture",
+      "fr": "trait de plume, dessin, écran, compteur de traits de kanji",
+      "es": "dibujo, trazo, puntuar, interrumpir",
+      "pt": "gravura"
+    }
+  },
+  {
+    "id": 30028,
+    "character": "界",
+    "jlpt": "N4",
+    "on": [
+      "カイ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "world, boundary",
+      "fr": "monde",
+      "es": "borde, frontera, extensión, ámbito",
+      "pt": "mundo"
+    }
+  },
+  {
+    "id": 30149,
+    "character": "病",
+    "jlpt": "N4",
+    "on": [
+      "ビョウ",
+      "ヘイ"
+    ],
+    "kun": [
+      "や.む",
+      "-や.み",
+      "やまい"
+    ],
+    "meanings": {
+      "en": "ill, sick",
+      "fr": "malade",
+      "es": "enfermedad, caer enfermo",
+      "pt": "mal, doente"
+    }
+  },
+  {
+    "id": 30330,
+    "character": "発",
+    "jlpt": "N4",
+    "on": [
+      "ハツ",
+      "ホツ"
+    ],
+    "kun": [
+      "た.つ",
+      "あば.く",
+      "おこ.る",
+      "つか.わす",
+      "はな.つ"
+    ],
+    "meanings": {
+      "en": "departure, discharge, publish, emit, start from, disclose, counter for gunshots",
+      "fr": "départ, décharge, dégagement, publier, émettre, partir de, divulguer, compteur de coups de feu",
+      "es": "abrir, exponer, suceder",
+      "pt": "liberar, partida, publicar, emitir, a partir de, revelar"
+    }
+  },
+  {
+    "id": 30446,
+    "character": "目",
+    "jlpt": "N4",
+    "on": [
+      "モク",
+      "ボク"
+    ],
+    "kun": [
+      "め",
+      "-め",
+      "ま-"
+    ],
+    "meanings": {
+      "en": "eye, class, look, insight, experience, care, favor",
+      "fr": "oeil, regard, aperçu, numérateur ordinal, expérience, classe, faveur, pièce (Go)",
+      "es": "ojo, mirada, percepción",
+      "pt": "olho, classe, olhar, visão, experiência, atenção, favor"
+    }
+  },
+  {
+    "id": 30495,
+    "character": "真",
+    "jlpt": "N4",
+    "on": [
+      "シン"
+    ],
+    "kun": [
+      "ま",
+      "ま-",
+      "まこと"
+    ],
+    "meanings": {
+      "en": "true, reality, Buddhist sect",
+      "fr": "exact, vrai, réalité, secte bouddhiste",
+      "es": "verdad, realidad, puro, genuino, verdadero",
+      "pt": "verdadeiro, realidade, seita do Budismo"
+    }
+  },
+  {
+    "id": 30528,
+    "character": "着",
+    "jlpt": "N4",
+    "on": [
+      "チャク",
+      "ジャク"
+    ],
+    "kun": [
+      "き.る",
+      "き.せる",
+      "つ.く",
+      "つ.ける"
+    ],
+    "meanings": {
+      "en": "don, arrive, wear, counter for suits of clothing",
+      "fr": "enfiler, porter (vêtement), arriver, compteur de vêtements",
+      "es": "usar, llevar puesto, vestir, llegar, alcanzar",
+      "pt": "vestir, chegar, usar, sufixo para contagem de vestuário"
+    }
+  },
+  {
+    "id": 30693,
+    "character": "知",
+    "jlpt": "N4",
+    "on": [
+      "チ"
+    ],
+    "kun": [
+      "し.る",
+      "し.らせる"
+    ],
+    "meanings": {
+      "en": "know, wisdom",
+      "fr": "savoir, sagesse",
+      "es": "conocer, saber, entender",
+      "pt": "saber, sabedoria"
+    }
+  },
+  {
+    "id": 30740,
+    "character": "研",
+    "jlpt": "N4",
+    "on": [
+      "ケン"
+    ],
+    "kun": [
+      "と.ぐ"
+    ],
+    "meanings": {
+      "en": "polish, study of, sharpen",
+      "fr": "polir, étudier, aiguiser",
+      "es": "estudio, afilar, pulir",
+      "pt": "polir, estudar, afiar"
+    }
+  },
+  {
+    "id": 31038,
+    "character": "社",
+    "jlpt": "N4",
+    "on": [
+      "シャ"
+    ],
+    "kun": [
+      "やしろ"
+    ],
+    "meanings": {
+      "en": "company, firm, office, association, shrine",
+      "fr": "temple shinto, compagnie, firme, bureau, association",
+      "es": "compañía, asociación, sociedad, santuario shintoísta",
+      "pt": "companhia, firme, escritório, associação, templo"
+    }
+  },
+  {
+    "id": 31169,
+    "character": "私",
+    "jlpt": "N4",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "わたくし",
+      "わたし"
+    ],
+    "meanings": {
+      "en": "private, I, me",
+      "fr": "privé, je, moi",
+      "es": "yo, privado, secreto",
+      "pt": "particular, Eu, me"
+    }
+  },
+  {
+    "id": 31179,
+    "character": "秋",
+    "jlpt": "N4",
+    "on": [
+      "シュウ"
+    ],
+    "kun": [
+      "あき",
+      "とき"
+    ],
+    "meanings": {
+      "en": "autumn",
+      "fr": "automne",
+      "es": "otoño",
+      "pt": "outono"
+    }
+  },
+  {
+    "id": 31350,
+    "character": "究",
+    "jlpt": "N4",
+    "on": [
+      "キュウ",
+      "ク"
+    ],
+    "kun": [
+      "きわ.める"
+    ],
+    "meanings": {
+      "en": "research, study",
+      "fr": "recherche, étudier",
+      "es": "estudio, investigación, profundización, último, final, dominar, profundizar en el estudio de",
+      "pt": "pesquisa, estudo"
+    }
+  },
+  {
+    "id": 31354,
+    "character": "空",
+    "jlpt": "N4",
+    "on": [
+      "クウ"
+    ],
+    "kun": [
+      "そら",
+      "あ.く",
+      "あ.き",
+      "あ.ける",
+      "から",
+      "す.く",
+      "す.かす",
+      "むな.しい"
+    ],
+    "meanings": {
+      "en": "empty, sky, void, vacant, vacuum",
+      "fr": "vide, ciel, vacant, creux",
+      "es": "cielo, atmósfera, vacío, vacante, quedarse vacío, vaciar",
+      "pt": "esvaziar, ceú, desocupado, vazio, vácuo"
+    }
+  },
+  {
+    "id": 31435,
+    "character": "立",
+    "jlpt": "N4",
+    "on": [
+      "リツ",
+      "リュウ",
+      "リットル"
+    ],
+    "kun": [
+      "た.つ",
+      "-た.つ",
+      "た.ち-",
+      "た.てる",
+      "-た.てる",
+      "た.て-",
+      "たて-",
+      "-た.て",
+      "-だ.て",
+      "-だ.てる"
+    ],
+    "meanings": {
+      "en": "stand up, rise, set up, erect",
+      "fr": "debout",
+      "es": "levantarse, alzarse, ponerse en pie, levantar, erigir, estar en pie",
+      "pt": "Ficar de pé, levantar-se"
+    }
+  },
+  {
+    "id": 31572,
+    "character": "答",
+    "jlpt": "N4",
+    "on": [
+      "トウ"
+    ],
+    "kun": [
+      "こた.える",
+      "こた.え"
+    ],
+    "meanings": {
+      "en": "solution, answer",
+      "fr": "solution, réponse",
+      "es": "solución, respuesta, contestar, responder",
+      "pt": "solução, resposta"
+    }
+  },
+  {
+    "id": 32025,
+    "character": "紙",
+    "jlpt": "N4",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "かみ"
+    ],
+    "meanings": {
+      "en": "paper",
+      "fr": "papier",
+      "es": "papel, periódico",
+      "pt": "Papel"
+    }
+  },
+  {
+    "id": 32066,
+    "character": "終",
+    "jlpt": "N4",
+    "on": [
+      "シュウ"
+    ],
+    "kun": [
+      "お.わる",
+      "-お.わる",
+      "おわ.る",
+      "お.える",
+      "つい",
+      "つい.に"
+    ],
+    "meanings": {
+      "en": "end, finish",
+      "fr": "finir, fin",
+      "es": "fin, final, terminar, acabar, finalizar",
+      "pt": "fim, terminar"
+    }
+  },
+  {
+    "id": 32722,
+    "character": "習",
+    "jlpt": "N4",
+    "on": [
+      "シュウ",
+      "ジュ"
+    ],
+    "kun": [
+      "なら.う",
+      "なら.い"
+    ],
+    "meanings": {
+      "en": "learn",
+      "fr": "apprendre",
+      "es": "aprender, estudiar",
+      "pt": "aprender"
+    }
+  },
+  {
+    "id": 32771,
+    "character": "考",
+    "jlpt": "N4",
+    "on": [
+      "コウ"
+    ],
+    "kun": [
+      "かんが.える",
+      "かんが.え"
+    ],
+    "meanings": {
+      "en": "consider, think over",
+      "fr": "réfléchir, considérer",
+      "es": "idea, pensar, investigar, considerar",
+      "pt": "considerar, refletir"
+    }
+  },
+  {
+    "id": 32773,
+    "character": "者",
+    "jlpt": "N4",
+    "on": [
+      "シャ"
+    ],
+    "kun": [
+      "もの"
+    ],
+    "meanings": {
+      "en": "someone, person",
+      "fr": "personne, quelqu'un",
+      "es": "persona",
+      "pt": "alguém, pessoa"
+    }
+  },
+  {
+    "id": 32905,
+    "character": "肉",
+    "jlpt": "N4",
+    "on": [
+      "ニク"
+    ],
+    "kun": [
+      "しし"
+    ],
+    "meanings": {
+      "en": "meat",
+      "fr": "chair, viande",
+      "es": "carne",
+      "pt": "carne"
+    }
+  },
+  {
+    "id": 33258,
+    "character": "自",
+    "jlpt": "N4",
+    "on": [
+      "ジ",
+      "シ"
+    ],
+    "kun": [
+      "みずか.ら",
+      "おの.ずから",
+      "おの.ずと"
+    ],
+    "meanings": {
+      "en": "oneself",
+      "fr": "soi-même",
+      "es": "uno mismo, por sí mismo, auto-",
+      "pt": "a si próprio"
+    }
+  },
+  {
+    "id": 33394,
+    "character": "色",
+    "jlpt": "N4",
+    "on": [
+      "ショク",
+      "シキ"
+    ],
+    "kun": [
+      "いろ"
+    ],
+    "meanings": {
+      "en": "color",
+      "fr": "couleur",
+      "es": "color, aspecto",
+      "pt": "cor"
+    }
+  },
+  {
+    "id": 33457,
+    "character": "花",
+    "jlpt": "N4",
+    "on": [
+      "カ",
+      "ケ"
+    ],
+    "kun": [
+      "はな"
+    ],
+    "meanings": {
+      "en": "flower",
+      "fr": "fleur",
+      "es": "flor",
+      "pt": "flor"
+    }
+  },
+  {
+    "id": 33521,
+    "character": "英",
+    "jlpt": "N4",
+    "on": [
+      "エイ"
+    ],
+    "kun": [
+      "はなぶさ"
+    ],
+    "meanings": {
+      "en": "England, English, hero, outstanding, calyx",
+      "fr": "Angleterre, anglais, fleur éclose, brillant",
+      "es": "Inglaterra, excelente",
+      "pt": "Inglaterra, Inglês"
+    }
+  },
+  {
+    "id": 33590,
+    "character": "茶",
+    "jlpt": "N4",
+    "on": [
+      "チャ",
+      "サ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "tea",
+      "fr": "thé",
+      "es": "hoja de té, té",
+      "pt": "chá"
+    }
+  },
+  {
+    "id": 35242,
+    "character": "親",
+    "jlpt": "N4",
+    "on": [
+      "シン"
+    ],
+    "kun": [
+      "おや",
+      "おや-",
+      "した.しい",
+      "した.しむ"
+    ],
+    "meanings": {
+      "en": "parent, intimacy, relative, familiarity, dealer (cards)",
+      "fr": "parent, parenté, intimité, familiarité, donneur (cartes)",
+      "es": "padre, madre, familiares, íntimo, personalmente, padres, hacerse amigo, intimar",
+      "pt": "pai, intimidade, parente, familiaridade, crupiê"
+    }
+  },
+  {
+    "id": 35328,
+    "character": "言",
+    "jlpt": "N4",
+    "on": [
+      "ゲン",
+      "ゴン"
+    ],
+    "kun": [
+      "い.う",
+      "こと"
+    ],
+    "meanings": {
+      "en": "say, word",
+      "fr": "dire",
+      "es": "palabras, decir",
+      "pt": "Dizer, palavras"
+    }
+  },
+  {
+    "id": 35336,
+    "character": "計",
+    "jlpt": "N4",
+    "on": [
+      "ケイ"
+    ],
+    "kun": [
+      "はか.る",
+      "はか.らう"
+    ],
+    "meanings": {
+      "en": "plot, plan, scheme, measure",
+      "fr": "planifier, projeter, calcul, mesure",
+      "es": "medida, cuenta, contar, pensar, medir, pesar",
+      "pt": "desenho, plano, esquema, medida"
+    }
+  },
+  {
+    "id": 35430,
+    "character": "試",
+    "jlpt": "N4",
+    "on": [
+      "シ"
+    ],
+    "kun": [
+      "こころ.みる",
+      "ため.す"
+    ],
+    "meanings": {
+      "en": "test, try, attempt, experiment, ordeal",
+      "fr": "test, essai, tentative, expérience, épreuve",
+      "es": "prueba, ensayo, experimento, probar, experimentar, intentar",
+      "pt": "teste, tentativa, testar, experimento, prova"
+    }
+  },
+  {
+    "id": 36023,
+    "character": "買",
+    "jlpt": "N4",
+    "on": [
+      "バイ"
+    ],
+    "kun": [
+      "か.う"
+    ],
+    "meanings": {
+      "en": "buy",
+      "fr": "acheter",
+      "es": "comprar",
+      "pt": "comprar"
+    }
+  },
+  {
+    "id": 36024,
+    "character": "貸",
+    "jlpt": "N4",
+    "on": [
+      "タイ"
+    ],
+    "kun": [
+      "か.す",
+      "か.し-",
+      "かし-"
+    ],
+    "meanings": {
+      "en": "lend",
+      "fr": "prêter, louer",
+      "es": "préstamo, prestar, alquilar",
+      "pt": "Emprestar"
+    }
+  },
+  {
+    "id": 36074,
+    "character": "質",
+    "jlpt": "N4",
+    "on": [
+      "シツ",
+      "シチ",
+      "チ"
+    ],
+    "kun": [
+      "たち",
+      "ただ.す",
+      "もと",
+      "わりふ"
+    ],
+    "meanings": {
+      "en": "substance, quality, matter, temperament",
+      "fr": "substance, matière, qualité, tempérament",
+      "es": "substancia, contenido, simplicidad, calidad, depósito, custodia",
+      "pt": "substância, qualidade, matéria, temperamento"
+    }
+  },
+  {
+    "id": 36196,
+    "character": "赤",
+    "jlpt": "N4",
+    "on": [
+      "セキ",
+      "シャク"
+    ],
+    "kun": [
+      "あか",
+      "あか-",
+      "あか.い",
+      "あか.らむ",
+      "あか.らめる"
+    ],
+    "meanings": {
+      "en": "red",
+      "fr": "rouge",
+      "es": "rojo, enrojecer, enrojecerse, sonrojarse",
+      "pt": "vermelho"
+    }
+  },
+  {
+    "id": 36208,
+    "character": "走",
     "jlpt": "N4",
     "on": [
       "ソウ"
     ],
     "kun": [
-      "おく.る"
+      "はし.る"
     ],
     "meanings": {
-      "en": "escort, send",
-      "fr": "escorter, envoyer",
-      "es": "enviar, remitir, expedir",
-      "pt": "acompanhante, enviar"
+      "en": "run",
+      "fr": "courir",
+      "es": "correr, escapar, huir",
+      "pt": "Correr, corrida"
     }
   },
   {
-    "id": 20999,
-    "character": "切",
+    "id": 36215,
+    "character": "起",
     "jlpt": "N4",
     "on": [
-      "セツ",
-      "サイ"
+      "キ"
     ],
     "kun": [
-      "き.る",
-      "-き.る",
-      "き.り",
-      "-き.り",
-      "-ぎ.り",
-      "き.れる",
-      "-き.れる",
-      "き.れ",
-      "-き.れ",
-      "-ぎ.れ"
+      "お.きる",
+      "お.こる",
+      "お.こす",
+      "おこ.す",
+      "た.つ"
     ],
     "meanings": {
-      "en": "cut, cutoff, be sharp",
-      "fr": "couper, trancher, tranchant, passionné, sérieux",
-      "es": "cortar, urgente, apremiante, completo, cortar bien, agotarse",
-      "pt": "corte, talho, afiar"
+      "en": "rouse, wake up, get up",
+      "fr": "se lever, se réveiller, début, se produire, provoquer",
+      "es": "despertar, levantarse, comenzar, comienzo, despertar a alguien",
+      "pt": "despertar, acordar, levantar"
+    }
+  },
+  {
+    "id": 36275,
+    "character": "足",
+    "jlpt": "N4",
+    "on": [
+      "ソク"
+    ],
+    "kun": [
+      "あし",
+      "た.りる",
+      "た.る",
+      "た.す"
+    ],
+    "meanings": {
+      "en": "leg, foot, be sufficient, counter for pairs of footwear",
+      "fr": "jambe, pied, suffire, ajouter, compteur de paires de chaussures",
+      "es": "pierna, pie, ser suficiente, pata, bastar",
+      "pt": "perna, pé, ser suficiente"
     }
   },
   {
@@ -1736,232 +2678,157 @@
     }
   },
   {
-    "id": 30740,
-    "character": "研",
+    "id": 36817,
+    "character": "近",
     "jlpt": "N4",
     "on": [
-      "ケン"
+      "キン",
+      "コン"
     ],
     "kun": [
-      "と.ぐ"
+      "ちか.い"
     ],
     "meanings": {
-      "en": "polish, study of, sharpen",
-      "fr": "polir, étudier, aiguiser",
-      "es": "estudio, afilar, pulir",
-      "pt": "polir, estudar, afiar"
+      "en": "near, early, akin, tantamount",
+      "fr": "près, tôt, proche, équivalent à",
+      "es": "cerca, cercano",
+      "pt": "perto, cedo, consangüíneo, equivalente"
     }
   },
   {
-    "id": 36275,
-    "character": "足",
+    "id": 36865,
+    "character": "送",
     "jlpt": "N4",
     "on": [
-      "ソク"
+      "ソウ"
     ],
     "kun": [
-      "あし",
-      "た.りる",
-      "た.る",
-      "た.す"
+      "おく.る"
     ],
     "meanings": {
-      "en": "leg, foot, be sufficient, counter for pairs of footwear",
-      "fr": "jambe, pied, suffire, ajouter, compteur de paires de chaussures",
-      "es": "pierna, pie, ser suficiente, pata, bastar",
-      "pt": "perna, pé, ser suficiente"
+      "en": "escort, send",
+      "fr": "escorter, envoyer",
+      "es": "enviar, remitir, expedir",
+      "pt": "acompanhante, enviar"
     }
   },
   {
-    "id": 31350,
-    "character": "究",
+    "id": 36890,
+    "character": "通",
     "jlpt": "N4",
     "on": [
-      "キュウ",
-      "ク"
+      "ツウ",
+      "ツ"
     ],
     "kun": [
-      "きわ.める"
+      "とお.る",
+      "とお.り",
+      "-とお.り",
+      "-どお.り",
+      "とお.す",
+      "とお.し",
+      "-どお.し",
+      "かよ.う"
     ],
     "meanings": {
-      "en": "research, study",
-      "fr": "recherche, étudier",
-      "es": "estudio, investigación, profundización, último, final, dominar, profundizar en el estudio de",
-      "pt": "pesquisa, estudo"
+      "en": "traffic, pass through, avenue, commute, counter for letters, notes, documents, etc.",
+      "fr": "circulation, passer par, avenue, trajet (travail), compteur de lettres, notes, ...",
+      "es": "atravesar, traspasar, hacer saber, pasar, ir y venir",
+      "pt": "tráfego, passar através de, avenida, comutar, sufixo para contagem de letras"
     }
   },
   {
-    "id": 27005,
-    "character": "楽",
+    "id": 36913,
+    "character": "週",
     "jlpt": "N4",
     "on": [
-      "ガク",
-      "ラク",
-      "ゴウ"
-    ],
-    "kun": [
-      "たの.しい",
-      "たの.しむ",
-      "この.む"
-    ],
-    "meanings": {
-      "en": "music, comfort, ease",
-      "fr": "musique, agréable, confort",
-      "es": "música, divertido, fácil, agradable, disfrutar, divertirse",
-      "pt": "música, conforto, facilidade"
-    }
-  },
-  {
-    "id": 36215,
-    "character": "起",
-    "jlpt": "N4",
-    "on": [
-      "キ"
-    ],
-    "kun": [
-      "お.きる",
-      "お.こる",
-      "お.こす",
-      "おこ.す",
-      "た.つ"
-    ],
-    "meanings": {
-      "en": "rouse, wake up, get up",
-      "fr": "se lever, se réveiller, début, se produire, provoquer",
-      "es": "despertar, levantarse, comenzar, comienzo, despertar a alguien",
-      "pt": "despertar, acordar, levantar"
-    }
-  },
-  {
-    "id": 30528,
-    "character": "着",
-    "jlpt": "N4",
-    "on": [
-      "チャク",
-      "ジャク"
-    ],
-    "kun": [
-      "き.る",
-      "き.せる",
-      "つ.く",
-      "つ.ける"
-    ],
-    "meanings": {
-      "en": "don, arrive, wear, counter for suits of clothing",
-      "fr": "enfiler, porter (vêtement), arriver, compteur de vêtements",
-      "es": "usar, llevar puesto, vestir, llegar, alcanzar",
-      "pt": "vestir, chegar, usar, sufixo para contagem de vestuário"
-    }
-  },
-  {
-    "id": 24215,
-    "character": "店",
-    "jlpt": "N4",
-    "on": [
-      "テン"
-    ],
-    "kun": [
-      "みせ",
-      "たな"
-    ],
-    "meanings": {
-      "en": "store, shop",
-      "fr": "magasin, échoppe",
-      "es": "tienda, establecimiento",
-      "pt": "loja, comércio"
-    }
-  },
-  {
-    "id": 30149,
-    "character": "病",
-    "jlpt": "N4",
-    "on": [
-      "ビョウ",
-      "ヘイ"
-    ],
-    "kun": [
-      "や.む",
-      "-や.み",
-      "やまい"
-    ],
-    "meanings": {
-      "en": "ill, sick",
-      "fr": "malade",
-      "es": "enfermedad, caer enfermo",
-      "pt": "mal, doente"
-    }
-  },
-  {
-    "id": 36074,
-    "character": "質",
-    "jlpt": "N4",
-    "on": [
-      "シツ",
-      "シチ",
-      "チ"
-    ],
-    "kun": [
-      "たち",
-      "ただ.す",
-      "もと",
-      "わりふ"
-    ],
-    "meanings": {
-      "en": "substance, quality, matter, temperament",
-      "fr": "substance, matière, qualité, tempérament",
-      "es": "substancia, contenido, simplicidad, calidad, depósito, custodia",
-      "pt": "substância, qualidade, matéria, temperamento"
-    }
-  },
-  {
-    "id": 24453,
-    "character": "待",
-    "jlpt": "N4",
-    "on": [
-      "タイ"
-    ],
-    "kun": [
-      "ま.つ",
-      "-ま.ち"
-    ],
-    "meanings": {
-      "en": "wait, depend on",
-      "fr": "attendre, compter sur",
-      "es": "esperar, aguardar",
-      "pt": "esperar, contar com"
-    }
-  },
-  {
-    "id": 35430,
-    "character": "試",
-    "jlpt": "N4",
-    "on": [
-      "シ"
-    ],
-    "kun": [
-      "こころ.みる",
-      "ため.す"
-    ],
-    "meanings": {
-      "en": "test, try, attempt, experiment, ordeal",
-      "fr": "test, essai, tentative, expérience, épreuve",
-      "es": "prueba, ensayo, experimento, probar, experimentar, intentar",
-      "pt": "teste, tentativa, testar, experimento, prova"
-    }
-  },
-  {
-    "id": 26063,
-    "character": "族",
-    "jlpt": "N4",
-    "on": [
-      "ゾク"
+      "シュウ"
     ],
     "kun": [],
     "meanings": {
-      "en": "tribe, family",
-      "fr": "tribu, famille",
-      "es": "tribu, familia",
-      "pt": "tribo, família"
+      "en": "week",
+      "fr": "semaine",
+      "es": "semana",
+      "pt": "semana"
+    }
+  },
+  {
+    "id": 36939,
+    "character": "運",
+    "jlpt": "N4",
+    "on": [
+      "ウン"
+    ],
+    "kun": [
+      "はこ.ぶ"
+    ],
+    "meanings": {
+      "en": "carry, luck, destiny, fate, lot, transport, progress, advance",
+      "fr": "porter, chance, destin, destinée, sort, progrès",
+      "es": "suerte, destino, transportar",
+      "pt": "carregar, sorte, destino, objetivo, transportar, progresso, avanço"
+    }
+  },
+  {
+    "id": 36947,
+    "character": "道",
+    "jlpt": "N4",
+    "on": [
+      "ドウ",
+      "トウ"
+    ],
+    "kun": [
+      "みち",
+      "いう"
+    ],
+    "meanings": {
+      "en": "road-way, street, district, journey, course, moral, teachings",
+      "fr": "voie, route, rue, région, voyage, morale, enseignements",
+      "es": "camino, razón, modo, decir, senda, método",
+      "pt": "Caminho, estrada, rua, distrito, viagem, curso, moral, ensinamentos, filosofia"
+    }
+  },
+  {
+    "id": 37325,
+    "character": "重",
+    "jlpt": "N4",
+    "on": [
+      "ジュウ",
+      "チョウ"
+    ],
+    "kun": [
+      "え",
+      "おも.い",
+      "おも.り",
+      "おも.なう",
+      "かさ.ねる",
+      "かさ.なる",
+      "おも"
+    ],
+    "meanings": {
+      "en": "heavy, important, esteem, respect, heap up, pile up, nest of boxes, -fold",
+      "fr": "lourd, empiler, entasser, s'emboîter, - couches",
+      "es": "pesado, importante, apilar, amontonar",
+      "pt": "pesado, empilhar, pilha de caixas, -dobrar"
+    }
+  },
+  {
+    "id": 37326,
+    "character": "野",
+    "jlpt": "N4",
+    "on": [
+      "ヤ",
+      "ショ"
+    ],
+    "kun": [
+      "の",
+      "の-"
+    ],
+    "meanings": {
+      "en": "plains, field, rustic, civilian life",
+      "fr": "sauvage, champ, rustique, vie civile",
+      "es": "campo, llano, extensión, rango, natural, civil, no oficial",
+      "pt": "planícies, campo, rústico, vida de civil"
     }
   },
   {
@@ -1982,66 +2849,202 @@
     }
   },
   {
-    "id": 26089,
-    "character": "早",
+    "id": 38283,
+    "character": "開",
     "jlpt": "N4",
     "on": [
-      "ソウ",
-      "サッ"
+      "カイ"
     ],
     "kun": [
-      "はや.い",
-      "はや",
-      "はや-",
-      "はや.まる",
-      "はや.める",
-      "さ-"
+      "ひら.く",
+      "ひら.き",
+      "-びら.き",
+      "ひら.ける",
+      "あ.く",
+      "あ.ける"
     ],
     "meanings": {
-      "en": "early, fast",
-      "fr": "tôt, rapide",
-      "es": "temprano, rápido, pronto, apresurarse, precipitarse, acelerar",
-      "pt": "cedo, rápido"
+      "en": "open, unfold, unseal",
+      "fr": "ouvrir, s'ouvrir, briser le sceau",
+      "es": "abrir, desdoblar, dar comienzo, abrirse, estar abierto",
+      "pt": "abrir, desdobrar, deslacrar"
     }
   },
   {
-    "id": 26144,
-    "character": "映",
+    "id": 38498,
+    "character": "院",
     "jlpt": "N4",
     "on": [
-      "エイ"
+      "イン"
     ],
-    "kun": [
-      "うつ.る",
-      "うつ.す",
-      "は.える",
-      "-ば.え"
-    ],
+    "kun": [],
     "meanings": {
-      "en": "reflect, reflection, projection",
-      "fr": "projection, refléter, réflexion",
-      "es": "reflejo, reflexión, reflejar, reflejarse, proyectarse, proyectar",
-      "pt": "reflitir, reflexão, projeção"
+      "en": "Inst., institution, temple, mansion, school",
+      "fr": "temple, institution, résidence, école, hôpital",
+      "es": "institución, templo, hospital",
+      "pt": "instituição, templo, mansão, escola"
     }
   },
   {
-    "id": 35242,
-    "character": "親",
+    "id": 38598,
+    "character": "集",
     "jlpt": "N4",
     "on": [
-      "シン"
+      "シュウ"
     ],
     "kun": [
-      "おや",
-      "おや-",
-      "した.しい",
-      "した.しむ"
+      "あつ.まる",
+      "あつ.める",
+      "つど.う"
     ],
     "meanings": {
-      "en": "parent, intimacy, relative, familiarity, dealer (cards)",
-      "fr": "parent, parenté, intimité, familiarité, donneur (cartes)",
-      "es": "padre, madre, familiares, íntimo, personalmente, padres, hacerse amigo, intimar",
-      "pt": "pai, intimidade, parente, familiaridade, crupiê"
+      "en": "gather, meet, congregate, swarm, flock",
+      "fr": "rassembler, réunir, collection, grouiller, attroupement",
+      "es": "reunir, coleccionar, reunirse",
+      "pt": "juntar, reunião, congregar, enxame, bando"
+    }
+  },
+  {
+    "id": 38738,
+    "character": "青",
+    "jlpt": "N4",
+    "on": [
+      "セイ",
+      "ショウ"
+    ],
+    "kun": [
+      "あお",
+      "あお-",
+      "あお.い"
+    ],
+    "meanings": {
+      "en": "blue, green",
+      "fr": "bleu, vert",
+      "es": "azul, verde, pálido",
+      "pt": "verde, azul, imaturo, verde-claro"
+    }
+  },
+  {
+    "id": 38899,
+    "character": "音",
+    "jlpt": "N4",
+    "on": [
+      "オン",
+      "イン",
+      "-ノン"
+    ],
+    "kun": [
+      "おと",
+      "ね"
+    ],
+    "meanings": {
+      "en": "sound, noise",
+      "fr": "son, bruit",
+      "es": "sonido, ruido",
+      "pt": "som, barulho"
+    }
+  },
+  {
+    "id": 38988,
+    "character": "題",
+    "jlpt": "N4",
+    "on": [
+      "ダイ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "topic, subject",
+      "fr": "sujet",
+      "es": "objeto, tema, materia",
+      "pt": "tópico, assunto"
+    }
+  },
+  {
+    "id": 39080,
+    "character": "風",
+    "jlpt": "N4",
+    "on": [
+      "フウ",
+      "フ"
+    ],
+    "kun": [
+      "かぜ",
+      "かざ-"
+    ],
+    "meanings": {
+      "en": "wind, air, style, manner",
+      "fr": "vent, air, style, manière",
+      "es": "viento, aire, hábito, estilo, conducta",
+      "pt": "vento, ar, estilo, maneira"
+    }
+  },
+  {
+    "id": 39151,
+    "character": "飯",
+    "jlpt": "N4",
+    "on": [
+      "ハン"
+    ],
+    "kun": [
+      "めし"
+    ],
+    "meanings": {
+      "en": "meal, boiled rice",
+      "fr": "repas, riz bouilli",
+      "es": "comida, arroz cocido",
+      "pt": "refeição, arroz cozido"
+    }
+  },
+  {
+    "id": 39154,
+    "character": "飲",
+    "jlpt": "N4",
+    "on": [
+      "イン",
+      "オン"
+    ],
+    "kun": [
+      "の.む",
+      "-の.み"
+    ],
+    "meanings": {
+      "en": "drink, smoke, take",
+      "fr": "boire, fumer, prendre",
+      "es": "beber",
+      "pt": "beber, fumar, tomar"
+    }
+  },
+  {
+    "id": 39208,
+    "character": "館",
+    "jlpt": "N4",
+    "on": [
+      "カン"
+    ],
+    "kun": [
+      "やかた",
+      "たて"
+    ],
+    "meanings": {
+      "en": "building, mansion, large building, palace",
+      "fr": "bâtiment, grand bâtiment, résidence, palais",
+      "es": "edificio, mansión",
+      "pt": "edifício, mansão, edifício grande, palácio"
+    }
+  },
+  {
+    "id": 39365,
+    "character": "駅",
+    "jlpt": "N4",
+    "on": [
+      "エキ"
+    ],
+    "kun": [],
+    "meanings": {
+      "en": "station",
+      "fr": "gare",
+      "es": "estación",
+      "pt": "estação"
     }
   },
   {
@@ -2066,819 +3069,22 @@
     }
   },
   {
-    "id": 33521,
-    "character": "英",
+    "id": 39770,
+    "character": "魚",
     "jlpt": "N4",
     "on": [
-      "エイ"
+      "ギョ"
     ],
     "kun": [
-      "はなぶさ"
+      "うお",
+      "さかな",
+      "-ざかな"
     ],
     "meanings": {
-      "en": "England, English, hero, outstanding, calyx",
-      "fr": "Angleterre, anglais, fleur éclose, brillant",
-      "es": "Inglaterra, excelente",
-      "pt": "Inglaterra, Inglês"
-    }
-  },
-  {
-    "id": 21307,
-    "character": "医",
-    "jlpt": "N4",
-    "on": [
-      "イ"
-    ],
-    "kun": [
-      "い.やす",
-      "い.する",
-      "くすし"
-    ],
-    "meanings": {
-      "en": "doctor, medicine",
-      "fr": "médecin, docteur",
-      "es": "doctor, médico, medicina, curar",
-      "pt": "doutor, remédio"
-    }
-  },
-  {
-    "id": 20181,
-    "character": "仕",
-    "jlpt": "N4",
-    "on": [
-      "シ",
-      "ジ"
-    ],
-    "kun": [
-      "つか.える"
-    ],
-    "meanings": {
-      "en": "attend, doing, official, serve",
-      "fr": "servir, faire, officiel",
-      "es": "trabajo, servir, asistir",
-      "pt": "atender, ação, oficial, servir"
-    }
-  },
-  {
-    "id": 21435,
-    "character": "去",
-    "jlpt": "N4",
-    "on": [
-      "キョ",
-      "コ"
-    ],
-    "kun": [
-      "さ.る",
-      "-さ.る"
-    ],
-    "meanings": {
-      "en": "gone, past, quit, leave, elapse, eliminate, divorce",
-      "fr": "parti, passé, quitter, s'écouler, éliminer, divorce",
-      "es": "pasado, ido, dejar, abandonar, partir",
-      "pt": "foi, passado, deixar, passar, eliminar, divórcio"
-    }
-  },
-  {
-    "id": 21619,
-    "character": "味",
-    "jlpt": "N4",
-    "on": [
-      "ミ"
-    ],
-    "kun": [
-      "あじ",
-      "あじ.わう"
-    ],
-    "meanings": {
-      "en": "flavor, taste",
-      "fr": "goût, saveur",
-      "es": "sabor, gusto, experiencia",
-      "pt": "sabor, gosto"
-    }
-  },
-  {
-    "id": 20889,
-    "character": "写",
-    "jlpt": "N4",
-    "on": [
-      "シャ",
-      "ジャ"
-    ],
-    "kun": [
-      "うつ.す",
-      "うつ.る",
-      "うつ-",
-      "うつ.し"
-    ],
-    "meanings": {
-      "en": "copy, be photographed, describe",
-      "fr": "copie, être photographié, décrire",
-      "es": "copiar, imitar, fotografiar",
-      "pt": "cópia, foto, descrever"
-    }
-  },
-  {
-    "id": 23383,
-    "character": "字",
-    "jlpt": "N4",
-    "on": [
-      "ジ"
-    ],
-    "kun": [
-      "あざ",
-      "あざな",
-      "-な"
-    ],
-    "meanings": {
-      "en": "character, letter, word, section of village",
-      "fr": "caractère, lettre, mot, hameau",
-      "es": "carácter, letra, palabra",
-      "pt": "caracter, letra, palavra, seção de aldeia"
-    }
-  },
-  {
-    "id": 31572,
-    "character": "答",
-    "jlpt": "N4",
-    "on": [
-      "トウ"
-    ],
-    "kun": [
-      "こた.える",
-      "こた.え"
-    ],
-    "meanings": {
-      "en": "solution, answer",
-      "fr": "solution, réponse",
-      "es": "solución, respuesta, contestar, responder",
-      "pt": "solução, resposta"
-    }
-  },
-  {
-    "id": 22812,
-    "character": "夜",
-    "jlpt": "N4",
-    "on": [
-      "ヤ"
-    ],
-    "kun": [
-      "よ",
-      "よる"
-    ],
-    "meanings": {
-      "en": "night, evening",
-      "fr": "nuit, soirée",
-      "es": "noche, tarde",
-      "pt": "noite, à noite"
-    }
-  },
-  {
-    "id": 38899,
-    "character": "音",
-    "jlpt": "N4",
-    "on": [
-      "オン",
-      "イン",
-      "-ノン"
-    ],
-    "kun": [
-      "おと",
-      "ね"
-    ],
-    "meanings": {
-      "en": "sound, noise",
-      "fr": "son, bruit",
-      "es": "sonido, ruido",
-      "pt": "som, barulho"
-    }
-  },
-  {
-    "id": 27880,
-    "character": "注",
-    "jlpt": "N4",
-    "on": [
-      "チュウ"
-    ],
-    "kun": [
-      "そそ.ぐ",
-      "さ.す",
-      "つ.ぐ"
-    ],
-    "meanings": {
-      "en": "pour, irrigate, shed (tears), flow into, concentrate on, notes, comment, annotate",
-      "fr": "verser, se jeter dans, arroser, servir (boisson), note, remarque, annotation, commentaire",
-      "es": "derramar, verter, regar, concentrarse",
-      "pt": "derramar, irrigar, verter (lágrimas), desaguar, colocar em(copos), notas, comentário, anotar"
-    }
-  },
-  {
-    "id": 24112,
-    "character": "帰",
-    "jlpt": "N4",
-    "on": [
-      "キ"
-    ],
-    "kun": [
-      "かえ.る",
-      "かえ.す",
-      "おく.る",
-      "とつ.ぐ"
-    ],
-    "meanings": {
-      "en": "homecoming, arrive at, lead to, result in",
-      "fr": "retour à la maison, arriver à, mener à, aboutir à, renvoyer",
-      "es": "regreso, vuelta, retorno, regresar, volver",
-      "pt": "Retôrno a casa, chegar em, conduzir-se, resultar"
-    }
-  },
-  {
-    "id": 21476,
-    "character": "古",
-    "jlpt": "N4",
-    "on": [
-      "コ"
-    ],
-    "kun": [
-      "ふる.い",
-      "ふる-",
-      "-ふる.す"
-    ],
-    "meanings": {
-      "en": "old",
-      "fr": "vieux",
-      "es": "viejo, antiguo, desgastar",
-      "pt": "velho"
-    }
-  },
-  {
-    "id": 27468,
-    "character": "歌",
-    "jlpt": "N4",
-    "on": [
-      "カ"
-    ],
-    "kun": [
-      "うた",
-      "うた.う"
-    ],
-    "meanings": {
-      "en": "song, sing",
-      "fr": "chanson, chanter",
-      "es": "canción, cantar",
-      "pt": "canção, cantar"
-    }
-  },
-  {
-    "id": 36023,
-    "character": "買",
-    "jlpt": "N4",
-    "on": [
-      "バイ"
-    ],
-    "kun": [
-      "か.う"
-    ],
-    "meanings": {
-      "en": "buy",
-      "fr": "acheter",
-      "es": "comprar",
-      "pt": "comprar"
-    }
-  },
-  {
-    "id": 24746,
-    "character": "悪",
-    "jlpt": "N4",
-    "on": [
-      "アク",
-      "オ"
-    ],
-    "kun": [
-      "わる.い",
-      "わる-",
-      "あ.し",
-      "にく.い",
-      "-にく.い",
-      "ああ",
-      "いずくに",
-      "いずくんぞ",
-      "にく.む"
-    ],
-    "meanings": {
-      "en": "bad, vice, rascal, false, evil, wrong",
-      "fr": "mauvais, vice, vaurien, faux, mal",
-      "es": "malo, incorrecto, equivocado, odio, mal",
-      "pt": "mal, ruim, falso, mau, errado"
-    }
-  },
-  {
-    "id": 22259,
-    "character": "図",
-    "jlpt": "N4",
-    "on": [
-      "ズ",
-      "ト"
-    ],
-    "kun": [
-      "え",
-      "はか.る"
-    ],
-    "meanings": {
-      "en": "map, drawing, plan, extraordinary, audacious",
-      "fr": "carte, dessin, plan, inattendu, accidentellement",
-      "es": "dibujo, ilustración, consulta, estrategia, planear, diseñar",
-      "pt": "mapa, desenho, plano, inesperado, acidentalmente"
-    }
-  },
-  {
-    "id": 36913,
-    "character": "週",
-    "jlpt": "N4",
-    "on": [
-      "シュウ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "week",
-      "fr": "semaine",
-      "es": "semana",
-      "pt": "semana"
-    }
-  },
-  {
-    "id": 23460,
-    "character": "室",
-    "jlpt": "N4",
-    "on": [
-      "シツ"
-    ],
-    "kun": [
-      "むろ"
-    ],
-    "meanings": {
-      "en": "room, apartment, chamber, greenhouse, cellar",
-      "fr": "pièce, appartement, chambre, serre, cave",
-      "es": "habitación, cuarto, caverna, guarida, gruta",
-      "pt": "quarto, apartamento, câmara, estufa, porão"
-    }
-  },
-  {
-    "id": 27497,
-    "character": "歩",
-    "jlpt": "N4",
-    "on": [
-      "ホ",
-      "ブ",
-      "フ"
-    ],
-    "kun": [
-      "ある.く",
-      "あゆ.む"
-    ],
-    "meanings": {
-      "en": "walk, counter for steps",
-      "fr": "marcher, compteur de pas",
-      "es": "camino, caminar, razón, proporción, ir a pie",
-      "pt": "passeio"
-    }
-  },
-  {
-    "id": 39080,
-    "character": "風",
-    "jlpt": "N4",
-    "on": [
-      "フウ",
-      "フ"
-    ],
-    "kun": [
-      "かぜ",
-      "かざ-"
-    ],
-    "meanings": {
-      "en": "wind, air, style, manner",
-      "fr": "vent, air, style, manière",
-      "es": "viento, aire, hábito, estilo, conducta",
-      "pt": "vento, ar, estilo, maneira"
-    }
-  },
-  {
-    "id": 32025,
-    "character": "紙",
-    "jlpt": "N4",
-    "on": [
-      "シ"
-    ],
-    "kun": [
-      "かみ"
-    ],
-    "meanings": {
-      "en": "paper",
-      "fr": "papier",
-      "es": "papel, periódico",
-      "pt": "Papel"
-    }
-  },
-  {
-    "id": 40658,
-    "character": "黒",
-    "jlpt": "N4",
-    "on": [
-      "コク"
-    ],
-    "kun": [
-      "くろ",
-      "くろ.ずむ",
-      "くろ.い"
-    ],
-    "meanings": {
-      "en": "black",
-      "fr": "noir",
-      "es": "negro, maldad",
-      "pt": "preto"
-    }
-  },
-  {
-    "id": 33457,
-    "character": "花",
-    "jlpt": "N4",
-    "on": [
-      "カ",
-      "ケ"
-    ],
-    "kun": [
-      "はな"
-    ],
-    "meanings": {
-      "en": "flower",
-      "fr": "fleur",
-      "es": "flor",
-      "pt": "flor"
-    }
-  },
-  {
-    "id": 26149,
-    "character": "春",
-    "jlpt": "N4",
-    "on": [
-      "シュン"
-    ],
-    "kun": [
-      "はる"
-    ],
-    "meanings": {
-      "en": "springtime, spring (season)",
-      "fr": "printemps",
-      "es": "primavera, comienzo del año, tiempos de juventud",
-      "pt": "primaveril, primavera (estação)"
-    }
-  },
-  {
-    "id": 36196,
-    "character": "赤",
-    "jlpt": "N4",
-    "on": [
-      "セキ",
-      "シャク"
-    ],
-    "kun": [
-      "あか",
-      "あか-",
-      "あか.い",
-      "あか.らむ",
-      "あか.らめる"
-    ],
-    "meanings": {
-      "en": "red",
-      "fr": "rouge",
-      "es": "rojo, enrojecer, enrojecerse, sonrojarse",
-      "pt": "vermelho"
-    }
-  },
-  {
-    "id": 38738,
-    "character": "青",
-    "jlpt": "N4",
-    "on": [
-      "セイ",
-      "ショウ"
-    ],
-    "kun": [
-      "あお",
-      "あお-",
-      "あお.い"
-    ],
-    "meanings": {
-      "en": "blue, green",
-      "fr": "bleu, vert",
-      "es": "azul, verde, pálido",
-      "pt": "verde, azul, imaturo, verde-claro"
-    }
-  },
-  {
-    "id": 39208,
-    "character": "館",
-    "jlpt": "N4",
-    "on": [
-      "カン"
-    ],
-    "kun": [
-      "やかた",
-      "たて"
-    ],
-    "meanings": {
-      "en": "building, mansion, large building, palace",
-      "fr": "bâtiment, grand bâtiment, résidence, palais",
-      "es": "edificio, mansión",
-      "pt": "edifício, mansão, edifício grande, palácio"
-    }
-  },
-  {
-    "id": 23627,
-    "character": "屋",
-    "jlpt": "N4",
-    "on": [
-      "オク"
-    ],
-    "kun": [
-      "や"
-    ],
-    "meanings": {
-      "en": "roof, house, shop, dealer, seller",
-      "fr": "toit, maison, échoppe, négociant, vendeur",
-      "es": "casa, tejado, tienda",
-      "pt": "teto, casa, loja, negociante, vendedor"
-    }
-  },
-  {
-    "id": 33394,
-    "character": "色",
-    "jlpt": "N4",
-    "on": [
-      "ショク",
-      "シキ"
-    ],
-    "kun": [
-      "いろ"
-    ],
-    "meanings": {
-      "en": "color",
-      "fr": "couleur",
-      "es": "color, aspecto",
-      "pt": "cor"
-    }
-  },
-  {
-    "id": 36208,
-    "character": "走",
-    "jlpt": "N4",
-    "on": [
-      "ソウ"
-    ],
-    "kun": [
-      "はし.る"
-    ],
-    "meanings": {
-      "en": "run",
-      "fr": "courir",
-      "es": "correr, escapar, huir",
-      "pt": "Correr, corrida"
-    }
-  },
-  {
-    "id": 31179,
-    "character": "秋",
-    "jlpt": "N4",
-    "on": [
-      "シュウ"
-    ],
-    "kun": [
-      "あき",
-      "とき"
-    ],
-    "meanings": {
-      "en": "autumn",
-      "fr": "automne",
-      "es": "otoño",
-      "pt": "outono"
-    }
-  },
-  {
-    "id": 22799,
-    "character": "夏",
-    "jlpt": "N4",
-    "on": [
-      "カ",
-      "ガ",
-      "ゲ"
-    ],
-    "kun": [
-      "なつ"
-    ],
-    "meanings": {
-      "en": "summer",
-      "fr": "été",
-      "es": "verano",
-      "pt": "verão"
-    }
-  },
-  {
-    "id": 32722,
-    "character": "習",
-    "jlpt": "N4",
-    "on": [
-      "シュウ",
-      "ジュ"
-    ],
-    "kun": [
-      "なら.う",
-      "なら.い"
-    ],
-    "meanings": {
-      "en": "learn",
-      "fr": "apprendre",
-      "es": "aprender, estudiar",
-      "pt": "aprender"
-    }
-  },
-  {
-    "id": 39365,
-    "character": "駅",
-    "jlpt": "N4",
-    "on": [
-      "エキ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "station",
-      "fr": "gare",
-      "es": "estación",
-      "pt": "estação"
-    }
-  },
-  {
-    "id": 27915,
-    "character": "洋",
-    "jlpt": "N4",
-    "on": [
-      "ヨウ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "ocean, sea, foreign, Western style",
-      "fr": "océan, style occidental",
-      "es": "océano, de estilo occidental, cada una de las dos mitades del mundo",
-      "pt": "oceano, estilo ocidental"
-    }
-  },
-  {
-    "id": 26053,
-    "character": "旅",
-    "jlpt": "N4",
-    "on": [
-      "リョ"
-    ],
-    "kun": [
-      "たび"
-    ],
-    "meanings": {
-      "en": "trip, travel",
-      "fr": "voyage",
-      "es": "viaje, trayecto, excursión",
-      "pt": "viagem, jornada"
-    }
-  },
-  {
-    "id": 26381,
-    "character": "服",
-    "jlpt": "N4",
-    "on": [
-      "フク"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "clothing, admit, obey, discharge",
-      "fr": "habillement, admettre, obéir, libérer (renvoi), avaler (médicament)",
-      "es": "ropa, admitir, obedecer",
-      "pt": "vestuário, permitir, obedecer, descarregar"
-    }
-  },
-  {
-    "id": 22805,
-    "character": "夕",
-    "jlpt": "N4",
-    "on": [
-      "セキ"
-    ],
-    "kun": [
-      "ゆう"
-    ],
-    "meanings": {
-      "en": "evening",
-      "fr": "soirée",
-      "es": "tarde, noche",
-      "pt": "Noite"
-    }
-  },
-  {
-    "id": 20511,
-    "character": "借",
-    "jlpt": "N4",
-    "on": [
-      "シャク"
-    ],
-    "kun": [
-      "か.りる"
-    ],
-    "meanings": {
-      "en": "borrow, rent",
-      "fr": "emprunter, louer",
-      "es": "deuda, pedir prestado, alquilar",
-      "pt": "pedir emprestado, aluguel"
-    }
-  },
-  {
-    "id": 26332,
-    "character": "曜",
-    "jlpt": "N4",
-    "on": [
-      "ヨウ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "weekday",
-      "fr": "jour de la semaine",
-      "es": "día de la semana, brillar, resplandecer",
-      "pt": "dia útil"
-    }
-  },
-  {
-    "id": 39154,
-    "character": "飲",
-    "jlpt": "N4",
-    "on": [
-      "イン",
-      "オン"
-    ],
-    "kun": [
-      "の.む",
-      "-の.み"
-    ],
-    "meanings": {
-      "en": "drink, smoke, take",
-      "fr": "boire, fumer, prendre",
-      "es": "beber",
-      "pt": "beber, fumar, tomar"
-    }
-  },
-  {
-    "id": 32905,
-    "character": "肉",
-    "jlpt": "N4",
-    "on": [
-      "ニク"
-    ],
-    "kun": [
-      "しし"
-    ],
-    "meanings": {
-      "en": "meat",
-      "fr": "chair, viande",
-      "es": "carne",
-      "pt": "carne"
-    }
-  },
-  {
-    "id": 36024,
-    "character": "貸",
-    "jlpt": "N4",
-    "on": [
-      "タイ"
-    ],
-    "kun": [
-      "か.す",
-      "か.し-",
-      "かし-"
-    ],
-    "meanings": {
-      "en": "lend",
-      "fr": "prêter, louer",
-      "es": "préstamo, prestar, alquilar",
-      "pt": "Emprestar"
-    }
-  },
-  {
-    "id": 22530,
-    "character": "堂",
-    "jlpt": "N4",
-    "on": [
-      "ドウ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "public chamber, hall",
-      "fr": "édifice public, temple, salle, hall, grandiose (bâtiment)",
-      "es": "templo, salón, vestíbulo",
-      "pt": "câmara pública, corredor"
+      "en": "fish",
+      "fr": "poisson",
+      "es": "pez, pescado",
+      "pt": "peixe"
     }
   },
   {
@@ -2899,228 +3105,22 @@
     }
   },
   {
-    "id": 39151,
-    "character": "飯",
+    "id": 40658,
+    "character": "黒",
     "jlpt": "N4",
     "on": [
-      "ハン"
+      "コク"
     ],
     "kun": [
-      "めし"
+      "くろ",
+      "くろ.ずむ",
+      "くろ.い"
     ],
     "meanings": {
-      "en": "meal, boiled rice",
-      "fr": "repas, riz bouilli",
-      "es": "comida, arroz cocido",
-      "pt": "refeição, arroz cozido"
-    }
-  },
-  {
-    "id": 21193,
-    "character": "勉",
-    "jlpt": "N4",
-    "on": [
-      "ベン"
-    ],
-    "kun": [
-      "つと.める"
-    ],
-    "meanings": {
-      "en": "exertion, endeavour, encourage, strive, make effort, diligent",
-      "fr": "exercice",
-      "es": "esforzarse, ejercitarse",
-      "pt": "esforço"
-    }
-  },
-  {
-    "id": 20908,
-    "character": "冬",
-    "jlpt": "N4",
-    "on": [
-      "トウ"
-    ],
-    "kun": [
-      "ふゆ"
-    ],
-    "meanings": {
-      "en": "winter",
-      "fr": "hiver",
-      "es": "invierno",
-      "pt": "Inverno"
-    }
-  },
-  {
-    "id": 26172,
-    "character": "昼",
-    "jlpt": "N4",
-    "on": [
-      "チュウ"
-    ],
-    "kun": [
-      "ひる"
-    ],
-    "meanings": {
-      "en": "daytime, noon",
-      "fr": "journée, midi",
-      "es": "día, mediodía",
-      "pt": "dia, meio-dia"
-    }
-  },
-  {
-    "id": 33590,
-    "character": "茶",
-    "jlpt": "N4",
-    "on": [
-      "チャ",
-      "サ"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "tea",
-      "fr": "thé",
-      "es": "hoja de té, té",
-      "pt": "chá"
-    }
-  },
-  {
-    "id": 24351,
-    "character": "弟",
-    "jlpt": "N4",
-    "on": [
-      "テイ",
-      "ダイ",
-      "デ"
-    ],
-    "kun": [
-      "おとうと"
-    ],
-    "meanings": {
-      "en": "younger brother, faithful service to elders",
-      "fr": "frère cadet, apprenti, disciple, service déférent aux ainés",
-      "es": "hermano menor",
-      "pt": "irmão mais jovem"
-    }
-  },
-  {
-    "id": 29275,
-    "character": "牛",
-    "jlpt": "N4",
-    "on": [
-      "ギュウ"
-    ],
-    "kun": [
-      "うし"
-    ],
-    "meanings": {
-      "en": "cow",
-      "fr": "vache",
-      "es": "vaca, ganado",
-      "pt": "Vaca"
-    }
-  },
-  {
-    "id": 39770,
-    "character": "魚",
-    "jlpt": "N4",
-    "on": [
-      "ギョ"
-    ],
-    "kun": [
-      "うお",
-      "さかな",
-      "-ざかな"
-    ],
-    "meanings": {
-      "en": "fish",
-      "fr": "poisson",
-      "es": "pez, pescado",
-      "pt": "peixe"
-    }
-  },
-  {
-    "id": 20804,
-    "character": "兄",
-    "jlpt": "N4",
-    "on": [
-      "ケイ",
-      "キョウ"
-    ],
-    "kun": [
-      "あに"
-    ],
-    "meanings": {
-      "en": "elder brother, big brother",
-      "fr": "frère aîné, grand frère",
-      "es": "hermano mayor",
-      "pt": "irmão mais velho, irmão maior"
-    }
-  },
-  {
-    "id": 29356,
-    "character": "犬",
-    "jlpt": "N4",
-    "on": [
-      "ケン"
-    ],
-    "kun": [
-      "いぬ",
-      "いぬ-"
-    ],
-    "meanings": {
-      "en": "dog",
-      "fr": "chien",
-      "es": "perro",
-      "pt": "Cão"
-    }
-  },
-  {
-    "id": 22969,
-    "character": "妹",
-    "jlpt": "N4",
-    "on": [
-      "マイ"
-    ],
-    "kun": [
-      "いもうと"
-    ],
-    "meanings": {
-      "en": "younger sister",
-      "fr": "soeur cadette",
-      "es": "hermana menor",
-      "pt": "irmã mais jovem"
-    }
-  },
-  {
-    "id": 22985,
-    "character": "姉",
-    "jlpt": "N4",
-    "on": [
-      "シ"
-    ],
-    "kun": [
-      "あね",
-      "はは"
-    ],
-    "meanings": {
-      "en": "elder sister",
-      "fr": "soeur aînée",
-      "es": "hermana mayor",
-      "pt": "irmã mais velha"
-    }
-  },
-  {
-    "id": 28450,
-    "character": "漢",
-    "jlpt": "N4",
-    "on": [
-      "カン"
-    ],
-    "kun": [],
-    "meanings": {
-      "en": "Sino-, China",
-      "fr": "sino-, Chine",
-      "es": "antigua región de China, China, hombre",
-      "pt": "Sino-, China"
+      "en": "black",
+      "fr": "noir",
+      "es": "negro, maldad",
+      "pt": "preto"
     }
   }
 ]

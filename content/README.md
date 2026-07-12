@@ -21,15 +21,16 @@ manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
 ```
 content/
   characters/   kanji_n1-n5.json, kana.json
+                kanji_svg/  SVG stroke order files (KanjiVG), committed
   vocabulary/   vocab_n1-n5.json
   grammar/      levels.json + recursive lesson tree (index.json + lesson files)
 
 data/  (gitignored — raw downloads, re-fetchable)
-  kanji_svg/       SVG source files (KanjiVG), downloaded by tools/download_kanjivg.py
   tatoeba/         Sentence corpus, downloaded by tools/build_content_db.py on first run
   bluskyo_vocab.json  JLPT vocabulary list (Bluskyo)
   jmdict.json         JMdict-simplified (meanings in all languages)
   kanjidic2.xml       KANJIDIC2 (readings, meanings, JLPT levels)
+  kanji_data.json     davidluzgouveia/kanji-data (JLPT level assignment)
 ```
 
 ---
@@ -86,7 +87,7 @@ This requires `data/jmdict.json` and `data/kanjidic2.xml` — they are downloade
 
 ## Refresh kanji SVGs
 
-Downloads missing SVGs from KanjiVG into `data/kanji_svg/`. Already-present files are skipped. `tools/generate.py` calls this automatically before building the DB.
+Downloads missing SVGs from KanjiVG into `content/characters/kanji_svg/`. Already-present files are skipped. `tools/generate.py` calls this automatically before building the DB.
 
 ```bash
 python3 tools/download_kanjivg.py
