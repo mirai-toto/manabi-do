@@ -2,20 +2,28 @@
   "type": "lessons",
   "items": [
     {
-      "title": "SOV Word Order",
-      "path": "basics/sentence-structure/sov-word-order.json"
+      "title": {
+        "en": "SOV Word Order"
+      },
+      "path": "basics/sentence-structure/sov-word-order"
     },
     {
-      "title": "Topic は vs Subject が",
-      "path": "basics/sentence-structure/topic-vs-subject.json"
+      "title": {
+        "en": "Topic は vs Subject が"
+      },
+      "path": "basics/sentence-structure/topic-vs-subject"
     },
     {
-      "title": "Modifier Placement",
-      "path": "basics/sentence-structure/modifier-placement.json"
+      "title": {
+        "en": "Modifier Placement"
+      },
+      "path": "basics/sentence-structure/modifier-placement"
     },
     {
-      "title": "Subject Dropping",
-      "path": "basics/sentence-structure/subject-dropping.json"
+      "title": {
+        "en": "Subject Dropping"
+      },
+      "path": "basics/sentence-structure/subject-dropping"
     }
   ]
 }

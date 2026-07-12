@@ -315,12 +315,31 @@ def insert_kana(db: sqlite3.Connection) -> int:
     return len(rows)
 
 
-def _walk_grammar_index(index_path: str) -> list[tuple[str, str, str, str, int]]:
+def _locale_str(value: str | dict, locale: str) -> str:
+    """Resolve a plain string or locale-map {"en": ..., "fr": ...} to a string."""
+    if isinstance(value, dict):
+        return value.get(locale, value["en"])
+    return value
+
+
+def _open_lesson(path: str, locale: str):
+    """Open a locale-specific lesson file, falling back to English."""
+    locale_file = os.path.join(GRAMMAR_ROOT, f"{path}.{locale}.json")
+    if os.path.exists(locale_file):
+        return open(locale_file, encoding="utf-8")
+    return open(os.path.join(GRAMMAR_ROOT, f"{path}.en.json"), encoding="utf-8")
+
+
+def _walk_grammar_index(
+    index_path: str, locale: str = "en"
+) -> list[tuple[str, str, str, str, int]]:
     """Recursively walk grammar index files.
 
     Returns (chapter_title, lesson_path, lesson_title, blocks_json, order_index)
     for every lesson reachable from index_path.
     index_path is relative to GRAMMAR_ROOT.
+    Lesson paths in index items are locale-agnostic (no extension); this
+    function resolves them to {path}.{locale}.json with .en.json fallback.
     """
     results: list[tuple[str, str, str, str, int]] = []
 
@@ -329,10 +348,10 @@ def _walk_grammar_index(index_path: str) -> list[tuple[str, str, str, str, int]]
             node = json.load(f)
         if node["type"] == "chapters":
             for item in node["items"]:
-                _walk(item["path"], item["title"])
+                _walk(item["path"], _locale_str(item["title"], locale))
         else:
             for i, item in enumerate(node["items"]):
-                with open(os.path.join(GRAMMAR_ROOT, item["path"]), encoding="utf-8") as f:
+                with _open_lesson(item["path"], locale) as f:
                     lesson = json.load(f)
                 blocks_json = json.dumps(lesson["blocks"], ensure_ascii=False)
                 results.append((chapter, item["path"], lesson["title"], blocks_json, i))
@@ -341,13 +360,15 @@ def _walk_grammar_index(index_path: str) -> list[tuple[str, str, str, str, int]]
     return results
 
 
-def insert_grammar(db: sqlite3.Connection) -> int:
+def insert_grammar(db: sqlite3.Connection, locale: str = "en") -> int:
     with open(os.path.join(GRAMMAR_ROOT, "levels.json"), encoding="utf-8") as f:
         levels = json.load(f)
 
     total = 0
     for level in levels:
-        for chapter, path, title, blocks_json, order_index in _walk_grammar_index(level["path"]):
+        for chapter, path, title, blocks_json, order_index in _walk_grammar_index(
+            level["path"], locale
+        ):
             db.execute(
                 "INSERT INTO grammar_lessons (level, path, chapter, title, blocks_json, order_index)"
                 " VALUES (?, ?, ?, ?, ?, ?)",

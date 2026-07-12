@@ -2,16 +2,22 @@
   "type": "lessons",
   "items": [
     {
-      "title": "Duration : 間",
-      "path": "N5/duration-frequency/duration-aida.json"
+      "title": {
+        "en": "Duration : 間"
+      },
+      "path": "N5/duration-frequency/duration-aida"
     },
     {
-      "title": "Frequency : 回",
-      "path": "N5/duration-frequency/frequency-kai.json"
+      "title": {
+        "en": "Frequency : 回"
+      },
+      "path": "N5/duration-frequency/frequency-kai"
     },
     {
-      "title": "かかる : Time and Cost",
-      "path": "N5/duration-frequency/kakaru.json"
+      "title": {
+        "en": "かかる : Time and Cost"
+      },
+      "path": "N5/duration-frequency/kakaru"
     }
   ]
 }

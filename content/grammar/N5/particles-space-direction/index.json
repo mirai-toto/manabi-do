@@ -2,16 +2,22 @@
   "type": "lessons",
   "items": [
     {
-      "title": "へ and に : Direction",
-      "path": "N5/particles-space-direction/direction-he-ni.json"
+      "title": {
+        "en": "へ and に : Direction"
+      },
+      "path": "N5/particles-space-direction/direction-he-ni"
     },
     {
-      "title": "で : Location of an Action",
-      "path": "N5/particles-space-direction/de-location.json"
+      "title": {
+        "en": "で : Location of an Action"
+      },
+      "path": "N5/particles-space-direction/de-location"
     },
     {
-      "title": "いる and ある : Existence",
-      "path": "N5/particles-space-direction/iru-aru.json"
+      "title": {
+        "en": "いる and ある : Existence"
+      },
+      "path": "N5/particles-space-direction/iru-aru"
     }
   ]
 }

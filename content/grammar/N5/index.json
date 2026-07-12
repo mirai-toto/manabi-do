@@ -2,51 +2,75 @@
   "type": "chapters",
   "items": [
     {
-      "title": "Verbs",
+      "title": {
+        "en": "Verbs"
+      },
       "path": "N5/verbs/index.json"
     },
     {
-      "title": "Particles : Space & Direction",
+      "title": {
+        "en": "Particles : Space & Direction"
+      },
       "path": "N5/particles-space-direction/index.json"
     },
     {
-      "title": "Counting",
+      "title": {
+        "en": "Counting"
+      },
       "path": "N5/counting/index.json"
     },
     {
-      "title": "Time",
+      "title": {
+        "en": "Time"
+      },
       "path": "N5/time/index.json"
     },
     {
-      "title": "Adjectives",
+      "title": {
+        "en": "Adjectives"
+      },
       "path": "N5/adjectives/index.json"
     },
     {
-      "title": "Reasons & Questions",
+      "title": {
+        "en": "Reasons & Questions"
+      },
       "path": "N5/reasons-questions/index.json"
     },
     {
-      "title": "Duration & Frequency",
+      "title": {
+        "en": "Duration & Frequency"
+      },
       "path": "N5/duration-frequency/index.json"
     },
     {
-      "title": "Desire & Probability",
+      "title": {
+        "en": "Desire & Probability"
+      },
       "path": "N5/desire-probability/index.json"
     },
     {
-      "title": "て-form",
+      "title": {
+        "en": "て-form"
+      },
       "path": "N5/te-form/index.json"
     },
     {
-      "title": "Temporality",
+      "title": {
+        "en": "Temporality"
+      },
       "path": "N5/temporality/index.json"
     },
     {
-      "title": "Comparison",
+      "title": {
+        "en": "Comparison"
+      },
       "path": "N5/comparison/index.json"
     },
     {
-      "title": "Obligation & Opinion",
+      "title": {
+        "en": "Obligation & Opinion"
+      },
       "path": "N5/obligation-opinion/index.json"
     }
   ]

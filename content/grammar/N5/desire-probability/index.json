@@ -2,16 +2,22 @@
   "type": "lessons",
   "items": [
     {
-      "title": "Want to Do : たい",
-      "path": "N5/desire-probability/tai-want-to-do.json"
+      "title": {
+        "en": "Want to Do : たい"
+      },
+      "path": "N5/desire-probability/tai-want-to-do"
     },
     {
-      "title": "Want Something : ほしい",
-      "path": "N5/desire-probability/hoshii-want-something.json"
+      "title": {
+        "en": "Want Something : ほしい"
+      },
+      "path": "N5/desire-probability/hoshii-want-something"
     },
     {
-      "title": "Probability : でしょう / かもしれない",
-      "path": "N5/desire-probability/deshou-kamoshirenai.json"
+      "title": {
+        "en": "Probability : でしょう / かもしれない"
+      },
+      "path": "N5/desire-probability/deshou-kamoshirenai"
     }
   ]
 }

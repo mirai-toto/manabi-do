@@ -2,16 +2,22 @@
   "type": "lessons",
   "items": [
     {
-      "title": "Basic Numbers",
-      "path": "N5/counting/basic-numbers.json"
+      "title": {
+        "en": "Basic Numbers"
+      },
+      "path": "N5/counting/basic-numbers"
     },
     {
-      "title": "Counters",
-      "path": "N5/counting/counters.json"
+      "title": {
+        "en": "Counters"
+      },
+      "path": "N5/counting/counters"
     },
     {
-      "title": "Asking How Many : いくつ / 何～",
-      "path": "N5/counting/how-many.json"
+      "title": {
+        "en": "Asking How Many : いくつ / 何～"
+      },
+      "path": "N5/counting/how-many"
     }
   ]
 }

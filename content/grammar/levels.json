@@ -1,7 +1,9 @@
 [
   {
     "id": "basics",
-    "name": "Japanese Basics",
+    "name": {
+      "en": "Japanese Basics"
+    },
     "color": "#795548",
     "difficulty": {
       "value": 1,
@@ -11,7 +13,9 @@
   },
   {
     "id": "N5",
-    "name": "N5",
+    "name": {
+      "en": "N5"
+    },
     "color": "#4CAF50",
     "difficulty": {
       "value": 3,

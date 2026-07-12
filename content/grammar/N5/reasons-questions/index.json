@@ -2,12 +2,16 @@
   "type": "lessons",
   "items": [
     {
-      "title": "から vs ので : Because",
-      "path": "N5/reasons-questions/kara-node.json"
+      "title": {
+        "en": "から vs ので : Because"
+      },
+      "path": "N5/reasons-questions/kara-node"
     },
     {
-      "title": "Question Words",
-      "path": "N5/reasons-questions/question-words.json"
+      "title": {
+        "en": "Question Words"
+      },
+      "path": "N5/reasons-questions/question-words"
     }
   ]
 }

@@ -2,20 +2,28 @@
   "type": "lessons",
   "items": [
     {
-      "title": "Forming the て-form",
-      "path": "N5/te-form/forming-te-form.json"
+      "title": {
+        "en": "Forming the て-form"
+      },
+      "path": "N5/te-form/forming-te-form"
     },
     {
-      "title": "てください : Please Do",
-      "path": "N5/te-form/te-kudasai.json"
+      "title": {
+        "en": "てください : Please Do"
+      },
+      "path": "N5/te-form/te-kudasai"
     },
     {
-      "title": "Permission & Prohibition",
-      "path": "N5/te-form/permission-prohibition.json"
+      "title": {
+        "en": "Permission & Prohibition"
+      },
+      "path": "N5/te-form/permission-prohibition"
     },
     {
-      "title": "Giving & Receiving Actions",
-      "path": "N5/te-form/giving-receiving.json"
+      "title": {
+        "en": "Giving & Receiving Actions"
+      },
+      "path": "N5/te-form/giving-receiving"
     }
   ]
 }
