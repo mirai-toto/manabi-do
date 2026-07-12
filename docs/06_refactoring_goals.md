@@ -41,12 +41,12 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 
 ---
 
-## 3. Internationalization (i18n)
+## 3. Internationalization (i18n) ✅
 
 **Rule:** Every user-visible UI string must go through the l10n system (`context.l10n.*`). Grammar lesson content is exempt.
 
-- [ ] Audit widget/screen files for hardcoded UI strings not yet in `.arb` files
-- [ ] Grammar content localization: JSON lesson files are English-only by design for v1; plan a future path (per-locale JSON files or a translation layer over the block renderer)
+- ✅ Audit widget/screen files for hardcoded UI strings — one found (`Hide`/`Translation` in `sentence_cloze_card.dart`), moved to l10n
+- Grammar content localization: JSON lesson files are English-only by design for v1; future path deferred (per-locale JSON files or a translation layer over the block renderer)
 
 ---
 
