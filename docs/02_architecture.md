@@ -87,10 +87,13 @@ Two SQLite files are bundled as assets and copied to the app's documents directo
 - sentence_id FK, locale, translation
 - Primary key: (sentence_id, locale); English is the fallback locale
 
+**`grammar_lessons`**
+- id, level (`basics`/`N5`/…), path (relative to `content/grammar/`), chapter, title, blocks_json (JSON array of blocks), order_index
+- Compiled from `content/grammar/` by `tools/build_content_db.py`
+- App reads grammar from this table (Phase 3 — not yet wired up; currently still loaded from bundled JSON assets)
+
 **`exercises`**
 - id, locale, type, source (kana/kanji/vocabulary/grammar), source_id, prompt, answer, distractors (JSON), lesson_id FK
-
-Note: the `grammar_lessons` table is no longer used. Grammar content is now loaded at runtime from bundled JSON asset files (see Grammar Asset Format below).
 
 ### User Progress (written at runtime)
 
@@ -128,17 +131,25 @@ Stroke order SVGs are bundled as individual files under `assets/kanji_svg/`. The
 
 ---
 
-## Grammar Asset Format
+## Grammar Content Pipeline
 
-Grammar lessons are stored as JSON files under `manabi_do/assets/grammar/`:
+Grammar source lives in `content/grammar/` at the repo root (outside the Flutter project):
 
 ```
-assets/grammar/
-  basics.json
-  N5.json
+content/grammar/
+  levels.json               — level registry (id, name, color, difficulty)
+  basics/
+    index.json              — chapter list
+    {chapter}/
+      index.json            — lesson list
+      {lesson-id}.json      — standalone lesson (id, title, blocks[])
+  N5/
+    ...
 ```
 
-Each file follows the block format defined in `docs/04_grammar_lesson_widgets.md`. Files are loaded at runtime via `rootBundle.loadString` and parsed by `grammarJsonChaptersProvider`. No preprocessing tool or SQLite import step is involved.
+`tools/build_content_db.py` walks this tree recursively and writes all lessons into the `grammar_lessons` table in `manabi_do_content.db`. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
+
+The bundled `assets/grammar/basics.json` and `N5.json` are a temporary fallback while the app-side DB integration (Phase 3) is pending.
 
 ---
 
