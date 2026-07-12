@@ -1,0 +1,80 @@
+{
+  "id": "three-scripts",
+  "title": "Les Trois Systèmes d'Écriture",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le japonais utilise trois systèmes d'écriture simultanément, et la plupart des phrases en mélangent les trois. Comprendre *pourquoi* chaque système existe rend l'ensemble moins intimidant."
+    },
+    {
+      "type": "text",
+      "content": "**Hiragana** (ひらがな) est la colonne vertébrale de la langue écrite : 46 caractères de base, chacun représentant une syllabe. Il couvre les mots japonais natifs, les particules grammaticales, les terminaisons verbales et tout ce qui n'a pas d'équivalent en kanji. Si vous ne connaissez aucun kanji, vous pouvez tout écrire en hiragana et être compris."
+    },
+    {
+      "type": "text",
+      "content": "**Katakana** (カタカナ) représente exactement les mêmes sons que l'hiragana, mais est visuellement distinct : anguleux là où l'hiragana est arrondi. Il marque les mots étrangers empruntés, les noms propres, les termes scientifiques et les onomatopées. Voir du katakana est un signe fiable : ce mot vient d'ailleurs."
+    },
+    {
+      "type": "text",
+      "content": "Les **kanji** (漢字) sont des caractères d'origine chinoise qui portent directement le sens. Un seul kanji peut condenser la signification d'un mot entier en un seul caractère. La norme 常用漢字 définit 2 136 caractères utilisés dans l'écriture quotidienne ; les lecteurs courants en connaissent plusieurs milliers."
+    },
+    {
+      "type": "section_title",
+      "content": "Une Phrase Réelle"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "partie",
+        "système",
+        "rôle"
+      ],
+      "rows": [
+        {
+          "partie": "私",
+          "système": "Kanji",
+          "rôle": "je / moi"
+        },
+        {
+          "partie": "は",
+          "système": "Hiragana",
+          "rôle": "particule de thème"
+        },
+        {
+          "partie": "コーヒー",
+          "système": "Katakana",
+          "rôle": "café (emprunt)"
+        },
+        {
+          "partie": "が",
+          "système": "Hiragana",
+          "rôle": "particule de sujet"
+        },
+        {
+          "partie": "好きです。",
+          "système": "Kanji + Hiragana",
+          "rôle": "aimer + fin polie"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "français"
+      ],
+      "rows": [
+        {
+          "japanese": "私はコーヒーが好きです。",
+          "romaji": "Watashi wa koohii ga suki desu.",
+          "français": "J'aime le café."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Lire une phrase japonaise n'est pas plus difficile une fois qu'on accepte que les changements de système véhiculent de l'information. Katakana = mot probablement étranger. Kanji = ancre de sens. Hiragana = colle grammaticale."
+    }
+  ]
+}

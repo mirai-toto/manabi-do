@@ -1,0 +1,53 @@
+{
+  "id": "topic-vs-subject",
+  "title": "Thème は vs Sujet が",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le japonais fait une distinction que le français efface. **は** marque le *thème* : ce dont la phrase *parle*. **が** marque le *sujet* : celui qui *réalise* ou *ressent* le prédicat."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Thème] **は** [Sujet] **が** [Prédicat]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "français",
+        "note"
+      ],
+      "rows": [
+        {
+          "japanese": "猫は魚が好きです。",
+          "romaji": "Neko wa sakana ga suki desu.",
+          "français": "Les chats aiment le poisson.",
+          "note": "猫は = thème ; 魚が = sujet de 好き"
+        },
+        {
+          "japanese": "私は頭が痛いです。",
+          "romaji": "Watashi wa atama ga itai desu.",
+          "français": "J'ai mal à la tête.",
+          "note": "私は = thème ; 頭が = sujet de 痛い"
+        },
+        {
+          "japanese": "象は鼻が長い。",
+          "romaji": "Zō wa hana ga nagai.",
+          "français": "Les éléphants ont une longue trompe.",
+          "note": "象は = thème ; 鼻が = sujet de 長い"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "は se traduit souvent par « quant à ~ » ou « en ce qui concerne ~ » : il pose le cadre pour tout ce qui suit. が identifie *qui* fait ou ressent quelque chose. Beaucoup de débutants utilisent が partout au début ; は signale que l'on *parle* de quelque chose, pas simplement qu'on le nomme."
+    },
+    {
+      "type": "note",
+      "content": "Erreur fréquente : utiliser が à la place de は donne l'impression d'introduire une information nouvelle ou un contraste. 私**が**田中です signifierait « C'est *moi* qui suis Tanaka » : sous-entendant qu'on se demandait qui était Tanaka. 私**は**田中です signifie simplement « Je suis Tanaka »."
+    }
+  ]
+}

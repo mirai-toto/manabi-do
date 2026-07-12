@@ -3,7 +3,8 @@
   "items": [
     {
       "title": {
-        "en": "The Three Scripts"
+        "en": "The Three Scripts",
+        "fr": "Les Trois Systèmes d'Écriture"
       },
       "path": "basics/how-japanese-is-written/three-scripts"
     }

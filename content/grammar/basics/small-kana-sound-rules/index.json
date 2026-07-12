@@ -3,19 +3,22 @@
   "items": [
     {
       "title": {
-        "en": "っ : Double Consonant"
+        "en": "っ : Double Consonant",
+        "fr": "っ : Consonne Double"
       },
       "path": "basics/small-kana-sound-rules/double-consonant"
     },
     {
       "title": {
-        "en": "ゃゅょ : Compound Sounds"
+        "en": "ゃゅょ : Compound Sounds",
+        "fr": "ゃゅょ : Sons Composés"
       },
       "path": "basics/small-kana-sound-rules/compound-sounds"
     },
     {
       "title": {
-        "en": "Long Vowels"
+        "en": "Long Vowels",
+        "fr": "Voyelles Longues"
       },
       "path": "basics/small-kana-sound-rules/long-vowels"
     }

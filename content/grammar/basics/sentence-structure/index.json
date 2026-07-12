@@ -3,25 +3,29 @@
   "items": [
     {
       "title": {
-        "en": "SOV Word Order"
+        "en": "SOV Word Order",
+        "fr": "Ordre des Mots SOV"
       },
       "path": "basics/sentence-structure/sov-word-order"
     },
     {
       "title": {
-        "en": "Topic は vs Subject が"
+        "en": "Topic は vs Subject が",
+        "fr": "Thème は vs Sujet が"
       },
       "path": "basics/sentence-structure/topic-vs-subject"
     },
     {
       "title": {
-        "en": "Modifier Placement"
+        "en": "Modifier Placement",
+        "fr": "Placement des Modificateurs"
       },
       "path": "basics/sentence-structure/modifier-placement"
     },
     {
       "title": {
-        "en": "Subject Dropping"
+        "en": "Subject Dropping",
+        "fr": "Omission du Sujet"
       },
       "path": "basics/sentence-structure/subject-dropping"
     }

@@ -3,7 +3,8 @@
   "items": [
     {
       "title": {
-        "en": "Punctuation & Spacing"
+        "en": "Punctuation & Spacing",
+        "fr": "Ponctuation & Espacement"
       },
       "path": "basics/punctuation-spacing/punctuation-spacing"
     }

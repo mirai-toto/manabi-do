@@ -3,7 +3,8 @@
   "items": [
     {
       "title": {
-        "en": "Pitch Accent"
+        "en": "Pitch Accent",
+        "fr": "Accent de Hauteur"
       },
       "path": "basics/pitch-accent/pitch-accent"
     }

@@ -1,0 +1,100 @@
+{
+  "id": "punctuation-spacing",
+  "title": "Ponctuation & Espacement",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le japonais ne met pas d'espaces entre les mots. Les frontières des mots sont lisibles car les trois systèmes alternent de manière prévisible, et parce que les lecteurs ont intégré la grammaire. Le système de ponctuation lui est propre, parallèle au système occidental."
+    },
+    {
+      "type": "section_title",
+      "content": "Signes de Ponctuation"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "symbole",
+        "nom",
+        "utilisation"
+      ],
+      "rows": [
+        {
+          "symbole": "。",
+          "nom": "Kuten",
+          "utilisation": "Point de fin de phrase"
+        },
+        {
+          "symbole": "、",
+          "nom": "Touten",
+          "utilisation": "Virgule : marque une pause dans la phrase"
+        },
+        {
+          "symbole": "「 」",
+          "nom": "Kagikakko",
+          "utilisation": "Guillemets principaux"
+        },
+        {
+          "symbole": "『 』",
+          "nom": "Nijū kagikakko",
+          "utilisation": "Guillemets imbriqués, ou titres de livres et d'œuvres"
+        },
+        {
+          "symbole": "・",
+          "nom": "Nakaguro",
+          "utilisation": "Sépare les éléments d'une liste ou les parties d'un nom étranger"
+        },
+        {
+          "symbole": "ー",
+          "nom": "Chōonpu",
+          "utilisation": "Prolonge un son vocalique dans les mots katakana"
+        },
+        {
+          "symbole": "！ ？",
+          "nom": "Formes pleine largeur",
+          "utilisation": "Même fonction qu'en français, mais en pleine largeur pour l'alignement"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Dans la fiction et les mangas japonais, les 「」 kagikakko sont les marqueurs de dialogue standard : pas les guillemets à l'occidentale. Vous les rencontrerez constamment dans les textes natifs."
+    },
+    {
+      "type": "section_title",
+      "content": "Exemples en Contexte"
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "français"
+      ],
+      "rows": [
+        {
+          "japanese": "「おはよう」と言いました。",
+          "romaji": "\"Ohayō\" to iimashita.",
+          "français": "Elle a dit « Bonjour »."
+        },
+        {
+          "japanese": "私はりんご、みかん、ぶどうを買いました。",
+          "romaji": "Watashi wa ringo, mikan, budō wo kaimashita.",
+          "français": "J'ai acheté des pommes, des oranges et du raisin."
+        },
+        {
+          "japanese": "スミス・ジョン",
+          "romaji": "Sumisu Jon",
+          "français": "John Smith (nom étranger avec nakaguro)"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Direction de l'Écriture"
+    },
+    {
+      "type": "text",
+      "content": "Le japonais moderne s'écrit horizontalement, de gauche à droite. Les textes traditionnels : romans, certains journaux, bulles de manga : se lisent *verticalement* en colonnes de droite à gauche. Les deux directions sont encore utilisées aujourd'hui."
+    }
+  ]
+}

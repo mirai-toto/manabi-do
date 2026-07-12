@@ -1,0 +1,56 @@
+{
+  "id": "double-consonant",
+  "title": "っ : Consonne Double",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Un petit っ signale une courte pause nette avant la consonne suivante, qui est alors tenue légèrement plus longtemps. Il occupe une mora entière : un temps de rythme : comme n'importe quel autre kana."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[kana] + **っ** + [kana commençant par une consonne]",
+        "→ la pause double la consonne suivante"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "français"
+      ],
+      "rows": [
+        {
+          "japanese": "きって",
+          "romaji": "kitte",
+          "français": "timbre-poste"
+        },
+        {
+          "japanese": "ざっし",
+          "romaji": "zasshi",
+          "français": "magazine"
+        },
+        {
+          "japanese": "いっぽ",
+          "romaji": "ippo",
+          "français": "un pas"
+        },
+        {
+          "japanese": "きっぷ",
+          "romaji": "kippu",
+          "français": "billet"
+        },
+        {
+          "japanese": "ちょっと",
+          "romaji": "chotto",
+          "français": "un peu / juste un instant"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Erreur courante : sans le っ, le sens change entièrement. きて (*kite*) = « viens ! » : complètement différent de きって (*kitte*, timbre-poste). Traitez っ comme un vrai temps de silence, pas comme un ornement."
+    }
+  ]
+}
