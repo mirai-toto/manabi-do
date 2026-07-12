@@ -156,8 +156,9 @@ Primary key: (item_type, item_id).
 | Vocabulary                | JMdict (via [jmdict-simplified](https://github.com/scriptin/jmdict-simplified)) + [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) for JLPT level tagging | CC BY-SA 4.0 |
 | Example sentences         | [Tatoeba](https://tatoeba.org) community corpus                                                                                                                                | CC BY 2.0    |
 | Stroke order diagrams     | KanjiVG by Ulrich Apel                                                                                                                                                         | CC BY-SA 3.0 |
+| Grammar lessons           | Hand-authored in `content/grammar/`                                                                                                                                            | —            |
 
-Vocab seed generation script: `tools/generate_vocab_seed.py`
+These sources feed into `content/` JSON files (committed) via the content pipeline. See `content/README.md` for the full rebuild workflow and the planned `tools/sync_content.py` for re-seeding from upstream.
 
 ## Content organisation by JLPT level
 

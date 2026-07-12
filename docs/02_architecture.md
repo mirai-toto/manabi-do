@@ -23,7 +23,7 @@ Presentation (screens, providers)
       ↓
 AppDatabase (drift, all queries)
       ↓
-SQLite (two bundled .db files)
+SQLite (manabi_do_content.db)
 ```
 
 **Domain** (`lib/domain/`) contains entity definitions and static data (kana hardcoded data). It has no runtime logic and no external dependencies.
@@ -69,6 +69,22 @@ See `docs/03_database.md` for full column-level schema.
 
 ---
 
+## Content Pipeline
+
+All app content is authored outside the Flutter project and compiled into `manabi_do_content.db`:
+
+```
+Online sources (Bluskyo, JMdict, KANJIDIC2, KanjiVG)
+        ↓  download & cache  →  data/  (gitignored)
+content/  ← versioned JSON snapshot, committed to git
+        ↓  tools/generate.py
+manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
+```
+
+`content/` JSON files are currently derived from online sources. They are committed to git as a versioned snapshot and can diverge from upstream as manual edits accumulate. A `tools/sync_content.py` script to re-seed `content/` from online sources is planned but not yet implemented. See `content/README.md` for the full rebuild workflow.
+
+---
+
 ## SRS Logic
 
 `AppDatabase` exposes session-building methods that return `List<(T, Card?)>` pairs:
@@ -90,25 +106,9 @@ Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db
 
 ---
 
-## Grammar Content Pipeline
+## Grammar Content
 
-Grammar source lives in `content/grammar/` at the repo root (outside the Flutter project):
-
-```
-content/grammar/
-  levels.json               — level registry (id, name, color, difficulty)
-  basics/
-    index.json              — chapter list
-    {chapter}/
-      index.json            — lesson list
-      {lesson-id}.json      — standalone lesson (id, title, blocks[])
-  N5/
-    ...
-```
-
-`tools/build_content_db.py` walks this tree recursively and writes all lessons into the `grammar_lessons` table in `manabi_do_content.db`. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
-
-The bundled `assets/grammar/basics.json` and `N5.json` are a temporary fallback while the app-side DB integration (Phase 3) is pending.
+Grammar lessons are authored as JSON files in `content/grammar/` using a recursive chapter/lesson structure. `tools/build_content_db.py` walks the tree and writes all lessons into the `grammar_lessons` table. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
 
 ---
 
