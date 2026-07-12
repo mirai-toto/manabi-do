@@ -1,0 +1,17 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "Basic Numbers",
+      "path": "N5/counting/basic-numbers.json"
+    },
+    {
+      "title": "Counters",
+      "path": "N5/counting/counters.json"
+    },
+    {
+      "title": "Asking How Many : いくつ / 何～",
+      "path": "N5/counting/how-many.json"
+    }
+  ]
+}

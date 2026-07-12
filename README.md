@@ -19,12 +19,12 @@ Offline Japanese learning app for Android, iOS, Windows, and Linux. Covers kana,
 
 ## Install
 
-| Platform | Link |
-|---|---|
-| Android | *(coming soon — Google Play)* |
-| iOS | *(coming soon — App Store)* |
-| Windows | *(coming soon — Microsoft Store)* |
-| Linux | *(coming soon)* |
+| Platform | Link                              |
+| -------- | --------------------------------- |
+| Android  | _(coming soon — Google Play)_     |
+| iOS      | _(coming soon — App Store)_       |
+| Windows  | _(coming soon — Microsoft Store)_ |
+| Linux    | _(coming soon)_                   |
 
 ---
 
@@ -39,6 +39,7 @@ git config core.hooksPath .githooks
 ```
 
 This enables:
+
 - **pre-commit** — `flutter analyze` + `dart format` check
 - **commit-msg** — conventional commit linting via `commitlint`
 
@@ -75,7 +76,6 @@ Output: `build\windows\x64\runner\Release\manabi_do.exe`
 ## Project structure
 
 ```
-grammar/          # Grammar curriculum outlines per JLPT level (N5–N1)
 manabi_do/
   lib/
     core/         # Theme tokens, dimensions, SRS helpers
@@ -99,19 +99,19 @@ manabi_do/
 
 ### Data sources
 
-| Source | Used for | License |
-|---|---|---|
-| [JMdict / KANJIDIC2](https://www.edrdg.org) — Electronic Dictionary Research and Development Group | Kanji readings, vocabulary | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
-| [KanjiVG](https://kanjivg.tagaini.net) — Ulrich Apel | Kanji stroke order diagrams | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
-| [Tatoeba](https://tatoeba.org) — community corpus | Example sentences | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+| Source                                                                                             | Used for                    | License                                                         |
+| -------------------------------------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------- |
+| [JMdict / KANJIDIC2](https://www.edrdg.org) — Electronic Dictionary Research and Development Group | Kanji readings, vocabulary  | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| [KanjiVG](https://kanjivg.tagaini.net) — Ulrich Apel                                               | Kanji stroke order diagrams | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) |
+| [Tatoeba](https://tatoeba.org) — community corpus                                                  | Example sentences           | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)       |
 
 ### Fonts
 
-| Font | Author | License |
-|---|---|---|
-| [Inter](https://rsms.me/inter/) | Rasmus Andersson | [SIL OFL 1.1](https://openfontlicense.org) |
-| [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP) | Google | [SIL OFL 1.1](https://openfontlicense.org) |
-| [Noto Color Emoji](https://fonts.google.com/noto/specimen/Noto+Color+Emoji) | Google | [SIL OFL 1.1](https://openfontlicense.org) |
+| Font                                                                        | Author           | License                                    |
+| --------------------------------------------------------------------------- | ---------------- | ------------------------------------------ |
+| [Inter](https://rsms.me/inter/)                                             | Rasmus Andersson | [SIL OFL 1.1](https://openfontlicense.org) |
+| [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP)         | Google           | [SIL OFL 1.1](https://openfontlicense.org) |
+| [Noto Color Emoji](https://fonts.google.com/noto/specimen/Noto+Color+Emoji) | Google           | [SIL OFL 1.1](https://openfontlicense.org) |
 
 ### Algorithm
 

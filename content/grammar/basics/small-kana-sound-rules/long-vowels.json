@@ -1,0 +1,95 @@
+{
+  "id": "long-vowels",
+  "title": "Long Vowels",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Holding a vowel for one extra mora changes meaning. Vowel length is phonemically significant in Japanese : two otherwise identical words can differ only in how long a vowel is held."
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "short",
+        "romaji",
+        "long",
+        "romaji ",
+        "difference"
+      ],
+      "rows": [
+        {
+          "short": "おじさん",
+          "romaji": "ojisan",
+          "long": "おじいさん",
+          "romaji ": "ojiisan",
+          "difference": "uncle vs grandfather"
+        },
+        {
+          "short": "ここ",
+          "romaji": "koko",
+          "long": "こうこう",
+          "romaji ": "kōkō",
+          "difference": "here vs high school"
+        },
+        {
+          "short": "おばさん",
+          "romaji": "obasan",
+          "long": "おばあさん",
+          "romaji ": "obaasan",
+          "difference": "aunt vs grandmother"
+        },
+        {
+          "short": "ビル",
+          "romaji": "biru",
+          "long": "ビール",
+          "romaji ": "bīru",
+          "difference": "building vs beer"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "How Long Vowels Are Written"
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "Hiragana: repeat the vowel (or **お + う** for the ō sound)",
+        "Katakana: use **ー** (chōonpu)"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "おかあさん",
+          "romaji": "okaasan",
+          "english": "mother"
+        },
+        {
+          "japanese": "こうこう",
+          "romaji": "kōkō",
+          "english": "high school"
+        },
+        {
+          "japanese": "コーヒー",
+          "romaji": "koohii",
+          "english": "coffee"
+        },
+        {
+          "japanese": "スーパー",
+          "romaji": "suupaa",
+          "english": "supermarket"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "The ー mark only appears in katakana. In hiragana words, the long vowel is spelled out explicitly (ああ, おう, etc.). The difference between おじさん and おじいさん is one extra い : easy to miss in handwriting."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "te-kudasai",
+  "title": "てください : Please Do",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "The most direct and natural way to make a polite request is **て-form + ください**. It is appropriate in almost any polite context : shops, classrooms, public signs."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-form] + **ください**   ← please do ~"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "ここに名前を書いてください。",
+          "romaji": "Koko ni namae wo kaite kudasai.",
+          "english": "Please write your name here."
+        },
+        {
+          "japanese": "もう一度言ってください。",
+          "romaji": "Mō ichido itte kudasai.",
+          "english": "Please say it one more time."
+        },
+        {
+          "japanese": "静かにしてください。",
+          "romaji": "Shizuka ni shite kudasai.",
+          "english": "Please be quiet."
+        },
+        {
+          "japanese": "窓を閉めてください。",
+          "romaji": "Mado wo shimete kudasai.",
+          "english": "Please close the window."
+        },
+        {
+          "japanese": "右に曲がってください。",
+          "romaji": "Migi ni magatte kudasai.",
+          "english": "Please turn right."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Register options: drop ください entirely for casual requests : 書いて means \"write this\" among friends. Use ていただけますか for more deferential situations, like addressing a superior or making a formal request."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "id": "te-iru",
+  "title": "ている : Ongoing Action and State",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**ている** is one of the most frequently used patterns in Japanese. The same form carries three distinct meanings : context and the verb itself determine which reading applies."
+    },
+    {
+      "type": "list",
+      "style": "numbered",
+      "items": [
+        "**In progress** : an action happening right now, like English \"-ing\"",
+        "**Resultant state** : the lasting result of a completed action",
+        "**Habitual** : something done regularly as a routine"
+      ]
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-form] + **います**"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english",
+        "type"
+      ],
+      "rows": [
+        {
+          "japanese": "今、本を読んでいます。",
+          "romaji": "Ima, hon wo yonde imasu.",
+          "english": "I am reading a book now.",
+          "type": "in progress"
+        },
+        {
+          "japanese": "彼女は結婚しています。",
+          "romaji": "Kanojo wa kekkon shite imasu.",
+          "english": "She is married.",
+          "type": "resultant state"
+        },
+        {
+          "japanese": "毎朝、走っています。",
+          "romaji": "Maiasa, hashitte imasu.",
+          "english": "I run every morning.",
+          "type": "habitual"
+        },
+        {
+          "japanese": "窓が開いています。",
+          "romaji": "Mado ga aite imasu.",
+          "english": "The window is open.",
+          "type": "resultant state"
+        },
+        {
+          "japanese": "田中さんはあそこに座っています。",
+          "romaji": "Tanaka-san wa asoko ni suwatte imasu.",
+          "english": "Tanaka is sitting over there.",
+          "type": "resultant state"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "The resultant-state meaning catches learners who expect ている to always mean \"currently doing.\" 結婚しています = \"is in a married state,\" not \"is getting married right now.\" 知っています = \"I know\" (not \"I am knowing\"). 着ています = \"is wearing\" (the result of having put it on)."
+    }
+  ]
+}

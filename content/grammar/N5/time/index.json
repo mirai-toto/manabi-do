@@ -1,0 +1,17 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "Telling Time",
+      "path": "N5/time/telling-time.json"
+    },
+    {
+      "title": "Time Particles : に, から, まで",
+      "path": "N5/time/time-particles.json"
+    },
+    {
+      "title": "Relative Time Words",
+      "path": "N5/time/relative-time.json"
+    }
+  ]
+}

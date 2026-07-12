@@ -1,0 +1,50 @@
+{
+  "id": "to-omoimasu",
+  "title": "と思います : I Think That",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**と思います** expresses personal opinion or belief. The と marks the boundary of the thought being reported. It makes statements sound appropriately tentative : stating something flatly without it can feel blunt."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Plain form verb / い-adj] + **と思います**   ← I think that ~"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "明日は雨が降ると思います。",
+          "romaji": "Ashita wa ame ga furu to omoimasu.",
+          "english": "I think it will rain tomorrow."
+        },
+        {
+          "japanese": "彼は来ないと思います。",
+          "romaji": "Kare wa konai to omoimasu.",
+          "english": "I think he won't come."
+        },
+        {
+          "japanese": "この映画は面白いと思います。",
+          "romaji": "Kono eiga wa omoshiroi to omoimasu.",
+          "english": "I think this movie is interesting."
+        },
+        {
+          "japanese": "もう少し考えたほうがいいと思います。",
+          "romaji": "Mō sukoshi kangaeta hō ga ii to omoimasu.",
+          "english": "I think you should think it over a bit more."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "The clause before と is always in the **plain form**, not the polite form. 来ます**と**思います is wrong : it should be 来る**と**思います. The politeness is carried by the final と思います alone."
+    }
+  ]
+}

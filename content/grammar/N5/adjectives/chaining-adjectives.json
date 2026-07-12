@@ -1,0 +1,76 @@
+{
+  "id": "chaining-adjectives",
+  "title": "Chaining Adjectives : くて / で",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "To describe something with two or more qualities, connect adjectives using their **て-form**. The rule differs by adjective type: い-adjectives use くて, な-adjectives use で."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "い-adjective: [stem] + **くて** + [next clause]",
+        "な-adjective: [な-adj] + **で** + [next clause]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "安い → 安くて",
+          "english": "cheap → cheap and…"
+        },
+        {
+          "japanese": "面白い → 面白くて",
+          "english": "interesting → interesting and…"
+        },
+        {
+          "japanese": "静か → 静かで",
+          "english": "quiet → quiet and…"
+        },
+        {
+          "japanese": "便利 → 便利で",
+          "english": "convenient → convenient and…"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "安くておいしいです。",
+          "romaji": "Yasukute oishii desu.",
+          "english": "It's cheap and delicious."
+        },
+        {
+          "japanese": "静かで広い部屋です。",
+          "romaji": "Shizuka de hiroi heya desu.",
+          "english": "It's a quiet and spacious room."
+        },
+        {
+          "japanese": "この映画は長くてつまらなかったです。",
+          "romaji": "Kono eiga wa nagakute tsumaranakatta desu.",
+          "english": "This movie was long and boring."
+        },
+        {
+          "japanese": "彼女は親切で頭がいいです。",
+          "romaji": "Kanojo wa shinsetsu de atama ga ii desu.",
+          "english": "She is kind and smart."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "The chained form expresses a neutral list : \"X and Y\" : not a causal connection. To say \"it's cheap *so* I'll buy it,\" use から or ので, not くて."
+    }
+  ]
+}

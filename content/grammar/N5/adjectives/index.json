@@ -1,0 +1,17 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "い-Adjectives",
+      "path": "N5/adjectives/i-adjectives.json"
+    },
+    {
+      "title": "な-Adjectives",
+      "path": "N5/adjectives/na-adjectives.json"
+    },
+    {
+      "title": "Chaining Adjectives : くて / で",
+      "path": "N5/adjectives/chaining-adjectives.json"
+    }
+  ]
+}

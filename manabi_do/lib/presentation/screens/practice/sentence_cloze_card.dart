@@ -8,6 +8,7 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../widgets/common/japanese_text.dart';
 import '../../widgets/common/pill_badge.dart';
+import '../../widgets/common/speak_button.dart';
 import '../../widgets/exercise/mcq_card.dart';
 import 'cloze_option.dart';
 
@@ -169,7 +170,7 @@ class SentenceClozeCard extends StatelessWidget {
                       ),
                       const SizedBox(width: AppDimens.spaceXs),
                       Text(
-                        showTranslation ? 'Hide' : 'Translation',
+                        showTranslation ? l.hide : l.translationModeLabel,
                         style: AppTextStyles.labelSmall.copyWith(
                           color: showTranslation ? color : t.onSurfaceVariant,
                         ),
@@ -177,6 +178,7 @@ class SentenceClozeCard extends StatelessWidget {
                     ],
                   ),
                 ),
+              SpeakButton(text: sentence.japanese, color: color),
               const SizedBox(width: AppDimens.spaceXs),
               InkWell(
                 onTap: () => _showCopyDialog(context, t),

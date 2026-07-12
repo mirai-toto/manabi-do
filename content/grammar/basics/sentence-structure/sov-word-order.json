@@ -1,0 +1,48 @@
+{
+  "id": "sov-word-order",
+  "title": "SOV Word Order",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanese is a **Subject–Object–Verb** language : the verb always comes last. This is the single biggest structural difference from English, and it affects everything: you have to hold the subject and object in your head before the action resolves at the end of the sentence."
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "english",
+        "japanese",
+        "romaji"
+      ],
+      "rows": [
+        {
+          "english": "I drink coffee.",
+          "japanese": "私はコーヒーを飲みます。",
+          "romaji": "Watashi wa koohii wo nomimasu."
+        },
+        {
+          "english": "She reads books.",
+          "japanese": "彼女は本を読みます。",
+          "romaji": "Kanojo wa hon wo yomimasu."
+        },
+        {
+          "english": "He bought a bag.",
+          "japanese": "彼はかばんを買いました。",
+          "romaji": "Kare wa kaban wo kaimashita."
+        },
+        {
+          "english": "The dog is chasing the cat.",
+          "japanese": "犬が猫を追いかけています。",
+          "romaji": "Inu ga neko wo oikakete imasu."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Modifiers : adjectives, relative clauses, entire subordinate phrases : also always come *before* the noun they describe, not after. This means long sentences stack up heavily at the beginning and resolve at the end."
+    },
+    {
+      "type": "note",
+      "content": "In long sentences, native speakers reach the verb at the very end and finally know what happened. This is why listening in Japanese feels like waiting for the punchline. With practice, you start anticipating the verb class early from context."
+    }
+  ]
+}

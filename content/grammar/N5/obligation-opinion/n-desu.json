@@ -1,0 +1,51 @@
+{
+  "id": "n-desu",
+  "title": "んです : Explanation",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**んです** (written のです) adds an explanatory nuance to a statement. It signals that what you are saying is the reason behind something, the context for a situation, or a request for explanation : not just a bare fact."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Plain form verb / い-adj] + **んです**",
+        "[な-adj / noun] + な + **んです**"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "頭が痛いんです。",
+          "romaji": "Atama ga itai n desu.",
+          "english": "(You see,) I have a headache."
+        },
+        {
+          "japanese": "どうして遅れたんですか。",
+          "romaji": "Dōshite okureta n desu ka.",
+          "english": "Why were you late? (explain it to me)"
+        },
+        {
+          "japanese": "実は、昨日転んだんです。",
+          "romaji": "Jitsu wa, kinō koronda n desu.",
+          "english": "The thing is, I fell yesterday."
+        },
+        {
+          "japanese": "ちょっと聞いてもいいんですが…",
+          "romaji": "Chotto kiite mo ii n desu ga…",
+          "english": "I was wondering if I could ask you something…"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Without んです, 頭が痛いです is a plain statement of fact. With it, 頭が痛いんです implies \"I'm telling you this because it's relevant : that's why I look unwell / can't attend.\" Use it when you want to signal context, not just information."
+    }
+  ]
+}

@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
-"""Download KanjiVG SVG files for all N1-N5 kanji in the seed data."""
+"""Download KanjiVG SVG files for all N1-N5 kanji in the content source."""
 
-import re
+import json
 import os
 import time
 import urllib.request
+import glob
 
-SEED_DIR = os.path.join(os.path.dirname(__file__), '../manabi_do/lib/data/database')
-OUT_DIR  = os.path.join(os.path.dirname(__file__), '../manabi_do/assets/kanji_svg')
-BASE_URL = 'https://raw.githubusercontent.com/KanjiVG/kanjivg/master/kanji/{}.svg'
+CONTENT_DIR = os.path.join(os.path.dirname(__file__), '../content/characters')
+OUT_DIR     = os.path.join(os.path.dirname(__file__), '../content/characters/kanji_svg')
+BASE_URL    = 'https://raw.githubusercontent.com/KanjiVG/kanjivg/master/kanji/{}.svg'
 
 os.makedirs(OUT_DIR, exist_ok=True)
 
 ids: set[int] = set()
-for fname in os.listdir(SEED_DIR):
-    if fname.endswith('_kanji_seed.dart'):
-        with open(os.path.join(SEED_DIR, fname)) as f:
-            for line in f:
-                m = re.match(r'\s*\((\d+),', line)
-                if m:
-                    ids.add(int(m.group(1)))
+for path in glob.glob(os.path.join(CONTENT_DIR, 'kanji_n*.json')):
+    with open(path, encoding='utf-8') as f:
+        for entry in json.load(f):
+            ids.add(entry['id'])
 
 print(f'Found {len(ids)} unique kanji codepoints')
 

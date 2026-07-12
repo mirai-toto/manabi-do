@@ -1,0 +1,17 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "Verb Groups",
+      "path": "N5/verbs/verb-groups.json"
+    },
+    {
+      "title": "Polite Present : ます",
+      "path": "N5/verbs/polite-present.json"
+    },
+    {
+      "title": "Polite Past : ました",
+      "path": "N5/verbs/polite-past.json"
+    }
+  ]
+}

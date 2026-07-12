@@ -2,15 +2,15 @@
 
 ## Tech Stack
 
-| Component | Choice | Reason |
-|---|---|---|
-| Framework | Flutter | One codebase, 5 platforms, smooth animations for stroke order |
-| Language | Dart | Bundled with Flutter |
-| Database | SQLite via `drift` | Offline first, typed queries, managed migrations |
-| State management | Riverpod | Modern Flutter standard |
-| SRS | `package:fsrs` | FSRS algorithm for spaced repetition |
-| UI | Material 3 | Adaptive navigation components, markdown support |
-| i18n | `flutter_localizations` + `intl` | ARB-based, code-generated accessors |
+| Component        | Choice                           | Reason                                                        |
+| ---------------- | -------------------------------- | ------------------------------------------------------------- |
+| Framework        | Flutter                          | One codebase, 5 platforms, smooth animations for stroke order |
+| Language         | Dart                             | Bundled with Flutter                                          |
+| Database         | SQLite via `drift`               | Offline first, typed queries, managed migrations              |
+| State management | Riverpod                         | Modern Flutter standard                                       |
+| SRS              | `package:fsrs`                   | FSRS algorithm for spaced repetition                          |
+| UI               | Material 3                       | Adaptive navigation components, markdown support              |
+| i18n             | `flutter_localizations` + `intl` | ARB-based, code-generated accessors                           |
 
 ---
 
@@ -23,7 +23,7 @@ Presentation (screens, providers)
       ↓
 AppDatabase (drift, all queries)
       ↓
-SQLite (two bundled .db files)
+SQLite (manabi_do_content.db)
 ```
 
 **Domain** (`lib/domain/`) contains entity definitions and static data (kana hardcoded data). It has no runtime logic and no external dependencies.
@@ -47,6 +47,7 @@ SQLite (two bundled .db files)
 5. Settings
 
 Navigation component:
+
 - Mobile (< 600px): `AppNavBar` (bottom navigation bar)
 - Wide (≥ 600px): `AppNavRail` (left navigation rail)
 
@@ -58,53 +59,35 @@ Drill-down state (selected level, selected group) is lifted into Riverpod provid
 
 ## Data Model
 
-Two SQLite files are bundled as assets and copied to the app's documents directory on first run. `manabi.db` is an empty placeholder; all content lives in `manabi_do_content.db`.
+A single SQLite file — `manabi_do_content.db` — is bundled as an asset and copied to a platform-specific directory on first run:
 
-### `manabi_do_content.db` — All content
+- **Linux debug** — repo root (located via `.git` detection), so the DB sits next to the source and is easy to inspect
+- **Linux release** — `~/.local/share/<app>/` (XDG application support directory)
+- **All other platforms** — `getApplicationDocumentsDirectory()`
 
-**`kanjis`**
-- id, character, meaning (English fallback), on_reading, kun_reading, jlpt_level
+If the bundled DB version marker changes, the existing DB is replaced and SRS progress is migrated across automatically.
 
-**`kanji_translations`**
-- kanji_id FK, locale, meaning
-- Primary key: (kanji_id, locale)
+`manabi_do_content.db` tables: `kanjis`, `kanji_translations`, `kanas`, `vocabulary_entries`, `vocab_translations`, `sentences`, `sentence_translations`, `grammar_lessons`, `exercises`.
 
-**`kanas`**
-- id, character, romaji, type (`hiragana`/`katakana`), row, slot, kana_group
+User progress tables (written at runtime): `progress_entries`, `srs_cards`.
 
-**`vocabulary_entries`**
-- id, word, reading, meaning (English fallback), jlpt_level, part_of_speech, kanji_id FK (nullable)
+See `docs/03_database.md` for full column-level schema.
 
-**`vocab_translations`**
-- vocab_id FK, locale, meaning
-- Primary key: (vocab_id, locale)
+---
 
-**`sentences`**
-- id, japanese, target_word, vocab_id FK, furigana_before, furigana_after, furigana
-- No `jlpt_level` column — level is inherited via `vocab_id → vocabulary_entries.jlpt_level`
+## Content Pipeline
 
-**`sentence_translations`**
-- sentence_id FK, locale, translation
-- Primary key: (sentence_id, locale); English is the fallback locale
+All app content is authored outside the Flutter project and compiled into `manabi_do_content.db`:
 
-**`grammar_lessons`**
-- id, locale, chapter, title, content_md, order_index, metadata (JSON)
+```
+Online sources (Bluskyo, JMdict, KANJIDIC2, KanjiVG)
+        ↓  download & cache  →  data/  (gitignored)
+content/  ← versioned JSON snapshot, committed to git
+        ↓  tools/generate.py
+manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
+```
 
-**`exercises`**
-- id, locale, type, source (kana/kanji/vocabulary/grammar), source_id, prompt, answer, distractors (JSON), lesson_id FK
-
-### User Progress (written at runtime)
-
-**`progress_entries`**
-- id, item_type, item_id, is_known, toggled_at
-- Unique key: (item_type, item_id)
-- Simple known/unknown toggle, locale-agnostic
-
-**`srs_cards`**
-- item_type (`hiragana`/`katakana`/`kanji`/`vocabulary`), item_id, due, first_seen_at, card_json
-- Primary key: (item_type, item_id)
-- `card_json` stores the full FSRS `Card` object serialized via `card.toMap()`
-- `first_seen_at` is set once on insert and never overwritten
+`content/` JSON files are committed to git as a versioned snapshot and can diverge from upstream as manual edits accumulate. `tools/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from online sources; `tools/generate.py --sync` is the end-to-end rebuild entry point. See `content/README.md` for the full rebuild workflow.
 
 ---
 
@@ -125,21 +108,13 @@ Streak is computed from `srs_cards.card_json` → `lastReview` dates: count cons
 
 ## Kanji SVG Assets
 
-Stroke order SVGs are bundled as individual files under `assets/kanji_svg/`. They are loaded at runtime by `KanjiStrokesProvider` and rendered as animated paths. The `kanjis` table does not store SVG data — it only stores text fields.
+Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db`. They are loaded at runtime by `KanjiStrokesProvider` via a DB query and rendered as animated paths. Source SVG files live in `content/characters/kanji_svg/` (committed) and are embedded into the DB by `tools/build_content_db.py`.
 
 ---
 
-## Grammar Asset Format
+## Grammar Content
 
-Grammar lessons are stored as Markdown files under `manabi_do/assets/grammar/`:
-
-```
-assets/grammar/
-  basics.md
-  N5.md
-```
-
-These files are loaded and parsed into the `grammar_lessons` and `exercises` tables in `manabi_do_content.db` at build time by the preprocessing tool (`tool/gen_translations.dart`).
+Grammar lessons are authored as JSON files in `content/grammar/` using a recursive chapter/lesson structure. `tools/build_content_db.py` walks the tree and writes all lessons into the `grammar_lessons` table. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
 
 ---
 

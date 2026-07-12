@@ -1,0 +1,61 @@
+{
+  "id": "te-kara",
+  "title": "てから : After Doing",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**てから** expresses a strict sequence: action A must be fully completed before action B can begin. The completion of A is what makes B possible or appropriate."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-form] + **から**、[next action]"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "手を洗ってから、食べます。",
+          "romaji": "Te wo aratte kara, tabemasu.",
+          "english": "I eat after washing my hands."
+        },
+        {
+          "japanese": "宿題をしてから、ゲームをします。",
+          "romaji": "Shukudai wo shite kara, gēmu wo shimasu.",
+          "english": "I play games after doing homework."
+        },
+        {
+          "japanese": "大学を卒業してから、働き始めました。",
+          "romaji": "Daigaku wo sotsugyō shite kara, hataraki hajimemashita.",
+          "english": "I started working after graduating from university."
+        },
+        {
+          "japanese": "シャワーを浴びてから、寝ます。",
+          "romaji": "Shawā wo abite kara, nemasu.",
+          "english": "I sleep after taking a shower."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "てから",
+        "description": "A must be fully done before B. Completion is required : the sequence is strict.",
+        "example_jp": "食べてから、歯を磨きます。",
+        "example_en": "I brush my teeth after eating."
+      },
+      "right": {
+        "label": "後で",
+        "description": "\"Later, after A\" : B happens sometime after, with no strict completion implied.",
+        "example_jp": "後で電話します。",
+        "example_en": "I'll call later."
+      }
+    }
+  ]
+}

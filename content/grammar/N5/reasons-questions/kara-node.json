@@ -1,0 +1,61 @@
+{
+  "id": "kara-node",
+  "title": "から vs ので : Because",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Both **から** and **ので** translate as \"because,\" but they carry different weight. から states a reason directly and assertively. ので presents a reason as soft and objective : the natural consequence of a situation. Register and relationship determine which fits."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "から",
+        "description": "Assertive and personal : \"my reason is X.\" Casual, direct. Use with friends or when stating feelings.",
+        "example_jp": "疲れたから、休みます。",
+        "example_en": "I'm resting because I'm tired."
+      },
+      "right": {
+        "label": "ので",
+        "description": "Soft and objective : \"given that X, naturally Y.\" Polite and indirect. Use for requests, apologies, workplace.",
+        "example_jp": "雨が降っているので、家にいます。",
+        "example_en": "I'm staying home because it's raining."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Reason : plain form] + **から**、[Result]   ← subjective, casual",
+        "[Reason : plain form] + **ので**、[Result]   ← objective, polite"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "急いでいるから、あとで話しましょう。",
+          "romaji": "Isoide iru kara, ato de hanashimashō.",
+          "english": "I'm in a hurry, so let's talk later."
+        },
+        {
+          "japanese": "明日試験があるので、勉強します。",
+          "romaji": "Ashita shiken ga aru node, benkyō shimasu.",
+          "english": "I have an exam tomorrow, so I'll study."
+        },
+        {
+          "japanese": "お腹が痛いので、休んでもいいですか。",
+          "romaji": "Onaka ga itai node, yasunde mo ii desu ka.",
+          "english": "My stomach hurts, so may I rest?"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "When making a polite request or excuse, ので always sounds more appropriate. 電車が遅れたので遅刻しました sounds like a genuine explanation. 電車が遅れたから遅刻しました sounds like a blunt justification. Same facts, different tone."
+    }
+  ]
+}

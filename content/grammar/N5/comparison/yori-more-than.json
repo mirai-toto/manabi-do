@@ -1,0 +1,56 @@
+{
+  "id": "yori-more-than",
+  "title": "A は B より ～ : More Than",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**より** marks the baseline of comparison : what you are comparing *against*. What comes before より is the lesser item; what comes before the adjective is the greater one."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "A は B **より** [adjective] です       ← A is more ~ than B",
+        "B **より** A **のほうが** [adjective] です  ← A is more ~ than B (emphatic)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "東京は大阪より大きいです。",
+          "romaji": "Tōkyō wa Ōsaka yori ōkii desu.",
+          "english": "Tokyo is bigger than Osaka."
+        },
+        {
+          "japanese": "バスより電車のほうが速いです。",
+          "romaji": "Basu yori densha no hō ga hayai desu.",
+          "english": "The train is faster than the bus."
+        },
+        {
+          "japanese": "夏より冬のほうが好きです。",
+          "romaji": "Natsu yori fuyu no hō ga suki desu.",
+          "english": "I prefer winter to summer."
+        },
+        {
+          "japanese": "昨日より今日のほうが寒いです。",
+          "romaji": "Kinō yori kyō no hō ga samui desu.",
+          "english": "Today is colder than yesterday."
+        },
+        {
+          "japanese": "肉より魚のほうが好きです。",
+          "romaji": "Niku yori sakana no hō ga suki desu.",
+          "english": "I like fish more than meat."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Adding のほうが after the item being elevated makes the comparison more explicit and emphatic. Both structures are grammatically correct : のほうが is simply more common in natural speech."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "subject-dropping",
+  "title": "Subject Dropping",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanese regularly omits the subject when it is clear from context. This is called *pro-drop*, and it is the rule rather than the exception in natural speech. Writing or saying わかりました is not incomplete : the subject is understood."
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "implied subject"
+      ],
+      "rows": [
+        {
+          "japanese": "食べます。",
+          "romaji": "Tabemasu.",
+          "implied subject": "I / you / we"
+        },
+        {
+          "japanese": "行きますか。",
+          "romaji": "Ikimasu ka.",
+          "implied subject": "you"
+        },
+        {
+          "japanese": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "implied subject": "I"
+        },
+        {
+          "japanese": "来ましたよ。",
+          "romaji": "Kimashita yo.",
+          "implied subject": "they / someone"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "What looks like ambiguity is resolved by context. Once \"I\" or \"she\" has been established as the topic, Japanese speakers do not keep repeating it. If you cannot tell who the subject is in a real conversation, that is normal : context does the work."
+    }
+  ]
+}

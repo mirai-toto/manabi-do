@@ -1,0 +1,60 @@
+{
+  "id": "telling-time",
+  "title": "Telling Time",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Time in Japanese is stated with **時** (じ, hour) and **分** (ふん/ぷん, minute). The structure is simple: hour first, then minute, then です. AM and PM go before the time."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Hour] **時** [Minute] **分** です",
+        "ごぜん (AM) / ごご (PM) + [Hour] **時** [Minute] **分**"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "今、三時です。",
+          "romaji": "Ima, sanji desu.",
+          "english": "It's 3 o'clock."
+        },
+        {
+          "japanese": "九時十五分に始まります。",
+          "romaji": "Kuji jūgofun ni hajimarimasu.",
+          "english": "It starts at 9:15."
+        },
+        {
+          "japanese": "十二時半に昼ごはんを食べます。",
+          "romaji": "Jūniji han ni hirugohan wo tabemasu.",
+          "english": "I eat lunch at 12:30."
+        },
+        {
+          "japanese": "午後七時に帰ります。",
+          "romaji": "Gogo shichiji ni kaerimasu.",
+          "english": "I'll be home at 7 PM."
+        },
+        {
+          "japanese": "午前六時に起きます。",
+          "romaji": "Gozen rokuji ni okimasu.",
+          "english": "I wake up at 6 AM."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "半 (はん) means \"half past\" : 三時半 = 3:30. ごぜん and ごご come *before* the time: 午前九時 = 9 AM, 午後三時 = 3 PM. Without them, meaning comes from context."
+    },
+    {
+      "type": "note",
+      "content": "Minute readings change based on the number. 一分 (ippun), 三分 (sanpun), 六分 (roppun), 八分 (happun), 十分 (juppun). These follow the same phonetic rules as counters : they become natural through listening."
+    }
+  ]
+}

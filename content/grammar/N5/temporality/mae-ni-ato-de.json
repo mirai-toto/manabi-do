@@ -1,0 +1,52 @@
+{
+  "id": "mae-ni-ato-de",
+  "title": "前に / 後で : Before / After",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**前に** and **後で** describe timing relative to another action. They are more flexible than てから : no strict completion is implied. The verb form before each one is different, and the reason is logical."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Dictionary form] + **前に**、[action]       ← before doing (action hasn't happened yet)",
+        "[Past plain form] + **後で**、[action]       ← after doing (action has been completed)",
+        "[Noun] + の**前に** / の**後で**              ← before / after a noun (event, class, etc.)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "寝る前に歯を磨きます。",
+          "romaji": "Neru mae ni ha wo migakimasu.",
+          "english": "I brush my teeth before sleeping."
+        },
+        {
+          "japanese": "食べた後で、散歩します。",
+          "romaji": "Tabeta ato de, sanpo shimasu.",
+          "english": "I take a walk after eating."
+        },
+        {
+          "japanese": "授業の前に、単語を復習しました。",
+          "romaji": "Jugyō no mae ni, tango wo fukushū shimashita.",
+          "english": "I reviewed vocabulary before class."
+        },
+        {
+          "japanese": "映画の後で、カフェに行きましょう。",
+          "romaji": "Eiga no ato de, kafe ni ikimashō.",
+          "english": "Let's go to a café after the movie."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "前に takes the dictionary form because the action has *not yet happened* at that point in time : it is still in the future relative to the reference moment. 後で takes the past plain form because the action *has been completed* before the next one starts."
+    }
+  ]
+}

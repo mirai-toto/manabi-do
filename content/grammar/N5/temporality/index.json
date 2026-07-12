@@ -1,0 +1,21 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "ている : Ongoing Action and State",
+      "path": "N5/temporality/te-iru.json"
+    },
+    {
+      "title": "てから : After Doing",
+      "path": "N5/temporality/te-kara.json"
+    },
+    {
+      "title": "前に / 後で : Before / After",
+      "path": "N5/temporality/mae-ni-ato-de.json"
+    },
+    {
+      "title": "ながら : While Doing",
+      "path": "N5/temporality/nagara.json"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "de-location",
+  "title": "で : Location of an Action",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**で** marks *where an action takes place* : the venue or instrument of an activity. This is different from に, which marks *where something exists*. The verb is what tells you which particle to use."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Place] **で** + [action verb]    ← an action happens here",
+        "[Place] **に** + [existence verb] ← something exists here (います / あります)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "図書館で勉強します。",
+          "romaji": "Toshokan de benkyō shimasu.",
+          "english": "I study at the library."
+        },
+        {
+          "japanese": "公園で走りました。",
+          "romaji": "Kōen de hashirimashita.",
+          "english": "I ran in the park."
+        },
+        {
+          "japanese": "電車で本を読みます。",
+          "romaji": "Densha de hon wo yomimasu.",
+          "english": "I read books on the train."
+        },
+        {
+          "japanese": "日本語で話してください。",
+          "romaji": "Nihongo de hanashite kudasai.",
+          "english": "Please speak in Japanese."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "で : action",
+        "description": "Where something happens. Use with action verbs : running, studying, eating.",
+        "example_jp": "公園で走ります。",
+        "example_en": "I run in the park."
+      },
+      "right": {
+        "label": "に : existence",
+        "description": "Where something is. Use with います and あります : existing, being.",
+        "example_jp": "公園にいます。",
+        "example_en": "I am in the park."
+      }
+    },
+    {
+      "type": "note",
+      "content": "で vs に for location is one of the most common early errors. The verb tells you which to use: action verbs → で, existence verbs (います/あります) → に."
+    }
+  ]
+}

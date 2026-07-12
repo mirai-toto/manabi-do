@@ -1,5 +1,10 @@
-# Tatoeba build cache (downloaded by tool/build_content_db.py, not committed)
-manabi_do/tool/tatoeba_cache/
+# Raw source data — large downloads, not committed (see data/)
+/data/
+
+# Dev-mode live DB (stored at repo root when running flutter run -d linux)
+manabi_do.db
+manabi_do.db.version
+manabi_do.sqlite
 
 # OS
 .DS_Store
@@ -9,15 +14,13 @@ Desktop.ini
 # Editors
 .vscode/
 .idea/
+.claude/settings.local.json
 *.iml
 *.iws
 *.ipr
 
 # Docker
 docker-compose.override.yml
-
-# JMdict / KANJIDIC2 source files — large offline downloads, not committed
-manabi_do/tool/data/
 
 # Screenshots — local only
 screenshots/

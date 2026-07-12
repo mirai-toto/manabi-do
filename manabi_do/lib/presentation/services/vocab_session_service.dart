@@ -72,13 +72,16 @@ class VocabSessionService {
           : filtered;
     }
 
-    // Pool (for MCQ distractors) and translations: shared across all modes.
+    // Full level pool for MCQ distractors; group pool only for sentence selection.
     final allPool = await db.getVocabByLevel(level);
-    final pool = allowedIds != null
+    final groupPool = allowedIds != null
         ? allPool.where((v) => allowedIds.contains(v.id)).toList()
         : allPool;
     final translations = locale != 'en'
-        ? await db.getVocabTranslations(pool.map((v) => v.id).toList(), locale)
+        ? await db.getVocabTranslations(
+            allPool.map((v) => v.id).toList(),
+            locale,
+          )
         : <int, String>{};
 
     String meaningOf(VocabularyEntry v) =>
@@ -98,7 +101,8 @@ class VocabSessionService {
     if (sentenceOnly) {
       return _buildSentenceItems(
         db: db,
-        pool: pool,
+        pool: groupPool,
+        distractorPool: allPool,
         color: color,
         locale: locale,
         rng: rng,
@@ -109,7 +113,7 @@ class VocabSessionService {
     if (mcqOnly) {
       return _buildMcqItems(
         pairs: pairs,
-        pool: pool,
+        pool: allPool,
         color: color,
         rng: rng,
         mcqSettings: mcqSettings,
@@ -120,7 +124,7 @@ class VocabSessionService {
     return _buildMixedItems(
       db: db,
       pairs: pairs,
-      pool: pool,
+      pool: allPool,
       color: color,
       locale: locale,
       rng: rng,
@@ -205,6 +209,7 @@ class VocabSessionService {
   Future<List<PracticeItem>> _buildSentenceItems({
     required AppDatabase db,
     required List<VocabularyEntry> pool,
+    required List<VocabularyEntry> distractorPool,
     required Color color,
     required String locale,
     required Random rng,
@@ -247,7 +252,7 @@ class VocabSessionService {
       final sentence = sentences[rng.nextInt(sentences.length)];
       final cloze = buildClozeOptions(
         target: entry,
-        pool: pool,
+        pool: distractorPool,
         n: sentenceSettings.mcqChoiceCount,
         rng: rng,
       );

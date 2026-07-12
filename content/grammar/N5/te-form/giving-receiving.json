@@ -1,0 +1,61 @@
+{
+  "id": "giving-receiving",
+  "title": "Giving & Receiving Actions",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanese tracks the *direction* of a favour with precision. Three て-form patterns each handle one direction : outward from you, inward to you, or arriving unsolicited."
+    },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "**てあげる** : I (or someone) do something *for* someone else. The benefit flows outward.",
+        "**てもらう** : I receive an action *from* someone. I am the beneficiary, often having asked.",
+        "**てくれる** : Someone does something for me on their own initiative. The benefit arrives without me requesting it."
+      ]
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-form] + **あげます**   ← I do for them (benefit flows out)",
+        "[て-form] + **もらいます** ← I receive the action (benefit flows in)",
+        "[て-form] + **くれます**   ← they do for me, their initiative"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "友達の荷物を持ってあげました。",
+          "romaji": "Tomodachi no nimotsu wo motte agemashita.",
+          "english": "I carried my friend's bags for them."
+        },
+        {
+          "japanese": "先生に漢字を教えてもらいました。",
+          "romaji": "Sensei ni kanji wo oshiete moraimashita.",
+          "english": "I had the teacher teach me kanji."
+        },
+        {
+          "japanese": "母が弁当を作ってくれました。",
+          "romaji": "Haha ga bentō wo tsukutte kuremashita.",
+          "english": "My mother made me a bento (for my benefit)."
+        },
+        {
+          "japanese": "田中さんが駅まで送ってくれました。",
+          "romaji": "Tanaka-san ga eki made okutte kuremashita.",
+          "english": "Tanaka kindly drove me to the station."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "The key question: *who is the beneficiary?* Benefit goes to someone else → あげる. Benefit comes to me, I requested it → もらう. Benefit comes to me, their own initiative → くれる."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "id": "topic-vs-subject",
+  "title": "Topic は vs Subject が",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanese draws a distinction that English collapses into one slot. **は** marks the *topic* : what the sentence is *about*. **が** marks the *subject* : who or what *performs* or *experiences* the predicate."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Topic] **は** [Subject] **が** [Predicate]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english",
+        "note"
+      ],
+      "rows": [
+        {
+          "japanese": "猫は魚が好きです。",
+          "romaji": "Neko wa sakana ga suki desu.",
+          "english": "Cats like fish.",
+          "note": "猫は = topic; 魚が = subject of 好き"
+        },
+        {
+          "japanese": "私は頭が痛いです。",
+          "romaji": "Watashi wa atama ga itai desu.",
+          "english": "My head hurts.",
+          "note": "私は = topic; 頭が = subject of 痛い"
+        },
+        {
+          "japanese": "象は鼻が長い。",
+          "romaji": "Zō wa hana ga nagai.",
+          "english": "Elephants have long trunks.",
+          "note": "象は = topic; 鼻が = subject of 長い"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "は often translates as \"as for ~\" or \"speaking of ~\" : it sets the frame for everything that follows. が identifies *who* is doing or experiencing something. Many beginners use が everywhere at first; は is how you signal that you are talking *about* something, not just naming it."
+    },
+    {
+      "type": "note",
+      "content": "Common mistake: using が when は is correct makes sentences sound like new information or contrast is being introduced. 私**が**田中です would mean \"It is *I* who is Tanaka\" : implying there was a question about which person. 私**は**田中です is simply \"I am Tanaka.\""
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "id": "ta-hou-ga-ii",
+  "title": "たほうがいい : Should / Shouldn't",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**たほうがいい** expresses advice : suggesting that a course of action would be in the listener's best interest. The affirmative uses the past plain form; the negative uses the negative plain form."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Past plain] + **ほうがいいです**       ← you should do",
+        "[Negative plain] + **ほうがいいです**   ← you shouldn't do"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "早く寝たほうがいいです。",
+          "romaji": "Hayaku neta hō ga ii desu.",
+          "english": "You should sleep early."
+        },
+        {
+          "japanese": "タバコを吸わないほうがいいです。",
+          "romaji": "Tabako wo suwanai hō ga ii desu.",
+          "english": "You shouldn't smoke."
+        },
+        {
+          "japanese": "傘を持っていったほうがいいですよ。",
+          "romaji": "Kasa wo motte itta hō ga ii desu yo.",
+          "english": "You should take an umbrella."
+        },
+        {
+          "japanese": "無理をしないほうがいいです。",
+          "romaji": "Muri wo shinai hō ga ii desu.",
+          "english": "You shouldn't push yourself too hard."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "たほうがいい is advice, not a command. It signals that the speaker genuinely thinks this is in the listener's interest. For stronger obligation, use なければなりません."
+    }
+  ]
+}

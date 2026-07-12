@@ -1,0 +1,77 @@
+{
+  "id": "pitch-accent",
+  "title": "Pitch Accent",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "English stress makes one syllable *louder*. Japanese **pitch accent** makes one syllable *higher* in tone. Every word has a pitch pattern, and in some cases the pattern is the only thing distinguishing two otherwise identical words."
+    },
+    {
+      "type": "text",
+      "content": "The Tokyo dialect (standard Japanese) is the reference system used in textbooks and broadcast media. Pitch is described as H (high) or L (low) per mora."
+    },
+    {
+      "type": "section_title",
+      "content": "High and Low Patterns"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "word",
+        "reading",
+        "pitch",
+        "english"
+      ],
+      "rows": [
+        {
+          "word": "橋",
+          "reading": "hashi",
+          "pitch": "L-H",
+          "english": "bridge"
+        },
+        {
+          "word": "箸",
+          "reading": "hashi",
+          "pitch": "H-L",
+          "english": "chopsticks"
+        },
+        {
+          "word": "端",
+          "reading": "hashi",
+          "pitch": "H-L",
+          "english": "edge"
+        },
+        {
+          "word": "雨",
+          "reading": "ame",
+          "pitch": "L-H",
+          "english": "rain"
+        },
+        {
+          "word": "飴",
+          "reading": "ame",
+          "pitch": "H-L",
+          "english": "candy"
+        },
+        {
+          "word": "東京",
+          "reading": "tōkyō",
+          "pitch": "L-H-H-L",
+          "english": "Tokyo"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "橋 and 箸 look identical in romaji and share the same kanji sounds : pitch is the *only* distinguishing feature. In a real sentence, context almost always resolves meaning before pitch even matters."
+    },
+    {
+      "type": "section_title",
+      "content": "For Learners"
+    },
+    {
+      "type": "text",
+      "content": "Getting pitch accent wrong does not prevent communication. Native speakers adjust easily for non-native speech. Pitch is best absorbed through listening : it improves naturally with exposure and can be studied deliberately at intermediate level. For now, focus on vocabulary, grammar, and reading."
+    }
+  ]
+}

@@ -52,13 +52,13 @@ A lesson is the smallest navigable unit — the screen the user reads.
 These widgets already exist in `lib/presentation/widgets/common/` and must be reused
 rather than duplicated in grammar block implementations.
 
-| Widget | File | What it does |
-|---|---|---|
-| `JapaneseText` | `japanese_text.dart` | Japanese word with optional furigana above each kanji. Also exports `furiganaSpans`, `rubySpan`, `splitSentenceAnnotation` for sentence-level rendering. |
-| `CardContainer` | `card_container.dart` | Full-width card with `cardBackground` fill, `outlineVariant` border, `radiusMd` corners. Use as the outer shell for any block that needs a card look. |
-| `SectionLabel` | `section_label.dart` | Small all-caps label in `onSurfaceVariant`. Use for column headers in tables. |
-| `PillBadge` | `pill_badge.dart` | Coloured pill with a label. Use for level or category tags inside blocks. |
-| `TappableSurface` | `tappable_surface.dart` | `ClipRRect → Material → InkWell → Ink` shell. Use only when a block needs a tap handler. |
+| Widget            | File                    | What it does                                                                                                                                             |
+| ----------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `JapaneseText`    | `japanese_text.dart`    | Japanese word with optional furigana above each kanji. Also exports `furiganaSpans`, `rubySpan`, `splitSentenceAnnotation` for sentence-level rendering. |
+| `CardContainer`   | `card_container.dart`   | Full-width card with `cardBackground` fill, `outlineVariant` border, `radiusMd` corners. Use as the outer shell for any block that needs a card look.    |
+| `SectionLabel`    | `section_label.dart`    | Small all-caps label in `onSurfaceVariant`. Use for column headers in tables.                                                                            |
+| `PillBadge`       | `pill_badge.dart`       | Coloured pill with a label. Use for level or category tags inside blocks.                                                                                |
+| `TappableSurface` | `tappable_surface.dart` | `ClipRRect → Material → InkWell → Ink` shell. Use only when a block needs a tap handler.                                                                 |
 
 ---
 
@@ -68,7 +68,7 @@ rather than duplicated in grammar block implementations.
 
 ### `text`
 
-Plain explanatory prose. Supports inline **bold** and *italic* via simple markers
+Plain explanatory prose. Supports inline **bold** and _italic_ via simple markers
 (parsed by the app, not a markdown engine). No headings, no nesting.
 
 ```json
@@ -176,8 +176,18 @@ A table for vocabulary or kanji listings — typically with more columns than ex
   "type": "vocab_table",
   "columns": ["japanese", "romaji", "english", "group"],
   "rows": [
-    { "japanese": "書く", "romaji": "kaku", "english": "to write", "group": "1" },
-    { "japanese": "食べる", "romaji": "taberu", "english": "to eat", "group": "2" }
+    {
+      "japanese": "書く",
+      "romaji": "kaku",
+      "english": "to write",
+      "group": "1"
+    },
+    {
+      "japanese": "食べる",
+      "romaji": "taberu",
+      "english": "to eat",
+      "group": "2"
+    }
   ]
 }
 ```
@@ -201,10 +211,30 @@ Rows are conjugation forms; a single target word is shown across all forms.
   "type": "conjugation_table",
   "label": "い-Adjectives — 高い",
   "rows": [
-    { "form": "Present",          "japanese": "高い",       "romaji": "takai",        "english": "is expensive / tall" },
-    { "form": "Negative",         "japanese": "高くない",   "romaji": "takakunai",    "english": "is not expensive" },
-    { "form": "Past",             "japanese": "高かった",   "romaji": "takakatta",    "english": "was expensive" },
-    { "form": "Past negative",    "japanese": "高くなかった","romaji": "takakunakatta","english": "was not expensive" }
+    {
+      "form": "Present",
+      "japanese": "高い",
+      "romaji": "takai",
+      "english": "is expensive / tall"
+    },
+    {
+      "form": "Negative",
+      "japanese": "高くない",
+      "romaji": "takakunai",
+      "english": "is not expensive"
+    },
+    {
+      "form": "Past",
+      "japanese": "高かった",
+      "romaji": "takakatta",
+      "english": "was expensive"
+    },
+    {
+      "form": "Past negative",
+      "japanese": "高くなかった",
+      "romaji": "takakunakatta",
+      "english": "was not expensive"
+    }
   ]
 }
 ```
@@ -247,7 +277,7 @@ example sentence using `JapaneseText`.
 ### `list`
 
 A bullet or numbered list of items. Each item supports the same inline
-**bold** and *italic* markers as the `text` block.
+**bold** and _italic_ markers as the `text` block.
 
 ```json
 {

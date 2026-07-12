@@ -1,0 +1,109 @@
+{
+  "id": "naka-chuu-juu",
+  "title": "中 : During / Throughout",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "The kanji **中** attaches to nouns with two different readings and two different meanings. The verb or context usually makes the reading clear."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "〜中 (ちゅう)",
+        "description": "Currently in that activity or state : happening right now.",
+        "example_jp": "会議中です。",
+        "example_en": "I'm in a meeting right now."
+      },
+      "right": {
+        "label": "〜中 (じゅう)",
+        "description": "Spanning the whole thing : throughout all of a time or space.",
+        "example_jp": "一日中働いています。",
+        "example_en": "I've been working all day long."
+      }
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "reading",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "会議中",
+          "reading": "かいぎちゅう",
+          "english": "in a meeting"
+        },
+        {
+          "japanese": "勉強中",
+          "reading": "べんきょうちゅう",
+          "english": "currently studying"
+        },
+        {
+          "japanese": "使用中",
+          "reading": "しようちゅう",
+          "english": "in use / occupied"
+        },
+        {
+          "japanese": "工事中",
+          "reading": "こうじちゅう",
+          "english": "under construction"
+        },
+        {
+          "japanese": "世界中",
+          "reading": "せかいじゅう",
+          "english": "throughout the world"
+        },
+        {
+          "japanese": "一日中",
+          "reading": "いちにちじゅう",
+          "english": "all day long"
+        },
+        {
+          "japanese": "日本中",
+          "reading": "にほんじゅう",
+          "english": "all over Japan"
+        },
+        {
+          "japanese": "年中",
+          "reading": "ねんじゅう",
+          "english": "all year round"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "すみません、今、電話中です。",
+          "romaji": "Sumimasen, ima, denwa chū desu.",
+          "english": "Sorry, I'm on the phone right now."
+        },
+        {
+          "japanese": "使用中のため入れません。",
+          "romaji": "Shiyō chū no tame hairemasen.",
+          "english": "Cannot enter : currently in use."
+        },
+        {
+          "japanese": "世界中の人が知っています。",
+          "romaji": "Sekai jū no hito ga shitte imasu.",
+          "english": "People all over the world know about it."
+        },
+        {
+          "japanese": "日本中を旅行しました。",
+          "romaji": "Nihon jū wo ryokō shimashita.",
+          "english": "I travelled all over Japan."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ちゅう = the activity is in progress right now (a slice of time). じゅう = no part is excluded (the full extent of a time or space). 勉強中 = studying at this moment. 一日中勉強した = studied without stopping for the entire day."
+    }
+  ]
+}

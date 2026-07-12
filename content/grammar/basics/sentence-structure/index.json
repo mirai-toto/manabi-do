@@ -1,0 +1,21 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "SOV Word Order",
+      "path": "basics/sentence-structure/sov-word-order.json"
+    },
+    {
+      "title": "Topic は vs Subject が",
+      "path": "basics/sentence-structure/topic-vs-subject.json"
+    },
+    {
+      "title": "Modifier Placement",
+      "path": "basics/sentence-structure/modifier-placement.json"
+    },
+    {
+      "title": "Subject Dropping",
+      "path": "basics/sentence-structure/subject-dropping.json"
+    }
+  ]
+}

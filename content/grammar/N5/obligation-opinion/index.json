@@ -1,0 +1,29 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "たほうがいい : Should / Shouldn't",
+      "path": "N5/obligation-opinion/ta-hou-ga-ii.json"
+    },
+    {
+      "title": "Must & Don't Have To",
+      "path": "N5/obligation-opinion/obligation-must.json"
+    },
+    {
+      "title": "と思います : I Think That",
+      "path": "N5/obligation-opinion/to-omoimasu.json"
+    },
+    {
+      "title": "つもり & 予定 : Intention and Plans",
+      "path": "N5/obligation-opinion/tsumori-yotei.json"
+    },
+    {
+      "title": "んです : Explanation",
+      "path": "N5/obligation-opinion/n-desu.json"
+    },
+    {
+      "title": "中 : During / Throughout",
+      "path": "N5/obligation-opinion/naka-chuu-juu.json"
+    }
+  ]
+}

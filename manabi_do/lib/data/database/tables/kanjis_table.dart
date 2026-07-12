@@ -7,4 +7,5 @@ class Kanjis extends Table {
   TextColumn get onReading => text()();
   TextColumn get kunReading => text()();
   TextColumn get jlptLevel => text()();
+  TextColumn get svg => text().nullable()();
 }

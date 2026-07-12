@@ -76,6 +76,15 @@ class $KanjisTable extends Kanjis with TableInfo<$KanjisTable, Kanji> {
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _svgMeta = const VerificationMeta('svg');
+  @override
+  late final GeneratedColumn<String> svg = GeneratedColumn<String>(
+    'svg',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -84,6 +93,7 @@ class $KanjisTable extends Kanjis with TableInfo<$KanjisTable, Kanji> {
     onReading,
     kunReading,
     jlptLevel,
+    svg,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -140,6 +150,12 @@ class $KanjisTable extends Kanjis with TableInfo<$KanjisTable, Kanji> {
     } else if (isInserting) {
       context.missing(_jlptLevelMeta);
     }
+    if (data.containsKey('svg')) {
+      context.handle(
+        _svgMeta,
+        svg.isAcceptableOrUnknown(data['svg']!, _svgMeta),
+      );
+    }
     return context;
   }
 
@@ -173,6 +189,10 @@ class $KanjisTable extends Kanjis with TableInfo<$KanjisTable, Kanji> {
         DriftSqlType.string,
         data['${effectivePrefix}jlpt_level'],
       )!,
+      svg: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}svg'],
+      ),
     );
   }
 
@@ -189,6 +209,7 @@ class Kanji extends DataClass implements Insertable<Kanji> {
   final String onReading;
   final String kunReading;
   final String jlptLevel;
+  final String? svg;
   const Kanji({
     required this.id,
     required this.character,
@@ -196,6 +217,7 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     required this.onReading,
     required this.kunReading,
     required this.jlptLevel,
+    this.svg,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -206,6 +228,9 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     map['on_reading'] = Variable<String>(onReading);
     map['kun_reading'] = Variable<String>(kunReading);
     map['jlpt_level'] = Variable<String>(jlptLevel);
+    if (!nullToAbsent || svg != null) {
+      map['svg'] = Variable<String>(svg);
+    }
     return map;
   }
 
@@ -217,6 +242,7 @@ class Kanji extends DataClass implements Insertable<Kanji> {
       onReading: Value(onReading),
       kunReading: Value(kunReading),
       jlptLevel: Value(jlptLevel),
+      svg: svg == null && nullToAbsent ? const Value.absent() : Value(svg),
     );
   }
 
@@ -232,6 +258,7 @@ class Kanji extends DataClass implements Insertable<Kanji> {
       onReading: serializer.fromJson<String>(json['onReading']),
       kunReading: serializer.fromJson<String>(json['kunReading']),
       jlptLevel: serializer.fromJson<String>(json['jlptLevel']),
+      svg: serializer.fromJson<String?>(json['svg']),
     );
   }
   @override
@@ -244,6 +271,7 @@ class Kanji extends DataClass implements Insertable<Kanji> {
       'onReading': serializer.toJson<String>(onReading),
       'kunReading': serializer.toJson<String>(kunReading),
       'jlptLevel': serializer.toJson<String>(jlptLevel),
+      'svg': serializer.toJson<String?>(svg),
     };
   }
 
@@ -254,6 +282,7 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     String? onReading,
     String? kunReading,
     String? jlptLevel,
+    Value<String?> svg = const Value.absent(),
   }) => Kanji(
     id: id ?? this.id,
     character: character ?? this.character,
@@ -261,6 +290,7 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     onReading: onReading ?? this.onReading,
     kunReading: kunReading ?? this.kunReading,
     jlptLevel: jlptLevel ?? this.jlptLevel,
+    svg: svg.present ? svg.value : this.svg,
   );
   Kanji copyWithCompanion(KanjisCompanion data) {
     return Kanji(
@@ -272,6 +302,7 @@ class Kanji extends DataClass implements Insertable<Kanji> {
           ? data.kunReading.value
           : this.kunReading,
       jlptLevel: data.jlptLevel.present ? data.jlptLevel.value : this.jlptLevel,
+      svg: data.svg.present ? data.svg.value : this.svg,
     );
   }
 
@@ -283,14 +314,22 @@ class Kanji extends DataClass implements Insertable<Kanji> {
           ..write('meaning: $meaning, ')
           ..write('onReading: $onReading, ')
           ..write('kunReading: $kunReading, ')
-          ..write('jlptLevel: $jlptLevel')
+          ..write('jlptLevel: $jlptLevel, ')
+          ..write('svg: $svg')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, character, meaning, onReading, kunReading, jlptLevel);
+  int get hashCode => Object.hash(
+    id,
+    character,
+    meaning,
+    onReading,
+    kunReading,
+    jlptLevel,
+    svg,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -300,7 +339,8 @@ class Kanji extends DataClass implements Insertable<Kanji> {
           other.meaning == this.meaning &&
           other.onReading == this.onReading &&
           other.kunReading == this.kunReading &&
-          other.jlptLevel == this.jlptLevel);
+          other.jlptLevel == this.jlptLevel &&
+          other.svg == this.svg);
 }
 
 class KanjisCompanion extends UpdateCompanion<Kanji> {
@@ -310,6 +350,7 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
   final Value<String> onReading;
   final Value<String> kunReading;
   final Value<String> jlptLevel;
+  final Value<String?> svg;
   const KanjisCompanion({
     this.id = const Value.absent(),
     this.character = const Value.absent(),
@@ -317,6 +358,7 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     this.onReading = const Value.absent(),
     this.kunReading = const Value.absent(),
     this.jlptLevel = const Value.absent(),
+    this.svg = const Value.absent(),
   });
   KanjisCompanion.insert({
     this.id = const Value.absent(),
@@ -325,6 +367,7 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     required String onReading,
     required String kunReading,
     required String jlptLevel,
+    this.svg = const Value.absent(),
   }) : character = Value(character),
        meaning = Value(meaning),
        onReading = Value(onReading),
@@ -337,6 +380,7 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     Expression<String>? onReading,
     Expression<String>? kunReading,
     Expression<String>? jlptLevel,
+    Expression<String>? svg,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -345,6 +389,7 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
       if (onReading != null) 'on_reading': onReading,
       if (kunReading != null) 'kun_reading': kunReading,
       if (jlptLevel != null) 'jlpt_level': jlptLevel,
+      if (svg != null) 'svg': svg,
     });
   }
 
@@ -355,6 +400,7 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     Value<String>? onReading,
     Value<String>? kunReading,
     Value<String>? jlptLevel,
+    Value<String?>? svg,
   }) {
     return KanjisCompanion(
       id: id ?? this.id,
@@ -363,6 +409,7 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
       onReading: onReading ?? this.onReading,
       kunReading: kunReading ?? this.kunReading,
       jlptLevel: jlptLevel ?? this.jlptLevel,
+      svg: svg ?? this.svg,
     );
   }
 
@@ -387,6 +434,9 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     if (jlptLevel.present) {
       map['jlpt_level'] = Variable<String>(jlptLevel.value);
     }
+    if (svg.present) {
+      map['svg'] = Variable<String>(svg.value);
+    }
     return map;
   }
 
@@ -398,7 +448,8 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
           ..write('meaning: $meaning, ')
           ..write('onReading: $onReading, ')
           ..write('kunReading: $kunReading, ')
-          ..write('jlptLevel: $jlptLevel')
+          ..write('jlptLevel: $jlptLevel, ')
+          ..write('svg: $svg')
           ..write(')'))
         .toString();
   }
@@ -1786,6 +1837,452 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
           ..write('prompt: $prompt, ')
           ..write('answer: $answer, ')
           ..write('distractors: $distractors')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $GrammarLessonsTable extends GrammarLessons
+    with TableInfo<$GrammarLessonsTable, GrammarLessonRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $GrammarLessonsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _levelMeta = const VerificationMeta('level');
+  @override
+  late final GeneratedColumn<String> level = GeneratedColumn<String>(
+    'level',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _pathMeta = const VerificationMeta('path');
+  @override
+  late final GeneratedColumn<String> path = GeneratedColumn<String>(
+    'path',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _chapterMeta = const VerificationMeta(
+    'chapter',
+  );
+  @override
+  late final GeneratedColumn<String> chapter = GeneratedColumn<String>(
+    'chapter',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _blocksJsonMeta = const VerificationMeta(
+    'blocksJson',
+  );
+  @override
+  late final GeneratedColumn<String> blocksJson = GeneratedColumn<String>(
+    'blocks_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _orderIndexMeta = const VerificationMeta(
+    'orderIndex',
+  );
+  @override
+  late final GeneratedColumn<int> orderIndex = GeneratedColumn<int>(
+    'order_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    level,
+    path,
+    chapter,
+    title,
+    blocksJson,
+    orderIndex,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'grammar_lessons';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<GrammarLessonRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('level')) {
+      context.handle(
+        _levelMeta,
+        level.isAcceptableOrUnknown(data['level']!, _levelMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_levelMeta);
+    }
+    if (data.containsKey('path')) {
+      context.handle(
+        _pathMeta,
+        path.isAcceptableOrUnknown(data['path']!, _pathMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_pathMeta);
+    }
+    if (data.containsKey('chapter')) {
+      context.handle(
+        _chapterMeta,
+        chapter.isAcceptableOrUnknown(data['chapter']!, _chapterMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_chapterMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    if (data.containsKey('blocks_json')) {
+      context.handle(
+        _blocksJsonMeta,
+        blocksJson.isAcceptableOrUnknown(data['blocks_json']!, _blocksJsonMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_blocksJsonMeta);
+    }
+    if (data.containsKey('order_index')) {
+      context.handle(
+        _orderIndexMeta,
+        orderIndex.isAcceptableOrUnknown(data['order_index']!, _orderIndexMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_orderIndexMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  GrammarLessonRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return GrammarLessonRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      level: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}level'],
+      )!,
+      path: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}path'],
+      )!,
+      chapter: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}chapter'],
+      )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
+      blocksJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}blocks_json'],
+      )!,
+      orderIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}order_index'],
+      )!,
+    );
+  }
+
+  @override
+  $GrammarLessonsTable createAlias(String alias) {
+    return $GrammarLessonsTable(attachedDatabase, alias);
+  }
+}
+
+class GrammarLessonRow extends DataClass
+    implements Insertable<GrammarLessonRow> {
+  final int id;
+  final String level;
+  final String path;
+  final String chapter;
+  final String title;
+  final String blocksJson;
+  final int orderIndex;
+  const GrammarLessonRow({
+    required this.id,
+    required this.level,
+    required this.path,
+    required this.chapter,
+    required this.title,
+    required this.blocksJson,
+    required this.orderIndex,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['level'] = Variable<String>(level);
+    map['path'] = Variable<String>(path);
+    map['chapter'] = Variable<String>(chapter);
+    map['title'] = Variable<String>(title);
+    map['blocks_json'] = Variable<String>(blocksJson);
+    map['order_index'] = Variable<int>(orderIndex);
+    return map;
+  }
+
+  GrammarLessonsCompanion toCompanion(bool nullToAbsent) {
+    return GrammarLessonsCompanion(
+      id: Value(id),
+      level: Value(level),
+      path: Value(path),
+      chapter: Value(chapter),
+      title: Value(title),
+      blocksJson: Value(blocksJson),
+      orderIndex: Value(orderIndex),
+    );
+  }
+
+  factory GrammarLessonRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return GrammarLessonRow(
+      id: serializer.fromJson<int>(json['id']),
+      level: serializer.fromJson<String>(json['level']),
+      path: serializer.fromJson<String>(json['path']),
+      chapter: serializer.fromJson<String>(json['chapter']),
+      title: serializer.fromJson<String>(json['title']),
+      blocksJson: serializer.fromJson<String>(json['blocksJson']),
+      orderIndex: serializer.fromJson<int>(json['orderIndex']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'level': serializer.toJson<String>(level),
+      'path': serializer.toJson<String>(path),
+      'chapter': serializer.toJson<String>(chapter),
+      'title': serializer.toJson<String>(title),
+      'blocksJson': serializer.toJson<String>(blocksJson),
+      'orderIndex': serializer.toJson<int>(orderIndex),
+    };
+  }
+
+  GrammarLessonRow copyWith({
+    int? id,
+    String? level,
+    String? path,
+    String? chapter,
+    String? title,
+    String? blocksJson,
+    int? orderIndex,
+  }) => GrammarLessonRow(
+    id: id ?? this.id,
+    level: level ?? this.level,
+    path: path ?? this.path,
+    chapter: chapter ?? this.chapter,
+    title: title ?? this.title,
+    blocksJson: blocksJson ?? this.blocksJson,
+    orderIndex: orderIndex ?? this.orderIndex,
+  );
+  GrammarLessonRow copyWithCompanion(GrammarLessonsCompanion data) {
+    return GrammarLessonRow(
+      id: data.id.present ? data.id.value : this.id,
+      level: data.level.present ? data.level.value : this.level,
+      path: data.path.present ? data.path.value : this.path,
+      chapter: data.chapter.present ? data.chapter.value : this.chapter,
+      title: data.title.present ? data.title.value : this.title,
+      blocksJson: data.blocksJson.present
+          ? data.blocksJson.value
+          : this.blocksJson,
+      orderIndex: data.orderIndex.present
+          ? data.orderIndex.value
+          : this.orderIndex,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GrammarLessonRow(')
+          ..write('id: $id, ')
+          ..write('level: $level, ')
+          ..write('path: $path, ')
+          ..write('chapter: $chapter, ')
+          ..write('title: $title, ')
+          ..write('blocksJson: $blocksJson, ')
+          ..write('orderIndex: $orderIndex')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, level, path, chapter, title, blocksJson, orderIndex);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is GrammarLessonRow &&
+          other.id == this.id &&
+          other.level == this.level &&
+          other.path == this.path &&
+          other.chapter == this.chapter &&
+          other.title == this.title &&
+          other.blocksJson == this.blocksJson &&
+          other.orderIndex == this.orderIndex);
+}
+
+class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
+  final Value<int> id;
+  final Value<String> level;
+  final Value<String> path;
+  final Value<String> chapter;
+  final Value<String> title;
+  final Value<String> blocksJson;
+  final Value<int> orderIndex;
+  const GrammarLessonsCompanion({
+    this.id = const Value.absent(),
+    this.level = const Value.absent(),
+    this.path = const Value.absent(),
+    this.chapter = const Value.absent(),
+    this.title = const Value.absent(),
+    this.blocksJson = const Value.absent(),
+    this.orderIndex = const Value.absent(),
+  });
+  GrammarLessonsCompanion.insert({
+    this.id = const Value.absent(),
+    required String level,
+    required String path,
+    required String chapter,
+    required String title,
+    required String blocksJson,
+    required int orderIndex,
+  }) : level = Value(level),
+       path = Value(path),
+       chapter = Value(chapter),
+       title = Value(title),
+       blocksJson = Value(blocksJson),
+       orderIndex = Value(orderIndex);
+  static Insertable<GrammarLessonRow> custom({
+    Expression<int>? id,
+    Expression<String>? level,
+    Expression<String>? path,
+    Expression<String>? chapter,
+    Expression<String>? title,
+    Expression<String>? blocksJson,
+    Expression<int>? orderIndex,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (level != null) 'level': level,
+      if (path != null) 'path': path,
+      if (chapter != null) 'chapter': chapter,
+      if (title != null) 'title': title,
+      if (blocksJson != null) 'blocks_json': blocksJson,
+      if (orderIndex != null) 'order_index': orderIndex,
+    });
+  }
+
+  GrammarLessonsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? level,
+    Value<String>? path,
+    Value<String>? chapter,
+    Value<String>? title,
+    Value<String>? blocksJson,
+    Value<int>? orderIndex,
+  }) {
+    return GrammarLessonsCompanion(
+      id: id ?? this.id,
+      level: level ?? this.level,
+      path: path ?? this.path,
+      chapter: chapter ?? this.chapter,
+      title: title ?? this.title,
+      blocksJson: blocksJson ?? this.blocksJson,
+      orderIndex: orderIndex ?? this.orderIndex,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (level.present) {
+      map['level'] = Variable<String>(level.value);
+    }
+    if (path.present) {
+      map['path'] = Variable<String>(path.value);
+    }
+    if (chapter.present) {
+      map['chapter'] = Variable<String>(chapter.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (blocksJson.present) {
+      map['blocks_json'] = Variable<String>(blocksJson.value);
+    }
+    if (orderIndex.present) {
+      map['order_index'] = Variable<int>(orderIndex.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GrammarLessonsCompanion(')
+          ..write('id: $id, ')
+          ..write('level: $level, ')
+          ..write('path: $path, ')
+          ..write('chapter: $chapter, ')
+          ..write('title: $title, ')
+          ..write('blocksJson: $blocksJson, ')
+          ..write('orderIndex: $orderIndex')
           ..write(')'))
         .toString();
   }
@@ -3815,6 +4312,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $VocabularyEntriesTable vocabularyEntries =
       $VocabularyEntriesTable(this);
   late final $ExercisesTable exercises = $ExercisesTable(this);
+  late final $GrammarLessonsTable grammarLessons = $GrammarLessonsTable(this);
   late final $ProgressEntriesTable progressEntries = $ProgressEntriesTable(
     this,
   );
@@ -3835,6 +4333,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     kanas,
     vocabularyEntries,
     exercises,
+    grammarLessons,
     progressEntries,
     kanjiTranslations,
     vocabTranslations,
@@ -3852,6 +4351,7 @@ typedef $$KanjisTableCreateCompanionBuilder =
       required String onReading,
       required String kunReading,
       required String jlptLevel,
+      Value<String?> svg,
     });
 typedef $$KanjisTableUpdateCompanionBuilder =
     KanjisCompanion Function({
@@ -3861,6 +4361,7 @@ typedef $$KanjisTableUpdateCompanionBuilder =
       Value<String> onReading,
       Value<String> kunReading,
       Value<String> jlptLevel,
+      Value<String?> svg,
     });
 
 final class $$KanjisTableReferences
@@ -3946,6 +4447,11 @@ class $$KanjisTableFilterComposer
 
   ColumnFilters<String> get jlptLevel => $composableBuilder(
     column: $table.jlptLevel,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get svg => $composableBuilder(
+    column: $table.svg,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -4038,6 +4544,11 @@ class $$KanjisTableOrderingComposer
     column: $table.jlptLevel,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get svg => $composableBuilder(
+    column: $table.svg,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$KanjisTableAnnotationComposer
@@ -4068,6 +4579,9 @@ class $$KanjisTableAnnotationComposer
 
   GeneratedColumn<String> get jlptLevel =>
       $composableBuilder(column: $table.jlptLevel, builder: (column) => column);
+
+  GeneratedColumn<String> get svg =>
+      $composableBuilder(column: $table.svg, builder: (column) => column);
 
   Expression<T> vocabularyEntriesRefs<T extends Object>(
     Expression<T> Function($$VocabularyEntriesTableAnnotationComposer a) f,
@@ -4159,6 +4673,7 @@ class $$KanjisTableTableManager
                 Value<String> onReading = const Value.absent(),
                 Value<String> kunReading = const Value.absent(),
                 Value<String> jlptLevel = const Value.absent(),
+                Value<String?> svg = const Value.absent(),
               }) => KanjisCompanion(
                 id: id,
                 character: character,
@@ -4166,6 +4681,7 @@ class $$KanjisTableTableManager
                 onReading: onReading,
                 kunReading: kunReading,
                 jlptLevel: jlptLevel,
+                svg: svg,
               ),
           createCompanionCallback:
               ({
@@ -4175,6 +4691,7 @@ class $$KanjisTableTableManager
                 required String onReading,
                 required String kunReading,
                 required String jlptLevel,
+                Value<String?> svg = const Value.absent(),
               }) => KanjisCompanion.insert(
                 id: id,
                 character: character,
@@ -4182,6 +4699,7 @@ class $$KanjisTableTableManager
                 onReading: onReading,
                 kunReading: kunReading,
                 jlptLevel: jlptLevel,
+                svg: svg,
               ),
           withReferenceMapper: (p0) => p0
               .map(
@@ -5303,6 +5821,248 @@ typedef $$ExercisesTableProcessedTableManager =
       $$ExercisesTableUpdateCompanionBuilder,
       (Exercise, BaseReferences<_$AppDatabase, $ExercisesTable, Exercise>),
       Exercise,
+      PrefetchHooks Function()
+    >;
+typedef $$GrammarLessonsTableCreateCompanionBuilder =
+    GrammarLessonsCompanion Function({
+      Value<int> id,
+      required String level,
+      required String path,
+      required String chapter,
+      required String title,
+      required String blocksJson,
+      required int orderIndex,
+    });
+typedef $$GrammarLessonsTableUpdateCompanionBuilder =
+    GrammarLessonsCompanion Function({
+      Value<int> id,
+      Value<String> level,
+      Value<String> path,
+      Value<String> chapter,
+      Value<String> title,
+      Value<String> blocksJson,
+      Value<int> orderIndex,
+    });
+
+class $$GrammarLessonsTableFilterComposer
+    extends Composer<_$AppDatabase, $GrammarLessonsTable> {
+  $$GrammarLessonsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get level => $composableBuilder(
+    column: $table.level,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get path => $composableBuilder(
+    column: $table.path,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get chapter => $composableBuilder(
+    column: $table.chapter,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get blocksJson => $composableBuilder(
+    column: $table.blocksJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get orderIndex => $composableBuilder(
+    column: $table.orderIndex,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$GrammarLessonsTableOrderingComposer
+    extends Composer<_$AppDatabase, $GrammarLessonsTable> {
+  $$GrammarLessonsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get level => $composableBuilder(
+    column: $table.level,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get path => $composableBuilder(
+    column: $table.path,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get chapter => $composableBuilder(
+    column: $table.chapter,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get blocksJson => $composableBuilder(
+    column: $table.blocksJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get orderIndex => $composableBuilder(
+    column: $table.orderIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$GrammarLessonsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $GrammarLessonsTable> {
+  $$GrammarLessonsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get level =>
+      $composableBuilder(column: $table.level, builder: (column) => column);
+
+  GeneratedColumn<String> get path =>
+      $composableBuilder(column: $table.path, builder: (column) => column);
+
+  GeneratedColumn<String> get chapter =>
+      $composableBuilder(column: $table.chapter, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<String> get blocksJson => $composableBuilder(
+    column: $table.blocksJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get orderIndex => $composableBuilder(
+    column: $table.orderIndex,
+    builder: (column) => column,
+  );
+}
+
+class $$GrammarLessonsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $GrammarLessonsTable,
+          GrammarLessonRow,
+          $$GrammarLessonsTableFilterComposer,
+          $$GrammarLessonsTableOrderingComposer,
+          $$GrammarLessonsTableAnnotationComposer,
+          $$GrammarLessonsTableCreateCompanionBuilder,
+          $$GrammarLessonsTableUpdateCompanionBuilder,
+          (
+            GrammarLessonRow,
+            BaseReferences<
+              _$AppDatabase,
+              $GrammarLessonsTable,
+              GrammarLessonRow
+            >,
+          ),
+          GrammarLessonRow,
+          PrefetchHooks Function()
+        > {
+  $$GrammarLessonsTableTableManager(
+    _$AppDatabase db,
+    $GrammarLessonsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$GrammarLessonsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$GrammarLessonsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$GrammarLessonsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> level = const Value.absent(),
+                Value<String> path = const Value.absent(),
+                Value<String> chapter = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<String> blocksJson = const Value.absent(),
+                Value<int> orderIndex = const Value.absent(),
+              }) => GrammarLessonsCompanion(
+                id: id,
+                level: level,
+                path: path,
+                chapter: chapter,
+                title: title,
+                blocksJson: blocksJson,
+                orderIndex: orderIndex,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String level,
+                required String path,
+                required String chapter,
+                required String title,
+                required String blocksJson,
+                required int orderIndex,
+              }) => GrammarLessonsCompanion.insert(
+                id: id,
+                level: level,
+                path: path,
+                chapter: chapter,
+                title: title,
+                blocksJson: blocksJson,
+                orderIndex: orderIndex,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$GrammarLessonsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $GrammarLessonsTable,
+      GrammarLessonRow,
+      $$GrammarLessonsTableFilterComposer,
+      $$GrammarLessonsTableOrderingComposer,
+      $$GrammarLessonsTableAnnotationComposer,
+      $$GrammarLessonsTableCreateCompanionBuilder,
+      $$GrammarLessonsTableUpdateCompanionBuilder,
+      (
+        GrammarLessonRow,
+        BaseReferences<_$AppDatabase, $GrammarLessonsTable, GrammarLessonRow>,
+      ),
+      GrammarLessonRow,
       PrefetchHooks Function()
     >;
 typedef $$ProgressEntriesTableCreateCompanionBuilder =
@@ -7059,6 +7819,8 @@ class $AppDatabaseManager {
       $$VocabularyEntriesTableTableManager(_db, _db.vocabularyEntries);
   $$ExercisesTableTableManager get exercises =>
       $$ExercisesTableTableManager(_db, _db.exercises);
+  $$GrammarLessonsTableTableManager get grammarLessons =>
+      $$GrammarLessonsTableTableManager(_db, _db.grammarLessons);
   $$ProgressEntriesTableTableManager get progressEntries =>
       $$ProgressEntriesTableTableManager(_db, _db.progressEntries);
   $$KanjiTranslationsTableTableManager get kanjiTranslations =>

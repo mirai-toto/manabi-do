@@ -1,0 +1,17 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "Duration : 間",
+      "path": "N5/duration-frequency/duration-aida.json"
+    },
+    {
+      "title": "Frequency : 回",
+      "path": "N5/duration-frequency/frequency-kai.json"
+    },
+    {
+      "title": "かかる : Time and Cost",
+      "path": "N5/duration-frequency/kakaru.json"
+    }
+  ]
+}
