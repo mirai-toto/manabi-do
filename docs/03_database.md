@@ -152,13 +152,31 @@ Primary key: (item_type, item_id).
 
 | Content                   | Source                                                                                                                                                                         | License      |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
+| Kanji JLPT level          | [davidluzgouveia/kanji-data](https://github.com/davidluzgouveia/kanji-data) (based on Jonathan Waller's JLPT lists)                                                            | MIT          |
 | Kanji meanings & readings | KANJIDIC2 — Electronic Dictionary Research and Development Group (EDRDG)                                                                                                       | CC BY-SA 4.0 |
+| Kanji stroke order SVGs   | [KanjiVG](https://kanjivg.tagaini.net/) by Ulrich Apel                                                                                                                        | CC BY-SA 3.0 |
 | Vocabulary                | JMdict (via [jmdict-simplified](https://github.com/scriptin/jmdict-simplified)) + [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) for JLPT level tagging | CC BY-SA 4.0 |
 | Example sentences         | [Tatoeba](https://tatoeba.org) community corpus                                                                                                                                | CC BY 2.0    |
-| Stroke order diagrams     | KanjiVG by Ulrich Apel                                                                                                                                                         | CC BY-SA 3.0 |
 | Grammar lessons           | Hand-authored in `content/grammar/`                                                                                                                                            | —            |
 
 These sources feed into `content/` JSON files (committed) via the content pipeline. See `content/README.md` for the full rebuild workflow. `tools/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from upstream; run via `tools/generate.py --sync`.
+
+## Content storage and recoverability
+
+Every content type has a different resilience profile. This table maps where each lives and what is needed to recover it if the compiled DB is lost or corrupted.
+
+| Content | `content/` JSON (git) | DB | Raw source in `data/` (gitignored) | Recovery if DB lost |
+|---|---|---|---|---|
+| Kanji characters, readings, meanings | ✅ `kanji_n*.json` | ✅ `kanjis` | ✅ re-downloadable | Rebuild from `content/` |
+| Kanji stroke order SVGs | ❌ | ✅ `kanjis.svg` | ✅ re-downloadable | Re-download KanjiVG → rebuild DB |
+| Kana | ✅ `kana.json` | ✅ `kanas` | — (static) | Rebuild from `content/` |
+| Vocabulary words, readings, POS | ✅ `vocab_n*.json` | ✅ `vocabulary_entries` | ✅ re-downloadable | Rebuild from `content/` |
+| Vocabulary meanings (multilingual) | ✅ inside `vocab_n*.json` | ✅ `vocab_translations` | ✅ re-downloadable (250 MB) | Rebuild from `content/` |
+| Example sentences | ❌ | ✅ `sentences` | ✅ re-downloadable | Re-download Tatoeba → rebuild DB |
+| Sentence translations | ❌ | ✅ `sentence_translations` | ✅ re-downloadable | Re-download Tatoeba → rebuild DB |
+| Grammar lessons | ✅ `content/grammar/` | ✅ `grammar_lessons` | — (hand-authored) | Rebuild from `content/` |
+
+**Key insight:** sentences and SVGs have no committed fallback — they exist only in the DB and their gitignored raw source. All other content survives a DB loss via `content/` JSON. A full rebuild from scratch (including re-downloading all sources) takes a few minutes with `python3 tools/generate.py --sync`.
 
 ## Content organisation by JLPT level
 
