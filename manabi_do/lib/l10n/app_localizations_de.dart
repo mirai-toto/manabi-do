@@ -698,4 +698,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get copy => 'Kopieren';
+
+  @override
+  String get hide => 'Ausblenden';
 }

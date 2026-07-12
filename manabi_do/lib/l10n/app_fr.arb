@@ -314,5 +314,6 @@
   "nativeTranslationOnlySubtitle": "Ignorer les phrases sans traduction dans votre langue",
 
   "japanese": "Japonais",
-  "copy": "Copier"
+  "copy": "Copier",
+  "hide": "Masquer"
 }

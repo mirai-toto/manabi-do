@@ -313,5 +313,6 @@
   "translationModeOnDemand": "Schaltfläche",
   "translationModeNever": "Nie",
   "nativeTranslationOnlyLabel": "Nur meine Sprache",
-  "nativeTranslationOnlySubtitle": "Sätze ohne Übersetzung in Ihrer Sprache überspringen"
+  "nativeTranslationOnlySubtitle": "Sätze ohne Übersetzung in Ihrer Sprache überspringen",
+  "hide": "Ausblenden"
 }

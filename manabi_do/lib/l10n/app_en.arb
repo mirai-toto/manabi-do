@@ -323,5 +323,6 @@
   "nativeTranslationOnlySubtitle": "Skip sentences with no translation in your language",
 
   "japanese": "Japanese",
-  "copy": "Copy"
+  "copy": "Copy",
+  "hide": "Hide"
 }

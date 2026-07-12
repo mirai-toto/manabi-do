@@ -170,7 +170,7 @@ class SentenceClozeCard extends StatelessWidget {
                       ),
                       const SizedBox(width: AppDimens.spaceXs),
                       Text(
-                        showTranslation ? 'Hide' : 'Translation',
+                        showTranslation ? l.hide : l.translationModeLabel,
                         style: AppTextStyles.labelSmall.copyWith(
                           color: showTranslation ? color : t.onSurfaceVariant,
                         ),
