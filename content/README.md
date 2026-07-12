@@ -13,27 +13,33 @@ content/
 
 ---
 
-## Rebuild the database
+## Full pipeline (recommended)
 
-This is the only step needed for day-to-day content changes (editing grammar lessons, etc.).
-
-```bash
-python3 tools/build_content_db.py
-```
-
-Reads all files under `content/` and writes `manabi_do/assets/manabi_do_content.db`.
-
-Requires kanji SVGs to be present in `data/kanji_svg/` (see below). On first run, downloads ~60 MB of Tatoeba sentence data into `data/tatoeba/` (cached for subsequent runs). Skip sentences for a fast rebuild:
+`tools/generate.py` orchestrates all steps in order: SVG download → optional translations → DB build.
 
 ```bash
-python3 tools/build_content_db.py --no-sentences
+python3 tools/generate.py                 # full rebuild
+python3 tools/generate.py --no-sentences  # skip Tatoeba (faster, good for grammar/kanji edits)
+python3 tools/generate.py --translations  # also regenerate translations from JMdict/KANJIDIC2
 ```
 
 ---
 
-## Refresh kanji/vocabulary translations
+## Individual steps
 
-Only needed when updating kanji meanings or vocabulary translations from JMdict/KANJIDIC2. Requires two files placed in `data/` first:
+### Rebuild the database
+
+```bash
+python3 tools/build_content_db.py [--no-sentences]
+```
+
+Reads all files under `content/` and writes `manabi_do/assets/manabi_do_content.db`. Requires kanji SVGs in `data/kanji_svg/` (see below). On first run downloads ~60 MB of Tatoeba data into `data/tatoeba/` (cached for subsequent runs).
+
+---
+
+### Refresh kanji/vocabulary translations
+
+Only needed when updating meanings from JMdict/KANJIDIC2. Requires two files placed in `data/` first:
 
 | File                 | Source                                                                                                                                      |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -48,11 +54,11 @@ python3 tools/gen_translations.py
 dart run tools/gen_translations.dart
 ```
 
-Both scripts update `content/characters/kanji_n*.json` and `content/vocabulary/vocab_n*.json` in place. Rebuild the database afterwards.
+Both update `content/characters/kanji_n*.json` and `content/vocabulary/vocab_n*.json` in place. Rebuild the database afterwards (or use `tools/generate.py --translations`).
 
 ---
 
-## Refresh kanji SVGs
+### Refresh kanji SVGs
 
 Required before the first DB rebuild on a fresh clone, and whenever kanji are added to `content/characters/`. Downloads missing SVGs from KanjiVG into `data/kanji_svg/`; already-present files are skipped.
 
