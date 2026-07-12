@@ -41,12 +41,30 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 
 ---
 
-## 3. Internationalization (i18n) ✅
+## 3. Internationalization (i18n) 🔄
 
-**Rule:** Every user-visible UI string must go through the l10n system (`context.l10n.*`). Grammar lesson content is exempt.
+**Rule:** Every user-visible UI string must go through the l10n system (`context.l10n.*`). Grammar lesson content follows a per-locale JSON file approach.
 
+### UI strings ✅
 - ✅ Audit widget/screen files for hardcoded UI strings — one found (`Hide`/`Translation` in `sentence_cloze_card.dart`), moved to l10n
-- Grammar content localization: JSON lesson files are English-only by design for v1; future path deferred (per-locale JSON files or a translation layer over the block renderer)
+
+### Grammar content pipeline ✅
+- ✅ Lesson files renamed from `lesson.json` → `lesson.en.json`; future locales add `lesson.fr.json` etc.
+- ✅ Index files (`index.json`) keep inline locale maps: `"title": { "en": "...", "fr": "..." }`
+- ✅ `levels.json` uses the same locale-map format for `name`
+- ✅ `build_content_db.py` updated: `_walk_grammar_index(locale)` resolves `{path}.{locale}.json` with `.en.json` fallback; `insert_grammar(db, locale)` accepts a locale parameter
+
+### Grammar content translation 🔄
+- ✅ `basics` — all 10 lessons translated to French (`.fr.json`); all chapter and lesson titles in index files have `"fr"` keys
+- ⬜ `N5` — French translations pending
+- ⬜ Higher levels — not started
+
+### DB multi-locale support ⬜
+Remaining work to serve translated content in the app:
+1. Add `locale TEXT NOT NULL DEFAULT 'en'` column to `grammar_lessons` table (schema bump)
+2. Run `build_content_db.py` once per locale; each run inserts rows tagged with its locale
+3. Update `grammarChaptersProvider` to pass device locale to the DB query (`WHERE locale = ?`)
+4. Rebuild the DB asset
 
 ---
 
