@@ -1,0 +1,100 @@
+{
+  "id": "punctuation-spacing",
+  "title": "Punctuation & Spacing",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanese has no spaces between words. Word boundaries are legible because the three scripts alternate predictably, and because readers have internalised the grammar. The punctuation system is its own, parallel to the Western one."
+    },
+    {
+      "type": "section_title",
+      "content": "Punctuation Marks"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "symbol",
+        "name",
+        "use"
+      ],
+      "rows": [
+        {
+          "symbol": "。",
+          "name": "Kuten",
+          "use": "Sentence-ending period"
+        },
+        {
+          "symbol": "、",
+          "name": "Touten",
+          "use": "Comma : marks a pause within a sentence"
+        },
+        {
+          "symbol": "「 」",
+          "name": "Kagikakko",
+          "use": "Primary quotation marks"
+        },
+        {
+          "symbol": "『 』",
+          "name": "Nijū kagikakko",
+          "use": "Nested quotation marks, or book and work titles"
+        },
+        {
+          "symbol": "・",
+          "name": "Nakaguro",
+          "use": "Separates list items or parts of a foreign name"
+        },
+        {
+          "symbol": "ー",
+          "name": "Chōonpu",
+          "use": "Extends a vowel sound in katakana words"
+        },
+        {
+          "symbol": "！ ？",
+          "name": "Full-width forms",
+          "use": "Same function as English, but full-width for alignment"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "In Japanese fiction and manga, 「」kagikakko are the standard dialogue markers : not Western-style quotation marks. You will encounter them constantly in native texts."
+    },
+    {
+      "type": "section_title",
+      "content": "Examples in Context"
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "「おはよう」と言いました。",
+          "romaji": "\"Ohayō\" to iimashita.",
+          "english": "She said \"Good morning.\""
+        },
+        {
+          "japanese": "私はりんご、みかん、ぶどうを買いました。",
+          "romaji": "Watashi wa ringo, mikan, budō wo kaimashita.",
+          "english": "I bought apples, oranges, and grapes."
+        },
+        {
+          "japanese": "スミス・ジョン",
+          "romaji": "Sumisu Jon",
+          "english": "John Smith (foreign name with nakaguro)"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Writing Direction"
+    },
+    {
+      "type": "text",
+      "content": "Modern Japanese is written horizontally, left to right. Traditional texts : novels, some newspapers, manga speech bubbles : run *vertically* in columns read right to left. Both directions are in active use today."
+    }
+  ]
+}

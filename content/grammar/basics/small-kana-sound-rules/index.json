@@ -1,0 +1,17 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "っ : Double Consonant",
+      "path": "basics/small-kana-sound-rules/double-consonant.json"
+    },
+    {
+      "title": "ゃゅょ : Compound Sounds",
+      "path": "basics/small-kana-sound-rules/compound-sounds.json"
+    },
+    {
+      "title": "Long Vowels",
+      "path": "basics/small-kana-sound-rules/long-vowels.json"
+    }
+  ]
+}

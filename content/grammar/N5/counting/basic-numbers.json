@@ -1,0 +1,103 @@
+{
+  "id": "basic-numbers",
+  "title": "Basic Numbers",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanese numbers are straightforward up to 10,000. The same digits combine and stack to form larger values : 十一 is 10+1, 百二十三 is 100+20+3. Learn the base set and the rest follows."
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "#",
+        "japanese",
+        "reading",
+        "alternate"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "japanese": "一",
+          "reading": "いち",
+          "alternate": "ひと (with some counters)"
+        },
+        {
+          "#": "2",
+          "japanese": "二",
+          "reading": "に",
+          "alternate": "ふた (with some counters)"
+        },
+        {
+          "#": "3",
+          "japanese": "三",
+          "reading": "さん",
+          "alternate": ":"
+        },
+        {
+          "#": "4",
+          "japanese": "四",
+          "reading": "よん",
+          "alternate": "し"
+        },
+        {
+          "#": "5",
+          "japanese": "五",
+          "reading": "ご",
+          "alternate": ":"
+        },
+        {
+          "#": "6",
+          "japanese": "六",
+          "reading": "ろく",
+          "alternate": ":"
+        },
+        {
+          "#": "7",
+          "japanese": "七",
+          "reading": "なな",
+          "alternate": "しち"
+        },
+        {
+          "#": "8",
+          "japanese": "八",
+          "reading": "はち",
+          "alternate": ":"
+        },
+        {
+          "#": "9",
+          "japanese": "九",
+          "reading": "きゅう",
+          "alternate": "く"
+        },
+        {
+          "#": "10",
+          "japanese": "十",
+          "reading": "じゅう",
+          "alternate": ":"
+        },
+        {
+          "#": "100",
+          "japanese": "百",
+          "reading": "ひゃく",
+          "alternate": ":"
+        },
+        {
+          "#": "1,000",
+          "japanese": "千",
+          "reading": "せん",
+          "alternate": ":"
+        },
+        {
+          "#": "10,000",
+          "japanese": "万",
+          "reading": "まん",
+          "alternate": ":"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "4 (し) and 9 (く) are avoided in some contexts : し sounds like 死 (death) and く like 苦 (suffering). Hospital rooms sometimes skip these numbers. This is cultural awareness, not grammar."
+    }
+  ]
+}

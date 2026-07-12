@@ -1,0 +1,21 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "Forming the て-form",
+      "path": "N5/te-form/forming-te-form.json"
+    },
+    {
+      "title": "てください : Please Do",
+      "path": "N5/te-form/te-kudasai.json"
+    },
+    {
+      "title": "Permission & Prohibition",
+      "path": "N5/te-form/permission-prohibition.json"
+    },
+    {
+      "title": "Giving & Receiving Actions",
+      "path": "N5/te-form/giving-receiving.json"
+    }
+  ]
+}

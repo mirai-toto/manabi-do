@@ -1,0 +1,88 @@
+{
+  "id": "verb-groups",
+  "title": "Verb Groups",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Every Japanese verb belongs to one of three groups. The group determines *every* conjugation rule : get it right and the rest is predictable."
+    },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "**Group 1 : Godan (五段):** ends in any う-column sound : く, ぐ, す, つ, ぬ, ぶ, む, う, or る*. The stem changes shape across forms following phonetic patterns.",
+        "**Group 2 : Ichidan (一段):** ends in る, with an い or え vowel immediately before it. The stem never changes : you only remove the る.",
+        "**Group 3 : Irregular:** only する (to do) and くる (to come). Both must be memorised."
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english",
+        "group"
+      ],
+      "rows": [
+        {
+          "japanese": "書く",
+          "romaji": "kaku",
+          "english": "to write",
+          "group": "1"
+        },
+        {
+          "japanese": "話す",
+          "romaji": "hanasu",
+          "english": "to speak",
+          "group": "1"
+        },
+        {
+          "japanese": "待つ",
+          "romaji": "matsu",
+          "english": "to wait",
+          "group": "1"
+        },
+        {
+          "japanese": "帰る",
+          "romaji": "kaeru",
+          "english": "to return home",
+          "group": "1 *"
+        },
+        {
+          "japanese": "食べる",
+          "romaji": "taberu",
+          "english": "to eat",
+          "group": "2"
+        },
+        {
+          "japanese": "見る",
+          "romaji": "miru",
+          "english": "to see",
+          "group": "2"
+        },
+        {
+          "japanese": "起きる",
+          "romaji": "okiru",
+          "english": "to wake up",
+          "group": "2"
+        },
+        {
+          "japanese": "する",
+          "romaji": "suru",
+          "english": "to do",
+          "group": "3"
+        },
+        {
+          "japanese": "来る",
+          "romaji": "kuru",
+          "english": "to come",
+          "group": "3"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "る-ending Group 1 verbs look identical to Group 2 in dictionary form. 帰る (kaeru), 走る (hashiru), 知る (shiru), 切る (kiru) are all Group 1. There is no reliable visual test : when in doubt, check a dictionary. Recognition comes with exposure."
+    }
+  ]
+}

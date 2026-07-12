@@ -1,0 +1,17 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "A は B より ～ : More Than",
+      "path": "N5/comparison/yori-more-than.json"
+    },
+    {
+      "title": "どちらが ～ : Which is More ~?",
+      "path": "N5/comparison/dochira-which.json"
+    },
+    {
+      "title": "いちばん ～ : The Most ~",
+      "path": "N5/comparison/ichiban-superlative.json"
+    }
+  ]
+}

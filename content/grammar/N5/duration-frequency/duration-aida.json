@@ -1,0 +1,80 @@
+{
+  "id": "duration-aida",
+  "title": "Duration : 間",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**間** expresses a span of time : how long something lasted or how long an action continued. It attaches directly after the duration amount."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Duration] + **間** + [action / state]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "三時間",
+          "romaji": "sanjikan",
+          "english": "for three hours"
+        },
+        {
+          "japanese": "一週間",
+          "romaji": "isshūkan",
+          "english": "for one week"
+        },
+        {
+          "japanese": "二年間",
+          "romaji": "ninenkan",
+          "english": "for two years"
+        },
+        {
+          "japanese": "十分間",
+          "romaji": "juppunkan",
+          "english": "for ten minutes"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "三時間勉強しました。",
+          "romaji": "Sanjikan benkyō shimashita.",
+          "english": "I studied for three hours."
+        },
+        {
+          "japanese": "一週間日本にいました。",
+          "romaji": "Isshūkan nihon ni imashita.",
+          "english": "I was in Japan for one week."
+        },
+        {
+          "japanese": "二年間日本語を学んでいます。",
+          "romaji": "Ninenkan nihongo wo manande imasu.",
+          "english": "I have been learning Japanese for two years."
+        },
+        {
+          "japanese": "十分間待ちました。",
+          "romaji": "Juppunkan machimashita.",
+          "english": "I waited for ten minutes."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "間 has two readings. Combined with numbers it reads **かん** (三時間, 一週間). Used alone or in short phrases it can read **あいだ** (この間 = recently, the other day). In duration expressions, かん is almost always correct."
+    }
+  ]
+}

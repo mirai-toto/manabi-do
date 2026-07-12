@@ -1,0 +1,67 @@
+{
+  "id": "obligation-must",
+  "title": "Must & Don't Have To",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Two patterns cover what is required and what is not. **なければなりません** states that something must be done. **なくてもいいです** is its inverse : the action is not required."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "なければなりません",
+        "description": "Must do : the action is an obligation. Formal, used in writing and polite speech.",
+        "example_jp": "薬を毎日飲まなければなりません。",
+        "example_en": "I have to take medicine every day."
+      },
+      "right": {
+        "label": "なくてもいいです",
+        "description": "Don't have to : the action is optional. Giving permission not to do something.",
+        "example_jp": "今日は来なくてもいいです。",
+        "example_en": "You don't have to come today."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Neg. stem] + **なければなりません**   ← must (formal / polite)",
+        "[Neg. stem] + **ないといけません**     ← must (casual spoken)",
+        "[Neg. te-form] + **もいいです**        ← don't have to"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "明日までにレポートを出さなければなりません。",
+          "romaji": "Ashita made ni repōto wo dasanakereba narimasen.",
+          "english": "I must submit the report by tomorrow."
+        },
+        {
+          "japanese": "もっと練習しないといけません。",
+          "romaji": "Motto renshū shinai to ikemasen.",
+          "english": "I need to practice more."
+        },
+        {
+          "japanese": "全部食べなくてもいいですよ。",
+          "romaji": "Zenbu tabenakute mo ii desu yo.",
+          "english": "You don't have to eat everything."
+        },
+        {
+          "japanese": "ネクタイをしなくてもいいです。",
+          "romaji": "Nekutai wo shinakute mo ii desu.",
+          "english": "You don't need to wear a tie."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "なきゃ and なくちゃ are heavily contracted casual forms of なければならない : you will hear them constantly in everyday speech and anime. They are not appropriate in formal writing."
+    }
+  ]
+}

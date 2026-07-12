@@ -1,0 +1,152 @@
+{
+  "id": "relative-time",
+  "title": "Relative Time Words",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "These words are the building blocks of everyday temporal reference. None of them take the particle に : they are inherently time-referencing on their own."
+    },
+    {
+      "type": "section_title",
+      "content": "Days"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "今日",
+          "romaji": "kyō",
+          "english": "today"
+        },
+        {
+          "japanese": "明日",
+          "romaji": "ashita",
+          "english": "tomorrow"
+        },
+        {
+          "japanese": "昨日",
+          "romaji": "kinō",
+          "english": "yesterday"
+        },
+        {
+          "japanese": "明後日",
+          "romaji": "asatte",
+          "english": "the day after tomorrow"
+        },
+        {
+          "japanese": "一昨日",
+          "romaji": "ototoi",
+          "english": "the day before yesterday"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Weeks, Months, Years"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "今週",
+          "romaji": "konshū",
+          "english": "this week"
+        },
+        {
+          "japanese": "来週",
+          "romaji": "raishū",
+          "english": "next week"
+        },
+        {
+          "japanese": "先週",
+          "romaji": "senshū",
+          "english": "last week"
+        },
+        {
+          "japanese": "今月",
+          "romaji": "kongetsu",
+          "english": "this month"
+        },
+        {
+          "japanese": "来月",
+          "romaji": "raigetsu",
+          "english": "next month"
+        },
+        {
+          "japanese": "先月",
+          "romaji": "sengetsu",
+          "english": "last month"
+        },
+        {
+          "japanese": "今年",
+          "romaji": "kotoshi",
+          "english": "this year"
+        },
+        {
+          "japanese": "来年",
+          "romaji": "rainen",
+          "english": "next year"
+        },
+        {
+          "japanese": "去年",
+          "romaji": "kyonen",
+          "english": "last year"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Frequency"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "毎日",
+          "romaji": "mainichi",
+          "english": "every day"
+        },
+        {
+          "japanese": "毎週",
+          "romaji": "maishū",
+          "english": "every week"
+        },
+        {
+          "japanese": "毎月",
+          "romaji": "maitsuki",
+          "english": "every month"
+        },
+        {
+          "japanese": "毎年",
+          "romaji": "maitoshi",
+          "english": "every year"
+        },
+        {
+          "japanese": "毎朝",
+          "romaji": "maiasa",
+          "english": "every morning"
+        },
+        {
+          "japanese": "毎晩",
+          "romaji": "maiban",
+          "english": "every evening"
+        }
+      ]
+    }
+  ]
+}

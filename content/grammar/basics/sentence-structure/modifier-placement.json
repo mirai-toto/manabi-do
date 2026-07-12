@@ -1,0 +1,49 @@
+{
+  "id": "modifier-placement",
+  "title": "Modifier Placement",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "In English, modifiers can appear on either side of a noun. In Japanese, they always come *before* the noun they describe : adjectives, relative clauses, and entire subordinate phrases all stack up before their noun."
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "大きい犬",
+          "romaji": "ōkii inu",
+          "english": "big dog"
+        },
+        {
+          "japanese": "赤い車",
+          "romaji": "akai kuruma",
+          "english": "red car"
+        },
+        {
+          "japanese": "私が買った本",
+          "romaji": "watashi ga katta hon",
+          "english": "the book I bought"
+        },
+        {
+          "japanese": "昨日見た映画",
+          "romaji": "kinō mita eiga",
+          "english": "the movie I watched yesterday"
+        },
+        {
+          "japanese": "田中さんが作ったケーキ",
+          "romaji": "Tanaka-san ga tsukutta kēki",
+          "english": "the cake that Tanaka made"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Relative clauses in Japanese require no relative pronoun : no \"that\", \"which\", or \"who\". You simply place the entire clause before the noun: 昨日読んだ stacks directly onto any following noun."
+    }
+  ]
+}

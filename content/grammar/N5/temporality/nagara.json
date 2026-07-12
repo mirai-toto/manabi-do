@@ -1,0 +1,50 @@
+{
+  "id": "nagara",
+  "title": "ながら : While Doing",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**ながら** attaches to the verb stem to describe two actions happening simultaneously. The ながら clause is always the *secondary* action : the main verb at the end of the sentence is what the subject is primarily doing."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Verb stem] + **ながら**、[main action]"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "音楽を聴きながら勉強します。",
+          "romaji": "Ongaku wo kikinagara benkyō shimasu.",
+          "english": "I study while listening to music."
+        },
+        {
+          "japanese": "歩きながら電話で話しました。",
+          "romaji": "Arukinagara denwa de hanashimashita.",
+          "english": "I talked on the phone while walking."
+        },
+        {
+          "japanese": "テレビを見ながら夕ごはんを食べます。",
+          "romaji": "Terebi wo minagara yūgohan wo tabemasu.",
+          "english": "I eat dinner while watching TV."
+        },
+        {
+          "japanese": "コーヒーを飲みながら新聞を読みました。",
+          "romaji": "Koohii wo nominagara shinbun wo yomimashita.",
+          "english": "I read the newspaper while drinking coffee."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ながら requires the *same subject* for both actions. \"I study while she watches TV\" cannot use ながら : a different subject performing the secondary action requires a different structure."
+    }
+  ]
+}

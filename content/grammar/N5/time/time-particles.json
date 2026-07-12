@@ -1,0 +1,57 @@
+{
+  "id": "time-particles",
+  "title": "Time Particles : に, から, まで",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Three particles handle time relationships. **に** pins an action to a specific point : at a clock time or calendar date. **から** marks a start point. **まで** marks an end point. から and まで are often paired."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Specific time] **に** + [action]          ← at a specific time",
+        "[Start] **から** [End] **まで** + [action]  ← from A until B",
+        "[Start] **から** + [action]                ← from / since A (no end given)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "七時に起きます。",
+          "romaji": "Shichiji ni okimasu.",
+          "english": "I wake up at 7."
+        },
+        {
+          "japanese": "月曜日に病院へ行きます。",
+          "romaji": "Getsuyōbi ni byōin e ikimasu.",
+          "english": "I go to the hospital on Monday."
+        },
+        {
+          "japanese": "九時から五時まで働きます。",
+          "romaji": "Kuji kara goji made hatarakimasu.",
+          "english": "I work from 9 to 5."
+        },
+        {
+          "japanese": "授業は十時から始まります。",
+          "romaji": "Jugyō wa jūji kara hajimarimasu.",
+          "english": "Class starts from 10."
+        },
+        {
+          "japanese": "去年から日本語を勉強しています。",
+          "romaji": "Kyonen kara nihongo wo benkyō shite imasu.",
+          "english": "I've been studying Japanese since last year."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "に is **not** used with relative time words like 今日, 明日, 毎日, 来週. These words are already time-referencing and don't need に. Say 明日行きます : never 明日**に**行きます. Think of に as \"at a specific clock or calendar point.\" If the word is relative, drop the に."
+    }
+  ]
+}

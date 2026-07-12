@@ -1,0 +1,56 @@
+{
+  "id": "double-consonant",
+  "title": "っ : Double Consonant",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "A small っ signals a short, sharp pause before the following consonant, which is then held slightly longer. It occupies one full mora : one beat of rhythm : like any other kana."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[kana] + **っ** + [kana starting with a consonant]",
+        "→ the pause doubles the following consonant"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "きって",
+          "romaji": "kitte",
+          "english": "postage stamp"
+        },
+        {
+          "japanese": "ざっし",
+          "romaji": "zasshi",
+          "english": "magazine"
+        },
+        {
+          "japanese": "いっぽ",
+          "romaji": "ippo",
+          "english": "one step"
+        },
+        {
+          "japanese": "きっぷ",
+          "romaji": "kippu",
+          "english": "ticket"
+        },
+        {
+          "japanese": "ちょっと",
+          "romaji": "chotto",
+          "english": "a little / just a moment"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Common mistake: without the っ, the meaning changes entirely. きて (*kite*) = \"come!\" : completely different from きって (*kitte*, postage stamp). Treat っ as a real beat of silence, not an ornament."
+    }
+  ]
+}

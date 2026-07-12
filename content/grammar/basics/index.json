@@ -1,0 +1,25 @@
+{
+  "type": "chapters",
+  "items": [
+    {
+      "title": "How Japanese Is Written",
+      "path": "basics/how-japanese-is-written/index.json"
+    },
+    {
+      "title": "Sentence Structure",
+      "path": "basics/sentence-structure/index.json"
+    },
+    {
+      "title": "Punctuation & Spacing",
+      "path": "basics/punctuation-spacing/index.json"
+    },
+    {
+      "title": "Small Kana & Sound Rules",
+      "path": "basics/small-kana-sound-rules/index.json"
+    },
+    {
+      "title": "Pitch Accent",
+      "path": "basics/pitch-accent/index.json"
+    }
+  ]
+}

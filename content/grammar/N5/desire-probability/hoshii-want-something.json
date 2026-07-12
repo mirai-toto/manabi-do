@@ -1,0 +1,62 @@
+{
+  "id": "hoshii-want-something",
+  "title": "Want Something : ほしい",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**ほしい** expresses desire for a *thing* : a noun, not an action. It is an い-adjective and conjugates the same way. The object is always marked with が."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Object] が **ほしいです**        (want something)",
+        "[Object] が **ほしくないです**    (don't want something)",
+        "[Object] が **ほしかったです**    (wanted something)"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "たい : action",
+        "description": "Attaches to a verb stem. Expresses the desire to *do* something.",
+        "example_jp": "寿司が食べたいです。",
+        "example_en": "I want to eat sushi."
+      },
+      "right": {
+        "label": "ほしい : object",
+        "description": "Follows a noun with が. Expresses the desire to *have* something.",
+        "example_jp": "新しいカメラがほしいです。",
+        "example_en": "I want a new camera."
+      }
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "新しいカメラがほしいです。",
+          "romaji": "Atarashii kamera ga hoshii desu.",
+          "english": "I want a new camera."
+        },
+        {
+          "japanese": "今は何もほしくないです。",
+          "romaji": "Ima wa nani mo hoshikunai desu.",
+          "english": "I don't want anything right now."
+        },
+        {
+          "japanese": "子どもの頃、犬がほしかったです。",
+          "romaji": "Kodomo no koro, inu ga hoshikatta desu.",
+          "english": "When I was a child, I wanted a dog."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ほしい carries the same register restriction as たい : use it for your own desires only. For someone else wanting something, say ほしがっている (seems to want)."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "compound-sounds",
+  "title": "ゃゅょ : Compound Sounds",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Small や, ゆ, よ combine with a preceding consonant + i kana to form a single blended syllable. The i vowel disappears and the two characters collapse into one sound."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[consonant + i kana] + **ゃ / ゅ / ょ** → one syllable, not two"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "written",
+        "romaji",
+        "one syllable",
+        "common mistake"
+      ],
+      "rows": [
+        {
+          "written": "きゃ",
+          "romaji": "kya",
+          "one syllable": "yes",
+          "common mistake": "not ki-ya"
+        },
+        {
+          "written": "しゅ",
+          "romaji": "shu",
+          "one syllable": "yes",
+          "common mistake": "not shi-yu"
+        },
+        {
+          "written": "にょ",
+          "romaji": "nyo",
+          "one syllable": "yes",
+          "common mistake": ":"
+        },
+        {
+          "written": "びょういん",
+          "romaji": "byōin",
+          "one syllable": "4 mora: びょ・う・い・ん",
+          "common mistake": "often read as 5"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "びょういん (hospital) and びよういん (beauty salon) are frequently confused : the first has a small よ (one syllable), the second has a full-size よ (two syllables). The written distinction is crucial."
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "id": "counters",
+  "title": "Counters",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanese does not use bare numbers to count objects. Numbers pair with **counters** : suffixes that classify what is being counted. The number reading also changes depending on which counter follows."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Number] + **[Counter]**"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "三人",
+          "romaji": "sannin",
+          "english": "three people"
+        },
+        {
+          "japanese": "二枚",
+          "romaji": "nimai",
+          "english": "two sheets"
+        },
+        {
+          "japanese": "一杯",
+          "romaji": "ippai",
+          "english": "one cup"
+        }
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "reading",
+        "used for",
+        "example"
+      ],
+      "rows": [
+        {
+          "japanese": "人",
+          "reading": "にん / り",
+          "used for": "people",
+          "example": "三人 (sannin) / 一人 (hitori)"
+        },
+        {
+          "japanese": "個",
+          "reading": "こ",
+          "used for": "small, general objects",
+          "example": "二個 (niko)"
+        },
+        {
+          "japanese": "枚",
+          "reading": "まい",
+          "used for": "flat, thin things",
+          "example": "一枚 (ichimai)"
+        },
+        {
+          "japanese": "本",
+          "reading": "ほん",
+          "used for": "long, cylindrical things",
+          "example": "三本 (sanbon)"
+        },
+        {
+          "japanese": "冊",
+          "reading": "さつ",
+          "used for": "bound books",
+          "example": "二冊 (nisatsu)"
+        },
+        {
+          "japanese": "匹",
+          "reading": "ひき",
+          "used for": "small animals",
+          "example": "一匹 (ippiki)"
+        },
+        {
+          "japanese": "台",
+          "reading": "だい",
+          "used for": "machines, vehicles",
+          "example": "二台 (nidai)"
+        },
+        {
+          "japanese": "杯",
+          "reading": "はい",
+          "used for": "cups, glasses, bowls",
+          "example": "一杯 (ippai)"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "学生が三人います。",
+          "romaji": "Gakusei ga sannin imasu.",
+          "english": "There are 3 students."
+        },
+        {
+          "japanese": "りんごを二個買いました。",
+          "romaji": "Ringo wo niko kaimashita.",
+          "english": "I bought 2 apples."
+        },
+        {
+          "japanese": "紙を一枚ください。",
+          "romaji": "Kami wo ichimai kudasai.",
+          "english": "Please give me one sheet of paper."
+        },
+        {
+          "japanese": "コーヒーを一杯飲みました。",
+          "romaji": "Koohii wo ippai nomimashita.",
+          "english": "I drank one cup of coffee."
+        },
+        {
+          "japanese": "車を二台持っています。",
+          "romaji": "Kuruma wo nidai motte imasu.",
+          "english": "I have two cars."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Number + counter combinations trigger phonetic changes. 一本 (ippon), 三本 (sanbon), 六本 (roppon) : the pattern follows Japanese sound rules. Don't try to memorise all variants at once. Learn the counter first and pick up the sound changes through exposure."
+    }
+  ]
+}

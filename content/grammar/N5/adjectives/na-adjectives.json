@@ -1,0 +1,89 @@
+{
+  "id": "na-adjectives",
+  "title": "な-Adjectives",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**な-adjectives** behave more like nouns than adjectives. They need **な** when directly modifying a noun, but conjugate by changing the following です : the adjective stem itself never changes."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Before a noun",
+        "description": "Insert な between the adjective and the noun it modifies.",
+        "example_jp": "静かな部屋",
+        "example_en": "a quiet room"
+      },
+      "right": {
+        "label": "As a predicate",
+        "description": "Use + です directly. No な needed after the adjective.",
+        "example_jp": "ここは静かです。",
+        "example_en": "It is quiet here."
+      }
+    },
+    {
+      "type": "conjugation_table",
+      "label": "静か (shizuka) : quiet",
+      "rows": [
+        {
+          "form": "present",
+          "japanese": "静かです",
+          "romaji": "shizuka desu",
+          "english": "is quiet"
+        },
+        {
+          "form": "negative",
+          "japanese": "静かじゃないです",
+          "romaji": "shizuka ja nai desu",
+          "english": "is not quiet"
+        },
+        {
+          "form": "past",
+          "japanese": "静かでした",
+          "romaji": "shizuka deshita",
+          "english": "was quiet"
+        },
+        {
+          "form": "past negative",
+          "japanese": "静かじゃなかったです",
+          "romaji": "shizuka ja nakatta desu",
+          "english": "was not quiet"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "彼女は親切な人です。",
+          "romaji": "Kanojo wa shinsetsu na hito desu.",
+          "english": "She is a kind person."
+        },
+        {
+          "japanese": "昨日は暇でした。",
+          "romaji": "Kinō wa hima deshita.",
+          "english": "I was free yesterday."
+        },
+        {
+          "japanese": "部屋はきれいじゃないです。",
+          "romaji": "Heya wa kirei ja nai desu.",
+          "english": "The room isn't clean."
+        },
+        {
+          "japanese": "この仕事は大変でした。",
+          "romaji": "Kono shigoto wa taihen deshita.",
+          "english": "This job was tough."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Not all adjectives ending in い are い-adjectives. きれい (beautiful), きらい (disliked), ゆうめい (famous) are all な-adjectives : they end in the *sound* い but conjugate like な-adjectives. When in doubt, check a dictionary."
+    }
+  ]
+}

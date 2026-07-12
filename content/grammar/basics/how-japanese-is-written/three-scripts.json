@@ -1,0 +1,80 @@
+{
+  "id": "three-scripts",
+  "title": "The Three Scripts",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanese uses three writing systems simultaneously, and most sentences mix all three. Understanding *why* each script exists makes the whole system feel less overwhelming."
+    },
+    {
+      "type": "text",
+      "content": "**Hiragana** (ひらがな) is the backbone of the written language : 46 base characters, each representing one syllable. It covers native Japanese words, grammatical particles, verb endings, and anything with no kanji equivalent. If you know no kanji, you can write everything in hiragana and be understood."
+    },
+    {
+      "type": "text",
+      "content": "**Katakana** (カタカナ) represents the exact same sounds as hiragana but is visually distinct : angular where hiragana is rounded. It marks foreign loanwords, borrowed proper nouns, scientific terms, and onomatopoeia. Seeing katakana is a reliable signal: this word came from somewhere else."
+    },
+    {
+      "type": "text",
+      "content": "**Kanji** (漢字) are Chinese-origin characters that carry meaning directly. A single kanji can pack the meaning of a whole English word into one character. The 常用漢字 standard defines 2,136 characters used in everyday writing; fluent readers know several thousand."
+    },
+    {
+      "type": "section_title",
+      "content": "A Real Sentence"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "part",
+        "script",
+        "role"
+      ],
+      "rows": [
+        {
+          "part": "私",
+          "script": "Kanji",
+          "role": "I / me"
+        },
+        {
+          "part": "は",
+          "script": "Hiragana",
+          "role": "topic particle"
+        },
+        {
+          "part": "コーヒー",
+          "script": "Katakana",
+          "role": "coffee (loanword)"
+        },
+        {
+          "part": "が",
+          "script": "Hiragana",
+          "role": "subject particle"
+        },
+        {
+          "part": "好きです。",
+          "script": "Kanji + Hiragana",
+          "role": "like + polite ending"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "私はコーヒーが好きです。",
+          "romaji": "Watashi wa koohii ga suki desu.",
+          "english": "I like coffee."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Reading a Japanese sentence is not harder once you accept that the script-switching is carrying information. Katakana = likely foreign word. Kanji = meaning anchor. Hiragana = grammatical glue."
+    }
+  ]
+}

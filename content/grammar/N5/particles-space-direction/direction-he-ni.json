@@ -1,0 +1,56 @@
+{
+  "id": "direction-he-ni",
+  "title": "へ and に : Direction",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Both **へ** and **に** can mark a destination when paired with a movement verb. They are often interchangeable, but each has a different focus: へ points at the direction of travel, に points at the arrival point. In everyday speech, に is more common."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Place] **へ** + [movement verb]   ← focus on the direction, the journey",
+        "[Place] **に** + [movement verb]   ← focus on the destination, arrival"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "学校へ行きます。",
+          "romaji": "Gakkō e ikimasu.",
+          "english": "I go to school."
+        },
+        {
+          "japanese": "東京に来ました。",
+          "romaji": "Tōkyō ni kimashita.",
+          "english": "I came to Tokyo."
+        },
+        {
+          "japanese": "家に帰ります。",
+          "romaji": "Uchi ni kaerimasu.",
+          "english": "I go home."
+        },
+        {
+          "japanese": "駅のほうへ歩きました。",
+          "romaji": "Eki no hō e arukimashita.",
+          "english": "I walked toward the station."
+        },
+        {
+          "japanese": "日本に引っ越しました。",
+          "romaji": "Nihon ni hikkoshimashita.",
+          "english": "I moved to Japan."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "に is required : not interchangeable with へ : with arrival verbs like 着く (to arrive) and 帰る (to return). These verbs already imply reaching a point, so に locks in the destination. 家に帰る = arrive back home. 家へ帰る = head toward home."
+    }
+  ]
+}

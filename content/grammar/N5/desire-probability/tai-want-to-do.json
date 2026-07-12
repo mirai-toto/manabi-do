@@ -1,0 +1,80 @@
+{
+  "id": "tai-want-to-do",
+  "title": "Want to Do : たい",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**たい** attaches to the verb stem and expresses the speaker's personal desire to do something. It conjugates exactly like an い-adjective : the same stem changes apply."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Verb stem] + **たいです**        (want to do)",
+        "[Verb stem] + **たくないです**    (don't want to do)",
+        "[Verb stem] + **たかったです**    (wanted to do)"
+      ]
+    },
+    {
+      "type": "conjugation_table",
+      "label": "食べる (taberu) → 食べたい",
+      "rows": [
+        {
+          "form": "want to",
+          "japanese": "食べたいです",
+          "romaji": "tabetai desu",
+          "english": "want to eat"
+        },
+        {
+          "form": "don't want to",
+          "japanese": "食べたくないです",
+          "romaji": "tabetakunai desu",
+          "english": "don't want to eat"
+        },
+        {
+          "form": "wanted to",
+          "japanese": "食べたかったです",
+          "romaji": "tabetakatta desu",
+          "english": "wanted to eat"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "日本に行きたいです。",
+          "romaji": "Nihon ni ikitai desu.",
+          "english": "I want to go to Japan."
+        },
+        {
+          "japanese": "今日は外出したくないです。",
+          "romaji": "Kyō wa gaishutsu shitakunai desu.",
+          "english": "I don't want to go out today."
+        },
+        {
+          "japanese": "何が食べたいですか。",
+          "romaji": "Nani ga tabetai desu ka.",
+          "english": "What do you want to eat?"
+        },
+        {
+          "japanese": "子どもの頃、医者になりたかったです。",
+          "romaji": "Kodomo no koro, isha ni naritakatta desu.",
+          "english": "When I was a child, I wanted to become a doctor."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "The direct object of たい often takes が instead of を : 寿司**が**食べたい sounds slightly more natural than 寿司**を**食べたい, though both are correct. Think of が as pairing the desire with its target."
+    },
+    {
+      "type": "note",
+      "content": "たい describes *your own* desire. Saying 田中さんは行きたい directly implies you know their inner feelings, which can sound presumptuous. For third-person desire, use 田中さんは行きたがっている (seems to want to go)."
+    }
+  ]
+}

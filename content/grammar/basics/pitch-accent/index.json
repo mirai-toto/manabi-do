@@ -1,0 +1,9 @@
+{
+  "type": "lessons",
+  "items": [
+    {
+      "title": "Pitch Accent",
+      "path": "basics/pitch-accent/pitch-accent.json"
+    }
+  ]
+}

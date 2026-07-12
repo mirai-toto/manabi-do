@@ -1,0 +1,22 @@
+[
+  {
+    "id": "basics",
+    "name": "Japanese Basics",
+    "color": "#795548",
+    "difficulty": {
+      "value": 1,
+      "total": 5
+    },
+    "path": "basics/index.json"
+  },
+  {
+    "id": "N5",
+    "name": "N5",
+    "color": "#4CAF50",
+    "difficulty": {
+      "value": 3,
+      "total": 5
+    },
+    "path": "N5/index.json"
+  }
+]

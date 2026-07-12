@@ -1,0 +1,52 @@
+{
+  "id": "permission-prohibition",
+  "title": "Permission & Prohibition",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Two て-form patterns cover what is and is not allowed. **てもいいです** gives permission or asks for it. **てはいけません** states that something is not permitted."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-form] + **もいいです**      ← it is okay to / you may",
+        "[て-form] + **もいいですか**    ← may I / is it okay to?",
+        "[て-form] + **はいけません**    ← you must not / it is not allowed"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "ここで写真を撮ってもいいですか。",
+          "romaji": "Koko de shashin wo totte mo ii desu ka.",
+          "english": "May I take photos here?"
+        },
+        {
+          "japanese": "窓を開けてもいいですよ。",
+          "romaji": "Mado wo akete mo ii desu yo.",
+          "english": "You may open the window."
+        },
+        {
+          "japanese": "ここでタバコを吸ってはいけません。",
+          "romaji": "Koko de tabako wo sutte wa ikemasen.",
+          "english": "You must not smoke here."
+        },
+        {
+          "japanese": "試験中にスマホを使ってはいけません。",
+          "romaji": "Shiken chū ni sumaho wo tsukatte wa ikemasen.",
+          "english": "You must not use your phone during the exam."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "In casual speech, てもいいです shortens to ていい. てはいけない contracts to ちゃいけない (from ては → ちゃ). Both are common in everyday conversation but not appropriate in formal writing."
+    }
+  ]
+}

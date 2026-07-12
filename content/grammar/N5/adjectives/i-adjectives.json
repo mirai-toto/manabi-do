@@ -1,0 +1,74 @@
+{
+  "id": "i-adjectives",
+  "title": "い-Adjectives",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**い-adjectives** end in い and conjugate directly : the い changes to signal tense and polarity. They can modify nouns directly and stand as predicates without any additional linking word."
+    },
+    {
+      "type": "conjugation_table",
+      "label": "高い (takai) : tall / expensive",
+      "rows": [
+        {
+          "form": "present",
+          "japanese": "高いです",
+          "romaji": "takai desu",
+          "english": "is tall"
+        },
+        {
+          "form": "negative",
+          "japanese": "高くないです",
+          "romaji": "takakunai desu",
+          "english": "is not tall"
+        },
+        {
+          "form": "past",
+          "japanese": "高かったです",
+          "romaji": "takakatta desu",
+          "english": "was tall"
+        },
+        {
+          "form": "past negative",
+          "japanese": "高くなかったです",
+          "romaji": "takakunakatta desu",
+          "english": "was not tall"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "この本は面白いです。",
+          "romaji": "Kono hon wa omoshiroi desu.",
+          "english": "This book is interesting."
+        },
+        {
+          "japanese": "今日は寒くないです。",
+          "romaji": "Kyō wa samukunai desu.",
+          "english": "It's not cold today."
+        },
+        {
+          "japanese": "子どもの頃、背が高かったです。",
+          "romaji": "Kodomo no koro, se ga takakatta desu.",
+          "english": "I was tall as a child."
+        },
+        {
+          "japanese": "昨日の映画は長くなかったです。",
+          "romaji": "Kinō no eiga wa nagakunakatta desu.",
+          "english": "Yesterday's movie wasn't long."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "いい (good) is irregular. Its negative is よくない (not いくない) and its past is よかった (not いかった). This is the single most common い-adjective error for beginners."
+    }
+  ]
+}

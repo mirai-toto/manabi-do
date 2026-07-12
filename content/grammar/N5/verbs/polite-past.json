@@ -1,0 +1,56 @@
+{
+  "id": "polite-past",
+  "title": "Polite Past : ました",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "The past tense is formed by replacing **ます** with **ました**. The negative past uses **ませんでした**. Both follow the same stem rules as the present tense : there is nothing new to memorise for the stem."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "Affirmative past: [stem] + **ました**",
+        "Negative past:    [stem] + **ませんでした**"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "昨日、映画を見ました。",
+          "romaji": "Kinō, eiga wo mimashita.",
+          "english": "I watched a movie yesterday."
+        },
+        {
+          "japanese": "朝ごはんを食べませんでした。",
+          "romaji": "Asagohan wo tabemasen deshita.",
+          "english": "I didn't eat breakfast."
+        },
+        {
+          "japanese": "先週、東京に行きました。",
+          "romaji": "Senshū, Tōkyō ni ikimashita.",
+          "english": "I went to Tokyo last week."
+        },
+        {
+          "japanese": "レポートを書きませんでした。",
+          "romaji": "Repōto wo kakimasen deshita.",
+          "english": "I didn't write the report."
+        },
+        {
+          "japanese": "先生に電話しました。",
+          "romaji": "Sensei ni denwa shimashita.",
+          "english": "I called the teacher."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Japanese past tense is clean : no distinction between simple past (\"I ate\") and perfect (\"I have eaten\") in the polite form. Time words and context carry that distinction."
+    }
+  ]
+}

@@ -25,7 +25,7 @@ from collections import defaultdict
 
 import pykakasi
 
-SCHEMA_VERSION = 11
+SCHEMA_VERSION = 12
 
 _kks = pykakasi.kakasi()
 
@@ -128,6 +128,7 @@ MAX_SENTENCES_PER_WORD = 3
 MAX_SENTENCE_LEN = 40
 TARGET_LANGS = {"eng", "fra", "deu", "spa", "ita", "por", "rus"}
 OUT_PATH = "manabi_do/assets/manabi_do_content.db"
+GRAMMAR_ROOT = "content/grammar"
 LEVELS = [("n5", "N5"), ("n4", "N4"), ("n3", "N3"), ("n2", "N2"), ("n1", "N1")]
 
 
@@ -178,12 +179,12 @@ def create_tables(db: sqlite3.Connection) -> None:
 
         CREATE TABLE grammar_lessons (
             id          INTEGER PRIMARY KEY AUTOINCREMENT,
-            locale      TEXT NOT NULL,
+            level       TEXT NOT NULL,
+            path        TEXT NOT NULL,
             chapter     TEXT NOT NULL,
             title       TEXT NOT NULL,
-            content_md  TEXT NOT NULL,
-            order_index INTEGER NOT NULL,
-            metadata    TEXT NOT NULL DEFAULT '{}'
+            blocks_json TEXT NOT NULL,
+            order_index INTEGER NOT NULL
         );
 
         CREATE TABLE exercises (
@@ -293,6 +294,48 @@ def insert_kana(db: sqlite3.Connection) -> int:
         rows,
     )
     return len(rows)
+
+
+def _walk_grammar_index(index_path: str) -> list[tuple[str, str, str, str, int]]:
+    """Recursively walk grammar index files.
+
+    Returns (chapter_title, lesson_path, lesson_title, blocks_json, order_index)
+    for every lesson reachable from index_path.
+    index_path is relative to GRAMMAR_ROOT.
+    """
+    results: list[tuple[str, str, str, str, int]] = []
+
+    def _walk(path: str, chapter: str) -> None:
+        with open(os.path.join(GRAMMAR_ROOT, path), encoding="utf-8") as f:
+            node = json.load(f)
+        if node["type"] == "chapters":
+            for item in node["items"]:
+                _walk(item["path"], item["title"])
+        else:
+            for i, item in enumerate(node["items"]):
+                with open(os.path.join(GRAMMAR_ROOT, item["path"]), encoding="utf-8") as f:
+                    lesson = json.load(f)
+                blocks_json = json.dumps(lesson["blocks"], ensure_ascii=False)
+                results.append((chapter, item["path"], lesson["title"], blocks_json, i))
+
+    _walk(index_path, "")
+    return results
+
+
+def insert_grammar(db: sqlite3.Connection) -> int:
+    with open(os.path.join(GRAMMAR_ROOT, "levels.json"), encoding="utf-8") as f:
+        levels = json.load(f)
+
+    total = 0
+    for level in levels:
+        for chapter, path, title, blocks_json, order_index in _walk_grammar_index(level["path"]):
+            db.execute(
+                "INSERT INTO grammar_lessons (level, path, chapter, title, blocks_json, order_index)"
+                " VALUES (?, ?, ?, ?, ?, ?)",
+                (level["id"], path, chapter, title, blocks_json, order_index),
+            )
+            total += 1
+    return total
 
 
 def _download(url: str, dest: str) -> None:
@@ -444,6 +487,10 @@ def main() -> None:
     print("Inserting kana… ", end="", flush=True)
     n = insert_kana(db)
     print(f"{n} entries")
+
+    print("Inserting grammar lessons… ", end="", flush=True)
+    n = insert_grammar(db)
+    print(f"{n} lessons")
 
     if "--no-sentences" not in sys.argv:
         print("Inserting sentences (Tatoeba)…")

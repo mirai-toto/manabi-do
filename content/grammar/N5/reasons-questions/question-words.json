@@ -1,0 +1,123 @@
+{
+  "id": "question-words",
+  "title": "Question Words",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanese **question words** (疑問詞) slot into the sentence exactly where the unknown information would go. The rest of the sentence structure stays the same : there is no subject-verb inversion like in English."
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "何 (なに / なん)",
+          "romaji": "nani / nan",
+          "english": "what"
+        },
+        {
+          "japanese": "誰",
+          "romaji": "dare",
+          "english": "who"
+        },
+        {
+          "japanese": "どこ",
+          "romaji": "doko",
+          "english": "where"
+        },
+        {
+          "japanese": "いつ",
+          "romaji": "itsu",
+          "english": "when"
+        },
+        {
+          "japanese": "どう",
+          "romaji": "dō",
+          "english": "how (in what way)"
+        },
+        {
+          "japanese": "なぜ",
+          "romaji": "naze",
+          "english": "why (formal / written)"
+        },
+        {
+          "japanese": "どうして",
+          "romaji": "dōshite",
+          "english": "why (spoken, casual)"
+        },
+        {
+          "japanese": "どんな",
+          "romaji": "donna",
+          "english": "what kind of"
+        },
+        {
+          "japanese": "どれ",
+          "romaji": "dore",
+          "english": "which one (of three or more)"
+        },
+        {
+          "japanese": "どちら / どっち",
+          "romaji": "dochira / docchi",
+          "english": "which (of two) / which way"
+        },
+        {
+          "japanese": "いくら",
+          "romaji": "ikura",
+          "english": "how much (price)"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "これは何ですか。",
+          "romaji": "Kore wa nan desu ka.",
+          "english": "What is this?"
+        },
+        {
+          "japanese": "トイレはどこですか。",
+          "romaji": "Toire wa doko desu ka.",
+          "english": "Where is the restroom?"
+        },
+        {
+          "japanese": "誰が来ましたか。",
+          "romaji": "Dare ga kimashita ka.",
+          "english": "Who came?"
+        },
+        {
+          "japanese": "どんな音楽が好きですか。",
+          "romaji": "Donna ongaku ga suki desu ka.",
+          "english": "What kind of music do you like?"
+        },
+        {
+          "japanese": "なぜ日本語を勉強していますか。",
+          "romaji": "Naze nihongo wo benkyō shite imasu ka.",
+          "english": "Why are you studying Japanese?"
+        },
+        {
+          "japanese": "これはいくらですか。",
+          "romaji": "Kore wa ikura desu ka.",
+          "english": "How much is this?"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "何 reads as なに before most words, but switches to なん before sounds starting with t, d, or n : and before counters. 何時 (nanji), 何人 (nannin), 何番 (nanban). The switch is phonetic, not grammatical."
+    },
+    {
+      "type": "note",
+      "content": "Question words in Japanese cannot combine with は (topic particle). 誰**は** and どこ**は** are ungrammatical. Use が for subjects: 誰が来ましたか. Use を for objects: 何を食べましたか."
+    }
+  ]
+}

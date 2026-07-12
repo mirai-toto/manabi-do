@@ -1,0 +1,66 @@
+{
+  "id": "deshou-kamoshirenai",
+  "title": "Probability : でしょう / かもしれない",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "These two forms express degrees of certainty about something unconfirmed. **でしょう** is fairly confident : the speaker's informed expectation. **かもしれない** is genuinely uncertain : the speaker is leaving room for doubt."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "でしょう",
+        "description": "Probably : the speaker is fairly confident. Based on evidence or reasoning.",
+        "example_jp": "明日は晴れるでしょう。",
+        "example_en": "It will probably be sunny tomorrow."
+      },
+      "right": {
+        "label": "かもしれない",
+        "description": "Might : the speaker is genuinely uncertain. Real possibility but not expected.",
+        "example_jp": "彼は来ないかもしれません。",
+        "example_en": "He might not come."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Plain form] + **でしょう**          ← probably (fairly confident)",
+        "[Plain form] + **かもしれません**    ← might (uncertain)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "english"
+      ],
+      "rows": [
+        {
+          "japanese": "このレストランは高いでしょう。",
+          "romaji": "Kono resutoran wa takai deshō.",
+          "english": "This restaurant is probably expensive."
+        },
+        {
+          "japanese": "電車が遅れているかもしれません。",
+          "romaji": "Densha ga okurete iru kamo shiremasen.",
+          "english": "The train might be running late."
+        },
+        {
+          "japanese": "彼女はもう知っているでしょう。",
+          "romaji": "Kanojo wa mō shitte iru deshō.",
+          "english": "She probably already knows."
+        },
+        {
+          "japanese": "明日、雨が降るかもしれません。",
+          "romaji": "Ashita, ame ga furu kamo shiremasen.",
+          "english": "It might rain tomorrow."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "でしょう with a rising intonation becomes a soft question tag : そうでしょう？ means \"That's right, isn't it?\" / \"Don't you think?\" This is a completely separate use from the probability meaning."
+    }
+  ]
+}

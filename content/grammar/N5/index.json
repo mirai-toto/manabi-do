@@ -1,0 +1,53 @@
+{
+  "type": "chapters",
+  "items": [
+    {
+      "title": "Verbs",
+      "path": "N5/verbs/index.json"
+    },
+    {
+      "title": "Particles : Space & Direction",
+      "path": "N5/particles-space-direction/index.json"
+    },
+    {
+      "title": "Counting",
+      "path": "N5/counting/index.json"
+    },
+    {
+      "title": "Time",
+      "path": "N5/time/index.json"
+    },
+    {
+      "title": "Adjectives",
+      "path": "N5/adjectives/index.json"
+    },
+    {
+      "title": "Reasons & Questions",
+      "path": "N5/reasons-questions/index.json"
+    },
+    {
+      "title": "Duration & Frequency",
+      "path": "N5/duration-frequency/index.json"
+    },
+    {
+      "title": "Desire & Probability",
+      "path": "N5/desire-probability/index.json"
+    },
+    {
+      "title": "て-form",
+      "path": "N5/te-form/index.json"
+    },
+    {
+      "title": "Temporality",
+      "path": "N5/temporality/index.json"
+    },
+    {
+      "title": "Comparison",
+      "path": "N5/comparison/index.json"
+    },
+    {
+      "title": "Obligation & Opinion",
+      "path": "N5/obligation-opinion/index.json"
+    }
+  ]
+}
