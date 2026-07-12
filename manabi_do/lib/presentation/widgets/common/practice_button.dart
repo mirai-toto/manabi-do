@@ -31,7 +31,7 @@ class PracticeButton extends StatelessWidget {
               Icon(Icons.school_rounded, color: color, size: 20),
               const SizedBox(width: AppDimens.spaceSm),
               Text(
-                context.l10n.practice,
+                context.l10n.freePractice,
                 style: AppTextStyles.body.copyWith(
                   color: color,
                   fontWeight: FontWeight.w600,
