@@ -1,4 +1,4 @@
-// Enriches content/kanji_n[1-5].json and content/vocab_n[1-5].json
+// Enriches content/characters/kanji_n[1-5].json and content/vocabulary/vocab_n[1-5].json
 // with multilingual meanings from JMdict-simplified and KANJIDIC2.
 //
 // Prerequisites — download these files and place them in tools/data/:
@@ -102,11 +102,9 @@ void main() async {
   }
 
   const encoder = JsonEncoder.withIndent('  ');
-  final outDir = Directory('content');
-
   for (final slug in ['n5', 'n4', 'n3', 'n2', 'n1']) {
     // ── Kanji ────────────────────────────────────────────────────────────
-    final kanjiFile = File('${outDir.path}/kanji_$slug.json');
+    final kanjiFile = File('content/characters/kanji_$slug.json');
     final kanjiList =
         (jsonDecode(await kanjiFile.readAsString()) as List<dynamic>)
             .cast<Map<String, dynamic>>();
@@ -127,7 +125,7 @@ void main() async {
     );
 
     // ── Vocab ─────────────────────────────────────────────────────────────
-    final vocabFile = File('${outDir.path}/vocab_$slug.json');
+    final vocabFile = File('content/vocabulary/vocab_$slug.json');
     final vocabList =
         (jsonDecode(await vocabFile.readAsString()) as List<dynamic>)
             .cast<Map<String, dynamic>>();

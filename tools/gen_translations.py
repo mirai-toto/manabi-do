@@ -1,5 +1,5 @@
 """
-Enriches content/kanji_n[1-5].json and content/vocab_n[1-5].json
+Enriches content/characters/kanji_n[1-5].json and content/vocabulary/vocab_n[1-5].json
 with multilingual meanings from JMdict-simplified and KANJIDIC2.
 
 Prerequisites — download these files and place them in tools/data/:
@@ -100,7 +100,7 @@ def build_kanji_lookup(kanjidic2_path: str) -> dict[int, dict[str, str]]:
 
 def enrich_kanji(kanji_lookup: dict[int, dict[str, str]]) -> None:
     for level in LEVELS:
-        path = f"content/kanji_{level}.json"
+        path = f"content/characters/kanji_{level}.json"
         with open(path, encoding="utf-8") as f:
             entries = json.load(f)
 
@@ -119,7 +119,7 @@ def enrich_kanji(kanji_lookup: dict[int, dict[str, str]]) -> None:
 
 def enrich_vocab(vocab_lookup: dict[tuple[str, str], dict[str, str]]) -> None:
     for level in LEVELS:
-        path = f"content/vocab_{level}.json"
+        path = f"content/vocabulary/vocab_{level}.json"
         with open(path, encoding="utf-8") as f:
             entries = json.load(f)
 
