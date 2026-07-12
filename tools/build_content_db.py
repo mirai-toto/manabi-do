@@ -1,17 +1,17 @@
 """
-Generates assets/manabi_do_content.db from the JSON source files.
+Generates manabi_do/assets/manabi_do_content.db from the JSON source files.
 
-Run from the project root:
-    python3 tool/build_content_db.py
+Run from the repo root:
+    python3 tools/build_content_db.py
 
 Commit the output file. The app copies it on first install — no runtime
 parsing or seeding loop.
 
-To add multilingual translations, run tool/gen_translations.dart first,
+To add multilingual translations, run tools/gen_translations.dart first,
 then re-run this script.
 
 Sentence exercises use Tatoeba (CC BY 2.0, tatoeba.org). The script
-downloads and caches the required dump files in tool/tatoeba_cache/ on first
+downloads and caches the required dump files in tools/tatoeba_cache/ on first
 run (~60 MB total). Pass --no-sentences to skip the sentence step.
 """
 
@@ -121,13 +121,13 @@ def _annotate(text: str) -> str:
             out += "{" + orig + "|" + hira + "}"
     return out
 
-TATOEBA_CACHE = "tool/tatoeba_cache"
+TATOEBA_CACHE = "tools/tatoeba_cache"
 TATOEBA_SENTENCES_URL = "https://downloads.tatoeba.org/exports/sentences.tar.bz2"
 TATOEBA_LINKS_URL = "https://downloads.tatoeba.org/exports/links.tar.bz2"
 MAX_SENTENCES_PER_WORD = 3
 MAX_SENTENCE_LEN = 40
 TARGET_LANGS = {"eng", "fra", "deu", "spa", "ita", "por", "rus"}
-OUT_PATH = "assets/manabi_do_content.db"
+OUT_PATH = "manabi_do/assets/manabi_do_content.db"
 LEVELS = [("n5", "N5"), ("n4", "N4"), ("n3", "N3"), ("n2", "N2"), ("n1", "N1")]
 
 

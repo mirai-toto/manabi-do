@@ -2,18 +2,18 @@
 Enriches content/kanji_n[1-5].json and content/vocab_n[1-5].json
 with multilingual meanings from JMdict-simplified and KANJIDIC2.
 
-Prerequisites — download these files and place them in tool/data/:
+Prerequisites — download these files and place them in tools/data/:
   JMdict-simplified (all languages JSON):
     https://github.com/scriptin/jmdict-simplified/releases
-    → jmdict-all-<version>.json  (rename to tool/data/jmdict.json)
+    → jmdict-all-<version>.json  (rename to tools/data/jmdict.json)
   KANJIDIC2 XML:
     https://www.edrdg.org/kanjidic/kanjidic2.xml.gz
-    → uncompress to tool/data/kanjidic2.xml
+    → uncompress to tools/data/kanjidic2.xml
 
-Run from the project root:
-    python3 tool/gen_translations.py
+Run from the repo root:
+    python3 tools/gen_translations.py
 
-After running, re-run tool/build_content_db.py and commit the updated DB.
+After running, re-run tools/build_content_db.py and commit the updated DB.
 """
 
 import json
@@ -139,8 +139,8 @@ def enrich_vocab(vocab_lookup: dict[tuple[str, str], dict[str, str]]) -> None:
 
 
 def main() -> None:
-    jmdict_path   = "tool/data/jmdict.json"
-    kanjidic2_path = "tool/data/kanjidic2.xml"
+    jmdict_path   = "tools/data/jmdict.json"
+    kanjidic2_path = "tools/data/kanjidic2.xml"
 
     if not os.path.exists(jmdict_path) or not os.path.exists(kanjidic2_path):
         print("Missing input files. See instructions at the top of this script.", file=sys.stderr)
@@ -155,7 +155,7 @@ def main() -> None:
     print("\nEnriching vocab…")
     enrich_vocab(vocab_lookup)
 
-    print("\nDone. Re-run tool/build_content_db.py to rebuild the DB.")
+    print("\nDone. Re-run tools/build_content_db.py to rebuild the DB.")
 
 
 if __name__ == "__main__":

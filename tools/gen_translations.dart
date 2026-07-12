@@ -1,16 +1,16 @@
 // Enriches content/kanji_n[1-5].json and content/vocab_n[1-5].json
 // with multilingual meanings from JMdict-simplified and KANJIDIC2.
 //
-// Prerequisites — download these files and place them in tool/data/:
+// Prerequisites — download these files and place them in tools/data/:
 //   JMdict-simplified (all languages JSON):
 //     https://github.com/scriptin/jmdict-simplified/releases
-//     → jmdict-all-<version>.json  (rename to tool/data/jmdict.json)
+//     → jmdict-all-<version>.json  (rename to tools/data/jmdict.json)
 //   KANJIDIC2 XML:
 //     https://www.edrdg.org/kanjidic/kanjidic2.xml.gz
-//     → uncompress to tool/data/kanjidic2.xml
+//     → uncompress to tools/data/kanjidic2.xml
 //
-// Run from the project root:
-//   dart run tool/gen_translations.dart
+// Run from the repo root:
+//   dart run tools/gen_translations.dart
 //
 // After running, commit the updated JSON files. The DB will pick up
 // the new translations on the next app reinstall / schema migration.
@@ -33,8 +33,8 @@ const _langMap = {
 };
 
 void main() async {
-  final jmdictFile = File('tool/data/jmdict.json');
-  final kanjidic2File = File('tool/data/kanjidic2.xml');
+  final jmdictFile = File('tools/data/jmdict.json');
+  final kanjidic2File = File('tools/data/kanjidic2.xml');
 
   if (!jmdictFile.existsSync() || !kanjidic2File.existsSync()) {
     stderr.writeln(
