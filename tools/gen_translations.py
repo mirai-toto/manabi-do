@@ -2,13 +2,13 @@
 Enriches content/characters/kanji_n[1-5].json and content/vocabulary/vocab_n[1-5].json
 with multilingual meanings from JMdict-simplified and KANJIDIC2.
 
-Prerequisites — download these files and place them in tools/data/:
+Prerequisites — download these files and place them in data/:
   JMdict-simplified (all languages JSON):
     https://github.com/scriptin/jmdict-simplified/releases
-    → jmdict-all-<version>.json  (rename to tools/data/jmdict.json)
+    → jmdict-all-<version>.json  (rename to data/jmdict.json)
   KANJIDIC2 XML:
     https://www.edrdg.org/kanjidic/kanjidic2.xml.gz
-    → uncompress to tools/data/kanjidic2.xml
+    → uncompress to data/kanjidic2.xml
 
 Run from the repo root:
     python3 tools/gen_translations.py
@@ -139,8 +139,8 @@ def enrich_vocab(vocab_lookup: dict[tuple[str, str], dict[str, str]]) -> None:
 
 
 def main() -> None:
-    jmdict_path   = "tools/data/jmdict.json"
-    kanjidic2_path = "tools/data/kanjidic2.xml"
+    jmdict_path   = "data/jmdict.json"
+    kanjidic2_path = "data/kanjidic2.xml"
 
     if not os.path.exists(jmdict_path) or not os.path.exists(kanjidic2_path):
         print("Missing input files. See instructions at the top of this script.", file=sys.stderr)

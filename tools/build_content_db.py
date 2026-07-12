@@ -11,7 +11,7 @@ To add multilingual translations, run tools/gen_translations.dart first,
 then re-run this script.
 
 Sentence exercises use Tatoeba (CC BY 2.0, tatoeba.org). The script
-downloads and caches the required dump files in tools/tatoeba_cache/ on first
+downloads and caches the required dump files in data/tatoeba/ on first
 run (~60 MB total). Pass --no-sentences to skip the sentence step.
 """
 
@@ -121,7 +121,7 @@ def _annotate(text: str) -> str:
             out += "{" + orig + "|" + hira + "}"
     return out
 
-TATOEBA_CACHE = "tools/tatoeba_cache"
+TATOEBA_CACHE = "data/tatoeba"
 TATOEBA_SENTENCES_URL = "https://downloads.tatoeba.org/exports/sentences.tar.bz2"
 TATOEBA_LINKS_URL = "https://downloads.tatoeba.org/exports/links.tar.bz2"
 MAX_SENTENCES_PER_WORD = 3

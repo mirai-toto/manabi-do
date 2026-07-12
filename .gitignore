@@ -1,5 +1,5 @@
-# Tatoeba build cache (downloaded by tool/build_content_db.py, not committed)
-manabi_do/tool/tatoeba_cache/
+# Raw source data — large downloads, not committed (see data/)
+data/
 
 # OS
 .DS_Store
@@ -15,9 +15,6 @@ Desktop.ini
 
 # Docker
 docker-compose.override.yml
-
-# JMdict / KANJIDIC2 source files — large offline downloads, not committed
-manabi_do/tool/data/
 
 # Screenshots — local only
 screenshots/
