@@ -1,0 +1,46 @@
+{
+  "id": "hoshii-want-something",
+  "title": "Vouloir Quelque Chose : ほしい",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**ほしい** exprime le désir d'une *chose* : un nom, pas une action. C'est un adjectif en い qui se conjugue de la même façon. L'objet est toujours marqué par が."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Objet] が **ほしいです**        (vouloir quelque chose)",
+        "[Objet] が **ほしくないです**    (ne pas vouloir quelque chose)",
+        "[Objet] が **ほしかったです**    (voulait quelque chose)"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "たい : action",
+        "description": "S'attache au radical d'un verbe. Exprime le désir de *faire* quelque chose.",
+        "example_jp": "寿司が食べたいです。",
+        "example_en": "Je veux manger des sushis."
+      },
+      "right": {
+        "label": "ほしい : objet",
+        "description": "Suit un nom avec が. Exprime le désir d'*avoir* quelque chose.",
+        "example_jp": "新しいカメラがほしいです。",
+        "example_en": "Je veux un nouvel appareil photo."
+      }
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "新しいカメラがほしいです。", "romaji": "Atarashii kamera ga hoshii desu.", "français": "Je veux un nouvel appareil photo." },
+        { "japanese": "今は何もほしくないです。", "romaji": "Ima wa nani mo hoshikunai desu.", "français": "Je ne veux rien pour l'instant." },
+        { "japanese": "子どもの頃、犬がほしかったです。", "romaji": "Kodomo no koro, inu ga hoshikatta desu.", "français": "Quand j'étais enfant, je voulais un chien." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ほしい a la même restriction de registre que たい : utilisez-le uniquement pour vos propres désirs. Pour exprimer le désir d'une autre personne, dites ほしがっている (semble vouloir)."
+    }
+  ]
+}

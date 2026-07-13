@@ -1,0 +1,39 @@
+{
+  "id": "frequency-kai",
+  "title": "Fréquence : 回",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**回** (かい) compte le nombre de fois qu'une chose se produit. Associez-le à une période et un nombre pour exprimer la fréquence d'une action."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Période] に [nombre] **回** + [action]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "français"],
+      "rows": [
+        { "japanese": "週に三回", "français": "trois fois par semaine" },
+        { "japanese": "一日に二回", "français": "deux fois par jour" },
+        { "japanese": "月に一度", "français": "une fois par mois (一度 = une fois, plus doux)" }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "週に三回ジムに行きます。", "romaji": "Shū ni sankai jimu ni ikimasu.", "français": "Je vais à la salle de sport trois fois par semaine." },
+        { "japanese": "一日に二回薬を飲みます。", "romaji": "Ichinichi ni nikai kusuri wo nomimasu.", "français": "Je prends des médicaments deux fois par jour." },
+        { "japanese": "月に一度、家族に電話します。", "romaji": "Tsuki ni ichido, kazoku ni denwa shimasu.", "français": "J'appelle ma famille une fois par mois." },
+        { "japanese": "年に一回しか会いません。", "romaji": "Nen ni ikkai shika aimasen.", "français": "On ne se voit qu'une fois par an." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "回 entraîne des changements phonétiques avec certains nombres. 一回 (ikkai), 六回 (rokkai), 八回 (hakkai), 十回 (jukkai) : un っ géminal apparaît avant k. Ces formes s'assimilent naturellement à l'écoute ; inutile de mémoriser toute la liste dès le début."
+    }
+  ]
+}

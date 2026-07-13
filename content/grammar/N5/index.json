@@ -26,15 +26,11 @@
       "path": "N5/reasons-questions/index.json"
     },
     {
-      "title": {
-        "en": "Duration & Frequency"
-      },
+      "title": { "en": "Duration & Frequency", "fr": "Durée & Fréquence" },
       "path": "N5/duration-frequency/index.json"
     },
     {
-      "title": {
-        "en": "Desire & Probability"
-      },
+      "title": { "en": "Desire & Probability", "fr": "Désir & Probabilité" },
       "path": "N5/desire-probability/index.json"
     },
     {

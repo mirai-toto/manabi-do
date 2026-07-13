@@ -1,0 +1,40 @@
+{
+  "id": "duration-aida",
+  "title": "Durée : 間",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**間** exprime une durée : combien de temps quelque chose a duré ou combien de temps une action s'est poursuivie. Il s'attache directement après la durée."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Durée] + **間** + [action / état]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "三時間", "romaji": "sanjikan", "français": "pendant trois heures" },
+        { "japanese": "一週間", "romaji": "isshūkan", "français": "pendant une semaine" },
+        { "japanese": "二年間", "romaji": "ninenkan", "français": "pendant deux ans" },
+        { "japanese": "十分間", "romaji": "juppunkan", "français": "pendant dix minutes" }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "三時間勉強しました。", "romaji": "Sanjikan benkyō shimashita.", "français": "J'ai étudié pendant trois heures." },
+        { "japanese": "一週間日本にいました。", "romaji": "Isshūkan nihon ni imashita.", "français": "J'ai été au Japon pendant une semaine." },
+        { "japanese": "二年間日本語を学んでいます。", "romaji": "Ninenkan nihongo wo manande imasu.", "français": "J'apprends le japonais depuis deux ans." },
+        { "japanese": "十分間待ちました。", "romaji": "Juppunkan machimashita.", "français": "J'ai attendu pendant dix minutes." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "間 a deux lectures. Combiné avec des nombres il se lit **かん** (三時間, 一週間). Seul ou dans de courtes expressions il peut se lire **あいだ** (この間 = récemment, l'autre jour). Dans les expressions de durée, かん est presque toujours correct."
+    }
+  ]
+}
