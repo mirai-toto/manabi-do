@@ -1,0 +1,32 @@
+{
+  "id": "direction-he-ni",
+  "title": "へ et に : Direction",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**へ** et **に** peuvent tous deux indiquer une destination avec un verbe de mouvement. Ils sont souvent interchangeables, mais chacun a un focus différent : へ indique la direction du déplacement, に indique le point d'arrivée. Dans la langue courante, に est plus fréquent."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Lieu] **へ** + [verbe de mouvement]   ← accent sur la direction, le trajet",
+        "[Lieu] **に** + [verbe de mouvement]   ← accent sur la destination, l'arrivée"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "学校へ行きます。", "romaji": "Gakkō e ikimasu.", "français": "Je vais à l'école." },
+        { "japanese": "東京に来ました。", "romaji": "Tōkyō ni kimashita.", "français": "Je suis venu(e) à Tokyo." },
+        { "japanese": "家に帰ります。", "romaji": "Uchi ni kaerimasu.", "français": "Je rentre chez moi." },
+        { "japanese": "駅のほうへ歩きました。", "romaji": "Eki no hō e arukimashita.", "français": "J'ai marché en direction de la gare." },
+        { "japanese": "日本に引っ越しました。", "romaji": "Nihon ni hikkoshimashita.", "français": "J'ai déménagé au Japon." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "に est obligatoire — non interchangeable avec へ — avec les verbes d'arrivée comme 着く (arriver) et 帰る (rentrer). Ces verbes impliquent déjà d'atteindre un point, donc に fixe la destination. 家に帰る = arriver à la maison. 家へ帰る = se diriger vers la maison."
+    }
+  ]
+}

@@ -2,21 +2,15 @@
   "type": "lessons",
   "items": [
     {
-      "title": {
-        "en": "Verb Groups"
-      },
+      "title": { "en": "Verb Groups", "fr": "Groupes de Verbes" },
       "path": "N5/verbs/verb-groups"
     },
     {
-      "title": {
-        "en": "Polite Present : ます"
-      },
+      "title": { "en": "Polite Present : ます", "fr": "Présent Poli : ます" },
       "path": "N5/verbs/polite-present"
     },
     {
-      "title": {
-        "en": "Polite Past : ました"
-      },
+      "title": { "en": "Polite Past : ました", "fr": "Passé Poli : ました" },
       "path": "N5/verbs/polite-past"
     }
   ]

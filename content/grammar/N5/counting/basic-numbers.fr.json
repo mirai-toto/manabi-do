@@ -1,0 +1,33 @@
+{
+  "id": "basic-numbers",
+  "title": "Nombres de Base",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Les nombres japonais sont simples jusqu'à 10 000. Les mêmes chiffres se combinent et s'accumulent pour former des valeurs plus grandes : 十一 est 10+1, 百二十三 est 100+20+3. Apprenez la base et le reste suit."
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["#", "japanese", "lecture", "alternative"],
+      "rows": [
+        { "#": "1", "japanese": "一", "lecture": "いち", "alternative": "ひと (avec certains compteurs)" },
+        { "#": "2", "japanese": "二", "lecture": "に", "alternative": "ふた (avec certains compteurs)" },
+        { "#": "3", "japanese": "三", "lecture": "さん", "alternative": ":" },
+        { "#": "4", "japanese": "四", "lecture": "よん", "alternative": "し" },
+        { "#": "5", "japanese": "五", "lecture": "ご", "alternative": ":" },
+        { "#": "6", "japanese": "六", "lecture": "ろく", "alternative": ":" },
+        { "#": "7", "japanese": "七", "lecture": "なな", "alternative": "しち" },
+        { "#": "8", "japanese": "八", "lecture": "はち", "alternative": ":" },
+        { "#": "9", "japanese": "九", "lecture": "きゅう", "alternative": "く" },
+        { "#": "10", "japanese": "十", "lecture": "じゅう", "alternative": ":" },
+        { "#": "100", "japanese": "百", "lecture": "ひゃく", "alternative": ":" },
+        { "#": "1 000", "japanese": "千", "lecture": "せん", "alternative": ":" },
+        { "#": "10 000", "japanese": "万", "lecture": "まん", "alternative": ":" }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "4 (し) et 9 (く) sont évités dans certains contextes : し ressemble à 死 (mort) et く à 苦 (souffrance). Les chambres d'hôpital omettent parfois ces numéros. C'est une conscience culturelle, pas une règle grammaticale."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "counters",
+  "title": "Compteurs",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le japonais n'utilise pas les nombres seuls pour compter des objets. Les nombres s'associent à des **compteurs** : des suffixes qui classifient ce qu'on compte. La lecture du nombre change aussi selon le compteur qui suit."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Nombre] + **[Compteur]**"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "三人", "romaji": "sannin", "français": "trois personnes" },
+        { "japanese": "二枚", "romaji": "nimai", "français": "deux feuilles" },
+        { "japanese": "一杯", "romaji": "ippai", "français": "une tasse" }
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "lecture", "utilisation", "exemple"],
+      "rows": [
+        { "japanese": "人", "lecture": "にん / り", "utilisation": "personnes", "exemple": "三人 (sannin) / 一人 (hitori)" },
+        { "japanese": "個", "lecture": "こ", "utilisation": "petits objets généraux", "exemple": "二個 (niko)" },
+        { "japanese": "枚", "lecture": "まい", "utilisation": "choses plates et fines", "exemple": "一枚 (ichimai)" },
+        { "japanese": "本", "lecture": "ほん", "utilisation": "choses longues et cylindriques", "exemple": "三本 (sanbon)" },
+        { "japanese": "冊", "lecture": "さつ", "utilisation": "livres reliés", "exemple": "二冊 (nisatsu)" },
+        { "japanese": "匹", "lecture": "ひき", "utilisation": "petits animaux", "exemple": "一匹 (ippiki)" },
+        { "japanese": "台", "lecture": "だい", "utilisation": "machines, véhicules", "exemple": "二台 (nidai)" },
+        { "japanese": "杯", "lecture": "はい", "utilisation": "tasses, verres, bols", "exemple": "一杯 (ippai)" }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "学生が三人います。", "romaji": "Gakusei ga sannin imasu.", "français": "Il y a 3 étudiants." },
+        { "japanese": "りんごを二個買いました。", "romaji": "Ringo wo niko kaimashita.", "français": "J'ai acheté 2 pommes." },
+        { "japanese": "紙を一枚ください。", "romaji": "Kami wo ichimai kudasai.", "français": "Donnez-moi une feuille de papier, s'il vous plaît." },
+        { "japanese": "コーヒーを一杯飲みました。", "romaji": "Koohii wo ippai nomimashita.", "français": "J'ai bu une tasse de café." },
+        { "japanese": "車を二台持っています。", "romaji": "Kuruma wo nidai motte imasu.", "français": "J'ai deux voitures." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Les combinaisons nombre + compteur entraînent des changements phonétiques. 一本 (ippon), 三本 (sanbon), 六本 (roppon) : le schéma suit les règles phonétiques du japonais. N'essayez pas de mémoriser toutes les variantes d'un coup. Apprenez le compteur d'abord et assimilez les changements par l'exposition."
+    }
+  ]
+}
