@@ -57,7 +57,8 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 ### Grammar content translation ✅
 - ✅ `basics` — all 10 lessons translated to French (`.fr.json`); all index titles have `"fr"` keys
 - ✅ `N5` — all 40 lessons translated to French (`.fr.json`); all index titles have `"fr"` keys
-- ⬜ Higher levels — not started
+- ⬜ Higher levels (N4+) — not started
+- ⬜ German (`de`) — started but not a priority
 
 ### DB multi-locale support ✅
 - ✅ `locale TEXT NOT NULL DEFAULT 'en'` column added to `grammar_lessons` (schema v14, migration in place)
