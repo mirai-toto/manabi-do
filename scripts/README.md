@@ -4,27 +4,25 @@
 
 ```
 scripts/
-  build/
-    build_web.sh            # Flutter web build + local HTTP server
   run/
-    linux.sh                # Launch app on Linux
-    widgetbook-linux.sh     # Launch widgetbook on Linux
-    windows.ps1             # Launch app on Windows
-    widgetbook-windows.ps1  # Launch widgetbook on Windows
+    run-linux.sh               # Build (Docker) + launch app on Linux
+    run-widgetbook-linux.sh    # Launch widgetbook on Linux
+    run-windows.ps1            # Build (Docker) + launch app on Windows
+    run-widgetbook-windows.ps1 # Launch widgetbook on Windows
+    run-web.sh                 # Flutter web build + local HTTP server
   screenshot/
-    screenshot.js           # Single screenshot of the home screen
-    screenshot_tab.js       # Screenshots every bottom-nav tab
-    screenshot_grammar.js   # Screenshots the full grammar flow
-    screenshot_grammar_n5.js  # Screenshots N5 grammar lessons
+    rebuild_and_screenshot.sh  # Full pipeline: build + all screenshots
+    screenshot.js              # Single screenshot utility
+    screenshot_tab.js          # Screenshots every bottom-nav tab
+    screenshot_grammar.js      # Screenshots the full grammar flow
+    screenshot_grammar_n5.js   # Screenshots N5 grammar lessons
+    pw/                        # Playwright install dir (gitignored, auto-installed)
+    output/                    # Screenshot output (gitignored)
   setup/
-    setup.sh                # One-time Playwright install (auto-called by rebuild_and_screenshot.sh)
-    setup-android-signing.sh  # Android signing key setup
-  pw/                       # Playwright install dir (gitignored)
-  rebuild_and_screenshot.sh # Full pipeline: build + all screenshots
+    setup-android-signing.sh   # Android signing key setup
+    app.build.gradle.kts.template  # Gradle signing config template
   README.md
 ```
-
-Screenshots are saved to `screenshots/` (gitignored) at the repo root.
 
 ---
 
@@ -33,16 +31,16 @@ Screenshots are saved to `screenshots/` (gitignored) at the repo root.
 ### One command (recommended)
 
 ```bash
-bash scripts/rebuild_and_screenshot.sh
+bash scripts/screenshot/rebuild_and_screenshot.sh
 ```
 
 Enables grammar, builds, serves, runs all screenshot scripts, then reverts the grammar flag.
-Installs Playwright automatically on first run.
+Installs Playwright automatically on first run into `scripts/screenshot/pw/`.
 
 ### Individual scripts
 
 ```bash
-export NODE_PATH=scripts/pw/node_modules
+export NODE_PATH=scripts/screenshot/pw/node_modules
 
 # Single home screenshot
 node scripts/screenshot/screenshot.js [port] [output_path]
@@ -71,10 +69,10 @@ node scripts/screenshot/screenshot_grammar.js [port]
 ## Build & run scripts
 
 ```bash
-# Build Flutter web and serve locally
-bash scripts/build/build_web.sh [port]   # defaults to 8767
+# Build (Docker) + launch the app
+bash scripts/run/run-linux.sh
+bash scripts/run/run-widgetbook-linux.sh
 
-# Launch the app (Linux)
-bash scripts/run/linux.sh
-bash scripts/run/widgetbook-linux.sh
+# Build Flutter web and serve locally
+bash scripts/run/run-web.sh [port]   # defaults to 8767
 ```

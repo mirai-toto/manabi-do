@@ -7,8 +7,15 @@ REPO="$(cd "$(dirname "$(realpath "$0")")/../.." && pwd)"
 PORT=8767
 GRAMMAR_SCREEN="$REPO/manabi_do/lib/presentation/screens/grammar/grammar_screen.dart"
 export NODE_PATH="$REPO/scripts/screenshot/pw/node_modules"
+PW_DIR="$REPO/scripts/screenshot/pw"
 
-bash "$REPO/scripts/setup/setup.sh"
+if [ ! -d "$PW_DIR/node_modules/playwright" ]; then
+  echo "→ installing Playwright"
+  mkdir -p "$PW_DIR"
+  cd "$PW_DIR" && npm install playwright 2>&1 | tail -2
+  npx playwright install chromium 2>&1 | tail -2
+  echo "✓ Playwright ready"
+fi
 
 cleanup() {
   echo "→ reverting _grammarEnabled"

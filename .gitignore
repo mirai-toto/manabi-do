@@ -27,6 +27,6 @@ docker-compose.override.yml
 # Screenshots — local only
 scripts/screenshot/output/
 
-# Playwright install (auto-installed by scripts/setup/setup.sh)
+# Playwright install (auto-installed by scripts/screenshot/rebuild_and_screenshot.sh)
 scripts/screenshot/pw/
 node_modules/
