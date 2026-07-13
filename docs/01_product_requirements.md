@@ -1,9 +1,27 @@
 # Product Requirements — Manabi Do
 
+## v1 Launch Checklist
+
+Items are ordered by priority. All must ship before App Store / Play Store public release.
+
+| # | Feature | Status |
+|---|---------|--------|
+| 1 | Grammar exercises (hand-authored alongside lesson JSON) | Not started |
+| 2 | iOS / App Store build | Not started |
+| 3 | Tablet UI — visually intentional layouts on larger screens | Not started |
+| 4 | SRS backup & restore via external drive (Google Drive primary) | Not started |
+| 5 | German grammar translation | In progress (low priority) |
+
+**Out of scope for v1:** Google/Apple sign-in with server-side sync (requires a backend — far future).
+
+---
+
 ## Target Platforms
 
 Flutter — iOS, Android, macOS, Windows, Linux.
 Full offline — no backend. All data and progress live on-device in SQLite.
+
+v1 targets: Android (Play Store) and iOS (App Store). Desktop platforms are supported but not a v1 focus.
 
 ---
 
@@ -36,7 +54,7 @@ No landing screen, no login, no onboarding — the app opens directly on the Hom
 
 Four domain cards: Kana, Kanji, Vocabulary, Grammar. Each card shows the total item count and the current SRS queue (due + new). Kana, Kanji, and Vocabulary cards have a practice button that launches an SRS session. A streak pill shows the number of consecutive review days.
 
-Grammar is shown as a card that navigates to the Grammar tab. SRS practice for grammar is not yet implemented ("coming soon").
+Grammar is shown as a card that navigates to the Grammar tab. Grammar exercises are a v1 goal — there is no external exercise database, so exercises must be authored manually alongside lesson content.
 
 ### Characters
 
@@ -80,6 +98,19 @@ Six SRS levels, each with a distinct color:
 New cards per day are rate-limited. For kanji, new cards are introduced from the lowest JLPT level that still has unseen items (N5 → N4 → N3 → N2 → N1).
 
 Progress also tracks a simple known/unknown toggle independently of SRS (stored in `progress_entries`).
+
+---
+
+## Data Backup & Restore
+
+SRS progress must survive reinstalls and device changes. The approach is local backup/restore to an external drive — no server required:
+
+- Export the SRS database to a file (e.g. Google Drive, local storage, or any other provider the OS exposes)
+- Import from a previously exported file to restore progress
+
+Google Drive is the primary target. A second provider may be added later.
+
+Google/Apple sign-in with server-side sync is explicitly out of scope for v1 — it requires a backend and is a far-future feature.
 
 ---
 
@@ -144,6 +175,8 @@ Mobile-first. Two layout breakpoints:
 | ≥ 600px | Navigation rail (left side) |
 
 The navigation rail and bottom bar are hidden during active practice sessions. Escape key navigates back on desktop/Linux.
+
+Tablet support is a v1 goal: layouts must not only adapt structurally at ≥600px but be visually intentional on larger screens — content should use the extra space rather than just stretch.
 
 ---
 
