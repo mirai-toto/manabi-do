@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/providers/locale_provider.dart';
 import '../../data/grammar/grammar_models.dart';
 import 'database_provider.dart';
 
@@ -15,14 +15,10 @@ class GrammarChapter {
   const GrammarChapter({required this.title, required this.lessons});
 }
 
-final currentLocaleProvider = Provider<String>((ref) {
-  return WidgetsBinding.instance.platformDispatcher.locale.languageCode;
-});
-
 final grammarChaptersProvider =
     FutureProvider.family<List<GrammarChapter>, String>((ref, level) async {
       final db = ref.read(databaseProvider);
-      final locale = ref.watch(currentLocaleProvider);
+      final locale = ref.watch(localeProvider).languageCode;
       final rows = await db.getGrammarLessonsForLevel(level, locale: locale);
       final chapters = <String, List<GrammarLesson>>{};
       for (final row in rows) {
