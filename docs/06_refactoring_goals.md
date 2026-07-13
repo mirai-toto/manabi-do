@@ -54,9 +54,9 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - ✅ `levels.json` uses the same locale-map format for `name`
 - ✅ `build_content_db.py` updated: `_walk_grammar_index(locale)` resolves `{path}.{locale}.json` with `.en.json` fallback; `insert_grammar(db, locale)` accepts a locale parameter
 
-### Grammar content translation 🔄
+### Grammar content translation ✅
 - ✅ `basics` — all 10 lessons translated to French (`.fr.json`); all index titles have `"fr"` keys
-- ⬜ `N5` — French translations pending (app falls back to English rows in the meantime)
+- ✅ `N5` — all 40 lessons translated to French (`.fr.json`); all index titles have `"fr"` keys
 - ⬜ Higher levels — not started
 
 ### DB multi-locale support ✅
@@ -64,7 +64,7 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - ✅ `build_content_db.py` runs `insert_grammar` once per locale; non-'en' locales only insert rows for lessons that have a `.{locale}.json` file
 - ✅ `getGrammarLessonsForLevel(level, locale:)` filters by locale, falls back to `'en'` if no rows found
 - ✅ `grammarChaptersProvider` watches `localeProvider` (the app's persisted locale, not the raw platform locale) so content switches immediately when the in-app language is changed
-- ✅ DB asset rebuilt: 50 `en` rows + 10 `fr` rows (basics only; N5 falls back to English until translated)
+- ✅ DB asset rebuilt: 50 `en` rows + 50 `fr` rows (basics + N5)
 
 ---
 
