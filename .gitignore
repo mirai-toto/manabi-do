@@ -25,7 +25,7 @@ Desktop.ini
 docker-compose.override.yml
 
 # Screenshots — local only
-screenshots/
+scripts/screenshot/output/
 
 # Playwright install (auto-installed by scripts/setup/setup.sh)
 scripts/pw/
