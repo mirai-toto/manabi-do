@@ -55,16 +55,16 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - ✅ `build_content_db.py` updated: `_walk_grammar_index(locale)` resolves `{path}.{locale}.json` with `.en.json` fallback; `insert_grammar(db, locale)` accepts a locale parameter
 
 ### Grammar content translation 🔄
-- ✅ `basics` — all 10 lessons translated to French (`.fr.json`); all chapter and lesson titles in index files have `"fr"` keys
-- ⬜ `N5` — French translations pending
+- ✅ `basics` — all 10 lessons translated to French (`.fr.json`); all index titles have `"fr"` keys
+- ⬜ `N5` — French translations pending (app falls back to English rows in the meantime)
 - ⬜ Higher levels — not started
 
-### DB multi-locale support ⬜
-Remaining work to serve translated content in the app:
-1. Add `locale TEXT NOT NULL DEFAULT 'en'` column to `grammar_lessons` table (schema bump)
-2. Run `build_content_db.py` once per locale; each run inserts rows tagged with its locale
-3. Update `grammarChaptersProvider` to pass device locale to the DB query (`WHERE locale = ?`)
-4. Rebuild the DB asset
+### DB multi-locale support ✅
+- ✅ `locale TEXT NOT NULL DEFAULT 'en'` column added to `grammar_lessons` (schema v14, migration in place)
+- ✅ `build_content_db.py` runs `insert_grammar` once per locale; non-'en' locales only insert rows for lessons that have a `.{locale}.json` file
+- ✅ `getGrammarLessonsForLevel(level, locale:)` filters by locale, falls back to `'en'` if no rows found
+- ✅ `currentLocaleProvider` reads device locale from `platformDispatcher`; `grammarChaptersProvider` uses it automatically
+- ✅ DB asset rebuilt: 50 `en` rows + 10 `fr` rows (basics only; N5 falls back to English until translated)
 
 ---
 
