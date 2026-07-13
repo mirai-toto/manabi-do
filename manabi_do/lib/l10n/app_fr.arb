@@ -315,5 +315,9 @@
 
   "japanese": "Japonais",
   "copy": "Copier",
-  "hide": "Masquer"
+  "hide": "Masquer",
+
+  "grammarPractice": "S'exercer",
+  "grammarBuilderPrompt": "Reconstitue la phrase",
+  "grammarErrorDetectionPrompt": "Quelle phrase est correcte ?"
 }

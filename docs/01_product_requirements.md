@@ -122,15 +122,19 @@ A streak counter shows the number of consecutive calendar days on which at least
 
 ## Exercise System
 
-Exercises are attached to grammar lessons and are generic across content types.
+Exercises are attached to grammar lessons. The "basics" level is reference material and does not need exercises.
 
-| Type           | Description                                                                                             |
-| -------------- | ------------------------------------------------------------------------------------------------------- |
-| MCQ            | One question, N choices, one correct answer                                                             |
-| Flashcard      | Card shown, user self-assesses (known / not known)                                                      |
-| Drawing        | User traces stroke order on a canvas (kana/kanji)                                                       |
-| Sentence cloze | A Japanese sentence with the target word blanked out; user picks the correct word from multiple choices |
-| Lesson reader  | Inline reading card within an exercise flow                                                             |
+| Type              | Description                                                                                        | Priority |
+| ----------------- | -------------------------------------------------------------------------------------------------- | -------- |
+| Flashcard         | Grammar rule shown on front, user self-assesses recall                                             | Required |
+| MCQ               | Japanese sentence shown, user picks the correct English meaning from N choices                     | Required |
+| Sentence cloze    | Japanese sentence with grammar point blanked out, user picks the correct form from N choices       | Required |
+| Sentence builder  | Scrambled sentence parts shown as tappable chips, user arranges them in the correct order          | Required |
+| Error detection   | Two sentences shown (one correct, one with a grammar mistake), user picks the correct one          | Optional |
+
+Drawing is kana/kanji-only and does not apply to grammar exercises.
+
+Target: 10 exercises per lesson. This can be increased later if sessions feel too short.
 
 The system is designed to be extensible — new types can be added without a full rewrite.
 

@@ -25,7 +25,7 @@ from collections import defaultdict
 
 import pykakasi
 
-SCHEMA_VERSION = 13
+SCHEMA_VERSION = 15
 
 _kks = pykakasi.kakasi()
 
@@ -200,6 +200,14 @@ def create_tables(db: sqlite3.Connection) -> None:
             answer      TEXT NOT NULL,
             distractors TEXT NOT NULL DEFAULT '[]',
             lesson_id   INTEGER REFERENCES grammar_lessons(id)
+        );
+
+        CREATE TABLE grammar_exercises (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            lesson_path TEXT NOT NULL,
+            order_index INTEGER NOT NULL,
+            type        TEXT NOT NULL,
+            data_json   TEXT NOT NULL
         );
 
         CREATE TABLE progress_entries (
@@ -384,6 +392,38 @@ def insert_grammar(db: sqlite3.Connection, locale: str = "en") -> int:
     return total
 
 
+def insert_grammar_exercises(db: sqlite3.Connection) -> int:
+    """Walk all *.exercises.json files under GRAMMAR_ROOT (excluding basics/) and insert rows."""
+    total = 0
+    for dirpath, _dirs, filenames in os.walk(GRAMMAR_ROOT):
+        # Skip basics — no exercises for reference-level content
+        rel_dir = os.path.relpath(dirpath, GRAMMAR_ROOT)
+        if rel_dir == "basics" or rel_dir.startswith("basics" + os.sep):
+            continue
+        for filename in sorted(filenames):
+            if not filename.endswith(".exercises.json"):
+                continue
+            filepath = os.path.join(dirpath, filename)
+            with open(filepath, encoding="utf-8") as f:
+                data = json.load(f)
+            # Derive lesson_path: strip GRAMMAR_ROOT prefix and .exercises.json suffix
+            rel_path = os.path.relpath(filepath, GRAMMAR_ROOT)
+            lesson_path = rel_path[: -len(".exercises.json")].replace(os.sep, "/")
+            for order_index, exercise in enumerate(data.get("exercises", [])):
+                db.execute(
+                    "INSERT INTO grammar_exercises (lesson_path, order_index, type, data_json)"
+                    " VALUES (?, ?, ?, ?)",
+                    (
+                        lesson_path,
+                        order_index,
+                        exercise["type"],
+                        json.dumps(exercise, ensure_ascii=False),
+                    ),
+                )
+                total += 1
+    return total
+
+
 def _download(url: str, dest: str) -> None:
     print(f"  Downloading {os.path.basename(dest)} …", end="", flush=True)
     urllib.request.urlretrieve(url, dest)
@@ -544,6 +584,10 @@ def main() -> None:
         print(f"Inserting grammar lessons ({locale})… ", end="", flush=True)
         n = insert_grammar(db, locale)
         print(f"{n} lessons")
+
+    print("Inserting grammar exercises… ", end="", flush=True)
+    n = insert_grammar_exercises(db)
+    print(f"{n} exercises")
 
     if "--no-sentences" not in sys.argv:
         print("Inserting sentences (Tatoeba)…")

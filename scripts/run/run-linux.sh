@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-ROOT="$(dirname "$0")/.."
+ROOT="$(dirname "$(realpath "$0")")/../.."
 
 docker compose -f "$ROOT/docker-compose.yml" run --rm build
 "$ROOT/manabi_do/build/linux/x64/release/bundle/manabi_do"

@@ -698,4 +698,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hide => 'Hide';
+
+  @override
+  String get grammarPractice => 'Practice';
+
+  @override
+  String get grammarBuilderPrompt => 'Arrange the sentence';
+
+  @override
+  String get grammarErrorDetectionPrompt => 'Which sentence is correct?';
 }

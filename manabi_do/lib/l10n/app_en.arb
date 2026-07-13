@@ -324,5 +324,9 @@
 
   "japanese": "Japanese",
   "copy": "Copy",
-  "hide": "Hide"
+  "hide": "Hide",
+
+  "grammarPractice": "Practice",
+  "grammarBuilderPrompt": "Arrange the sentence",
+  "grammarErrorDetectionPrompt": "Which sentence is correct?"
 }

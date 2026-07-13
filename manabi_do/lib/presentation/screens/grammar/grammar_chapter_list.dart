@@ -43,6 +43,7 @@ class GrammarChapterList extends ConsumerWidget {
             Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => GrammarLessonScreen(
+                  lessonId: chapter.lessons.first.id,
                   title: chapter.title,
                   blocks: chapter.lessons.first.blocks,
                   levelColor: color,

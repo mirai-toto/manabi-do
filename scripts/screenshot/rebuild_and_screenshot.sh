@@ -3,7 +3,7 @@
 # then reverts the grammar flag. Run from the repo root.
 set -e
 
-REPO="$(cd "$(dirname "$0")/.." && pwd)"
+REPO="$(cd "$(dirname "$(realpath "$0")")/../.." && pwd)"
 PORT=8767
 GRAMMAR_SCREEN="$REPO/manabi_do/lib/presentation/screens/grammar/grammar_screen.dart"
 export NODE_PATH="$REPO/scripts/pw/node_modules"
@@ -19,7 +19,7 @@ trap cleanup EXIT
 echo "→ enabling grammar"
 sed -i 's/const _grammarEnabled = false/const _grammarEnabled = true/' "$GRAMMAR_SCREEN"
 
-bash "$REPO/scripts/build/build_web.sh" "$PORT"
+bash "$REPO/scripts/run/run-web.sh" "$PORT"
 
 echo "→ screenshotting tabs"
 node "$REPO/scripts/screenshot/screenshot_tab.js" "$PORT"
@@ -27,4 +27,4 @@ node "$REPO/scripts/screenshot/screenshot_tab.js" "$PORT"
 echo "→ screenshotting grammar"
 node "$REPO/scripts/screenshot/screenshot_grammar.js" "$PORT"
 
-echo "✓ done — screenshots in screenshots/"
+echo "✓ done — screenshots in screenshot/output/"

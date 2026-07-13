@@ -35,3 +35,12 @@ final grammarChaptersProvider =
           .map((e) => GrammarChapter(title: e.key, lessons: e.value))
           .toList();
     });
+
+final grammarHasExercisesProvider = FutureProvider.family<bool, String>((
+  ref,
+  lessonPath,
+) async {
+  final db = ref.read(databaseProvider);
+  final rows = await db.getGrammarExercisesForLesson(lessonPath);
+  return rows.isNotEmpty;
+});

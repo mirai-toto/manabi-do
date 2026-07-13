@@ -49,6 +49,7 @@ class GrammarLessonListScreen extends StatelessWidget {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => GrammarLessonScreen(
+                  lessonId: lesson.id,
                   title: lesson.title,
                   blocks: lesson.blocks,
                   levelColor: levelColor,

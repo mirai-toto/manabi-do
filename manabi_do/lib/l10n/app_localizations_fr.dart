@@ -703,4 +703,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get hide => 'Masquer';
+
+  @override
+  String get grammarPractice => 'S\'exercer';
+
+  @override
+  String get grammarBuilderPrompt => 'Reconstitue la phrase';
+
+  @override
+  String get grammarErrorDetectionPrompt => 'Quelle phrase est correcte ?';
 }

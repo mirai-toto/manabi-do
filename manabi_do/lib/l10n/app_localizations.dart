@@ -1383,6 +1383,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hide'**
   String get hide;
+
+  /// No description provided for @grammarPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get grammarPractice;
+
+  /// No description provided for @grammarBuilderPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrange the sentence'**
+  String get grammarBuilderPrompt;
+
+  /// No description provided for @grammarErrorDetectionPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Which sentence is correct?'**
+  String get grammarErrorDetectionPrompt;
 }
 
 class _AppLocalizationsDelegate

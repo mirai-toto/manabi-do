@@ -9,6 +9,7 @@ import 'db_connection_native.dart'
 
 import '../../domain/data/kana_data.dart';
 import 'tables/exercises_table.dart';
+import 'tables/grammar_exercises_table.dart';
 import 'tables/grammar_lessons_table.dart';
 import 'tables/kanas_table.dart';
 import 'tables/kanjis_table.dart';
@@ -27,6 +28,7 @@ part 'app_database.g.dart';
     VocabularyEntries,
     Exercises,
     GrammarLessons,
+    GrammarExercises,
     ProgressEntries,
     KanjiTranslations,
     VocabTranslations,
@@ -39,7 +41,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(openDbConnection());
 
   @override
-  int get schemaVersion => 14;
+  int get schemaVersion => 15;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -103,6 +105,7 @@ class AppDatabase extends _$AppDatabase {
           await m.addColumn(grammarLessons, grammarLessons.locale);
         } catch (_) {}
       }
+      if (from < 15) await m.createTable(grammarExercises);
     },
   );
 
@@ -294,6 +297,14 @@ class AppDatabase extends _$AppDatabase {
           ..orderBy([(g) => OrderingTerm.asc(g.orderIndex)]))
         .get();
   }
+
+  Future<List<GrammarExerciseRow>> getGrammarExercisesForLesson(
+    String lessonPath,
+  ) =>
+      (select(grammarExercises)
+            ..where((e) => e.lessonPath.equals(lessonPath))
+            ..orderBy([(e) => OrderingTerm.asc(e.orderIndex)]))
+          .get();
 
   Stream<int> watchCharactersDueCount() => (select(srsCards)).watch().map(
     (rows) => rows

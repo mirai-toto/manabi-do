@@ -314,5 +314,9 @@
   "translationModeNever": "Nie",
   "nativeTranslationOnlyLabel": "Nur meine Sprache",
   "nativeTranslationOnlySubtitle": "Sätze ohne Übersetzung in Ihrer Sprache überspringen",
-  "hide": "Ausblenden"
+  "hide": "Ausblenden",
+
+  "grammarPractice": "Üben",
+  "grammarBuilderPrompt": "Ordne den Satz",
+  "grammarErrorDetectionPrompt": "Welcher Satz ist korrekt?"
 }

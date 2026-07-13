@@ -701,4 +701,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get hide => 'Ausblenden';
+
+  @override
+  String get grammarPractice => 'Üben';
+
+  @override
+  String get grammarBuilderPrompt => 'Ordne den Satz';
+
+  @override
+  String get grammarErrorDetectionPrompt => 'Welcher Satz ist korrekt?';
 }
