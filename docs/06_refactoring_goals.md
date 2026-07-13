@@ -63,7 +63,7 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - ✅ `locale TEXT NOT NULL DEFAULT 'en'` column added to `grammar_lessons` (schema v14, migration in place)
 - ✅ `build_content_db.py` runs `insert_grammar` once per locale; non-'en' locales only insert rows for lessons that have a `.{locale}.json` file
 - ✅ `getGrammarLessonsForLevel(level, locale:)` filters by locale, falls back to `'en'` if no rows found
-- ✅ `currentLocaleProvider` reads device locale from `platformDispatcher`; `grammarChaptersProvider` uses it automatically
+- ✅ `grammarChaptersProvider` watches `localeProvider` (the app's persisted locale, not the raw platform locale) so content switches immediately when the in-app language is changed
 - ✅ DB asset rebuilt: 50 `en` rows + 10 `fr` rows (basics only; N5 falls back to English until translated)
 
 ---
