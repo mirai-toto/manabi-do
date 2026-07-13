@@ -3,6 +3,7 @@ import 'package:drift/drift.dart';
 @DataClassName('GrammarLessonRow')
 class GrammarLessons extends Table {
   IntColumn get id => integer().autoIncrement()();
+  TextColumn get locale => text().withDefault(const Constant('en'))();
   TextColumn get level => text()();
   TextColumn get path => text()();
   TextColumn get chapter => text()();

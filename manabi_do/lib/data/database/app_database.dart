@@ -39,7 +39,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(openDbConnection());
 
   @override
-  int get schemaVersion => 13;
+  int get schemaVersion => 14;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -96,6 +96,11 @@ class AppDatabase extends _$AppDatabase {
       if (from < 13) {
         try {
           await m.addColumn(sentences, sentences.furigana);
+        } catch (_) {}
+      }
+      if (from < 14) {
+        try {
+          await m.addColumn(grammarLessons, grammarLessons.locale);
         } catch (_) {}
       }
     },
@@ -274,11 +279,21 @@ class AppDatabase extends _$AppDatabase {
 
   // ── Grammar queries ──────────────────────────────────────────────────────
 
-  Future<List<GrammarLessonRow>> getGrammarLessonsForLevel(String level) =>
-      (select(grammarLessons)
-            ..where((g) => g.level.equals(level))
-            ..orderBy([(g) => OrderingTerm.asc(g.orderIndex)]))
-          .get();
+  Future<List<GrammarLessonRow>> getGrammarLessonsForLevel(
+    String level, {
+    String locale = 'en',
+  }) async {
+    final rows =
+        await (select(grammarLessons)
+              ..where((g) => g.level.equals(level) & g.locale.equals(locale))
+              ..orderBy([(g) => OrderingTerm.asc(g.orderIndex)]))
+            .get();
+    if (rows.isNotEmpty || locale == 'en') return rows;
+    return (select(grammarLessons)
+          ..where((g) => g.level.equals(level) & g.locale.equals('en'))
+          ..orderBy([(g) => OrderingTerm.asc(g.orderIndex)]))
+        .get();
+  }
 
   Stream<int> watchCharactersDueCount() => (select(srsCards)).watch().map(
     (rows) => rows
