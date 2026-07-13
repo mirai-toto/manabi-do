@@ -2,23 +2,38 @@
   "type": "chapters",
   "items": [
     {
-      "title": "How Japanese Is Written",
+      "title": {
+        "en": "How Japanese Is Written",
+        "fr": "Les Systèmes d'Écriture"
+      },
       "path": "basics/how-japanese-is-written/index.json"
     },
     {
-      "title": "Sentence Structure",
+      "title": {
+        "en": "Sentence Structure",
+        "fr": "Structure des Phrases"
+      },
       "path": "basics/sentence-structure/index.json"
     },
     {
-      "title": "Punctuation & Spacing",
+      "title": {
+        "en": "Punctuation & Spacing",
+        "fr": "Ponctuation & Espacement"
+      },
       "path": "basics/punctuation-spacing/index.json"
     },
     {
-      "title": "Small Kana & Sound Rules",
+      "title": {
+        "en": "Small Kana & Sound Rules",
+        "fr": "Petits Kana & Règles Phonétiques"
+      },
       "path": "basics/small-kana-sound-rules/index.json"
     },
     {
-      "title": "Pitch Accent",
+      "title": {
+        "en": "Pitch Accent",
+        "fr": "Accent de Hauteur"
+      },
       "path": "basics/pitch-accent/index.json"
     }
   ]

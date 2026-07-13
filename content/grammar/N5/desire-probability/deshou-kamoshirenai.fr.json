@@ -1,0 +1,46 @@
+{
+  "id": "deshou-kamoshirenai",
+  "title": "Probabilité : でしょう / かもしれない",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Ces deux formes expriment des degrés de certitude sur quelque chose d'incertain. **でしょう** est assez confiant : l'attente raisonnée du locuteur. **かもしれない** est genuinement incertain : le locuteur laisse de la place au doute."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "でしょう",
+        "description": "Probablement : le locuteur est assez confiant. Basé sur des preuves ou un raisonnement.",
+        "example_jp": "明日は晴れるでしょう。",
+        "example_en": "Il fera probablement beau demain."
+      },
+      "right": {
+        "label": "かもしれない",
+        "description": "Peut-être : le locuteur est genuinement incertain. Possibilité réelle mais non attendue.",
+        "example_jp": "彼は来ないかもしれません。",
+        "example_en": "Il pourrait ne pas venir."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Forme plane] + **でしょう**          ← probablement (assez confiant)",
+        "[Forme plane] + **かもしれません**    ← peut-être (incertain)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "このレストランは高いでしょう。", "romaji": "Kono resutoran wa takai deshō.", "français": "Ce restaurant est probablement cher." },
+        { "japanese": "電車が遅れているかもしれません。", "romaji": "Densha ga okurete iru kamo shiremasen.", "français": "Le train est peut-être en retard." },
+        { "japanese": "彼女はもう知っているでしょう。", "romaji": "Kanojo wa mō shitte iru deshō.", "français": "Elle le sait probablement déjà." },
+        { "japanese": "明日、雨が降るかもしれません。", "romaji": "Ashita, ame ga furu kamo shiremasen.", "français": "Il va peut-être pleuvoir demain." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "でしょう avec une intonation montante devient une question en fin de phrase : そうでしょう？ signifie « C'est bien ça, non ? » / « Vous ne pensez pas ? » C'est un usage complètement distinct du sens de probabilité."
+    }
+  ]
+}

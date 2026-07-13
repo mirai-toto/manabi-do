@@ -1,0 +1,46 @@
+{
+  "id": "de-location",
+  "title": "で : Lieu d'une Action",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**で** indique *l'endroit où une action se déroule* : le lieu ou l'instrument d'une activité. C'est différent de に, qui indique *l'endroit où quelque chose existe*. C'est le verbe qui détermine quelle particule utiliser."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Lieu] **で** + [verbe d'action]    ← une action se passe ici",
+        "[Lieu] **に** + [verbe d'existence] ← quelque chose existe ici (います / あります)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "図書館で勉強します。", "romaji": "Toshokan de benkyō shimasu.", "français": "J'étudie à la bibliothèque." },
+        { "japanese": "公園で走りました。", "romaji": "Kōen de hashirimashita.", "français": "J'ai couru dans le parc." },
+        { "japanese": "電車で本を読みます。", "romaji": "Densha de hon wo yomimasu.", "français": "Je lis dans le train." },
+        { "japanese": "日本語で話してください。", "romaji": "Nihongo de hanashite kudasai.", "français": "Veuillez parler en japonais." }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "で : action",
+        "description": "L'endroit où quelque chose se passe. À utiliser avec les verbes d'action : courir, étudier, manger.",
+        "example_jp": "公園で走ります。",
+        "example_en": "Je cours dans le parc."
+      },
+      "right": {
+        "label": "に : existence",
+        "description": "L'endroit où quelque chose se trouve. À utiliser avec います et あります.",
+        "example_jp": "公園にいます。",
+        "example_en": "Je suis dans le parc."
+      }
+    },
+    {
+      "type": "note",
+      "content": "で vs に pour indiquer le lieu est l'une des erreurs les plus courantes au début. Le verbe indique lequel utiliser : verbes d'action → で, verbes d'existence (います/あります) → に."
+    }
+  ]
+}

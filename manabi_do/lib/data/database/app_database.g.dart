@@ -1861,6 +1861,16 @@ class $GrammarLessonsTable extends GrammarLessons
       'PRIMARY KEY AUTOINCREMENT',
     ),
   );
+  static const VerificationMeta _localeMeta = const VerificationMeta('locale');
+  @override
+  late final GeneratedColumn<String> locale = GeneratedColumn<String>(
+    'locale',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('en'),
+  );
   static const VerificationMeta _levelMeta = const VerificationMeta('level');
   @override
   late final GeneratedColumn<String> level = GeneratedColumn<String>(
@@ -1924,6 +1934,7 @@ class $GrammarLessonsTable extends GrammarLessons
   @override
   List<GeneratedColumn> get $columns => [
     id,
+    locale,
     level,
     path,
     chapter,
@@ -1945,6 +1956,12 @@ class $GrammarLessonsTable extends GrammarLessons
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('locale')) {
+      context.handle(
+        _localeMeta,
+        locale.isAcceptableOrUnknown(data['locale']!, _localeMeta),
+      );
     }
     if (data.containsKey('level')) {
       context.handle(
@@ -2007,6 +2024,10 @@ class $GrammarLessonsTable extends GrammarLessons
         DriftSqlType.int,
         data['${effectivePrefix}id'],
       )!,
+      locale: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}locale'],
+      )!,
       level: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}level'],
@@ -2043,6 +2064,7 @@ class $GrammarLessonsTable extends GrammarLessons
 class GrammarLessonRow extends DataClass
     implements Insertable<GrammarLessonRow> {
   final int id;
+  final String locale;
   final String level;
   final String path;
   final String chapter;
@@ -2051,6 +2073,7 @@ class GrammarLessonRow extends DataClass
   final int orderIndex;
   const GrammarLessonRow({
     required this.id,
+    required this.locale,
     required this.level,
     required this.path,
     required this.chapter,
@@ -2062,6 +2085,7 @@ class GrammarLessonRow extends DataClass
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
+    map['locale'] = Variable<String>(locale);
     map['level'] = Variable<String>(level);
     map['path'] = Variable<String>(path);
     map['chapter'] = Variable<String>(chapter);
@@ -2074,6 +2098,7 @@ class GrammarLessonRow extends DataClass
   GrammarLessonsCompanion toCompanion(bool nullToAbsent) {
     return GrammarLessonsCompanion(
       id: Value(id),
+      locale: Value(locale),
       level: Value(level),
       path: Value(path),
       chapter: Value(chapter),
@@ -2090,6 +2115,7 @@ class GrammarLessonRow extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return GrammarLessonRow(
       id: serializer.fromJson<int>(json['id']),
+      locale: serializer.fromJson<String>(json['locale']),
       level: serializer.fromJson<String>(json['level']),
       path: serializer.fromJson<String>(json['path']),
       chapter: serializer.fromJson<String>(json['chapter']),
@@ -2103,6 +2129,7 @@ class GrammarLessonRow extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
+      'locale': serializer.toJson<String>(locale),
       'level': serializer.toJson<String>(level),
       'path': serializer.toJson<String>(path),
       'chapter': serializer.toJson<String>(chapter),
@@ -2114,6 +2141,7 @@ class GrammarLessonRow extends DataClass
 
   GrammarLessonRow copyWith({
     int? id,
+    String? locale,
     String? level,
     String? path,
     String? chapter,
@@ -2122,6 +2150,7 @@ class GrammarLessonRow extends DataClass
     int? orderIndex,
   }) => GrammarLessonRow(
     id: id ?? this.id,
+    locale: locale ?? this.locale,
     level: level ?? this.level,
     path: path ?? this.path,
     chapter: chapter ?? this.chapter,
@@ -2132,6 +2161,7 @@ class GrammarLessonRow extends DataClass
   GrammarLessonRow copyWithCompanion(GrammarLessonsCompanion data) {
     return GrammarLessonRow(
       id: data.id.present ? data.id.value : this.id,
+      locale: data.locale.present ? data.locale.value : this.locale,
       level: data.level.present ? data.level.value : this.level,
       path: data.path.present ? data.path.value : this.path,
       chapter: data.chapter.present ? data.chapter.value : this.chapter,
@@ -2149,6 +2179,7 @@ class GrammarLessonRow extends DataClass
   String toString() {
     return (StringBuffer('GrammarLessonRow(')
           ..write('id: $id, ')
+          ..write('locale: $locale, ')
           ..write('level: $level, ')
           ..write('path: $path, ')
           ..write('chapter: $chapter, ')
@@ -2160,13 +2191,22 @@ class GrammarLessonRow extends DataClass
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, level, path, chapter, title, blocksJson, orderIndex);
+  int get hashCode => Object.hash(
+    id,
+    locale,
+    level,
+    path,
+    chapter,
+    title,
+    blocksJson,
+    orderIndex,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is GrammarLessonRow &&
           other.id == this.id &&
+          other.locale == this.locale &&
           other.level == this.level &&
           other.path == this.path &&
           other.chapter == this.chapter &&
@@ -2177,6 +2217,7 @@ class GrammarLessonRow extends DataClass
 
 class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
   final Value<int> id;
+  final Value<String> locale;
   final Value<String> level;
   final Value<String> path;
   final Value<String> chapter;
@@ -2185,6 +2226,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
   final Value<int> orderIndex;
   const GrammarLessonsCompanion({
     this.id = const Value.absent(),
+    this.locale = const Value.absent(),
     this.level = const Value.absent(),
     this.path = const Value.absent(),
     this.chapter = const Value.absent(),
@@ -2194,6 +2236,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
   });
   GrammarLessonsCompanion.insert({
     this.id = const Value.absent(),
+    this.locale = const Value.absent(),
     required String level,
     required String path,
     required String chapter,
@@ -2208,6 +2251,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
        orderIndex = Value(orderIndex);
   static Insertable<GrammarLessonRow> custom({
     Expression<int>? id,
+    Expression<String>? locale,
     Expression<String>? level,
     Expression<String>? path,
     Expression<String>? chapter,
@@ -2217,6 +2261,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
+      if (locale != null) 'locale': locale,
       if (level != null) 'level': level,
       if (path != null) 'path': path,
       if (chapter != null) 'chapter': chapter,
@@ -2228,6 +2273,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
 
   GrammarLessonsCompanion copyWith({
     Value<int>? id,
+    Value<String>? locale,
     Value<String>? level,
     Value<String>? path,
     Value<String>? chapter,
@@ -2237,6 +2283,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
   }) {
     return GrammarLessonsCompanion(
       id: id ?? this.id,
+      locale: locale ?? this.locale,
       level: level ?? this.level,
       path: path ?? this.path,
       chapter: chapter ?? this.chapter,
@@ -2251,6 +2298,9 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
     final map = <String, Expression>{};
     if (id.present) {
       map['id'] = Variable<int>(id.value);
+    }
+    if (locale.present) {
+      map['locale'] = Variable<String>(locale.value);
     }
     if (level.present) {
       map['level'] = Variable<String>(level.value);
@@ -2277,6 +2327,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
   String toString() {
     return (StringBuffer('GrammarLessonsCompanion(')
           ..write('id: $id, ')
+          ..write('locale: $locale, ')
           ..write('level: $level, ')
           ..write('path: $path, ')
           ..write('chapter: $chapter, ')
@@ -5826,6 +5877,7 @@ typedef $$ExercisesTableProcessedTableManager =
 typedef $$GrammarLessonsTableCreateCompanionBuilder =
     GrammarLessonsCompanion Function({
       Value<int> id,
+      Value<String> locale,
       required String level,
       required String path,
       required String chapter,
@@ -5836,6 +5888,7 @@ typedef $$GrammarLessonsTableCreateCompanionBuilder =
 typedef $$GrammarLessonsTableUpdateCompanionBuilder =
     GrammarLessonsCompanion Function({
       Value<int> id,
+      Value<String> locale,
       Value<String> level,
       Value<String> path,
       Value<String> chapter,
@@ -5855,6 +5908,11 @@ class $$GrammarLessonsTableFilterComposer
   });
   ColumnFilters<int> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get locale => $composableBuilder(
+    column: $table.locale,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -5903,6 +5961,11 @@ class $$GrammarLessonsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get locale => $composableBuilder(
+    column: $table.locale,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get level => $composableBuilder(
     column: $table.level,
     builder: (column) => ColumnOrderings(column),
@@ -5945,6 +6008,9 @@ class $$GrammarLessonsTableAnnotationComposer
   });
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get locale =>
+      $composableBuilder(column: $table.locale, builder: (column) => column);
 
   GeneratedColumn<String> get level =>
       $composableBuilder(column: $table.level, builder: (column) => column);
@@ -6007,6 +6073,7 @@ class $$GrammarLessonsTableTableManager
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
+                Value<String> locale = const Value.absent(),
                 Value<String> level = const Value.absent(),
                 Value<String> path = const Value.absent(),
                 Value<String> chapter = const Value.absent(),
@@ -6015,6 +6082,7 @@ class $$GrammarLessonsTableTableManager
                 Value<int> orderIndex = const Value.absent(),
               }) => GrammarLessonsCompanion(
                 id: id,
+                locale: locale,
                 level: level,
                 path: path,
                 chapter: chapter,
@@ -6025,6 +6093,7 @@ class $$GrammarLessonsTableTableManager
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
+                Value<String> locale = const Value.absent(),
                 required String level,
                 required String path,
                 required String chapter,
@@ -6033,6 +6102,7 @@ class $$GrammarLessonsTableTableManager
                 required int orderIndex,
               }) => GrammarLessonsCompanion.insert(
                 id: id,
+                locale: locale,
                 level: level,
                 path: path,
                 chapter: chapter,

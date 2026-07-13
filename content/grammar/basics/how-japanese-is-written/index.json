@@ -2,8 +2,11 @@
   "type": "lessons",
   "items": [
     {
-      "title": "The Three Scripts",
-      "path": "basics/how-japanese-is-written/three-scripts.json"
+      "title": {
+        "en": "The Three Scripts",
+        "fr": "Les Trois Systèmes d'Écriture"
+      },
+      "path": "basics/how-japanese-is-written/three-scripts"
     }
   ]
 }

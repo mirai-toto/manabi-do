@@ -1,0 +1,50 @@
+{
+  "id": "iru-aru",
+  "title": "いる et ある : Existence",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le japonais utilise deux verbes différents pour exprimer « il y a » ou « être », et le choix dépend entièrement de ce qui existe. **いる** est pour les êtres vivants. **ある** est pour tout le reste."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Être vivant] が [Lieu] **に います**   → il y a (animé)",
+        "[Objet/chose] が [Lieu] **に あります**  → il y a (inanimé)"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "います",
+        "description": "Personnes, animaux : tout ce qui se déplace de sa propre volonté.",
+        "example_jp": "猫が部屋にいます。",
+        "example_en": "Il y a un chat dans la pièce."
+      },
+      "right": {
+        "label": "あります",
+        "description": "Objets, plantes, bâtiments, et même les événements planifiés comme les réunions.",
+        "example_jp": "本が机の上にあります。",
+        "example_en": "Il y a un livre sur le bureau."
+      }
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "駅の前に銀行があります。", "romaji": "Eki no mae ni ginkō ga arimasu.", "français": "Il y a une banque devant la gare." },
+        { "japanese": "友達が外にいます。", "romaji": "Tomodachi ga soto ni imasu.", "français": "Mon ami(e) est dehors." },
+        { "japanese": "財布がバッグの中にあります。", "romaji": "Saifu ga baggu no naka ni arimasu.", "français": "Mon portefeuille est dans le sac." },
+        { "japanese": "明日、会議があります。", "romaji": "Ashita, kaigi ga arimasu.", "français": "Il y a une réunion demain." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "あります s'utilise aussi pour les événements planifiés : 会議があります (il y a une réunion), 授業があります (il y a un cours). Les événements sont traités comme des choses inanimées qui existent dans le calendrier."
+    },
+    {
+      "type": "note",
+      "content": "Utiliser ある pour des personnes — 友達が外にある — semble incorrect au mieux et irrespectueux au pire. La distinction animé/inanimé est instinctive pour les locuteurs natifs."
+    }
+  ]
+}

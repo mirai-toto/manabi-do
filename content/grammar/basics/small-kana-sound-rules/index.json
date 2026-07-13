@@ -2,16 +2,25 @@
   "type": "lessons",
   "items": [
     {
-      "title": "っ : Double Consonant",
-      "path": "basics/small-kana-sound-rules/double-consonant.json"
+      "title": {
+        "en": "っ : Double Consonant",
+        "fr": "っ : Consonne Double"
+      },
+      "path": "basics/small-kana-sound-rules/double-consonant"
     },
     {
-      "title": "ゃゅょ : Compound Sounds",
-      "path": "basics/small-kana-sound-rules/compound-sounds.json"
+      "title": {
+        "en": "ゃゅょ : Compound Sounds",
+        "fr": "ゃゅょ : Sons Composés"
+      },
+      "path": "basics/small-kana-sound-rules/compound-sounds"
     },
     {
-      "title": "Long Vowels",
-      "path": "basics/small-kana-sound-rules/long-vowels.json"
+      "title": {
+        "en": "Long Vowels",
+        "fr": "Voyelles Longues"
+      },
+      "path": "basics/small-kana-sound-rules/long-vowels"
     }
   ]
 }

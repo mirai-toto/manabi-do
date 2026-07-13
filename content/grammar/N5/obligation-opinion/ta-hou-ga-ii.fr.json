@@ -1,0 +1,31 @@
+{
+  "id": "ta-hou-ga-ii",
+  "title": "たほうがいい : Devrait / Ne Devrait Pas",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**たほうがいい** exprime un conseil : suggérer qu'une action serait dans l'intérêt de l'interlocuteur. L'affirmatif utilise le passé forme plane ; le négatif utilise le négatif forme plane."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Passé forme plane] + **ほうがいいです**       ← vous devriez faire",
+        "[Négatif forme plane] + **ほうがいいです**     ← vous ne devriez pas faire"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "早く寝たほうがいいです。", "romaji": "Hayaku neta hō ga ii desu.", "français": "Vous devriez vous coucher tôt." },
+        { "japanese": "タバコを吸わないほうがいいです。", "romaji": "Tabako wo suwanai hō ga ii desu.", "français": "Vous ne devriez pas fumer." },
+        { "japanese": "傘を持っていったほうがいいですよ。", "romaji": "Kasa wo motte itta hō ga ii desu yo.", "français": "Vous devriez prendre un parapluie." },
+        { "japanese": "無理をしないほうがいいです。", "romaji": "Muri wo shinai hō ga ii desu.", "français": "Vous ne devriez pas vous surmener." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "たほうがいい est un conseil, pas un ordre. Il indique que le locuteur pense sincèrement que c'est dans l'intérêt de l'interlocuteur. Pour une obligation plus forte, utilisez なければなりません."
+    }
+  ]
+}

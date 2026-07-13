@@ -1,0 +1,77 @@
+{
+  "id": "pitch-accent",
+  "title": "Accent de Hauteur",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "L'accent anglais rend une syllabe *plus forte*. L'**accent de hauteur** japonais rend une syllabe *plus haute* en ton. Chaque mot a un schéma de hauteur, et dans certains cas ce schéma est la seule chose qui distingue deux mots par ailleurs identiques."
+    },
+    {
+      "type": "text",
+      "content": "Le dialecte de Tokyo (japonais standard) est le système de référence utilisé dans les manuels et les médias. La hauteur est décrite comme H (haut) ou B (bas) par mora."
+    },
+    {
+      "type": "section_title",
+      "content": "Schémas Haut et Bas"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "mot",
+        "lecture",
+        "hauteur",
+        "français"
+      ],
+      "rows": [
+        {
+          "mot": "橋",
+          "lecture": "hashi",
+          "hauteur": "B-H",
+          "français": "pont"
+        },
+        {
+          "mot": "箸",
+          "lecture": "hashi",
+          "hauteur": "H-B",
+          "français": "baguettes"
+        },
+        {
+          "mot": "端",
+          "lecture": "hashi",
+          "hauteur": "H-B",
+          "français": "bord"
+        },
+        {
+          "mot": "雨",
+          "lecture": "ame",
+          "hauteur": "B-H",
+          "français": "pluie"
+        },
+        {
+          "mot": "飴",
+          "lecture": "ame",
+          "hauteur": "H-B",
+          "français": "bonbon"
+        },
+        {
+          "mot": "東京",
+          "lecture": "tōkyō",
+          "hauteur": "B-H-H-B",
+          "français": "Tokyo"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "橋 et 箸 semblent identiques en romaji et ont les mêmes sons : la hauteur est la *seule* caractéristique distinctive. Dans une vraie phrase, le contexte résout presque toujours le sens avant même que la hauteur importe."
+    },
+    {
+      "type": "section_title",
+      "content": "Pour les Apprenants"
+    },
+    {
+      "type": "text",
+      "content": "Se tromper d'accent de hauteur n'empêche pas la communication. Les locuteurs natifs s'adaptent facilement à la parole non native. La hauteur s'assimile mieux par l'écoute : elle s'améliore naturellement avec l'exposition et peut être étudiée délibérément à un niveau intermédiaire. Pour l'instant, concentrez-vous sur le vocabulaire, la grammaire et la lecture."
+    }
+  ]
+}

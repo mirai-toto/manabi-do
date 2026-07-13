@@ -1,0 +1,30 @@
+{
+  "id": "nagara",
+  "title": "ながら : Tout en Faisant",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**ながら** s'attache au radical du verbe pour décrire deux actions qui se déroulent simultanément. La proposition en ながら est toujours l'action *secondaire* : le verbe principal en fin de phrase est ce que le sujet fait principalement."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Radical du verbe] + **ながら**、[action principale]"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "音楽を聴きながら勉強します。", "romaji": "Ongaku wo kikinagara benkyō shimasu.", "français": "J'étudie tout en écoutant de la musique." },
+        { "japanese": "歩きながら電話で話しました。", "romaji": "Arukinagara denwa de hanashimashita.", "français": "J'ai parlé au téléphone tout en marchant." },
+        { "japanese": "テレビを見ながら夕ごはんを食べます。", "romaji": "Terebi wo minagara yūgohan wo tabemasu.", "français": "Je mange le dîner tout en regardant la télévision." },
+        { "japanese": "コーヒーを飲みながら新聞を読みました。", "romaji": "Koohii wo nominagara shinbun wo yomimashita.", "français": "J'ai lu le journal tout en buvant un café." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ながら exige le *même sujet* pour les deux actions. « J'étudie pendant qu'elle regarde la télé » ne peut pas utiliser ながら : un sujet différent pour l'action secondaire nécessite une autre structure."
+    }
+  ]
+}

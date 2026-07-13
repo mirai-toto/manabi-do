@@ -1,0 +1,41 @@
+{
+  "id": "chaining-adjectives",
+  "title": "Enchaîner les Adjectifs : くて / で",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Pour décrire quelque chose avec deux qualités ou plus, on relie les adjectifs en utilisant leur **forme て**. La règle diffère selon le type d'adjectif : les adjectifs en い utilisent くて, les adjectifs en な utilisent で."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "Adjectif en い : [radical] + **くて** + [suite]",
+        "Adjectif en な : [adjectif en な] + **で** + [suite]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "français"],
+      "rows": [
+        { "japanese": "安い → 安くて", "français": "pas cher → pas cher et…" },
+        { "japanese": "面白い → 面白くて", "français": "intéressant → intéressant et…" },
+        { "japanese": "静か → 静かで", "français": "calme → calme et…" },
+        { "japanese": "便利 → 便利で", "français": "pratique → pratique et…" }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "安くておいしいです。", "romaji": "Yasukute oishii desu.", "français": "C'est pas cher et délicieux." },
+        { "japanese": "静かで広い部屋です。", "romaji": "Shizuka de hiroi heya desu.", "français": "C'est une chambre calme et spacieuse." },
+        { "japanese": "この映画は長くてつまらなかったです。", "romaji": "Kono eiga wa nagakute tsumaranakatta desu.", "français": "Ce film était long et ennuyeux." },
+        { "japanese": "彼女は親切で頭がいいです。", "romaji": "Kanojo wa shinsetsu de atama ga ii desu.", "français": "Elle est gentille et intelligente." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "La forme enchaînée exprime une liste neutre : « X et Y » : pas un lien causal. Pour dire « c'est pas cher *donc* je l'achète », utilisez から ou ので, pas くて."
+    }
+  ]
+}

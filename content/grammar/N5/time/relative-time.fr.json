@@ -1,0 +1,60 @@
+{
+  "id": "relative-time",
+  "title": "Mots de Temps Relatifs",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Ces mots sont les briques de la référence temporelle quotidienne. Aucun d'eux n'utilise la particule に : ils sont intrinsèquement référentiels dans le temps."
+    },
+    {
+      "type": "section_title",
+      "content": "Jours"
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "今日", "romaji": "kyō", "français": "aujourd'hui" },
+        { "japanese": "明日", "romaji": "ashita", "français": "demain" },
+        { "japanese": "昨日", "romaji": "kinō", "français": "hier" },
+        { "japanese": "明後日", "romaji": "asatte", "français": "après-demain" },
+        { "japanese": "一昨日", "romaji": "ototoi", "français": "avant-hier" }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Semaines, Mois, Années"
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "今週", "romaji": "konshū", "français": "cette semaine" },
+        { "japanese": "来週", "romaji": "raishū", "français": "la semaine prochaine" },
+        { "japanese": "先週", "romaji": "senshū", "français": "la semaine dernière" },
+        { "japanese": "今月", "romaji": "kongetsu", "français": "ce mois-ci" },
+        { "japanese": "来月", "romaji": "raigetsu", "français": "le mois prochain" },
+        { "japanese": "先月", "romaji": "sengetsu", "français": "le mois dernier" },
+        { "japanese": "今年", "romaji": "kotoshi", "français": "cette année" },
+        { "japanese": "来年", "romaji": "rainen", "français": "l'année prochaine" },
+        { "japanese": "去年", "romaji": "kyonen", "français": "l'année dernière" }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Fréquence"
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "毎日", "romaji": "mainichi", "français": "tous les jours" },
+        { "japanese": "毎週", "romaji": "maishū", "français": "toutes les semaines" },
+        { "japanese": "毎月", "romaji": "maitsuki", "français": "tous les mois" },
+        { "japanese": "毎年", "romaji": "maitoshi", "français": "tous les ans" },
+        { "japanese": "毎朝", "romaji": "maiasa", "français": "tous les matins" },
+        { "japanese": "毎晩", "romaji": "maiban", "français": "tous les soirs" }
+      ]
+    }
+  ]
+}

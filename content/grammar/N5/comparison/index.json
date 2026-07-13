@@ -2,16 +2,25 @@
   "type": "lessons",
   "items": [
     {
-      "title": "A は B より ～ : More Than",
-      "path": "N5/comparison/yori-more-than.json"
+      "title": {
+        "en": "A は B より ～ : More Than",
+        "fr": "A は B より ～ : Plus que"
+      },
+      "path": "N5/comparison/yori-more-than"
     },
     {
-      "title": "どちらが ～ : Which is More ~?",
-      "path": "N5/comparison/dochira-which.json"
+      "title": {
+        "en": "どちらが ～ : Which is More ~?",
+        "fr": "どちらが ～ : Lequel est le Plus ~ ?"
+      },
+      "path": "N5/comparison/dochira-which"
     },
     {
-      "title": "いちばん ～ : The Most ~",
-      "path": "N5/comparison/ichiban-superlative.json"
+      "title": {
+        "en": "いちばん ～ : The Most ~",
+        "fr": "いちばん ～ : Le Plus ~"
+      },
+      "path": "N5/comparison/ichiban-superlative"
     }
   ]
 }

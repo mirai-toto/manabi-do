@@ -1,0 +1,30 @@
+{
+  "id": "to-omoimasu",
+  "title": "と思います : Je Pense que",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**と思います** exprime une opinion ou une conviction personnelle. Le と marque la limite de la pensée rapportée. Il rend les déclarations convenablement nuancées : affirmer quelque chose sans ce marqueur peut sembler abrupt."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Verbe forme plane / adjectif en い] + **と思います**   ← je pense que ~"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "明日は雨が降ると思います。", "romaji": "Ashita wa ame ga furu to omoimasu.", "français": "Je pense qu'il va pleuvoir demain." },
+        { "japanese": "彼は来ないと思います。", "romaji": "Kare wa konai to omoimasu.", "français": "Je pense qu'il ne viendra pas." },
+        { "japanese": "この映画は面白いと思います。", "romaji": "Kono eiga wa omoshiroi to omoimasu.", "français": "Je pense que ce film est intéressant." },
+        { "japanese": "もう少し考えたほうがいいと思います。", "romaji": "Mō sukoshi kangaeta hō ga ii to omoimasu.", "français": "Je pense que vous devriez y réfléchir encore un peu." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "La proposition avant と est toujours à la **forme plane**, pas à la forme polie. 来ます**と**思います est incorrect : il faut 来る**と**思います. La politesse est portée uniquement par le と思います final."
+    }
+  ]
+}

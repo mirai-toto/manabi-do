@@ -1,0 +1,45 @@
+{
+  "id": "kara-node",
+  "title": "から vs ので : Parce que",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**から** et **ので** se traduisent tous deux par « parce que », mais ils ont un poids différent. から énonce une raison de façon directe et affirmative. ので présente une raison de façon douce et objective : la conséquence naturelle d'une situation. Le registre et la relation déterminent lequel convient."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "から",
+        "description": "Affirmatif et personnel : « ma raison est X. » Familier et direct. À utiliser entre amis ou pour exprimer des ressentis.",
+        "example_jp": "疲れたから、休みます。",
+        "example_en": "Je me repose parce que je suis fatigué(e)."
+      },
+      "right": {
+        "label": "ので",
+        "description": "Doux et objectif : « étant donné que X, naturellement Y. » Poli et indirect. À utiliser pour les demandes, excuses, milieu professionnel.",
+        "example_jp": "雨が降っているので、家にいます。",
+        "example_en": "Je reste chez moi parce qu'il pleut."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Raison : forme plane] + **から**、[Résultat]   ← subjectif, familier",
+        "[Raison : forme plane] + **ので**、[Résultat]   ← objectif, poli"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "急いでいるから、あとで話しましょう。", "romaji": "Isoide iru kara, ato de hanashimashō.", "français": "Je suis pressé(e), parlons-en plus tard." },
+        { "japanese": "明日試験があるので、勉強します。", "romaji": "Ashita shiken ga aru node, benkyō shimasu.", "français": "J'ai un examen demain, donc je vais étudier." },
+        { "japanese": "お腹が痛いので、休んでもいいですか。", "romaji": "Onaka ga itai node, yasunde mo ii desu ka.", "français": "J'ai mal au ventre, puis-je me reposer ?" }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Pour faire une demande ou une excuse polie, ので sonne toujours plus approprié. 電車が遅れたので遅刻しました ressemble à une vraie explication. 電車が遅れたから遅刻しました ressemble à une justification abrupte. Mêmes faits, ton différent."
+    }
+  ]
+}

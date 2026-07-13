@@ -1,0 +1,31 @@
+{
+  "id": "n-desu",
+  "title": "んです : Explication",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**んです** (écrit のです) ajoute une nuance explicative à une déclaration. Il signale que ce que vous dites est la raison derrière quelque chose, le contexte d'une situation, ou une demande d'explication : pas seulement un fait brut."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Verbe forme plane / adjectif en い] + **んです**",
+        "[Adjectif en な / nom] + な + **んです**"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "頭が痛いんです。", "romaji": "Atama ga itai n desu.", "français": "(En fait,) j'ai mal à la tête." },
+        { "japanese": "どうして遅れたんですか。", "romaji": "Dōshite okureta n desu ka.", "français": "Pourquoi étiez-vous en retard ? (expliquez-moi)" },
+        { "japanese": "実は、昨日転んだんです。", "romaji": "Jitsu wa, kinō koronda n desu.", "français": "En fait, je suis tombé(e) hier." },
+        { "japanese": "ちょっと聞いてもいいんですが…", "romaji": "Chotto kiite mo ii n desu ga…", "français": "Je me demandais si je pouvais vous demander quelque chose…" }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Sans んです, 頭が痛いです est une simple déclaration de fait. Avec んです, 頭が痛いんです implique « je vous dis cela parce que c'est pertinent : c'est pourquoi j'ai l'air mal en point / je ne peux pas venir. » Utilisez-le pour signaler du contexte, pas seulement de l'information."
+    }
+  ]
+}

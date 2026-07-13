@@ -1,0 +1,55 @@
+{
+  "id": "compound-sounds",
+  "title": "ゃゅょ : Sons Composés",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Les petits や, ゆ, よ se combinent avec un kana consonne + i précédent pour former une seule syllabe fusionnée. La voyelle i disparaît et les deux caractères forment un seul son."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[kana consonne + i] + **ゃ / ゅ / ょ** → une syllabe, pas deux"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "écrit",
+        "romaji",
+        "une syllabe",
+        "erreur courante"
+      ],
+      "rows": [
+        {
+          "écrit": "きゃ",
+          "romaji": "kya",
+          "une syllabe": "oui",
+          "erreur courante": "pas ki-ya"
+        },
+        {
+          "écrit": "しゅ",
+          "romaji": "shu",
+          "une syllabe": "oui",
+          "erreur courante": "pas shi-yu"
+        },
+        {
+          "écrit": "にょ",
+          "romaji": "nyo",
+          "une syllabe": "oui",
+          "erreur courante": "—"
+        },
+        {
+          "écrit": "びょういん",
+          "romaji": "byōin",
+          "une syllabe": "4 moras : びょ・う・い・ん",
+          "erreur courante": "souvent lu comme 5"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "びょういん (hôpital) et びよういん (salon de beauté) sont souvent confondus : le premier a un petit よ (une syllabe), le second a un よ normal (deux syllabes). La distinction écrite est cruciale."
+    }
+  ]
+}

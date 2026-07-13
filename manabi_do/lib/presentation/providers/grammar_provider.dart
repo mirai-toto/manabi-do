@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/providers/locale_provider.dart';
 import '../../data/grammar/grammar_models.dart';
 import 'database_provider.dart';
 
@@ -17,7 +18,8 @@ class GrammarChapter {
 final grammarChaptersProvider =
     FutureProvider.family<List<GrammarChapter>, String>((ref, level) async {
       final db = ref.read(databaseProvider);
-      final rows = await db.getGrammarLessonsForLevel(level);
+      final locale = ref.watch(localeProvider).languageCode;
+      final rows = await db.getGrammarLessonsForLevel(level, locale: locale);
       final chapters = <String, List<GrammarLesson>>{};
       for (final row in rows) {
         final blocks = (jsonDecode(row.blocksJson) as List<dynamic>)

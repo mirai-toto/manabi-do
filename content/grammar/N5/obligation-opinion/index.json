@@ -2,28 +2,46 @@
   "type": "lessons",
   "items": [
     {
-      "title": "たほうがいい : Should / Shouldn't",
-      "path": "N5/obligation-opinion/ta-hou-ga-ii.json"
+      "title": {
+        "en": "たほうがいい : Should / Shouldn't",
+        "fr": "たほうがいい : Devrait / Ne Devrait Pas"
+      },
+      "path": "N5/obligation-opinion/ta-hou-ga-ii"
     },
     {
-      "title": "Must & Don't Have To",
-      "path": "N5/obligation-opinion/obligation-must.json"
+      "title": {
+        "en": "Must & Don't Have To",
+        "fr": "Devoir & Ne Pas Avoir À"
+      },
+      "path": "N5/obligation-opinion/obligation-must"
     },
     {
-      "title": "と思います : I Think That",
-      "path": "N5/obligation-opinion/to-omoimasu.json"
+      "title": {
+        "en": "と思います : I Think That",
+        "fr": "と思います : Je Pense que"
+      },
+      "path": "N5/obligation-opinion/to-omoimasu"
     },
     {
-      "title": "つもり & 予定 : Intention and Plans",
-      "path": "N5/obligation-opinion/tsumori-yotei.json"
+      "title": {
+        "en": "つもり & 予定 : Intention and Plans",
+        "fr": "つもり & 予定 : Intention et Plans"
+      },
+      "path": "N5/obligation-opinion/tsumori-yotei"
     },
     {
-      "title": "んです : Explanation",
-      "path": "N5/obligation-opinion/n-desu.json"
+      "title": {
+        "en": "んです : Explanation",
+        "fr": "んです : Explication"
+      },
+      "path": "N5/obligation-opinion/n-desu"
     },
     {
-      "title": "中 : During / Throughout",
-      "path": "N5/obligation-opinion/naka-chuu-juu.json"
+      "title": {
+        "en": "中 : During / Throughout",
+        "fr": "中 : Pendant / Tout au Long de"
+      },
+      "path": "N5/obligation-opinion/naka-chuu-juu"
     }
   ]
 }

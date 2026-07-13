@@ -1,0 +1,48 @@
+{
+  "id": "sov-word-order",
+  "title": "Ordre des Mots SOV",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le japonais est une langue **Sujet–Objet–Verbe** : le verbe vient toujours en dernier. C'est la plus grande différence structurelle avec le français, et elle affecte tout : il faut garder en tête le sujet et l'objet avant que l'action se résolve en fin de phrase."
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "français",
+        "japanese",
+        "romaji"
+      ],
+      "rows": [
+        {
+          "français": "Je bois du café.",
+          "japanese": "私はコーヒーを飲みます。",
+          "romaji": "Watashi wa koohii wo nomimasu."
+        },
+        {
+          "français": "Elle lit des livres.",
+          "japanese": "彼女は本を読みます。",
+          "romaji": "Kanojo wa hon wo yomimasu."
+        },
+        {
+          "français": "Il a acheté un sac.",
+          "japanese": "彼はかばんを買いました。",
+          "romaji": "Kare wa kaban wo kaimashita."
+        },
+        {
+          "français": "Le chien court après le chat.",
+          "japanese": "犬が猫を追いかけています。",
+          "romaji": "Inu ga neko wo oikakete imasu."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Les modificateurs : adjectifs, propositions relatives, phrases subordonnées entières : viennent toujours *avant* le nom qu'ils décrivent, jamais après. Cela signifie que les longues phrases s'accumulent fortement au début et se résolvent à la fin."
+    },
+    {
+      "type": "note",
+      "content": "Dans les longues phrases, les locuteurs natifs atteignent le verbe tout à la fin et savent enfin ce qui s'est passé. C'est pourquoi écouter du japonais ressemble à attendre la chute d'une blague. Avec la pratique, on commence à anticiper la classe du verbe à partir du contexte."
+    }
+  ]
+}

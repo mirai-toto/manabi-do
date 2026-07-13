@@ -1,0 +1,33 @@
+{
+  "id": "kakaru",
+  "title": "かかる : Temps et Coût",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**かかる** est le verbe pour exprimer qu'une chose *nécessite* un certain temps ou un certain coût. Il ne s'utilise pas pour l'effort ou l'énergie : uniquement pour le temps et le coût mesurables."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Temps / coût] が **かかります**          ← ça prend / ça coûte",
+        "[Destination] まで [temps] **かかります**  ← ça prend [temps] pour y arriver",
+        "どのぐらい**かかりますか**                ← combien de temps / d'argent ça prend ?"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "駅まで十分かかります。", "romaji": "Eki made juppun kakarimasu.", "français": "Il faut dix minutes pour aller à la gare." },
+        { "japanese": "この仕事は三時間かかりました。", "romaji": "Kono shigoto wa sanjikan kakarimashita.", "français": "Ce travail a pris trois heures." },
+        { "japanese": "修理に五千円かかりました。", "romaji": "Shūri ni gosen-en kakarimashita.", "français": "La réparation a coûté 5 000 yens." },
+        { "japanese": "日本までどのぐらいかかりますか。", "romaji": "Nihon made dono gurai kakarimasu ka.", "français": "Combien de temps faut-il pour aller au Japon ?" },
+        { "japanese": "このプロジェクトはお金がかかります。", "romaji": "Kono purojekuto wa okane ga kakarimasu.", "français": "Ce projet coûte de l'argent." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "かかる s'associe naturellement avec まで (jusqu'à). 駅まで何分かかりますか est la façon la plus naturelle de demander le temps de trajet en japonais : vous l'utiliserez constamment."
+    }
+  ]
+}

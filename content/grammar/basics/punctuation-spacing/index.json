@@ -2,8 +2,11 @@
   "type": "lessons",
   "items": [
     {
-      "title": "Punctuation & Spacing",
-      "path": "basics/punctuation-spacing/punctuation-spacing.json"
+      "title": {
+        "en": "Punctuation & Spacing",
+        "fr": "Ponctuation & Espacement"
+      },
+      "path": "basics/punctuation-spacing/punctuation-spacing"
     }
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "id": "mae-ni-ato-de",
+  "title": "前に / 後で : Avant / Après",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**前に** et **後で** décrivent le moment d'une action par rapport à une autre. Ils sont plus souples que てから : aucun achèvement strict n'est impliqué. La forme verbale qui précède chacun est différente, et la raison est logique."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Forme dictionnaire] + **前に**、[action]        ← avant de faire (l'action n'a pas encore eu lieu)",
+        "[Passé forme plane] + **後で**、[action]         ← après avoir fait (l'action est accomplie)",
+        "[Nom] + の**前に** / の**後で**                  ← avant / après un nom (événement, cours, etc.)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "寝る前に歯を磨きます。", "romaji": "Neru mae ni ha wo migakimasu.", "français": "Je me brosse les dents avant de dormir." },
+        { "japanese": "食べた後で、散歩します。", "romaji": "Tabeta ato de, sanpo shimasu.", "français": "Je me promène après avoir mangé." },
+        { "japanese": "授業の前に、単語を復習しました。", "romaji": "Jugyō no mae ni, tango wo fukushū shimashita.", "français": "J'ai révisé le vocabulaire avant le cours." },
+        { "japanese": "映画の後で、カフェに行きましょう。", "romaji": "Eiga no ato de, kafe ni ikimashō.", "français": "Allons au café après le film." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "前に prend la forme dictionnaire car l'action ne s'est *pas encore produite* à ce moment de la chronologie : elle est encore dans le futur par rapport au moment de référence. 後で prend le passé forme plane car l'action *a été accomplie* avant que la suivante commence."
+    }
+  ]
+}

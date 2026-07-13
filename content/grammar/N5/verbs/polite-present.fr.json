@@ -1,0 +1,71 @@
+{
+  "id": "polite-present",
+  "title": "Présent Poli : ます",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "La **forme ます** est la façon de parler poliment. C'est la norme pour les conversations avec des inconnus, dans les situations formelles et dans les environnements de service. Elle couvre à la fois les habitudes présentes et les intentions futures : le japonais ne sépare pas ces deux notions."
+    },
+    {
+      "type": "section_title",
+      "content": "Formation"
+    },
+    {
+      "type": "transform_cards",
+      "groups": [
+        {
+          "label": "Groupe 1",
+          "tag": "Godan",
+          "rule": "changer la voyelle finale u en voyelle i, puis ajouter ます",
+          "rows": [
+            { "base": "書く", "old": "く", "new": "きます", "result": "書きます", "romaji": "kakimasu", "english": "écrire" },
+            { "base": "話す", "old": "す", "new": "します", "result": "話します", "romaji": "hanashimasu", "english": "parler" },
+            { "base": "待つ", "old": "つ", "new": "ちます", "result": "待ちます", "romaji": "machimasu", "english": "attendre" },
+            { "base": "飲む", "old": "む", "new": "みます", "result": "飲みます", "romaji": "nomimasu", "english": "boire" },
+            { "base": "帰る", "old": "る", "new": "ります", "result": "帰ります", "romaji": "kaerimasu", "english": "rentrer chez soi" }
+          ],
+          "note": "Négatif : remplacer ます par ません : le radical reste identique",
+          "description": "Le groupe le plus courant : la majorité des verbes japonais appartiennent à ce groupe."
+        },
+        {
+          "label": "Groupe 2",
+          "tag": "Ichidan",
+          "rule": "supprimer le る, ajouter ます directement au radical",
+          "rows": [
+            { "base": "食べる", "old": "る", "new": "ます", "result": "食べます", "romaji": "tabemasu", "english": "manger" },
+            { "base": "見る", "old": "る", "new": "ます", "result": "見ます", "romaji": "mimasu", "english": "voir" },
+            { "base": "起きる", "old": "る", "new": "ます", "result": "起きます", "romaji": "okimasu", "english": "se lever" }
+          ],
+          "description": "Moins de verbes, mais conjugaison bien plus simple."
+        },
+        {
+          "label": "Groupe 3",
+          "tag": "Irréguliers",
+          "rows": [
+            { "base": "する", "result": "します", "romaji": "shimasu", "english": "faire" },
+            { "base": "来る", "result": "来ます", "romaji": "kimasu", "english": "venir" }
+          ],
+          "description": "Seulement deux verbes irréguliers en japonais : mémorisez-les tels quels."
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "毎朝コーヒーを飲みます。", "romaji": "Maiasa koohii wo nomimasu.", "français": "Je bois du café tous les matins." },
+        { "japanese": "明日、友達に会います。", "romaji": "Ashita, tomodachi ni aimasu.", "français": "Je vais retrouver un ami demain." },
+        { "japanese": "肉を食べません。", "romaji": "Niku wo tabemasen.", "français": "Je ne mange pas de viande." },
+        { "japanese": "日本語を勉強します。", "romaji": "Nihongo wo benkyō shimasu.", "français": "J'étudie le japonais." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ます couvre à la fois les habitudes et les actions futures planifiées. Le contexte précise le sens : le japonais n'a pas de temps futur distinct."
+    },
+    {
+      "type": "note",
+      "content": "ます est poli mais pas formel. Utilisez-le avec un commerçant, une nouvelle connaissance ou un professeur. Entre amis proches, on passe à la forme plane (forme dictionnaire). Les deux sont grammaticalement correctes : le registre détermine laquelle convient."
+    }
+  ]
+}

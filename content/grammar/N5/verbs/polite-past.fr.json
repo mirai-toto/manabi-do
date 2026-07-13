@@ -1,0 +1,32 @@
+{
+  "id": "polite-past",
+  "title": "Passé Poli : ました",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le passé se forme en remplaçant **ます** par **ました**. Le passé négatif utilise **ませんでした**. Les deux suivent les mêmes règles de radical que le présent : il n'y a rien de nouveau à mémoriser pour le radical."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "Passé affirmatif : [radical] + **ました**",
+        "Passé négatif :    [radical] + **ませんでした**"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "昨日、映画を見ました。", "romaji": "Kinō, eiga wo mimashita.", "français": "J'ai regardé un film hier." },
+        { "japanese": "朝ごはんを食べませんでした。", "romaji": "Asagohan wo tabemasen deshita.", "français": "Je n'ai pas mangé le petit-déjeuner." },
+        { "japanese": "先週、東京に行きました。", "romaji": "Senshū, Tōkyō ni ikimashita.", "français": "Je suis allé(e) à Tokyo la semaine dernière." },
+        { "japanese": "レポートを書きませんでした。", "romaji": "Repōto wo kakimasen deshita.", "français": "Je n'ai pas écrit le rapport." },
+        { "japanese": "先生に電話しました。", "romaji": "Sensei ni denwa shimashita.", "français": "J'ai appelé le professeur." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Le passé japonais est simple : pas de distinction entre passé simple et passé composé en forme polie. Les indicateurs de temps et le contexte portent cette distinction."
+    }
+  ]
+}

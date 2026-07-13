@@ -1,0 +1,41 @@
+{
+  "id": "te-kara",
+  "title": "てから : Après Avoir Fait",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**てから** exprime une séquence stricte : l'action A doit être entièrement accomplie avant que l'action B puisse commencer. C'est l'achèvement de A qui rend B possible ou approprié."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Forme て] + **から**、[action suivante]"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "手を洗ってから、食べます。", "romaji": "Te wo aratte kara, tabemasu.", "français": "Je mange après m'être lavé les mains." },
+        { "japanese": "宿題をしてから、ゲームをします。", "romaji": "Shukudai wo shite kara, gēmu wo shimasu.", "français": "Je joue après avoir fait mes devoirs." },
+        { "japanese": "大学を卒業してから、働き始めました。", "romaji": "Daigaku wo sotsugyō shite kara, hataraki hajimemashita.", "français": "J'ai commencé à travailler après avoir obtenu mon diplôme." },
+        { "japanese": "シャワーを浴びてから、寝ます。", "romaji": "Shawā wo abite kara, nemasu.", "français": "Je dors après avoir pris une douche." }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "てから",
+        "description": "A doit être entièrement accompli avant B. L'achèvement est requis : la séquence est stricte.",
+        "example_jp": "食べてから、歯を磨きます。",
+        "example_en": "Je me brosse les dents après avoir mangé."
+      },
+      "right": {
+        "label": "後で",
+        "description": "« Plus tard, après A » : B se produit quelque temps après, sans notion d'achèvement strict.",
+        "example_jp": "後で電話します。",
+        "example_en": "J'appellerai plus tard."
+      }
+    }
+  ]
+}

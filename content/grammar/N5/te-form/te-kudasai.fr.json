@@ -1,0 +1,31 @@
+{
+  "id": "te-kudasai",
+  "title": "てください : Veuillez Faire",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "La façon la plus directe et naturelle de faire une demande polie est **forme て + ください**. Elle convient dans presque tous les contextes polis : magasins, salles de classe, panneaux publics."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Forme て] + **ください**   ← veuillez faire ~"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "ここに名前を書いてください。", "romaji": "Koko ni namae wo kaite kudasai.", "français": "Veuillez écrire votre nom ici." },
+        { "japanese": "もう一度言ってください。", "romaji": "Mō ichido itte kudasai.", "français": "Veuillez répéter une fois de plus." },
+        { "japanese": "静かにしてください。", "romaji": "Shizuka ni shite kudasai.", "français": "Veuillez faire silence." },
+        { "japanese": "窓を閉めてください。", "romaji": "Mado wo shimete kudasai.", "français": "Veuillez fermer la fenêtre." },
+        { "japanese": "右に曲がってください。", "romaji": "Migi ni magatte kudasai.", "français": "Veuillez tourner à droite." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Options de registre : supprimer ください entièrement pour les demandes familières : 書いて signifie « écris ça » entre amis. Utilisez ていただけますか pour les situations plus déférentes, comme s'adresser à un supérieur ou faire une demande formelle."
+    }
+  ]
+}

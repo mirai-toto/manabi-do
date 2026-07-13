@@ -2,8 +2,11 @@
   "type": "lessons",
   "items": [
     {
-      "title": "Pitch Accent",
-      "path": "basics/pitch-accent/pitch-accent.json"
+      "title": {
+        "en": "Pitch Accent",
+        "fr": "Accent de Hauteur"
+      },
+      "path": "basics/pitch-accent/pitch-accent"
     }
   ]
 }

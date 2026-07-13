@@ -41,12 +41,31 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 
 ---
 
-## 3. Internationalization (i18n) ✅
+## 3. Internationalization (i18n) 🔄
 
-**Rule:** Every user-visible UI string must go through the l10n system (`context.l10n.*`). Grammar lesson content is exempt.
+**Rule:** Every user-visible UI string must go through the l10n system (`context.l10n.*`). Grammar lesson content follows a per-locale JSON file approach.
 
+### UI strings ✅
 - ✅ Audit widget/screen files for hardcoded UI strings — one found (`Hide`/`Translation` in `sentence_cloze_card.dart`), moved to l10n
-- Grammar content localization: JSON lesson files are English-only by design for v1; future path deferred (per-locale JSON files or a translation layer over the block renderer)
+
+### Grammar content pipeline ✅
+- ✅ Lesson files renamed from `lesson.json` → `lesson.en.json`; future locales add `lesson.fr.json` etc.
+- ✅ Index files (`index.json`) keep inline locale maps: `"title": { "en": "...", "fr": "..." }`
+- ✅ `levels.json` uses the same locale-map format for `name`
+- ✅ `build_content_db.py` updated: `_walk_grammar_index(locale)` resolves `{path}.{locale}.json` with `.en.json` fallback; `insert_grammar(db, locale)` accepts a locale parameter
+
+### Grammar content translation ✅
+- ✅ `basics` — all 10 lessons translated to French (`.fr.json`); all index titles have `"fr"` keys
+- ✅ `N5` — all 40 lessons translated to French (`.fr.json`); all index titles have `"fr"` keys
+- ⬜ Higher levels (N4+) — not started
+- ⬜ German (`de`) — started but not a priority
+
+### DB multi-locale support ✅
+- ✅ `locale TEXT NOT NULL DEFAULT 'en'` column added to `grammar_lessons` (schema v14, migration in place)
+- ✅ `build_content_db.py` runs `insert_grammar` once per locale; non-'en' locales only insert rows for lessons that have a `.{locale}.json` file
+- ✅ `getGrammarLessonsForLevel(level, locale:)` filters by locale, falls back to `'en'` if no rows found
+- ✅ `grammarChaptersProvider` watches `localeProvider` (the app's persisted locale, not the raw platform locale) so content switches immediately when the in-app language is changed
+- ✅ DB asset rebuilt: 50 `en` rows + 50 `fr` rows (basics + N5)
 
 ---
 

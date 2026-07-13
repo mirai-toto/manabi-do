@@ -1,0 +1,53 @@
+{
+  "id": "naka-chuu-juu",
+  "title": "中 : Pendant / Tout au Long de",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le kanji **中** s'attache aux noms avec deux lectures différentes et deux significations différentes. Le verbe ou le contexte clarifie généralement la lecture."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "〜中 (ちゅう)",
+        "description": "Actuellement dans cette activité ou cet état : se déroule en ce moment même.",
+        "example_jp": "会議中です。",
+        "example_en": "Je suis en réunion en ce moment."
+      },
+      "right": {
+        "label": "〜中 (じゅう)",
+        "description": "Couvrant l'ensemble : tout au long d'une durée ou d'un espace.",
+        "example_jp": "一日中働いています。",
+        "example_en": "Je travaille depuis toute la journée."
+      }
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "lecture", "français"],
+      "rows": [
+        { "japanese": "会議中", "lecture": "かいぎちゅう", "français": "en réunion" },
+        { "japanese": "勉強中", "lecture": "べんきょうちゅう", "français": "en train d'étudier" },
+        { "japanese": "使用中", "lecture": "しようちゅう", "français": "en cours d'utilisation / occupé" },
+        { "japanese": "工事中", "lecture": "こうじちゅう", "français": "en travaux" },
+        { "japanese": "世界中", "lecture": "せかいじゅう", "français": "dans le monde entier" },
+        { "japanese": "一日中", "lecture": "いちにちじゅう", "français": "toute la journée" },
+        { "japanese": "日本中", "lecture": "にほんじゅう", "français": "partout au Japon" },
+        { "japanese": "年中", "lecture": "ねんじゅう", "français": "toute l'année" }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "すみません、今、電話中です。", "romaji": "Sumimasen, ima, denwa chū desu.", "français": "Désolé(e), je suis au téléphone en ce moment." },
+        { "japanese": "使用中のため入れません。", "romaji": "Shiyō chū no tame hairemasen.", "français": "Impossible d'entrer : en cours d'utilisation." },
+        { "japanese": "世界中の人が知っています。", "romaji": "Sekai jū no hito ga shitte imasu.", "français": "Des gens du monde entier le savent." },
+        { "japanese": "日本中を旅行しました。", "romaji": "Nihon jū wo ryokō shimashita.", "français": "J'ai voyagé dans tout le Japon." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ちゅう = l'activité est en cours en ce moment (une tranche de temps). じゅう = aucune partie n'est exclue (toute l'étendue d'un temps ou d'un espace). 勉強中 = en train d'étudier à cet instant. 一日中勉強した = a étudié sans s'arrêter toute la journée."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "te-iru",
+  "title": "ている : Action en Cours et État Résultant",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**ている** est l'une des structures les plus fréquemment utilisées en japonais. La même forme porte trois significations distinctes : le contexte et le verbe lui-même déterminent laquelle s'applique."
+    },
+    {
+      "type": "list",
+      "style": "numbered",
+      "items": [
+        "**En cours** : une action qui se passe maintenant, comme le « -ing » en anglais",
+        "**État résultant** : le résultat durable d'une action accomplie",
+        "**Habituel** : quelque chose fait régulièrement"
+      ]
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Forme て] + **います**"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "romaji", "français", "type"],
+      "rows": [
+        { "japanese": "今、本を読んでいます。", "romaji": "Ima, hon wo yonde imasu.", "français": "Je lis un livre en ce moment.", "type": "en cours" },
+        { "japanese": "彼女は結婚しています。", "romaji": "Kanojo wa kekkon shite imasu.", "français": "Elle est mariée.", "type": "état résultant" },
+        { "japanese": "毎朝、走っています。", "romaji": "Maiasa, hashitte imasu.", "français": "Je cours tous les matins.", "type": "habituel" },
+        { "japanese": "窓が開いています。", "romaji": "Mado ga aite imasu.", "français": "La fenêtre est ouverte.", "type": "état résultant" },
+        { "japanese": "田中さんはあそこに座っています。", "romaji": "Tanaka-san wa asoko ni suwatte imasu.", "français": "Tanaka est assis là-bas.", "type": "état résultant" }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "La signification d'état résultant surprend les apprenants qui s'attendent à ce que ている signifie toujours « en train de faire ». 結婚しています = « est dans un état de mariage », pas « est en train de se marier ». 知っています = « je sais ». 着ています = « porte » (le résultat de s'être habillé)."
+    }
+  ]
+}

@@ -2,20 +2,32 @@
   "type": "lessons",
   "items": [
     {
-      "title": "ている : Ongoing Action and State",
-      "path": "N5/temporality/te-iru.json"
+      "title": {
+        "en": "ている : Ongoing Action and State",
+        "fr": "ている : Action en Cours et État Résultant"
+      },
+      "path": "N5/temporality/te-iru"
     },
     {
-      "title": "てから : After Doing",
-      "path": "N5/temporality/te-kara.json"
+      "title": {
+        "en": "てから : After Doing",
+        "fr": "てから : Après Avoir Fait"
+      },
+      "path": "N5/temporality/te-kara"
     },
     {
-      "title": "前に / 後で : Before / After",
-      "path": "N5/temporality/mae-ni-ato-de.json"
+      "title": {
+        "en": "前に / 後で : Before / After",
+        "fr": "前に / 後で : Avant / Après"
+      },
+      "path": "N5/temporality/mae-ni-ato-de"
     },
     {
-      "title": "ながら : While Doing",
-      "path": "N5/temporality/nagara.json"
+      "title": {
+        "en": "ながら : While Doing",
+        "fr": "ながら : Tout en Faisant"
+      },
+      "path": "N5/temporality/nagara"
     }
   ]
 }

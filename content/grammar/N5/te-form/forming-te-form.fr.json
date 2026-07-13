@@ -1,0 +1,74 @@
+{
+  "id": "forming-te-form",
+  "title": "Former la Forme て",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "La **forme て** est l'une des formes verbales les plus polyvalentes du japonais. Elle sert de connecteur entre les propositions et est la base de dizaines de structures grammaticales. La maîtriser tôt sera très bénéfique pour tout le N5 et au-delà."
+    },
+    {
+      "type": "transform_cards",
+      "groups": [
+        {
+          "label": "Groupe 1",
+          "tag": "く : ぐ",
+          "rule": "く → いて / ぐ → いで",
+          "rows": [
+            { "base": "書く", "old": "く", "new": "いて", "result": "書いて", "romaji": "kaite", "english": "écrire" },
+            { "base": "泳ぐ", "old": "ぐ", "new": "いで", "result": "泳いで", "romaji": "oyoide", "english": "nager" }
+          ],
+          "note": "Exception : 行く → 行って (pas 行いて)"
+        },
+        {
+          "label": "Groupe 1",
+          "tag": "す",
+          "rule": "す → して",
+          "rows": [
+            { "base": "話す", "old": "す", "new": "して", "result": "話して", "romaji": "hanashite", "english": "parler" }
+          ]
+        },
+        {
+          "label": "Groupe 1",
+          "tag": "つ : る : う",
+          "rule": "→ って (consonne double)",
+          "rows": [
+            { "base": "待つ", "old": "つ", "new": "って", "result": "待って", "romaji": "matte", "english": "attendre" },
+            { "base": "帰る", "old": "る", "new": "って", "result": "帰って", "romaji": "kaette", "english": "rentrer" },
+            { "base": "買う", "old": "う", "new": "って", "result": "買って", "romaji": "katte", "english": "acheter" }
+          ]
+        },
+        {
+          "label": "Groupe 1",
+          "tag": "む : ぬ : ぶ",
+          "rule": "→ んで",
+          "rows": [
+            { "base": "飲む", "old": "む", "new": "んで", "result": "飲んで", "romaji": "nonde", "english": "boire" },
+            { "base": "遊ぶ", "old": "ぶ", "new": "んで", "result": "遊んで", "romaji": "asonde", "english": "jouer" }
+          ]
+        },
+        {
+          "label": "Groupe 2",
+          "tag": "Ichidan",
+          "rule": "supprimer る, ajouter て",
+          "rows": [
+            { "base": "食べる", "old": "る", "new": "て", "result": "食べて", "romaji": "tabete", "english": "manger" },
+            { "base": "見る", "old": "る", "new": "て", "result": "見て", "romaji": "mite", "english": "voir" },
+            { "base": "起きる", "old": "る", "new": "て", "result": "起きて", "romaji": "okite", "english": "se lever" }
+          ]
+        },
+        {
+          "label": "Groupe 3",
+          "tag": "Irréguliers",
+          "rows": [
+            { "base": "する", "result": "して", "romaji": "shite", "english": "faire" },
+            { "base": "来る", "result": "来て", "romaji": "kite", "english": "venir" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "行く (aller) est la seule exception du Groupe 1 : il devient 行って, pas 行いて. Tout le reste suit les cartes ci-dessus sans exception."
+    }
+  ]
+}

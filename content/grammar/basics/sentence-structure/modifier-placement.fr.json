@@ -1,0 +1,49 @@
+{
+  "id": "modifier-placement",
+  "title": "Placement des Modificateurs",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "En français, les modificateurs peuvent apparaître des deux côtés d'un nom. En japonais, ils viennent toujours *avant* le nom qu'ils décrivent : adjectifs, propositions relatives et phrases subordonnées entières s'accumulent avant leur nom."
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "français"
+      ],
+      "rows": [
+        {
+          "japanese": "大きい犬",
+          "romaji": "ōkii inu",
+          "français": "grand chien"
+        },
+        {
+          "japanese": "赤い車",
+          "romaji": "akai kuruma",
+          "français": "voiture rouge"
+        },
+        {
+          "japanese": "私が買った本",
+          "romaji": "watashi ga katta hon",
+          "français": "le livre que j'ai acheté"
+        },
+        {
+          "japanese": "昨日見た映画",
+          "romaji": "kinō mita eiga",
+          "français": "le film que j'ai regardé hier"
+        },
+        {
+          "japanese": "田中さんが作ったケーキ",
+          "romaji": "Tanaka-san ga tsukutta kēki",
+          "français": "le gâteau que Tanaka a fait"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Les propositions relatives en japonais ne nécessitent pas de pronom relatif : pas de « que », « qui » ou « lequel ». On place simplement toute la proposition avant le nom : 昨日読んだ se place directement avant n'importe quel nom suivant."
+    }
+  ]
+}

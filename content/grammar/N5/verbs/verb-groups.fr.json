@@ -1,0 +1,38 @@
+{
+  "id": "verb-groups",
+  "title": "Groupes de Verbes",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Chaque verbe japonais appartient à l'un des trois groupes. Le groupe détermine *toutes* les règles de conjugaison : maîtrisez-le et le reste devient prévisible."
+    },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "**Groupe 1 : Godan (五段) :** se termine par un son de la colonne う : く, ぐ, す, つ, ぬ, ぶ, む, う ou る*. Le radical change de forme selon des schémas phonétiques.",
+        "**Groupe 2 : Ichidan (一段) :** se termine par る, avec une voyelle い ou え juste avant. Le radical ne change jamais : on supprime seulement le る.",
+        "**Groupe 3 : Irréguliers :** seulement する (faire) et くる (venir). Les deux doivent être mémorisés."
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "romaji", "français", "groupe"],
+      "rows": [
+        { "japanese": "書く", "romaji": "kaku", "français": "écrire", "groupe": "1" },
+        { "japanese": "話す", "romaji": "hanasu", "français": "parler", "groupe": "1" },
+        { "japanese": "待つ", "romaji": "matsu", "français": "attendre", "groupe": "1" },
+        { "japanese": "帰る", "romaji": "kaeru", "français": "rentrer chez soi", "groupe": "1 *" },
+        { "japanese": "食べる", "romaji": "taberu", "français": "manger", "groupe": "2" },
+        { "japanese": "見る", "romaji": "miru", "français": "voir", "groupe": "2" },
+        { "japanese": "起きる", "romaji": "okiru", "français": "se lever", "groupe": "2" },
+        { "japanese": "する", "romaji": "suru", "français": "faire", "groupe": "3" },
+        { "japanese": "来る", "romaji": "kuru", "français": "venir", "groupe": "3" }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Les verbes du Groupe 1 terminant par る semblent identiques aux verbes du Groupe 2 sous leur forme dictionnaire. 帰る (kaeru), 走る (hashiru), 知る (shiru), 切る (kiru) appartiennent tous au Groupe 1. Il n'existe pas de test visuel fiable : en cas de doute, consultez un dictionnaire. La reconnaissance vient avec la pratique."
+    }
+  ]
+}

@@ -2,16 +2,16 @@
   "type": "lessons",
   "items": [
     {
-      "title": "い-Adjectives",
-      "path": "N5/adjectives/i-adjectives.json"
+      "title": { "en": "い-Adjectives", "fr": "Adjectifs en い" },
+      "path": "N5/adjectives/i-adjectives"
     },
     {
-      "title": "な-Adjectives",
-      "path": "N5/adjectives/na-adjectives.json"
+      "title": { "en": "な-Adjectives", "fr": "Adjectifs en な" },
+      "path": "N5/adjectives/na-adjectives"
     },
     {
-      "title": "Chaining Adjectives : くて / で",
-      "path": "N5/adjectives/chaining-adjectives.json"
+      "title": { "en": "Chaining Adjectives : くて / で", "fr": "Enchaîner les Adjectifs : くて / で" },
+      "path": "N5/adjectives/chaining-adjectives"
     }
   ]
 }

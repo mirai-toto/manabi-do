@@ -1,0 +1,49 @@
+{
+  "id": "na-adjectives",
+  "title": "Adjectifs en な",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Les **adjectifs en な** se comportent davantage comme des noms que comme des adjectifs. Ils ont besoin de **な** pour modifier directement un nom, mais se conjuguent en changeant le です qui suit : le radical de l'adjectif ne change jamais."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Avant un nom",
+        "description": "Insérer な entre l'adjectif et le nom qu'il modifie.",
+        "example_jp": "静かな部屋",
+        "example_en": "une chambre calme"
+      },
+      "right": {
+        "label": "En prédicat",
+        "description": "Utiliser + です directement. Pas de な après l'adjectif.",
+        "example_jp": "ここは静かです。",
+        "example_en": "C'est calme ici."
+      }
+    },
+    {
+      "type": "conjugation_table",
+      "label": "静か (shizuka) : calme",
+      "rows": [
+        { "form": "présent", "japanese": "静かです", "romaji": "shizuka desu", "english": "est calme" },
+        { "form": "négatif", "japanese": "静かじゃないです", "romaji": "shizuka ja nai desu", "english": "n'est pas calme" },
+        { "form": "passé", "japanese": "静かでした", "romaji": "shizuka deshita", "english": "était calme" },
+        { "form": "passé négatif", "japanese": "静かじゃなかったです", "romaji": "shizuka ja nakatta desu", "english": "n'était pas calme" }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "彼女は親切な人です。", "romaji": "Kanojo wa shinsetsu na hito desu.", "français": "Elle est une personne gentille." },
+        { "japanese": "昨日は暇でした。", "romaji": "Kinō wa hima deshita.", "français": "J'étais libre hier." },
+        { "japanese": "部屋はきれいじゃないです。", "romaji": "Heya wa kirei ja nai desu.", "français": "La chambre n'est pas propre." },
+        { "japanese": "この仕事は大変でした。", "romaji": "Kono shigoto wa taihen deshita.", "français": "Ce travail était difficile." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Tous les adjectifs se terminant par い ne sont pas des adjectifs en い. きれい (beau), きらい (détesté), ゆうめい (célèbre) sont tous des adjectifs en な : ils se terminent par le *son* い mais se conjuguent comme des adjectifs en な. En cas de doute, consultez un dictionnaire."
+    }
+  ]
+}

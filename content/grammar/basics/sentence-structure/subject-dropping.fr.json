@@ -1,0 +1,44 @@
+{
+  "id": "subject-dropping",
+  "title": "Omission du Sujet",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le japonais omet régulièrement le sujet lorsqu'il est clair d'après le contexte. On appelle cela le *pro-drop*, et c'est la règle plutôt que l'exception dans la parole naturelle. Écrire ou dire わかりました n'est pas incomplet : le sujet est sous-entendu."
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "sujet sous-entendu"
+      ],
+      "rows": [
+        {
+          "japanese": "食べます。",
+          "romaji": "Tabemasu.",
+          "sujet sous-entendu": "je / vous / nous"
+        },
+        {
+          "japanese": "行きますか。",
+          "romaji": "Ikimasu ka.",
+          "sujet sous-entendu": "vous"
+        },
+        {
+          "japanese": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "sujet sous-entendu": "je"
+        },
+        {
+          "japanese": "来ましたよ。",
+          "romaji": "Kimashita yo.",
+          "sujet sous-entendu": "ils / quelqu'un"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Ce qui ressemble à une ambiguïté est résolu par le contexte. Une fois que « je » ou « elle » est établi comme thème, les locuteurs japonais ne le répètent pas. Si vous ne savez pas qui est le sujet dans une vraie conversation, c'est normal : le contexte fait le travail."
+    }
+  ]
+}

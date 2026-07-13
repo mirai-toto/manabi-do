@@ -1,0 +1,47 @@
+{
+  "id": "question-words",
+  "title": "Mots Interrogatifs",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Les **mots interrogatifs** japonais (疑問詞) s'insèrent dans la phrase exactement à l'endroit où se trouverait l'information inconnue. Le reste de la structure reste identique : il n'y a pas d'inversion sujet-verbe comme en français."
+    },
+    {
+      "type": "vocab_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "何 (なに / なん)", "romaji": "nani / nan", "français": "quoi / que" },
+        { "japanese": "誰", "romaji": "dare", "français": "qui" },
+        { "japanese": "どこ", "romaji": "doko", "français": "où" },
+        { "japanese": "いつ", "romaji": "itsu", "français": "quand" },
+        { "japanese": "どう", "romaji": "dō", "français": "comment" },
+        { "japanese": "なぜ", "romaji": "naze", "français": "pourquoi (formel / écrit)" },
+        { "japanese": "どうして", "romaji": "dōshite", "français": "pourquoi (parlé, familier)" },
+        { "japanese": "どんな", "romaji": "donna", "français": "quel genre de" },
+        { "japanese": "どれ", "romaji": "dore", "français": "lequel (parmi trois ou plus)" },
+        { "japanese": "どちら / どっち", "romaji": "dochira / docchi", "français": "lequel (parmi deux) / quelle direction" },
+        { "japanese": "いくら", "romaji": "ikura", "français": "combien (prix)" }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "これは何ですか。", "romaji": "Kore wa nan desu ka.", "français": "Qu'est-ce que c'est ?" },
+        { "japanese": "トイレはどこですか。", "romaji": "Toire wa doko desu ka.", "français": "Où sont les toilettes ?" },
+        { "japanese": "誰が来ましたか。", "romaji": "Dare ga kimashita ka.", "français": "Qui est venu ?" },
+        { "japanese": "どんな音楽が好きですか。", "romaji": "Donna ongaku ga suki desu ka.", "français": "Quel genre de musique aimez-vous ?" },
+        { "japanese": "なぜ日本語を勉強していますか。", "romaji": "Naze nihongo wo benkyō shite imasu ka.", "français": "Pourquoi étudiez-vous le japonais ?" },
+        { "japanese": "これはいくらですか。", "romaji": "Kore wa ikura desu ka.", "français": "Combien ça coûte ?" }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "何 se lit なに avant la plupart des mots, mais devient なん avant les sons commençant par t, d ou n, et avant les compteurs. 何時 (nanji), 何人 (nannin), 何番 (nanban). Ce changement est phonétique, pas grammatical."
+    },
+    {
+      "type": "note",
+      "content": "Les mots interrogatifs en japonais ne peuvent pas se combiner avec は (particule de thème). 誰**は** et どこ**は** sont agrammaticaux. Utilisez が pour les sujets : 誰が来ましたか. Utilisez を pour les objets : 何を食べましたか."
+    }
+  ]
+}

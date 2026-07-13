@@ -1,0 +1,95 @@
+{
+  "id": "long-vowels",
+  "title": "Voyelles Longues",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Tenir une voyelle une mora de plus change le sens. La longueur vocalique est phonémiquement significative en japonais : deux mots par ailleurs identiques peuvent ne différer que par la durée de tenue d'une voyelle."
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "court",
+        "romaji",
+        "long",
+        "romaji ",
+        "différence"
+      ],
+      "rows": [
+        {
+          "court": "おじさん",
+          "romaji": "ojisan",
+          "long": "おじいさん",
+          "romaji ": "ojiisan",
+          "différence": "oncle vs grand-père"
+        },
+        {
+          "court": "ここ",
+          "romaji": "koko",
+          "long": "こうこう",
+          "romaji ": "kōkō",
+          "différence": "ici vs lycée"
+        },
+        {
+          "court": "おばさん",
+          "romaji": "obasan",
+          "long": "おばあさん",
+          "romaji ": "obaasan",
+          "différence": "tante vs grand-mère"
+        },
+        {
+          "court": "ビル",
+          "romaji": "biru",
+          "long": "ビール",
+          "romaji ": "bīru",
+          "différence": "immeuble vs bière"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Comment Écrire les Voyelles Longues"
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "Hiragana : répéter la voyelle (ou **お + う** pour le son ō)",
+        "Katakana : utiliser **ー** (chōonpu)"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "français"
+      ],
+      "rows": [
+        {
+          "japanese": "おかあさん",
+          "romaji": "okaasan",
+          "français": "mère"
+        },
+        {
+          "japanese": "こうこう",
+          "romaji": "kōkō",
+          "français": "lycée"
+        },
+        {
+          "japanese": "コーヒー",
+          "romaji": "koohii",
+          "français": "café"
+        },
+        {
+          "japanese": "スーパー",
+          "romaji": "suupaa",
+          "français": "supermarché"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Le signe ー n'apparaît qu'en katakana. Dans les mots en hiragana, la voyelle longue est écrite explicitement (ああ, おう, etc.). La différence entre おじさん et おじいさん est un い supplémentaire : facile à manquer à l'écrit."
+    }
+  ]
+}

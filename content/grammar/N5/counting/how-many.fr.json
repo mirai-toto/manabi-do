@@ -1,0 +1,38 @@
+{
+  "id": "how-many",
+  "title": "Demander Combien : いくつ / 何～",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Il y a deux façons de demander « combien » en japonais. Utilisez **いくつ** quand la catégorie n'est pas précisée ou pour un décompte général. Utilisez **何** (なん) directement avant le compteur quand la catégorie est déjà connue."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "いくつ",
+        "description": "Décompte général : utilisé quand la catégorie n'est pas précisée, ou pour des choses sans compteur fixe.",
+        "example_jp": "りんごがいくつありますか。",
+        "example_en": "Combien de pommes y a-t-il ?"
+      },
+      "right": {
+        "label": "何 + compteur",
+        "description": "Spécifique à une catégorie : placer 何 (nan) directement avant le compteur normalement utilisé.",
+        "example_jp": "何人いますか。",
+        "example_en": "Combien de personnes y a-t-il ?"
+      }
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "何冊読みましたか。", "romaji": "Nansatsu yomimashita ka.", "français": "Combien de livres avez-vous lu ?" },
+        { "japanese": "何枚ありますか。", "romaji": "Nanmai arimasu ka.", "français": "Combien de feuilles y a-t-il ?" },
+        { "japanese": "これはいくらですか。", "romaji": "Kore wa ikura desu ka.", "français": "Combien ça coûte ?" }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "いくつ s'utilise aussi de façon informelle pour demander l'âge de quelqu'un : お子さんはいくつですか (Quel âge a votre enfant ?). La question directe pour l'âge est 何歳 (nansai)."
+    }
+  ]
+}
