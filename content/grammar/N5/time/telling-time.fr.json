@@ -1,0 +1,36 @@
+{
+  "id": "telling-time",
+  "title": "Lire l'Heure",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "L'heure en japonais s'exprime avec **時** (じ, heure) et **分** (ふん/ぷん, minute). La structure est simple : l'heure d'abord, puis les minutes, puis です. AM et PM se placent avant l'heure."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Heure] **時** [Minute] **分** です",
+        "ごぜん (AM) / ごご (PM) + [Heure] **時** [Minute] **分**"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "今、三時です。", "romaji": "Ima, sanji desu.", "français": "Il est 3 heures." },
+        { "japanese": "九時十五分に始まります。", "romaji": "Kuji jūgofun ni hajimarimasu.", "français": "Ça commence à 9h15." },
+        { "japanese": "十二時半に昼ごはんを食べます。", "romaji": "Jūniji han ni hirugohan wo tabemasu.", "français": "Je déjeune à 12h30." },
+        { "japanese": "午後七時に帰ります。", "romaji": "Gogo shichiji ni kaerimasu.", "français": "Je rentrerai à 19h." },
+        { "japanese": "午前六時に起きます。", "romaji": "Gozen rokuji ni okimasu.", "français": "Je me lève à 6h du matin." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "半 (はん) signifie « et demie » : 三時半 = 3h30. ごぜん et ごご se placent *avant* l'heure : 午前九時 = 9h du matin, 午後三時 = 15h. Sans eux, le sens vient du contexte."
+    },
+    {
+      "type": "note",
+      "content": "La lecture des minutes change selon le nombre. 一分 (ippun), 三分 (sanpun), 六分 (roppun), 八分 (happun), 十分 (juppun). Ces formes suivent les mêmes règles phonétiques que les compteurs : elles deviennent naturelles avec l'écoute."
+    }
+  ]
+}

@@ -14,21 +14,15 @@
       "path": "N5/counting/index.json"
     },
     {
-      "title": {
-        "en": "Time"
-      },
+      "title": { "en": "Time", "fr": "Le Temps" },
       "path": "N5/time/index.json"
     },
     {
-      "title": {
-        "en": "Adjectives"
-      },
+      "title": { "en": "Adjectives", "fr": "Adjectifs" },
       "path": "N5/adjectives/index.json"
     },
     {
-      "title": {
-        "en": "Reasons & Questions"
-      },
+      "title": { "en": "Reasons & Questions", "fr": "Causes & Questions" },
       "path": "N5/reasons-questions/index.json"
     },
     {

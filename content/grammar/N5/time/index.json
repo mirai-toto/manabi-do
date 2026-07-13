@@ -2,21 +2,15 @@
   "type": "lessons",
   "items": [
     {
-      "title": {
-        "en": "Telling Time"
-      },
+      "title": { "en": "Telling Time", "fr": "Lire l'Heure" },
       "path": "N5/time/telling-time"
     },
     {
-      "title": {
-        "en": "Time Particles : に, から, まで"
-      },
+      "title": { "en": "Time Particles : に, から, まで", "fr": "Particules de Temps : に, から, まで" },
       "path": "N5/time/time-particles"
     },
     {
-      "title": {
-        "en": "Relative Time Words"
-      },
+      "title": { "en": "Relative Time Words", "fr": "Mots de Temps Relatifs" },
       "path": "N5/time/relative-time"
     }
   ]

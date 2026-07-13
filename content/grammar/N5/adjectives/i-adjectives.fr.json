@@ -1,0 +1,34 @@
+{
+  "id": "i-adjectives",
+  "title": "Adjectifs en い",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Les **adjectifs en い** se terminent par い et se conjuguent directement : le い change pour indiquer le temps et la polarité. Ils peuvent modifier un nom directement et servir de prédicats sans mot de liaison supplémentaire."
+    },
+    {
+      "type": "conjugation_table",
+      "label": "高い (takai) : grand / cher",
+      "rows": [
+        { "form": "présent", "japanese": "高いです", "romaji": "takai desu", "english": "est grand" },
+        { "form": "négatif", "japanese": "高くないです", "romaji": "takakunai desu", "english": "n'est pas grand" },
+        { "form": "passé", "japanese": "高かったです", "romaji": "takakatta desu", "english": "était grand" },
+        { "form": "passé négatif", "japanese": "高くなかったです", "romaji": "takakunakatta desu", "english": "n'était pas grand" }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "この本は面白いです。", "romaji": "Kono hon wa omoshiroi desu.", "français": "Ce livre est intéressant." },
+        { "japanese": "今日は寒くないです。", "romaji": "Kyō wa samukunai desu.", "français": "Il ne fait pas froid aujourd'hui." },
+        { "japanese": "子どもの頃、背が高かったです。", "romaji": "Kodomo no koro, se ga takakatta desu.", "français": "J'étais grand(e) quand j'étais enfant." },
+        { "japanese": "昨日の映画は長くなかったです。", "romaji": "Kinō no eiga wa nagakunakatta desu.", "français": "Le film d'hier n'était pas long." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "いい (bon) est irrégulier. Son négatif est よくない (pas いくない) et son passé est よかった (pas いかった). C'est l'erreur la plus courante sur les adjectifs en い pour les débutants."
+    }
+  ]
+}

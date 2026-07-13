@@ -2,15 +2,11 @@
   "type": "lessons",
   "items": [
     {
-      "title": {
-        "en": "から vs ので : Because"
-      },
+      "title": { "en": "から vs ので : Because", "fr": "から vs ので : Parce que" },
       "path": "N5/reasons-questions/kara-node"
     },
     {
-      "title": {
-        "en": "Question Words"
-      },
+      "title": { "en": "Question Words", "fr": "Mots Interrogatifs" },
       "path": "N5/reasons-questions/question-words"
     }
   ]
