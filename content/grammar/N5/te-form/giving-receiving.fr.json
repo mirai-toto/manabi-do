@@ -1,0 +1,41 @@
+{
+  "id": "giving-receiving",
+  "title": "Donner & Recevoir des Actions",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Le japonais suit la *direction* d'un service avec précision. Trois structures avec la forme て couvrent chacune une direction : vers l'extérieur de vous, vers vous, ou arrivant sans que vous l'ayez demandé."
+    },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "**てあげる** : je (ou quelqu'un) fais quelque chose *pour* quelqu'un d'autre. Le bénéfice va vers l'extérieur.",
+        "**てもらう** : je reçois une action *de* quelqu'un. Je suis le bénéficiaire, souvent après l'avoir demandé.",
+        "**てくれる** : quelqu'un fait quelque chose pour moi de sa propre initiative. Le bénéfice arrive sans que je l'aie demandé."
+      ]
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Forme て] + **あげます**   ← je fais pour eux (bénéfice vers l'extérieur)",
+        "[Forme て] + **もらいます** ← je reçois l'action (bénéfice vers moi)",
+        "[Forme て] + **くれます**   ← ils font pour moi, leur initiative"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "友達の荷物を持ってあげました。", "romaji": "Tomodachi no nimotsu wo motte agemashita.", "français": "J'ai porté les bagages de mon ami(e) pour lui/elle." },
+        { "japanese": "先生に漢字を教えてもらいました。", "romaji": "Sensei ni kanji wo oshiete moraimashita.", "français": "J'ai demandé au professeur de m'apprendre les kanji." },
+        { "japanese": "母が弁当を作ってくれました。", "romaji": "Haha ga bentō wo tsukutte kuremashita.", "français": "Ma mère m'a préparé un bento (pour moi)." },
+        { "japanese": "田中さんが駅まで送ってくれました。", "romaji": "Tanaka-san ga eki made okutte kuremashita.", "français": "Tanaka a eu la gentillesse de me déposer à la gare." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "La question clé : *qui est le bénéficiaire ?* Le bénéfice va vers quelqu'un d'autre → あげる. Le bénéfice vient vers moi, je l'ai demandé → もらう. Le bénéfice vient vers moi, c'est leur initiative → くれる."
+    }
+  ]
+}

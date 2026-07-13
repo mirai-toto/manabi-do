@@ -1,0 +1,47 @@
+{
+  "id": "obligation-must",
+  "title": "Devoir & Ne Pas Avoir À",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Deux structures couvrent ce qui est requis et ce qui ne l'est pas. **なければなりません** indique que quelque chose doit être fait. **なくてもいいです** est son inverse : l'action n'est pas requise."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "なければなりません",
+        "description": "Devoir faire : l'action est une obligation. Formel, utilisé à l'écrit et dans le discours poli.",
+        "example_jp": "薬を毎日飲まなければなりません。",
+        "example_en": "Je dois prendre des médicaments tous les jours."
+      },
+      "right": {
+        "label": "なくてもいいです",
+        "description": "Ne pas avoir à : l'action est optionnelle. Donner la permission de ne pas faire quelque chose.",
+        "example_jp": "今日は来なくてもいいです。",
+        "example_en": "Vous n'avez pas à venir aujourd'hui."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Radical négatif] + **なければなりません**   ← devoir (formel / poli)",
+        "[Radical négatif] + **ないといけません**     ← devoir (oral familier)",
+        "[Forme て négative] + **もいいです**         ← ne pas avoir à"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "明日までにレポートを出さなければなりません。", "romaji": "Ashita made ni repōto wo dasanakereba narimasen.", "français": "Je dois remettre le rapport d'ici demain." },
+        { "japanese": "もっと練習しないといけません。", "romaji": "Motto renshū shinai to ikemasen.", "français": "Je dois m'entraîner davantage." },
+        { "japanese": "全部食べなくてもいいですよ。", "romaji": "Zenbu tabenakute mo ii desu yo.", "français": "Vous n'avez pas à tout manger." },
+        { "japanese": "ネクタイをしなくてもいいです。", "romaji": "Nekutai wo shinakute mo ii desu.", "français": "Vous n'avez pas besoin de porter de cravate." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "なきゃ et なくちゃ sont des formes familières très contractées de なければならない : vous les entendrez constamment dans la conversation quotidienne et les animés. Elles sont inappropriées à l'écrit formel."
+    }
+  ]
+}

@@ -34,27 +34,19 @@
       "path": "N5/desire-probability/index.json"
     },
     {
-      "title": {
-        "en": "て-form"
-      },
+      "title": { "en": "て-form", "fr": "Forme て" },
       "path": "N5/te-form/index.json"
     },
     {
-      "title": {
-        "en": "Temporality"
-      },
+      "title": { "en": "Temporality", "fr": "Temporalité" },
       "path": "N5/temporality/index.json"
     },
     {
-      "title": {
-        "en": "Comparison"
-      },
+      "title": { "en": "Comparison", "fr": "Comparaison" },
       "path": "N5/comparison/index.json"
     },
     {
-      "title": {
-        "en": "Obligation & Opinion"
-      },
+      "title": { "en": "Obligation & Opinion", "fr": "Obligation & Opinion" },
       "path": "N5/obligation-opinion/index.json"
     }
   ]

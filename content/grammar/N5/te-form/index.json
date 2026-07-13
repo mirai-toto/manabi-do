@@ -3,25 +3,29 @@
   "items": [
     {
       "title": {
-        "en": "Forming the て-form"
+        "en": "Forming the て-form",
+        "fr": "Former la Forme て"
       },
       "path": "N5/te-form/forming-te-form"
     },
     {
       "title": {
-        "en": "てください : Please Do"
+        "en": "てください : Please Do",
+        "fr": "てください : Veuillez Faire"
       },
       "path": "N5/te-form/te-kudasai"
     },
     {
       "title": {
-        "en": "Permission & Prohibition"
+        "en": "Permission & Prohibition",
+        "fr": "Permission & Interdiction"
       },
       "path": "N5/te-form/permission-prohibition"
     },
     {
       "title": {
-        "en": "Giving & Receiving Actions"
+        "en": "Giving & Receiving Actions",
+        "fr": "Donner & Recevoir des Actions"
       },
       "path": "N5/te-form/giving-receiving"
     }

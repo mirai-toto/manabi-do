@@ -3,19 +3,22 @@
   "items": [
     {
       "title": {
-        "en": "A は B より ～ : More Than"
+        "en": "A は B より ～ : More Than",
+        "fr": "A は B より ～ : Plus que"
       },
       "path": "N5/comparison/yori-more-than"
     },
     {
       "title": {
-        "en": "どちらが ～ : Which is More ~?"
+        "en": "どちらが ～ : Which is More ~?",
+        "fr": "どちらが ～ : Lequel est le Plus ~ ?"
       },
       "path": "N5/comparison/dochira-which"
     },
     {
       "title": {
-        "en": "いちばん ～ : The Most ~"
+        "en": "いちばん ～ : The Most ~",
+        "fr": "いちばん ～ : Le Plus ~"
       },
       "path": "N5/comparison/ichiban-superlative"
     }

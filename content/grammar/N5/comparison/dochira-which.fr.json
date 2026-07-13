@@ -1,0 +1,33 @@
+{
+  "id": "dochira-which",
+  "title": "どちらが ～ : Lequel est le Plus ~ ?",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Pour demander lequel de **deux** éléments possède davantage une qualité, utilisez **どちら** (ou どっち à l'oral familier) avant が. La réponse utilise のほうが pour identifier le gagnant, ou どちらも quand les deux sont égaux."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "A と B と **どちらが** [adjectif] ですか   ← lequel est le plus ~ ?",
+        "  → A **のほうが** [adjectif] です         ← A est plus ~",
+        "  → **どちらも** [adjectif] です           ← les deux sont également ~"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "犬と猫とどちらが好きですか。", "romaji": "Inu to neko to dochira ga suki desu ka.", "français": "Vous préférez les chiens ou les chats ?" },
+        { "japanese": "猫のほうが好きです。", "romaji": "Neko no hō ga suki desu.", "français": "Je préfère les chats." },
+        { "japanese": "コーヒーと紅茶とどちらを飲みますか。", "romaji": "Koohii to kōcha to dochira wo nomimasu ka.", "français": "Vous prendrez du café ou du thé ?" },
+        { "japanese": "どちらも好きです。", "romaji": "Dochira mo suki desu.", "français": "J'aime les deux pareillement." },
+        { "japanese": "電車とバスとどちらが便利ですか。", "romaji": "Densha to basu to dochira ga benri desu ka.", "français": "Le train ou le bus, lequel est le plus pratique ?" }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "どちら est la forme polie ; どっち est familier et plus courant dans la conversation quotidienne. Utilisez どちら avec des personnes que vous ne connaissez pas bien ou dans les situations formelles."
+    }
+  ]
+}

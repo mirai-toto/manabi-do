@@ -1,0 +1,47 @@
+{
+  "id": "tsumori-yotei",
+  "title": "つもり & 予定 : Intention et Plans",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**つもり** et **予定** expriment tous deux des plans futurs, mais ils diffèrent dans la façon dont la décision a été prise et son degré de fixité."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "つもりです",
+        "description": "Intention personnelle : une décision intérieure déjà prise dans votre propre esprit. Indépendant des autres.",
+        "example_jp": "来年、日本に行くつもりです。",
+        "example_en": "J'ai l'intention d'aller au Japon l'année prochaine."
+      },
+      "right": {
+        "label": "予定です",
+        "description": "Plan prévu : souvent externe, fixé ou coordonné avec d'autres. Convient aux rendez-vous et emplois du temps.",
+        "example_jp": "三時に会議が始まる予定です。",
+        "example_en": "La réunion est prévue pour commencer à 15h."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Forme dictionnaire] + **つもりです**      ← avoir l'intention de (décision personnelle)",
+        "[Négatif forme plane] + **つもりです**     ← avoir l'intention de ne pas",
+        "[Forme dictionnaire] + **予定です**        ← être prévu (plan arrangé)",
+        "[Nom] + の + **予定です**                  ← avoir un plan pour ~"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "もうお酒を飲まないつもりです。", "romaji": "Mō osake wo nomanai tsumori desu.", "français": "J'ai l'intention de ne plus boire d'alcool." },
+        { "japanese": "来月、出張の予定です。", "romaji": "Raigetsu, shutchō no yotei desu.", "français": "J'ai un voyage d'affaires prévu le mois prochain." },
+        { "japanese": "飛行機は六時に到着する予定です。", "romaji": "Hikōki wa rokuji ni tōchaku suru yotei desu.", "français": "L'avion est prévu d'arriver à 18h." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Si vous avez fait une réservation ou un rendez-vous, utilisez 予定. Si vous avez décidé quelque chose pour vous-même indépendamment des autres, utilisez つもり."
+    }
+  ]
+}

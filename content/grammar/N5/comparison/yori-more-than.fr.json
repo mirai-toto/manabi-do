@@ -1,0 +1,32 @@
+{
+  "id": "yori-more-than",
+  "title": "A は B より ～ : Plus que",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**より** marque la base de comparaison : ce à quoi on compare. Ce qui vient avant より est l'élément inférieur ; ce qui vient avant l'adjectif est le supérieur."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "A は B **より** [adjectif] です            ← A est plus ~ que B",
+        "B **より** A **のほうが** [adjectif] です   ← A est plus ~ que B (emphatique)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": ["japanese", "romaji", "français"],
+      "rows": [
+        { "japanese": "東京は大阪より大きいです。", "romaji": "Tōkyō wa Ōsaka yori ōkii desu.", "français": "Tokyo est plus grande qu'Osaka." },
+        { "japanese": "バスより電車のほうが速いです。", "romaji": "Basu yori densha no hō ga hayai desu.", "français": "Le train est plus rapide que le bus." },
+        { "japanese": "夏より冬のほうが好きです。", "romaji": "Natsu yori fuyu no hō ga suki desu.", "français": "Je préfère l'hiver à l'été." },
+        { "japanese": "昨日より今日のほうが寒いです。", "romaji": "Kinō yori kyō no hō ga samui desu.", "français": "Il fait plus froid aujourd'hui qu'hier." },
+        { "japanese": "肉より魚のほうが好きです。", "romaji": "Niku yori sakana no hō ga suki desu.", "français": "J'aime le poisson plus que la viande." }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Ajouter のほうが après l'élément mis en valeur rend la comparaison plus explicite et emphatique. Les deux structures sont grammaticalement correctes : のほうが est simplement plus courant dans la langue naturelle."
+    }
+  ]
+}
