@@ -28,5 +28,5 @@ docker-compose.override.yml
 scripts/screenshot/output/
 
 # Playwright install (auto-installed by scripts/setup/setup.sh)
-scripts/pw/
+scripts/screenshot/pw/
 node_modules/

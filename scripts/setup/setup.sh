@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Installs Playwright and Chromium into scripts/pw/ (one-time, survives restarts).
+# Installs Playwright and Chromium into scripts/screenshot/pw/ (one-time, survives restarts).
 # Safe to run multiple times — skips install if already present.
 set -e
 
-PW_DIR="$(cd "$(dirname "$0")/.." && pwd)/pw"
+PW_DIR="$(cd "$(dirname "$0")/../screenshot" && pwd)/pw"
 
 if [ -d "$PW_DIR/node_modules/playwright" ]; then
   echo "Playwright already installed at $PW_DIR"

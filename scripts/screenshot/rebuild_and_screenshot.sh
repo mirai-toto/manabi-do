@@ -6,7 +6,7 @@ set -e
 REPO="$(cd "$(dirname "$(realpath "$0")")/../.." && pwd)"
 PORT=8767
 GRAMMAR_SCREEN="$REPO/manabi_do/lib/presentation/screens/grammar/grammar_screen.dart"
-export NODE_PATH="$REPO/scripts/pw/node_modules"
+export NODE_PATH="$REPO/scripts/screenshot/pw/node_modules"
 
 bash "$REPO/scripts/setup/setup.sh"
 
