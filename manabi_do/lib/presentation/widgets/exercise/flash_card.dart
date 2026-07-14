@@ -68,8 +68,11 @@ class FlashCard extends ConsumerWidget {
               children: [
                 Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppDimens.spaceLg,
+                    padding: const EdgeInsets.fromLTRB(
+                      AppDimens.spaceLg,
+                      AppDimens.spaceMd,
+                      AppDimens.spaceLg,
+                      AppDimens.spaceLg,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -94,8 +97,8 @@ class FlashCard extends ConsumerWidget {
                                   color: Colors.white,
                                 ),
                           textAlign: TextAlign.center,
-                          maxLines: isJapanese ? null : 2,
-                          overflow: isJapanese ? null : TextOverflow.ellipsis,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
