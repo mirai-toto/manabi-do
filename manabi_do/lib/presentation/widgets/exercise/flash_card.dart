@@ -133,9 +133,16 @@ class FlashCard extends ConsumerWidget {
   }
 }
 
-bool _looksJapanese(String text) => text.runes.any(
-  (r) => (r >= 0x3040 && r <= 0x9FFF) || (r >= 0xF900 && r <= 0xFAFF),
-);
+bool _looksJapanese(String text) {
+  final runes = text.runes.where((r) => r > 0x20).toList();
+  if (runes.isEmpty) return false;
+  final jpCount = runes
+      .where(
+        (r) => (r >= 0x3040 && r <= 0x9FFF) || (r >= 0xF900 && r <= 0xFAFF),
+      )
+      .length;
+  return jpCount / runes.length > 0.5;
+}
 
 class FlashCardActions extends StatelessWidget {
   final Card? card;
