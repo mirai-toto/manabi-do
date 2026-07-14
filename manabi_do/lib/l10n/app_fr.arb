@@ -319,5 +319,9 @@
 
   "grammarPractice": "S'exercer",
   "grammarBuilderPrompt": "Reconstitue la phrase",
-  "grammarErrorDetectionPrompt": "Quelle phrase est correcte ?"
+  "grammarErrorDetectionPrompt": "Quelle phrase est correcte ?",
+  "example": "Exemple",
+
+  "showExampleLabel": "Afficher l'exemple",
+  "showExampleSubtitle": "Afficher une phrase d'exemple sur les flashcards"
 }

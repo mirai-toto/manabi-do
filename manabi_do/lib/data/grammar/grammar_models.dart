@@ -14,10 +14,32 @@ sealed class GrammarExercise {
   }
 }
 
+class GrammarExample {
+  final String sentence;
+  final String? highlight;
+  final Map<String, String>? translation;
+
+  const GrammarExample({
+    required this.sentence,
+    this.highlight,
+    this.translation,
+  });
+
+  factory GrammarExample.fromJson(Map<String, dynamic> json) {
+    return GrammarExample(
+      sentence: json['sentence'] as String,
+      highlight: json['highlight'] as String?,
+      translation: json['translation'] == null
+          ? null
+          : Map<String, String>.from(json['translation'] as Map),
+    );
+  }
+}
+
 final class FlashcardExercise extends GrammarExercise {
   final String front;
   final Map<String, String> back;
-  final String? example;
+  final GrammarExample? example;
 
   const FlashcardExercise({
     required this.front,
@@ -29,7 +51,11 @@ final class FlashcardExercise extends GrammarExercise {
     return FlashcardExercise(
       front: json['front'] as String,
       back: Map<String, String>.from(json['back'] as Map),
-      example: json['example'] as String?,
+      example: json['example'] == null
+          ? null
+          : GrammarExample.fromJson(
+              Map<String, dynamic>.from(json['example'] as Map),
+            ),
     );
   }
 }

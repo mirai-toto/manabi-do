@@ -6,7 +6,11 @@
       "back": {
         "en": "while doing ~ — attaches to the verb stem; the ながら clause is the secondary action, the main verb at the end of the sentence is the primary action"
       },
-      "example": "音楽を聴きながら勉強する"
+      "example": {
+        "sentence": "音楽を{聴|き}きながら{勉強|べんきょう}する",
+        "highlight": "ながら",
+        "translation": { "en": "I study while listening to music." }
+      }
     },
     {
       "type": "flashcard",

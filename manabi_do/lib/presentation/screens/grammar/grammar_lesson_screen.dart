@@ -52,6 +52,8 @@ class GrammarLessonScreen extends ConsumerWidget {
                       title: title,
                       color: levelColor,
                       persistSrs: false,
+                      settingsContexts: const {SettingsContext.flashcard},
+                      hasExamples: true,
                       loadQueue: (ref) => ref
                           .read(grammarSessionServiceProvider)
                           .buildQueue(

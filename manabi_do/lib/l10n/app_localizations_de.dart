@@ -710,4 +710,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get grammarErrorDetectionPrompt => 'Welcher Satz ist korrekt?';
+
+  @override
+  String get example => 'Beispiel';
+
+  @override
+  String get showExampleLabel => 'Beispiel anzeigen';
+
+  @override
+  String get showExampleSubtitle =>
+      'Einen Beispielsatz auf Karteikarten anzeigen';
 }

@@ -318,5 +318,9 @@
 
   "grammarPractice": "Üben",
   "grammarBuilderPrompt": "Ordne den Satz",
-  "grammarErrorDetectionPrompt": "Welcher Satz ist korrekt?"
+  "grammarErrorDetectionPrompt": "Welcher Satz ist korrekt?",
+  "example": "Beispiel",
+
+  "showExampleLabel": "Beispiel anzeigen",
+  "showExampleSubtitle": "Einen Beispielsatz auf Karteikarten anzeigen"
 }

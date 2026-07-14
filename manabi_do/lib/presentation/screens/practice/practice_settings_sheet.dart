@@ -21,11 +21,13 @@ enum SettingsContext { sentence, mcq, flashcard, writing }
 class PracticeSettingsSheet extends ConsumerWidget {
   final Set<SettingsContext> contexts;
   final bool showAutoAdvance;
+  final bool hasExamples;
 
   const PracticeSettingsSheet({
     super.key,
     this.contexts = const {SettingsContext.mcq},
     this.showAutoAdvance = false,
+    this.hasExamples = false,
   });
 
   @override
@@ -141,6 +143,16 @@ class PracticeSettingsSheet extends ConsumerWidget {
                       : flashcard.copyWith(sessionLength: v),
                 ),
               ),
+              if (hasExamples) ...[
+                const SizedBox(height: AppDimens.spaceMd),
+                _SwitchRow(
+                  label: l.showExampleLabel,
+                  subtitle: l.showExampleSubtitle,
+                  value: flashcard.showExample,
+                  onChanged: (v) =>
+                      updateFlashcard(flashcard.copyWith(showExample: v)),
+                ),
+              ],
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 

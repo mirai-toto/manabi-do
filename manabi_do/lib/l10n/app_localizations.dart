@@ -1401,6 +1401,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Which sentence is correct?'**
   String get grammarErrorDetectionPrompt;
+
+  /// No description provided for @example.
+  ///
+  /// In en, this message translates to:
+  /// **'Example'**
+  String get example;
+
+  /// No description provided for @showExampleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Show example'**
+  String get showExampleLabel;
+
+  /// No description provided for @showExampleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Display an example sentence on flashcards'**
+  String get showExampleSubtitle;
 }
 
 class _AppLocalizationsDelegate

@@ -707,4 +707,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get grammarErrorDetectionPrompt => 'Which sentence is correct?';
+
+  @override
+  String get example => 'Example';
+
+  @override
+  String get showExampleLabel => 'Show example';
+
+  @override
+  String get showExampleSubtitle => 'Display an example sentence on flashcards';
 }

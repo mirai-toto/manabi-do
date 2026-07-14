@@ -328,5 +328,9 @@
 
   "grammarPractice": "Practice",
   "grammarBuilderPrompt": "Arrange the sentence",
-  "grammarErrorDetectionPrompt": "Which sentence is correct?"
+  "grammarErrorDetectionPrompt": "Which sentence is correct?",
+  "example": "Example",
+
+  "showExampleLabel": "Show example",
+  "showExampleSubtitle": "Display an example sentence on flashcards"
 }

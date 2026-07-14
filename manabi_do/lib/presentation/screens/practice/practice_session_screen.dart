@@ -24,6 +24,7 @@ class PracticeSessionScreen extends ConsumerStatefulWidget {
   final LoadQueue loadQueue;
   final bool persistSrs;
   final Set<SettingsContext> settingsContexts;
+  final bool hasExamples;
 
   const PracticeSessionScreen({
     super.key,
@@ -32,6 +33,7 @@ class PracticeSessionScreen extends ConsumerStatefulWidget {
     required this.loadQueue,
     this.persistSrs = true,
     this.settingsContexts = const {SettingsContext.mcq},
+    this.hasExamples = false,
   });
 
   @override
@@ -107,6 +109,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
               isScrollControlled: true,
               builder: (_) => PracticeSettingsSheet(
                 contexts: widget.settingsContexts,
+                hasExamples: widget.hasExamples,
                 showAutoAdvance: !widget.persistSrs,
               ),
             ),

@@ -712,4 +712,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get grammarErrorDetectionPrompt => 'Quelle phrase est correcte ?';
+
+  @override
+  String get example => 'Exemple';
+
+  @override
+  String get showExampleLabel => 'Afficher l\'exemple';
+
+  @override
+  String get showExampleSubtitle =>
+      'Afficher une phrase d\'exemple sur les flashcards';
 }

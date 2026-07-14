@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../data/grammar/grammar_models.dart';
 import '../providers/database_provider.dart';
+import '../providers/flashcard_settings_provider.dart';
 import '../screens/practice/grammar_builder_body.dart';
 import '../screens/practice/grammar_cloze_body.dart';
 import '../screens/practice/grammar_error_detection_body.dart';
@@ -37,7 +38,7 @@ class GrammarSessionService {
       final exercise = GrammarExercise.fromJson(
         Map<String, dynamic>.from(jsonDecode(row.dataJson) as Map),
       );
-      final item = _buildItem(i, exercise, locale, color);
+      final item = _buildItem(i, exercise, locale, color, ref);
       if (item != null) items.add(item);
     }
     return items;
@@ -48,6 +49,7 @@ class GrammarSessionService {
     GrammarExercise exercise,
     String locale,
     Color color,
+    WidgetRef ref,
   ) {
     return switch (exercise) {
       FlashcardExercise() => PracticeItem(
@@ -57,7 +59,10 @@ class GrammarSessionService {
         buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
           japanese: exercise.front,
           answer: exercise.back[locale] ?? exercise.back['en'] ?? '',
-          label: exercise.example,
+          example: ref.read(flashcardSettingsProvider).showExample
+              ? exercise.example
+              : null,
+          locale: locale,
           card: null,
           isFreeMode: true,
           index: index,

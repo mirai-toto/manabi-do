@@ -4,7 +4,9 @@ import 'package:fsrs/fsrs.dart' show Card, Rating;
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../data/grammar/grammar_models.dart';
 import '../../../l10n/l10n.dart';
+import '../../widgets/exercise/example_card.dart';
 import '../../widgets/exercise/flash_card.dart';
 
 class PracticeFlashcardBody extends StatefulWidget {
@@ -19,6 +21,8 @@ class PracticeFlashcardBody extends StatefulWidget {
   final Color color;
   final void Function(Rating) onAnswer;
   final VoidCallback? onDetailTap;
+  final GrammarExample? example;
+  final String locale;
 
   const PracticeFlashcardBody({
     super.key,
@@ -33,6 +37,8 @@ class PracticeFlashcardBody extends StatefulWidget {
     this.label,
     this.isReversed = false,
     this.onDetailTap,
+    this.example,
+    this.locale = 'en',
   });
 
   @override
@@ -117,6 +123,14 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
             isRevealed: _revealed,
             onTap: _onTap,
           ),
+          if (widget.example != null) ...[
+            const SizedBox(height: AppDimens.spaceMd),
+            ExampleCard(
+              example: widget.example!,
+              locale: widget.locale,
+              showTranslation: _revealed,
+            ),
+          ],
           if (_everRevealed) ...[
             const SizedBox(height: AppDimens.spaceMd),
             FlashCardActions(
