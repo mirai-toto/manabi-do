@@ -23,6 +23,7 @@ class PracticeFlashcardBody extends StatefulWidget {
   final VoidCallback? onDetailTap;
   final GrammarExample? example;
   final String locale;
+  final String? questionOverride;
 
   const PracticeFlashcardBody({
     super.key,
@@ -39,6 +40,7 @@ class PracticeFlashcardBody extends StatefulWidget {
     this.onDetailTap,
     this.example,
     this.locale = 'en',
+    this.questionOverride,
   });
 
   @override
@@ -68,13 +70,13 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
     final String? revealSub;
 
     if (widget.isReversed) {
-      question = l.flashcardJapaneseQuestion;
+      question = widget.questionOverride ?? l.flashcardJapaneseQuestion;
       prompt = widget.answer;
       promptSub = null;
       reveal = widget.japanese;
       revealSub = widget.label;
     } else {
-      question = l.flashcardDefaultPrompt;
+      question = widget.questionOverride ?? l.flashcardDefaultPrompt;
       prompt = widget.japanese;
       promptSub = widget.label;
       reveal = widget.answer;

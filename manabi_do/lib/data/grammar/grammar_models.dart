@@ -40,11 +40,15 @@ final class FlashcardExercise extends GrammarExercise {
   final String front;
   final Map<String, String> back;
   final GrammarExample? example;
+  final bool isReversed;
+  final Map<String, String>? question;
 
   const FlashcardExercise({
     required this.front,
     required this.back,
     this.example,
+    this.isReversed = false,
+    this.question,
   });
 
   factory FlashcardExercise.fromJson(Map<String, dynamic> json) {
@@ -56,6 +60,10 @@ final class FlashcardExercise extends GrammarExercise {
           : GrammarExample.fromJson(
               Map<String, dynamic>.from(json['example'] as Map),
             ),
+      isReversed: json['is_reversed'] as bool? ?? false,
+      question: json['question'] == null
+          ? null
+          : Map<String, String>.from(json['question'] as Map),
     );
   }
 }

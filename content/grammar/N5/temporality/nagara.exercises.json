@@ -3,9 +3,9 @@
     {
       "type": "flashcard",
       "front": "ながら",
-      "back": {
-        "en": "while doing ~ — attaches to the verb stem; the ながら clause is the secondary action, the main verb at the end of the sentence is the primary action"
-      },
+      "back": { "en": "while ~ing" },
+      "is_reversed": true,
+      "question": { "en": "What grammar pattern means 'while ~ing'?" },
       "example": {
         "sentence": "音楽を{聴|き}きながら{勉強|べんきょう}する",
         "highlight": "ながら",
@@ -14,10 +14,10 @@
     },
     {
       "type": "flashcard",
-      "front": "Can ながら be used when two different people each perform one of the actions?",
-      "back": {
-        "en": "No — both actions must share the same subject. A different structure is required when the subjects differ."
-      }
+      "front": "ながら",
+      "back": { "en": "verb stem + ___" },
+      "is_reversed": true,
+      "question": { "en": "Complete the pattern: ___ = while ~ing" }
     },
     {
       "type": "mcq",

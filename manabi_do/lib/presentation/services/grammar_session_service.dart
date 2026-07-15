@@ -59,6 +59,9 @@ class GrammarSessionService {
           answer: exercise.back[locale] ?? exercise.back['en'] ?? '',
           example: exercise.example,
           locale: locale,
+          isReversed: exercise.isReversed,
+          questionOverride:
+              exercise.question?[locale] ?? exercise.question?['en'],
           card: null,
           isFreeMode: true,
           index: index,
