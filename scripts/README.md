@@ -21,6 +21,12 @@ scripts/
   setup/
     setup-android-signing.sh   # Android signing key setup
     app.build.gradle.kts.template  # Gradle signing config template
+  sonar/
+    sonar.sh                   # Start SonarQube + run a full scan (fully automated)
+    docker-compose.yml         # SonarQube + Postgres services
+    sonar-project.properties   # Scanner config (sources, exclusions, coverage)
+    plugins/                   # Plugin jars (gitignored, downloaded on first run)
+    .sonar_token               # Cached auth token (gitignored, generated on first run)
   README.md
 ```
 
@@ -63,6 +69,26 @@ node scripts/screenshot/screenshot_grammar.js [port]
 
 - Hiragana and Katakana appear as tofu boxes in screenshots. Root cause: CanvasKit + SwiftShader software GL cannot rasterize kana glyph outlines. CJK ideographs render fine.
 - No live database on web builds — data-dependent UI (counts, progress) shows empty/fallback states.
+
+---
+
+## SonarQube
+
+```bash
+bash scripts/sonar/sonar.sh
+```
+
+Downloads the [sonar-flutter community plugin](https://github.com/insideapp-fr/sonar-flutter) on first run,
+generates a Dart analysis report and coverage data using the Flutter Docker service, starts SonarQube,
+and runs the scanner. Auth token is managed automatically and cached in `scripts/sonar/.sonar_token`.
+
+Open `http://localhost:9000` to browse results.
+
+| | |
+|---|---|
+| URL | http://localhost:9000 |
+| Username | `admin` |
+| Password | `Sonar_local_1` (changed from default on first run) |
 
 ---
 
