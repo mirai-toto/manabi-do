@@ -52,7 +52,10 @@ class GrammarLessonScreen extends ConsumerWidget {
                       title: title,
                       color: levelColor,
                       persistSrs: false,
-                      settingsContexts: const {SettingsContext.flashcard},
+                      settingsContexts: const {
+                        SettingsContext.flashcard,
+                        SettingsContext.grammar,
+                      },
                       hasExamples: true,
                       loadQueue: (ref) => ref
                           .read(grammarSessionServiceProvider)

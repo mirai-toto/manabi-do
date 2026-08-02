@@ -16,7 +16,7 @@ import '../../providers/sentence_settings_provider.dart';
 
 export '../../../core/models/sentence_settings.dart' show TranslationMode;
 
-enum SettingsContext { sentence, mcq, flashcard, writing }
+enum SettingsContext { sentence, mcq, flashcard, writing, grammar }
 
 class PracticeSettingsSheet extends ConsumerWidget {
   final Set<SettingsContext> contexts;
@@ -193,6 +193,25 @@ class PracticeSettingsSheet extends ConsumerWidget {
                     updateMcq(mcq.copyWith(showPromptFurigana: v)),
               ),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
+            ],
+
+            // ── Grammar ───────────────────────────────────────────────────
+            if (contexts.contains(SettingsContext.grammar)) ...[
+              if (showAutoAdvance) ...[
+                _SwitchRow(
+                  label: l.autoAdvanceLabel,
+                  subtitle: l.autoAdvanceSubtitle,
+                  value: mcq.autoAdvance,
+                  onChanged: (v) => updateMcq(mcq.copyWith(autoAdvance: v)),
+                ),
+              ],
+              _SwitchRow(
+                label: l.showMcqFuriganaLabel,
+                subtitle: l.showMcqFuriganaSubtitle,
+                value: mcq.showPromptFurigana,
+                onChanged: (v) =>
+                    updateMcq(mcq.copyWith(showPromptFurigana: v)),
+              ),
             ],
 
             // ── Sentence ──────────────────────────────────────────────────
