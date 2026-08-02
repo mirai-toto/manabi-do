@@ -165,14 +165,16 @@ class _ExPrompt extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              JapaneseText(
-                word: japanesePrompt!,
-                reading: japaneseReading ?? japanesePrompt!,
-                style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
-                rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                  color: t.onSurfaceVariant,
+              Flexible(
+                child: JapaneseText(
+                  word: japanesePrompt!,
+                  reading: japaneseReading ?? japanesePrompt!,
+                  style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
+                  rubyStyle: AppTextStyles.jpFurigana.copyWith(
+                    color: t.onSurfaceVariant,
+                  ),
+                  showFurigana: showFurigana,
                 ),
-                showFurigana: showFurigana,
               ),
               const SizedBox(width: AppDimens.spaceSm),
               SpeakButton(text: japanesePrompt!, color: t.onSurfaceVariant),

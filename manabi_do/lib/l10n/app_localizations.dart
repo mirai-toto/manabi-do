@@ -1390,6 +1390,12 @@ abstract class AppLocalizations {
   /// **'Practice'**
   String get grammarPractice;
 
+  /// No description provided for @grammarMcqPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'What does this sentence mean?'**
+  String get grammarMcqPrompt;
+
   /// No description provided for @grammarBuilderPrompt.
   ///
   /// In en, this message translates to:

@@ -327,6 +327,7 @@
   "hide": "Hide",
 
   "grammarPractice": "Practice",
+  "grammarMcqPrompt": "What does this sentence mean?",
   "grammarBuilderPrompt": "Arrange the sentence",
   "grammarErrorDetectionPrompt": "Which sentence is correct?",
   "example": "Example",

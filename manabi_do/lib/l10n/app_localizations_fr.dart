@@ -708,6 +708,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get grammarPractice => 'S\'exercer';
 
   @override
+  String get grammarMcqPrompt => 'Que signifie cette phrase ?';
+
+  @override
   String get grammarBuilderPrompt => 'Reconstitue la phrase';
 
   @override

@@ -318,6 +318,7 @@
   "hide": "Masquer",
 
   "grammarPractice": "S'exercer",
+  "grammarMcqPrompt": "Que signifie cette phrase ?",
   "grammarBuilderPrompt": "Reconstitue la phrase",
   "grammarErrorDetectionPrompt": "Quelle phrase est correcte ?",
   "example": "Exemple",

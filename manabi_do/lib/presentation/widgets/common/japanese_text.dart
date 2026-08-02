@@ -294,9 +294,8 @@ class JapaneseText extends StatelessWidget {
         rubyStyle ??
         AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant);
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.end,
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.end,
       children: segments
           .map(
             (seg) => Column(

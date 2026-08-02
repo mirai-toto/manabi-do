@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers/locale_provider.dart';
 import '../../data/grammar/grammar_models.dart';
+import '../../l10n/l10n.dart';
 import '../providers/database_provider.dart';
 import '../providers/mcq_settings_provider.dart';
 import '../screens/practice/grammar_builder_body.dart';
@@ -84,17 +85,19 @@ class GrammarSessionService {
             choices.length,
             (i) => McqOption(letter: _letters[i], text: choices[i]),
           );
-          return PracticeMcqBody(
-            question: '',
-            japanesePrompt: exercise.sentence,
-            options: options,
-            correctIndex: exercise.answerIndex,
-            card: null,
-            isFreeMode: true,
-            index: index,
-            total: total,
-            color: color,
-            onAnswer: onAnswer,
+          return Builder(
+            builder: (context) => PracticeMcqBody(
+              question: context.l10n.grammarMcqPrompt,
+              japanesePrompt: exercise.sentence,
+              options: options,
+              correctIndex: exercise.answerIndex,
+              card: null,
+              isFreeMode: true,
+              index: index,
+              total: total,
+              color: color,
+              onAnswer: onAnswer,
+            ),
           );
         },
       ),
@@ -137,6 +140,7 @@ class GrammarSessionService {
           index: index,
           total: total,
           color: color,
+          autoAdvance: autoAdvance,
           onAnswer: onAnswer,
         ),
       ),

@@ -703,6 +703,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get grammarPractice => 'Practice';
 
   @override
+  String get grammarMcqPrompt => 'What does this sentence mean?';
+
+  @override
   String get grammarBuilderPrompt => 'Arrange the sentence';
 
   @override

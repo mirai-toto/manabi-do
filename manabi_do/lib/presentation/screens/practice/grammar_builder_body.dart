@@ -7,6 +7,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../../widgets/exercise/flash_card.dart';
 
 class GrammarBuilderBody extends StatefulWidget {
   final List<String> parts;
@@ -14,6 +15,7 @@ class GrammarBuilderBody extends StatefulWidget {
   final int index;
   final int total;
   final Color color;
+  final bool autoAdvance;
   final void Function(Rating) onAnswer;
 
   const GrammarBuilderBody({
@@ -24,6 +26,7 @@ class GrammarBuilderBody extends StatefulWidget {
     required this.total,
     required this.color,
     required this.onAnswer,
+    this.autoAdvance = false,
   });
 
   @override
@@ -82,9 +85,11 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
       _answered = true;
       _isCorrect = isCorrect;
     });
-    Future.delayed(const Duration(milliseconds: 1000), () {
-      if (mounted) widget.onAnswer(isCorrect ? Rating.good : Rating.again);
-    });
+    if (widget.autoAdvance) {
+      Future.delayed(const Duration(milliseconds: 1000), () {
+        if (mounted) widget.onAnswer(isCorrect ? Rating.good : Rating.again);
+      });
+    }
   }
 
   @override
@@ -145,6 +150,15 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
             onPlace: _place,
             color: widget.color,
           ),
+          if (_answered && !widget.autoAdvance) ...[
+            const SizedBox(height: AppDimens.spaceMd),
+            FlashCardActions(
+              card: null,
+              isFreeMode: true,
+              question: l.selfAssessQuestion,
+              onRate: widget.onAnswer,
+            ),
+          ],
         ],
       ),
     );
