@@ -10,6 +10,7 @@ class JapaneseSentence extends StatelessWidget {
   final Color? highlightColor;
   final String? translation;
   final TextStyle? style;
+  final bool hideHighlight;
 
   const JapaneseSentence({
     super.key,
@@ -18,6 +19,7 @@ class JapaneseSentence extends StatelessWidget {
     this.highlightColor,
     this.translation,
     this.style,
+    this.hideHighlight = false,
   });
 
   @override
@@ -40,15 +42,41 @@ class JapaneseSentence extends StatelessWidget {
         plain,
         highlight!,
       );
-      spans = [
-        ...furiganaSpans(before, baseStyle, rubyStyle),
-        ...furiganaSpans(
-          target,
-          baseStyle.copyWith(color: accentColor, fontWeight: FontWeight.w700),
-          rubyStyle.copyWith(color: accentColor),
-        ),
-        ...furiganaSpans(after, baseStyle, rubyStyle),
-      ];
+      if (hideHighlight) {
+        spans = [
+          ...furiganaSpans(before, baseStyle, rubyStyle),
+          WidgetSpan(
+            alignment: PlaceholderAlignment.middle,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+              decoration: BoxDecoration(
+                color: accentColor.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(color: accentColor),
+              ),
+              child: Text(
+                stripAnnotation(target),
+                style: baseStyle.copyWith(
+                  color: Colors.transparent,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ),
+          ...furiganaSpans(after, baseStyle, rubyStyle),
+        ];
+      } else {
+        spans = [
+          ...furiganaSpans(before, baseStyle, rubyStyle),
+          ...furiganaSpans(
+            target,
+            baseStyle.copyWith(color: accentColor, fontWeight: FontWeight.w700),
+            rubyStyle.copyWith(color: accentColor),
+          ),
+          ...furiganaSpans(after, baseStyle, rubyStyle),
+        ];
+      }
     } else {
       spans = furiganaSpans(sentence, baseStyle, rubyStyle);
     }

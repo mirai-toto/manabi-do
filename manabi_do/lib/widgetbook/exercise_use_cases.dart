@@ -6,6 +6,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import '../presentation/screens/practice/grammar_builder_body.dart';
 import '../presentation/screens/practice/grammar_cloze_body.dart';
 import '../presentation/screens/practice/grammar_error_detection_body.dart';
+import '../presentation/providers/drawing_settings_provider.dart';
 import '../presentation/widgets/characters/kanji_strokes_provider.dart';
 import '../presentation/widgets/exercise/drawing_exercise.dart';
 import '../presentation/widgets/exercise/flash_card.dart';
@@ -79,6 +80,7 @@ Widget buildDrawingExercise(BuildContext context) {
     builder: (context, ref, _) {
       final strokes =
           ref.watch(kanjiStrokesProvider(0x6c34)).asData?.value ?? [];
+      final drawingSettings = ref.watch(drawingSettingsProvider);
       return Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -87,6 +89,7 @@ Widget buildDrawingExercise(BuildContext context) {
             kanjiId: 0x6c34,
             label: '水',
             color: Theme.of(context).colorScheme.primary,
+            settings: drawingSettings,
           ),
         ),
       );

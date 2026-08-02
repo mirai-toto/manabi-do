@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/theme/app_dimens.dart';
@@ -7,10 +6,9 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/grammar/grammar_models.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/flashcard_settings_provider.dart';
 import '../common/japanese_sentence.dart';
 
-class ExampleCard extends ConsumerWidget {
+class ExampleCard extends StatelessWidget {
   final GrammarExample example;
   final String locale;
   final bool showTranslation;
@@ -23,11 +21,7 @@ class ExampleCard extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    if (!ref.watch(flashcardSettingsProvider).showExample) {
-      return const SizedBox.shrink();
-    }
-
+  Widget build(BuildContext context) {
     final t = context.tokens;
 
     return Container(
@@ -71,6 +65,7 @@ class ExampleCard extends ConsumerWidget {
             child: JapaneseSentence(
               sentence: example.sentence,
               highlight: example.highlight,
+              hideHighlight: !showTranslation,
               highlightColor: t.primary,
               translation: showTranslation
                   ? (example.translation?[locale] ?? example.translation?['en'])

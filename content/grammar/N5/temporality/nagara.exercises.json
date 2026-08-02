@@ -2,22 +2,13 @@
   "exercises": [
     {
       "type": "flashcard",
-      "front": "ながら",
-      "back": { "en": "while ~ing" },
-      "is_reversed": true,
-      "question": { "en": "What grammar pattern means 'while ~ing'?" },
+      "front": "What word connects two actions happening at the same time?",
+      "back": { "en": "ながら" },
       "example": {
         "sentence": "音楽を{聴|き}きながら{勉強|べんきょう}する",
         "highlight": "ながら",
         "translation": { "en": "I study while listening to music." }
       }
-    },
-    {
-      "type": "flashcard",
-      "front": "ながら",
-      "back": { "en": "verb stem + ___" },
-      "is_reversed": true,
-      "question": { "en": "Complete the pattern: ___ = while ~ing" }
     },
     {
       "type": "mcq",

@@ -6,6 +6,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
+import '../../providers/drawing_settings_provider.dart';
 import '../../providers/home_provider.dart';
 import '../../providers/writing_session_provider.dart';
 import '../../widgets/characters/kanji_strokes_provider.dart';
@@ -127,6 +128,7 @@ class _ActiveScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final strokesAsync = ref.watch(kanjiStrokesProvider(kanji.id));
+    final drawingSettings = ref.watch(drawingSettingsProvider);
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -185,6 +187,7 @@ class _ActiveScreen extends ConsumerWidget {
                   onReading: kanji.onReading,
                   kunReading: kanji.kunReading,
                   color: color,
+                  settings: drawingSettings,
                   onNext: onAdvance,
                 ),
               ),

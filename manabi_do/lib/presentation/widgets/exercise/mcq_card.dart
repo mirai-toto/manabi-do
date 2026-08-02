@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -7,7 +6,6 @@ import '../../../l10n/l10n.dart';
 import '../common/japanese_text.dart';
 import '../common/pill_badge.dart';
 import '../common/speak_button.dart';
-import '../../providers/mcq_settings_provider.dart';
 
 enum McqOptionState { idle, selected, correct, wrong }
 
@@ -42,6 +40,7 @@ class McqCard extends StatelessWidget {
   final List<McqOption> options;
   final ValueChanged<int>? onOptionTap;
   final bool compactGrid;
+  final bool showFurigana;
 
   const McqCard({
     super.key,
@@ -51,6 +50,7 @@ class McqCard extends StatelessWidget {
     required this.options,
     this.onOptionTap,
     this.compactGrid = false,
+    this.showFurigana = false,
   });
 
   @override
@@ -79,6 +79,7 @@ class McqCard extends StatelessWidget {
             question: question,
             japanesePrompt: japanesePrompt,
             japaneseReading: japaneseReading,
+            showFurigana: showFurigana,
           ),
           const SizedBox(height: AppDimens.spaceLg),
           if (compactGrid)
@@ -131,23 +132,22 @@ class _ExTypeBadge extends StatelessWidget {
   }
 }
 
-class _ExPrompt extends ConsumerWidget {
+class _ExPrompt extends StatelessWidget {
   final String question;
   final String? japanesePrompt;
   final String? japaneseReading;
+  final bool showFurigana;
 
   const _ExPrompt({
     required this.question,
+    required this.showFurigana,
     this.japanesePrompt,
     this.japaneseReading,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final t = context.tokens;
-    final showFurigana = ref.watch(
-      mcqSettingsProvider.select((s) => s.showPromptFurigana),
-    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

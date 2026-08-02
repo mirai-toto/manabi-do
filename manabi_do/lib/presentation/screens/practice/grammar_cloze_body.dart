@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/mcq_settings_provider.dart';
 import '../../widgets/exercise/flash_card.dart';
 import '../../widgets/exercise/mcq_card.dart';
 
-class GrammarClozeBody extends ConsumerStatefulWidget {
+class GrammarClozeBody extends StatefulWidget {
   /// Sentence text with "___" marking the blank.
   final String sentence;
   final List<McqOption> options;
@@ -18,6 +16,7 @@ class GrammarClozeBody extends ConsumerStatefulWidget {
   final int index;
   final int total;
   final Color color;
+  final bool autoAdvance;
   final void Function(Rating) onAnswer;
 
   const GrammarClozeBody({
@@ -29,13 +28,14 @@ class GrammarClozeBody extends ConsumerStatefulWidget {
     required this.total,
     required this.color,
     required this.onAnswer,
+    this.autoAdvance = false,
   });
 
   @override
-  ConsumerState<GrammarClozeBody> createState() => _GrammarClozeBodyState();
+  State<GrammarClozeBody> createState() => _GrammarClozeBodyState();
 }
 
-class _GrammarClozeBodyState extends ConsumerState<GrammarClozeBody> {
+class _GrammarClozeBodyState extends State<GrammarClozeBody> {
   late List<McqOptionState> _states;
   bool _answered = false;
   bool _autoAdvancing = false;
@@ -61,7 +61,7 @@ class _GrammarClozeBodyState extends ConsumerState<GrammarClozeBody> {
         return McqOptionState.idle;
       });
     });
-    if (ref.read(mcqSettingsProvider).autoAdvance) {
+    if (widget.autoAdvance) {
       setState(() => _autoAdvancing = true);
       Future.delayed(const Duration(milliseconds: 800), () {
         if (mounted) widget.onAnswer(isCorrect ? Rating.good : Rating.again);

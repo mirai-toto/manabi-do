@@ -5,6 +5,7 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
+import '../../../providers/drawing_settings_provider.dart';
 import '../../../providers/kanji_provider.dart';
 import '../../../widgets/characters/kanji_strokes_provider.dart';
 import '../../../widgets/exercise/drawing_exercise.dart';
@@ -23,6 +24,7 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
     final t = context.tokens;
     final color = levelColor(kanji.jlptLevel);
     final strokesAsync = ref.watch(kanjiStrokesProvider(kanjiId));
+    final drawingSettings = ref.watch(drawingSettingsProvider);
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -48,6 +50,7 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
             kanjiId: kanjiId,
             label: kanji.meaning,
             color: color,
+            settings: drawingSettings,
           ),
         ),
       ),

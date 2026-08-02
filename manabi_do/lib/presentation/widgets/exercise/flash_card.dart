@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -7,7 +6,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/speak_button.dart';
 
-class FlashCard extends ConsumerWidget {
+class FlashCard extends StatelessWidget {
   final String prompt;
   final String? promptSub;
   final String? reveal;
@@ -28,7 +27,7 @@ class FlashCard extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l = context.l10n;
     final content = isRevealed ? (reveal ?? '') : prompt;
     final contentSub = isRevealed ? revealSub : promptSub;

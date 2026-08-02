@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../data/grammar/grammar_models.dart';
 import '../providers/database_provider.dart';
+import '../providers/mcq_settings_provider.dart';
 import '../screens/practice/grammar_builder_body.dart';
 import '../screens/practice/grammar_cloze_body.dart';
 import '../screens/practice/grammar_error_detection_body.dart';
@@ -27,6 +28,7 @@ class GrammarSessionService {
   }) async {
     final db = ref.read(databaseProvider);
     final locale = ref.read(localeProvider).languageCode;
+    final autoAdvance = ref.read(mcqSettingsProvider).autoAdvance;
 
     final rows = await db.getGrammarExercisesForLesson(lessonPath);
     if (rows.isEmpty) return [];
@@ -37,7 +39,7 @@ class GrammarSessionService {
       final exercise = GrammarExercise.fromJson(
         Map<String, dynamic>.from(jsonDecode(row.dataJson) as Map),
       );
-      final item = _buildItem(i, exercise, locale, color);
+      final item = _buildItem(i, exercise, locale, color, autoAdvance);
       if (item != null) items.add(item);
     }
     return items;
@@ -48,6 +50,7 @@ class GrammarSessionService {
     GrammarExercise exercise,
     String locale,
     Color color,
+    bool autoAdvance,
   ) {
     return switch (exercise) {
       FlashcardExercise() => PracticeItem(
@@ -61,7 +64,7 @@ class GrammarSessionService {
           locale: locale,
           isReversed: exercise.isReversed,
           questionOverride:
-              exercise.question?[locale] ?? exercise.question?['en'],
+              exercise.question?[locale] ?? exercise.question?['en'] ?? '',
           card: null,
           isFreeMode: true,
           index: index,
@@ -118,6 +121,7 @@ class GrammarSessionService {
             index: index,
             total: total,
             color: color,
+            autoAdvance: autoAdvance,
             onAnswer: onAnswer,
           );
         },

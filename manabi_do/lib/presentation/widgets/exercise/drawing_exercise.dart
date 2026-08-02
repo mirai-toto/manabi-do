@@ -1,7 +1,6 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart' hide Card;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
 import '../../../core/models/drawing_settings.dart';
@@ -10,13 +9,12 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../../../presentation/providers/drawing_settings_provider.dart';
 import '../characters/kanji_drawing_canvas.dart';
 import '../../screens/characters/kanji/kanji_readings_card.dart';
 import '../characters/stroke_animators.dart';
 import 'flash_card.dart';
 
-class DrawingExercise extends ConsumerStatefulWidget {
+class DrawingExercise extends StatefulWidget {
   final List<ui.Path> referenceStrokes;
   final int kanjiId;
   final String label;
@@ -29,6 +27,7 @@ class DrawingExercise extends ConsumerStatefulWidget {
   final String? question;
   final VoidCallback? onDetailTap;
   final VoidCallback? onNext;
+  final DrawingSettings settings;
 
   const DrawingExercise({
     super.key,
@@ -36,6 +35,7 @@ class DrawingExercise extends ConsumerStatefulWidget {
     required this.kanjiId,
     required this.label,
     required this.color,
+    required this.settings,
     this.onReading = '',
     this.kunReading = '',
     this.card,
@@ -47,10 +47,10 @@ class DrawingExercise extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<DrawingExercise> createState() => _DrawingExerciseState();
+  State<DrawingExercise> createState() => _DrawingExerciseState();
 }
 
-class _DrawingExerciseState extends ConsumerState<DrawingExercise>
+class _DrawingExerciseState extends State<DrawingExercise>
     with SingleTickerProviderStateMixin {
   List<List<Offset>> _strokes = [];
   List<bool> _strokeResults = [];
@@ -75,7 +75,7 @@ class _DrawingExerciseState extends ConsumerState<DrawingExercise>
 
   @override
   Widget build(BuildContext context) {
-    final s = ref.watch(drawingSettingsProvider);
+    final s = widget.settings;
     final t = context.tokens;
     final l = context.l10n;
     final refStrokes = widget.referenceStrokes;
@@ -163,9 +163,7 @@ class _DrawingExerciseState extends ConsumerState<DrawingExercise>
     final showSrsActions =
         widget.onRate != null &&
         !_hintsUsed &&
-        !(widget.isFreeMode &&
-            ref.read(drawingSettingsProvider).autoAdvance &&
-            _done);
+        !(widget.isFreeMode && widget.settings.autoAdvance && _done);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -372,9 +370,7 @@ class _DrawingExerciseState extends ConsumerState<DrawingExercise>
       return;
     }
 
-    if (widget.isFreeMode &&
-        ref.read(drawingSettingsProvider).autoAdvance &&
-        !_autoAdvanceDone) {
+    if (widget.isFreeMode && widget.settings.autoAdvance && !_autoAdvanceDone) {
       _autoAdvanceDone = true;
       Future.delayed(const Duration(seconds: 1), () {
         if (mounted) widget.onRate!(_allCorrect ? Rating.good : Rating.again);
@@ -416,7 +412,7 @@ class _DrawingExerciseState extends ConsumerState<DrawingExercise>
     final result = evaluateSingleStroke(
       strokes[newIdx],
       widget.referenceStrokes[newIdx],
-      threshold: ref.read(drawingSettingsProvider).toleranceThreshold,
+      threshold: widget.settings.toleranceThreshold,
     );
 
     if (!result) {
