@@ -1,9 +1,27 @@
 # Product Requirements — Manabi Do
 
+## v1 Launch Checklist
+
+Items are ordered by priority. All must ship before App Store / Play Store public release.
+
+| # | Feature | Status |
+|---|---------|--------|
+| 1 | Grammar exercises (hand-authored alongside lesson JSON) | Not started |
+| 2 | iOS / App Store build | Not started |
+| 3 | Tablet UI — visually intentional layouts on larger screens | Not started |
+| 4 | SRS backup & restore via external drive (Google Drive primary) | Not started |
+| 5 | German grammar translation | In progress (low priority) |
+
+**Out of scope for v1:** Google/Apple sign-in with server-side sync (requires a backend — far future).
+
+---
+
 ## Target Platforms
 
 Flutter — iOS, Android, macOS, Windows, Linux.
 Full offline — no backend. All data and progress live on-device in SQLite.
+
+v1 targets: Android (Play Store) and iOS (App Store). Desktop platforms are supported but not a v1 focus.
 
 ---
 
@@ -36,7 +54,7 @@ No landing screen, no login, no onboarding — the app opens directly on the Hom
 
 Four domain cards: Kana, Kanji, Vocabulary, Grammar. Each card shows the total item count and the current SRS queue (due + new). Kana, Kanji, and Vocabulary cards have a practice button that launches an SRS session. A streak pill shows the number of consecutive review days.
 
-Grammar is shown as a card that navigates to the Grammar tab. SRS practice for grammar is not yet implemented ("coming soon").
+Grammar is shown as a card that navigates to the Grammar tab. Grammar exercises are a v1 goal — there is no external exercise database, so exercises must be authored manually alongside lesson content.
 
 ### Characters
 
@@ -83,6 +101,19 @@ Progress also tracks a simple known/unknown toggle independently of SRS (stored 
 
 ---
 
+## Data Backup & Restore
+
+SRS progress must survive reinstalls and device changes. The approach is local backup/restore to an external drive — no server required:
+
+- Export the SRS database to a file (e.g. Google Drive, local storage, or any other provider the OS exposes)
+- Import from a previously exported file to restore progress
+
+Google Drive is the primary target. A second provider may be added later.
+
+Google/Apple sign-in with server-side sync is explicitly out of scope for v1 — it requires a backend and is a far-future feature.
+
+---
+
 ## Streak
 
 A streak counter shows the number of consecutive calendar days on which at least one SRS review was completed. Displayed as a pill on the Home screen.
@@ -91,15 +122,19 @@ A streak counter shows the number of consecutive calendar days on which at least
 
 ## Exercise System
 
-Exercises are attached to grammar lessons and are generic across content types.
+Exercises are attached to grammar lessons. The "basics" level is reference material and does not need exercises.
 
-| Type           | Description                                                                                             |
-| -------------- | ------------------------------------------------------------------------------------------------------- |
-| MCQ            | One question, N choices, one correct answer                                                             |
-| Flashcard      | Card shown, user self-assesses (known / not known)                                                      |
-| Drawing        | User traces stroke order on a canvas (kana/kanji)                                                       |
-| Sentence cloze | A Japanese sentence with the target word blanked out; user picks the correct word from multiple choices |
-| Lesson reader  | Inline reading card within an exercise flow                                                             |
+| Type              | Description                                                                                        | Priority |
+| ----------------- | -------------------------------------------------------------------------------------------------- | -------- |
+| Flashcard         | Grammar rule shown on front, user self-assesses recall                                             | Required |
+| MCQ               | Japanese sentence shown, user picks the correct English meaning from N choices                     | Required |
+| Sentence cloze    | Japanese sentence with grammar point blanked out, user picks the correct form from N choices       | Required |
+| Sentence builder  | Scrambled sentence parts shown as tappable chips, user arranges them in the correct order          | Required |
+| Error detection   | Two sentences shown (one correct, one with a grammar mistake), user picks the correct one          | Optional |
+
+Drawing is kana/kanji-only and does not apply to grammar exercises.
+
+Target: 10 exercises per lesson. This can be increased later if sessions feel too short.
 
 The system is designed to be extensible — new types can be added without a full rewrite.
 
@@ -144,6 +179,8 @@ Mobile-first. Two layout breakpoints:
 | ≥ 600px | Navigation rail (left side) |
 
 The navigation rail and bottom bar are hidden during active practice sessions. Escape key navigates back on desktop/Linux.
+
+Tablet support is a v1 goal: layouts must not only adapt structurally at ≥600px but be visually intentional on larger screens — content should use the extra space rather than just stretch.
 
 ---
 

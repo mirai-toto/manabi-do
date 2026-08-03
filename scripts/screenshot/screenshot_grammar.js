@@ -18,7 +18,7 @@ const path = require('path');
 const PORT = process.argv[2] || '8767';
 const FONT = process.env.SCREENSHOT_FONT || '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
 const CHROMIUM_PATH = process.env.CHROMIUM_PATH || undefined;
-const OUT_DIR = path.join(__dirname, '../screenshots/grammar');
+const OUT_DIR = path.join(__dirname, './output/grammar');
 
 const BACK = async (page) => {
   await page.mouse.click(28, 32);
@@ -99,5 +99,5 @@ const MULTI_LESSON_CHAPTERS = {
   }
 
   await browser.close();
-  console.log(`\nAll screenshots saved to screenshots/grammar/`);
+  console.log(`\nAll screenshots saved to screenshot/output/grammar/`);
 })();

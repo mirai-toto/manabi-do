@@ -2,27 +2,20 @@
  * Headless screenshot tool for manabi_do web build.
  *
  * Usage:
- *   node scripts/screenshot.js [port] [output]
+ *   NODE_PATH=scripts/screenshot/pw/node_modules node scripts/screenshot/screenshot.js [port] [output]
  *
- * Defaults: port=8767, output=screenshots/screenshot.png (repo root)
+ * Defaults: port=8767, output=scripts/screenshot/output/screenshot.png
  *
  * Before running:
- *   1. Build: cd manabi_do && flutter build web -t lib/main.dart --no-web-resources-cdn --debug
- *   2. Serve: setsid nohup python3 -m http.server 8768 --bind 0.0.0.0 \
- *               --directory manabi_do/build/web > /tmp/webserver.log 2>&1 < /dev/null & disown
- *
- * Playwright must be installed:
- *   npm install playwright  (in scripts/pw or any scratch dir)
- *   npx playwright install chromium
- * Then run from the repo root: node --require scripts/pw/node_modules/playwright scripts/screenshot.js
- * Or set NODE_PATH=scripts/pw/node_modules and run directly.
+ *   1. Build: bash scripts/run/run-web.sh [port]
+ *   2. Playwright: run scripts/screenshot/rebuild_and_screenshot.sh once to auto-install
  */
 
 const { chromium } = require('playwright');
 const fs = require('fs');
 
 const PORT = process.argv[2] || '8767';
-const OUTPUT = process.argv[3] || `${__dirname}/../screenshots/screenshot.png`;
+const OUTPUT = process.argv[3] || `${__dirname}/output/screenshot.png`;
 const URL = `http://localhost:${PORT}`;
 const FONT = process.env.SCREENSHOT_FONT || '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
 const CHROMIUM_PATH = process.env.CHROMIUM_PATH || undefined;

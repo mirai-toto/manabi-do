@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.argv[2] || '8767';
-const OUTDIR = process.argv[3] || `${__dirname}/../screenshots`;
+const OUTDIR = process.argv[3] || `${__dirname}/output`;
 const URL = `http://localhost:${PORT}`;
 const FONT = process.env.SCREENSHOT_FONT || '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
 const CHROMIUM_PATH = process.env.CHROMIUM_PATH || undefined;

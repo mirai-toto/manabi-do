@@ -255,7 +255,7 @@
   "viewDetail": "Voir le détail",
   "allCaughtUp": "Tout est à jour !",
   "allCaughtUpSubtitle": "Revenez plus tard pour de nouvelles révisions",
-  "grammarChapters": "Chapitres",
+  "grammarChapters": "Thèmes",
   "japaneseBasics": "Bases du japonais",
   "japaneseBasicsSubtitle": "Fondamentaux de la langue",
   "grammarSubtitle": "Bases & JLPT N5–N1",
@@ -315,5 +315,14 @@
 
   "japanese": "Japonais",
   "copy": "Copier",
-  "hide": "Masquer"
+  "hide": "Masquer",
+
+  "grammarPractice": "S'exercer",
+  "grammarMcqPrompt": "Que signifie cette phrase ?",
+  "grammarBuilderPrompt": "Reconstitue la phrase",
+  "grammarErrorDetectionPrompt": "Quelle phrase est correcte ?",
+  "example": "Exemple",
+
+  "showExampleLabel": "Afficher l'exemple",
+  "showExampleSubtitle": "Afficher une phrase d'exemple sur les flashcards"
 }

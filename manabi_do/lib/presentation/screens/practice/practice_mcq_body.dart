@@ -120,6 +120,9 @@ class _PracticeMcqBodyState extends ConsumerState<PracticeMcqBody> {
             options: options,
             onOptionTap: _answered ? null : _onTap,
             compactGrid: widget.compactGrid,
+            showFurigana: ref.watch(
+              mcqSettingsProvider.select((s) => s.showPromptFurigana),
+            ),
           ),
           if (_answered && !_autoAdvancing) ...[
             const SizedBox(height: AppDimens.spaceMd),

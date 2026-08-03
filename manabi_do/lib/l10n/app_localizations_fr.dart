@@ -537,7 +537,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Revenez plus tard pour de nouvelles révisions';
 
   @override
-  String get grammarChapters => 'Chapitres';
+  String get grammarChapters => 'Thèmes';
 
   @override
   String get japaneseBasics => 'Bases du japonais';
@@ -703,4 +703,26 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get hide => 'Masquer';
+
+  @override
+  String get grammarPractice => 'S\'exercer';
+
+  @override
+  String get grammarMcqPrompt => 'Que signifie cette phrase ?';
+
+  @override
+  String get grammarBuilderPrompt => 'Reconstitue la phrase';
+
+  @override
+  String get grammarErrorDetectionPrompt => 'Quelle phrase est correcte ?';
+
+  @override
+  String get example => 'Exemple';
+
+  @override
+  String get showExampleLabel => 'Afficher l\'exemple';
+
+  @override
+  String get showExampleSubtitle =>
+      'Afficher une phrase d\'exemple sur les flashcards';
 }

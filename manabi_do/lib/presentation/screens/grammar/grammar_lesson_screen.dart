@@ -6,12 +6,14 @@ import '../../../data/grammar/grammar_models.dart';
 import '../../widgets/grammar/grammar_block_renderer.dart';
 
 class GrammarLessonScreen extends StatelessWidget {
+  final String lessonId;
   final String title;
   final List<GrammarBlock> blocks;
   final Color levelColor;
 
   const GrammarLessonScreen({
     super.key,
+    required this.lessonId,
     required this.title,
     required this.blocks,
     this.levelColor = const Color(0xFF795548),
@@ -20,6 +22,7 @@ class GrammarLessonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+
     return Scaffold(
       backgroundColor: t.surface,
       appBar: AppBar(

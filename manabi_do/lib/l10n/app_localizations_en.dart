@@ -535,7 +535,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get allCaughtUpSubtitle => 'Come back later for more reviews';
 
   @override
-  String get grammarChapters => 'Chapters';
+  String get grammarChapters => 'Themes';
 
   @override
   String get japaneseBasics => 'Japanese Basics';
@@ -698,4 +698,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hide => 'Hide';
+
+  @override
+  String get grammarPractice => 'Practice';
+
+  @override
+  String get grammarMcqPrompt => 'What does this sentence mean?';
+
+  @override
+  String get grammarBuilderPrompt => 'Arrange the sentence';
+
+  @override
+  String get grammarErrorDetectionPrompt => 'Which sentence is correct?';
+
+  @override
+  String get example => 'Example';
+
+  @override
+  String get showExampleLabel => 'Show example';
+
+  @override
+  String get showExampleSubtitle => 'Display an example sentence on flashcards';
 }

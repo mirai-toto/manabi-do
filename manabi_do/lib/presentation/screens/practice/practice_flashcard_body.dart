@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart' hide Card;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../data/grammar/grammar_models.dart';
 import '../../../l10n/l10n.dart';
+import '../../providers/flashcard_settings_provider.dart';
+import '../../widgets/exercise/example_card.dart';
 import '../../widgets/exercise/flash_card.dart';
 
-class PracticeFlashcardBody extends StatefulWidget {
+class PracticeFlashcardBody extends ConsumerStatefulWidget {
   final String japanese;
   final String? label;
   final String answer;
@@ -19,6 +23,9 @@ class PracticeFlashcardBody extends StatefulWidget {
   final Color color;
   final void Function(Rating) onAnswer;
   final VoidCallback? onDetailTap;
+  final GrammarExample? example;
+  final String locale;
+  final String? questionOverride;
 
   const PracticeFlashcardBody({
     super.key,
@@ -33,13 +40,17 @@ class PracticeFlashcardBody extends StatefulWidget {
     this.label,
     this.isReversed = false,
     this.onDetailTap,
+    this.example,
+    this.locale = 'en',
+    this.questionOverride,
   });
 
   @override
-  State<PracticeFlashcardBody> createState() => _PracticeFlashcardBodyState();
+  ConsumerState<PracticeFlashcardBody> createState() =>
+      _PracticeFlashcardBodyState();
 }
 
-class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
+class _PracticeFlashcardBodyState extends ConsumerState<PracticeFlashcardBody> {
   bool _revealed = false;
   bool _everRevealed = false;
 
@@ -54,6 +65,7 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
+    final showExample = ref.watch(flashcardSettingsProvider).showExample;
 
     final String question;
     final String prompt;
@@ -62,13 +74,13 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
     final String? revealSub;
 
     if (widget.isReversed) {
-      question = l.flashcardJapaneseQuestion;
+      question = widget.questionOverride ?? l.flashcardJapaneseQuestion;
       prompt = widget.answer;
       promptSub = null;
       reveal = widget.japanese;
       revealSub = widget.label;
     } else {
-      question = l.flashcardDefaultPrompt;
+      question = widget.questionOverride ?? l.flashcardDefaultPrompt;
       prompt = widget.japanese;
       promptSub = widget.label;
       reveal = widget.answer;
@@ -100,14 +112,16 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
             ],
           ),
           const SizedBox(height: AppDimens.spaceLg),
-          Text(
-            question,
-            style: AppTextStyles.body.copyWith(
-              fontWeight: FontWeight.w600,
-              color: t.onSurface,
+          if (question.isNotEmpty) ...[
+            Text(
+              question,
+              style: AppTextStyles.body.copyWith(
+                fontWeight: FontWeight.w600,
+                color: t.onSurface,
+              ),
             ),
-          ),
-          const SizedBox(height: AppDimens.spaceMd),
+            const SizedBox(height: AppDimens.spaceMd),
+          ],
           FlashCard(
             prompt: prompt,
             promptSub: promptSub,
@@ -117,6 +131,14 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
             isRevealed: _revealed,
             onTap: _onTap,
           ),
+          if (widget.example != null && showExample) ...[
+            const SizedBox(height: AppDimens.spaceMd),
+            ExampleCard(
+              example: widget.example!,
+              locale: widget.locale,
+              showTranslation: _revealed,
+            ),
+          ],
           if (_everRevealed) ...[
             const SizedBox(height: AppDimens.spaceMd),
             FlashCardActions(

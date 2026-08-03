@@ -9,6 +9,7 @@ import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../l10n/level_label.dart';
+import '../../../providers/drawing_settings_provider.dart';
 import '../../../services/kanji_session_service.dart';
 import '../../../widgets/characters/kanji_strokes_provider.dart';
 import '../../../widgets/exercise/drawing_exercise.dart';
@@ -91,6 +92,7 @@ class KanjiDrawingBody extends ConsumerWidget {
     final t = context.tokens;
     final l = context.l10n;
     final strokesAsync = ref.watch(kanjiStrokesProvider(kanji.id));
+    final drawingSettings = ref.watch(drawingSettingsProvider);
 
     return Padding(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -133,6 +135,7 @@ class KanjiDrawingBody extends ConsumerWidget {
                 onRate: onAnswer,
                 question: l.selfAssessQuestion,
                 onDetailTap: onDetailTap,
+                settings: drawingSettings,
               ),
             ),
           ),

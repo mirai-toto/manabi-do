@@ -84,7 +84,7 @@ EOF
 # ── Patch build.gradle.kts ────────────────────────────────────────────────────
 
 echo "Patching $BUILD_GRADLE..."
-cp "$(dirname "$0")/app.build.gradle.kts" "$BUILD_GRADLE"
+cp "$(dirname "$0")/app.build.gradle.kts.template" "$BUILD_GRADLE"
 
 # ── Clear the variable ─────────────────────────────────────────────────────────
 unset KS_PASS

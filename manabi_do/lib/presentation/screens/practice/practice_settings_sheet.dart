@@ -16,16 +16,18 @@ import '../../providers/sentence_settings_provider.dart';
 
 export '../../../core/models/sentence_settings.dart' show TranslationMode;
 
-enum SettingsContext { sentence, mcq, flashcard, writing }
+enum SettingsContext { sentence, mcq, flashcard, writing, grammar }
 
 class PracticeSettingsSheet extends ConsumerWidget {
   final Set<SettingsContext> contexts;
   final bool showAutoAdvance;
+  final bool hasExamples;
 
   const PracticeSettingsSheet({
     super.key,
     this.contexts = const {SettingsContext.mcq},
     this.showAutoAdvance = false,
+    this.hasExamples = false,
   });
 
   @override
@@ -141,6 +143,16 @@ class PracticeSettingsSheet extends ConsumerWidget {
                       : flashcard.copyWith(sessionLength: v),
                 ),
               ),
+              if (hasExamples) ...[
+                const SizedBox(height: AppDimens.spaceMd),
+                _SwitchRow(
+                  label: l.showExampleLabel,
+                  subtitle: l.showExampleSubtitle,
+                  value: flashcard.showExample,
+                  onChanged: (v) =>
+                      updateFlashcard(flashcard.copyWith(showExample: v)),
+                ),
+              ],
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
@@ -181,6 +193,47 @@ class PracticeSettingsSheet extends ConsumerWidget {
                     updateMcq(mcq.copyWith(showPromptFurigana: v)),
               ),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
+            ],
+
+            // ── Grammar ───────────────────────────────────────────────────
+            if (contexts.contains(SettingsContext.grammar)) ...[
+              if (showLabels) ...[
+                _CategoryLabel(l.grammarPractice),
+                const SizedBox(height: AppDimens.spaceXs),
+              ],
+              sessionLengthRow(
+                mcq.sessionLength,
+                (v) => updateMcq(
+                  v == null
+                      ? mcq.copyWith(clearSessionLength: true)
+                      : mcq.copyWith(sessionLength: v),
+                ),
+              ),
+              const SizedBox(height: AppDimens.spaceMd),
+              if (hasExamples) ...[
+                _SwitchRow(
+                  label: l.showExampleLabel,
+                  subtitle: l.showExampleSubtitle,
+                  value: flashcard.showExample,
+                  onChanged: (v) =>
+                      updateFlashcard(flashcard.copyWith(showExample: v)),
+                ),
+              ],
+              if (showAutoAdvance) ...[
+                _SwitchRow(
+                  label: l.autoAdvanceLabel,
+                  subtitle: l.autoAdvanceSubtitle,
+                  value: mcq.autoAdvance,
+                  onChanged: (v) => updateMcq(mcq.copyWith(autoAdvance: v)),
+                ),
+              ],
+              _SwitchRow(
+                label: l.showMcqFuriganaLabel,
+                subtitle: l.showMcqFuriganaSubtitle,
+                value: mcq.showPromptFurigana,
+                onChanged: (v) =>
+                    updateMcq(mcq.copyWith(showPromptFurigana: v)),
+              ),
             ],
 
             // ── Sentence ──────────────────────────────────────────────────

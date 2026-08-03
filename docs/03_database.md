@@ -103,28 +103,28 @@ Primary key: (sentence_id, locale). English (`eng`) is the fallback locale.
 | Column      | Type       | Notes                               |
 | ----------- | ---------- | ----------------------------------- |
 | id          | INTEGER PK |                                     |
+| locale      | TEXT       | `en`, `fr`, `de`, …                 |
 | level       | TEXT       | `basics`, `N5`, …                   |
 | path        | TEXT       | Relative to `content/grammar/`      |
-| chapter     | TEXT       | Chapter title                       |
+| theme_name  | TEXT       | Theme grouping (e.g. "Time & Actions") |
+| chapter     | TEXT       | Chapter title within the theme      |
 | title       | TEXT       | Lesson title                        |
 | blocks_json | TEXT       | JSON array of `{type, data}` blocks |
 | order_index | INTEGER    | Position within chapter             |
 
-Compiled from `content/grammar/` by `tools/build_content_db.py`. The table is populated in the DB but the app currently reads grammar from bundled JSON assets (`grammarJsonChaptersProvider`). Migrating the app to read from this table is Phase 3 of the grammar pipeline (see plan).
+Compiled from `content/grammar/` by `tools/build_content_db.py`. The app queries this table via `grammarThemesProvider` to build the Level → Theme → Lesson hierarchy.
 
-**`exercises`**
+**`grammar_exercises`**
 
-| Column      | Type       | Notes                                    |
-| ----------- | ---------- | ---------------------------------------- |
-| id          | INTEGER PK |                                          |
-| locale      | TEXT       |                                          |
-| type        | TEXT       | `mcq`, `flashcard`, `drawing`, …         |
-| source      | TEXT       | `kana`, `kanji`, `vocabulary`, `grammar` |
-| source_id   | INTEGER    | Row ID in the source table               |
-| prompt      | TEXT       |                                          |
-| answer      | TEXT       |                                          |
-| distractors | TEXT       | JSON array of wrong answers              |
-| lesson_id   | INTEGER FK | → `grammar_lessons.id`, nullable         |
+| Column      | Type       | Notes                                              |
+| ----------- | ---------- | -------------------------------------------------- |
+| id          | INTEGER PK |                                                    |
+| lesson_path | TEXT       | Matches `grammar_lessons.path`                     |
+| order_index | INTEGER    | Position within the lesson                         |
+| type        | TEXT       | `mcq`, `flashcard`, `cloze`, `builder`, `error_detection` |
+| data_json   | TEXT       | Full exercise payload (type-specific JSON)         |
+
+Locale is embedded inside `data_json` where needed. Exercises are linked to lessons by `lesson_path` (not a FK) so a single exercise file can reference multiple locales inside its JSON.
 
 ### User progress (written at runtime)
 

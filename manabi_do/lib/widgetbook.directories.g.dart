@@ -445,6 +445,41 @@ final directories = <_widgetbook.WidgetbookNode>[
           ),
         ],
       ),
+      _widgetbook.WidgetbookFolder(
+        name: 'Grammar',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'GrammarBuilderBody',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder: _manabi_do_widgetbook_exercise_use_cases
+                    .buildGrammarBuilderBody,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'GrammarClozeBody',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder: _manabi_do_widgetbook_exercise_use_cases
+                    .buildGrammarClozeBody,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'GrammarErrorDetectionBody',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder: _manabi_do_widgetbook_exercise_use_cases
+                    .buildGrammarErrorDetectionBody,
+              ),
+            ],
+          ),
+        ],
+      ),
       _widgetbook.WidgetbookComponent(
         name: 'LessonReaderCard',
         useCases: [

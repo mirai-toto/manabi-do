@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -7,7 +6,6 @@ import '../../../l10n/l10n.dart';
 import '../common/japanese_text.dart';
 import '../common/pill_badge.dart';
 import '../common/speak_button.dart';
-import '../../providers/mcq_settings_provider.dart';
 
 enum McqOptionState { idle, selected, correct, wrong }
 
@@ -35,6 +33,32 @@ class McqOption {
   );
 }
 
+({Color borderColor, Color bgColor, Color contentColor}) _resolveOptionColors(
+  McqOptionState state,
+  AppTokens t,
+) => switch (state) {
+  McqOptionState.selected => (
+    borderColor: t.primary,
+    bgColor: t.primaryContainer,
+    contentColor: t.onPrimaryContainer,
+  ),
+  McqOptionState.correct => (
+    borderColor: t.success,
+    bgColor: t.successContainer,
+    contentColor: t.success,
+  ),
+  McqOptionState.wrong => (
+    borderColor: t.error,
+    bgColor: t.errorContainer,
+    contentColor: t.error,
+  ),
+  McqOptionState.idle => (
+    borderColor: t.outlineVariant,
+    bgColor: Colors.transparent,
+    contentColor: t.onSurface,
+  ),
+};
+
 class McqCard extends StatelessWidget {
   final String question;
   final String? japanesePrompt;
@@ -42,6 +66,7 @@ class McqCard extends StatelessWidget {
   final List<McqOption> options;
   final ValueChanged<int>? onOptionTap;
   final bool compactGrid;
+  final bool showFurigana;
 
   const McqCard({
     super.key,
@@ -51,6 +76,7 @@ class McqCard extends StatelessWidget {
     required this.options,
     this.onOptionTap,
     this.compactGrid = false,
+    this.showFurigana = false,
   });
 
   @override
@@ -79,6 +105,7 @@ class McqCard extends StatelessWidget {
             question: question,
             japanesePrompt: japanesePrompt,
             japaneseReading: japaneseReading,
+            showFurigana: showFurigana,
           ),
           const SizedBox(height: AppDimens.spaceLg),
           if (compactGrid)
@@ -131,23 +158,22 @@ class _ExTypeBadge extends StatelessWidget {
   }
 }
 
-class _ExPrompt extends ConsumerWidget {
+class _ExPrompt extends StatelessWidget {
   final String question;
   final String? japanesePrompt;
   final String? japaneseReading;
+  final bool showFurigana;
 
   const _ExPrompt({
     required this.question,
+    required this.showFurigana,
     this.japanesePrompt,
     this.japaneseReading,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final t = context.tokens;
-    final showFurigana = ref.watch(
-      mcqSettingsProvider.select((s) => s.showPromptFurigana),
-    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,14 +191,16 @@ class _ExPrompt extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              JapaneseText(
-                word: japanesePrompt!,
-                reading: japaneseReading ?? japanesePrompt!,
-                style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
-                rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                  color: t.onSurfaceVariant,
+              Flexible(
+                child: JapaneseText(
+                  word: japanesePrompt!,
+                  reading: japaneseReading ?? japanesePrompt!,
+                  style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
+                  rubyStyle: AppTextStyles.jpFurigana.copyWith(
+                    color: t.onSurfaceVariant,
+                  ),
+                  showFurigana: showFurigana,
                 ),
-                showFurigana: showFurigana,
               ),
               const SizedBox(width: AppDimens.spaceSm),
               SpeakButton(text: japanesePrompt!, color: t.onSurfaceVariant),
@@ -184,38 +212,24 @@ class _ExPrompt extends ConsumerWidget {
   }
 }
 
-class _McqOptionTile extends StatelessWidget {
+class _McqOptionShell extends StatelessWidget {
   final McqOption option;
   final VoidCallback? onTap;
+  final Widget Function(Color contentColor) builder;
 
-  const _McqOptionTile({required this.option, this.onTap});
+  const _McqOptionShell({
+    required this.option,
+    required this.builder,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-
-    final Color borderColor;
-    final Color bgColor;
-    final Color contentColor;
-
-    switch (option.state) {
-      case McqOptionState.selected:
-        borderColor = t.primary;
-        bgColor = t.primaryContainer;
-        contentColor = t.onPrimaryContainer;
-      case McqOptionState.correct:
-        borderColor = t.success;
-        bgColor = t.successContainer;
-        contentColor = t.success;
-      case McqOptionState.wrong:
-        borderColor = t.error;
-        bgColor = t.errorContainer;
-        contentColor = t.error;
-      case McqOptionState.idle:
-        borderColor = t.outlineVariant;
-        bgColor = Colors.transparent;
-        contentColor = t.onSurface;
-    }
+    final (:borderColor, :bgColor, :contentColor) = _resolveOptionColors(
+      option.state,
+      t,
+    );
 
     return Semantics(
       label: '${option.letter}: ${option.text}',
@@ -234,31 +248,47 @@ class _McqOptionTile extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             onTap: option.state == McqOptionState.idle ? onTap : null,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.spaceMd,
-                vertical: AppDimens.optionTilePaddingV,
-              ),
-              child: Row(
-                children: [
-                  _LetterCircle(letter: option.letter, color: contentColor),
-                  const SizedBox(width: AppDimens.spaceSm + 4),
-                  Expanded(
-                    child: Text(
-                      option.text,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          (option.useJpFont
-                                  ? AppTextStyles.jpBody
-                                  : AppTextStyles.body)
-                              .copyWith(color: contentColor),
-                    ),
-                  ),
-                ],
+            child: builder(contentColor),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _McqOptionTile extends StatelessWidget {
+  final McqOption option;
+  final VoidCallback? onTap;
+
+  const _McqOptionTile({required this.option, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return _McqOptionShell(
+      option: option,
+      onTap: onTap,
+      builder: (contentColor) => Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimens.spaceMd,
+          vertical: AppDimens.optionTilePaddingV,
+        ),
+        child: Row(
+          children: [
+            _LetterCircle(letter: option.letter, color: contentColor),
+            const SizedBox(width: AppDimens.spaceSm + 4),
+            Expanded(
+              child: Text(
+                option.text,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style:
+                    (option.useJpFont
+                            ? AppTextStyles.jpBody
+                            : AppTextStyles.body)
+                        .copyWith(color: contentColor),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -273,84 +303,40 @@ class _McqGridCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = context.tokens;
-
-    final Color borderColor;
-    final Color bgColor;
-    final Color contentColor;
-
-    switch (option.state) {
-      case McqOptionState.selected:
-        borderColor = t.primary;
-        bgColor = t.primaryContainer;
-        contentColor = t.onPrimaryContainer;
-      case McqOptionState.correct:
-        borderColor = t.success;
-        bgColor = t.successContainer;
-        contentColor = t.success;
-      case McqOptionState.wrong:
-        borderColor = t.error;
-        bgColor = t.errorContainer;
-        contentColor = t.error;
-      case McqOptionState.idle:
-        borderColor = t.outlineVariant;
-        bgColor = Colors.transparent;
-        contentColor = t.onSurface;
-    }
-
-    return Semantics(
-      label: '${option.letter}: ${option.text}',
-      selected: option.state != McqOptionState.idle,
-      button: option.state == McqOptionState.idle,
-      excludeSemantics: true,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 120),
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: bgColor,
-          border: Border.all(color: borderColor, width: 1.5),
-          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: option.state == McqOptionState.idle ? onTap : null,
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(AppDimens.spaceXs),
-                  child: Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: contentColor, width: 1.5),
-                    ),
-                    child: Center(
-                      child: Text(
-                        option.letter,
-                        style: AppTextStyles.labelSmall.copyWith(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w700,
-                          color: contentColor,
-                        ),
-                      ),
-                    ),
+    return _McqOptionShell(
+      option: option,
+      onTap: onTap,
+      builder: (contentColor) => Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(AppDimens.spaceXs),
+            child: Container(
+              width: 20,
+              height: 20,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: contentColor, width: 1.5),
+              ),
+              child: Center(
+                child: Text(
+                  option.letter,
+                  style: AppTextStyles.labelSmall.copyWith(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    color: contentColor,
                   ),
                 ),
-                Center(
-                  child: Text(
-                    option.text,
-                    style: AppTextStyles.jpDisplay.copyWith(
-                      color: contentColor,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-        ),
+          Center(
+            child: Text(
+              option.text,
+              style: AppTextStyles.jpDisplay.copyWith(color: contentColor),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -537,7 +537,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Komm später für weitere Wiederholungen zurück';
 
   @override
-  String get grammarChapters => 'Kapitel';
+  String get grammarChapters => 'Themen';
 
   @override
   String get japaneseBasics => 'Japanische Grundlagen';
@@ -701,4 +701,26 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get hide => 'Ausblenden';
+
+  @override
+  String get grammarPractice => 'Üben';
+
+  @override
+  String get grammarMcqPrompt => 'Was bedeutet dieser Satz?';
+
+  @override
+  String get grammarBuilderPrompt => 'Ordne den Satz';
+
+  @override
+  String get grammarErrorDetectionPrompt => 'Welcher Satz ist korrekt?';
+
+  @override
+  String get example => 'Beispiel';
+
+  @override
+  String get showExampleLabel => 'Beispiel anzeigen';
+
+  @override
+  String get showExampleSubtitle =>
+      'Einen Beispielsatz auf Karteikarten anzeigen';
 }

@@ -3,6 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+import '../presentation/screens/practice/grammar_builder_body.dart';
+import '../presentation/screens/practice/grammar_cloze_body.dart';
+import '../presentation/screens/practice/grammar_error_detection_body.dart';
+import '../presentation/providers/drawing_settings_provider.dart';
 import '../presentation/widgets/characters/kanji_strokes_provider.dart';
 import '../presentation/widgets/exercise/drawing_exercise.dart';
 import '../presentation/widgets/exercise/flash_card.dart';
@@ -76,6 +80,7 @@ Widget buildDrawingExercise(BuildContext context) {
     builder: (context, ref, _) {
       final strokes =
           ref.watch(kanjiStrokesProvider(0x6c34)).asData?.value ?? [];
+      final drawingSettings = ref.watch(drawingSettingsProvider);
       return Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -84,6 +89,7 @@ Widget buildDrawingExercise(BuildContext context) {
             kanjiId: 0x6c34,
             label: '水',
             color: Theme.of(context).colorScheme.primary,
+            settings: drawingSettings,
           ),
         ),
       );
@@ -218,5 +224,68 @@ Widget buildSummaryCardPerfect(BuildContext context) {
       onRetry: () {},
       onNext: () {},
     ),
+  );
+}
+
+// ── GrammarBuilderBody ────────────────────────────────────────────────────────
+
+@widgetbook.UseCase(
+  name: 'Default',
+  type: GrammarBuilderBody,
+  path: 'Exercise/Grammar',
+)
+Widget buildGrammarBuilderBody(BuildContext context) {
+  return GrammarBuilderBody(
+    parts: const ['テレビを', '見ながら', '夕ごはんを', '食べます'],
+    translation: 'I eat dinner while watching TV.',
+    index: 0,
+    total: 10,
+    color: const Color(0xFF5C6BC0),
+    onAnswer: (_) {},
+  );
+}
+
+// ── GrammarErrorDetectionBody ─────────────────────────────────────────────────
+
+@widgetbook.UseCase(
+  name: 'Default',
+  type: GrammarErrorDetectionBody,
+  path: 'Exercise/Grammar',
+)
+Widget buildGrammarErrorDetectionBody(BuildContext context) {
+  return GrammarErrorDetectionBody(
+    correct: '歩きながら電話で話しました。',
+    wrong: '歩いてながら電話で話しました。',
+    explanation: 'ながら attaches to the verb stem (歩き), not the て-form (歩いて).',
+    index: 1,
+    total: 10,
+    color: const Color(0xFF5C6BC0),
+    onAnswer: (_) {},
+  );
+}
+
+// ── GrammarClozeBody ──────────────────────────────────────────────────────────
+
+const _clozeOptions = [
+  McqOption(letter: 'A', text: 'てから', useJpFont: true),
+  McqOption(letter: 'B', text: 'ながら', useJpFont: true),
+  McqOption(letter: 'C', text: '前に', useJpFont: true),
+  McqOption(letter: 'D', text: '後で', useJpFont: true),
+];
+
+@widgetbook.UseCase(
+  name: 'Default',
+  type: GrammarClozeBody,
+  path: 'Exercise/Grammar',
+)
+Widget buildGrammarClozeBody(BuildContext context) {
+  return GrammarClozeBody(
+    sentence: '音楽を聴き___勉強します。',
+    options: _clozeOptions,
+    correctIndex: 1,
+    index: 2,
+    total: 10,
+    color: const Color(0xFF5C6BC0),
+    onAnswer: (_) {},
   );
 }

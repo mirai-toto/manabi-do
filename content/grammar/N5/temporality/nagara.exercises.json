@@ -1,0 +1,80 @@
+{
+  "exercises": [
+    {
+      "type": "flashcard",
+      "front": "What word connects two actions happening at the same time?",
+      "back": { "en": "ながら" },
+      "example": {
+        "sentence": "音楽を{聴|き}きながら{勉強|べんきょう}する",
+        "highlight": "ながら",
+        "translation": { "en": "I study while listening to music." }
+      }
+    },
+    {
+      "type": "mcq",
+      "sentence": "テレビを見ながら夕ごはんを食べます。",
+      "choices": {
+        "en": [
+          "I eat dinner while watching TV.",
+          "I watch TV after eating dinner.",
+          "I eat dinner and then watch TV.",
+          "I watch TV instead of eating dinner."
+        ]
+      },
+      "answer_index": 0
+    },
+    {
+      "type": "mcq",
+      "sentence": "歩きながら電話で話しました。",
+      "choices": {
+        "en": [
+          "I walked after talking on the phone.",
+          "I talked on the phone while walking.",
+          "I walked so that I could talk on the phone.",
+          "I stopped walking to talk on the phone."
+        ]
+      },
+      "answer_index": 1
+    },
+    {
+      "type": "cloze",
+      "sentence": "音楽を聴き___勉強します。",
+      "answer": "ながら",
+      "distractors": ["てから", "前に", "後で"]
+    },
+    {
+      "type": "cloze",
+      "sentence": "コーヒーを___新聞を読みました。",
+      "answer": "飲みながら",
+      "distractors": ["飲んでから", "飲む前に", "飲んだ後で"]
+    },
+    {
+      "type": "cloze",
+      "sentence": "___電話で話しました。",
+      "answer": "歩きながら",
+      "distractors": ["歩いてから", "歩く前に", "歩いた後で"]
+    },
+    {
+      "type": "builder",
+      "parts": ["テレビを", "見ながら", "夕ごはんを", "食べます"],
+      "translation": {
+        "en": "I eat dinner while watching TV."
+      }
+    },
+    {
+      "type": "builder",
+      "parts": ["コーヒーを", "飲みながら", "新聞を", "読みました"],
+      "translation": {
+        "en": "I read the newspaper while drinking coffee."
+      }
+    },
+    {
+      "type": "error_detection",
+      "correct": "歩きながら電話で話しました。",
+      "wrong": "歩いてながら電話で話しました。",
+      "explanation": {
+        "en": "ながら attaches to the verb stem (歩き), not the て-form (歩いて)."
+      }
+    }
+  ]
+}

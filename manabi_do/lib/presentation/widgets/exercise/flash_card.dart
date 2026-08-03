@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -7,7 +6,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/speak_button.dart';
 
-class FlashCard extends ConsumerWidget {
+class FlashCard extends StatelessWidget {
   final String prompt;
   final String? promptSub;
   final String? reveal;
@@ -28,7 +27,7 @@ class FlashCard extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l = context.l10n;
     final content = isRevealed ? (reveal ?? '') : prompt;
     final contentSub = isRevealed ? revealSub : promptSub;
@@ -68,8 +67,11 @@ class FlashCard extends ConsumerWidget {
               children: [
                 Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppDimens.spaceLg,
+                    padding: const EdgeInsets.fromLTRB(
+                      AppDimens.spaceLg,
+                      AppDimens.spaceMd,
+                      AppDimens.spaceLg,
+                      AppDimens.spaceLg,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -94,8 +96,8 @@ class FlashCard extends ConsumerWidget {
                                   color: Colors.white,
                                 ),
                           textAlign: TextAlign.center,
-                          maxLines: isJapanese ? null : 2,
-                          overflow: isJapanese ? null : TextOverflow.ellipsis,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
@@ -130,9 +132,16 @@ class FlashCard extends ConsumerWidget {
   }
 }
 
-bool _looksJapanese(String text) => text.runes.any(
-  (r) => (r >= 0x3040 && r <= 0x9FFF) || (r >= 0xF900 && r <= 0xFAFF),
-);
+bool _looksJapanese(String text) {
+  final runes = text.runes.where((r) => r > 0x20).toList();
+  if (runes.isEmpty) return false;
+  final jpCount = runes
+      .where(
+        (r) => (r >= 0x3040 && r <= 0x9FFF) || (r >= 0xF900 && r <= 0xFAFF),
+      )
+      .length;
+  return jpCount / runes.length > 0.5;
+}
 
 class FlashCardActions extends StatelessWidget {
   final Card? card;

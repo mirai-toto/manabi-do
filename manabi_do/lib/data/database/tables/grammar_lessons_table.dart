@@ -6,6 +6,7 @@ class GrammarLessons extends Table {
   TextColumn get locale => text().withDefault(const Constant('en'))();
   TextColumn get level => text()();
   TextColumn get path => text()();
+  TextColumn get themeName => text().withDefault(const Constant(''))();
   TextColumn get chapter => text()();
   TextColumn get title => text()();
   TextColumn get blocksJson => text()();

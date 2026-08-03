@@ -16,7 +16,7 @@ const path = require('path');
 const PORT = process.argv[2] || '8767';
 const FONT = process.env.SCREENSHOT_FONT || '/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf';
 const CHROMIUM_PATH = process.env.CHROMIUM_PATH || undefined;
-const OUT_DIR = path.join(__dirname, '../screenshots/n5');
+const OUT_DIR = path.join(__dirname, './output/n5');
 
 const BACK = async (page) => {
   await page.mouse.click(28, 32);
@@ -164,5 +164,5 @@ const lessonY = (i) => 96 + i * 88;
   await BACK(page);
 
   await browser.close();
-  console.log(`\nAll N5 screenshots saved to screenshots/n5/`);
+  console.log(`\nAll N5 screenshots saved to screenshot/output/n5/`);
 })();

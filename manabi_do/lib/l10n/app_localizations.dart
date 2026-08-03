@@ -1075,7 +1075,7 @@ abstract class AppLocalizations {
   /// No description provided for @grammarChapters.
   ///
   /// In en, this message translates to:
-  /// **'Chapters'**
+  /// **'Themes'**
   String get grammarChapters;
 
   /// No description provided for @japaneseBasics.
@@ -1383,6 +1383,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hide'**
   String get hide;
+
+  /// No description provided for @grammarPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get grammarPractice;
+
+  /// No description provided for @grammarMcqPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'What does this sentence mean?'**
+  String get grammarMcqPrompt;
+
+  /// No description provided for @grammarBuilderPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrange the sentence'**
+  String get grammarBuilderPrompt;
+
+  /// No description provided for @grammarErrorDetectionPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Which sentence is correct?'**
+  String get grammarErrorDetectionPrompt;
+
+  /// No description provided for @example.
+  ///
+  /// In en, this message translates to:
+  /// **'Example'**
+  String get example;
+
+  /// No description provided for @showExampleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Show example'**
+  String get showExampleLabel;
+
+  /// No description provided for @showExampleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Display an example sentence on flashcards'**
+  String get showExampleSubtitle;
 }
 
 class _AppLocalizationsDelegate

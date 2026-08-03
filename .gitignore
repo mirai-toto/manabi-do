@@ -25,8 +25,15 @@ Desktop.ini
 docker-compose.override.yml
 
 # Screenshots — local only
-screenshots/
+scripts/screenshot/output/
 
-# Playwright install (auto-installed by scripts/setup/setup.sh)
-scripts/pw/
+# SonarQube — generated/downloaded, not committed
+scripts/sonar/plugins/
+scripts/sonar/.sonar_token
+manabi_do/analysis-results.txt
+manabi_do/tests.output
+manabi_do/coverage/
+
+# Playwright install (auto-installed by scripts/screenshot/rebuild_and_screenshot.sh)
+scripts/screenshot/pw/
 node_modules/

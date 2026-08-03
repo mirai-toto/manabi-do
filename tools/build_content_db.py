@@ -25,7 +25,7 @@ from collections import defaultdict
 
 import pykakasi
 
-SCHEMA_VERSION = 13
+SCHEMA_VERSION = 15
 
 _kks = pykakasi.kakasi()
 
@@ -184,6 +184,7 @@ def create_tables(db: sqlite3.Connection) -> None:
             locale      TEXT NOT NULL DEFAULT 'en',
             level       TEXT NOT NULL,
             path        TEXT NOT NULL,
+            theme_name  TEXT NOT NULL DEFAULT '',
             chapter     TEXT NOT NULL,
             title       TEXT NOT NULL,
             blocks_json TEXT NOT NULL,
@@ -200,6 +201,14 @@ def create_tables(db: sqlite3.Connection) -> None:
             answer      TEXT NOT NULL,
             distractors TEXT NOT NULL DEFAULT '[]',
             lesson_id   INTEGER REFERENCES grammar_lessons(id)
+        );
+
+        CREATE TABLE grammar_exercises (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            lesson_path TEXT NOT NULL,
+            order_index INTEGER NOT NULL,
+            type        TEXT NOT NULL,
+            data_json   TEXT NOT NULL
         );
 
         CREATE TABLE progress_entries (
@@ -335,34 +344,41 @@ def _open_lesson(path: str, locale: str):
 
 def _walk_grammar_index(
     index_path: str, locale: str = "en"
-) -> list[tuple[str, str, str, str, int]]:
+) -> list[tuple[str, str, str, str, str, int]]:
     """Recursively walk grammar index files.
 
-    Returns (chapter_title, lesson_path, lesson_title, blocks_json, order_index)
+    Returns (theme_name, chapter_title, lesson_path, lesson_title, blocks_json, order_index)
     for every lesson reachable from index_path.
-    index_path is relative to GRAMMAR_ROOT.
-    Lesson paths in index items are locale-agnostic (no extension); this
-    function resolves them to {path}.{locale}.json with .en.json fallback.
     """
-    results: list[tuple[str, str, str, str, int]] = []
+    results: list[tuple[str, str, str, str, str, int]] = []
 
-    def _walk(path: str, chapter: str) -> None:
+    def _walk_lessons(path: str, theme: str, chapter: str) -> None:
         with open(os.path.join(GRAMMAR_ROOT, path), encoding="utf-8") as f:
             node = json.load(f)
-        if node["type"] == "chapters":
-            for item in node["items"]:
-                _walk(item["path"], _locale_str(item["title"], locale))
-        else:
-            for i, item in enumerate(node["items"]):
-                f = _open_lesson(item["path"], locale)
-                if f is None:
-                    continue
-                with f:
-                    lesson = json.load(f)
-                blocks_json = json.dumps(lesson["blocks"], ensure_ascii=False)
-                results.append((chapter, item["path"], lesson["title"], blocks_json, i))
+        for i, item in enumerate(node["items"]):
+            f = _open_lesson(item["path"], locale)
+            if f is None:
+                continue
+            with f:
+                lesson = json.load(f)
+            blocks_json = json.dumps(lesson["blocks"], ensure_ascii=False)
+            results.append((theme, chapter, item["path"], lesson["title"], blocks_json, i))
 
-    _walk(index_path, "")
+    with open(os.path.join(GRAMMAR_ROOT, index_path), encoding="utf-8") as f:
+        root = json.load(f)
+
+    if root["type"] == "themes":
+        for theme_item in root["items"]:
+            theme = _locale_str(theme_item["title"], locale)
+            for chapter_item in theme_item["chapters"]:
+                chapter = _locale_str(chapter_item["title"], locale)
+                _walk_lessons(chapter_item["path"], theme, chapter)
+    else:
+        # Flat chapters format — no theme
+        for chapter_item in root["items"]:
+            chapter = _locale_str(chapter_item["title"], locale)
+            _walk_lessons(chapter_item["path"], "", chapter)
+
     return results
 
 
@@ -372,15 +388,47 @@ def insert_grammar(db: sqlite3.Connection, locale: str = "en") -> int:
 
     total = 0
     for level in levels:
-        for chapter, path, title, blocks_json, order_index in _walk_grammar_index(
+        for theme, chapter, path, title, blocks_json, order_index in _walk_grammar_index(
             level["path"], locale
         ):
             db.execute(
-                "INSERT INTO grammar_lessons (locale, level, path, chapter, title, blocks_json, order_index)"
-                " VALUES (?, ?, ?, ?, ?, ?, ?)",
-                (locale, level["id"], path, chapter, title, blocks_json, order_index),
+                "INSERT INTO grammar_lessons (locale, level, path, theme_name, chapter, title, blocks_json, order_index)"
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                (locale, level["id"], path, theme, chapter, title, blocks_json, order_index),
             )
             total += 1
+    return total
+
+
+def insert_grammar_exercises(db: sqlite3.Connection) -> int:
+    """Walk all *.exercises.json files under GRAMMAR_ROOT (excluding basics/) and insert rows."""
+    total = 0
+    for dirpath, _dirs, filenames in os.walk(GRAMMAR_ROOT):
+        # Skip basics — no exercises for reference-level content
+        rel_dir = os.path.relpath(dirpath, GRAMMAR_ROOT)
+        if rel_dir == "basics" or rel_dir.startswith("basics" + os.sep):
+            continue
+        for filename in sorted(filenames):
+            if not filename.endswith(".exercises.json"):
+                continue
+            filepath = os.path.join(dirpath, filename)
+            with open(filepath, encoding="utf-8") as f:
+                data = json.load(f)
+            # Derive lesson_path: strip GRAMMAR_ROOT prefix and .exercises.json suffix
+            rel_path = os.path.relpath(filepath, GRAMMAR_ROOT)
+            lesson_path = rel_path[: -len(".exercises.json")].replace(os.sep, "/")
+            for order_index, exercise in enumerate(data.get("exercises", [])):
+                db.execute(
+                    "INSERT INTO grammar_exercises (lesson_path, order_index, type, data_json)"
+                    " VALUES (?, ?, ?, ?)",
+                    (
+                        lesson_path,
+                        order_index,
+                        exercise["type"],
+                        json.dumps(exercise, ensure_ascii=False),
+                    ),
+                )
+                total += 1
     return total
 
 
@@ -544,6 +592,10 @@ def main() -> None:
         print(f"Inserting grammar lessons ({locale})… ", end="", flush=True)
         n = insert_grammar(db, locale)
         print(f"{n} lessons")
+
+    print("Inserting grammar exercises… ", end="", flush=True)
+    n = insert_grammar_exercises(db)
+    print(f"{n} exercises")
 
     if "--no-sentences" not in sys.argv:
         print("Inserting sentences (Tatoeba)…")
