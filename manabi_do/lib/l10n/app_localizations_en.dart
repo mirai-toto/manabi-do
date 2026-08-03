@@ -535,7 +535,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get allCaughtUpSubtitle => 'Come back later for more reviews';
 
   @override
-  String get grammarChapters => 'Chapters';
+  String get grammarChapters => 'Themes';
 
   @override
   String get japaneseBasics => 'Japanese Basics';

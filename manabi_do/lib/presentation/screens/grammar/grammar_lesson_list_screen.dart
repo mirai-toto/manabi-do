@@ -121,7 +121,7 @@ class _GrammarLessonListScreenState
               const SizedBox(height: AppDimens.spaceSm),
             if (showChapterHeaders) ...[
               if (ci > 0) const SizedBox(height: AppDimens.spaceSm),
-              _ChapterHeader(
+              CollapsibleSection(
                 title: widget.theme.chapters[ci].title,
                 isCollapsed: _collapsed.contains(ci),
                 accentColor: widget.levelColor,
@@ -153,56 +153,6 @@ class _GrammarLessonListScreenState
           ],
           const SizedBox(height: AppDimens.spaceLg),
         ],
-      ),
-    );
-  }
-}
-
-class _ChapterHeader extends StatelessWidget {
-  final String title;
-  final bool isCollapsed;
-  final Color accentColor;
-  final VoidCallback onToggle;
-
-  const _ChapterHeader({
-    required this.title,
-    required this.isCollapsed,
-    required this.accentColor,
-    required this.onToggle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return InkWell(
-      borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-      onTap: onToggle,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: AppDimens.spaceSm,
-          horizontal: AppDimens.spaceXs,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                title,
-                style: AppTextStyles.labelLarge.copyWith(
-                  color: t.onSurfaceVariant,
-                ),
-              ),
-            ),
-            AnimatedRotation(
-              turns: isCollapsed ? -0.25 : 0,
-              duration: const Duration(milliseconds: 200),
-              child: Icon(
-                Icons.expand_more_rounded,
-                color: t.onSurfaceVariant,
-                size: 20,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

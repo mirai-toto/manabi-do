@@ -1075,7 +1075,7 @@ abstract class AppLocalizations {
   /// No description provided for @grammarChapters.
   ///
   /// In en, this message translates to:
-  /// **'Chapters'**
+  /// **'Themes'**
   String get grammarChapters;
 
   /// No description provided for @japaneseBasics.

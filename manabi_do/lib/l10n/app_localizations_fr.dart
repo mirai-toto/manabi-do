@@ -537,7 +537,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Revenez plus tard pour de nouvelles révisions';
 
   @override
-  String get grammarChapters => 'Chapitres';
+  String get grammarChapters => 'Thèmes';
 
   @override
   String get japaneseBasics => 'Bases du japonais';
