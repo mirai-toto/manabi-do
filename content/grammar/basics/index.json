@@ -1,5 +1,5 @@
 {
-  "type": "groups",
+  "type": "themes",
   "items": [
     {
       "title": { "en": "Writing System", "fr": "Système d'Écriture" },
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "title": { "en": "Pronunciation & Structure", "fr": "Prononciation & Structure" },
+      "title": { "en": "Language Foundation", "fr": "Fondations de la Langue" },
       "chapters": [
         { "title": { "en": "Pitch Accent", "fr": "Accent de Hauteur" }, "path": "basics/pitch-accent/index.json" },
         { "title": { "en": "Sentence Structure", "fr": "Structure des Phrases" }, "path": "basics/sentence-structure/index.json" }

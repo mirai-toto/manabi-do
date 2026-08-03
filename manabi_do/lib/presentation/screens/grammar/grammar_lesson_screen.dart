@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../l10n/l10n.dart';
-import '../../providers/grammar_provider.dart';
-import '../../services/grammar_session_service.dart';
+import '../../../data/grammar/grammar_models.dart';
 import '../../widgets/grammar/grammar_block_renderer.dart';
-import '../practice/practice_session_screen.dart';
 
-class GrammarLessonScreen extends ConsumerWidget {
+class GrammarLessonScreen extends StatelessWidget {
   final String lessonId;
   final String title;
   final List<GrammarBlock> blocks;
@@ -24,9 +20,8 @@ class GrammarLessonScreen extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final t = context.tokens;
-    final hasExercises = ref.watch(grammarHasExercisesProvider(lessonId));
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -43,38 +38,6 @@ class GrammarLessonScreen extends ConsumerWidget {
         ),
       ),
       body: GrammarBlockRenderer(blocks: blocks, levelColor: levelColor),
-      floatingActionButton: hasExercises.maybeWhen(
-        data: (exists) => exists
-            ? FloatingActionButton.extended(
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => PracticeSessionScreen(
-                      title: title,
-                      color: levelColor,
-                      persistSrs: false,
-                      settingsContexts: const {
-                        SettingsContext.flashcard,
-                        SettingsContext.grammar,
-                      },
-                      hasExamples: true,
-                      loadQueue: (ref) => ref
-                          .read(grammarSessionServiceProvider)
-                          .buildQueue(
-                            lessonPath: lessonId,
-                            ref: ref,
-                            color: levelColor,
-                          ),
-                    ),
-                  ),
-                ),
-                icon: const Icon(Icons.school_rounded),
-                label: Text(context.l10n.grammarPractice),
-                backgroundColor: levelColor,
-                foregroundColor: Colors.white,
-              )
-            : null,
-        orElse: () => null,
-      ),
     );
   }
 }

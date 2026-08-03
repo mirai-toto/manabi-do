@@ -22,6 +22,30 @@ const _letters = ['A', 'B', 'C', 'D'];
 class GrammarSessionService {
   const GrammarSessionService();
 
+  Future<List<PracticeItem>> buildQueueForChapter({
+    required List<String> lessonPaths,
+    required WidgetRef ref,
+    required Color color,
+  }) async {
+    final db = ref.read(databaseProvider);
+    final locale = ref.read(localeProvider).languageCode;
+    final autoAdvance = ref.read(mcqSettingsProvider).autoAdvance;
+
+    final rows = await db.getGrammarExercisesForLessons(lessonPaths);
+    if (rows.isEmpty) return [];
+
+    final items = <PracticeItem>[];
+    for (var i = 0; i < rows.length; i++) {
+      final row = rows[i];
+      final exercise = GrammarExercise.fromJson(
+        Map<String, dynamic>.from(jsonDecode(row.dataJson) as Map),
+      );
+      final item = _buildItem(i, exercise, locale, color, autoAdvance);
+      if (item != null) items.add(item);
+    }
+    return items;
+  }
+
   Future<List<PracticeItem>> buildQueue({
     required String lessonPath,
     required WidgetRef ref,

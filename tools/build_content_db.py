@@ -184,7 +184,7 @@ def create_tables(db: sqlite3.Connection) -> None:
             locale      TEXT NOT NULL DEFAULT 'en',
             level       TEXT NOT NULL,
             path        TEXT NOT NULL,
-            group_name  TEXT NOT NULL DEFAULT '',
+            theme_name  TEXT NOT NULL DEFAULT '',
             chapter     TEXT NOT NULL,
             title       TEXT NOT NULL,
             blocks_json TEXT NOT NULL,
@@ -347,12 +347,12 @@ def _walk_grammar_index(
 ) -> list[tuple[str, str, str, str, str, int]]:
     """Recursively walk grammar index files.
 
-    Returns (group_name, chapter_title, lesson_path, lesson_title, blocks_json, order_index)
+    Returns (theme_name, chapter_title, lesson_path, lesson_title, blocks_json, order_index)
     for every lesson reachable from index_path.
     """
     results: list[tuple[str, str, str, str, str, int]] = []
 
-    def _walk_lessons(path: str, group: str, chapter: str) -> None:
+    def _walk_lessons(path: str, theme: str, chapter: str) -> None:
         with open(os.path.join(GRAMMAR_ROOT, path), encoding="utf-8") as f:
             node = json.load(f)
         for i, item in enumerate(node["items"]):
@@ -362,19 +362,19 @@ def _walk_grammar_index(
             with f:
                 lesson = json.load(f)
             blocks_json = json.dumps(lesson["blocks"], ensure_ascii=False)
-            results.append((group, chapter, item["path"], lesson["title"], blocks_json, i))
+            results.append((theme, chapter, item["path"], lesson["title"], blocks_json, i))
 
     with open(os.path.join(GRAMMAR_ROOT, index_path), encoding="utf-8") as f:
         root = json.load(f)
 
-    if root["type"] == "groups":
-        for group_item in root["items"]:
-            group = _locale_str(group_item["title"], locale)
-            for chapter_item in group_item["chapters"]:
+    if root["type"] == "themes":
+        for theme_item in root["items"]:
+            theme = _locale_str(theme_item["title"], locale)
+            for chapter_item in theme_item["chapters"]:
                 chapter = _locale_str(chapter_item["title"], locale)
-                _walk_lessons(chapter_item["path"], group, chapter)
+                _walk_lessons(chapter_item["path"], theme, chapter)
     else:
-        # Flat chapters format — no group
+        # Flat chapters format — no theme
         for chapter_item in root["items"]:
             chapter = _locale_str(chapter_item["title"], locale)
             _walk_lessons(chapter_item["path"], "", chapter)
@@ -388,13 +388,13 @@ def insert_grammar(db: sqlite3.Connection, locale: str = "en") -> int:
 
     total = 0
     for level in levels:
-        for group, chapter, path, title, blocks_json, order_index in _walk_grammar_index(
+        for theme, chapter, path, title, blocks_json, order_index in _walk_grammar_index(
             level["path"], locale
         ):
             db.execute(
-                "INSERT INTO grammar_lessons (locale, level, path, group_name, chapter, title, blocks_json, order_index)"
+                "INSERT INTO grammar_lessons (locale, level, path, theme_name, chapter, title, blocks_json, order_index)"
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                (locale, level["id"], path, group, chapter, title, blocks_json, order_index),
+                (locale, level["id"], path, theme, chapter, title, blocks_json, order_index),
             )
             total += 1
     return total

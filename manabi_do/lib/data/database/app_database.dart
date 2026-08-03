@@ -306,6 +306,14 @@ class AppDatabase extends _$AppDatabase {
             ..orderBy([(e) => OrderingTerm.asc(e.orderIndex)]))
           .get();
 
+  Future<List<GrammarExerciseRow>> getGrammarExercisesForLessons(
+    List<String> lessonPaths,
+  ) =>
+      (select(grammarExercises)
+            ..where((e) => e.lessonPath.isIn(lessonPaths))
+            ..orderBy([(e) => OrderingTerm.asc(e.orderIndex)]))
+          .get();
+
   Stream<int> watchCharactersDueCount() => (select(srsCards)).watch().map(
     (rows) => rows
         .where(

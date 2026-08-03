@@ -1889,12 +1889,12 @@ class $GrammarLessonsTable extends GrammarLessons
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _groupNameMeta = const VerificationMeta(
-    'groupName',
+  static const VerificationMeta _themeNameMeta = const VerificationMeta(
+    'themeName',
   );
   @override
-  late final GeneratedColumn<String> groupName = GeneratedColumn<String>(
-    'group_name',
+  late final GeneratedColumn<String> themeName = GeneratedColumn<String>(
+    'theme_name',
     aliasedName,
     false,
     type: DriftSqlType.string,
@@ -1949,7 +1949,7 @@ class $GrammarLessonsTable extends GrammarLessons
     locale,
     level,
     path,
-    groupName,
+    themeName,
     chapter,
     title,
     blocksJson,
@@ -1992,10 +1992,10 @@ class $GrammarLessonsTable extends GrammarLessons
     } else if (isInserting) {
       context.missing(_pathMeta);
     }
-    if (data.containsKey('group_name')) {
+    if (data.containsKey('theme_name')) {
       context.handle(
-        _groupNameMeta,
-        groupName.isAcceptableOrUnknown(data['group_name']!, _groupNameMeta),
+        _themeNameMeta,
+        themeName.isAcceptableOrUnknown(data['theme_name']!, _themeNameMeta),
       );
     }
     if (data.containsKey('chapter')) {
@@ -2055,9 +2055,9 @@ class $GrammarLessonsTable extends GrammarLessons
         DriftSqlType.string,
         data['${effectivePrefix}path'],
       )!,
-      groupName: attachedDatabase.typeMapping.read(
+      themeName: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
-        data['${effectivePrefix}group_name'],
+        data['${effectivePrefix}theme_name'],
       )!,
       chapter: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
@@ -2090,7 +2090,7 @@ class GrammarLessonRow extends DataClass
   final String locale;
   final String level;
   final String path;
-  final String groupName;
+  final String themeName;
   final String chapter;
   final String title;
   final String blocksJson;
@@ -2100,7 +2100,7 @@ class GrammarLessonRow extends DataClass
     required this.locale,
     required this.level,
     required this.path,
-    required this.groupName,
+    required this.themeName,
     required this.chapter,
     required this.title,
     required this.blocksJson,
@@ -2113,7 +2113,7 @@ class GrammarLessonRow extends DataClass
     map['locale'] = Variable<String>(locale);
     map['level'] = Variable<String>(level);
     map['path'] = Variable<String>(path);
-    map['group_name'] = Variable<String>(groupName);
+    map['theme_name'] = Variable<String>(themeName);
     map['chapter'] = Variable<String>(chapter);
     map['title'] = Variable<String>(title);
     map['blocks_json'] = Variable<String>(blocksJson);
@@ -2127,7 +2127,7 @@ class GrammarLessonRow extends DataClass
       locale: Value(locale),
       level: Value(level),
       path: Value(path),
-      groupName: Value(groupName),
+      themeName: Value(themeName),
       chapter: Value(chapter),
       title: Value(title),
       blocksJson: Value(blocksJson),
@@ -2145,7 +2145,7 @@ class GrammarLessonRow extends DataClass
       locale: serializer.fromJson<String>(json['locale']),
       level: serializer.fromJson<String>(json['level']),
       path: serializer.fromJson<String>(json['path']),
-      groupName: serializer.fromJson<String>(json['groupName']),
+      themeName: serializer.fromJson<String>(json['themeName']),
       chapter: serializer.fromJson<String>(json['chapter']),
       title: serializer.fromJson<String>(json['title']),
       blocksJson: serializer.fromJson<String>(json['blocksJson']),
@@ -2160,7 +2160,7 @@ class GrammarLessonRow extends DataClass
       'locale': serializer.toJson<String>(locale),
       'level': serializer.toJson<String>(level),
       'path': serializer.toJson<String>(path),
-      'groupName': serializer.toJson<String>(groupName),
+      'themeName': serializer.toJson<String>(themeName),
       'chapter': serializer.toJson<String>(chapter),
       'title': serializer.toJson<String>(title),
       'blocksJson': serializer.toJson<String>(blocksJson),
@@ -2173,7 +2173,7 @@ class GrammarLessonRow extends DataClass
     String? locale,
     String? level,
     String? path,
-    String? groupName,
+    String? themeName,
     String? chapter,
     String? title,
     String? blocksJson,
@@ -2183,7 +2183,7 @@ class GrammarLessonRow extends DataClass
     locale: locale ?? this.locale,
     level: level ?? this.level,
     path: path ?? this.path,
-    groupName: groupName ?? this.groupName,
+    themeName: themeName ?? this.themeName,
     chapter: chapter ?? this.chapter,
     title: title ?? this.title,
     blocksJson: blocksJson ?? this.blocksJson,
@@ -2195,7 +2195,7 @@ class GrammarLessonRow extends DataClass
       locale: data.locale.present ? data.locale.value : this.locale,
       level: data.level.present ? data.level.value : this.level,
       path: data.path.present ? data.path.value : this.path,
-      groupName: data.groupName.present ? data.groupName.value : this.groupName,
+      themeName: data.themeName.present ? data.themeName.value : this.themeName,
       chapter: data.chapter.present ? data.chapter.value : this.chapter,
       title: data.title.present ? data.title.value : this.title,
       blocksJson: data.blocksJson.present
@@ -2214,7 +2214,7 @@ class GrammarLessonRow extends DataClass
           ..write('locale: $locale, ')
           ..write('level: $level, ')
           ..write('path: $path, ')
-          ..write('groupName: $groupName, ')
+          ..write('themeName: $themeName, ')
           ..write('chapter: $chapter, ')
           ..write('title: $title, ')
           ..write('blocksJson: $blocksJson, ')
@@ -2229,7 +2229,7 @@ class GrammarLessonRow extends DataClass
     locale,
     level,
     path,
-    groupName,
+    themeName,
     chapter,
     title,
     blocksJson,
@@ -2243,7 +2243,7 @@ class GrammarLessonRow extends DataClass
           other.locale == this.locale &&
           other.level == this.level &&
           other.path == this.path &&
-          other.groupName == this.groupName &&
+          other.themeName == this.themeName &&
           other.chapter == this.chapter &&
           other.title == this.title &&
           other.blocksJson == this.blocksJson &&
@@ -2255,7 +2255,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
   final Value<String> locale;
   final Value<String> level;
   final Value<String> path;
-  final Value<String> groupName;
+  final Value<String> themeName;
   final Value<String> chapter;
   final Value<String> title;
   final Value<String> blocksJson;
@@ -2265,7 +2265,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
     this.locale = const Value.absent(),
     this.level = const Value.absent(),
     this.path = const Value.absent(),
-    this.groupName = const Value.absent(),
+    this.themeName = const Value.absent(),
     this.chapter = const Value.absent(),
     this.title = const Value.absent(),
     this.blocksJson = const Value.absent(),
@@ -2276,7 +2276,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
     this.locale = const Value.absent(),
     required String level,
     required String path,
-    this.groupName = const Value.absent(),
+    this.themeName = const Value.absent(),
     required String chapter,
     required String title,
     required String blocksJson,
@@ -2292,7 +2292,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
     Expression<String>? locale,
     Expression<String>? level,
     Expression<String>? path,
-    Expression<String>? groupName,
+    Expression<String>? themeName,
     Expression<String>? chapter,
     Expression<String>? title,
     Expression<String>? blocksJson,
@@ -2303,7 +2303,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
       if (locale != null) 'locale': locale,
       if (level != null) 'level': level,
       if (path != null) 'path': path,
-      if (groupName != null) 'group_name': groupName,
+      if (themeName != null) 'theme_name': themeName,
       if (chapter != null) 'chapter': chapter,
       if (title != null) 'title': title,
       if (blocksJson != null) 'blocks_json': blocksJson,
@@ -2316,7 +2316,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
     Value<String>? locale,
     Value<String>? level,
     Value<String>? path,
-    Value<String>? groupName,
+    Value<String>? themeName,
     Value<String>? chapter,
     Value<String>? title,
     Value<String>? blocksJson,
@@ -2327,7 +2327,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
       locale: locale ?? this.locale,
       level: level ?? this.level,
       path: path ?? this.path,
-      groupName: groupName ?? this.groupName,
+      themeName: themeName ?? this.themeName,
       chapter: chapter ?? this.chapter,
       title: title ?? this.title,
       blocksJson: blocksJson ?? this.blocksJson,
@@ -2350,8 +2350,8 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
     if (path.present) {
       map['path'] = Variable<String>(path.value);
     }
-    if (groupName.present) {
-      map['group_name'] = Variable<String>(groupName.value);
+    if (themeName.present) {
+      map['theme_name'] = Variable<String>(themeName.value);
     }
     if (chapter.present) {
       map['chapter'] = Variable<String>(chapter.value);
@@ -2375,7 +2375,7 @@ class GrammarLessonsCompanion extends UpdateCompanion<GrammarLessonRow> {
           ..write('locale: $locale, ')
           ..write('level: $level, ')
           ..write('path: $path, ')
-          ..write('groupName: $groupName, ')
+          ..write('themeName: $themeName, ')
           ..write('chapter: $chapter, ')
           ..write('title: $title, ')
           ..write('blocksJson: $blocksJson, ')
@@ -6285,7 +6285,7 @@ typedef $$GrammarLessonsTableCreateCompanionBuilder =
       Value<String> locale,
       required String level,
       required String path,
-      Value<String> groupName,
+      Value<String> themeName,
       required String chapter,
       required String title,
       required String blocksJson,
@@ -6297,7 +6297,7 @@ typedef $$GrammarLessonsTableUpdateCompanionBuilder =
       Value<String> locale,
       Value<String> level,
       Value<String> path,
-      Value<String> groupName,
+      Value<String> themeName,
       Value<String> chapter,
       Value<String> title,
       Value<String> blocksJson,
@@ -6333,8 +6333,8 @@ class $$GrammarLessonsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get groupName => $composableBuilder(
-    column: $table.groupName,
+  ColumnFilters<String> get themeName => $composableBuilder(
+    column: $table.themeName,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -6388,8 +6388,8 @@ class $$GrammarLessonsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get groupName => $composableBuilder(
-    column: $table.groupName,
+  ColumnOrderings<String> get themeName => $composableBuilder(
+    column: $table.themeName,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -6435,8 +6435,8 @@ class $$GrammarLessonsTableAnnotationComposer
   GeneratedColumn<String> get path =>
       $composableBuilder(column: $table.path, builder: (column) => column);
 
-  GeneratedColumn<String> get groupName =>
-      $composableBuilder(column: $table.groupName, builder: (column) => column);
+  GeneratedColumn<String> get themeName =>
+      $composableBuilder(column: $table.themeName, builder: (column) => column);
 
   GeneratedColumn<String> get chapter =>
       $composableBuilder(column: $table.chapter, builder: (column) => column);
@@ -6496,7 +6496,7 @@ class $$GrammarLessonsTableTableManager
                 Value<String> locale = const Value.absent(),
                 Value<String> level = const Value.absent(),
                 Value<String> path = const Value.absent(),
-                Value<String> groupName = const Value.absent(),
+                Value<String> themeName = const Value.absent(),
                 Value<String> chapter = const Value.absent(),
                 Value<String> title = const Value.absent(),
                 Value<String> blocksJson = const Value.absent(),
@@ -6506,7 +6506,7 @@ class $$GrammarLessonsTableTableManager
                 locale: locale,
                 level: level,
                 path: path,
-                groupName: groupName,
+                themeName: themeName,
                 chapter: chapter,
                 title: title,
                 blocksJson: blocksJson,
@@ -6518,7 +6518,7 @@ class $$GrammarLessonsTableTableManager
                 Value<String> locale = const Value.absent(),
                 required String level,
                 required String path,
-                Value<String> groupName = const Value.absent(),
+                Value<String> themeName = const Value.absent(),
                 required String chapter,
                 required String title,
                 required String blocksJson,
@@ -6528,7 +6528,7 @@ class $$GrammarLessonsTableTableManager
                 locale: locale,
                 level: level,
                 path: path,
-                groupName: groupName,
+                themeName: themeName,
                 chapter: chapter,
                 title: title,
                 blocksJson: blocksJson,
