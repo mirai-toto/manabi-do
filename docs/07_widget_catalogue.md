@@ -101,6 +101,21 @@ ChapterListView(
 
 ---
 
+### CollapsibleSection
+
+Tappable section header with an animated chevron and a tinted background. Used to group collapsible lists (e.g. grammar chapters inside a theme). The caller owns the collapsed state and provides `onToggle`.
+
+```dart
+CollapsibleSection(
+  title: 'て-form',
+  isCollapsed: _collapsed.contains(0),
+  accentColor: levelColor('N5'),
+  onToggle: () => setState(() => _collapsed.toggle(0)),
+)
+```
+
+---
+
 ### ConfirmDialog
 
 Standard two-button confirmation dialog (cancel / confirm). Exposed as a top-level async function, not a widget class.
