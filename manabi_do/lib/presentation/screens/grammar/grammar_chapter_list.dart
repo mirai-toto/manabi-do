@@ -8,7 +8,9 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
 import '../../providers/grammar_provider.dart';
+import '../../services/grammar_session_service.dart';
 import '../../widgets/widgets.dart';
+import '../practice/practice_session_screen.dart';
 import 'grammar_lesson_list_screen.dart';
 
 class GrammarChapterList extends ConsumerWidget {
@@ -31,53 +33,93 @@ class GrammarChapterList extends ConsumerWidget {
         : levelLabel(level, context);
     final color = levelColor(level);
 
-    return themesAsync.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (_, _) => const SizedBox.shrink(),
-      data: (themes) => ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(
-              AppDimens.spaceSm,
-              AppDimens.spaceSm,
-              AppDimens.spaceMd,
-              0,
-            ),
-            child: Row(
-              children: [
-                IconButton(
-                  icon: Icon(Icons.arrow_back_rounded, color: t.onSurface),
-                  onPressed: onBack,
+    final themes = themesAsync.asData?.value ?? [];
+    final allLessonPaths = themes
+        .expand((th) => th.chapters.expand((c) => c.lessons.map((l) => l.id)))
+        .toList();
+    final pathsKey = allLessonPaths.join('\n');
+    final hasExercises = ref
+        .watch(grammarChapterHasExercisesProvider(pathsKey))
+        .when(data: (v) => v, loading: () => false, error: (_, _) => false);
+
+    return Scaffold(
+      backgroundColor: t.surface,
+      floatingActionButton: hasExercises
+          ? FloatingActionButton.extended(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => PracticeSessionScreen(
+                    title: title,
+                    color: color,
+                    persistSrs: false,
+                    settingsContexts: const {SettingsContext.grammar},
+                    hasExamples: true,
+                    loadQueue: (ref) => ref
+                        .read(grammarSessionServiceProvider)
+                        .buildQueueForChapter(
+                          lessonPaths: allLessonPaths,
+                          ref: ref,
+                          color: color,
+                        ),
+                  ),
                 ),
-                Text(
-                  title,
-                  style: AppTextStyles.title.copyWith(color: t.onSurface),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(
-              AppDimens.spaceMd,
-              AppDimens.spaceSm,
-              AppDimens.spaceMd,
-              AppDimens.spaceSm,
-            ),
-            child: SectionLabel(l.grammarChapters),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-            child: Column(
-              children: [
-                for (int i = 0; i < themes.length; i++) ...[
-                  if (i > 0) const SizedBox(height: AppDimens.spaceSm),
-                  _ThemeRow(theme: themes[i], accentColor: color),
+              ),
+              icon: const Icon(Icons.school_rounded),
+              label: Text(l.grammarPractice),
+              backgroundColor: color,
+              foregroundColor: Colors.white,
+            )
+          : null,
+      body: themesAsync.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (_, _) => const SizedBox.shrink(),
+        data: (themes) => ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppDimens.spaceSm,
+                AppDimens.spaceSm,
+                AppDimens.spaceMd,
+                0,
+              ),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.arrow_back_rounded, color: t.onSurface),
+                    onPressed: onBack,
+                  ),
+                  Text(
+                    title,
+                    style: AppTextStyles.title.copyWith(color: t.onSurface),
+                  ),
                 ],
-              ],
+              ),
             ),
-          ),
-          const SizedBox(height: AppDimens.spaceLg),
-        ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppDimens.spaceMd,
+                AppDimens.spaceSm,
+                AppDimens.spaceMd,
+                AppDimens.spaceSm,
+              ),
+              child: SectionLabel(l.grammarChapters),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceMd,
+              ),
+              child: Column(
+                children: [
+                  for (int i = 0; i < themes.length; i++) ...[
+                    if (i > 0) const SizedBox(height: AppDimens.spaceSm),
+                    _ThemeRow(theme: themes[i], accentColor: color),
+                  ],
+                ],
+              ),
+            ),
+            const SizedBox(height: 80),
+          ],
+        ),
       ),
     );
   }

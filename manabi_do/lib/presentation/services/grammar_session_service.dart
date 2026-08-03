@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,8 +31,11 @@ class GrammarSessionService {
     final locale = ref.read(localeProvider).languageCode;
     final autoAdvance = ref.read(mcqSettingsProvider).autoAdvance;
 
-    final rows = await db.getGrammarExercisesForLessons(lessonPaths);
+    final sessionLength = ref.read(mcqSettingsProvider).sessionLength;
+    var rows = await db.getGrammarExercisesForLessons(lessonPaths);
     if (rows.isEmpty) return [];
+    rows = List.of(rows)..shuffle(math.Random());
+    if (sessionLength != null) rows = rows.take(sessionLength).toList();
 
     final items = <PracticeItem>[];
     for (var i = 0; i < rows.length; i++) {
@@ -55,8 +58,11 @@ class GrammarSessionService {
     final locale = ref.read(localeProvider).languageCode;
     final autoAdvance = ref.read(mcqSettingsProvider).autoAdvance;
 
-    final rows = await db.getGrammarExercisesForLesson(lessonPath);
+    final sessionLength = ref.read(mcqSettingsProvider).sessionLength;
+    var rows = await db.getGrammarExercisesForLesson(lessonPath);
     if (rows.isEmpty) return [];
+    rows = List.of(rows)..shuffle(math.Random());
+    if (sessionLength != null) rows = rows.take(sessionLength).toList();
 
     final items = <PracticeItem>[];
     for (var i = 0; i < rows.length; i++) {
@@ -131,7 +137,7 @@ class GrammarSessionService {
         card: null,
         buildBody: (index, total, onAnswer) {
           final allOptions = [exercise.answer, ...exercise.distractors];
-          allOptions.shuffle(Random());
+          allOptions.shuffle(math.Random());
           final correctIndex = allOptions.indexOf(exercise.answer);
           final options = List.generate(
             allOptions.length,

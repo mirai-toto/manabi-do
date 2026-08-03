@@ -64,10 +64,7 @@ class _GrammarLessonListScreenState
           title: widget.theme.title,
           color: widget.levelColor,
           persistSrs: false,
-          settingsContexts: const {
-            SettingsContext.flashcard,
-            SettingsContext.grammar,
-          },
+          settingsContexts: const {SettingsContext.grammar},
           hasExamples: true,
           loadQueue: (ref) => ref
               .read(grammarSessionServiceProvider)

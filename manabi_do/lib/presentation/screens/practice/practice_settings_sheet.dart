@@ -197,6 +197,28 @@ class PracticeSettingsSheet extends ConsumerWidget {
 
             // ── Grammar ───────────────────────────────────────────────────
             if (contexts.contains(SettingsContext.grammar)) ...[
+              if (showLabels) ...[
+                _CategoryLabel(l.grammarPractice),
+                const SizedBox(height: AppDimens.spaceXs),
+              ],
+              sessionLengthRow(
+                mcq.sessionLength,
+                (v) => updateMcq(
+                  v == null
+                      ? mcq.copyWith(clearSessionLength: true)
+                      : mcq.copyWith(sessionLength: v),
+                ),
+              ),
+              const SizedBox(height: AppDimens.spaceMd),
+              if (hasExamples) ...[
+                _SwitchRow(
+                  label: l.showExampleLabel,
+                  subtitle: l.showExampleSubtitle,
+                  value: flashcard.showExample,
+                  onChanged: (v) =>
+                      updateFlashcard(flashcard.copyWith(showExample: v)),
+                ),
+              ],
               if (showAutoAdvance) ...[
                 _SwitchRow(
                   label: l.autoAdvanceLabel,
