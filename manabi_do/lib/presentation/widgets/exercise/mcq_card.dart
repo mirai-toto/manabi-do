@@ -320,8 +320,7 @@ class _McqGridCell extends StatelessWidget {
               child: Center(
                 child: Text(
                   option.letter,
-                  style: AppTextStyles.labelSmall.copyWith(
-                    fontSize: 10,
+                  style: AppTextStyles.labelXs.copyWith(
                     fontWeight: FontWeight.w700,
                     color: contentColor,
                   ),

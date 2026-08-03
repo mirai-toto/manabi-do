@@ -131,10 +131,7 @@ class ReaderSectionTitle extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: AppTextStyles.title.copyWith(
-          fontSize: 17,
-          color: context.tokens.onSurface,
-        ),
+        style: AppTextStyles.title.copyWith(color: context.tokens.onSurface),
       ),
     );
   }
@@ -171,8 +168,7 @@ class ReaderJpExample extends StatelessWidget {
         children: [
           Text(
             japanese,
-            style: AppTextStyles.jpBody.copyWith(
-              fontSize: 18,
+            style: AppTextStyles.jpBodyLarge.copyWith(
               color: t.onPrimaryContainer,
             ),
           ),

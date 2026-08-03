@@ -117,7 +117,7 @@ class GrammarChapterList extends ConsumerWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: AppDimens.fabClearance),
           ],
         ),
       ),

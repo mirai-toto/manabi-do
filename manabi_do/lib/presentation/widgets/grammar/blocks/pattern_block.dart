@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../widgets/common/card_container.dart';
 
@@ -37,7 +38,7 @@ class PatternBlock extends StatelessWidget {
 
   // Parses [placeholders] and **accent** markers within a pattern line.
   InlineSpan _buildSpans(String line, AppTokens t, Color accent) {
-    final base = TextStyle(fontFamily: 'monospace', fontSize: 14, height: 1.8);
+    final base = AppTextStyles.codePattern;
     final normal = base.copyWith(color: t.onSurface);
     final muted = base.copyWith(color: t.onSurfaceVariant);
     final highlighted = base.copyWith(

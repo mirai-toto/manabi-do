@@ -31,4 +31,5 @@ abstract final class AppDimens {
   static const double iconTextGap = 14;
   static const double pipSize = 6;
   static const double pipGap = 3;
+  static const double fabClearance = 80;
 }

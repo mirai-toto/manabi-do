@@ -45,11 +45,7 @@ class SentenceClozeCard extends StatelessWidget {
     final t = context.tokens;
     final l = context.l10n;
 
-    final sentenceStyle = AppTextStyles.jpBody.copyWith(
-      color: t.onSurface,
-      fontSize: 26,
-      height: 2.2,
-    );
+    final sentenceStyle = AppTextStyles.jpSentence.copyWith(color: t.onSurface);
     final rubyStyle = AppTextStyles.jpFurigana.copyWith(
       color: t.onSurfaceVariant,
     );

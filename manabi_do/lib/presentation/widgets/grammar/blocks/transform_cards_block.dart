@@ -170,7 +170,6 @@ class _GroupCard extends StatelessWidget {
                     group.rule!,
                     style: AppTextStyles.bodySmall.copyWith(
                       color: t.onSurfaceVariant,
-                      fontSize: 13,
                       fontStyle: FontStyle.italic,
                     ),
                   ),
@@ -244,35 +243,30 @@ class _TransformRowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = tokens;
-    final jpNormal = AppTextStyles.jpBody.copyWith(
-      color: t.onSurface,
-      fontSize: 17,
-    );
+    final jpNormal = AppTextStyles.jpBody.copyWith(color: t.onSurface);
     final jpStruck = AppTextStyles.jpBody.copyWith(
       color: t.onSurfaceVariant,
       decoration: TextDecoration.lineThrough,
       decorationColor: t.onSurfaceVariant,
-      fontSize: 17,
     );
     final jpAccent = AppTextStyles.jpBody.copyWith(
       color: accentColor,
       fontWeight: FontWeight.w700,
-      fontSize: 17,
     );
     final romajiStyle = AppTextStyles.bodySmall.copyWith(
       color: t.onSurfaceVariant,
-      fontSize: 13,
       height: 1.3,
     );
     final englishStyle = AppTextStyles.bodySmall.copyWith(
       color: t.onSurfaceVariant.withValues(alpha: 0.75),
-      fontSize: 13,
       fontStyle: FontStyle.italic,
       height: 1.3,
     );
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 14),
+      padding: const EdgeInsets.symmetric(
+        vertical: AppDimens.optionTilePaddingV,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
