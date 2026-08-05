@@ -78,6 +78,11 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String lessonsProgress(int done, int total) {
+    return '$done / $total lessons';
+  }
+
+  @override
   String get multipleChoice => 'Multiple Choice';
 
   @override
@@ -97,6 +102,27 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get nextLesson => 'Nächste Lektion →';
+
+  @override
+  String get lessonStart => 'Start';
+
+  @override
+  String get lessonStateStarted => 'Started';
+
+  @override
+  String get lessonStateKnown => 'Known';
+
+  @override
+  String get lessonStateUnknown => 'Unknown';
+
+  @override
+  String get lessonStateLocked => 'Locked';
+
+  @override
+  String get markLessonAsRead => 'Mark as read';
+
+  @override
+  String get lessonMarkedRead => 'Read';
 
   @override
   String get dailyTraining => 'Tägliches Training';

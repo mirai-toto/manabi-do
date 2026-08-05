@@ -2,16 +2,28 @@
   "type": "lessons",
   "items": [
     {
-      "title": { "en": "Want to Do : たい", "fr": "Vouloir Faire : たい" },
-      "path": "N5/desire-probability/tai-want-to-do"
+      "title": {
+        "en": "Want to Do : たい",
+        "fr": "Vouloir Faire : たい"
+      },
+      "path": "N5/desire-probability/tai-want-to-do",
+      "difficulty": 2
     },
     {
-      "title": { "en": "Want Something : ほしい", "fr": "Vouloir Quelque Chose : ほしい" },
-      "path": "N5/desire-probability/hoshii-want-something"
+      "title": {
+        "en": "Want Something : ほしい",
+        "fr": "Vouloir Quelque Chose : ほしい"
+      },
+      "path": "N5/desire-probability/hoshii-want-something",
+      "difficulty": 2
     },
     {
-      "title": { "en": "Probability : でしょう / かもしれない", "fr": "Probabilité : でしょう / かもしれない" },
-      "path": "N5/desire-probability/deshou-kamoshirenai"
+      "title": {
+        "en": "Probability : でしょう / かもしれない",
+        "fr": "Probabilité : でしょう / かもしれない"
+      },
+      "path": "N5/desire-probability/deshou-kamoshirenai",
+      "difficulty": 3
     }
   ]
 }

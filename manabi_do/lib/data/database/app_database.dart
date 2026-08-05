@@ -10,6 +10,8 @@ import 'db_connection_native.dart'
 import '../../domain/data/kana_data.dart';
 import 'tables/exercises_table.dart';
 import 'tables/grammar_exercises_table.dart';
+import 'tables/grammar_lesson_progress_table.dart';
+import 'tables/grammar_lesson_starts_table.dart';
 import 'tables/grammar_lessons_table.dart';
 import 'tables/kanas_table.dart';
 import 'tables/kanjis_table.dart';
@@ -29,6 +31,8 @@ part 'app_database.g.dart';
     Exercises,
     GrammarLessons,
     GrammarExercises,
+    GrammarLessonProgress,
+    GrammarLessonStarts,
     ProgressEntries,
     KanjiTranslations,
     VocabTranslations,
@@ -41,7 +45,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(openDbConnection());
 
   @override
-  int get schemaVersion => 15;
+  int get schemaVersion => 19;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -106,6 +110,18 @@ class AppDatabase extends _$AppDatabase {
         } catch (_) {}
       }
       if (from < 15) await m.createTable(grammarExercises);
+      if (from < 16) {
+        try {
+          await m.addColumn(grammarLessons, grammarLessons.themeDescription);
+        } catch (_) {}
+      }
+      if (from < 17) await m.createTable(grammarLessonProgress);
+      if (from < 18) {
+        try {
+          await m.addColumn(grammarLessons, grammarLessons.difficulty);
+        } catch (_) {}
+      }
+      if (from < 19) await m.createTable(grammarLessonStarts);
     },
   );
 
@@ -306,6 +322,31 @@ class AppDatabase extends _$AppDatabase {
             ..orderBy([(e) => OrderingTerm.asc(e.orderIndex)]))
           .get();
 
+  Stream<Set<String>> watchStartedGrammarLessons() => select(
+    grammarLessonStarts,
+  ).watch().map((rows) => rows.map((r) => r.lessonPath).toSet());
+
+  Future<void> markGrammarLessonStarted(String lessonPath) =>
+      into(grammarLessonStarts).insertOnConflictUpdate(
+        GrammarLessonStartsCompanion.insert(lessonPath: lessonPath),
+      );
+
+  Stream<Set<String>> watchReadGrammarLessons() => select(
+    grammarLessonProgress,
+  ).watch().map((rows) => rows.map((r) => r.lessonPath).toSet());
+
+  Future<void> markGrammarLessonRead(String lessonPath) =>
+      into(grammarLessonProgress).insertOnConflictUpdate(
+        GrammarLessonProgressCompanion.insert(
+          lessonPath: lessonPath,
+          readAt: DateTime.now(),
+        ),
+      );
+
+  Future<void> unmarkGrammarLessonRead(String lessonPath) => (delete(
+    grammarLessonProgress,
+  )..where((r) => r.lessonPath.equals(lessonPath))).go();
+
   Future<List<GrammarExerciseRow>> getGrammarExercisesForLessons(
     List<String> lessonPaths,
   ) =>
@@ -313,6 +354,20 @@ class AppDatabase extends _$AppDatabase {
             ..where((e) => e.lessonPath.isIn(lessonPaths))
             ..orderBy([(e) => OrderingTerm.asc(e.orderIndex)]))
           .get();
+
+  Future<Map<String, int>> getGrammarExerciseCountsForLessons(
+    List<String> lessonPaths,
+  ) async {
+    if (lessonPaths.isEmpty) return {};
+    final rows = await (select(
+      grammarExercises,
+    )..where((e) => e.lessonPath.isIn(lessonPaths))).get();
+    final counts = <String, int>{};
+    for (final row in rows) {
+      counts[row.lessonPath] = (counts[row.lessonPath] ?? 0) + 1;
+    }
+    return counts;
+  }
 
   Stream<int> watchCharactersDueCount() => (select(srsCards)).watch().map(
     (rows) => rows
@@ -720,6 +775,8 @@ class AppDatabase extends _$AppDatabase {
   Future<void> resetAllProgress() async {
     await delete(srsCards).go();
     await delete(progressEntries).go();
+    await delete(grammarLessonProgress).go();
+    await delete(grammarLessonStarts).go();
   }
 
   Future<void> resetSrsCard(String type, int itemId) async {

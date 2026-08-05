@@ -3,6 +3,7 @@
   "items": [
     {
       "title": { "en": "Core Grammar", "fr": "Grammaire Essentielle" },
+      "description": { "en": "Verb groups, adjective types, polite conjugations and core sentence patterns.", "fr": "Groupes verbaux, types d'adjectifs, conjugaisons polies et structures de phrases essentielles." },
       "chapters": [
         { "title": { "en": "Verbs", "fr": "Verbes" }, "path": "N5/verbs/index.json" },
         { "title": { "en": "Adjectives", "fr": "Adjectifs" }, "path": "N5/adjectives/index.json" }
@@ -10,6 +11,7 @@
     },
     {
       "title": { "en": "Building Phrases", "fr": "Construire des Phrases" },
+      "description": { "en": "Spatial particles, location expressions, て-form and connected actions.", "fr": "Particules spatiales, expressions de lieu, forme て et actions enchaînées." },
       "chapters": [
         { "title": { "en": "Particles", "fr": "Particules" }, "path": "N5/particles-space-direction/index.json" },
         { "title": { "en": "て-form", "fr": "Forme て" }, "path": "N5/te-form/index.json" }
@@ -17,6 +19,7 @@
     },
     {
       "title": { "en": "Time & Actions", "fr": "Temps & Actions" },
+      "description": { "en": "Past, present and future expressions, duration and frequency patterns.", "fr": "Expressions du passé, présent et futur, durée et fréquence." },
       "chapters": [
         { "title": { "en": "Temporality", "fr": "Temporalité" }, "path": "N5/temporality/index.json" },
         { "title": { "en": "Time", "fr": "Le Temps" }, "path": "N5/time/index.json" },
@@ -25,6 +28,7 @@
     },
     {
       "title": { "en": "Quantities", "fr": "Quantités" },
+      "description": { "en": "Counters, number words and comparative structures.", "fr": "Compteurs, numéraux et structures comparatives." },
       "chapters": [
         { "title": { "en": "Counting", "fr": "Comptage" }, "path": "N5/counting/index.json" },
         { "title": { "en": "Comparison", "fr": "Comparaison" }, "path": "N5/comparison/index.json" }
@@ -32,6 +36,7 @@
     },
     {
       "title": { "en": "Expressing Yourself", "fr": "S'exprimer" },
+      "description": { "en": "Desire, probability, obligation, opinion and reason structures.", "fr": "Structures pour exprimer désir, probabilité, obligation, opinion et cause." },
       "chapters": [
         { "title": { "en": "Desire & Probability", "fr": "Désir & Probabilité" }, "path": "N5/desire-probability/index.json" },
         { "title": { "en": "Obligation & Opinion", "fr": "Obligation & Opinion" }, "path": "N5/obligation-opinion/index.json" },

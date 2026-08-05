@@ -6,28 +6,32 @@
         "en": "ている : Ongoing Action and State",
         "fr": "ている : Action en Cours et État Résultant"
       },
-      "path": "N5/temporality/te-iru"
+      "path": "N5/temporality/te-iru",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "てから : After Doing",
         "fr": "てから : Après Avoir Fait"
       },
-      "path": "N5/temporality/te-kara"
+      "path": "N5/temporality/te-kara",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "前に / 後で : Before / After",
         "fr": "前に / 後で : Avant / Après"
       },
-      "path": "N5/temporality/mae-ni-ato-de"
+      "path": "N5/temporality/mae-ni-ato-de",
+      "difficulty": 1
     },
     {
       "title": {
         "en": "ながら : While Doing",
         "fr": "ながら : Tout en Faisant"
       },
-      "path": "N5/temporality/nagara"
+      "path": "N5/temporality/nagara",
+      "difficulty": 2
     }
   ]
 }

@@ -25,7 +25,7 @@ from collections import defaultdict
 
 import pykakasi
 
-SCHEMA_VERSION = 15
+SCHEMA_VERSION = 17
 
 _kks = pykakasi.kakasi()
 
@@ -180,15 +180,17 @@ def create_tables(db: sqlite3.Connection) -> None:
         );
 
         CREATE TABLE grammar_lessons (
-            id          INTEGER PRIMARY KEY AUTOINCREMENT,
-            locale      TEXT NOT NULL DEFAULT 'en',
-            level       TEXT NOT NULL,
-            path        TEXT NOT NULL,
-            theme_name  TEXT NOT NULL DEFAULT '',
-            chapter     TEXT NOT NULL,
-            title       TEXT NOT NULL,
-            blocks_json TEXT NOT NULL,
-            order_index INTEGER NOT NULL
+            id               INTEGER PRIMARY KEY AUTOINCREMENT,
+            locale           TEXT NOT NULL DEFAULT 'en',
+            level            TEXT NOT NULL,
+            path             TEXT NOT NULL,
+            theme_name       TEXT NOT NULL DEFAULT '',
+            theme_description TEXT NOT NULL DEFAULT '',
+            chapter          TEXT NOT NULL,
+            title            TEXT NOT NULL,
+            blocks_json      TEXT NOT NULL,
+            order_index      INTEGER NOT NULL,
+            difficulty       INTEGER NOT NULL DEFAULT 1
         );
 
         CREATE TABLE exercises (
@@ -344,15 +346,15 @@ def _open_lesson(path: str, locale: str):
 
 def _walk_grammar_index(
     index_path: str, locale: str = "en"
-) -> list[tuple[str, str, str, str, str, int]]:
+) -> list[tuple[str, str, str, str, str, str, int, int]]:
     """Recursively walk grammar index files.
 
-    Returns (theme_name, chapter_title, lesson_path, lesson_title, blocks_json, order_index)
+    Returns (theme_name, theme_description, chapter_title, lesson_path, lesson_title, blocks_json, order_index, difficulty)
     for every lesson reachable from index_path.
     """
-    results: list[tuple[str, str, str, str, str, int]] = []
+    results: list[tuple[str, str, str, str, str, str, int, int]] = []
 
-    def _walk_lessons(path: str, theme: str, chapter: str) -> None:
+    def _walk_lessons(path: str, theme: str, theme_desc: str, chapter: str) -> None:
         with open(os.path.join(GRAMMAR_ROOT, path), encoding="utf-8") as f:
             node = json.load(f)
         for i, item in enumerate(node["items"]):
@@ -362,7 +364,8 @@ def _walk_grammar_index(
             with f:
                 lesson = json.load(f)
             blocks_json = json.dumps(lesson["blocks"], ensure_ascii=False)
-            results.append((theme, chapter, item["path"], lesson["title"], blocks_json, i))
+            difficulty = int(item.get("difficulty", 1))
+            results.append((theme, theme_desc, chapter, item["path"], lesson["title"], blocks_json, i, difficulty))
 
     with open(os.path.join(GRAMMAR_ROOT, index_path), encoding="utf-8") as f:
         root = json.load(f)
@@ -370,14 +373,15 @@ def _walk_grammar_index(
     if root["type"] == "themes":
         for theme_item in root["items"]:
             theme = _locale_str(theme_item["title"], locale)
+            theme_desc = _locale_str(theme_item.get("description", ""), locale)
             for chapter_item in theme_item["chapters"]:
                 chapter = _locale_str(chapter_item["title"], locale)
-                _walk_lessons(chapter_item["path"], theme, chapter)
+                _walk_lessons(chapter_item["path"], theme, theme_desc, chapter)
     else:
         # Flat chapters format — no theme
         for chapter_item in root["items"]:
             chapter = _locale_str(chapter_item["title"], locale)
-            _walk_lessons(chapter_item["path"], "", chapter)
+            _walk_lessons(chapter_item["path"], "", "", chapter)
 
     return results
 
@@ -388,13 +392,13 @@ def insert_grammar(db: sqlite3.Connection, locale: str = "en") -> int:
 
     total = 0
     for level in levels:
-        for theme, chapter, path, title, blocks_json, order_index in _walk_grammar_index(
+        for theme, theme_desc, chapter, path, title, blocks_json, order_index, difficulty in _walk_grammar_index(
             level["path"], locale
         ):
             db.execute(
-                "INSERT INTO grammar_lessons (locale, level, path, theme_name, chapter, title, blocks_json, order_index)"
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                (locale, level["id"], path, theme, chapter, title, blocks_json, order_index),
+                "INSERT INTO grammar_lessons (locale, level, path, theme_name, theme_description, chapter, title, blocks_json, order_index, difficulty)"
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (locale, level["id"], path, theme, theme_desc, chapter, title, blocks_json, order_index, difficulty),
             )
             total += 1
     return total

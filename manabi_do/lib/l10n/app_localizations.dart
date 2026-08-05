@@ -226,6 +226,12 @@ abstract class AppLocalizations {
   /// **'{count} lessons'**
   String nLessons(int count);
 
+  /// No description provided for @lessonsProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} / {total} lessons'**
+  String lessonsProgress(int done, int total);
+
   /// No description provided for @multipleChoice.
   ///
   /// In en, this message translates to:
@@ -267,6 +273,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Next lesson →'**
   String get nextLesson;
+
+  /// No description provided for @lessonStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get lessonStart;
+
+  /// No description provided for @lessonStateStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get lessonStateStarted;
+
+  /// No description provided for @lessonStateKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Known'**
+  String get lessonStateKnown;
+
+  /// No description provided for @lessonStateUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get lessonStateUnknown;
+
+  /// No description provided for @lessonStateLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get lessonStateLocked;
+
+  /// No description provided for @markLessonAsRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as read'**
+  String get markLessonAsRead;
+
+  /// No description provided for @lessonMarkedRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get lessonMarkedRead;
 
   /// No description provided for @dailyTraining.
   ///

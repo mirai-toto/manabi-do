@@ -2,16 +2,28 @@
   "type": "lessons",
   "items": [
     {
-      "title": { "en": "Telling Time", "fr": "Lire l'Heure" },
-      "path": "N5/time/telling-time"
+      "title": {
+        "en": "Telling Time",
+        "fr": "Lire l'Heure"
+      },
+      "path": "N5/time/telling-time",
+      "difficulty": 1
     },
     {
-      "title": { "en": "Time Particles : に, から, まで", "fr": "Particules de Temps : に, から, まで" },
-      "path": "N5/time/time-particles"
+      "title": {
+        "en": "Time Particles : に, から, まで",
+        "fr": "Particules de Temps : に, から, まで"
+      },
+      "path": "N5/time/time-particles",
+      "difficulty": 1
     },
     {
-      "title": { "en": "Relative Time Words", "fr": "Mots de Temps Relatifs" },
-      "path": "N5/time/relative-time"
+      "title": {
+        "en": "Relative Time Words",
+        "fr": "Mots de Temps Relatifs"
+      },
+      "path": "N5/time/relative-time",
+      "difficulty": 2
     }
   ]
 }

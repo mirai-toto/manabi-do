@@ -6,7 +6,8 @@
         "en": "Pitch Accent",
         "fr": "Accent de Hauteur"
       },
-      "path": "basics/pitch-accent/pitch-accent"
+      "path": "basics/pitch-accent/pitch-accent",
+      "difficulty": 2
     }
   ]
 }

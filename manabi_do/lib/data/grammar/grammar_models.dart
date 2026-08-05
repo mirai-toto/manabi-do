@@ -162,17 +162,20 @@ class GrammarLesson {
   final String id;
   final String title;
   final List<GrammarBlock> blocks;
+  final int difficulty;
 
   const GrammarLesson({
     required this.id,
     required this.title,
     required this.blocks,
+    this.difficulty = 1,
   });
 
   factory GrammarLesson.fromJson(Map<String, dynamic> json) {
     return GrammarLesson(
       id: json['id'] as String,
       title: json['title'] as String,
+      difficulty: json['difficulty'] as int? ?? 1,
       blocks: (json['blocks'] as List<dynamic>)
           .map((b) => GrammarBlock.fromJson(Map<String, dynamic>.from(b)))
           .toList(),

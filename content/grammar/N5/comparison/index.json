@@ -6,21 +6,24 @@
         "en": "A は B より ～ : More Than",
         "fr": "A は B より ～ : Plus que"
       },
-      "path": "N5/comparison/yori-more-than"
+      "path": "N5/comparison/yori-more-than",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "どちらが ～ : Which is More ~?",
         "fr": "どちらが ～ : Lequel est le Plus ~ ?"
       },
-      "path": "N5/comparison/dochira-which"
+      "path": "N5/comparison/dochira-which",
+      "difficulty": 1
     },
     {
       "title": {
         "en": "いちばん ～ : The Most ~",
         "fr": "いちばん ～ : Le Plus ~"
       },
-      "path": "N5/comparison/ichiban-superlative"
+      "path": "N5/comparison/ichiban-superlative",
+      "difficulty": 2
     }
   ]
 }

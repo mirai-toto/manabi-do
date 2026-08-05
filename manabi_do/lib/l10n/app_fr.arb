@@ -46,6 +46,13 @@
       "count": { "type": "int" }
     }
   },
+  "lessonsProgress": "{done} / {total} leçons",
+  "@lessonsProgress": {
+    "placeholders": {
+      "done": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
 
   "multipleChoice": "Choix multiple",
   "sentenceFillIn": "Phrase",
@@ -55,6 +62,13 @@
   "sessionComplete": "Séance terminée !",
   "retry": "Réessayer",
   "nextLesson": "Leçon suivante →",
+  "lessonStart": "Commencer",
+  "lessonStateStarted": "En cours",
+  "lessonStateKnown": "Connu",
+  "lessonStateUnknown": "Inconnu",
+  "lessonStateLocked": "Verrouillé",
+  "markLessonAsRead": "Marquer comme lu",
+  "lessonMarkedRead": "Lu",
   "dailyTraining": "Entraînement quotidien",
   "writingPractice": "Pratique de l'écriture",
   "next": "Suivant →",

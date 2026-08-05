@@ -6,42 +6,48 @@
         "en": "たほうがいい : Should / Shouldn't",
         "fr": "たほうがいい : Devrait / Ne Devrait Pas"
       },
-      "path": "N5/obligation-opinion/ta-hou-ga-ii"
+      "path": "N5/obligation-opinion/ta-hou-ga-ii",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "Must & Don't Have To",
         "fr": "Devoir & Ne Pas Avoir À"
       },
-      "path": "N5/obligation-opinion/obligation-must"
+      "path": "N5/obligation-opinion/obligation-must",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "と思います : I Think That",
         "fr": "と思います : Je Pense que"
       },
-      "path": "N5/obligation-opinion/to-omoimasu"
+      "path": "N5/obligation-opinion/to-omoimasu",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "つもり & 予定 : Intention and Plans",
         "fr": "つもり & 予定 : Intention et Plans"
       },
-      "path": "N5/obligation-opinion/tsumori-yotei"
+      "path": "N5/obligation-opinion/tsumori-yotei",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "んです : Explanation",
         "fr": "んです : Explication"
       },
-      "path": "N5/obligation-opinion/n-desu"
+      "path": "N5/obligation-opinion/n-desu",
+      "difficulty": 3
     },
     {
       "title": {
         "en": "中 : During / Throughout",
         "fr": "中 : Pendant / Tout au Long de"
       },
-      "path": "N5/obligation-opinion/naka-chuu-juu"
+      "path": "N5/obligation-opinion/naka-chuu-juu",
+      "difficulty": 2
     }
   ]
 }

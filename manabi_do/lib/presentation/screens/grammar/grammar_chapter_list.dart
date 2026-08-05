@@ -41,6 +41,8 @@ class GrammarChapterList extends ConsumerWidget {
     final hasExercises = ref
         .watch(grammarChapterHasExercisesProvider(pathsKey))
         .when(data: (v) => v, loading: () => false, error: (_, _) => false);
+    final readLessons =
+        ref.watch(grammarReadLessonsProvider).asData?.value ?? {};
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -112,7 +114,12 @@ class GrammarChapterList extends ConsumerWidget {
                 children: [
                   for (int i = 0; i < themes.length; i++) ...[
                     if (i > 0) const SizedBox(height: AppDimens.spaceSm),
-                    _ThemeRow(theme: themes[i], accentColor: color),
+                    _ThemeRow(
+                      theme: themes[i],
+                      index: i,
+                      accentColor: color,
+                      readLessons: readLessons,
+                    ),
                   ],
                 ],
               ),
@@ -127,22 +134,41 @@ class GrammarChapterList extends ConsumerWidget {
 
 class _ThemeRow extends StatelessWidget {
   final GrammarTheme theme;
+  final int index;
   final Color accentColor;
+  final Set<String> readLessons;
 
-  const _ThemeRow({required this.theme, required this.accentColor});
+  const _ThemeRow({
+    required this.theme,
+    required this.index,
+    required this.accentColor,
+    required this.readLessons,
+  });
 
   int get _lessonCount =>
       theme.chapters.fold(0, (sum, c) => sum + c.lessons.length);
 
+  int get _doneCount => theme.chapters.fold(
+    0,
+    (sum, c) => sum + c.lessons.where((l) => readLessons.contains(l.id)).length,
+  );
+
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+    final l = context.l10n;
 
     return TappableSurface(
       decoration: BoxDecoration(
         color: t.cardBackground,
-        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: accentColor.withValues(alpha: 0.35)),
+        borderRadius: BorderRadius.circular(AppDimens.radiusLg),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.08),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute<void>(
@@ -151,37 +177,72 @@ class _ThemeRow extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.spaceMd,
-          vertical: AppDimens.spaceLg,
-        ),
-        child: Row(
+        padding: const EdgeInsets.all(AppDimens.spaceMd),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Text(
-                theme.title,
-                style: AppTextStyles.body.copyWith(
-                  color: t.onSurface,
-                  fontWeight: FontWeight.w600,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    l.chapterN('${index + 1}'.padLeft(2, '0')),
+                    style: AppTextStyles.labelSmall.copyWith(
+                      color: accentColor,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimens.badgePaddingH,
+                    vertical: AppDimens.badgePaddingV,
+                  ),
+                  decoration: BoxDecoration(
+                    color: accentColor.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(AppDimens.radiusPill),
+                  ),
+                  child: Text(
+                    l.nLessons(_lessonCount),
+                    style: AppTextStyles.labelSmall.copyWith(
+                      color: accentColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: AppDimens.spaceSm),
+            Text(
+              theme.title,
+              style: AppTextStyles.title.copyWith(color: t.onSurface),
+            ),
+            if (theme.description.isNotEmpty) ...[
+              const SizedBox(height: AppDimens.spaceXs),
+              Text(
+                theme.description,
+                style: AppTextStyles.bodySmall.copyWith(
+                  color: t.onSurfaceVariant,
                 ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.spaceSm,
-                vertical: AppDimens.spaceXs,
-              ),
-              decoration: BoxDecoration(
-                color: accentColor.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-              ),
-              child: Text(
-                '$_lessonCount',
-                style: AppTextStyles.labelLarge.copyWith(color: accentColor),
+            ],
+            const SizedBox(height: AppDimens.spaceMd),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(AppDimens.radiusPill),
+              child: LinearProgressIndicator(
+                value: _lessonCount == 0 ? 0 : _doneCount / _lessonCount,
+                minHeight: 6,
+                backgroundColor: t.surfaceVariant,
+                valueColor: AlwaysStoppedAnimation<Color>(accentColor),
               ),
             ),
-            const SizedBox(width: AppDimens.spaceSm),
-            Icon(Icons.chevron_right_rounded, color: t.onSurfaceVariant),
+            const SizedBox(height: AppDimens.spaceXs),
+            Text(
+              l.lessonsProgress(_doneCount, _lessonCount),
+              style: AppTextStyles.labelSmall.copyWith(
+                color: t.onSurfaceVariant,
+              ),
+            ),
           ],
         ),
       ),
