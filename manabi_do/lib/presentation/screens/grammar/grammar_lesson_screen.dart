@@ -8,6 +8,7 @@ import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/grammar_provider.dart';
 import '../../widgets/grammar/grammar_block_renderer.dart';
+import '../../widgets/widgets.dart';
 
 class GrammarLessonScreen extends ConsumerWidget {
   final String lessonId;
@@ -46,11 +47,12 @@ class GrammarLessonScreen extends ConsumerWidget {
           style: AppTextStyles.title.copyWith(color: t.onSurface),
         ),
       ),
-      body: GrammarBlockRenderer(blocks: blocks, levelColor: levelColor),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(AppDimens.spaceMd),
-          child: GestureDetector(
+      body: ScrollFade(
+        builder: (controller) => GrammarBlockRenderer(
+          blocks: blocks,
+          levelColor: levelColor,
+          controller: controller,
+          trailing: GestureDetector(
             onTap: () {
               if (isRead) {
                 db.unmarkGrammarLessonRead(lessonId);

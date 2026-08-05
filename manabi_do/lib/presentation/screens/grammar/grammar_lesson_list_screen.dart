@@ -131,58 +131,61 @@ class _GrammarLessonListScreenState
               foregroundColor: Colors.white,
             )
           : null,
-      body: ListView(
-        padding: const EdgeInsets.all(AppDimens.spaceMd),
-        children: [
-          for (int ci = 0; ci < widget.theme.chapters.length; ci++) ...[
-            if (ci > 0 && !showChapterHeaders)
-              const SizedBox(height: AppDimens.spaceSm),
-            if (showChapterHeaders) ...[
-              if (ci > 0) const SizedBox(height: AppDimens.spaceSm),
-              CollapsibleSection(
-                title: widget.theme.chapters[ci].title,
-                isCollapsed: _collapsed.contains(ci),
-                accentColor: widget.levelColor,
-                onToggle: () => setState(() {
-                  if (_collapsed.contains(ci)) {
-                    _collapsed.remove(ci);
-                  } else {
-                    _collapsed.add(ci);
-                  }
-                }),
-              ),
-            ],
-            if (!_collapsed.contains(ci))
-              for (
-                int li = 0;
-                li < widget.theme.chapters[ci].lessons.length;
-                li++
-              ) ...[
-                if (li > 0 || showChapterHeaders)
-                  const SizedBox(height: AppDimens.spaceSm),
-                _LessonRow(
-                  lesson: widget.theme.chapters[ci].lessons[li],
-                  index: li,
+      body: ScrollFade(
+        builder: (controller) => ListView(
+          controller: controller,
+          padding: const EdgeInsets.all(AppDimens.spaceMd),
+          children: [
+            for (int ci = 0; ci < widget.theme.chapters.length; ci++) ...[
+              if (ci > 0 && !showChapterHeaders)
+                const SizedBox(height: AppDimens.spaceSm),
+              if (showChapterHeaders) ...[
+                if (ci > 0) const SizedBox(height: AppDimens.spaceSm),
+                CollapsibleSection(
+                  title: widget.theme.chapters[ci].title,
+                  isCollapsed: _collapsed.contains(ci),
                   accentColor: widget.levelColor,
-                  state: _lessonState(
-                    widget.theme.chapters[ci].lessons[li].id,
-                    readLessons,
-                    startedLessons,
-                  ),
-                  exerciseCount:
-                      exerciseCounts[widget
-                          .theme
-                          .chapters[ci]
-                          .lessons[li]
-                          .id] ??
-                      0,
-                  onTap: () =>
-                      _openLesson(widget.theme.chapters[ci].lessons[li]),
+                  onToggle: () => setState(() {
+                    if (_collapsed.contains(ci)) {
+                      _collapsed.remove(ci);
+                    } else {
+                      _collapsed.add(ci);
+                    }
+                  }),
                 ),
               ],
+              if (!_collapsed.contains(ci))
+                for (
+                  int li = 0;
+                  li < widget.theme.chapters[ci].lessons.length;
+                  li++
+                ) ...[
+                  if (li > 0 || showChapterHeaders)
+                    const SizedBox(height: AppDimens.spaceSm),
+                  _LessonRow(
+                    lesson: widget.theme.chapters[ci].lessons[li],
+                    index: li,
+                    accentColor: widget.levelColor,
+                    state: _lessonState(
+                      widget.theme.chapters[ci].lessons[li].id,
+                      readLessons,
+                      startedLessons,
+                    ),
+                    exerciseCount:
+                        exerciseCounts[widget
+                            .theme
+                            .chapters[ci]
+                            .lessons[li]
+                            .id] ??
+                        0,
+                    onTap: () =>
+                        _openLesson(widget.theme.chapters[ci].lessons[li]),
+                  ),
+                ],
+            ],
+            const SizedBox(height: AppDimens.spaceLg),
           ],
-          const SizedBox(height: AppDimens.spaceLg),
-        ],
+        ),
       ),
     );
   }

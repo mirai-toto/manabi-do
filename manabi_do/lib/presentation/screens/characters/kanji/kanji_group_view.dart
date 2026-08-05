@@ -43,81 +43,84 @@ class KanjiGroupView extends ConsumerWidget {
     }).length;
     final color = levelColor(level);
 
-    return ListView(
-      padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
-      children: [
-        KanjiLevelHeader(
-          level: level,
-          label:
-              '${context.l10n.groupN(groupIndex + 1)} · ${start + 1}–${start + groupKanji.length}',
-          color: color,
-          onBack: () => ref.read(kanjiSelectedGroupProvider.notifier).clear(),
-        ),
-        ProgressRow(
-          known: learnedCount,
-          total: groupKanji.length,
-          color: color,
-        ),
-        PracticeButton(
-          color: color,
-          onTap: () {
-            final l = context.l10n;
-            final groupTitle = l.groupN(groupIndex + 1);
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (ctx) => PracticeSelectionScreen(
-                  title: groupTitle,
-                  color: color,
-                  modes: [
-                    PracticeMode(
-                      icon: Icons.edit_rounded,
-                      title: l.writingPractice,
-                      onTap: () async => Navigator.of(ctx).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => WritingSessionScreen(
-                            level: level,
-                            color: color,
-                            kanjiIds: groupIds,
+    return ScrollFade(
+      builder: (controller) => ListView(
+        controller: controller,
+        padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
+        children: [
+          KanjiLevelHeader(
+            level: level,
+            label:
+                '${context.l10n.groupN(groupIndex + 1)} · ${start + 1}–${start + groupKanji.length}',
+            color: color,
+            onBack: () => ref.read(kanjiSelectedGroupProvider.notifier).clear(),
+          ),
+          ProgressRow(
+            known: learnedCount,
+            total: groupKanji.length,
+            color: color,
+          ),
+          PracticeButton(
+            color: color,
+            onTap: () {
+              final l = context.l10n;
+              final groupTitle = l.groupN(groupIndex + 1);
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (ctx) => PracticeSelectionScreen(
+                    title: groupTitle,
+                    color: color,
+                    modes: [
+                      PracticeMode(
+                        icon: Icons.edit_rounded,
+                        title: l.writingPractice,
+                        onTap: () async => Navigator.of(ctx).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => WritingSessionScreen(
+                              level: level,
+                              color: color,
+                              kanjiIds: groupIds,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    PracticeMode(
-                      icon: Icons.style_rounded,
-                      title: l.flashcardPractice,
-                      onTap: () async => Navigator.of(ctx).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => KanjiPracticeScreen(
-                            level: level,
-                            allowedIds: groupIds,
-                            exerciseFilter: ExerciseFilter.flashcardOnly,
-                            freeMode: true,
+                      PracticeMode(
+                        icon: Icons.style_rounded,
+                        title: l.flashcardPractice,
+                        onTap: () async => Navigator.of(ctx).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => KanjiPracticeScreen(
+                              level: level,
+                              allowedIds: groupIds,
+                              exerciseFilter: ExerciseFilter.flashcardOnly,
+                              freeMode: true,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    PracticeMode(
-                      icon: Icons.quiz_rounded,
-                      title: l.mcqPractice,
-                      onTap: () async => Navigator.of(ctx).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => KanjiPracticeScreen(
-                            level: level,
-                            allowedIds: groupIds,
-                            exerciseFilter: ExerciseFilter.mcqOnly,
-                            freeMode: true,
+                      PracticeMode(
+                        icon: Icons.quiz_rounded,
+                        title: l.mcqPractice,
+                        onTap: () async => Navigator.of(ctx).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => KanjiPracticeScreen(
+                              level: level,
+                              allowedIds: groupIds,
+                              exerciseFilter: ExerciseFilter.mcqOnly,
+                              freeMode: true,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
-        ),
-        KanjiGrid(kanjis: groupKanji, srsCards: srsCards),
-      ],
+              );
+            },
+          ),
+          KanjiGrid(kanjis: groupKanji, srsCards: srsCards),
+        ],
+      ),
     );
   }
 }

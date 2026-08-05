@@ -75,57 +75,60 @@ class GrammarChapterList extends ConsumerWidget {
       body: themesAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, _) => const SizedBox.shrink(),
-        data: (themes) => ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppDimens.spaceSm,
-                AppDimens.spaceSm,
-                AppDimens.spaceMd,
-                0,
-              ),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back_rounded, color: t.onSurface),
-                    onPressed: onBack,
-                  ),
-                  Text(
-                    title,
-                    style: AppTextStyles.title.copyWith(color: t.onSurface),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppDimens.spaceMd,
-                AppDimens.spaceSm,
-                AppDimens.spaceMd,
-                AppDimens.spaceSm,
-              ),
-              child: SectionLabel(l.grammarChapters),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.spaceMd,
-              ),
-              child: Column(
-                children: [
-                  for (int i = 0; i < themes.length; i++) ...[
-                    if (i > 0) const SizedBox(height: AppDimens.spaceSm),
-                    _ThemeRow(
-                      theme: themes[i],
-                      index: i,
-                      accentColor: color,
-                      readLessons: readLessons,
+        data: (themes) => ScrollFade(
+          builder: (controller) => ListView(
+            controller: controller,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppDimens.spaceSm,
+                  AppDimens.spaceSm,
+                  AppDimens.spaceMd,
+                  0,
+                ),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_rounded, color: t.onSurface),
+                      onPressed: onBack,
+                    ),
+                    Text(
+                      title,
+                      style: AppTextStyles.title.copyWith(color: t.onSurface),
                     ),
                   ],
-                ],
+                ),
               ),
-            ),
-            const SizedBox(height: AppDimens.fabClearance),
-          ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppDimens.spaceMd,
+                  AppDimens.spaceSm,
+                  AppDimens.spaceMd,
+                  AppDimens.spaceSm,
+                ),
+                child: SectionLabel(l.grammarChapters),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.spaceMd,
+                ),
+                child: Column(
+                  children: [
+                    for (int i = 0; i < themes.length; i++) ...[
+                      if (i > 0) const SizedBox(height: AppDimens.spaceSm),
+                      _ThemeRow(
+                        theme: themes[i],
+                        index: i,
+                        accentColor: color,
+                        readLessons: readLessons,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(height: AppDimens.fabClearance),
+            ],
+          ),
         ),
       ),
     );

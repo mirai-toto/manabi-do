@@ -31,16 +31,19 @@ class KanjiDetailScreen extends ConsumerWidget {
     final color = levelColor(kanji.jlptLevel);
 
     return Scaffold(
-      body: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          KanjiHero(
-            kanji: kanji,
-            color: color,
-            onBack: () => Navigator.of(context).pop(),
-          ),
-          _KanjiBody(kanji: kanji),
-        ],
+      body: ScrollFade(
+        builder: (controller) => ListView(
+          controller: controller,
+          padding: EdgeInsets.zero,
+          children: [
+            KanjiHero(
+              kanji: kanji,
+              color: color,
+              onBack: () => Navigator.of(context).pop(),
+            ),
+            _KanjiBody(kanji: kanji),
+          ],
+        ),
       ),
     );
   }

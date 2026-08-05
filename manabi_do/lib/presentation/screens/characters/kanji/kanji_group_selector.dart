@@ -32,152 +32,158 @@ class KanjiGroupSelector extends ConsumerWidget {
     final kanjiList = kanjiAsync.asData?.value.kanji ?? [];
     final groupCount = (kanjiList.length / kKanjiGroupSize).ceil();
 
-    return ListView(
-      padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
-      children: [
-        KanjiLevelHeader(
-          level: level,
-          label: levelLabel(level, context),
-          color: color,
-          onBack: () {
-            ref.read(kanjiSelectedGroupProvider.notifier).clear();
-            ref.read(kanjiSelectedLevelProvider.notifier).clear();
-          },
-        ),
-        PracticeButton(
-          color: color,
-          onTap: () {
-            final l = context.l10n;
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (ctx) => PracticeSelectionScreen(
-                  title: levelLabel(level, ctx),
-                  color: color,
-                  modes: [
-                    PracticeMode(
-                      icon: Icons.edit_rounded,
-                      title: l.writingPractice,
-                      onTap: () async => Navigator.of(ctx).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) =>
-                              WritingSessionScreen(level: level, color: color),
-                        ),
-                      ),
-                    ),
-                    PracticeMode(
-                      icon: Icons.style_rounded,
-                      title: l.flashcardPractice,
-                      onTap: () async => Navigator.of(ctx).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => KanjiPracticeScreen(
-                            level: level,
-                            exerciseFilter: ExerciseFilter.flashcardOnly,
-                            freeMode: true,
-                          ),
-                        ),
-                      ),
-                    ),
-                    PracticeMode(
-                      icon: Icons.quiz_rounded,
-                      title: l.mcqPractice,
-                      onTap: () async => Navigator.of(ctx).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => KanjiPracticeScreen(
-                            level: level,
-                            exerciseFilter: ExerciseFilter.mcqOnly,
-                            freeMode: true,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
-        if (kanjiAsync is AsyncLoading)
-          const Center(child: CircularProgressIndicator())
-        else
-          Padding(
-            padding: const EdgeInsets.all(AppDimens.spaceMd),
-            child: Column(
-              children: List.generate(groupCount, (i) {
-                final start = i * kKanjiGroupSize;
-                final end = (start + kKanjiGroupSize).clamp(
-                  0,
-                  kanjiList.length,
-                );
-                final groupKanji = kanjiList.sublist(start, end);
-                final learnedCount = groupKanji.where((k) {
-                  final level = srsLevel(srsCards[k.id]);
-                  return level != SrsLevel.newCard &&
-                      level != SrsLevel.learning;
-                }).length;
-                final progress = groupKanji.isEmpty
-                    ? 0.0
-                    : learnedCount / groupKanji.length;
-
-                return Padding(
-                  padding: EdgeInsets.only(
-                    bottom: i < groupCount - 1 ? AppDimens.spaceSm : 0,
-                  ),
-                  child: TappableSurface(
-                    decoration: BoxDecoration(
-                      color: t.cardBackground,
-                      borderRadius: BorderRadius.circular(AppDimens.radiusLg),
-                      border: Border.all(color: color.withValues(alpha: 0.2)),
-                    ),
-                    onTap: () =>
-                        ref.read(kanjiSelectedGroupProvider.notifier).select(i),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppDimens.spaceLg,
-                        vertical: AppDimens.spaceMd,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  context.l10n.groupN(i + 1),
-                                  style: AppTextStyles.body.copyWith(
-                                    color: t.onSurface,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const SizedBox(height: AppDimens.spaceXxs),
-                                Text(
-                                  '${start + 1}–$end · $learnedCount / ${groupKanji.length}',
-                                  style: AppTextStyles.bodySmall.copyWith(
-                                    color: t.onSurfaceVariant,
-                                  ),
-                                ),
-                                const SizedBox(height: AppDimens.spaceXs),
-                                AppProgressBar(
-                                  progress: progress,
-                                  color: color,
-                                ),
-                              ],
+    return ScrollFade(
+      builder: (controller) => ListView(
+        controller: controller,
+        padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
+        children: [
+          KanjiLevelHeader(
+            level: level,
+            label: levelLabel(level, context),
+            color: color,
+            onBack: () {
+              ref.read(kanjiSelectedGroupProvider.notifier).clear();
+              ref.read(kanjiSelectedLevelProvider.notifier).clear();
+            },
+          ),
+          PracticeButton(
+            color: color,
+            onTap: () {
+              final l = context.l10n;
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (ctx) => PracticeSelectionScreen(
+                    title: levelLabel(level, ctx),
+                    color: color,
+                    modes: [
+                      PracticeMode(
+                        icon: Icons.edit_rounded,
+                        title: l.writingPractice,
+                        onTap: () async => Navigator.of(ctx).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => WritingSessionScreen(
+                              level: level,
+                              color: color,
                             ),
                           ),
-                          const SizedBox(width: AppDimens.spaceMd),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: t.onSurfaceVariant,
-                            size: 14,
+                        ),
+                      ),
+                      PracticeMode(
+                        icon: Icons.style_rounded,
+                        title: l.flashcardPractice,
+                        onTap: () async => Navigator.of(ctx).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => KanjiPracticeScreen(
+                              level: level,
+                              exerciseFilter: ExerciseFilter.flashcardOnly,
+                              freeMode: true,
+                            ),
                           ),
-                        ],
+                        ),
+                      ),
+                      PracticeMode(
+                        icon: Icons.quiz_rounded,
+                        title: l.mcqPractice,
+                        onTap: () async => Navigator.of(ctx).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => KanjiPracticeScreen(
+                              level: level,
+                              exerciseFilter: ExerciseFilter.mcqOnly,
+                              freeMode: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+          if (kanjiAsync is AsyncLoading)
+            const Center(child: CircularProgressIndicator())
+          else
+            Padding(
+              padding: const EdgeInsets.all(AppDimens.spaceMd),
+              child: Column(
+                children: List.generate(groupCount, (i) {
+                  final start = i * kKanjiGroupSize;
+                  final end = (start + kKanjiGroupSize).clamp(
+                    0,
+                    kanjiList.length,
+                  );
+                  final groupKanji = kanjiList.sublist(start, end);
+                  final learnedCount = groupKanji.where((k) {
+                    final level = srsLevel(srsCards[k.id]);
+                    return level != SrsLevel.newCard &&
+                        level != SrsLevel.learning;
+                  }).length;
+                  final progress = groupKanji.isEmpty
+                      ? 0.0
+                      : learnedCount / groupKanji.length;
+
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      bottom: i < groupCount - 1 ? AppDimens.spaceSm : 0,
+                    ),
+                    child: TappableSurface(
+                      decoration: BoxDecoration(
+                        color: t.cardBackground,
+                        borderRadius: BorderRadius.circular(AppDimens.radiusLg),
+                        border: Border.all(color: color.withValues(alpha: 0.2)),
+                      ),
+                      onTap: () => ref
+                          .read(kanjiSelectedGroupProvider.notifier)
+                          .select(i),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppDimens.spaceLg,
+                          vertical: AppDimens.spaceMd,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    context.l10n.groupN(i + 1),
+                                    style: AppTextStyles.body.copyWith(
+                                      color: t.onSurface,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(height: AppDimens.spaceXxs),
+                                  Text(
+                                    '${start + 1}–$end · $learnedCount / ${groupKanji.length}',
+                                    style: AppTextStyles.bodySmall.copyWith(
+                                      color: t.onSurfaceVariant,
+                                    ),
+                                  ),
+                                  const SizedBox(height: AppDimens.spaceXs),
+                                  AppProgressBar(
+                                    progress: progress,
+                                    color: color,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: AppDimens.spaceMd),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: t.onSurfaceVariant,
+                              size: 14,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+              ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }

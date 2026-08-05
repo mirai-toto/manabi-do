@@ -47,23 +47,26 @@ class KanaTabView extends ConsumerWidget {
       return level != SrsLevel.newCard && level != SrsLevel.learning;
     }).length;
 
-    return ListView(
-      padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
-      children: [
-        ProgressRow(known: learnedCount, total: allKana.length, color: color),
-        PracticeButton(color: color, onTap: onPractice),
-        for (final row in rows)
-          _KanaRowSection(
-            row: row,
-            label: _localizeRowLabel(context, row.label),
-            srsCards: srsCards,
-            onTap: (entry) => _showDetail(
-              context,
-              entry,
-              _localizeRowLabel(context, row.label),
+    return ScrollFade(
+      builder: (controller) => ListView(
+        controller: controller,
+        padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
+        children: [
+          ProgressRow(known: learnedCount, total: allKana.length, color: color),
+          PracticeButton(color: color, onTap: onPractice),
+          for (final row in rows)
+            _KanaRowSection(
+              row: row,
+              label: _localizeRowLabel(context, row.label),
+              srsCards: srsCards,
+              onTap: (entry) => _showDetail(
+                context,
+                entry,
+                _localizeRowLabel(context, row.label),
+              ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 

@@ -14,18 +14,21 @@ class VocabLevelSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ListView(
-      padding: const EdgeInsets.all(AppDimens.spaceMd),
-      children: [
-        SectionLabel(context.l10n.selectLevel),
-        const SizedBox(height: AppDimens.spaceSm),
-        for (final code in _levels)
-          JlptLevelCard(
-            code: code,
-            subtitle: _subtitle(context, ref, code),
-            onTap: () => onSelect(code),
-          ),
-      ],
+    return ScrollFade(
+      builder: (controller) => ListView(
+        controller: controller,
+        padding: const EdgeInsets.all(AppDimens.spaceMd),
+        children: [
+          SectionLabel(context.l10n.selectLevel),
+          const SizedBox(height: AppDimens.spaceSm),
+          for (final code in _levels)
+            JlptLevelCard(
+              code: code,
+              subtitle: _subtitle(context, ref, code),
+              onTap: () => onSelect(code),
+            ),
+        ],
+      ),
     );
   }
 
