@@ -57,28 +57,28 @@ class AppLocalizationsDe extends AppLocalizations {
   String get statusNotStarted => 'Nicht begonnen';
 
   @override
-  String get chapterLocked => 'Chapter locked';
+  String get chapterLocked => 'Kapitel gesperrt';
 
   @override
   String get chapterLockedBody =>
-      'Complete the previous chapter to unlock this one, or continue anyway.';
+      'Schließe das vorherige Kapitel ab, um dieses freizuschalten, oder mach trotzdem weiter.';
 
   @override
-  String get groupLocked => 'Group locked';
+  String get groupLocked => 'Gruppe gesperrt';
 
   @override
   String get groupLockedBody =>
-      'Complete the previous group to unlock this one, or continue anyway.';
+      'Schließe die vorherige Gruppe ab, um diese freizuschalten, oder mach trotzdem weiter.';
 
   @override
-  String get lessonLocked => 'Lesson locked';
+  String get lessonLocked => 'Lektion gesperrt';
 
   @override
   String get lessonLockedBody =>
-      'Complete the previous lesson to unlock this one, or continue anyway.';
+      'Schließe die vorherige Lektion ab, um diese freizuschalten, oder mach trotzdem weiter.';
 
   @override
-  String get chapterUnlockAnyway => 'Unlock anyway';
+  String get chapterUnlockAnyway => 'Trotzdem freischalten';
 
   @override
   String get exampleWords => 'Beispielwörter';
@@ -103,7 +103,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String lessonsProgress(int done, int total) {
-    return '$done / $total lessons';
+    return '$done / $total Lektionen';
   }
 
   @override
@@ -128,25 +128,25 @@ class AppLocalizationsDe extends AppLocalizations {
   String get nextLesson => 'Nächste Lektion →';
 
   @override
-  String get lessonStart => 'Start';
+  String get lessonStart => 'Starten';
 
   @override
-  String get lessonStateStarted => 'Started';
+  String get lessonStateStarted => 'Begonnen';
 
   @override
-  String get lessonStateKnown => 'Known';
+  String get lessonStateKnown => 'Bekannt';
 
   @override
-  String get lessonStateUnknown => 'Unknown';
+  String get lessonStateUnknown => 'Unbekannt';
 
   @override
-  String get lessonStateLocked => 'Locked';
+  String get lessonStateLocked => 'Gesperrt';
 
   @override
-  String get markLessonAsRead => 'Mark as read';
+  String get markLessonAsRead => 'Als gelesen markieren';
 
   @override
-  String get lessonMarkedRead => 'Read';
+  String get lessonMarkedRead => 'Gelesen';
 
   @override
   String get dailyTraining => 'Tägliches Training';
@@ -597,13 +597,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get grammarSubtitle => 'Grundlagen & JLPT N5–N1';
-
-  @override
-  String get grammarLockedTitle => 'Grammatik kommt bald';
-
-  @override
-  String get grammarLockedSubtitle =>
-      'Wir arbeiten aktiv an der Grammatik-Sektion. Bleib dran!';
 
   @override
   String get searchKanji => 'Kanji suchen';

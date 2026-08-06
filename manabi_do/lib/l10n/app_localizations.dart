@@ -1186,18 +1186,6 @@ abstract class AppLocalizations {
   /// **'Basics & JLPT N5–N1'**
   String get grammarSubtitle;
 
-  /// No description provided for @grammarLockedTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Grammar is coming soon'**
-  String get grammarLockedTitle;
-
-  /// No description provided for @grammarLockedSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'We\'re actively working on the grammar section. Stay tuned!'**
-  String get grammarLockedSubtitle;
-
   /// No description provided for @searchKanji.
   ///
   /// In en, this message translates to:

@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,8 +7,6 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/home_provider.dart';
 import '../../widgets/widgets.dart';
-
-const _grammarEnabled = false;
 
 const _levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
@@ -24,7 +19,7 @@ class GrammarScreen extends ConsumerWidget {
     final t = context.tokens;
     final selectedLevel = ref.watch(grammarSelectedLevelProvider);
 
-    final content = Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SectionHeader(
@@ -45,25 +40,6 @@ class GrammarScreen extends ConsumerWidget {
                   onBack: () =>
                       ref.read(grammarSelectedLevelProvider.notifier).clear(),
                 ),
-        ),
-      ],
-    );
-
-    if (_grammarEnabled || kDebugMode) return content;
-
-    return Stack(
-      children: [
-        ImageFiltered(
-          imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-          child: IgnorePointer(child: content),
-        ),
-        Positioned.fill(
-          child: Center(
-            child: LockedFeatureCard(
-              title: l.grammarLockedTitle,
-              subtitle: l.grammarLockedSubtitle,
-            ),
-          ),
         ),
       ],
     );
