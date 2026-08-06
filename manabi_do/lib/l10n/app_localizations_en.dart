@@ -57,6 +57,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statusNotStarted => 'Not started';
 
   @override
+  String get chapterLocked => 'Chapter locked';
+
+  @override
+  String get chapterLockedBody =>
+      'Complete the previous chapter to unlock this one, or continue anyway.';
+
+  @override
+  String get groupLocked => 'Group locked';
+
+  @override
+  String get groupLockedBody =>
+      'Complete the previous group to unlock this one, or continue anyway.';
+
+  @override
+  String get lessonLocked => 'Lesson locked';
+
+  @override
+  String get lessonLockedBody =>
+      'Complete the previous lesson to unlock this one, or continue anyway.';
+
+  @override
+  String get chapterUnlockAnyway => 'Unlock anyway';
+
+  @override
   String get exampleWords => 'Example Words';
 
   @override
@@ -75,6 +99,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String nLessons(int count) {
     return '$count lessons';
+  }
+
+  @override
+  String lessonsProgress(int done, int total) {
+    return '$done / $total lessons';
   }
 
   @override
@@ -97,6 +126,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nextLesson => 'Next lesson →';
+
+  @override
+  String get lessonStart => 'Start';
+
+  @override
+  String get lessonStateStarted => 'Started';
+
+  @override
+  String get lessonStateKnown => 'Known';
+
+  @override
+  String get lessonStateUnknown => 'Unknown';
+
+  @override
+  String get lessonStateLocked => 'Locked';
+
+  @override
+  String get markLessonAsRead => 'Mark as read';
+
+  @override
+  String get lessonMarkedRead => 'Read';
 
   @override
   String get dailyTraining => 'Daily Training';

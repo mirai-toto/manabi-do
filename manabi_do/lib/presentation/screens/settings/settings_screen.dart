@@ -9,9 +9,6 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../services/srs_service.dart';
 import '../../widgets/widgets.dart';
-import 'language_picker_sheet.dart';
-import 'settings_about_section.dart';
-import 'settings_practice_card.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});

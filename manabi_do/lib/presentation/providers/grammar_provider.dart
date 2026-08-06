@@ -17,9 +17,14 @@ class GrammarChapter {
 
 class GrammarTheme {
   final String title;
+  final String description;
   final List<GrammarChapter> chapters;
 
-  const GrammarTheme({required this.title, required this.chapters});
+  const GrammarTheme({
+    required this.title,
+    required this.description,
+    required this.chapters,
+  });
 }
 
 final grammarThemesProvider = FutureProvider.family<List<GrammarTheme>, String>(
@@ -28,6 +33,7 @@ final grammarThemesProvider = FutureProvider.family<List<GrammarTheme>, String>(
     final locale = ref.read(localeProvider).languageCode;
     final rows = await db.getGrammarLessonsForLevel(level, locale: locale);
     final themes = <String, Map<String, List<GrammarLesson>>>{};
+    final themeDescriptions = <String, String>{};
     for (final row in rows) {
       final blocks = (jsonDecode(row.blocksJson) as List<dynamic>)
           .map(
@@ -37,16 +43,43 @@ final grammarThemesProvider = FutureProvider.family<List<GrammarTheme>, String>(
       themes
           .putIfAbsent(row.themeName, () => {})
           .putIfAbsent(row.chapter, () => [])
-          .add(GrammarLesson(id: row.path, title: row.title, blocks: blocks));
+          .add(
+            GrammarLesson(
+              id: row.path,
+              title: row.title,
+              blocks: blocks,
+              difficulty: row.difficulty,
+            ),
+          );
+      themeDescriptions.putIfAbsent(row.themeName, () => row.themeDescription);
     }
     return themes.entries.map((te) {
       final chapters = te.value.entries
           .map((ce) => GrammarChapter(title: ce.key, lessons: ce.value))
           .toList();
-      return GrammarTheme(title: te.key, chapters: chapters);
+      return GrammarTheme(
+        title: te.key,
+        description: themeDescriptions[te.key] ?? '',
+        chapters: chapters,
+      );
     }).toList();
   },
 );
+
+final grammarStartedLessonsProvider = StreamProvider<Set<String>>((ref) {
+  final db = ref.read(databaseProvider);
+  return db.watchStartedGrammarLessons();
+});
+
+final grammarUnlockedChaptersProvider = StreamProvider<Set<String>>((ref) {
+  final db = ref.read(databaseProvider);
+  return db.watchUnlockedGrammarChapters();
+});
+
+final grammarReadLessonsProvider = StreamProvider<Set<String>>((ref) {
+  final db = ref.read(databaseProvider);
+  return db.watchReadGrammarLessons();
+});
 
 final grammarHasExercisesProvider = FutureProvider.family<bool, String>((
   ref,
@@ -56,6 +89,18 @@ final grammarHasExercisesProvider = FutureProvider.family<bool, String>((
   final rows = await db.getGrammarExercisesForLesson(lessonPath);
   return rows.isNotEmpty;
 });
+
+final grammarExerciseCountsProvider =
+    FutureProvider.family<Map<String, int>, String>((
+      ref,
+      lessonPathsKey,
+    ) async {
+      final db = ref.read(databaseProvider);
+      final lessonPaths = lessonPathsKey.isEmpty
+          ? <String>[]
+          : lessonPathsKey.split('\n');
+      return db.getGrammarExerciseCountsForLessons(lessonPaths);
+    });
 
 final grammarChapterHasExercisesProvider = FutureProvider.family<bool, String>((
   ref,

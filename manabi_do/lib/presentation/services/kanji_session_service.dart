@@ -210,6 +210,11 @@ class KanjiSessionService {
               ? ctx.l10n.mcqSelectMeaning
               : ctx.l10n.mcqSelectKanji(meaningOf(kanji)),
           japanesePrompt: isKanjiToMeaning ? kanji.character : null,
+          japaneseReading: isKanjiToMeaning
+              ? (kanji.onReading.isNotEmpty
+                    ? kanji.onReading.split('、').first
+                    : kanji.kunReading.split('、').firstOrNull)
+              : null,
           options: kanjiMcq.options,
           correctIndex: kanjiMcq.correctIndex,
           isFreeMode: freeMode,

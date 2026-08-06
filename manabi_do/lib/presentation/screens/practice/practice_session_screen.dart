@@ -14,8 +14,8 @@ import 'practice_item.dart';
 import 'practice_settings_sheet.dart';
 
 export 'practice_item.dart';
-export 'practice_flashcard_body.dart';
-export 'practice_mcq_body.dart';
+export '../../widgets/exercise/practice_flashcard_body.dart';
+export '../../widgets/exercise/practice_mcq_body.dart';
 export 'practice_settings_sheet.dart' show SettingsContext;
 
 class PracticeSessionScreen extends ConsumerStatefulWidget {

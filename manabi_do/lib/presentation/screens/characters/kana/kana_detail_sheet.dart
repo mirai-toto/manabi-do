@@ -76,44 +76,17 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // drag handle
-            Container(
-              width: 36,
-              height: 4,
-              margin: const EdgeInsets.only(bottom: AppDimens.spaceMd),
-              decoration: BoxDecoration(
-                color: t.outlineVariant,
-                borderRadius: BorderRadius.circular(AppDimens.radiusXxs),
-              ),
-            ),
+            const SheetDragHandle(),
 
             // Character hero
             Row(
               children: [
                 Stack(
                   children: [
-                    Container(
-                      width: 88,
-                      height: 88,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.lerp(color, Colors.black, 0.25)!,
-                            color,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-                      ),
-                      child: Center(
-                        child: Text(
-                          widget.entry.kana,
-                          style: AppTextStyles.jpKanji.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                    CharacterHeroBox(
+                      character: widget.entry.kana,
+                      size: 88,
+                      accentColor: color,
                     ),
                     Positioned(
                       top: AppDimens.spaceSm,
@@ -162,23 +135,7 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
             const SizedBox(height: AppDimens.spaceLg),
 
             // Progress row
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(AppDimens.spaceMd),
-              decoration: BoxDecoration(
-                color: t.surfaceContainer,
-                borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-              ),
-              child: _loaded
-                  ? ReviewProgressInfo(srsCard: _srsCard)
-                  : const Center(
-                      child: SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      ),
-                    ),
-            ),
+            SrsProgressCard(isLoaded: _loaded, srsCard: _srsCard),
 
             if (_loaded && _srsCard != null) ...[
               const SizedBox(height: AppDimens.spaceMd),

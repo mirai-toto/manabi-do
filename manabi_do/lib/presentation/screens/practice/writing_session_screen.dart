@@ -11,6 +11,7 @@ import '../../providers/home_provider.dart';
 import '../../providers/writing_session_provider.dart';
 import '../../widgets/characters/kanji_strokes_provider.dart';
 import '../../widgets/exercise/drawing_exercise.dart';
+import '../../widgets/exercise/practice_progress_row.dart';
 import 'practice_settings_sheet.dart';
 
 class WritingSessionScreen extends ConsumerStatefulWidget {
@@ -156,25 +157,7 @@ class _ActiveScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(AppDimens.spaceMd),
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: LinearProgressIndicator(
-                    value: total == 0 ? 0 : index / total,
-                    backgroundColor: t.outlineVariant,
-                    color: color,
-                    borderRadius: BorderRadius.circular(AppDimens.radiusXs),
-                  ),
-                ),
-                const SizedBox(width: AppDimens.spaceXs),
-                Text(
-                  '${index + 1} / $total',
-                  style: AppTextStyles.bodySmall.copyWith(
-                    color: t.onSurfaceVariant,
-                  ),
-                ),
-              ],
-            ),
+            PracticeProgressRow(index: index, total: total, color: color),
             const SizedBox(height: AppDimens.spaceMd),
             Expanded(
               child: strokesAsync.when(

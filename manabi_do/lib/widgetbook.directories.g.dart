@@ -222,16 +222,6 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'ChapterListView',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildChapterListView,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
         name: 'DifficultyDots',
         useCases: [
           _widgetbook.WidgetbookUseCase(
@@ -785,14 +775,14 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'ChapterCard',
         useCases: [
           _widgetbook.WidgetbookUseCase(
-            name: 'Complete',
-            builder:
-                _manabi_do_widgetbook_study_use_cases.buildChapterCardComplete,
-          ),
-          _widgetbook.WidgetbookUseCase(
             name: 'In progress',
             builder: _manabi_do_widgetbook_study_use_cases
                 .buildChapterCardInProgress,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Locked',
+            builder:
+                _manabi_do_widgetbook_study_use_cases.buildChapterCardLocked,
           ),
           _widgetbook.WidgetbookUseCase(
             name: 'Not started',
@@ -820,18 +810,22 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'LessonRow',
         useCases: [
           _widgetbook.WidgetbookUseCase(
-            name: 'Done',
-            builder: _manabi_do_widgetbook_study_use_cases.buildLessonRowDone,
+            name: 'Known',
+            builder: _manabi_do_widgetbook_study_use_cases.buildLessonRowKnown,
           ),
           _widgetbook.WidgetbookUseCase(
-            name: 'High difficulty',
-            builder: _manabi_do_widgetbook_study_use_cases
-                .buildLessonRowHardDifficulty,
+            name: 'Locked',
+            builder: _manabi_do_widgetbook_study_use_cases.buildLessonRowLocked,
           ),
           _widgetbook.WidgetbookUseCase(
             name: 'Not started',
             builder:
                 _manabi_do_widgetbook_study_use_cases.buildLessonRowNotStarted,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Started',
+            builder:
+                _manabi_do_widgetbook_study_use_cases.buildLessonRowStarted,
           ),
         ],
       ),

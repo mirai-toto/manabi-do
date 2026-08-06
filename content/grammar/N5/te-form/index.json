@@ -6,28 +6,32 @@
         "en": "Forming the て-form",
         "fr": "Former la Forme て"
       },
-      "path": "N5/te-form/forming-te-form"
+      "path": "N5/te-form/forming-te-form",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "てください : Please Do",
         "fr": "てください : Veuillez Faire"
       },
-      "path": "N5/te-form/te-kudasai"
+      "path": "N5/te-form/te-kudasai",
+      "difficulty": 1
     },
     {
       "title": {
         "en": "Permission & Prohibition",
         "fr": "Permission & Interdiction"
       },
-      "path": "N5/te-form/permission-prohibition"
+      "path": "N5/te-form/permission-prohibition",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "Giving & Receiving Actions",
         "fr": "Donner & Recevoir des Actions"
       },
-      "path": "N5/te-form/giving-receiving"
+      "path": "N5/te-form/giving-receiving",
+      "difficulty": 2
     }
   ]
 }

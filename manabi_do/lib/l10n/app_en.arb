@@ -27,6 +27,14 @@
 
   "statusNotStarted": "Not started",
 
+  "chapterLocked": "Chapter locked",
+  "chapterLockedBody": "Complete the previous chapter to unlock this one, or continue anyway.",
+  "groupLocked": "Group locked",
+  "groupLockedBody": "Complete the previous group to unlock this one, or continue anyway.",
+  "lessonLocked": "Lesson locked",
+  "lessonLockedBody": "Complete the previous lesson to unlock this one, or continue anyway.",
+  "chapterUnlockAnyway": "Unlock anyway",
+
   "exampleWords": "Example Words",
   "readings": "Readings",
 
@@ -50,6 +58,13 @@
       "count": { "type": "int" }
     }
   },
+  "lessonsProgress": "{done} / {total} lessons",
+  "@lessonsProgress": {
+    "placeholders": {
+      "done": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
 
   "multipleChoice": "Multiple Choice",
   "sentenceFillIn": "Sentence",
@@ -59,6 +74,13 @@
   "sessionComplete": "Session complete!",
   "retry": "Retry",
   "nextLesson": "Next lesson →",
+  "lessonStart": "Start",
+  "lessonStateStarted": "Started",
+  "lessonStateKnown": "Known",
+  "lessonStateUnknown": "Unknown",
+  "lessonStateLocked": "Locked",
+  "markLessonAsRead": "Mark as read",
+  "lessonMarkedRead": "Read",
   "dailyTraining": "Daily Training",
   "writingPractice": "Writing Practice",
   "next": "Next →",

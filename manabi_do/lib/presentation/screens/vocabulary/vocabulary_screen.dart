@@ -7,9 +7,6 @@ import '../../../l10n/l10n.dart';
 import '../../providers/home_provider.dart';
 import '../../providers/vocab_list_provider.dart';
 import '../../widgets/widgets.dart';
-import 'vocab_group_selector.dart';
-import 'vocab_level_selector.dart';
-import 'vocab_level_view.dart';
 
 class VocabularyScreen extends ConsumerWidget {
   const VocabularyScreen({super.key});

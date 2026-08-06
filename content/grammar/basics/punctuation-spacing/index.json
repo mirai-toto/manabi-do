@@ -6,7 +6,8 @@
         "en": "Punctuation & Spacing",
         "fr": "Ponctuation & Espacement"
       },
-      "path": "basics/punctuation-spacing/punctuation-spacing"
+      "path": "basics/punctuation-spacing/punctuation-spacing",
+      "difficulty": 1
     }
   ]
 }

@@ -3,8 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
 import '../../../../core/theme/app_dimens.dart';
-import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
@@ -13,6 +11,7 @@ import '../../../providers/drawing_settings_provider.dart';
 import '../../../services/kanji_session_service.dart';
 import '../../../widgets/characters/kanji_strokes_provider.dart';
 import '../../../widgets/exercise/drawing_exercise.dart';
+import '../../../widgets/exercise/practice_progress_row.dart';
 import '../../practice/practice_session_screen.dart';
 
 // ── Screen ────────────────────────────────────────────────────────────────────
@@ -89,7 +88,6 @@ class KanjiDrawingBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.tokens;
     final l = context.l10n;
     final strokesAsync = ref.watch(kanjiStrokesProvider(kanji.id));
     final drawingSettings = ref.watch(drawingSettingsProvider);
@@ -99,25 +97,7 @@ class KanjiDrawingBody extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: LinearProgressIndicator(
-                  value: index / total,
-                  backgroundColor: t.outlineVariant,
-                  color: color,
-                  borderRadius: BorderRadius.circular(AppDimens.radiusXs),
-                ),
-              ),
-              const SizedBox(width: AppDimens.spaceXs),
-              Text(
-                '${index + 1} / $total',
-                style: AppTextStyles.bodySmall.copyWith(
-                  color: t.onSurfaceVariant,
-                ),
-              ),
-            ],
-          ),
+          PracticeProgressRow(index: index, total: total, color: color),
           const SizedBox(height: AppDimens.spaceMd),
           Expanded(
             child: strokesAsync.when(

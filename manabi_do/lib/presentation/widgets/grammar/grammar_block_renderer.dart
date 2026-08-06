@@ -16,23 +16,35 @@ import 'blocks/vocab_table_block.dart';
 class GrammarBlockRenderer extends StatelessWidget {
   final List<GrammarBlock> blocks;
   final Color levelColor;
+  final ScrollController? controller;
+  final Widget? trailing;
 
   const GrammarBlockRenderer({
     super.key,
     required this.blocks,
     required this.levelColor,
+    this.controller,
+    this.trailing,
   });
 
   @override
   Widget build(BuildContext context) {
+    final hasTrailing = trailing != null;
+    final itemCount = blocks.length + (hasTrailing ? 1 : 0);
     return ListView.separated(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppDimens.spaceMd,
-        vertical: AppDimens.spaceMd,
+      controller: controller,
+      padding: const EdgeInsets.fromLTRB(
+        AppDimens.spaceMd,
+        AppDimens.spaceMd,
+        AppDimens.spaceMd,
+        AppDimens.spaceLg,
       ),
-      itemCount: blocks.length,
+      itemCount: itemCount,
       separatorBuilder: (_, _) => const SizedBox(height: AppDimens.spaceLg),
-      itemBuilder: (context, i) => _buildBlock(blocks[i]),
+      itemBuilder: (context, i) {
+        if (i < blocks.length) return _buildBlock(blocks[i]);
+        return trailing!;
+      },
     );
   }
 

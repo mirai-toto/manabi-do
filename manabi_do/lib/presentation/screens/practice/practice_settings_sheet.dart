@@ -8,6 +8,8 @@ import '../../../core/models/sentence_settings.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../widgets/common/segment_selector.dart';
+import '../../widgets/common/sheet_drag_handle.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/drawing_settings_provider.dart';
 import '../../providers/flashcard_settings_provider.dart';
@@ -56,7 +58,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
       children: [
         _SectionLabel(l.practiceSettingsSessionLength),
         const SizedBox(height: AppDimens.spaceXs),
-        _SegmentRow(
+        SegmentSelector(
           options: const ['10', '20', '50', '∞'],
           selected: switch (value) {
             10 => 0,
@@ -82,7 +84,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
       children: [
         _SectionLabel(l.practiceSettingsMcqChoices),
         const SizedBox(height: AppDimens.spaceXs),
-        _SegmentRow(
+        SegmentSelector(
           options: const ['4', '6', '8'],
           selected: switch (value) {
             6 => 1,
@@ -111,17 +113,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: Container(
-                width: 36,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: t.outlineVariant,
-                  borderRadius: BorderRadius.circular(AppDimens.radiusXxs),
-                ),
-              ),
-            ),
-            const SizedBox(height: AppDimens.spaceMd),
+            const SheetDragHandle(),
             Text(
               l.practiceSettingsTitle,
               style: AppTextStyles.title.copyWith(color: t.onSurface),
@@ -289,7 +281,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceXs),
               _SectionLabel(l.translationModeLabel),
               const SizedBox(height: AppDimens.spaceXs),
-              _SegmentRow(
+              SegmentSelector(
                 options: [
                   l.translationModeAlways,
                   l.translationModeOnDemand,
@@ -330,7 +322,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceXs),
               _SectionLabel(l.practiceSettingsRecognition),
               const SizedBox(height: AppDimens.spaceXs),
-              _SegmentRow(
+              SegmentSelector(
                 options: [
                   l.recognitionStrict,
                   l.recognitionNormal,
@@ -344,7 +336,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceMd),
               _SectionLabel(l.practiceSettingsHint),
               const SizedBox(height: AppDimens.spaceXs),
-              _SegmentRow(
+              SegmentSelector(
                 options: [l.hintMeaning, l.hintReadings, l.hintBoth],
                 selected: drawing.hintMode.index,
                 onSelect: (i) => updateDrawing(
@@ -408,54 +400,6 @@ class _SectionLabel extends StatelessWidget {
     return Text(
       text,
       style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
-    );
-  }
-}
-
-class _SegmentRow extends StatelessWidget {
-  final List<String> options;
-  final int selected;
-  final void Function(int) onSelect;
-
-  const _SegmentRow({
-    required this.options,
-    required this.selected,
-    required this.onSelect,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Row(
-      children: [
-        for (int i = 0; i < options.length; i++) ...[
-          if (i > 0) const SizedBox(width: 6),
-          Expanded(
-            child: GestureDetector(
-              onTap: () => onSelect(i),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 150),
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                decoration: BoxDecoration(
-                  color: i == selected ? t.primary : t.cardBackground,
-                  borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-                  border: Border.all(
-                    color: i == selected ? t.primary : t.outlineVariant,
-                  ),
-                ),
-                child: Text(
-                  options[i],
-                  style: AppTextStyles.labelSmall.copyWith(
-                    color: i == selected ? Colors.white : t.onSurface,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ],
     );
   }
 }

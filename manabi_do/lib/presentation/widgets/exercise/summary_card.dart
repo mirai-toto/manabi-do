@@ -119,8 +119,7 @@ class _ScoreCircle extends StatelessWidget {
       child: Center(
         child: Text(
           '$score/$total',
-          style: AppTextStyles.headline.copyWith(
-            fontSize: 28,
+          style: AppTextStyles.headlineLarge.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.w800,
           ),
@@ -185,9 +184,7 @@ class _StatBox extends StatelessWidget {
         children: [
           Text(
             value,
-            style: AppTextStyles.headline.copyWith(
-              fontSize: 28,
-              fontWeight: FontWeight.w700,
+            style: AppTextStyles.headlineLarge.copyWith(
               color: valueColor ?? t.primary,
             ),
           ),

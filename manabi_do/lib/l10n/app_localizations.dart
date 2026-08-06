@@ -196,6 +196,48 @@ abstract class AppLocalizations {
   /// **'Not started'**
   String get statusNotStarted;
 
+  /// No description provided for @chapterLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapter locked'**
+  String get chapterLocked;
+
+  /// No description provided for @chapterLockedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the previous chapter to unlock this one, or continue anyway.'**
+  String get chapterLockedBody;
+
+  /// No description provided for @groupLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Group locked'**
+  String get groupLocked;
+
+  /// No description provided for @groupLockedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the previous group to unlock this one, or continue anyway.'**
+  String get groupLockedBody;
+
+  /// No description provided for @lessonLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson locked'**
+  String get lessonLocked;
+
+  /// No description provided for @lessonLockedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the previous lesson to unlock this one, or continue anyway.'**
+  String get lessonLockedBody;
+
+  /// No description provided for @chapterUnlockAnyway.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock anyway'**
+  String get chapterUnlockAnyway;
+
   /// No description provided for @exampleWords.
   ///
   /// In en, this message translates to:
@@ -225,6 +267,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} lessons'**
   String nLessons(int count);
+
+  /// No description provided for @lessonsProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} / {total} lessons'**
+  String lessonsProgress(int done, int total);
 
   /// No description provided for @multipleChoice.
   ///
@@ -267,6 +315,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Next lesson →'**
   String get nextLesson;
+
+  /// No description provided for @lessonStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get lessonStart;
+
+  /// No description provided for @lessonStateStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get lessonStateStarted;
+
+  /// No description provided for @lessonStateKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Known'**
+  String get lessonStateKnown;
+
+  /// No description provided for @lessonStateUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get lessonStateUnknown;
+
+  /// No description provided for @lessonStateLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get lessonStateLocked;
+
+  /// No description provided for @markLessonAsRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as read'**
+  String get markLessonAsRead;
+
+  /// No description provided for @lessonMarkedRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get lessonMarkedRead;
 
   /// No description provided for @dailyTraining.
   ///

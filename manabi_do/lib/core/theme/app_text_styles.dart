@@ -55,6 +55,20 @@ abstract final class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
+  static TextStyle get labelXs => const TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.3,
+  );
+  static TextStyle get headlineLarge => const TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    height: 1.2,
+  );
+  static TextStyle get codePattern =>
+      const TextStyle(fontFamily: 'monospace', fontSize: 14, height: 1.8);
 
   // Japanese
   static TextStyle get jpHero => const TextStyle(
@@ -94,6 +108,17 @@ abstract final class AppTextStyles {
     fontFamily: 'NotoSansJP',
     fontSize: 16,
     fontWeight: FontWeight.w400,
+  );
+  static TextStyle get jpBodyLarge => const TextStyle(
+    fontFamily: 'NotoSansJP',
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle get jpSentence => const TextStyle(
+    fontFamily: 'NotoSansJP',
+    fontSize: 26,
+    fontWeight: FontWeight.w400,
+    height: 2.2,
   );
   static TextStyle get jpFurigana => const TextStyle(
     fontFamily: 'NotoSansJP',

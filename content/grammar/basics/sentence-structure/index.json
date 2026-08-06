@@ -6,28 +6,32 @@
         "en": "SOV Word Order",
         "fr": "Ordre des Mots SOV"
       },
-      "path": "basics/sentence-structure/sov-word-order"
+      "path": "basics/sentence-structure/sov-word-order",
+      "difficulty": 1
     },
     {
       "title": {
         "en": "Topic は vs Subject が",
         "fr": "Thème は vs Sujet が"
       },
-      "path": "basics/sentence-structure/topic-vs-subject"
+      "path": "basics/sentence-structure/topic-vs-subject",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "Modifier Placement",
         "fr": "Placement des Modificateurs"
       },
-      "path": "basics/sentence-structure/modifier-placement"
+      "path": "basics/sentence-structure/modifier-placement",
+      "difficulty": 2
     },
     {
       "title": {
         "en": "Subject Dropping",
         "fr": "Omission du Sujet"
       },
-      "path": "basics/sentence-structure/subject-dropping"
+      "path": "basics/sentence-structure/subject-dropping",
+      "difficulty": 2
     }
   ]
 }

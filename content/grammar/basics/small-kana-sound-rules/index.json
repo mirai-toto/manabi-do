@@ -6,21 +6,24 @@
         "en": "っ : Double Consonant",
         "fr": "っ : Consonne Double"
       },
-      "path": "basics/small-kana-sound-rules/double-consonant"
+      "path": "basics/small-kana-sound-rules/double-consonant",
+      "difficulty": 1
     },
     {
       "title": {
         "en": "ゃゅょ : Compound Sounds",
         "fr": "ゃゅょ : Sons Composés"
       },
-      "path": "basics/small-kana-sound-rules/compound-sounds"
+      "path": "basics/small-kana-sound-rules/compound-sounds",
+      "difficulty": 1
     },
     {
       "title": {
         "en": "Long Vowels",
         "fr": "Voyelles Longues"
       },
-      "path": "basics/small-kana-sound-rules/long-vowels"
+      "path": "basics/small-kana-sound-rules/long-vowels",
+      "difficulty": 1
     }
   ]
 }

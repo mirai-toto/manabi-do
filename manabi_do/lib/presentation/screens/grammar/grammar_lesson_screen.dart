@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../data/grammar/grammar_models.dart';
+import '../../providers/database_provider.dart';
+import '../../providers/grammar_provider.dart';
 import '../../widgets/grammar/grammar_block_renderer.dart';
+import '../../widgets/widgets.dart';
 
-class GrammarLessonScreen extends StatelessWidget {
+class GrammarLessonScreen extends ConsumerWidget {
   final String lessonId;
   final String title;
   final List<GrammarBlock> blocks;
@@ -20,8 +23,12 @@ class GrammarLessonScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
+    final readLessons =
+        ref.watch(grammarReadLessonsProvider).asData?.value ?? {};
+    final isRead = readLessons.contains(lessonId);
+    final db = ref.read(databaseProvider);
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -37,7 +44,23 @@ class GrammarLessonScreen extends StatelessWidget {
           style: AppTextStyles.title.copyWith(color: t.onSurface),
         ),
       ),
-      body: GrammarBlockRenderer(blocks: blocks, levelColor: levelColor),
+      body: ScrollFade(
+        builder: (controller) => GrammarBlockRenderer(
+          blocks: blocks,
+          levelColor: levelColor,
+          controller: controller,
+          trailing: LessonReadToggle(
+            isRead: isRead,
+            onTap: () {
+              if (isRead) {
+                db.unmarkGrammarLessonRead(lessonId);
+              } else {
+                db.markGrammarLessonRead(lessonId);
+              }
+            },
+          ),
+        ),
+      ),
     );
   }
 }

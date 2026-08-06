@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../providers/home_provider.dart';
-import 'kanji_group_selector.dart';
-import 'kanji_group_view.dart';
-import 'kanji_level_selector.dart';
+import '../../../widgets/study/kanji_group_selector.dart';
+import '../../../widgets/study/kanji_group_view.dart';
+import '../../../widgets/study/kanji_level_selector.dart';
 
 class KanjiTabView extends ConsumerWidget {
   const KanjiTabView({super.key});

@@ -9,12 +9,12 @@ import '../../data/grammar/grammar_models.dart';
 import '../../l10n/l10n.dart';
 import '../providers/database_provider.dart';
 import '../providers/mcq_settings_provider.dart';
-import '../screens/practice/grammar_builder_body.dart';
-import '../screens/practice/grammar_cloze_body.dart';
-import '../screens/practice/grammar_error_detection_body.dart';
-import '../screens/practice/practice_flashcard_body.dart';
 import '../screens/practice/practice_item.dart';
-import '../screens/practice/practice_mcq_body.dart';
+import '../widgets/exercise/grammar_builder_body.dart';
+import '../widgets/exercise/grammar_cloze_body.dart';
+import '../widgets/exercise/grammar_error_detection_body.dart';
+import '../widgets/exercise/practice_flashcard_body.dart';
+import '../widgets/exercise/practice_mcq_body.dart';
 import '../widgets/exercise/mcq_card.dart';
 
 const _letters = ['A', 'B', 'C', 'D'];

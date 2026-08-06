@@ -267,7 +267,7 @@ List<InlineSpan> furiganaSpans(
 /// where multiple segments with different styles must flow together.
 class JapaneseText extends StatelessWidget {
   final String word;
-  final String reading;
+  final String? reading;
   final TextStyle style;
   final TextStyle? rubyStyle;
   final bool showFurigana;
@@ -275,7 +275,7 @@ class JapaneseText extends StatelessWidget {
   const JapaneseText({
     super.key,
     required this.word,
-    required this.reading,
+    this.reading,
     required this.style,
     this.rubyStyle,
     this.showFurigana = true,
@@ -285,9 +285,9 @@ class JapaneseText extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
 
-    if (!showFurigana) return Text(word, style: style);
+    if (!showFurigana || reading == null) return Text(word, style: style);
 
-    final segments = parseFurigana(word, reading);
+    final segments = parseFurigana(word, reading!);
     if (!segments.any((s) => s.ruby != null)) return Text(word, style: style);
 
     final effectiveRubyStyle =

@@ -26,6 +26,14 @@
   "exampleWords": "Exemples",
   "readings": "Lectures",
 
+  "chapterLocked": "Chapitre verrouillé",
+  "chapterLockedBody": "Terminez le chapitre précédent pour débloquer celui-ci, ou continuez quand même.",
+  "groupLocked": "Groupe verrouillé",
+  "groupLockedBody": "Terminez le groupe précédent pour débloquer celui-ci, ou continuez quand même.",
+  "lessonLocked": "Leçon verrouillée",
+  "lessonLockedBody": "Terminez la leçon précédente pour débloquer celle-ci, ou continuez quand même.",
+  "chapterUnlockAnyway": "Débloquer quand même",
+
   "difficultyLevel": "Difficulté {level}",
   "@difficultyLevel": {
     "placeholders": {
@@ -46,6 +54,13 @@
       "count": { "type": "int" }
     }
   },
+  "lessonsProgress": "{done} / {total} leçons",
+  "@lessonsProgress": {
+    "placeholders": {
+      "done": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
 
   "multipleChoice": "Choix multiple",
   "sentenceFillIn": "Phrase",
@@ -55,6 +70,13 @@
   "sessionComplete": "Séance terminée !",
   "retry": "Réessayer",
   "nextLesson": "Leçon suivante →",
+  "lessonStart": "Commencer",
+  "lessonStateStarted": "En cours",
+  "lessonStateKnown": "Connu",
+  "lessonStateUnknown": "Inconnu",
+  "lessonStateLocked": "Verrouillé",
+  "markLessonAsRead": "Marquer comme lu",
+  "lessonMarkedRead": "Lu",
   "dailyTraining": "Entraînement quotidien",
   "writingPractice": "Pratique de l'écriture",
   "next": "Suivant →",
