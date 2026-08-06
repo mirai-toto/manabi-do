@@ -71,6 +71,11 @@ final grammarStartedLessonsProvider = StreamProvider<Set<String>>((ref) {
   return db.watchStartedGrammarLessons();
 });
 
+final grammarUnlockedChaptersProvider = StreamProvider<Set<String>>((ref) {
+  final db = ref.read(databaseProvider);
+  return db.watchUnlockedGrammarChapters();
+});
+
 final grammarReadLessonsProvider = StreamProvider<Set<String>>((ref) {
   final db = ref.read(databaseProvider);
   return db.watchReadGrammarLessons();

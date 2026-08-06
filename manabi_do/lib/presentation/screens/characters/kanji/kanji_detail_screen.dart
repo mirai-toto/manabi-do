@@ -10,10 +10,6 @@ import '../../../../l10n/l10n.dart';
 import '../../../providers/kanji_provider.dart';
 import '../../../services/srs_service.dart';
 import '../../../widgets/widgets.dart';
-import 'kanji_example_words.dart';
-import 'kanji_hero.dart';
-import 'kanji_readings_card.dart';
-import 'stroke_order_section.dart';
 import 'kanji_drawing_practice_screen.dart';
 
 class KanjiDetailScreen extends ConsumerWidget {
@@ -49,14 +45,18 @@ class KanjiDetailScreen extends ConsumerWidget {
   }
 }
 
-class _KanjiBody extends StatelessWidget {
+class _KanjiBody extends ConsumerWidget {
   final Kanji kanji;
   const _KanjiBody({required this.kanji});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.tokens;
     final l = context.l10n;
     final color = levelColor(kanji.jlptLevel);
+    final srsCardsAsync = ref.watch(kanjiSrsCardsProvider);
+    final loaded = srsCardsAsync.asData != null;
+    final card = srsCardsAsync.asData?.value[kanji.id];
 
     return Padding(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -97,70 +97,31 @@ class _KanjiBody extends StatelessWidget {
           const SizedBox(height: AppDimens.spaceLg),
           KanjiExampleWords(kanji: kanji),
           const SizedBox(height: AppDimens.spaceLg),
-          _KanjiSrsSection(kanjiId: kanji.id),
-        ],
-      ),
-    );
-  }
-}
-
-class _KanjiSrsSection extends ConsumerWidget {
-  final int kanjiId;
-  const _KanjiSrsSection({required this.kanjiId});
-
-  Future<void> _reset(BuildContext context, WidgetRef ref) async {
-    final l = context.l10n;
-    final confirmed = await showConfirmDialog(
-      context,
-      title: l.resetKanaTitle,
-      body: l.resetKanaBody,
-    );
-    if (!confirmed) return;
-    await srsService.resetCard(ref, 'kanji', kanjiId);
-  }
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.tokens;
-    final l = context.l10n;
-    final srsCardsAsync = ref.watch(kanjiSrsCardsProvider);
-    final loaded = srsCardsAsync.asData != null;
-    final card = srsCardsAsync.asData?.value[kanjiId];
-
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(AppDimens.spaceMd),
-          decoration: BoxDecoration(
-            color: t.surfaceContainer,
-            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          ),
-          child: loaded
-              ? ReviewProgressInfo(srsCard: card)
-              : const Center(
-                  child: SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  ),
+          SrsProgressCard(isLoaded: loaded, srsCard: card),
+          if (loaded && card != null) ...[
+            const SizedBox(height: AppDimens.spaceXs),
+            SizedBox(
+              width: double.infinity,
+              child: TextButton.icon(
+                onPressed: () async {
+                  final confirmed = await showConfirmDialog(
+                    context,
+                    title: l.resetKanaTitle,
+                    body: l.resetKanaBody,
+                  );
+                  if (!confirmed) return;
+                  await srsService.resetCard(ref, 'kanji', kanji.id);
+                },
+                icon: Icon(Icons.restart_alt_rounded, size: 18, color: t.error),
+                label: Text(
+                  l.settingsResetProgress,
+                  style: AppTextStyles.bodySmall.copyWith(color: t.error),
                 ),
-        ),
-        if (loaded && card != null) ...[
-          const SizedBox(height: AppDimens.spaceXs),
-          SizedBox(
-            width: double.infinity,
-            child: TextButton.icon(
-              onPressed: () => _reset(context, ref),
-              icon: Icon(Icons.restart_alt_rounded, size: 18, color: t.error),
-              label: Text(
-                l.settingsResetProgress,
-                style: AppTextStyles.bodySmall.copyWith(color: t.error),
               ),
             ),
-          ),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

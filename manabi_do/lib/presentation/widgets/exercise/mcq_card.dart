@@ -194,7 +194,7 @@ class _ExPrompt extends StatelessWidget {
               Flexible(
                 child: JapaneseText(
                   word: japanesePrompt!,
-                  reading: japaneseReading ?? japanesePrompt!,
+                  reading: japaneseReading,
                   style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
                   rubyStyle: AppTextStyles.jpFurigana.copyWith(
                     color: t.onSurfaceVariant,

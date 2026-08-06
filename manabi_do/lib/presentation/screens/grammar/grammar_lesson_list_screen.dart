@@ -47,11 +47,69 @@ class _GrammarLessonListScreenState
   LearningState _lessonState(
     String lessonId,
     Set<String> readLessons,
-    Set<String> startedLessons,
-  ) {
+    Set<String> startedLessons, {
+    bool isLocked = false,
+  }) {
+    if (isLocked) return LearningState.locked;
     if (readLessons.contains(lessonId)) return LearningState.known;
     if (startedLessons.contains(lessonId)) return LearningState.started;
     return LearningState.notStarted;
+  }
+
+  bool _isGroupLocked(
+    int ci,
+    Set<String> readLessons,
+    Set<String> unlockedKeys,
+  ) {
+    if (ci == 0) return false;
+    final prev = widget.theme.chapters[ci - 1];
+    if (prev.lessons.isEmpty) return false;
+    final prevDone = prev.lessons
+        .where((l) => readLessons.contains(l.id))
+        .length;
+    if (prevDone == prev.lessons.length) return false;
+    return !unlockedKeys.contains('group:${widget.theme.title}:$ci');
+  }
+
+  bool _isLessonLocked(
+    int ci,
+    int li,
+    Set<String> readLessons,
+    Set<String> unlockedKeys,
+  ) {
+    if (li == 0) return false;
+    final prevLesson = widget.theme.chapters[ci].lessons[li - 1];
+    if (readLessons.contains(prevLesson.id)) return false;
+    final lessonId = widget.theme.chapters[ci].lessons[li].id;
+    return !unlockedKeys.contains('lesson:$lessonId');
+  }
+
+  void _showUnlockDialog({
+    required String title,
+    required String body,
+    required VoidCallback onConfirm,
+  }) {
+    final l = context.l10n;
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(title),
+        content: Text(body),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: Text(l.cancel),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              onConfirm();
+            },
+            child: Text(l.chapterUnlockAnyway),
+          ),
+        ],
+      ),
+    );
   }
 
   void _openLesson(GrammarLesson lesson) {
@@ -99,6 +157,8 @@ class _GrammarLessonListScreenState
         ref.watch(grammarStartedLessonsProvider).asData?.value ?? {};
     final readLessons =
         ref.watch(grammarReadLessonsProvider).asData?.value ?? {};
+    final unlockedKeys =
+        ref.watch(grammarUnlockedChaptersProvider).asData?.value ?? {};
     final exerciseCounts =
         ref
             .watch(grammarExerciseCountsProvider(_lessonPathsKey))
@@ -141,20 +201,49 @@ class _GrammarLessonListScreenState
                 const SizedBox(height: AppDimens.spaceSm),
               if (showChapterHeaders) ...[
                 if (ci > 0) const SizedBox(height: AppDimens.spaceSm),
-                CollapsibleSection(
-                  title: widget.theme.chapters[ci].title,
-                  isCollapsed: _collapsed.contains(ci),
-                  accentColor: widget.levelColor,
-                  onToggle: () => setState(() {
-                    if (_collapsed.contains(ci)) {
-                      _collapsed.remove(ci);
-                    } else {
-                      _collapsed.add(ci);
-                    }
-                  }),
+                Builder(
+                  builder: (_) {
+                    final groupLocked = _isGroupLocked(
+                      ci,
+                      readLessons,
+                      unlockedKeys,
+                    );
+                    return CollapsibleSection(
+                      title: widget.theme.chapters[ci].title,
+                      isCollapsed: groupLocked || _collapsed.contains(ci),
+                      isLocked: groupLocked,
+                      badge: context.l10n.nLessons(
+                        widget.theme.chapters[ci].lessons.length,
+                      ),
+                      accentColor: widget.levelColor,
+                      onToggle: () {
+                        if (groupLocked) {
+                          final l = context.l10n;
+                          _showUnlockDialog(
+                            title: l.groupLocked,
+                            body: l.groupLockedBody,
+                            onConfirm: () => ref
+                                .read(databaseProvider)
+                                .unlockGrammarChapter(
+                                  'group:${widget.theme.title}:$ci',
+                                ),
+                          );
+                        } else {
+                          setState(() {
+                            if (_collapsed.contains(ci)) {
+                              _collapsed.remove(ci);
+                            } else {
+                              _collapsed.add(ci);
+                            }
+                          });
+                        }
+                      },
+                    );
+                  },
                 ),
               ],
-              if (!_collapsed.contains(ci))
+              if (!_collapsed.contains(ci) &&
+                  !_isGroupLocked(ci, readLessons, unlockedKeys))
                 for (
                   int li = 0;
                   li < widget.theme.chapters[ci].lessons.length;
@@ -162,189 +251,50 @@ class _GrammarLessonListScreenState
                 ) ...[
                   if (li > 0 || showChapterHeaders)
                     const SizedBox(height: AppDimens.spaceSm),
-                  _LessonRow(
-                    lesson: widget.theme.chapters[ci].lessons[li],
-                    index: li,
-                    accentColor: widget.levelColor,
-                    state: _lessonState(
-                      widget.theme.chapters[ci].lessons[li].id,
-                      readLessons,
-                      startedLessons,
-                    ),
-                    exerciseCount:
-                        exerciseCounts[widget
-                            .theme
-                            .chapters[ci]
-                            .lessons[li]
-                            .id] ??
-                        0,
-                    onTap: () =>
-                        _openLesson(widget.theme.chapters[ci].lessons[li]),
+                  Builder(
+                    builder: (_) {
+                      final lesson = widget.theme.chapters[ci].lessons[li];
+                      final lessonLocked = _isLessonLocked(
+                        ci,
+                        li,
+                        readLessons,
+                        unlockedKeys,
+                      );
+                      return LessonRow(
+                        title: lesson.title,
+                        index: li,
+                        difficulty: lesson.difficulty,
+                        state: _lessonState(
+                          lesson.id,
+                          readLessons,
+                          startedLessons,
+                          isLocked: lessonLocked,
+                        ),
+                        accentColor: widget.levelColor,
+                        exerciseCount: exerciseCounts[lesson.id] ?? 0,
+                        onTap: lessonLocked
+                            ? () {
+                                final l = context.l10n;
+                                _showUnlockDialog(
+                                  title: l.lessonLocked,
+                                  body: l.lessonLockedBody,
+                                  onConfirm: () {
+                                    ref
+                                        .read(databaseProvider)
+                                        .unlockGrammarChapter(
+                                          'lesson:${lesson.id}',
+                                        );
+                                    _openLesson(lesson);
+                                  },
+                                );
+                              }
+                            : () => _openLesson(lesson),
+                      );
+                    },
                   ),
                 ],
             ],
             const SizedBox(height: AppDimens.spaceLg),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _LessonRow extends StatelessWidget {
-  final GrammarLesson lesson;
-  final int index;
-  final Color accentColor;
-  final LearningState state;
-  final int exerciseCount;
-  final VoidCallback onTap;
-
-  const _LessonRow({
-    required this.lesson,
-    required this.index,
-    required this.accentColor,
-    required this.state,
-    required this.exerciseCount,
-    required this.onTap,
-  });
-
-  Color _borderColor(AppTokens t) => switch (state) {
-    LearningState.known => t.success,
-    LearningState.started => accentColor.withValues(alpha: 0.5),
-    LearningState.locked => t.outlineVariant.withValues(alpha: 0.4),
-    _ => t.outlineVariant,
-  };
-
-  Color _iconBg(AppTokens t) => switch (state) {
-    LearningState.known => t.successContainer,
-    _ => accentColor.withValues(alpha: 0.12),
-  };
-
-  Widget _iconChild(AppTokens t) => switch (state) {
-    LearningState.known => Icon(
-      Icons.check_rounded,
-      size: 18,
-      color: t.success,
-    ),
-    _ => Text(
-      '${index + 1}',
-      style: AppTextStyles.label.copyWith(
-        color: accentColor,
-        fontWeight: FontWeight.w700,
-      ),
-    ),
-  };
-
-  Color _chipBg(AppTokens t) => switch (state) {
-    LearningState.known => t.successContainer,
-    LearningState.started => accentColor.withValues(alpha: 0.12),
-    _ => t.surfaceVariant,
-  };
-
-  Color _chipFg(AppTokens t) => switch (state) {
-    LearningState.known => t.success,
-    LearningState.started => accentColor,
-    _ => t.onSurfaceVariant,
-  };
-
-  String _chipLabel(AppLocalizations l) => switch (state) {
-    LearningState.notStarted => l.lessonStart,
-    LearningState.started => l.lessonStateStarted,
-    LearningState.known => l.lessonStateKnown,
-    LearningState.unknown => l.lessonStateUnknown,
-    LearningState.locked => l.lessonStateLocked,
-  };
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    final l = context.l10n;
-    return TappableSurface(
-      decoration: BoxDecoration(
-        color: t.cardBackground,
-        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: _borderColor(t)),
-      ),
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.spaceMd,
-          vertical: AppDimens.spaceMd,
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: _iconBg(t),
-                shape: BoxShape.circle,
-              ),
-              child: Center(child: _iconChild(t)),
-            ),
-            const SizedBox(width: AppDimens.iconTextGap),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    lesson.title,
-                    style: AppTextStyles.body.copyWith(
-                      color: t.onSurface,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      for (int i = 1; i <= 3; i++) ...[
-                        if (i > 1) const SizedBox(width: 3),
-                        Container(
-                          width: 7,
-                          height: 7,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: i <= lesson.difficulty
-                                ? accentColor
-                                : t.outlineVariant,
-                          ),
-                        ),
-                      ],
-                      if (exerciseCount > 0) ...[
-                        const SizedBox(width: AppDimens.spaceSm),
-                        Text(
-                          '· $exerciseCount ex.',
-                          style: AppTextStyles.labelSmall.copyWith(
-                            color: t.onSurfaceVariant,
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: AppDimens.spaceSm),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.badgePaddingH,
-                vertical: AppDimens.badgePaddingV,
-              ),
-              decoration: BoxDecoration(
-                color: _chipBg(t),
-                borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-              ),
-              child: Text(
-                _chipLabel(l),
-                style: AppTextStyles.labelSmall.copyWith(
-                  color: _chipFg(t),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            const SizedBox(width: AppDimens.spaceXs),
-            Icon(Icons.chevron_right_rounded, color: t.outlineVariant),
           ],
         ),
       ),

@@ -9,6 +9,7 @@ import 'db_connection_native.dart'
 
 import '../../domain/data/kana_data.dart';
 import 'tables/exercises_table.dart';
+import 'tables/grammar_chapter_unlocks_table.dart';
 import 'tables/grammar_exercises_table.dart';
 import 'tables/grammar_lesson_progress_table.dart';
 import 'tables/grammar_lesson_starts_table.dart';
@@ -33,6 +34,7 @@ part 'app_database.g.dart';
     GrammarExercises,
     GrammarLessonProgress,
     GrammarLessonStarts,
+    GrammarChapterUnlocks,
     ProgressEntries,
     KanjiTranslations,
     VocabTranslations,
@@ -45,7 +47,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(openDbConnection());
 
   @override
-  int get schemaVersion => 19;
+  int get schemaVersion => 20;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -122,6 +124,7 @@ class AppDatabase extends _$AppDatabase {
         } catch (_) {}
       }
       if (from < 19) await m.createTable(grammarLessonStarts);
+      if (from < 20) await m.createTable(grammarChapterUnlocks);
     },
   );
 
@@ -321,6 +324,15 @@ class AppDatabase extends _$AppDatabase {
             ..where((e) => e.lessonPath.equals(lessonPath))
             ..orderBy([(e) => OrderingTerm.asc(e.orderIndex)]))
           .get();
+
+  Stream<Set<String>> watchUnlockedGrammarChapters() => select(
+    grammarChapterUnlocks,
+  ).watch().map((rows) => rows.map((r) => r.chapterKey).toSet());
+
+  Future<void> unlockGrammarChapter(String chapterKey) =>
+      into(grammarChapterUnlocks).insertOnConflictUpdate(
+        GrammarChapterUnlocksCompanion.insert(chapterKey: chapterKey),
+      );
 
   Stream<Set<String>> watchStartedGrammarLessons() => select(
     grammarLessonStarts,
@@ -777,6 +789,7 @@ class AppDatabase extends _$AppDatabase {
     await delete(progressEntries).go();
     await delete(grammarLessonProgress).go();
     await delete(grammarLessonStarts).go();
+    await delete(grammarChapterUnlocks).go();
   }
 
   Future<void> resetSrsCard(String type, int itemId) async {

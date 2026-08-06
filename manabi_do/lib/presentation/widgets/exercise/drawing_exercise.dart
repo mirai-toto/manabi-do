@@ -10,7 +10,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../characters/kanji_drawing_canvas.dart';
-import '../../screens/characters/kanji/kanji_readings_card.dart';
+import '../characters/kanji_readings_card.dart';
 import '../characters/stroke_animators.dart';
 import 'flash_card.dart';
 

@@ -27,6 +27,14 @@
 
   "statusNotStarted": "Not started",
 
+  "chapterLocked": "Chapter locked",
+  "chapterLockedBody": "Complete the previous chapter to unlock this one, or continue anyway.",
+  "groupLocked": "Group locked",
+  "groupLockedBody": "Complete the previous group to unlock this one, or continue anyway.",
+  "lessonLocked": "Lesson locked",
+  "lessonLockedBody": "Complete the previous lesson to unlock this one, or continue anyway.",
+  "chapterUnlockAnyway": "Unlock anyway",
+
   "exampleWords": "Example Words",
   "readings": "Readings",
 

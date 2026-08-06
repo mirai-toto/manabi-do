@@ -1,16 +1,17 @@
 // common
 export 'common/app_button.dart';
 export 'common/app_emoji.dart';
+export 'common/auth_button.dart';
 export 'common/app_filter_chip.dart';
 export 'common/app_text_field.dart';
 export 'common/card_container.dart';
 export 'common/collapsible_section.dart';
-export 'common/chapter_list_view.dart';
 export 'common/confirm_dialog.dart';
 export 'common/difficulty_dots.dart';
 export 'common/japanese_text.dart';
 export 'common/jlpt_level_card.dart';
-export 'common/number_badge.dart';
+export 'common/landing_hero_panel.dart';
+export 'common/locked_feature_card.dart';
 export 'common/pill_badge.dart';
 export 'common/practice_button.dart';
 export 'common/progress_bar.dart';
@@ -18,6 +19,8 @@ export 'common/progress_row.dart';
 export 'common/section_header.dart';
 export 'common/scroll_fade.dart';
 export 'common/section_label.dart';
+export 'common/segment_selector.dart';
+export 'common/sheet_drag_handle.dart';
 export 'common/segmented_tab_bar.dart';
 export 'common/speak_button.dart';
 export 'common/review_progress_info.dart';
@@ -29,22 +32,58 @@ export 'navigation/app_nav_rail.dart';
 export 'navigation/nav_destination.dart';
 
 // settings
+export 'settings/language_picker_sheet.dart';
+export 'settings/settings_about_section.dart';
 export 'settings/settings_card.dart';
+export 'settings/settings_practice_card.dart';
 export 'settings/settings_tile.dart';
+
+// grammar
+export 'grammar/lesson_read_toggle.dart';
 
 // study
 export 'study/chapter_card.dart';
-export 'study/lesson_row.dart';
 export 'study/domain_card.dart';
+export 'study/grammar_chapter_list.dart';
+export 'study/home_domain_cards.dart';
+export 'study/home_header.dart';
+export 'study/kanji_group_selector.dart';
+export 'study/kanji_group_view.dart';
+export 'study/kanji_level_selector.dart';
+export 'study/lesson_row.dart';
+export 'study/practice_mode_card.dart';
 export 'study/streak_card.dart';
+export 'study/study_group_card.dart';
+export 'study/vocab_group_selector.dart' hide kVocabGroupSize;
+export 'study/vocab_level_selector.dart';
+export 'study/vocab_level_view.dart';
+export 'study/vocab_word_tile.dart';
 
 // characters
 export 'characters/character_cell.dart';
+export 'characters/character_hero_box.dart';
+export 'characters/kanji_example_words.dart';
+export 'characters/kanji_grid.dart';
+export 'characters/kanji_hero.dart';
+export 'characters/kanji_level_header.dart';
+export 'characters/kanji_readings_card.dart';
+export 'characters/srs_progress_card.dart';
 export 'characters/stroke_animators.dart';
+export 'characters/stroke_order_section.dart';
 export 'characters/stroke_step_row.dart';
 
 // exercise
+export 'exercise/cloze_option.dart';
+export 'exercise/feedback_panel.dart';
 export 'exercise/flash_card.dart';
+export 'exercise/grammar_builder_body.dart';
+export 'exercise/grammar_cloze_body.dart';
+export 'exercise/grammar_error_detection_body.dart';
 export 'exercise/lesson_reader_card.dart';
 export 'exercise/mcq_card.dart';
+export 'exercise/practice_flashcard_body.dart';
+export 'exercise/practice_mcq_body.dart';
+export 'exercise/practice_progress_row.dart';
+export 'exercise/sentence_cloze_body.dart';
+export 'exercise/sentence_cloze_card.dart';
 export 'exercise/summary_card.dart';

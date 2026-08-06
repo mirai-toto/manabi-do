@@ -1,54 +1,54 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../l10n/l10n.dart';
-import '../common/pill_badge.dart';
-import '../common/progress_bar.dart';
 import '../common/tappable_surface.dart';
 
 class ChapterCard extends StatelessWidget {
-  final int chapterNumber;
+  final String chapterLabel;
   final String title;
   final String description;
+  final String badge;
+  final int doneCount;
   final int totalLessons;
-  final int completedLessons;
-  final VoidCallback? onTap;
-  final double? width;
+  final String progressLabel;
+  final Color accentColor;
+  final bool isLocked;
+  final VoidCallback onTap;
 
   const ChapterCard({
     super.key,
-    required this.chapterNumber,
+    required this.chapterLabel,
     required this.title,
     required this.description,
+    required this.badge,
+    required this.doneCount,
     required this.totalLessons,
-    required this.completedLessons,
-    this.onTap,
-    this.width,
+    required this.progressLabel,
+    required this.accentColor,
+    required this.onTap,
+    this.isLocked = false,
   });
 
-  double get _progress =>
-      totalLessons > 0 ? completedLessons / totalLessons : 0;
+  double get _progress => totalLessons > 0 ? doneCount / totalLessons : 0;
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final l = context.l10n;
-    final chapterLabel = l.chapterN(chapterNumber.toString().padLeft(2, '0'));
-
     return Semantics(
       label: '$chapterLabel: $title',
-      button: onTap != null,
+      button: true,
       excludeSemantics: true,
-      child: SizedBox(
-        width: width,
+      child: Opacity(
+        opacity: isLocked ? 0.55 : 1.0,
         child: TappableSurface(
           decoration: BoxDecoration(
             color: t.cardBackground,
             borderRadius: BorderRadius.circular(AppDimens.radiusLg),
             boxShadow: [
               BoxShadow(
-                color: t.onSurface.withValues(alpha: 0.08),
+                color: Colors.black.withValues(alpha: 0.08),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -56,57 +56,80 @@ class ChapterCard extends StatelessWidget {
           ),
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.all(AppDimens.spaceLg),
+            padding: const EdgeInsets.all(AppDimens.spaceMd),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      chapterLabel,
-                      style: AppTextStyles.label.copyWith(
-                        color: t.primary,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.8,
+                    Expanded(
+                      child: Text(
+                        chapterLabel,
+                        style: AppTextStyles.labelSmall.copyWith(
+                          color: accentColor,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.8,
+                        ),
                       ),
                     ),
-                    PillBadge(
-                      label: l.nLessons(totalLessons),
-                      color: t.onPrimaryContainer,
-                      background: t.primaryContainer,
-                      textStyle: AppTextStyles.label,
-                    ),
+                    if (isLocked)
+                      Icon(
+                        Icons.lock_outline_rounded,
+                        size: 16,
+                        color: t.onSurfaceVariant,
+                      )
+                    else
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppDimens.badgePaddingH,
+                          vertical: AppDimens.badgePaddingV,
+                        ),
+                        decoration: BoxDecoration(
+                          color: accentColor.withValues(alpha: 0.12),
+                          borderRadius: BorderRadius.circular(
+                            AppDimens.radiusPill,
+                          ),
+                        ),
+                        child: Text(
+                          badge,
+                          style: AppTextStyles.labelSmall.copyWith(
+                            color: accentColor,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
                   ],
                 ),
-                const SizedBox(height: AppDimens.spaceMd),
-                Text(title, style: AppTextStyles.title),
-                const SizedBox(height: AppDimens.spaceXs),
+                const SizedBox(height: AppDimens.spaceSm),
                 Text(
-                  description,
-                  style: AppTextStyles.bodySmall.copyWith(
-                    color: t.onSurfaceVariant,
+                  title,
+                  style: AppTextStyles.title.copyWith(color: t.onSurface),
+                ),
+                if (description.isNotEmpty) ...[
+                  const SizedBox(height: AppDimens.spaceXs),
+                  Text(
+                    description,
+                    style: AppTextStyles.bodySmall.copyWith(
+                      color: t.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+                const SizedBox(height: AppDimens.spaceMd),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(AppDimens.radiusPill),
+                  child: LinearProgressIndicator(
+                    value: _progress,
+                    minHeight: 6,
+                    backgroundColor: t.surfaceVariant,
+                    valueColor: AlwaysStoppedAnimation<Color>(accentColor),
                   ),
                 ),
-                const SizedBox(height: AppDimens.spaceMd),
-                AppProgressBar(progress: _progress),
-                const SizedBox(height: AppDimens.spaceSm),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '$completedLessons / ${l.nLessons(totalLessons)}',
-                      style: AppTextStyles.labelSmall.copyWith(
-                        color: t.onSurfaceVariant,
-                      ),
-                    ),
-                    Text(
-                      _progress > 0 ? '${(_progress * 100).round()}%' : '',
-                      style: AppTextStyles.labelSmall.copyWith(
-                        color: t.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
+                const SizedBox(height: AppDimens.spaceXs),
+                Text(
+                  progressLabel,
+                  style: AppTextStyles.labelSmall.copyWith(
+                    color: t.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),

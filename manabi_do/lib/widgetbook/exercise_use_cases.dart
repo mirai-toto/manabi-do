@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-import '../presentation/screens/practice/grammar_builder_body.dart';
-import '../presentation/screens/practice/grammar_cloze_body.dart';
-import '../presentation/screens/practice/grammar_error_detection_body.dart';
+import '../presentation/widgets/exercise/grammar_builder_body.dart';
+import '../presentation/widgets/exercise/grammar_cloze_body.dart';
+import '../presentation/widgets/exercise/grammar_error_detection_body.dart';
 import '../presentation/providers/drawing_settings_provider.dart';
 import '../presentation/widgets/characters/kanji_strokes_provider.dart';
 import '../presentation/widgets/exercise/drawing_exercise.dart';

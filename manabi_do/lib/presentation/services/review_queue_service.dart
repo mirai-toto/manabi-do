@@ -13,7 +13,7 @@ import '../providers/mcq_settings_provider.dart';
 import '../providers/sentence_settings_provider.dart';
 import '../screens/characters/kanji/kanji_practice_screen.dart';
 import '../screens/practice/practice_session_screen.dart';
-import '../screens/practice/sentence_cloze_body.dart';
+import '../widgets/exercise/sentence_cloze_body.dart';
 import 'session_item_builders.dart';
 
 Future<List<PracticeItem>> loadKanaPracticeQueue(

@@ -8,7 +8,6 @@ import '../presentation/widgets/common/app_emoji.dart';
 import '../presentation/widgets/common/app_filter_chip.dart';
 import '../presentation/widgets/common/app_text_field.dart';
 import '../presentation/widgets/common/card_container.dart';
-import '../presentation/widgets/common/chapter_list_view.dart';
 import '../presentation/widgets/common/difficulty_dots.dart';
 import '../presentation/widgets/common/japanese_text.dart';
 import '../presentation/widgets/common/jlpt_level_card.dart';
@@ -99,29 +98,6 @@ Widget buildTappableSurface(BuildContext context) {
         padding: EdgeInsets.all(16),
         child: Text('Tappable card content'),
       ),
-    ),
-  );
-}
-
-// ── ChapterListView ───────────────────────────────────────────────────────────
-
-@widgetbook.UseCase(name: 'Default', type: ChapterListView, path: 'Common')
-Widget buildChapterListView(BuildContext context) {
-  return SizedBox(
-    height: 400,
-    child: ChapterListView(
-      title: 'N5 Grammar',
-      sectionLabel: 'Chapters',
-      items: const [
-        'Greetings & Introductions',
-        'Numbers & Counting',
-        'Time & Dates',
-        'Food & Restaurants',
-        'Places & Directions',
-      ],
-      accentColor: levelColor('N5'),
-      onBack: () {},
-      onItemTap: (_) {},
     ),
   );
 }

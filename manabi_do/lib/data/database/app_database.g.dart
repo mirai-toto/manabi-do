@@ -3240,6 +3240,184 @@ class GrammarLessonStartsCompanion
   }
 }
 
+class $GrammarChapterUnlocksTable extends GrammarChapterUnlocks
+    with TableInfo<$GrammarChapterUnlocksTable, GrammarChapterUnlockRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $GrammarChapterUnlocksTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _chapterKeyMeta = const VerificationMeta(
+    'chapterKey',
+  );
+  @override
+  late final GeneratedColumn<String> chapterKey = GeneratedColumn<String>(
+    'chapter_key',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [chapterKey];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'grammar_chapter_unlocks';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<GrammarChapterUnlockRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('chapter_key')) {
+      context.handle(
+        _chapterKeyMeta,
+        chapterKey.isAcceptableOrUnknown(data['chapter_key']!, _chapterKeyMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_chapterKeyMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {chapterKey};
+  @override
+  GrammarChapterUnlockRow map(
+    Map<String, dynamic> data, {
+    String? tablePrefix,
+  }) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return GrammarChapterUnlockRow(
+      chapterKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}chapter_key'],
+      )!,
+    );
+  }
+
+  @override
+  $GrammarChapterUnlocksTable createAlias(String alias) {
+    return $GrammarChapterUnlocksTable(attachedDatabase, alias);
+  }
+}
+
+class GrammarChapterUnlockRow extends DataClass
+    implements Insertable<GrammarChapterUnlockRow> {
+  final String chapterKey;
+  const GrammarChapterUnlockRow({required this.chapterKey});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['chapter_key'] = Variable<String>(chapterKey);
+    return map;
+  }
+
+  GrammarChapterUnlocksCompanion toCompanion(bool nullToAbsent) {
+    return GrammarChapterUnlocksCompanion(chapterKey: Value(chapterKey));
+  }
+
+  factory GrammarChapterUnlockRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return GrammarChapterUnlockRow(
+      chapterKey: serializer.fromJson<String>(json['chapterKey']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'chapterKey': serializer.toJson<String>(chapterKey),
+    };
+  }
+
+  GrammarChapterUnlockRow copyWith({String? chapterKey}) =>
+      GrammarChapterUnlockRow(chapterKey: chapterKey ?? this.chapterKey);
+  GrammarChapterUnlockRow copyWithCompanion(
+    GrammarChapterUnlocksCompanion data,
+  ) {
+    return GrammarChapterUnlockRow(
+      chapterKey: data.chapterKey.present
+          ? data.chapterKey.value
+          : this.chapterKey,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GrammarChapterUnlockRow(')
+          ..write('chapterKey: $chapterKey')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => chapterKey.hashCode;
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is GrammarChapterUnlockRow && other.chapterKey == this.chapterKey);
+}
+
+class GrammarChapterUnlocksCompanion
+    extends UpdateCompanion<GrammarChapterUnlockRow> {
+  final Value<String> chapterKey;
+  final Value<int> rowid;
+  const GrammarChapterUnlocksCompanion({
+    this.chapterKey = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  GrammarChapterUnlocksCompanion.insert({
+    required String chapterKey,
+    this.rowid = const Value.absent(),
+  }) : chapterKey = Value(chapterKey);
+  static Insertable<GrammarChapterUnlockRow> custom({
+    Expression<String>? chapterKey,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (chapterKey != null) 'chapter_key': chapterKey,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  GrammarChapterUnlocksCompanion copyWith({
+    Value<String>? chapterKey,
+    Value<int>? rowid,
+  }) {
+    return GrammarChapterUnlocksCompanion(
+      chapterKey: chapterKey ?? this.chapterKey,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (chapterKey.present) {
+      map['chapter_key'] = Variable<String>(chapterKey.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GrammarChapterUnlocksCompanion(')
+          ..write('chapterKey: $chapterKey, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $ProgressEntriesTable extends ProgressEntries
     with TableInfo<$ProgressEntriesTable, ProgressEntry> {
   @override
@@ -5272,6 +5450,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       $GrammarLessonProgressTable(this);
   late final $GrammarLessonStartsTable grammarLessonStarts =
       $GrammarLessonStartsTable(this);
+  late final $GrammarChapterUnlocksTable grammarChapterUnlocks =
+      $GrammarChapterUnlocksTable(this);
   late final $ProgressEntriesTable progressEntries = $ProgressEntriesTable(
     this,
   );
@@ -5296,6 +5476,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     grammarExercises,
     grammarLessonProgress,
     grammarLessonStarts,
+    grammarChapterUnlocks,
     progressEntries,
     kanjiTranslations,
     vocabTranslations,
@@ -7621,6 +7802,151 @@ typedef $$GrammarLessonStartsTableProcessedTableManager =
       GrammarLessonStartRow,
       PrefetchHooks Function()
     >;
+typedef $$GrammarChapterUnlocksTableCreateCompanionBuilder =
+    GrammarChapterUnlocksCompanion Function({
+      required String chapterKey,
+      Value<int> rowid,
+    });
+typedef $$GrammarChapterUnlocksTableUpdateCompanionBuilder =
+    GrammarChapterUnlocksCompanion Function({
+      Value<String> chapterKey,
+      Value<int> rowid,
+    });
+
+class $$GrammarChapterUnlocksTableFilterComposer
+    extends Composer<_$AppDatabase, $GrammarChapterUnlocksTable> {
+  $$GrammarChapterUnlocksTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get chapterKey => $composableBuilder(
+    column: $table.chapterKey,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$GrammarChapterUnlocksTableOrderingComposer
+    extends Composer<_$AppDatabase, $GrammarChapterUnlocksTable> {
+  $$GrammarChapterUnlocksTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get chapterKey => $composableBuilder(
+    column: $table.chapterKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$GrammarChapterUnlocksTableAnnotationComposer
+    extends Composer<_$AppDatabase, $GrammarChapterUnlocksTable> {
+  $$GrammarChapterUnlocksTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get chapterKey => $composableBuilder(
+    column: $table.chapterKey,
+    builder: (column) => column,
+  );
+}
+
+class $$GrammarChapterUnlocksTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $GrammarChapterUnlocksTable,
+          GrammarChapterUnlockRow,
+          $$GrammarChapterUnlocksTableFilterComposer,
+          $$GrammarChapterUnlocksTableOrderingComposer,
+          $$GrammarChapterUnlocksTableAnnotationComposer,
+          $$GrammarChapterUnlocksTableCreateCompanionBuilder,
+          $$GrammarChapterUnlocksTableUpdateCompanionBuilder,
+          (
+            GrammarChapterUnlockRow,
+            BaseReferences<
+              _$AppDatabase,
+              $GrammarChapterUnlocksTable,
+              GrammarChapterUnlockRow
+            >,
+          ),
+          GrammarChapterUnlockRow,
+          PrefetchHooks Function()
+        > {
+  $$GrammarChapterUnlocksTableTableManager(
+    _$AppDatabase db,
+    $GrammarChapterUnlocksTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$GrammarChapterUnlocksTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer: () =>
+              $$GrammarChapterUnlocksTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$GrammarChapterUnlocksTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> chapterKey = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => GrammarChapterUnlocksCompanion(
+                chapterKey: chapterKey,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String chapterKey,
+                Value<int> rowid = const Value.absent(),
+              }) => GrammarChapterUnlocksCompanion.insert(
+                chapterKey: chapterKey,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$GrammarChapterUnlocksTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $GrammarChapterUnlocksTable,
+      GrammarChapterUnlockRow,
+      $$GrammarChapterUnlocksTableFilterComposer,
+      $$GrammarChapterUnlocksTableOrderingComposer,
+      $$GrammarChapterUnlocksTableAnnotationComposer,
+      $$GrammarChapterUnlocksTableCreateCompanionBuilder,
+      $$GrammarChapterUnlocksTableUpdateCompanionBuilder,
+      (
+        GrammarChapterUnlockRow,
+        BaseReferences<
+          _$AppDatabase,
+          $GrammarChapterUnlocksTable,
+          GrammarChapterUnlockRow
+        >,
+      ),
+      GrammarChapterUnlockRow,
+      PrefetchHooks Function()
+    >;
 typedef $$ProgressEntriesTableCreateCompanionBuilder =
     ProgressEntriesCompanion Function({
       Value<int> id,
@@ -9383,6 +9709,8 @@ class $AppDatabaseManager {
       $$GrammarLessonProgressTableTableManager(_db, _db.grammarLessonProgress);
   $$GrammarLessonStartsTableTableManager get grammarLessonStarts =>
       $$GrammarLessonStartsTableTableManager(_db, _db.grammarLessonStarts);
+  $$GrammarChapterUnlocksTableTableManager get grammarChapterUnlocks =>
+      $$GrammarChapterUnlocksTableTableManager(_db, _db.grammarChapterUnlocks);
   $$ProgressEntriesTableTableManager get progressEntries =>
       $$ProgressEntriesTableTableManager(_db, _db.progressEntries);
   $$KanjiTranslationsTableTableManager get kanjiTranslations =>

@@ -57,6 +57,30 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statusNotStarted => 'Pas encore commencé';
 
   @override
+  String get chapterLocked => 'Chapitre verrouillé';
+
+  @override
+  String get chapterLockedBody =>
+      'Terminez le chapitre précédent pour débloquer celui-ci, ou continuez quand même.';
+
+  @override
+  String get groupLocked => 'Groupe verrouillé';
+
+  @override
+  String get groupLockedBody =>
+      'Terminez le groupe précédent pour débloquer celui-ci, ou continuez quand même.';
+
+  @override
+  String get lessonLocked => 'Leçon verrouillée';
+
+  @override
+  String get lessonLockedBody =>
+      'Terminez la leçon précédente pour débloquer celle-ci, ou continuez quand même.';
+
+  @override
+  String get chapterUnlockAnyway => 'Débloquer quand même';
+
+  @override
   String get exampleWords => 'Exemples';
 
   @override

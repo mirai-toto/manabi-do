@@ -8,6 +8,22 @@ The one explicit exception is `SpeakButton`, which reads `ttsProvider` to trigge
 
 ## common/
 
+### AuthButton
+
+Full-width landing/onboarding button. Elevation 0, `radiusLg` corners, vertical padding `spaceMd`, bold `body` text. Accepts `backgroundColor`, `foregroundColor`, and an optional `BorderSide` for outlined variants.
+
+```dart
+AuthButton(
+  backgroundColor: t.cardBackground,
+  foregroundColor: t.onSurface,
+  side: BorderSide(color: t.outlineVariant, width: 1.5),
+  onPressed: () {},
+  child: Row(children: [SvgPicture.asset('…'), Text(l.signInWithGoogle)]),
+)
+```
+
+---
+
 ### AppButton
 
 Themed filled/outlined button with consistent padding and style.
@@ -84,26 +100,13 @@ CardContainer(
 
 ---
 
-### ChapterListView
-
-Scrollable list of chapter items with a title and dividers.
-
-```dart
-ChapterListView(
-  title: 'N5 Grammar',
-  sectionLabel: 'Chapters',
-  items: const ['Greetings', 'Numbers', 'Time'],
-  accentColor: Colors.blue,
-  onBack: () {},
-  onItemTap: (index) {},
-)
-```
-
----
-
 ### CollapsibleSection
 
 Tappable section header with an animated chevron and a tinted background. Used to group collapsible lists (e.g. grammar chapters inside a theme). The caller owns the collapsed state and provides `onToggle`.
+
+Optional `badge` renders a pill label between the title and the icon — visible even when collapsed or locked. The caller is responsible for formatting the string (e.g. `l.nLessons(count)`).
+
+Optional `isLocked` swaps the chevron for a lock icon and dims the row to 55% opacity. The caller is still responsible for what `onToggle` does in the locked case (e.g. show an unlock dialog).
 
 ```dart
 CollapsibleSection(
@@ -111,6 +114,25 @@ CollapsibleSection(
   isCollapsed: _collapsed.contains(0),
   accentColor: levelColor('N5'),
   onToggle: () => setState(() => _collapsed.toggle(0)),
+)
+
+// With badge (caller formats the string)
+CollapsibleSection(
+  title: 'て-form',
+  badge: l.nLessons(4),
+  isCollapsed: _collapsed.contains(0),
+  accentColor: levelColor('N5'),
+  onToggle: () => setState(() => _collapsed.toggle(0)),
+)
+
+// Locked — shows lock icon, caller handles the tap
+CollapsibleSection(
+  title: 'Advanced verbs',
+  badge: l.nLessons(6),
+  isCollapsed: true,
+  isLocked: true,
+  accentColor: levelColor('N4'),
+  onToggle: _showUnlockDialog,
 )
 ```
 
@@ -183,22 +205,35 @@ JapaneseText(
 
 ---
 
+### LandingHeroPanel
+
+Full-bleed hero at the top of the landing screen. 3-stop vertical gradient (`heroDeep → heroMid → primaryLight`), app glyph `'学び'` with glow shadow, app name in letter-spaced label, and tagline. Reads `context.tokens` and `context.l10n` internally — no parameters.
+
+```dart
+const LandingHeroPanel()
+```
+
+---
+
+### LockedFeatureCard
+
+Centred overlay card shown when a feature is locked. Large `Icons.lock_outline_rounded`, title in `titleLarge`, subtitle in `body onSurfaceVariant`. Decoration: `cardBackground`, `radiusMd`, prominent drop shadow. Title and subtitle are pre-formatted by the caller.
+
+```dart
+LockedFeatureCard(
+  title: l.grammarLockedTitle,
+  subtitle: l.grammarLockedSubtitle,
+)
+```
+
+---
+
 ### JlptLevelCard
 
 Compact badge showing a JLPT level (N1–N5) in brand colours.
 
 ```dart
 JlptLevelCard(code: 'N5', subtitle: '100 kanji', onTap: () {})
-```
-
----
-
-### NumberBadge
-
-Small circular badge with a number, used for due/new counts.
-
-```dart
-NumberBadge(number: 3, color: Colors.blue)
 ```
 
 ---
@@ -264,9 +299,33 @@ SectionHeader(
 
 ---
 
+### SegmentSelector
+
+Horizontal row of equally-sized labelled segments. Selected segment: `primary` fill + white label. Others: `cardBackground` + `outlineVariant` border + `onSurface` label. Animates transitions in 150ms. All option labels are pre-formatted by the caller.
+
+```dart
+SegmentSelector(
+  options: [l.always, l.onTap, l.never],
+  selected: _furiganaMode,
+  onSelect: (i) => setState(() => _furiganaMode = i),
+)
+```
+
+---
+
 ### SectionLabel
 
 Small all-caps label used above content groups.
+
+---
+
+### SheetDragHandle
+
+The 36×4 pill shown at the top of every bottom sheet. Centred, `outlineVariant` colour, with a bottom margin (`spaceMd`) to separate it from sheet content. Always `const`.
+
+```dart
+const SheetDragHandle()
+```
 
 ```dart
 const SectionLabel('Stroke order')
@@ -429,6 +488,20 @@ McqCard(
 
 ---
 
+### PracticeProgressRow
+
+Thin progress bar + `"N / total"` counter shown at the top of every exercise screen. The bar fills proportionally to `index / total` using the session's accent colour; the text label counts from 1. Handles `total == 0` without dividing by zero.
+
+```dart
+PracticeProgressRow(
+  index: widget.index,   // 0-based current position
+  total: widget.total,
+  color: widget.color,
+)
+```
+
+---
+
 ### SummaryCard
 
 End-of-session results card. Shows score, correct/missed counts, time spent, and retry/next actions.
@@ -449,7 +522,199 @@ SummaryCard(
 
 ---
 
+### FeedbackPanel
+
+Full-width result banner shown after an exercise answer. Background is `successContainer` or `errorContainer`; text is `success` or `error`.
+
+```dart
+FeedbackPanel(text: l.correct, isCorrect: true)
+FeedbackPanel(text: explanation, isCorrect: false)
+```
+
+---
+
+### PracticeFlashcardBody
+
+Flashcard exercise body. Shows a `FlashCard` (front/back flip), then SRS rating buttons. Handles the flip animation and rating UI internally.
+
+```dart
+PracticeFlashcardBody(
+  japanese: '水',
+  label: 'みず',
+  answer: 'water',
+  isReversed: false,
+  card: srsCard,
+  isFreeMode: false,
+  index: 0,
+  total: 10,
+  color: levelColor('N5'),
+  onAnswer: (rating) {},
+  onDetailTap: () => Navigator.push(context, ...),
+)
+```
+
+---
+
+### PracticeMcqBody
+
+Multiple-choice exercise body. Renders `McqCard` options and advances on selection.
+
+```dart
+PracticeMcqBody(
+  question: '水',
+  japanesePrompt: null,
+  japaneseReading: null,
+  options: [McqOption(text: 'water'), ...],
+  correctIndex: 0,
+  card: srsCard,
+  isFreeMode: false,
+  index: 0,
+  total: 10,
+  color: levelColor('N5'),
+  onAnswer: (rating) {},
+)
+```
+
+---
+
+### ClozeOption / LetterCircle
+
+`ClozeOption` is a tappable answer chip for fill-in-the-blank exercises. Shows a lettered circle (`LetterCircle`) alongside the option text/furigana. Colours change to success/error after answer.
+
+```dart
+ClozeOption(
+  option: McqOption(text: '食べます', furigana: 'たべます'),
+  showFurigana: true,
+  onTap: () => selectOption(i),
+)
+```
+
+---
+
+### GrammarBuilderBody
+
+Sentence-builder exercise body. Displays a shuffled word bank; the user taps words into order. Advances automatically or on confirmation.
+
+```dart
+GrammarBuilderBody(
+  parts: ['私は', '水を', '飲みます'],
+  translation: 'I drink water.',
+  index: 0,
+  total: 5,
+  color: levelColor('N5'),
+  autoAdvance: true,
+  onAnswer: (rating) {},
+)
+```
+
+---
+
+### GrammarClozeBody
+
+Grammar fill-in-the-blank body. Renders the sentence with a gap and a set of `ClozeOption` chips.
+
+```dart
+GrammarClozeBody(
+  sentence: '私は水___飲みます。',
+  options: [McqOption(text: 'を'), ...],
+  correctIndex: 0,
+  index: 0,
+  total: 5,
+  color: levelColor('N5'),
+  autoAdvance: false,
+  onAnswer: (rating) {},
+)
+```
+
+---
+
+### GrammarErrorDetectionBody
+
+Error-detection exercise body. Shows two sentences side by side (correct vs. wrong); the user picks the grammatically correct one.
+
+```dart
+GrammarErrorDetectionBody(
+  correct: '私は水を飲みます。',
+  wrong: '私は水が飲みます。',
+  explanation: 'Use を for the direct object of 飲む.',
+  index: 0,
+  total: 5,
+  color: levelColor('N5'),
+  onAnswer: (rating) {},
+)
+```
+
+---
+
+### SentenceClozeBody
+
+Sentence-level cloze exercise. Fetches per-card SRS state, renders `SentenceClozeCard`, and handles rating.
+
+```dart
+SentenceClozeBody(
+  sentence: sentence,
+  translation: 'I drink water.',
+  targetReading: null,
+  options: options,
+  correctIndex: 0,
+  card: srsCard,
+  isFreeMode: false,
+  index: 0,
+  total: 10,
+  color: levelColor('N5'),
+  onAnswer: (rating) {},
+)
+```
+
+---
+
+### SentenceClozeCard
+
+Stateless display card for a sentence cloze item. Renders the gapped sentence, optional furigana, translation toggle, and `ClozeOption` chips. No answer-handling logic.
+
+```dart
+SentenceClozeCard(
+  sentence: sentence,
+  translation: 'I drink water.',
+  showTranslation: false,
+  onToggleTranslation: () {},
+  showSentenceFurigana: true,
+  showChoiceFurigana: true,
+  targetReading: null,
+  options: options,
+  answered: false,
+  color: levelColor('N5'),
+  onOptionTap: (i) {},
+)
+```
+
+---
+
 ## characters/
+
+### CharacterHeroBox
+
+Fixed-size square box displaying a single Japanese character on a styled background. When `accentColor` is provided: diagonal gradient (dark-to-accent). When null: translucent white fill. Both variants use `radiusMd` corners and white character text.
+
+```dart
+// Kana detail — gradient variant
+CharacterHeroBox(character: 'あ', size: 88, accentColor: levelColor('kana'))
+
+// Kanji hero — translucent white variant
+CharacterHeroBox(character: '水', size: 96)
+```
+
+---
+
+### SrsProgressCard
+
+Full-width `surfaceContainer` card wrapping `ReviewProgressInfo`. Shows a small `CircularProgressIndicator` while loading; shows SRS state once loaded.
+
+```dart
+SrsProgressCard(isLoaded: _loaded, srsCard: _srsCard)
+```
+
+---
 
 ### CharacterCell
 
@@ -517,6 +782,93 @@ Horizontal scrollable row of mini stroke-step previews; tap a step to jump to it
 
 ```dart
 StrokeStepRow(kanjiId: 0x6c34)
+```
+
+---
+
+### StrokeOrderSection
+
+`SectionLabel` + `CardContainer(StrokeOrderAnimator)` + `StrokeStepRow` composed as a single block. Drop it below the readings card in any kanji detail view.
+
+```dart
+StrokeOrderSection(kanji: kanji)
+```
+
+---
+
+### KanjiHero
+
+Full-width gradient hero banner for a kanji detail screen. Shows the character, JLPT level badge, meanings, and a back button. Fetches localized meaning via `localizedKanjiMeaningProvider`.
+
+```dart
+KanjiHero(
+  kanji: kanji,
+  color: levelColor(kanji.jlptLevel),
+  onBack: () => Navigator.of(context).pop(),
+)
+```
+
+---
+
+### KanjiReadingsCard
+
+`SectionLabel` + `CardContainer` listing on-yomi and kun-yomi readings as `KanjiReadingChip` pills.
+
+```dart
+KanjiReadingsCard(kanji: kanji)
+```
+
+---
+
+### KanjiExampleWords
+
+`SectionLabel` + list of example vocabulary words for a kanji. Fetches localized vocab via provider; shows a loading indicator, empty state, or word list with `PillBadge` JLPT tags.
+
+```dart
+KanjiExampleWords(kanji: kanji)
+```
+
+---
+
+### KanjiGrid
+
+4-column grid of `CharacterCell` tiles for a set of kanji. Tapping a cell navigates to `KanjiDetailScreen`.
+
+```dart
+KanjiGrid(kanjis: kanjiList, srsCards: srsCardMap)
+```
+
+---
+
+### KanjiLevelHeader
+
+In-page back-navigation row used at the top of kanji group/level views. Shows a back button, JLPT level `PillBadge`, and a subtitle label.
+
+```dart
+KanjiLevelHeader(
+  level: 'N5',
+  label: l.kanjiGroup(1),
+  color: levelColor('N5'),
+  onBack: () {},
+)
+```
+
+---
+
+## grammar/
+
+### LessonReadToggle
+
+Full-width animated toggle shown at the bottom of a grammar lesson. Unread state: `surfaceContainer` background, outline check icon, "Mark as read" label. Read state: `successContainer` background, `success` border, filled check icon, "Marked as read" label. Animates in 150ms. Reads `context.l10n` internally — the labels are inseparable from the toggle state.
+
+```dart
+LessonReadToggle(
+  isRead: isRead,
+  onTap: () {
+    if (isRead) db.unmarkGrammarLessonRead(lessonId);
+    else db.markGrammarLessonRead(lessonId);
+  },
+)
 ```
 
 ---
@@ -820,20 +1172,107 @@ SettingsStepper(
 
 ---
 
+### SettingsAboutSection / AttributionCard
+
+`SettingsAboutSection` is a `ConsumerWidget` that renders the app version row and a list of `AttributionCard` entries for third-party libraries. `AttributionCard` is a `CardContainer` with a notice text and a tappable URL link.
+
+```dart
+// Rendered automatically inside SettingsScreen — no props needed
+const SettingsAboutSection()
+
+// Used internally; can also be used standalone:
+AttributionCard(
+  notice: 'flutter_svg — Apache 2.0',
+  link: 'https://github.com/dnfield/flutter_svg',
+)
+```
+
+---
+
+### SettingsPracticeCard
+
+`ConsumerWidget` that reads SRS settings and renders a `SettingsCard` with steppers for new characters/vocab per day and an MCQ/flashcard toggle. Self-contained — no props.
+
+```dart
+const SettingsPracticeCard()
+```
+
+---
+
+### LanguagePickerSheet
+
+Bottom sheet for selecting the app language. Renders a list of supported locale codes as tappable tiles; highlights the current selection.
+
+```dart
+LanguagePickerSheet(
+  title: l.language,
+  currentCode: 'en',
+  onSelect: (code) => ref.read(localeProvider.notifier).set(code),
+)
+```
+
+---
+
 ## study/
+
+### PracticeModeCard
+
+Tappable card for a single practice mode or feature entry point. Left-side tinted icon box (`color 12% opacity`, `radiusMd`), title, optional subtitle and count label, trailing chevron. Decoration: `cardBackground`, `radiusLg`, accent border at 25% opacity. Shows a `CircularProgressIndicator` when `isCountLoading: true`. All display strings pre-formatted by the caller.
+
+```dart
+// With async counts (from FutureBuilder at screen level)
+PracticeModeCard(
+  title: mode.title,
+  icon: mode.icon,
+  color: widget.color,
+  countLabel: '12 due · 3 new',   // null when no counts loaded yet
+  isCountLoading: _isLoading,
+  onTap: () async { await mode.onTap(); _refresh(); },
+)
+
+// Without counts
+PracticeModeCard(
+  title: l.japaneseBasics,
+  subtitle: l.japaneseBasicsSubtitle,
+  icon: Icons.menu_book_rounded,
+  color: levelColor('basics'),
+  onTap: () => onSelect('basics'),
+)
+```
+
+---
 
 ### ChapterCard
 
-Card showing chapter number, title, description, lesson count, and completion progress.
+Card showing a chapter label, title, description, lesson count badge, and completion progress bar. All display strings are pre-formatted by the caller — the widget contains no l10n calls.
+
+`isLocked` dims the card to 55% opacity and shows a lock icon instead of the badge pill. The caller handles navigation and any unlock dialog in `onTap`.
 
 ```dart
 ChapterCard(
-  chapterNumber: 2,
+  chapterLabel: l.chapterN('02'),        // caller formats
   title: 'Numbers & Time',
   description: 'Count, tell the time, and talk about dates.',
+  badge: l.nLessons(10),                 // caller formats
+  doneCount: 6,
   totalLessons: 10,
-  completedLessons: 6,
+  progressLabel: l.lessonsProgress(6, 10), // caller formats
+  accentColor: levelColor('N5'),
   onTap: () {},
+)
+
+// Locked chapter
+ChapterCard(
+  chapterLabel: l.chapterN('03'),
+  title: 'Food & Restaurants',
+  description: 'Order food and navigate a Japanese restaurant.',
+  badge: l.nLessons(7),
+  doneCount: 0,
+  totalLessons: 7,
+  progressLabel: l.lessonsProgress(0, 7),
+  accentColor: levelColor('N5'),
+  isLocked: true,
+  onTap: _showUnlockDialog,
 )
 ```
 
@@ -861,15 +1300,46 @@ DomainCard(
 
 ### LessonRow
 
-List row for a single lesson with title, difficulty dots, status pill, and tap handler.
+List row for a single lesson showing an index number, title, `DifficultyDots`, exercise count chip, and state pill. `state` drives the border colour, chip label/colour, and optional lock icon.
+
+`LearningState.locked` dims the row to 55% opacity and shows a lock chip; the caller supplies the `onTap` that opens an unlock dialog.
 
 ```dart
 LessonRow(
   title: 'Hiragana basics',
-  difficulty: 1,               // 1–3
-  status: LessonStatus.done,
-  lessonNumber: 1,
+  index: 0,                              // 0-based position shown as "01"
+  difficulty: 1,                         // 1–3 dots
+  state: LearningState.notStarted,
+  accentColor: levelColor('N5'),
+  exerciseCount: 3,                      // 0 = chip not shown
   onTap: () {},
+)
+
+// Locked lesson — caller handles unlock dialog
+LessonRow(
+  title: 'Complex grammar patterns',
+  index: 11,
+  difficulty: 3,
+  state: LearningState.locked,
+  accentColor: levelColor('N4'),
+  exerciseCount: 0,
+  onTap: () => _showUnlockDialog(lesson),
+)
+```
+
+---
+
+### StudyGroupCard
+
+Tappable card for selecting a study group. Shows a group title, a range/count label, an `AppProgressBar`, and a trailing chevron. Decoration: `cardBackground`, `radiusLg`, accent-coloured border at 20% opacity. All display strings are pre-formatted by the caller.
+
+```dart
+StudyGroupCard(
+  title: l.groupN(i + 1),                          // caller formats
+  rangeLabel: '${start + 1}–$end · $learned / $total', // caller formats
+  progress: learned / total,
+  color: levelColor('N5'),
+  onTap: () => selectGroup(i),
 )
 ```
 
@@ -881,4 +1351,118 @@ Gradient card displaying the user's current study streak in days.
 
 ```dart
 StreakCard(days: 14, label: 'day streak', subtitle: 'Keep it up!')
+```
+
+---
+
+### HomeHeader
+
+Greeting banner at the top of the home screen. Displays a pre-formatted greeting and subtitle string.
+
+```dart
+HomeHeader(greeting: l.goodMorning(name), subtitle: l.homeSubtitle)
+```
+
+---
+
+### HomeDomainCards
+
+Grid of `DomainCard` entries for the home screen (kana, kanji, vocab, grammar). All counts pre-resolved by the caller.
+
+```dart
+HomeDomainCards(
+  totalKana: 92, totalKanji: 2136, totalVocab: 8000,
+  kanaDue: 3, kanaNew: 5,
+  kanjiDue: 12, kanjiNew: 8,
+  vocabDue: 0, vocabNew: 10,
+  onKanaTap: () {}, onKanjiTap: () {}, onVocabTap: () {}, onGrammarTap: () {},
+  onKanaPractice: () {}, onKanjiPractice: () {}, onVocabPractice: () {},
+)
+```
+
+---
+
+### GrammarChapterList
+
+Scrollable list of `ChapterCard` entries for a given JLPT level. Watches `grammarThemesProvider` internally, resolves unlock/progress state, and calls `onBack` when the user presses the back button.
+
+```dart
+GrammarChapterList(
+  level: 'N5',
+  onBack: () => ref.read(grammarSelectedLevelProvider.notifier).clear(),
+)
+```
+
+---
+
+### VocabWordTile
+
+Expandable vocabulary list row. Shows word, reading, abbreviated meaning. Tap expands to full meaning, part-of-speech chips, and `SpeakButton`. Localized meaning fetched via provider.
+
+```dart
+VocabWordTile(entry: vocabEntry)
+```
+
+---
+
+### VocabLevelSelector
+
+Full-screen-width list of JLPT level tiles. Tapping a level calls `onSelect`.
+
+```dart
+VocabLevelSelector(onSelect: (level) => selectLevel(level))
+```
+
+---
+
+### VocabGroupSelector
+
+Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for pagination within a vocab level. `kVocabGroupSize` groups of 30 words each.
+
+```dart
+VocabGroupSelector(
+  level: 'N5',
+  onBack: () {},
+  onSelect: (groupIndex) => selectGroup(groupIndex),
+)
+```
+
+---
+
+### VocabLevelView
+
+Shows the vocabulary word list for one paginated group within a level. Fetches entries via `vocabByLevelProvider`, renders `VocabWordTile` rows, and shows learned-count progress.
+
+```dart
+VocabLevelView(level: 'N5', groupIndex: 0, onBack: () {})
+```
+
+---
+
+### KanjiLevelSelector
+
+Full-screen list of JLPT level tiles for the kanji section. Tapping a level calls `onSelect`.
+
+```dart
+KanjiLevelSelector(onSelect: (level) => selectLevel(level))
+```
+
+---
+
+### KanjiGroupSelector
+
+Shows group cards for one kanji JLPT level with SRS progress. Navigates into `KanjiGroupView` on tap; back button calls `onBack`.
+
+```dart
+KanjiGroupSelector(level: 'N5', onBack: () {})
+```
+
+---
+
+### KanjiGroupView
+
+Shows `KanjiLevelHeader`, `KanjiGrid`, and practice/writing-session shortcuts for a single kanji group.
+
+```dart
+KanjiGroupView(level: 'N5', groupIndex: 0, onBack: () {})
 ```

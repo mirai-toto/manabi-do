@@ -57,6 +57,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statusNotStarted => 'Not started';
 
   @override
+  String get chapterLocked => 'Chapter locked';
+
+  @override
+  String get chapterLockedBody =>
+      'Complete the previous chapter to unlock this one, or continue anyway.';
+
+  @override
+  String get groupLocked => 'Group locked';
+
+  @override
+  String get groupLockedBody =>
+      'Complete the previous group to unlock this one, or continue anyway.';
+
+  @override
+  String get lessonLocked => 'Lesson locked';
+
+  @override
+  String get lessonLockedBody =>
+      'Complete the previous lesson to unlock this one, or continue anyway.';
+
+  @override
+  String get chapterUnlockAnyway => 'Unlock anyway';
+
+  @override
   String get exampleWords => 'Example Words';
 
   @override

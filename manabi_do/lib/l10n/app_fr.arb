@@ -26,6 +26,14 @@
   "exampleWords": "Exemples",
   "readings": "Lectures",
 
+  "chapterLocked": "Chapitre verrouillé",
+  "chapterLockedBody": "Terminez le chapitre précédent pour débloquer celui-ci, ou continuez quand même.",
+  "groupLocked": "Groupe verrouillé",
+  "groupLockedBody": "Terminez le groupe précédent pour débloquer celui-ci, ou continuez quand même.",
+  "lessonLocked": "Leçon verrouillée",
+  "lessonLockedBody": "Terminez la leçon précédente pour débloquer celle-ci, ou continuez quand même.",
+  "chapterUnlockAnyway": "Débloquer quand même",
+
   "difficultyLevel": "Difficulté {level}",
   "@difficultyLevel": {
     "placeholders": {
