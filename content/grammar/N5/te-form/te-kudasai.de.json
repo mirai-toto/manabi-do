@@ -1,0 +1,55 @@
+{
+  "id": "te-kudasai",
+  "title": "てください : Bitte Tun",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Die direkteste und natürlichste Art, eine höfliche Bitte zu formulieren, ist **て-Form + ください**. Sie passt in fast jeden höflichen Zusammenhang : Geschäfte, Unterricht, öffentliche Hinweisschilder."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-Form] + **ください**   ← bitte tu ~"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "ここに名前を書いてください。",
+          "romaji": "Koko ni namae wo kaite kudasai.",
+          "deutsch": "Bitte schreiben Sie hier Ihren Namen."
+        },
+        {
+          "japanese": "もう一度言ってください。",
+          "romaji": "Mō ichido itte kudasai.",
+          "deutsch": "Bitte sagen Sie es noch einmal."
+        },
+        {
+          "japanese": "静かにしてください。",
+          "romaji": "Shizuka ni shite kudasai.",
+          "deutsch": "Bitte seien Sie leise."
+        },
+        {
+          "japanese": "窓を閉めてください。",
+          "romaji": "Mado wo shimete kudasai.",
+          "deutsch": "Bitte schließen Sie das Fenster."
+        },
+        {
+          "japanese": "右に曲がってください。",
+          "romaji": "Migi ni magatte kudasai.",
+          "deutsch": "Bitte biegen Sie rechts ab."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Zur Sprachebene: Für lockere Bitten lässt du ください ganz weg : 書いて heißt unter Freunden „schreib das“. Für zurückhaltendere Situationen, etwa gegenüber Vorgesetzten oder bei förmlichen Anliegen, nimmst du ていただけますか."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "tai-want-to-do",
+  "title": "Etwas Tun Wollen : たい",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**たい** hängt sich an den Verbstamm und drückt den persönlichen Wunsch der sprechenden Person aus, etwas zu tun. Es wird genau wie ein い-Adjektiv konjugiert : dieselben Stammveränderungen gelten."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Verbstamm] + **たいです**        (tun wollen)",
+        "[Verbstamm] + **たくないです**    (nicht tun wollen)",
+        "[Verbstamm] + **たかったです**    (getan haben wollen)"
+      ]
+    },
+    {
+      "type": "conjugation_table",
+      "label": "食べる (taberu) → 食べたい",
+      "rows": [
+        {
+          "form": "wollen",
+          "japanese": "食べたいです",
+          "romaji": "tabetai desu",
+          "english": "essen wollen"
+        },
+        {
+          "form": "nicht wollen",
+          "japanese": "食べたくないです",
+          "romaji": "tabetakunai desu",
+          "english": "nicht essen wollen"
+        },
+        {
+          "form": "gewollt haben",
+          "japanese": "食べたかったです",
+          "romaji": "tabetakatta desu",
+          "english": "essen wollte"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "日本に行きたいです。",
+          "romaji": "Nihon ni ikitai desu.",
+          "deutsch": "Ich möchte nach Japan fahren."
+        },
+        {
+          "japanese": "今日は外出したくないです。",
+          "romaji": "Kyō wa gaishutsu shitakunai desu.",
+          "deutsch": "Heute möchte ich nicht ausgehen."
+        },
+        {
+          "japanese": "何が食べたいですか。",
+          "romaji": "Nani ga tabetai desu ka.",
+          "deutsch": "Was möchtest du essen?"
+        },
+        {
+          "japanese": "子どもの頃、医者になりたかったです。",
+          "romaji": "Kodomo no koro, isha ni naritakatta desu.",
+          "deutsch": "Als Kind wollte ich Arzt werden."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Das direkte Objekt bei たい steht oft mit が statt を : 寿司**が**食べたい klingt etwas natürlicher als 寿司**を**食べたい, obwohl beides korrekt ist. Stell dir が als Verbindung zwischen dem Wunsch und seinem Ziel vor."
+    },
+    {
+      "type": "note",
+      "content": "たい beschreibt *deinen eigenen* Wunsch. 田中さんは行きたい direkt zu sagen unterstellt, dass du das Innenleben der Person kennst, und kann anmaßend klingen. Für Wünsche Dritter verwendest du 田中さんは行きたがっている (scheint gehen zu wollen)."
+    }
+  ]
+}

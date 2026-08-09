@@ -1,0 +1,109 @@
+{
+  "id": "naka-chuu-juu",
+  "title": "中 : Während / Durchgehend",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Das Kanji **中** hängt sich mit zwei verschiedenen Lesungen und zwei verschiedenen Bedeutungen an Nomen. Das Verb oder der Kontext macht die Lesung meist klar."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "〜中 (ちゅう)",
+        "description": "Gerade in dieser Tätigkeit oder diesem Zustand : geschieht genau jetzt.",
+        "example_jp": "会議中です。",
+        "example_en": "Ich bin gerade in einer Besprechung."
+      },
+      "right": {
+        "label": "〜中 (じゅう)",
+        "description": "Über das Ganze hinweg : durch den gesamten Zeitraum oder Raum.",
+        "example_jp": "一日中働いています。",
+        "example_en": "Ich arbeite den ganzen Tag."
+      }
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "lesung",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "会議中",
+          "lesung": "かいぎちゅう",
+          "deutsch": "in einer Besprechung"
+        },
+        {
+          "japanese": "勉強中",
+          "lesung": "べんきょうちゅう",
+          "deutsch": "gerade am Lernen"
+        },
+        {
+          "japanese": "使用中",
+          "lesung": "しようちゅう",
+          "deutsch": "in Benutzung / besetzt"
+        },
+        {
+          "japanese": "工事中",
+          "lesung": "こうじちゅう",
+          "deutsch": "im Bau"
+        },
+        {
+          "japanese": "世界中",
+          "lesung": "せかいじゅう",
+          "deutsch": "auf der ganzen Welt"
+        },
+        {
+          "japanese": "一日中",
+          "lesung": "いちにちじゅう",
+          "deutsch": "den ganzen Tag lang"
+        },
+        {
+          "japanese": "日本中",
+          "lesung": "にほんじゅう",
+          "deutsch": "in ganz Japan"
+        },
+        {
+          "japanese": "年中",
+          "lesung": "ねんじゅう",
+          "deutsch": "das ganze Jahr über"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "すみません、今、電話中です。",
+          "romaji": "Sumimasen, ima, denwa chū desu.",
+          "deutsch": "Entschuldigung, ich telefoniere gerade."
+        },
+        {
+          "japanese": "使用中のため入れません。",
+          "romaji": "Shiyō chū no tame hairemasen.",
+          "deutsch": "Kein Zutritt : derzeit in Benutzung."
+        },
+        {
+          "japanese": "世界中の人が知っています。",
+          "romaji": "Sekai jū no hito ga shitte imasu.",
+          "deutsch": "Menschen auf der ganzen Welt wissen davon."
+        },
+        {
+          "japanese": "日本中を旅行しました。",
+          "romaji": "Nihon jū wo ryokō shimashita.",
+          "deutsch": "Ich bin durch ganz Japan gereist."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ちゅう = die Tätigkeit läuft genau jetzt (ein Zeitausschnitt). じゅう = nichts ist ausgenommen (die volle Ausdehnung einer Zeit oder eines Raums). 勉強中 = lernt in diesem Moment. 一日中勉強した = hat den ganzen Tag ohne Unterbrechung gelernt."
+    }
+  ]
+}

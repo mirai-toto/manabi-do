@@ -1,0 +1,103 @@
+{
+  "id": "basic-numbers",
+  "title": "Grundzahlen",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanische Zahlen sind bis 10 000 unkompliziert. Dieselben Ziffern werden kombiniert und aufeinandergestapelt, um größere Werte zu bilden : 十一 ist 10+1, 百二十三 ist 100+20+3. Lerne den Grundsatz, der Rest ergibt sich."
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "#",
+        "japanese",
+        "lesung",
+        "alternative"
+      ],
+      "rows": [
+        {
+          "#": "1",
+          "japanese": "一",
+          "lesung": "いち",
+          "alternative": "ひと (bei manchen Zähleinheiten)"
+        },
+        {
+          "#": "2",
+          "japanese": "二",
+          "lesung": "に",
+          "alternative": "ふた (bei manchen Zähleinheiten)"
+        },
+        {
+          "#": "3",
+          "japanese": "三",
+          "lesung": "さん",
+          "alternative": ":"
+        },
+        {
+          "#": "4",
+          "japanese": "四",
+          "lesung": "よん",
+          "alternative": "し"
+        },
+        {
+          "#": "5",
+          "japanese": "五",
+          "lesung": "ご",
+          "alternative": ":"
+        },
+        {
+          "#": "6",
+          "japanese": "六",
+          "lesung": "ろく",
+          "alternative": ":"
+        },
+        {
+          "#": "7",
+          "japanese": "七",
+          "lesung": "なな",
+          "alternative": "しち"
+        },
+        {
+          "#": "8",
+          "japanese": "八",
+          "lesung": "はち",
+          "alternative": ":"
+        },
+        {
+          "#": "9",
+          "japanese": "九",
+          "lesung": "きゅう",
+          "alternative": "く"
+        },
+        {
+          "#": "10",
+          "japanese": "十",
+          "lesung": "じゅう",
+          "alternative": ":"
+        },
+        {
+          "#": "100",
+          "japanese": "百",
+          "lesung": "ひゃく",
+          "alternative": ":"
+        },
+        {
+          "#": "1 000",
+          "japanese": "千",
+          "lesung": "せん",
+          "alternative": ":"
+        },
+        {
+          "#": "10 000",
+          "japanese": "万",
+          "lesung": "まん",
+          "alternative": ":"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "4 (し) und 9 (く) werden in manchen Zusammenhängen gemieden : し klingt wie 死 (Tod) und く wie 苦 (Leid). In Krankenhäusern werden diese Zimmernummern gelegentlich übersprungen. Das ist kulturelles Hintergrundwissen, keine Grammatik."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "id": "mae-ni-ato-de",
+  "title": "前に / 後で : Vor / Nach",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**前に** und **後で** beschreiben den Zeitpunkt im Verhältnis zu einer anderen Handlung. Sie sind flexibler als てから : ein strikter Abschluss wird nicht vorausgesetzt. Die Verbform davor ist jeweils eine andere, und das hat einen logischen Grund."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Wörterbuchform] + **前に**、[Handlung]       ← bevor (die Handlung ist noch nicht geschehen)",
+        "[Vergangenheit, Grundform] + **後で**、[Handlung]       ← nachdem (die Handlung ist abgeschlossen)",
+        "[Nomen] + の**前に** / の**後で**              ← vor / nach einem Nomen (Ereignis, Unterricht usw.)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "寝る前に歯を磨きます。",
+          "romaji": "Neru mae ni ha wo migakimasu.",
+          "deutsch": "Vor dem Schlafengehen putze ich mir die Zähne."
+        },
+        {
+          "japanese": "食べた後で、散歩します。",
+          "romaji": "Tabeta ato de, sanpo shimasu.",
+          "deutsch": "Nach dem Essen mache ich einen Spaziergang."
+        },
+        {
+          "japanese": "授業の前に、単語を復習しました。",
+          "romaji": "Jugyō no mae ni, tango wo fukushū shimashita.",
+          "deutsch": "Vor dem Unterricht habe ich Vokabeln wiederholt."
+        },
+        {
+          "japanese": "映画の後で、カフェに行きましょう。",
+          "romaji": "Eiga no ato de, kafe ni ikimashō.",
+          "deutsch": "Lass uns nach dem Film ins Café gehen."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "前に steht mit der Wörterbuchform, weil die Handlung zu diesem Zeitpunkt *noch nicht geschehen ist* : sie liegt vom Bezugsmoment aus noch in der Zukunft. 後で steht mit der Vergangenheits-Grundform, weil die Handlung *abgeschlossen ist*, bevor die nächste beginnt."
+    }
+  ]
+}

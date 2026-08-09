@@ -1,0 +1,61 @@
+{
+  "id": "giving-receiving",
+  "title": "Geben & Empfangen von Handlungen",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanisch hält die *Richtung* eines Gefallens genau fest. Drei て-Form-Muster decken je eine Richtung ab : von dir nach außen, zu dir hin oder unaufgefordert ankommend."
+    },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "**てあげる** : Ich (oder jemand) tue etwas *für* eine andere Person. Der Nutzen fließt nach außen.",
+        "**てもらう** : Ich erhalte eine Handlung *von* jemandem. Ich bin die begünstigte Person, oft nachdem ich darum gebeten habe.",
+        "**てくれる** : Jemand tut etwas für mich aus eigenem Antrieb. Der Nutzen kommt an, ohne dass ich darum gebeten habe."
+      ]
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-Form] + **あげます**   ← ich tue es für sie (Nutzen fließt hinaus)",
+        "[て-Form] + **もらいます** ← ich erhalte die Handlung (Nutzen fließt herein)",
+        "[て-Form] + **くれます**   ← sie tun es für mich, aus eigenem Antrieb"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "友達の荷物を持ってあげました。",
+          "romaji": "Tomodachi no nimotsu wo motte agemashita.",
+          "deutsch": "Ich habe für meine Freundin das Gepäck getragen."
+        },
+        {
+          "japanese": "先生に漢字を教えてもらいました。",
+          "romaji": "Sensei ni kanji wo oshiete moraimashita.",
+          "deutsch": "Ich habe mir von der Lehrkraft Kanji beibringen lassen."
+        },
+        {
+          "japanese": "母が弁当を作ってくれました。",
+          "romaji": "Haha ga bentō wo tsukutte kuremashita.",
+          "deutsch": "Meine Mutter hat mir ein Bentō gemacht (mir zuliebe)."
+        },
+        {
+          "japanese": "田中さんが駅まで送ってくれました。",
+          "romaji": "Tanaka-san ga eki made okutte kuremashita.",
+          "deutsch": "Tanaka war so nett, mich zum Bahnhof zu bringen."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Die entscheidende Frage: *Wer hat den Nutzen?* Der Nutzen geht an jemand anderen → あげる. Der Nutzen kommt zu mir, ich habe darum gebeten → もらう. Der Nutzen kommt zu mir, aus eigenem Antrieb → くれる."
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "id": "long-vowels",
+  "title": "Lange Vokale",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Einen Vokal eine More länger zu halten verändert die Bedeutung. Vokallänge ist im Japanischen bedeutungsunterscheidend : zwei sonst identische Wörter können sich allein darin unterscheiden, wie lange ein Vokal gehalten wird."
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "kurz",
+        "romaji",
+        "lang",
+        "romaji ",
+        "unterschied"
+      ],
+      "rows": [
+        {
+          "kurz": "おじさん",
+          "romaji": "ojisan",
+          "lang": "おじいさん",
+          "romaji ": "ojiisan",
+          "unterschied": "Onkel vs. Großvater"
+        },
+        {
+          "kurz": "ここ",
+          "romaji": "koko",
+          "lang": "こうこう",
+          "romaji ": "kōkō",
+          "unterschied": "hier vs. Oberschule"
+        },
+        {
+          "kurz": "おばさん",
+          "romaji": "obasan",
+          "lang": "おばあさん",
+          "romaji ": "obaasan",
+          "unterschied": "Tante vs. Großmutter"
+        },
+        {
+          "kurz": "ビル",
+          "romaji": "biru",
+          "lang": "ビール",
+          "romaji ": "bīru",
+          "unterschied": "Gebäude vs. Bier"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Wie Lange Vokale Geschrieben Werden"
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "Hiragana: den Vokal wiederholen (oder **お + う** für den ō-Laut)",
+        "Katakana: **ー** verwenden (Chōonpu)"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "おかあさん",
+          "romaji": "okaasan",
+          "deutsch": "Mutter"
+        },
+        {
+          "japanese": "こうこう",
+          "romaji": "kōkō",
+          "deutsch": "Oberschule"
+        },
+        {
+          "japanese": "コーヒー",
+          "romaji": "koohii",
+          "deutsch": "Kaffee"
+        },
+        {
+          "japanese": "スーパー",
+          "romaji": "suupaa",
+          "deutsch": "Supermarkt"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Das Zeichen ー erscheint nur in Katakana. In Hiragana-Wörtern wird der lange Vokal ausgeschrieben (ああ, おう usw.). Der Unterschied zwischen おじさん und おじいさん ist ein zusätzliches い : in Handschrift leicht zu übersehen."
+    }
+  ]
+}

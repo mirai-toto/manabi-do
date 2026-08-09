@@ -1,0 +1,100 @@
+{
+  "id": "punctuation-spacing",
+  "title": "Zeichensetzung & Abstände",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanisch kennt keine Leerzeichen zwischen Wörtern. Wortgrenzen sind trotzdem erkennbar, weil die drei Schriftsysteme vorhersagbar wechseln und weil Lesende die Grammatik verinnerlicht haben. Die Zeichensetzung ist ein eigenes System, parallel zum westlichen."
+    },
+    {
+      "type": "section_title",
+      "content": "Satzzeichen"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "zeichen",
+        "name",
+        "verwendung"
+      ],
+      "rows": [
+        {
+          "zeichen": "。",
+          "name": "Kuten",
+          "verwendung": "Punkt am Satzende"
+        },
+        {
+          "zeichen": "、",
+          "name": "Touten",
+          "verwendung": "Komma : markiert eine Pause im Satz"
+        },
+        {
+          "zeichen": "「 」",
+          "name": "Kagikakko",
+          "verwendung": "Übliche Anführungszeichen"
+        },
+        {
+          "zeichen": "『 』",
+          "name": "Nijū kagikakko",
+          "verwendung": "Verschachtelte Anführungszeichen oder Buch- und Werktitel"
+        },
+        {
+          "zeichen": "・",
+          "name": "Nakaguro",
+          "verwendung": "Trennt Aufzählungspunkte oder Teile eines fremden Namens"
+        },
+        {
+          "zeichen": "ー",
+          "name": "Chōonpu",
+          "verwendung": "Dehnt einen Vokal in Katakana-Wörtern"
+        },
+        {
+          "zeichen": "！ ？",
+          "name": "Vollbreite Formen",
+          "verwendung": "Gleiche Funktion wie im Deutschen, aber vollbreit für gleichmäßige Ausrichtung"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "In japanischer Belletristik und in Manga sind 「」 Kagikakko die üblichen Dialogzeichen : nicht die westlichen Anführungszeichen. In muttersprachlichen Texten begegnen sie dir ständig."
+    },
+    {
+      "type": "section_title",
+      "content": "Beispiele im Kontext"
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "「おはよう」と言いました。",
+          "romaji": "\"Ohayō\" to iimashita.",
+          "deutsch": "Sie sagte „Guten Morgen“."
+        },
+        {
+          "japanese": "私はりんご、みかん、ぶどうを買いました。",
+          "romaji": "Watashi wa ringo, mikan, budō wo kaimashita.",
+          "deutsch": "Ich habe Äpfel, Mandarinen und Trauben gekauft."
+        },
+        {
+          "japanese": "スミス・ジョン",
+          "romaji": "Sumisu Jon",
+          "deutsch": "John Smith (fremder Name mit Nakaguro)"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Schreibrichtung"
+    },
+    {
+      "type": "text",
+      "content": "Modernes Japanisch wird waagerecht von links nach rechts geschrieben. Traditionelle Texte : Romane, manche Zeitungen, Sprechblasen in Manga : verlaufen *senkrecht* in Spalten, die von rechts nach links gelesen werden. Beide Richtungen sind heute in Gebrauch."
+    }
+  ]
+}

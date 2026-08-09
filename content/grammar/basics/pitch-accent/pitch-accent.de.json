@@ -1,0 +1,77 @@
+{
+  "id": "pitch-accent",
+  "title": "Tonhöhenakzent",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Im Deutschen wird eine betonte Silbe *lauter*. Im Japanischen macht der **Tonhöhenakzent** eine Silbe *höher*. Jedes Wort hat ein Tonhöhenmuster, und manchmal ist dieses Muster das Einzige, was zwei ansonsten identische Wörter unterscheidet."
+    },
+    {
+      "type": "text",
+      "content": "Der Tokioter Dialekt (Standardjapanisch) ist das Referenzsystem in Lehrbüchern und Rundfunk. Die Tonhöhe wird pro More als H (hoch) oder T (tief) beschrieben."
+    },
+    {
+      "type": "section_title",
+      "content": "Hohe und Tiefe Muster"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "wort",
+        "lesung",
+        "tonhöhe",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "wort": "橋",
+          "lesung": "hashi",
+          "tonhöhe": "T-H",
+          "deutsch": "Brücke"
+        },
+        {
+          "wort": "箸",
+          "lesung": "hashi",
+          "tonhöhe": "H-T",
+          "deutsch": "Essstäbchen"
+        },
+        {
+          "wort": "端",
+          "lesung": "hashi",
+          "tonhöhe": "H-T",
+          "deutsch": "Rand"
+        },
+        {
+          "wort": "雨",
+          "lesung": "ame",
+          "tonhöhe": "T-H",
+          "deutsch": "Regen"
+        },
+        {
+          "wort": "飴",
+          "lesung": "ame",
+          "tonhöhe": "H-T",
+          "deutsch": "Bonbon"
+        },
+        {
+          "wort": "東京",
+          "lesung": "tōkyō",
+          "tonhöhe": "T-H-H-T",
+          "deutsch": "Tokio"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "橋 und 箸 sehen in Rōmaji identisch aus und klingen lautlich gleich : die Tonhöhe ist das *einzige* Unterscheidungsmerkmal. In einem echten Satz klärt der Kontext die Bedeutung fast immer, bevor die Tonhöhe überhaupt eine Rolle spielt."
+    },
+    {
+      "type": "section_title",
+      "content": "Für Lernende"
+    },
+    {
+      "type": "text",
+      "content": "Ein falscher Tonhöhenakzent verhindert die Verständigung nicht. Muttersprachler stellen sich mühelos auf nicht-muttersprachliche Aussprache ein. Tonhöhe nimmt man am besten über das Hören auf : sie verbessert sich mit der Zeit von selbst und lässt sich auf mittlerem Niveau gezielt üben. Konzentriere dich vorerst auf Wortschatz, Grammatik und Lesen."
+    }
+  ]
+}

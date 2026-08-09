@@ -386,6 +386,18 @@ def _walk_grammar_index(
     return results
 
 
+def discover_grammar_locales() -> list[str]:
+    """Locales that have at least one translated lesson file, 'en' first."""
+    locales: set[str] = set()
+    for _dirpath, _dirs, filenames in os.walk(GRAMMAR_ROOT):
+        for name in filenames:
+            parts = name.split(".")
+            # lesson files are <stem>.<locale>.json; skip index.json and *.exercises.json
+            if len(parts) == 3 and parts[2] == "json" and parts[1] != "exercises":
+                locales.add(parts[1])
+    return ["en"] + sorted(locales - {"en"})
+
+
 def insert_grammar(db: sqlite3.Connection, locale: str = "en") -> int:
     with open(os.path.join(GRAMMAR_ROOT, "levels.json"), encoding="utf-8") as f:
         levels = json.load(f)
@@ -592,7 +604,7 @@ def main() -> None:
     n = insert_kana(db)
     print(f"{n} entries")
 
-    for locale in ("en", "fr"):
+    for locale in discover_grammar_locales():
         print(f"Inserting grammar lessons ({locale})… ", end="", flush=True)
         n = insert_grammar(db, locale)
         print(f"{n} lessons")

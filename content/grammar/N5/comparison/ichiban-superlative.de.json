@@ -1,0 +1,56 @@
+{
+  "id": "ichiban-superlative",
+  "title": "いちばん ～ : Am Meisten ~",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**いちばん** (一番) bedeutet „Nummer eins“ und dient als Superlativmarker. Es steht direkt vor dem Adjektiv oder Adverb : das Adjektiv selbst verändert sich nicht."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Gruppe] の中で、[Element] が **いちばん** [Adjektiv] です",
+        "  の中で (no naka de) = „unter“ : optional, aber gebräuchlich"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "クラスで田中さんが一番背が高いです。",
+          "romaji": "Kurasu de Tanaka-san ga ichiban se ga takai desu.",
+          "deutsch": "Tanaka ist in der Klasse am größten."
+        },
+        {
+          "japanese": "日本で一番高い山は富士山です。",
+          "romaji": "Nihon de ichiban takai yama wa Fujisan desu.",
+          "deutsch": "Der Fuji ist der höchste Berg Japans."
+        },
+        {
+          "japanese": "何の科目がいちばん好きですか。",
+          "romaji": "Nani no kamoku ga ichiban suki desu ka.",
+          "deutsch": "Welches Fach magst du am liebsten?"
+        },
+        {
+          "japanese": "このメニューの中で一番安い料理はどれですか。",
+          "romaji": "Kono menyū no naka de ichiban yasui ryōri wa dore desu ka.",
+          "deutsch": "Welches Gericht auf dieser Karte ist am günstigsten?"
+        },
+        {
+          "japanese": "世界で一番大きい国はどこですか。",
+          "romaji": "Sekai de ichiban ōkii kuni wa doko desu ka.",
+          "deutsch": "Welches ist das größte Land der Welt?"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "いちばん kann Adjektive (一番高い), Adverbien (一番速く) und in Verbindung mit suki/kirai auch Nomen näher bestimmen (一番好きな食べ物). Es ist eines der einfachsten Muster auf N5-Niveau : das Adjektiv muss überhaupt nicht angepasst werden."
+    }
+  ]
+}

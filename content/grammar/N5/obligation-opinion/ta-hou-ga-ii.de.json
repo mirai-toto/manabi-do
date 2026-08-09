@@ -1,0 +1,51 @@
+{
+  "id": "ta-hou-ga-ii",
+  "title": "たほうがいい : Sollte / Sollte Nicht",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**たほうがいい** drückt einen Rat aus : es legt nahe, dass ein Vorgehen im Interesse der angesprochenen Person wäre. Die bejahende Form nimmt die Vergangenheits-Grundform, die verneinte die verneinte Grundform."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Vergangenheit, Grundform] + **ほうがいいです**       ← du solltest … tun",
+        "[Verneinte Grundform] + **ほうがいいです**   ← du solltest … nicht tun"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "早く寝たほうがいいです。",
+          "romaji": "Hayaku neta hō ga ii desu.",
+          "deutsch": "Du solltest früh schlafen gehen."
+        },
+        {
+          "japanese": "タバコを吸わないほうがいいです。",
+          "romaji": "Tabako wo suwanai hō ga ii desu.",
+          "deutsch": "Du solltest nicht rauchen."
+        },
+        {
+          "japanese": "傘を持っていったほうがいいですよ。",
+          "romaji": "Kasa wo motte itta hō ga ii desu yo.",
+          "deutsch": "Du solltest einen Regenschirm mitnehmen."
+        },
+        {
+          "japanese": "無理をしないほうがいいです。",
+          "romaji": "Muri wo shinai hō ga ii desu.",
+          "deutsch": "Du solltest dich nicht überanstrengen."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "たほうがいい ist ein Rat, kein Befehl. Es signalisiert, dass die sprechende Person es wirklich für das Beste hält. Für eine stärkere Verpflichtung nimmst du なければなりません."
+    }
+  ]
+}

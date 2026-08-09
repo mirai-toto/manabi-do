@@ -1,0 +1,50 @@
+{
+  "id": "to-omoimasu",
+  "title": "と思います : Ich Denke, Dass",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**と思います** drückt eine persönliche Meinung oder Annahme aus. Das と markiert die Grenze des wiedergegebenen Gedankens. Damit klingen Aussagen angemessen zurückhaltend : etwas ohne dieses Muster rundheraus zu behaupten kann schroff wirken."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Verb / い-Adj. in Grundform] + **と思います**   ← ich denke, dass ~"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "明日は雨が降ると思います。",
+          "romaji": "Ashita wa ame ga furu to omoimasu.",
+          "deutsch": "Ich denke, dass es morgen regnet."
+        },
+        {
+          "japanese": "彼は来ないと思います。",
+          "romaji": "Kare wa konai to omoimasu.",
+          "deutsch": "Ich denke, dass er nicht kommt."
+        },
+        {
+          "japanese": "この映画は面白いと思います。",
+          "romaji": "Kono eiga wa omoshiroi to omoimasu.",
+          "deutsch": "Ich finde diesen Film interessant."
+        },
+        {
+          "japanese": "もう少し考えたほうがいいと思います。",
+          "romaji": "Mō sukoshi kangaeta hō ga ii to omoimasu.",
+          "deutsch": "Ich denke, du solltest noch etwas darüber nachdenken."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Der Teilsatz vor と steht immer in der **Grundform**, nicht in der höflichen Form. 来ます**と**思います ist falsch : richtig ist 来る**と**思います. Die Höflichkeit trägt allein das abschließende と思います."
+    }
+  ]
+}

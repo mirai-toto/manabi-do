@@ -1,0 +1,61 @@
+{
+  "id": "te-kara",
+  "title": "てから : Nachdem",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**てから** drückt eine strikte Abfolge aus: Handlung A muss vollständig abgeschlossen sein, bevor Handlung B beginnen kann. Erst der Abschluss von A macht B möglich oder angemessen."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-Form] + **から**、[nächste Handlung]"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "手を洗ってから、食べます。",
+          "romaji": "Te wo aratte kara, tabemasu.",
+          "deutsch": "Ich esse, nachdem ich mir die Hände gewaschen habe."
+        },
+        {
+          "japanese": "宿題をしてから、ゲームをします。",
+          "romaji": "Shukudai wo shite kara, gēmu wo shimasu.",
+          "deutsch": "Ich spiele, nachdem ich die Hausaufgaben gemacht habe."
+        },
+        {
+          "japanese": "大学を卒業してから、働き始めました。",
+          "romaji": "Daigaku wo sotsugyō shite kara, hataraki hajimemashita.",
+          "deutsch": "Nachdem ich die Universität abgeschlossen hatte, fing ich an zu arbeiten."
+        },
+        {
+          "japanese": "シャワーを浴びてから、寝ます。",
+          "romaji": "Shawā wo abite kara, nemasu.",
+          "deutsch": "Ich gehe schlafen, nachdem ich geduscht habe."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "てから",
+        "description": "A muss vollständig getan sein, bevor B kommt. Der Abschluss ist erforderlich : die Reihenfolge ist strikt.",
+        "example_jp": "食べてから、歯を磨きます。",
+        "example_en": "Nach dem Essen putze ich mir die Zähne."
+      },
+      "right": {
+        "label": "後で",
+        "description": "„Später, nach A“ : B geschieht irgendwann danach, ohne dass ein strikter Abschluss mitgemeint ist.",
+        "example_jp": "後で電話します。",
+        "example_en": "Ich rufe später an."
+      }
+    }
+  ]
+}

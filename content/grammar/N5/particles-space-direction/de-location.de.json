@@ -1,0 +1,66 @@
+{
+  "id": "de-location",
+  "title": "で : Ort einer Handlung",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**で** markiert, *wo eine Handlung stattfindet* : den Schauplatz oder das Mittel einer Tätigkeit. Das unterscheidet sich von に, das markiert, *wo sich etwas befindet*. Welches Partikel du brauchst, sagt dir das Verb."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Ort] **で** + [Handlungsverb]    ← hier findet eine Handlung statt",
+        "[Ort] **に** + [Existenzverb] ← hier befindet sich etwas (います / あります)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "図書館で勉強します。",
+          "romaji": "Toshokan de benkyō shimasu.",
+          "deutsch": "Ich lerne in der Bibliothek."
+        },
+        {
+          "japanese": "公園で走りました。",
+          "romaji": "Kōen de hashirimashita.",
+          "deutsch": "Ich bin im Park gelaufen."
+        },
+        {
+          "japanese": "電車で本を読みます。",
+          "romaji": "Densha de hon wo yomimasu.",
+          "deutsch": "Ich lese im Zug Bücher."
+        },
+        {
+          "japanese": "日本語で話してください。",
+          "romaji": "Nihongo de hanashite kudasai.",
+          "deutsch": "Bitte sprich auf Japanisch."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "で : Handlung",
+        "description": "Wo etwas geschieht. Mit Handlungsverben : laufen, lernen, essen.",
+        "example_jp": "公園で走ります。",
+        "example_en": "Ich laufe im Park."
+      },
+      "right": {
+        "label": "に : Existenz",
+        "description": "Wo etwas ist. Mit います und あります : sich befinden, da sein.",
+        "example_jp": "公園にいます。",
+        "example_en": "Ich bin im Park."
+      }
+    },
+    {
+      "type": "note",
+      "content": "で gegen に bei Ortsangaben ist einer der häufigsten Anfängerfehler. Das Verb entscheidet: Handlungsverben → で, Existenzverben (います/あります) → に."
+    }
+  ]
+}

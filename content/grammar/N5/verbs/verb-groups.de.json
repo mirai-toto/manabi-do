@@ -1,0 +1,88 @@
+{
+  "id": "verb-groups",
+  "title": "Verbgruppen",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Jedes japanische Verb gehört zu einer von drei Gruppen. Die Gruppe bestimmt *jede* Konjugationsregel : hat man sie richtig, ist der Rest vorhersagbar."
+    },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "**Gruppe 1 : Godan (五段):** endet auf einen Laut der う-Reihe : く, ぐ, す, つ, ぬ, ぶ, む, う oder る*. Der Stamm ändert je nach Form seine Gestalt nach lautlichen Mustern.",
+        "**Gruppe 2 : Ichidan (一段):** endet auf る, unmittelbar davor ein い oder え. Der Stamm ändert sich nie : du entfernst nur das る.",
+        "**Gruppe 3 : Unregelmäßig:** nur する (tun) und くる (kommen). Beide müssen auswendig gelernt werden."
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch",
+        "gruppe"
+      ],
+      "rows": [
+        {
+          "japanese": "書く",
+          "romaji": "kaku",
+          "deutsch": "schreiben",
+          "gruppe": "1"
+        },
+        {
+          "japanese": "話す",
+          "romaji": "hanasu",
+          "deutsch": "sprechen",
+          "gruppe": "1"
+        },
+        {
+          "japanese": "待つ",
+          "romaji": "matsu",
+          "deutsch": "warten",
+          "gruppe": "1"
+        },
+        {
+          "japanese": "帰る",
+          "romaji": "kaeru",
+          "deutsch": "nach Hause zurückkehren",
+          "gruppe": "1 *"
+        },
+        {
+          "japanese": "食べる",
+          "romaji": "taberu",
+          "deutsch": "essen",
+          "gruppe": "2"
+        },
+        {
+          "japanese": "見る",
+          "romaji": "miru",
+          "deutsch": "sehen",
+          "gruppe": "2"
+        },
+        {
+          "japanese": "起きる",
+          "romaji": "okiru",
+          "deutsch": "aufwachen",
+          "gruppe": "2"
+        },
+        {
+          "japanese": "する",
+          "romaji": "suru",
+          "deutsch": "tun",
+          "gruppe": "3"
+        },
+        {
+          "japanese": "来る",
+          "romaji": "kuru",
+          "deutsch": "kommen",
+          "gruppe": "3"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Verben der Gruppe 1 auf る sehen in der Wörterbuchform genauso aus wie Gruppe 2. 帰る (kaeru), 走る (hashiru), 知る (shiru), 切る (kiru) gehören alle zu Gruppe 1. Es gibt keinen verlässlichen Test fürs Auge : im Zweifel im Wörterbuch nachschlagen. Das Erkennen kommt mit der Übung."
+    }
+  ]
+}

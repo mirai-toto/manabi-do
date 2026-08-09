@@ -1,0 +1,53 @@
+{
+  "id": "topic-vs-subject",
+  "title": "Thema は vs. Subjekt が",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanisch trifft eine Unterscheidung, die das Deutsche in eine einzige Position zusammenfallen lässt. **は** markiert das *Thema* : worum es im Satz *geht*. **が** markiert das *Subjekt* : wer oder was das Prädikat *ausführt* oder *erlebt*."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Thema] **は** [Subjekt] **が** [Prädikat]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch",
+        "hinweis"
+      ],
+      "rows": [
+        {
+          "japanese": "猫は魚が好きです。",
+          "romaji": "Neko wa sakana ga suki desu.",
+          "deutsch": "Katzen mögen Fisch.",
+          "hinweis": "猫は = Thema; 魚が = Subjekt von 好き"
+        },
+        {
+          "japanese": "私は頭が痛いです。",
+          "romaji": "Watashi wa atama ga itai desu.",
+          "deutsch": "Mir tut der Kopf weh.",
+          "hinweis": "私は = Thema; 頭が = Subjekt von 痛い"
+        },
+        {
+          "japanese": "象は鼻が長い。",
+          "romaji": "Zō wa hana ga nagai.",
+          "deutsch": "Elefanten haben lange Rüssel.",
+          "hinweis": "象は = Thema; 鼻が = Subjekt von 長い"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "は lässt sich oft mit „was ~ angeht“ oder „was ~ betrifft“ wiedergeben : es steckt den Rahmen für alles Folgende ab. が benennt, *wer* etwas tut oder erlebt. Viele Anfänger verwenden anfangs überall が; mit は signalisierst du, dass du *über* etwas sprichst und es nicht bloß benennst."
+    },
+    {
+      "type": "note",
+      "content": "Häufiger Fehler: が statt は zu verwenden lässt Sätze so klingen, als würde neue Information oder ein Gegensatz eingeführt. 私**が**田中です hieße „*Ich* bin Tanaka“ : als wäre strittig gewesen, welche Person gemeint ist. 私**は**田中です heißt schlicht „Ich bin Tanaka“."
+    }
+  ]
+}

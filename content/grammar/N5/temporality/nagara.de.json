@@ -1,0 +1,50 @@
+{
+  "id": "nagara",
+  "title": "ながら : Während des Tuns",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**ながら** hängt sich an den Verbstamm, um zwei gleichzeitig ablaufende Handlungen zu beschreiben. Der ながら-Teilsatz ist immer die *nebensächliche* Handlung : das Hauptverb am Satzende nennt das, was das Subjekt in erster Linie tut."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Verbstamm] + **ながら**、[Haupthandlung]"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "音楽を聴きながら勉強します。",
+          "romaji": "Ongaku wo kikinagara benkyō shimasu.",
+          "deutsch": "Ich lerne, während ich Musik höre."
+        },
+        {
+          "japanese": "歩きながら電話で話しました。",
+          "romaji": "Arukinagara denwa de hanashimashita.",
+          "deutsch": "Ich habe telefoniert, während ich gelaufen bin."
+        },
+        {
+          "japanese": "テレビを見ながら夕ごはんを食べます。",
+          "romaji": "Terebi wo minagara yūgohan wo tabemasu.",
+          "deutsch": "Ich esse zu Abend, während ich fernsehe."
+        },
+        {
+          "japanese": "コーヒーを飲みながら新聞を読みました。",
+          "romaji": "Koohii wo nominagara shinbun wo yomimashita.",
+          "deutsch": "Ich habe Zeitung gelesen, während ich Kaffee getrunken habe."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ながら verlangt für beide Handlungen *dasselbe Subjekt*. „Ich lerne, während sie fernsieht“ lässt sich nicht mit ながら ausdrücken : ein anderes Subjekt in der Nebenhandlung erfordert eine andere Struktur."
+    }
+  ]
+}

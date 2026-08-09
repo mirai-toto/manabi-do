@@ -1,0 +1,52 @@
+{
+  "id": "permission-prohibition",
+  "title": "Erlaubnis & Verbot",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Zwei て-Form-Muster decken ab, was erlaubt ist und was nicht. **てもいいです** erteilt eine Erlaubnis oder bittet darum. **てはいけません** stellt fest, dass etwas nicht gestattet ist."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-Form] + **もいいです**      ← es ist in Ordnung, … zu tun / du darfst",
+        "[て-Form] + **もいいですか**    ← darf ich / ist es in Ordnung, … zu tun?",
+        "[て-Form] + **はいけません**    ← du darfst nicht / es ist nicht gestattet"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "ここで写真を撮ってもいいですか。",
+          "romaji": "Koko de shashin wo totte mo ii desu ka.",
+          "deutsch": "Darf ich hier fotografieren?"
+        },
+        {
+          "japanese": "窓を開けてもいいですよ。",
+          "romaji": "Mado wo akete mo ii desu yo.",
+          "deutsch": "Du darfst das Fenster öffnen."
+        },
+        {
+          "japanese": "ここでタバコを吸ってはいけません。",
+          "romaji": "Koko de tabako wo sutte wa ikemasen.",
+          "deutsch": "Hier darf nicht geraucht werden."
+        },
+        {
+          "japanese": "試験中にスマホを使ってはいけません。",
+          "romaji": "Shiken chū ni sumaho wo tsukatte wa ikemasen.",
+          "deutsch": "Während der Prüfung darfst du dein Handy nicht benutzen."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "In der Umgangssprache verkürzt sich てもいいです zu ていい. てはいけない zieht sich zu ちゃいけない zusammen (aus ては → ちゃ). Beides ist im Alltag verbreitet, in förmlicher Schriftsprache aber unangebracht."
+    }
+  ]
+}

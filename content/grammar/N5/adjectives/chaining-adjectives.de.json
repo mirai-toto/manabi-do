@@ -1,0 +1,76 @@
+{
+  "id": "chaining-adjectives",
+  "title": "Adjektive Verketten : くて / で",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Um etwas mit zwei oder mehr Eigenschaften zu beschreiben, verbindest du Adjektive über ihre **て-Form**. Die Regel hängt vom Adjektivtyp ab: い-Adjektive nehmen くて, な-Adjektive nehmen で."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "い-Adjektiv: [Stamm] + **くて** + [nächster Teilsatz]",
+        "な-Adjektiv: [な-Adj.] + **で** + [nächster Teilsatz]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "安い → 安くて",
+          "deutsch": "billig → billig und …"
+        },
+        {
+          "japanese": "面白い → 面白くて",
+          "deutsch": "interessant → interessant und …"
+        },
+        {
+          "japanese": "静か → 静かで",
+          "deutsch": "ruhig → ruhig und …"
+        },
+        {
+          "japanese": "便利 → 便利で",
+          "deutsch": "praktisch → praktisch und …"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "安くておいしいです。",
+          "romaji": "Yasukute oishii desu.",
+          "deutsch": "Es ist billig und lecker."
+        },
+        {
+          "japanese": "静かで広い部屋です。",
+          "romaji": "Shizuka de hiroi heya desu.",
+          "deutsch": "Es ist ein ruhiges und geräumiges Zimmer."
+        },
+        {
+          "japanese": "この映画は長くてつまらなかったです。",
+          "romaji": "Kono eiga wa nagakute tsumaranakatta desu.",
+          "deutsch": "Dieser Film war lang und langweilig."
+        },
+        {
+          "japanese": "彼女は親切で頭がいいです。",
+          "romaji": "Kanojo wa shinsetsu de atama ga ii desu.",
+          "deutsch": "Sie ist freundlich und klug."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Die verkettete Form drückt eine neutrale Aufzählung aus : „X und Y“ : keinen kausalen Zusammenhang. Für „es ist billig, *also* kaufe ich es“ nimmst du から oder ので, nicht くて."
+    }
+  ]
+}

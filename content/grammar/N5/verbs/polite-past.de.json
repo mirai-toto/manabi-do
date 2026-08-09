@@ -1,0 +1,56 @@
+{
+  "id": "polite-past",
+  "title": "Höfliche Vergangenheit : ました",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Die Vergangenheit wird gebildet, indem **ます** durch **ました** ersetzt wird. Die verneinte Vergangenheit nimmt **ませんでした**. Beide folgen denselben Stammregeln wie das Präsens : für den Stamm gibt es nichts Neues zu lernen."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "Bejahte Vergangenheit: [Stamm] + **ました**",
+        "Verneinte Vergangenheit:    [Stamm] + **ませんでした**"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "昨日、映画を見ました。",
+          "romaji": "Kinō, eiga wo mimashita.",
+          "deutsch": "Gestern habe ich einen Film gesehen."
+        },
+        {
+          "japanese": "朝ごはんを食べませんでした。",
+          "romaji": "Asagohan wo tabemasen deshita.",
+          "deutsch": "Ich habe nicht gefrühstückt."
+        },
+        {
+          "japanese": "先週、東京に行きました。",
+          "romaji": "Senshū, Tōkyō ni ikimashita.",
+          "deutsch": "Letzte Woche bin ich nach Tokio gefahren."
+        },
+        {
+          "japanese": "レポートを書きませんでした。",
+          "romaji": "Repōto wo kakimasen deshita.",
+          "deutsch": "Ich habe den Bericht nicht geschrieben."
+        },
+        {
+          "japanese": "先生に電話しました。",
+          "romaji": "Sensei ni denwa shimashita.",
+          "deutsch": "Ich habe die Lehrkraft angerufen."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Die japanische Vergangenheit ist übersichtlich : in der höflichen Form gibt es keinen Unterschied zwischen Präteritum („ich aß“) und Perfekt („ich habe gegessen“). Diesen Unterschied tragen Zeitangaben und Kontext."
+    }
+  ]
+}

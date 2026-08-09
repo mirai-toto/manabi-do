@@ -1,0 +1,54 @@
+{
+  "id": "how-many",
+  "title": "Nach der Anzahl Fragen : いくつ / 何～",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Es gibt zwei Arten, im Japanischen „wie viele“ zu fragen. Verwende **いくつ**, wenn die Kategorie offen ist oder du eine allgemeine Anzahl wissen willst. Verwende **何** (なん) direkt vor der Zähleinheit, wenn die Kategorie bereits bekannt ist."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "いくつ",
+        "description": "Allgemeine Anzahl : wenn die Kategorie offen ist oder es keine feste Zähleinheit gibt.",
+        "example_jp": "りんごがいくつありますか。",
+        "example_en": "Wie viele Äpfel gibt es?"
+      },
+      "right": {
+        "label": "何 + Zähleinheit",
+        "description": "Kategoriegebunden : 何 (nan) direkt vor die Zähleinheit setzen, die du ohnehin verwenden würdest.",
+        "example_jp": "何人いますか。",
+        "example_en": "Wie viele Personen sind da?"
+      }
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "何冊読みましたか。",
+          "romaji": "Nansatsu yomimashita ka.",
+          "deutsch": "Wie viele Bücher hast du gelesen?"
+        },
+        {
+          "japanese": "何枚ありますか。",
+          "romaji": "Nanmai arimasu ka.",
+          "deutsch": "Wie viele Blätter sind es?"
+        },
+        {
+          "japanese": "これはいくらですか。",
+          "romaji": "Kore wa ikura desu ka.",
+          "deutsch": "Was kostet das?"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "いくつ wird auch beiläufig für das Alter verwendet : お子さんはいくつですか (Wie alt ist Ihr Kind?). Die direkte Altersfrage lautet 何歳 (nansai)."
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "id": "counters",
+  "title": "Zähleinheiten",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanisch zählt Gegenstände nicht mit blanken Zahlen. Zahlen treten zusammen mit **Zähleinheiten** auf : Suffixen, die klassifizieren, was gezählt wird. Auch die Lesung der Zahl ändert sich je nach folgender Zähleinheit."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Zahl] + **[Zähleinheit]**"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "三人",
+          "romaji": "sannin",
+          "deutsch": "drei Personen"
+        },
+        {
+          "japanese": "二枚",
+          "romaji": "nimai",
+          "deutsch": "zwei Blätter"
+        },
+        {
+          "japanese": "一杯",
+          "romaji": "ippai",
+          "deutsch": "eine Tasse"
+        }
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "lesung",
+        "verwendet für",
+        "beispiel"
+      ],
+      "rows": [
+        {
+          "japanese": "人",
+          "lesung": "にん / り",
+          "verwendet für": "Personen",
+          "beispiel": "三人 (sannin) / 一人 (hitori)"
+        },
+        {
+          "japanese": "個",
+          "lesung": "こ",
+          "verwendet für": "kleine, allgemeine Gegenstände",
+          "beispiel": "二個 (niko)"
+        },
+        {
+          "japanese": "枚",
+          "lesung": "まい",
+          "verwendet für": "flache, dünne Dinge",
+          "beispiel": "一枚 (ichimai)"
+        },
+        {
+          "japanese": "本",
+          "lesung": "ほん",
+          "verwendet für": "lange, zylindrische Dinge",
+          "beispiel": "三本 (sanbon)"
+        },
+        {
+          "japanese": "冊",
+          "lesung": "さつ",
+          "verwendet für": "gebundene Bücher",
+          "beispiel": "二冊 (nisatsu)"
+        },
+        {
+          "japanese": "匹",
+          "lesung": "ひき",
+          "verwendet für": "kleine Tiere",
+          "beispiel": "一匹 (ippiki)"
+        },
+        {
+          "japanese": "台",
+          "lesung": "だい",
+          "verwendet für": "Maschinen, Fahrzeuge",
+          "beispiel": "二台 (nidai)"
+        },
+        {
+          "japanese": "杯",
+          "lesung": "はい",
+          "verwendet für": "Tassen, Gläser, Schalen",
+          "beispiel": "一杯 (ippai)"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "学生が三人います。",
+          "romaji": "Gakusei ga sannin imasu.",
+          "deutsch": "Es sind 3 Studenten da."
+        },
+        {
+          "japanese": "りんごを二個買いました。",
+          "romaji": "Ringo wo niko kaimashita.",
+          "deutsch": "Ich habe 2 Äpfel gekauft."
+        },
+        {
+          "japanese": "紙を一枚ください。",
+          "romaji": "Kami wo ichimai kudasai.",
+          "deutsch": "Bitte geben Sie mir ein Blatt Papier."
+        },
+        {
+          "japanese": "コーヒーを一杯飲みました。",
+          "romaji": "Koohii wo ippai nomimashita.",
+          "deutsch": "Ich habe eine Tasse Kaffee getrunken."
+        },
+        {
+          "japanese": "車を二台持っています。",
+          "romaji": "Kuruma wo nidai motte imasu.",
+          "deutsch": "Ich habe zwei Autos."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Kombinationen aus Zahl und Zähleinheit lösen Lautveränderungen aus. 一本 (ippon), 三本 (sanbon), 六本 (roppon) : das Muster folgt den japanischen Lautregeln. Versuche nicht, alle Varianten auf einmal zu lernen. Lerne zuerst die Zähleinheit und nimm die Lautwechsel durch Gewöhnung auf."
+    }
+  ]
+}

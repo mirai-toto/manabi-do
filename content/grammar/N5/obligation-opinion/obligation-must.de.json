@@ -1,0 +1,67 @@
+{
+  "id": "obligation-must",
+  "title": "Müssen & Nicht Müssen",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Zwei Muster decken ab, was erforderlich ist und was nicht. **なければなりません** sagt, dass etwas getan werden muss. **なくてもいいです** ist das Gegenstück : die Handlung ist nicht erforderlich."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "なければなりません",
+        "description": "Muss getan werden : die Handlung ist eine Pflicht. Förmlich, in Schriftsprache und höflicher Rede.",
+        "example_jp": "薬を毎日飲まなければなりません。",
+        "example_en": "Ich muss jeden Tag Medikamente nehmen."
+      },
+      "right": {
+        "label": "なくてもいいです",
+        "description": "Muss nicht : die Handlung ist freigestellt. Erlaubt, etwas nicht zu tun.",
+        "example_jp": "今日は来なくてもいいです。",
+        "example_en": "Du musst heute nicht kommen."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Verneinter Stamm] + **なければなりません**   ← müssen (förmlich / höflich)",
+        "[Verneinter Stamm] + **ないといけません**     ← müssen (umgangssprachlich)",
+        "[Verneinte て-Form] + **もいいです**        ← nicht müssen"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "明日までにレポートを出さなければなりません。",
+          "romaji": "Ashita made ni repōto wo dasanakereba narimasen.",
+          "deutsch": "Ich muss den Bericht bis morgen abgeben."
+        },
+        {
+          "japanese": "もっと練習しないといけません。",
+          "romaji": "Motto renshū shinai to ikemasen.",
+          "deutsch": "Ich muss mehr üben."
+        },
+        {
+          "japanese": "全部食べなくてもいいですよ。",
+          "romaji": "Zenbu tabenakute mo ii desu yo.",
+          "deutsch": "Du musst nicht alles aufessen."
+        },
+        {
+          "japanese": "ネクタイをしなくてもいいです。",
+          "romaji": "Nekutai wo shinakute mo ii desu.",
+          "deutsch": "Sie müssen keine Krawatte tragen."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "なきゃ und なくちゃ sind stark verkürzte umgangssprachliche Formen von なければならない : du hörst sie ständig im Alltag und in Anime. In förmlicher Schriftsprache sind sie unangebracht."
+    }
+  ]
+}

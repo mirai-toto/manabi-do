@@ -1,0 +1,63 @@
+{
+  "id": "tsumori-yotei",
+  "title": "つもり & 予定 : Absicht und Pläne",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Sowohl **つもり** als auch **予定** drücken Zukunftspläne aus, unterscheiden sich aber darin, wer entschieden hat und wie fest der Plan steht."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "つもりです",
+        "description": "Persönliche Absicht : eine für dich selbst bereits getroffene Entscheidung. Nicht von anderen abhängig.",
+        "example_jp": "来年、日本に行くつもりです。",
+        "example_en": "Ich habe vor, nächstes Jahr nach Japan zu fahren."
+      },
+      "right": {
+        "label": "予定です",
+        "description": "Terminierter Plan : oft von außen vorgegeben, fest oder mit anderen abgestimmt. Passt zu Terminen und Fahrplänen.",
+        "example_jp": "三時に会議が始まる予定です。",
+        "example_en": "Die Besprechung soll um 3 Uhr beginnen."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Wörterbuchform] + **つもりです**      ← vorhaben (eigene Entscheidung)",
+        "[Verneinte Grundform] + **つもりです**       ← vorhaben, etwas nicht zu tun",
+        "[Wörterbuchform] + **予定です**        ← geplant sein (abgestimmter Plan)",
+        "[Nomen] + の + **予定です**              ← ~ geplant haben"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "もうお酒を飲まないつもりです。",
+          "romaji": "Mō osake wo nomanai tsumori desu.",
+          "deutsch": "Ich habe vor, keinen Alkohol mehr zu trinken."
+        },
+        {
+          "japanese": "来月、出張の予定です。",
+          "romaji": "Raigetsu, shutchō no yotei desu.",
+          "deutsch": "Nächsten Monat ist eine Dienstreise geplant."
+        },
+        {
+          "japanese": "飛行機は六時に到着する予定です。",
+          "romaji": "Hikōki wa rokuji ni tōchaku suru yotei desu.",
+          "deutsch": "Das Flugzeug soll um 6 Uhr landen."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Wenn du eine Reservierung oder einen Termin hast, nimm 予定. Wenn du etwas unabhängig von anderen für dich entschieden hast, nimm つもり."
+    }
+  ]
+}

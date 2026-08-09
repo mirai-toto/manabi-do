@@ -1,0 +1,56 @@
+{
+  "id": "direction-he-ni",
+  "title": "へ und に : Richtung",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Sowohl **へ** als auch **に** können mit einem Bewegungsverb ein Ziel markieren. Oft sind sie austauschbar, setzen aber unterschiedliche Schwerpunkte: へ zeigt auf die Bewegungsrichtung, に auf den Ankunftspunkt. In der Alltagssprache ist に häufiger."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Ort] **へ** + [Bewegungsverb]   ← Fokus auf die Richtung, den Weg",
+        "[Ort] **に** + [Bewegungsverb]   ← Fokus auf das Ziel, die Ankunft"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "学校へ行きます。",
+          "romaji": "Gakkō e ikimasu.",
+          "deutsch": "Ich gehe zur Schule."
+        },
+        {
+          "japanese": "東京に来ました。",
+          "romaji": "Tōkyō ni kimashita.",
+          "deutsch": "Ich bin nach Tokio gekommen."
+        },
+        {
+          "japanese": "家に帰ります。",
+          "romaji": "Uchi ni kaerimasu.",
+          "deutsch": "Ich gehe nach Hause."
+        },
+        {
+          "japanese": "駅のほうへ歩きました。",
+          "romaji": "Eki no hō e arukimashita.",
+          "deutsch": "Ich bin Richtung Bahnhof gelaufen."
+        },
+        {
+          "japanese": "日本に引っ越しました。",
+          "romaji": "Nihon ni hikkoshimashita.",
+          "deutsch": "Ich bin nach Japan gezogen."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Bei Ankunftsverben wie 着く (ankommen) und 帰る (zurückkehren) ist に zwingend : hier ist へ nicht austauschbar. Diese Verben implizieren bereits das Erreichen eines Punktes, deshalb legt に das Ziel fest. 家に帰る = zu Hause ankommen. 家へ帰る = sich auf den Heimweg machen."
+    }
+  ]
+}

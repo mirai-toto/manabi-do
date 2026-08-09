@@ -1,0 +1,55 @@
+{
+  "id": "compound-sounds",
+  "title": "ゃゅょ : Kombinationslaute",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Kleines や, ゆ, よ verbindet sich mit einem vorangehenden Kana aus Konsonant + i zu einer einzigen verschmolzenen Silbe. Der Vokal i fällt weg, und die beiden Zeichen fallen zu einem Laut zusammen."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Kana aus Konsonant + i] + **ゃ / ゅ / ょ** → eine Silbe, nicht zwei"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "geschrieben",
+        "romaji",
+        "eine silbe",
+        "häufiger fehler"
+      ],
+      "rows": [
+        {
+          "geschrieben": "きゃ",
+          "romaji": "kya",
+          "eine silbe": "ja",
+          "häufiger fehler": "nicht ki-ya"
+        },
+        {
+          "geschrieben": "しゅ",
+          "romaji": "shu",
+          "eine silbe": "ja",
+          "häufiger fehler": "nicht shi-yu"
+        },
+        {
+          "geschrieben": "にょ",
+          "romaji": "nyo",
+          "eine silbe": "ja",
+          "häufiger fehler": ":"
+        },
+        {
+          "geschrieben": "びょういん",
+          "romaji": "byōin",
+          "eine silbe": "4 Moren: びょ・う・い・ん",
+          "häufiger fehler": "wird oft als 5 gelesen"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "びょういん (Krankenhaus) und びよういん (Friseursalon) werden häufig verwechselt : das erste hat ein kleines よ (eine Silbe), das zweite ein normal großes よ (zwei Silben). Der Unterschied in der Schreibung ist entscheidend."
+    }
+  ]
+}

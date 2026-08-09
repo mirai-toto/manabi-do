@@ -1,0 +1,71 @@
+{
+  "id": "frequency-kai",
+  "title": "Häufigkeit : 回",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**回** (かい) zählt, wie oft etwas geschieht. Kombiniere es mit einem Zeitraum und einer Zahl, um auszudrücken, wie häufig eine Handlung stattfindet."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Zeitraum] に [Zahl] **回** + [Handlung]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "週に三回",
+          "deutsch": "dreimal pro Woche"
+        },
+        {
+          "japanese": "一日に二回",
+          "deutsch": "zweimal am Tag"
+        },
+        {
+          "japanese": "月に一度",
+          "deutsch": "einmal im Monat (一度 = ein Mal, weicher)"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "週に三回ジムに行きます。",
+          "romaji": "Shū ni sankai jimu ni ikimasu.",
+          "deutsch": "Ich gehe dreimal pro Woche ins Fitnessstudio."
+        },
+        {
+          "japanese": "一日に二回薬を飲みます。",
+          "romaji": "Ichinichi ni nikai kusuri wo nomimasu.",
+          "deutsch": "Ich nehme zweimal am Tag Medikamente."
+        },
+        {
+          "japanese": "月に一度、家族に電話します。",
+          "romaji": "Tsuki ni ichido, kazoku ni denwa shimasu.",
+          "deutsch": "Einmal im Monat rufe ich meine Familie an."
+        },
+        {
+          "japanese": "年に一回しか会いません。",
+          "romaji": "Nen ni ikkai shika aimasen.",
+          "deutsch": "Wir treffen uns nur einmal im Jahr."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "回 löst bei bestimmten Zahlen Lautveränderungen aus. 一回 (ikkai), 六回 (rokkai), 八回 (hakkai), 十回 (jukkai) : vor k erscheint ein doppeltes っ. Das nimmst du beim Hören von selbst auf; lerne die Tabelle nicht vorab auswendig."
+    }
+  ]
+}

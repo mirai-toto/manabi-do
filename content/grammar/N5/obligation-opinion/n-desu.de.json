@@ -1,0 +1,51 @@
+{
+  "id": "n-desu",
+  "title": "んです : Erklärung",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**んです** (geschrieben のです) gibt einer Aussage einen erklärenden Beiklang. Es signalisiert, dass das Gesagte der Grund für etwas ist, der Hintergrund einer Situation oder eine Bitte um Erklärung : nicht bloß eine nackte Tatsache."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Verb / い-Adj. in Grundform] + **んです**",
+        "[な-Adj. / Nomen] + な + **んです**"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "頭が痛いんです。",
+          "romaji": "Atama ga itai n desu.",
+          "deutsch": "(Weißt du,) ich habe Kopfschmerzen."
+        },
+        {
+          "japanese": "どうして遅れたんですか。",
+          "romaji": "Dōshite okureta n desu ka.",
+          "deutsch": "Warum warst du zu spät? (erklär es mir)"
+        },
+        {
+          "japanese": "実は、昨日転んだんです。",
+          "romaji": "Jitsu wa, kinō koronda n desu.",
+          "deutsch": "Die Sache ist die: Ich bin gestern gestürzt."
+        },
+        {
+          "japanese": "ちょっと聞いてもいいんですが…",
+          "romaji": "Chotto kiite mo ii n desu ga…",
+          "deutsch": "Ich wollte fragen, ob ich Sie etwas fragen darf …"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Ohne んです ist 頭が痛いです eine schlichte Tatsachenfeststellung. Mit ihm heißt 頭が痛いんです so viel wie „Ich sage das, weil es hier relevant ist : deshalb sehe ich schlecht aus / kann ich nicht kommen.“ Verwende es, wenn du Zusammenhang signalisieren willst, nicht nur Information."
+    }
+  ]
+}
