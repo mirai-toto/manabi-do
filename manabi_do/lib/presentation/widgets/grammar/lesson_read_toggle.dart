@@ -47,7 +47,7 @@ class LessonReadToggle extends StatelessWidget {
             ),
             const SizedBox(width: AppDimens.spaceSm),
             Text(
-              isRead ? l.lessonMarkedRead : l.markLessonAsRead,
+              isRead ? l.lessonMarkedCompleted : l.markLessonAsCompleted,
               style: AppTextStyles.labelLarge.copyWith(
                 color: isRead ? t.success : t.onSurfaceVariant,
                 fontWeight: FontWeight.w600,

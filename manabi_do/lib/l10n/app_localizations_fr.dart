@@ -143,10 +143,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get lessonStateLocked => 'Verrouillé';
 
   @override
-  String get markLessonAsRead => 'Marquer comme lu';
+  String get markLessonAsCompleted => 'Marquer comme terminé';
 
   @override
-  String get lessonMarkedRead => 'Lu';
+  String get lessonMarkedCompleted => 'Terminé';
 
   @override
   String get dailyTraining => 'Entraînement quotidien';

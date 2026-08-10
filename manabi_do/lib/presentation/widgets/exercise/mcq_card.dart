@@ -203,7 +203,10 @@ class _ExPrompt extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: AppDimens.spaceSm),
-              SpeakButton(text: japanesePrompt!, color: t.onSurfaceVariant),
+              SpeakButton(
+                text: stripAnnotation(japanesePrompt!),
+                color: t.onSurfaceVariant,
+              ),
             ],
           ),
         ],

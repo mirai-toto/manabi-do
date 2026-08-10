@@ -16,7 +16,7 @@
     },
     {
       "type": "mcq",
-      "sentence": "テレビを見ながら夕ごはんを食べます。",
+      "sentence": "テレビを{見|み}ながら{夕|ゆう}ごはんを{食|た}べます。",
       "choices": {
         "en": [
           "I eat dinner while watching TV.",
@@ -41,7 +41,7 @@
     },
     {
       "type": "mcq",
-      "sentence": "歩きながら電話で話しました。",
+      "sentence": "{歩|ある}きながら{電話|でんわ}で{話|はな}しました。",
       "choices": {
         "en": [
           "I walked after talking on the phone.",
@@ -66,25 +66,25 @@
     },
     {
       "type": "cloze",
-      "sentence": "音楽を聴き___勉強します。",
+      "sentence": "{音楽|おんがく}を{聴|き}き___{勉強|べんきょう}します。",
       "answer": "ながら",
-      "distractors": ["てから", "前に", "後で"]
+      "distractors": ["てから", "{前|まえ}に", "{後|あと}で"]
     },
     {
       "type": "cloze",
-      "sentence": "コーヒーを___新聞を読みました。",
-      "answer": "飲みながら",
-      "distractors": ["飲んでから", "飲む前に", "飲んだ後で"]
+      "sentence": "コーヒーを___{新聞|しんぶん}を{読|よ}みました。",
+      "answer": "{飲|の}みながら",
+      "distractors": ["{飲|の}んでから", "{飲|の}む{前|まえ}に", "{飲|の}んだ{後|あと}で"]
     },
     {
       "type": "cloze",
-      "sentence": "___電話で話しました。",
-      "answer": "歩きながら",
-      "distractors": ["歩いてから", "歩く前に", "歩いた後で"]
+      "sentence": "___{電話|でんわ}で{話|はな}しました。",
+      "answer": "{歩|ある}きながら",
+      "distractors": ["{歩|ある}いてから", "{歩|ある}く{前|まえ}に", "{歩|ある}いた{後|あと}で"]
     },
     {
       "type": "builder",
-      "parts": ["テレビを", "見ながら", "夕ごはんを", "食べます"],
+      "parts": ["テレビを", "{見|み}ながら", "{夕|ゆう}ごはんを", "{食|た}べます"],
       "translation": {
         "en": "I eat dinner while watching TV.",
         "fr": "Je dîne tout en regardant la télévision.",
@@ -93,7 +93,7 @@
     },
     {
       "type": "builder",
-      "parts": ["コーヒーを", "飲みながら", "新聞を", "読みました"],
+      "parts": ["コーヒーを", "{飲|の}みながら", "{新聞|しんぶん}を", "{読|よ}みました"],
       "translation": {
         "en": "I read the newspaper while drinking coffee.",
         "fr": "J'ai lu le journal tout en buvant un café.",
@@ -102,8 +102,8 @@
     },
     {
       "type": "error_detection",
-      "correct": "歩きながら電話で話しました。",
-      "wrong": "歩いてながら電話で話しました。",
+      "correct": "{歩|ある}きながら{電話|でんわ}で{話|はな}しました。",
+      "wrong": "{歩|ある}いてながら{電話|でんわ}で{話|はな}しました。",
       "explanation": {
         "en": "ながら attaches to the verb stem (歩き), not the て-form (歩いて).",
         "fr": "ながら s'attache au radical du verbe (歩き), pas à la forme て (歩いて).",

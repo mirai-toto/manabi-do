@@ -197,14 +197,19 @@ class _SentenceCard extends StatelessWidget {
             width: state != _SentenceCardState.idle ? 2 : 1,
           ),
         ),
-        child: Text(
-          sentence,
-          style: AppTextStyles.jpMedium.copyWith(
-            color: t.onSurface,
-            decoration: state == _SentenceCardState.wrong
-                ? TextDecoration.lineThrough
-                : null,
-            decorationColor: t.error,
+        child: Text.rich(
+          TextSpan(
+            children: furiganaSpans(
+              sentence,
+              AppTextStyles.jpMedium.copyWith(
+                color: t.onSurface,
+                decoration: state == _SentenceCardState.wrong
+                    ? TextDecoration.lineThrough
+                    : null,
+                decorationColor: t.error,
+              ),
+              AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant),
+            ),
           ),
           textAlign: TextAlign.center,
         ),

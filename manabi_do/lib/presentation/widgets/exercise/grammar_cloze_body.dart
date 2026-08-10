@@ -5,6 +5,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/japanese_text.dart';
 import 'flash_card.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
@@ -139,6 +140,9 @@ class _ClozeSentence extends StatelessWidget {
       color: t.onSurface,
       height: 1.6,
     );
+    final rubyStyle = AppTextStyles.jpFurigana.copyWith(
+      color: t.onSurfaceVariant,
+    );
 
     return Container(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -149,7 +153,7 @@ class _ClozeSentence extends StatelessWidget {
       child: Text.rich(
         TextSpan(
           children: [
-            TextSpan(text: before, style: baseStyle),
+            ...furiganaSpans(before, baseStyle, rubyStyle),
             WidgetSpan(
               alignment: PlaceholderAlignment.baseline,
               baseline: TextBaseline.alphabetic,
@@ -157,14 +161,12 @@ class _ClozeSentence extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 4),
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: answered
-                      ? color.withValues(alpha: 0.15)
-                      : t.primaryContainer,
+                  color: color.withValues(alpha: answered ? 0.15 : 0.08),
                   borderRadius: BorderRadius.circular(AppDimens.radiusSm),
                   border: Border.all(color: color, width: answered ? 1.5 : 1),
                 ),
                 child: Text(
-                  answered ? correctAnswer : '　　',
+                  answered ? stripAnnotation(correctAnswer) : '　　',
                   style: baseStyle.copyWith(
                     color: color,
                     fontWeight: FontWeight.w700,
@@ -172,7 +174,7 @@ class _ClozeSentence extends StatelessWidget {
                 ),
               ),
             ),
-            TextSpan(text: after, style: baseStyle),
+            ...furiganaSpans(after, baseStyle, rubyStyle),
           ],
         ),
         textAlign: TextAlign.center,

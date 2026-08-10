@@ -285,14 +285,29 @@ class JapaneseText extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
 
+    final effectiveRubyStyle =
+        rubyStyle ??
+        AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant);
+
+    // Pre-annotated `{kanji|reading}` text carries its own readings, so it
+    // needs no alignment pass and works without a separate [reading].
+    if (word.contains('{')) {
+      return Text.rich(
+        TextSpan(
+          children: furiganaSpans(
+            word,
+            style,
+            effectiveRubyStyle,
+            showFurigana: showFurigana,
+          ),
+        ),
+      );
+    }
+
     if (!showFurigana || reading == null) return Text(word, style: style);
 
     final segments = parseFurigana(word, reading!);
     if (!segments.any((s) => s.ruby != null)) return Text(word, style: style);
-
-    final effectiveRubyStyle =
-        rubyStyle ??
-        AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant);
 
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.end,
