@@ -346,17 +346,17 @@ abstract class AppLocalizations {
   /// **'Locked'**
   String get lessonStateLocked;
 
-  /// No description provided for @markLessonAsRead.
+  /// No description provided for @markLessonAsCompleted.
   ///
   /// In en, this message translates to:
-  /// **'Mark as read'**
-  String get markLessonAsRead;
+  /// **'Mark as completed'**
+  String get markLessonAsCompleted;
 
-  /// No description provided for @lessonMarkedRead.
+  /// No description provided for @lessonMarkedCompleted.
   ///
   /// In en, this message translates to:
-  /// **'Read'**
-  String get lessonMarkedRead;
+  /// **'Completed'**
+  String get lessonMarkedCompleted;
 
   /// No description provided for @dailyTraining.
   ///
@@ -387,6 +387,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Correct'**
   String get correct;
+
+  /// No description provided for @correctAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct answer'**
+  String get correctAnswer;
 
   /// No description provided for @missed.
   ///

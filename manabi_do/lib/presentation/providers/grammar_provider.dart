@@ -30,7 +30,7 @@ class GrammarTheme {
 final grammarThemesProvider = FutureProvider.family<List<GrammarTheme>, String>(
   (ref, level) async {
     final db = ref.read(databaseProvider);
-    final locale = ref.read(localeProvider).languageCode;
+    final locale = ref.watch(localeProvider).languageCode;
     final rows = await db.getGrammarLessonsForLevel(level, locale: locale);
     final themes = <String, Map<String, List<GrammarLesson>>>{};
     final themeDescriptions = <String, String>{};

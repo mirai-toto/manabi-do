@@ -1,0 +1,66 @@
+{
+  "id": "deshou-kamoshirenai",
+  "title": "Wahrscheinlichkeit : でしょう / かもしれない",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Diese beiden Formen drücken unterschiedliche Grade an Gewissheit über etwas Unbestätigtes aus. **でしょう** ist recht zuversichtlich : die begründete Erwartung der sprechenden Person. **かもしれない** ist echt unsicher : es bleibt Raum für Zweifel."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "でしょう",
+        "description": "Wahrscheinlich : die sprechende Person ist recht zuversichtlich. Gestützt auf Hinweise oder Überlegung.",
+        "example_jp": "明日は晴れるでしょう。",
+        "example_en": "Morgen wird es wahrscheinlich sonnig."
+      },
+      "right": {
+        "label": "かもしれない",
+        "description": "Vielleicht : die sprechende Person ist wirklich unsicher. Eine reale Möglichkeit, aber nicht erwartet.",
+        "example_jp": "彼は来ないかもしれません。",
+        "example_en": "Er kommt vielleicht nicht."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Grundform] + **でしょう**          ← wahrscheinlich (recht sicher)",
+        "[Grundform] + **かもしれません**    ← vielleicht (unsicher)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "このレストランは高いでしょう。",
+          "romaji": "Kono resutoran wa takai deshō.",
+          "deutsch": "Dieses Restaurant ist wahrscheinlich teuer."
+        },
+        {
+          "japanese": "電車が遅れているかもしれません。",
+          "romaji": "Densha ga okurete iru kamo shiremasen.",
+          "deutsch": "Der Zug hat vielleicht Verspätung."
+        },
+        {
+          "japanese": "彼女はもう知っているでしょう。",
+          "romaji": "Kanojo wa mō shitte iru deshō.",
+          "deutsch": "Sie weiß es wahrscheinlich schon."
+        },
+        {
+          "japanese": "明日、雨が降るかもしれません。",
+          "romaji": "Ashita, ame ga furu kamo shiremasen.",
+          "deutsch": "Morgen regnet es vielleicht."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "でしょう mit steigender Intonation wird zur sanften Rückfrage : そうでしょう？ heißt „Stimmt doch, oder?“ / „Findest du nicht?“ Das ist eine völlig eigene Verwendung, unabhängig von der Wahrscheinlichkeit."
+    }
+  ]
+}

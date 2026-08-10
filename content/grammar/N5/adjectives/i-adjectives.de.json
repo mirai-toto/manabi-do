@@ -1,0 +1,74 @@
+{
+  "id": "i-adjectives",
+  "title": "い-Adjektive",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**い-Adjektive** enden auf い und werden direkt konjugiert : das い verändert sich, um Zeit und Verneinung anzuzeigen. Sie können Nomen unmittelbar näher bestimmen und ohne zusätzliches Bindewort als Prädikat stehen."
+    },
+    {
+      "type": "conjugation_table",
+      "label": "高い (takai) : hoch / teuer",
+      "rows": [
+        {
+          "form": "Präsens",
+          "japanese": "高いです",
+          "romaji": "takai desu",
+          "english": "ist hoch"
+        },
+        {
+          "form": "Verneinung",
+          "japanese": "高くないです",
+          "romaji": "takakunai desu",
+          "english": "ist nicht hoch"
+        },
+        {
+          "form": "Vergangenheit",
+          "japanese": "高かったです",
+          "romaji": "takakatta desu",
+          "english": "war hoch"
+        },
+        {
+          "form": "Vergangenheit verneint",
+          "japanese": "高くなかったです",
+          "romaji": "takakunakatta desu",
+          "english": "war nicht hoch"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "この本は面白いです。",
+          "romaji": "Kono hon wa omoshiroi desu.",
+          "deutsch": "Dieses Buch ist interessant."
+        },
+        {
+          "japanese": "今日は寒くないです。",
+          "romaji": "Kyō wa samukunai desu.",
+          "deutsch": "Heute ist es nicht kalt."
+        },
+        {
+          "japanese": "子どもの頃、背が高かったです。",
+          "romaji": "Kodomo no koro, se ga takakatta desu.",
+          "deutsch": "Als Kind war ich groß."
+        },
+        {
+          "japanese": "昨日の映画は長くなかったです。",
+          "romaji": "Kinō no eiga wa nagakunakatta desu.",
+          "deutsch": "Der Film von gestern war nicht lang."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "いい (gut) ist unregelmäßig. Die Verneinung lautet よくない (nicht いくない) und die Vergangenheit よかった (nicht いかった). Das ist der mit Abstand häufigste Fehler bei い-Adjektiven."
+    }
+  ]
+}

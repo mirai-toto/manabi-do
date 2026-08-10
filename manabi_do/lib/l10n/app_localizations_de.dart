@@ -143,10 +143,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get lessonStateLocked => 'Gesperrt';
 
   @override
-  String get markLessonAsRead => 'Als gelesen markieren';
+  String get markLessonAsCompleted => 'Als erledigt markieren';
 
   @override
-  String get lessonMarkedRead => 'Gelesen';
+  String get lessonMarkedCompleted => 'Erledigt';
 
   @override
   String get dailyTraining => 'Tägliches Training';
@@ -164,6 +164,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get correct => 'Richtig';
+
+  @override
+  String get correctAnswer => 'Richtige Antwort';
 
   @override
   String get missed => 'Falsch';

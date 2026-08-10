@@ -1,0 +1,80 @@
+{
+  "id": "duration-aida",
+  "title": "Zeitdauer : 間",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**間** drückt eine Zeitspanne aus : wie lange etwas gedauert hat oder wie lange eine Handlung angehalten hat. Es hängt direkt hinter der Zeitangabe."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Zeitdauer] + **間** + [Handlung / Zustand]"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "三時間",
+          "romaji": "sanjikan",
+          "deutsch": "drei Stunden lang"
+        },
+        {
+          "japanese": "一週間",
+          "romaji": "isshūkan",
+          "deutsch": "eine Woche lang"
+        },
+        {
+          "japanese": "二年間",
+          "romaji": "ninenkan",
+          "deutsch": "zwei Jahre lang"
+        },
+        {
+          "japanese": "十分間",
+          "romaji": "juppunkan",
+          "deutsch": "zehn Minuten lang"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "三時間勉強しました。",
+          "romaji": "Sanjikan benkyō shimashita.",
+          "deutsch": "Ich habe drei Stunden lang gelernt."
+        },
+        {
+          "japanese": "一週間日本にいました。",
+          "romaji": "Isshūkan nihon ni imashita.",
+          "deutsch": "Ich war eine Woche lang in Japan."
+        },
+        {
+          "japanese": "二年間日本語を学んでいます。",
+          "romaji": "Ninenkan nihongo wo manande imasu.",
+          "deutsch": "Ich lerne seit zwei Jahren Japanisch."
+        },
+        {
+          "japanese": "十分間待ちました。",
+          "romaji": "Juppunkan machimashita.",
+          "deutsch": "Ich habe zehn Minuten lang gewartet."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "間 hat zwei Lesungen. Zusammen mit Zahlen liest es sich **かん** (三時間, 一週間). Allein oder in kurzen Wendungen kann es **あいだ** gelesen werden (この間 = neulich, letztens). In Zeitdauerangaben ist かん fast immer richtig."
+    }
+  ]
+}

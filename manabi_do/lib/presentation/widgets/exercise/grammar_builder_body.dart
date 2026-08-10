@@ -7,6 +7,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/japanese_text.dart';
 import 'flash_card.dart';
 import 'practice_progress_row.dart';
 
@@ -128,7 +129,14 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
             answered: _answered,
             isCorrect: _isCorrect,
             onUnplace: _unplace,
+            color: widget.color,
           ),
+          if (_answered && !_isCorrect) ...[
+            const SizedBox(height: AppDimens.spaceMd),
+            // The parts are stored in the correct order, so the answer is
+            // derived rather than duplicated in the exercise content.
+            _CorrectAnswer(sentence: widget.parts.join()),
+          ],
           const SizedBox(height: AppDimens.spaceLg),
           _SourceChips(
             parts: widget.parts,
@@ -158,6 +166,7 @@ class _TargetArea extends StatelessWidget {
   final bool answered;
   final bool isCorrect;
   final void Function(int placedPos) onUnplace;
+  final Color color;
 
   const _TargetArea({
     required this.parts,
@@ -165,6 +174,7 @@ class _TargetArea extends StatelessWidget {
     required this.answered,
     required this.isCorrect,
     required this.onUnplace,
+    required this.color,
   });
 
   @override
@@ -205,9 +215,56 @@ class _TargetArea extends StatelessWidget {
                   onTap: answered ? null : () => onUnplace(pos),
                   selected: true,
                   enabled: !answered,
+                  color: color,
                 );
               }),
             ),
+    );
+  }
+}
+
+/// Shown after a wrong answer so the learner sees the sentence they were
+/// building, not just that they got it wrong.
+class _CorrectAnswer extends StatelessWidget {
+  final String sentence;
+
+  const _CorrectAnswer({required this.sentence});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final l = context.l10n;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppDimens.spaceMd),
+      decoration: BoxDecoration(
+        color: t.successContainer,
+        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        border: Border.all(color: t.success),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l.correctAnswer,
+            style: AppTextStyles.labelSmall.copyWith(
+              fontWeight: FontWeight.w600,
+              color: t.success,
+            ),
+          ),
+          const SizedBox(height: AppDimens.spaceXs),
+          Text.rich(
+            TextSpan(
+              children: furiganaSpans(
+                sentence,
+                AppTextStyles.jpMedium.copyWith(color: t.onSurface),
+                AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -239,6 +296,7 @@ class _SourceChips extends StatelessWidget {
           onTap: () => onPlace(i),
           selected: false,
           enabled: !answered,
+          color: color,
         );
       }).toList(),
     );
@@ -250,11 +308,13 @@ class _Chip extends StatelessWidget {
   final VoidCallback? onTap;
   final bool selected;
   final bool enabled;
+  final Color color;
 
   const _Chip({
     required this.label,
     required this.onTap,
     required this.selected,
+    required this.color,
     required this.enabled,
   });
 
@@ -269,14 +329,19 @@ class _Chip extends StatelessWidget {
           vertical: AppDimens.chipPaddingV,
         ),
         decoration: BoxDecoration(
-          color: selected ? t.primaryContainer : t.surfaceContainerHigh,
+          color: selected
+              ? color.withValues(alpha: 0.15)
+              : t.surfaceContainerHigh,
           borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-          border: Border.all(color: selected ? t.primary : t.outlineVariant),
+          border: Border.all(color: selected ? color : t.outlineVariant),
         ),
-        child: Text(
-          label,
+        child: JapaneseText(
+          word: label,
           style: AppTextStyles.jpBody.copyWith(
-            color: selected ? t.onPrimaryContainer : t.onSurface,
+            color: selected ? color : t.onSurface,
+          ),
+          rubyStyle: AppTextStyles.jpFurigana.copyWith(
+            color: selected ? color : t.onSurfaceVariant,
           ),
         ),
       ),

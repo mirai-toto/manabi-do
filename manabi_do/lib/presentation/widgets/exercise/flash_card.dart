@@ -219,7 +219,14 @@ class FlashCardActions extends StatelessWidget {
           children: [
             btn(l.ratingGood, Rating.good, t.successContainer, t.success),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingEasy, Rating.easy, t.primaryContainer, t.primary),
+            // Ratings are a semantic scale, not an accent: keep Easy on the
+            // SRS ramp so it never collides with a level colour.
+            btn(
+              l.ratingEasy,
+              Rating.easy,
+              t.srsExpert.withValues(alpha: 0.15),
+              t.srsExpert,
+            ),
           ],
         ),
       ],

@@ -1,0 +1,80 @@
+{
+  "id": "three-scripts",
+  "title": "Die Drei Schriftsysteme",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanisch verwendet drei Schriftsysteme gleichzeitig, und die meisten Sätze mischen alle drei. Zu verstehen, *warum* es jedes Schriftsystem gibt, nimmt dem Ganzen viel von seiner Einschüchterung."
+    },
+    {
+      "type": "text",
+      "content": "**Hiragana** (ひらがな) ist das Rückgrat der Schriftsprache : 46 Grundzeichen, von denen jedes eine Silbe darstellt. Es deckt japanische Erbwörter, grammatische Partikeln, Verbendungen und alles ohne Kanji-Entsprechung ab. Wer kein Kanji kann, schreibt alles in Hiragana und wird trotzdem verstanden."
+    },
+    {
+      "type": "text",
+      "content": "**Katakana** (カタカナ) gibt genau dieselben Laute wieder wie Hiragana, sieht aber deutlich anders aus : kantig, wo Hiragana rund ist. Es kennzeichnet Fremd- und Lehnwörter, entlehnte Eigennamen, Fachbegriffe und Lautmalerei. Katakana ist ein verlässliches Signal: Dieses Wort kommt von anderswo."
+    },
+    {
+      "type": "text",
+      "content": "**Kanji** (漢字) sind Schriftzeichen chinesischen Ursprungs, die Bedeutung unmittelbar tragen. Ein einziges Kanji kann die Bedeutung eines ganzen Wortes in ein Zeichen packen. Der 常用漢字-Standard umfasst 2 136 Zeichen für den Alltagsgebrauch; geübte Leser kennen mehrere Tausend."
+    },
+    {
+      "type": "section_title",
+      "content": "Ein Echter Satz"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "teil",
+        "schrift",
+        "funktion"
+      ],
+      "rows": [
+        {
+          "teil": "私",
+          "schrift": "Kanji",
+          "funktion": "ich / mich"
+        },
+        {
+          "teil": "は",
+          "schrift": "Hiragana",
+          "funktion": "Themenpartikel"
+        },
+        {
+          "teil": "コーヒー",
+          "schrift": "Katakana",
+          "funktion": "Kaffee (Lehnwort)"
+        },
+        {
+          "teil": "が",
+          "schrift": "Hiragana",
+          "funktion": "Subjektpartikel"
+        },
+        {
+          "teil": "好きです。",
+          "schrift": "Kanji + Hiragana",
+          "funktion": "mögen + höfliche Endung"
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "私はコーヒーが好きです。",
+          "romaji": "Watashi wa koohii ga suki desu.",
+          "deutsch": "Ich mag Kaffee."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Einen japanischen Satz zu lesen ist nicht schwerer, sobald man akzeptiert, dass der Schriftwechsel selbst Information trägt. Katakana = wahrscheinlich ein Fremdwort. Kanji = Bedeutungsanker. Hiragana = grammatischer Klebstoff."
+    }
+  ]
+}

@@ -17,6 +17,9 @@ class KanjiDrawingCanvas extends StatefulWidget {
   final double wrongStrokeOpacity;
   final bool pendingWrong;
 
+  /// Colour of the faint reference overlay; falls back to the theme accent.
+  final Color? accentColor;
+
   const KanjiDrawingCanvas({
     super.key,
     required this.onStrokesChanged,
@@ -28,6 +31,7 @@ class KanjiDrawingCanvas extends StatefulWidget {
     this.hintStrokes,
     this.wrongStrokeOpacity = 1.0,
     this.pendingWrong = false,
+    this.accentColor,
   });
 
   @override
@@ -65,7 +69,7 @@ class KanjiDrawingCanvasState extends State<KanjiDrawingCanvas> {
       guideColor: t.outlineVariant,
       correctColor: t.success,
       wrongColor: t.error,
-      referenceColor: t.primary,
+      referenceColor: widget.accentColor ?? t.primary,
       hintStrokeColor: t.hintStroke,
       wrongStrokeOpacity: widget.wrongStrokeOpacity,
       pendingWrong: widget.pendingWrong,

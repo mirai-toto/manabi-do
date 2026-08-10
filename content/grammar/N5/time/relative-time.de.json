@@ -1,0 +1,152 @@
+{
+  "id": "relative-time",
+  "title": "Relative Zeitangaben",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Diese Wörter sind die Bausteine alltäglicher Zeitangaben. Keines von ihnen nimmt das Partikel に : sie verweisen von sich aus schon auf einen Zeitpunkt."
+    },
+    {
+      "type": "section_title",
+      "content": "Tage"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "今日",
+          "romaji": "kyō",
+          "deutsch": "heute"
+        },
+        {
+          "japanese": "明日",
+          "romaji": "ashita",
+          "deutsch": "morgen"
+        },
+        {
+          "japanese": "昨日",
+          "romaji": "kinō",
+          "deutsch": "gestern"
+        },
+        {
+          "japanese": "明後日",
+          "romaji": "asatte",
+          "deutsch": "übermorgen"
+        },
+        {
+          "japanese": "一昨日",
+          "romaji": "ototoi",
+          "deutsch": "vorgestern"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Wochen, Monate, Jahre"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "今週",
+          "romaji": "konshū",
+          "deutsch": "diese Woche"
+        },
+        {
+          "japanese": "来週",
+          "romaji": "raishū",
+          "deutsch": "nächste Woche"
+        },
+        {
+          "japanese": "先週",
+          "romaji": "senshū",
+          "deutsch": "letzte Woche"
+        },
+        {
+          "japanese": "今月",
+          "romaji": "kongetsu",
+          "deutsch": "diesen Monat"
+        },
+        {
+          "japanese": "来月",
+          "romaji": "raigetsu",
+          "deutsch": "nächsten Monat"
+        },
+        {
+          "japanese": "先月",
+          "romaji": "sengetsu",
+          "deutsch": "letzten Monat"
+        },
+        {
+          "japanese": "今年",
+          "romaji": "kotoshi",
+          "deutsch": "dieses Jahr"
+        },
+        {
+          "japanese": "来年",
+          "romaji": "rainen",
+          "deutsch": "nächstes Jahr"
+        },
+        {
+          "japanese": "去年",
+          "romaji": "kyonen",
+          "deutsch": "letztes Jahr"
+        }
+      ]
+    },
+    {
+      "type": "section_title",
+      "content": "Häufigkeit"
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "毎日",
+          "romaji": "mainichi",
+          "deutsch": "jeden Tag"
+        },
+        {
+          "japanese": "毎週",
+          "romaji": "maishū",
+          "deutsch": "jede Woche"
+        },
+        {
+          "japanese": "毎月",
+          "romaji": "maitsuki",
+          "deutsch": "jeden Monat"
+        },
+        {
+          "japanese": "毎年",
+          "romaji": "maitoshi",
+          "deutsch": "jedes Jahr"
+        },
+        {
+          "japanese": "毎朝",
+          "romaji": "maiasa",
+          "deutsch": "jeden Morgen"
+        },
+        {
+          "japanese": "毎晩",
+          "romaji": "maiban",
+          "deutsch": "jeden Abend"
+        }
+      ]
+    }
+  ]
+}

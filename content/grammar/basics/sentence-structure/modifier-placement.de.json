@@ -1,0 +1,49 @@
+{
+  "id": "modifier-placement",
+  "title": "Stellung der Attribute",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Im Deutschen können Attribute vor oder nach dem Nomen stehen. Im Japanischen stehen sie immer *vor* dem Nomen, das sie näher bestimmen : Adjektive, Relativsätze und ganze Nebensätze reihen sich alle vor ihrem Nomen auf."
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "大きい犬",
+          "romaji": "ōkii inu",
+          "deutsch": "großer Hund"
+        },
+        {
+          "japanese": "赤い車",
+          "romaji": "akai kuruma",
+          "deutsch": "rotes Auto"
+        },
+        {
+          "japanese": "私が買った本",
+          "romaji": "watashi ga katta hon",
+          "deutsch": "das Buch, das ich gekauft habe"
+        },
+        {
+          "japanese": "昨日見た映画",
+          "romaji": "kinō mita eiga",
+          "deutsch": "der Film, den ich gestern gesehen habe"
+        },
+        {
+          "japanese": "田中さんが作ったケーキ",
+          "romaji": "Tanaka-san ga tsukutta kēki",
+          "deutsch": "der Kuchen, den Tanaka gebacken hat"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Relativsätze brauchen im Japanischen kein Relativpronomen : kein „der“, „die“ oder „das“. Du stellst einfach den ganzen Satz vor das Nomen: 昨日読んだ lässt sich direkt an jedes folgende Nomen anschließen."
+    }
+  ]
+}

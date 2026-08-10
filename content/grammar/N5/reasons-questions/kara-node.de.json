@@ -1,0 +1,61 @@
+{
+  "id": "kara-node",
+  "title": "から vs. ので : Weil",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Sowohl **から** als auch **ので** heißen „weil“, tragen aber unterschiedliches Gewicht. から nennt einen Grund direkt und bestimmt. ので stellt einen Grund weich und sachlich dar : als natürliche Folge einer Situation. Sprachebene und Beziehung entscheiden, was passt."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "から",
+        "description": "Bestimmt und persönlich : „mein Grund ist X“. Umgangssprachlich, direkt. Unter Freunden oder beim Ausdruck von Gefühlen.",
+        "example_jp": "疲れたから、休みます。",
+        "example_en": "Ich mache Pause, weil ich müde bin."
+      },
+      "right": {
+        "label": "ので",
+        "description": "Weich und sachlich : „da X der Fall ist, folgt Y“. Höflich und indirekt. Für Bitten, Entschuldigungen, im Beruf.",
+        "example_jp": "雨が降っているので、家にいます。",
+        "example_en": "Ich bleibe zu Hause, weil es regnet."
+      }
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Grund : Grundform] + **から**、[Folge]   ← subjektiv, umgangssprachlich",
+        "[Grund : Grundform] + **ので**、[Folge]   ← sachlich, höflich"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "急いでいるから、あとで話しましょう。",
+          "romaji": "Isoide iru kara, ato de hanashimashō.",
+          "deutsch": "Ich bin in Eile, lass uns später reden."
+        },
+        {
+          "japanese": "明日試験があるので、勉強します。",
+          "romaji": "Ashita shiken ga aru node, benkyō shimasu.",
+          "deutsch": "Morgen habe ich eine Prüfung, deshalb lerne ich."
+        },
+        {
+          "japanese": "お腹が痛いので、休んでもいいですか。",
+          "romaji": "Onaka ga itai node, yasunde mo ii desu ka.",
+          "deutsch": "Mir tut der Bauch weh, darf ich mich ausruhen?"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Bei einer höflichen Bitte oder Entschuldigung klingt ので immer angemessener. 電車が遅れたので遅刻しました wirkt wie eine echte Erklärung. 電車が遅れたから遅刻しました klingt wie eine schroffe Rechtfertigung. Gleiche Fakten, anderer Ton."
+    }
+  ]
+}

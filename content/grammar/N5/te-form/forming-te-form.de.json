@@ -1,0 +1,161 @@
+{
+  "id": "forming-te-form",
+  "title": "Die て-Form Bilden",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Die **て-Form** ist eine der vielseitigsten Verbformen des Japanischen. Sie verbindet Teilsätze und ist die Grundlage für Dutzende Grammatikmuster. Sie früh zu beherrschen zahlt sich durch ganz N5 und darüber hinaus aus."
+    },
+    {
+      "type": "transform_cards",
+      "groups": [
+        {
+          "label": "Gruppe 1",
+          "tag": "く : ぐ",
+          "rule": "く → いて / ぐ → いで",
+          "rows": [
+            {
+              "base": "書く",
+              "old": "く",
+              "new": "いて",
+              "result": "書いて",
+              "romaji": "kaite",
+              "english": "schreiben"
+            },
+            {
+              "base": "泳ぐ",
+              "old": "ぐ",
+              "new": "いで",
+              "result": "泳いで",
+              "romaji": "oyoide",
+              "english": "schwimmen"
+            }
+          ],
+          "note": "Ausnahme: 行く → 行って (nicht 行いて)"
+        },
+        {
+          "label": "Gruppe 1",
+          "tag": "す",
+          "rule": "す → して",
+          "rows": [
+            {
+              "base": "話す",
+              "old": "す",
+              "new": "して",
+              "result": "話して",
+              "romaji": "hanashite",
+              "english": "sprechen"
+            }
+          ]
+        },
+        {
+          "label": "Gruppe 1",
+          "tag": "つ : る : う",
+          "rule": "→ って (Doppelkonsonant)",
+          "rows": [
+            {
+              "base": "待つ",
+              "old": "つ",
+              "new": "って",
+              "result": "待って",
+              "romaji": "matte",
+              "english": "warten"
+            },
+            {
+              "base": "帰る",
+              "old": "る",
+              "new": "って",
+              "result": "帰って",
+              "romaji": "kaette",
+              "english": "zurückkehren"
+            },
+            {
+              "base": "買う",
+              "old": "う",
+              "new": "って",
+              "result": "買って",
+              "romaji": "katte",
+              "english": "kaufen"
+            }
+          ]
+        },
+        {
+          "label": "Gruppe 1",
+          "tag": "む : ぬ : ぶ",
+          "rule": "→ んで",
+          "rows": [
+            {
+              "base": "飲む",
+              "old": "む",
+              "new": "んで",
+              "result": "飲んで",
+              "romaji": "nonde",
+              "english": "trinken"
+            },
+            {
+              "base": "遊ぶ",
+              "old": "ぶ",
+              "new": "んで",
+              "result": "遊んで",
+              "romaji": "asonde",
+              "english": "spielen"
+            }
+          ]
+        },
+        {
+          "label": "Gruppe 2",
+          "tag": "Ichidan",
+          "rule": "る weglassen, て anhängen",
+          "rows": [
+            {
+              "base": "食べる",
+              "old": "る",
+              "new": "て",
+              "result": "食べて",
+              "romaji": "tabete",
+              "english": "essen"
+            },
+            {
+              "base": "見る",
+              "old": "る",
+              "new": "て",
+              "result": "見て",
+              "romaji": "mite",
+              "english": "sehen"
+            },
+            {
+              "base": "起きる",
+              "old": "る",
+              "new": "て",
+              "result": "起きて",
+              "romaji": "okite",
+              "english": "aufwachen"
+            }
+          ]
+        },
+        {
+          "label": "Gruppe 3",
+          "tag": "Unregelmäßig",
+          "rows": [
+            {
+              "base": "する",
+              "result": "して",
+              "romaji": "shite",
+              "english": "tun"
+            },
+            {
+              "base": "来る",
+              "result": "来て",
+              "romaji": "kite",
+              "english": "kommen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "行く (gehen) ist die einzige Ausnahme in Gruppe 1 : es wird zu 行って, nicht 行いて. Alles andere folgt den obigen Karten ausnahmslos."
+    }
+  ]
+}

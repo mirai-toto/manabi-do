@@ -1,0 +1,57 @@
+{
+  "id": "kakaru",
+  "title": "かかる : Zeit und Kosten",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**かかる** ist das Verb dafür, dass etwas eine bestimmte Menge an Zeit oder Geld *erfordert*. Für Mühe oder Kraft wird es nicht verwendet : nur für messbare Zeit und Kosten."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Zeit / Kosten] が **かかります**     ← es dauert / es kostet",
+        "[Ziel] まで [Zeit] **かかります**  ← es dauert [Zeit] bis dorthin",
+        "どのぐらい**かかりますか**           ← wie lange / wie viel dauert es?"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "駅まで十分かかります。",
+          "romaji": "Eki made juppun kakarimasu.",
+          "deutsch": "Bis zum Bahnhof dauert es zehn Minuten."
+        },
+        {
+          "japanese": "この仕事は三時間かかりました。",
+          "romaji": "Kono shigoto wa sanjikan kakarimashita.",
+          "deutsch": "Diese Arbeit hat drei Stunden gedauert."
+        },
+        {
+          "japanese": "修理に五千円かかりました。",
+          "romaji": "Shūri ni gosen-en kakarimashita.",
+          "deutsch": "Die Reparatur hat 5 000 Yen gekostet."
+        },
+        {
+          "japanese": "日本までどのぐらいかかりますか。",
+          "romaji": "Nihon made dono gurai kakarimasu ka.",
+          "deutsch": "Wie lange dauert es bis nach Japan?"
+        },
+        {
+          "japanese": "このプロジェクトはお金がかかります。",
+          "romaji": "Kono purojekuto wa okane ga kakarimasu.",
+          "deutsch": "Dieses Projekt kostet Geld."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "かかる verbindet sich natürlich mit まで (bis). 駅まで何分かかりますか ist die natürlichste Art, im Japanischen nach der Fahrzeit zu fragen : du wirst es ständig brauchen."
+    }
+  ]
+}

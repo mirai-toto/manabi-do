@@ -2,20 +2,20 @@
   "type": "themes",
   "items": [
     {
-      "title": { "en": "Writing System", "fr": "Système d'Écriture" },
-      "description": { "en": "Hiragana, katakana, kanji overview, punctuation and phonetic sound rules.", "fr": "Hiragana, katakana, aperçu des kanji, ponctuation et règles phonétiques." },
+      "title": { "en": "Writing System", "fr": "Système d'Écriture", "de": "Schriftsystem" },
+      "description": { "en": "Hiragana, katakana, kanji overview, punctuation and phonetic sound rules.", "fr": "Hiragana, katakana, aperçu des kanji, ponctuation et règles phonétiques.", "de": "Hiragana, Katakana, Kanji im Überblick, Zeichensetzung und phonetische Lautregeln." },
       "chapters": [
-        { "title": { "en": "How Japanese Is Written", "fr": "Les Systèmes d'Écriture" }, "path": "basics/how-japanese-is-written/index.json" },
-        { "title": { "en": "Punctuation & Spacing", "fr": "Ponctuation & Espacement" }, "path": "basics/punctuation-spacing/index.json" },
-        { "title": { "en": "Small Kana & Sound Rules", "fr": "Petits Kana & Règles Phonétiques" }, "path": "basics/small-kana-sound-rules/index.json" }
+        { "title": { "en": "How Japanese Is Written", "fr": "Les Systèmes d'Écriture", "de": "Wie Japanisch Geschrieben Wird" }, "path": "basics/how-japanese-is-written/index.json" },
+        { "title": { "en": "Punctuation & Spacing", "fr": "Ponctuation & Espacement", "de": "Zeichensetzung & Abstände" }, "path": "basics/punctuation-spacing/index.json" },
+        { "title": { "en": "Small Kana & Sound Rules", "fr": "Petits Kana & Règles Phonétiques", "de": "Kleine Kana & Lautregeln" }, "path": "basics/small-kana-sound-rules/index.json" }
       ]
     },
     {
-      "title": { "en": "Language Foundation", "fr": "Fondations de la Langue" },
-      "description": { "en": "Pitch accent fundamentals and Japanese sentence structure essentials.", "fr": "Fondamentaux de l'accent de hauteur et structure essentielle des phrases japonaises." },
+      "title": { "en": "Language Foundation", "fr": "Fondations de la Langue", "de": "Grundlagen der Sprache" },
+      "description": { "en": "Pitch accent fundamentals and Japanese sentence structure essentials.", "fr": "Fondamentaux de l'accent de hauteur et structure essentielle des phrases japonaises.", "de": "Grundlagen des Tonhöhenakzents und der japanischen Satzstruktur." },
       "chapters": [
-        { "title": { "en": "Pitch Accent", "fr": "Accent de Hauteur" }, "path": "basics/pitch-accent/index.json" },
-        { "title": { "en": "Sentence Structure", "fr": "Structure des Phrases" }, "path": "basics/sentence-structure/index.json" }
+        { "title": { "en": "Pitch Accent", "fr": "Accent de Hauteur", "de": "Tonhöhenakzent" }, "path": "basics/pitch-accent/index.json" },
+        { "title": { "en": "Sentence Structure", "fr": "Structure des Phrases", "de": "Satzbau" }, "path": "basics/sentence-structure/index.json" }
       ]
     }
   ]

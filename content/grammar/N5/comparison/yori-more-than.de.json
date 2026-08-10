@@ -1,0 +1,56 @@
+{
+  "id": "yori-more-than",
+  "title": "A は B より ～ : Mehr Als",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**より** markiert den Bezugspunkt des Vergleichs : das, *womit* verglichen wird. Was vor より steht, ist das Geringere; was vor dem Adjektiv steht, das Größere."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "A は B **より** [Adjektiv] です       ← A ist mehr ~ als B",
+        "B **より** A **のほうが** [Adjektiv] です  ← A ist mehr ~ als B (betont)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "東京は大阪より大きいです。",
+          "romaji": "Tōkyō wa Ōsaka yori ōkii desu.",
+          "deutsch": "Tokio ist größer als Osaka."
+        },
+        {
+          "japanese": "バスより電車のほうが速いです。",
+          "romaji": "Basu yori densha no hō ga hayai desu.",
+          "deutsch": "Der Zug ist schneller als der Bus."
+        },
+        {
+          "japanese": "夏より冬のほうが好きです。",
+          "romaji": "Natsu yori fuyu no hō ga suki desu.",
+          "deutsch": "Ich mag den Winter lieber als den Sommer."
+        },
+        {
+          "japanese": "昨日より今日のほうが寒いです。",
+          "romaji": "Kinō yori kyō no hō ga samui desu.",
+          "deutsch": "Heute ist es kälter als gestern."
+        },
+        {
+          "japanese": "肉より魚のほうが好きです。",
+          "romaji": "Niku yori sakana no hō ga suki desu.",
+          "deutsch": "Ich mag Fisch lieber als Fleisch."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Ein のほうが nach dem hervorgehobenen Element macht den Vergleich ausdrücklicher und nachdrücklicher. Beide Strukturen sind grammatisch korrekt : のほうが ist in natürlicher Rede schlicht häufiger."
+    }
+  ]
+}

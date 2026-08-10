@@ -1,0 +1,56 @@
+{
+  "id": "double-consonant",
+  "title": "っ : Doppelkonsonant",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Ein kleines っ signalisiert eine kurze, scharfe Pause vor dem folgenden Konsonanten, der dann etwas länger gehalten wird. Es belegt eine volle More : einen Taktschlag : wie jedes andere Kana."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Kana] + **っ** + [Kana, das mit einem Konsonanten beginnt]",
+        "→ die Pause verdoppelt den folgenden Konsonanten"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "きって",
+          "romaji": "kitte",
+          "deutsch": "Briefmarke"
+        },
+        {
+          "japanese": "ざっし",
+          "romaji": "zasshi",
+          "deutsch": "Zeitschrift"
+        },
+        {
+          "japanese": "いっぽ",
+          "romaji": "ippo",
+          "deutsch": "ein Schritt"
+        },
+        {
+          "japanese": "きっぷ",
+          "romaji": "kippu",
+          "deutsch": "Fahrkarte"
+        },
+        {
+          "japanese": "ちょっと",
+          "romaji": "chotto",
+          "deutsch": "ein bisschen / einen Moment"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Häufiger Fehler: Ohne das っ ändert sich die Bedeutung völlig. きて (*kite*) = „komm!“ : etwas ganz anderes als きって (*kitte*, Briefmarke). Behandle っ als echten Taktschlag der Stille, nicht als Verzierung."
+    }
+  ]
+}

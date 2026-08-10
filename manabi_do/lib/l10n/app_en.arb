@@ -79,8 +79,8 @@
   "lessonStateKnown": "Known",
   "lessonStateUnknown": "Unknown",
   "lessonStateLocked": "Locked",
-  "markLessonAsRead": "Mark as read",
-  "lessonMarkedRead": "Read",
+  "markLessonAsCompleted": "Mark as completed",
+  "lessonMarkedCompleted": "Completed",
   "dailyTraining": "Daily Training",
   "writingPractice": "Writing Practice",
   "next": "Next →",
@@ -91,6 +91,7 @@
     }
   },
   "correct": "Correct",
+  "correctAnswer": "Correct answer",
   "missed": "Missed",
   "timeSpent": "Time spent",
 

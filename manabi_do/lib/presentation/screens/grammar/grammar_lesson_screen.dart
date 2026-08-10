@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../providers/database_provider.dart';
@@ -44,20 +45,23 @@ class GrammarLessonScreen extends ConsumerWidget {
           style: AppTextStyles.title.copyWith(color: t.onSurface),
         ),
       ),
-      body: ScrollFade(
-        builder: (controller) => GrammarBlockRenderer(
-          blocks: blocks,
-          levelColor: levelColor,
-          controller: controller,
-          trailing: LessonReadToggle(
-            isRead: isRead,
-            onTap: () {
-              if (isRead) {
-                db.unmarkGrammarLessonRead(lessonId);
-              } else {
-                db.markGrammarLessonRead(lessonId);
-              }
-            },
+      body: AccentTheme(
+        accent: levelColor,
+        child: ScrollFade(
+          builder: (controller) => GrammarBlockRenderer(
+            blocks: blocks,
+            levelColor: levelColor,
+            controller: controller,
+            trailing: LessonReadToggle(
+              isRead: isRead,
+              onTap: () {
+                if (isRead) {
+                  db.unmarkGrammarLessonRead(lessonId);
+                } else {
+                  db.markGrammarLessonRead(lessonId);
+                }
+              },
+            ),
           ),
         ),
       ),

@@ -3,77 +3,111 @@
     {
       "type": "flashcard",
       "front": "What word connects two actions happening at the same time?",
-      "back": { "en": "ながら" },
+      "back": { "en": "ながら", "fr": "ながら", "de": "ながら" },
       "example": {
         "sentence": "音楽を{聴|き}きながら{勉強|べんきょう}する",
         "highlight": "ながら",
-        "translation": { "en": "I study while listening to music." }
+        "translation": {
+          "en": "I study while listening to music.",
+          "fr": "J'étudie tout en écoutant de la musique.",
+          "de": "Ich lerne, während ich Musik höre."
+        }
       }
     },
     {
       "type": "mcq",
-      "sentence": "テレビを見ながら夕ごはんを食べます。",
+      "sentence": "テレビを{見|み}ながら{夕|ゆう}ごはんを{食|た}べます。",
       "choices": {
         "en": [
           "I eat dinner while watching TV.",
           "I watch TV after eating dinner.",
           "I eat dinner and then watch TV.",
           "I watch TV instead of eating dinner."
+        ],
+        "fr": [
+          "Je dîne tout en regardant la télévision.",
+          "Je regarde la télévision après avoir dîné.",
+          "Je dîne, puis je regarde la télévision.",
+          "Je regarde la télévision au lieu de dîner."
+        ],
+        "de": [
+          "Ich esse zu Abend, während ich fernsehe.",
+          "Ich sehe fern, nachdem ich zu Abend gegessen habe.",
+          "Ich esse zu Abend und sehe dann fern.",
+          "Ich sehe fern, statt zu Abend zu essen."
         ]
       },
       "answer_index": 0
     },
     {
       "type": "mcq",
-      "sentence": "歩きながら電話で話しました。",
+      "sentence": "{歩|ある}きながら{電話|でんわ}で{話|はな}しました。",
       "choices": {
         "en": [
           "I walked after talking on the phone.",
           "I talked on the phone while walking.",
           "I walked so that I could talk on the phone.",
           "I stopped walking to talk on the phone."
+        ],
+        "fr": [
+          "J'ai marché après avoir parlé au téléphone.",
+          "J'ai parlé au téléphone tout en marchant.",
+          "J'ai marché pour pouvoir parler au téléphone.",
+          "Je me suis arrêté de marcher pour parler au téléphone."
+        ],
+        "de": [
+          "Ich bin gelaufen, nachdem ich telefoniert hatte.",
+          "Ich habe telefoniert, während ich gelaufen bin.",
+          "Ich bin gelaufen, um telefonieren zu können.",
+          "Ich habe zum Telefonieren angehalten."
         ]
       },
       "answer_index": 1
     },
     {
       "type": "cloze",
-      "sentence": "音楽を聴き___勉強します。",
+      "sentence": "{音楽|おんがく}を{聴|き}き___{勉強|べんきょう}します。",
       "answer": "ながら",
-      "distractors": ["てから", "前に", "後で"]
+      "distractors": ["てから", "{前|まえ}に", "{後|あと}で"]
     },
     {
       "type": "cloze",
-      "sentence": "コーヒーを___新聞を読みました。",
-      "answer": "飲みながら",
-      "distractors": ["飲んでから", "飲む前に", "飲んだ後で"]
+      "sentence": "コーヒーを___{新聞|しんぶん}を{読|よ}みました。",
+      "answer": "{飲|の}みながら",
+      "distractors": ["{飲|の}んでから", "{飲|の}む{前|まえ}に", "{飲|の}んだ{後|あと}で"]
     },
     {
       "type": "cloze",
-      "sentence": "___電話で話しました。",
-      "answer": "歩きながら",
-      "distractors": ["歩いてから", "歩く前に", "歩いた後で"]
+      "sentence": "___{電話|でんわ}で{話|はな}しました。",
+      "answer": "{歩|ある}きながら",
+      "distractors": ["{歩|ある}いてから", "{歩|ある}く{前|まえ}に", "{歩|ある}いた{後|あと}で"]
     },
     {
       "type": "builder",
-      "parts": ["テレビを", "見ながら", "夕ごはんを", "食べます"],
+      "parts": ["テレビを", "{見|み}ながら", "{夕|ゆう}ごはんを", "{食|た}べます"],
       "translation": {
-        "en": "I eat dinner while watching TV."
+        "en": "I eat dinner while watching TV.",
+        "fr": "Je dîne tout en regardant la télévision.",
+        "de": "Ich esse zu Abend, während ich fernsehe."
       }
     },
     {
       "type": "builder",
-      "parts": ["コーヒーを", "飲みながら", "新聞を", "読みました"],
+      "parts": ["コーヒーを", "{飲|の}みながら", "{新聞|しんぶん}を", "{読|よ}みました"],
       "translation": {
-        "en": "I read the newspaper while drinking coffee."
+        "en": "I read the newspaper while drinking coffee.",
+        "fr": "J'ai lu le journal tout en buvant un café.",
+        "de": "Ich habe Zeitung gelesen, während ich Kaffee getrunken habe."
       }
     },
     {
       "type": "error_detection",
-      "correct": "歩きながら電話で話しました。",
-      "wrong": "歩いてながら電話で話しました。",
+      "correct": "{歩|ある}きながら{電話|でんわ}で{話|はな}しました。",
+      "wrong": "{歩|ある}いてながら{電話|でんわ}で{話|はな}しました。",
       "explanation": {
-        "en": "ながら attaches to the verb stem (歩き), not the て-form (歩いて)."
+        "en": "ながら attaches to the verb stem (歩き), not the て-form (歩いて).",
+        "fr": "ながら s'attache au radical du verbe (歩き), pas à la forme て (歩いて).",
+        "de": "ながら hängt sich an den Verbstamm (歩き), nicht an die て-Form (歩いて)."
       }
     }
   ]

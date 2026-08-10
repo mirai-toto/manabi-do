@@ -1,0 +1,44 @@
+{
+  "id": "subject-dropping",
+  "title": "Weglassen des Subjekts",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanisch lässt das Subjekt regelmäßig weg, wenn es aus dem Kontext klar ist. Das nennt man *Pro-Drop*, und in natürlicher Rede ist es die Regel, nicht die Ausnahme. わかりました zu sagen oder zu schreiben ist nicht unvollständig : das Subjekt wird mitverstanden."
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "mitgemeintes subjekt"
+      ],
+      "rows": [
+        {
+          "japanese": "食べます。",
+          "romaji": "Tabemasu.",
+          "mitgemeintes subjekt": "ich / du / wir"
+        },
+        {
+          "japanese": "行きますか。",
+          "romaji": "Ikimasu ka.",
+          "mitgemeintes subjekt": "du"
+        },
+        {
+          "japanese": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "mitgemeintes subjekt": "ich"
+        },
+        {
+          "japanese": "来ましたよ。",
+          "romaji": "Kimashita yo.",
+          "mitgemeintes subjekt": "sie / jemand"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Was wie Mehrdeutigkeit aussieht, löst der Kontext auf. Sobald „ich“ oder „sie“ als Thema etabliert ist, wiederholen japanische Sprecher es nicht ständig. Wenn du in einem echten Gespräch nicht sagen kannst, wer das Subjekt ist, ist das normal : der Kontext übernimmt die Arbeit."
+    }
+  ]
+}

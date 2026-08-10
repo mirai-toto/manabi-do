@@ -2,45 +2,45 @@
   "type": "themes",
   "items": [
     {
-      "title": { "en": "Core Grammar", "fr": "Grammaire Essentielle" },
-      "description": { "en": "Verb groups, adjective types, polite conjugations and core sentence patterns.", "fr": "Groupes verbaux, types d'adjectifs, conjugaisons polies et structures de phrases essentielles." },
+      "title": { "en": "Core Grammar", "fr": "Grammaire Essentielle", "de": "Kerngrammatik" },
+      "description": { "en": "Verb groups, adjective types, polite conjugations and core sentence patterns.", "fr": "Groupes verbaux, types d'adjectifs, conjugaisons polies et structures de phrases essentielles.", "de": "Verbgruppen, Adjektivtypen, höfliche Konjugationen und grundlegende Satzmuster." },
       "chapters": [
-        { "title": { "en": "Verbs", "fr": "Verbes" }, "path": "N5/verbs/index.json" },
-        { "title": { "en": "Adjectives", "fr": "Adjectifs" }, "path": "N5/adjectives/index.json" }
+        { "title": { "en": "Verbs", "fr": "Verbes", "de": "Verben" }, "path": "N5/verbs/index.json" },
+        { "title": { "en": "Adjectives", "fr": "Adjectifs", "de": "Adjektive" }, "path": "N5/adjectives/index.json" }
       ]
     },
     {
-      "title": { "en": "Building Phrases", "fr": "Construire des Phrases" },
-      "description": { "en": "Spatial particles, location expressions, て-form and connected actions.", "fr": "Particules spatiales, expressions de lieu, forme て et actions enchaînées." },
+      "title": { "en": "Building Phrases", "fr": "Construire des Phrases", "de": "Sätze Bilden" },
+      "description": { "en": "Spatial particles, location expressions, て-form and connected actions.", "fr": "Particules spatiales, expressions de lieu, forme て et actions enchaînées.", "de": "Ortspartikeln, Ortsangaben, die て-Form und verknüpfte Handlungen." },
       "chapters": [
-        { "title": { "en": "Particles", "fr": "Particules" }, "path": "N5/particles-space-direction/index.json" },
-        { "title": { "en": "て-form", "fr": "Forme て" }, "path": "N5/te-form/index.json" }
+        { "title": { "en": "Particles", "fr": "Particules", "de": "Partikeln" }, "path": "N5/particles-space-direction/index.json" },
+        { "title": { "en": "て-form", "fr": "Forme て", "de": "て-Form" }, "path": "N5/te-form/index.json" }
       ]
     },
     {
-      "title": { "en": "Time & Actions", "fr": "Temps & Actions" },
-      "description": { "en": "Past, present and future expressions, duration and frequency patterns.", "fr": "Expressions du passé, présent et futur, durée et fréquence." },
+      "title": { "en": "Time & Actions", "fr": "Temps & Actions", "de": "Zeit & Handlungen" },
+      "description": { "en": "Past, present and future expressions, duration and frequency patterns.", "fr": "Expressions du passé, présent et futur, durée et fréquence.", "de": "Ausdrücke für Vergangenheit, Gegenwart und Zukunft, Dauer und Häufigkeit." },
       "chapters": [
-        { "title": { "en": "Temporality", "fr": "Temporalité" }, "path": "N5/temporality/index.json" },
-        { "title": { "en": "Time", "fr": "Le Temps" }, "path": "N5/time/index.json" },
-        { "title": { "en": "Duration & Frequency", "fr": "Durée & Fréquence" }, "path": "N5/duration-frequency/index.json" }
+        { "title": { "en": "Temporality", "fr": "Temporalité", "de": "Temporalität" }, "path": "N5/temporality/index.json" },
+        { "title": { "en": "Time", "fr": "Le Temps", "de": "Uhrzeit" }, "path": "N5/time/index.json" },
+        { "title": { "en": "Duration & Frequency", "fr": "Durée & Fréquence", "de": "Dauer & Häufigkeit" }, "path": "N5/duration-frequency/index.json" }
       ]
     },
     {
-      "title": { "en": "Quantities", "fr": "Quantités" },
-      "description": { "en": "Counters, number words and comparative structures.", "fr": "Compteurs, numéraux et structures comparatives." },
+      "title": { "en": "Quantities", "fr": "Quantités", "de": "Mengen" },
+      "description": { "en": "Counters, number words and comparative structures.", "fr": "Compteurs, numéraux et structures comparatives.", "de": "Zähleinheiten, Zahlwörter und Vergleichsstrukturen." },
       "chapters": [
-        { "title": { "en": "Counting", "fr": "Comptage" }, "path": "N5/counting/index.json" },
-        { "title": { "en": "Comparison", "fr": "Comparaison" }, "path": "N5/comparison/index.json" }
+        { "title": { "en": "Counting", "fr": "Comptage", "de": "Zählen" }, "path": "N5/counting/index.json" },
+        { "title": { "en": "Comparison", "fr": "Comparaison", "de": "Vergleich" }, "path": "N5/comparison/index.json" }
       ]
     },
     {
-      "title": { "en": "Expressing Yourself", "fr": "S'exprimer" },
-      "description": { "en": "Desire, probability, obligation, opinion and reason structures.", "fr": "Structures pour exprimer désir, probabilité, obligation, opinion et cause." },
+      "title": { "en": "Expressing Yourself", "fr": "S'exprimer", "de": "Sich Ausdrücken" },
+      "description": { "en": "Desire, probability, obligation, opinion and reason structures.", "fr": "Structures pour exprimer désir, probabilité, obligation, opinion et cause.", "de": "Strukturen für Wunsch, Wahrscheinlichkeit, Verpflichtung, Meinung und Begründung." },
       "chapters": [
-        { "title": { "en": "Desire & Probability", "fr": "Désir & Probabilité" }, "path": "N5/desire-probability/index.json" },
-        { "title": { "en": "Obligation & Opinion", "fr": "Obligation & Opinion" }, "path": "N5/obligation-opinion/index.json" },
-        { "title": { "en": "Reasons & Questions", "fr": "Causes & Questions" }, "path": "N5/reasons-questions/index.json" }
+        { "title": { "en": "Desire & Probability", "fr": "Désir & Probabilité", "de": "Wunsch & Wahrscheinlichkeit" }, "path": "N5/desire-probability/index.json" },
+        { "title": { "en": "Obligation & Opinion", "fr": "Obligation & Opinion", "de": "Verpflichtung & Meinung" }, "path": "N5/obligation-opinion/index.json" },
+        { "title": { "en": "Reasons & Questions", "fr": "Causes & Questions", "de": "Gründe & Fragen" }, "path": "N5/reasons-questions/index.json" }
       ]
     }
   ]

@@ -1,0 +1,60 @@
+{
+  "id": "telling-time",
+  "title": "Die Uhrzeit Angeben",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Die Uhrzeit wird im Japanischen mit **時** (じ, Stunde) und **分** (ふん/ぷん, Minute) angegeben. Der Aufbau ist einfach: erst die Stunde, dann die Minute, dann です. Vormittag und Nachmittag stehen vor der Uhrzeit."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Stunde] **時** [Minute] **分** です",
+        "ごぜん (vormittags) / ごご (nachmittags) + [Stunde] **時** [Minute] **分**"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "今、三時です。",
+          "romaji": "Ima, sanji desu.",
+          "deutsch": "Es ist 3 Uhr."
+        },
+        {
+          "japanese": "九時十五分に始まります。",
+          "romaji": "Kuji jūgofun ni hajimarimasu.",
+          "deutsch": "Es beginnt um 9:15 Uhr."
+        },
+        {
+          "japanese": "十二時半に昼ごはんを食べます。",
+          "romaji": "Jūniji han ni hirugohan wo tabemasu.",
+          "deutsch": "Um 12:30 Uhr esse ich zu Mittag."
+        },
+        {
+          "japanese": "午後七時に帰ります。",
+          "romaji": "Gogo shichiji ni kaerimasu.",
+          "deutsch": "Ich bin um 19 Uhr zu Hause."
+        },
+        {
+          "japanese": "午前六時に起きます。",
+          "romaji": "Gozen rokuji ni okimasu.",
+          "deutsch": "Ich stehe um 6 Uhr morgens auf."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "半 (はん) bedeutet „halb nach“ : 三時半 = 3:30 Uhr. ごぜん und ごご stehen *vor* der Uhrzeit: 午前九時 = 9 Uhr vormittags, 午後三時 = 15 Uhr. Ohne sie ergibt sich die Bedeutung aus dem Kontext."
+    },
+    {
+      "type": "note",
+      "content": "Die Lesung der Minuten hängt von der Zahl ab. 一分 (ippun), 三分 (sanpun), 六分 (roppun), 八分 (happun), 十分 (juppun). Sie folgen denselben Lautregeln wie Zähleinheiten : durch Hören werden sie mit der Zeit selbstverständlich."
+    }
+  ]
+}

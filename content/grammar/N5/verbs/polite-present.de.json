@@ -1,0 +1,157 @@
+{
+  "id": "polite-present",
+  "title": "Höfliches Präsens : ます",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Die **ます-Form** ist die höfliche Sprechweise. Sie ist der Standard im Gespräch mit Menschen, die du kaum kennst, in förmlichen Situationen und im Dienstleistungsbereich. Sie deckt sowohl gegenwärtige Gewohnheit als auch Zukunftsabsicht ab : Japanisch trennt diese beiden Vorstellungen nicht."
+    },
+    {
+      "type": "section_title",
+      "content": "Bildung"
+    },
+    {
+      "type": "transform_cards",
+      "groups": [
+        {
+          "label": "Gruppe 1",
+          "tag": "Godan",
+          "rule": "den End-u-Vokal zum i-Vokal ändern, dann ます anhängen",
+          "rows": [
+            {
+              "base": "書く",
+              "old": "く",
+              "new": "きます",
+              "result": "書きます",
+              "romaji": "kakimasu",
+              "english": "schreiben"
+            },
+            {
+              "base": "話す",
+              "old": "す",
+              "new": "します",
+              "result": "話します",
+              "romaji": "hanashimasu",
+              "english": "sprechen"
+            },
+            {
+              "base": "待つ",
+              "old": "つ",
+              "new": "ちます",
+              "result": "待ちます",
+              "romaji": "machimasu",
+              "english": "warten"
+            },
+            {
+              "base": "飲む",
+              "old": "む",
+              "new": "みます",
+              "result": "飲みます",
+              "romaji": "nomimasu",
+              "english": "trinken"
+            },
+            {
+              "base": "帰る",
+              "old": "る",
+              "new": "ります",
+              "result": "帰ります",
+              "romaji": "kaerimasu",
+              "english": "nach Hause zurückkehren"
+            }
+          ],
+          "note": "Verneinung: ます durch ません ersetzen : der Stamm bleibt gleich",
+          "description": "Die häufigste Gruppe : die Mehrzahl der japanischen Verben gehört hierher."
+        },
+        {
+          "label": "Gruppe 2",
+          "tag": "Ichidan",
+          "rule": "る entfernen, ます direkt an den Stamm hängen",
+          "rows": [
+            {
+              "base": "食べる",
+              "old": "る",
+              "new": "ます",
+              "result": "食べます",
+              "romaji": "tabemasu",
+              "english": "essen"
+            },
+            {
+              "base": "見る",
+              "old": "る",
+              "new": "ます",
+              "result": "見ます",
+              "romaji": "mimasu",
+              "english": "sehen"
+            },
+            {
+              "base": "起きる",
+              "old": "る",
+              "new": "ます",
+              "result": "起きます",
+              "romaji": "okimasu",
+              "english": "aufwachen"
+            }
+          ],
+          "description": "Weniger Verben, aber deutlich einfacher zu konjugieren."
+        },
+        {
+          "label": "Gruppe 3",
+          "tag": "Unregelmäßig",
+          "rows": [
+            {
+              "base": "する",
+              "result": "します",
+              "romaji": "shimasu",
+              "english": "tun"
+            },
+            {
+              "base": "来る",
+              "result": "来ます",
+              "romaji": "kimasu",
+              "english": "kommen"
+            }
+          ],
+          "description": "Nur zwei Verben im Japanischen sind wirklich unregelmäßig : lerne sie so, wie sie sind."
+        }
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "毎朝コーヒーを飲みます。",
+          "romaji": "Maiasa koohii wo nomimasu.",
+          "deutsch": "Ich trinke jeden Morgen Kaffee."
+        },
+        {
+          "japanese": "明日、友達に会います。",
+          "romaji": "Ashita, tomodachi ni aimasu.",
+          "deutsch": "Morgen treffe ich eine Freundin."
+        },
+        {
+          "japanese": "肉を食べません。",
+          "romaji": "Niku wo tabemasen.",
+          "deutsch": "Ich esse kein Fleisch."
+        },
+        {
+          "japanese": "日本語を勉強します。",
+          "romaji": "Nihongo wo benkyō shimasu.",
+          "deutsch": "Ich lerne Japanisch."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "ます deckt sowohl Gewohnheiten als auch geplante zukünftige Handlungen ab. Der Kontext macht die Bedeutung klar : Japanisch hat keine eigene Zukunftsform."
+    },
+    {
+      "type": "note",
+      "content": "ます ist höflich, aber nicht förmlich. Verwende es gegenüber Verkaufspersonal, neuen Bekanntschaften oder einer Lehrkraft. Unter engen Freunden wechseln Sprecher zur schlichten Form (Wörterbuchform). Beides ist grammatisch korrekt : die Sprachebene entscheidet."
+    }
+  ]
+}

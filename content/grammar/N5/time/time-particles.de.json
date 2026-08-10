@@ -1,0 +1,57 @@
+{
+  "id": "time-particles",
+  "title": "Zeitpartikeln : に, から, まで",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Drei Partikeln regeln Zeitbezüge. **に** heftet eine Handlung an einen bestimmten Punkt : an eine Uhrzeit oder ein Kalenderdatum. **から** markiert den Anfangspunkt. **まで** den Endpunkt. から und まで treten häufig zusammen auf."
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[Bestimmte Zeit] **に** + [Handlung]          ← zu einem bestimmten Zeitpunkt",
+        "[Anfang] **から** [Ende] **まで** + [Handlung]  ← von A bis B",
+        "[Anfang] **から** + [Handlung]                ← ab / seit A (ohne Endpunkt)"
+      ]
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch"
+      ],
+      "rows": [
+        {
+          "japanese": "七時に起きます。",
+          "romaji": "Shichiji ni okimasu.",
+          "deutsch": "Ich stehe um 7 Uhr auf."
+        },
+        {
+          "japanese": "月曜日に病院へ行きます。",
+          "romaji": "Getsuyōbi ni byōin e ikimasu.",
+          "deutsch": "Am Montag gehe ich ins Krankenhaus."
+        },
+        {
+          "japanese": "九時から五時まで働きます。",
+          "romaji": "Kuji kara goji made hatarakimasu.",
+          "deutsch": "Ich arbeite von 9 bis 17 Uhr."
+        },
+        {
+          "japanese": "授業は十時から始まります。",
+          "romaji": "Jugyō wa jūji kara hajimarimasu.",
+          "deutsch": "Der Unterricht beginnt ab 10 Uhr."
+        },
+        {
+          "japanese": "去年から日本語を勉強しています。",
+          "romaji": "Kyonen kara nihongo wo benkyō shite imasu.",
+          "deutsch": "Ich lerne seit letztem Jahr Japanisch."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "に wird **nicht** mit relativen Zeitangaben wie 今日, 明日, 毎日, 来週 verwendet. Diese Wörter verweisen bereits auf einen Zeitpunkt und brauchen kein に. Sag 明日行きます : niemals 明日**に**行きます. Denk an に als „zu einem bestimmten Uhrzeit- oder Kalenderpunkt“. Ist das Wort relativ, fällt das に weg."
+    }
+  ]
+}

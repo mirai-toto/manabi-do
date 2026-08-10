@@ -8,7 +8,122 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqlite3/sqlite3.dart' as raw;
 
-const _assetDbVersion = '8.21';
+const _assetDbVersion = '8.23';
+
+/// A table holding user data rather than shipped content. Refreshing the
+/// content DB overwrites the file wholesale, so these rows are read out
+/// beforehand and written back into the fresh copy.
+class _PreservedTable {
+  final String name;
+  final List<String> columns;
+  final String createSql;
+
+  const _PreservedTable({
+    required this.name,
+    required this.columns,
+    required this.createSql,
+  });
+}
+
+const List<_PreservedTable> _preservedTables = [
+  _PreservedTable(
+    name: 'srs_cards',
+    columns: ['item_type', 'item_id', 'due', 'first_seen_at', 'card_json'],
+    createSql:
+        'CREATE TABLE IF NOT EXISTS srs_cards ('
+        '  item_type TEXT NOT NULL,'
+        '  item_id INTEGER NOT NULL,'
+        '  due INTEGER NOT NULL,'
+        '  first_seen_at INTEGER,'
+        '  card_json TEXT NOT NULL,'
+        '  PRIMARY KEY (item_type, item_id)'
+        ')',
+  ),
+  _PreservedTable(
+    name: 'progress_entries',
+    columns: ['item_type', 'item_id', 'is_known', 'toggled_at'],
+    createSql:
+        'CREATE TABLE IF NOT EXISTS progress_entries ('
+        '  id INTEGER PRIMARY KEY AUTOINCREMENT,'
+        '  item_type TEXT NOT NULL,'
+        '  item_id INTEGER NOT NULL,'
+        '  is_known INTEGER NOT NULL,'
+        '  toggled_at INTEGER NOT NULL,'
+        '  UNIQUE (item_type, item_id)'
+        ')',
+  ),
+  _PreservedTable(
+    name: 'grammar_lesson_progress',
+    columns: ['lesson_path', 'read_at'],
+    createSql:
+        'CREATE TABLE IF NOT EXISTS grammar_lesson_progress ('
+        '  lesson_path TEXT NOT NULL PRIMARY KEY,'
+        '  read_at INTEGER NOT NULL'
+        ')',
+  ),
+  _PreservedTable(
+    name: 'grammar_lesson_starts',
+    columns: ['lesson_path'],
+    createSql:
+        'CREATE TABLE IF NOT EXISTS grammar_lesson_starts ('
+        '  lesson_path TEXT NOT NULL PRIMARY KEY'
+        ')',
+  ),
+  _PreservedTable(
+    name: 'grammar_chapter_unlocks',
+    columns: ['chapter_key'],
+    createSql:
+        'CREATE TABLE IF NOT EXISTS grammar_chapter_unlocks ('
+        '  chapter_key TEXT NOT NULL PRIMARY KEY'
+        ')',
+  ),
+];
+
+Map<String, List<List<Object?>>> _readUserData(File file) {
+  final Map<String, List<List<Object?>>> saved = {};
+  if (!file.existsSync()) return saved;
+  raw.Database? old;
+  try {
+    old = raw.sqlite3.open(file.path);
+  } catch (_) {
+    return saved;
+  }
+  for (final table in _preservedTables) {
+    try {
+      final result = old.select(
+        'SELECT ${table.columns.join(', ')} FROM ${table.name}',
+      );
+      if (result.isEmpty) continue;
+      saved[table.name] = [
+        for (final row in result) List<Object?>.from(row.values),
+      ];
+    } catch (_) {
+      // Table absent in this install (older schema) – nothing to carry over.
+    }
+  }
+  old.close();
+  return saved;
+}
+
+void _writeUserData(
+  raw.Database setup,
+  Map<String, List<List<Object?>>> saved,
+) {
+  for (final table in _preservedTables) {
+    final rows = saved[table.name];
+    if (rows == null) continue;
+    setup.execute(table.createSql);
+    final placeholders = List.filled(table.columns.length, '?').join(', ');
+    final stmt = setup.prepare(
+      'INSERT OR REPLACE INTO ${table.name} '
+      '(${table.columns.join(', ')}) VALUES ($placeholders)',
+    );
+    for (final row in rows) {
+      stmt.execute(row);
+    }
+    stmt.close();
+  }
+}
 
 // Walk up from the executable until a .git directory is found (repo root).
 String? _repoRoot() {
@@ -49,20 +164,10 @@ QueryExecutor openDbConnection() {
     final needsCopy = !file.existsSync() || currentVersion != _assetDbVersion;
 
     if (needsCopy) {
-      // Save SRS progress so it survives the content DB refresh.
-      final List<List<Object?>> savedCards = [];
-      if (file.existsSync()) {
-        try {
-          final old = raw.sqlite3.open(file.path);
-          final result = old.select(
-            'SELECT item_type, item_id, due, first_seen_at, card_json FROM srs_cards',
-          );
-          for (final row in result) {
-            savedCards.add(List<Object?>.from(row.values));
-          }
-          old.close();
-        } catch (_) {}
-      }
+      // Save user data so it survives the content DB refresh.
+      final Map<String, List<List<Object?>>> savedUserData = _readUserData(
+        file,
+      );
 
       // Remove stale WAL/SHM files so SQLite doesn't try to replay old frames.
       for (final suffix in ['-wal', '-shm']) {
@@ -81,26 +186,8 @@ QueryExecutor openDbConnection() {
       final setup = raw.sqlite3.open(file.path);
       setup.execute('PRAGMA user_version = 7');
 
-      // Restore SRS progress into the fresh DB before drift opens it.
-      if (savedCards.isNotEmpty) {
-        setup.execute(
-          'CREATE TABLE IF NOT EXISTS srs_cards ('
-          '  item_type TEXT NOT NULL,'
-          '  item_id INTEGER NOT NULL,'
-          '  due INTEGER NOT NULL,'
-          '  first_seen_at INTEGER,'
-          '  card_json TEXT NOT NULL,'
-          '  PRIMARY KEY (item_type, item_id)'
-          ')',
-        );
-        final stmt = setup.prepare(
-          'INSERT OR REPLACE INTO srs_cards (item_type, item_id, due, first_seen_at, card_json) VALUES (?, ?, ?, ?, ?)',
-        );
-        for (final row in savedCards) {
-          stmt.execute(row);
-        }
-        stmt.close();
-      }
+      // Restore user data into the fresh DB before drift opens it.
+      _writeUserData(setup, savedUserData);
       setup.close();
 
       // Write the marker only after setup succeeds so a crash here retries next launch.

@@ -1,0 +1,48 @@
+{
+  "id": "sov-word-order",
+  "title": "SOV-Satzstellung",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "Japanisch ist eine **Subjekt–Objekt–Verb**-Sprache : das Verb steht immer am Ende. Das ist der größte strukturelle Unterschied zum Deutschen und wirkt sich auf alles aus: Du musst Subjekt und Objekt im Kopf behalten, bis sich die Handlung am Satzende auflöst."
+    },
+    {
+      "type": "example_table",
+      "columns": [
+        "deutsch",
+        "japanese",
+        "romaji"
+      ],
+      "rows": [
+        {
+          "deutsch": "Ich trinke Kaffee.",
+          "japanese": "私はコーヒーを飲みます。",
+          "romaji": "Watashi wa koohii wo nomimasu."
+        },
+        {
+          "deutsch": "Sie liest Bücher.",
+          "japanese": "彼女は本を読みます。",
+          "romaji": "Kanojo wa hon wo yomimasu."
+        },
+        {
+          "deutsch": "Er hat eine Tasche gekauft.",
+          "japanese": "彼はかばんを買いました。",
+          "romaji": "Kare wa kaban wo kaimashita."
+        },
+        {
+          "deutsch": "Der Hund jagt die Katze.",
+          "japanese": "犬が猫を追いかけています。",
+          "romaji": "Inu ga neko wo oikakete imasu."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Attribute : Adjektive, Relativsätze, ganze Nebensätze : stehen ebenfalls immer *vor* dem Nomen, das sie näher bestimmen, nie danach. Deshalb ballen sich lange Sätze am Anfang und lösen sich erst am Ende auf."
+    },
+    {
+      "type": "note",
+      "content": "In langen Sätzen erreichen Muttersprachler das Verb ganz am Schluss und wissen erst dann, was passiert ist. Deshalb fühlt sich Hörverstehen im Japanischen an, als warte man auf die Pointe. Mit etwas Übung ahnst du die Verbklasse früh aus dem Kontext voraus."
+    }
+  ]
+}

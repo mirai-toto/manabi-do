@@ -1,0 +1,70 @@
+{
+  "id": "te-iru",
+  "title": "ている : Laufende Handlung und Zustand",
+  "blocks": [
+    {
+      "type": "text",
+      "content": "**ている** ist eines der am häufigsten verwendeten Muster im Japanischen. Dieselbe Form trägt drei verschiedene Bedeutungen : Kontext und Verb selbst entscheiden, welche Lesart gilt."
+    },
+    {
+      "type": "list",
+      "style": "numbered",
+      "items": [
+        "**Im Verlauf** : eine Handlung, die gerade jetzt geschieht, wie das deutsche „gerade dabei sein“",
+        "**Resultierender Zustand** : das anhaltende Ergebnis einer abgeschlossenen Handlung",
+        "**Gewohnheit** : etwas, das regelmäßig als Routine getan wird"
+      ]
+    },
+    {
+      "type": "pattern",
+      "lines": [
+        "[て-Form] + **います**"
+      ]
+    },
+    {
+      "type": "vocab_table",
+      "columns": [
+        "japanese",
+        "romaji",
+        "deutsch",
+        "typ"
+      ],
+      "rows": [
+        {
+          "japanese": "今、本を読んでいます。",
+          "romaji": "Ima, hon wo yonde imasu.",
+          "deutsch": "Ich lese gerade ein Buch.",
+          "typ": "im Verlauf"
+        },
+        {
+          "japanese": "彼女は結婚しています。",
+          "romaji": "Kanojo wa kekkon shite imasu.",
+          "deutsch": "Sie ist verheiratet.",
+          "typ": "resultierender Zustand"
+        },
+        {
+          "japanese": "毎朝、走っています。",
+          "romaji": "Maiasa, hashitte imasu.",
+          "deutsch": "Ich laufe jeden Morgen.",
+          "typ": "Gewohnheit"
+        },
+        {
+          "japanese": "窓が開いています。",
+          "romaji": "Mado ga aite imasu.",
+          "deutsch": "Das Fenster steht offen.",
+          "typ": "resultierender Zustand"
+        },
+        {
+          "japanese": "田中さんはあそこに座っています。",
+          "romaji": "Tanaka-san wa asoko ni suwatte imasu.",
+          "deutsch": "Tanaka sitzt dort drüben.",
+          "typ": "resultierender Zustand"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "content": "Die Lesart „resultierender Zustand“ überrascht Lernende, die bei ている immer „gerade dabei“ erwarten. 結婚しています = „ist verheiratet“, nicht „heiratet gerade“. 知っています = „ich weiß“ (nicht „ich bin am Wissen“). 着ています = „trägt“ (das Ergebnis des Anziehens)."
+    }
+  ]
+}
