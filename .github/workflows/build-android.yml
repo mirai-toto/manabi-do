@@ -65,3 +65,4 @@ jobs:
           packageName: com.github.mirai_toto.manabi_do
           releaseFiles: manabi_do/build/app/outputs/bundle/release/app-release.aab
           track: internal
+          whatsNewDirectory: distribution/whatsnew
