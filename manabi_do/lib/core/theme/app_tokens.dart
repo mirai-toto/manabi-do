@@ -326,6 +326,46 @@ class AppTokens extends ThemeExtension<AppTokens> {
       kunyomi: Color.lerp(kunyomi, other.kunyomi, t)!,
     );
   }
+
+  /// Rebuilds the primary ramp around [accent], keeping the same relationships
+  /// the purple ramp has (light shade, container tint, readable on-colours).
+  ///
+  /// Used by [AccentTheme] to scope a subtree to a level's colour so widgets
+  /// that paint themselves `t.primary` follow the level without being edited.
+  AppTokens accented(Color accent, Brightness brightness) {
+    final isDark = brightness == Brightness.dark;
+    // Pick whichever on-colour actually contrasts more. ThemeData's
+    // estimateBrightnessForColor uses a fixed luminance threshold, which lands
+    // on the wrong side for mid-tone accents (kana teal, N1 red) and drops
+    // those below AA.
+    const white = Color(0xFFFFFFFF);
+    const nearBlack = Color(0xFF1C1B1F);
+    final onAccent =
+        _contrastRatio(accent, white) >= _contrastRatio(accent, nearBlack)
+        ? white
+        : nearBlack;
+
+    return copyWith(
+      primary: accent,
+      primaryLight: Color.lerp(accent, const Color(0xFFFFFFFF), 0.35),
+      primaryContainer: isDark
+          ? Color.lerp(accent, const Color(0xFF000000), 0.55)
+          : Color.lerp(accent, const Color(0xFFFFFFFF), 0.88),
+      onPrimary: onAccent,
+      onPrimaryContainer: isDark
+          ? Color.lerp(accent, const Color(0xFFFFFFFF), 0.60)
+          : Color.lerp(accent, const Color(0xFF000000), 0.55),
+    );
+  }
+}
+
+/// WCAG relative-luminance contrast ratio between two colours.
+double _contrastRatio(Color a, Color b) {
+  final la = a.computeLuminance();
+  final lb = b.computeLuminance();
+  final hi = la > lb ? la : lb;
+  final lo = la > lb ? lb : la;
+  return (hi + 0.05) / (lo + 0.05);
 }
 
 extension AppTheme on BuildContext {

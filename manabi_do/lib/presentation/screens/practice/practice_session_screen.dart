@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
+import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -116,19 +117,22 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
           ),
         ],
       ),
-      body: session.isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : session.done
-          ? _buildSummary(session, notifier)
-          : KeyedSubtree(
-              key: ValueKey(session.index),
-              child: session.currentItem!.buildBody(
-                session.index,
-                session.queue!.length,
-                (Rating rating) =>
-                    notifier.answer(rating, persistSrs: widget.persistSrs),
+      body: AccentTheme(
+        accent: widget.color,
+        child: session.isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : session.done
+            ? _buildSummary(session, notifier)
+            : KeyedSubtree(
+                key: ValueKey(session.index),
+                child: session.currentItem!.buildBody(
+                  session.index,
+                  session.queue!.length,
+                  (Rating rating) =>
+                      notifier.answer(rating, persistSrs: widget.persistSrs),
+                ),
               ),
-            ),
+      ),
     );
   }
 

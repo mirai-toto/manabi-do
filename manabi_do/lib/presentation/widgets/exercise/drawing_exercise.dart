@@ -108,6 +108,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
               enabled: !_done && !_pendingWrong,
               pendingWrong: _pendingWrong,
               wrongStrokeOpacity: _pendingWrong ? 1.0 - _wrongFade.value : 1.0,
+              accentColor: widget.color,
             ),
           ),
           const SizedBox(height: AppDimens.spaceSm),

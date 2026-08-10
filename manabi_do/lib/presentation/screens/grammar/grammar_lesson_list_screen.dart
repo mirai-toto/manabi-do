@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/models/learning_state.dart';
+import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -191,111 +192,114 @@ class _GrammarLessonListScreenState
               foregroundColor: Colors.white,
             )
           : null,
-      body: ScrollFade(
-        builder: (controller) => ListView(
-          controller: controller,
-          padding: const EdgeInsets.all(AppDimens.spaceMd),
-          children: [
-            for (int ci = 0; ci < widget.theme.chapters.length; ci++) ...[
-              if (ci > 0 && !showChapterHeaders)
-                const SizedBox(height: AppDimens.spaceSm),
-              if (showChapterHeaders) ...[
-                if (ci > 0) const SizedBox(height: AppDimens.spaceSm),
-                Builder(
-                  builder: (_) {
-                    final groupLocked = _isGroupLocked(
-                      ci,
-                      readLessons,
-                      unlockedKeys,
-                    );
-                    return CollapsibleSection(
-                      title: widget.theme.chapters[ci].title,
-                      isCollapsed: groupLocked || _collapsed.contains(ci),
-                      isLocked: groupLocked,
-                      badge: context.l10n.nLessons(
-                        widget.theme.chapters[ci].lessons.length,
-                      ),
-                      accentColor: widget.levelColor,
-                      onToggle: () {
-                        if (groupLocked) {
-                          final l = context.l10n;
-                          _showUnlockDialog(
-                            title: l.groupLocked,
-                            body: l.groupLockedBody,
-                            onConfirm: () => ref
-                                .read(databaseProvider)
-                                .unlockGrammarChapter(
-                                  'group:${widget.theme.title}:$ci',
-                                ),
-                          );
-                        } else {
-                          setState(() {
-                            if (_collapsed.contains(ci)) {
-                              _collapsed.remove(ci);
-                            } else {
-                              _collapsed.add(ci);
-                            }
-                          });
-                        }
-                      },
-                    );
-                  },
-                ),
-              ],
-              if (!_collapsed.contains(ci) &&
-                  !_isGroupLocked(ci, readLessons, unlockedKeys))
-                for (
-                  int li = 0;
-                  li < widget.theme.chapters[ci].lessons.length;
-                  li++
-                ) ...[
-                  if (li > 0 || showChapterHeaders)
-                    const SizedBox(height: AppDimens.spaceSm),
+      body: AccentTheme(
+        accent: widget.levelColor,
+        child: ScrollFade(
+          builder: (controller) => ListView(
+            controller: controller,
+            padding: const EdgeInsets.all(AppDimens.spaceMd),
+            children: [
+              for (int ci = 0; ci < widget.theme.chapters.length; ci++) ...[
+                if (ci > 0 && !showChapterHeaders)
+                  const SizedBox(height: AppDimens.spaceSm),
+                if (showChapterHeaders) ...[
+                  if (ci > 0) const SizedBox(height: AppDimens.spaceSm),
                   Builder(
                     builder: (_) {
-                      final lesson = widget.theme.chapters[ci].lessons[li];
-                      final lessonLocked = _isLessonLocked(
+                      final groupLocked = _isGroupLocked(
                         ci,
-                        li,
                         readLessons,
                         unlockedKeys,
                       );
-                      return LessonRow(
-                        title: lesson.title,
-                        index: li,
-                        difficulty: lesson.difficulty,
-                        state: _lessonState(
-                          lesson.id,
-                          readLessons,
-                          startedLessons,
-                          isLocked: lessonLocked,
+                      return CollapsibleSection(
+                        title: widget.theme.chapters[ci].title,
+                        isCollapsed: groupLocked || _collapsed.contains(ci),
+                        isLocked: groupLocked,
+                        badge: context.l10n.nLessons(
+                          widget.theme.chapters[ci].lessons.length,
                         ),
                         accentColor: widget.levelColor,
-                        exerciseCount: exerciseCounts[lesson.id] ?? 0,
-                        onTap: lessonLocked
-                            ? () {
-                                final l = context.l10n;
-                                _showUnlockDialog(
-                                  title: l.lessonLocked,
-                                  body: l.lessonLockedBody,
-                                  onConfirm: () {
-                                    ref
-                                        .read(databaseProvider)
-                                        .unlockGrammarChapter(
-                                          'lesson:${lesson.id}',
-                                        );
-                                    _openLesson(lesson);
-                                  },
-                                );
+                        onToggle: () {
+                          if (groupLocked) {
+                            final l = context.l10n;
+                            _showUnlockDialog(
+                              title: l.groupLocked,
+                              body: l.groupLockedBody,
+                              onConfirm: () => ref
+                                  .read(databaseProvider)
+                                  .unlockGrammarChapter(
+                                    'group:${widget.theme.title}:$ci',
+                                  ),
+                            );
+                          } else {
+                            setState(() {
+                              if (_collapsed.contains(ci)) {
+                                _collapsed.remove(ci);
+                              } else {
+                                _collapsed.add(ci);
                               }
-                            : () => _openLesson(lesson),
+                            });
+                          }
+                        },
                       );
                     },
                   ),
                 ],
+                if (!_collapsed.contains(ci) &&
+                    !_isGroupLocked(ci, readLessons, unlockedKeys))
+                  for (
+                    int li = 0;
+                    li < widget.theme.chapters[ci].lessons.length;
+                    li++
+                  ) ...[
+                    if (li > 0 || showChapterHeaders)
+                      const SizedBox(height: AppDimens.spaceSm),
+                    Builder(
+                      builder: (_) {
+                        final lesson = widget.theme.chapters[ci].lessons[li];
+                        final lessonLocked = _isLessonLocked(
+                          ci,
+                          li,
+                          readLessons,
+                          unlockedKeys,
+                        );
+                        return LessonRow(
+                          title: lesson.title,
+                          index: li,
+                          difficulty: lesson.difficulty,
+                          state: _lessonState(
+                            lesson.id,
+                            readLessons,
+                            startedLessons,
+                            isLocked: lessonLocked,
+                          ),
+                          accentColor: widget.levelColor,
+                          exerciseCount: exerciseCounts[lesson.id] ?? 0,
+                          onTap: lessonLocked
+                              ? () {
+                                  final l = context.l10n;
+                                  _showUnlockDialog(
+                                    title: l.lessonLocked,
+                                    body: l.lessonLockedBody,
+                                    onConfirm: () {
+                                      ref
+                                          .read(databaseProvider)
+                                          .unlockGrammarChapter(
+                                            'lesson:${lesson.id}',
+                                          );
+                                      _openLesson(lesson);
+                                    },
+                                  );
+                                }
+                              : () => _openLesson(lesson),
+                        );
+                      },
+                    ),
+                  ],
+              ],
+              const SizedBox(height: AppDimens.spaceLg),
             ],
-            const SizedBox(height: AppDimens.spaceLg),
-          ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -153,29 +154,33 @@ class _ActiveScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(AppDimens.spaceMd),
-        child: Column(
-          children: [
-            PracticeProgressRow(index: index, total: total, color: color),
-            const SizedBox(height: AppDimens.spaceMd),
-            Expanded(
-              child: strokesAsync.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (_, _) => const SizedBox.shrink(),
-                data: (refStrokes) => DrawingExercise(
-                  referenceStrokes: refStrokes,
-                  kanjiId: kanji.id,
-                  label: meaning,
-                  onReading: kanji.onReading,
-                  kunReading: kanji.kunReading,
-                  color: color,
-                  settings: drawingSettings,
-                  onNext: onAdvance,
+      body: AccentTheme(
+        accent: color,
+        child: Padding(
+          padding: const EdgeInsets.all(AppDimens.spaceMd),
+          child: Column(
+            children: [
+              PracticeProgressRow(index: index, total: total, color: color),
+              const SizedBox(height: AppDimens.spaceMd),
+              Expanded(
+                child: strokesAsync.when(
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                  error: (_, _) => const SizedBox.shrink(),
+                  data: (refStrokes) => DrawingExercise(
+                    referenceStrokes: refStrokes,
+                    kanjiId: kanji.id,
+                    label: meaning,
+                    onReading: kanji.onReading,
+                    kunReading: kanji.kunReading,
+                    color: color,
+                    settings: drawingSettings,
+                    onNext: onAdvance,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
