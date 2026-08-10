@@ -388,6 +388,12 @@ abstract class AppLocalizations {
   /// **'Correct'**
   String get correct;
 
+  /// No description provided for @correctAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct answer'**
+  String get correctAnswer;
+
   /// No description provided for @missed.
   ///
   /// In en, this message translates to:

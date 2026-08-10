@@ -131,6 +131,12 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
             onUnplace: _unplace,
             color: widget.color,
           ),
+          if (_answered && !_isCorrect) ...[
+            const SizedBox(height: AppDimens.spaceMd),
+            // The parts are stored in the correct order, so the answer is
+            // derived rather than duplicated in the exercise content.
+            _CorrectAnswer(sentence: widget.parts.join()),
+          ],
           const SizedBox(height: AppDimens.spaceLg),
           _SourceChips(
             parts: widget.parts,
@@ -213,6 +219,52 @@ class _TargetArea extends StatelessWidget {
                 );
               }),
             ),
+    );
+  }
+}
+
+/// Shown after a wrong answer so the learner sees the sentence they were
+/// building, not just that they got it wrong.
+class _CorrectAnswer extends StatelessWidget {
+  final String sentence;
+
+  const _CorrectAnswer({required this.sentence});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final l = context.l10n;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppDimens.spaceMd),
+      decoration: BoxDecoration(
+        color: t.successContainer,
+        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        border: Border.all(color: t.success),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l.correctAnswer,
+            style: AppTextStyles.labelSmall.copyWith(
+              fontWeight: FontWeight.w600,
+              color: t.success,
+            ),
+          ),
+          const SizedBox(height: AppDimens.spaceXs),
+          Text.rich(
+            TextSpan(
+              children: furiganaSpans(
+                sentence,
+                AppTextStyles.jpMedium.copyWith(color: t.onSurface),
+                AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

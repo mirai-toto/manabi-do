@@ -272,6 +272,12 @@ class JapaneseText extends StatelessWidget {
   final TextStyle? rubyStyle;
   final bool showFurigana;
 
+  /// Line-clamping, applied to the plain and pre-annotated paths. The aligned
+  /// word+reading path lays out as a [Wrap] and ignores these.
+  final int? maxLines;
+  final TextOverflow? overflow;
+  final TextAlign? textAlign;
+
   const JapaneseText({
     super.key,
     required this.word,
@@ -279,6 +285,9 @@ class JapaneseText extends StatelessWidget {
     required this.style,
     this.rubyStyle,
     this.showFurigana = true,
+    this.maxLines,
+    this.overflow,
+    this.textAlign,
   });
 
   @override
@@ -301,13 +310,24 @@ class JapaneseText extends StatelessWidget {
             showFurigana: showFurigana,
           ),
         ),
+        maxLines: maxLines,
+        overflow: overflow ?? TextOverflow.clip,
+        textAlign: textAlign,
       );
     }
 
-    if (!showFurigana || reading == null) return Text(word, style: style);
+    Widget plain() => Text(
+      word,
+      style: style,
+      maxLines: maxLines,
+      overflow: overflow,
+      textAlign: textAlign,
+    );
+
+    if (!showFurigana || reading == null) return plain();
 
     final segments = parseFurigana(word, reading!);
-    if (!segments.any((s) => s.ruby != null)) return Text(word, style: style);
+    if (!segments.any((s) => s.ruby != null)) return plain();
 
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.end,

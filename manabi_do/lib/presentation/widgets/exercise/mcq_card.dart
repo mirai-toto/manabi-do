@@ -235,7 +235,7 @@ class _McqOptionShell extends StatelessWidget {
     );
 
     return Semantics(
-      label: '${option.letter}: ${option.text}',
+      label: '${option.letter}: ${stripAnnotation(option.text)}',
       selected: option.state != McqOptionState.idle,
       button: option.state == McqOptionState.idle,
       excludeSemantics: true,
@@ -280,8 +280,8 @@ class _McqOptionTile extends StatelessWidget {
             _LetterCircle(letter: option.letter, color: contentColor),
             const SizedBox(width: AppDimens.spaceSm + 4),
             Expanded(
-              child: Text(
-                option.text,
+              child: JapaneseText(
+                word: option.text,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style:
@@ -289,6 +289,9 @@ class _McqOptionTile extends StatelessWidget {
                             ? AppTextStyles.jpBody
                             : AppTextStyles.body)
                         .copyWith(color: contentColor),
+                rubyStyle: AppTextStyles.jpFurigana.copyWith(
+                  color: contentColor,
+                ),
               ),
             ),
           ],
@@ -332,9 +335,10 @@ class _McqGridCell extends StatelessWidget {
             ),
           ),
           Center(
-            child: Text(
-              option.text,
+            child: JapaneseText(
+              word: option.text,
               style: AppTextStyles.jpDisplay.copyWith(color: contentColor),
+              rubyStyle: AppTextStyles.jpFurigana.copyWith(color: contentColor),
               textAlign: TextAlign.center,
             ),
           ),

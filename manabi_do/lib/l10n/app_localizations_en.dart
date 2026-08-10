@@ -166,6 +166,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get correct => 'Correct';
 
   @override
+  String get correctAnswer => 'Correct answer';
+
+  @override
   String get missed => 'Missed';
 
   @override

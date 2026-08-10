@@ -91,6 +91,7 @@
     }
   },
   "correct": "Correct",
+  "correctAnswer": "Correct answer",
   "missed": "Missed",
   "timeSpent": "Time spent",
 

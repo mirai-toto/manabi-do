@@ -51,7 +51,7 @@ class ClozeOption extends StatelessWidget {
     );
 
     return Semantics(
-      label: '${option.letter}: ${option.text}',
+      label: '${option.letter}: ${stripAnnotation(option.text)}',
       selected: option.state != McqOptionState.idle,
       button: option.state == McqOptionState.idle,
       excludeSemantics: true,
