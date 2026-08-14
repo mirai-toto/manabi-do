@@ -178,6 +178,16 @@
   "settingsThemeDark": "Sombre",
   "settingsLanguage": "Langue",
 
+  "settingsFeedback": "Commentaires",
+  "settingsSendFeedback": "Envoyer un commentaire",
+  "feedbackEmailSubject": "Commentaire Manabi Do",
+  "feedbackEmailBodyHint": "Ce qui fonctionne, ce qui ne va pas, ce qui manque.",
+  "feedbackNoMailApp": "Aucune application de messagerie trouvée. Adresse : {email}",
+  "@feedbackNoMailApp": {
+    "placeholders": { "email": { "type": "String" } }
+  },
+  "feedbackAddressCopied": "Adresse copiée",
+
   "aboutTitle": "À propos",
   "aboutVersion": "Version {version}",
   "@aboutVersion": {

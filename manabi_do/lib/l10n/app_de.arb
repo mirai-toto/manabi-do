@@ -180,6 +180,16 @@
   "settingsThemeDark": "Dunkel",
   "settingsLanguage": "Sprache",
 
+  "settingsFeedback": "Feedback",
+  "settingsSendFeedback": "Feedback senden",
+  "feedbackEmailSubject": "Manabi Do Feedback",
+  "feedbackEmailBodyHint": "Was gut funktioniert, was nicht, und was fehlt.",
+  "feedbackNoMailApp": "Keine E-Mail-App gefunden. Adresse: {email}",
+  "@feedbackNoMailApp": {
+    "placeholders": { "email": { "type": "String" } }
+  },
+  "feedbackAddressCopied": "Adresse kopiert",
+
   "aboutTitle": "Über",
   "aboutVersion": "Version {version}",
   "@aboutVersion": {

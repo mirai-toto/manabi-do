@@ -393,6 +393,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsLanguage => 'Language';
 
   @override
+  String get settingsFeedback => 'Feedback';
+
+  @override
+  String get settingsSendFeedback => 'Send feedback';
+
+  @override
+  String get feedbackEmailSubject => 'Manabi Do feedback';
+
+  @override
+  String get feedbackEmailBodyHint =>
+      'What works, what doesn\'t, and what\'s missing.';
+
+  @override
+  String feedbackNoMailApp(String email) {
+    return 'No email app found. Address: $email';
+  }
+
+  @override
+  String get feedbackAddressCopied => 'Address copied';
+
+  @override
   String get aboutTitle => 'About';
 
   @override
