@@ -77,8 +77,8 @@ jobs:
 
           echo "Release notes updated since $tag ($releasable user-facing commit(s))."
 
-  release-dry-run:
-    name: Release (dry run)
+  release-config:
+    name: Release config
     runs-on: ubuntu-latest
     permissions:
       contents: write
