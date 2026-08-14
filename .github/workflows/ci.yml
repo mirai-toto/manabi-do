@@ -2,7 +2,10 @@ name: ci
 
 on:
   pull_request:
+  # Scoped to main: an unscoped push trigger runs every job a second time on
+  # branches that already have a pull request open, doubling CI for no signal.
   push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:

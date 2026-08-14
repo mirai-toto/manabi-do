@@ -47,5 +47,11 @@
             <action android:name="android.intent.action.SENDTO"/>
             <data android:scheme="mailto"/>
         </intent>
+        <!-- Same reason, for the support link: without it url_launcher cannot
+             see a browser and the https: launch silently fails. -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
+        </intent>
     </queries>
 </manifest>

@@ -190,6 +190,14 @@
   },
   "feedbackAddressCopied": "Adresse kopiert",
 
+  "settingsSupport": "Unterstützung",
+  "settingsSupportDeveloper": "Entwicklung unterstützen",
+  "supportNoBrowser": "Link konnte nicht geöffnet werden. {url}",
+  "@supportNoBrowser": {
+    "placeholders": { "url": { "type": "String" } }
+  },
+  "supportLinkCopied": "Link kopiert",
+
   "aboutTitle": "Über",
   "aboutVersion": "Version {version}",
   "@aboutVersion": {
