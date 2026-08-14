@@ -41,6 +41,42 @@ jobs:
       - name: Lint commit messages
         uses: wagoid/commitlint-github-action@v6
 
+  release-notes:
+    name: Release notes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Require updated Play release notes
+        run: |
+          tag=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          if [ -z "$tag" ]; then
+            echo "No tag to compare against yet."
+            exit 0
+          fi
+
+          # Commits semantic-release would turn into a new version. The (ci),
+          # (build) and (deps) scopes are excluded: they never reach users.
+          releasable=$(git log "$tag"..HEAD --format=%s \
+            | grep -E '^(feat|fix|perf)(\([^)]*\))?!?:' \
+            | grep -vE '^(feat|fix|perf)\((ci|build|deps)\)' \
+            | wc -l)
+
+          if [ "$releasable" -eq 0 ]; then
+            echo "No user-facing changes since $tag; release notes not required."
+            exit 0
+          fi
+
+          if git diff --quiet "$tag"..HEAD -- distribution/whatsnew/; then
+            echo "::error::$releasable user-facing commit(s) since $tag, but distribution/whatsnew/ was not updated. Play would show the previous release's notes."
+            exit 1
+          fi
+
+          echo "Release notes updated since $tag ($releasable user-facing commit(s))."
+
   release-dry-run:
     name: Release (dry run)
     runs-on: ubuntu-latest

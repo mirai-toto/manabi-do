@@ -53,6 +53,10 @@
           {
             "context": "Release (dry run)",
             "integration_id": 15368
+          },
+          {
+            "context": "Release notes",
+            "integration_id": 15368
           }
         ]
       }
