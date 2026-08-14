@@ -832,6 +832,42 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settingsLanguage;
 
+  /// No description provided for @settingsFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get settingsFeedback;
+
+  /// No description provided for @settingsSendFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Send feedback'**
+  String get settingsSendFeedback;
+
+  /// No description provided for @feedbackEmailSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Manabi Do feedback'**
+  String get feedbackEmailSubject;
+
+  /// No description provided for @feedbackEmailBodyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What works, what doesn\'t, and what\'s missing.'**
+  String get feedbackEmailBodyHint;
+
+  /// No description provided for @feedbackNoMailApp.
+  ///
+  /// In en, this message translates to:
+  /// **'No email app found. Address: {email}'**
+  String feedbackNoMailApp(String email);
+
+  /// No description provided for @feedbackAddressCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Address copied'**
+  String get feedbackAddressCopied;
+
   /// No description provided for @aboutTitle.
   ///
   /// In en, this message translates to:

@@ -394,6 +394,27 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsLanguage => 'Langue';
 
   @override
+  String get settingsFeedback => 'Commentaires';
+
+  @override
+  String get settingsSendFeedback => 'Envoyer un commentaire';
+
+  @override
+  String get feedbackEmailSubject => 'Commentaire Manabi Do';
+
+  @override
+  String get feedbackEmailBodyHint =>
+      'Ce qui fonctionne, ce qui ne va pas, ce qui manque.';
+
+  @override
+  String feedbackNoMailApp(String email) {
+    return 'Aucune application de messagerie trouvée. Adresse : $email';
+  }
+
+  @override
+  String get feedbackAddressCopied => 'Adresse copiée';
+
+  @override
   String get aboutTitle => 'À propos';
 
   @override

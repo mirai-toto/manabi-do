@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../core/providers/locale_provider.dart';
 import '../../../core/providers/theme_provider.dart';
@@ -7,6 +9,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../../services/feedback_service.dart';
 import '../../services/srs_service.dart';
 import '../../widgets/widgets.dart';
 
@@ -25,6 +28,42 @@ class SettingsScreen extends ConsumerWidget {
     );
     if (!confirmed) return;
     await srsService.resetAll(ref);
+  }
+
+  Future<void> _sendFeedback(
+    BuildContext context,
+    WidgetRef ref,
+    AppLocalizations l,
+  ) async {
+    final PackageInfo? info = ref.read(packageInfoProvider).asData?.value;
+    final bool opened = await openFeedbackEmail(
+      subject: l.feedbackEmailSubject,
+      bodyHint: l.feedbackEmailBodyHint,
+      version: info?.version ?? '',
+      buildNumber: info?.buildNumber ?? '',
+      languageCode: ref.read(localeProvider).languageCode,
+    );
+    if (opened || !context.mounted) return;
+
+    // No mail app could take the link, so show the address rather than let the
+    // tap do nothing.
+    final messenger = ScaffoldMessenger.of(context);
+    messenger.showSnackBar(
+      SnackBar(
+        content: Text(l.feedbackNoMailApp(feedbackEmailAddress)),
+        action: SnackBarAction(
+          label: l.copy,
+          onPressed: () async {
+            await Clipboard.setData(
+              const ClipboardData(text: feedbackEmailAddress),
+            );
+            messenger.showSnackBar(
+              SnackBar(content: Text(l.feedbackAddressCopied)),
+            );
+          },
+        ),
+      ),
+    );
   }
 
   void _showLanguagePicker(
@@ -144,6 +183,23 @@ class SettingsScreen extends ConsumerWidget {
                   label: l.settingsResetProgress,
                   labelColor: t.error,
                   onTap: () => _confirmResetAll(context, ref, l),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.settingsFeedback),
+            const SizedBox(height: AppDimens.spaceSm),
+            SettingsCard(
+              children: [
+                SettingsTile(
+                  leading: Icon(
+                    Icons.mail_outline_rounded,
+                    size: 20,
+                    color: t.onSurfaceVariant,
+                  ),
+                  label: l.settingsSendFeedback,
+                  onTap: () => _sendFeedback(context, ref, l),
                 ),
               ],
             ),
