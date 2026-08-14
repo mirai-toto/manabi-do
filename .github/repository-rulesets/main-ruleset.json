@@ -31,7 +31,6 @@
         "required_review_thread_resolution": false,
         "allowed_merge_methods": [
           "merge",
-          "squash",
           "rebase"
         ]
       }
