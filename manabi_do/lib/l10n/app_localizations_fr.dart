@@ -415,6 +415,20 @@ class AppLocalizationsFr extends AppLocalizations {
   String get feedbackAddressCopied => 'Adresse copiée';
 
   @override
+  String get settingsSupport => 'Soutien';
+
+  @override
+  String get settingsSupportDeveloper => 'Soutenir le développement';
+
+  @override
+  String supportNoBrowser(String url) {
+    return 'Impossible d\'ouvrir le lien. $url';
+  }
+
+  @override
+  String get supportLinkCopied => 'Lien copié';
+
+  @override
   String get aboutTitle => 'À propos';
 
   @override

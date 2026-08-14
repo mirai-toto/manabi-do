@@ -11,6 +11,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../services/feedback_service.dart';
 import '../../services/srs_service.dart';
+import '../../services/support_service.dart';
 import '../../widgets/widgets.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -47,19 +48,46 @@ class SettingsScreen extends ConsumerWidget {
 
     // No mail app could take the link, so show the address rather than let the
     // tap do nothing.
-    final messenger = ScaffoldMessenger.of(context);
+    _showCopyableSnackBar(
+      context,
+      message: l.feedbackNoMailApp(feedbackEmailAddress),
+      value: feedbackEmailAddress,
+      copiedMessage: l.feedbackAddressCopied,
+      copyLabel: l.copy,
+    );
+  }
+
+  Future<void> _openSupport(BuildContext context, AppLocalizations l) async {
+    final bool opened = await openSupportPage();
+    if (opened || !context.mounted) return;
+
+    _showCopyableSnackBar(
+      context,
+      message: l.supportNoBrowser(supportPageUrl),
+      value: supportPageUrl,
+      copiedMessage: l.supportLinkCopied,
+      copyLabel: l.copy,
+    );
+  }
+
+  /// Reports a link we could not open, with the raw value on offer so the user
+  /// can still reach it by hand.
+  void _showCopyableSnackBar(
+    BuildContext context, {
+    required String message,
+    required String value,
+    required String copiedMessage,
+    required String copyLabel,
+  }) {
+    final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
     messenger.showSnackBar(
       SnackBar(
-        content: Text(l.feedbackNoMailApp(feedbackEmailAddress)),
+        content: Text(message),
         action: SnackBarAction(
-          label: l.copy,
+          label: copyLabel,
           onPressed: () async {
-            await Clipboard.setData(
-              const ClipboardData(text: feedbackEmailAddress),
-            );
-            messenger.showSnackBar(
-              SnackBar(content: Text(l.feedbackAddressCopied)),
-            );
+            await Clipboard.setData(ClipboardData(text: value));
+            messenger.showSnackBar(SnackBar(content: Text(copiedMessage)));
           },
         ),
       ),
@@ -200,6 +228,23 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                   label: l.settingsSendFeedback,
                   onTap: () => _sendFeedback(context, ref, l),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.settingsSupport),
+            const SizedBox(height: AppDimens.spaceSm),
+            SettingsCard(
+              children: [
+                SettingsTile(
+                  leading: Icon(
+                    Icons.coffee_outlined,
+                    size: 20,
+                    color: t.onSurfaceVariant,
+                  ),
+                  label: l.settingsSupportDeveloper,
+                  onTap: () => _openSupport(context, l),
                 ),
               ],
             ),

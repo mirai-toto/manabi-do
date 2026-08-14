@@ -868,6 +868,30 @@ abstract class AppLocalizations {
   /// **'Address copied'**
   String get feedbackAddressCopied;
 
+  /// No description provided for @settingsSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get settingsSupport;
+
+  /// No description provided for @settingsSupportDeveloper.
+  ///
+  /// In en, this message translates to:
+  /// **'Support development'**
+  String get settingsSupportDeveloper;
+
+  /// No description provided for @supportNoBrowser.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the link. {url}'**
+  String supportNoBrowser(String url);
+
+  /// No description provided for @supportLinkCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Link copied'**
+  String get supportLinkCopied;
+
   /// No description provided for @aboutTitle.
   ///
   /// In en, this message translates to:

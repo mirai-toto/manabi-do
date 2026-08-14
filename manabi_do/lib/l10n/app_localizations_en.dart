@@ -414,6 +414,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feedbackAddressCopied => 'Address copied';
 
   @override
+  String get settingsSupport => 'Support';
+
+  @override
+  String get settingsSupportDeveloper => 'Support development';
+
+  @override
+  String supportNoBrowser(String url) {
+    return 'Couldn\'t open the link. $url';
+  }
+
+  @override
+  String get supportLinkCopied => 'Link copied';
+
+  @override
   String get aboutTitle => 'About';
 
   @override

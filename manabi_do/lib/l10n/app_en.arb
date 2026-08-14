@@ -197,6 +197,14 @@
   },
   "feedbackAddressCopied": "Address copied",
 
+  "settingsSupport": "Support",
+  "settingsSupportDeveloper": "Support development",
+  "supportNoBrowser": "Couldn't open the link. {url}",
+  "@supportNoBrowser": {
+    "placeholders": { "url": { "type": "String" } }
+  },
+  "supportLinkCopied": "Link copied",
+
   "aboutTitle": "About",
   "aboutVersion": "Version {version}",
   "@aboutVersion": {

@@ -188,6 +188,14 @@
   },
   "feedbackAddressCopied": "Adresse copiée",
 
+  "settingsSupport": "Soutien",
+  "settingsSupportDeveloper": "Soutenir le développement",
+  "supportNoBrowser": "Impossible d'ouvrir le lien. {url}",
+  "@supportNoBrowser": {
+    "placeholders": { "url": { "type": "String" } }
+  },
+  "supportLinkCopied": "Lien copié",
+
   "aboutTitle": "À propos",
   "aboutVersion": "Version {version}",
   "@aboutVersion": {
