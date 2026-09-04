@@ -7,6 +7,7 @@ import 'package:fsrs/fsrs.dart';
 import 'db_connection_native.dart'
     if (dart.library.js_interop) 'db_connection_web.dart';
 
+import '../../core/srs/srs_level.dart';
 import '../../domain/data/kana_data.dart';
 import 'tables/exercises_table.dart';
 import 'tables/grammar_chapter_unlocks_table.dart';
@@ -417,6 +418,37 @@ class AppDatabase extends _$AppDatabase {
         .length,
   );
 
+  /// Known cards (stability holds a week or more) vs cards seen at all.
+  ({int known, int seen}) _progressCounts(Iterable<SrsCard> rows) {
+    var known = 0;
+    var seen = 0;
+    for (final r in rows) {
+      seen++;
+      final card = Card.fromMap(jsonDecode(r.cardJson) as Map<String, dynamic>);
+      if (isSrsKnown(card)) known++;
+    }
+    return (known: known, seen: seen);
+  }
+
+  Stream<({int known, int seen})> watchKanaProgress() =>
+      (select(srsCards)).watch().map(
+        (rows) => _progressCounts(
+          rows.where(
+            (r) => r.itemType == 'hiragana' || r.itemType == 'katakana',
+          ),
+        ),
+      );
+
+  Stream<({int known, int seen})> watchKanjiProgress() => (select(srsCards))
+      .watch()
+      .map((rows) => _progressCounts(rows.where((r) => r.itemType == 'kanji')));
+
+  Stream<({int known, int seen})> watchVocabProgress() =>
+      (select(srsCards)).watch().map(
+        (rows) =>
+            _progressCounts(rows.where((r) => r.itemType == 'vocabulary')),
+      );
+
   Stream<int> watchCharactersNewCount({required int newCardLimit}) =>
       (select(srsCards)).watch().asyncMap((_) async {
         Future<int> kanaNew(String type) async {
@@ -549,6 +581,25 @@ class AppDatabase extends _$AppDatabase {
         date = date.subtract(const Duration(days: 1));
       }
       return streak;
+    });
+  }
+
+  /// Local dates (at midnight) on which at least one card was reviewed.
+  /// Derived from each card's last review, so only the most recent pass per
+  /// card is visible — same source as [watchStreakDays].
+  Stream<Set<DateTime>> watchReviewDates() {
+    const sql =
+        "SELECT json_extract(card_json, '\$.lastReview') AS lr "
+        "FROM srs_cards "
+        "WHERE json_extract(card_json, '\$.lastReview') IS NOT NULL "
+        "GROUP BY date(json_extract(card_json, '\$.lastReview'))";
+    return customSelect(sql, readsFrom: {srsCards}).watch().map((rows) {
+      final dates = <DateTime>{};
+      for (final row in rows) {
+        final dt = DateTime.parse(row.read<String>('lr')).toLocal();
+        dates.add(DateTime(dt.year, dt.month, dt.day));
+      }
+      return dates;
     });
   }
 

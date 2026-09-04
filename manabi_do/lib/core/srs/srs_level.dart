@@ -15,6 +15,12 @@ SrsLevel srsLevel(Card? card) {
   return SrsLevel.expert;
 }
 
+/// A card counts as known once it holds for at least a week (familiar+).
+bool isSrsKnown(Card? card) => switch (srsLevel(card)) {
+  SrsLevel.familiar || SrsLevel.mastered || SrsLevel.expert => true,
+  _ => false,
+};
+
 extension SrsLevelColor on SrsLevel {
   Color accent(AppTokens t) => switch (this) {
     SrsLevel.newCard => Colors.transparent,

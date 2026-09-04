@@ -220,6 +220,47 @@ class AppLocalizationsEn extends AppLocalizations {
   String get streakSubtitle => 'Keep it up!';
 
   @override
+  String get todaysSession => 'Today\'s session';
+
+  @override
+  String reviewsDueUnit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'reviews due',
+      one: 'review due',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get startReviews => 'Start reviews';
+
+  @override
+  String get yourDecks => 'Your decks';
+
+  @override
+  String get keepLearning => 'Keep learning';
+
+  @override
+  String get thisWeek => 'This week';
+
+  @override
+  String nNewToday(int count) {
+    return '$count new today';
+  }
+
+  @override
+  String nDue(int count) {
+    return '$count due';
+  }
+
+  @override
+  String lessonOfTotal(int index, int total) {
+    return 'Lesson $index of $total';
+  }
+
+  @override
   String get comingSoon => 'Coming soon';
 
   @override

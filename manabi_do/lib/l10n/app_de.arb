@@ -107,6 +107,16 @@
   "streakLabel": "Tage in Folge",
   "streakSubtitle": "Weiter so!",
 
+  "todaysSession": "Heutige Lerneinheit",
+  "reviewsDueUnit": "{count, plural, one{fällige Wiederholung} other{fällige Wiederholungen}}",
+  "startReviews": "Wiederholungen starten",
+  "yourDecks": "Deine Stapel",
+  "keepLearning": "Weiterlernen",
+  "thisWeek": "Diese Woche",
+  "nNewToday": "{count} neue heute",
+  "nDue": "{count} fällig",
+  "lessonOfTotal": "Lektion {index} von {total}",
+
   "comingSoon": "Demnächst verfügbar",
 
   "strokeOrderPlaceholder": "▶ Strichfolge-Animation",

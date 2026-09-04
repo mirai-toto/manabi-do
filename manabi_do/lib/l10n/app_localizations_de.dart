@@ -220,6 +220,47 @@ class AppLocalizationsDe extends AppLocalizations {
   String get streakSubtitle => 'Weiter so!';
 
   @override
+  String get todaysSession => 'Heutige Lerneinheit';
+
+  @override
+  String reviewsDueUnit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'fällige Wiederholungen',
+      one: 'fällige Wiederholung',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get startReviews => 'Wiederholungen starten';
+
+  @override
+  String get yourDecks => 'Deine Stapel';
+
+  @override
+  String get keepLearning => 'Weiterlernen';
+
+  @override
+  String get thisWeek => 'Diese Woche';
+
+  @override
+  String nNewToday(int count) {
+    return '$count neue heute';
+  }
+
+  @override
+  String nDue(int count) {
+    return '$count fällig';
+  }
+
+  @override
+  String lessonOfTotal(int index, int total) {
+    return 'Lektion $index von $total';
+  }
+
+  @override
   String get comingSoon => 'Demnächst verfügbar';
 
   @override

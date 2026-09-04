@@ -134,6 +134,16 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
   }).toList())..shuffle(rng);
 }
 
+/// Everything due today across kana, kanji, and vocabulary, shuffled together.
+Future<List<PracticeItem>> loadAllDueQueue(WidgetRef ref) async {
+  final queues = await Future.wait([
+    loadKanaQueue(ref),
+    loadKanjiQueue(ref),
+    loadVocabQueue(ref),
+  ]);
+  return queues.expand((q) => q).toList()..shuffle();
+}
+
 Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
   final db = ref.read(databaseProvider);
   final settings = await ref.read(srsSettingsProvider.future);

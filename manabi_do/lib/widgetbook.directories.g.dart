@@ -792,17 +792,25 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'DomainCard',
+        name: 'ContinueLessonCard',
         useCases: [
           _widgetbook.WidgetbookUseCase(
-            name: 'No reviews due',
+            name: 'Default',
             builder:
-                _manabi_do_widgetbook_study_use_cases.buildDomainCardDefault,
+                _manabi_do_widgetbook_study_use_cases.buildContinueLessonCard,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'DeckRow',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Nothing due',
+            builder: _manabi_do_widgetbook_study_use_cases.buildDeckRowIdle,
           ),
           _widgetbook.WidgetbookUseCase(
             name: 'Reviews due',
-            builder:
-                _manabi_do_widgetbook_study_use_cases.buildDomainCardReviewsDue,
+            builder: _manabi_do_widgetbook_study_use_cases.buildDeckRowDue,
           ),
         ],
       ),
@@ -830,16 +838,36 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'StreakCard',
+        name: 'StreakPill',
         useCases: [
           _widgetbook.WidgetbookUseCase(
             name: 'Active streak',
             builder:
-                _manabi_do_widgetbook_study_use_cases.buildStreakCardActive,
+                _manabi_do_widgetbook_study_use_cases.buildStreakPillActive,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'TodaysSessionCard',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'All caught up',
+            builder: _manabi_do_widgetbook_study_use_cases
+                .buildTodaysSessionCardCaughtUp,
           ),
           _widgetbook.WidgetbookUseCase(
-            name: 'New streak',
-            builder: _manabi_do_widgetbook_study_use_cases.buildStreakCardNew,
+            name: 'Reviews due',
+            builder:
+                _manabi_do_widgetbook_study_use_cases.buildTodaysSessionCardDue,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'WeekStrip',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Mid-week',
+            builder: _manabi_do_widgetbook_study_use_cases.buildWeekStrip,
           ),
         ],
       ),

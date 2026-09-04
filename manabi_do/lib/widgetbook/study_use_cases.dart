@@ -3,62 +3,119 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../core/models/learning_state.dart';
 import '../presentation/widgets/study/chapter_card.dart';
+import '../presentation/widgets/study/continue_lesson_card.dart';
+import '../presentation/widgets/study/deck_row.dart';
 import '../presentation/widgets/study/lesson_row.dart';
-import '../presentation/widgets/study/domain_card.dart';
-import '../presentation/widgets/study/streak_card.dart';
+import '../presentation/widgets/study/streak_pill.dart';
+import '../presentation/widgets/study/todays_session_card.dart';
+import '../presentation/widgets/study/week_strip.dart';
 
-// ── StreakCard ─────────────────────────────────────────────────────────────────
+// ── StreakPill ────────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Active streak', type: StreakCard, path: 'Study')
-Widget buildStreakCardActive(BuildContext context) {
-  return const Padding(
-    padding: EdgeInsets.all(16),
-    child: StreakCard(days: 14, label: 'day streak', subtitle: 'Keep it up!'),
+@widgetbook.UseCase(name: 'Active streak', type: StreakPill, path: 'Study')
+Widget buildStreakPillActive(BuildContext context) {
+  return const Center(child: StreakPill(days: 14));
+}
+
+// ── TodaysSessionCard ────────────────────────────────────────────────────────
+
+@widgetbook.UseCase(name: 'Reviews due', type: TodaysSessionCard, path: 'Study')
+Widget buildTodaysSessionCardDue(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: TodaysSessionCard(
+      kanaDue: 12,
+      kanjiDue: 23,
+      vocabDue: 12,
+      newTotal: 10,
+      onStart: () {},
+    ),
   );
 }
 
-@widgetbook.UseCase(name: 'New streak', type: StreakCard, path: 'Study')
-Widget buildStreakCardNew(BuildContext context) {
-  return const Padding(
-    padding: EdgeInsets.all(16),
-    child: StreakCard(days: 1, label: 'day streak', subtitle: 'Great start!'),
+@widgetbook.UseCase(
+  name: 'All caught up',
+  type: TodaysSessionCard,
+  path: 'Study',
+)
+Widget buildTodaysSessionCardCaughtUp(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: TodaysSessionCard(
+      kanaDue: 0,
+      kanjiDue: 0,
+      vocabDue: 0,
+      newTotal: 0,
+      onStart: () {},
+    ),
   );
 }
 
-// ── DomainCard ───────────────────────────────────────────────────────────────
+// ── DeckRow ──────────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'No reviews due', type: DomainCard, path: 'Study')
-Widget buildDomainCardDefault(BuildContext context) {
+@widgetbook.UseCase(name: 'Reviews due', type: DeckRow, path: 'Study')
+Widget buildDeckRowDue(BuildContext context) {
   final primary = Theme.of(context).colorScheme.primary;
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: DomainCard(
+    child: DeckRow(
       title: 'Kanji',
-      icon: '漢',
-      gradientColors: [primary, primary.withValues(alpha: 0.6)],
-      progressColor: primary,
-      statLabel: '42 / 2136 known',
-      progress: 0.02,
+      glyph: '字',
+      color: primary,
+      known: 45,
+      seen: 112,
+      newToday: 5,
+      due: 23,
       onTap: () {},
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'Reviews due', type: DomainCard, path: 'Study')
-Widget buildDomainCardReviewsDue(BuildContext context) {
+@widgetbook.UseCase(name: 'Nothing due', type: DeckRow, path: 'Study')
+Widget buildDeckRowIdle(BuildContext context) {
   final primary = Theme.of(context).colorScheme.primary;
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: DomainCard(
-      title: 'Kanji',
-      icon: '漢',
-      gradientColors: [primary, primary.withValues(alpha: 0.6)],
-      progressColor: primary,
-      statLabel: '42 / 2136 known',
-      progress: 0.02,
-      dueCount: 12,
+    child: DeckRow(
+      title: 'Kana',
+      glyph: 'か',
+      color: primary,
+      known: 92,
+      seen: 104,
+      newToday: 0,
+      due: 0,
       onTap: () {},
-      onPractice: () {},
+    ),
+  );
+}
+
+// ── ContinueLessonCard ───────────────────────────────────────────────────────
+
+@widgetbook.UseCase(name: 'Default', type: ContinueLessonCard, path: 'Study')
+Widget buildContinueLessonCard(BuildContext context) {
+  final primary = Theme.of(context).colorScheme.primary;
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: ContinueLessonCard(
+      title: 'Word order',
+      subtitle: 'Japanese Basics · Sentence Structure',
+      lessonIndex: 1,
+      lessonCount: 4,
+      color: primary,
+      onTap: () {},
+    ),
+  );
+}
+
+// ── WeekStrip ────────────────────────────────────────────────────────────────
+
+@widgetbook.UseCase(name: 'Mid-week', type: WeekStrip, path: 'Study')
+Widget buildWeekStrip(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: WeekStrip(
+      reviewedDays: const [true, true, true, false, false, false, false],
+      todayIndex: 3,
     ),
   );
 }

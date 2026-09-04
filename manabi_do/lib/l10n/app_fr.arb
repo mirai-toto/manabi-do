@@ -105,6 +105,16 @@
   "streakLabel": "jours de suite",
   "streakSubtitle": "Continue comme ça !",
 
+  "todaysSession": "Session du jour",
+  "reviewsDueUnit": "{count, plural, one{révision à faire} other{révisions à faire}}",
+  "startReviews": "Commencer les révisions",
+  "yourDecks": "Vos paquets",
+  "keepLearning": "Continuer à apprendre",
+  "thisWeek": "Cette semaine",
+  "nNewToday": "{count} nouveaux aujourd'hui",
+  "nDue": "{count} à réviser",
+  "lessonOfTotal": "Leçon {index} sur {total}",
+
   "comingSoon": "Bientôt disponible",
 
   "strokeOrderPlaceholder": "▶ Animation de l'ordre des traits",

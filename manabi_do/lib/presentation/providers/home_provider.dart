@@ -31,18 +31,6 @@ class _SelectedTabNotifier extends Notifier<int> {
   }
 }
 
-final totalKanjiProvider = FutureProvider<int>(
-  (ref) => ref.read(databaseProvider).countTotalKanji(),
-);
-
-final totalVocabProvider = FutureProvider<int>(
-  (ref) => ref.read(databaseProvider).countTotalVocab(),
-);
-
-final totalKanaProvider = FutureProvider<int>(
-  (ref) => ref.read(databaseProvider).getKanaData().then((d) => d.total),
-);
-
 final kanaDueCountProvider = StreamProvider<int>(
   (ref) => ref.watch(databaseProvider).watchKanaDueCount(),
 );
@@ -57,6 +45,31 @@ final vocabDueCountProvider = StreamProvider<int>(
 
 final streakDaysProvider = StreamProvider<int>(
   (ref) => ref.watch(databaseProvider).watchStreakDays(),
+);
+
+final kanaProgressProvider = StreamProvider<({int known, int seen})>(
+  (ref) => ref.watch(databaseProvider).watchKanaProgress(),
+);
+
+final kanjiProgressProvider = StreamProvider<({int known, int seen})>(
+  (ref) => ref.watch(databaseProvider).watchKanjiProgress(),
+);
+
+final vocabProgressProvider = StreamProvider<({int known, int seen})>(
+  (ref) => ref.watch(databaseProvider).watchVocabProgress(),
+);
+
+/// Which days of the current week (Monday-first, 7 entries) had reviews.
+final weekActivityProvider = StreamProvider<List<bool>>(
+  (ref) => ref.watch(databaseProvider).watchReviewDates().map((dates) {
+    final now = DateTime.now();
+    final monday = DateTime(now.year, now.month, now.day - (now.weekday - 1));
+    return List.generate(
+      7,
+      (i) =>
+          dates.contains(DateTime(monday.year, monday.month, monday.day + i)),
+    );
+  }),
 );
 
 final kanaNewCountProvider = StreamProvider<int>((ref) {
