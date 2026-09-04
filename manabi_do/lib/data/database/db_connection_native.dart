@@ -8,7 +8,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqlite3/sqlite3.dart' as raw;
 
-const _assetDbVersion = '8.23';
+const _assetDbVersion = '8.24';
 
 /// A table holding user data rather than shipped content. Refreshing the
 /// content DB overwrites the file wholesale, so these rows are read out

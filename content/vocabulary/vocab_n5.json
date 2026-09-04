@@ -926,20 +926,6 @@
   },
   {
     "word": "キロ",
-    "reading": "キロ",
-    "pos": "prefix",
-    "kanjiId": null,
-    "jlpt": "N5",
-    "meanings": {
-      "en": "kilo-; 1000; kilogram; kilogramme; kilometre; kilometer; kilo-; 1024; 2^10",
-      "fr": "kilo; kilogramme",
-      "ru": "(сокр.); 1) ((тж. уст.) 粁) километр; 2) ((тж. уст.) 瓩) килограмм; 3) килоампер, киловатт, килокалория (и т. п.)",
-      "sl": "(Msr) kilogramov; kilometrov; kilogram; kilometer",
-      "es": "kilo-; 10^3"
-    }
-  },
-  {
-    "word": "キロ",
     "reading": "キロメートル",
     "pos": "prefix",
     "kanjiId": null,
@@ -1797,22 +1783,6 @@
       "sl": "starejša sestra (moja)",
       "es": "hermana mayor",
       "sv": "äldre syster; storasyster"
-    }
-  },
-  {
-    "word": "あの",
-    "reading": "あの",
-    "pos": "interjection",
-    "kanjiId": null,
-    "jlpt": "N5",
-    "meanings": {
-      "en": "say; well; um; er",
-      "fr": "disons; eh bien; euh...",
-      "de": "nun …; also …; äh …; ähm; und …; also…",
-      "hu": "helyesen",
-      "ru": "(обращение) послушайте!, извините!, разрешите!, видите ли…; вот что…",
-      "sl": "A... (Oprostite,..); tisto {tam, stran od mene in tebe}; ono",
-      "es": "esto...; pues...; digo...; errr..."
     }
   },
   {
