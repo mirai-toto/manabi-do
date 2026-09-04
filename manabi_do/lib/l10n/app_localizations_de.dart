@@ -359,8 +359,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get resetKanaTitle => 'Dieses Kana zurücksetzen?';
 
   @override
+  String get resetKanjiTitle => 'Dieses Kanji zurücksetzen?';
+
+  @override
   String get resetKanaBody =>
       'SRS-Daten für dieses Zeichen werden dauerhaft gelöscht.';
+
+  @override
+  String get resetCharacterProgress =>
+      'Fortschritt dieses Zeichens zurücksetzen';
 
   @override
   String get resetConfirm => 'Zurücksetzen';

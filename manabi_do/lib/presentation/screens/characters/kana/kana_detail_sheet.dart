@@ -149,7 +149,7 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
                     color: t.error,
                   ),
                   label: Text(
-                    l.settingsResetProgress,
+                    l.resetCharacterProgress,
                     style: AppTextStyles.bodySmall.copyWith(color: t.error),
                   ),
                 ),

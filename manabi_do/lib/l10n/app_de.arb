@@ -166,7 +166,9 @@
   "resetProgressTitle": "Alle Fortschritte zurücksetzen?",
   "resetProgressBody": "Alle SRS-Karten werden dauerhaft gelöscht.",
   "resetKanaTitle": "Dieses Kana zurücksetzen?",
+  "resetKanjiTitle": "Dieses Kanji zurücksetzen?",
   "resetKanaBody": "SRS-Daten für dieses Zeichen werden dauerhaft gelöscht.",
+  "resetCharacterProgress": "Fortschritt dieses Zeichens zurücksetzen",
   "resetConfirm": "Zurücksetzen",
   "cancel": "Abbrechen",
 

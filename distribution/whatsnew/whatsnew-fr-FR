@@ -1,3 +1,5 @@
-Nouveautés de cette version :
+Corrections de cette version :
 
-• Une section Soutien dans les Paramètres, avec un lien vers la page Ko-fi. Manabi Do est gratuit, sans publicité et sans compte — si l'application vous aide, vous pouvez désormais l'aider en retour. Totalement facultatif : aucune fonctionnalité n'est réservée.
+• Le bouton Retour fonctionne désormais pendant une session d'étude. Il ouvre la même confirmation « Quitter la session ? » que le bouton de fermeture, plus besoin de chercher la croix.
+• Le bouton de réinitialisation d'un caractère précise maintenant qu'il n'efface que la progression de ce caractère.
+• Les mots en double ont été retirés des listes de vocabulaire : chaque entrée n'apparaît plus qu'une fois par groupe.

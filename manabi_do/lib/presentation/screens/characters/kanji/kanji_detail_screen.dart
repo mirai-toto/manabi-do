@@ -106,7 +106,7 @@ class _KanjiBody extends ConsumerWidget {
                 onPressed: () async {
                   final confirmed = await showConfirmDialog(
                     context,
-                    title: l.resetKanaTitle,
+                    title: l.resetKanjiTitle,
                     body: l.resetKanaBody,
                   );
                   if (!confirmed) return;
@@ -114,7 +114,7 @@ class _KanjiBody extends ConsumerWidget {
                 },
                 icon: Icon(Icons.restart_alt_rounded, size: 18, color: t.error),
                 label: Text(
-                  l.settingsResetProgress,
+                  l.resetCharacterProgress,
                   style: AppTextStyles.bodySmall.copyWith(color: t.error),
                 ),
               ),

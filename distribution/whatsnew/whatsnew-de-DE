@@ -1,3 +1,5 @@
-Neu in dieser Version:
+Korrekturen in dieser Version:
 
-• Ein Bereich „Unterstützung“ in den Einstellungen, mit einem Link zur Ko-fi-Seite. Manabi Do ist kostenlos, ohne Werbung und ohne Konto — wer möchte, kann die Entwicklung jetzt unterstützen. Völlig freiwillig: keine Funktion ist dahinter gesperrt.
+• Die Zurück-Taste funktioniert jetzt während einer Lernsitzung. Sie öffnet dieselbe Abfrage „Sitzung verlassen?" wie die Schließen-Schaltfläche, das Suchen nach dem X entfällt.
+• Die Schaltfläche zum Zurücksetzen eines Zeichens gibt jetzt an, dass nur der Fortschritt dieses Zeichens gelöscht wird.
+• Doppelte Wörter wurden aus den Vokabellisten entfernt, sodass jeder Eintrag pro Gruppe nur einmal erscheint.

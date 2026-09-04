@@ -2792,16 +2792,6 @@
     }
   },
   {
-    "word": "ン",
-    "reading": "ン",
-    "pos": "n-pref",
-    "kanjiId": null,
-    "jlpt": "N2",
-    "meanings": {
-      "en": "some"
-    }
-  },
-  {
     "word": "オーバーコート",
     "reading": "オーバーコート",
     "pos": "noun",
@@ -3199,20 +3189,6 @@
       "hu": "imádás",
       "sl": "čaščenje; romanje; obisk svetišča",
       "es": "visita a la tumbe de alguien; peregrinación"
-    }
-  },
-  {
-    "word": "た",
-    "reading": "た",
-    "pos": "auxiliary verb",
-    "kanjiId": null,
-    "jlpt": "N2",
-    "meanings": {
-      "en": "did; (have) done; (please) do",
-      "de": "sein",
-      "ru": "(связка) есть, является, представляет собой; (часто не переводится)",
-      "sl": "biti",
-      "es": "copula humilde en japonés; ser; estar"
     }
   },
   {

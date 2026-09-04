@@ -173,7 +173,9 @@
   "resetProgressTitle": "Reset all progress?",
   "resetProgressBody": "All SRS cards will be permanently deleted.",
   "resetKanaTitle": "Reset this kana?",
+  "resetKanjiTitle": "Reset this kanji?",
   "resetKanaBody": "SRS data for this character will be permanently deleted.",
+  "resetCharacterProgress": "Reset this character's progress",
   "resetConfirm": "Reset",
   "cancel": "Cancel",
 

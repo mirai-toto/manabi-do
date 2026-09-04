@@ -1,3 +1,5 @@
-New in this release:
+Fixed in this release:
 
-• A Support section in Settings, with a link to the Ko-fi page. Manabi Do is free, has no ads and no account — if it helps you learn, you can now help keep it going. Entirely optional; nothing in the app is locked behind it.
+• The Back button now works during a study session. It opens the same "Leave session?" prompt as the close button, so you no longer have to hunt for the X.
+• The reset button on a character now says it clears only that character's progress, matching what the confirmation actually does.
+• Duplicate words have been removed from the vocabulary lists, so each entry appears once per group.

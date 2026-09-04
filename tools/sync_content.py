@@ -294,6 +294,11 @@ def generate_vocab(kanji_ids: set[int], force: bool) -> None:
 
         entries: list[dict] = []
         missing: list[str] = []
+        # Bluskyo lists a word once per reading, and occasionally repeats the
+        # same pair. pos and meanings come from `lookup`, which is keyed by the
+        # word alone, so (word, reading) is a full identity check here.
+        seen: set[tuple[str, str]] = set()
+        duplicates: int = 0
 
         for word, bluskyo_reading in by_level[level]:
             hit = lookup.get(word) or lookup.get(bluskyo_reading)
@@ -301,6 +306,11 @@ def generate_vocab(kanji_ids: set[int], force: bool) -> None:
                 missing.append(word)
                 continue
             reading = bluskyo_reading if bluskyo_reading else hit["reading"]
+            key: tuple[str, str] = (word, reading)
+            if key in seen:
+                duplicates += 1
+                continue
+            seen.add(key)
             kanji_id: int | None = next(
                 (ord(ch) for ch in word if ord(ch) in kanji_ids), None
             )
@@ -316,7 +326,10 @@ def generate_vocab(kanji_ids: set[int], force: bool) -> None:
         with open(path, "w", encoding="utf-8") as f:
             json.dump(entries, f, ensure_ascii=False, indent=2)
         skipped = f", {len(missing)} not in JMdict" if missing else ""
-        print(f"  vocab_{level.lower()}.json: {len(entries)} entries{skipped}")
+        deduped = f", {duplicates} duplicates dropped" if duplicates else ""
+        print(
+            f"  vocab_{level.lower()}.json: {len(entries)} entries{skipped}{deduped}"
+        )
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────

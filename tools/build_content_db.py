@@ -290,7 +290,14 @@ def insert_vocab(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
     with open(path, encoding="utf-8") as f:
         entries = json.load(f)
 
+    seen: set[tuple[str, str, str]] = set()
+    inserted = 0
     for v in entries:
+        key = (v["word"], v["reading"], v["pos"])
+        if key in seen:
+            print(f"\n  skipping duplicate {jlpt} entry: {v['word']} ({v['reading']}, {v['pos']})")
+            continue
+        seen.add(key)
         meanings = v["meanings"]
         cur = db.execute(
             "INSERT INTO vocabulary_entries (word, reading, meaning, jlpt_level, part_of_speech, kanji_id) VALUES (?, ?, ?, ?, ?, ?)",
@@ -301,8 +308,9 @@ def insert_vocab(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
             "INSERT OR REPLACE INTO vocab_translations VALUES (?, ?, ?)",
             [(vocab_id, locale, meaning) for locale, meaning in meanings.items()],
         )
+        inserted += 1
 
-    return len(entries)
+    return inserted
 
 
 def insert_kana(db: sqlite3.Connection) -> int:
