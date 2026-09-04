@@ -360,8 +360,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get resetKanaTitle => 'Réinitialiser ce kana ?';
 
   @override
+  String get resetKanjiTitle => 'Réinitialiser ce kanji ?';
+
+  @override
   String get resetKanaBody =>
       'Les données SRS de ce caractère seront définitivement supprimées.';
+
+  @override
+  String get resetCharacterProgress =>
+      'Réinitialiser la progression de ce caractère';
 
   @override
   String get resetConfirm => 'Réinitialiser';

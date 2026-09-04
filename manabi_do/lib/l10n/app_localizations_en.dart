@@ -359,8 +359,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resetKanaTitle => 'Reset this kana?';
 
   @override
+  String get resetKanjiTitle => 'Reset this kanji?';
+
+  @override
   String get resetKanaBody =>
       'SRS data for this character will be permanently deleted.';
+
+  @override
+  String get resetCharacterProgress => 'Reset this character\'s progress';
 
   @override
   String get resetConfirm => 'Reset';

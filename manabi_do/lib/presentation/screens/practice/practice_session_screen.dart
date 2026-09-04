@@ -88,50 +88,56 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
     final session = ref.watch(practiceSessionProvider);
     final notifier = ref.read(practiceSessionProvider.notifier);
 
-    return Scaffold(
-      backgroundColor: t.surface,
-      appBar: AppBar(
+    return PopScope(
+      canPop: session.done,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) _confirmExit();
+      },
+      child: Scaffold(
         backgroundColor: t.surface,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.close_rounded, color: t.onSurface),
-          onPressed: session.done ? _onExit : _confirmExit,
-        ),
-        title: Text(
-          widget.title,
-          style: AppTextStyles.title.copyWith(color: t.onSurface),
-        ),
-        actions: [
-          IconButton(
-            iconSize: 18,
-            icon: Icon(Icons.tune_rounded, color: t.onSurfaceVariant),
-            onPressed: () => showModalBottomSheet<void>(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) => PracticeSettingsSheet(
-                contexts: widget.settingsContexts,
-                hasExamples: widget.hasExamples,
-                showAutoAdvance: !widget.persistSrs,
-              ),
-            ),
+        appBar: AppBar(
+          backgroundColor: t.surface,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.close_rounded, color: t.onSurface),
+            onPressed: session.done ? _onExit : _confirmExit,
           ),
-        ],
-      ),
-      body: AccentTheme(
-        accent: widget.color,
-        child: session.isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : session.done
-            ? _buildSummary(session, notifier)
-            : KeyedSubtree(
-                key: ValueKey(session.index),
-                child: session.currentItem!.buildBody(
-                  session.index,
-                  session.queue!.length,
-                  (Rating rating) =>
-                      notifier.answer(rating, persistSrs: widget.persistSrs),
+          title: Text(
+            widget.title,
+            style: AppTextStyles.title.copyWith(color: t.onSurface),
+          ),
+          actions: [
+            IconButton(
+              iconSize: 18,
+              icon: Icon(Icons.tune_rounded, color: t.onSurfaceVariant),
+              onPressed: () => showModalBottomSheet<void>(
+                context: context,
+                isScrollControlled: true,
+                builder: (_) => PracticeSettingsSheet(
+                  contexts: widget.settingsContexts,
+                  hasExamples: widget.hasExamples,
+                  showAutoAdvance: !widget.persistSrs,
                 ),
               ),
+            ),
+          ],
+        ),
+        body: AccentTheme(
+          accent: widget.color,
+          child: session.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : session.done
+              ? _buildSummary(session, notifier)
+              : KeyedSubtree(
+                  key: ValueKey(session.index),
+                  child: session.currentItem!.buildBody(
+                    session.index,
+                    session.queue!.length,
+                    (Rating rating) =>
+                        notifier.answer(rating, persistSrs: widget.persistSrs),
+                  ),
+                ),
+        ),
       ),
     );
   }

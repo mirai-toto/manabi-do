@@ -164,7 +164,9 @@
   "resetProgressTitle": "Réinitialiser toute la progression ?",
   "resetProgressBody": "Toutes les cartes SRS seront définitivement supprimées.",
   "resetKanaTitle": "Réinitialiser ce kana ?",
+  "resetKanjiTitle": "Réinitialiser ce kanji ?",
   "resetKanaBody": "Les données SRS de ce caractère seront définitivement supprimées.",
+  "resetCharacterProgress": "Réinitialiser la progression de ce caractère",
   "resetConfirm": "Réinitialiser",
   "cancel": "Annuler",
 

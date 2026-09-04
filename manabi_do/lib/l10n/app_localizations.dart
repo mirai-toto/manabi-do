@@ -766,11 +766,23 @@ abstract class AppLocalizations {
   /// **'Reset this kana?'**
   String get resetKanaTitle;
 
+  /// No description provided for @resetKanjiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset this kanji?'**
+  String get resetKanjiTitle;
+
   /// No description provided for @resetKanaBody.
   ///
   /// In en, this message translates to:
   /// **'SRS data for this character will be permanently deleted.'**
   String get resetKanaBody;
+
+  /// No description provided for @resetCharacterProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset this character\'s progress'**
+  String get resetCharacterProgress;
 
   /// No description provided for @resetConfirm.
   ///

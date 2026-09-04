@@ -69,8 +69,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
   void _onBack() {
     final index = ref.read(selectedTabProvider);
     if (_navKeys[index].currentState?.canPop() ?? false) {
-      if (ref.read(practiceActiveProvider)) return;
-      _navKeys[index].currentState!.pop();
+      _navKeys[index].currentState!.maybePop();
       return;
     }
     if (index == 1 && ref.read(kanjiSelectedLevelProvider) != null) {
