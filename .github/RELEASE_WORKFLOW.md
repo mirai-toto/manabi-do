@@ -61,7 +61,9 @@ When a GitHub Release is published.
 ### Android Release Jobs
 
 The workflow is three sequential jobs, so a failure in one can be re-run
-without repeating the others:
+without repeating the others. The first two run in the `internal` environment
+(holds the keystore secrets; deploys only from `main` or `v*` tags), the third
+in `production` (required reviewer, `v*` tags only):
 
 1. **Build signed AAB** — sets up Flutter and Java, decodes the release
    keystore from secrets, derives the version from the release tag and stamps

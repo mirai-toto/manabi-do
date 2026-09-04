@@ -1,3 +1,6 @@
+# The display name is load-bearing: semantic-release.yml triggers on
+# workflows: ["ci"]. Renaming it here without updating that reference
+# silently stops all releases.
 name: ci
 
 on:
@@ -9,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  flutter:
+  analyze:
     name: Analyze & format
     runs-on: ubuntu-latest
     steps:
@@ -80,8 +83,8 @@ jobs:
 
           echo "Release notes updated since $tag ($releasable user-facing commit(s))."
 
-  release-config:
-    name: Release config
+  release-dry-run:
+    name: Release dry run
     runs-on: ubuntu-latest
     permissions:
       contents: write
