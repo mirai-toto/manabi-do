@@ -496,6 +496,60 @@ abstract class AppLocalizations {
   /// **'Keep it up!'**
   String get streakSubtitle;
 
+  /// No description provided for @todaysSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s session'**
+  String get todaysSession;
+
+  /// No description provided for @reviewsDueUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{review due} other{reviews due}}'**
+  String reviewsDueUnit(int count);
+
+  /// No description provided for @startReviews.
+  ///
+  /// In en, this message translates to:
+  /// **'Start reviews'**
+  String get startReviews;
+
+  /// No description provided for @yourDecks.
+  ///
+  /// In en, this message translates to:
+  /// **'Your decks'**
+  String get yourDecks;
+
+  /// No description provided for @keepLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep learning'**
+  String get keepLearning;
+
+  /// No description provided for @thisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get thisWeek;
+
+  /// No description provided for @nNewToday.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} new today'**
+  String nNewToday(int count);
+
+  /// No description provided for @nDue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} due'**
+  String nDue(int count);
+
+  /// No description provided for @lessonOfTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson {index} of {total}'**
+  String lessonOfTotal(int index, int total);
+
   /// No description provided for @comingSoon.
   ///
   /// In en, this message translates to:
@@ -736,12 +790,6 @@ abstract class AppLocalizations {
   /// **'Vowels'**
   String get kanaRowVowels;
 
-  /// No description provided for @settingsData.
-  ///
-  /// In en, this message translates to:
-  /// **'Data'**
-  String get settingsData;
-
   /// No description provided for @settingsResetProgress.
   ///
   /// In en, this message translates to:
@@ -802,6 +850,12 @@ abstract class AppLocalizations {
   /// **'Practice'**
   String get settingsPractice;
 
+  /// No description provided for @settingsHomeScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Home screen'**
+  String get settingsHomeScreen;
+
   /// No description provided for @settingsPracticeNewCharacters.
   ///
   /// In en, this message translates to:
@@ -844,12 +898,6 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settingsLanguage;
 
-  /// No description provided for @settingsFeedback.
-  ///
-  /// In en, this message translates to:
-  /// **'Feedback'**
-  String get settingsFeedback;
-
   /// No description provided for @settingsSendFeedback.
   ///
   /// In en, this message translates to:
@@ -879,12 +927,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Address copied'**
   String get feedbackAddressCopied;
-
-  /// No description provided for @settingsSupport.
-  ///
-  /// In en, this message translates to:
-  /// **'Support'**
-  String get settingsSupport;
 
   /// No description provided for @settingsSupportDeveloper.
   ///

@@ -66,6 +66,60 @@ final grammarThemesProvider = FutureProvider.family<List<GrammarTheme>, String>(
   },
 );
 
+class GrammarContinueTarget {
+  final GrammarLesson lesson;
+  final String themeTitle;
+  final String chapterTitle;
+  final int lessonIndex;
+  final int chapterLessonCount;
+  final String level;
+
+  const GrammarContinueTarget({
+    required this.lesson,
+    required this.themeTitle,
+    required this.chapterTitle,
+    required this.lessonIndex,
+    required this.chapterLessonCount,
+    required this.level,
+  });
+}
+
+const _continueLevels = ['basics', 'N5'];
+
+/// The next grammar lesson to resume: the first started-but-unread lesson,
+/// falling back to the first unread one, scanning basics then N5 in order.
+/// Null when every available lesson has been read.
+final grammarContinueProvider = FutureProvider<GrammarContinueTarget?>((
+  ref,
+) async {
+  final read = await ref.watch(grammarReadLessonsProvider.future);
+  final started = await ref.watch(grammarStartedLessonsProvider.future);
+
+  GrammarContinueTarget? firstUnread;
+  for (final level in _continueLevels) {
+    final themes = await ref.watch(grammarThemesProvider(level).future);
+    for (final theme in themes) {
+      for (final chapter in theme.chapters) {
+        for (var i = 0; i < chapter.lessons.length; i++) {
+          final lesson = chapter.lessons[i];
+          if (read.contains(lesson.id)) continue;
+          final target = GrammarContinueTarget(
+            lesson: lesson,
+            themeTitle: theme.title,
+            chapterTitle: chapter.title,
+            lessonIndex: i,
+            chapterLessonCount: chapter.lessons.length,
+            level: level,
+          );
+          if (started.contains(lesson.id)) return target;
+          firstUnread ??= target;
+        }
+      }
+    }
+  }
+  return firstUnread;
+});
+
 final grammarStartedLessonsProvider = StreamProvider<Set<String>>((ref) {
   final db = ref.read(databaseProvider);
   return db.watchStartedGrammarLessons();

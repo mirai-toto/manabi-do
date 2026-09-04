@@ -135,7 +135,7 @@ class AppTokens extends ThemeExtension<AppTokens> {
   static const dark = AppTokens(
     surface: Color(0xFF141218),
     surfaceVariant: Color(0xFF49454F),
-    surfaceContainer: Color(0xFF211F26),
+    surfaceContainer: Color(0xFF141218),
     surfaceContainerHigh: Color(0xFF2B2930),
     cardBackground: Color(0xFF1E1B24),
     onSurface: Color(0xFFE6E1E5),

@@ -220,6 +220,47 @@ class AppLocalizationsEn extends AppLocalizations {
   String get streakSubtitle => 'Keep it up!';
 
   @override
+  String get todaysSession => 'Today\'s session';
+
+  @override
+  String reviewsDueUnit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'reviews due',
+      one: 'review due',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get startReviews => 'Start reviews';
+
+  @override
+  String get yourDecks => 'Your decks';
+
+  @override
+  String get keepLearning => 'Keep learning';
+
+  @override
+  String get thisWeek => 'This week';
+
+  @override
+  String nNewToday(int count) {
+    return '$count new today';
+  }
+
+  @override
+  String nDue(int count) {
+    return '$count due';
+  }
+
+  @override
+  String lessonOfTotal(int index, int total) {
+    return 'Lesson $index of $total';
+  }
+
+  @override
   String get comingSoon => 'Coming soon';
 
   @override
@@ -344,9 +385,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kanaRowVowels => 'Vowels';
 
   @override
-  String get settingsData => 'Data';
-
-  @override
   String get settingsResetProgress => 'Reset all progress';
 
   @override
@@ -378,6 +416,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsPractice => 'Practice';
 
   @override
+  String get settingsHomeScreen => 'Home screen';
+
+  @override
   String get settingsPracticeNewCharacters => 'New characters per day';
 
   @override
@@ -399,9 +440,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsLanguage => 'Language';
 
   @override
-  String get settingsFeedback => 'Feedback';
-
-  @override
   String get settingsSendFeedback => 'Send feedback';
 
   @override
@@ -418,9 +456,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get feedbackAddressCopied => 'Address copied';
-
-  @override
-  String get settingsSupport => 'Support';
 
   @override
   String get settingsSupportDeveloper => 'Support development';

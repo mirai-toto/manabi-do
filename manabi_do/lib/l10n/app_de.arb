@@ -107,6 +107,16 @@
   "streakLabel": "Tage in Folge",
   "streakSubtitle": "Weiter so!",
 
+  "todaysSession": "Heutige Lerneinheit",
+  "reviewsDueUnit": "{count, plural, one{fällige Wiederholung} other{fällige Wiederholungen}}",
+  "startReviews": "Wiederholungen starten",
+  "yourDecks": "Deine Stapel",
+  "keepLearning": "Weiterlernen",
+  "thisWeek": "Diese Woche",
+  "nNewToday": "{count} neue heute",
+  "nDue": "{count} fällig",
+  "lessonOfTotal": "Lektion {index} von {total}",
+
   "comingSoon": "Demnächst verfügbar",
 
   "strokeOrderPlaceholder": "▶ Strichfolge-Animation",
@@ -160,8 +170,6 @@
   },
 
   "kanaRowVowels": "Vokale",
-
-  "settingsData": "Daten",
   "settingsResetProgress": "Alle Fortschritte zurücksetzen",
   "resetProgressTitle": "Alle Fortschritte zurücksetzen?",
   "resetProgressBody": "Alle SRS-Karten werden dauerhaft gelöscht.",
@@ -173,6 +181,7 @@
   "cancel": "Abbrechen",
 
   "settingsPractice": "Übung",
+  "settingsHomeScreen": "Startbildschirm",
   "settingsPracticeNewCharacters": "Neue Zeichen pro Tag",
   "settingsPracticeNewVocab": "Neues Vokabular pro Tag",
 
@@ -181,8 +190,6 @@
   "settingsThemeLight": "Hell",
   "settingsThemeDark": "Dunkel",
   "settingsLanguage": "Sprache",
-
-  "settingsFeedback": "Feedback",
   "settingsSendFeedback": "Feedback senden",
   "feedbackEmailSubject": "Manabi Do Feedback",
   "feedbackEmailBodyHint": "Was gut funktioniert, was nicht, und was fehlt.",
@@ -191,8 +198,6 @@
     "placeholders": { "email": { "type": "String" } }
   },
   "feedbackAddressCopied": "Adresse kopiert",
-
-  "settingsSupport": "Unterstützung",
   "settingsSupportDeveloper": "Entwicklung unterstützen",
   "supportNoBrowser": "Link konnte nicht geöffnet werden. {url}",
   "@supportNoBrowser": {

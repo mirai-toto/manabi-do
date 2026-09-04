@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/providers/home_settings_provider.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
 import '../../core/theme/jlpt_level.dart';
@@ -132,6 +133,18 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
       ),
     );
   }).toList())..shuffle(rng);
+}
+
+/// Everything due today across the decks enabled in the home settings,
+/// shuffled together.
+Future<List<PracticeItem>> loadAllDueQueue(WidgetRef ref) async {
+  final settings = await ref.read(homeSettingsProvider.future);
+  final queues = await Future.wait([
+    if (settings.showKana) loadKanaQueue(ref),
+    if (settings.showKanji) loadKanjiQueue(ref),
+    if (settings.showVocab) loadVocabQueue(ref),
+  ]);
+  return queues.expand((q) => q).toList()..shuffle();
 }
 
 Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {

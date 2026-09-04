@@ -105,6 +105,16 @@
   "streakLabel": "jours de suite",
   "streakSubtitle": "Continue comme ça !",
 
+  "todaysSession": "Session du jour",
+  "reviewsDueUnit": "{count, plural, one{révision à faire} other{révisions à faire}}",
+  "startReviews": "Commencer les révisions",
+  "yourDecks": "Vos paquets",
+  "keepLearning": "Continuer à apprendre",
+  "thisWeek": "Cette semaine",
+  "nNewToday": "{count} nouveaux aujourd'hui",
+  "nDue": "{count} à réviser",
+  "lessonOfTotal": "Leçon {index} sur {total}",
+
   "comingSoon": "Bientôt disponible",
 
   "strokeOrderPlaceholder": "▶ Animation de l'ordre des traits",
@@ -158,8 +168,6 @@
   },
 
   "kanaRowVowels": "Voyelles",
-
-  "settingsData": "Données",
   "settingsResetProgress": "Réinitialiser la progression",
   "resetProgressTitle": "Réinitialiser toute la progression ?",
   "resetProgressBody": "Toutes les cartes SRS seront définitivement supprimées.",
@@ -171,6 +179,7 @@
   "cancel": "Annuler",
 
   "settingsPractice": "Entraînement",
+  "settingsHomeScreen": "Écran d'accueil",
   "settingsPracticeNewCharacters": "Nouveaux caractères par jour",
   "settingsPracticeNewVocab": "Nouveau vocabulaire par jour",
 
@@ -179,8 +188,6 @@
   "settingsThemeLight": "Clair",
   "settingsThemeDark": "Sombre",
   "settingsLanguage": "Langue",
-
-  "settingsFeedback": "Commentaires",
   "settingsSendFeedback": "Envoyer un commentaire",
   "feedbackEmailSubject": "Commentaire Manabi Do",
   "feedbackEmailBodyHint": "Ce qui fonctionne, ce qui ne va pas, ce qui manque.",
@@ -189,8 +196,6 @@
     "placeholders": { "email": { "type": "String" } }
   },
   "feedbackAddressCopied": "Adresse copiée",
-
-  "settingsSupport": "Soutien",
   "settingsSupportDeveloper": "Soutenir le développement",
   "supportNoBrowser": "Impossible d'ouvrir le lien. {url}",
   "@supportNoBrowser": {

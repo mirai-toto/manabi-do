@@ -114,6 +114,28 @@
   "streakLabel": "day streak",
   "streakSubtitle": "Keep it up!",
 
+  "todaysSession": "Today's session",
+  "reviewsDueUnit": "{count, plural, one{review due} other{reviews due}}",
+  "@reviewsDueUnit": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "startReviews": "Start reviews",
+  "yourDecks": "Your decks",
+  "keepLearning": "Keep learning",
+  "thisWeek": "This week",
+  "nNewToday": "{count} new today",
+  "@nNewToday": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "nDue": "{count} due",
+  "@nDue": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "lessonOfTotal": "Lesson {index} of {total}",
+  "@lessonOfTotal": {
+    "placeholders": { "index": { "type": "int" }, "total": { "type": "int" } }
+  },
+
   "comingSoon": "Coming soon",
 
   "strokeOrderPlaceholder": "▶ Stroke order animation",
@@ -167,8 +189,6 @@
   },
 
   "kanaRowVowels": "Vowels",
-
-  "settingsData": "Data",
   "settingsResetProgress": "Reset all progress",
   "resetProgressTitle": "Reset all progress?",
   "resetProgressBody": "All SRS cards will be permanently deleted.",
@@ -180,6 +200,7 @@
   "cancel": "Cancel",
 
   "settingsPractice": "Practice",
+  "settingsHomeScreen": "Home screen",
   "settingsPracticeNewCharacters": "New characters per day",
   "settingsPracticeNewVocab": "New vocabulary per day",
 
@@ -188,8 +209,6 @@
   "settingsThemeLight": "Light",
   "settingsThemeDark": "Dark",
   "settingsLanguage": "Language",
-
-  "settingsFeedback": "Feedback",
   "settingsSendFeedback": "Send feedback",
   "feedbackEmailSubject": "Manabi Do feedback",
   "feedbackEmailBodyHint": "What works, what doesn't, and what's missing.",
@@ -198,8 +217,6 @@
     "placeholders": { "email": { "type": "String" } }
   },
   "feedbackAddressCopied": "Address copied",
-
-  "settingsSupport": "Support",
   "settingsSupportDeveloper": "Support development",
   "supportNoBrowser": "Couldn't open the link. {url}",
   "@supportNoBrowser": {

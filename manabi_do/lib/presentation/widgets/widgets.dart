@@ -34,6 +34,7 @@ export 'navigation/nav_destination.dart';
 export 'settings/language_picker_sheet.dart';
 export 'settings/settings_about_section.dart';
 export 'settings/settings_card.dart';
+export 'settings/settings_home_card.dart';
 export 'settings/settings_practice_card.dart';
 export 'settings/settings_tile.dart';
 
@@ -42,21 +43,23 @@ export 'grammar/lesson_read_toggle.dart';
 
 // study
 export 'study/chapter_card.dart';
-export 'study/domain_card.dart';
+export 'study/continue_lesson_card.dart';
+export 'study/deck_row.dart';
 export 'study/grammar_chapter_list.dart';
-export 'study/home_domain_cards.dart';
 export 'study/home_header.dart';
 export 'study/kanji_group_selector.dart';
 export 'study/kanji_group_view.dart';
 export 'study/kanji_level_selector.dart';
 export 'study/lesson_row.dart';
 export 'study/practice_mode_card.dart';
-export 'study/streak_card.dart';
+export 'study/streak_pill.dart';
 export 'study/study_group_card.dart';
+export 'study/todays_session_card.dart';
 export 'study/vocab_group_selector.dart' hide kVocabGroupSize;
 export 'study/vocab_level_selector.dart';
 export 'study/vocab_level_view.dart';
 export 'study/vocab_word_tile.dart';
+export 'study/week_strip.dart';
 
 // characters
 export 'characters/character_cell.dart';

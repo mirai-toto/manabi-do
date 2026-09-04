@@ -72,7 +72,7 @@ Widget buildSettingsToggleOn(BuildContext context) {
     child: SettingsCard(
       children: [
         SettingsToggle(
-          icon: Icons.notifications_outlined,
+          leading: const Icon(Icons.notifications_outlined, size: 20),
           label: 'Daily reminders',
           value: true,
           onChanged: (_) {},
@@ -89,7 +89,7 @@ Widget buildSettingsToggleOff(BuildContext context) {
     child: SettingsCard(
       children: [
         SettingsToggle(
-          icon: Icons.notifications_outlined,
+          leading: const Icon(Icons.notifications_outlined, size: 20),
           label: 'Daily reminders',
           value: false,
           onChanged: (_) {},

@@ -148,6 +148,11 @@ class SettingsScreen extends ConsumerWidget {
             const SettingsPracticeCard(),
 
             const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.settingsHomeScreen),
+            const SizedBox(height: AppDimens.spaceSm),
+            const SettingsHomeCard(),
+
+            const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsAppearance),
             const SizedBox(height: AppDimens.spaceSm),
             SegmentedButton<ThemeMode>(
@@ -198,8 +203,6 @@ class SettingsScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsData),
-            const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [
                 SettingsTile(
@@ -215,8 +218,6 @@ class SettingsScreen extends ConsumerWidget {
               ],
             ),
 
-            const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsFeedback),
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [
@@ -232,8 +233,6 @@ class SettingsScreen extends ConsumerWidget {
               ],
             ),
 
-            const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsSupport),
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [

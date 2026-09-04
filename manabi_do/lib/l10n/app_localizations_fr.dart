@@ -220,6 +220,47 @@ class AppLocalizationsFr extends AppLocalizations {
   String get streakSubtitle => 'Continue comme ça !';
 
   @override
+  String get todaysSession => 'Session du jour';
+
+  @override
+  String reviewsDueUnit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'révisions à faire',
+      one: 'révision à faire',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get startReviews => 'Commencer les révisions';
+
+  @override
+  String get yourDecks => 'Vos paquets';
+
+  @override
+  String get keepLearning => 'Continuer à apprendre';
+
+  @override
+  String get thisWeek => 'Cette semaine';
+
+  @override
+  String nNewToday(int count) {
+    return '$count nouveaux aujourd\'hui';
+  }
+
+  @override
+  String nDue(int count) {
+    return '$count à réviser';
+  }
+
+  @override
+  String lessonOfTotal(int index, int total) {
+    return 'Leçon $index sur $total';
+  }
+
+  @override
   String get comingSoon => 'Bientôt disponible';
 
   @override
@@ -344,9 +385,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kanaRowVowels => 'Voyelles';
 
   @override
-  String get settingsData => 'Données';
-
-  @override
   String get settingsResetProgress => 'Réinitialiser la progression';
 
   @override
@@ -380,6 +418,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsPractice => 'Entraînement';
 
   @override
+  String get settingsHomeScreen => 'Écran d\'accueil';
+
+  @override
   String get settingsPracticeNewCharacters => 'Nouveaux caractères par jour';
 
   @override
@@ -401,9 +442,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsLanguage => 'Langue';
 
   @override
-  String get settingsFeedback => 'Commentaires';
-
-  @override
   String get settingsSendFeedback => 'Envoyer un commentaire';
 
   @override
@@ -420,9 +458,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get feedbackAddressCopied => 'Adresse copiée';
-
-  @override
-  String get settingsSupport => 'Soutien';
 
   @override
   String get settingsSupportDeveloper => 'Soutenir le développement';

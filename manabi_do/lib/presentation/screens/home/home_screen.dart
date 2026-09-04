@@ -2,17 +2,20 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+
+import '../../../core/providers/home_settings_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
+import '../../providers/database_provider.dart';
+import '../../providers/grammar_provider.dart';
 import '../../providers/home_provider.dart';
-import '../../widgets/widgets.dart';
-import '../practice/practice_session_screen.dart';
 import '../../services/review_queue_service.dart';
-
-const _kTabCharacters = 1;
-const _kTabVocabulary = 2;
-const _kTabGrammar = 3;
+import '../../widgets/widgets.dart';
+import '../grammar/grammar_lesson_screen.dart';
+import '../practice/practice_session_screen.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -53,14 +56,66 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     if (state == AppLifecycleState.resumed) _refresh();
   }
 
+  static const _weekdayKanji = ['月', '火', '水', '木', '金', '土', '日'];
+
+  String _japaneseDate(DateTime now) =>
+      '${now.month}月${now.day}日 (${_weekdayKanji[now.weekday - 1]}曜日)';
+
+  void _startReviews() {
+    final l = context.l10n;
+    final t = context.tokens;
+    _openPractice(
+      title: l.todaysSession,
+      color: t.primary,
+      loadQueue: loadAllDueQueue,
+    );
+  }
+
+  void _openPractice({
+    required String title,
+    required Color color,
+    required LoadQueue loadQueue,
+  }) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (_) => PracticeSessionScreen(
+          title: title,
+          color: color,
+          loadQueue: loadQueue,
+        ),
+      ),
+    );
+  }
+
+  void _continueLesson(GrammarContinueTarget target) {
+    ref.read(databaseProvider).markGrammarLessonStarted(target.lesson.id);
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (_) => GrammarLessonScreen(
+          lessonId: target.lesson.id,
+          title: target.lesson.title,
+          blocks: target.lesson.blocks,
+          levelColor: levelColor(target.level),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
     final t = context.tokens;
+    final locale = Localizations.localeOf(context).toString();
 
-    final totalKanji = ref.watch(totalKanjiProvider).asData?.value ?? 0;
-    final totalKana = ref.watch(totalKanaProvider).asData?.value ?? 0;
-    final totalVocab = ref.watch(totalVocabProvider).asData?.value ?? 0;
+    const noProgress = (known: 0, seen: 0);
+    final kanaProgress =
+        ref.watch(kanaProgressProvider).asData?.value ?? noProgress;
+    final kanjiProgress =
+        ref.watch(kanjiProgressProvider).asData?.value ?? noProgress;
+    final vocabProgress =
+        ref.watch(vocabProgressProvider).asData?.value ?? noProgress;
 
     final kanaDue = ref.watch(kanaDueCountProvider).asData?.value ?? 0;
     final kanaNew = ref.watch(kanaNewCountProvider).asData?.value ?? 0;
@@ -69,46 +124,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     final vocabDue = ref.watch(vocabDueCountProvider).asData?.value ?? 0;
     final vocabNew = ref.watch(vocabNewCountProvider).asData?.value ?? 0;
 
-    void goTo(int tab) => ref.read(selectedTabProvider.notifier).select(tab);
+    final streakDays = ref.watch(streakDaysProvider).asData?.value ?? 0;
+    final weekActivity =
+        ref.watch(weekActivityProvider).asData?.value ?? List.filled(7, false);
+    final continueTarget = ref.watch(grammarContinueProvider).asData?.value;
 
-    void openKanaPractice() {
-      Navigator.push(
-        context,
-        MaterialPageRoute<void>(
-          builder: (_) => PracticeSessionScreen(
-            title: l.kana,
-            color: t.characters,
-            loadQueue: loadKanaQueue,
-          ),
-        ),
-      );
-    }
-
-    void openKanjiPractice() {
-      Navigator.push(
-        context,
-        MaterialPageRoute<void>(
-          builder: (_) => PracticeSessionScreen(
-            title: l.tabKanji,
-            color: t.characters,
-            loadQueue: loadKanjiQueue,
-          ),
-        ),
-      );
-    }
-
-    void openVocabPractice() {
-      Navigator.push(
-        context,
-        MaterialPageRoute<void>(
-          builder: (_) => PracticeSessionScreen(
-            title: l.sectionVocabulary,
-            color: t.vocabulary,
-            loadQueue: loadVocabQueue,
-          ),
-        ),
-      );
-    }
+    final show =
+        ref.watch(homeSettingsProvider).asData?.value ?? const HomeSettings();
+    final domains = [
+      if (show.showKana) (glyph: 'か', due: kanaDue),
+      if (show.showKanji) (glyph: '字', due: kanjiDue),
+      if (show.showVocab) (glyph: '語', due: vocabDue),
+    ];
+    final newTotal =
+        (show.showKana ? kanaNew : 0) +
+        (show.showKanji ? kanjiNew : 0) +
+        (show.showVocab ? vocabNew : 0);
 
     return Align(
       alignment: Alignment.topCenter,
@@ -117,33 +148,97 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         child: ListView(
           padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
           children: [
+            HomeHeader(
+              title: _japaneseDate(DateTime.now()),
+              subtitle: DateFormat.MMMMEEEEd(locale).format(DateTime.now()),
+              trailing: StreakPill(days: streakDays),
+            ),
             Padding(
-              padding: const EdgeInsets.all(AppDimens.spaceMd),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceMd,
+              ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  HomeDomainCards(
-                    totalKana: totalKana,
-                    totalKanji: totalKanji,
-                    totalVocab: totalVocab,
-                    kanaDue: kanaDue,
-                    kanaNew: kanaNew,
-                    kanjiDue: kanjiDue,
-                    kanjiNew: kanjiNew,
-                    vocabDue: vocabDue,
-                    vocabNew: vocabNew,
-                    onKanaTap: () => goTo(_kTabCharacters),
-                    onKanjiTap: () => goTo(_kTabCharacters),
-                    onVocabTap: () => goTo(_kTabVocabulary),
-                    onGrammarTap: () => goTo(_kTabGrammar),
-                    onKanaPractice: openKanaPractice,
-                    onKanjiPractice: openKanjiPractice,
-                    onVocabPractice: openVocabPractice,
+                  TodaysSessionCard(
+                    domains: domains,
+                    newTotal: newTotal,
+                    onStart: _startReviews,
                   ),
+                  if (domains.isNotEmpty) ...[
+                    const SizedBox(height: AppDimens.spaceLg),
+                    SectionLabel(l.yourDecks),
+                    if (show.showKana) ...[
+                      const SizedBox(height: AppDimens.spaceSm),
+                      DeckRow(
+                        title: l.kana,
+                        glyph: 'か',
+                        color: t.characters,
+                        known: kanaProgress.known,
+                        seen: kanaProgress.seen,
+                        newToday: kanaNew,
+                        due: kanaDue,
+                        onTap: () => _openPractice(
+                          title: l.kana,
+                          color: t.characters,
+                          loadQueue: loadKanaQueue,
+                        ),
+                      ),
+                    ],
+                    if (show.showKanji) ...[
+                      const SizedBox(height: AppDimens.spaceSm),
+                      DeckRow(
+                        title: l.tabKanji,
+                        glyph: '字',
+                        color: t.characters,
+                        known: kanjiProgress.known,
+                        seen: kanjiProgress.seen,
+                        newToday: kanjiNew,
+                        due: kanjiDue,
+                        onTap: () => _openPractice(
+                          title: l.tabKanji,
+                          color: t.characters,
+                          loadQueue: loadKanjiQueue,
+                        ),
+                      ),
+                    ],
+                    if (show.showVocab) ...[
+                      const SizedBox(height: AppDimens.spaceSm),
+                      DeckRow(
+                        title: l.sectionVocabulary,
+                        glyph: '語',
+                        color: t.vocabulary,
+                        known: vocabProgress.known,
+                        seen: vocabProgress.seen,
+                        newToday: vocabNew,
+                        due: vocabDue,
+                        onTap: () => _openPractice(
+                          title: l.sectionVocabulary,
+                          color: t.vocabulary,
+                          loadQueue: loadVocabQueue,
+                        ),
+                      ),
+                    ],
+                  ],
+                  if (continueTarget != null) ...[
+                    const SizedBox(height: AppDimens.spaceLg),
+                    SectionLabel(l.keepLearning),
+                    const SizedBox(height: AppDimens.spaceSm),
+                    ContinueLessonCard(
+                      title: continueTarget.lesson.title,
+                      subtitle:
+                          '${continueTarget.themeTitle} · '
+                          '${continueTarget.chapterTitle}',
+                      lessonIndex: continueTarget.lessonIndex,
+                      lessonCount: continueTarget.chapterLessonCount,
+                      color: t.primary,
+                      onTap: () => _continueLesson(continueTarget),
+                    ),
+                  ],
                   const SizedBox(height: AppDimens.spaceLg),
-                  StreakCard(
-                    days: ref.watch(streakDaysProvider).asData?.value ?? 0,
-                    label: l.streakLabel,
-                    subtitle: l.streakSubtitle,
+                  WeekStrip(
+                    reviewedDays: weekActivity,
+                    todayIndex: DateTime.now().weekday - 1,
                   ),
                 ],
               ),
