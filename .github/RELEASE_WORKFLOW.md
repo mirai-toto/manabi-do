@@ -49,37 +49,52 @@ which marks it as an unreleased build.
 
 ---
 
-## Build Artifacts (`build-android.yml`)
+## Android Release (`build-android.yml`)
 
-### Artifact Build Trigger
+Displayed as **android release** in the Actions tab. The file itself cannot be
+renamed — see the `versionCode` cautions below.
+
+### Android Release Trigger
 
 When a GitHub Release is published.
 
-### Artifact Build Responsibilities
+### Android Release Jobs
 
-- Set up Flutter and Java
-- Decode the release keystore from secrets
-- Derive the version from the release tag and stamp it into `pubspec.yaml`,
-  along with the workflow run number as the build number (`versionCode`). This
-  edit lives only in the workflow's checkout and is never committed. It is the
-  **only** place the shipped version is set, and the run number is what
-  guarantees a strictly increasing `versionCode` for Play.
-- Build the signed Android App Bundle (AAB)
-- Upload the AAB to the GitHub Release
-- Deploy the AAB to the Play Store internal track
-  (`r0adkll/upload-google-play`), with release notes read from
-  `distribution/whatsnew/`
+The workflow is three sequential jobs, so a failure in one can be re-run
+without repeating the others:
 
-Guarantees artifacts are signed, versioned, and available on the internal track without manual upload.
+1. **Build signed AAB** — sets up Flutter and Java, decodes the release
+   keystore from secrets, derives the version from the release tag and stamps
+   it into `pubspec.yaml`, along with the workflow run number as the build
+   number (`versionCode`). This edit lives only in the workflow's checkout and
+   is never committed. It is the **only** place the shipped version is set, and
+   the run number is what guarantees a strictly increasing `versionCode` for
+   Play. Uploads the AAB to the GitHub Release and shares it with the next job
+   as a workflow artifact.
+2. **Deploy to Play internal track** — uploads the AAB to the Play internal
+   track (`r0adkll/upload-google-play`), with release notes read from
+   `distribution/whatsnew/`.
+3. **Promote to Play production** — gated by the `production` environment,
+   which requires reviewer approval: the job waits until approved via the
+   run's "Review deployments" button. On approval it copies the internal
+   release to the production track (`kevin-david/promote-play-release`) at a
+   full rollout — no re-upload, and the release notes carry over. Reject the
+   deployment to keep a release internal-only; a pending approval expires
+   after 30 days.
+
+Guarantees artifacts are signed, versioned, and available on the internal track
+without manual upload, and that nothing reaches production without a human
+clicking approve.
 
 Two cautions about `versionCode`, which comes from `github.run_number`:
 
 - Re-running a failed run reuses the same number (`run_attempt` increments,
   `run_number` does not), so Play rejects the upload as a duplicate. Cut a new
-  release instead of re-running.
+  release instead of re-running. Re-running only the deploy or promote job is
+  fine — the AAB is not rebuilt.
 - The counter is tied to this workflow file's identity. Renaming or recreating
   `build-android.yml` resets it to 1, making `versionCode` go backwards, which
-  Play refuses permanently.
+  Play refuses permanently. Only the display name is safe to change.
 
 ---
 
@@ -103,9 +118,11 @@ Pushes to `main` that modify the `docs/` directory.
 3. Semantic Release:
    - Calculates next version from the commits since the last tag
    - Creates Git tag and GitHub Release — no commit is pushed
-4. Publishing the release triggers the Android build workflow
+4. Publishing the release triggers the android release workflow
 5. The version is stamped from the tag and the signed AAB is built
 6. The AAB is attached to the GitHub Release and uploaded to the Play internal track
+7. The promote job waits for approval; once approved, the internal release is
+   promoted to production with its release notes
 
 Note that the trigger in step 4 is the GitHub Release being *published*, not the
 tag. A tag pushed on its own builds nothing; a release published by hand in the
@@ -115,6 +132,9 @@ UI would deploy.
 
 ## Key Principle
 
-**Releases define versions. CI deploys to internal track. Humans promote to production.**
+**Releases define versions. CI deploys to internal track. Humans approve production.**
 
-Automation handles versioning, tagging, building, and Play Store internal track deployment. Promotion to production remains a manual step.
+Automation handles versioning, tagging, building, and every Play Store
+deployment. Promotion to production still requires a human decision, but that
+decision is one approval click in the workflow run — never a manual step in
+the Play Console.

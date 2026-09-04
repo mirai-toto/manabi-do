@@ -1,8 +1,10 @@
 # Play Store release notes
 
 These files become the "What's new" text on the Play Store listing. They are
-uploaded by the `Deploy to Play Store` step in
-`.github/workflows/build-android.yml` via the `whatsNewDirectory` input.
+uploaded by the `Deploy to Play internal track` job in
+`.github/workflows/build-android.yml` via the `whatsNewDirectory` input. The
+`Promote to Play production` job copies the internal release — notes included —
+so the same text reaches production without being retyped.
 
 ## Rules
 

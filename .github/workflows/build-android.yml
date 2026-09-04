@@ -1,4 +1,8 @@
-name: build android release
+name: android release
+
+# The file must stay at build-android.yml: versionCode comes from
+# github.run_number, and that counter is tied to the workflow file path.
+# Renaming the file resets it to 1, which Play refuses permanently.
 
 on:
   release:
@@ -6,12 +10,13 @@ on:
 
 jobs:
   build:
+    name: Build signed AAB
     runs-on: ubuntu-latest
     environment: release
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 17
@@ -58,11 +63,48 @@ jobs:
           files: manabi_do/build/app/outputs/bundle/release/app-release.aab
           token: ${{ secrets.RELEASE_PAT }}
 
-      - name: Deploy to Play Store (internal track)
+      - name: Share AAB with the deploy job
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-aab
+          path: manabi_do/build/app/outputs/bundle/release/app-release.aab
+
+  deploy-internal:
+    name: Deploy to Play internal track
+    needs: build
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download AAB
+        uses: actions/download-artifact@v4
+        with:
+          name: app-release-aab
+
+      - name: Upload to Play internal track
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
           packageName: com.github.mirai_toto.manabi_do
-          releaseFiles: manabi_do/build/app/outputs/bundle/release/app-release.aab
+          releaseFiles: app-release.aab
           tracks: internal
           whatsNewDirectory: distribution/whatsnew
+
+  promote-production:
+    name: Promote to Play production
+    needs: deploy-internal
+    # Required reviewers on the production environment pause this job until
+    # approved in the run's "Review deployments" dialog. Reject to skip a
+    # release; pending approvals expire after 30 days.
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Promote internal release to production
+        uses: kevin-david/promote-play-release@v1.2.0
+        with:
+          service-account-json-raw: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          package-name: com.github.mirai_toto.manabi_do
+          from-track: internal
+          to-track: production
+          user-fraction: 1.0
