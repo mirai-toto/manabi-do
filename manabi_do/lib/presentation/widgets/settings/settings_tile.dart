@@ -55,14 +55,14 @@ class SettingsTile extends StatelessWidget {
 
 /// A toggle settings row (switch).
 class SettingsToggle extends StatelessWidget {
-  final IconData icon;
+  final Widget leading;
   final String label;
   final bool value;
   final ValueChanged<bool> onChanged;
 
   const SettingsToggle({
     super.key,
-    required this.icon,
+    required this.leading,
     required this.label,
     required this.value,
     required this.onChanged,
@@ -78,7 +78,7 @@ class SettingsToggle extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: t.onSurfaceVariant),
+          leading,
           const SizedBox(width: AppDimens.spaceMd),
           Expanded(
             child: Text(

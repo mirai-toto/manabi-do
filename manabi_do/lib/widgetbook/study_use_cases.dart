@@ -24,9 +24,11 @@ Widget buildTodaysSessionCardDue(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: TodaysSessionCard(
-      kanaDue: 12,
-      kanjiDue: 23,
-      vocabDue: 12,
+      domains: const [
+        (glyph: 'か', due: 12),
+        (glyph: '字', due: 23),
+        (glyph: '語', due: 12),
+      ],
       newTotal: 10,
       onStart: () {},
     ),
@@ -42,9 +44,11 @@ Widget buildTodaysSessionCardCaughtUp(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: TodaysSessionCard(
-      kanaDue: 0,
-      kanjiDue: 0,
-      vocabDue: 0,
+      domains: const [
+        (glyph: 'か', due: 0),
+        (glyph: '字', due: 0),
+        (glyph: '語', due: 0),
+      ],
       newTotal: 0,
       onStart: () {},
     ),

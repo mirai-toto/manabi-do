@@ -9,22 +9,19 @@ import '../common/app_button.dart';
 /// Hero card summarising everything due today, with one button to start a
 /// combined review session. Shows a caught-up message when nothing is due.
 class TodaysSessionCard extends StatelessWidget {
-  final int kanaDue;
-  final int kanjiDue;
-  final int vocabDue;
+  /// Due count per enabled deck, rendered as glyph chips in order.
+  final List<({String glyph, int due})> domains;
   final int newTotal;
   final VoidCallback onStart;
 
   const TodaysSessionCard({
     super.key,
-    required this.kanaDue,
-    required this.kanjiDue,
-    required this.vocabDue,
+    required this.domains,
     required this.newTotal,
     required this.onStart,
   });
 
-  int get _dueTotal => kanaDue + kanjiDue + vocabDue;
+  int get _dueTotal => domains.fold(0, (sum, d) => sum + d.due);
 
   @override
   Widget build(BuildContext context) {
@@ -77,11 +74,10 @@ class TodaysSessionCard extends StatelessWidget {
             const SizedBox(height: AppDimens.spaceSm),
             Row(
               children: [
-                _DomainChip(glyph: 'か', count: kanaDue),
-                const SizedBox(width: AppDimens.spaceSm),
-                _DomainChip(glyph: '字', count: kanjiDue),
-                const SizedBox(width: AppDimens.spaceSm),
-                _DomainChip(glyph: '語', count: vocabDue),
+                for (final (i, domain) in domains.indexed) ...[
+                  if (i > 0) const SizedBox(width: AppDimens.spaceSm),
+                  _DomainChip(glyph: domain.glyph, count: domain.due),
+                ],
               ],
             ),
             const SizedBox(height: AppDimens.spaceMd),

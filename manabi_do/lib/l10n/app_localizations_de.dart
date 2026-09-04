@@ -420,6 +420,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsPractice => 'Übung';
 
   @override
+  String get settingsHomeScreen => 'Startbildschirm';
+
+  @override
   String get settingsPracticeNewCharacters => 'Neue Zeichen pro Tag';
 
   @override

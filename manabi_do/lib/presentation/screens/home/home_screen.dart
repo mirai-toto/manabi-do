@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/providers/home_settings_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
@@ -128,6 +129,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         ref.watch(weekActivityProvider).asData?.value ?? List.filled(7, false);
     final continueTarget = ref.watch(grammarContinueProvider).asData?.value;
 
+    final show =
+        ref.watch(homeSettingsProvider).asData?.value ?? const HomeSettings();
+    final domains = [
+      if (show.showKana) (glyph: 'か', due: kanaDue),
+      if (show.showKanji) (glyph: '字', due: kanjiDue),
+      if (show.showVocab) (glyph: '語', due: vocabDue),
+    ];
+    final newTotal =
+        (show.showKana ? kanaNew : 0) +
+        (show.showKanji ? kanjiNew : 0) +
+        (show.showVocab ? vocabNew : 0);
+
     return Align(
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
@@ -148,59 +161,65 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   TodaysSessionCard(
-                    kanaDue: kanaDue,
-                    kanjiDue: kanjiDue,
-                    vocabDue: vocabDue,
-                    newTotal: kanaNew + kanjiNew + vocabNew,
+                    domains: domains,
+                    newTotal: newTotal,
                     onStart: _startReviews,
                   ),
-                  const SizedBox(height: AppDimens.spaceLg),
-                  SectionLabel(l.yourDecks),
-                  const SizedBox(height: AppDimens.spaceSm),
-                  DeckRow(
-                    title: l.kana,
-                    glyph: 'か',
-                    color: t.characters,
-                    known: kanaProgress.known,
-                    seen: kanaProgress.seen,
-                    newToday: kanaNew,
-                    due: kanaDue,
-                    onTap: () => _openPractice(
-                      title: l.kana,
-                      color: t.characters,
-                      loadQueue: loadKanaQueue,
-                    ),
-                  ),
-                  const SizedBox(height: AppDimens.spaceSm),
-                  DeckRow(
-                    title: l.tabKanji,
-                    glyph: '字',
-                    color: t.characters,
-                    known: kanjiProgress.known,
-                    seen: kanjiProgress.seen,
-                    newToday: kanjiNew,
-                    due: kanjiDue,
-                    onTap: () => _openPractice(
-                      title: l.tabKanji,
-                      color: t.characters,
-                      loadQueue: loadKanjiQueue,
-                    ),
-                  ),
-                  const SizedBox(height: AppDimens.spaceSm),
-                  DeckRow(
-                    title: l.sectionVocabulary,
-                    glyph: '語',
-                    color: t.vocabulary,
-                    known: vocabProgress.known,
-                    seen: vocabProgress.seen,
-                    newToday: vocabNew,
-                    due: vocabDue,
-                    onTap: () => _openPractice(
-                      title: l.sectionVocabulary,
-                      color: t.vocabulary,
-                      loadQueue: loadVocabQueue,
-                    ),
-                  ),
+                  if (domains.isNotEmpty) ...[
+                    const SizedBox(height: AppDimens.spaceLg),
+                    SectionLabel(l.yourDecks),
+                    if (show.showKana) ...[
+                      const SizedBox(height: AppDimens.spaceSm),
+                      DeckRow(
+                        title: l.kana,
+                        glyph: 'か',
+                        color: t.characters,
+                        known: kanaProgress.known,
+                        seen: kanaProgress.seen,
+                        newToday: kanaNew,
+                        due: kanaDue,
+                        onTap: () => _openPractice(
+                          title: l.kana,
+                          color: t.characters,
+                          loadQueue: loadKanaQueue,
+                        ),
+                      ),
+                    ],
+                    if (show.showKanji) ...[
+                      const SizedBox(height: AppDimens.spaceSm),
+                      DeckRow(
+                        title: l.tabKanji,
+                        glyph: '字',
+                        color: t.characters,
+                        known: kanjiProgress.known,
+                        seen: kanjiProgress.seen,
+                        newToday: kanjiNew,
+                        due: kanjiDue,
+                        onTap: () => _openPractice(
+                          title: l.tabKanji,
+                          color: t.characters,
+                          loadQueue: loadKanjiQueue,
+                        ),
+                      ),
+                    ],
+                    if (show.showVocab) ...[
+                      const SizedBox(height: AppDimens.spaceSm),
+                      DeckRow(
+                        title: l.sectionVocabulary,
+                        glyph: '語',
+                        color: t.vocabulary,
+                        known: vocabProgress.known,
+                        seen: vocabProgress.seen,
+                        newToday: vocabNew,
+                        due: vocabDue,
+                        onTap: () => _openPractice(
+                          title: l.sectionVocabulary,
+                          color: t.vocabulary,
+                          loadQueue: loadVocabQueue,
+                        ),
+                      ),
+                    ],
+                  ],
                   if (continueTarget != null) ...[
                     const SizedBox(height: AppDimens.spaceLg),
                     SectionLabel(l.keepLearning),

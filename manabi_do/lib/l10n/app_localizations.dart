@@ -856,6 +856,12 @@ abstract class AppLocalizations {
   /// **'Practice'**
   String get settingsPractice;
 
+  /// No description provided for @settingsHomeScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Home screen'**
+  String get settingsHomeScreen;
+
   /// No description provided for @settingsPracticeNewCharacters.
   ///
   /// In en, this message translates to:

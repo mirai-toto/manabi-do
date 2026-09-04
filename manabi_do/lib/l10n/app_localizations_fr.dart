@@ -421,6 +421,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsPractice => 'Entraînement';
 
   @override
+  String get settingsHomeScreen => 'Écran d\'accueil';
+
+  @override
   String get settingsPracticeNewCharacters => 'Nouveaux caractères par jour';
 
   @override

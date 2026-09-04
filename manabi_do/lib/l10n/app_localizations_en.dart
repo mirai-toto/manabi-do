@@ -419,6 +419,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsPractice => 'Practice';
 
   @override
+  String get settingsHomeScreen => 'Home screen';
+
+  @override
   String get settingsPracticeNewCharacters => 'New characters per day';
 
   @override
