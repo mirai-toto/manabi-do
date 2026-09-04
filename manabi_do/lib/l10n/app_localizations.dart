@@ -790,12 +790,6 @@ abstract class AppLocalizations {
   /// **'Vowels'**
   String get kanaRowVowels;
 
-  /// No description provided for @settingsData.
-  ///
-  /// In en, this message translates to:
-  /// **'Data'**
-  String get settingsData;
-
   /// No description provided for @settingsResetProgress.
   ///
   /// In en, this message translates to:
@@ -904,12 +898,6 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settingsLanguage;
 
-  /// No description provided for @settingsFeedback.
-  ///
-  /// In en, this message translates to:
-  /// **'Feedback'**
-  String get settingsFeedback;
-
   /// No description provided for @settingsSendFeedback.
   ///
   /// In en, this message translates to:
@@ -939,12 +927,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Address copied'**
   String get feedbackAddressCopied;
-
-  /// No description provided for @settingsSupport.
-  ///
-  /// In en, this message translates to:
-  /// **'Support'**
-  String get settingsSupport;
 
   /// No description provided for @settingsSupportDeveloper.
   ///

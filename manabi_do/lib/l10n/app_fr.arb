@@ -168,8 +168,6 @@
   },
 
   "kanaRowVowels": "Voyelles",
-
-  "settingsData": "Données",
   "settingsResetProgress": "Réinitialiser la progression",
   "resetProgressTitle": "Réinitialiser toute la progression ?",
   "resetProgressBody": "Toutes les cartes SRS seront définitivement supprimées.",
@@ -190,8 +188,6 @@
   "settingsThemeLight": "Clair",
   "settingsThemeDark": "Sombre",
   "settingsLanguage": "Langue",
-
-  "settingsFeedback": "Commentaires",
   "settingsSendFeedback": "Envoyer un commentaire",
   "feedbackEmailSubject": "Commentaire Manabi Do",
   "feedbackEmailBodyHint": "Ce qui fonctionne, ce qui ne va pas, ce qui manque.",
@@ -200,8 +196,6 @@
     "placeholders": { "email": { "type": "String" } }
   },
   "feedbackAddressCopied": "Adresse copiée",
-
-  "settingsSupport": "Soutien",
   "settingsSupportDeveloper": "Soutenir le développement",
   "supportNoBrowser": "Impossible d'ouvrir le lien. {url}",
   "@supportNoBrowser": {

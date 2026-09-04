@@ -189,8 +189,6 @@
   },
 
   "kanaRowVowels": "Vowels",
-
-  "settingsData": "Data",
   "settingsResetProgress": "Reset all progress",
   "resetProgressTitle": "Reset all progress?",
   "resetProgressBody": "All SRS cards will be permanently deleted.",
@@ -211,8 +209,6 @@
   "settingsThemeLight": "Light",
   "settingsThemeDark": "Dark",
   "settingsLanguage": "Language",
-
-  "settingsFeedback": "Feedback",
   "settingsSendFeedback": "Send feedback",
   "feedbackEmailSubject": "Manabi Do feedback",
   "feedbackEmailBodyHint": "What works, what doesn't, and what's missing.",
@@ -221,8 +217,6 @@
     "placeholders": { "email": { "type": "String" } }
   },
   "feedbackAddressCopied": "Address copied",
-
-  "settingsSupport": "Support",
   "settingsSupportDeveloper": "Support development",
   "supportNoBrowser": "Couldn't open the link. {url}",
   "@supportNoBrowser": {

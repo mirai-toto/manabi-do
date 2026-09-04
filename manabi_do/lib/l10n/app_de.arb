@@ -170,8 +170,6 @@
   },
 
   "kanaRowVowels": "Vokale",
-
-  "settingsData": "Daten",
   "settingsResetProgress": "Alle Fortschritte zurücksetzen",
   "resetProgressTitle": "Alle Fortschritte zurücksetzen?",
   "resetProgressBody": "Alle SRS-Karten werden dauerhaft gelöscht.",
@@ -192,8 +190,6 @@
   "settingsThemeLight": "Hell",
   "settingsThemeDark": "Dunkel",
   "settingsLanguage": "Sprache",
-
-  "settingsFeedback": "Feedback",
   "settingsSendFeedback": "Feedback senden",
   "feedbackEmailSubject": "Manabi Do Feedback",
   "feedbackEmailBodyHint": "Was gut funktioniert, was nicht, und was fehlt.",
@@ -202,8 +198,6 @@
     "placeholders": { "email": { "type": "String" } }
   },
   "feedbackAddressCopied": "Adresse kopiert",
-
-  "settingsSupport": "Unterstützung",
   "settingsSupportDeveloper": "Entwicklung unterstützen",
   "supportNoBrowser": "Link konnte nicht geöffnet werden. {url}",
   "@supportNoBrowser": {

@@ -385,9 +385,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kanaRowVowels => 'Vokale';
 
   @override
-  String get settingsData => 'Daten';
-
-  @override
   String get settingsResetProgress => 'Alle Fortschritte zurücksetzen';
 
   @override
@@ -444,9 +441,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsLanguage => 'Sprache';
 
   @override
-  String get settingsFeedback => 'Feedback';
-
-  @override
   String get settingsSendFeedback => 'Feedback senden';
 
   @override
@@ -463,9 +457,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get feedbackAddressCopied => 'Adresse kopiert';
-
-  @override
-  String get settingsSupport => 'Unterstützung';
 
   @override
   String get settingsSupportDeveloper => 'Entwicklung unterstützen';

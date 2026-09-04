@@ -203,8 +203,6 @@ class SettingsScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsData),
-            const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [
                 SettingsTile(
@@ -220,8 +218,6 @@ class SettingsScreen extends ConsumerWidget {
               ],
             ),
 
-            const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsFeedback),
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [
@@ -237,8 +233,6 @@ class SettingsScreen extends ConsumerWidget {
               ],
             ),
 
-            const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsSupport),
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [
