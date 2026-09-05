@@ -251,12 +251,9 @@
   "@drawingStrokeCount": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "drawingStrokeResult": "{correct} / {total} traits corrects",
-  "@drawingStrokeResult": {
-    "placeholders": {
-      "correct": { "type": "int" },
-      "total": { "type": "int" }
-    }
+  "drawingMistakeCount": "{count, plural, =0{Parfait !} one{1 erreur} other{{count} erreurs}}",
+  "@drawingMistakeCount": {
+    "placeholders": { "count": { "type": "int" } }
   },
 
   "mcqSelectKanaReading": "Quelle est la lecture de ce kana ?",

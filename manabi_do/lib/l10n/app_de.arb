@@ -253,12 +253,9 @@
   "@drawingStrokeCount": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "drawingStrokeResult": "{correct} / {total} Striche korrekt",
-  "@drawingStrokeResult": {
-    "placeholders": {
-      "correct": { "type": "int" },
-      "total": { "type": "int" }
-    }
+  "drawingMistakeCount": "{count, plural, =0{Perfekt!} one{1 Fehler} other{{count} Fehler}}",
+  "@drawingMistakeCount": {
+    "placeholders": { "count": { "type": "int" } }
   },
 
   "mcqSelectKanaReading": "Wie lautet die Lesung dieses Kana?",

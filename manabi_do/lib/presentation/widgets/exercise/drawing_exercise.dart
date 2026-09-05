@@ -55,7 +55,9 @@ class _DrawingExerciseState extends State<DrawingExercise>
   List<List<Offset>> _strokes = [];
   List<bool> _strokeResults = [];
   int _hintLevel = 0;
-  int _mistakeCount = 0;
+  // Reference stroke indices that were rejected at least once. Counted per
+  // stroke, not per attempt, so one tricky stroke can only cost one mistake.
+  final Set<int> _wrongStrokes = <int>{};
   bool _hintsUsed = false;
   bool _autoAdvanceDone = false;
   final _canvasKey = GlobalKey<KanjiDrawingCanvasState>();
@@ -65,7 +67,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
     duration: const Duration(milliseconds: 500),
   )..addListener(() => setState(() {}));
 
-  bool get _allCorrect => _done && _strokeResults.every((r) => r);
+  bool get _allCorrect => _done && _wrongStrokes.isEmpty;
 
   bool get _done =>
       _strokeResults.length == widget.referenceStrokes.length &&
@@ -160,7 +162,6 @@ class _DrawingExerciseState extends State<DrawingExercise>
   Widget _buildDoneArea(BuildContext context, DrawingSettings s) {
     final l = context.l10n;
     final t = context.tokens;
-    final refStrokes = widget.referenceStrokes;
     final showSrsActions =
         widget.onRate != null &&
         !_hintsUsed &&
@@ -180,7 +181,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
           )
         else ...[
           Text(
-            l.drawingStrokeResult(_mistakeCount, refStrokes.length),
+            l.drawingMistakeCount(_wrongStrokes.length),
             style: AppTextStyles.body.copyWith(
               color: _allCorrect ? t.success : t.error,
               fontWeight: FontWeight.w600,
@@ -418,7 +419,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
 
     if (!result) {
       // Don't commit false to _strokeResults: avoids _done flipping true prematurely
-      setState(() => _mistakeCount++);
+      setState(() => _wrongStrokes.add(newIdx));
       _wrongFade.forward(from: 0).then((_) {
         if (mounted) _canvasKey.currentState?.undo();
       });
@@ -437,7 +438,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
       _strokes = [];
       _strokeResults = [];
       _hintLevel = 0;
-      _mistakeCount = 0;
+      _wrongStrokes.clear();
       _hintsUsed = false;
       _autoAdvanceDone = false;
     });

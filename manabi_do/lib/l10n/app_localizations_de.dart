@@ -577,8 +577,15 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String drawingStrokeResult(int correct, int total) {
-    return '$correct / $total Striche korrekt';
+  String drawingMistakeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Fehler',
+      one: '1 Fehler',
+      zero: 'Perfekt!',
+    );
+    return '$_temp0';
   }
 
   @override

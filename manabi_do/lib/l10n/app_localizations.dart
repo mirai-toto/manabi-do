@@ -1132,11 +1132,11 @@ abstract class AppLocalizations {
   /// **'{count} strokes'**
   String drawingStrokeCount(int count);
 
-  /// No description provided for @drawingStrokeResult.
+  /// No description provided for @drawingMistakeCount.
   ///
   /// In en, this message translates to:
-  /// **'{correct} / {total} strokes correct'**
-  String drawingStrokeResult(int correct, int total);
+  /// **'{count, plural, =0{Perfect!} one{1 mistake} other{{count} mistakes}}'**
+  String drawingMistakeCount(int count);
 
   /// No description provided for @mcqSelectKanaReading.
   ///
