@@ -136,8 +136,6 @@
     "placeholders": { "index": { "type": "int" }, "total": { "type": "int" } }
   },
 
-  "comingSoon": "Coming soon",
-
   "strokeOrderPlaceholder": "▶ Stroke order animation",
 
   "strokeOrder": "Stroke Order",

@@ -261,9 +261,6 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get comingSoon => 'Demnächst verfügbar';
-
-  @override
   String get strokeOrderPlaceholder => '▶ Strichfolge-Animation';
 
   @override

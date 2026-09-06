@@ -550,12 +550,6 @@ abstract class AppLocalizations {
   /// **'Lesson {index} of {total}'**
   String lessonOfTotal(int index, int total);
 
-  /// No description provided for @comingSoon.
-  ///
-  /// In en, this message translates to:
-  /// **'Coming soon'**
-  String get comingSoon;
-
   /// No description provided for @strokeOrderPlaceholder.
   ///
   /// In en, this message translates to:

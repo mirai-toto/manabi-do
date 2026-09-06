@@ -261,9 +261,6 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get comingSoon => 'Bientôt disponible';
-
-  @override
   String get strokeOrderPlaceholder => '▶ Animation de l\'ordre des traits';
 
   @override
