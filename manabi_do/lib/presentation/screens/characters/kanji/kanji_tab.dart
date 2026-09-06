@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../providers/home_provider.dart';
-import '../../../widgets/study/kanji_group_selector.dart';
-import '../../../widgets/study/kanji_group_view.dart';
-import '../../../widgets/study/kanji_level_selector.dart';
+import '../../../widgets/widgets.dart';
 
 class KanjiTabView extends ConsumerWidget {
   const KanjiTabView({super.key});
@@ -24,9 +22,21 @@ class KanjiTabView extends ConsumerWidget {
     }
 
     if (selectedGroup == null) {
-      return KanjiGroupSelector(level: selectedLevel);
+      return KanjiGroupSelector(
+        level: selectedLevel,
+        onBack: () {
+          ref.read(kanjiSelectedGroupProvider.notifier).clear();
+          ref.read(kanjiSelectedLevelProvider.notifier).clear();
+        },
+        onSelectGroup: (index) =>
+            ref.read(kanjiSelectedGroupProvider.notifier).select(index),
+      );
     }
 
-    return KanjiGroupView(level: selectedLevel, groupIndex: selectedGroup);
+    return KanjiGroupView(
+      level: selectedLevel,
+      groupIndex: selectedGroup,
+      onBack: () => ref.read(kanjiSelectedGroupProvider.notifier).clear(),
+    );
   }
 }

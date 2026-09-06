@@ -5,7 +5,6 @@ import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/home_provider.dart';
 import '../../providers/kanji_provider.dart';
 import '../widgets.dart';
 import '../../screens/practice/practice_selection_screen.dart';
@@ -15,10 +14,12 @@ import '../../screens/characters/kanji/kanji_practice_screen.dart';
 class KanjiGroupView extends ConsumerWidget {
   final String level;
   final int groupIndex;
+  final VoidCallback onBack;
   const KanjiGroupView({
     super.key,
     required this.level,
     required this.groupIndex,
+    required this.onBack,
   });
 
   @override
@@ -50,7 +51,7 @@ class KanjiGroupView extends ConsumerWidget {
             label:
                 '${context.l10n.groupN(groupIndex + 1)} · ${start + 1}–${start + groupKanji.length}',
             color: color,
-            onBack: () => ref.read(kanjiSelectedGroupProvider.notifier).clear(),
+            onBack: onBack,
           ),
           ProgressRow(
             known: learnedCount,

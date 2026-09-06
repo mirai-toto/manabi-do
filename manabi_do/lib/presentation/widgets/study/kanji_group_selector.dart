@@ -6,7 +6,6 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
-import '../../providers/home_provider.dart';
 import '../../providers/kanji_provider.dart';
 import '../widgets.dart';
 import '../../screens/practice/practice_selection_screen.dart';
@@ -17,7 +16,14 @@ const kKanjiGroupSize = 20;
 
 class KanjiGroupSelector extends ConsumerWidget {
   final String level;
-  const KanjiGroupSelector({super.key, required this.level});
+  final VoidCallback onBack;
+  final void Function(int groupIndex) onSelectGroup;
+  const KanjiGroupSelector({
+    super.key,
+    required this.level,
+    required this.onBack,
+    required this.onSelectGroup,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -37,10 +43,7 @@ class KanjiGroupSelector extends ConsumerWidget {
             level: level,
             label: levelLabel(level, context),
             color: color,
-            onBack: () {
-              ref.read(kanjiSelectedGroupProvider.notifier).clear();
-              ref.read(kanjiSelectedLevelProvider.notifier).clear();
-            },
+            onBack: onBack,
           ),
           PracticeButton(
             color: color,
@@ -128,9 +131,7 @@ class KanjiGroupSelector extends ConsumerWidget {
                           '${start + 1}–$end · $learnedCount / ${groupKanji.length}',
                       progress: progress,
                       color: color,
-                      onTap: () => ref
-                          .read(kanjiSelectedGroupProvider.notifier)
-                          .select(i),
+                      onTap: () => onSelectGroup(i),
                     ),
                   );
                 }),
