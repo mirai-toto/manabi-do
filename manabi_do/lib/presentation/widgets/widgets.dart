@@ -8,6 +8,7 @@ export 'common/card_container.dart';
 export 'common/collapsible_section.dart';
 export 'common/confirm_dialog.dart';
 export 'common/difficulty_dots.dart';
+export 'common/japanese_sentence.dart';
 export 'common/japanese_text.dart';
 export 'common/jlpt_level_card.dart';
 export 'common/landing_hero_panel.dart';
@@ -29,6 +30,7 @@ export 'common/tappable_surface.dart';
 export 'navigation/app_nav_bar.dart';
 export 'navigation/app_nav_rail.dart';
 export 'navigation/nav_destination.dart';
+export 'navigation/nav_item.dart';
 
 // settings
 export 'settings/language_picker_sheet.dart';
@@ -39,6 +41,7 @@ export 'settings/settings_practice_card.dart';
 export 'settings/settings_tile.dart';
 
 // grammar
+export 'grammar/grammar_block_renderer.dart';
 export 'grammar/lesson_read_toggle.dart';
 
 // study
@@ -64,6 +67,7 @@ export 'study/week_strip.dart';
 // characters
 export 'characters/character_cell.dart';
 export 'characters/character_hero_box.dart';
+export 'characters/kanji_drawing_canvas.dart';
 export 'characters/kanji_example_words.dart';
 export 'characters/kanji_grid.dart';
 export 'characters/kanji_hero.dart';
@@ -76,6 +80,8 @@ export 'characters/stroke_step_row.dart';
 
 // exercise
 export 'exercise/cloze_option.dart';
+export 'exercise/drawing_exercise.dart';
+export 'exercise/example_card.dart';
 export 'exercise/feedback_panel.dart';
 export 'exercise/flash_card.dart';
 export 'exercise/grammar_builder_body.dart';

@@ -4,7 +4,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../presentation/widgets/characters/character_cell.dart';
 import '../presentation/widgets/characters/kanji_drawing_canvas.dart';
-import '../presentation/widgets/characters/kanji_strokes_provider.dart';
+import '../presentation/providers/kanji_strokes_provider.dart';
 import '../presentation/widgets/characters/stroke_animators.dart';
 import '../presentation/widgets/characters/stroke_step_row.dart';
 

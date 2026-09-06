@@ -9,10 +9,9 @@ import '../../../../l10n/l10n.dart';
 import '../../../../l10n/level_label.dart';
 import '../../../providers/drawing_settings_provider.dart';
 import '../../../services/kanji_session_service.dart';
-import '../../../widgets/characters/kanji_strokes_provider.dart';
-import '../../../widgets/exercise/drawing_exercise.dart';
-import '../../../widgets/exercise/practice_progress_row.dart';
+import '../../../providers/kanji_strokes_provider.dart';
 import '../../practice/practice_session_screen.dart';
+import '../../../widgets/widgets.dart';
 
 // ── Screen ────────────────────────────────────────────────────────────────────
 

@@ -8,13 +8,12 @@ import '../../../core/models/sentence_settings.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../widgets/common/segment_selector.dart';
-import '../../widgets/common/sheet_drag_handle.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/drawing_settings_provider.dart';
 import '../../providers/flashcard_settings_provider.dart';
 import '../../providers/mcq_settings_provider.dart';
 import '../../providers/sentence_settings_provider.dart';
+import '../../widgets/widgets.dart';
 
 export '../../../core/models/sentence_settings.dart' show TranslationMode;
 
@@ -421,7 +420,7 @@ class _SwitchRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceXs),
       child: Row(
         children: [
           Expanded(

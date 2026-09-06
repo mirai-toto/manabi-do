@@ -19,41 +19,47 @@ class LessonReadToggle extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 150),
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.spaceLg,
-          vertical: AppDimens.spaceMd,
-        ),
-        decoration: BoxDecoration(
-          color: isRead ? t.successContainer : t.surfaceContainer,
-          borderRadius: BorderRadius.circular(AppDimens.radiusXl),
-          border: Border.all(
-            color: isRead ? t.success : Colors.transparent,
-            width: 2,
+    return Semantics(
+      label: isRead ? l.lessonMarkedCompleted : l.markLessonAsCompleted,
+      button: true,
+      toggled: isRead,
+      excludeSemantics: true,
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppDimens.spaceLg,
+            vertical: AppDimens.spaceMd,
           ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              isRead
-                  ? Icons.check_circle_rounded
-                  : Icons.check_circle_outline_rounded,
-              color: isRead ? t.success : t.onSurfaceVariant,
-              size: 20,
+          decoration: BoxDecoration(
+            color: isRead ? t.successContainer : t.surfaceContainer,
+            borderRadius: BorderRadius.circular(AppDimens.radiusXl),
+            border: Border.all(
+              color: isRead ? t.success : Colors.transparent,
+              width: 2,
             ),
-            const SizedBox(width: AppDimens.spaceSm),
-            Text(
-              isRead ? l.lessonMarkedCompleted : l.markLessonAsCompleted,
-              style: AppTextStyles.labelLarge.copyWith(
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                isRead
+                    ? Icons.check_circle_rounded
+                    : Icons.check_circle_outline_rounded,
                 color: isRead ? t.success : t.onSurfaceVariant,
-                fontWeight: FontWeight.w600,
+                size: 20,
               ),
-            ),
-          ],
+              const SizedBox(width: AppDimens.spaceSm),
+              Text(
+                isRead ? l.lessonMarkedCompleted : l.markLessonAsCompleted,
+                style: AppTextStyles.labelLarge.copyWith(
+                  color: isRead ? t.success : t.onSurfaceVariant,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

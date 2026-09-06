@@ -154,24 +154,30 @@ class SentenceClozeCard extends StatelessWidget {
               ),
               const Spacer(),
               if (onToggleTranslation != null)
-                GestureDetector(
-                  onTap: onToggleTranslation,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.translate_rounded,
-                        size: 14,
-                        color: showTranslation ? color : t.onSurfaceVariant,
-                      ),
-                      const SizedBox(width: AppDimens.spaceXs),
-                      Text(
-                        showTranslation ? l.hide : l.translationModeLabel,
-                        style: AppTextStyles.labelSmall.copyWith(
+                Semantics(
+                  label: showTranslation ? l.hide : l.translationModeLabel,
+                  button: true,
+                  toggled: showTranslation,
+                  excludeSemantics: true,
+                  child: GestureDetector(
+                    onTap: onToggleTranslation,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.translate_rounded,
+                          size: 14,
                           color: showTranslation ? color : t.onSurfaceVariant,
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: AppDimens.spaceXs),
+                        Text(
+                          showTranslation ? l.hide : l.translationModeLabel,
+                          style: AppTextStyles.labelSmall.copyWith(
+                            color: showTranslation ? color : t.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               SpeakButton(text: sentence.japanese, color: color),
@@ -351,7 +357,7 @@ class _CopyOption extends StatelessWidget {
 WidgetSpan _blankSpan(Color color) => WidgetSpan(
   alignment: PlaceholderAlignment.bottom,
   child: Container(
-    margin: const EdgeInsets.symmetric(horizontal: 4),
+    margin: const EdgeInsets.symmetric(horizontal: AppDimens.spaceXs),
     width: 72,
     decoration: BoxDecoration(
       border: Border(bottom: BorderSide(color: color, width: 2.5)),

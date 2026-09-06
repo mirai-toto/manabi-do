@@ -321,27 +321,33 @@ class _Chip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    return GestureDetector(
-      onTap: enabled ? onTap : null,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.chipPaddingH,
-          vertical: AppDimens.chipPaddingV,
-        ),
-        decoration: BoxDecoration(
-          color: selected
-              ? color.withValues(alpha: 0.15)
-              : t.surfaceContainerHigh,
-          borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-          border: Border.all(color: selected ? color : t.outlineVariant),
-        ),
-        child: JapaneseText(
-          word: label,
-          style: AppTextStyles.jpBody.copyWith(
-            color: selected ? color : t.onSurface,
+    return Semantics(
+      label: label,
+      button: true,
+      selected: selected,
+      excludeSemantics: true,
+      child: GestureDetector(
+        onTap: enabled ? onTap : null,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppDimens.chipPaddingH,
+            vertical: AppDimens.chipPaddingV,
           ),
-          rubyStyle: AppTextStyles.jpFurigana.copyWith(
-            color: selected ? color : t.onSurfaceVariant,
+          decoration: BoxDecoration(
+            color: selected
+                ? color.withValues(alpha: 0.15)
+                : t.surfaceContainerHigh,
+            borderRadius: BorderRadius.circular(AppDimens.radiusPill),
+            border: Border.all(color: selected ? color : t.outlineVariant),
+          ),
+          child: JapaneseText(
+            word: label,
+            style: AppTextStyles.jpBody.copyWith(
+              color: selected ? color : t.onSurface,
+            ),
+            rubyStyle: AppTextStyles.jpFurigana.copyWith(
+              color: selected ? color : t.onSurfaceVariant,
+            ),
           ),
         ),
       ),

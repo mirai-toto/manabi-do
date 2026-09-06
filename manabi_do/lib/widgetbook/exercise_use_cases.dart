@@ -7,7 +7,7 @@ import '../presentation/widgets/exercise/grammar_builder_body.dart';
 import '../presentation/widgets/exercise/grammar_cloze_body.dart';
 import '../presentation/widgets/exercise/grammar_error_detection_body.dart';
 import '../presentation/providers/drawing_settings_provider.dart';
-import '../presentation/widgets/characters/kanji_strokes_provider.dart';
+import '../presentation/providers/kanji_strokes_provider.dart';
 import '../presentation/widgets/exercise/drawing_exercise.dart';
 import '../presentation/widgets/exercise/flash_card.dart';
 import '../presentation/widgets/exercise/lesson_reader_card.dart';

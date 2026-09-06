@@ -6,7 +6,6 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/grammar_provider.dart';
-import '../../widgets/grammar/grammar_block_renderer.dart';
 import '../../widgets/widgets.dart';
 
 class GrammarLessonScreen extends ConsumerWidget {
@@ -20,7 +19,7 @@ class GrammarLessonScreen extends ConsumerWidget {
     required this.lessonId,
     required this.title,
     required this.blocks,
-    this.levelColor = const Color(0xFF795548),
+    required this.levelColor,
   });
 
   @override
