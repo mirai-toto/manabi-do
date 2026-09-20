@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers/srs_settings_provider.dart';
+import '../../data/database/app_database.dart';
 import 'database_provider.dart';
 
 /// Drives tab selection across ShellScreen and HomeScreen.

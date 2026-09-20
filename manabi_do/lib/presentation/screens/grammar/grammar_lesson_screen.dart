@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../data/database/app_database.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/grammar_provider.dart';
 import '../../widgets/widgets.dart';

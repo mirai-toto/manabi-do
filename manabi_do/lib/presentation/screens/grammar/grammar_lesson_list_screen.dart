@@ -6,6 +6,7 @@ import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/grammar_provider.dart';
