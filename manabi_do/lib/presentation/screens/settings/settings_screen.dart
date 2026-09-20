@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../../core/providers/home_settings_provider.dart';
 import '../../../core/providers/locale_provider.dart';
+import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -128,6 +130,18 @@ class SettingsScreen extends ConsumerWidget {
         ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system;
     final locale = ref.watch(localeProvider);
 
+    final SrsSettings srs =
+        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
+    final SrsSettingsNotifier srsNotifier = ref.read(
+      srsSettingsProvider.notifier,
+    );
+
+    final HomeSettings home =
+        ref.watch(homeSettingsProvider).asData?.value ?? const HomeSettings();
+    final HomeSettingsNotifier homeNotifier = ref.read(
+      homeSettingsProvider.notifier,
+    );
+
     final currentLang = languages.firstWhere(
       (e) => e.code == locale.languageCode,
       orElse: () => languages.first,
@@ -145,12 +159,24 @@ class SettingsScreen extends ConsumerWidget {
 
             SectionLabel(l.settingsPractice),
             const SizedBox(height: AppDimens.spaceSm),
-            const PracticeSettingsCard(),
+            PracticeSettingsCard(
+              newCharactersPerDay: srs.newCharactersPerDay,
+              newVocabPerDay: srs.newVocabPerDay,
+              onNewCharactersChanged: srsNotifier.setNewCharactersPerDay,
+              onNewVocabChanged: srsNotifier.setNewVocabPerDay,
+            ),
 
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsHomeScreen),
             const SizedBox(height: AppDimens.spaceSm),
-            const HomeSettingsCard(),
+            HomeSettingsCard(
+              showKana: home.showKana,
+              showKanji: home.showKanji,
+              showVocab: home.showVocab,
+              onShowKanaChanged: homeNotifier.setShowKana,
+              onShowKanjiChanged: homeNotifier.setShowKanji,
+              onShowVocabChanged: homeNotifier.setShowVocab,
+            ),
 
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsAppearance),

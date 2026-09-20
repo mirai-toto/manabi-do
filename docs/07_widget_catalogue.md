@@ -1191,10 +1191,32 @@ AttributionCard(
 
 ### PracticeSettingsCard
 
-`ConsumerWidget` that reads SRS settings and renders a `SettingsCard` with steppers for new characters/vocab per day and an MCQ/flashcard toggle. Self-contained — no props.
+`StatelessWidget` that renders a `SettingsCard` with steppers for new characters and new vocab per day. Steps by 5, clamped to 0–50. The caller reads `srsSettingsProvider` and passes the values in.
 
 ```dart
-const PracticeSettingsCard()
+PracticeSettingsCard(
+  newCharactersPerDay: srs.newCharactersPerDay,
+  newVocabPerDay: srs.newVocabPerDay,
+  onNewCharactersChanged: srsNotifier.setNewCharactersPerDay,
+  onNewVocabChanged: srsNotifier.setNewVocabPerDay,
+)
+```
+
+---
+
+### HomeSettingsCard
+
+`StatelessWidget` that renders a `SettingsCard` with one `SettingsToggle` per deck (kana, kanji, vocabulary), controlling which decks appear on the home screen. The caller reads `homeSettingsProvider` and passes the values in.
+
+```dart
+HomeSettingsCard(
+  showKana: home.showKana,
+  showKanji: home.showKanji,
+  showVocab: home.showVocab,
+  onShowKanaChanged: homeNotifier.setShowKana,
+  onShowKanjiChanged: homeNotifier.setShowKanji,
+  onShowVocabChanged: homeNotifier.setShowVocab,
+)
 ```
 
 ---

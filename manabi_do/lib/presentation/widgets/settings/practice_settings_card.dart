@@ -1,53 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/providers/srs_settings_provider.dart';
 import '../../../l10n/l10n.dart';
 import '../widgets.dart';
 
-class PracticeSettingsCard extends ConsumerWidget {
-  const PracticeSettingsCard({super.key});
+const int _minPerDay = 0;
+const int _maxPerDay = 50;
+const int _stepPerDay = 5;
+
+/// Steppers for how many new characters and vocab words to introduce per day.
+class PracticeSettingsCard extends StatelessWidget {
+  final int newCharactersPerDay;
+  final int newVocabPerDay;
+  final ValueChanged<int> onNewCharactersChanged;
+  final ValueChanged<int> onNewVocabChanged;
+
+  const PracticeSettingsCard({
+    super.key,
+    required this.newCharactersPerDay,
+    required this.newVocabPerDay,
+    required this.onNewCharactersChanged,
+    required this.onNewVocabChanged,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l = context.l10n;
-    final srs = ref.watch(srsSettingsProvider);
-    final newChars = srs.asData?.value.newCharactersPerDay ?? 10;
-    final newVocab = srs.asData?.value.newVocabPerDay ?? 10;
+  Widget build(BuildContext context) {
+    final AppLocalizations l = context.l10n;
 
     return SettingsCard(
       children: [
         SettingsStepper(
           icon: Icons.auto_stories_rounded,
           label: l.settingsPracticeNewCharacters,
-          value: newChars,
-          onDecrement: newChars > 0
-              ? () => ref
-                    .read(srsSettingsProvider.notifier)
-                    .setNewCharactersPerDay((newChars - 5).clamp(0, 50))
+          value: newCharactersPerDay,
+          onDecrement: newCharactersPerDay > _minPerDay
+              ? () => onNewCharactersChanged(_stepDown(newCharactersPerDay))
               : null,
-          onIncrement: newChars < 50
-              ? () => ref
-                    .read(srsSettingsProvider.notifier)
-                    .setNewCharactersPerDay(newChars + 5)
+          onIncrement: newCharactersPerDay < _maxPerDay
+              ? () => onNewCharactersChanged(_stepUp(newCharactersPerDay))
               : null,
         ),
         SettingsStepper(
           icon: Icons.translate_rounded,
           label: l.settingsPracticeNewVocab,
-          value: newVocab,
-          onDecrement: newVocab > 0
-              ? () => ref
-                    .read(srsSettingsProvider.notifier)
-                    .setNewVocabPerDay((newVocab - 5).clamp(0, 50))
+          value: newVocabPerDay,
+          onDecrement: newVocabPerDay > _minPerDay
+              ? () => onNewVocabChanged(_stepDown(newVocabPerDay))
               : null,
-          onIncrement: newVocab < 50
-              ? () => ref
-                    .read(srsSettingsProvider.notifier)
-                    .setNewVocabPerDay(newVocab + 5)
+          onIncrement: newVocabPerDay < _maxPerDay
+              ? () => onNewVocabChanged(_stepUp(newVocabPerDay))
               : null,
         ),
       ],
     );
   }
+
+  static int _stepDown(int value) =>
+      (value - _stepPerDay).clamp(_minPerDay, _maxPerDay);
+
+  static int _stepUp(int value) =>
+      (value + _stepPerDay).clamp(_minPerDay, _maxPerDay);
 }

@@ -705,6 +705,36 @@ final directories = <_widgetbook.WidgetbookNode>[
     name: 'Settings',
     children: [
       _widgetbook.WidgetbookComponent(
+        name: 'HomeSettingsCard',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'All on',
+            builder:
+                _manabi_do_widgetbook_settings_use_cases.buildHomeSettingsCard,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Mixed',
+            builder: _manabi_do_widgetbook_settings_use_cases
+                .buildHomeSettingsCardMixed,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'PracticeSettingsCard',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'At bounds',
+            builder: _manabi_do_widgetbook_settings_use_cases
+                .buildPracticeSettingsCardAtBounds,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder: _manabi_do_widgetbook_settings_use_cases
+                .buildPracticeSettingsCard,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
         name: 'SettingsCard',
         useCases: [
           _widgetbook.WidgetbookUseCase(

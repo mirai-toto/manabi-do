@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+import '../presentation/widgets/settings/home_settings_card.dart';
+import '../presentation/widgets/settings/practice_settings_card.dart';
 import '../presentation/widgets/settings/settings_card.dart';
 import '../presentation/widgets/settings/settings_tile.dart';
 
@@ -145,6 +147,74 @@ Widget buildSettingsStepperMin(BuildContext context) {
           value: 1,
         ),
       ],
+    ),
+  );
+}
+
+// ── PracticeSettingsCard ──────────────────────────────────────────────────────
+
+@widgetbook.UseCase(
+  name: 'Default',
+  type: PracticeSettingsCard,
+  path: 'Settings',
+)
+Widget buildPracticeSettingsCard(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: PracticeSettingsCard(
+      newCharactersPerDay: 10,
+      newVocabPerDay: 10,
+      onNewCharactersChanged: (_) {},
+      onNewVocabChanged: (_) {},
+    ),
+  );
+}
+
+@widgetbook.UseCase(
+  name: 'At bounds',
+  type: PracticeSettingsCard,
+  path: 'Settings',
+)
+Widget buildPracticeSettingsCardAtBounds(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: PracticeSettingsCard(
+      newCharactersPerDay: 0,
+      newVocabPerDay: 50,
+      onNewCharactersChanged: (_) {},
+      onNewVocabChanged: (_) {},
+    ),
+  );
+}
+
+// ── HomeSettingsCard ──────────────────────────────────────────────────────────
+
+@widgetbook.UseCase(name: 'All on', type: HomeSettingsCard, path: 'Settings')
+Widget buildHomeSettingsCard(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: HomeSettingsCard(
+      showKana: true,
+      showKanji: true,
+      showVocab: true,
+      onShowKanaChanged: (_) {},
+      onShowKanjiChanged: (_) {},
+      onShowVocabChanged: (_) {},
+    ),
+  );
+}
+
+@widgetbook.UseCase(name: 'Mixed', type: HomeSettingsCard, path: 'Settings')
+Widget buildHomeSettingsCardMixed(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: HomeSettingsCard(
+      showKana: true,
+      showKanji: false,
+      showVocab: false,
+      onShowKanaChanged: (_) {},
+      onShowKanjiChanged: (_) {},
+      onShowVocabChanged: (_) {},
     ),
   );
 }
