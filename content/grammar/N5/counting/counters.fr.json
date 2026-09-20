@@ -13,7 +13,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "romaji", "français"],
       "rows": [
         { "japanese": "三人", "romaji": "sannin", "français": "trois personnes" },
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "lecture", "utilisation", "exemple"],
       "rows": [
         { "japanese": "人", "lecture": "にん / り", "utilisation": "personnes", "exemple": "三人 (sannin) / 一人 (hitori)" },

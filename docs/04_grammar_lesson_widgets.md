@@ -166,14 +166,14 @@ Japanese column uses `JapaneseText`. Column headers use `SectionLabel`.
 
 ---
 
-### `vocab_table`
+### `vocabulary_table`
 
 A table for vocabulary or kanji listings — typically with more columns than example_table
 (e.g. kanji, reading, meaning, group/counter).
 
 ```json
 {
-  "type": "vocab_table",
+  "type": "vocabulary_table",
   "columns": ["japanese", "romaji", "english", "group"],
   "rows": [
     {

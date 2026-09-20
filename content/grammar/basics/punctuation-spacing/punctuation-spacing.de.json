@@ -11,7 +11,7 @@
       "content": "Satzzeichen"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "zeichen",
         "name",

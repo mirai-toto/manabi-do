@@ -7,7 +7,7 @@
       "content": "Les **mots interrogatifs** japonais (疑問詞) s'insèrent dans la phrase exactement à l'endroit où se trouverait l'information inconnue. Le reste de la structure reste identique : il n'y a pas d'inversion sujet-verbe comme en français."
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "romaji", "français"],
       "rows": [
         { "japanese": "何 (なに / なん)", "romaji": "nani / nan", "français": "quoi / que" },

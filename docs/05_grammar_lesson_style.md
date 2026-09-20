@@ -175,7 +175,7 @@ When writing content for a new JLPT level:
 | Fenced code block                  | `pattern`           |
 | `> Note:` / `> Common mistake:`    | `note`              |
 | Markdown table (examples)          | `example_table`     |
-| Markdown table (vocab/kanji list)  | `vocab_table`       |
+| Markdown table (vocabulary/kanji list)  | `vocabulary_table`       |
 | Conjugation paradigm table         | `conjugation_table` |
 | Two-column contrast                | `comparison`        |
 | Bullet / numbered list             | `list`              |

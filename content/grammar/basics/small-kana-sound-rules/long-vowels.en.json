@@ -7,7 +7,7 @@
       "content": "Holding a vowel for one extra mora changes meaning. Vowel length is phonemically significant in Japanese : two otherwise identical words can differ only in how long a vowel is held."
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "short",
         "romaji",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "japanese",
         "romaji",

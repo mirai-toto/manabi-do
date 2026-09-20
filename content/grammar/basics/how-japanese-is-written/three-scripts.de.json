@@ -23,7 +23,7 @@
       "content": "Ein Echter Satz"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "teil",
         "schrift",

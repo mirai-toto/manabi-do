@@ -7,7 +7,7 @@
       "content": "Tenir une voyelle une mora de plus change le sens. La longueur vocalique est phonémiquement significative en japonais : deux mots par ailleurs identiques peuvent ne différer que par la durée de tenue d'une voyelle."
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "court",
         "romaji",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "japanese",
         "romaji",

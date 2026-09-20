@@ -7,7 +7,7 @@
       "content": "Einen Vokal eine More länger zu halten verändert die Bedeutung. Vokallänge ist im Japanischen bedeutungsunterscheidend : zwei sonst identische Wörter können sich allein darin unterscheiden, wie lange ein Vokal gehalten wird."
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "kurz",
         "romaji",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "japanese",
         "romaji",

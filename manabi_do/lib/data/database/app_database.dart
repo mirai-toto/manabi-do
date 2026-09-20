@@ -48,7 +48,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(openDbConnection());
 
   @override
-  int get schemaVersion => 21;
+  int get schemaVersion => 22;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -147,6 +147,18 @@ class AppDatabase extends _$AppDatabase {
             'ALTER TABLE sentences RENAME COLUMN vocab_id TO vocabulary_id',
           );
         } catch (_) {}
+      }
+      if (from < 22) {
+        // The grammar block type was renamed in content. Lessons already stored
+        // carry the old token inside `blocks_json`, which no SQL rename can
+        // reach, so rewrite it in place. A no-op once the asset DB is rebuilt
+        // from the renamed content.
+        await customStatement(
+          'UPDATE grammar_lessons '
+          'SET blocks_json = replace(blocks_json, ?, ?) '
+          'WHERE blocks_json LIKE ?',
+          ['"vocab_table"', '"vocabulary_table"', '%"vocab_table"%'],
+        );
       }
     },
   );

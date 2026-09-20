@@ -69,7 +69,7 @@ class GrammarBlockRenderer extends StatelessWidget {
         rows: _toRows(d['rows']),
         accentColor: levelColor,
       ),
-      'vocab_table' => VocabularyTableBlock(
+      'vocabulary_table' => VocabularyTableBlock(
         columns: (d['columns'] as List<dynamic>).cast<String>(),
         rows: _toRows(d['rows']),
         accentColor: levelColor,

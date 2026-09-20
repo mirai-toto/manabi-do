@@ -7,7 +7,7 @@
       "content": "Les nombres japonais sont simples jusqu'à 10 000. Les mêmes chiffres se combinent et s'accumulent pour former des valeurs plus grandes : 十一 est 10+1, 百二十三 est 100+20+3. Apprenez la base et le reste suit."
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["#", "japanese", "lecture", "alternative"],
       "rows": [
         { "#": "1", "japanese": "一", "lecture": "いち", "alternative": "ひと (avec certains compteurs)" },

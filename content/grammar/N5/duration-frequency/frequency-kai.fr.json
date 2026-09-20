@@ -13,7 +13,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "français"],
       "rows": [
         { "japanese": "週に三回", "français": "trois fois par semaine" },

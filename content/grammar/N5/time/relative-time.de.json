@@ -11,7 +11,7 @@
       "content": "Tage"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "japanese",
         "romaji",
@@ -50,7 +50,7 @@
       "content": "Wochen, Monate, Jahre"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "japanese",
         "romaji",
@@ -109,7 +109,7 @@
       "content": "Häufigkeit"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "japanese",
         "romaji",

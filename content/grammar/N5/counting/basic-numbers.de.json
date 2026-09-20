@@ -7,7 +7,7 @@
       "content": "Japanische Zahlen sind bis 10 000 unkompliziert. Dieselben Ziffern werden kombiniert und aufeinandergestapelt, um größere Werte zu bilden : 十一 ist 10+1, 百二十三 ist 100+20+3. Lerne den Grundsatz, der Rest ergibt sich."
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "#",
         "japanese",

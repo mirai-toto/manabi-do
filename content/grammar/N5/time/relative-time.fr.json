@@ -11,7 +11,7 @@
       "content": "Jours"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "romaji", "français"],
       "rows": [
         { "japanese": "今日", "romaji": "kyō", "français": "aujourd'hui" },
@@ -26,7 +26,7 @@
       "content": "Semaines, Mois, Années"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "romaji", "français"],
       "rows": [
         { "japanese": "今週", "romaji": "konshū", "français": "cette semaine" },
@@ -45,7 +45,7 @@
       "content": "Fréquence"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "romaji", "français"],
       "rows": [
         { "japanese": "毎日", "romaji": "mainichi", "français": "tous les jours" },

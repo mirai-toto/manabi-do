@@ -7,7 +7,7 @@
       "content": "Japanese numbers are straightforward up to 10,000. The same digits combine and stack to form larger values : 十一 is 10+1, 百二十三 is 100+20+3. Learn the base set and the rest follows."
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "#",
         "japanese",
