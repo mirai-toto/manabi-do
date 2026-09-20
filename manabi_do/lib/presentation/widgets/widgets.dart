@@ -33,11 +33,11 @@ export 'navigation/nav_destination.dart';
 export 'navigation/nav_item.dart';
 
 // settings
+export 'settings/home_settings_card.dart';
 export 'settings/language_picker_sheet.dart';
+export 'settings/practice_settings_card.dart';
 export 'settings/settings_about_section.dart';
 export 'settings/settings_card.dart';
-export 'settings/settings_home_card.dart';
-export 'settings/settings_practice_card.dart';
 export 'settings/settings_tile.dart';
 
 // grammar

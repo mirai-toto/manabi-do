@@ -8,8 +8,8 @@ import '../../../l10n/l10n.dart';
 import '../widgets.dart';
 
 /// Toggles for which decks appear on the home screen.
-class SettingsHomeCard extends ConsumerWidget {
-  const SettingsHomeCard({super.key});
+class HomeSettingsCard extends ConsumerWidget {
+  const HomeSettingsCard({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

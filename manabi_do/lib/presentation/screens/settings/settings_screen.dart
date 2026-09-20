@@ -145,12 +145,12 @@ class SettingsScreen extends ConsumerWidget {
 
             SectionLabel(l.settingsPractice),
             const SizedBox(height: AppDimens.spaceSm),
-            const SettingsPracticeCard(),
+            const PracticeSettingsCard(),
 
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsHomeScreen),
             const SizedBox(height: AppDimens.spaceSm),
-            const SettingsHomeCard(),
+            const HomeSettingsCard(),
 
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsAppearance),

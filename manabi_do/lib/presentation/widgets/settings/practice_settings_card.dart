@@ -5,8 +5,8 @@ import '../../../core/providers/srs_settings_provider.dart';
 import '../../../l10n/l10n.dart';
 import '../widgets.dart';
 
-class SettingsPracticeCard extends ConsumerWidget {
-  const SettingsPracticeCard({super.key});
+class PracticeSettingsCard extends ConsumerWidget {
+  const PracticeSettingsCard({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

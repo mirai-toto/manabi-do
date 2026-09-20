@@ -1189,12 +1189,12 @@ AttributionCard(
 
 ---
 
-### SettingsPracticeCard
+### PracticeSettingsCard
 
 `ConsumerWidget` that reads SRS settings and renders a `SettingsCard` with steppers for new characters/vocab per day and an MCQ/flashcard toggle. Self-contained — no props.
 
 ```dart
-const SettingsPracticeCard()
+const PracticeSettingsCard()
 ```
 
 ---
