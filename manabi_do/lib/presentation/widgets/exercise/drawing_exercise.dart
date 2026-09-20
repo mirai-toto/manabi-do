@@ -23,7 +23,14 @@ class DrawingExercise extends StatefulWidget {
   final Color color;
   final Card? card;
   final bool isFreeMode;
+
+  /// Called with the rating the user picked in the self-assessment buttons.
   final void Function(Rating)? onRate;
+
+  /// Called when the attempt ends and the session advances on its own. Reports
+  /// what happened; the caller decides what that is worth.
+  final void Function({required bool hintsUsed, required int mistakes})?
+  onAutoAdvance;
   final String? question;
   final VoidCallback? onDetailTap;
   final VoidCallback? onNext;
@@ -41,6 +48,7 @@ class DrawingExercise extends StatefulWidget {
     this.card,
     this.isFreeMode = false,
     this.onRate,
+    this.onAutoAdvance,
     this.question,
     this.onDetailTap,
     this.onNext,
@@ -364,10 +372,12 @@ class _DrawingExerciseState extends State<DrawingExercise>
   }
 
   void _onAllStrokesDone() {
-    if (widget.onRate == null) return;
+    final report = widget.onAutoAdvance;
+    if (report == null) return;
+
     if (_hintsUsed) {
       Future.delayed(const Duration(milliseconds: 1200), () {
-        if (mounted) widget.onRate!(Rating.again);
+        if (mounted) report(hintsUsed: true, mistakes: _wrongStrokes.length);
       });
       return;
     }
@@ -375,7 +385,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
     if (widget.isFreeMode && widget.settings.autoAdvance && !_autoAdvanceDone) {
       _autoAdvanceDone = true;
       Future.delayed(const Duration(seconds: 1), () {
-        if (mounted) widget.onRate!(_allCorrect ? Rating.good : Rating.again);
+        if (mounted) report(hintsUsed: false, mistakes: _wrongStrokes.length);
       });
     }
   }

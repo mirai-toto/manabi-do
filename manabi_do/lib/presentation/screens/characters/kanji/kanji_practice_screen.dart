@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
+import '../../../../core/srs/drawing_rating.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
@@ -112,6 +113,10 @@ class KanjiDrawingBody extends ConsumerWidget {
                 card: card,
                 isFreeMode: isFreeMode,
                 onRate: onAnswer,
+                onAutoAdvance: ({required hintsUsed, required mistakes}) =>
+                    onAnswer(
+                      drawingRating(hintsUsed: hintsUsed, mistakes: mistakes),
+                    ),
                 question: l.selfAssessQuestion,
                 onDetailTap: onDetailTap,
                 settings: drawingSettings,
