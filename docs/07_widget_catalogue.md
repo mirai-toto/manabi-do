@@ -415,12 +415,12 @@ ExampleCard(
 
 ---
 
-### FlashCard
+### Flashcard
 
 Large gradient card showing a prompt and, when revealed, an answer. Includes a `SpeakButton` and a tap-to-reveal/hide label.
 
 ```dart
-FlashCard(
+Flashcard(
   prompt: '水',
   promptSub: 'みず',
   reveal: 'Water',
@@ -432,12 +432,12 @@ FlashCard(
 
 ---
 
-### FlashCardActions
+### FlashcardActions
 
 Rating button row shown after a flashcard is revealed. Shows FSRS interval previews in SRS mode; shows "Got it / Not yet" in free mode.
 
 ```dart
-FlashCardActions(
+FlashcardActions(
   card: srsCard,                        // null = free mode buttons
   isFreeMode: false,
   question: l.selfAssessQuestion,       // optional label above buttons
@@ -535,7 +535,7 @@ FeedbackPanel(text: explanation, isCorrect: false)
 
 ### PracticeFlashcardBody
 
-Flashcard exercise body. Shows a `FlashCard` (front/back flip), then SRS rating buttons. Handles the flip animation and rating UI internally.
+Flashcard exercise body. Shows a `Flashcard` (front/back flip), then SRS rating buttons. Handles the flip animation and rating UI internally.
 
 ```dart
 PracticeFlashcardBody(

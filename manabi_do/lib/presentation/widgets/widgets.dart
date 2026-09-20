@@ -82,7 +82,7 @@ export 'exercise/cloze_option.dart';
 export 'exercise/drawing_exercise.dart';
 export 'exercise/example_card.dart';
 export 'exercise/feedback_panel.dart';
-export 'exercise/flash_card.dart';
+export 'exercise/flashcard.dart';
 export 'exercise/grammar_builder_body.dart';
 export 'exercise/grammar_cloze_body.dart';
 export 'exercise/grammar_error_detection_body.dart';

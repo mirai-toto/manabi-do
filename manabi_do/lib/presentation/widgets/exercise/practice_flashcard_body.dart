@@ -7,7 +7,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../data/grammar/grammar_models.dart';
 import '../../../l10n/l10n.dart';
 import 'example_card.dart';
-import 'flash_card.dart';
+import 'flashcard.dart';
 import 'practice_progress_row.dart';
 
 class PracticeFlashcardBody extends StatefulWidget {
@@ -108,7 +108,7 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
             ),
             const SizedBox(height: AppDimens.spaceMd),
           ],
-          FlashCard(
+          Flashcard(
             prompt: prompt,
             promptSub: promptSub,
             reveal: reveal,
@@ -127,7 +127,7 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
           ],
           if (_everRevealed) ...[
             const SizedBox(height: AppDimens.spaceMd),
-            FlashCardActions(
+            FlashcardActions(
               card: widget.card,
               isFreeMode: widget.isFreeMode,
               question: l.selfAssessQuestion,

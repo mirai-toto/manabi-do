@@ -6,7 +6,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/speak_button.dart';
 
-class FlashCard extends StatelessWidget {
+class Flashcard extends StatelessWidget {
   final String prompt;
   final String? promptSub;
   final String? reveal;
@@ -15,7 +15,7 @@ class FlashCard extends StatelessWidget {
   final bool isRevealed;
   final VoidCallback? onTap;
 
-  const FlashCard({
+  const Flashcard({
     super.key,
     required this.prompt,
     required this.speakText,
@@ -143,13 +143,13 @@ bool _looksJapanese(String text) {
   return jpCount / runes.length > 0.5;
 }
 
-class FlashCardActions extends StatelessWidget {
+class FlashcardActions extends StatelessWidget {
   final Card? card;
   final bool isFreeMode;
   final String? question;
   final void Function(Rating) onRate;
 
-  const FlashCardActions({
+  const FlashcardActions({
     super.key,
     required this.card,
     required this.onRate,

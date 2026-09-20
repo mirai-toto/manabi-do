@@ -406,32 +406,32 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'FlashCard',
+        name: 'Flashcard',
         useCases: [
           _widgetbook.WidgetbookUseCase(
             name: 'Hidden',
             builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildFlashCardHidden,
+                _manabi_do_widgetbook_exercise_use_cases.buildFlashcardHidden,
           ),
           _widgetbook.WidgetbookUseCase(
             name: 'Revealed',
             builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildFlashCardRevealed,
+                _manabi_do_widgetbook_exercise_use_cases.buildFlashcardRevealed,
           ),
           _widgetbook.WidgetbookUseCase(
             name: 'Reversed (EN→JP)',
             builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildFlashCardReversed,
+                _manabi_do_widgetbook_exercise_use_cases.buildFlashcardReversed,
           ),
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'FlashCardActions',
+        name: 'FlashcardActions',
         useCases: [
           _widgetbook.WidgetbookUseCase(
             name: 'Default',
             builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildFlashCardActions,
+                _manabi_do_widgetbook_exercise_use_cases.buildFlashcardActions,
           ),
         ],
       ),

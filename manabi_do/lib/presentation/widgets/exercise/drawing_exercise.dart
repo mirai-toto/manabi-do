@@ -12,7 +12,7 @@ import '../../../l10n/l10n.dart';
 import '../characters/kanji_drawing_canvas.dart';
 import '../characters/kanji_readings_card.dart';
 import '../characters/stroke_animators.dart';
-import 'flash_card.dart';
+import 'flashcard.dart';
 
 class DrawingExercise extends StatefulWidget {
   final List<ui.Path> referenceStrokes;
@@ -205,7 +205,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
         ],
         const SizedBox(height: AppDimens.spaceSm),
         if (showSrsActions) ...[
-          FlashCardActions(
+          FlashcardActions(
             card: widget.card,
             question: widget.question,
             onRate: widget.onRate!,

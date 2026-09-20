@@ -5,7 +5,7 @@ import '../../../core/models/sentence_settings.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
-import 'flash_card.dart';
+import 'flashcard.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 import 'sentence_cloze_card.dart';
@@ -137,7 +137,7 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
           ),
           if (_answered && !_autoAdvancing) ...[
             const SizedBox(height: AppDimens.spaceMd),
-            FlashCardActions(
+            FlashcardActions(
               card: widget.card,
               isFreeMode: widget.isFreeMode,
               question: l.selfAssessQuestion,
