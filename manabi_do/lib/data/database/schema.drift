@@ -1,0 +1,137 @@
+-- Single source of truth for the database schema.
+--
+-- drift generates the Dart table classes from this file, and
+-- tools/build_content_db.py executes the same statements when building the
+-- shipped content DB. Keep it to plain CREATE TABLE so both readers cope.
+--
+-- Changing anything here is a schema change: bump `schemaVersion` in
+-- app_database.dart and add a migration step. `flutter test test/schema_test.dart`
+-- asserts that this file and drift agree.
+
+CREATE TABLE kanjis (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  character TEXT NOT NULL,
+  meaning TEXT NOT NULL,
+  on_reading TEXT NOT NULL,
+  kun_reading TEXT NOT NULL,
+  jlpt_level TEXT NOT NULL,
+  svg TEXT
+);
+
+CREATE TABLE kanas (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  character TEXT NOT NULL,
+  romaji TEXT NOT NULL,
+  type TEXT NOT NULL,
+  "row" TEXT NOT NULL,
+  kana_group TEXT NOT NULL,
+  slot INTEGER NOT NULL
+);
+
+CREATE TABLE vocabulary_entries (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  word TEXT NOT NULL,
+  reading TEXT NOT NULL,
+  meaning TEXT NOT NULL,
+  jlpt_level TEXT NOT NULL,
+  part_of_speech TEXT NOT NULL,
+  kanji_id INTEGER REFERENCES kanjis (id)
+);
+
+CREATE TABLE kanji_translations (
+  kanji_id INTEGER NOT NULL REFERENCES kanjis (id),
+  locale TEXT NOT NULL,
+  meaning TEXT NOT NULL,
+  PRIMARY KEY (kanji_id, locale)
+);
+
+CREATE TABLE vocabulary_translations (
+  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
+  locale TEXT NOT NULL,
+  meaning TEXT NOT NULL,
+  PRIMARY KEY (vocabulary_id, locale)
+);
+
+CREATE TABLE sentences (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  japanese TEXT NOT NULL,
+  target_word TEXT NOT NULL,
+  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
+  furigana_before TEXT,
+  furigana_after TEXT,
+  furigana TEXT
+);
+
+CREATE TABLE sentence_translations (
+  sentence_id INTEGER NOT NULL REFERENCES sentences (id),
+  locale TEXT NOT NULL,
+  translation TEXT NOT NULL,
+  PRIMARY KEY (sentence_id, locale)
+);
+
+CREATE TABLE exercises (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  locale TEXT NOT NULL,
+  type TEXT NOT NULL,
+  source TEXT NOT NULL,
+  source_id INTEGER NOT NULL,
+  prompt TEXT NOT NULL,
+  answer TEXT NOT NULL,
+  distractors TEXT NOT NULL DEFAULT '[]'
+);
+
+CREATE TABLE grammar_lessons (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  locale TEXT NOT NULL DEFAULT 'en',
+  level TEXT NOT NULL,
+  path TEXT NOT NULL,
+  theme_name TEXT NOT NULL DEFAULT '',
+  theme_description TEXT NOT NULL DEFAULT '',
+  chapter TEXT NOT NULL,
+  title TEXT NOT NULL,
+  blocks_json TEXT NOT NULL,
+  order_index INTEGER NOT NULL,
+  difficulty INTEGER NOT NULL DEFAULT 1
+) AS GrammarLessonRow;
+
+CREATE TABLE grammar_exercises (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  lesson_path TEXT NOT NULL,
+  order_index INTEGER NOT NULL,
+  type TEXT NOT NULL,
+  data_json TEXT NOT NULL
+) AS GrammarExerciseRow;
+
+CREATE TABLE grammar_lesson_progress (
+  lesson_path TEXT NOT NULL,
+  read_at DATETIME NOT NULL,
+  PRIMARY KEY (lesson_path)
+) AS GrammarLessonProgressRow;
+
+CREATE TABLE grammar_lesson_starts (
+  lesson_path TEXT NOT NULL,
+  PRIMARY KEY (lesson_path)
+) AS GrammarLessonStartRow;
+
+CREATE TABLE grammar_chapter_unlocks (
+  chapter_key TEXT NOT NULL,
+  PRIMARY KEY (chapter_key)
+) AS GrammarChapterUnlockRow;
+
+CREATE TABLE progress_entries (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  item_type TEXT NOT NULL,
+  item_id INTEGER NOT NULL,
+  is_known BOOLEAN NOT NULL CHECK (is_known IN (0, 1)),
+  toggled_at DATETIME NOT NULL,
+  UNIQUE (item_type, item_id)
+);
+
+CREATE TABLE srs_cards (
+  item_type TEXT NOT NULL,
+  item_id INTEGER NOT NULL,
+  due DATETIME NOT NULL,
+  first_seen_at DATETIME,
+  card_json TEXT NOT NULL,
+  PRIMARY KEY (item_type, item_id)
+);

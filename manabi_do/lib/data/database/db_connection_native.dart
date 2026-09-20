@@ -180,9 +180,19 @@ QueryExecutor openDbConnection() {
         blob.buffer.asUint8List(blob.offsetInBytes, blob.lengthInBytes),
       );
 
-      // The asset DB ships with user_version > 7, which would cause drift to
-      // skip migrations that create runtime-only tables (e.g. srs_cards).
-      // Reset to 7 so all drift migrations run on the fresh copy.
+      // The currently committed asset DB was built before `schema.drift`
+      // existed, so it carries only the 11 content tables and reports a
+      // user_version above 7. Resetting to 7 forces drift to replay every
+      // migration, which creates the 4 runtime tables (srs_cards and the
+      // grammar progress tables) and renames the pre-`vocabulary` schema.
+      //
+      // Expect most of that replay to be a no-op: the addColumn steps throw
+      // `duplicate column` against a current asset DB and are caught on
+      // purpose. Those try/catch blocks are not hiding bugs.
+      //
+      // Once the asset DB is rebuilt — `tools/build_content_db.py` now creates
+      // all 15 tables from schema.drift — this reset can be dropped and the
+      // asset shipped at its real schema version.
       final setup = raw.sqlite3.open(file.path);
       setup.execute('PRAGMA user_version = 7');
 

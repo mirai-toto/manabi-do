@@ -16,6 +16,19 @@ Edits to the asset file only affect fresh installs/reinstalls; existing installs
 
 ## Schema
 
+The schema has a single source of truth: **`manabi_do/lib/data/database/schema.drift`**.
+
+Two very different consumers read that one file:
+
+- **drift** generates the Dart table classes and row types from it
+- **`tools/build_content_db.py`** executes the same statements when building the shipped content DB
+
+Keep it to plain `CREATE TABLE`. Only two drift-isms are tolerated, and both are translated for the Python side: a trailing `) AS RowName` naming the generated row class, and `DATETIME` / `BOOLEAN`, which drift stores as `INTEGER`.
+
+`manabi_do/test/schema_test.dart` is the guard. It builds the schema twice — once through drift, once by executing `schema.drift` as plain SQL — and asserts the two are identical. If they ever diverge, that test fails rather than a user's device.
+
+Changing the schema means bumping `schemaVersion` in `app_database.dart` and adding a migration step.
+
 ### `manabi_do_content.db` — All content
 
 **`kanjis`**

@@ -9,43 +9,15 @@ import 'db_connection_native.dart'
 
 import '../../core/srs/srs_level.dart';
 import '../../domain/data/kana_data.dart';
-import 'tables/exercises_table.dart';
-import 'tables/grammar_chapter_unlocks_table.dart';
-import 'tables/grammar_exercises_table.dart';
-import 'tables/grammar_lesson_progress_table.dart';
-import 'tables/grammar_lesson_starts_table.dart';
-import 'tables/grammar_lessons_table.dart';
-import 'tables/kanas_table.dart';
-import 'tables/kanjis_table.dart';
-import 'tables/progress_table.dart';
-import 'tables/sentences_table.dart';
-import 'tables/srs_cards_table.dart';
-import 'tables/translations_table.dart';
-import 'tables/vocabulary_table.dart';
 
 part 'app_database.g.dart';
 
-@DriftDatabase(
-  tables: [
-    Kanjis,
-    Kanas,
-    VocabularyEntries,
-    Exercises,
-    GrammarLessons,
-    GrammarExercises,
-    GrammarLessonProgress,
-    GrammarLessonStarts,
-    GrammarChapterUnlocks,
-    ProgressEntries,
-    KanjiTranslations,
-    VocabularyTranslations,
-    SrsCards,
-    Sentences,
-    SentenceTranslations,
-  ],
-)
+@DriftDatabase(include: {'schema.drift'})
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(openDbConnection());
+
+  /// Opens against a caller-supplied executor, for schema tests.
+  AppDatabase.withExecutor(super.executor);
 
   @override
   int get schemaVersion => 22;

@@ -15,6 +15,7 @@ downloads and caches the required dump files in data/tatoeba/ on first
 run (~60 MB total). Pass --no-sentences to skip the sentence step.
 """
 
+import re
 import json
 import sqlite3
 import os
@@ -133,112 +134,28 @@ SVG_DIR = "content/characters/kanji_svg"
 LEVELS = [("n5", "N5"), ("n4", "N4"), ("n3", "N3"), ("n2", "N2"), ("n1", "N1")]
 
 
+SCHEMA_PATH = "manabi_do/lib/data/database/schema.drift"
+
+
+def _to_plain_sql(drift_file: str) -> str:
+    """Turn a drift schema file into SQL plain sqlite3 can execute.
+
+    Mirrors `_toPlainSql` in manabi_do/test/schema_test.dart, which asserts the
+    two stay in agreement. Only two drift-isms need handling:
+      * a trailing `) AS RowName;` naming the generated Dart row class
+      * DATETIME / BOOLEAN, which drift stores as INTEGER
+    """
+    sql = re.sub(r"^\s*--.*$", "", drift_file, flags=re.MULTILINE)
+    sql = re.sub(r"\)\s*AS\s+\w+\s*;", ");", sql)
+    sql = re.sub(r"\bDATETIME\b", "INTEGER", sql)
+    sql = re.sub(r"\bBOOLEAN\b", "INTEGER", sql)
+    return sql
+
+
 def create_tables(db: sqlite3.Connection) -> None:
-    db.executescript("""
-        CREATE TABLE kanjis (
-            id          INTEGER PRIMARY KEY,
-            character   TEXT NOT NULL,
-            meaning     TEXT NOT NULL,
-            on_reading  TEXT NOT NULL,
-            kun_reading TEXT NOT NULL,
-            jlpt_level  TEXT NOT NULL,
-            svg         TEXT
-        );
-
-        CREATE TABLE vocabulary_entries (
-            id             INTEGER PRIMARY KEY AUTOINCREMENT,
-            word           TEXT NOT NULL,
-            reading        TEXT NOT NULL,
-            meaning        TEXT NOT NULL,
-            jlpt_level     TEXT NOT NULL,
-            part_of_speech TEXT NOT NULL,
-            kanji_id       INTEGER REFERENCES kanjis(id)
-        );
-
-        CREATE TABLE kanji_translations (
-            kanji_id INTEGER NOT NULL REFERENCES kanjis(id),
-            locale   TEXT NOT NULL,
-            meaning  TEXT NOT NULL,
-            PRIMARY KEY (kanji_id, locale)
-        );
-
-        CREATE TABLE vocabulary_translations (
-            vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries(id),
-            locale   TEXT NOT NULL,
-            meaning  TEXT NOT NULL,
-            PRIMARY KEY (vocabulary_id, locale)
-        );
-
-        CREATE TABLE kanas (
-            id         INTEGER PRIMARY KEY AUTOINCREMENT,
-            character  TEXT NOT NULL,
-            romaji     TEXT NOT NULL,
-            type       TEXT NOT NULL,
-            row        TEXT NOT NULL,
-            kana_group TEXT NOT NULL,
-            slot       INTEGER NOT NULL
-        );
-
-        CREATE TABLE grammar_lessons (
-            id               INTEGER PRIMARY KEY AUTOINCREMENT,
-            locale           TEXT NOT NULL DEFAULT 'en',
-            level            TEXT NOT NULL,
-            path             TEXT NOT NULL,
-            theme_name       TEXT NOT NULL DEFAULT '',
-            theme_description TEXT NOT NULL DEFAULT '',
-            chapter          TEXT NOT NULL,
-            title            TEXT NOT NULL,
-            blocks_json      TEXT NOT NULL,
-            order_index      INTEGER NOT NULL,
-            difficulty       INTEGER NOT NULL DEFAULT 1
-        );
-
-        CREATE TABLE exercises (
-            id          INTEGER PRIMARY KEY AUTOINCREMENT,
-            locale      TEXT NOT NULL,
-            type        TEXT NOT NULL,
-            source      TEXT NOT NULL,
-            source_id   INTEGER NOT NULL,
-            prompt      TEXT NOT NULL,
-            answer      TEXT NOT NULL,
-            distractors TEXT NOT NULL DEFAULT '[]',
-            lesson_id   INTEGER REFERENCES grammar_lessons(id)
-        );
-
-        CREATE TABLE grammar_exercises (
-            id          INTEGER PRIMARY KEY AUTOINCREMENT,
-            lesson_path TEXT NOT NULL,
-            order_index INTEGER NOT NULL,
-            type        TEXT NOT NULL,
-            data_json   TEXT NOT NULL
-        );
-
-        CREATE TABLE progress_entries (
-            id         INTEGER PRIMARY KEY AUTOINCREMENT,
-            item_type  TEXT NOT NULL,
-            item_id    INTEGER NOT NULL,
-            is_known   INTEGER NOT NULL,
-            toggled_at INTEGER NOT NULL,
-            UNIQUE (item_type, item_id)
-        );
-
-        CREATE TABLE sentences (
-            id               INTEGER PRIMARY KEY AUTOINCREMENT,
-            japanese         TEXT NOT NULL,
-            target_word      TEXT NOT NULL,
-            vocabulary_id    INTEGER NOT NULL REFERENCES vocabulary_entries(id),
-            furigana_before  TEXT,
-            furigana_after   TEXT,
-            furigana         TEXT
-        );
-
-        CREATE TABLE sentence_translations (
-            sentence_id INTEGER NOT NULL REFERENCES sentences(id),
-            locale      TEXT NOT NULL,
-            translation TEXT NOT NULL,
-            PRIMARY KEY (sentence_id, locale)
-        );
-    """)
+    """Create the schema from the single source of truth shared with drift."""
+    with open(SCHEMA_PATH, encoding="utf-8") as f:
+        db.executescript(_to_plain_sql(f.read()))
 
 
 def insert_kanji(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
