@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:manabi_do/data/database/app_database.dart';
 
 import 'generated_migrations/schema.dart';
+import 'schema_support.dart';
 
 /// Guards the schema snapshots in `drift_schemas/`.
 ///
@@ -89,11 +90,11 @@ void main() {
 
     final expected = AppDatabase.withExecutor(NativeDatabase.memory());
     await Migrator(expected).createAll();
-    final want = await _tableNames(expected);
+    final want = await tableDdl(expected);
     await expected.close();
 
     final opened = AppDatabase.withExecutor(NativeDatabase(copy));
-    final got = await _tableNames(opened);
+    final got = await tableDdl(opened);
     final version = await opened
         .customSelect('PRAGMA user_version')
         .getSingle()
@@ -105,17 +106,10 @@ void main() {
       orderedEquals(want),
       reason:
           'assets/manabi_do_content.db does not open at the current schema. '
-          'Rebuild it with python3 tools/build_content_db.py, or add the '
-          'missing migration step.',
+          'The asset is built by tools/build_content_db.py from schema.drift, '
+          'so a mismatch here means its _to_plain_sql has drifted from what '
+          'drift generates. Rebuild the asset, or add the missing step.',
     );
     expect(version, lessThanOrEqualTo(22));
   });
 }
-
-Future<List<String>> _tableNames(AppDatabase db) => db
-    .customSelect(
-      "SELECT name FROM sqlite_master WHERE type = 'table' "
-      "AND name NOT LIKE 'sqlite_%' ORDER BY name",
-    )
-    .get()
-    .then((rows) => rows.map((r) => r.read<String>('name')).toList());
