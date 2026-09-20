@@ -9,18 +9,19 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/vocab_list_provider.dart';
 import '../widgets.dart';
-import '../../screens/practice/practice_launcher.dart';
 
 class VocabLevelView extends ConsumerWidget {
   final String level;
   final int groupIndex;
   final VoidCallback onBack;
+  final void Function(Set<int> vocabIds) onPractice;
 
   const VocabLevelView({
     super.key,
     required this.level,
     required this.groupIndex,
     required this.onBack,
+    required this.onPractice,
   });
 
   @override
@@ -40,6 +41,7 @@ class VocabLevelView extends ConsumerWidget {
             .take(kVocabGroupSize)
             .toList(),
         onBack: onBack,
+        onPractice: onPractice,
       ),
     };
   }
@@ -51,6 +53,7 @@ class _LevelContent extends ConsumerWidget {
   final Color color;
   final List<VocabularyEntry> entries;
   final VoidCallback onBack;
+  final void Function(Set<int> vocabIds) onPractice;
 
   const _LevelContent({
     required this.level,
@@ -58,6 +61,7 @@ class _LevelContent extends ConsumerWidget {
     required this.color,
     required this.entries,
     required this.onBack,
+    required this.onPractice,
   });
 
   @override
@@ -114,16 +118,7 @@ class _LevelContent extends ConsumerWidget {
             ),
           ),
           ProgressRow(known: learnedCount, total: entries.length, color: color),
-          PracticeButton(
-            color: color,
-            onTap: () => openVocabPractice(
-              context,
-              title: l.groupN(groupIndex + 1),
-              level: level,
-              color: color,
-              vocabIds: groupIds,
-            ),
-          ),
+          PracticeButton(color: color, onTap: () => onPractice(groupIds)),
           for (int i = 0; i < entries.length; i++) ...[
             if (i > 0)
               Divider(

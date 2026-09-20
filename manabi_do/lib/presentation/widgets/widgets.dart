@@ -48,7 +48,6 @@ export 'grammar/lesson_read_toggle.dart';
 export 'study/chapter_card.dart';
 export 'study/continue_lesson_card.dart';
 export 'study/deck_row.dart';
-export 'study/grammar_chapter_list.dart';
 export 'study/home_header.dart';
 export 'study/kanji_group_selector.dart';
 export 'study/kanji_group_view.dart';

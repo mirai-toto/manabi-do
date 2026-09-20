@@ -3,10 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
+import '../../../l10n/level_label.dart';
 import '../../providers/home_provider.dart';
 import '../../providers/vocab_list_provider.dart';
 import '../../widgets/widgets.dart';
+import '../practice/practice_launcher.dart';
 
 class VocabularyScreen extends ConsumerWidget {
   const VocabularyScreen({super.key});
@@ -38,6 +41,12 @@ class VocabularyScreen extends ConsumerWidget {
           ref.read(vocabSelectedGroupProvider.notifier).clear();
           ref.read(vocabSelectedLevelProvider.notifier).clear();
         },
+        onPractice: () => openVocabPractice(
+          context,
+          title: levelLabel(selectedLevel, context),
+          level: selectedLevel,
+          color: levelColor(selectedLevel),
+        ),
         onSelect: (i) =>
             ref.read(vocabSelectedGroupProvider.notifier).select(i),
       );
@@ -46,6 +55,13 @@ class VocabularyScreen extends ConsumerWidget {
         level: selectedLevel,
         groupIndex: selectedGroup,
         onBack: () => ref.read(vocabSelectedGroupProvider.notifier).clear(),
+        onPractice: (vocabIds) => openVocabPractice(
+          context,
+          title: l.groupN(selectedGroup + 1),
+          level: selectedLevel,
+          color: levelColor(selectedLevel),
+          vocabIds: vocabIds,
+        ),
       );
     }
 

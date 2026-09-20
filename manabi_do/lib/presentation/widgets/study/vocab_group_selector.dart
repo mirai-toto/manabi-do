@@ -10,19 +10,20 @@ import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
 import '../../providers/vocab_list_provider.dart';
 import '../widgets.dart';
-import '../../screens/practice/practice_launcher.dart';
 
 const kVocabGroupSize = 30;
 
 class VocabGroupSelector extends ConsumerWidget {
   final String level;
   final VoidCallback onBack;
+  final VoidCallback onPractice;
   final void Function(int) onSelect;
 
   const VocabGroupSelector({
     super.key,
     required this.level,
     required this.onBack,
+    required this.onPractice,
     required this.onSelect,
   });
 
@@ -77,15 +78,7 @@ class VocabGroupSelector extends ConsumerWidget {
               ],
             ),
           ),
-          PracticeButton(
-            color: color,
-            onTap: () => openVocabPractice(
-              context,
-              title: levelLabel(level, context),
-              level: level,
-              color: color,
-            ),
-          ),
+          PracticeButton(color: color, onTap: onPractice),
           if (vocabAsync is AsyncLoading)
             const Center(child: CircularProgressIndicator())
           else

@@ -8,18 +8,19 @@ import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
 import '../../providers/kanji_provider.dart';
 import '../widgets.dart';
-import '../../screens/practice/practice_launcher.dart';
 
 const kKanjiGroupSize = 20;
 
 class KanjiGroupSelector extends ConsumerWidget {
   final String level;
   final VoidCallback onBack;
+  final VoidCallback onPractice;
   final void Function(int groupIndex) onSelectGroup;
   const KanjiGroupSelector({
     super.key,
     required this.level,
     required this.onBack,
+    required this.onPractice,
     required this.onSelectGroup,
   });
 
@@ -43,15 +44,7 @@ class KanjiGroupSelector extends ConsumerWidget {
             color: color,
             onBack: onBack,
           ),
-          PracticeButton(
-            color: color,
-            onTap: () => openKanjiPractice(
-              context,
-              title: levelLabel(level, context),
-              level: level,
-              color: color,
-            ),
-          ),
+          PracticeButton(color: color, onTap: onPractice),
           if (kanjiAsync is AsyncLoading)
             const Center(child: CircularProgressIndicator())
           else

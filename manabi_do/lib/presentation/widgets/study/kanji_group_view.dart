@@ -7,17 +7,20 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_provider.dart';
 import '../widgets.dart';
-import '../../screens/practice/practice_launcher.dart';
 
 class KanjiGroupView extends ConsumerWidget {
   final String level;
   final int groupIndex;
   final VoidCallback onBack;
+  final void Function(Set<int> kanjiIds) onPractice;
+  final void Function(int kanjiId) onOpenKanji;
   const KanjiGroupView({
     super.key,
     required this.level,
     required this.groupIndex,
     required this.onBack,
+    required this.onPractice,
+    required this.onOpenKanji,
   });
 
   @override
@@ -56,17 +59,12 @@ class KanjiGroupView extends ConsumerWidget {
             total: groupKanji.length,
             color: color,
           ),
-          PracticeButton(
-            color: color,
-            onTap: () => openKanjiPractice(
-              context,
-              title: context.l10n.groupN(groupIndex + 1),
-              level: level,
-              color: color,
-              kanjiIds: groupIds,
-            ),
+          PracticeButton(color: color, onTap: () => onPractice(groupIds)),
+          KanjiGrid(
+            kanjis: groupKanji,
+            srsCards: srsCards,
+            onKanjiTap: onOpenKanji,
           ),
-          KanjiGrid(kanjis: groupKanji, srsCards: srsCards),
         ],
       ),
     );
