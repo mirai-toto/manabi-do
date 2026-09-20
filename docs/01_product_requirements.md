@@ -143,7 +143,7 @@ The system is designed to be extensible — new types can be added without a ful
 Difficulty is controlled at two independent levels:
 
 **1. Content difficulty — JLPT level (N5 → N1)**
-Content (kanji, vocab, sentences) is tagged N5 (beginner) through N1 (advanced). Users browse and practice within a chosen level. In the home SRS session, new kanji cards are always introduced from the lowest level that still has unseen items, ensuring a natural progression.
+Content (kanji, vocabulary, sentences) is tagged N5 (beginner) through N1 (advanced). Users browse and practice within a chosen level. In the home SRS session, new kanji cards are always introduced from the lowest level that still has unseen items, ensuring a natural progression.
 
 **2. Exercise type difficulty — cognitive demand**
 Within a session, exercise types vary in how much active recall they require:
@@ -155,7 +155,7 @@ Within a session, exercise types vary in how much active recall they require:
 | Sentence cloze | Medium–High | Contextual; requires understanding word usage in a sentence |
 | Drawing        | High        | Active production; must reproduce correct stroke order      |
 
-For kanji and vocab free-practice sessions, users can filter to a single exercise type (flashcard-only, MCQ-only) or use mixed mode. Home SRS sessions use a mixed mode weighted by what each item needs.
+For kanji and vocabulary free-practice sessions, users can filter to a single exercise type (flashcard-only, MCQ-only) or use mixed mode. Home SRS sessions use a mixed mode weighted by what each item needs.
 
 ---
 

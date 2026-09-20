@@ -12,7 +12,7 @@ Usage:
 
 Flags:
     --no-sentences   Skip Tatoeba sentence import (much faster, good for grammar/kanji edits)
-    --sync           Re-seed kanji/vocab JSON from Bluskyo, JMdict, KANJIDIC2 before building
+    --sync           Re-seed kanji/vocabulary JSON from Bluskyo, JMdict, KANJIDIC2 before building
     --force          With --sync: re-download source files even if already cached in data/
     --translations   Refresh multilingual meanings from JMdict/KANJIDIC2 before building
                      Requires data/jmdict.json and data/kanjidic2.xml (see content/README.md)
@@ -45,7 +45,7 @@ def main() -> None:
     parser.add_argument(
         "--sync",
         action="store_true",
-        help="Re-seed kanji/vocab JSON from online sources before building",
+        help="Re-seed kanji/vocabulary JSON from online sources before building",
     )
     parser.add_argument(
         "--force",

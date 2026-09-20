@@ -822,7 +822,7 @@ KanjiReadingsCard(kanji: kanji)
 
 ### KanjiExampleWords
 
-`SectionLabel` + list of example vocabulary words for a kanji. Fetches localized vocab via provider; shows a loading indicator, empty state, or word list with `PillBadge` JLPT tags.
+`SectionLabel` + list of example vocabulary words for a kanji. Fetches localized vocabulary via provider; shows a loading indicator, empty state, or word list with `PillBadge` JLPT tags.
 
 ```dart
 KanjiExampleWords(kanji: kanji)
@@ -949,12 +949,12 @@ ExampleTableBlock(
 
 ---
 
-### VocabTableBlock
+### VocabularyTableBlock
 
 Two-column table of vocabulary items with readings and meanings.
 
 ```dart
-VocabTableBlock(
+VocabularyTableBlock(
   columns: const ['japanese', 'romaji', 'english', 'group'],
   rows: const [
     {'japanese': '書く', 'romaji': 'kaku', 'english': 'to write', 'group': '1'},
@@ -982,7 +982,7 @@ ConjugationTableBlock(
 
 ### GrammarTable
 
-Internal shared renderer used by `ExampleTableBlock`, `VocabTableBlock`, and `ConjugationTableBlock`. Not dispatched directly — use the typed wrappers above.
+Internal shared renderer used by `ExampleTableBlock`, `VocabularyTableBlock`, and `ConjugationTableBlock`. Not dispatched directly — use the typed wrappers above.
 
 ```dart
 GrammarTable(
@@ -1191,14 +1191,14 @@ AttributionCard(
 
 ### PracticeSettingsCard
 
-`StatelessWidget` that renders a `SettingsCard` with steppers for new characters and new vocab per day. Steps by 5, clamped to 0–50. The caller reads `srsSettingsProvider` and passes the values in.
+`StatelessWidget` that renders a `SettingsCard` with steppers for new characters and new vocabulary per day. Steps by 5, clamped to 0–50. The caller reads `srsSettingsProvider` and passes the values in.
 
 ```dart
 PracticeSettingsCard(
   newCharactersPerDay: srs.newCharactersPerDay,
-  newVocabPerDay: srs.newVocabPerDay,
+  newVocabularyPerDay: srs.newVocabularyPerDay,
   onNewCharactersChanged: srsNotifier.setNewCharactersPerDay,
-  onNewVocabChanged: srsNotifier.setNewVocabPerDay,
+  onNewVocabularyChanged: srsNotifier.setNewVocabularyPerDay,
 )
 ```
 
@@ -1212,10 +1212,10 @@ PracticeSettingsCard(
 HomeSettingsCard(
   showKana: home.showKana,
   showKanji: home.showKanji,
-  showVocab: home.showVocab,
+  showVocabulary: home.showVocabulary,
   onShowKanaChanged: homeNotifier.setShowKana,
   onShowKanjiChanged: homeNotifier.setShowKanji,
-  onShowVocabChanged: homeNotifier.setShowVocab,
+  onShowVocabularyChanged: homeNotifier.setShowVocabulary,
 )
 ```
 
@@ -1389,16 +1389,16 @@ HomeHeader(greeting: l.goodMorning(name), subtitle: l.homeSubtitle)
 
 ### HomeDomainCards
 
-Grid of `DomainCard` entries for the home screen (kana, kanji, vocab, grammar). All counts pre-resolved by the caller.
+Grid of `DomainCard` entries for the home screen (kana, kanji, vocabulary, grammar). All counts pre-resolved by the caller.
 
 ```dart
 HomeDomainCards(
-  totalKana: 92, totalKanji: 2136, totalVocab: 8000,
+  totalKana: 92, totalKanji: 2136, totalVocabulary: 8000,
   kanaDue: 3, kanaNew: 5,
   kanjiDue: 12, kanjiNew: 8,
-  vocabDue: 0, vocabNew: 10,
-  onKanaTap: () {}, onKanjiTap: () {}, onVocabTap: () {}, onGrammarTap: () {},
-  onKanaPractice: () {}, onKanjiPractice: () {}, onVocabPractice: () {},
+  vocabularyDue: 0, vocabularyNew: 10,
+  onKanaTap: () {}, onKanjiTap: () {}, onVocabularyTap: () {}, onGrammarTap: () {},
+  onKanaPractice: () {}, onKanjiPractice: () {}, onVocabularyPractice: () {},
 )
 ```
 
@@ -1419,32 +1419,32 @@ GrammarChapterView(
 
 ---
 
-### VocabWordTile
+### VocabularyWordTile
 
 Expandable vocabulary list row. Shows word, reading, abbreviated meaning. Tap expands to full meaning, part-of-speech chips, and `SpeakButton`. Localized meaning fetched via provider.
 
 ```dart
-VocabWordTile(entry: vocabEntry)
+VocabularyWordTile(entry: vocabularyEntry)
 ```
 
 ---
 
-### VocabLevelSelector
+### VocabularyLevelSelector
 
 Full-screen-width list of JLPT level tiles. Tapping a level calls `onSelect`.
 
 ```dart
-VocabLevelSelector(onSelect: (level) => selectLevel(level))
+VocabularyLevelSelector(onSelect: (level) => selectLevel(level))
 ```
 
 ---
 
-### VocabGroupSelector
+### VocabularyGroupSelector
 
-Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for pagination within a vocab level. `kVocabGroupSize` groups of 30 words each.
+Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for pagination within a vocabulary level. `kVocabularyGroupSize` groups of 30 words each.
 
 ```dart
-VocabGroupSelector(
+VocabularyGroupSelector(
   level: 'N5',
   onBack: () {},
   onSelect: (groupIndex) => selectGroup(groupIndex),
@@ -1453,12 +1453,12 @@ VocabGroupSelector(
 
 ---
 
-### VocabLevelView
+### VocabularyLevelView
 
-Shows the vocabulary word list for one paginated group within a level. Fetches entries via `vocabByLevelProvider`, renders `VocabWordTile` rows, and shows learned-count progress.
+Shows the vocabulary word list for one paginated group within a level. Fetches entries via `vocabularyByLevelProvider`, renders `VocabularyWordTile` rows, and shows learned-count progress.
 
 ```dart
-VocabLevelView(level: 'N5', groupIndex: 0, onBack: () {})
+VocabularyLevelView(level: 'N5', groupIndex: 0, onBack: () {})
 ```
 
 ---

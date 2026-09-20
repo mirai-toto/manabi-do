@@ -285,8 +285,8 @@ def insert_svgs(db: sqlite3.Connection) -> tuple[int, int]:
     return inserted, missing
 
 
-def insert_vocab(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
-    path = f"content/vocabulary/vocab_{slug}.json"
+def insert_vocabulary(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
+    path = f"content/vocabulary/vocabulary_{slug}.json"
     with open(path, encoding="utf-8") as f:
         entries = json.load(f)
 
@@ -303,10 +303,10 @@ def insert_vocab(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
             "INSERT INTO vocabulary_entries (word, reading, meaning, jlpt_level, part_of_speech, kanji_id) VALUES (?, ?, ?, ?, ?, ?)",
             (v["word"], v["reading"], meanings.get("en", ""), jlpt, v["pos"], v.get("kanjiId")),
         )
-        vocab_id = cur.lastrowid
+        vocabulary_id = cur.lastrowid
         db.executemany(
             "INSERT OR REPLACE INTO vocabulary_translations VALUES (?, ?, ?)",
-            [(vocab_id, locale, meaning) for locale, meaning in meanings.items()],
+            [(vocabulary_id, locale, meaning) for locale, meaning in meanings.items()],
         )
         inserted += 1
 
@@ -532,12 +532,12 @@ def populate_sentences(db: sqlite3.Connection) -> int:
     print("  Loading Tatoeba links…", flush=True)
     links = _load_links(jp_ids, all_trans_ids)
 
-    vocab_rows = db.execute(
+    vocabulary_rows = db.execute(
         "SELECT id, word FROM vocabulary_entries ORDER BY jlpt_level"
     ).fetchall()
 
     total = 0
-    for vocab_id, word in vocab_rows:
+    for vocabulary_id, word in vocabulary_rows:
         count = 0
         matched: list[tuple[int, str]] = [
             (sid, text)
@@ -568,7 +568,7 @@ def populate_sentences(db: sqlite3.Connection) -> int:
             furigana = _annotate(jp_text)
             cur = db.execute(
                 "INSERT INTO sentences (japanese, target_word, vocabulary_id, furigana) VALUES (?, ?, ?, ?)",
-                (jp_text, word, vocab_id, furigana),
+                (jp_text, word, vocabulary_id, furigana),
             )
             sentence_id = cur.lastrowid
             db.executemany(
@@ -604,8 +604,8 @@ def main() -> None:
         print(f"  (run python3 tools/download_kanjivg.py to fetch missing SVGs)")
 
     for slug, jlpt in LEVELS:
-        print(f"Inserting {jlpt} vocab… ", end="", flush=True)
-        n = insert_vocab(db, slug, jlpt)
+        print(f"Inserting {jlpt} vocabulary… ", end="", flush=True)
+        n = insert_vocabulary(db, slug, jlpt)
         print(f"{n} entries")
 
     print("Inserting kana… ", end="", flush=True)

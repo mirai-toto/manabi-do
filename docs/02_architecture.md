@@ -67,7 +67,7 @@ A single SQLite file — `manabi_do_content.db` — is bundled as an asset and c
 
 If the bundled DB version marker changes, the existing DB is replaced and SRS progress is migrated across automatically.
 
-`manabi_do_content.db` tables: `kanjis`, `kanji_translations`, `kanas`, `vocabulary_entries`, `vocab_translations`, `sentences`, `sentence_translations`, `grammar_lessons`, `exercises`.
+`manabi_do_content.db` tables: `kanjis`, `kanji_translations`, `kanas`, `vocabulary_entries`, `vocabulary_translations`, `sentences`, `sentence_translations`, `grammar_lessons`, `exercises`.
 
 User progress tables (written at runtime): `progress_entries`, `srs_cards`.
 
@@ -97,7 +97,7 @@ manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
 
 - `getAllDueKanaSrsSession` — due hiragana + katakana with a shared new-card budget
 - `getAllDueKanjiSrsSession` — due kanji from all levels; new cards from the lowest JLPT level with unseen items
-- `getAllDueVocabSrsSession` / `getVocabSrsSession` — due vocab globally or per level
+- `getAllDueVocabularySrsSession` / `getVocabularySrsSession` — due vocabulary globally or per level
 - `getKanaSrsSession` / `getKanjiSrsSession` — per-type sessions for Characters tab
 
 New card rate is enforced by `_countSeenToday(itemType)` — cards whose `first_seen_at` falls on the current calendar day count against the daily limit.
@@ -122,7 +122,7 @@ Grammar lessons are authored as JSON files in `content/grammar/` using a recursi
 
 Supported locales: `en`, `fr`, `de`. Locale is user-selectable in Settings and persisted via `SharedPreferences`.
 
-ARB files under `lib/l10n/`. Code-generated accessors via `AppLocalizations`. Content translations (kanji meanings, vocab meanings, sentence translations) are stored in the database and looked up per locale at query time, with English as the fallback.
+ARB files under `lib/l10n/`. Code-generated accessors via `AppLocalizations`. Content translations (kanji meanings, vocabulary meanings, sentence translations) are stored in the database and looked up per locale at query time, with English as the fallback.
 
 ---
 

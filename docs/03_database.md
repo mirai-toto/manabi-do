@@ -4,7 +4,7 @@
 
 | File                                    | Purpose                                                     |
 | --------------------------------------- | ----------------------------------------------------------- |
-| `manabi_do/assets/manabi_do_content.db` | Main content DB — kanji, vocab, sentences, all translations |
+| `manabi_do/assets/manabi_do_content.db` | Main content DB — kanji, vocabulary, sentences, all translations |
 
 The content DB is bundled as a Flutter asset. On first launch it is copied to a platform-specific directory and used as the live SQLite database:
 
@@ -64,15 +64,15 @@ Primary key: (kanji_id, locale)
 | part_of_speech | TEXT       |                         |
 | kanji_id       | INTEGER FK | → `kanjis.id`, nullable |
 
-**`vocab_translations`**
+**`vocabulary_translations`**
 
 | Column   | Type       | Notes                     |
 | -------- | ---------- | ------------------------- |
-| vocab_id | INTEGER FK | → `vocabulary_entries.id` |
+| vocabulary_id | INTEGER FK | → `vocabulary_entries.id` |
 | locale   | TEXT       | `en`, `fr`, `de`, …       |
 | meaning  | TEXT       |                           |
 
-Primary key: (vocab_id, locale)
+Primary key: (vocabulary_id, locale)
 
 **`sentences`**
 
@@ -80,13 +80,13 @@ Primary key: (vocab_id, locale)
 | --------------- | ---------- | ------------------------------------ |
 | id              | INTEGER PK |                                      |
 | japanese        | TEXT       |                                      |
-| target_word     | TEXT       | Vocab word the sentence demonstrates |
-| vocab_id        | INTEGER FK | → `vocabulary_entries.id`            |
+| target_word     | TEXT       | Vocabulary word the sentence demonstrates |
+| vocabulary_id        | INTEGER FK | → `vocabulary_entries.id`            |
 | furigana_before | TEXT       | nullable                             |
 | furigana_after  | TEXT       | nullable                             |
 | furigana        | TEXT       | Full annotated string, nullable      |
 
-No `jlpt_level` column — level is inherited via `vocab_id → vocabulary_entries.jlpt_level`.
+No `jlpt_level` column — level is inherited via `vocabulary_id → vocabulary_entries.jlpt_level`.
 
 **`sentence_translations`**
 
@@ -176,8 +176,8 @@ Every content type has a different resilience profile. This table maps where eac
 | Kanji characters, readings, meanings | ✅ `kanji_n*.json` | ✅ `kanjis` | ✅ re-downloadable | Rebuild from `content/` |
 | Kanji stroke order SVGs | ✅ `kanji_svg/` | ✅ `kanjis.svg` | — (committed in `content/`) | Rebuild from `content/characters/kanji_svg/` |
 | Kana | ✅ `kana.json` | ✅ `kanas` | — (static) | Rebuild from `content/` |
-| Vocabulary words, readings, POS | ✅ `vocab_n*.json` | ✅ `vocabulary_entries` | ✅ re-downloadable | Rebuild from `content/` |
-| Vocabulary meanings (multilingual) | ✅ inside `vocab_n*.json` | ✅ `vocab_translations` | ✅ re-downloadable (250 MB) | Rebuild from `content/` |
+| Vocabulary words, readings, POS | ✅ `vocabulary_n*.json` | ✅ `vocabulary_entries` | ✅ re-downloadable | Rebuild from `content/` |
+| Vocabulary meanings (multilingual) | ✅ inside `vocabulary_n*.json` | ✅ `vocabulary_translations` | ✅ re-downloadable (250 MB) | Rebuild from `content/` |
 | Example sentences | ❌ | ✅ `sentences` | ✅ re-downloadable | Re-download Tatoeba → rebuild DB |
 | Sentence translations | ❌ | ✅ `sentence_translations` | ✅ re-downloadable | Re-download Tatoeba → rebuild DB |
 | Grammar lessons | ✅ `content/grammar/` | ✅ `grammar_lessons` | — (hand-authored) | Rebuild from `content/` |
@@ -190,7 +190,7 @@ All three content types are queryable by JLPT level (N5–N1):
 
 - **Kanji** — `kanjis.jlpt_level` column; queried directly.
 - **Vocabulary** — `vocabulary_entries.jlpt_level` column; queried directly.
-- **Sentences** — no `jlpt_level` column; level is inherited via `sentences.vocab_id → vocabulary_entries.jlpt_level`. The app filters sentences by level through this join.
+- **Sentences** — no `jlpt_level` column; level is inherited via `sentences.vocabulary_id → vocabulary_entries.jlpt_level`. The app filters sentences by level through this join.
 
 Sentence distribution by inherited level:
 
@@ -205,7 +205,7 @@ Sentence distribution by inherited level:
 
 ## Translation coverage
 
-Translations are stored in three tables: `kanji_translations`, `vocab_translations`, `sentence_translations`.
+Translations are stored in three tables: `kanji_translations`, `vocabulary_translations`, `sentence_translations`.
 `sentence_translations` uses ISO 639-2 (3-letter) locale codes; the others use ISO 639-1 (2-letter).
 
 ### Kanji meanings (2 211 total)
@@ -232,7 +232,7 @@ Gaps: 219 missing FR kanji (all N1), 283 missing PT kanji (all N1), German has n
 | N1        | 3 450     | 100%     | 79%     | 96%     | 93%     | 94%     |
 | **Total** | **8 018** | **100%** | **90%** | **97%** | **96%** | **95%** |
 
-Gaps: mainly N1 — 735 missing FR vocab, ~233 missing DE vocab. N2–N5 nearly complete across all locales.
+Gaps: mainly N1 — 735 missing FR vocabulary, ~233 missing DE vocabulary. N2–N5 nearly complete across all locales.
 
 ### Sentence translations (20 158 EN source sentences)
 
@@ -251,5 +251,5 @@ Sentences come from Tatoeba where translations depend on community contributions
 
 - [ ] N1 kanji meanings in FR (219 missing) and PT (283 missing)
 - [ ] German kanji meanings: 0% coverage — no translations in DB at any level
-- [ ] N1 vocab meanings in FR (~735 missing)
+- [ ] N1 vocabulary meanings in FR (~735 missing)
 - [ ] Sentence translations: structural gap — Tatoeba does not cover most sentences in FR/DE/ES

@@ -40,3 +40,7 @@ manabi_do/coverage/
 # Playwright install (auto-installed by scripts/screenshot/rebuild_and_screenshot.sh)
 scripts/screenshot/pw/
 node_modules/
+
+# Python bytecode from tools/
+__pycache__/
+*.pyc
