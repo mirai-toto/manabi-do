@@ -10,9 +10,9 @@ import '../../../l10n/level_label.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/grammar_provider.dart';
 import '../../services/grammar_session_service.dart';
-import '../widgets.dart';
-import '../../screens/practice/practice_session_screen.dart';
-import '../../screens/grammar/grammar_lesson_list_screen.dart';
+import '../../widgets/widgets.dart';
+import '../practice/practice_session_screen.dart';
+import 'grammar_lesson_list_screen.dart';
 
 class GrammarChapterList extends ConsumerWidget {
   final String level;

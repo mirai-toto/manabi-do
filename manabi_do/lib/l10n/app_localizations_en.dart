@@ -261,9 +261,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get comingSoon => 'Coming soon';
-
-  @override
   String get strokeOrderPlaceholder => '▶ Stroke order animation';
 
   @override
@@ -575,8 +572,15 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String drawingStrokeResult(int correct, int total) {
-    return '$correct / $total strokes correct';
+  String drawingMistakeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count mistakes',
+      one: '1 mistake',
+      zero: 'Perfect!',
+    );
+    return '$_temp0';
   }
 
   @override

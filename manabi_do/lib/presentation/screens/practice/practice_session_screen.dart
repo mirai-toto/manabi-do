@@ -9,8 +9,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/home_provider.dart';
 import '../../providers/practice_session_provider.dart';
-import '../../widgets/common/confirm_dialog.dart';
-import '../../widgets/exercise/summary_card.dart';
+import '../../widgets/widgets.dart';
 import 'practice_item.dart';
 import 'practice_settings_sheet.dart';
 

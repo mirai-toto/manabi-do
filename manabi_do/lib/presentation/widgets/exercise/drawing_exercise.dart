@@ -23,7 +23,14 @@ class DrawingExercise extends StatefulWidget {
   final Color color;
   final Card? card;
   final bool isFreeMode;
+
+  /// Called with the rating the user picked in the self-assessment buttons.
   final void Function(Rating)? onRate;
+
+  /// Called when the attempt ends and the session advances on its own. Reports
+  /// what happened; the caller decides what that is worth.
+  final void Function({required bool hintsUsed, required int mistakes})?
+  onAutoAdvance;
   final String? question;
   final VoidCallback? onDetailTap;
   final VoidCallback? onNext;
@@ -41,6 +48,7 @@ class DrawingExercise extends StatefulWidget {
     this.card,
     this.isFreeMode = false,
     this.onRate,
+    this.onAutoAdvance,
     this.question,
     this.onDetailTap,
     this.onNext,
@@ -55,7 +63,9 @@ class _DrawingExerciseState extends State<DrawingExercise>
   List<List<Offset>> _strokes = [];
   List<bool> _strokeResults = [];
   int _hintLevel = 0;
-  int _mistakeCount = 0;
+  // Reference stroke indices that were rejected at least once. Counted per
+  // stroke, not per attempt, so one tricky stroke can only cost one mistake.
+  final Set<int> _wrongStrokes = <int>{};
   bool _hintsUsed = false;
   bool _autoAdvanceDone = false;
   final _canvasKey = GlobalKey<KanjiDrawingCanvasState>();
@@ -65,7 +75,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
     duration: const Duration(milliseconds: 500),
   )..addListener(() => setState(() {}));
 
-  bool get _allCorrect => _done && _strokeResults.every((r) => r);
+  bool get _allCorrect => _done && _wrongStrokes.isEmpty;
 
   bool get _done =>
       _strokeResults.length == widget.referenceStrokes.length &&
@@ -160,7 +170,6 @@ class _DrawingExerciseState extends State<DrawingExercise>
   Widget _buildDoneArea(BuildContext context, DrawingSettings s) {
     final l = context.l10n;
     final t = context.tokens;
-    final refStrokes = widget.referenceStrokes;
     final showSrsActions =
         widget.onRate != null &&
         !_hintsUsed &&
@@ -180,7 +189,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
           )
         else ...[
           Text(
-            l.drawingStrokeResult(_mistakeCount, refStrokes.length),
+            l.drawingMistakeCount(_wrongStrokes.length),
             style: AppTextStyles.body.copyWith(
               color: _allCorrect ? t.success : t.error,
               fontWeight: FontWeight.w600,
@@ -363,10 +372,12 @@ class _DrawingExerciseState extends State<DrawingExercise>
   }
 
   void _onAllStrokesDone() {
-    if (widget.onRate == null) return;
+    final report = widget.onAutoAdvance;
+    if (report == null) return;
+
     if (_hintsUsed) {
       Future.delayed(const Duration(milliseconds: 1200), () {
-        if (mounted) widget.onRate!(Rating.again);
+        if (mounted) report(hintsUsed: true, mistakes: _wrongStrokes.length);
       });
       return;
     }
@@ -374,7 +385,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
     if (widget.isFreeMode && widget.settings.autoAdvance && !_autoAdvanceDone) {
       _autoAdvanceDone = true;
       Future.delayed(const Duration(seconds: 1), () {
-        if (mounted) widget.onRate!(_allCorrect ? Rating.good : Rating.again);
+        if (mounted) report(hintsUsed: false, mistakes: _wrongStrokes.length);
       });
     }
   }
@@ -418,7 +429,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
 
     if (!result) {
       // Don't commit false to _strokeResults: avoids _done flipping true prematurely
-      setState(() => _mistakeCount++);
+      setState(() => _wrongStrokes.add(newIdx));
       _wrongFade.forward(from: 0).then((_) {
         if (mounted) _canvasKey.currentState?.undo();
       });
@@ -437,7 +448,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
       _strokes = [];
       _strokeResults = [];
       _hintLevel = 0;
-      _mistakeCount = 0;
+      _wrongStrokes.clear();
       _hintsUsed = false;
       _autoAdvanceDone = false;
     });

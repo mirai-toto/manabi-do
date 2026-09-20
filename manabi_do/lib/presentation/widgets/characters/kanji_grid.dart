@@ -5,13 +5,18 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../widgets.dart';
-import '../../screens/characters/kanji/kanji_detail_screen.dart';
 
 class KanjiGrid extends StatelessWidget {
   final List<Kanji> kanjis;
   final Map<int, Card> srsCards;
+  final void Function(int kanjiId) onKanjiTap;
 
-  const KanjiGrid({super.key, required this.kanjis, required this.srsCards});
+  const KanjiGrid({
+    super.key,
+    required this.kanjis,
+    required this.srsCards,
+    required this.onKanjiTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +50,7 @@ class KanjiGrid extends StatelessWidget {
               return CharacterCell(
                 character: entry.character,
                 accentColor: accent,
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => KanjiDetailScreen(kanjiId: entry.id),
-                  ),
-                ),
+                onTap: () => onKanjiTap(entry.id),
                 width: cellSize,
                 height: cellSize,
                 characterSize: kanjiSize,

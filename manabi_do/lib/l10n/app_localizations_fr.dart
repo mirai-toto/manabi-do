@@ -261,9 +261,6 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get comingSoon => 'Bientôt disponible';
-
-  @override
   String get strokeOrderPlaceholder => '▶ Animation de l\'ordre des traits';
 
   @override
@@ -577,8 +574,15 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String drawingStrokeResult(int correct, int total) {
-    return '$correct / $total traits corrects';
+  String drawingMistakeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count erreurs',
+      one: '1 erreur',
+      zero: 'Parfait !',
+    );
+    return '$_temp0';
   }
 
   @override

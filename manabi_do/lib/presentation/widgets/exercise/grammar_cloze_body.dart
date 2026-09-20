@@ -158,8 +158,13 @@ class _ClozeSentence extends StatelessWidget {
               alignment: PlaceholderAlignment.baseline,
               baseline: TextBaseline.alphabetic,
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.spaceXs,
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.spaceSm,
+                  vertical: AppDimens.spaceXxs,
+                ),
                 decoration: BoxDecoration(
                   color: color.withValues(alpha: answered ? 0.15 : 0.08),
                   borderRadius: BorderRadius.circular(AppDimens.radiusSm),

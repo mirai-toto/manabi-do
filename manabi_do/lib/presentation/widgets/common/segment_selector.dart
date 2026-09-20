@@ -22,27 +22,35 @@ class SegmentSelector extends StatelessWidget {
     return Row(
       children: [
         for (int i = 0; i < options.length; i++) ...[
-          if (i > 0) const SizedBox(width: 6),
+          if (i > 0) const SizedBox(width: AppDimens.spaceTight),
           Expanded(
-            child: GestureDetector(
-              onTap: () => onSelect(i),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 150),
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                decoration: BoxDecoration(
-                  color: i == selected ? t.primary : t.cardBackground,
-                  borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-                  border: Border.all(
-                    color: i == selected ? t.primary : t.outlineVariant,
+            child: Semantics(
+              label: options[i],
+              button: true,
+              selected: i == selected,
+              excludeSemantics: true,
+              child: GestureDetector(
+                onTap: () => onSelect(i),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 150),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppDimens.spaceSm,
                   ),
-                ),
-                child: Text(
-                  options[i],
-                  style: AppTextStyles.labelSmall.copyWith(
-                    color: i == selected ? Colors.white : t.onSurface,
-                    fontWeight: FontWeight.w600,
+                  decoration: BoxDecoration(
+                    color: i == selected ? t.primary : t.cardBackground,
+                    borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+                    border: Border.all(
+                      color: i == selected ? t.primary : t.outlineVariant,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
+                  child: Text(
+                    options[i],
+                    style: AppTextStyles.labelSmall.copyWith(
+                      color: i == selected ? Colors.white : t.onSurface,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),

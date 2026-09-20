@@ -184,34 +184,37 @@ class _SentenceCard extends StatelessWidget {
         bgColor = t.surfaceContainer;
     }
 
-    return GestureDetector(
-      onTap: state == _SentenceCardState.idle ? () => onTap(slot) : null,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(AppDimens.spaceMd),
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          border: Border.all(
-            color: borderColor,
-            width: state != _SentenceCardState.idle ? 2 : 1,
-          ),
-        ),
-        child: Text.rich(
-          TextSpan(
-            children: furiganaSpans(
-              sentence,
-              AppTextStyles.jpMedium.copyWith(
-                color: t.onSurface,
-                decoration: state == _SentenceCardState.wrong
-                    ? TextDecoration.lineThrough
-                    : null,
-                decorationColor: t.error,
-              ),
-              AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant),
+    return Semantics(
+      button: state == _SentenceCardState.idle,
+      child: GestureDetector(
+        onTap: state == _SentenceCardState.idle ? () => onTap(slot) : null,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.all(AppDimens.spaceMd),
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+            border: Border.all(
+              color: borderColor,
+              width: state != _SentenceCardState.idle ? 2 : 1,
             ),
           ),
-          textAlign: TextAlign.center,
+          child: Text.rich(
+            TextSpan(
+              children: furiganaSpans(
+                sentence,
+                AppTextStyles.jpMedium.copyWith(
+                  color: t.onSurface,
+                  decoration: state == _SentenceCardState.wrong
+                      ? TextDecoration.lineThrough
+                      : null,
+                  decorationColor: t.error,
+                ),
+                AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant),
+              ),
+            ),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );

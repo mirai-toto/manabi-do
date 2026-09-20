@@ -10,20 +10,20 @@ import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
 import '../../providers/vocab_list_provider.dart';
 import '../widgets.dart';
-import '../../screens/practice/practice_selection_screen.dart';
-import '../../screens/vocabulary/vocab_practice_screen.dart';
 
 const kVocabGroupSize = 30;
 
 class VocabGroupSelector extends ConsumerWidget {
   final String level;
   final VoidCallback onBack;
+  final VoidCallback onPractice;
   final void Function(int) onSelect;
 
   const VocabGroupSelector({
     super.key,
     required this.level,
     required this.onBack,
+    required this.onPractice,
     required this.onSelect,
   });
 
@@ -78,58 +78,7 @@ class VocabGroupSelector extends ConsumerWidget {
               ],
             ),
           ),
-          PracticeButton(
-            color: color,
-            onTap: () {
-              final l = context.l10n;
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (ctx) => PracticeSelectionScreen(
-                    title: levelLabel(level, ctx),
-                    color: color,
-                    modes: [
-                      PracticeMode(
-                        icon: Icons.style_rounded,
-                        title: l.flashcardPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => VocabPracticeScreen(
-                              level: level,
-                              flashcardOnly: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                      PracticeMode(
-                        icon: Icons.quiz_rounded,
-                        title: l.mcqPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => VocabPracticeScreen(
-                              level: level,
-                              mcqOnly: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                      PracticeMode(
-                        icon: Icons.chat_bubble_outline_rounded,
-                        title: l.sentencePractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => VocabPracticeScreen(
-                              level: level,
-                              sentenceOnly: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
+          PracticeButton(color: color, onTap: onPractice),
           if (vocabAsync is AsyncLoading)
             const Center(child: CircularProgressIndicator())
           else

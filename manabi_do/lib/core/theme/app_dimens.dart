@@ -19,6 +19,11 @@ abstract final class AppDimens {
   static const double spaceLg = 24;
   static const double spaceXl = 32;
 
+  // Half-steps, for dense layouts where the 8 / 16 scale is too coarse.
+  static const double spaceTight = 6;
+  static const double spaceSnug = 10;
+  static const double spaceCozy = 12;
+
   // Component-specific padding (used in multiple widgets)
   static const double badgePaddingH = 10;
   static const double badgePaddingV = 3;

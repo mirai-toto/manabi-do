@@ -9,13 +9,17 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_provider.dart';
 import '../widgets.dart';
-import '../../screens/characters/kanji/kanji_detail_screen.dart';
 
 const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
 class KanjiLevelSelector extends ConsumerStatefulWidget {
   final void Function(String) onSelect;
-  const KanjiLevelSelector({super.key, required this.onSelect});
+  final void Function(int kanjiId) onOpenKanji;
+  const KanjiLevelSelector({
+    super.key,
+    required this.onSelect,
+    required this.onOpenKanji,
+  });
 
   @override
   ConsumerState<KanjiLevelSelector> createState() => _KanjiLevelSelectorState();
@@ -85,7 +89,12 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
                       )
                     : Column(
                         children: results
-                            .map((k) => _KanjiResultTile(kanji: k))
+                            .map(
+                              (k) => _KanjiResultTile(
+                                kanji: k,
+                                onTap: () => widget.onOpenKanji(k.id),
+                              ),
+                            )
                             .toList(),
                       ),
               ),
@@ -101,7 +110,8 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
 
 class _KanjiResultTile extends StatelessWidget {
   final Kanji kanji;
-  const _KanjiResultTile({required this.kanji});
+  final VoidCallback onTap;
+  const _KanjiResultTile({required this.kanji, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +120,7 @@ class _KanjiResultTile extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-            ),
-          ),
+          onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: AppDimens.spaceSm,

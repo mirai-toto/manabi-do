@@ -70,48 +70,55 @@ class _VocabWordTileState extends ConsumerState<VocabWordTile> {
                 ],
               ),
               const SizedBox(height: AppDimens.spaceXxs),
-              GestureDetector(
-                onTap: overflows
-                    ? () => setState(() => _expanded = !_expanded)
-                    : null,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      meaning,
-                      style: meaningStyle,
-                      maxLines: _expanded ? null : 2,
-                      overflow: _expanded
-                          ? TextOverflow.visible
-                          : TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: AppDimens.spaceXs),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Stack(
-                        alignment: Alignment.centerLeft,
-                        children: [
-                          PillBadge(
-                            label: posLabel(widget.entry.partOfSpeech, context),
-                            color: posColor,
-                            background: posColor.withValues(alpha: 0.1),
-                            textStyle: AppTextStyles.labelSmall,
-                          ),
-                          if (overflows)
-                            Align(
-                              alignment: Alignment.center,
-                              child: Icon(
-                                _expanded
-                                    ? Icons.expand_less_rounded
-                                    : Icons.expand_more_rounded,
-                                size: 16,
-                                color: t.onSurfaceVariant,
-                              ),
-                            ),
-                        ],
+              Semantics(
+                button: overflows,
+                toggled: overflows ? _expanded : null,
+                child: GestureDetector(
+                  onTap: overflows
+                      ? () => setState(() => _expanded = !_expanded)
+                      : null,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        meaning,
+                        style: meaningStyle,
+                        maxLines: _expanded ? null : 2,
+                        overflow: _expanded
+                            ? TextOverflow.visible
+                            : TextOverflow.ellipsis,
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: AppDimens.spaceXs),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Stack(
+                          alignment: Alignment.centerLeft,
+                          children: [
+                            PillBadge(
+                              label: posLabel(
+                                widget.entry.partOfSpeech,
+                                context,
+                              ),
+                              color: posColor,
+                              background: posColor.withValues(alpha: 0.1),
+                              textStyle: AppTextStyles.labelSmall,
+                            ),
+                            if (overflows)
+                              Align(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  _expanded
+                                      ? Icons.expand_less_rounded
+                                      : Icons.expand_more_rounded,
+                                  size: 16,
+                                  color: t.onSurfaceVariant,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

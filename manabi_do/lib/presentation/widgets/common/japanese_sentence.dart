@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import 'japanese_text.dart';
@@ -48,11 +49,16 @@ class JapaneseSentence extends StatelessWidget {
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 2),
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+              margin: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceXxs,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceTight,
+                vertical: 1,
+              ),
               decoration: BoxDecoration(
                 color: accentColor.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(AppDimens.radiusXs),
                 border: Border.all(color: accentColor),
               ),
               child: Text(
@@ -90,7 +96,7 @@ class JapaneseSentence extends StatelessWidget {
           text: TextSpan(children: spans),
         ),
         if (translation != null) ...[
-          const SizedBox(height: 4),
+          const SizedBox(height: AppDimens.spaceXs),
           Text(
             translation!,
             style: AppTextStyles.bodySmall.copyWith(

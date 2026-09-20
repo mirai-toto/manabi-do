@@ -5,20 +5,22 @@ import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/home_provider.dart';
 import '../../providers/kanji_provider.dart';
 import '../widgets.dart';
-import '../../screens/practice/practice_selection_screen.dart';
-import '../../screens/practice/writing_session_screen.dart';
-import '../../screens/characters/kanji/kanji_practice_screen.dart';
 
 class KanjiGroupView extends ConsumerWidget {
   final String level;
   final int groupIndex;
+  final VoidCallback onBack;
+  final void Function(Set<int> kanjiIds) onPractice;
+  final void Function(int kanjiId) onOpenKanji;
   const KanjiGroupView({
     super.key,
     required this.level,
     required this.groupIndex,
+    required this.onBack,
+    required this.onPractice,
+    required this.onOpenKanji,
   });
 
   @override
@@ -50,72 +52,19 @@ class KanjiGroupView extends ConsumerWidget {
             label:
                 '${context.l10n.groupN(groupIndex + 1)} · ${start + 1}–${start + groupKanji.length}',
             color: color,
-            onBack: () => ref.read(kanjiSelectedGroupProvider.notifier).clear(),
+            onBack: onBack,
           ),
           ProgressRow(
             known: learnedCount,
             total: groupKanji.length,
             color: color,
           ),
-          PracticeButton(
-            color: color,
-            onTap: () {
-              final l = context.l10n;
-              final groupTitle = l.groupN(groupIndex + 1);
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (ctx) => PracticeSelectionScreen(
-                    title: groupTitle,
-                    color: color,
-                    modes: [
-                      PracticeMode(
-                        icon: Icons.edit_rounded,
-                        title: l.writingPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => WritingSessionScreen(
-                              level: level,
-                              color: color,
-                              kanjiIds: groupIds,
-                            ),
-                          ),
-                        ),
-                      ),
-                      PracticeMode(
-                        icon: Icons.style_rounded,
-                        title: l.flashcardPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => KanjiPracticeScreen(
-                              level: level,
-                              allowedIds: groupIds,
-                              exerciseFilter: ExerciseFilter.flashcardOnly,
-                              freeMode: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                      PracticeMode(
-                        icon: Icons.quiz_rounded,
-                        title: l.mcqPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => KanjiPracticeScreen(
-                              level: level,
-                              allowedIds: groupIds,
-                              exerciseFilter: ExerciseFilter.mcqOnly,
-                              freeMode: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
+          PracticeButton(color: color, onTap: () => onPractice(groupIds)),
+          KanjiGrid(
+            kanjis: groupKanji,
+            srsCards: srsCards,
+            onKanjiTap: onOpenKanji,
           ),
-          KanjiGrid(kanjis: groupKanji, srsCards: srsCards),
         ],
       ),
     );

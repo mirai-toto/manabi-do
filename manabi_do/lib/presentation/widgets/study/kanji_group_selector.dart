@@ -6,18 +6,23 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
-import '../../providers/home_provider.dart';
 import '../../providers/kanji_provider.dart';
 import '../widgets.dart';
-import '../../screens/practice/practice_selection_screen.dart';
-import '../../screens/practice/writing_session_screen.dart';
-import '../../screens/characters/kanji/kanji_practice_screen.dart';
 
 const kKanjiGroupSize = 20;
 
 class KanjiGroupSelector extends ConsumerWidget {
   final String level;
-  const KanjiGroupSelector({super.key, required this.level});
+  final VoidCallback onBack;
+  final VoidCallback onPractice;
+  final void Function(int groupIndex) onSelectGroup;
+  const KanjiGroupSelector({
+    super.key,
+    required this.level,
+    required this.onBack,
+    required this.onPractice,
+    required this.onSelectGroup,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -37,65 +42,9 @@ class KanjiGroupSelector extends ConsumerWidget {
             level: level,
             label: levelLabel(level, context),
             color: color,
-            onBack: () {
-              ref.read(kanjiSelectedGroupProvider.notifier).clear();
-              ref.read(kanjiSelectedLevelProvider.notifier).clear();
-            },
+            onBack: onBack,
           ),
-          PracticeButton(
-            color: color,
-            onTap: () {
-              final l = context.l10n;
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (ctx) => PracticeSelectionScreen(
-                    title: levelLabel(level, ctx),
-                    color: color,
-                    modes: [
-                      PracticeMode(
-                        icon: Icons.edit_rounded,
-                        title: l.writingPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => WritingSessionScreen(
-                              level: level,
-                              color: color,
-                            ),
-                          ),
-                        ),
-                      ),
-                      PracticeMode(
-                        icon: Icons.style_rounded,
-                        title: l.flashcardPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => KanjiPracticeScreen(
-                              level: level,
-                              exerciseFilter: ExerciseFilter.flashcardOnly,
-                              freeMode: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                      PracticeMode(
-                        icon: Icons.quiz_rounded,
-                        title: l.mcqPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => KanjiPracticeScreen(
-                              level: level,
-                              exerciseFilter: ExerciseFilter.mcqOnly,
-                              freeMode: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
+          PracticeButton(color: color, onTap: onPractice),
           if (kanjiAsync is AsyncLoading)
             const Center(child: CircularProgressIndicator())
           else
@@ -128,9 +77,7 @@ class KanjiGroupSelector extends ConsumerWidget {
                           '${start + 1}–$end · $learnedCount / ${groupKanji.length}',
                       progress: progress,
                       color: color,
-                      onTap: () => ref
-                          .read(kanjiSelectedGroupProvider.notifier)
-                          .select(i),
+                      onTap: () => onSelectGroup(i),
                     ),
                   );
                 }),

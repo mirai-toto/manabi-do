@@ -105,7 +105,7 @@ class _WordRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppDimens.spaceMd,
-        vertical: 10,
+        vertical: AppDimens.spaceSnug,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

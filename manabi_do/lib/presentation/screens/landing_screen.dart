@@ -7,8 +7,7 @@ import '../../core/theme/app_dimens.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/theme/app_tokens.dart';
 import '../../l10n/l10n.dart';
-import '../widgets/common/auth_button.dart';
-import '../widgets/common/landing_hero_panel.dart';
+import '../widgets/widgets.dart';
 import 'home/home_screen.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -74,12 +73,12 @@ class _AuthSection extends StatelessWidget {
                     width: 20,
                     height: 20,
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: AppDimens.spaceSnug),
                   Text(l.signInWithGoogle),
                 ],
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: AppDimens.spaceCozy),
             AuthButton(
               onPressed: onContinue,
               backgroundColor: AppBrandColors.appleButton,
@@ -92,7 +91,7 @@ class _AuthSection extends StatelessWidget {
                     width: 20,
                     height: 20,
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: AppDimens.spaceSnug),
                   Text(l.signInWithApple),
                 ],
               ),
@@ -121,7 +120,7 @@ class _OrDivider extends StatelessWidget {
       children: [
         const Expanded(child: Divider()),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceCozy),
           child: Text(
             context.l10n.or,
             style: AppTextStyles.label.copyWith(color: t.onSurfaceVariant),

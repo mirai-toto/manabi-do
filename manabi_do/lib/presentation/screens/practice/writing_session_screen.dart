@@ -10,9 +10,8 @@ import '../../../l10n/l10n.dart';
 import '../../providers/drawing_settings_provider.dart';
 import '../../providers/home_provider.dart';
 import '../../providers/writing_session_provider.dart';
-import '../../widgets/characters/kanji_strokes_provider.dart';
-import '../../widgets/exercise/drawing_exercise.dart';
-import '../../widgets/exercise/practice_progress_row.dart';
+import '../../providers/kanji_strokes_provider.dart';
+import '../../widgets/widgets.dart';
 import 'practice_settings_sheet.dart';
 
 class WritingSessionScreen extends ConsumerStatefulWidget {

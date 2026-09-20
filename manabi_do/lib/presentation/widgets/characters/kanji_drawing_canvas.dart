@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
-import 'kanji_strokes_provider.dart';
+import '../../providers/kanji_strokes_provider.dart';
 
 class KanjiDrawingCanvas extends StatefulWidget {
   final void Function(List<List<Offset>>) onStrokesChanged;

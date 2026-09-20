@@ -7,8 +7,9 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/home_provider.dart';
 import '../../widgets/widgets.dart';
+import 'grammar_chapter_list.dart';
 
-const _levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
+const _levels = ['N5'];
 
 class GrammarScreen extends ConsumerWidget {
   const GrammarScreen({super.key});
@@ -69,23 +70,7 @@ class _LevelSelector extends StatelessWidget {
         SectionLabel(l.selectLevel),
         const SizedBox(height: AppDimens.spaceSm),
         for (final level in _levels)
-          JlptLevelCard(
-            code: level,
-            subtitle: level == 'N5' ? null : l.comingSoon,
-            onTap: () {
-              if (level == 'N5') {
-                onSelect(level);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(l.comingSoon),
-                    behavior: SnackBarBehavior.floating,
-                    duration: const Duration(seconds: 2),
-                  ),
-                );
-              }
-            },
-          ),
+          JlptLevelCard(code: level, onTap: () => onSelect(level)),
       ],
     );
   }

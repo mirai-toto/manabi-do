@@ -9,19 +9,19 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/vocab_list_provider.dart';
 import '../widgets.dart';
-import '../../screens/practice/practice_selection_screen.dart';
-import '../../screens/vocabulary/vocab_practice_screen.dart';
 
 class VocabLevelView extends ConsumerWidget {
   final String level;
   final int groupIndex;
   final VoidCallback onBack;
+  final void Function(Set<int> vocabIds) onPractice;
 
   const VocabLevelView({
     super.key,
     required this.level,
     required this.groupIndex,
     required this.onBack,
+    required this.onPractice,
   });
 
   @override
@@ -41,6 +41,7 @@ class VocabLevelView extends ConsumerWidget {
             .take(kVocabGroupSize)
             .toList(),
         onBack: onBack,
+        onPractice: onPractice,
       ),
     };
   }
@@ -52,6 +53,7 @@ class _LevelContent extends ConsumerWidget {
   final Color color;
   final List<VocabularyEntry> entries;
   final VoidCallback onBack;
+  final void Function(Set<int> vocabIds) onPractice;
 
   const _LevelContent({
     required this.level,
@@ -59,6 +61,7 @@ class _LevelContent extends ConsumerWidget {
     required this.color,
     required this.entries,
     required this.onBack,
+    required this.onPractice,
   });
 
   @override
@@ -115,74 +118,7 @@ class _LevelContent extends ConsumerWidget {
             ),
           ),
           ProgressRow(known: learnedCount, total: entries.length, color: color),
-          PracticeButton(
-            color: color,
-            onTap: () {
-              final groupTitle = l.groupN(groupIndex + 1);
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (ctx) => PracticeSelectionScreen(
-                    title: groupTitle,
-                    color: color,
-                    modes: [
-                      PracticeMode(
-                        icon: Icons.shuffle_rounded,
-                        title: l.freePractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => VocabPracticeScreen(
-                              level: level,
-                              allowedIds: groupIds,
-                              freeMode: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                      PracticeMode(
-                        icon: Icons.style_rounded,
-                        title: l.flashcardPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => VocabPracticeScreen(
-                              level: level,
-                              allowedIds: groupIds,
-                              flashcardOnly: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                      PracticeMode(
-                        icon: Icons.quiz_rounded,
-                        title: l.mcqPractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => VocabPracticeScreen(
-                              level: level,
-                              allowedIds: groupIds,
-                              mcqOnly: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                      PracticeMode(
-                        icon: Icons.chat_bubble_outline_rounded,
-                        title: l.sentencePractice,
-                        onTap: () async => Navigator.of(ctx).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => VocabPracticeScreen(
-                              level: level,
-                              allowedIds: groupIds,
-                              sentenceOnly: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
+          PracticeButton(color: color, onTap: () => onPractice(groupIds)),
           for (int i = 0; i < entries.length; i++) ...[
             if (i > 0)
               Divider(

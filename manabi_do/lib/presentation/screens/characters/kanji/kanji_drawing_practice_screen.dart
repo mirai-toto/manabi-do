@@ -7,8 +7,8 @@ import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../providers/drawing_settings_provider.dart';
 import '../../../providers/kanji_provider.dart';
-import '../../../widgets/characters/kanji_strokes_provider.dart';
-import '../../../widgets/exercise/drawing_exercise.dart';
+import '../../../providers/kanji_strokes_provider.dart';
+import '../../../widgets/widgets.dart';
 
 class KanjiDrawingPracticeScreen extends ConsumerWidget {
   final int kanjiId;

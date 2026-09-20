@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:xml/xml.dart';
 
-import '../../../presentation/providers/database_provider.dart';
+import 'database_provider.dart';
 
 const double kanjiVgViewBox = 109;
 
