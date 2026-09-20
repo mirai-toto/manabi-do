@@ -11,11 +11,11 @@ class KanjiTranslations extends Table {
   Set<Column> get primaryKey => {kanjiId, locale};
 }
 
-class VocabTranslations extends Table {
-  IntColumn get vocabId => integer().references(VocabularyEntries, #id)();
+class VocabularyTranslations extends Table {
+  IntColumn get vocabularyId => integer().references(VocabularyEntries, #id)();
   TextColumn get locale => text()();
   TextColumn get meaning => text()();
 
   @override
-  Set<Column> get primaryKey => {vocabId, locale};
+  Set<Column> get primaryKey => {vocabularyId, locale};
 }

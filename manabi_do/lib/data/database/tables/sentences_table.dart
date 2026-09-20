@@ -6,7 +6,7 @@ class Sentences extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get japanese => text()();
   TextColumn get targetWord => text()();
-  IntColumn get vocabId => integer().references(VocabularyEntries, #id)();
+  IntColumn get vocabularyId => integer().references(VocabularyEntries, #id)();
   TextColumn get furiganaBefore => text().nullable()();
   TextColumn get furiganaAfter => text().nullable()();
   TextColumn get furigana => text().nullable()();

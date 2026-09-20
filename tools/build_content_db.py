@@ -7,7 +7,7 @@ Run from the repo root:
 Commit the output file. The app copies it on first install — no runtime
 parsing or seeding loop.
 
-To add multilingual translations, run tools/gen_translations.dart first,
+To add multilingual translations, run tools/gen_translations.py first,
 then re-run this script.
 
 Sentence exercises use Tatoeba (CC BY 2.0, tatoeba.org). The script
@@ -162,11 +162,11 @@ def create_tables(db: sqlite3.Connection) -> None:
             PRIMARY KEY (kanji_id, locale)
         );
 
-        CREATE TABLE vocab_translations (
-            vocab_id INTEGER NOT NULL REFERENCES vocabulary_entries(id),
+        CREATE TABLE vocabulary_translations (
+            vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries(id),
             locale   TEXT NOT NULL,
             meaning  TEXT NOT NULL,
-            PRIMARY KEY (vocab_id, locale)
+            PRIMARY KEY (vocabulary_id, locale)
         );
 
         CREATE TABLE kanas (
@@ -226,7 +226,7 @@ def create_tables(db: sqlite3.Connection) -> None:
             id               INTEGER PRIMARY KEY AUTOINCREMENT,
             japanese         TEXT NOT NULL,
             target_word      TEXT NOT NULL,
-            vocab_id         INTEGER NOT NULL REFERENCES vocabulary_entries(id),
+            vocabulary_id    INTEGER NOT NULL REFERENCES vocabulary_entries(id),
             furigana_before  TEXT,
             furigana_after   TEXT,
             furigana         TEXT
@@ -305,7 +305,7 @@ def insert_vocab(db: sqlite3.Connection, slug: str, jlpt: str) -> int:
         )
         vocab_id = cur.lastrowid
         db.executemany(
-            "INSERT OR REPLACE INTO vocab_translations VALUES (?, ?, ?)",
+            "INSERT OR REPLACE INTO vocabulary_translations VALUES (?, ?, ?)",
             [(vocab_id, locale, meaning) for locale, meaning in meanings.items()],
         )
         inserted += 1
@@ -567,7 +567,7 @@ def populate_sentences(db: sqlite3.Connection) -> int:
 
             furigana = _annotate(jp_text)
             cur = db.execute(
-                "INSERT INTO sentences (japanese, target_word, vocab_id, furigana) VALUES (?, ?, ?, ?)",
+                "INSERT INTO sentences (japanese, target_word, vocabulary_id, furigana) VALUES (?, ?, ?, ?)",
                 (jp_text, word, vocab_id, furigana),
             )
             sentence_id = cur.lastrowid

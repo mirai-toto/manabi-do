@@ -4043,18 +4043,18 @@ class KanjiTranslationsCompanion extends UpdateCompanion<KanjiTranslation> {
   }
 }
 
-class $VocabTranslationsTable extends VocabTranslations
-    with TableInfo<$VocabTranslationsTable, VocabTranslation> {
+class $VocabularyTranslationsTable extends VocabularyTranslations
+    with TableInfo<$VocabularyTranslationsTable, VocabularyTranslation> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $VocabTranslationsTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _vocabIdMeta = const VerificationMeta(
-    'vocabId',
+  $VocabularyTranslationsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _vocabularyIdMeta = const VerificationMeta(
+    'vocabularyId',
   );
   @override
-  late final GeneratedColumn<int> vocabId = GeneratedColumn<int>(
-    'vocab_id',
+  late final GeneratedColumn<int> vocabularyId = GeneratedColumn<int>(
+    'vocabulary_id',
     aliasedName,
     false,
     type: DriftSqlType.int,
@@ -4084,26 +4084,29 @@ class $VocabTranslationsTable extends VocabTranslations
     requiredDuringInsert: true,
   );
   @override
-  List<GeneratedColumn> get $columns => [vocabId, locale, meaning];
+  List<GeneratedColumn> get $columns => [vocabularyId, locale, meaning];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'vocab_translations';
+  static const String $name = 'vocabulary_translations';
   @override
   VerificationContext validateIntegrity(
-    Insertable<VocabTranslation> instance, {
+    Insertable<VocabularyTranslation> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('vocab_id')) {
+    if (data.containsKey('vocabulary_id')) {
       context.handle(
-        _vocabIdMeta,
-        vocabId.isAcceptableOrUnknown(data['vocab_id']!, _vocabIdMeta),
+        _vocabularyIdMeta,
+        vocabularyId.isAcceptableOrUnknown(
+          data['vocabulary_id']!,
+          _vocabularyIdMeta,
+        ),
       );
     } else if (isInserting) {
-      context.missing(_vocabIdMeta);
+      context.missing(_vocabularyIdMeta);
     }
     if (data.containsKey('locale')) {
       context.handle(
@@ -4125,14 +4128,14 @@ class $VocabTranslationsTable extends VocabTranslations
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {vocabId, locale};
+  Set<GeneratedColumn> get $primaryKey => {vocabularyId, locale};
   @override
-  VocabTranslation map(Map<String, dynamic> data, {String? tablePrefix}) {
+  VocabularyTranslation map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return VocabTranslation(
-      vocabId: attachedDatabase.typeMapping.read(
+    return VocabularyTranslation(
+      vocabularyId: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
-        data['${effectivePrefix}vocab_id'],
+        data['${effectivePrefix}vocabulary_id'],
       )!,
       locale: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
@@ -4146,45 +4149,45 @@ class $VocabTranslationsTable extends VocabTranslations
   }
 
   @override
-  $VocabTranslationsTable createAlias(String alias) {
-    return $VocabTranslationsTable(attachedDatabase, alias);
+  $VocabularyTranslationsTable createAlias(String alias) {
+    return $VocabularyTranslationsTable(attachedDatabase, alias);
   }
 }
 
-class VocabTranslation extends DataClass
-    implements Insertable<VocabTranslation> {
-  final int vocabId;
+class VocabularyTranslation extends DataClass
+    implements Insertable<VocabularyTranslation> {
+  final int vocabularyId;
   final String locale;
   final String meaning;
-  const VocabTranslation({
-    required this.vocabId,
+  const VocabularyTranslation({
+    required this.vocabularyId,
     required this.locale,
     required this.meaning,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['vocab_id'] = Variable<int>(vocabId);
+    map['vocabulary_id'] = Variable<int>(vocabularyId);
     map['locale'] = Variable<String>(locale);
     map['meaning'] = Variable<String>(meaning);
     return map;
   }
 
-  VocabTranslationsCompanion toCompanion(bool nullToAbsent) {
-    return VocabTranslationsCompanion(
-      vocabId: Value(vocabId),
+  VocabularyTranslationsCompanion toCompanion(bool nullToAbsent) {
+    return VocabularyTranslationsCompanion(
+      vocabularyId: Value(vocabularyId),
       locale: Value(locale),
       meaning: Value(meaning),
     );
   }
 
-  factory VocabTranslation.fromJson(
+  factory VocabularyTranslation.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return VocabTranslation(
-      vocabId: serializer.fromJson<int>(json['vocabId']),
+    return VocabularyTranslation(
+      vocabularyId: serializer.fromJson<int>(json['vocabularyId']),
       locale: serializer.fromJson<String>(json['locale']),
       meaning: serializer.fromJson<String>(json['meaning']),
     );
@@ -4193,21 +4196,28 @@ class VocabTranslation extends DataClass
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'vocabId': serializer.toJson<int>(vocabId),
+      'vocabularyId': serializer.toJson<int>(vocabularyId),
       'locale': serializer.toJson<String>(locale),
       'meaning': serializer.toJson<String>(meaning),
     };
   }
 
-  VocabTranslation copyWith({int? vocabId, String? locale, String? meaning}) =>
-      VocabTranslation(
-        vocabId: vocabId ?? this.vocabId,
-        locale: locale ?? this.locale,
-        meaning: meaning ?? this.meaning,
-      );
-  VocabTranslation copyWithCompanion(VocabTranslationsCompanion data) {
-    return VocabTranslation(
-      vocabId: data.vocabId.present ? data.vocabId.value : this.vocabId,
+  VocabularyTranslation copyWith({
+    int? vocabularyId,
+    String? locale,
+    String? meaning,
+  }) => VocabularyTranslation(
+    vocabularyId: vocabularyId ?? this.vocabularyId,
+    locale: locale ?? this.locale,
+    meaning: meaning ?? this.meaning,
+  );
+  VocabularyTranslation copyWithCompanion(
+    VocabularyTranslationsCompanion data,
+  ) {
+    return VocabularyTranslation(
+      vocabularyId: data.vocabularyId.present
+          ? data.vocabularyId.value
+          : this.vocabularyId,
       locale: data.locale.present ? data.locale.value : this.locale,
       meaning: data.meaning.present ? data.meaning.value : this.meaning,
     );
@@ -4215,8 +4225,8 @@ class VocabTranslation extends DataClass
 
   @override
   String toString() {
-    return (StringBuffer('VocabTranslation(')
-          ..write('vocabId: $vocabId, ')
+    return (StringBuffer('VocabularyTranslation(')
+          ..write('vocabularyId: $vocabularyId, ')
           ..write('locale: $locale, ')
           ..write('meaning: $meaning')
           ..write(')'))
@@ -4224,57 +4234,58 @@ class VocabTranslation extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(vocabId, locale, meaning);
+  int get hashCode => Object.hash(vocabularyId, locale, meaning);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is VocabTranslation &&
-          other.vocabId == this.vocabId &&
+      (other is VocabularyTranslation &&
+          other.vocabularyId == this.vocabularyId &&
           other.locale == this.locale &&
           other.meaning == this.meaning);
 }
 
-class VocabTranslationsCompanion extends UpdateCompanion<VocabTranslation> {
-  final Value<int> vocabId;
+class VocabularyTranslationsCompanion
+    extends UpdateCompanion<VocabularyTranslation> {
+  final Value<int> vocabularyId;
   final Value<String> locale;
   final Value<String> meaning;
   final Value<int> rowid;
-  const VocabTranslationsCompanion({
-    this.vocabId = const Value.absent(),
+  const VocabularyTranslationsCompanion({
+    this.vocabularyId = const Value.absent(),
     this.locale = const Value.absent(),
     this.meaning = const Value.absent(),
     this.rowid = const Value.absent(),
   });
-  VocabTranslationsCompanion.insert({
-    required int vocabId,
+  VocabularyTranslationsCompanion.insert({
+    required int vocabularyId,
     required String locale,
     required String meaning,
     this.rowid = const Value.absent(),
-  }) : vocabId = Value(vocabId),
+  }) : vocabularyId = Value(vocabularyId),
        locale = Value(locale),
        meaning = Value(meaning);
-  static Insertable<VocabTranslation> custom({
-    Expression<int>? vocabId,
+  static Insertable<VocabularyTranslation> custom({
+    Expression<int>? vocabularyId,
     Expression<String>? locale,
     Expression<String>? meaning,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
-      if (vocabId != null) 'vocab_id': vocabId,
+      if (vocabularyId != null) 'vocabulary_id': vocabularyId,
       if (locale != null) 'locale': locale,
       if (meaning != null) 'meaning': meaning,
       if (rowid != null) 'rowid': rowid,
     });
   }
 
-  VocabTranslationsCompanion copyWith({
-    Value<int>? vocabId,
+  VocabularyTranslationsCompanion copyWith({
+    Value<int>? vocabularyId,
     Value<String>? locale,
     Value<String>? meaning,
     Value<int>? rowid,
   }) {
-    return VocabTranslationsCompanion(
-      vocabId: vocabId ?? this.vocabId,
+    return VocabularyTranslationsCompanion(
+      vocabularyId: vocabularyId ?? this.vocabularyId,
       locale: locale ?? this.locale,
       meaning: meaning ?? this.meaning,
       rowid: rowid ?? this.rowid,
@@ -4284,8 +4295,8 @@ class VocabTranslationsCompanion extends UpdateCompanion<VocabTranslation> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (vocabId.present) {
-      map['vocab_id'] = Variable<int>(vocabId.value);
+    if (vocabularyId.present) {
+      map['vocabulary_id'] = Variable<int>(vocabularyId.value);
     }
     if (locale.present) {
       map['locale'] = Variable<String>(locale.value);
@@ -4301,8 +4312,8 @@ class VocabTranslationsCompanion extends UpdateCompanion<VocabTranslation> {
 
   @override
   String toString() {
-    return (StringBuffer('VocabTranslationsCompanion(')
-          ..write('vocabId: $vocabId, ')
+    return (StringBuffer('VocabularyTranslationsCompanion(')
+          ..write('vocabularyId: $vocabularyId, ')
           ..write('locale: $locale, ')
           ..write('meaning: $meaning, ')
           ..write('rowid: $rowid')
@@ -4720,12 +4731,12 @@ class $SentencesTable extends Sentences
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _vocabIdMeta = const VerificationMeta(
-    'vocabId',
+  static const VerificationMeta _vocabularyIdMeta = const VerificationMeta(
+    'vocabularyId',
   );
   @override
-  late final GeneratedColumn<int> vocabId = GeneratedColumn<int>(
-    'vocab_id',
+  late final GeneratedColumn<int> vocabularyId = GeneratedColumn<int>(
+    'vocabulary_id',
     aliasedName,
     false,
     type: DriftSqlType.int,
@@ -4772,7 +4783,7 @@ class $SentencesTable extends Sentences
     id,
     japanese,
     targetWord,
-    vocabId,
+    vocabularyId,
     furiganaBefore,
     furiganaAfter,
     furigana,
@@ -4808,13 +4819,16 @@ class $SentencesTable extends Sentences
     } else if (isInserting) {
       context.missing(_targetWordMeta);
     }
-    if (data.containsKey('vocab_id')) {
+    if (data.containsKey('vocabulary_id')) {
       context.handle(
-        _vocabIdMeta,
-        vocabId.isAcceptableOrUnknown(data['vocab_id']!, _vocabIdMeta),
+        _vocabularyIdMeta,
+        vocabularyId.isAcceptableOrUnknown(
+          data['vocabulary_id']!,
+          _vocabularyIdMeta,
+        ),
       );
     } else if (isInserting) {
-      context.missing(_vocabIdMeta);
+      context.missing(_vocabularyIdMeta);
     }
     if (data.containsKey('furigana_before')) {
       context.handle(
@@ -4861,9 +4875,9 @@ class $SentencesTable extends Sentences
         DriftSqlType.string,
         data['${effectivePrefix}target_word'],
       )!,
-      vocabId: attachedDatabase.typeMapping.read(
+      vocabularyId: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
-        data['${effectivePrefix}vocab_id'],
+        data['${effectivePrefix}vocabulary_id'],
       )!,
       furiganaBefore: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
@@ -4890,7 +4904,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
   final int id;
   final String japanese;
   final String targetWord;
-  final int vocabId;
+  final int vocabularyId;
   final String? furiganaBefore;
   final String? furiganaAfter;
   final String? furigana;
@@ -4898,7 +4912,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
     required this.id,
     required this.japanese,
     required this.targetWord,
-    required this.vocabId,
+    required this.vocabularyId,
     this.furiganaBefore,
     this.furiganaAfter,
     this.furigana,
@@ -4909,7 +4923,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
     map['id'] = Variable<int>(id);
     map['japanese'] = Variable<String>(japanese);
     map['target_word'] = Variable<String>(targetWord);
-    map['vocab_id'] = Variable<int>(vocabId);
+    map['vocabulary_id'] = Variable<int>(vocabularyId);
     if (!nullToAbsent || furiganaBefore != null) {
       map['furigana_before'] = Variable<String>(furiganaBefore);
     }
@@ -4927,7 +4941,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
       id: Value(id),
       japanese: Value(japanese),
       targetWord: Value(targetWord),
-      vocabId: Value(vocabId),
+      vocabularyId: Value(vocabularyId),
       furiganaBefore: furiganaBefore == null && nullToAbsent
           ? const Value.absent()
           : Value(furiganaBefore),
@@ -4949,7 +4963,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
       id: serializer.fromJson<int>(json['id']),
       japanese: serializer.fromJson<String>(json['japanese']),
       targetWord: serializer.fromJson<String>(json['targetWord']),
-      vocabId: serializer.fromJson<int>(json['vocabId']),
+      vocabularyId: serializer.fromJson<int>(json['vocabularyId']),
       furiganaBefore: serializer.fromJson<String?>(json['furiganaBefore']),
       furiganaAfter: serializer.fromJson<String?>(json['furiganaAfter']),
       furigana: serializer.fromJson<String?>(json['furigana']),
@@ -4962,7 +4976,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
       'id': serializer.toJson<int>(id),
       'japanese': serializer.toJson<String>(japanese),
       'targetWord': serializer.toJson<String>(targetWord),
-      'vocabId': serializer.toJson<int>(vocabId),
+      'vocabularyId': serializer.toJson<int>(vocabularyId),
       'furiganaBefore': serializer.toJson<String?>(furiganaBefore),
       'furiganaAfter': serializer.toJson<String?>(furiganaAfter),
       'furigana': serializer.toJson<String?>(furigana),
@@ -4973,7 +4987,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
     int? id,
     String? japanese,
     String? targetWord,
-    int? vocabId,
+    int? vocabularyId,
     Value<String?> furiganaBefore = const Value.absent(),
     Value<String?> furiganaAfter = const Value.absent(),
     Value<String?> furigana = const Value.absent(),
@@ -4981,7 +4995,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
     id: id ?? this.id,
     japanese: japanese ?? this.japanese,
     targetWord: targetWord ?? this.targetWord,
-    vocabId: vocabId ?? this.vocabId,
+    vocabularyId: vocabularyId ?? this.vocabularyId,
     furiganaBefore: furiganaBefore.present
         ? furiganaBefore.value
         : this.furiganaBefore,
@@ -4997,7 +5011,9 @@ class Sentence extends DataClass implements Insertable<Sentence> {
       targetWord: data.targetWord.present
           ? data.targetWord.value
           : this.targetWord,
-      vocabId: data.vocabId.present ? data.vocabId.value : this.vocabId,
+      vocabularyId: data.vocabularyId.present
+          ? data.vocabularyId.value
+          : this.vocabularyId,
       furiganaBefore: data.furiganaBefore.present
           ? data.furiganaBefore.value
           : this.furiganaBefore,
@@ -5014,7 +5030,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
           ..write('id: $id, ')
           ..write('japanese: $japanese, ')
           ..write('targetWord: $targetWord, ')
-          ..write('vocabId: $vocabId, ')
+          ..write('vocabularyId: $vocabularyId, ')
           ..write('furiganaBefore: $furiganaBefore, ')
           ..write('furiganaAfter: $furiganaAfter, ')
           ..write('furigana: $furigana')
@@ -5027,7 +5043,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
     id,
     japanese,
     targetWord,
-    vocabId,
+    vocabularyId,
     furiganaBefore,
     furiganaAfter,
     furigana,
@@ -5039,7 +5055,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
           other.id == this.id &&
           other.japanese == this.japanese &&
           other.targetWord == this.targetWord &&
-          other.vocabId == this.vocabId &&
+          other.vocabularyId == this.vocabularyId &&
           other.furiganaBefore == this.furiganaBefore &&
           other.furiganaAfter == this.furiganaAfter &&
           other.furigana == this.furigana);
@@ -5049,7 +5065,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
   final Value<int> id;
   final Value<String> japanese;
   final Value<String> targetWord;
-  final Value<int> vocabId;
+  final Value<int> vocabularyId;
   final Value<String?> furiganaBefore;
   final Value<String?> furiganaAfter;
   final Value<String?> furigana;
@@ -5057,7 +5073,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
     this.id = const Value.absent(),
     this.japanese = const Value.absent(),
     this.targetWord = const Value.absent(),
-    this.vocabId = const Value.absent(),
+    this.vocabularyId = const Value.absent(),
     this.furiganaBefore = const Value.absent(),
     this.furiganaAfter = const Value.absent(),
     this.furigana = const Value.absent(),
@@ -5066,18 +5082,18 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
     this.id = const Value.absent(),
     required String japanese,
     required String targetWord,
-    required int vocabId,
+    required int vocabularyId,
     this.furiganaBefore = const Value.absent(),
     this.furiganaAfter = const Value.absent(),
     this.furigana = const Value.absent(),
   }) : japanese = Value(japanese),
        targetWord = Value(targetWord),
-       vocabId = Value(vocabId);
+       vocabularyId = Value(vocabularyId);
   static Insertable<Sentence> custom({
     Expression<int>? id,
     Expression<String>? japanese,
     Expression<String>? targetWord,
-    Expression<int>? vocabId,
+    Expression<int>? vocabularyId,
     Expression<String>? furiganaBefore,
     Expression<String>? furiganaAfter,
     Expression<String>? furigana,
@@ -5086,7 +5102,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
       if (id != null) 'id': id,
       if (japanese != null) 'japanese': japanese,
       if (targetWord != null) 'target_word': targetWord,
-      if (vocabId != null) 'vocab_id': vocabId,
+      if (vocabularyId != null) 'vocabulary_id': vocabularyId,
       if (furiganaBefore != null) 'furigana_before': furiganaBefore,
       if (furiganaAfter != null) 'furigana_after': furiganaAfter,
       if (furigana != null) 'furigana': furigana,
@@ -5097,7 +5113,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
     Value<int>? id,
     Value<String>? japanese,
     Value<String>? targetWord,
-    Value<int>? vocabId,
+    Value<int>? vocabularyId,
     Value<String?>? furiganaBefore,
     Value<String?>? furiganaAfter,
     Value<String?>? furigana,
@@ -5106,7 +5122,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
       id: id ?? this.id,
       japanese: japanese ?? this.japanese,
       targetWord: targetWord ?? this.targetWord,
-      vocabId: vocabId ?? this.vocabId,
+      vocabularyId: vocabularyId ?? this.vocabularyId,
       furiganaBefore: furiganaBefore ?? this.furiganaBefore,
       furiganaAfter: furiganaAfter ?? this.furiganaAfter,
       furigana: furigana ?? this.furigana,
@@ -5125,8 +5141,8 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
     if (targetWord.present) {
       map['target_word'] = Variable<String>(targetWord.value);
     }
-    if (vocabId.present) {
-      map['vocab_id'] = Variable<int>(vocabId.value);
+    if (vocabularyId.present) {
+      map['vocabulary_id'] = Variable<int>(vocabularyId.value);
     }
     if (furiganaBefore.present) {
       map['furigana_before'] = Variable<String>(furiganaBefore.value);
@@ -5146,7 +5162,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
           ..write('id: $id, ')
           ..write('japanese: $japanese, ')
           ..write('targetWord: $targetWord, ')
-          ..write('vocabId: $vocabId, ')
+          ..write('vocabularyId: $vocabularyId, ')
           ..write('furiganaBefore: $furiganaBefore, ')
           ..write('furiganaAfter: $furiganaAfter, ')
           ..write('furigana: $furigana')
@@ -5457,8 +5473,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   );
   late final $KanjiTranslationsTable kanjiTranslations =
       $KanjiTranslationsTable(this);
-  late final $VocabTranslationsTable vocabTranslations =
-      $VocabTranslationsTable(this);
+  late final $VocabularyTranslationsTable vocabularyTranslations =
+      $VocabularyTranslationsTable(this);
   late final $SrsCardsTable srsCards = $SrsCardsTable(this);
   late final $SentencesTable sentences = $SentencesTable(this);
   late final $SentenceTranslationsTable sentenceTranslations =
@@ -5479,7 +5495,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     grammarChapterUnlocks,
     progressEntries,
     kanjiTranslations,
-    vocabTranslations,
+    vocabularyTranslations,
     srsCards,
     sentences,
     sentenceTranslations,
@@ -6204,21 +6220,26 @@ final class $$VocabularyEntriesTableReferences
     );
   }
 
-  static MultiTypedResultKey<$VocabTranslationsTable, List<VocabTranslation>>
-  _vocabTranslationsRefsTable(_$AppDatabase db) =>
+  static MultiTypedResultKey<
+    $VocabularyTranslationsTable,
+    List<VocabularyTranslation>
+  >
+  _vocabularyTranslationsRefsTable(_$AppDatabase db) =>
       MultiTypedResultKey.fromTable(
-        db.vocabTranslations,
-        aliasName: 'vocabulary_entries__id__vocab_translations__vocab_id',
+        db.vocabularyTranslations,
+        aliasName:
+            'vocabulary_entries__id__vocabulary_translations__vocabulary_id',
       );
 
-  $$VocabTranslationsTableProcessedTableManager get vocabTranslationsRefs {
-    final manager = $$VocabTranslationsTableTableManager(
+  $$VocabularyTranslationsTableProcessedTableManager
+  get vocabularyTranslationsRefs {
+    final manager = $$VocabularyTranslationsTableTableManager(
       $_db,
-      $_db.vocabTranslations,
-    ).filter((f) => f.vocabId.id.sqlEquals($_itemColumn<int>('id')!));
+      $_db.vocabularyTranslations,
+    ).filter((f) => f.vocabularyId.id.sqlEquals($_itemColumn<int>('id')!));
 
     final cache = $_typedResult.readTableOrNull(
-      _vocabTranslationsRefsTable($_db),
+      _vocabularyTranslationsRefsTable($_db),
     );
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
@@ -6228,14 +6249,14 @@ final class $$VocabularyEntriesTableReferences
   static MultiTypedResultKey<$SentencesTable, List<Sentence>>
   _sentencesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
     db.sentences,
-    aliasName: 'vocabulary_entries__id__sentences__vocab_id',
+    aliasName: 'vocabulary_entries__id__sentences__vocabulary_id',
   );
 
   $$SentencesTableProcessedTableManager get sentencesRefs {
     final manager = $$SentencesTableTableManager(
       $_db,
       $_db.sentences,
-    ).filter((f) => f.vocabId.id.sqlEquals($_itemColumn<int>('id')!));
+    ).filter((f) => f.vocabularyId.id.sqlEquals($_itemColumn<int>('id')!));
 
     final cache = $_typedResult.readTableOrNull(_sentencesRefsTable($_db));
     return ProcessedTableManager(
@@ -6306,28 +6327,29 @@ class $$VocabularyEntriesTableFilterComposer
     return composer;
   }
 
-  Expression<bool> vocabTranslationsRefs(
-    Expression<bool> Function($$VocabTranslationsTableFilterComposer f) f,
+  Expression<bool> vocabularyTranslationsRefs(
+    Expression<bool> Function($$VocabularyTranslationsTableFilterComposer f) f,
   ) {
-    final $$VocabTranslationsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.vocabTranslations,
-      getReferencedColumn: (t) => t.vocabId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$VocabTranslationsTableFilterComposer(
-            $db: $db,
-            $table: $db.vocabTranslations,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
+    final $$VocabularyTranslationsTableFilterComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.vocabularyTranslations,
+          getReferencedColumn: (t) => t.vocabularyId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
                 $removeJoinBuilderFromRootComposer,
-          ),
-    );
+              }) => $$VocabularyTranslationsTableFilterComposer(
+                $db: $db,
+                $table: $db.vocabularyTranslations,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
     return f(composer);
   }
 
@@ -6338,7 +6360,7 @@ class $$VocabularyEntriesTableFilterComposer
       composer: this,
       getCurrentColumn: (t) => t.id,
       referencedTable: $db.sentences,
-      getReferencedColumn: (t) => t.vocabId,
+      getReferencedColumn: (t) => t.vocabularyId,
       builder:
           (
             joinBuilder, {
@@ -6472,23 +6494,23 @@ class $$VocabularyEntriesTableAnnotationComposer
     return composer;
   }
 
-  Expression<T> vocabTranslationsRefs<T extends Object>(
-    Expression<T> Function($$VocabTranslationsTableAnnotationComposer a) f,
+  Expression<T> vocabularyTranslationsRefs<T extends Object>(
+    Expression<T> Function($$VocabularyTranslationsTableAnnotationComposer a) f,
   ) {
-    final $$VocabTranslationsTableAnnotationComposer composer =
+    final $$VocabularyTranslationsTableAnnotationComposer composer =
         $composerBuilder(
           composer: this,
           getCurrentColumn: (t) => t.id,
-          referencedTable: $db.vocabTranslations,
-          getReferencedColumn: (t) => t.vocabId,
+          referencedTable: $db.vocabularyTranslations,
+          getReferencedColumn: (t) => t.vocabularyId,
           builder:
               (
                 joinBuilder, {
                 $addJoinBuilderToRootComposer,
                 $removeJoinBuilderFromRootComposer,
-              }) => $$VocabTranslationsTableAnnotationComposer(
+              }) => $$VocabularyTranslationsTableAnnotationComposer(
                 $db: $db,
-                $table: $db.vocabTranslations,
+                $table: $db.vocabularyTranslations,
                 $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
                 joinBuilder: joinBuilder,
                 $removeJoinBuilderFromRootComposer:
@@ -6505,7 +6527,7 @@ class $$VocabularyEntriesTableAnnotationComposer
       composer: this,
       getCurrentColumn: (t) => t.id,
       referencedTable: $db.sentences,
-      getReferencedColumn: (t) => t.vocabId,
+      getReferencedColumn: (t) => t.vocabularyId,
       builder:
           (
             joinBuilder, {
@@ -6539,7 +6561,7 @@ class $$VocabularyEntriesTableTableManager
           VocabularyEntry,
           PrefetchHooks Function({
             bool kanjiId,
-            bool vocabTranslationsRefs,
+            bool vocabularyTranslationsRefs,
             bool sentencesRefs,
           })
         > {
@@ -6606,13 +6628,13 @@ class $$VocabularyEntriesTableTableManager
           prefetchHooksCallback:
               ({
                 kanjiId = false,
-                vocabTranslationsRefs = false,
+                vocabularyTranslationsRefs = false,
                 sentencesRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
-                    if (vocabTranslationsRefs) db.vocabTranslations,
+                    if (vocabularyTranslationsRefs) db.vocabularyTranslations,
                     if (sentencesRefs) db.sentences,
                   ],
                   addJoins:
@@ -6651,24 +6673,24 @@ class $$VocabularyEntriesTableTableManager
                       },
                   getPrefetchedDataCallback: (items) async {
                     return [
-                      if (vocabTranslationsRefs)
+                      if (vocabularyTranslationsRefs)
                         await $_getPrefetchedData<
                           VocabularyEntry,
                           $VocabularyEntriesTable,
-                          VocabTranslation
+                          VocabularyTranslation
                         >(
                           currentTable: table,
                           referencedTable: $$VocabularyEntriesTableReferences
-                              ._vocabTranslationsRefsTable(db),
+                              ._vocabularyTranslationsRefsTable(db),
                           managerFromTypedResult: (p0) =>
                               $$VocabularyEntriesTableReferences(
                                 db,
                                 table,
                                 p0,
-                              ).vocabTranslationsRefs,
+                              ).vocabularyTranslationsRefs,
                           referencedItemsForCurrentItem:
                               (item, referencedItems) => referencedItems.where(
-                                (e) => e.vocabId == item.id,
+                                (e) => e.vocabularyId == item.id,
                               ),
                           typedResults: items,
                         ),
@@ -6689,7 +6711,7 @@ class $$VocabularyEntriesTableTableManager
                               ).sentencesRefs,
                           referencedItemsForCurrentItem:
                               (item, referencedItems) => referencedItems.where(
-                                (e) => e.vocabId == item.id,
+                                (e) => e.vocabularyId == item.id,
                               ),
                           typedResults: items,
                         ),
@@ -6715,7 +6737,7 @@ typedef $$VocabularyEntriesTableProcessedTableManager =
       VocabularyEntry,
       PrefetchHooks Function({
         bool kanjiId,
-        bool vocabTranslationsRefs,
+        bool vocabularyTranslationsRefs,
         bool sentencesRefs,
       })
     >;
@@ -8438,46 +8460,47 @@ typedef $$KanjiTranslationsTableProcessedTableManager =
       KanjiTranslation,
       PrefetchHooks Function({bool kanjiId})
     >;
-typedef $$VocabTranslationsTableCreateCompanionBuilder =
-    VocabTranslationsCompanion Function({
-      required int vocabId,
+typedef $$VocabularyTranslationsTableCreateCompanionBuilder =
+    VocabularyTranslationsCompanion Function({
+      required int vocabularyId,
       required String locale,
       required String meaning,
       Value<int> rowid,
     });
-typedef $$VocabTranslationsTableUpdateCompanionBuilder =
-    VocabTranslationsCompanion Function({
-      Value<int> vocabId,
+typedef $$VocabularyTranslationsTableUpdateCompanionBuilder =
+    VocabularyTranslationsCompanion Function({
+      Value<int> vocabularyId,
       Value<String> locale,
       Value<String> meaning,
       Value<int> rowid,
     });
 
-final class $$VocabTranslationsTableReferences
+final class $$VocabularyTranslationsTableReferences
     extends
         BaseReferences<
           _$AppDatabase,
-          $VocabTranslationsTable,
-          VocabTranslation
+          $VocabularyTranslationsTable,
+          VocabularyTranslation
         > {
-  $$VocabTranslationsTableReferences(
+  $$VocabularyTranslationsTableReferences(
     super.$_db,
     super.$_table,
     super.$_typedResult,
   );
 
-  static $VocabularyEntriesTable _vocabIdTable(_$AppDatabase db) => db
-      .vocabularyEntries
-      .createAlias('vocab_translations__vocab_id__vocabulary_entries__id');
+  static $VocabularyEntriesTable _vocabularyIdTable(_$AppDatabase db) =>
+      db.vocabularyEntries.createAlias(
+        'vocabulary_translations__vocabulary_id__vocabulary_entries__id',
+      );
 
-  $$VocabularyEntriesTableProcessedTableManager get vocabId {
-    final $_column = $_itemColumn<int>('vocab_id')!;
+  $$VocabularyEntriesTableProcessedTableManager get vocabularyId {
+    final $_column = $_itemColumn<int>('vocabulary_id')!;
 
     final manager = $$VocabularyEntriesTableTableManager(
       $_db,
       $_db.vocabularyEntries,
     ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_vocabIdTable($_db));
+    final item = $_typedResult.readTableOrNull(_vocabularyIdTable($_db));
     if (item == null) return manager;
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: [item]),
@@ -8485,9 +8508,9 @@ final class $$VocabTranslationsTableReferences
   }
 }
 
-class $$VocabTranslationsTableFilterComposer
-    extends Composer<_$AppDatabase, $VocabTranslationsTable> {
-  $$VocabTranslationsTableFilterComposer({
+class $$VocabularyTranslationsTableFilterComposer
+    extends Composer<_$AppDatabase, $VocabularyTranslationsTable> {
+  $$VocabularyTranslationsTableFilterComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
@@ -8504,10 +8527,10 @@ class $$VocabTranslationsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  $$VocabularyEntriesTableFilterComposer get vocabId {
+  $$VocabularyEntriesTableFilterComposer get vocabularyId {
     final $$VocabularyEntriesTableFilterComposer composer = $composerBuilder(
       composer: this,
-      getCurrentColumn: (t) => t.vocabId,
+      getCurrentColumn: (t) => t.vocabularyId,
       referencedTable: $db.vocabularyEntries,
       getReferencedColumn: (t) => t.id,
       builder:
@@ -8528,9 +8551,9 @@ class $$VocabTranslationsTableFilterComposer
   }
 }
 
-class $$VocabTranslationsTableOrderingComposer
-    extends Composer<_$AppDatabase, $VocabTranslationsTable> {
-  $$VocabTranslationsTableOrderingComposer({
+class $$VocabularyTranslationsTableOrderingComposer
+    extends Composer<_$AppDatabase, $VocabularyTranslationsTable> {
+  $$VocabularyTranslationsTableOrderingComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
@@ -8547,10 +8570,10 @@ class $$VocabTranslationsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  $$VocabularyEntriesTableOrderingComposer get vocabId {
+  $$VocabularyEntriesTableOrderingComposer get vocabularyId {
     final $$VocabularyEntriesTableOrderingComposer composer = $composerBuilder(
       composer: this,
-      getCurrentColumn: (t) => t.vocabId,
+      getCurrentColumn: (t) => t.vocabularyId,
       referencedTable: $db.vocabularyEntries,
       getReferencedColumn: (t) => t.id,
       builder:
@@ -8571,9 +8594,9 @@ class $$VocabTranslationsTableOrderingComposer
   }
 }
 
-class $$VocabTranslationsTableAnnotationComposer
-    extends Composer<_$AppDatabase, $VocabTranslationsTable> {
-  $$VocabTranslationsTableAnnotationComposer({
+class $$VocabularyTranslationsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $VocabularyTranslationsTable> {
+  $$VocabularyTranslationsTableAnnotationComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
@@ -8586,11 +8609,11 @@ class $$VocabTranslationsTableAnnotationComposer
   GeneratedColumn<String> get meaning =>
       $composableBuilder(column: $table.meaning, builder: (column) => column);
 
-  $$VocabularyEntriesTableAnnotationComposer get vocabId {
+  $$VocabularyEntriesTableAnnotationComposer get vocabularyId {
     final $$VocabularyEntriesTableAnnotationComposer composer =
         $composerBuilder(
           composer: this,
-          getCurrentColumn: (t) => t.vocabId,
+          getCurrentColumn: (t) => t.vocabularyId,
           referencedTable: $db.vocabularyEntries,
           getReferencedColumn: (t) => t.id,
           builder:
@@ -8611,57 +8634,63 @@ class $$VocabTranslationsTableAnnotationComposer
   }
 }
 
-class $$VocabTranslationsTableTableManager
+class $$VocabularyTranslationsTableTableManager
     extends
         RootTableManager<
           _$AppDatabase,
-          $VocabTranslationsTable,
-          VocabTranslation,
-          $$VocabTranslationsTableFilterComposer,
-          $$VocabTranslationsTableOrderingComposer,
-          $$VocabTranslationsTableAnnotationComposer,
-          $$VocabTranslationsTableCreateCompanionBuilder,
-          $$VocabTranslationsTableUpdateCompanionBuilder,
-          (VocabTranslation, $$VocabTranslationsTableReferences),
-          VocabTranslation,
-          PrefetchHooks Function({bool vocabId})
+          $VocabularyTranslationsTable,
+          VocabularyTranslation,
+          $$VocabularyTranslationsTableFilterComposer,
+          $$VocabularyTranslationsTableOrderingComposer,
+          $$VocabularyTranslationsTableAnnotationComposer,
+          $$VocabularyTranslationsTableCreateCompanionBuilder,
+          $$VocabularyTranslationsTableUpdateCompanionBuilder,
+          (VocabularyTranslation, $$VocabularyTranslationsTableReferences),
+          VocabularyTranslation,
+          PrefetchHooks Function({bool vocabularyId})
         > {
-  $$VocabTranslationsTableTableManager(
+  $$VocabularyTranslationsTableTableManager(
     _$AppDatabase db,
-    $VocabTranslationsTable table,
+    $VocabularyTranslationsTable table,
   ) : super(
         TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
-              $$VocabTranslationsTableFilterComposer($db: db, $table: table),
+              $$VocabularyTranslationsTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
           createOrderingComposer: () =>
-              $$VocabTranslationsTableOrderingComposer($db: db, $table: table),
+              $$VocabularyTranslationsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
           createComputedFieldComposer: () =>
-              $$VocabTranslationsTableAnnotationComposer(
+              $$VocabularyTranslationsTableAnnotationComposer(
                 $db: db,
                 $table: table,
               ),
           updateCompanionCallback:
               ({
-                Value<int> vocabId = const Value.absent(),
+                Value<int> vocabularyId = const Value.absent(),
                 Value<String> locale = const Value.absent(),
                 Value<String> meaning = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
-              }) => VocabTranslationsCompanion(
-                vocabId: vocabId,
+              }) => VocabularyTranslationsCompanion(
+                vocabularyId: vocabularyId,
                 locale: locale,
                 meaning: meaning,
                 rowid: rowid,
               ),
           createCompanionCallback:
               ({
-                required int vocabId,
+                required int vocabularyId,
                 required String locale,
                 required String meaning,
                 Value<int> rowid = const Value.absent(),
-              }) => VocabTranslationsCompanion.insert(
-                vocabId: vocabId,
+              }) => VocabularyTranslationsCompanion.insert(
+                vocabularyId: vocabularyId,
                 locale: locale,
                 meaning: meaning,
                 rowid: rowid,
@@ -8670,11 +8699,11 @@ class $$VocabTranslationsTableTableManager
               .map(
                 (e) => (
                   e.readTable(table),
-                  $$VocabTranslationsTableReferences(db, table, e),
+                  $$VocabularyTranslationsTableReferences(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({vocabId = false}) {
+          prefetchHooksCallback: ({vocabularyId = false}) {
             return PrefetchHooks(
               db: db,
               explicitlyWatchedTables: [],
@@ -8694,17 +8723,17 @@ class $$VocabTranslationsTableTableManager
                       dynamic
                     >
                   >(state) {
-                    if (vocabId) {
+                    if (vocabularyId) {
                       state =
                           state.withJoin(
                                 currentTable: table,
-                                currentColumn: table.vocabId,
+                                currentColumn: table.vocabularyId,
                                 referencedTable:
-                                    $$VocabTranslationsTableReferences
-                                        ._vocabIdTable(db),
+                                    $$VocabularyTranslationsTableReferences
+                                        ._vocabularyIdTable(db),
                                 referencedColumn:
-                                    $$VocabTranslationsTableReferences
-                                        ._vocabIdTable(db)
+                                    $$VocabularyTranslationsTableReferences
+                                        ._vocabularyIdTable(db)
                                         .id,
                               )
                               as T;
@@ -8721,19 +8750,19 @@ class $$VocabTranslationsTableTableManager
       );
 }
 
-typedef $$VocabTranslationsTableProcessedTableManager =
+typedef $$VocabularyTranslationsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
-      $VocabTranslationsTable,
-      VocabTranslation,
-      $$VocabTranslationsTableFilterComposer,
-      $$VocabTranslationsTableOrderingComposer,
-      $$VocabTranslationsTableAnnotationComposer,
-      $$VocabTranslationsTableCreateCompanionBuilder,
-      $$VocabTranslationsTableUpdateCompanionBuilder,
-      (VocabTranslation, $$VocabTranslationsTableReferences),
-      VocabTranslation,
-      PrefetchHooks Function({bool vocabId})
+      $VocabularyTranslationsTable,
+      VocabularyTranslation,
+      $$VocabularyTranslationsTableFilterComposer,
+      $$VocabularyTranslationsTableOrderingComposer,
+      $$VocabularyTranslationsTableAnnotationComposer,
+      $$VocabularyTranslationsTableCreateCompanionBuilder,
+      $$VocabularyTranslationsTableUpdateCompanionBuilder,
+      (VocabularyTranslation, $$VocabularyTranslationsTableReferences),
+      VocabularyTranslation,
+      PrefetchHooks Function({bool vocabularyId})
     >;
 typedef $$SrsCardsTableCreateCompanionBuilder =
     SrsCardsCompanion Function({
@@ -8936,7 +8965,7 @@ typedef $$SentencesTableCreateCompanionBuilder =
       Value<int> id,
       required String japanese,
       required String targetWord,
-      required int vocabId,
+      required int vocabularyId,
       Value<String?> furiganaBefore,
       Value<String?> furiganaAfter,
       Value<String?> furigana,
@@ -8946,7 +8975,7 @@ typedef $$SentencesTableUpdateCompanionBuilder =
       Value<int> id,
       Value<String> japanese,
       Value<String> targetWord,
-      Value<int> vocabId,
+      Value<int> vocabularyId,
       Value<String?> furiganaBefore,
       Value<String?> furiganaAfter,
       Value<String?> furigana,
@@ -8956,18 +8985,18 @@ final class $$SentencesTableReferences
     extends BaseReferences<_$AppDatabase, $SentencesTable, Sentence> {
   $$SentencesTableReferences(super.$_db, super.$_table, super.$_typedResult);
 
-  static $VocabularyEntriesTable _vocabIdTable(_$AppDatabase db) => db
+  static $VocabularyEntriesTable _vocabularyIdTable(_$AppDatabase db) => db
       .vocabularyEntries
-      .createAlias('sentences__vocab_id__vocabulary_entries__id');
+      .createAlias('sentences__vocabulary_id__vocabulary_entries__id');
 
-  $$VocabularyEntriesTableProcessedTableManager get vocabId {
-    final $_column = $_itemColumn<int>('vocab_id')!;
+  $$VocabularyEntriesTableProcessedTableManager get vocabularyId {
+    final $_column = $_itemColumn<int>('vocabulary_id')!;
 
     final manager = $$VocabularyEntriesTableTableManager(
       $_db,
       $_db.vocabularyEntries,
     ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_vocabIdTable($_db));
+    final item = $_typedResult.readTableOrNull(_vocabularyIdTable($_db));
     if (item == null) return manager;
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: [item]),
@@ -9039,10 +9068,10 @@ class $$SentencesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  $$VocabularyEntriesTableFilterComposer get vocabId {
+  $$VocabularyEntriesTableFilterComposer get vocabularyId {
     final $$VocabularyEntriesTableFilterComposer composer = $composerBuilder(
       composer: this,
-      getCurrentColumn: (t) => t.vocabId,
+      getCurrentColumn: (t) => t.vocabularyId,
       referencedTable: $db.vocabularyEntries,
       getReferencedColumn: (t) => t.id,
       builder:
@@ -9127,10 +9156,10 @@ class $$SentencesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  $$VocabularyEntriesTableOrderingComposer get vocabId {
+  $$VocabularyEntriesTableOrderingComposer get vocabularyId {
     final $$VocabularyEntriesTableOrderingComposer composer = $composerBuilder(
       composer: this,
-      getCurrentColumn: (t) => t.vocabId,
+      getCurrentColumn: (t) => t.vocabularyId,
       referencedTable: $db.vocabularyEntries,
       getReferencedColumn: (t) => t.id,
       builder:
@@ -9184,11 +9213,11 @@ class $$SentencesTableAnnotationComposer
   GeneratedColumn<String> get furigana =>
       $composableBuilder(column: $table.furigana, builder: (column) => column);
 
-  $$VocabularyEntriesTableAnnotationComposer get vocabId {
+  $$VocabularyEntriesTableAnnotationComposer get vocabularyId {
     final $$VocabularyEntriesTableAnnotationComposer composer =
         $composerBuilder(
           composer: this,
-          getCurrentColumn: (t) => t.vocabId,
+          getCurrentColumn: (t) => t.vocabularyId,
           referencedTable: $db.vocabularyEntries,
           getReferencedColumn: (t) => t.id,
           builder:
@@ -9248,7 +9277,10 @@ class $$SentencesTableTableManager
           $$SentencesTableUpdateCompanionBuilder,
           (Sentence, $$SentencesTableReferences),
           Sentence,
-          PrefetchHooks Function({bool vocabId, bool sentenceTranslationsRefs})
+          PrefetchHooks Function({
+            bool vocabularyId,
+            bool sentenceTranslationsRefs,
+          })
         > {
   $$SentencesTableTableManager(_$AppDatabase db, $SentencesTable table)
     : super(
@@ -9266,7 +9298,7 @@ class $$SentencesTableTableManager
                 Value<int> id = const Value.absent(),
                 Value<String> japanese = const Value.absent(),
                 Value<String> targetWord = const Value.absent(),
-                Value<int> vocabId = const Value.absent(),
+                Value<int> vocabularyId = const Value.absent(),
                 Value<String?> furiganaBefore = const Value.absent(),
                 Value<String?> furiganaAfter = const Value.absent(),
                 Value<String?> furigana = const Value.absent(),
@@ -9274,7 +9306,7 @@ class $$SentencesTableTableManager
                 id: id,
                 japanese: japanese,
                 targetWord: targetWord,
-                vocabId: vocabId,
+                vocabularyId: vocabularyId,
                 furiganaBefore: furiganaBefore,
                 furiganaAfter: furiganaAfter,
                 furigana: furigana,
@@ -9284,7 +9316,7 @@ class $$SentencesTableTableManager
                 Value<int> id = const Value.absent(),
                 required String japanese,
                 required String targetWord,
-                required int vocabId,
+                required int vocabularyId,
                 Value<String?> furiganaBefore = const Value.absent(),
                 Value<String?> furiganaAfter = const Value.absent(),
                 Value<String?> furigana = const Value.absent(),
@@ -9292,7 +9324,7 @@ class $$SentencesTableTableManager
                 id: id,
                 japanese: japanese,
                 targetWord: targetWord,
-                vocabId: vocabId,
+                vocabularyId: vocabularyId,
                 furiganaBefore: furiganaBefore,
                 furiganaAfter: furiganaAfter,
                 furigana: furigana,
@@ -9306,7 +9338,7 @@ class $$SentencesTableTableManager
               )
               .toList(),
           prefetchHooksCallback:
-              ({vocabId = false, sentenceTranslationsRefs = false}) {
+              ({vocabularyId = false, sentenceTranslationsRefs = false}) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
@@ -9328,15 +9360,15 @@ class $$SentencesTableTableManager
                           dynamic
                         >
                       >(state) {
-                        if (vocabId) {
+                        if (vocabularyId) {
                           state =
                               state.withJoin(
                                     currentTable: table,
-                                    currentColumn: table.vocabId,
+                                    currentColumn: table.vocabularyId,
                                     referencedTable: $$SentencesTableReferences
-                                        ._vocabIdTable(db),
+                                        ._vocabularyIdTable(db),
                                     referencedColumn: $$SentencesTableReferences
-                                        ._vocabIdTable(db)
+                                        ._vocabularyIdTable(db)
                                         .id,
                                   )
                                   as T;
@@ -9387,7 +9419,7 @@ typedef $$SentencesTableProcessedTableManager =
       $$SentencesTableUpdateCompanionBuilder,
       (Sentence, $$SentencesTableReferences),
       Sentence,
-      PrefetchHooks Function({bool vocabId, bool sentenceTranslationsRefs})
+      PrefetchHooks Function({bool vocabularyId, bool sentenceTranslationsRefs})
     >;
 typedef $$SentenceTranslationsTableCreateCompanionBuilder =
     SentenceTranslationsCompanion Function({
@@ -9715,8 +9747,11 @@ class $AppDatabaseManager {
       $$ProgressEntriesTableTableManager(_db, _db.progressEntries);
   $$KanjiTranslationsTableTableManager get kanjiTranslations =>
       $$KanjiTranslationsTableTableManager(_db, _db.kanjiTranslations);
-  $$VocabTranslationsTableTableManager get vocabTranslations =>
-      $$VocabTranslationsTableTableManager(_db, _db.vocabTranslations);
+  $$VocabularyTranslationsTableTableManager get vocabularyTranslations =>
+      $$VocabularyTranslationsTableTableManager(
+        _db,
+        _db.vocabularyTranslations,
+      );
   $$SrsCardsTableTableManager get srsCards =>
       $$SrsCardsTableTableManager(_db, _db.srsCards);
   $$SentencesTableTableManager get sentences =>

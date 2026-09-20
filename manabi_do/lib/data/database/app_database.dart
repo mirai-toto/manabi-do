@@ -38,7 +38,7 @@ part 'app_database.g.dart';
     GrammarChapterUnlocks,
     ProgressEntries,
     KanjiTranslations,
-    VocabTranslations,
+    VocabularyTranslations,
     SrsCards,
     Sentences,
     SentenceTranslations,
@@ -48,7 +48,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(openDbConnection());
 
   @override
-  int get schemaVersion => 20;
+  int get schemaVersion => 21;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -126,6 +126,28 @@ class AppDatabase extends _$AppDatabase {
       }
       if (from < 19) await m.createTable(grammarLessonStarts);
       if (from < 20) await m.createTable(grammarChapterUnlocks);
+      if (from < 21) {
+        // Spell "vocabulary" in full in the schema, matching the Dart side.
+        // Each statement is guarded independently: a DB upgrading from < 10 got
+        // its `sentences` table from `m.createTable`, which already uses the new
+        // column name, while a fresh asset DB still carries the old names.
+        try {
+          await customStatement(
+            'ALTER TABLE vocab_translations RENAME TO vocabulary_translations',
+          );
+        } catch (_) {}
+        try {
+          await customStatement(
+            'ALTER TABLE vocabulary_translations '
+            'RENAME COLUMN vocab_id TO vocabulary_id',
+          );
+        } catch (_) {}
+        try {
+          await customStatement(
+            'ALTER TABLE sentences RENAME COLUMN vocab_id TO vocabulary_id',
+          );
+        } catch (_) {}
+      }
     },
   );
 
@@ -209,10 +231,10 @@ class AppDatabase extends _$AppDatabase {
     List<int> ids,
     String locale,
   ) =>
-      (select(vocabTranslations)
-            ..where((t) => t.vocabId.isIn(ids) & t.locale.equals(locale)))
+      (select(vocabularyTranslations)
+            ..where((t) => t.vocabularyId.isIn(ids) & t.locale.equals(locale)))
           .get()
-          .then((rows) => {for (final r in rows) r.vocabId: r.meaning});
+          .then((rows) => {for (final r in rows) r.vocabularyId: r.meaning});
 
   // ── Vocabulary queries ───────────────────────────────────────────────────
 
@@ -244,8 +266,9 @@ class AppDatabase extends _$AppDatabase {
 
   // ── Sentence queries ─────────────────────────────────────────────────────
 
-  Future<List<Sentence>> getSentencesForVocabulary(int vocabularyId) =>
-      (select(sentences)..where((s) => s.vocabId.equals(vocabularyId))).get();
+  Future<List<Sentence>> getSentencesForVocabulary(int vocabularyId) => (select(
+    sentences,
+  )..where((s) => s.vocabularyId.equals(vocabularyId))).get();
 
   Future<Map<int, List<Sentence>>> getSentencesBatch(
     List<int> vocabularyIds,
@@ -253,10 +276,10 @@ class AppDatabase extends _$AppDatabase {
     if (vocabularyIds.isEmpty) return {};
     final rows = await (select(
       sentences,
-    )..where((s) => s.vocabId.isIn(vocabularyIds))).get();
+    )..where((s) => s.vocabularyId.isIn(vocabularyIds))).get();
     final result = <int, List<Sentence>>{};
     for (final row in rows) {
-      result.putIfAbsent(row.vocabId, () => []).add(row);
+      result.putIfAbsent(row.vocabularyId, () => []).add(row);
     }
     return result;
   }
