@@ -10,11 +10,9 @@ import 'generated_migrations/schema.dart';
 
 /// Guards the schema snapshots in `drift_schemas/`.
 ///
-/// There are no upgrade steps today: every install lands on the current schema
-/// directly, so this asserts the baseline is intact. When the schema next
-/// changes, dump a new snapshot and add a `from22To23` case here — the helper
-/// builds a real database at the old version, runs the migration, and verifies
-/// the result matches the new snapshot exactly.
+/// There are no upgrade steps today; v22 is the baseline. The first test below
+/// is the template every future one copies — see `app_database.dart` for the
+/// full worked example of adding a version.
 void main() {
   late SchemaVerifier verifier;
 
@@ -22,6 +20,22 @@ void main() {
     verifier = SchemaVerifier(GeneratedHelper());
   });
 
+  // The shape every future migration test takes. `startAt` builds a real
+  // database at the old version from its snapshot, `migrateAndValidate` runs
+  // the steps and fails unless the result matches the target snapshot exactly.
+  //
+  // v22 is the baseline, so this migrates from 22 to 22 — it proves the
+  // snapshot still describes the live schema. Adding `audio_url` in v23 would
+  // mean copying this test and changing the two numbers:
+  //
+  //   test('22 to 23 adds audio_url', () async {
+  //     final connection = await verifier.startAt(22);
+  //     final db = AppDatabase.withExecutor(connection);
+  //     await verifier.migrateAndValidate(db, 23);
+  //     await db.close();
+  //   });
+  //
+  // Nothing else changes. The step itself lives in `schema_versions.dart`.
   test('current schema matches the v22 snapshot', () async {
     final connection = await verifier.startAt(22);
     final db = AppDatabase.withExecutor(connection);

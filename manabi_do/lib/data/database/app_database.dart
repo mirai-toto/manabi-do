@@ -41,13 +41,58 @@ class AppDatabase extends _$AppDatabase {
   /// referenced current definitions, so old steps silently changed meaning and
   /// needed `try/catch` to survive.
   ///
-  /// There are no steps yet — v22 is the baseline. Adding one means dumping a
-  /// new snapshot and re-running the generator; drift then sequences them and
-  /// `test/migration_test.dart` proves each lands on its snapshot exactly.
+  /// There are no steps yet — v22 is the baseline.
   ///
-  /// Two mechanisms, deliberately separate:
-  ///   * schema changes  → a step here, no asset rebuild needed
-  ///   * content changes → a new asset DB and an `_assetDbVersion` bump
+  /// ## Worked example: adding `sentences.audio_url`
+  ///
+  /// 1. Add the column in `schema.drift`:
+  ///
+  /// ```sql
+  /// CREATE TABLE sentences (
+  ///   ...
+  ///   audio_url TEXT          -- nullable: existing rows have no audio
+  /// );
+  /// ```
+  ///
+  /// 2. Bump [schemaVersion] to 23.
+  ///
+  /// 3. Snapshot the new shape and regenerate the steps:
+  ///
+  /// ```sh
+  /// dart run drift_dev schema dump lib/data/database/app_database.dart drift_schemas/
+  /// dart run drift_dev schema steps drift_schemas/ lib/data/database/schema_versions.dart
+  /// dart run drift_dev schema generate drift_schemas/ test/generated_migrations/
+  /// ```
+  ///
+  /// 4. Fill in the case the generator stubbed out in `schema_versions.dart`:
+  ///
+  /// ```dart
+  /// from22To23: (m, schema) async {
+  ///   await m.addColumn(schema.sentences, schema.sentences.audioUrl);
+  /// },
+  /// ```
+  ///
+  /// `schema.sentences` is the **v23** table, not the live one. Rename that
+  /// column in 2027 and this step keeps meaning what it meant in 2026 — which
+  /// is why no `try/catch` is needed here.
+  ///
+  /// 5. Add the check to `test/migration_test.dart`:
+  ///
+  /// ```dart
+  /// test('22 to 23 adds audio_url', () async {
+  ///   final connection = await verifier.startAt(22);
+  ///   final db = AppDatabase.withExecutor(connection);
+  ///   await verifier.migrateAndValidate(db, 23);
+  ///   await db.close();
+  /// });
+  /// ```
+  ///
+  /// That builds a real database at v22, runs the step, and fails unless the
+  /// result matches the v23 snapshot exactly.
+  ///
+  /// The 22 MB asset does **not** need rebuilding for this — drift migrates it
+  /// forward on open. Rebuild only when the *content* changes, and bump
+  /// `_assetDbVersion` so `user_data_preservation.dart` carries progress across.
   @override
   MigrationStrategy get migration => MigrationStrategy(onUpgrade: stepByStep());
 
