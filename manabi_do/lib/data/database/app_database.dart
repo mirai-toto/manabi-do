@@ -22,118 +22,16 @@ class AppDatabase extends _$AppDatabase {
   @override
   int get schemaVersion => 22;
 
-  @override
-  MigrationStrategy get migration => MigrationStrategy(
-    onUpgrade: (m, from, to) async {
-      if (from < 8) await m.createTable(srsCards);
-      if (from < 9) {
-        // The asset DB may already have this column despite reporting version 8
-        try {
-          await m.addColumn(srsCards, srsCards.firstSeenAt);
-        } catch (_) {}
-      }
-      if (from < 10) await m.createTable(sentences);
-      if (from < 11) {
-        await m.createTable(sentenceTranslations);
-        // Migrate english column only if it exists (old schema); the try/catch
-        // also guards the table recreation so if english is absent (new asset DB
-        // that already has furigana columns) we leave the table untouched.
-        try {
-          await customStatement(
-            "INSERT INTO sentence_translations (sentence_id, locale, translation) "
-            "SELECT id, 'eng', english FROM sentences "
-            "WHERE english IS NOT NULL AND english != ''",
-          );
-          // english column confirmed present – recreate table without it but
-          // keep the furigana columns so schema 12 addColumn is a no-op.
-          await customStatement(
-            "CREATE TABLE sentences_new ("
-            "  id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            "  japanese TEXT NOT NULL,"
-            "  target_word TEXT NOT NULL,"
-            "  vocab_id INTEGER NOT NULL REFERENCES vocabulary_entries(id),"
-            "  furigana_before TEXT,"
-            "  furigana_after TEXT"
-            ")",
-          );
-          await customStatement(
-            "INSERT INTO sentences_new (id, japanese, target_word, vocab_id) "
-            "SELECT id, japanese, target_word, vocab_id FROM sentences",
-          );
-          await customStatement("DROP TABLE sentences");
-          await customStatement(
-            "ALTER TABLE sentences_new RENAME TO sentences",
-          );
-        } catch (_) {}
-      }
-      if (from < 12) {
-        try {
-          await m.addColumn(sentences, sentences.furiganaBefore);
-        } catch (_) {}
-        try {
-          await m.addColumn(sentences, sentences.furiganaAfter);
-        } catch (_) {}
-      }
-      if (from < 13) {
-        try {
-          await m.addColumn(sentences, sentences.furigana);
-        } catch (_) {}
-      }
-      if (from < 14) {
-        try {
-          await m.addColumn(grammarLessons, grammarLessons.locale);
-        } catch (_) {}
-      }
-      if (from < 15) await m.createTable(grammarExercises);
-      if (from < 16) {
-        try {
-          await m.addColumn(grammarLessons, grammarLessons.themeDescription);
-        } catch (_) {}
-      }
-      if (from < 17) await m.createTable(grammarLessonProgress);
-      if (from < 18) {
-        try {
-          await m.addColumn(grammarLessons, grammarLessons.difficulty);
-        } catch (_) {}
-      }
-      if (from < 19) await m.createTable(grammarLessonStarts);
-      if (from < 20) await m.createTable(grammarChapterUnlocks);
-      if (from < 21) {
-        // Spell "vocabulary" in full in the schema, matching the Dart side.
-        // Each statement is guarded independently: a DB upgrading from < 10 got
-        // its `sentences` table from `m.createTable`, which already uses the new
-        // column name, while a fresh asset DB still carries the old names.
-        try {
-          await customStatement(
-            'ALTER TABLE vocab_translations RENAME TO vocabulary_translations',
-          );
-        } catch (_) {}
-        try {
-          await customStatement(
-            'ALTER TABLE vocabulary_translations '
-            'RENAME COLUMN vocab_id TO vocabulary_id',
-          );
-        } catch (_) {}
-        try {
-          await customStatement(
-            'ALTER TABLE sentences RENAME COLUMN vocab_id TO vocabulary_id',
-          );
-        } catch (_) {}
-      }
-      if (from < 22) {
-        // The grammar block type was renamed in content. Lessons already stored
-        // carry the old token inside `blocks_json`, which no SQL rename can
-        // reach, so rewrite it in place. A no-op once the asset DB is rebuilt
-        // from the renamed content.
-        await customStatement(
-          'UPDATE grammar_lessons '
-          'SET blocks_json = replace(blocks_json, ?, ?) '
-          'WHERE blocks_json LIKE ?',
-          ['"vocab_table"', '"vocabulary_table"', '%"vocab_table"%'],
-        );
-      }
-    },
-  );
+  // No upgrade steps: every install lands on the current schema directly.
+  //
+  // The asset DB is built from `schema.drift` and stamped with this same
+  // `schemaVersion`, so a fresh copy needs no migration. Existing installs are
+  // handed that copy too — `db_connection_native.dart` carries user progress
+  // across via `_preservedTables` whenever `_assetDbVersion` changes.
+  //
+  // Future schema changes go through `stepByStep` against the snapshots in
+  // `drift_schemas/`, so each step is written against a frozen schema rather
+  // than whatever the tables happen to look like today.
 
   // ── Kana queries ─────────────────────────────────────────────────────────
 

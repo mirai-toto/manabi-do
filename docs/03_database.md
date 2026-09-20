@@ -25,9 +25,23 @@ Two very different consumers read that one file:
 
 Keep it to plain `CREATE TABLE`. Only two drift-isms are tolerated, and both are translated for the Python side: a trailing `) AS RowName` naming the generated row class, and `DATETIME` / `BOOLEAN`, which drift stores as `INTEGER`.
 
-`manabi_do/test/schema_test.dart` is the guard. It builds the schema twice — once through drift, once by executing `schema.drift` as plain SQL — and asserts the two are identical. If they ever diverge, that test fails rather than a user's device.
+Two tests guard this:
 
-Changing the schema means bumping `schemaVersion` in `app_database.dart` and adding a migration step.
+- `test/schema_test.dart` builds the schema twice — once through drift, once by executing `schema.drift` as plain SQL the way Python does — and asserts they are identical.
+- `test/migration_test.dart` checks the live schema against the snapshot in `drift_schemas/`, and that a fresh database is stamped with the declared `schemaVersion`.
+
+If any of those ever diverge, a test fails rather than a user's device.
+
+### Changing the schema
+
+1. Edit `schema.drift`
+2. Bump `schemaVersion` in `app_database.dart`
+3. `dart run drift_dev schema dump lib/data/database/app_database.dart drift_schemas/`
+4. `dart run drift_dev schema generate drift_schemas/ test/generated_migrations/`
+5. Add a `stepByStep` case for the new version, written against the frozen snapshot rather than the current tables
+6. Rebuild the asset DB with `python3 tools/build_content_db.py` and bump `_assetDbVersion` in `db_connection_native.dart`
+
+There are no upgrade steps today. Every install lands on the current schema directly: the asset DB is stamped with the same `schemaVersion` drift declares, and existing installs receive that copy with their progress carried across by `_preservedTables`.
 
 ### `manabi_do_content.db` — All content
 

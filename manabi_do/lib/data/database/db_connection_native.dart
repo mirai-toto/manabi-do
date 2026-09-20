@@ -8,7 +8,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqlite3/sqlite3.dart' as raw;
 
-const _assetDbVersion = '8.24';
+const _assetDbVersion = '9.0';
 
 /// A table holding user data rather than shipped content. Refreshing the
 /// content DB overwrites the file wholesale, so these rows are read out
@@ -16,67 +16,25 @@ const _assetDbVersion = '8.24';
 class _PreservedTable {
   final String name;
   final List<String> columns;
-  final String createSql;
 
-  const _PreservedTable({
-    required this.name,
-    required this.columns,
-    required this.createSql,
-  });
+  const _PreservedTable({required this.name, required this.columns});
 }
 
 const List<_PreservedTable> _preservedTables = [
   _PreservedTable(
     name: 'srs_cards',
     columns: ['item_type', 'item_id', 'due', 'first_seen_at', 'card_json'],
-    createSql:
-        'CREATE TABLE IF NOT EXISTS srs_cards ('
-        '  item_type TEXT NOT NULL,'
-        '  item_id INTEGER NOT NULL,'
-        '  due INTEGER NOT NULL,'
-        '  first_seen_at INTEGER,'
-        '  card_json TEXT NOT NULL,'
-        '  PRIMARY KEY (item_type, item_id)'
-        ')',
   ),
   _PreservedTable(
     name: 'progress_entries',
     columns: ['item_type', 'item_id', 'is_known', 'toggled_at'],
-    createSql:
-        'CREATE TABLE IF NOT EXISTS progress_entries ('
-        '  id INTEGER PRIMARY KEY AUTOINCREMENT,'
-        '  item_type TEXT NOT NULL,'
-        '  item_id INTEGER NOT NULL,'
-        '  is_known INTEGER NOT NULL,'
-        '  toggled_at INTEGER NOT NULL,'
-        '  UNIQUE (item_type, item_id)'
-        ')',
   ),
   _PreservedTable(
     name: 'grammar_lesson_progress',
     columns: ['lesson_path', 'read_at'],
-    createSql:
-        'CREATE TABLE IF NOT EXISTS grammar_lesson_progress ('
-        '  lesson_path TEXT NOT NULL PRIMARY KEY,'
-        '  read_at INTEGER NOT NULL'
-        ')',
   ),
-  _PreservedTable(
-    name: 'grammar_lesson_starts',
-    columns: ['lesson_path'],
-    createSql:
-        'CREATE TABLE IF NOT EXISTS grammar_lesson_starts ('
-        '  lesson_path TEXT NOT NULL PRIMARY KEY'
-        ')',
-  ),
-  _PreservedTable(
-    name: 'grammar_chapter_unlocks',
-    columns: ['chapter_key'],
-    createSql:
-        'CREATE TABLE IF NOT EXISTS grammar_chapter_unlocks ('
-        '  chapter_key TEXT NOT NULL PRIMARY KEY'
-        ')',
-  ),
+  _PreservedTable(name: 'grammar_lesson_starts', columns: ['lesson_path']),
+  _PreservedTable(name: 'grammar_chapter_unlocks', columns: ['chapter_key']),
 ];
 
 Map<String, List<List<Object?>>> _readUserData(File file) {
@@ -112,7 +70,6 @@ void _writeUserData(
   for (final table in _preservedTables) {
     final rows = saved[table.name];
     if (rows == null) continue;
-    setup.execute(table.createSql);
     final placeholders = List.filled(table.columns.length, '?').join(', ');
     final stmt = setup.prepare(
       'INSERT OR REPLACE INTO ${table.name} '
@@ -180,21 +137,11 @@ QueryExecutor openDbConnection() {
         blob.buffer.asUint8List(blob.offsetInBytes, blob.lengthInBytes),
       );
 
-      // The currently committed asset DB was built before `schema.drift`
-      // existed, so it carries only the 11 content tables and reports a
-      // user_version above 7. Resetting to 7 forces drift to replay every
-      // migration, which creates the 4 runtime tables (srs_cards and the
-      // grammar progress tables) and renames the pre-`vocabulary` schema.
-      //
-      // Expect most of that replay to be a no-op: the addColumn steps throw
-      // `duplicate column` against a current asset DB and are caught on
-      // purpose. Those try/catch blocks are not hiding bugs.
-      //
-      // Once the asset DB is rebuilt — `tools/build_content_db.py` now creates
-      // all 15 tables from schema.drift — this reset can be dropped and the
-      // asset shipped at its real schema version.
+      // The asset DB is built from the same `schema.drift` drift generates
+      // from, so it already contains every table and is stamped with the
+      // current schemaVersion. Drift therefore opens it with nothing to
+      // migrate — no version rewriting needed here.
       final setup = raw.sqlite3.open(file.path);
-      setup.execute('PRAGMA user_version = 7');
 
       // Restore user data into the fresh DB before drift opens it.
       _writeUserData(setup, savedUserData);

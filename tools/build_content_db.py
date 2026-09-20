@@ -26,7 +26,16 @@ from collections import defaultdict
 
 import pykakasi
 
-SCHEMA_VERSION = 17
+APP_DATABASE_PATH = "manabi_do/lib/data/database/app_database.dart"
+
+
+def _schema_version() -> int:
+    """Read drift's schemaVersion so the asset DB never ships a stale version."""
+    with open(APP_DATABASE_PATH, encoding="utf-8") as f:
+        m = re.search(r"int get schemaVersion => (\d+);", f.read())
+    if not m:
+        raise SystemExit(f"could not find schemaVersion in {APP_DATABASE_PATH}")
+    return int(m.group(1))
 
 _kks = pykakasi.kakasi()
 
@@ -507,7 +516,7 @@ def main() -> None:
     db.execute("PRAGMA foreign_keys=ON")
 
     create_tables(db)
-    db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
+    db.execute(f"PRAGMA user_version = {_schema_version()}")
 
     for slug, jlpt in LEVELS:
         print(f"Inserting {jlpt} kanji… ", end="", flush=True)
