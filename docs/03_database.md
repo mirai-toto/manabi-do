@@ -38,10 +38,21 @@ If any of those ever diverge, a test fails rather than a user's device.
 2. Bump `schemaVersion` in `app_database.dart`
 3. `dart run drift_dev schema dump lib/data/database/app_database.dart drift_schemas/`
 4. `dart run drift_dev schema generate drift_schemas/ test/generated_migrations/`
-5. Add a `stepByStep` case for the new version, written against the frozen snapshot rather than the current tables
-6. Rebuild the asset DB with `python3 tools/build_content_db.py` and bump `_assetDbVersion` in `db_connection_native.dart`
+5. `dart run drift_dev schema steps drift_schemas/ lib/data/database/schema_versions.dart`
+6. Fill in the generated `fromNToN+1` case
 
-There are no upgrade steps today. Every install lands on the current schema directly: the asset DB is stamped with the same `schemaVersion` drift declares, and existing installs receive that copy with their progress carried across by `_preservedTables`.
+You do **not** need to rebuild the 22 MB asset for a schema change — `stepByStep` migrates it forward on open.
+
+### Two mechanisms, deliberately separate
+
+| change | mechanism |
+|---|---|
+| **schema** — a column, a table | a `stepByStep` case in `schema_versions.dart`. No asset rebuild. |
+| **content** — new lessons, new sentences | rebuild the asset, bump `_assetDbVersion`. `user_data_preservation.dart` carries progress across the swap. |
+
+Upgrades are generated rather than hand-written. Each step receives the schema **frozen at that version**, so editing `schema.drift` later cannot change what an old step means. That is what the previous `if (from < N)` chain could not do — it referenced current definitions, so old steps silently changed meaning and needed `try/catch` to survive.
+
+There are no steps yet; v22 is the baseline.
 
 ### `manabi_do_content.db` — All content
 

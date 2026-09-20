@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:drift_dev/api/migrations_native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:manabi_do/data/database/app_database.dart';
-import 'package:sqlite3/sqlite3.dart' as raw;
 
 import 'generated_migrations/schema.dart';
 
@@ -41,49 +42,45 @@ void main() {
     await db.close();
   });
 
-  // With no upgrade steps left, nothing repairs a stale asset at runtime. These
-  // two guard the cost of that: change the schema without rebuilding the asset
-  // and the failure shows up here rather than on a user's device.
-  group('the shipped asset DB matches the declared schema', () {
-    late raw.Database asset;
+  // End-to-end: a user opens the DB we actually ship. Whether the asset is at
+  // the head version or lags behind it, drift must land on the current schema —
+  // via `stepByStep` if there is a gap. A stale asset with no step to cover it
+  // fails here instead of on a device.
+  test('opening the shipped asset lands on the current schema', () async {
+    final tmp = Directory.systemTemp.createTempSync('manabi_asset');
+    addTearDown(() => tmp.deleteSync(recursive: true));
+    final copy = File('${tmp.path}/content.db')
+      ..writeAsBytesSync(File('assets/manabi_do_content.db').readAsBytesSync());
 
-    setUpAll(() => asset = raw.sqlite3.open('assets/manabi_do_content.db'));
-    tearDownAll(() => asset.close());
+    final expected = AppDatabase.withExecutor(NativeDatabase.memory());
+    await Migrator(expected).createAll();
+    final want = await _tableNames(expected);
+    await expected.close();
 
-    test('is stamped with the current schemaVersion', () {
-      final db = AppDatabase.withExecutor(NativeDatabase.memory());
-      final stamped = asset.select('PRAGMA user_version').first.values.first;
-      expect(
-        stamped,
-        db.schemaVersion,
-        reason:
-            'assets/manabi_do_content.db is stale. Rebuild it with '
-            'python3 tools/build_content_db.py and bump _assetDbVersion.',
-      );
-      db.close();
-    });
+    final opened = AppDatabase.withExecutor(NativeDatabase(copy));
+    final got = await _tableNames(opened);
+    final version = await opened
+        .customSelect('PRAGMA user_version')
+        .getSingle()
+        .then((r) => r.read<int>('user_version'));
+    await opened.close();
 
-    test('contains every table drift expects', () async {
-      final db = AppDatabase.withExecutor(NativeDatabase.memory());
-      await Migrator(db).createAll();
-      final expected = await db
-          .customSelect(
-            "SELECT name FROM sqlite_master WHERE type = 'table' "
-            "AND name NOT LIKE 'sqlite_%' ORDER BY name",
-          )
-          .get()
-          .then((rows) => rows.map((r) => r.read<String>('name')).toList());
-      await db.close();
-
-      final actual = asset
-          .select(
-            "SELECT name FROM sqlite_master WHERE type = 'table' "
-            "AND name NOT LIKE 'sqlite_%' ORDER BY name",
-          )
-          .map((r) => r['name'] as String)
-          .toList();
-
-      expect(actual, orderedEquals(expected));
-    });
+    expect(
+      got,
+      orderedEquals(want),
+      reason:
+          'assets/manabi_do_content.db does not open at the current schema. '
+          'Rebuild it with python3 tools/build_content_db.py, or add the '
+          'missing migration step.',
+    );
+    expect(version, lessThanOrEqualTo(22));
   });
 }
+
+Future<List<String>> _tableNames(AppDatabase db) => db
+    .customSelect(
+      "SELECT name FROM sqlite_master WHERE type = 'table' "
+      "AND name NOT LIKE 'sqlite_%' ORDER BY name",
+    )
+    .get()
+    .then((rows) => rows.map((r) => r.read<String>('name')).toList());

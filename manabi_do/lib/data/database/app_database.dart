@@ -9,6 +9,7 @@ import 'db_connection_native.dart'
 
 import '../../core/srs/srs_level.dart';
 import '../../domain/data/kana_data.dart';
+import 'schema_versions.dart';
 
 part 'app_database.g.dart';
 part 'queries/kana_queries.dart';
@@ -31,16 +32,24 @@ class AppDatabase extends _$AppDatabase {
   @override
   int get schemaVersion => 22;
 
-  // No upgrade steps: every install lands on the current schema directly.
-  //
-  // The asset DB is built from `schema.drift` and stamped with this same
-  // `schemaVersion`, so a fresh copy needs no migration. Existing installs are
-  // handed that copy too — `db_connection_native.dart` carries user progress
-  // across via `_preservedTables` whenever `_assetDbVersion` changes.
-  //
-  // Future schema changes go through `stepByStep` against the snapshots in
-  // `drift_schemas/`, so each step is written against a frozen schema rather
-  // than whatever the tables happen to look like today.
+  /// Upgrades are generated, not hand-written.
+  ///
+  /// `schema_versions.dart` is produced by
+  /// `drift_dev schema steps drift_schemas/`, and each step receives the schema
+  /// **frozen at that version** rather than whatever the tables look like
+  /// today. That is what the old `if (from < N)` chain could not do: it
+  /// referenced current definitions, so old steps silently changed meaning and
+  /// needed `try/catch` to survive.
+  ///
+  /// There are no steps yet — v22 is the baseline. Adding one means dumping a
+  /// new snapshot and re-running the generator; drift then sequences them and
+  /// `test/migration_test.dart` proves each lands on its snapshot exactly.
+  ///
+  /// Two mechanisms, deliberately separate:
+  ///   * schema changes  → a step here, no asset rebuild needed
+  ///   * content changes → a new asset DB and an `_assetDbVersion` bump
+  @override
+  MigrationStrategy get migration => MigrationStrategy(onUpgrade: stepByStep());
 
   Future<int> _countSeenToday(String itemType) {
     final now = DateTime.now();
