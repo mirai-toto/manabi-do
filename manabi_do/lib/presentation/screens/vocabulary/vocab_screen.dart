@@ -11,8 +11,8 @@ import '../../providers/vocab_list_provider.dart';
 import '../../widgets/widgets.dart';
 import '../practice/practice_launcher.dart';
 
-class VocabularyScreen extends ConsumerWidget {
-  const VocabularyScreen({super.key});
+class VocabScreen extends ConsumerWidget {
+  const VocabScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

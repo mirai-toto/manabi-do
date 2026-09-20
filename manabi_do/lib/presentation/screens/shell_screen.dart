@@ -9,7 +9,7 @@ import 'characters/characters_screen.dart';
 import 'grammar/grammar_screen.dart';
 import 'home/home_screen.dart';
 import 'settings/settings_screen.dart';
-import 'vocabulary/vocabulary_screen.dart';
+import 'vocabulary/vocab_screen.dart';
 
 class ShellScreen extends ConsumerStatefulWidget {
   const ShellScreen({super.key});
@@ -50,7 +50,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
   static const _screens = [
     HomeScreen(),
     CharactersScreen(),
-    VocabularyScreen(),
+    VocabScreen(),
     GrammarScreen(),
     SettingsScreen(),
   ];
