@@ -187,8 +187,8 @@ class SentenceClozeCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppDimens.radiusXs),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 6,
-                    vertical: 4,
+                    horizontal: AppDimens.spaceTight,
+                    vertical: AppDimens.spaceXs,
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(color: t.outlineVariant),

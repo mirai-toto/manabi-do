@@ -163,7 +163,7 @@ class _ClozeSentence extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.symmetric(
                   horizontal: AppDimens.spaceSm,
-                  vertical: 2,
+                  vertical: AppDimens.spaceXxs,
                 ),
                 decoration: BoxDecoration(
                   color: color.withValues(alpha: answered ? 0.15 : 0.08),

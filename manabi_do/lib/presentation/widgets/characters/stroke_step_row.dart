@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../providers/kanji_strokes_provider.dart';
 
@@ -64,7 +66,8 @@ class _StrokeStepRowState extends ConsumerState<StrokeStepRow> {
           scrollDirection: Axis.horizontal,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: strokes.length,
-          separatorBuilder: (_, _) => const SizedBox(width: 6),
+          separatorBuilder: (_, _) =>
+              const SizedBox(width: AppDimens.spaceTight),
           itemBuilder: (context, i) => Container(
             width: 48,
             height: 48,

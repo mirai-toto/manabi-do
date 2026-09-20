@@ -52,7 +52,10 @@ class JapaneseSentence extends StatelessWidget {
               margin: const EdgeInsets.symmetric(
                 horizontal: AppDimens.spaceXxs,
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceTight,
+                vertical: 1,
+              ),
               decoration: BoxDecoration(
                 color: accentColor.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(AppDimens.radiusXs),

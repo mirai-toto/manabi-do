@@ -281,7 +281,7 @@ class _TransformRowWidget extends StatelessWidget {
           SizedBox(
             width: _kArrowWidth,
             child: Padding(
-              padding: const EdgeInsets.only(top: 2),
+              padding: const EdgeInsets.only(top: AppDimens.spaceXxs),
               child: Text(
                 '→',
                 style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant),

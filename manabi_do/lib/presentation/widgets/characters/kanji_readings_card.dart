@@ -135,7 +135,7 @@ class KanjiReadingChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppDimens.spaceSm,
-        vertical: 3,
+        vertical: AppDimens.badgePaddingV,
       ),
       decoration: BoxDecoration(
         color: textColor.withValues(alpha: 0.12),

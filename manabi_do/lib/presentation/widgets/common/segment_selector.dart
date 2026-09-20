@@ -22,7 +22,7 @@ class SegmentSelector extends StatelessWidget {
     return Row(
       children: [
         for (int i = 0; i < options.length; i++) ...[
-          if (i > 0) const SizedBox(width: 6),
+          if (i > 0) const SizedBox(width: AppDimens.spaceTight),
           Expanded(
             child: Semantics(
               label: options[i],

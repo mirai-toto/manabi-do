@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_dimens.dart';
+
 import '../../../core/theme/app_brand_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -42,7 +44,7 @@ class LandingHeroPanel extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: AppDimens.spaceCozy),
             Text(
               'MANABI DO',
               style: AppTextStyles.labelLarge.copyWith(
@@ -51,7 +53,7 @@ class LandingHeroPanel extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: AppDimens.spaceTight),
             Text(
               context.l10n.tagline,
               style: AppTextStyles.bodySmall.copyWith(
