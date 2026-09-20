@@ -14,11 +14,11 @@ import '../../widgets/widgets.dart';
 import '../practice/practice_session_screen.dart';
 import 'grammar_lesson_list_screen.dart';
 
-class GrammarChapterList extends ConsumerWidget {
+class GrammarChapterView extends ConsumerWidget {
   final String level;
   final VoidCallback onBack;
 
-  const GrammarChapterList({
+  const GrammarChapterView({
     super.key,
     required this.level,
     required this.onBack,

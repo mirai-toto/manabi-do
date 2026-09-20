@@ -1404,12 +1404,14 @@ HomeDomainCards(
 
 ---
 
-### GrammarChapterList
+### GrammarChapterView
 
-Scrollable list of `ChapterCard` entries for a given JLPT level. Watches `grammarThemesProvider` internally, resolves unlock/progress state, and calls `onBack` when the user presses the back button.
+Embedded sub-view of `GrammarScreen`, not a pushed screen. Lists `ChapterCard` entries for a given JLPT level, watches `grammarThemesProvider` internally, resolves unlock/progress state, and calls `onBack` when the user presses the back button.
+
+It also owns navigation: it pushes `GrammarLessonListScreen` when a chapter is opened and `PracticeSessionScreen` for free practice. That is why it lives in `screens/`, alongside `KanaTabView` and `KanjiTabView`, rather than in `widgets/`.
 
 ```dart
-GrammarChapterList(
+GrammarChapterView(
   level: 'N5',
   onBack: () => ref.read(grammarSelectedLevelProvider.notifier).clear(),
 )

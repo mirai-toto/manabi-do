@@ -7,7 +7,7 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/home_provider.dart';
 import '../../widgets/widgets.dart';
-import 'grammar_chapter_list.dart';
+import 'grammar_chapter_view.dart';
 
 const _levels = ['N5'];
 
@@ -36,7 +36,7 @@ class GrammarScreen extends ConsumerWidget {
                       .read(grammarSelectedLevelProvider.notifier)
                       .select(level),
                 )
-              : GrammarChapterList(
+              : GrammarChapterView(
                   level: selectedLevel,
                   onBack: () =>
                       ref.read(grammarSelectedLevelProvider.notifier).clear(),
