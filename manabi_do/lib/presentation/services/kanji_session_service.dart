@@ -130,7 +130,7 @@ class KanjiSessionService {
       id: kanji.id,
       srsType: 'kanji',
       card: card,
-      buildBody: (index, total, onAnswer) => Builder(
+      buildBody: (index, total, onAnswer, settings) => Builder(
         builder: (ctx) => PracticeFlashcardBody(
           japanese: kanji.character,
           answer: meaningOf(kanji),
@@ -140,6 +140,7 @@ class KanjiSessionService {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          showExample: settings.flashcard.showExample,
           onDetailTap: () => Navigator.of(ctx).push(
             MaterialPageRoute(
               builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
@@ -161,7 +162,7 @@ class KanjiSessionService {
       id: kanji.id,
       srsType: 'kanji',
       card: card,
-      buildBody: (index, total, onAnswer) => Builder(
+      buildBody: (index, total, onAnswer, settings) => Builder(
         builder: (ctx) => KanjiDrawingBody(
           kanji: kanji,
           meaning: meaningOf(kanji),
@@ -204,7 +205,7 @@ class KanjiSessionService {
       id: kanji.id,
       srsType: 'kanji',
       card: card,
-      buildBody: (index, total, onAnswer) => Builder(
+      buildBody: (index, total, onAnswer, settings) => Builder(
         builder: (ctx) => PracticeMcqBody(
           question: isKanjiToMeaning
               ? ctx.l10n.mcqSelectMeaning
@@ -223,6 +224,8 @@ class KanjiSessionService {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          autoAdvance: settings.mcq.autoAdvance,
+          showPromptFurigana: settings.mcq.showPromptFurigana,
           onDetailTap: () => Navigator.of(ctx).push(
             MaterialPageRoute(
               builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),

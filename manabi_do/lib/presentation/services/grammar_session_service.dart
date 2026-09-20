@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/models/mcq_settings.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../data/grammar/grammar_models.dart';
 import '../../l10n/l10n.dart';
@@ -29,9 +30,9 @@ class GrammarSessionService {
   }) async {
     final db = ref.read(databaseProvider);
     final locale = ref.read(localeProvider).languageCode;
-    final autoAdvance = ref.read(mcqSettingsProvider).autoAdvance;
+    final mcqSettings = ref.read(mcqSettingsProvider);
 
-    final sessionLength = ref.read(mcqSettingsProvider).sessionLength;
+    final sessionLength = mcqSettings.sessionLength;
     var rows = await db.getGrammarExercisesForLessons(lessonPaths);
     if (rows.isEmpty) return [];
     rows = List.of(rows)..shuffle(math.Random());
@@ -43,7 +44,7 @@ class GrammarSessionService {
       final exercise = GrammarExercise.fromJson(
         Map<String, dynamic>.from(jsonDecode(row.dataJson) as Map),
       );
-      final item = _buildItem(i, exercise, locale, color, autoAdvance);
+      final item = _buildItem(i, exercise, locale, color, mcqSettings);
       if (item != null) items.add(item);
     }
     return items;
@@ -56,9 +57,9 @@ class GrammarSessionService {
   }) async {
     final db = ref.read(databaseProvider);
     final locale = ref.read(localeProvider).languageCode;
-    final autoAdvance = ref.read(mcqSettingsProvider).autoAdvance;
+    final mcqSettings = ref.read(mcqSettingsProvider);
 
-    final sessionLength = ref.read(mcqSettingsProvider).sessionLength;
+    final sessionLength = mcqSettings.sessionLength;
     var rows = await db.getGrammarExercisesForLesson(lessonPath);
     if (rows.isEmpty) return [];
     rows = List.of(rows)..shuffle(math.Random());
@@ -70,7 +71,7 @@ class GrammarSessionService {
       final exercise = GrammarExercise.fromJson(
         Map<String, dynamic>.from(jsonDecode(row.dataJson) as Map),
       );
-      final item = _buildItem(i, exercise, locale, color, autoAdvance);
+      final item = _buildItem(i, exercise, locale, color, mcqSettings);
       if (item != null) items.add(item);
     }
     return items;
@@ -81,14 +82,14 @@ class GrammarSessionService {
     GrammarExercise exercise,
     String locale,
     Color color,
-    bool autoAdvance,
+    McqSettings mcqSettings,
   ) {
     return switch (exercise) {
       FlashcardExercise() => PracticeItem(
         id: id,
         srsType: 'grammar',
         card: null,
-        buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+        buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
           japanese: exercise.front,
           answer: exercise.back[locale] ?? exercise.back['en'] ?? '',
           example: exercise.example,
@@ -102,13 +103,14 @@ class GrammarSessionService {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          showExample: settings.flashcard.showExample,
         ),
       ),
       McqExercise() => PracticeItem(
         id: id,
         srsType: 'grammar',
         card: null,
-        buildBody: (index, total, onAnswer) {
+        buildBody: (index, total, onAnswer, settings) {
           final choices =
               exercise.choices[locale] ?? exercise.choices['en'] ?? [];
           final options = List.generate(
@@ -127,6 +129,8 @@ class GrammarSessionService {
               total: total,
               color: color,
               onAnswer: onAnswer,
+              autoAdvance: settings.mcq.autoAdvance,
+              showPromptFurigana: settings.mcq.showPromptFurigana,
             ),
           );
         },
@@ -135,7 +139,7 @@ class GrammarSessionService {
         id: id,
         srsType: 'grammar',
         card: null,
-        buildBody: (index, total, onAnswer) {
+        buildBody: (index, total, onAnswer, settings) {
           final allOptions = [exercise.answer, ...exercise.distractors];
           allOptions.shuffle(math.Random());
           final correctIndex = allOptions.indexOf(exercise.answer);
@@ -154,7 +158,7 @@ class GrammarSessionService {
             index: index,
             total: total,
             color: color,
-            autoAdvance: autoAdvance,
+            autoAdvance: settings.mcq.autoAdvance,
             onAnswer: onAnswer,
           );
         },
@@ -163,14 +167,14 @@ class GrammarSessionService {
         id: id,
         srsType: 'grammar',
         card: null,
-        buildBody: (index, total, onAnswer) => GrammarBuilderBody(
+        buildBody: (index, total, onAnswer, settings) => GrammarBuilderBody(
           parts: exercise.parts,
           translation:
               exercise.translation[locale] ?? exercise.translation['en'] ?? '',
           index: index,
           total: total,
           color: color,
-          autoAdvance: autoAdvance,
+          autoAdvance: settings.mcq.autoAdvance,
           onAnswer: onAnswer,
         ),
       ),
@@ -178,16 +182,19 @@ class GrammarSessionService {
         id: id,
         srsType: 'grammar',
         card: null,
-        buildBody: (index, total, onAnswer) => GrammarErrorDetectionBody(
-          correct: exercise.correct,
-          wrong: exercise.wrong,
-          explanation:
-              exercise.explanation[locale] ?? exercise.explanation['en'] ?? '',
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-        ),
+        buildBody: (index, total, onAnswer, settings) =>
+            GrammarErrorDetectionBody(
+              correct: exercise.correct,
+              wrong: exercise.wrong,
+              explanation:
+                  exercise.explanation[locale] ??
+                  exercise.explanation['en'] ??
+                  '',
+              index: index,
+              total: total,
+              color: color,
+              onAnswer: onAnswer,
+            ),
       ),
     };
   }

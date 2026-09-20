@@ -149,7 +149,7 @@ class VocabSessionService {
         id: entry.id,
         srsType: 'vocabulary',
         card: card,
-        buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+        buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
           japanese: entry.word,
           label: entry.reading != entry.word ? entry.reading : null,
           answer: meaningOf(entry),
@@ -160,6 +160,7 @@ class VocabSessionService {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          showExample: settings.flashcard.showExample,
         ),
       );
     }).toList();
@@ -187,7 +188,7 @@ class VocabSessionService {
         id: entry.id,
         srsType: 'vocabulary',
         card: card,
-        buildBody: (index, total, onAnswer) => Builder(
+        buildBody: (index, total, onAnswer, settings) => Builder(
           builder: (context) => PracticeMcqBody(
             question: context.l10n.mcqSelectWordMeaning,
             japanesePrompt: entry.word,
@@ -200,6 +201,8 @@ class VocabSessionService {
             total: total,
             color: color,
             onAnswer: onAnswer,
+            autoAdvance: settings.mcq.autoAdvance,
+            showPromptFurigana: settings.mcq.showPromptFurigana,
           ),
         ),
       );
@@ -260,7 +263,7 @@ class VocabSessionService {
         id: entry.id,
         srsType: 'vocabulary',
         card: null,
-        buildBody: (index, total, onAnswer) => SentenceClozeBody(
+        buildBody: (index, total, onAnswer, settings) => SentenceClozeBody(
           sentence: sentence,
           translation: sentenceTranslations[sentence.id],
           targetReading: entry.reading,
@@ -272,6 +275,10 @@ class VocabSessionService {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          autoAdvance: settings.sentence.autoAdvance,
+          translationMode: settings.sentence.translationMode,
+          showSentenceFurigana: settings.sentence.showSentenceFurigana,
+          showChoiceFurigana: settings.sentence.showChoiceFurigana,
         ),
       );
     }).toList();
@@ -320,18 +327,20 @@ class VocabSessionService {
           id: entry.id,
           srsType: 'vocabulary',
           card: card,
-          buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
-            japanese: entry.word,
-            label: entry.reading != entry.word ? entry.reading : null,
-            answer: meaningOf(entry),
-            isReversed: quizType == 1,
-            isFreeMode: freeMode,
-            card: card,
-            index: index,
-            total: total,
-            color: color,
-            onAnswer: onAnswer,
-          ),
+          buildBody: (index, total, onAnswer, settings) =>
+              PracticeFlashcardBody(
+                japanese: entry.word,
+                label: entry.reading != entry.word ? entry.reading : null,
+                answer: meaningOf(entry),
+                isReversed: quizType == 1,
+                isFreeMode: freeMode,
+                card: card,
+                index: index,
+                total: total,
+                color: color,
+                onAnswer: onAnswer,
+                showExample: settings.flashcard.showExample,
+              ),
         );
       }
 
@@ -347,7 +356,7 @@ class VocabSessionService {
           id: entry.id,
           srsType: 'vocabulary',
           card: card,
-          buildBody: (index, total, onAnswer) => Builder(
+          buildBody: (index, total, onAnswer, settings) => Builder(
             builder: (context) => PracticeMcqBody(
               question: context.l10n.mcqSelectWordMeaning,
               japanesePrompt: entry.word,
@@ -362,6 +371,8 @@ class VocabSessionService {
               total: total,
               color: color,
               onAnswer: onAnswer,
+              autoAdvance: settings.mcq.autoAdvance,
+              showPromptFurigana: settings.mcq.showPromptFurigana,
             ),
           ),
         );
@@ -379,7 +390,7 @@ class VocabSessionService {
         id: entry.id,
         srsType: 'vocabulary',
         card: card,
-        buildBody: (index, total, onAnswer) => SentenceClozeBody(
+        buildBody: (index, total, onAnswer, settings) => SentenceClozeBody(
           sentence: sentence,
           translation: sentenceTranslations[sentence.id],
           targetReading: entry.reading,
@@ -391,6 +402,10 @@ class VocabSessionService {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          autoAdvance: settings.sentence.autoAdvance,
+          translationMode: settings.sentence.translationMode,
+          showSentenceFurigana: settings.sentence.showSentenceFurigana,
+          showChoiceFurigana: settings.sentence.showChoiceFurigana,
         ),
       );
     }).toList();

@@ -7,8 +7,11 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../../providers/flashcard_settings_provider.dart';
 import '../../providers/home_provider.dart';
+import '../../providers/mcq_settings_provider.dart';
 import '../../providers/practice_session_provider.dart';
+import '../../providers/sentence_settings_provider.dart';
 import '../../widgets/widgets.dart';
 import 'practice_item.dart';
 import 'practice_settings_sheet.dart';
@@ -87,6 +90,14 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
     final session = ref.watch(practiceSessionProvider);
     final notifier = ref.read(practiceSessionProvider.notifier);
 
+    // Watched, not captured at queue-build time, so toggling a setting in the
+    // in-session sheet re-renders the card currently on screen.
+    final PracticeBodySettings bodySettings = PracticeBodySettings(
+      mcq: ref.watch(mcqSettingsProvider),
+      flashcard: ref.watch(flashcardSettingsProvider),
+      sentence: ref.watch(sentenceSettingsProvider),
+    );
+
     return PopScope(
       canPop: session.done,
       onPopInvokedWithResult: (didPop, _) {
@@ -134,6 +145,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
                     session.queue!.length,
                     (Rating rating) =>
                         notifier.answer(rating, persistSrs: widget.persistSrs),
+                    bodySettings,
                   ),
                 ),
         ),

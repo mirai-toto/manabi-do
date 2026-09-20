@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
 import '../../../core/theme/app_dimens.dart';
@@ -7,12 +6,11 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/grammar/grammar_models.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/flashcard_settings_provider.dart';
 import 'example_card.dart';
 import 'flash_card.dart';
 import 'practice_progress_row.dart';
 
-class PracticeFlashcardBody extends ConsumerStatefulWidget {
+class PracticeFlashcardBody extends StatefulWidget {
   final String japanese;
   final String? label;
   final String answer;
@@ -27,6 +25,7 @@ class PracticeFlashcardBody extends ConsumerStatefulWidget {
   final GrammarExample? example;
   final String locale;
   final String? questionOverride;
+  final bool showExample;
 
   const PracticeFlashcardBody({
     super.key,
@@ -37,6 +36,7 @@ class PracticeFlashcardBody extends ConsumerStatefulWidget {
     required this.total,
     required this.color,
     required this.onAnswer,
+    required this.showExample,
     this.isFreeMode = false,
     this.label,
     this.isReversed = false,
@@ -47,11 +47,10 @@ class PracticeFlashcardBody extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<PracticeFlashcardBody> createState() =>
-      _PracticeFlashcardBodyState();
+  State<PracticeFlashcardBody> createState() => _PracticeFlashcardBodyState();
 }
 
-class _PracticeFlashcardBodyState extends ConsumerState<PracticeFlashcardBody> {
+class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
   bool _revealed = false;
   bool _everRevealed = false;
 
@@ -66,7 +65,7 @@ class _PracticeFlashcardBodyState extends ConsumerState<PracticeFlashcardBody> {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
-    final showExample = ref.watch(flashcardSettingsProvider).showExample;
+    final bool showExample = widget.showExample;
 
     final String question;
     final String prompt;

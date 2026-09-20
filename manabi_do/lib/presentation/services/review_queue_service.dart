@@ -45,7 +45,7 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
         id: kana.id,
         srsType: type,
         card: card,
-        buildBody: (index, total, onAnswer) => Builder(
+        buildBody: (index, total, onAnswer, settings) => Builder(
           builder: (ctx) => PracticeMcqBody(
             question: ctx.l10n.mcqSelectKanaReading,
             japanesePrompt: kana.character,
@@ -56,6 +56,8 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
             total: total,
             color: color,
             onAnswer: onAnswer,
+            autoAdvance: settings.mcq.autoAdvance,
+            showPromptFurigana: settings.mcq.showPromptFurigana,
           ),
         ),
       );
@@ -64,7 +66,7 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
       id: kana.id,
       srsType: type,
       card: card,
-      buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+      buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
         japanese: kana.character,
         answer: kana.romaji,
         card: card,
@@ -72,6 +74,7 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
         total: total,
         color: color,
         onAnswer: onAnswer,
+        showExample: settings.flashcard.showExample,
       ),
     );
   }).toList();
@@ -103,7 +106,7 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
         id: k.id,
         srsType: k.type,
         card: card,
-        buildBody: (index, total, onAnswer) => Builder(
+        buildBody: (index, total, onAnswer, settings) => Builder(
           builder: (ctx) => PracticeMcqBody(
             question: ctx.l10n.mcqSelectKanaReading,
             japanesePrompt: k.character,
@@ -114,6 +117,8 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
             total: total,
             color: color,
             onAnswer: onAnswer,
+            autoAdvance: settings.mcq.autoAdvance,
+            showPromptFurigana: settings.mcq.showPromptFurigana,
           ),
         ),
       );
@@ -122,7 +127,7 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
       id: k.id,
       srsType: k.type,
       card: card,
-      buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+      buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
         japanese: k.character,
         answer: k.romaji,
         card: card,
@@ -130,6 +135,7 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
         total: total,
         color: color,
         onAnswer: onAnswer,
+        showExample: settings.flashcard.showExample,
       ),
     );
   }).toList())..shuffle(rng);
@@ -177,7 +183,7 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
         id: k.id,
         srsType: 'kanji',
         card: card,
-        buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+        buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
           japanese: k.character,
           answer: meaningOf(k),
           card: card,
@@ -185,6 +191,7 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          showExample: settings.flashcard.showExample,
         ),
       );
     }
@@ -194,7 +201,7 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
         id: k.id,
         srsType: 'kanji',
         card: card,
-        buildBody: (index, total, onAnswer) => KanjiDrawingBody(
+        buildBody: (index, total, onAnswer, settings) => KanjiDrawingBody(
           kanji: k,
           meaning: meaningOf(k),
           card: card,
@@ -222,7 +229,7 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
       id: k.id,
       srsType: 'kanji',
       card: card,
-      buildBody: (index, total, onAnswer) => Builder(
+      buildBody: (index, total, onAnswer, settings) => Builder(
         builder: (ctx) => PracticeMcqBody(
           question: isKanjiToMeaning
               ? ctx.l10n.mcqSelectMeaning
@@ -235,6 +242,8 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          autoAdvance: settings.mcq.autoAdvance,
+          showPromptFurigana: settings.mcq.showPromptFurigana,
           compactGrid: !isKanjiToMeaning,
         ),
       ),
@@ -293,7 +302,7 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
         id: entry.id,
         srsType: 'vocabulary',
         card: card,
-        buildBody: (index, total, onAnswer) => PracticeFlashcardBody(
+        buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
           japanese: entry.word,
           label: entry.reading != entry.word ? entry.reading : null,
           answer: meaningOf(entry),
@@ -303,6 +312,7 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          showExample: settings.flashcard.showExample,
         ),
       );
     }
@@ -321,7 +331,7 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
         id: entry.id,
         srsType: 'vocabulary',
         card: card,
-        buildBody: (index, total, onAnswer) => Builder(
+        buildBody: (index, total, onAnswer, settings) => Builder(
           builder: (ctx) => PracticeMcqBody(
             question: ctx.l10n.mcqSelectWordMeaning,
             japanesePrompt: entry.word,
@@ -333,6 +343,8 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
             total: total,
             color: color,
             onAnswer: onAnswer,
+            autoAdvance: settings.mcq.autoAdvance,
+            showPromptFurigana: settings.mcq.showPromptFurigana,
           ),
         ),
       );
@@ -352,7 +364,7 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
       id: entry.id,
       srsType: 'vocabulary',
       card: card,
-      buildBody: (index, total, onAnswer) => SentenceClozeBody(
+      buildBody: (index, total, onAnswer, settings) => SentenceClozeBody(
         sentence: sentence,
         translation: sentenceTranslations[sentence.id],
         targetReading: entry.reading,
@@ -363,6 +375,10 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
         total: total,
         color: color,
         onAnswer: onAnswer,
+        autoAdvance: settings.sentence.autoAdvance,
+        translationMode: settings.sentence.translationMode,
+        showSentenceFurigana: settings.sentence.showSentenceFurigana,
+        showChoiceFurigana: settings.sentence.showChoiceFurigana,
       ),
     );
   }).toList()..shuffle(rng);
