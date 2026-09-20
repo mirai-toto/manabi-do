@@ -10,7 +10,7 @@ import '../presentation/providers/drawing_settings_provider.dart';
 import '../presentation/providers/kanji_strokes_provider.dart';
 import '../presentation/widgets/exercise/drawing_exercise.dart';
 import '../presentation/widgets/exercise/flashcard.dart';
-import '../presentation/widgets/exercise/lesson_reader_card.dart';
+import '../presentation/widgets/exercise/lesson_reader.dart';
 import '../presentation/widgets/exercise/mcq_card.dart';
 import '../presentation/widgets/exercise/summary_card.dart';
 

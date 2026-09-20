@@ -449,7 +449,7 @@ FlashcardActions(
 
 ### LessonReaderCard
 
-Card shell for grammar lesson content. Shows chapter label, title, body widgets, and an optional "Practice" button.
+Card shell for grammar lesson content. Shows chapter label, title, body widgets, and an optional "Practice" button. Lives in `lesson_reader.dart` together with its body blocks: `ReaderBodyText`, `ReaderSectionTitle`, `ReaderJpExample`.
 
 ```dart
 LessonReaderCard(
@@ -1148,7 +1148,7 @@ SettingsCard(
 
 ### SettingsTile / SettingsToggle / SettingsInfo / SettingsStepper
 
-Single settings row variants. All exported from `settings_tile.dart`.
+Single settings row variants, one per file: `settings_tile.dart`, `settings_toggle.dart`, `settings_info.dart`, `settings_stepper.dart`.
 
 ```dart
 // Tappable row with trailing chevron

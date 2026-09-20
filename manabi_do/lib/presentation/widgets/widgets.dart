@@ -38,7 +38,10 @@ export 'settings/language_picker_sheet.dart';
 export 'settings/practice_settings_card.dart';
 export 'settings/settings_about_section.dart';
 export 'settings/settings_card.dart';
+export 'settings/settings_info.dart';
+export 'settings/settings_stepper.dart';
 export 'settings/settings_tile.dart';
+export 'settings/settings_toggle.dart';
 
 // grammar
 export 'grammar/grammar_block_renderer.dart';
@@ -86,7 +89,7 @@ export 'exercise/flashcard.dart';
 export 'exercise/grammar_builder_body.dart';
 export 'exercise/grammar_cloze_body.dart';
 export 'exercise/grammar_error_detection_body.dart';
-export 'exercise/lesson_reader_card.dart';
+export 'exercise/lesson_reader.dart';
 export 'exercise/mcq_card.dart';
 export 'exercise/practice_flashcard_body.dart';
 export 'exercise/practice_mcq_body.dart';

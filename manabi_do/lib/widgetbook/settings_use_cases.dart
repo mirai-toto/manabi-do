@@ -4,7 +4,10 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import '../presentation/widgets/settings/home_settings_card.dart';
 import '../presentation/widgets/settings/practice_settings_card.dart';
 import '../presentation/widgets/settings/settings_card.dart';
+import '../presentation/widgets/settings/settings_info.dart';
+import '../presentation/widgets/settings/settings_stepper.dart';
 import '../presentation/widgets/settings/settings_tile.dart';
+import '../presentation/widgets/settings/settings_toggle.dart';
 
 // ── SettingsCard ──────────────────────────────────────────────────────────────
 
