@@ -1,5 +1,4 @@
 Corrections de cette version :
 
-• Le bouton Retour fonctionne désormais pendant une session d'étude. Il ouvre la même confirmation « Quitter la session ? » que le bouton de fermeture, plus besoin de chercher la croix.
-• Le bouton de réinitialisation d'un caractère précise maintenant qu'il n'efface que la progression de ce caractère.
-• Les mots en double ont été retirés des listes de vocabulaire : chaque entrée n'apparaît plus qu'une fois par groupe.
+• L'entraînement au tracé affiche désormais le nombre de traits ratés au lieu d'un score « x/x », et ce nombre est enfin correct.
+• La section grammaire n'affiche plus que les niveaux qui contiennent des leçons, au lieu de présenter les niveaux JLPT supérieurs comme bientôt disponibles.

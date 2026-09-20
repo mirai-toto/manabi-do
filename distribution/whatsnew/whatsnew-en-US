@@ -1,5 +1,4 @@
 Fixed in this release:
 
-• The Back button now works during a study session. It opens the same "Leave session?" prompt as the close button, so you no longer have to hunt for the X.
-• The reset button on a character now says it clears only that character's progress, matching what the confirmation actually does.
-• Duplicate words have been removed from the vocabulary lists, so each entry appears once per group.
+• Stroke practice now shows how many strokes you got wrong instead of an "x/x" score, and the number is finally correct.
+• The grammar section lists only the levels that have lessons, instead of showing the higher JLPT levels as coming soon.

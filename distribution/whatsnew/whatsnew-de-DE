@@ -1,5 +1,4 @@
 Korrekturen in dieser Version:
 
-• Die Zurück-Taste funktioniert jetzt während einer Lernsitzung. Sie öffnet dieselbe Abfrage „Sitzung verlassen?" wie die Schließen-Schaltfläche, das Suchen nach dem X entfällt.
-• Die Schaltfläche zum Zurücksetzen eines Zeichens gibt jetzt an, dass nur der Fortschritt dieses Zeichens gelöscht wird.
-• Doppelte Wörter wurden aus den Vokabellisten entfernt, sodass jeder Eintrag pro Gruppe nur einmal erscheint.
+• Das Strichtraining zeigt jetzt die Anzahl der falschen Striche statt einer „x/x"-Wertung, und die Zahl stimmt endlich.
+• Der Grammatikbereich listet nur noch Stufen mit Lektionen auf, statt die höheren JLPT-Stufen als demnächst verfügbar anzuzeigen.
