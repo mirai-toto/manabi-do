@@ -35,28 +35,13 @@ class AppDatabase extends _$AppDatabase {
   /// Upgrades are generated, not hand-written.
   ///
   /// `schema_versions.dart` is produced by
-  /// `drift_dev schema steps drift_schemas/`, and each step receives the schema
-  /// **frozen at that version** rather than whatever the tables look like
-  /// today. That is what the old `if (from < N)` chain could not do: it
-  /// referenced current definitions, so old steps silently changed meaning and
-  /// needed `try/catch` to survive.
+  /// `drift_dev schema steps drift_schemas/`. Each step receives the schema
+  /// **frozen at that version**, so renaming a column in 2027 cannot change
+  /// what `from20To21` meant in 2026. The old `if (from < N)` chain referenced
+  /// current definitions instead, which is why every step there needed
+  /// `try/catch` to survive edits made after it was written.
   ///
-  /// There are no steps yet — v22 is the baseline.
-  ///
-  /// ## Worked example: adding `sentences.audio_url`
-  ///
-  /// 1. Add the column in `schema.drift`:
-  ///
-  /// ```sql
-  /// CREATE TABLE sentences (
-  ///   ...
-  ///   audio_url TEXT          -- nullable: existing rows have no audio
-  /// );
-  /// ```
-  ///
-  /// 2. Bump [schemaVersion] to 23.
-  ///
-  /// 3. Snapshot the new shape and regenerate the steps:
+  /// To add v23: edit `schema.drift`, bump [schemaVersion], then
   ///
   /// ```sh
   /// dart run drift_dev schema dump lib/data/database/app_database.dart drift_schemas/
@@ -64,37 +49,44 @@ class AppDatabase extends _$AppDatabase {
   /// dart run drift_dev schema generate drift_schemas/ test/generated_migrations/
   /// ```
   ///
-  /// 4. Fill in the case the generator stubbed out in `schema_versions.dart`:
-  ///
-  /// ```dart
-  /// from22To23: (m, schema) async {
-  ///   await m.addColumn(schema.sentences, schema.sentences.audioUrl);
-  /// },
-  /// ```
-  ///
-  /// `schema.sentences` is the **v23** table, not the live one. Rename that
-  /// column in 2027 and this step keeps meaning what it meant in 2026 — which
-  /// is why no `try/catch` is needed here.
-  ///
-  /// 5. Add the check to `test/migration_test.dart`:
-  ///
-  /// ```dart
-  /// test('22 to 23 adds audio_url', () async {
-  ///   final connection = await verifier.startAt(22);
-  ///   final db = AppDatabase.withExecutor(connection);
-  ///   await verifier.migrateAndValidate(db, 23);
-  ///   await db.close();
-  /// });
-  /// ```
-  ///
-  /// That builds a real database at v22, runs the step, and fails unless the
-  /// result matches the v23 snapshot exactly.
-  ///
-  /// The 22 MB asset does **not** need rebuilding for this — drift migrates it
-  /// forward on open. Rebuild only when the *content* changes, and bump
-  /// `_assetDbVersion` so `user_data_preservation.dart` carries progress across.
+  /// The generator adds a `from22To23` parameter here and `migration_test.dart`
+  /// proves it lands on the v23 snapshot exactly. The 22 MB asset does not need
+  /// rebuilding for a schema change — drift migrates it forward on open.
   @override
-  MigrationStrategy get migration => MigrationStrategy(onUpgrade: stepByStep());
+  MigrationStrategy get migration => MigrationStrategy(
+    onUpgrade: stepByStep(
+      // Spell "vocabulary" in full in the schema. `vocabulary_entries` was
+      // always spelled out; only these two carried the truncation.
+      from20To21: (m, schema) async {
+        await m.renameTable(
+          schema.vocabularyTranslations,
+          'vocab_translations',
+        );
+        await m.renameColumn(
+          schema.vocabularyTranslations,
+          'vocab_id',
+          schema.vocabularyTranslations.vocabularyId,
+        );
+        await m.renameColumn(
+          schema.sentences,
+          'vocab_id',
+          schema.sentences.vocabularyId,
+        );
+      },
+
+      // Data, not schema: the grammar block type was renamed in content, and
+      // lessons already stored carry the old token inside `blocks_json` where
+      // no column rename can reach it.
+      from21To22: (m, schema) async {
+        await m.database.customStatement(
+          'UPDATE grammar_lessons '
+          'SET blocks_json = replace(blocks_json, ?, ?) '
+          'WHERE blocks_json LIKE ?',
+          ['"vocab_table"', '"vocabulary_table"', '%"vocab_table"%'],
+        );
+      },
+    ),
+  );
 
   Future<int> _countSeenToday(String itemType) {
     final now = DateTime.now();

@@ -43,6 +43,27 @@ void main() {
     await db.close();
   });
 
+  test('20 to 21 spells the vocabulary tables out in full', () async {
+    final connection = await verifier.startAt(20);
+    final db = AppDatabase.withExecutor(connection);
+    await verifier.migrateAndValidate(db, 21);
+    await db.close();
+  });
+
+  test('21 to 22 rewrites the grammar block type', () async {
+    final connection = await verifier.startAt(21);
+    final db = AppDatabase.withExecutor(connection);
+    await verifier.migrateAndValidate(db, 22);
+    await db.close();
+  });
+
+  test('a v20 database migrates all the way to the current schema', () async {
+    final connection = await verifier.startAt(20);
+    final db = AppDatabase.withExecutor(connection);
+    await verifier.migrateAndValidate(db, 22);
+    await db.close();
+  });
+
   test('a fresh database is created at the declared schemaVersion', () async {
     final db = AppDatabase.withExecutor(NativeDatabase.memory());
     await Migrator(db).createAll();
