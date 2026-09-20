@@ -7,19 +7,19 @@ const int _minPerDay = 0;
 const int _maxPerDay = 50;
 const int _stepPerDay = 5;
 
-/// Steppers for how many new characters and vocab words to introduce per day.
+/// Steppers for how many new characters and vocabulary words to introduce per day.
 class PracticeSettingsCard extends StatelessWidget {
   final int newCharactersPerDay;
-  final int newVocabPerDay;
+  final int newVocabularyPerDay;
   final ValueChanged<int> onNewCharactersChanged;
-  final ValueChanged<int> onNewVocabChanged;
+  final ValueChanged<int> onNewVocabularyChanged;
 
   const PracticeSettingsCard({
     super.key,
     required this.newCharactersPerDay,
-    required this.newVocabPerDay,
+    required this.newVocabularyPerDay,
     required this.onNewCharactersChanged,
-    required this.onNewVocabChanged,
+    required this.onNewVocabularyChanged,
   });
 
   @override
@@ -41,13 +41,13 @@ class PracticeSettingsCard extends StatelessWidget {
         ),
         SettingsStepper(
           icon: Icons.translate_rounded,
-          label: l.settingsPracticeNewVocab,
-          value: newVocabPerDay,
-          onDecrement: newVocabPerDay > _minPerDay
-              ? () => onNewVocabChanged(_stepDown(newVocabPerDay))
+          label: l.settingsPracticeNewVocabulary,
+          value: newVocabularyPerDay,
+          onDecrement: newVocabularyPerDay > _minPerDay
+              ? () => onNewVocabularyChanged(_stepDown(newVocabularyPerDay))
               : null,
-          onIncrement: newVocabPerDay < _maxPerDay
-              ? () => onNewVocabChanged(_stepUp(newVocabPerDay))
+          onIncrement: newVocabularyPerDay < _maxPerDay
+              ? () => onNewVocabularyChanged(_stepUp(newVocabularyPerDay))
               : null,
         ),
       ],

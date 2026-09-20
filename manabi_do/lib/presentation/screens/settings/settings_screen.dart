@@ -161,9 +161,9 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: AppDimens.spaceSm),
             PracticeSettingsCard(
               newCharactersPerDay: srs.newCharactersPerDay,
-              newVocabPerDay: srs.newVocabPerDay,
+              newVocabularyPerDay: srs.newVocabularyPerDay,
               onNewCharactersChanged: srsNotifier.setNewCharactersPerDay,
-              onNewVocabChanged: srsNotifier.setNewVocabPerDay,
+              onNewVocabularyChanged: srsNotifier.setNewVocabularyPerDay,
             ),
 
             const SizedBox(height: AppDimens.spaceLg),
@@ -172,10 +172,10 @@ class SettingsScreen extends ConsumerWidget {
             HomeSettingsCard(
               showKana: home.showKana,
               showKanji: home.showKanji,
-              showVocab: home.showVocab,
+              showVocabulary: home.showVocabulary,
               onShowKanaChanged: homeNotifier.setShowKana,
               onShowKanjiChanged: homeNotifier.setShowKanji,
-              onShowVocabChanged: homeNotifier.setShowVocab,
+              onShowVocabularyChanged: homeNotifier.setShowVocabulary,
             ),
 
             const SizedBox(height: AppDimens.spaceLg),

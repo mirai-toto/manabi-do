@@ -454,11 +454,11 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get navHome;
 
-  /// No description provided for @navVocab.
+  /// No description provided for @navVocabulary.
   ///
   /// In en, this message translates to:
   /// **'Vocab'**
-  String get navVocab;
+  String get navVocabulary;
 
   /// No description provided for @greetingMorning.
   ///
@@ -856,11 +856,11 @@ abstract class AppLocalizations {
   /// **'New characters per day'**
   String get settingsPracticeNewCharacters;
 
-  /// No description provided for @settingsPracticeNewVocab.
+  /// No description provided for @settingsPracticeNewVocabulary.
   ///
   /// In en, this message translates to:
   /// **'New vocabulary per day'**
-  String get settingsPracticeNewVocab;
+  String get settingsPracticeNewVocabulary;
 
   /// No description provided for @settingsAppearance.
   ///
@@ -1210,17 +1210,17 @@ abstract class AppLocalizations {
   /// **'{count} words'**
   String nWords(int count);
 
-  /// No description provided for @vocabSubtitle.
+  /// No description provided for @vocabularySubtitle.
   ///
   /// In en, this message translates to:
   /// **'{total} words to discover'**
-  String vocabSubtitle(int total);
+  String vocabularySubtitle(int total);
 
-  /// No description provided for @vocabSubtitleShort.
+  /// No description provided for @vocabularySubtitleShort.
   ///
   /// In en, this message translates to:
   /// **'Words to discover'**
-  String get vocabSubtitleShort;
+  String get vocabularySubtitleShort;
 
   /// No description provided for @reviewsDue.
   ///

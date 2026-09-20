@@ -48,7 +48,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   void _refresh() {
     ref.invalidate(kanaDueCountProvider);
     ref.invalidate(kanjiDueCountProvider);
-    ref.invalidate(vocabDueCountProvider);
+    ref.invalidate(vocabularyDueCountProvider);
   }
 
   @override
@@ -114,15 +114,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         ref.watch(kanaProgressProvider).asData?.value ?? noProgress;
     final kanjiProgress =
         ref.watch(kanjiProgressProvider).asData?.value ?? noProgress;
-    final vocabProgress =
-        ref.watch(vocabProgressProvider).asData?.value ?? noProgress;
+    final vocabularyProgress =
+        ref.watch(vocabularyProgressProvider).asData?.value ?? noProgress;
 
     final kanaDue = ref.watch(kanaDueCountProvider).asData?.value ?? 0;
     final kanaNew = ref.watch(kanaNewCountProvider).asData?.value ?? 0;
     final kanjiDue = ref.watch(kanjiDueCountProvider).asData?.value ?? 0;
     final kanjiNew = ref.watch(kanjiNewCountProvider).asData?.value ?? 0;
-    final vocabDue = ref.watch(vocabDueCountProvider).asData?.value ?? 0;
-    final vocabNew = ref.watch(vocabNewCountProvider).asData?.value ?? 0;
+    final vocabularyDue =
+        ref.watch(vocabularyDueCountProvider).asData?.value ?? 0;
+    final vocabularyNew =
+        ref.watch(vocabularyNewCountProvider).asData?.value ?? 0;
 
     final streakDays = ref.watch(streakDaysProvider).asData?.value ?? 0;
     final weekActivity =
@@ -134,12 +136,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     final domains = [
       if (show.showKana) (glyph: 'か', due: kanaDue),
       if (show.showKanji) (glyph: '字', due: kanjiDue),
-      if (show.showVocab) (glyph: '語', due: vocabDue),
+      if (show.showVocabulary) (glyph: '語', due: vocabularyDue),
     ];
     final newTotal =
         (show.showKana ? kanaNew : 0) +
         (show.showKanji ? kanjiNew : 0) +
-        (show.showVocab ? vocabNew : 0);
+        (show.showVocabulary ? vocabularyNew : 0);
 
     return Align(
       alignment: Alignment.topCenter,
@@ -202,20 +204,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         ),
                       ),
                     ],
-                    if (show.showVocab) ...[
+                    if (show.showVocabulary) ...[
                       const SizedBox(height: AppDimens.spaceSm),
                       DeckRow(
                         title: l.sectionVocabulary,
                         glyph: '語',
                         color: t.vocabulary,
-                        known: vocabProgress.known,
-                        seen: vocabProgress.seen,
-                        newToday: vocabNew,
-                        due: vocabDue,
+                        known: vocabularyProgress.known,
+                        seen: vocabularyProgress.seen,
+                        newToday: vocabularyNew,
+                        due: vocabularyDue,
                         onTap: () => _openPractice(
                           title: l.sectionVocabulary,
                           color: t.vocabulary,
-                          loadQueue: loadVocabQueue,
+                          loadQueue: loadVocabularyQueue,
                         ),
                       ),
                     ],

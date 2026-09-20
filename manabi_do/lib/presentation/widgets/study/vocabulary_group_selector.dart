@@ -8,18 +8,18 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
-import '../../providers/vocab_list_provider.dart';
+import '../../providers/vocabulary_list_provider.dart';
 import '../widgets.dart';
 
-const kVocabGroupSize = 30;
+const kVocabularyGroupSize = 30;
 
-class VocabGroupSelector extends ConsumerWidget {
+class VocabularyGroupSelector extends ConsumerWidget {
   final String level;
   final VoidCallback onBack;
   final VoidCallback onPractice;
   final void Function(int) onSelect;
 
-  const VocabGroupSelector({
+  const VocabularyGroupSelector({
     super.key,
     required this.level,
     required this.onBack,
@@ -29,13 +29,13 @@ class VocabGroupSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vocabAsync = ref.watch(vocabByLevelProvider(level));
-    final srsCards = ref.watch(vocabSrsCardsProvider).asData?.value ?? {};
+    final vocabularyAsync = ref.watch(vocabularyByLevelProvider(level));
+    final srsCards = ref.watch(vocabularySrsCardsProvider).asData?.value ?? {};
     final color = levelColor(level);
     final t = context.tokens;
 
-    final entries = vocabAsync.asData?.value ?? [];
-    final groupCount = (entries.length / kVocabGroupSize).ceil();
+    final entries = vocabularyAsync.asData?.value ?? [];
+    final groupCount = (entries.length / kVocabularyGroupSize).ceil();
 
     return ScrollFade(
       builder: (controller) => ListView(
@@ -79,17 +79,17 @@ class VocabGroupSelector extends ConsumerWidget {
             ),
           ),
           PracticeButton(color: color, onTap: onPractice),
-          if (vocabAsync is AsyncLoading)
+          if (vocabularyAsync is AsyncLoading)
             const Center(child: CircularProgressIndicator())
           else
             Padding(
               padding: const EdgeInsets.all(AppDimens.spaceMd),
               child: Column(
                 children: List.generate(groupCount, (i) {
-                  final start = i * kVocabGroupSize;
+                  final start = i * kVocabularyGroupSize;
                   final groupEntries = entries
                       .skip(start)
-                      .take(kVocabGroupSize)
+                      .take(kVocabularyGroupSize)
                       .toList();
                   final learnedCount = groupEntries.where((e) {
                     final level = srsLevel(srsCards[e.id]);

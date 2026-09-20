@@ -2,7 +2,7 @@ import 'package:drift/drift.dart';
 
 class SrsCards extends Table {
   TextColumn get itemType =>
-      text()(); // 'hiragana' | 'katakana' | 'kanji' | 'vocab'
+      text()(); // 'hiragana' | 'katakana' | 'kanji' | 'vocabulary'
   IntColumn get itemId => integer()(); // row ID in the corresponding table
   DateTimeColumn get due => dateTime()(); // next review date (queryable)
   DateTimeColumn get firstSeenAt =>

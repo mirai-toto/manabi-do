@@ -645,17 +645,17 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
-            name: 'VocabTableBlock',
+            name: 'VocabularyTableBlock',
             useCases: [
               _widgetbook.WidgetbookUseCase(
                 name: 'With counter',
                 builder: _manabi_do_widgetbook_grammar_use_cases
-                    .buildVocabTableCounter,
+                    .buildVocabularyTableCounter,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With verb group',
                 builder: _manabi_do_widgetbook_grammar_use_cases
-                    .buildVocabTableGroup,
+                    .buildVocabularyTableGroup,
               ),
             ],
           ),

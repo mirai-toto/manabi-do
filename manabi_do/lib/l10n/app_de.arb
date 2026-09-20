@@ -97,7 +97,7 @@
 
   "navSettings": "Einstellungen",
   "navHome": "Start",
-  "navVocab": "Vokabeln",
+  "navVocabulary": "Vokabeln",
 
   "greetingMorning": "Guten Morgen",
   "greetingAfternoon": "Guten Tag",
@@ -181,7 +181,7 @@
   "settingsPractice": "Übung",
   "settingsHomeScreen": "Startbildschirm",
   "settingsPracticeNewCharacters": "Neue Zeichen pro Tag",
-  "settingsPracticeNewVocab": "Neues Vokabular pro Tag",
+  "settingsPracticeNewVocabulary": "Neues Vokabular pro Tag",
 
   "settingsAppearance": "Erscheinungsbild",
   "settingsThemeSystem": "System",
@@ -280,11 +280,11 @@
   "@nWords": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "vocabSubtitle": "{total} Wörter entdecken",
-  "@vocabSubtitle": {
+  "vocabularySubtitle": "{total} Wörter entdecken",
+  "@vocabularySubtitle": {
     "placeholders": { "total": { "type": "int" } }
   },
-  "vocabSubtitleShort": "Wörter entdecken",
+  "vocabularySubtitleShort": "Wörter entdecken",
   "reviewsDue": "{count} Wiederholungen",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }

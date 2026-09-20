@@ -9,19 +9,19 @@ import '../widgets.dart';
 class HomeSettingsCard extends StatelessWidget {
   final bool showKana;
   final bool showKanji;
-  final bool showVocab;
+  final bool showVocabulary;
   final ValueChanged<bool> onShowKanaChanged;
   final ValueChanged<bool> onShowKanjiChanged;
-  final ValueChanged<bool> onShowVocabChanged;
+  final ValueChanged<bool> onShowVocabularyChanged;
 
   const HomeSettingsCard({
     super.key,
     required this.showKana,
     required this.showKanji,
-    required this.showVocab,
+    required this.showVocabulary,
     required this.onShowKanaChanged,
     required this.onShowKanjiChanged,
-    required this.onShowVocabChanged,
+    required this.onShowVocabularyChanged,
   });
 
   @override
@@ -55,8 +55,8 @@ class HomeSettingsCard extends StatelessWidget {
         SettingsToggle(
           leading: glyph('語'),
           label: l.sectionVocabulary,
-          value: showVocab,
-          onChanged: onShowVocabChanged,
+          value: showVocabulary,
+          onChanged: onShowVocabularyChanged,
         ),
       ],
     );

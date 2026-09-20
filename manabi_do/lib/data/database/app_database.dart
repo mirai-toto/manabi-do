@@ -205,7 +205,10 @@ class AppDatabase extends _$AppDatabase {
           .get()
           .then((rows) => {for (final r in rows) r.kanjiId: r.meaning});
 
-  Future<Map<int, String>> getVocabTranslations(List<int> ids, String locale) =>
+  Future<Map<int, String>> getVocabularyTranslations(
+    List<int> ids,
+    String locale,
+  ) =>
       (select(vocabTranslations)
             ..where((t) => t.vocabId.isIn(ids) & t.locale.equals(locale)))
           .get()
@@ -213,7 +216,7 @@ class AppDatabase extends _$AppDatabase {
 
   // ── Vocabulary queries ───────────────────────────────────────────────────
 
-  Future<List<VocabularyEntry>> getVocabForKanji(
+  Future<List<VocabularyEntry>> getVocabularyForKanji(
     int kanjiId,
     String character,
   ) =>
@@ -228,27 +231,29 @@ class AppDatabase extends _$AppDatabase {
             ..limit(30))
           .get();
 
-  Future<List<VocabularyEntry>> getVocabByLevel(String level) =>
+  Future<List<VocabularyEntry>> getVocabularyByLevel(String level) =>
       (select(vocabularyEntries)
             ..where((v) => v.jlptLevel.equals(level))
             ..orderBy([(v) => OrderingTerm.asc(v.word)]))
           .get();
 
-  Future<List<VocabularyEntry>> getAllVocab() =>
+  Future<List<VocabularyEntry>> getAllVocabulary() =>
       (select(vocabularyEntries)).get();
 
   Future<int> countTotalKanji() => (select(kanjis)).get().then((r) => r.length);
 
   // ── Sentence queries ─────────────────────────────────────────────────────
 
-  Future<List<Sentence>> getSentencesForVocab(int vocabId) =>
-      (select(sentences)..where((s) => s.vocabId.equals(vocabId))).get();
+  Future<List<Sentence>> getSentencesForVocabulary(int vocabularyId) =>
+      (select(sentences)..where((s) => s.vocabId.equals(vocabularyId))).get();
 
-  Future<Map<int, List<Sentence>>> getSentencesBatch(List<int> vocabIds) async {
-    if (vocabIds.isEmpty) return {};
+  Future<Map<int, List<Sentence>>> getSentencesBatch(
+    List<int> vocabularyIds,
+  ) async {
+    if (vocabularyIds.isEmpty) return {};
     final rows = await (select(
       sentences,
-    )..where((s) => s.vocabId.isIn(vocabIds))).get();
+    )..where((s) => s.vocabId.isIn(vocabularyIds))).get();
     final result = <int, List<Sentence>>{};
     for (final row in rows) {
       result.putIfAbsent(row.vocabId, () => []).add(row);
@@ -292,7 +297,7 @@ class AppDatabase extends _$AppDatabase {
     return result;
   }
 
-  Future<int> countTotalVocab() =>
+  Future<int> countTotalVocabulary() =>
       (select(vocabularyEntries)).get().then((r) => r.length);
 
   Future<String?> getKanjiSvg(int kanjiId) =>
@@ -410,7 +415,7 @@ class AppDatabase extends _$AppDatabase {
         .length,
   );
 
-  Stream<int> watchVocabDueCount() => (select(srsCards)).watch().map(
+  Stream<int> watchVocabularyDueCount() => (select(srsCards)).watch().map(
     (rows) => rows
         .where(
           (r) => r.itemType == 'vocabulary' && !r.due.isAfter(DateTime.now()),
@@ -443,7 +448,7 @@ class AppDatabase extends _$AppDatabase {
       .watch()
       .map((rows) => _progressCounts(rows.where((r) => r.itemType == 'kanji')));
 
-  Stream<({int known, int seen})> watchVocabProgress() =>
+  Stream<({int known, int seen})> watchVocabularyProgress() =>
       (select(srsCards)).watch().map(
         (rows) =>
             _progressCounts(rows.where((r) => r.itemType == 'vocabulary')),
@@ -541,7 +546,7 @@ class AppDatabase extends _$AppDatabase {
         return 0;
       });
 
-  Stream<int> watchVocabNewCount({required int newCardLimit}) =>
+  Stream<int> watchVocabularyNewCount({required int newCardLimit}) =>
       (select(srsCards)).watch().asyncMap((_) async {
         final remaining = (newCardLimit - await _countSeenToday('vocabulary'))
             .clamp(0, newCardLimit);
@@ -690,23 +695,23 @@ class AppDatabase extends _$AppDatabase {
   }
 
   /// All due vocabulary across every JLPT level: no new cards, for home screen review.
-  Future<List<(VocabularyEntry, Card?)>> getAllDueVocabSrsSession({
+  Future<List<(VocabularyEntry, Card?)>> getAllDueVocabularySrsSession({
     int newCardLimit = 0,
   }) async {
-    final allVocab = await select(vocabularyEntries).get();
+    final allVocabulary = await select(vocabularyEntries).get();
     return _buildSrsSession(
       'vocabulary',
-      allVocab,
+      allVocabulary,
       (v) => v.id,
       newCardLimit: newCardLimit,
     );
   }
 
-  Future<List<(VocabularyEntry, Card?)>> getVocabSrsSession(
+  Future<List<(VocabularyEntry, Card?)>> getVocabularySrsSession(
     String level, {
     int newCardLimit = 10,
   }) async {
-    final items = await getVocabByLevel(level);
+    final items = await getVocabularyByLevel(level);
     return _buildSrsSession(
       'vocabulary',
       items,
@@ -821,12 +826,12 @@ class AppDatabase extends _$AppDatabase {
       await upsertSrsCard('kanji', k.id, Card(cardId: k.id, due: yesterday));
     }
 
-    final vocab =
+    final vocabulary =
         await (select(vocabularyEntries)
               ..where((v) => v.jlptLevel.equals('N5'))
               ..limit(5))
             .get();
-    for (final v in vocab) {
+    for (final v in vocabulary) {
       await upsertSrsCard(
         'vocabulary',
         v.id,

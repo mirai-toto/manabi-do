@@ -4,7 +4,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../widgets.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../data/database/app_database.dart';
-import '../../providers/vocab_provider.dart';
+import '../../providers/vocabulary_provider.dart';
 
 class KanjiHero extends ConsumerWidget {
   final Kanji kanji;

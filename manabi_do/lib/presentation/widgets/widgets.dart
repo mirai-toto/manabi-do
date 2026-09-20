@@ -60,10 +60,10 @@ export 'study/practice_mode_card.dart';
 export 'study/streak_pill.dart';
 export 'study/study_group_card.dart';
 export 'study/todays_session_card.dart';
-export 'study/vocab_group_selector.dart' hide kVocabGroupSize;
-export 'study/vocab_level_selector.dart';
-export 'study/vocab_level_view.dart';
-export 'study/vocab_word_tile.dart';
+export 'study/vocabulary_group_selector.dart' hide kVocabularyGroupSize;
+export 'study/vocabulary_level_selector.dart';
+export 'study/vocabulary_level_view.dart';
+export 'study/vocabulary_word_tile.dart';
 export 'study/week_strip.dart';
 
 // characters

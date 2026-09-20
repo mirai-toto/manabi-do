@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/level_label.dart';
-import '../../services/vocab_session_service.dart';
+import '../../services/vocabulary_session_service.dart';
 import '../practice/practice_session_screen.dart';
 
-class VocabPracticeScreen extends StatelessWidget {
+class VocabularyPracticeScreen extends StatelessWidget {
   final String level;
   final Set<int>? allowedIds;
   final bool freeMode;
@@ -13,7 +13,7 @@ class VocabPracticeScreen extends StatelessWidget {
   final bool mcqOnly;
   final bool flashcardOnly;
 
-  const VocabPracticeScreen({
+  const VocabularyPracticeScreen({
     super.key,
     required this.level,
     this.allowedIds,
@@ -40,7 +40,7 @@ class VocabPracticeScreen extends StatelessWidget {
       title: levelLabel(level, context),
       color: levelColor(level),
       loadQueue: (ref) => ref
-          .read(vocabSessionServiceProvider)
+          .read(vocabularySessionServiceProvider)
           .buildQueue(
             ref: ref,
             level: level,

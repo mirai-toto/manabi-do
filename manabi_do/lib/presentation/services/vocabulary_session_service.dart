@@ -18,8 +18,8 @@ import '../screens/practice/practice_session_screen.dart';
 import '../widgets/exercise/sentence_cloze_body.dart';
 import 'session_item_builders.dart';
 
-class VocabSessionService {
-  const VocabSessionService();
+class VocabularySessionService {
+  const VocabularySessionService();
 
   Future<List<PracticeItem>> buildQueue({
     required WidgetRef ref,
@@ -49,7 +49,7 @@ class VocabSessionService {
     if (sentenceOnly) {
       pairs = [];
     } else if (freeMode || mcqOnly || flashcardOnly) {
-      final all = await db.getVocabByLevel(level);
+      final all = await db.getVocabularyByLevel(level);
       final filtered = allowedIds != null
           ? all.where((v) => allowedIds.contains(v.id)).toList()
           : all;
@@ -60,9 +60,9 @@ class VocabSessionService {
       pairs = limited.map((v) => (v, null)).toList();
     } else {
       final settings = await ref.read(srsSettingsProvider.future);
-      final allPairs = await db.getVocabSrsSession(
+      final allPairs = await db.getVocabularySrsSession(
         level,
-        newCardLimit: settings.newVocabPerDay,
+        newCardLimit: settings.newVocabularyPerDay,
       );
       final filtered = allowedIds != null
           ? allPairs.where((p) => allowedIds.contains(p.$1.id)).toList()
@@ -73,12 +73,12 @@ class VocabSessionService {
     }
 
     // Full level pool for MCQ distractors; group pool only for sentence selection.
-    final allPool = await db.getVocabByLevel(level);
+    final allPool = await db.getVocabularyByLevel(level);
     final groupPool = allowedIds != null
         ? allPool.where((v) => allowedIds.contains(v.id)).toList()
         : allPool;
     final translations = locale != 'en'
-        ? await db.getVocabTranslations(
+        ? await db.getVocabularyTranslations(
             allPool.map((v) => v.id).toList(),
             locale,
           )
@@ -177,7 +177,7 @@ class VocabSessionService {
   }) {
     return pairs.map((pair) {
       final (entry, card) = pair;
-      final vocabMcq = buildVocabMcqOptions(
+      final vocabularyMcq = buildVocabularyMcqOptions(
         target: entry,
         pool: pool,
         n: mcqSettings.mcqChoiceCount,
@@ -193,8 +193,8 @@ class VocabSessionService {
             question: context.l10n.mcqSelectWordMeaning,
             japanesePrompt: entry.word,
             japaneseReading: entry.reading != entry.word ? entry.reading : null,
-            options: vocabMcq.options,
-            correctIndex: vocabMcq.correctIndex,
+            options: vocabularyMcq.options,
+            correctIndex: vocabularyMcq.correctIndex,
             isFreeMode: isFreeMode,
             card: card,
             index: index,
@@ -220,10 +220,10 @@ class VocabSessionService {
     required SentenceSettings sentenceSettings,
   }) async {
     final nativeOnly = sentenceSettings.nativeTranslationOnly && locale != 'en';
-    final sentencesByVocabId = await db.getSentencesBatch(
+    final sentencesByVocabularyId = await db.getSentencesBatch(
       pool.map((v) => v.id).toList(),
     );
-    final allSentenceIds = sentencesByVocabId.values
+    final allSentenceIds = sentencesByVocabularyId.values
         .expand((list) => list)
         .map((s) => s.id)
         .toList();
@@ -234,7 +234,7 @@ class VocabSessionService {
     );
 
     final withSentences = pool.where((v) {
-      final ss = sentencesByVocabId[v.id] ?? [];
+      final ss = sentencesByVocabularyId[v.id] ?? [];
       if (ss.isEmpty) return false;
       if (nativeOnly) {
         return ss.any((s) => sentenceTranslations.containsKey(s.id));
@@ -246,7 +246,7 @@ class VocabSessionService {
         : withSentences;
 
     return limited.map((entry) {
-      final allEntSentences = sentencesByVocabId[entry.id]!;
+      final allEntSentences = sentencesByVocabularyId[entry.id]!;
       final sentences = nativeOnly
           ? allEntSentences
                 .where((s) => sentenceTranslations.containsKey(s.id))
@@ -297,10 +297,10 @@ class VocabSessionService {
     required String Function(VocabularyEntry) meaningOf,
   }) async {
     final nativeOnly = sentenceSettings.nativeTranslationOnly && locale != 'en';
-    final sentencesByVocabId = await db.getSentencesBatch(
+    final sentencesByVocabularyId = await db.getSentencesBatch(
       pairs.map((p) => p.$1.id).toList(),
     );
-    final allSentenceIds = sentencesByVocabId.values
+    final allSentenceIds = sentencesByVocabularyId.values
         .expand((list) => list)
         .map((s) => s.id)
         .toList();
@@ -312,7 +312,7 @@ class VocabSessionService {
 
     return pairs.map((pair) {
       final (entry, card) = pair;
-      final allSentences = sentencesByVocabId[entry.id] ?? [];
+      final allSentences = sentencesByVocabularyId[entry.id] ?? [];
       final sentences = nativeOnly
           ? allSentences
                 .where((s) => sentenceTranslations.containsKey(s.id))
@@ -345,7 +345,7 @@ class VocabSessionService {
       }
 
       if (quizType == 2) {
-        final vocabMcq = buildVocabMcqOptions(
+        final vocabularyMcq = buildVocabularyMcqOptions(
           target: entry,
           pool: pool,
           n: mcqSettings.mcqChoiceCount,
@@ -363,8 +363,8 @@ class VocabSessionService {
               japaneseReading: entry.reading != entry.word
                   ? entry.reading
                   : null,
-              options: vocabMcq.options,
-              correctIndex: vocabMcq.correctIndex,
+              options: vocabularyMcq.options,
+              correctIndex: vocabularyMcq.correctIndex,
               isFreeMode: freeMode,
               card: card,
               index: index,
@@ -412,6 +412,6 @@ class VocabSessionService {
   }
 }
 
-final vocabSessionServiceProvider = Provider(
-  (_) => const VocabSessionService(),
+final vocabularySessionServiceProvider = Provider(
+  (_) => const VocabularySessionService(),
 );

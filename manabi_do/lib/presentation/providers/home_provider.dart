@@ -23,8 +23,8 @@ class _SelectedTabNotifier extends Notifier<int> {
         ref.read(kanjiSelectedLevelProvider.notifier).clear();
         ref.read(kanjiSelectedGroupProvider.notifier).clear();
       case 2:
-        ref.read(vocabSelectedLevelProvider.notifier).clear();
-        ref.read(vocabSelectedGroupProvider.notifier).clear();
+        ref.read(vocabularySelectedLevelProvider.notifier).clear();
+        ref.read(vocabularySelectedGroupProvider.notifier).clear();
       case 3:
         ref.read(grammarSelectedLevelProvider.notifier).clear();
     }
@@ -39,8 +39,8 @@ final kanjiDueCountProvider = StreamProvider<int>(
   (ref) => ref.watch(databaseProvider).watchKanjiDueCount(),
 );
 
-final vocabDueCountProvider = StreamProvider<int>(
-  (ref) => ref.watch(databaseProvider).watchVocabDueCount(),
+final vocabularyDueCountProvider = StreamProvider<int>(
+  (ref) => ref.watch(databaseProvider).watchVocabularyDueCount(),
 );
 
 final streakDaysProvider = StreamProvider<int>(
@@ -55,8 +55,8 @@ final kanjiProgressProvider = StreamProvider<({int known, int seen})>(
   (ref) => ref.watch(databaseProvider).watchKanjiProgress(),
 );
 
-final vocabProgressProvider = StreamProvider<({int known, int seen})>(
-  (ref) => ref.watch(databaseProvider).watchVocabProgress(),
+final vocabularyProgressProvider = StreamProvider<({int known, int seen})>(
+  (ref) => ref.watch(databaseProvider).watchVocabularyProgress(),
 );
 
 /// Which days of the current week (Monday-first, 7 entries) had reviews.
@@ -97,19 +97,18 @@ class PracticeActiveNotifier extends Notifier<bool> {
   void setActive(bool value) => state = value;
 }
 
-final vocabNewCountProvider = StreamProvider<int>((ref) {
+final vocabularyNewCountProvider = StreamProvider<int>((ref) {
   final db = ref.watch(databaseProvider);
   final limit =
-      ref.watch(srsSettingsProvider).asData?.value.newVocabPerDay ?? 10;
-  return db.watchVocabNewCount(newCardLimit: limit);
+      ref.watch(srsSettingsProvider).asData?.value.newVocabularyPerDay ?? 10;
+  return db.watchVocabularyNewCount(newCardLimit: limit);
 });
 
 final kanjiSelectedLevelProvider = NotifierProvider<_LevelNotifier, String?>(
   _LevelNotifier.new,
 );
-final vocabSelectedLevelProvider = NotifierProvider<_LevelNotifier, String?>(
-  _LevelNotifier.new,
-);
+final vocabularySelectedLevelProvider =
+    NotifierProvider<_LevelNotifier, String?>(_LevelNotifier.new);
 final grammarSelectedLevelProvider = NotifierProvider<_LevelNotifier, String?>(
   _LevelNotifier.new,
 );
@@ -125,7 +124,7 @@ final kanjiSelectedGroupProvider = NotifierProvider<_GroupNotifier, int?>(
   _GroupNotifier.new,
 );
 
-final vocabSelectedGroupProvider = NotifierProvider<_GroupNotifier, int?>(
+final vocabularySelectedGroupProvider = NotifierProvider<_GroupNotifier, int?>(
   _GroupNotifier.new,
 );
 

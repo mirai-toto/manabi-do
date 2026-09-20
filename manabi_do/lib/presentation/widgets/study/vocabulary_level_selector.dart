@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/vocab_list_provider.dart';
+import '../../providers/vocabulary_list_provider.dart';
 import '../widgets.dart';
 
 const _levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
-class VocabLevelSelector extends ConsumerWidget {
+class VocabularyLevelSelector extends ConsumerWidget {
   final void Function(String) onSelect;
-  const VocabLevelSelector({super.key, required this.onSelect});
+  const VocabularyLevelSelector({super.key, required this.onSelect});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,7 +33,11 @@ class VocabLevelSelector extends ConsumerWidget {
   }
 
   String? _subtitle(BuildContext context, WidgetRef ref, String code) {
-    final count = ref.watch(vocabByLevelProvider(code)).asData?.value.length;
+    final count = ref
+        .watch(vocabularyByLevelProvider(code))
+        .asData
+        ?.value
+        .length;
     return count != null ? context.l10n.nWords(count) : null;
   }
 }

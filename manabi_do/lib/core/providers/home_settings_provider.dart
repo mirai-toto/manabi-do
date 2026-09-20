@@ -3,26 +3,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const _keyShowKana = 'home_show_kana';
 const _keyShowKanji = 'home_show_kanji';
-const _keyShowVocab = 'home_show_vocab';
+const _keyShowVocabulary = 'home_show_vocab';
 
 /// Which decks appear on the home screen (and in the combined session).
 class HomeSettings {
   final bool showKana;
   final bool showKanji;
-  final bool showVocab;
+  final bool showVocabulary;
 
   const HomeSettings({
     this.showKana = true,
     this.showKanji = true,
-    this.showVocab = true,
+    this.showVocabulary = true,
   });
 
-  HomeSettings copyWith({bool? showKana, bool? showKanji, bool? showVocab}) =>
-      HomeSettings(
-        showKana: showKana ?? this.showKana,
-        showKanji: showKanji ?? this.showKanji,
-        showVocab: showVocab ?? this.showVocab,
-      );
+  HomeSettings copyWith({
+    bool? showKana,
+    bool? showKanji,
+    bool? showVocabulary,
+  }) => HomeSettings(
+    showKana: showKana ?? this.showKana,
+    showKanji: showKanji ?? this.showKanji,
+    showVocabulary: showVocabulary ?? this.showVocabulary,
+  );
 }
 
 class HomeSettingsNotifier extends AsyncNotifier<HomeSettings> {
@@ -32,7 +35,7 @@ class HomeSettingsNotifier extends AsyncNotifier<HomeSettings> {
     return HomeSettings(
       showKana: prefs.getBool(_keyShowKana) ?? true,
       showKanji: prefs.getBool(_keyShowKanji) ?? true,
-      showVocab: prefs.getBool(_keyShowVocab) ?? true,
+      showVocabulary: prefs.getBool(_keyShowVocabulary) ?? true,
     );
   }
 
@@ -48,10 +51,10 @@ class HomeSettingsNotifier extends AsyncNotifier<HomeSettings> {
     state = AsyncData(state.requireValue.copyWith(showKanji: value));
   }
 
-  Future<void> setShowVocab(bool value) async {
+  Future<void> setShowVocabulary(bool value) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_keyShowVocab, value);
-    state = AsyncData(state.requireValue.copyWith(showVocab: value));
+    await prefs.setBool(_keyShowVocabulary, value);
+    state = AsyncData(state.requireValue.copyWith(showVocabulary: value));
   }
 }
 

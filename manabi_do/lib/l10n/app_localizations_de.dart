@@ -199,7 +199,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get navHome => 'Start';
 
   @override
-  String get navVocab => 'Vokabeln';
+  String get navVocabulary => 'Vokabeln';
 
   @override
   String get greetingMorning => 'Guten Morgen';
@@ -420,7 +420,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsPracticeNewCharacters => 'Neue Zeichen pro Tag';
 
   @override
-  String get settingsPracticeNewVocab => 'Neues Vokabular pro Tag';
+  String get settingsPracticeNewVocabulary => 'Neues Vokabular pro Tag';
 
   @override
   String get settingsAppearance => 'Erscheinungsbild';
@@ -631,12 +631,12 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String vocabSubtitle(int total) {
+  String vocabularySubtitle(int total) {
     return '$total Wörter entdecken';
   }
 
   @override
-  String get vocabSubtitleShort => 'Wörter entdecken';
+  String get vocabularySubtitleShort => 'Wörter entdecken';
 
   @override
   String reviewsDue(int count) {

@@ -95,7 +95,7 @@
 
   "navSettings": "Paramètres",
   "navHome": "Accueil",
-  "navVocab": "Vocab",
+  "navVocabulary": "Vocab",
 
   "greetingMorning": "Bonjour",
   "greetingAfternoon": "Bon après-midi",
@@ -179,7 +179,7 @@
   "settingsPractice": "Entraînement",
   "settingsHomeScreen": "Écran d'accueil",
   "settingsPracticeNewCharacters": "Nouveaux caractères par jour",
-  "settingsPracticeNewVocab": "Nouveau vocabulaire par jour",
+  "settingsPracticeNewVocabulary": "Nouveau vocabulaire par jour",
 
   "settingsAppearance": "Apparence",
   "settingsThemeSystem": "Système",
@@ -278,11 +278,11 @@
   "@nWords": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "vocabSubtitle": "{total} mots à découvrir",
-  "@vocabSubtitle": {
+  "vocabularySubtitle": "{total} mots à découvrir",
+  "@vocabularySubtitle": {
     "placeholders": { "total": { "type": "int" } }
   },
-  "vocabSubtitleShort": "Mots à découvrir",
+  "vocabularySubtitleShort": "Mots à découvrir",
   "reviewsDue": "{count} révisions",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }

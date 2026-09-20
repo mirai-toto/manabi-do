@@ -148,7 +148,7 @@ Future<List<PracticeItem>> loadAllDueQueue(WidgetRef ref) async {
   final queues = await Future.wait([
     if (settings.showKana) loadKanaQueue(ref),
     if (settings.showKanji) loadKanjiQueue(ref),
-    if (settings.showVocab) loadVocabQueue(ref),
+    if (settings.showVocabulary) loadVocabularyQueue(ref),
   ]);
   return queues.expand((q) => q).toList()..shuffle();
 }
@@ -251,24 +251,24 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
   }).toList()..shuffle(rng);
 }
 
-Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
+Future<List<PracticeItem>> loadVocabularyQueue(WidgetRef ref) async {
   final db = ref.read(databaseProvider);
   final locale = ref.read(localeProvider).languageCode;
   final settings = await ref.read(srsSettingsProvider.future);
   final mcqSettings = ref.read(mcqSettingsProvider);
   final sentenceSettings = ref.read(sentenceSettingsProvider);
-  final pairs = await db.getAllDueVocabSrsSession(
-    newCardLimit: settings.newVocabPerDay,
+  final pairs = await db.getAllDueVocabularySrsSession(
+    newCardLimit: settings.newVocabularyPerDay,
   );
-  final allVocab = await db.getAllVocab();
+  final allVocabulary = await db.getAllVocabulary();
   final ids = pairs.map((p) => p.$1.id).toList();
-  final allIds = allVocab.map((v) => v.id).toList();
+  final allIds = allVocabulary.map((v) => v.id).toList();
   final allTranslations = locale != 'en'
-      ? await db.getVocabTranslations(allIds, locale)
+      ? await db.getVocabularyTranslations(allIds, locale)
       : <int, String>{};
   final nativeOnly = sentenceSettings.nativeTranslationOnly && locale != 'en';
-  final sentencesByVocabId = await db.getSentencesBatch(ids);
-  final allSentenceIds = sentencesByVocabId.values
+  final sentencesByVocabularyId = await db.getSentencesBatch(ids);
+  final allSentenceIds = sentencesByVocabularyId.values
       .expand((list) => list)
       .map((s) => s.id)
       .toList();
@@ -287,7 +287,7 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
   return pairs.map((pair) {
     final (entry, card) = pair;
     final color = levelColor(entry.jlptLevel);
-    final allSentences = sentencesByVocabId[entry.id] ?? [];
+    final allSentences = sentencesByVocabularyId[entry.id] ?? [];
     final sentences = nativeOnly
         ? allSentences
               .where((s) => sentenceTranslations.containsKey(s.id))
@@ -318,15 +318,15 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
     }
 
     if (quizType == 2) {
-      final vocabMcq = buildVocabMcqOptions(
+      final vocabularyMcq = buildVocabularyMcqOptions(
         target: entry,
-        pool: allVocab,
+        pool: allVocabulary,
         n: mcqSettings.mcqChoiceCount,
         meaningOf: meaningOf,
         rng: rng,
       );
-      final mcqOptions = vocabMcq.options;
-      final correctIndex = vocabMcq.correctIndex;
+      final mcqOptions = vocabularyMcq.options;
+      final correctIndex = vocabularyMcq.correctIndex;
       return PracticeItem(
         id: entry.id,
         srsType: 'vocabulary',
@@ -354,7 +354,7 @@ Future<List<PracticeItem>> loadVocabQueue(WidgetRef ref) async {
     final sentence = sentences[rng.nextInt(sentences.length)];
     final cloze = buildClozeOptions(
       target: entry,
-      pool: allVocab,
+      pool: allVocabulary,
       n: sentenceSettings.mcqChoiceCount,
       rng: rng,
     );

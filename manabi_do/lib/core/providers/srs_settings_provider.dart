@@ -2,19 +2,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const _keyNewCharactersPerDay = 'srs_new_characters_per_day';
-const _keyNewVocabPerDay = 'srs_new_vocab_per_day';
+const _keyNewVocabularyPerDay = 'srs_new_vocab_per_day';
 const _keyLegacyNewCards = 'srs_new_cards_per_session';
 
 class SrsSettings {
   final int newCharactersPerDay;
-  final int newVocabPerDay;
+  final int newVocabularyPerDay;
 
-  const SrsSettings({this.newCharactersPerDay = 10, this.newVocabPerDay = 10});
+  const SrsSettings({
+    this.newCharactersPerDay = 10,
+    this.newVocabularyPerDay = 10,
+  });
 
-  SrsSettings copyWith({int? newCharactersPerDay, int? newVocabPerDay}) =>
+  SrsSettings copyWith({int? newCharactersPerDay, int? newVocabularyPerDay}) =>
       SrsSettings(
         newCharactersPerDay: newCharactersPerDay ?? this.newCharactersPerDay,
-        newVocabPerDay: newVocabPerDay ?? this.newVocabPerDay,
+        newVocabularyPerDay: newVocabularyPerDay ?? this.newVocabularyPerDay,
       );
 }
 
@@ -25,7 +28,7 @@ class SrsSettingsNotifier extends AsyncNotifier<SrsSettings> {
     final legacy = prefs.getInt(_keyLegacyNewCards) ?? 10;
     return SrsSettings(
       newCharactersPerDay: prefs.getInt(_keyNewCharactersPerDay) ?? legacy,
-      newVocabPerDay: prefs.getInt(_keyNewVocabPerDay) ?? legacy,
+      newVocabularyPerDay: prefs.getInt(_keyNewVocabularyPerDay) ?? legacy,
     );
   }
 
@@ -35,10 +38,10 @@ class SrsSettingsNotifier extends AsyncNotifier<SrsSettings> {
     state = AsyncData(state.requireValue.copyWith(newCharactersPerDay: value));
   }
 
-  Future<void> setNewVocabPerDay(int value) async {
+  Future<void> setNewVocabularyPerDay(int value) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_keyNewVocabPerDay, value);
-    state = AsyncData(state.requireValue.copyWith(newVocabPerDay: value));
+    await prefs.setInt(_keyNewVocabularyPerDay, value);
+    state = AsyncData(state.requireValue.copyWith(newVocabularyPerDay: value));
   }
 }
 

@@ -6,25 +6,27 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/pos_label.dart';
-import '../../providers/vocab_provider.dart';
+import '../../providers/vocabulary_provider.dart';
 import '../widgets.dart';
 
-class VocabWordTile extends ConsumerStatefulWidget {
+class VocabularyWordTile extends ConsumerStatefulWidget {
   final VocabularyEntry entry;
 
-  const VocabWordTile({super.key, required this.entry});
+  const VocabularyWordTile({super.key, required this.entry});
 
   @override
-  ConsumerState<VocabWordTile> createState() => _VocabWordTileState();
+  ConsumerState<VocabularyWordTile> createState() => _VocabularyWordTileState();
 }
 
-class _VocabWordTileState extends ConsumerState<VocabWordTile> {
+class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
   bool _expanded = false;
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final localized = ref.watch(localizedVocabMeaningProvider(widget.entry.id));
+    final localized = ref.watch(
+      localizedVocabularyMeaningProvider(widget.entry.id),
+    );
     final meaning = localized.asData?.value.isNotEmpty == true
         ? localized.asData!.value
         : widget.entry.meaning;

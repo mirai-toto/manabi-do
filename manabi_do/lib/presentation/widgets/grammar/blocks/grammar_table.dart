@@ -5,7 +5,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../common/card_container.dart';
 
-/// Shared table renderer used by [ExampleTableBlock], [VocabTableBlock], and
+/// Shared table renderer used by [ExampleTableBlock], [VocabularyTableBlock], and
 /// [ConjugationTableBlock]. Not a block itself: use the typed wrappers.
 ///
 /// Columns named `'japanese'` are rendered in [AppTextStyles.jpBody].

@@ -7,16 +7,16 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/vocab_list_provider.dart';
+import '../../providers/vocabulary_list_provider.dart';
 import '../widgets.dart';
 
-class VocabLevelView extends ConsumerWidget {
+class VocabularyLevelView extends ConsumerWidget {
   final String level;
   final int groupIndex;
   final VoidCallback onBack;
-  final void Function(Set<int> vocabIds) onPractice;
+  final void Function(Set<int> vocabularyIds) onPractice;
 
-  const VocabLevelView({
+  const VocabularyLevelView({
     super.key,
     required this.level,
     required this.groupIndex,
@@ -26,10 +26,10 @@ class VocabLevelView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vocabAsync = ref.watch(vocabByLevelProvider(level));
+    final vocabularyAsync = ref.watch(vocabularyByLevelProvider(level));
     final color = levelColor(level);
 
-    return switch (vocabAsync) {
+    return switch (vocabularyAsync) {
       AsyncLoading() => const Center(child: CircularProgressIndicator()),
       AsyncError() => const SizedBox.shrink(),
       AsyncData(:final value) => _LevelContent(
@@ -37,8 +37,8 @@ class VocabLevelView extends ConsumerWidget {
         groupIndex: groupIndex,
         color: color,
         entries: value
-            .skip(groupIndex * kVocabGroupSize)
-            .take(kVocabGroupSize)
+            .skip(groupIndex * kVocabularyGroupSize)
+            .take(kVocabularyGroupSize)
             .toList(),
         onBack: onBack,
         onPractice: onPractice,
@@ -53,7 +53,7 @@ class _LevelContent extends ConsumerWidget {
   final Color color;
   final List<VocabularyEntry> entries;
   final VoidCallback onBack;
-  final void Function(Set<int> vocabIds) onPractice;
+  final void Function(Set<int> vocabularyIds) onPractice;
 
   const _LevelContent({
     required this.level,
@@ -70,11 +70,14 @@ class _LevelContent extends ConsumerWidget {
     final l = context.l10n;
 
     final learnedCount = ref.watch(
-      vocabGroupLearnedCountProvider((level: level, groupIndex: groupIndex)),
+      vocabularyGroupLearnedCountProvider((
+        level: level,
+        groupIndex: groupIndex,
+      )),
     );
 
     final groupIds = entries.map((e) => e.id).toSet();
-    final start = groupIndex * kVocabGroupSize;
+    final start = groupIndex * kVocabularyGroupSize;
 
     return ScrollFade(
       builder: (controller) => ListView(
@@ -128,7 +131,7 @@ class _LevelContent extends ConsumerWidget {
                 indent: AppDimens.spaceMd,
                 endIndent: AppDimens.spaceMd,
               ),
-            VocabWordTile(entry: entries[i]),
+            VocabularyWordTile(entry: entries[i]),
           ],
         ],
       ),

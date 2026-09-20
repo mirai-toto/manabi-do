@@ -85,7 +85,7 @@ List<T> _pickDistractors<T>({
   );
 }
 
-({List<McqOption> options, int correctIndex}) buildVocabMcqOptions({
+({List<McqOption> options, int correctIndex}) buildVocabularyMcqOptions({
   required VocabularyEntry target,
   required List<VocabularyEntry> pool,
   required int n,

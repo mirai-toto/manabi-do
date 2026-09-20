@@ -166,9 +166,9 @@ Widget buildPracticeSettingsCard(BuildContext context) {
     padding: const EdgeInsets.all(16),
     child: PracticeSettingsCard(
       newCharactersPerDay: 10,
-      newVocabPerDay: 10,
+      newVocabularyPerDay: 10,
       onNewCharactersChanged: (_) {},
-      onNewVocabChanged: (_) {},
+      onNewVocabularyChanged: (_) {},
     ),
   );
 }
@@ -183,9 +183,9 @@ Widget buildPracticeSettingsCardAtBounds(BuildContext context) {
     padding: const EdgeInsets.all(16),
     child: PracticeSettingsCard(
       newCharactersPerDay: 0,
-      newVocabPerDay: 50,
+      newVocabularyPerDay: 50,
       onNewCharactersChanged: (_) {},
-      onNewVocabChanged: (_) {},
+      onNewVocabularyChanged: (_) {},
     ),
   );
 }
@@ -199,10 +199,10 @@ Widget buildHomeSettingsCard(BuildContext context) {
     child: HomeSettingsCard(
       showKana: true,
       showKanji: true,
-      showVocab: true,
+      showVocabulary: true,
       onShowKanaChanged: (_) {},
       onShowKanjiChanged: (_) {},
-      onShowVocabChanged: (_) {},
+      onShowVocabularyChanged: (_) {},
     ),
   );
 }
@@ -214,10 +214,10 @@ Widget buildHomeSettingsCardMixed(BuildContext context) {
     child: HomeSettingsCard(
       showKana: true,
       showKanji: false,
-      showVocab: false,
+      showVocabulary: false,
       onShowKanaChanged: (_) {},
       onShowKanjiChanged: (_) {},
-      onShowVocabChanged: (_) {},
+      onShowVocabularyChanged: (_) {},
     ),
   );
 }
