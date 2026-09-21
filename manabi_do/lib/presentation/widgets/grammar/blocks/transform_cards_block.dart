@@ -58,7 +58,7 @@ class TransformGroup {
     description: d['description'] as String?,
     rule: d['rule'] as String?,
     rows: (d['rows'] as List<dynamic>)
-        .map((r) => TransformRow.fromJson(Map<String, dynamic>.from(r)))
+        .map((r) => TransformRow.fromJson(r as Map<String, dynamic>))
         .toList(),
     note: d['note'] as String?,
   );

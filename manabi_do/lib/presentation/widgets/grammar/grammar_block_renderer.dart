@@ -90,7 +90,7 @@ class GrammarBlockRenderer extends StatelessWidget {
       ),
       'transform_cards' => TransformCardsBlock(
         groups: (d['groups'] as List<dynamic>)
-            .map((g) => TransformGroup.fromJson(Map<String, dynamic>.from(g)))
+            .map((g) => TransformGroup.fromJson(g as Map<String, dynamic>))
             .toList(),
         accentColor: levelColor,
       ),

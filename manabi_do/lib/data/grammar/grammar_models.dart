@@ -177,7 +177,7 @@ class GrammarLesson {
       title: json['title'] as String,
       difficulty: json['difficulty'] as int? ?? 1,
       blocks: (json['blocks'] as List<dynamic>)
-          .map((b) => GrammarBlock.fromJson(Map<String, dynamic>.from(b)))
+          .map((b) => GrammarBlock.fromJson(b as Map<String, dynamic>))
           .toList(),
     );
   }

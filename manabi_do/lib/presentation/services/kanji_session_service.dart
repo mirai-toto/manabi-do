@@ -142,7 +142,7 @@ class KanjiSessionService {
           onAnswer: onAnswer,
           showExample: settings.flashcard.showExample,
           onDetailTap: () => Navigator.of(ctx).push(
-            MaterialPageRoute(
+            MaterialPageRoute<void>(
               builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
             ),
           ),
@@ -173,7 +173,7 @@ class KanjiSessionService {
           color: color,
           onAnswer: onAnswer,
           onDetailTap: () => Navigator.of(ctx).push(
-            MaterialPageRoute(
+            MaterialPageRoute<void>(
               builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
             ),
           ),
@@ -227,7 +227,7 @@ class KanjiSessionService {
           autoAdvance: settings.mcq.autoAdvance,
           showPromptFurigana: settings.mcq.showPromptFurigana,
           onDetailTap: () => Navigator.of(ctx).push(
-            MaterialPageRoute(
+            MaterialPageRoute<void>(
               builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
             ),
           ),

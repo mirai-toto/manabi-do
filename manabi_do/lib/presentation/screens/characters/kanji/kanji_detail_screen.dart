@@ -71,7 +71,7 @@ class _KanjiBody extends ConsumerWidget {
             width: double.infinity,
             child: OutlinedButton.icon(
               onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
+                MaterialPageRoute<void>(
                   builder: (_) => KanjiDrawingPracticeScreen(kanjiId: kanji.id),
                 ),
               ),
