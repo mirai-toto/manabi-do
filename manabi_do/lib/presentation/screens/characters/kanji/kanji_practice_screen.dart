@@ -65,7 +65,10 @@ class KanjiDrawingBody extends ConsumerWidget {
   final Kanji kanji;
   final Card? card;
   final bool isFreeMode;
-  final bool autoEvaluate;
+
+  /// The review session's switch. Ignored in free mode, which has its own
+  /// inside the drawing settings.
+  final bool autoAdvance;
   final int index;
   final int total;
   final Color color;
@@ -84,7 +87,7 @@ class KanjiDrawingBody extends ConsumerWidget {
     required this.onAnswer,
     this.meaning,
     this.isFreeMode = false,
-    this.autoEvaluate = false,
+    this.autoAdvance = false,
     this.onDetailTap,
   });
 
@@ -93,6 +96,9 @@ class KanjiDrawingBody extends ConsumerWidget {
     final l = context.l10n;
     final strokesAsync = ref.watch(kanjiStrokesProvider(kanji.id));
     final drawingSettings = ref.watch(drawingSettingsProvider);
+    final bool advances = isFreeMode
+        ? drawingSettings.autoAdvance
+        : autoAdvance;
 
     return Padding(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -114,7 +120,7 @@ class KanjiDrawingBody extends ConsumerWidget {
                 color: color,
                 card: card,
                 isFreeMode: isFreeMode,
-                autoEvaluate: autoEvaluate,
+                autoAdvance: advances,
                 onRate: onAnswer,
                 onAutoAdvance: ({required hintsUsed, required mistakes}) =>
                     onAnswer(

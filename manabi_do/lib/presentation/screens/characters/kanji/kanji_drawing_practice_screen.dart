@@ -51,6 +51,7 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
             label: kanji.meaning,
             color: color,
             settings: drawingSettings,
+            autoAdvance: drawingSettings.autoAdvance,
           ),
         ),
       ),

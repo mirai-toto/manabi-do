@@ -3,32 +3,33 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const _keyNewCharactersPerDay = 'srs_new_characters_per_day';
 const _keyNewVocabularyPerDay = 'srs_new_vocab_per_day';
-const _keyAutoEvaluate = 'srs_auto_evaluate';
+const _keyAutoAdvance = 'srs_auto_advance';
 const _keyLegacyNewCards = 'srs_new_cards_per_session';
 
 class SrsSettings {
   final int newCharactersPerDay;
   final int newVocabularyPerDay;
 
-  /// Let the answer decide the review grade instead of asking for a
-  /// self-assessment. Every review exercise can be marked right or wrong on
-  /// its own, so the rating step is optional.
-  final bool autoEvaluate;
+  /// Move on by itself and let the answer decide the grade, instead of
+  /// stopping for a self-assessment. One switch for the whole queue: a review
+  /// session mixes exercise types, and being asked by only some of them would
+  /// be incoherent.
+  final bool autoAdvance;
 
   const SrsSettings({
     this.newCharactersPerDay = 10,
     this.newVocabularyPerDay = 10,
-    this.autoEvaluate = false,
+    this.autoAdvance = false,
   });
 
   SrsSettings copyWith({
     int? newCharactersPerDay,
     int? newVocabularyPerDay,
-    bool? autoEvaluate,
+    bool? autoAdvance,
   }) => SrsSettings(
     newCharactersPerDay: newCharactersPerDay ?? this.newCharactersPerDay,
     newVocabularyPerDay: newVocabularyPerDay ?? this.newVocabularyPerDay,
-    autoEvaluate: autoEvaluate ?? this.autoEvaluate,
+    autoAdvance: autoAdvance ?? this.autoAdvance,
   );
 }
 
@@ -40,7 +41,7 @@ class SrsSettingsNotifier extends AsyncNotifier<SrsSettings> {
     return SrsSettings(
       newCharactersPerDay: prefs.getInt(_keyNewCharactersPerDay) ?? legacy,
       newVocabularyPerDay: prefs.getInt(_keyNewVocabularyPerDay) ?? legacy,
-      autoEvaluate: prefs.getBool(_keyAutoEvaluate) ?? false,
+      autoAdvance: prefs.getBool(_keyAutoAdvance) ?? false,
     );
   }
 
@@ -56,10 +57,10 @@ class SrsSettingsNotifier extends AsyncNotifier<SrsSettings> {
     state = AsyncData(state.requireValue.copyWith(newVocabularyPerDay: value));
   }
 
-  Future<void> setAutoEvaluate(bool value) async {
+  Future<void> setAutoAdvance(bool value) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_keyAutoEvaluate, value);
-    state = AsyncData(state.requireValue.copyWith(autoEvaluate: value));
+    await prefs.setBool(_keyAutoAdvance, value);
+    state = AsyncData(state.requireValue.copyWith(autoAdvance: value));
   }
 }
 

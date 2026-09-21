@@ -100,7 +100,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
       flashcard: ref.watch(flashcardSettingsProvider),
       sentence: ref.watch(sentenceSettingsProvider),
       // Only a session that writes its results back has a grade to decide.
-      autoEvaluate: widget.persistSrs && srs.autoEvaluate,
+      autoAdvance: widget.persistSrs && srs.autoAdvance,
     );
 
     return PopScope(
@@ -132,7 +132,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
                   contexts: widget.settingsContexts,
                   hasExamples: widget.hasExamples,
                   showAutoAdvance: !widget.persistSrs,
-                  showAutoEvaluate: widget.persistSrs,
+                  showSessionAutoAdvance: widget.persistSrs,
                 ),
               ),
             ),

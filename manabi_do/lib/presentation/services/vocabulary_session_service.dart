@@ -202,7 +202,9 @@ class VocabularySessionService {
             total: total,
             color: color,
             onAnswer: onAnswer,
-            autoAdvance: settings.mcq.autoAdvance,
+            autoAdvance: isFreeMode
+                ? settings.mcq.autoAdvance
+                : settings.autoAdvance,
             showPromptFurigana: settings.mcq.showPromptFurigana,
           ),
         ),
@@ -372,7 +374,9 @@ class VocabularySessionService {
               total: total,
               color: color,
               onAnswer: onAnswer,
-              autoAdvance: settings.mcq.autoAdvance,
+              autoAdvance: freeMode
+                  ? settings.mcq.autoAdvance
+                  : settings.autoAdvance,
               showPromptFurigana: settings.mcq.showPromptFurigana,
             ),
           ),
@@ -403,7 +407,9 @@ class VocabularySessionService {
           total: total,
           color: color,
           onAnswer: onAnswer,
-          autoAdvance: settings.sentence.autoAdvance,
+          autoAdvance: freeMode
+              ? settings.sentence.autoAdvance
+              : settings.autoAdvance,
           translationMode: settings.sentence.translationMode,
           showSentenceFurigana: settings.sentence.showSentenceFurigana,
           showChoiceFurigana: settings.sentence.showChoiceFurigana,

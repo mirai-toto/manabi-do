@@ -24,9 +24,10 @@ class DrawingExercise extends StatefulWidget {
   final Card? card;
   final bool isFreeMode;
 
-  /// Score the review from the attempt instead of showing the rating buttons.
-  /// Only takes effect in a review session.
-  final bool autoEvaluate;
+  /// Move on once the attempt is done, deriving the rating from it, instead
+  /// of stopping for a self-assessment. The caller decides which setting feeds
+  /// this: free practice has one per exercise, a review has one per session.
+  final bool autoAdvance;
 
   /// Called with the rating the user picked in the self-assessment buttons.
   final void Function(Rating)? onRate;
@@ -47,11 +48,11 @@ class DrawingExercise extends StatefulWidget {
     required this.label,
     required this.color,
     required this.settings,
+    required this.autoAdvance,
     this.onReading = '',
     this.kunReading = '',
     this.card,
     this.isFreeMode = false,
-    this.autoEvaluate = false,
     this.onRate,
     this.onAutoAdvance,
     this.question,
@@ -87,12 +88,6 @@ class _DrawingExerciseState extends State<DrawingExercise>
       widget.referenceStrokes.isNotEmpty;
 
   bool get _pendingWrong => _wrongFade.isAnimating;
-
-  /// Free practice moves on by itself when asked to; a review session does the
-  /// same when it is grading for you. Either way the self-assessment buttons
-  /// never appear, so the attempt has to decide the rating.
-  bool get _gradesItself =>
-      widget.isFreeMode ? widget.settings.autoAdvance : widget.autoEvaluate;
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +177,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
     final l = context.l10n;
     final t = context.tokens;
     final showSrsActions =
-        widget.onRate != null && !_hintsUsed && !(_gradesItself && _done);
+        widget.onRate != null && !_hintsUsed && !(widget.autoAdvance && _done);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -392,7 +387,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
       return;
     }
 
-    if (_gradesItself && !_autoAdvanceDone) {
+    if (widget.autoAdvance && !_autoAdvanceDone) {
       _autoAdvanceDone = true;
       Future.delayed(const Duration(seconds: 1), () {
         if (mounted) report(hintsUsed: false, mistakes: _wrongStrokes.length);

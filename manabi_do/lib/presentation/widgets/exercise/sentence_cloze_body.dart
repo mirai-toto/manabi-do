@@ -23,13 +23,10 @@ class SentenceClozeBody extends StatefulWidget {
   final Color color;
   final void Function(Rating) onAnswer;
 
-  /// Advance to the next sentence on its own after the answer is revealed.
-  /// Only takes effect in free mode.
+  /// Move on once the answer is in, deriving the rating from it, instead of
+  /// stopping for a self-assessment. The caller decides which setting feeds
+  /// this: free practice has one per exercise, a review has one per session.
   final bool autoAdvance;
-
-  /// Score the review from the answer instead of showing the rating buttons.
-  /// Only takes effect in a review session.
-  final bool autoEvaluate;
   final TranslationMode translationMode;
   final bool showSentenceFurigana;
   final bool showChoiceFurigana;
@@ -46,7 +43,6 @@ class SentenceClozeBody extends StatefulWidget {
     required this.onAnswer,
     required this.autoAdvance,
     required this.translationMode,
-    this.autoEvaluate = false,
     required this.showSentenceFurigana,
     required this.showChoiceFurigana,
     this.isFreeMode = false,
@@ -63,12 +59,6 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
   bool _answered = false;
   bool _autoAdvancing = false;
   bool _showTranslation = false;
-
-  /// Free practice moves on by itself when asked to; a review session does the
-  /// same when it is grading for you. Either way the self-assessment buttons
-  /// never appear, so the answer has to decide the rating.
-  bool get _gradesItself =>
-      widget.isFreeMode ? widget.autoAdvance : widget.autoEvaluate;
 
   @override
   void initState() {
@@ -91,7 +81,7 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
         return McqOptionState.idle;
       });
     });
-    if (_gradesItself) {
+    if (widget.autoAdvance) {
       setState(() => _autoAdvancing = true);
       Future.delayed(const Duration(milliseconds: 800), () {
         if (mounted) widget.onAnswer(isCorrect ? Rating.good : Rating.again);

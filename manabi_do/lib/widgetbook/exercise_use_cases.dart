@@ -90,6 +90,7 @@ Widget buildDrawingExercise(BuildContext context) {
             label: '水',
             color: Theme.of(context).colorScheme.primary,
             settings: drawingSettings,
+            autoAdvance: drawingSettings.autoAdvance,
           ),
         ),
       );

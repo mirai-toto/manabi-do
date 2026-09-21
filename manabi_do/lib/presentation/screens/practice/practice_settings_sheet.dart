@@ -24,16 +24,16 @@ class PracticeSettingsSheet extends ConsumerWidget {
   final Set<SettingsContext> contexts;
   final bool showAutoAdvance;
 
-  /// Offered by review sessions only. Free practice has auto-advance instead,
-  /// which does the same thing but throws the grade away.
-  final bool showAutoEvaluate;
+  /// The whole-queue auto-advance switch, offered by review sessions. Free
+  /// practice shows [showAutoAdvance] per exercise instead.
+  final bool showSessionAutoAdvance;
   final bool hasExamples;
 
   const PracticeSettingsSheet({
     super.key,
     this.contexts = const {SettingsContext.mcq},
     this.showAutoAdvance = false,
-    this.showAutoEvaluate = false,
+    this.showSessionAutoAdvance = false,
     this.hasExamples = false,
   });
 
@@ -129,15 +129,15 @@ class PracticeSettingsSheet extends ConsumerWidget {
             const SizedBox(height: AppDimens.spaceMd),
 
             // ── Whole session ─────────────────────────────────────────────
-            // Not tied to one exercise type: a review session mixes them, and
-            // being graded by half of them would be incoherent.
-            if (showAutoEvaluate) ...[
+            // One switch, not one per exercise type: a review session mixes
+            // them, and being asked by only half of them would be incoherent.
+            if (showSessionAutoAdvance) ...[
               _SwitchRow(
-                label: l.autoEvaluateLabel,
-                subtitle: l.autoEvaluateSubtitle,
-                value: srs.autoEvaluate,
+                label: l.autoAdvanceLabel,
+                subtitle: l.autoAdvanceSubtitle,
+                value: srs.autoAdvance,
                 onChanged: (v) =>
-                    ref.read(srsSettingsProvider.notifier).setAutoEvaluate(v),
+                    ref.read(srsSettingsProvider.notifier).setAutoAdvance(v),
               ),
               const SizedBox(height: AppDimens.spaceMd),
             ],

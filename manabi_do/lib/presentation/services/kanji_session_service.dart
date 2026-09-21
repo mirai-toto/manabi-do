@@ -172,6 +172,7 @@ class KanjiSessionService {
           total: total,
           color: color,
           onAnswer: onAnswer,
+          autoAdvance: settings.autoAdvance,
           onDetailTap: () => Navigator.of(ctx).push(
             MaterialPageRoute<void>(
               builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
@@ -224,7 +225,9 @@ class KanjiSessionService {
           total: total,
           color: color,
           onAnswer: onAnswer,
-          autoAdvance: settings.mcq.autoAdvance,
+          autoAdvance: freeMode
+              ? settings.mcq.autoAdvance
+              : settings.autoAdvance,
           showPromptFurigana: settings.mcq.showPromptFurigana,
           onDetailTap: () => Navigator.of(ctx).push(
             MaterialPageRoute<void>(

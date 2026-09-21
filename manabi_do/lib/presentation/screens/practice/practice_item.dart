@@ -15,15 +15,16 @@ class PracticeBodySettings {
   final FlashcardSettings flashcard;
   final SentenceSettings sentence;
 
-  /// Grade reviews from the answer instead of asking for a self-assessment.
-  /// Belongs to the review session as a whole, not to one exercise type.
-  final bool autoEvaluate;
+  /// The review session's auto-advance switch. Covers the whole queue, unlike
+  /// the per-exercise switches free practice keeps in [mcq] and [sentence].
+  /// False outside a review, where those per-exercise ones apply instead.
+  final bool autoAdvance;
 
   const PracticeBodySettings({
     required this.mcq,
     required this.flashcard,
     required this.sentence,
-    required this.autoEvaluate,
+    required this.autoAdvance,
   });
 }
 

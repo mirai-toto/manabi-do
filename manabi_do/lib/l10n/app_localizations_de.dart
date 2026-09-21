@@ -760,14 +760,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get autoAdvanceSubtitle =>
-      'Automatisch zum nächsten Kanji wechseln, wenn alles korrekt ist';
-
-  @override
-  String get autoEvaluateLabel => 'Automatisch bewerten';
-
-  @override
-  String get autoEvaluateSubtitle =>
-      'Jede Wiederholung anhand deiner Antwort bewerten, statt zu fragen';
+      'Automatisch weitergehen und jede Antwort für dich bewerten';
 
   @override
   String get hintUsedFeedback => 'Hinweis benutzt · als falsch markiert';

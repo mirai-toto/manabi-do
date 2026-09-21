@@ -1447,20 +1447,8 @@ abstract class AppLocalizations {
   /// No description provided for @autoAdvanceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move to next kanji automatically when all correct'**
+  /// **'Move on automatically, scoring each answer for you'**
   String get autoAdvanceSubtitle;
-
-  /// No description provided for @autoEvaluateLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Grade automatically'**
-  String get autoEvaluateLabel;
-
-  /// No description provided for @autoEvaluateSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Score each review from your answer instead of asking'**
-  String get autoEvaluateSubtitle;
 
   /// No description provided for @hintUsedFeedback.
   ///
