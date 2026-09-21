@@ -334,6 +334,8 @@
   "showStrokeCountSubtitle": "Anzahl der Striche als Hinweis anzeigen",
   "autoAdvanceLabel": "Auto-Weiter",
   "autoAdvanceSubtitle": "Automatisch zum nächsten Kanji wechseln, wenn alles korrekt ist",
+  "autoEvaluateLabel": "Automatisch bewerten",
+  "autoEvaluateSubtitle": "Jede Wiederholung anhand deiner Antwort bewerten, statt zu fragen",
 
   "hintUsedFeedback": "Hinweis benutzt · als falsch markiert",
 

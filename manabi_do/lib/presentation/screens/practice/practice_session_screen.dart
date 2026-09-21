@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
+import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -92,10 +93,14 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
 
     // Watched, not captured at queue-build time, so toggling a setting in the
     // in-session sheet re-renders the card currently on screen.
+    final SrsSettings srs =
+        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
     final PracticeBodySettings bodySettings = PracticeBodySettings(
       mcq: ref.watch(mcqSettingsProvider),
       flashcard: ref.watch(flashcardSettingsProvider),
       sentence: ref.watch(sentenceSettingsProvider),
+      // Only a session that writes its results back has a grade to decide.
+      autoEvaluate: widget.persistSrs && srs.autoEvaluate,
     );
 
     return PopScope(
@@ -127,6 +132,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
                   contexts: widget.settingsContexts,
                   hasExamples: widget.hasExamples,
                   showAutoAdvance: !widget.persistSrs,
+                  showAutoEvaluate: widget.persistSrs,
                 ),
               ),
             ),

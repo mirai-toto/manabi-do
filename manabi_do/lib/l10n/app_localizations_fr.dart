@@ -765,6 +765,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Passer au kanji suivant automatiquement quand tout est correct';
 
   @override
+  String get autoEvaluateLabel => 'Notation automatique';
+
+  @override
+  String get autoEvaluateSubtitle =>
+      'Noter chaque révision à partir de votre réponse au lieu de vous demander';
+
+  @override
   String get hintUsedFeedback => 'Indice utilisé · marqué comme raté';
 
   @override

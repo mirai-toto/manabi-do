@@ -65,6 +65,7 @@ class KanjiDrawingBody extends ConsumerWidget {
   final Kanji kanji;
   final Card? card;
   final bool isFreeMode;
+  final bool autoEvaluate;
   final int index;
   final int total;
   final Color color;
@@ -83,6 +84,7 @@ class KanjiDrawingBody extends ConsumerWidget {
     required this.onAnswer,
     this.meaning,
     this.isFreeMode = false,
+    this.autoEvaluate = false,
     this.onDetailTap,
   });
 
@@ -112,6 +114,7 @@ class KanjiDrawingBody extends ConsumerWidget {
                 color: color,
                 card: card,
                 isFreeMode: isFreeMode,
+                autoEvaluate: autoEvaluate,
                 onRate: onAnswer,
                 onAutoAdvance: ({required hintsUsed, required mistakes}) =>
                     onAnswer(

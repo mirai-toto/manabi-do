@@ -353,6 +353,8 @@
   "showStrokeCountSubtitle": "Display number of strokes as a hint",
   "autoAdvanceLabel": "Auto-advance",
   "autoAdvanceSubtitle": "Move to next kanji automatically when all correct",
+  "autoEvaluateLabel": "Grade automatically",
+  "autoEvaluateSubtitle": "Score each review from your answer instead of asking",
 
   "hintUsedFeedback": "Hint used · marked as missed",
 

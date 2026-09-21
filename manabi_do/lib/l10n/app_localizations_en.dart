@@ -759,6 +759,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Move to next kanji automatically when all correct';
 
   @override
+  String get autoEvaluateLabel => 'Grade automatically';
+
+  @override
+  String get autoEvaluateSubtitle =>
+      'Score each review from your answer instead of asking';
+
+  @override
   String get hintUsedFeedback => 'Hint used · marked as missed';
 
   @override

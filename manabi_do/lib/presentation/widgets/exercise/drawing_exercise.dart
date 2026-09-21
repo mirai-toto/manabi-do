@@ -24,6 +24,10 @@ class DrawingExercise extends StatefulWidget {
   final Card? card;
   final bool isFreeMode;
 
+  /// Score the review from the attempt instead of showing the rating buttons.
+  /// Only takes effect in a review session.
+  final bool autoEvaluate;
+
   /// Called with the rating the user picked in the self-assessment buttons.
   final void Function(Rating)? onRate;
 
@@ -47,6 +51,7 @@ class DrawingExercise extends StatefulWidget {
     this.kunReading = '',
     this.card,
     this.isFreeMode = false,
+    this.autoEvaluate = false,
     this.onRate,
     this.onAutoAdvance,
     this.question,
@@ -82,6 +87,12 @@ class _DrawingExerciseState extends State<DrawingExercise>
       widget.referenceStrokes.isNotEmpty;
 
   bool get _pendingWrong => _wrongFade.isAnimating;
+
+  /// Free practice moves on by itself when asked to; a review session does the
+  /// same when it is grading for you. Either way the self-assessment buttons
+  /// never appear, so the attempt has to decide the rating.
+  bool get _gradesItself =>
+      widget.isFreeMode ? widget.settings.autoAdvance : widget.autoEvaluate;
 
   @override
   Widget build(BuildContext context) {
@@ -171,9 +182,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
     final l = context.l10n;
     final t = context.tokens;
     final showSrsActions =
-        widget.onRate != null &&
-        !_hintsUsed &&
-        !(widget.isFreeMode && widget.settings.autoAdvance && _done);
+        widget.onRate != null && !_hintsUsed && !(_gradesItself && _done);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -383,7 +392,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
       return;
     }
 
-    if (widget.isFreeMode && widget.settings.autoAdvance && !_autoAdvanceDone) {
+    if (_gradesItself && !_autoAdvanceDone) {
       _autoAdvanceDone = true;
       Future.delayed(const Duration(seconds: 1), () {
         if (mounted) report(hintsUsed: false, mistakes: _wrongStrokes.length);

@@ -332,6 +332,8 @@
   "showStrokeCountSubtitle": "Afficher le nombre de traits comme indice",
   "autoAdvanceLabel": "Avance automatique",
   "autoAdvanceSubtitle": "Passer au kanji suivant automatiquement quand tout est correct",
+  "autoEvaluateLabel": "Notation automatique",
+  "autoEvaluateSubtitle": "Noter chaque révision à partir de votre réponse au lieu de vous demander",
 
   "hintUsedFeedback": "Indice utilisé · marqué comme raté",
 

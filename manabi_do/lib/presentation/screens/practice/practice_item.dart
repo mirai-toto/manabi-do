@@ -15,10 +15,15 @@ class PracticeBodySettings {
   final FlashcardSettings flashcard;
   final SentenceSettings sentence;
 
+  /// Grade reviews from the answer instead of asking for a self-assessment.
+  /// Belongs to the review session as a whole, not to one exercise type.
+  final bool autoEvaluate;
+
   const PracticeBodySettings({
     required this.mcq,
     required this.flashcard,
     required this.sentence,
+    required this.autoEvaluate,
   });
 }
 

@@ -5,6 +5,7 @@ import '../../../core/models/drawing_settings.dart';
 import '../../../core/models/flashcard_settings.dart';
 import '../../../core/models/mcq_settings.dart';
 import '../../../core/models/sentence_settings.dart';
+import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -22,12 +23,17 @@ enum SettingsContext { sentence, mcq, flashcard, writing, grammar }
 class PracticeSettingsSheet extends ConsumerWidget {
   final Set<SettingsContext> contexts;
   final bool showAutoAdvance;
+
+  /// Offered by review sessions only. Free practice has auto-advance instead,
+  /// which does the same thing but throws the grade away.
+  final bool showAutoEvaluate;
   final bool hasExamples;
 
   const PracticeSettingsSheet({
     super.key,
     this.contexts = const {SettingsContext.mcq},
     this.showAutoAdvance = false,
+    this.showAutoEvaluate = false,
     this.hasExamples = false,
   });
 
@@ -40,6 +46,8 @@ class PracticeSettingsSheet extends ConsumerWidget {
     final mcq = ref.watch(mcqSettingsProvider);
     final flashcard = ref.watch(flashcardSettingsProvider);
     final drawing = ref.watch(drawingSettingsProvider);
+    final SrsSettings srs =
+        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
 
     void updateSentence(SentenceSettings next) =>
         ref.read(sentenceSettingsProvider.notifier).update(next);
@@ -119,6 +127,20 @@ class PracticeSettingsSheet extends ConsumerWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: AppDimens.spaceMd),
+
+            // ── Whole session ─────────────────────────────────────────────
+            // Not tied to one exercise type: a review session mixes them, and
+            // being graded by half of them would be incoherent.
+            if (showAutoEvaluate) ...[
+              _SwitchRow(
+                label: l.autoEvaluateLabel,
+                subtitle: l.autoEvaluateSubtitle,
+                value: srs.autoEvaluate,
+                onChanged: (v) =>
+                    ref.read(srsSettingsProvider.notifier).setAutoEvaluate(v),
+              ),
+              const SizedBox(height: AppDimens.spaceMd),
+            ],
 
             // ── Flashcard ──────────────────────────────────────────────────
             if (contexts.contains(SettingsContext.flashcard)) ...[
