@@ -869,4 +869,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get deckNotStarted => 'Starten';
+
+  @override
+  String get deckContinue => 'Weiter';
 }

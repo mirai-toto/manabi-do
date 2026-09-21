@@ -39,6 +39,7 @@ double _pillWidth(BuildContext context, AppLocalizations l) {
     textWidth(l.nDue(999)),
     textWidth(l.deckCaughtUp) + iconWidth,
     textWidth(l.deckNotStarted) + iconWidth,
+    textWidth(l.deckContinue) + iconWidth,
   ].reduce(math.max);
   return widest + AppDimens.badgePaddingH * 2;
 }
@@ -70,10 +71,10 @@ class DeckRow extends StatelessWidget {
     final t = context.tokens;
     final l = context.l10n;
     final pillWidth = _pillWidth(context, l);
-    final status = seen == 0
-        ? l.deckNotStarted
-        : due > 0
+    final status = due > 0
         ? l.nDue(due)
+        : newToday > 0
+        ? (seen == 0 ? l.deckNotStarted : l.deckContinue)
         : l.deckCaughtUp;
     final counts = [
       if (seen > 0) '$known/$seen',
@@ -147,33 +148,31 @@ class DeckRow extends StatelessWidget {
               // Always a pill, so the row keeps its shape and the progress bar
               // gets the same width whether or not anything is due.
               //
-              // Three states, not two: a deck nobody has opened has nothing due
-              // either, but calling that "caught up" claims credit for work
-              // that never happened.
-              if (seen == 0)
-                PillBadge(
-                  label: l.deckNotStarted,
-                  icon: Icons.play_arrow_rounded,
-                  color: t.onSurfaceVariant,
-                  background: t.surfaceVariant,
-                  minWidth: pillWidth,
-                )
-              else if (due > 0)
+              // What the pill answers is "is there anything to do here now?".
+              // Reviews first, then new cards still available under today's
+              // limit, and only then is "caught up" actually true — a deck with
+              // eight cards you have never seen is not caught up.
+              if (due > 0)
                 PillBadge(
                   label: l.nDue(due),
                   color: color,
                   background: color.withValues(alpha: 0.15),
                   minWidth: pillWidth,
                 )
+              else if (newToday > 0)
+                PillBadge(
+                  label: seen == 0 ? l.deckNotStarted : l.deckContinue,
+                  icon: Icons.play_arrow_rounded,
+                  color: t.onPrimary,
+                  background: t.primary,
+                  minWidth: pillWidth,
+                )
               else
-                // Filled rather than tinted: the due badge already wears the
-                // accent softly, so a solid chip reads as the finished state
-                // without introducing a second hue.
                 PillBadge(
                   label: l.deckCaughtUp,
                   icon: Icons.check_rounded,
-                  color: t.onPrimary,
-                  background: t.primary,
+                  color: t.onSurfaceVariant,
+                  background: t.surfaceVariant,
                   minWidth: pillWidth,
                 ),
             ],

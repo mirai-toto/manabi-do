@@ -871,4 +871,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get deckNotStarted => 'Commencer';
+
+  @override
+  String get deckContinue => 'Continuer';
 }

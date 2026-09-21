@@ -1647,6 +1647,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start'**
   String get deckNotStarted;
+
+  /// No description provided for @deckContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get deckContinue;
 }
 
 class _AppLocalizationsDelegate
