@@ -5,6 +5,15 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import 'nav_destination.dart';
 
+/// How far to lift the glyph, as a fraction of its font size.
+///
+/// Measured from `assets/fonts/NotoSansJP[wght].ttf`, not guessed. The font is
+/// 1000 upem with hhea ascent 1160 / descent 288, so with `height: 1.0` and
+/// even leading the line box centre lands 436 above the baseline — but a kanji's
+/// ink centre sits around 360-383. The glyphs we use (家 字 語 文) are low by
+/// 5.4% to 7.6% of the em; this is their average.
+const double _glyphRise = 0.060;
+
 class NavItem extends StatelessWidget {
   final NavDestination destination;
   final bool isActive;
@@ -66,20 +75,21 @@ class NavItem extends StatelessWidget {
                           BlendMode.srcIn,
                         ),
                       )
-                    : Text(
-                        destination.icon!,
-                        // The glyph acts as an icon here, so it needs to sit on
-                        // the optical centre. `Center` centres the line box, and
-                        // NotoSansJP's default leading is split proportionally
-                        // to ascent/descent — which drops CJK ink below the
-                        // middle. Tighten the box and split the leading evenly.
-                        style: AppTextStyles.jpBody.copyWith(
-                          fontSize: iconSize - 2,
-                          color: iconColor,
-                          height: 1.0,
-                          leadingDistribution: TextLeadingDistribution.even,
+                    : Transform.translate(
+                        // `Center` aligns the line box, not the ink, and
+                        // NotoSansJP leaves headroom above its glyphs — so a
+                        // kanji used as an icon reads low. See `_glyphRise`.
+                        offset: Offset(0, -(iconSize - 2) * _glyphRise),
+                        child: Text(
+                          destination.icon!,
+                          style: AppTextStyles.jpBody.copyWith(
+                            fontSize: iconSize - 2,
+                            color: iconColor,
+                            height: 1.0,
+                            leadingDistribution: TextLeadingDistribution.even,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
               ),
             ),
