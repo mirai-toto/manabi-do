@@ -68,10 +68,18 @@ class NavItem extends StatelessWidget {
                       )
                     : Text(
                         destination.icon!,
+                        // The glyph acts as an icon here, so it needs to sit on
+                        // the optical centre. `Center` centres the line box, and
+                        // NotoSansJP's default leading is split proportionally
+                        // to ascent/descent — which drops CJK ink below the
+                        // middle. Tighten the box and split the leading evenly.
                         style: AppTextStyles.jpBody.copyWith(
                           fontSize: iconSize - 2,
                           color: iconColor,
+                          height: 1.0,
+                          leadingDistribution: TextLeadingDistribution.even,
                         ),
+                        textAlign: TextAlign.center,
                       ),
               ),
             ),
