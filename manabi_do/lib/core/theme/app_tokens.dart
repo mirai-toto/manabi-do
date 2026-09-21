@@ -34,11 +34,12 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color warning;
   final Color warningContainer;
 
-  // Section brand
-  final Color charactersDark;
+  // Section brand. All three currently match `primary` so the sections read as
+  // one product rather than three. Kept as separate tokens so giving a section
+  // its own colour again is a one-line change, not a refactor.
   final Color characters;
-  final Color vocabularyDark;
   final Color vocabulary;
+  final Color grammar;
 
   // SRS progress levels
   final Color srsLearning;
@@ -79,10 +80,9 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.successContainer,
     required this.warning,
     required this.warningContainer,
-    required this.charactersDark,
     required this.characters,
-    required this.vocabularyDark,
     required this.vocabulary,
+    required this.grammar,
     required this.srsLearning,
     required this.srsApprentice,
     required this.srsFamiliar,
@@ -118,10 +118,9 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: Color(0xFFC8F5DA),
     warning: Color(0xFF7A5200),
     warningContainer: Color(0xFFFFDDB3),
-    charactersDark: Color(0xFF0D47A1),
-    characters: Color(0xFF1976D2),
-    vocabularyDark: Color(0xFF1B5E20),
-    vocabulary: Color(0xFF388E3C),
+    characters: Color(0xFF6B4EFF),
+    vocabulary: Color(0xFF6B4EFF),
+    grammar: Color(0xFF6B4EFF),
     srsLearning: Color(0xFFE53935),
     srsApprentice: Color(0xFFFF8F00),
     srsFamiliar: Color(0xFFF9A825),
@@ -157,10 +156,9 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: Color(0xFF0A3D22),
     warning: Color(0xFFFFBA60),
     warningContainer: Color(0xFF3E2900),
-    charactersDark: Color(0xFF1565C0),
-    characters: Color(0xFF90CAF9),
-    vocabularyDark: Color(0xFF2E7D32),
-    vocabulary: Color(0xFFA5D6A7),
+    characters: Color(0xFFCFBCFF),
+    vocabulary: Color(0xFFCFBCFF),
+    grammar: Color(0xFFCFBCFF),
     srsLearning: Color(0xFFEF9A9A),
     srsApprentice: Color(0xFFFFB74D),
     srsFamiliar: Color(0xFFFFE082),
@@ -197,10 +195,9 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? successContainer,
     Color? warning,
     Color? warningContainer,
-    Color? charactersDark,
     Color? characters,
-    Color? vocabularyDark,
     Color? vocabulary,
+    Color? grammar,
     Color? srsLearning,
     Color? srsApprentice,
     Color? srsFamiliar,
@@ -234,10 +231,9 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: successContainer ?? this.successContainer,
     warning: warning ?? this.warning,
     warningContainer: warningContainer ?? this.warningContainer,
-    charactersDark: charactersDark ?? this.charactersDark,
     characters: characters ?? this.characters,
-    vocabularyDark: vocabularyDark ?? this.vocabularyDark,
     vocabulary: vocabulary ?? this.vocabulary,
+    grammar: grammar ?? this.grammar,
     srsLearning: srsLearning ?? this.srsLearning,
     srsApprentice: srsApprentice ?? this.srsApprentice,
     srsFamiliar: srsFamiliar ?? this.srsFamiliar,
@@ -312,10 +308,9 @@ class AppTokens extends ThemeExtension<AppTokens> {
         other.warningContainer,
         t,
       )!,
-      charactersDark: Color.lerp(charactersDark, other.charactersDark, t)!,
       characters: Color.lerp(characters, other.characters, t)!,
-      vocabularyDark: Color.lerp(vocabularyDark, other.vocabularyDark, t)!,
       vocabulary: Color.lerp(vocabulary, other.vocabulary, t)!,
+      grammar: Color.lerp(grammar, other.grammar, t)!,
       srsLearning: Color.lerp(srsLearning, other.srsLearning, t)!,
       srsApprentice: Color.lerp(srsApprentice, other.srsApprentice, t)!,
       srsFamiliar: Color.lerp(srsFamiliar, other.srsFamiliar, t)!,

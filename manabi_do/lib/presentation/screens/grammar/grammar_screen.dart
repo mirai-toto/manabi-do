@@ -27,7 +27,7 @@ class GrammarScreen extends ConsumerWidget {
           title: l.sectionGrammar,
           subtitle: l.grammarSubtitle,
           glyph: '文',
-          color: t.primary,
+          color: t.grammar,
         ),
         Expanded(
           child: selectedLevel == null
