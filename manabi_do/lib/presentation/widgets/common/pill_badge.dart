@@ -12,6 +12,10 @@ class PillBadge extends StatelessWidget {
   /// Optional leading icon, drawn in [color] at the label's size.
   final IconData? icon;
 
+  /// Floor for the pill's width, so a row of pills with different labels still
+  /// lines up. Content stays centred.
+  final double? minWidth;
+
   const PillBadge({
     super.key,
     required this.label,
@@ -19,6 +23,7 @@ class PillBadge extends StatelessWidget {
     required this.background,
     this.textStyle,
     this.icon,
+    this.minWidth,
   });
 
   @override
@@ -29,6 +34,10 @@ class PillBadge extends StatelessWidget {
             .copyWith(color: color);
 
     return Container(
+      alignment: minWidth == null ? null : Alignment.center,
+      constraints: minWidth == null
+          ? null
+          : BoxConstraints(minWidth: minWidth!),
       padding: const EdgeInsets.symmetric(
         horizontal: AppDimens.badgePaddingH,
         vertical: AppDimens.badgePaddingV,

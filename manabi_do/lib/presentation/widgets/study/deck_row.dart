@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_dimens.dart';
@@ -11,6 +13,35 @@ import '../common/tappable_surface.dart';
 /// One study domain on the home screen: glyph, known/seen progress,
 /// new-today count, and a due badge. Tapping starts the domain's
 /// practice session; browsing the domain stays on the bottom nav.
+/// Width the due badge is sized to, so every deck row's pill matches.
+///
+/// Measured rather than hardcoded: the label is localised and respects the
+/// user's text scale, so a fixed pixel value would clip in German or at large
+/// font sizes. Sized for the widest thing the pill can show — a three-digit
+/// due count, or the caught-up label plus its check.
+double _pillWidth(BuildContext context, AppLocalizations l) {
+  final style = AppTextStyles.labelSmall.copyWith(fontWeight: FontWeight.w700);
+  final scaler = MediaQuery.textScalerOf(context);
+  final direction = Directionality.of(context);
+
+  double textWidth(String value) {
+    final painter = TextPainter(
+      text: TextSpan(text: value, style: style),
+      textDirection: direction,
+      textScaler: scaler,
+    )..layout();
+    return painter.width;
+  }
+
+  final iconWidth =
+      scaler.scale((style.fontSize ?? 12) + 2) + AppDimens.spaceXxs;
+  final widest = math.max(
+    textWidth(l.nDue(999)),
+    textWidth(l.deckCaughtUp) + iconWidth,
+  );
+  return widest + AppDimens.badgePaddingH * 2;
+}
+
 class DeckRow extends StatelessWidget {
   final String title;
   final String glyph;
@@ -37,6 +68,7 @@ class DeckRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
+    final pillWidth = _pillWidth(context, l);
     final counts = [
       if (seen > 0) '$known/$seen',
       if (newToday > 0) l.nNewToday(newToday),
@@ -113,6 +145,7 @@ class DeckRow extends StatelessWidget {
                   label: l.nDue(due),
                   color: color,
                   background: color.withValues(alpha: 0.15),
+                  minWidth: pillWidth,
                 )
               else
                 PillBadge(
@@ -120,6 +153,7 @@ class DeckRow extends StatelessWidget {
                   icon: Icons.check_rounded,
                   color: t.success,
                   background: t.success.withValues(alpha: 0.15),
+                  minWidth: pillWidth,
                 ),
             ],
           ),
