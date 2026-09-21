@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../core/models/mcq_settings.dart';
 import '../../core/models/sentence_settings.dart';
@@ -45,7 +46,7 @@ class VocabularySessionService {
         : flashcardSettings.sessionLength;
 
     // Fetch pairs: (entry, SRS card) for the items to quiz on.
-    final List<(VocabularyEntry, dynamic)> pairs;
+    final List<(VocabularyEntry, Card?)> pairs;
     if (sentenceOnly) {
       pairs = [];
     } else if (freeMode || mcqOnly || flashcardOnly) {
@@ -136,7 +137,7 @@ class VocabularySessionService {
   }
 
   List<PracticeItem> _buildFlashcardItems({
-    required List<(VocabularyEntry, dynamic)> pairs,
+    required List<(VocabularyEntry, Card?)> pairs,
     required Color color,
     required Random rng,
     required bool isFreeMode,
@@ -167,7 +168,7 @@ class VocabularySessionService {
   }
 
   List<PracticeItem> _buildMcqItems({
-    required List<(VocabularyEntry, dynamic)> pairs,
+    required List<(VocabularyEntry, Card?)> pairs,
     required List<VocabularyEntry> pool,
     required Color color,
     required Random rng,
@@ -286,7 +287,7 @@ class VocabularySessionService {
 
   Future<List<PracticeItem>> _buildMixedItems({
     required AppDatabase db,
-    required List<(VocabularyEntry, dynamic)> pairs,
+    required List<(VocabularyEntry, Card?)> pairs,
     required List<VocabularyEntry> pool,
     required Color color,
     required String locale,

@@ -7,7 +7,10 @@ services:
       # Build output stays in volumes. Nothing the container compiles lands on
       # the host, so there are no root-owned files to clean up afterwards.
       - build-output:/app/build
-      - build-runner-cache:/app/.dart_tool/build
+      # The whole of .dart_tool, not just build/: the container's `pub get`
+      # writes package_config.json with its own /root/.pub-cache paths, which
+      # would break `flutter analyze` on the host if it reached the checkout.
+      - dart-tool:/app/.dart_tool
       - linux-ephemeral:/app/linux/flutter/ephemeral
     working_dir: /app
 
@@ -76,7 +79,7 @@ volumes:
   pub-cache:
   app-assets:
   build-output:
-  build-runner-cache:
+  dart-tool:
   linux-ephemeral:
   content-data:
   app-data:
