@@ -334,16 +334,7 @@ class AppTokens extends ThemeExtension<AppTokens> {
   /// that paint themselves `t.primary` follow the level without being edited.
   AppTokens accented(Color accent, Brightness brightness) {
     final isDark = brightness == Brightness.dark;
-    // Pick whichever on-colour actually contrasts more. ThemeData's
-    // estimateBrightnessForColor uses a fixed luminance threshold, which lands
-    // on the wrong side for mid-tone accents (kana teal, N1 red) and drops
-    // those below AA.
-    const white = Color(0xFFFFFFFF);
-    const nearBlack = Color(0xFF1C1B1F);
-    final onAccent =
-        _contrastRatio(accent, white) >= _contrastRatio(accent, nearBlack)
-        ? white
-        : nearBlack;
+    final onAccent = onAccentFor(accent);
 
     return copyWith(
       primary: accent,
@@ -357,6 +348,23 @@ class AppTokens extends ThemeExtension<AppTokens> {
           : Color.lerp(accent, const Color(0xFF000000), 0.55),
     );
   }
+}
+
+/// The readable foreground for [accent].
+///
+/// Picks whichever on-colour actually contrasts more. `ThemeData`'s
+/// `estimateBrightnessForColor` uses a fixed luminance threshold, which lands
+/// on the wrong side for mid-tone accents (kana teal, N1 red) and drops those
+/// below AA.
+///
+/// Use this — not a hardcoded `Colors.white` — whenever text or an icon sits on
+/// a colour the widget was handed rather than one from the theme.
+Color onAccentFor(Color accent) {
+  const white = Color(0xFFFFFFFF);
+  const nearBlack = Color(0xFF1C1B1F);
+  return _contrastRatio(accent, white) >= _contrastRatio(accent, nearBlack)
+      ? white
+      : nearBlack;
 }
 
 /// WCAG relative-luminance contrast ratio between two colours.
