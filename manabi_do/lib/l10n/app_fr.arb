@@ -371,5 +371,7 @@
   "increaseSetting": "Augmenter {label}",
   "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
   "decreaseSetting": "Diminuer {label}",
-  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } }
+  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } },
+
+  "deckCaughtUp": "À jour"
 }

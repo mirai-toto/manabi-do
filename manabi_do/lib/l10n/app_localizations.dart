@@ -1635,6 +1635,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Decrease {label}'**
   String decreaseSetting(String label);
+
+  /// No description provided for @deckCaughtUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Caught up'**
+  String get deckCaughtUp;
 }
 
 class _AppLocalizationsDelegate

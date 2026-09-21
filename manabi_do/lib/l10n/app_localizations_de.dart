@@ -863,4 +863,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String decreaseSetting(String label) {
     return '$label verringern';
   }
+
+  @override
+  String get deckCaughtUp => 'Erledigt';
 }

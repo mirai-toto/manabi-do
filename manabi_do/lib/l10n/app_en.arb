@@ -392,5 +392,7 @@
   "increaseSetting": "Increase {label}",
   "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
   "decreaseSetting": "Decrease {label}",
-  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } }
+  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } },
+
+  "deckCaughtUp": "Caught up"
 }

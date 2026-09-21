@@ -858,4 +858,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String decreaseSetting(String label) {
     return 'Decrease $label';
   }
+
+  @override
+  String get deckCaughtUp => 'Caught up';
 }

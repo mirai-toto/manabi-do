@@ -9,12 +9,16 @@ class PillBadge extends StatelessWidget {
   final Color background;
   final TextStyle? textStyle;
 
+  /// Optional leading icon, drawn in [color] at the label's size.
+  final IconData? icon;
+
   const PillBadge({
     super.key,
     required this.label,
     required this.color,
     required this.background,
     this.textStyle,
+    this.icon,
   });
 
   @override
@@ -33,7 +37,16 @@ class PillBadge extends StatelessWidget {
         color: background,
         borderRadius: BorderRadius.circular(AppDimens.radiusPill),
       ),
-      child: Text(label, style: style),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (icon != null) ...[
+            Icon(icon, size: (style.fontSize ?? 12) + 2, color: color),
+            const SizedBox(width: AppDimens.spaceXxs),
+          ],
+          Text(label, style: style),
+        ],
+      ),
     );
   }
 }

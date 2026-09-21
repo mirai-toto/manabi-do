@@ -43,7 +43,7 @@ class DeckRow extends StatelessWidget {
     ].join(' · ');
 
     return Semantics(
-      label: '$title, $counts, ${l.nDue(due)}',
+      label: '$title, $counts, ${due > 0 ? l.nDue(due) : l.deckCaughtUp}',
       button: true,
       excludeSemantics: true,
       child: TappableSurface(
@@ -105,14 +105,22 @@ class DeckRow extends StatelessWidget {
                   ],
                 ),
               ),
-              if (due > 0) ...[
-                const SizedBox(width: AppDimens.spaceSm),
+              const SizedBox(width: AppDimens.spaceSm),
+              // Always a pill, so the row keeps its shape and the progress bar
+              // gets the same width whether or not anything is due.
+              if (due > 0)
                 PillBadge(
                   label: l.nDue(due),
                   color: color,
                   background: color.withValues(alpha: 0.15),
+                )
+              else
+                PillBadge(
+                  label: l.deckCaughtUp,
+                  icon: Icons.check_rounded,
+                  color: t.success,
+                  background: t.success.withValues(alpha: 0.15),
                 ),
-              ],
             ],
           ),
         ),
