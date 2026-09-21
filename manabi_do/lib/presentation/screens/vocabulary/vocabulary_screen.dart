@@ -7,7 +7,7 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
 import '../../providers/home_provider.dart';
-import '../../providers/vocab_list_provider.dart';
+import '../../providers/vocabulary_list_provider.dart';
 import '../../widgets/widgets.dart';
 import '../practice/practice_launcher.dart';
 
@@ -18,49 +18,50 @@ class VocabularyScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
-    final selectedLevel = ref.watch(vocabSelectedLevelProvider);
-    final selectedGroup = ref.watch(vocabSelectedGroupProvider);
+    final selectedLevel = ref.watch(vocabularySelectedLevelProvider);
+    final selectedGroup = ref.watch(vocabularySelectedGroupProvider);
 
-    final total = ref.watch(vocabTotalCountProvider);
+    final total = ref.watch(vocabularyTotalCountProvider);
     final subtitle = total != null
-        ? l.vocabSubtitle(total)
-        : l.vocabSubtitleShort;
+        ? l.vocabularySubtitle(total)
+        : l.vocabularySubtitleShort;
 
     Widget body;
     if (selectedLevel == null) {
-      body = VocabLevelSelector(
+      body = VocabularyLevelSelector(
         onSelect: (level) {
-          ref.read(vocabSelectedGroupProvider.notifier).clear();
-          ref.read(vocabSelectedLevelProvider.notifier).select(level);
+          ref.read(vocabularySelectedGroupProvider.notifier).clear();
+          ref.read(vocabularySelectedLevelProvider.notifier).select(level);
         },
       );
     } else if (selectedGroup == null) {
-      body = VocabGroupSelector(
+      body = VocabularyGroupSelector(
         level: selectedLevel,
         onBack: () {
-          ref.read(vocabSelectedGroupProvider.notifier).clear();
-          ref.read(vocabSelectedLevelProvider.notifier).clear();
+          ref.read(vocabularySelectedGroupProvider.notifier).clear();
+          ref.read(vocabularySelectedLevelProvider.notifier).clear();
         },
-        onPractice: () => openVocabPractice(
+        onPractice: () => openVocabularyPractice(
           context,
           title: levelLabel(selectedLevel, context),
           level: selectedLevel,
           color: levelColor(selectedLevel),
         ),
         onSelect: (i) =>
-            ref.read(vocabSelectedGroupProvider.notifier).select(i),
+            ref.read(vocabularySelectedGroupProvider.notifier).select(i),
       );
     } else {
-      body = VocabLevelView(
+      body = VocabularyLevelView(
         level: selectedLevel,
         groupIndex: selectedGroup,
-        onBack: () => ref.read(vocabSelectedGroupProvider.notifier).clear(),
-        onPractice: (vocabIds) => openVocabPractice(
+        onBack: () =>
+            ref.read(vocabularySelectedGroupProvider.notifier).clear(),
+        onPractice: (vocabularyIds) => openVocabularyPractice(
           context,
           title: l.groupN(selectedGroup + 1),
           level: selectedLevel,
           color: levelColor(selectedLevel),
-          vocabIds: vocabIds,
+          vocabularyIds: vocabularyIds,
         ),
       );
     }

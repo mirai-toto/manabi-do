@@ -76,8 +76,8 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
       ref.read(kanjiSelectedLevelProvider.notifier).clear();
       return;
     }
-    if (index == 2 && ref.read(vocabSelectedLevelProvider) != null) {
-      ref.read(vocabSelectedLevelProvider.notifier).clear();
+    if (index == 2 && ref.read(vocabularySelectedLevelProvider) != null) {
+      ref.read(vocabularySelectedLevelProvider.notifier).clear();
       return;
     }
     if (index == 3 && ref.read(grammarSelectedLevelProvider) != null) {
@@ -96,7 +96,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     void invalidateSrsCounts() {
       ref.invalidate(kanaDueCountProvider);
       ref.invalidate(kanjiDueCountProvider);
-      ref.invalidate(vocabDueCountProvider);
+      ref.invalidate(vocabularyDueCountProvider);
     }
 
     ref.listen<int>(selectedTabProvider, (previous, next) {
@@ -112,8 +112,14 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
 
     ref.listen(kanjiSelectedLevelProvider, (_, _) => invalidateSrsCounts());
     ref.listen(kanjiSelectedGroupProvider, (_, _) => invalidateSrsCounts());
-    ref.listen(vocabSelectedLevelProvider, (_, _) => invalidateSrsCounts());
-    ref.listen(vocabSelectedGroupProvider, (_, _) => invalidateSrsCounts());
+    ref.listen(
+      vocabularySelectedLevelProvider,
+      (_, _) => invalidateSrsCounts(),
+    );
+    ref.listen(
+      vocabularySelectedGroupProvider,
+      (_, _) => invalidateSrsCounts(),
+    );
     ref.listen(grammarSelectedLevelProvider, (_, _) => invalidateSrsCounts());
 
     final t = context.tokens;
@@ -129,8 +135,8 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
             ref.read(kanjiSelectedGroupProvider.notifier).clear();
             ref.read(kanjiSelectedLevelProvider.notifier).clear();
           case 2:
-            ref.read(vocabSelectedGroupProvider.notifier).clear();
-            ref.read(vocabSelectedLevelProvider.notifier).clear();
+            ref.read(vocabularySelectedGroupProvider.notifier).clear();
+            ref.read(vocabularySelectedLevelProvider.notifier).clear();
           case 3:
             ref.read(grammarSelectedLevelProvider.notifier).clear();
         }

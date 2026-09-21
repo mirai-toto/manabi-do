@@ -58,7 +58,7 @@ class TransformGroup {
     description: d['description'] as String?,
     rule: d['rule'] as String?,
     rows: (d['rows'] as List<dynamic>)
-        .map((r) => TransformRow.fromJson(Map<String, dynamic>.from(r)))
+        .map((r) => TransformRow.fromJson(r as Map<String, dynamic>))
         .toList(),
     note: d['note'] as String?,
   );
@@ -150,7 +150,7 @@ class _GroupCard extends StatelessWidget {
                   children: [
                     PillBadge(
                       label: group.label,
-                      color: Colors.white,
+                      color: onAccentFor(accentColor),
                       background: accentColor,
                     ),
                     if (group.tag != null) ...[

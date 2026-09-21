@@ -100,7 +100,7 @@ class LevelBadge extends StatelessWidget {
       child: Text(
         code,
         style: AppTextStyles.labelLarge.copyWith(
-          color: Colors.white,
+          color: onAccentFor(color),
           fontWeight: FontWeight.w700,
         ),
       ),

@@ -1,5 +1,5 @@
 """
-Enriches content/characters/kanji_n[1-5].json and content/vocabulary/vocab_n[1-5].json
+Enriches content/characters/kanji_n[1-5].json and content/vocabulary/vocabulary_n[1-5].json
 with multilingual meanings from JMdict-simplified and KANJIDIC2.
 
 Prerequisites — download these files and place them in data/:
@@ -37,7 +37,7 @@ LANG_MAP = {
 }
 
 
-def build_vocab_lookup(jmdict_path: str) -> dict[tuple[str, str], dict[str, str]]:
+def build_vocabulary_lookup(jmdict_path: str) -> dict[tuple[str, str], dict[str, str]]:
     print("Loading JMdict…", flush=True)
     with open(jmdict_path, encoding="utf-8") as f:
         jmdict = json.load(f)
@@ -66,7 +66,7 @@ def build_vocab_lookup(jmdict_path: str) -> dict[tuple[str, str], dict[str, str]
                     lookup[key] = {}
                 lookup[key].update(merged)
 
-    print(f"  {len(lookup):,} vocab entries indexed", flush=True)
+    print(f"  {len(lookup):,} vocabulary entries indexed", flush=True)
     return lookup
 
 
@@ -117,9 +117,9 @@ def enrich_kanji(kanji_lookup: dict[int, dict[str, str]]) -> None:
         print(f"kanji_{level}.json: enriched {hits}/{len(entries)} entries")
 
 
-def enrich_vocab(vocab_lookup: dict[tuple[str, str], dict[str, str]]) -> None:
+def enrich_vocabulary(vocabulary_lookup: dict[tuple[str, str], dict[str, str]]) -> None:
     for level in LEVELS:
-        path = f"content/vocabulary/vocab_{level}.json"
+        path = f"content/vocabulary/vocabulary_{level}.json"
         with open(path, encoding="utf-8") as f:
             entries = json.load(f)
 
@@ -127,7 +127,7 @@ def enrich_vocab(vocab_lookup: dict[tuple[str, str], dict[str, str]]) -> None:
         for entry in entries:
             word    = entry["word"]
             reading = entry["reading"]
-            tr = vocab_lookup.get((word, reading)) or vocab_lookup.get(("", reading))
+            tr = vocabulary_lookup.get((word, reading)) or vocabulary_lookup.get(("", reading))
             if tr:
                 entry["meanings"].update(tr)
                 hits += 1
@@ -135,7 +135,7 @@ def enrich_vocab(vocab_lookup: dict[tuple[str, str], dict[str, str]]) -> None:
         with open(path, "w", encoding="utf-8") as f:
             json.dump(entries, f, ensure_ascii=False, indent=2)
 
-        print(f"vocab_{level}.json: enriched {hits}/{len(entries)} entries")
+        print(f"vocabulary_{level}.json: enriched {hits}/{len(entries)} entries")
 
 
 def main() -> None:
@@ -146,14 +146,14 @@ def main() -> None:
         print("Missing input files. See instructions at the top of this script.", file=sys.stderr)
         sys.exit(1)
 
-    vocab_lookup = build_vocab_lookup(jmdict_path)
+    vocabulary_lookup = build_vocabulary_lookup(jmdict_path)
     kanji_lookup = build_kanji_lookup(kanjidic2_path)
 
     print("\nEnriching kanji…")
     enrich_kanji(kanji_lookup)
 
-    print("\nEnriching vocab…")
-    enrich_vocab(vocab_lookup)
+    print("\nEnriching vocabulary…")
+    enrich_vocabulary(vocabulary_lookup)
 
     print("\nDone. Re-run tools/build_content_db.py to rebuild the DB.")
 

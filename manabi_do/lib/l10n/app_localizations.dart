@@ -265,7 +265,7 @@ abstract class AppLocalizations {
   /// No description provided for @nLessons.
   ///
   /// In en, this message translates to:
-  /// **'{count} lessons'**
+  /// **'{count, plural, =1{1 lesson} other{{count} lessons}}'**
   String nLessons(int count);
 
   /// No description provided for @lessonsProgress.
@@ -454,11 +454,11 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get navHome;
 
-  /// No description provided for @navVocab.
+  /// No description provided for @navVocabulary.
   ///
   /// In en, this message translates to:
   /// **'Vocab'**
-  String get navVocab;
+  String get navVocabulary;
 
   /// No description provided for @greetingMorning.
   ///
@@ -856,11 +856,11 @@ abstract class AppLocalizations {
   /// **'New characters per day'**
   String get settingsPracticeNewCharacters;
 
-  /// No description provided for @settingsPracticeNewVocab.
+  /// No description provided for @settingsPracticeNewVocabulary.
   ///
   /// In en, this message translates to:
   /// **'New vocabulary per day'**
-  String get settingsPracticeNewVocab;
+  String get settingsPracticeNewVocabulary;
 
   /// No description provided for @settingsAppearance.
   ///
@@ -1120,6 +1120,12 @@ abstract class AppLocalizations {
   /// **'Clear'**
   String get drawingClear;
 
+  /// No description provided for @drawingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint'**
+  String get drawingHint;
+
   /// No description provided for @drawingStrokeCount.
   ///
   /// In en, this message translates to:
@@ -1210,17 +1216,17 @@ abstract class AppLocalizations {
   /// **'{count} words'**
   String nWords(int count);
 
-  /// No description provided for @vocabSubtitle.
+  /// No description provided for @vocabularySubtitle.
   ///
   /// In en, this message translates to:
   /// **'{total} words to discover'**
-  String vocabSubtitle(int total);
+  String vocabularySubtitle(int total);
 
-  /// No description provided for @vocabSubtitleShort.
+  /// No description provided for @vocabularySubtitleShort.
   ///
   /// In en, this message translates to:
   /// **'Words to discover'**
-  String get vocabSubtitleShort;
+  String get vocabularySubtitleShort;
 
   /// No description provided for @reviewsDue.
   ///
@@ -1447,7 +1453,7 @@ abstract class AppLocalizations {
   /// No description provided for @autoAdvanceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move to next kanji automatically when all correct'**
+  /// **'Move on automatically, scoring each answer for you'**
   String get autoAdvanceSubtitle;
 
   /// No description provided for @hintUsedFeedback.
@@ -1617,6 +1623,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Display an example sentence on flashcards'**
   String get showExampleSubtitle;
+
+  /// No description provided for @speakPronunciation.
+  ///
+  /// In en, this message translates to:
+  /// **'Play pronunciation'**
+  String get speakPronunciation;
+
+  /// No description provided for @increaseSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'Increase {label}'**
+  String increaseSetting(String label);
+
+  /// No description provided for @decreaseSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'Decrease {label}'**
+  String decreaseSetting(String label);
+
+  /// No description provided for @deckCaughtUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Caught up'**
+  String get deckCaughtUp;
+
+  /// No description provided for @deckNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get deckNotStarted;
+
+  /// No description provided for @deckContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get deckContinue;
 }
 
 class _AppLocalizationsDelegate

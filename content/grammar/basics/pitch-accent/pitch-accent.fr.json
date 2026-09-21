@@ -15,7 +15,7 @@
       "content": "Schémas Haut et Bas"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "mot",
         "lecture",

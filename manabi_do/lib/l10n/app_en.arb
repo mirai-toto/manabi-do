@@ -52,7 +52,7 @@
     }
   },
 
-  "nLessons": "{count} lessons",
+  "nLessons": "{count, plural, =1{1 lesson} other{{count} lessons}}",
   "@nLessons": {
     "placeholders": {
       "count": { "type": "int" }
@@ -104,7 +104,7 @@
 
   "navSettings": "Settings",
   "navHome": "Home",
-  "navVocab": "Vocab",
+  "navVocabulary": "Vocab",
 
   "greetingMorning": "Good morning",
   "greetingAfternoon": "Good afternoon",
@@ -200,7 +200,7 @@
   "settingsPractice": "Practice",
   "settingsHomeScreen": "Home screen",
   "settingsPracticeNewCharacters": "New characters per day",
-  "settingsPracticeNewVocab": "New vocabulary per day",
+  "settingsPracticeNewVocabulary": "New vocabulary per day",
 
   "settingsAppearance": "Appearance",
   "settingsThemeSystem": "System",
@@ -266,6 +266,7 @@
   "drawingCheck": "Check",
   "drawingUndo": "Undo",
   "drawingClear": "Clear",
+  "drawingHint": "Hint",
   "drawingStrokeCount": "{count} strokes",
   "@drawingStrokeCount": {
     "placeholders": { "count": { "type": "int" } }
@@ -299,11 +300,11 @@
   "@nWords": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "vocabSubtitle": "{total} words to discover",
-  "@vocabSubtitle": {
+  "vocabularySubtitle": "{total} words to discover",
+  "@vocabularySubtitle": {
     "placeholders": { "total": { "type": "int" } }
   },
-  "vocabSubtitleShort": "Words to discover",
+  "vocabularySubtitleShort": "Words to discover",
   "reviewsDue": "{count} reviews",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }
@@ -352,7 +353,7 @@
   "showStrokeCountLabel": "Show stroke count",
   "showStrokeCountSubtitle": "Display number of strokes as a hint",
   "autoAdvanceLabel": "Auto-advance",
-  "autoAdvanceSubtitle": "Move to next kanji automatically when all correct",
+  "autoAdvanceSubtitle": "Move on automatically, scoring each answer for you",
 
   "hintUsedFeedback": "Hint used · marked as missed",
 
@@ -386,5 +387,15 @@
   "example": "Example",
 
   "showExampleLabel": "Show example",
-  "showExampleSubtitle": "Display an example sentence on flashcards"
+  "showExampleSubtitle": "Display an example sentence on flashcards",
+
+  "speakPronunciation": "Play pronunciation",
+  "increaseSetting": "Increase {label}",
+  "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
+  "decreaseSetting": "Decrease {label}",
+  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } },
+
+  "deckCaughtUp": "Caught up",
+  "deckNotStarted": "Start",
+  "deckContinue": "Continue"
 }

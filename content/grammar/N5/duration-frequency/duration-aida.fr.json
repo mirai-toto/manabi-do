@@ -13,7 +13,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "romaji", "français"],
       "rows": [
         { "japanese": "三時間", "romaji": "sanjikan", "français": "pendant trois heures" },

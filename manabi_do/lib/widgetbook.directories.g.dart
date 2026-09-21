@@ -406,32 +406,32 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'FlashCard',
+        name: 'Flashcard',
         useCases: [
           _widgetbook.WidgetbookUseCase(
             name: 'Hidden',
             builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildFlashCardHidden,
+                _manabi_do_widgetbook_exercise_use_cases.buildFlashcardHidden,
           ),
           _widgetbook.WidgetbookUseCase(
             name: 'Revealed',
             builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildFlashCardRevealed,
+                _manabi_do_widgetbook_exercise_use_cases.buildFlashcardRevealed,
           ),
           _widgetbook.WidgetbookUseCase(
             name: 'Reversed (EN→JP)',
             builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildFlashCardReversed,
+                _manabi_do_widgetbook_exercise_use_cases.buildFlashcardReversed,
           ),
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'FlashCardActions',
+        name: 'FlashcardActions',
         useCases: [
           _widgetbook.WidgetbookUseCase(
             name: 'Default',
             builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildFlashCardActions,
+                _manabi_do_widgetbook_exercise_use_cases.buildFlashcardActions,
           ),
         ],
       ),
@@ -645,17 +645,17 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
-            name: 'VocabTableBlock',
+            name: 'VocabularyTableBlock',
             useCases: [
               _widgetbook.WidgetbookUseCase(
                 name: 'With counter',
                 builder: _manabi_do_widgetbook_grammar_use_cases
-                    .buildVocabTableCounter,
+                    .buildVocabularyTableCounter,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With verb group',
                 builder: _manabi_do_widgetbook_grammar_use_cases
-                    .buildVocabTableGroup,
+                    .buildVocabularyTableGroup,
               ),
             ],
           ),
@@ -704,6 +704,36 @@ final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
     name: 'Settings',
     children: [
+      _widgetbook.WidgetbookComponent(
+        name: 'HomeSettingsCard',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'All on',
+            builder:
+                _manabi_do_widgetbook_settings_use_cases.buildHomeSettingsCard,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Mixed',
+            builder: _manabi_do_widgetbook_settings_use_cases
+                .buildHomeSettingsCardMixed,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'PracticeSettingsCard',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'At bounds',
+            builder: _manabi_do_widgetbook_settings_use_cases
+                .buildPracticeSettingsCardAtBounds,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder: _manabi_do_widgetbook_settings_use_cases
+                .buildPracticeSettingsCard,
+          ),
+        ],
+      ),
       _widgetbook.WidgetbookComponent(
         name: 'SettingsCard',
         useCases: [

@@ -22,7 +22,7 @@
       }
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "lecture", "français"],
       "rows": [
         { "japanese": "会議中", "lecture": "かいぎちゅう", "français": "en réunion" },

@@ -5,6 +5,7 @@ import '../../../core/models/drawing_settings.dart';
 import '../../../core/models/flashcard_settings.dart';
 import '../../../core/models/mcq_settings.dart';
 import '../../../core/models/sentence_settings.dart';
+import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -22,12 +23,17 @@ enum SettingsContext { sentence, mcq, flashcard, writing, grammar }
 class PracticeSettingsSheet extends ConsumerWidget {
   final Set<SettingsContext> contexts;
   final bool showAutoAdvance;
+
+  /// The whole-queue auto-advance switch, offered by review sessions. Free
+  /// practice shows [showAutoAdvance] per exercise instead.
+  final bool showSessionAutoAdvance;
   final bool hasExamples;
 
   const PracticeSettingsSheet({
     super.key,
     this.contexts = const {SettingsContext.mcq},
     this.showAutoAdvance = false,
+    this.showSessionAutoAdvance = false,
     this.hasExamples = false,
   });
 
@@ -40,6 +46,8 @@ class PracticeSettingsSheet extends ConsumerWidget {
     final mcq = ref.watch(mcqSettingsProvider);
     final flashcard = ref.watch(flashcardSettingsProvider);
     final drawing = ref.watch(drawingSettingsProvider);
+    final SrsSettings srs =
+        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
 
     void updateSentence(SentenceSettings next) =>
         ref.read(sentenceSettingsProvider.notifier).update(next);
@@ -57,7 +65,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
       children: [
         _SectionLabel(l.practiceSettingsSessionLength),
         const SizedBox(height: AppDimens.spaceXs),
-        SegmentSelector(
+        SegmentedControl(
           options: const ['10', '20', '50', '∞'],
           selected: switch (value) {
             10 => 0,
@@ -83,7 +91,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
       children: [
         _SectionLabel(l.practiceSettingsMcqChoices),
         const SizedBox(height: AppDimens.spaceXs),
-        SegmentSelector(
+        SegmentedControl(
           options: const ['4', '6', '8'],
           selected: switch (value) {
             6 => 1,
@@ -119,6 +127,20 @@ class PracticeSettingsSheet extends ConsumerWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: AppDimens.spaceMd),
+
+            // ── Whole session ─────────────────────────────────────────────
+            // One switch, not one per exercise type: a review session mixes
+            // them, and being asked by only half of them would be incoherent.
+            if (showSessionAutoAdvance) ...[
+              _SwitchRow(
+                label: l.autoAdvanceLabel,
+                subtitle: l.autoAdvanceSubtitle,
+                value: srs.autoAdvance,
+                onChanged: (v) =>
+                    ref.read(srsSettingsProvider.notifier).setAutoAdvance(v),
+              ),
+              const SizedBox(height: AppDimens.spaceMd),
+            ],
 
             // ── Flashcard ──────────────────────────────────────────────────
             if (contexts.contains(SettingsContext.flashcard)) ...[
@@ -280,7 +302,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceXs),
               _SectionLabel(l.translationModeLabel),
               const SizedBox(height: AppDimens.spaceXs),
-              SegmentSelector(
+              SegmentedControl(
                 options: [
                   l.translationModeAlways,
                   l.translationModeOnDemand,
@@ -321,7 +343,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceXs),
               _SectionLabel(l.practiceSettingsRecognition),
               const SizedBox(height: AppDimens.spaceXs),
-              SegmentSelector(
+              SegmentedControl(
                 options: [
                   l.recognitionStrict,
                   l.recognitionNormal,
@@ -335,7 +357,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceMd),
               _SectionLabel(l.practiceSettingsHint),
               const SizedBox(height: AppDimens.spaceXs),
-              SegmentSelector(
+              SegmentedControl(
                 options: [l.hintMeaning, l.hintReadings, l.hintBoth],
                 selected: drawing.hintMode.index,
                 onSelect: (i) => updateDrawing(

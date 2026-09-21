@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Re-seed content/characters/kanji_n*.json and content/vocabulary/vocab_n*.json
+Re-seed content/characters/kanji_n*.json and content/vocabulary/vocabulary_n*.json
 from online sources, downloading and caching raw data to data/.
 
 Sources:
   - Kanji levels:    davidluzgouveia/kanji-data (GitHub) — modern N1–N5 assignment
                      (based on Jonathan Waller's JLPT lists, jlpt_new field)
   - Kanji readings/meanings: KANJIDIC2 (EDRDG)
-  - Vocab:  Bluskyo/JLPT_Vocabulary (JLPT level + reading)
+  - Vocabulary:  Bluskyo/JLPT_Vocabulary (JLPT level + reading)
             + JMdict-simplified (meanings in all languages, POS)
 
 Run from the repo root:
@@ -36,9 +36,9 @@ import zipfile
 
 DATA_DIR   = "data"
 CHARS_DIR  = "content/characters"
-VOCAB_DIR  = "content/vocabulary"
+VOCABULARY_DIR  = "content/vocabulary"
 
-BLUSKYO_PATH    = os.path.join(DATA_DIR, "bluskyo_vocab.json")
+BLUSKYO_PATH    = os.path.join(DATA_DIR, "bluskyo_vocabulary.json")
 JMDICT_PATH     = os.path.join(DATA_DIR, "jmdict.json")
 KANJIDIC2_PATH  = os.path.join(DATA_DIR, "kanjidic2.xml")
 KANJI_DATA_PATH = os.path.join(DATA_DIR, "kanji_data.json")
@@ -234,14 +234,14 @@ def generate_kanji(force: bool) -> set[int]:
     return kanji_ids
 
 
-# ── Vocab ─────────────────────────────────────────────────────────────────────
+# ── Vocabulary ─────────────────────────────────────────────────────────────────────
 
-def generate_vocab(kanji_ids: set[int], force: bool) -> None:
+def generate_vocabulary(kanji_ids: set[int], force: bool) -> None:
     print("\n── Vocabulary ───────────────────────────────────────────────")
     _ensure(BLUSKYO_PATH, force, _fetch_bluskyo)
     _ensure(JMDICT_PATH, force, _fetch_jmdict)
 
-    print("  Loading Bluskyo vocab…", end="", flush=True)
+    print("  Loading Bluskyo vocabulary…", end="", flush=True)
     with open(BLUSKYO_PATH, encoding="utf-8") as f:
         bluskyo_raw: dict[str, list[dict]] = json.load(f)
     # Bluskyo level int: 1=N1 … 5=N5
@@ -287,10 +287,10 @@ def generate_vocab(kanji_ids: set[int], force: bool) -> None:
                 lookup[form] = record
     print(f" {len(lookup):,} forms indexed")
 
-    os.makedirs(VOCAB_DIR, exist_ok=True)
+    os.makedirs(VOCABULARY_DIR, exist_ok=True)
     for level_int in range(1, 6):
         level = f"N{level_int}"
-        path = os.path.join(VOCAB_DIR, f"vocab_{level.lower()}.json")
+        path = os.path.join(VOCABULARY_DIR, f"vocabulary_{level.lower()}.json")
 
         entries: list[dict] = []
         missing: list[str] = []
@@ -328,7 +328,7 @@ def generate_vocab(kanji_ids: set[int], force: bool) -> None:
         skipped = f", {len(missing)} not in JMdict" if missing else ""
         deduped = f", {duplicates} duplicates dropped" if duplicates else ""
         print(
-            f"  vocab_{level.lower()}.json: {len(entries)} entries{skipped}{deduped}"
+            f"  vocabulary_{level.lower()}.json: {len(entries)} entries{skipped}{deduped}"
         )
 
 
@@ -336,7 +336,7 @@ def generate_vocab(kanji_ids: set[int], force: bool) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Re-seed kanji and vocab JSON from online sources.",
+        description="Re-seed kanji and vocabulary JSON from online sources.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
@@ -349,7 +349,7 @@ def main() -> None:
     os.makedirs(DATA_DIR, exist_ok=True)
 
     kanji_ids = generate_kanji(args.force)
-    generate_vocab(kanji_ids, args.force)
+    generate_vocabulary(kanji_ids, args.force)
 
     print("\nDone. Rebuild the DB:")
     print("  python3 tools/generate.py --no-sentences")

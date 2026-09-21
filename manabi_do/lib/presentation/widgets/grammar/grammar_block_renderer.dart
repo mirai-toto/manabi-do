@@ -11,7 +11,7 @@ import 'blocks/pattern_block.dart';
 import 'blocks/section_title_block.dart';
 import 'blocks/text_block.dart';
 import 'blocks/transform_cards_block.dart';
-import 'blocks/vocab_table_block.dart';
+import 'blocks/vocabulary_table_block.dart';
 
 class GrammarBlockRenderer extends StatelessWidget {
   final List<GrammarBlock> blocks;
@@ -69,7 +69,7 @@ class GrammarBlockRenderer extends StatelessWidget {
         rows: _toRows(d['rows']),
         accentColor: levelColor,
       ),
-      'vocab_table' => VocabTableBlock(
+      'vocabulary_table' => VocabularyTableBlock(
         columns: (d['columns'] as List<dynamic>).cast<String>(),
         rows: _toRows(d['rows']),
         accentColor: levelColor,
@@ -90,7 +90,7 @@ class GrammarBlockRenderer extends StatelessWidget {
       ),
       'transform_cards' => TransformCardsBlock(
         groups: (d['groups'] as List<dynamic>)
-            .map((g) => TransformGroup.fromJson(Map<String, dynamic>.from(g)))
+            .map((g) => TransformGroup.fromJson(g as Map<String, dynamic>))
             .toList(),
         accentColor: levelColor,
       ),

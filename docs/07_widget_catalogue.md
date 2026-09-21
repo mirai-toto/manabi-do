@@ -299,15 +299,31 @@ SectionHeader(
 
 ---
 
-### SegmentSelector
+### SegmentedControl
 
-Horizontal row of equally-sized labelled segments. Selected segment: `primary` fill + white label. Others: `cardBackground` + `outlineVariant` border + `onSurface` label. Animates transitions in 150ms. All option labels are pre-formatted by the caller.
+The app's one segmented control — picks a value from a small fixed set. Horizontal row of equally-sized segments; selected gets `primary` fill + white label, others `cardBackground` + `outlineVariant` border. Animates in 150ms. Labels are pre-formatted by the caller.
+
+Not to be confused with `SegmentedTabBar`, which drives a `TabController` to switch panes. This one is a form input: it reports an index.
+
+Optional `icons` renders a leading icon per option and must line up with `options`.
 
 ```dart
-SegmentSelector(
+SegmentedControl(
   options: [l.always, l.onTap, l.never],
   selected: _furiganaMode,
   onSelect: (i) => setState(() => _furiganaMode = i),
+)
+
+// With icons — the appearance picker in Settings
+SegmentedControl(
+  options: [l.settingsThemeSystem, l.settingsThemeLight, l.settingsThemeDark],
+  icons: const [
+    Icons.brightness_auto_rounded,
+    Icons.light_mode_rounded,
+    Icons.dark_mode_rounded,
+  ],
+  selected: _themeModes.indexOf(themeMode),
+  onSelect: (i) => ref.read(themeModeProvider.notifier).setMode(_themeModes[i]),
 )
 ```
 
@@ -415,12 +431,12 @@ ExampleCard(
 
 ---
 
-### FlashCard
+### Flashcard
 
 Large gradient card showing a prompt and, when revealed, an answer. Includes a `SpeakButton` and a tap-to-reveal/hide label.
 
 ```dart
-FlashCard(
+Flashcard(
   prompt: '水',
   promptSub: 'みず',
   reveal: 'Water',
@@ -432,12 +448,12 @@ FlashCard(
 
 ---
 
-### FlashCardActions
+### FlashcardActions
 
 Rating button row shown after a flashcard is revealed. Shows FSRS interval previews in SRS mode; shows "Got it / Not yet" in free mode.
 
 ```dart
-FlashCardActions(
+FlashcardActions(
   card: srsCard,                        // null = free mode buttons
   isFreeMode: false,
   question: l.selfAssessQuestion,       // optional label above buttons
@@ -449,7 +465,7 @@ FlashCardActions(
 
 ### LessonReaderCard
 
-Card shell for grammar lesson content. Shows chapter label, title, body widgets, and an optional "Practice" button.
+Card shell for grammar lesson content. Shows chapter label, title, body widgets, and an optional "Practice" button. Lives in `lesson_reader.dart` together with its body blocks: `ReaderBodyText`, `ReaderSectionTitle`, `ReaderJpExample`.
 
 ```dart
 LessonReaderCard(
@@ -535,7 +551,7 @@ FeedbackPanel(text: explanation, isCorrect: false)
 
 ### PracticeFlashcardBody
 
-Flashcard exercise body. Shows a `FlashCard` (front/back flip), then SRS rating buttons. Handles the flip animation and rating UI internally.
+Flashcard exercise body. Shows a `Flashcard` (front/back flip), then SRS rating buttons. Handles the flip animation and rating UI internally.
 
 ```dart
 PracticeFlashcardBody(
@@ -822,7 +838,7 @@ KanjiReadingsCard(kanji: kanji)
 
 ### KanjiExampleWords
 
-`SectionLabel` + list of example vocabulary words for a kanji. Fetches localized vocab via provider; shows a loading indicator, empty state, or word list with `PillBadge` JLPT tags.
+`SectionLabel` + list of example vocabulary words for a kanji. Fetches localized vocabulary via provider; shows a loading indicator, empty state, or word list with `PillBadge` JLPT tags.
 
 ```dart
 KanjiExampleWords(kanji: kanji)
@@ -949,12 +965,12 @@ ExampleTableBlock(
 
 ---
 
-### VocabTableBlock
+### VocabularyTableBlock
 
 Two-column table of vocabulary items with readings and meanings.
 
 ```dart
-VocabTableBlock(
+VocabularyTableBlock(
   columns: const ['japanese', 'romaji', 'english', 'group'],
   rows: const [
     {'japanese': '書く', 'romaji': 'kaku', 'english': 'to write', 'group': '1'},
@@ -982,7 +998,7 @@ ConjugationTableBlock(
 
 ### GrammarTable
 
-Internal shared renderer used by `ExampleTableBlock`, `VocabTableBlock`, and `ConjugationTableBlock`. Not dispatched directly — use the typed wrappers above.
+Internal shared renderer used by `ExampleTableBlock`, `VocabularyTableBlock`, and `ConjugationTableBlock`. Not dispatched directly — use the typed wrappers above.
 
 ```dart
 GrammarTable(
@@ -1148,7 +1164,7 @@ SettingsCard(
 
 ### SettingsTile / SettingsToggle / SettingsInfo / SettingsStepper
 
-Single settings row variants. All exported from `settings_tile.dart`.
+Single settings row variants, one per file: `settings_tile.dart`, `settings_toggle.dart`, `settings_info.dart`, `settings_stepper.dart`.
 
 ```dart
 // Tappable row with trailing chevron
@@ -1189,12 +1205,34 @@ AttributionCard(
 
 ---
 
-### SettingsPracticeCard
+### PracticeSettingsCard
 
-`ConsumerWidget` that reads SRS settings and renders a `SettingsCard` with steppers for new characters/vocab per day and an MCQ/flashcard toggle. Self-contained — no props.
+`StatelessWidget` that renders a `SettingsCard` with steppers for new characters and new vocabulary per day. Steps by 5, clamped to 0–50. The caller reads `srsSettingsProvider` and passes the values in.
 
 ```dart
-const SettingsPracticeCard()
+PracticeSettingsCard(
+  newCharactersPerDay: srs.newCharactersPerDay,
+  newVocabularyPerDay: srs.newVocabularyPerDay,
+  onNewCharactersChanged: srsNotifier.setNewCharactersPerDay,
+  onNewVocabularyChanged: srsNotifier.setNewVocabularyPerDay,
+)
+```
+
+---
+
+### HomeSettingsCard
+
+`StatelessWidget` that renders a `SettingsCard` with one `SettingsToggle` per deck (kana, kanji, vocabulary), controlling which decks appear on the home screen. The caller reads `homeSettingsProvider` and passes the values in.
+
+```dart
+HomeSettingsCard(
+  showKana: home.showKana,
+  showKanji: home.showKanji,
+  showVocabulary: home.showVocabulary,
+  onShowKanaChanged: homeNotifier.setShowKana,
+  onShowKanjiChanged: homeNotifier.setShowKanji,
+  onShowVocabularyChanged: homeNotifier.setShowVocabulary,
+)
 ```
 
 ---
@@ -1367,27 +1405,29 @@ HomeHeader(greeting: l.goodMorning(name), subtitle: l.homeSubtitle)
 
 ### HomeDomainCards
 
-Grid of `DomainCard` entries for the home screen (kana, kanji, vocab, grammar). All counts pre-resolved by the caller.
+Grid of `DomainCard` entries for the home screen (kana, kanji, vocabulary, grammar). All counts pre-resolved by the caller.
 
 ```dart
 HomeDomainCards(
-  totalKana: 92, totalKanji: 2136, totalVocab: 8000,
+  totalKana: 92, totalKanji: 2136, totalVocabulary: 8000,
   kanaDue: 3, kanaNew: 5,
   kanjiDue: 12, kanjiNew: 8,
-  vocabDue: 0, vocabNew: 10,
-  onKanaTap: () {}, onKanjiTap: () {}, onVocabTap: () {}, onGrammarTap: () {},
-  onKanaPractice: () {}, onKanjiPractice: () {}, onVocabPractice: () {},
+  vocabularyDue: 0, vocabularyNew: 10,
+  onKanaTap: () {}, onKanjiTap: () {}, onVocabularyTap: () {}, onGrammarTap: () {},
+  onKanaPractice: () {}, onKanjiPractice: () {}, onVocabularyPractice: () {},
 )
 ```
 
 ---
 
-### GrammarChapterList
+### GrammarChapterView
 
-Scrollable list of `ChapterCard` entries for a given JLPT level. Watches `grammarThemesProvider` internally, resolves unlock/progress state, and calls `onBack` when the user presses the back button.
+Embedded sub-view of `GrammarScreen`, not a pushed screen. Lists `ChapterCard` entries for a given JLPT level, watches `grammarThemesProvider` internally, resolves unlock/progress state, and calls `onBack` when the user presses the back button.
+
+It also owns navigation: it pushes `GrammarLessonListScreen` when a chapter is opened and `PracticeSessionScreen` for free practice. That is why it lives in `screens/`, alongside `KanaTabView` and `KanjiTabView`, rather than in `widgets/`.
 
 ```dart
-GrammarChapterList(
+GrammarChapterView(
   level: 'N5',
   onBack: () => ref.read(grammarSelectedLevelProvider.notifier).clear(),
 )
@@ -1395,32 +1435,32 @@ GrammarChapterList(
 
 ---
 
-### VocabWordTile
+### VocabularyWordTile
 
 Expandable vocabulary list row. Shows word, reading, abbreviated meaning. Tap expands to full meaning, part-of-speech chips, and `SpeakButton`. Localized meaning fetched via provider.
 
 ```dart
-VocabWordTile(entry: vocabEntry)
+VocabularyWordTile(entry: vocabularyEntry)
 ```
 
 ---
 
-### VocabLevelSelector
+### VocabularyLevelSelector
 
 Full-screen-width list of JLPT level tiles. Tapping a level calls `onSelect`.
 
 ```dart
-VocabLevelSelector(onSelect: (level) => selectLevel(level))
+VocabularyLevelSelector(onSelect: (level) => selectLevel(level))
 ```
 
 ---
 
-### VocabGroupSelector
+### VocabularyGroupSelector
 
-Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for pagination within a vocab level. `kVocabGroupSize` groups of 30 words each.
+Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for pagination within a vocabulary level. `kVocabularyGroupSize` groups of 30 words each.
 
 ```dart
-VocabGroupSelector(
+VocabularyGroupSelector(
   level: 'N5',
   onBack: () {},
   onSelect: (groupIndex) => selectGroup(groupIndex),
@@ -1429,12 +1469,12 @@ VocabGroupSelector(
 
 ---
 
-### VocabLevelView
+### VocabularyLevelView
 
-Shows the vocabulary word list for one paginated group within a level. Fetches entries via `vocabByLevelProvider`, renders `VocabWordTile` rows, and shows learned-count progress.
+Shows the vocabulary word list for one paginated group within a level. Fetches entries via `vocabularyByLevelProvider`, renders `VocabularyWordTile` rows, and shows learned-count progress.
 
 ```dart
-VocabLevelView(level: 'N5', groupIndex: 0, onBack: () {})
+VocabularyLevelView(level: 'N5', groupIndex: 0, onBack: () {})
 ```
 
 ---

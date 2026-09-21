@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../../core/providers/home_settings_provider.dart';
 import '../../../core/providers/locale_provider.dart';
+import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -13,6 +15,14 @@ import '../../services/feedback_service.dart';
 import '../../services/srs_service.dart';
 import '../../services/support_service.dart';
 import '../../widgets/widgets.dart';
+
+/// Order the appearance segments are shown in. Listed explicitly so it cannot
+/// drift from `ThemeMode`'s declaration order.
+const List<ThemeMode> _themeModes = [
+  ThemeMode.system,
+  ThemeMode.light,
+  ThemeMode.dark,
+];
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -128,6 +138,18 @@ class SettingsScreen extends ConsumerWidget {
         ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system;
     final locale = ref.watch(localeProvider);
 
+    final SrsSettings srs =
+        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
+    final SrsSettingsNotifier srsNotifier = ref.read(
+      srsSettingsProvider.notifier,
+    );
+
+    final HomeSettings home =
+        ref.watch(homeSettingsProvider).asData?.value ?? const HomeSettings();
+    final HomeSettingsNotifier homeNotifier = ref.read(
+      homeSettingsProvider.notifier,
+    );
+
     final currentLang = languages.firstWhere(
       (e) => e.code == locale.languageCode,
       orElse: () => languages.first,
@@ -145,37 +167,42 @@ class SettingsScreen extends ConsumerWidget {
 
             SectionLabel(l.settingsPractice),
             const SizedBox(height: AppDimens.spaceSm),
-            const SettingsPracticeCard(),
+            PracticeSettingsCard(
+              newCharactersPerDay: srs.newCharactersPerDay,
+              newVocabularyPerDay: srs.newVocabularyPerDay,
+              onNewCharactersChanged: srsNotifier.setNewCharactersPerDay,
+              onNewVocabularyChanged: srsNotifier.setNewVocabularyPerDay,
+            ),
 
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsHomeScreen),
             const SizedBox(height: AppDimens.spaceSm),
-            const SettingsHomeCard(),
+            HomeSettingsCard(
+              showKana: home.showKana,
+              showKanji: home.showKanji,
+              showVocabulary: home.showVocabulary,
+              onShowKanaChanged: homeNotifier.setShowKana,
+              onShowKanjiChanged: homeNotifier.setShowKanji,
+              onShowVocabularyChanged: homeNotifier.setShowVocabulary,
+            ),
 
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsAppearance),
             const SizedBox(height: AppDimens.spaceSm),
-            SegmentedButton<ThemeMode>(
-              segments: [
-                ButtonSegment(
-                  value: ThemeMode.system,
-                  icon: const Icon(Icons.brightness_auto_rounded),
-                  label: Text(l.settingsThemeSystem),
-                ),
-                ButtonSegment(
-                  value: ThemeMode.light,
-                  icon: const Icon(Icons.light_mode_rounded),
-                  label: Text(l.settingsThemeLight),
-                ),
-                ButtonSegment(
-                  value: ThemeMode.dark,
-                  icon: const Icon(Icons.dark_mode_rounded),
-                  label: Text(l.settingsThemeDark),
-                ),
+            SegmentedControl(
+              options: [
+                l.settingsThemeSystem,
+                l.settingsThemeLight,
+                l.settingsThemeDark,
               ],
-              selected: {themeMode},
-              onSelectionChanged: (modes) =>
-                  ref.read(themeModeProvider.notifier).setMode(modes.first),
+              icons: const [
+                Icons.brightness_auto_rounded,
+                Icons.light_mode_rounded,
+                Icons.dark_mode_rounded,
+              ],
+              selected: _themeModes.indexOf(themeMode),
+              onSelect: (i) =>
+                  ref.read(themeModeProvider.notifier).setMode(_themeModes[i]),
             ),
 
             const SizedBox(height: AppDimens.spaceLg),

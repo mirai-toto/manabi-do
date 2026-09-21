@@ -12,7 +12,7 @@ import '../../../l10n/l10n.dart';
 import '../characters/kanji_drawing_canvas.dart';
 import '../characters/kanji_readings_card.dart';
 import '../characters/stroke_animators.dart';
-import 'flash_card.dart';
+import 'flashcard.dart';
 
 class DrawingExercise extends StatefulWidget {
   final List<ui.Path> referenceStrokes;
@@ -23,6 +23,11 @@ class DrawingExercise extends StatefulWidget {
   final Color color;
   final Card? card;
   final bool isFreeMode;
+
+  /// Move on once the attempt is done, deriving the rating from it, instead
+  /// of stopping for a self-assessment. The caller decides which setting feeds
+  /// this: free practice has one per exercise, a review has one per session.
+  final bool autoAdvance;
 
   /// Called with the rating the user picked in the self-assessment buttons.
   final void Function(Rating)? onRate;
@@ -43,6 +48,7 @@ class DrawingExercise extends StatefulWidget {
     required this.label,
     required this.color,
     required this.settings,
+    required this.autoAdvance,
     this.onReading = '',
     this.kunReading = '',
     this.card,
@@ -157,7 +163,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
           TextButton.icon(
             onPressed: _onHint,
             icon: const Icon(Icons.help_outline_rounded, size: 16),
-            label: Text(_hintLevel == 0 ? '?' : '??'),
+            label: Text(l.drawingHint),
             style: _hintsUsed
                 ? TextButton.styleFrom(foregroundColor: t.hintStroke)
                 : null,
@@ -171,9 +177,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
     final l = context.l10n;
     final t = context.tokens;
     final showSrsActions =
-        widget.onRate != null &&
-        !_hintsUsed &&
-        !(widget.isFreeMode && widget.settings.autoAdvance && _done);
+        widget.onRate != null && !_hintsUsed && !(widget.autoAdvance && _done);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -205,7 +209,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
         ],
         const SizedBox(height: AppDimens.spaceSm),
         if (showSrsActions) ...[
-          FlashCardActions(
+          FlashcardActions(
             card: widget.card,
             question: widget.question,
             onRate: widget.onRate!,
@@ -251,6 +255,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
       ),
     );
+    final Color onAccent = onAccentFor(widget.color);
     final nextStyle = FilledButton.styleFrom(
       backgroundColor: widget.color,
       padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
@@ -280,7 +285,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
               child: Text(
                 l.next,
                 style: AppTextStyles.body.copyWith(
-                  color: Colors.white,
+                  color: onAccent,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -296,7 +301,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
       child: Text(
         l.retry,
         style: AppTextStyles.body.copyWith(
-          color: Colors.white,
+          color: onAccent,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -382,7 +387,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
       return;
     }
 
-    if (widget.isFreeMode && widget.settings.autoAdvance && !_autoAdvanceDone) {
+    if (widget.autoAdvance && !_autoAdvanceDone) {
       _autoAdvanceDone = true;
       Future.delayed(const Duration(seconds: 1), () {
         if (mounted) report(hintsUsed: false, mistakes: _wrongStrokes.length);

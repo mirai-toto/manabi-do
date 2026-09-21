@@ -23,7 +23,7 @@
       "content": "A Real Sentence"
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "part",
         "script",

@@ -98,7 +98,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String nLessons(int count) {
-    return '$count leçons';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count leçons',
+      one: '1 leçon',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -199,7 +205,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get navHome => 'Accueil';
 
   @override
-  String get navVocab => 'Vocab';
+  String get navVocabulary => 'Vocab';
 
   @override
   String get greetingMorning => 'Bonjour';
@@ -421,7 +427,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsPracticeNewCharacters => 'Nouveaux caractères par jour';
 
   @override
-  String get settingsPracticeNewVocab => 'Nouveau vocabulaire par jour';
+  String get settingsPracticeNewVocabulary => 'Nouveau vocabulaire par jour';
 
   @override
   String get settingsAppearance => 'Apparence';
@@ -569,6 +575,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get drawingClear => 'Effacer';
 
   @override
+  String get drawingHint => 'Indice';
+
+  @override
   String drawingStrokeCount(int count) {
     return '$count traits';
   }
@@ -631,12 +640,12 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String vocabSubtitle(int total) {
+  String vocabularySubtitle(int total) {
     return '$total mots à découvrir';
   }
 
   @override
-  String get vocabSubtitleShort => 'Mots à découvrir';
+  String get vocabularySubtitleShort => 'Mots à découvrir';
 
   @override
   String reviewsDue(int count) {
@@ -762,7 +771,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get autoAdvanceSubtitle =>
-      'Passer au kanji suivant automatiquement quand tout est correct';
+      'Passer à la suite automatiquement, en notant chaque réponse à votre place';
 
   @override
   String get hintUsedFeedback => 'Indice utilisé · marqué comme raté';
@@ -852,4 +861,26 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get showExampleSubtitle =>
       'Afficher une phrase d\'exemple sur les flashcards';
+
+  @override
+  String get speakPronunciation => 'Écouter la prononciation';
+
+  @override
+  String increaseSetting(String label) {
+    return 'Augmenter $label';
+  }
+
+  @override
+  String decreaseSetting(String label) {
+    return 'Diminuer $label';
+  }
+
+  @override
+  String get deckCaughtUp => 'À jour';
+
+  @override
+  String get deckNotStarted => 'Commencer';
+
+  @override
+  String get deckContinue => 'Continuer';
 }

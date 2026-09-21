@@ -22,7 +22,7 @@
       }
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "japanese",
         "reading",

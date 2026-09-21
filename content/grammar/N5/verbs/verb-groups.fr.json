@@ -16,7 +16,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "romaji", "français", "groupe"],
       "rows": [
         { "japanese": "書く", "romaji": "kaku", "français": "écrire", "groupe": "1" },

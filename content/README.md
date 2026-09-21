@@ -22,12 +22,12 @@ manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
 content/
   characters/   kanji_n1-n5.json, kana.json
                 kanji_svg/  SVG stroke order files (KanjiVG), committed
-  vocabulary/   vocab_n1-n5.json
+  vocabulary/   vocabulary_n1-n5.json
   grammar/      levels.json + recursive lesson tree (index.json + lesson files)
 
 data/  (gitignored — raw downloads, re-fetchable)
   tatoeba/         Sentence corpus, downloaded by tools/build_content_db.py on first run
-  bluskyo_vocab.json  JLPT vocabulary list (Bluskyo)
+  bluskyo_vocabulary.json  JLPT vocabulary list (Bluskyo)
   jmdict.json         JMdict-simplified (meanings in all languages)
   kanjidic2.xml       KANJIDIC2 (readings, meanings, JLPT levels)
   kanji_data.json     davidluzgouveia/kanji-data (JLPT level assignment)
@@ -70,7 +70,7 @@ python3 tools/generate.py --no-sentences  # skip Tatoeba — faster, good for gr
 
 ## Refresh multilingual meanings
 
-`tools/gen_translations.py` enriches **existing** entries in `content/characters/kanji_n*.json` and `content/vocabulary/vocab_n*.json` with multilingual meanings from JMdict and KANJIDIC2. It does not create or remove entries.
+`tools/gen_translations.py` enriches **existing** entries in `content/characters/kanji_n*.json` and `content/vocabulary/vocabulary_n*.json` with multilingual meanings from JMdict and KANJIDIC2. It does not create or remove entries.
 
 ```bash
 python3 tools/generate.py --translations [--no-sentences]

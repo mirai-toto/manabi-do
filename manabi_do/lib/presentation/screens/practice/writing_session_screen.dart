@@ -174,6 +174,7 @@ class _ActiveScreen extends ConsumerWidget {
                     kunReading: kanji.kunReading,
                     color: color,
                     settings: drawingSettings,
+                    autoAdvance: drawingSettings.autoAdvance,
                     onNext: onAdvance,
                   ),
                 ),

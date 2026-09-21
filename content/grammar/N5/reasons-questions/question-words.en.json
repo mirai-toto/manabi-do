@@ -7,7 +7,7 @@
       "content": "Japanese **question words** (疑問詞) slot into the sentence exactly where the unknown information would go. The rest of the sentence structure stays the same : there is no subject-verb inversion like in English."
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": [
         "japanese",
         "romaji",

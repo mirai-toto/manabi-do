@@ -2,7 +2,6 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart';
 import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../widgets.dart';
 
@@ -46,7 +45,7 @@ class KanjiGrid extends StatelessWidget {
               final level = srsLevel(card);
               final Color? accent = level == SrsLevel.newCard
                   ? null
-                  : level.accent(context.tokens);
+                  : level.accent;
               return CharacterCell(
                 character: entry.character,
                 accentColor: accent,

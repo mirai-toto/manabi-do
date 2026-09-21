@@ -1,4 +1,3 @@
-Fixed in this release:
-
-• Stroke practice now shows how many strokes you got wrong instead of an "x/x" score, and the number is finally correct.
-• The grammar section lists only the levels that have lessons, instead of showing the higher JLPT levels as coming soon.
+• Daily review drops the flip-to-reveal cards. A new setting can grade each answer and move on for you.
+• Home decks show when you are caught up.
+• Stroke counts are correct again, and kanji search puts common characters first.

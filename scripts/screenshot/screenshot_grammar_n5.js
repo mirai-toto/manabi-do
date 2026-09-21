@@ -69,7 +69,7 @@ const lessonY = (i) => 96 + i * 88;
   await shot(page, '02_chapters_bottom');
   await scroll(page, -400); // reset scroll
 
-  // ── Ch.1 Verbs — lesson 1: Verb Groups (vocab_table) ─────────────────────
+  // ── Ch.1 Verbs — lesson 1: Verb Groups (vocabulary_table) ─────────────────────
   await page.mouse.click(195, CHAPTER_Y[0]);
   await page.waitForTimeout(2000);
   await shot(page, '03_ch1_verbs_lessons');
@@ -119,7 +119,7 @@ const lessonY = (i) => 96 + i * 88;
   await BACK(page);
   await BACK(page);
 
-  // ── Ch.9 て-form — lesson 1: forming (pattern + vocab_table) ─────────────
+  // ── Ch.9 て-form — lesson 1: forming (pattern + vocabulary_table) ─────────────
   await page.waitForTimeout(500);
   // ch9 is off-screen, scroll to it
   await scroll(page, 300);

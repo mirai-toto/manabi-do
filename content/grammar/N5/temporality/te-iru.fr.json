@@ -22,7 +22,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "romaji", "français", "type"],
       "rows": [
         { "japanese": "今、本を読んでいます。", "romaji": "Ima, hon wo yonde imasu.", "français": "Je lis un livre en ce moment.", "type": "en cours" },

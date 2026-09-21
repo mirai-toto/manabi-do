@@ -19,7 +19,7 @@ export 'common/progress_row.dart';
 export 'common/section_header.dart';
 export 'common/scroll_fade.dart';
 export 'common/section_label.dart';
-export 'common/segment_selector.dart';
+export 'common/segmented_control.dart';
 export 'common/sheet_drag_handle.dart';
 export 'common/segmented_tab_bar.dart';
 export 'common/speak_button.dart';
@@ -33,12 +33,15 @@ export 'navigation/nav_destination.dart';
 export 'navigation/nav_item.dart';
 
 // settings
+export 'settings/home_settings_card.dart';
 export 'settings/language_picker_sheet.dart';
+export 'settings/practice_settings_card.dart';
 export 'settings/settings_about_section.dart';
 export 'settings/settings_card.dart';
-export 'settings/settings_home_card.dart';
-export 'settings/settings_practice_card.dart';
+export 'settings/settings_info.dart';
+export 'settings/settings_stepper.dart';
 export 'settings/settings_tile.dart';
+export 'settings/settings_toggle.dart';
 
 // grammar
 export 'grammar/grammar_block_renderer.dart';
@@ -57,10 +60,10 @@ export 'study/practice_mode_card.dart';
 export 'study/streak_pill.dart';
 export 'study/study_group_card.dart';
 export 'study/todays_session_card.dart';
-export 'study/vocab_group_selector.dart' hide kVocabGroupSize;
-export 'study/vocab_level_selector.dart';
-export 'study/vocab_level_view.dart';
-export 'study/vocab_word_tile.dart';
+export 'study/vocabulary_group_selector.dart' hide kVocabularyGroupSize;
+export 'study/vocabulary_level_selector.dart';
+export 'study/vocabulary_level_view.dart';
+export 'study/vocabulary_word_tile.dart';
 export 'study/week_strip.dart';
 
 // characters
@@ -82,11 +85,11 @@ export 'exercise/cloze_option.dart';
 export 'exercise/drawing_exercise.dart';
 export 'exercise/example_card.dart';
 export 'exercise/feedback_panel.dart';
-export 'exercise/flash_card.dart';
+export 'exercise/flashcard.dart';
 export 'exercise/grammar_builder_body.dart';
 export 'exercise/grammar_cloze_body.dart';
 export 'exercise/grammar_error_detection_body.dart';
-export 'exercise/lesson_reader_card.dart';
+export 'exercise/lesson_reader.dart';
 export 'exercise/mcq_card.dart';
 export 'exercise/practice_flashcard_body.dart';
 export 'exercise/practice_mcq_body.dart';

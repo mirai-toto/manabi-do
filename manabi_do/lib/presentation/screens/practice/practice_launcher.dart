@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../l10n/l10n.dart';
 import '../characters/kanji/kanji_practice_screen.dart';
-import '../vocabulary/vocab_practice_screen.dart';
+import '../vocabulary/vocabulary_practice_screen.dart';
 import 'practice_selection_screen.dart';
 import 'writing_session_screen.dart';
 
@@ -79,13 +79,13 @@ Future<void> openKanjiPractice(
 }
 
 /// Opens the vocabulary practice picker for a whole [level], or for a single
-/// group when [vocabIds] is given.
-Future<void> openVocabPractice(
+/// group when [vocabularyIds] is given.
+Future<void> openVocabularyPractice(
   BuildContext context, {
   required String title,
   required String level,
   required Color color,
-  Set<int>? vocabIds,
+  Set<int>? vocabularyIds,
 }) {
   final l = context.l10n;
   return Navigator.of(context).push(
@@ -99,9 +99,9 @@ Future<void> openVocabPractice(
             title: l.freePractice,
             onTap: () => _push(
               ctx,
-              VocabPracticeScreen(
+              VocabularyPracticeScreen(
                 level: level,
-                allowedIds: vocabIds,
+                allowedIds: vocabularyIds,
                 freeMode: true,
               ),
             ),
@@ -111,9 +111,9 @@ Future<void> openVocabPractice(
             title: l.flashcardPractice,
             onTap: () => _push(
               ctx,
-              VocabPracticeScreen(
+              VocabularyPracticeScreen(
                 level: level,
-                allowedIds: vocabIds,
+                allowedIds: vocabularyIds,
                 flashcardOnly: true,
               ),
             ),
@@ -123,9 +123,9 @@ Future<void> openVocabPractice(
             title: l.mcqPractice,
             onTap: () => _push(
               ctx,
-              VocabPracticeScreen(
+              VocabularyPracticeScreen(
                 level: level,
-                allowedIds: vocabIds,
+                allowedIds: vocabularyIds,
                 mcqOnly: true,
               ),
             ),
@@ -135,9 +135,9 @@ Future<void> openVocabPractice(
             title: l.sentencePractice,
             onTap: () => _push(
               ctx,
-              VocabPracticeScreen(
+              VocabularyPracticeScreen(
                 level: level,
-                allowedIds: vocabIds,
+                allowedIds: vocabularyIds,
                 sentenceOnly: true,
               ),
             ),

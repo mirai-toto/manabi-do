@@ -8,7 +8,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/japanese_text.dart';
-import 'flash_card.dart';
+import 'flashcard.dart';
 import 'practice_progress_row.dart';
 
 class GrammarBuilderBody extends StatefulWidget {
@@ -147,7 +147,7 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
           ),
           if (_answered && !widget.autoAdvance) ...[
             const SizedBox(height: AppDimens.spaceMd),
-            FlashCardActions(
+            FlashcardActions(
               card: null,
               isFreeMode: true,
               question: l.selfAssessQuestion,

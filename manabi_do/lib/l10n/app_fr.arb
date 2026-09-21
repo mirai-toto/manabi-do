@@ -48,7 +48,7 @@
     }
   },
 
-  "nLessons": "{count} leçons",
+  "nLessons": "{count, plural, =1{1 leçon} other{{count} leçons}}",
   "@nLessons": {
     "placeholders": {
       "count": { "type": "int" }
@@ -95,7 +95,7 @@
 
   "navSettings": "Paramètres",
   "navHome": "Accueil",
-  "navVocab": "Vocab",
+  "navVocabulary": "Vocab",
 
   "greetingMorning": "Bonjour",
   "greetingAfternoon": "Bon après-midi",
@@ -179,7 +179,7 @@
   "settingsPractice": "Entraînement",
   "settingsHomeScreen": "Écran d'accueil",
   "settingsPracticeNewCharacters": "Nouveaux caractères par jour",
-  "settingsPracticeNewVocab": "Nouveau vocabulaire par jour",
+  "settingsPracticeNewVocabulary": "Nouveau vocabulaire par jour",
 
   "settingsAppearance": "Apparence",
   "settingsThemeSystem": "Système",
@@ -245,6 +245,7 @@
   "drawingCheck": "Vérifier",
   "drawingUndo": "Annuler",
   "drawingClear": "Effacer",
+  "drawingHint": "Indice",
   "drawingStrokeCount": "{count} traits",
   "@drawingStrokeCount": {
     "placeholders": { "count": { "type": "int" } }
@@ -278,11 +279,11 @@
   "@nWords": {
     "placeholders": { "count": { "type": "int" } }
   },
-  "vocabSubtitle": "{total} mots à découvrir",
-  "@vocabSubtitle": {
+  "vocabularySubtitle": "{total} mots à découvrir",
+  "@vocabularySubtitle": {
     "placeholders": { "total": { "type": "int" } }
   },
-  "vocabSubtitleShort": "Mots à découvrir",
+  "vocabularySubtitleShort": "Mots à découvrir",
   "reviewsDue": "{count} révisions",
   "@reviewsDue": {
     "placeholders": { "count": { "type": "int" } }
@@ -331,7 +332,7 @@
   "showStrokeCountLabel": "Afficher le nombre de traits",
   "showStrokeCountSubtitle": "Afficher le nombre de traits comme indice",
   "autoAdvanceLabel": "Avance automatique",
-  "autoAdvanceSubtitle": "Passer au kanji suivant automatiquement quand tout est correct",
+  "autoAdvanceSubtitle": "Passer à la suite automatiquement, en notant chaque réponse à votre place",
 
   "hintUsedFeedback": "Indice utilisé · marqué comme raté",
 
@@ -365,5 +366,15 @@
   "example": "Exemple",
 
   "showExampleLabel": "Afficher l'exemple",
-  "showExampleSubtitle": "Afficher une phrase d'exemple sur les flashcards"
+  "showExampleSubtitle": "Afficher une phrase d'exemple sur les flashcards",
+
+  "speakPronunciation": "Écouter la prononciation",
+  "increaseSetting": "Augmenter {label}",
+  "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
+  "decreaseSetting": "Diminuer {label}",
+  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } },
+
+  "deckCaughtUp": "À jour",
+  "deckNotStarted": "Commencer",
+  "deckContinue": "Continuer"
 }

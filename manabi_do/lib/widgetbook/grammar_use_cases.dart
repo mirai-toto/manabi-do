@@ -12,7 +12,7 @@ import '../presentation/widgets/grammar/blocks/note_block.dart';
 import '../presentation/widgets/grammar/blocks/pattern_block.dart';
 import '../presentation/widgets/grammar/blocks/section_title_block.dart';
 import '../presentation/widgets/grammar/blocks/text_block.dart';
-import '../presentation/widgets/grammar/blocks/vocab_table_block.dart';
+import '../presentation/widgets/grammar/blocks/vocabulary_table_block.dart';
 
 // ── TextBlock ─────────────────────────────────────────────────────────────────
 
@@ -154,17 +154,17 @@ Widget buildExampleTable2Col(BuildContext context) {
   );
 }
 
-// ── VocabTableBlock ───────────────────────────────────────────────────────────
+// ── VocabularyTableBlock ───────────────────────────────────────────────────────────
 
 @widgetbook.UseCase(
   name: 'With verb group',
-  type: VocabTableBlock,
+  type: VocabularyTableBlock,
   path: 'Grammar/Blocks',
 )
-Widget buildVocabTableGroup(BuildContext context) {
+Widget buildVocabularyTableGroup(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: VocabTableBlock(
+    child: VocabularyTableBlock(
       columns: const ['japanese', 'romaji', 'english', 'group'],
       rows: const [
         {
@@ -187,13 +187,13 @@ Widget buildVocabTableGroup(BuildContext context) {
 
 @widgetbook.UseCase(
   name: 'With counter',
-  type: VocabTableBlock,
+  type: VocabularyTableBlock,
   path: 'Grammar/Blocks',
 )
-Widget buildVocabTableCounter(BuildContext context) {
+Widget buildVocabularyTableCounter(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: VocabTableBlock(
+    child: VocabularyTableBlock(
       columns: const ['japanese', 'romaji', 'english', 'counter'],
       rows: const [
         {

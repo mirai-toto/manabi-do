@@ -9,18 +9,18 @@ import '../presentation/widgets/exercise/grammar_error_detection_body.dart';
 import '../presentation/providers/drawing_settings_provider.dart';
 import '../presentation/providers/kanji_strokes_provider.dart';
 import '../presentation/widgets/exercise/drawing_exercise.dart';
-import '../presentation/widgets/exercise/flash_card.dart';
-import '../presentation/widgets/exercise/lesson_reader_card.dart';
+import '../presentation/widgets/exercise/flashcard.dart';
+import '../presentation/widgets/exercise/lesson_reader.dart';
 import '../presentation/widgets/exercise/mcq_card.dart';
 import '../presentation/widgets/exercise/summary_card.dart';
 
-// ── FlashCard ─────────────────────────────────────────────────────────────────
+// ── Flashcard ─────────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Hidden', type: FlashCard, path: 'Exercise')
-Widget buildFlashCardHidden(BuildContext context) {
+@widgetbook.UseCase(name: 'Hidden', type: Flashcard, path: 'Exercise')
+Widget buildFlashcardHidden(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: FlashCard(
+    child: Flashcard(
       prompt: '水',
       promptSub: 'みず',
       reveal: 'Water',
@@ -30,11 +30,11 @@ Widget buildFlashCardHidden(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Revealed', type: FlashCard, path: 'Exercise')
-Widget buildFlashCardRevealed(BuildContext context) {
+@widgetbook.UseCase(name: 'Revealed', type: Flashcard, path: 'Exercise')
+Widget buildFlashcardRevealed(BuildContext context) {
   return const Padding(
     padding: EdgeInsets.all(16),
-    child: FlashCard(
+    child: Flashcard(
       prompt: '水',
       promptSub: 'みず',
       reveal: 'Water',
@@ -44,11 +44,11 @@ Widget buildFlashCardRevealed(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Reversed (EN→JP)', type: FlashCard, path: 'Exercise')
-Widget buildFlashCardReversed(BuildContext context) {
+@widgetbook.UseCase(name: 'Reversed (EN→JP)', type: Flashcard, path: 'Exercise')
+Widget buildFlashcardReversed(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: FlashCard(
+    child: Flashcard(
       prompt: 'Water',
       reveal: '水',
       revealSub: 'みず',
@@ -58,13 +58,13 @@ Widget buildFlashCardReversed(BuildContext context) {
   );
 }
 
-// ── FlashCardActions ──────────────────────────────────────────────────────────
+// ── FlashcardActions ──────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Default', type: FlashCardActions, path: 'Exercise')
-Widget buildFlashCardActions(BuildContext context) {
+@widgetbook.UseCase(name: 'Default', type: FlashcardActions, path: 'Exercise')
+Widget buildFlashcardActions(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: FlashCardActions(
+    child: FlashcardActions(
       card: Card(cardId: 0, due: DateTime.now()),
       question: 'How well did you know this?',
       onRate: (_) {},
@@ -90,6 +90,7 @@ Widget buildDrawingExercise(BuildContext context) {
             label: '水',
             color: Theme.of(context).colorScheme.primary,
             settings: drawingSettings,
+            autoAdvance: drawingSettings.autoAdvance,
           ),
         ),
       );

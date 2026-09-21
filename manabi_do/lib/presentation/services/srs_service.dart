@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
 
+import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
 
 // Pure scheduling: applies a rating to an existing card (or creates a new one)

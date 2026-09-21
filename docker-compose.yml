@@ -4,13 +4,82 @@ services:
     volumes:
       - ./manabi_do:/app
       - pub-cache:/root/.pub-cache
+      # Build output stays in volumes. Nothing the container compiles lands on
+      # the host, so there are no root-owned files to clean up afterwards.
+      - build-output:/app/build
+      # The whole of .dart_tool, not just build/: the container's `pub get`
+      # writes package_config.json with its own /root/.pub-cache paths, which
+      # would break `flutter analyze` on the host if it reached the checkout.
+      - dart-tool:/app/.dart_tool
+      - linux-ephemeral:/app/linux/flutter/ephemeral
     working_dir: /app
 
   build:
     extends:
       service: flutter
+    volumes:
+      # `assets/` is a volume so the content DB never reaches the host. The
+      # committed fonts and icons are seeded in read-only; -n keeps the
+      # freshly generated DB from being clobbered by the committed one.
+      - ./manabi_do/assets:/seed-assets:ro
+      - app-assets:/app/assets
     command: >
-      sh -c "flutter pub get && flutter gen-l10n && dart run build_runner build --delete-conflicting-outputs 2>/dev/null; flutter build linux --release"
+      sh -c "cp -rn /seed-assets/. /app/assets/ &&
+             flutter pub get && flutter gen-l10n &&
+             dart run build_runner build --delete-conflicting-outputs 2>/dev/null;
+             flutter build linux --release"
+
+  # Same command CI runs, so a green local run means a green pipeline.
+  test:
+    extends:
+      service: flutter
+    command: >
+      sh -c "flutter pub get && flutter test"
+
+  # Rebuilds manabi_do/assets/manabi_do_content.db inside the container.
+  #
+  # `data/` is a container-owned volume, not the host directory, so the first
+  # run downloads the ~300 MB of sources itself rather than reusing whatever is
+  # already on your machine. That is the point: it exercises the real pipeline.
+  # Later runs reuse the volume.
+  #
+  # To also re-seed content/ from JMdict, KANJIDIC2 and Bluskyo (this rewrites
+  # tracked files):
+  #
+  #   docker compose run --rm content python3 tools/generate.py --sync --translations
+  content:
+    image: python:3.12-slim
+    volumes:
+      - .:/repo
+      - content-data:/repo/data
+      # The generated DB lands here, not in your checkout.
+      - app-assets:/repo/manabi_do/assets
+    working_dir: /repo
+    command: >
+      sh -c "pip install --quiet pykakasi && python3 tools/generate.py"
+
+  # Runs the built app inside the container.
+  #
+  # Its database lives in the `app-data` volume, so the runtime copy is the
+  # container's own — the host's ~/.local/share is never touched. Combined with
+  # the `content` service above, that means the app is exercised against a DB
+  # built from scratch in isolation.
+  app:
+    extends:
+      service: flutter
+    environment:
+      DISPLAY: ${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - app-data:/root/.local/share
+      - app-assets:/app/assets
+    command: ./build/linux/x64/release/bundle/manabi_do
 
 volumes:
   pub-cache:
+  app-assets:
+  build-output:
+  dart-tool:
+  linux-ephemeral:
+  content-data:
+  app-data:

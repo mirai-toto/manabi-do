@@ -4,7 +4,6 @@ import 'package:fsrs/fsrs.dart';
 import '../../../../core/srs/srs_level.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_tokens.dart';
-import '../../../../core/theme/jlpt_level.dart';
 import '../../../../domain/data/kana_data.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../providers/kana_progress_provider.dart';
@@ -40,7 +39,9 @@ class KanaTabView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final allKana = rows.expand((r) => r.kana).toList();
-    final color = levelColor('kana');
+    // Kana has no JLPT level of its own, so it follows the app accent rather
+    // than carrying a section colour.
+    final color = context.tokens.primary;
     final srsCards = ref.watch(kanaSrsCardsProvider(type)).asData?.value ?? {};
     final learnedCount = allKana.where((e) {
       final level = srsLevel(srsCards[e.id]);
@@ -174,9 +175,7 @@ class _KanaCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final level = srsLevel(card);
-    final Color? accent = level == SrsLevel.newCard
-        ? null
-        : level.accent(context.tokens);
+    final Color? accent = level == SrsLevel.newCard ? null : level.accent;
     return CharacterCell(
       character: entry.kana,
       subLabel: entry.romaji,

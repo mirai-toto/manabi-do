@@ -1,4 +1,3 @@
-Corrections de cette version :
-
-• L'entraînement au tracé affiche désormais le nombre de traits ratés au lieu d'un score « x/x », et ce nombre est enfin correct.
-• La section grammaire n'affiche plus que les niveaux qui contiennent des leçons, au lieu de présenter les niveaux JLPT supérieurs comme bientôt disponibles.
+• La révision quotidienne abandonne les cartes à retourner. Un nouveau réglage peut noter chaque réponse et enchaîner à votre place.
+• Les paquets de l'accueil indiquent quand tout est à jour.
+• Le compte des traits est de nouveau correct, et la recherche de kanji place les caractères courants en tête.

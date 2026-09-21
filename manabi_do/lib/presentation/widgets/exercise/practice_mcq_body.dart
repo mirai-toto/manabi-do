@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/mcq_settings_provider.dart';
-import 'flash_card.dart';
+import 'flashcard.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 
-class PracticeMcqBody extends ConsumerStatefulWidget {
+class PracticeMcqBody extends StatefulWidget {
   final String question;
   final String? japanesePrompt;
   final String? japaneseReading;
@@ -25,6 +23,12 @@ class PracticeMcqBody extends ConsumerStatefulWidget {
   final VoidCallback? onDetailTap;
   final bool compactGrid;
 
+  /// Move on once the answer is in, deriving the rating from it, instead of
+  /// stopping for a self-assessment. The caller decides which setting feeds
+  /// this: free practice has one per exercise, a review has one per session.
+  final bool autoAdvance;
+  final bool showPromptFurigana;
+
   const PracticeMcqBody({
     super.key,
     required this.question,
@@ -35,6 +39,8 @@ class PracticeMcqBody extends ConsumerStatefulWidget {
     required this.total,
     required this.color,
     required this.onAnswer,
+    required this.autoAdvance,
+    required this.showPromptFurigana,
     this.isFreeMode = false,
     this.japanesePrompt,
     this.japaneseReading,
@@ -43,10 +49,10 @@ class PracticeMcqBody extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<PracticeMcqBody> createState() => _PracticeMcqBodyState();
+  State<PracticeMcqBody> createState() => _PracticeMcqBodyState();
 }
 
-class _PracticeMcqBodyState extends ConsumerState<PracticeMcqBody> {
+class _PracticeMcqBodyState extends State<PracticeMcqBody> {
   late List<McqOptionState> _states;
   bool _answered = false;
   bool _autoAdvancing = false;
@@ -72,7 +78,7 @@ class _PracticeMcqBodyState extends ConsumerState<PracticeMcqBody> {
         return McqOptionState.idle;
       });
     });
-    if (widget.isFreeMode && ref.read(mcqSettingsProvider).autoAdvance) {
+    if (widget.autoAdvance) {
       setState(() => _autoAdvancing = true);
       Future.delayed(const Duration(milliseconds: 800), () {
         if (mounted) widget.onAnswer(isCorrect ? Rating.good : Rating.again);
@@ -105,13 +111,11 @@ class _PracticeMcqBodyState extends ConsumerState<PracticeMcqBody> {
             options: options,
             onOptionTap: _answered ? null : _onTap,
             compactGrid: widget.compactGrid,
-            showFurigana: ref.watch(
-              mcqSettingsProvider.select((s) => s.showPromptFurigana),
-            ),
+            showFurigana: widget.showPromptFurigana,
           ),
           if (_answered && !_autoAdvancing) ...[
             const SizedBox(height: AppDimens.spaceMd),
-            FlashCardActions(
+            FlashcardActions(
               card: widget.card,
               isFreeMode: widget.isFreeMode,
               question: context.l10n.selfAssessQuestion,

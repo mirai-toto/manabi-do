@@ -98,7 +98,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String nLessons(int count) {
-    return '$count Lektionen';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Lektionen',
+      one: '1 Lektion',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -199,7 +205,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get navHome => 'Start';
 
   @override
-  String get navVocab => 'Vokabeln';
+  String get navVocabulary => 'Vokabeln';
 
   @override
   String get greetingMorning => 'Guten Morgen';
@@ -420,7 +426,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsPracticeNewCharacters => 'Neue Zeichen pro Tag';
 
   @override
-  String get settingsPracticeNewVocab => 'Neues Vokabular pro Tag';
+  String get settingsPracticeNewVocabulary => 'Neues Vokabular pro Tag';
 
   @override
   String get settingsAppearance => 'Erscheinungsbild';
@@ -569,6 +575,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get drawingClear => 'Löschen';
 
   @override
+  String get drawingHint => 'Hinweis';
+
+  @override
   String drawingStrokeCount(int count) {
     return '$count Striche';
   }
@@ -631,12 +640,12 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String vocabSubtitle(int total) {
+  String vocabularySubtitle(int total) {
     return '$total Wörter entdecken';
   }
 
   @override
-  String get vocabSubtitleShort => 'Wörter entdecken';
+  String get vocabularySubtitleShort => 'Wörter entdecken';
 
   @override
   String reviewsDue(int count) {
@@ -760,7 +769,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get autoAdvanceSubtitle =>
-      'Automatisch zum nächsten Kanji wechseln, wenn alles korrekt ist';
+      'Automatisch weitergehen und jede Antwort für dich bewerten';
 
   @override
   String get hintUsedFeedback => 'Hinweis benutzt · als falsch markiert';
@@ -850,4 +859,26 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get showExampleSubtitle =>
       'Einen Beispielsatz auf Karteikarten anzeigen';
+
+  @override
+  String get speakPronunciation => 'Aussprache abspielen';
+
+  @override
+  String increaseSetting(String label) {
+    return '$label erhöhen';
+  }
+
+  @override
+  String decreaseSetting(String label) {
+    return '$label verringern';
+  }
+
+  @override
+  String get deckCaughtUp => 'Erledigt';
+
+  @override
+  String get deckNotStarted => 'Starten';
+
+  @override
+  String get deckContinue => 'Weiter';
 }

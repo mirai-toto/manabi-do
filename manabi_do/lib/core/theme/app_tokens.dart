@@ -33,19 +33,15 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color successContainer;
   final Color warning;
   final Color warningContainer;
+  final Color info;
+  final Color infoContainer;
 
-  // Section brand
-  final Color charactersDark;
+  // Section brand. All three currently match `primary` so the sections read as
+  // one product rather than three. Kept as separate tokens so giving a section
+  // its own colour again is a one-line change, not a refactor.
   final Color characters;
-  final Color vocabularyDark;
   final Color vocabulary;
-
-  // SRS progress levels
-  final Color srsLearning;
-  final Color srsApprentice;
-  final Color srsFamiliar;
-  final Color srsMastered;
-  final Color srsExpert;
+  final Color grammar;
 
   // Drawing
   final Color hintStroke;
@@ -79,15 +75,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.successContainer,
     required this.warning,
     required this.warningContainer,
-    required this.charactersDark,
+    required this.info,
+    required this.infoContainer,
     required this.characters,
-    required this.vocabularyDark,
     required this.vocabulary,
-    required this.srsLearning,
-    required this.srsApprentice,
-    required this.srsFamiliar,
-    required this.srsMastered,
-    required this.srsExpert,
+    required this.grammar,
     required this.hintStroke,
     required this.onyomi,
     required this.kunyomi,
@@ -118,15 +110,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: Color(0xFFC8F5DA),
     warning: Color(0xFF7A5200),
     warningContainer: Color(0xFFFFDDB3),
-    charactersDark: Color(0xFF0D47A1),
-    characters: Color(0xFF1976D2),
-    vocabularyDark: Color(0xFF1B5E20),
-    vocabulary: Color(0xFF388E3C),
-    srsLearning: Color(0xFFE53935),
-    srsApprentice: Color(0xFFFF8F00),
-    srsFamiliar: Color(0xFFF9A825),
-    srsMastered: Color(0xFF43A047),
-    srsExpert: Color(0xFF1E88E5),
+    info: Color(0xFF1E88E5),
+    infoContainer: Color(0xFFD6E9FB),
+    characters: Color(0xFF6B4EFF),
+    vocabulary: Color(0xFF6B4EFF),
+    grammar: Color(0xFF6B4EFF),
     hintStroke: Color(0xFFFF8F00),
     onyomi: Color(0xFF1565C0),
     kunyomi: Color(0xFFC62828),
@@ -157,15 +145,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: Color(0xFF0A3D22),
     warning: Color(0xFFFFBA60),
     warningContainer: Color(0xFF3E2900),
-    charactersDark: Color(0xFF1565C0),
-    characters: Color(0xFF90CAF9),
-    vocabularyDark: Color(0xFF2E7D32),
-    vocabulary: Color(0xFFA5D6A7),
-    srsLearning: Color(0xFFEF9A9A),
-    srsApprentice: Color(0xFFFFB74D),
-    srsFamiliar: Color(0xFFFFE082),
-    srsMastered: Color(0xFFA5D6A7),
-    srsExpert: Color(0xFF90CAF9),
+    info: Color(0xFF90CAF9),
+    infoContainer: Color(0xFF13344F),
+    characters: Color(0xFFCFBCFF),
+    vocabulary: Color(0xFFCFBCFF),
+    grammar: Color(0xFFCFBCFF),
     hintStroke: Color(0xFFFFB74D),
     onyomi: Color(0xFF90CAF9),
     kunyomi: Color(0xFFEF9A9A),
@@ -197,15 +181,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? successContainer,
     Color? warning,
     Color? warningContainer,
-    Color? charactersDark,
+    Color? info,
+    Color? infoContainer,
     Color? characters,
-    Color? vocabularyDark,
     Color? vocabulary,
-    Color? srsLearning,
-    Color? srsApprentice,
-    Color? srsFamiliar,
-    Color? srsMastered,
-    Color? srsExpert,
+    Color? grammar,
     Color? hintStroke,
     Color? onyomi,
     Color? kunyomi,
@@ -234,15 +214,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: successContainer ?? this.successContainer,
     warning: warning ?? this.warning,
     warningContainer: warningContainer ?? this.warningContainer,
-    charactersDark: charactersDark ?? this.charactersDark,
+    info: info ?? this.info,
+    infoContainer: infoContainer ?? this.infoContainer,
     characters: characters ?? this.characters,
-    vocabularyDark: vocabularyDark ?? this.vocabularyDark,
     vocabulary: vocabulary ?? this.vocabulary,
-    srsLearning: srsLearning ?? this.srsLearning,
-    srsApprentice: srsApprentice ?? this.srsApprentice,
-    srsFamiliar: srsFamiliar ?? this.srsFamiliar,
-    srsMastered: srsMastered ?? this.srsMastered,
-    srsExpert: srsExpert ?? this.srsExpert,
+    grammar: grammar ?? this.grammar,
     hintStroke: hintStroke ?? this.hintStroke,
     onyomi: onyomi ?? this.onyomi,
     kunyomi: kunyomi ?? this.kunyomi,
@@ -307,20 +283,16 @@ class AppTokens extends ThemeExtension<AppTokens> {
         t,
       )!,
       warning: Color.lerp(warning, other.warning, t)!,
+      info: Color.lerp(info, other.info, t)!,
+      infoContainer: Color.lerp(infoContainer, other.infoContainer, t)!,
       warningContainer: Color.lerp(
         warningContainer,
         other.warningContainer,
         t,
       )!,
-      charactersDark: Color.lerp(charactersDark, other.charactersDark, t)!,
       characters: Color.lerp(characters, other.characters, t)!,
-      vocabularyDark: Color.lerp(vocabularyDark, other.vocabularyDark, t)!,
       vocabulary: Color.lerp(vocabulary, other.vocabulary, t)!,
-      srsLearning: Color.lerp(srsLearning, other.srsLearning, t)!,
-      srsApprentice: Color.lerp(srsApprentice, other.srsApprentice, t)!,
-      srsFamiliar: Color.lerp(srsFamiliar, other.srsFamiliar, t)!,
-      srsMastered: Color.lerp(srsMastered, other.srsMastered, t)!,
-      srsExpert: Color.lerp(srsExpert, other.srsExpert, t)!,
+      grammar: Color.lerp(grammar, other.grammar, t)!,
       hintStroke: Color.lerp(hintStroke, other.hintStroke, t)!,
       onyomi: Color.lerp(onyomi, other.onyomi, t)!,
       kunyomi: Color.lerp(kunyomi, other.kunyomi, t)!,
@@ -334,16 +306,7 @@ class AppTokens extends ThemeExtension<AppTokens> {
   /// that paint themselves `t.primary` follow the level without being edited.
   AppTokens accented(Color accent, Brightness brightness) {
     final isDark = brightness == Brightness.dark;
-    // Pick whichever on-colour actually contrasts more. ThemeData's
-    // estimateBrightnessForColor uses a fixed luminance threshold, which lands
-    // on the wrong side for mid-tone accents (kana teal, N1 red) and drops
-    // those below AA.
-    const white = Color(0xFFFFFFFF);
-    const nearBlack = Color(0xFF1C1B1F);
-    final onAccent =
-        _contrastRatio(accent, white) >= _contrastRatio(accent, nearBlack)
-        ? white
-        : nearBlack;
+    final onAccent = onAccentFor(accent);
 
     return copyWith(
       primary: accent,
@@ -357,6 +320,23 @@ class AppTokens extends ThemeExtension<AppTokens> {
           : Color.lerp(accent, const Color(0xFF000000), 0.55),
     );
   }
+}
+
+/// The readable foreground for [accent].
+///
+/// Picks whichever on-colour actually contrasts more. `ThemeData`'s
+/// `estimateBrightnessForColor` uses a fixed luminance threshold, which lands
+/// on the wrong side for mid-tone accents (kana teal, N1 red) and drops those
+/// below AA.
+///
+/// Use this — not a hardcoded `Colors.white` — whenever text or an icon sits on
+/// a colour the widget was handed rather than one from the theme.
+Color onAccentFor(Color accent) {
+  const white = Color(0xFFFFFFFF);
+  const nearBlack = Color(0xFF1C1B1F);
+  return _contrastRatio(accent, white) >= _contrastRatio(accent, nearBlack)
+      ? white
+      : nearBlack;
 }
 
 /// WCAG relative-luminance contrast ratio between two colours.

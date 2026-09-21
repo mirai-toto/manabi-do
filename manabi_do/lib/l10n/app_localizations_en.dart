@@ -98,7 +98,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String nLessons(int count) {
-    return '$count lessons';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count lessons',
+      one: '1 lesson',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -199,7 +205,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navHome => 'Home';
 
   @override
-  String get navVocab => 'Vocab';
+  String get navVocabulary => 'Vocab';
 
   @override
   String get greetingMorning => 'Good morning';
@@ -419,7 +425,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsPracticeNewCharacters => 'New characters per day';
 
   @override
-  String get settingsPracticeNewVocab => 'New vocabulary per day';
+  String get settingsPracticeNewVocabulary => 'New vocabulary per day';
 
   @override
   String get settingsAppearance => 'Appearance';
@@ -567,6 +573,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get drawingClear => 'Clear';
 
   @override
+  String get drawingHint => 'Hint';
+
+  @override
   String drawingStrokeCount(int count) {
     return '$count strokes';
   }
@@ -629,12 +638,12 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String vocabSubtitle(int total) {
+  String vocabularySubtitle(int total) {
     return '$total words to discover';
   }
 
   @override
-  String get vocabSubtitleShort => 'Words to discover';
+  String get vocabularySubtitleShort => 'Words to discover';
 
   @override
   String reviewsDue(int count) {
@@ -756,7 +765,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get autoAdvanceSubtitle =>
-      'Move to next kanji automatically when all correct';
+      'Move on automatically, scoring each answer for you';
 
   @override
   String get hintUsedFeedback => 'Hint used · marked as missed';
@@ -845,4 +854,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get showExampleSubtitle => 'Display an example sentence on flashcards';
+
+  @override
+  String get speakPronunciation => 'Play pronunciation';
+
+  @override
+  String increaseSetting(String label) {
+    return 'Increase $label';
+  }
+
+  @override
+  String decreaseSetting(String label) {
+    return 'Decrease $label';
+  }
+
+  @override
+  String get deckCaughtUp => 'Caught up';
+
+  @override
+  String get deckNotStarted => 'Start';
+
+  @override
+  String get deckContinue => 'Continue';
 }

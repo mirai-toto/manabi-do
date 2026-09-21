@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+import '../presentation/widgets/settings/home_settings_card.dart';
+import '../presentation/widgets/settings/practice_settings_card.dart';
 import '../presentation/widgets/settings/settings_card.dart';
+import '../presentation/widgets/settings/settings_info.dart';
+import '../presentation/widgets/settings/settings_stepper.dart';
 import '../presentation/widgets/settings/settings_tile.dart';
+import '../presentation/widgets/settings/settings_toggle.dart';
 
 // ── SettingsCard ──────────────────────────────────────────────────────────────
 
@@ -145,6 +150,74 @@ Widget buildSettingsStepperMin(BuildContext context) {
           value: 1,
         ),
       ],
+    ),
+  );
+}
+
+// ── PracticeSettingsCard ──────────────────────────────────────────────────────
+
+@widgetbook.UseCase(
+  name: 'Default',
+  type: PracticeSettingsCard,
+  path: 'Settings',
+)
+Widget buildPracticeSettingsCard(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: PracticeSettingsCard(
+      newCharactersPerDay: 10,
+      newVocabularyPerDay: 10,
+      onNewCharactersChanged: (_) {},
+      onNewVocabularyChanged: (_) {},
+    ),
+  );
+}
+
+@widgetbook.UseCase(
+  name: 'At bounds',
+  type: PracticeSettingsCard,
+  path: 'Settings',
+)
+Widget buildPracticeSettingsCardAtBounds(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: PracticeSettingsCard(
+      newCharactersPerDay: 0,
+      newVocabularyPerDay: 50,
+      onNewCharactersChanged: (_) {},
+      onNewVocabularyChanged: (_) {},
+    ),
+  );
+}
+
+// ── HomeSettingsCard ──────────────────────────────────────────────────────────
+
+@widgetbook.UseCase(name: 'All on', type: HomeSettingsCard, path: 'Settings')
+Widget buildHomeSettingsCard(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: HomeSettingsCard(
+      showKana: true,
+      showKanji: true,
+      showVocabulary: true,
+      onShowKanaChanged: (_) {},
+      onShowKanjiChanged: (_) {},
+      onShowVocabularyChanged: (_) {},
+    ),
+  );
+}
+
+@widgetbook.UseCase(name: 'Mixed', type: HomeSettingsCard, path: 'Settings')
+Widget buildHomeSettingsCardMixed(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: HomeSettingsCard(
+      showKana: true,
+      showKanji: false,
+      showVocabulary: false,
+      onShowKanaChanged: (_) {},
+      onShowKanjiChanged: (_) {},
+      onShowVocabularyChanged: (_) {},
     ),
   );
 }

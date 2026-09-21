@@ -14,7 +14,7 @@
       ]
     },
     {
-      "type": "vocab_table",
+      "type": "vocabulary_table",
       "columns": ["japanese", "français"],
       "rows": [
         { "japanese": "安い → 安くて", "français": "pas cher → pas cher et…" },

@@ -8,7 +8,7 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/pos_label.dart';
 import '../widgets.dart';
-import '../../providers/vocab_provider.dart';
+import '../../providers/vocabulary_provider.dart';
 
 class KanjiExampleWords extends ConsumerWidget {
   final Kanji kanji;
@@ -17,7 +17,7 @@ class KanjiExampleWords extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(
-      localizedKanjiVocabProvider((
+      localizedKanjiVocabularyProvider((
         kanjiId: kanji.id,
         character: kanji.character,
       )),
