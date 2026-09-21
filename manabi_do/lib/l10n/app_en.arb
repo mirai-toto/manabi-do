@@ -52,7 +52,7 @@
     }
   },
 
-  "nLessons": "{count} lessons",
+  "nLessons": "{count, plural, =1{1 lesson} other{{count} lessons}}",
   "@nLessons": {
     "placeholders": {
       "count": { "type": "int" }
@@ -266,6 +266,7 @@
   "drawingCheck": "Check",
   "drawingUndo": "Undo",
   "drawingClear": "Clear",
+  "drawingHint": "Hint",
   "drawingStrokeCount": "{count} strokes",
   "@drawingStrokeCount": {
     "placeholders": { "count": { "type": "int" } }

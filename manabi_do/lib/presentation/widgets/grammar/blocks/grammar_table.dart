@@ -5,6 +5,10 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../common/card_container.dart';
 
+/// Gap between columns. Without it, a romaji cell that fills its column runs
+/// straight into the English next to it and the two read as one sentence.
+const double _columnGap = AppDimens.spaceSm;
+
 /// Shared table renderer used by [ExampleTableBlock], [VocabularyTableBlock], and
 /// [ConjugationTableBlock]. Not a block itself: use the typed wrappers.
 ///
@@ -73,6 +77,7 @@ class _HeaderRow extends StatelessWidget {
         vertical: AppDimens.spaceSm,
       ),
       child: Row(
+        spacing: _columnGap,
         children: columns
             .map(
               (col) => Expanded(
@@ -117,6 +122,7 @@ class _DataRow extends StatelessWidget {
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: _columnGap,
           children: columns.asMap().entries.map((entry) {
             final i = entry.key;
             final col = entry.value;

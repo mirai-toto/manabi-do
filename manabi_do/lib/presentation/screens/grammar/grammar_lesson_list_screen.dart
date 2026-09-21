@@ -198,7 +198,14 @@ class _GrammarLessonListScreenState
         child: ScrollFade(
           builder: (controller) => ListView(
             controller: controller,
-            padding: const EdgeInsets.all(AppDimens.spaceMd),
+            // Room to scroll the last chapter out from under the Practice
+            // button, which otherwise floats over it.
+            padding: EdgeInsets.fromLTRB(
+              AppDimens.spaceMd,
+              AppDimens.spaceMd,
+              AppDimens.spaceMd,
+              hasExercises ? AppDimens.fabClearance : AppDimens.spaceMd,
+            ),
             children: [
               for (int ci = 0; ci < widget.theme.chapters.length; ci++) ...[
                 if (ci > 0 && !showChapterHeaders)

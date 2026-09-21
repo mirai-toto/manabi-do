@@ -48,7 +48,7 @@
     }
   },
 
-  "nLessons": "{count} leçons",
+  "nLessons": "{count, plural, =1{1 leçon} other{{count} leçons}}",
   "@nLessons": {
     "placeholders": {
       "count": { "type": "int" }
@@ -245,6 +245,7 @@
   "drawingCheck": "Vérifier",
   "drawingUndo": "Annuler",
   "drawingClear": "Effacer",
+  "drawingHint": "Indice",
   "drawingStrokeCount": "{count} traits",
   "@drawingStrokeCount": {
     "placeholders": { "count": { "type": "int" } }

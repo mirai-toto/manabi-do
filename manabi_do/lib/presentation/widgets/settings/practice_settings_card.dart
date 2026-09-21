@@ -5,7 +5,10 @@ import '../widgets.dart';
 
 const int _minPerDay = 0;
 const int _maxPerDay = 50;
-const int _stepPerDay = 5;
+
+/// One at a time. A coarser step reads as tidier but makes the small
+/// adjustments people actually want, like 10 to 11, impossible.
+const int _stepPerDay = 1;
 
 /// Steppers for how many new characters and vocabulary words to introduce per day.
 class PracticeSettingsCard extends StatelessWidget {

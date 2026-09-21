@@ -265,7 +265,7 @@ abstract class AppLocalizations {
   /// No description provided for @nLessons.
   ///
   /// In en, this message translates to:
-  /// **'{count} lessons'**
+  /// **'{count, plural, =1{1 lesson} other{{count} lessons}}'**
   String nLessons(int count);
 
   /// No description provided for @lessonsProgress.
@@ -1119,6 +1119,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clear'**
   String get drawingClear;
+
+  /// No description provided for @drawingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint'**
+  String get drawingHint;
 
   /// No description provided for @drawingStrokeCount.
   ///

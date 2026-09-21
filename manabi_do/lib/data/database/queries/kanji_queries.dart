@@ -20,20 +20,35 @@ extension KanjiQueries on AppDatabase {
   Stream<Kanji?> watchKanjiById(int id) =>
       (select(kanjis)..where((k) => k.id.equals(id))).watchSingleOrNull();
 
-  Future<List<Kanji>> searchKanji(String query) {
+  Future<List<Kanji>> searchKanji(String query) async {
     final q = '%$query%';
-    return (select(kanjis)
-          ..where(
-            (k) =>
-                k.character.like(q) |
-                k.meaning.like(q) |
-                k.onReading.like(q) |
-                k.kunReading.like(q),
-          )
-          ..orderBy([
-            (k) => OrderingTerm.asc(k.jlptLevel),
-            (k) => OrderingTerm.asc(k.id),
-          ]))
-        .get();
+    final results =
+        await (select(kanjis)..where(
+              (k) =>
+                  k.character.like(q) |
+                  k.meaning.like(q) |
+                  k.onReading.like(q) |
+                  k.kunReading.like(q),
+            ))
+            .get();
+    // Easiest first. Ordering on the level string runs N1 to N5, which is
+    // backwards: searching "water" should surface 水 above the rare N1 kanji
+    // whose meanings happen to mention water.
+    results.sort((a, b) {
+      final byLevel = _searchRank(
+        a.jlptLevel,
+      ).compareTo(_searchRank(b.jlptLevel));
+      return byLevel != 0 ? byLevel : a.id.compareTo(b.id);
+    });
+    return results;
   }
+
+  static int _searchRank(String level) => switch (level) {
+    'N5' => 0,
+    'N4' => 1,
+    'N3' => 2,
+    'N2' => 3,
+    'N1' => 4,
+    _ => 5,
+  };
 }

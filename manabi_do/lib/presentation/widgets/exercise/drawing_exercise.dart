@@ -163,7 +163,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
           TextButton.icon(
             onPressed: _onHint,
             icon: const Icon(Icons.help_outline_rounded, size: 16),
-            label: Text(_hintLevel == 0 ? '?' : '??'),
+            label: Text(l.drawingHint),
             style: _hintsUsed
                 ? TextButton.styleFrom(foregroundColor: t.hintStroke)
                 : null,

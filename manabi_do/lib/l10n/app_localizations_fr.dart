@@ -98,7 +98,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String nLessons(int count) {
-    return '$count leçons';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count leçons',
+      one: '1 leçon',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -567,6 +573,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get drawingClear => 'Effacer';
+
+  @override
+  String get drawingHint => 'Indice';
 
   @override
   String drawingStrokeCount(int count) {

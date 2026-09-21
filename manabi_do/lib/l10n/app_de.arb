@@ -49,7 +49,7 @@
     }
   },
 
-  "nLessons": "{count} Lektionen",
+  "nLessons": "{count, plural, =1{1 Lektion} other{{count} Lektionen}}",
   "@nLessons": {
     "placeholders": {
       "count": { "type": "int" }
@@ -247,6 +247,7 @@
   "drawingCheck": "Prüfen",
   "drawingUndo": "Rückgängig",
   "drawingClear": "Löschen",
+  "drawingHint": "Hinweis",
   "drawingStrokeCount": "{count} Striche",
   "@drawingStrokeCount": {
     "placeholders": { "count": { "type": "int" } }
