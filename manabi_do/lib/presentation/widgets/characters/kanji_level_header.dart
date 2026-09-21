@@ -36,7 +36,7 @@ class KanjiLevelHeader extends StatelessWidget {
           ),
           PillBadge(
             label: level,
-            color: Colors.white,
+            color: onAccentFor(color),
             background: color,
             textStyle: AppTextStyles.labelLarge.copyWith(
               fontWeight: FontWeight.w700,

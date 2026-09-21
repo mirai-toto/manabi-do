@@ -150,7 +150,7 @@ class _GroupCard extends StatelessWidget {
                   children: [
                     PillBadge(
                       label: group.label,
-                      color: Colors.white,
+                      color: onAccentFor(accentColor),
                       background: accentColor,
                     ),
                     if (group.tag != null) ...[

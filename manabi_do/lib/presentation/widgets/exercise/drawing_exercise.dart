@@ -251,6 +251,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
       ),
     );
+    final Color onAccent = onAccentFor(widget.color);
     final nextStyle = FilledButton.styleFrom(
       backgroundColor: widget.color,
       padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
@@ -280,7 +281,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
               child: Text(
                 l.next,
                 style: AppTextStyles.body.copyWith(
-                  color: Colors.white,
+                  color: onAccent,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -296,7 +297,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
       child: Text(
         l.retry,
         style: AppTextStyles.body.copyWith(
-          color: Colors.white,
+          color: onAccent,
           fontWeight: FontWeight.w600,
         ),
       ),
