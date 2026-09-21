@@ -2,28 +2,22 @@
 set -e
 
 # Builds and runs the app entirely inside Docker, against a content DB the
-# container builds from its own downloaded sources. Nothing on the host is read
-# or written except the repo itself: the runtime database lives in the
-# `app-data` volume, so the host's ~/.local/share is left alone.
+# container rebuilds from its own downloaded sources. The host contributes the
+# source tree and an X server; everything else — the 300 MB of content sources,
+# the build output, the runtime database — lives in container volumes.
 #
-#   ./run-linux.sh                    full run, content DB rebuilt from scratch
-#   ./run-linux.sh --skip-content     reuse the committed asset (faster)
+#   ./run-linux.sh                  full run, content DB rebuilt from scratch
+#   ./run-linux.sh --skip-content   reuse the committed asset (faster)
 
 ROOT="$(dirname "$(realpath "$0")")/../.."
 COMPOSE="docker compose -f $ROOT/docker-compose.yml"
 
-if [ "$1" != "--skip-content" ]; then
-  $COMPOSE run --rm content
-fi
+[ "$1" = "--skip-content" ] || $COMPOSE run --rm content
 
 $COMPOSE run --rm build
 
 # The app needs to reach the host's X server to draw a window.
+trap 'xhost -local:docker >/dev/null 2>&1 || true' EXIT
 xhost +local:docker >/dev/null 2>&1 || true
-$COMPOSE run --rm app
-xhost -local:docker >/dev/null 2>&1 || true
 
-sudo rm -rf "$ROOT/manabi_do/build" \
-            "$ROOT/manabi_do/.dart_tool/build" \
-            "$ROOT/manabi_do/linux/flutter/ephemeral/.plugin_symlinks" \
-            "$ROOT/manabi_do/windows/flutter/ephemeral/.plugin_symlinks"
+$COMPOSE run --rm app

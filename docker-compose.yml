@@ -4,6 +4,11 @@ services:
     volumes:
       - ./manabi_do:/app
       - pub-cache:/root/.pub-cache
+      # Build output stays in volumes. Nothing the container compiles lands on
+      # the host, so there are no root-owned files to clean up afterwards.
+      - build-output:/app/build
+      - build-runner-cache:/app/.dart_tool/build
+      - linux-ephemeral:/app/linux/flutter/ephemeral
     working_dir: /app
 
   build:
@@ -61,6 +66,9 @@ services:
 
 volumes:
   pub-cache:
+  build-output:
+  build-runner-cache:
+  linux-ephemeral:
   content-data:
   content-pip:
   app-data:
