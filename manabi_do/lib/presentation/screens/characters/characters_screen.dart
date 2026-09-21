@@ -110,7 +110,7 @@ class _CharactersHeader extends StatelessWidget {
       title: l.sectionCharacters,
       subtitle: subtitle,
       glyph: '字',
-      color: t.primary,
+      color: t.characters,
     );
   }
 }
