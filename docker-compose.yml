@@ -19,5 +19,31 @@ services:
     command: >
       sh -c "flutter pub get && flutter test"
 
+  # Rebuilds manabi_do/assets/manabi_do_content.db inside the container.
+  #
+  # `data/` is a container-owned volume, not the host directory, so the first
+  # run downloads the ~300 MB of sources itself rather than reusing whatever is
+  # already on your machine. That is the point: it exercises the real pipeline.
+  # Later runs reuse the volume.
+  #
+  #   docker compose run --rm content
+  #       rebuild the DB from the committed content/ (downloads Tatoeba + KanjiVG)
+  #
+  #   docker compose run --rm content \
+  #     python3 tools/generate.py --sync --translations
+  #       also re-seed content/ from JMdict, KANJIDIC2 and Bluskyo.
+  #       NOTE: this rewrites tracked files under content/.
+  content:
+    image: python:3.12-slim
+    volumes:
+      - .:/repo
+      - content-data:/repo/data
+      - content-pip:/root/.cache/pip
+    working_dir: /repo
+    command: >
+      sh -c "pip install --quiet pykakasi && python3 tools/generate.py"
+
 volumes:
   pub-cache:
+  content-data:
+  content-pip:
