@@ -37,6 +37,13 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
         working-directory: manabi_do
 
+      # Guards the database: that schema.drift and drift agree, that the
+      # shipped asset still matches the schema, and that a content refresh
+      # cannot silently drop a user's review history.
+      - name: Test
+        run: flutter test
+        working-directory: manabi_do
+
   commitlint:
     name: Commit messages
     runs-on: ubuntu-latest

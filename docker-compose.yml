@@ -12,5 +12,12 @@ services:
     command: >
       sh -c "flutter pub get && flutter gen-l10n && dart run build_runner build --delete-conflicting-outputs 2>/dev/null; flutter build linux --release"
 
+  # Same command CI runs, so a green local run means a green pipeline.
+  test:
+    extends:
+      service: flutter
+    command: >
+      sh -c "flutter pub get && flutter test"
+
 volumes:
   pub-cache:
