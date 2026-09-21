@@ -5,8 +5,12 @@ import 'package:flutter/material.dart';
 /// Every colour clears WCAG AA — `onAccentFor` picks the readable foreground,
 /// which is dark for N5-N3 and white for the deeper N2/N1.
 ///
-/// `basics` and `kana` sit outside the JLPT scale. Note `basics` brown is
-/// currently hard to tell from N4 under red-green colour blindness.
+/// `basics` and `kana` sit outside the JLPT scale.
+///
+/// Known issue: N2 burnt orange and N1 brick red are neighbouring hues at
+/// similar darkness, so they drop to ~20-26 separation under red-green colour
+/// blindness — close to indistinguishable. Pulling them apart means changing
+/// lightness, not hue. `basics` vs N4 is the next weakest at ~33.
 Color levelColor(String level) => switch (level) {
   'basics' => const Color(0xFF795548), // brown: introductory content
   'kana' => const Color(0xFF26A69A), // teal: pre-JLPT alphabet
