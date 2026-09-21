@@ -11,8 +11,6 @@ import '../common/tappable_surface.dart';
 /// One study domain on the home screen: glyph, known/seen progress,
 /// new-today count, and a due badge. Tapping starts the domain's
 /// practice session; browsing the domain stays on the bottom nav.
-const double _glyphBox = 46;
-
 class DeckRow extends StatelessWidget {
   final String title;
   final String glyph;
@@ -57,77 +55,64 @@ class DeckRow extends StatelessWidget {
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(AppDimens.spaceMd),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: Row(
             children: [
-              Row(
-                children: [
-                  Container(
-                    width: _glyphBox,
-                    height: _glyphBox,
-                    decoration: BoxDecoration(
-                      color: color.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+              Container(
+                width: 46,
+                height: 46,
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+                ),
+                child: Center(
+                  child: Text(
+                    glyph,
+                    style: AppTextStyles.jpBodyLarge.copyWith(
+                      color: color,
+                      fontWeight: FontWeight.w600,
                     ),
-                    child: Center(
-                      child: Text(
-                        glyph,
-                        style: AppTextStyles.jpBodyLarge.copyWith(
-                          color: color,
-                          fontWeight: FontWeight.w600,
-                        ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: AppDimens.iconTextGap),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTextStyles.body.copyWith(
+                        color: t.onSurface,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ),
-                  const SizedBox(width: AppDimens.iconTextGap),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          style: AppTextStyles.body.copyWith(
-                            color: t.onSurface,
-                            fontWeight: FontWeight.w600,
-                          ),
+                    if (counts.isNotEmpty) ...[
+                      const SizedBox(height: AppDimens.spaceXxs),
+                      Text(
+                        counts,
+                        style: AppTextStyles.labelSmall.copyWith(
+                          color: t.onSurfaceVariant,
                         ),
-                        if (counts.isNotEmpty) ...[
-                          const SizedBox(height: AppDimens.spaceXxs),
-                          Text(
-                            counts,
-                            style: AppTextStyles.labelSmall.copyWith(
-                              color: t.onSurfaceVariant,
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-                  if (due > 0) ...[
-                    const SizedBox(width: AppDimens.spaceSm),
-                    PillBadge(
-                      label: l.nDue(due),
+                      ),
+                    ],
+                    const SizedBox(height: AppDimens.spaceSm),
+                    AppProgressBar(
+                      progress: seen > 0 ? known / seen : 0,
                       color: color,
-                      background: color.withValues(alpha: 0.15),
+                      height: 4,
                     ),
                   ],
-                ],
-              ),
-              const SizedBox(height: AppDimens.spaceSm),
-              // Outside the Row on purpose: inside it, the bar shared width
-              // with the due pill, so a deck with nothing due drew a longer
-              // bar than one that had. Indented to line up with the title.
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: _glyphBox + AppDimens.iconTextGap,
                 ),
-                child: AppProgressBar(
-                  progress: seen > 0 ? known / seen : 0,
+              ),
+              if (due > 0) ...[
+                const SizedBox(width: AppDimens.spaceSm),
+                PillBadge(
+                  label: l.nDue(due),
                   color: color,
-                  height: 4,
+                  background: color.withValues(alpha: 0.15),
                 ),
-              ),
+              ],
             ],
           ),
         ),
