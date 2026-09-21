@@ -33,6 +33,8 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color successContainer;
   final Color warning;
   final Color warningContainer;
+  final Color info;
+  final Color infoContainer;
 
   // Section brand. All three currently match `primary` so the sections read as
   // one product rather than three. Kept as separate tokens so giving a section
@@ -40,13 +42,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color characters;
   final Color vocabulary;
   final Color grammar;
-
-  // SRS progress levels
-  final Color srsLearning;
-  final Color srsApprentice;
-  final Color srsFamiliar;
-  final Color srsMastered;
-  final Color srsExpert;
 
   // Drawing
   final Color hintStroke;
@@ -80,14 +75,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.successContainer,
     required this.warning,
     required this.warningContainer,
+    required this.info,
+    required this.infoContainer,
     required this.characters,
     required this.vocabulary,
     required this.grammar,
-    required this.srsLearning,
-    required this.srsApprentice,
-    required this.srsFamiliar,
-    required this.srsMastered,
-    required this.srsExpert,
     required this.hintStroke,
     required this.onyomi,
     required this.kunyomi,
@@ -118,14 +110,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: Color(0xFFC8F5DA),
     warning: Color(0xFF7A5200),
     warningContainer: Color(0xFFFFDDB3),
+    info: Color(0xFF1E88E5),
+    infoContainer: Color(0xFFD6E9FB),
     characters: Color(0xFF6B4EFF),
     vocabulary: Color(0xFF6B4EFF),
     grammar: Color(0xFF6B4EFF),
-    srsLearning: Color(0xFFE53935),
-    srsApprentice: Color(0xFFFF8F00),
-    srsFamiliar: Color(0xFFF9A825),
-    srsMastered: Color(0xFF43A047),
-    srsExpert: Color(0xFF1E88E5),
     hintStroke: Color(0xFFFF8F00),
     onyomi: Color(0xFF1565C0),
     kunyomi: Color(0xFFC62828),
@@ -156,14 +145,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: Color(0xFF0A3D22),
     warning: Color(0xFFFFBA60),
     warningContainer: Color(0xFF3E2900),
+    info: Color(0xFF90CAF9),
+    infoContainer: Color(0xFF13344F),
     characters: Color(0xFFCFBCFF),
     vocabulary: Color(0xFFCFBCFF),
     grammar: Color(0xFFCFBCFF),
-    srsLearning: Color(0xFFEF9A9A),
-    srsApprentice: Color(0xFFFFB74D),
-    srsFamiliar: Color(0xFFFFE082),
-    srsMastered: Color(0xFFA5D6A7),
-    srsExpert: Color(0xFF90CAF9),
     hintStroke: Color(0xFFFFB74D),
     onyomi: Color(0xFF90CAF9),
     kunyomi: Color(0xFFEF9A9A),
@@ -195,14 +181,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? successContainer,
     Color? warning,
     Color? warningContainer,
+    Color? info,
+    Color? infoContainer,
     Color? characters,
     Color? vocabulary,
     Color? grammar,
-    Color? srsLearning,
-    Color? srsApprentice,
-    Color? srsFamiliar,
-    Color? srsMastered,
-    Color? srsExpert,
     Color? hintStroke,
     Color? onyomi,
     Color? kunyomi,
@@ -231,14 +214,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: successContainer ?? this.successContainer,
     warning: warning ?? this.warning,
     warningContainer: warningContainer ?? this.warningContainer,
+    info: info ?? this.info,
+    infoContainer: infoContainer ?? this.infoContainer,
     characters: characters ?? this.characters,
     vocabulary: vocabulary ?? this.vocabulary,
     grammar: grammar ?? this.grammar,
-    srsLearning: srsLearning ?? this.srsLearning,
-    srsApprentice: srsApprentice ?? this.srsApprentice,
-    srsFamiliar: srsFamiliar ?? this.srsFamiliar,
-    srsMastered: srsMastered ?? this.srsMastered,
-    srsExpert: srsExpert ?? this.srsExpert,
     hintStroke: hintStroke ?? this.hintStroke,
     onyomi: onyomi ?? this.onyomi,
     kunyomi: kunyomi ?? this.kunyomi,
@@ -303,6 +283,8 @@ class AppTokens extends ThemeExtension<AppTokens> {
         t,
       )!,
       warning: Color.lerp(warning, other.warning, t)!,
+      info: Color.lerp(info, other.info, t)!,
+      infoContainer: Color.lerp(infoContainer, other.infoContainer, t)!,
       warningContainer: Color.lerp(
         warningContainer,
         other.warningContainer,
@@ -311,11 +293,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
       characters: Color.lerp(characters, other.characters, t)!,
       vocabulary: Color.lerp(vocabulary, other.vocabulary, t)!,
       grammar: Color.lerp(grammar, other.grammar, t)!,
-      srsLearning: Color.lerp(srsLearning, other.srsLearning, t)!,
-      srsApprentice: Color.lerp(srsApprentice, other.srsApprentice, t)!,
-      srsFamiliar: Color.lerp(srsFamiliar, other.srsFamiliar, t)!,
-      srsMastered: Color.lerp(srsMastered, other.srsMastered, t)!,
-      srsExpert: Color.lerp(srsExpert, other.srsExpert, t)!,
       hintStroke: Color.lerp(hintStroke, other.hintStroke, t)!,
       onyomi: Color.lerp(onyomi, other.onyomi, t)!,
       kunyomi: Color.lerp(kunyomi, other.kunyomi, t)!,

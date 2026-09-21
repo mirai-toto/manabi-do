@@ -30,7 +30,7 @@ class ReviewProgressInfo extends StatelessWidget {
     };
     final stateColor = level == SrsLevel.newCard
         ? t.onSurfaceVariant
-        : level.accent(t);
+        : level.accent;
     final progress = (stability / 21.0).clamp(0.0, 1.0);
     final dueText = _dueText(srsCard, l);
 

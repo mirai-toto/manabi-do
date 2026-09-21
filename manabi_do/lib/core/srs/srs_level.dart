@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide Card, State;
 import 'package:fsrs/fsrs.dart';
 
-import '../theme/app_tokens.dart';
+import '../theme/jlpt_level.dart';
 
 enum SrsLevel { newCard, learning, apprentice, familiar, mastered, expert }
 
@@ -22,12 +22,16 @@ bool isSrsKnown(Card? card) => switch (srsLevel(card)) {
 };
 
 extension SrsLevelColor on SrsLevel {
-  Color accent(AppTokens t) => switch (this) {
+  /// Mastery reuses the JLPT ramp, read backwards: an item you are still
+  /// learning is as red as N1, one you have mastered is as green as N5. Sharing
+  /// the ramp keeps the two scales consistent and leaves one palette to
+  /// maintain rather than two.
+  Color get accent => switch (this) {
     SrsLevel.newCard => Colors.transparent,
-    SrsLevel.learning => t.srsLearning,
-    SrsLevel.apprentice => t.srsApprentice,
-    SrsLevel.familiar => t.srsFamiliar,
-    SrsLevel.mastered => t.srsMastered,
-    SrsLevel.expert => t.srsExpert,
+    SrsLevel.learning => levelColor('N1'),
+    SrsLevel.apprentice => levelColor('N2'),
+    SrsLevel.familiar => levelColor('N3'),
+    SrsLevel.mastered => levelColor('N4'),
+    SrsLevel.expert => levelColor('N5'),
   };
 }

@@ -219,14 +219,10 @@ class FlashcardActions extends StatelessWidget {
           children: [
             btn(l.ratingGood, Rating.good, t.successContainer, t.success),
             const SizedBox(width: AppDimens.spaceSm),
-            // Ratings are a semantic scale, not an accent: keep Easy on the
-            // SRS ramp so it never collides with a level colour.
-            btn(
-              l.ratingEasy,
-              Rating.easy,
-              t.srsExpert.withValues(alpha: 0.15),
-              t.srsExpert,
-            ),
+            // Ratings are a semantic scale, not an accent. Again/Hard/Good
+            // take error/warning/success; Easy needs a fourth that reads as
+            // positive without being another green, hence `info`.
+            btn(l.ratingEasy, Rating.easy, t.infoContainer, t.info),
           ],
         ),
       ],
