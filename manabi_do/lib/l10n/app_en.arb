@@ -386,5 +386,11 @@
   "example": "Example",
 
   "showExampleLabel": "Show example",
-  "showExampleSubtitle": "Display an example sentence on flashcards"
+  "showExampleSubtitle": "Display an example sentence on flashcards",
+
+  "speakPronunciation": "Play pronunciation",
+  "increaseSetting": "Increase {label}",
+  "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
+  "decreaseSetting": "Decrease {label}",
+  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } }
 }

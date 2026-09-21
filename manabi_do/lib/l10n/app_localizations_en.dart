@@ -845,4 +845,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get showExampleSubtitle => 'Display an example sentence on flashcards';
+
+  @override
+  String get speakPronunciation => 'Play pronunciation';
+
+  @override
+  String increaseSetting(String label) {
+    return 'Increase $label';
+  }
+
+  @override
+  String decreaseSetting(String label) {
+    return 'Decrease $label';
+  }
 }

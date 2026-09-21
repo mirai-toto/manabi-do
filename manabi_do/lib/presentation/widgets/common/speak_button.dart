@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/providers/tts_provider.dart';
+import '../../../l10n/l10n.dart';
 
 class SpeakButton extends ConsumerWidget {
   final String text;
@@ -19,6 +20,7 @@ class SpeakButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
       icon: Icon(Icons.volume_up_rounded, size: size, color: color),
+      tooltip: context.l10n.speakPronunciation,
       padding: EdgeInsets.zero,
       constraints: const BoxConstraints(),
       visualDensity: VisualDensity.compact,

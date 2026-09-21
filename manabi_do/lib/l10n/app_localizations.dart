@@ -1617,6 +1617,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Display an example sentence on flashcards'**
   String get showExampleSubtitle;
+
+  /// No description provided for @speakPronunciation.
+  ///
+  /// In en, this message translates to:
+  /// **'Play pronunciation'**
+  String get speakPronunciation;
+
+  /// No description provided for @increaseSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'Increase {label}'**
+  String increaseSetting(String label);
+
+  /// No description provided for @decreaseSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'Decrease {label}'**
+  String decreaseSetting(String label);
 }
 
 class _AppLocalizationsDelegate

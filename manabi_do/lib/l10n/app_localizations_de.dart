@@ -850,4 +850,17 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get showExampleSubtitle =>
       'Einen Beispielsatz auf Karteikarten anzeigen';
+
+  @override
+  String get speakPronunciation => 'Aussprache abspielen';
+
+  @override
+  String increaseSetting(String label) {
+    return '$label erhöhen';
+  }
+
+  @override
+  String decreaseSetting(String label) {
+    return '$label verringern';
+  }
 }

@@ -20,6 +20,14 @@ class TappableSurface extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final radius = decoration.borderRadius;
+    return Semantics(
+      button: onTap != null,
+      enabled: onTap != null,
+      child: _surface(radius),
+    );
+  }
+
+  Widget _surface(BorderRadiusGeometry? radius) {
     return ClipRRect(
       borderRadius: radius is BorderRadius ? radius : BorderRadius.zero,
       child: Material(

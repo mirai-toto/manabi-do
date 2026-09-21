@@ -365,5 +365,11 @@
   "example": "Exemple",
 
   "showExampleLabel": "Afficher l'exemple",
-  "showExampleSubtitle": "Afficher une phrase d'exemple sur les flashcards"
+  "showExampleSubtitle": "Afficher une phrase d'exemple sur les flashcards",
+
+  "speakPronunciation": "Écouter la prononciation",
+  "increaseSetting": "Augmenter {label}",
+  "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
+  "decreaseSetting": "Diminuer {label}",
+  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } }
 }

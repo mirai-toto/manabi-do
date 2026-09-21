@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/l10n.dart';
 
 /// A stepper row with − value + controls.
 class SettingsStepper extends StatelessWidget {
@@ -39,6 +40,7 @@ class SettingsStepper extends StatelessWidget {
             ),
           ),
           IconButton(
+            tooltip: context.l10n.decreaseSetting(label),
             onPressed: onDecrement,
             icon: Icon(
               Icons.remove_rounded,
@@ -61,6 +63,7 @@ class SettingsStepper extends StatelessWidget {
             ),
           ),
           IconButton(
+            tooltip: context.l10n.increaseSetting(label),
             onPressed: onIncrement,
             icon: Icon(
               Icons.add_rounded,

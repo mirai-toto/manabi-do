@@ -364,5 +364,11 @@
   "example": "Beispiel",
 
   "showExampleLabel": "Beispiel anzeigen",
-  "showExampleSubtitle": "Einen Beispielsatz auf Karteikarten anzeigen"
+  "showExampleSubtitle": "Einen Beispielsatz auf Karteikarten anzeigen",
+
+  "speakPronunciation": "Aussprache abspielen",
+  "increaseSetting": "{label} erhöhen",
+  "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
+  "decreaseSetting": "{label} verringern",
+  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } }
 }
