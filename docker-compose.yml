@@ -31,19 +31,15 @@ services:
   # already on your machine. That is the point: it exercises the real pipeline.
   # Later runs reuse the volume.
   #
-  #   docker compose run --rm content
-  #       rebuild the DB from the committed content/ (downloads Tatoeba + KanjiVG)
+  # To also re-seed content/ from JMdict, KANJIDIC2 and Bluskyo (this rewrites
+  # tracked files):
   #
-  #   docker compose run --rm content \
-  #     python3 tools/generate.py --sync --translations
-  #       also re-seed content/ from JMdict, KANJIDIC2 and Bluskyo.
-  #       NOTE: this rewrites tracked files under content/.
+  #   docker compose run --rm content python3 tools/generate.py --sync --translations
   content:
     image: python:3.12-slim
     volumes:
       - .:/repo
       - content-data:/repo/data
-      - content-pip:/root/.cache/pip
     working_dir: /repo
     command: >
       sh -c "pip install --quiet pykakasi && python3 tools/generate.py"
@@ -70,5 +66,4 @@ volumes:
   build-runner-cache:
   linux-ephemeral:
   content-data:
-  content-pip:
   app-data:

@@ -3,17 +3,13 @@ set -e
 
 # Builds and runs the app entirely inside Docker, against a content DB the
 # container rebuilds from its own downloaded sources. The host contributes the
-# source tree and an X server; everything else — the 300 MB of content sources,
-# the build output, the runtime database — lives in container volumes.
-#
-#   ./run-linux.sh                  full run, content DB rebuilt from scratch
-#   ./run-linux.sh --skip-content   reuse the committed asset (faster)
+# source tree and an X server; everything else — the content sources, the build
+# output, the runtime database — lives in container volumes.
 
 ROOT="$(dirname "$(realpath "$0")")/../.."
 COMPOSE="docker compose -f $ROOT/docker-compose.yml"
 
-[ "$1" = "--skip-content" ] || $COMPOSE run --rm content
-
+$COMPOSE run --rm content
 $COMPOSE run --rm build
 
 # The app needs to reach the host's X server to draw a window.
