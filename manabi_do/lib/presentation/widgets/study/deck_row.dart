@@ -148,11 +148,14 @@ class DeckRow extends StatelessWidget {
                   minWidth: pillWidth,
                 )
               else
+                // Filled rather than tinted: the due badge already wears the
+                // accent softly, so a solid chip reads as the finished state
+                // without introducing a second hue.
                 PillBadge(
                   label: l.deckCaughtUp,
                   icon: Icons.check_rounded,
-                  color: t.success,
-                  background: t.success.withValues(alpha: 0.15),
+                  color: t.onPrimary,
+                  background: t.primary,
                   minWidth: pillWidth,
                 ),
             ],
