@@ -43,7 +43,24 @@ services:
     command: >
       sh -c "pip install --quiet pykakasi && python3 tools/generate.py"
 
+  # Runs the built app inside the container.
+  #
+  # Its database lives in the `app-data` volume, so the runtime copy is the
+  # container's own — the host's ~/.local/share is never touched. Combined with
+  # the `content` service above, that means the app is exercised against a DB
+  # built from scratch in isolation.
+  app:
+    extends:
+      service: flutter
+    environment:
+      DISPLAY: ${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - app-data:/root/.local/share
+    command: ./build/linux/x64/release/bundle/manabi_do
+
 volumes:
   pub-cache:
   content-data:
   content-pip:
+  app-data:

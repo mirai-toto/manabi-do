@@ -1,30 +1,27 @@
 #!/bin/bash
 set -e
 
+# Builds and runs the app entirely inside Docker, against a content DB the
+# container builds from its own downloaded sources. Nothing on the host is read
+# or written except the repo itself: the runtime database lives in the
+# `app-data` volume, so the host's ~/.local/share is left alone.
+#
+#   ./run-linux.sh                    full run, content DB rebuilt from scratch
+#   ./run-linux.sh --skip-content     reuse the committed asset (faster)
+
 ROOT="$(dirname "$(realpath "$0")")/../.."
 COMPOSE="docker compose -f $ROOT/docker-compose.yml"
 
-# The app support dir a release build uses on Linux. The bundled asset is only
-# copied over it when _assetDbVersion changes, so a rebuilt DB with an unchanged
-# version would otherwise be ignored.
-RUNTIME_DB="$HOME/.local/share/com.manabisho.manabi_do"
-
-# 1. Rebuild the content DB in the container, from its own downloaded sources.
-#    Pass --skip-content to reuse the committed asset instead.
 if [ "$1" != "--skip-content" ]; then
   $COMPOSE run --rm content
 fi
 
-# 2. Compile.
 $COMPOSE run --rm build
 
-# 3. Drop the previous runtime copy so the freshly built asset is the one used.
-rm -rf "$RUNTIME_DB/manabi_do.db" \
-       "$RUNTIME_DB/manabi_do.db-wal" \
-       "$RUNTIME_DB/manabi_do.db-shm" \
-       "$RUNTIME_DB/manabi_do.db.version"
-
-"$ROOT/manabi_do/build/linux/x64/release/bundle/manabi_do"
+# The app needs to reach the host's X server to draw a window.
+xhost +local:docker >/dev/null 2>&1 || true
+$COMPOSE run --rm app
+xhost -local:docker >/dev/null 2>&1 || true
 
 sudo rm -rf "$ROOT/manabi_do/build" \
             "$ROOT/manabi_do/.dart_tool/build" \
