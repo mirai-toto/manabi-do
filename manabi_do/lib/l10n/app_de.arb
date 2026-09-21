@@ -372,5 +372,6 @@
   "decreaseSetting": "{label} verringern",
   "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } },
 
-  "deckCaughtUp": "Erledigt"
+  "deckCaughtUp": "Erledigt",
+  "deckNotStarted": "Starten"
 }

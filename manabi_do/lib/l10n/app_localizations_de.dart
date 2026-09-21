@@ -866,4 +866,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get deckCaughtUp => 'Erledigt';
+
+  @override
+  String get deckNotStarted => 'Starten';
 }

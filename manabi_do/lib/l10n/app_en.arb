@@ -394,5 +394,6 @@
   "decreaseSetting": "Decrease {label}",
   "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } },
 
-  "deckCaughtUp": "Caught up"
+  "deckCaughtUp": "Caught up",
+  "deckNotStarted": "Start"
 }

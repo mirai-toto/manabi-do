@@ -868,4 +868,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get deckCaughtUp => 'À jour';
+
+  @override
+  String get deckNotStarted => 'Commencer';
 }

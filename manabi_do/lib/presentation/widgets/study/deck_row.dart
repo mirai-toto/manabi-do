@@ -35,10 +35,11 @@ double _pillWidth(BuildContext context, AppLocalizations l) {
 
   final iconWidth =
       scaler.scale((style.fontSize ?? 12) + 2) + AppDimens.spaceXxs;
-  final widest = math.max(
+  final widest = [
     textWidth(l.nDue(999)),
     textWidth(l.deckCaughtUp) + iconWidth,
-  );
+    textWidth(l.deckNotStarted) + iconWidth,
+  ].reduce(math.max);
   return widest + AppDimens.badgePaddingH * 2;
 }
 
@@ -69,13 +70,18 @@ class DeckRow extends StatelessWidget {
     final t = context.tokens;
     final l = context.l10n;
     final pillWidth = _pillWidth(context, l);
+    final status = seen == 0
+        ? l.deckNotStarted
+        : due > 0
+        ? l.nDue(due)
+        : l.deckCaughtUp;
     final counts = [
       if (seen > 0) '$known/$seen',
       if (newToday > 0) l.nNewToday(newToday),
     ].join(' · ');
 
     return Semantics(
-      label: '$title, $counts, ${due > 0 ? l.nDue(due) : l.deckCaughtUp}',
+      label: '$title, $counts, $status',
       button: true,
       excludeSemantics: true,
       child: TappableSurface(
@@ -140,7 +146,19 @@ class DeckRow extends StatelessWidget {
               const SizedBox(width: AppDimens.spaceSm),
               // Always a pill, so the row keeps its shape and the progress bar
               // gets the same width whether or not anything is due.
-              if (due > 0)
+              //
+              // Three states, not two: a deck nobody has opened has nothing due
+              // either, but calling that "caught up" claims credit for work
+              // that never happened.
+              if (seen == 0)
+                PillBadge(
+                  label: l.deckNotStarted,
+                  icon: Icons.play_arrow_rounded,
+                  color: t.onSurfaceVariant,
+                  background: t.surfaceVariant,
+                  minWidth: pillWidth,
+                )
+              else if (due > 0)
                 PillBadge(
                   label: l.nDue(due),
                   color: color,
