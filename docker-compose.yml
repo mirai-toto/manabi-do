@@ -14,8 +14,17 @@ services:
   build:
     extends:
       service: flutter
+    volumes:
+      # `assets/` is a volume so the content DB never reaches the host. The
+      # committed fonts and icons are seeded in read-only; -n keeps the
+      # freshly generated DB from being clobbered by the committed one.
+      - ./manabi_do/assets:/seed-assets:ro
+      - app-assets:/app/assets
     command: >
-      sh -c "flutter pub get && flutter gen-l10n && dart run build_runner build --delete-conflicting-outputs 2>/dev/null; flutter build linux --release"
+      sh -c "cp -rn /seed-assets/. /app/assets/ &&
+             flutter pub get && flutter gen-l10n &&
+             dart run build_runner build --delete-conflicting-outputs 2>/dev/null;
+             flutter build linux --release"
 
   # Same command CI runs, so a green local run means a green pipeline.
   test:
@@ -40,6 +49,8 @@ services:
     volumes:
       - .:/repo
       - content-data:/repo/data
+      # The generated DB lands here, not in your checkout.
+      - app-assets:/repo/manabi_do/assets
     working_dir: /repo
     command: >
       sh -c "pip install --quiet pykakasi && python3 tools/generate.py"
@@ -58,10 +69,12 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
       - app-data:/root/.local/share
+      - app-assets:/app/assets
     command: ./build/linux/x64/release/bundle/manabi_do
 
 volumes:
   pub-cache:
+  app-assets:
   build-output:
   build-runner-cache:
   linux-ephemeral:
