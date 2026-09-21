@@ -57,7 +57,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
       children: [
         _SectionLabel(l.practiceSettingsSessionLength),
         const SizedBox(height: AppDimens.spaceXs),
-        SegmentSelector(
+        SegmentedControl(
           options: const ['10', '20', '50', '∞'],
           selected: switch (value) {
             10 => 0,
@@ -83,7 +83,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
       children: [
         _SectionLabel(l.practiceSettingsMcqChoices),
         const SizedBox(height: AppDimens.spaceXs),
-        SegmentSelector(
+        SegmentedControl(
           options: const ['4', '6', '8'],
           selected: switch (value) {
             6 => 1,
@@ -280,7 +280,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceXs),
               _SectionLabel(l.translationModeLabel),
               const SizedBox(height: AppDimens.spaceXs),
-              SegmentSelector(
+              SegmentedControl(
                 options: [
                   l.translationModeAlways,
                   l.translationModeOnDemand,
@@ -321,7 +321,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceXs),
               _SectionLabel(l.practiceSettingsRecognition),
               const SizedBox(height: AppDimens.spaceXs),
-              SegmentSelector(
+              SegmentedControl(
                 options: [
                   l.recognitionStrict,
                   l.recognitionNormal,
@@ -335,7 +335,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceMd),
               _SectionLabel(l.practiceSettingsHint),
               const SizedBox(height: AppDimens.spaceXs),
-              SegmentSelector(
+              SegmentedControl(
                 options: [l.hintMeaning, l.hintReadings, l.hintBoth],
                 selected: drawing.hintMode.index,
                 onSelect: (i) => updateDrawing(

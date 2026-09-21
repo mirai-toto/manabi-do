@@ -16,6 +16,14 @@ import '../../services/srs_service.dart';
 import '../../services/support_service.dart';
 import '../../widgets/widgets.dart';
 
+/// Order the appearance segments are shown in. Listed explicitly so it cannot
+/// drift from `ThemeMode`'s declaration order.
+const List<ThemeMode> _themeModes = [
+  ThemeMode.system,
+  ThemeMode.light,
+  ThemeMode.dark,
+];
+
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -181,27 +189,20 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsAppearance),
             const SizedBox(height: AppDimens.spaceSm),
-            SegmentedButton<ThemeMode>(
-              segments: [
-                ButtonSegment(
-                  value: ThemeMode.system,
-                  icon: const Icon(Icons.brightness_auto_rounded),
-                  label: Text(l.settingsThemeSystem),
-                ),
-                ButtonSegment(
-                  value: ThemeMode.light,
-                  icon: const Icon(Icons.light_mode_rounded),
-                  label: Text(l.settingsThemeLight),
-                ),
-                ButtonSegment(
-                  value: ThemeMode.dark,
-                  icon: const Icon(Icons.dark_mode_rounded),
-                  label: Text(l.settingsThemeDark),
-                ),
+            SegmentedControl(
+              options: [
+                l.settingsThemeSystem,
+                l.settingsThemeLight,
+                l.settingsThemeDark,
               ],
-              selected: {themeMode},
-              onSelectionChanged: (modes) =>
-                  ref.read(themeModeProvider.notifier).setMode(modes.first),
+              icons: const [
+                Icons.brightness_auto_rounded,
+                Icons.light_mode_rounded,
+                Icons.dark_mode_rounded,
+              ],
+              selected: _themeModes.indexOf(themeMode),
+              onSelect: (i) =>
+                  ref.read(themeModeProvider.notifier).setMode(_themeModes[i]),
             ),
 
             const SizedBox(height: AppDimens.spaceLg),

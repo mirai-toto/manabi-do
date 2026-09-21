@@ -19,7 +19,7 @@ export 'common/progress_row.dart';
 export 'common/section_header.dart';
 export 'common/scroll_fade.dart';
 export 'common/section_label.dart';
-export 'common/segment_selector.dart';
+export 'common/segmented_control.dart';
 export 'common/sheet_drag_handle.dart';
 export 'common/segmented_tab_bar.dart';
 export 'common/speak_button.dart';

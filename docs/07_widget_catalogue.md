@@ -299,15 +299,31 @@ SectionHeader(
 
 ---
 
-### SegmentSelector
+### SegmentedControl
 
-Horizontal row of equally-sized labelled segments. Selected segment: `primary` fill + white label. Others: `cardBackground` + `outlineVariant` border + `onSurface` label. Animates transitions in 150ms. All option labels are pre-formatted by the caller.
+The app's one segmented control — picks a value from a small fixed set. Horizontal row of equally-sized segments; selected gets `primary` fill + white label, others `cardBackground` + `outlineVariant` border. Animates in 150ms. Labels are pre-formatted by the caller.
+
+Not to be confused with `SegmentedTabBar`, which drives a `TabController` to switch panes. This one is a form input: it reports an index.
+
+Optional `icons` renders a leading icon per option and must line up with `options`.
 
 ```dart
-SegmentSelector(
+SegmentedControl(
   options: [l.always, l.onTap, l.never],
   selected: _furiganaMode,
   onSelect: (i) => setState(() => _furiganaMode = i),
+)
+
+// With icons — the appearance picker in Settings
+SegmentedControl(
+  options: [l.settingsThemeSystem, l.settingsThemeLight, l.settingsThemeDark],
+  icons: const [
+    Icons.brightness_auto_rounded,
+    Icons.light_mode_rounded,
+    Icons.dark_mode_rounded,
+  ],
+  selected: _themeModes.indexOf(themeMode),
+  onSelect: (i) => ref.read(themeModeProvider.notifier).setMode(_themeModes[i]),
 )
 ```
 
