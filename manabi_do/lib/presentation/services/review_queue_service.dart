@@ -94,48 +94,31 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
 
   return (pairs.map((pair) {
     final (k, card) = pair;
-    if (rng.nextBool()) {
-      final pool = k.type == 'hiragana' ? allHiragana : allKatakana;
-      final kanaMcq = buildKanaMcqOptions(
-        target: k,
-        pool: pool,
-        n: mcqSettings.mcqChoiceCount,
-        rng: rng,
-      );
-      return PracticeItem(
-        id: k.id,
-        srsType: k.type,
-        card: card,
-        buildBody: (index, total, onAnswer, settings) => Builder(
-          builder: (ctx) => PracticeMcqBody(
-            question: ctx.l10n.mcqSelectKanaReading,
-            japanesePrompt: k.character,
-            options: kanaMcq.options,
-            correctIndex: kanaMcq.correctIndex,
-            card: card,
-            index: index,
-            total: total,
-            color: color,
-            onAnswer: onAnswer,
-            autoAdvance: settings.mcq.autoAdvance,
-            showPromptFurigana: settings.mcq.showPromptFurigana,
-          ),
-        ),
-      );
-    }
+    final pool = k.type == 'hiragana' ? allHiragana : allKatakana;
+    final kanaMcq = buildKanaMcqOptions(
+      target: k,
+      pool: pool,
+      n: mcqSettings.mcqChoiceCount,
+      rng: rng,
+    );
     return PracticeItem(
       id: k.id,
       srsType: k.type,
       card: card,
-      buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
-        japanese: k.character,
-        answer: k.romaji,
-        card: card,
-        index: index,
-        total: total,
-        color: color,
-        onAnswer: onAnswer,
-        showExample: settings.flashcard.showExample,
+      buildBody: (index, total, onAnswer, settings) => Builder(
+        builder: (ctx) => PracticeMcqBody(
+          question: ctx.l10n.mcqSelectKanaReading,
+          japanesePrompt: k.character,
+          options: kanaMcq.options,
+          correctIndex: kanaMcq.correctIndex,
+          card: card,
+          index: index,
+          total: total,
+          color: color,
+          onAnswer: onAnswer,
+          autoAdvance: settings.mcq.autoAdvance,
+          showPromptFurigana: settings.mcq.showPromptFurigana,
+        ),
       ),
     );
   }).toList())..shuffle(rng);
@@ -176,27 +159,11 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
   return pairs.map((pair) {
     final (k, card) = pair;
     final color = levelColor(k.jlptLevel);
-    final quizType = rng.nextInt(4);
+    // 0: kanji -> meaning, 1: meaning -> kanji, 2: drawing. No flashcard here:
+    // the daily queue only asks questions you have to answer.
+    final quizType = rng.nextInt(3);
 
-    if (quizType == 0) {
-      return PracticeItem(
-        id: k.id,
-        srsType: 'kanji',
-        card: card,
-        buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
-          japanese: k.character,
-          answer: meaningOf(k),
-          card: card,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          showExample: settings.flashcard.showExample,
-        ),
-      );
-    }
-
-    if (quizType == 3) {
+    if (quizType == 2) {
       return PracticeItem(
         id: k.id,
         srsType: 'kanji',
@@ -213,7 +180,7 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
       );
     }
 
-    final isKanjiToMeaning = quizType == 1;
+    final isKanjiToMeaning = quizType == 0;
     final kanjiMcq = buildKanjiMcqOptions(
       target: k,
       pool: allKanji,
@@ -293,31 +260,12 @@ Future<List<PracticeItem>> loadVocabularyQueue(WidgetRef ref) async {
               .where((s) => sentenceTranslations.containsKey(s.id))
               .toList()
         : allSentences;
-    final hasSentence = sentences.isNotEmpty;
-    final typeCount = hasSentence ? 4 : 3;
-    final quizType = rng.nextInt(typeCount);
+    // Multiple choice, or a sentence cloze when the word has a sentence to
+    // hide it in. No flashcard here: the daily queue only asks questions you
+    // have to answer.
+    final useCloze = sentences.isNotEmpty && rng.nextBool();
 
-    if (quizType == 0 || quizType == 1) {
-      return PracticeItem(
-        id: entry.id,
-        srsType: 'vocabulary',
-        card: card,
-        buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
-          japanese: entry.word,
-          label: entry.reading != entry.word ? entry.reading : null,
-          answer: meaningOf(entry),
-          isReversed: quizType == 1,
-          card: card,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          showExample: settings.flashcard.showExample,
-        ),
-      );
-    }
-
-    if (quizType == 2) {
+    if (!useCloze) {
       final vocabularyMcq = buildVocabularyMcqOptions(
         target: entry,
         pool: allVocabulary,
@@ -350,7 +298,6 @@ Future<List<PracticeItem>> loadVocabularyQueue(WidgetRef ref) async {
       );
     }
 
-    // quizType == 3: sentence cloze
     final sentence = sentences[rng.nextInt(sentences.length)];
     final cloze = buildClozeOptions(
       target: entry,
