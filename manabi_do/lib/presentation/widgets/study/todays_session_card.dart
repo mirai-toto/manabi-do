@@ -5,6 +5,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/app_button.dart';
+import '../common/pill_badge.dart';
 
 /// Hero card summarising everything due today, with one button to start a
 /// combined review session. Shows a caught-up message when nothing is due.
@@ -114,22 +115,14 @@ class _DomainChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppDimens.badgePaddingH,
-        vertical: AppDimens.badgePaddingV,
-      ),
-      decoration: BoxDecoration(
-        color: t.primary.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-      ),
-      child: Text(
-        '$glyph $count',
-        style: AppTextStyles.labelSmall.copyWith(
-          color: t.primary,
-          fontWeight: FontWeight.w600,
-          fontFamilyFallback: const ['NotoSansJP'],
-        ),
+    return PillBadge(
+      label: '$glyph $count',
+      color: t.primary,
+      background: t.primary.withValues(alpha: 0.12),
+      // The label leads with a Japanese glyph, so the fallback has to stay.
+      textStyle: AppTextStyles.labelSmall.copyWith(
+        fontWeight: FontWeight.w600,
+        fontFamilyFallback: const ['NotoSansJP'],
       ),
     );
   }

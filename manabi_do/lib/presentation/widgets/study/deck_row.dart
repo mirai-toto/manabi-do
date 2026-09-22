@@ -41,7 +41,7 @@ double _pillWidth(BuildContext context, AppLocalizations l) {
     textWidth(l.deckNotStarted) + iconWidth,
     textWidth(l.deckContinue) + iconWidth,
   ].reduce(math.max);
-  return widest + AppDimens.badgePaddingH * 2;
+  return widest + PillBadge.paddingH * 2;
 }
 
 class DeckRow extends StatelessWidget {
