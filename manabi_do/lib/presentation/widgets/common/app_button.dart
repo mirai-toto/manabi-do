@@ -3,6 +3,13 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 
+/// The outlined and text variants sit tighter than the filled ones, so they
+/// carry their own padding. Only this button uses these numbers.
+abstract final class _Dimens {
+  static const double compactPaddingV = 10;
+  static const double compactPaddingH = 22;
+}
+
 enum AppButtonVariant { filled, tonal, outlined, text, danger }
 
 enum AppButtonSize { regular, small }
@@ -71,8 +78,8 @@ class AppButton extends StatelessWidget {
         (variant == AppButtonVariant.outlined ||
                 variant == AppButtonVariant.text)
             ? const EdgeInsets.symmetric(
-                horizontal: AppDimens.buttonPaddingHCompact,
-                vertical: AppDimens.buttonPaddingVCompact,
+                horizontal: _Dimens.compactPaddingH,
+                vertical: _Dimens.compactPaddingV,
               )
             : const EdgeInsets.symmetric(
                 horizontal: AppDimens.spaceLg,

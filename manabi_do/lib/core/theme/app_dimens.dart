@@ -24,17 +24,15 @@ abstract final class AppDimens {
   static const double spaceSnug = 10;
   static const double spaceCozy = 12;
 
-  // Component-specific padding (used in multiple widgets)
+  // Shared across widgets that have to agree with each other. A value only
+  // belongs here if two widgets diverging on it would be a bug; one that is
+  // merely the same number in two places lives in the widget that uses it.
   static const double badgePaddingH = 10;
   static const double badgePaddingV = 3;
   static const double chipPaddingH = 14;
   static const double chipPaddingV = 6;
   static const double buttonPaddingV = 12;
-  static const double buttonPaddingVCompact = 10;
-  static const double buttonPaddingHCompact = 22;
   static const double optionTilePaddingV = 14;
   static const double iconTextGap = 14;
-  static const double pipSize = 6;
-  static const double pipGap = 3;
   static const double fabClearance = 80;
 }
