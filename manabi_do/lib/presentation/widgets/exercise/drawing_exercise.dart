@@ -73,7 +73,9 @@ class _DrawingExerciseState extends State<DrawingExercise>
   // stroke, not per attempt, so one tricky stroke can only cost one mistake.
   final Set<int> _wrongStrokes = <int>{};
   bool _hintsUsed = false;
-  bool _autoAdvanceDone = false;
+  // Set the moment the delayed advance is queued, so the buttons it replaces
+  // stop being offered for the second it stays on screen.
+  bool _autoAdvanceScheduled = false;
   final _canvasKey = GlobalKey<KanjiDrawingCanvasState>();
 
   late final AnimationController _wrongFade = AnimationController(
@@ -177,37 +179,41 @@ class _DrawingExerciseState extends State<DrawingExercise>
     final l = context.l10n;
     final t = context.tokens;
     final showSrsActions =
-        widget.onRate != null && !_hintsUsed && !(widget.autoAdvance && _done);
+        widget.onRate != null && !_hintsUsed && !_autoAdvanceScheduled;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (_hintsUsed)
-          Text(
-            l.hintUsedFeedback,
-            style: AppTextStyles.body.copyWith(
-              color: t.error,
-              fontWeight: FontWeight.w600,
+        // Auto-advance leaves too little time to read a correction, so it gets
+        // none at all rather than a flash of one.
+        if (!widget.autoAdvance) ...[
+          if (_hintsUsed)
+            Text(
+              l.hintUsedFeedback,
+              style: AppTextStyles.body.copyWith(
+                color: t.error,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            )
+          else ...[
+            Text(
+              l.drawingMistakeCount(_wrongStrokes.length),
+              style: AppTextStyles.body.copyWith(
+                color: _allCorrect ? t.success : t.error,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          )
-        else ...[
-          Text(
-            l.drawingMistakeCount(_wrongStrokes.length),
-            style: AppTextStyles.body.copyWith(
-              color: _allCorrect ? t.success : t.error,
-              fontWeight: FontWeight.w600,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          if (!_allCorrect) ...[
-            const SizedBox(height: AppDimens.spaceSm),
-            Center(
-              child: StrokeOrderAnimator(kanjiId: widget.kanjiId, size: 120),
-            ),
+            if (!_allCorrect) ...[
+              const SizedBox(height: AppDimens.spaceSm),
+              Center(
+                child: StrokeOrderAnimator(kanjiId: widget.kanjiId, size: 120),
+              ),
+            ],
           ],
+          const SizedBox(height: AppDimens.spaceSm),
         ],
-        const SizedBox(height: AppDimens.spaceSm),
         if (showSrsActions) ...[
           FlashcardActions(
             card: widget.card,
@@ -239,7 +245,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
               ],
             ],
           ),
-        ] else if (widget.onRate == null)
+        ] else if (widget.onRate == null && !_autoAdvanceScheduled)
           _buildWritingModeActions(context),
       ],
     );
@@ -378,19 +384,24 @@ class _DrawingExerciseState extends State<DrawingExercise>
 
   void _onAllStrokesDone() {
     final report = widget.onAutoAdvance;
-    if (report == null) return;
+    if (report == null || _autoAdvanceScheduled) return;
 
-    if (_hintsUsed) {
+    // A hint gives the answer away, so a review has nothing left to ask and
+    // moves on whatever the setting says. Free practice keeps its buttons.
+    if (_hintsUsed && widget.onRate != null) {
+      _autoAdvanceScheduled = true;
       Future.delayed(const Duration(milliseconds: 1200), () {
         if (mounted) report(hintsUsed: true, mistakes: _wrongStrokes.length);
       });
       return;
     }
 
-    if (widget.autoAdvance && !_autoAdvanceDone) {
-      _autoAdvanceDone = true;
+    if (widget.autoAdvance) {
+      _autoAdvanceScheduled = true;
       Future.delayed(const Duration(seconds: 1), () {
-        if (mounted) report(hintsUsed: false, mistakes: _wrongStrokes.length);
+        if (mounted) {
+          report(hintsUsed: _hintsUsed, mistakes: _wrongStrokes.length);
+        }
       });
     }
   }
@@ -455,7 +466,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
       _hintLevel = 0;
       _wrongStrokes.clear();
       _hintsUsed = false;
-      _autoAdvanceDone = false;
+      _autoAdvanceScheduled = false;
     });
     _canvasKey.currentState?.clear();
   }

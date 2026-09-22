@@ -148,6 +148,7 @@ class _ActiveScreen extends ConsumerWidget {
               isScrollControlled: true,
               builder: (_) => const PracticeSettingsSheet(
                 contexts: {SettingsContext.writing},
+                showAutoAdvance: true,
               ),
             ),
           ),
@@ -176,6 +177,8 @@ class _ActiveScreen extends ConsumerWidget {
                     settings: drawingSettings,
                     autoAdvance: drawingSettings.autoAdvance,
                     onNext: onAdvance,
+                    onAutoAdvance: ({required hintsUsed, required mistakes}) =>
+                        onAdvance(),
                   ),
                 ),
               ),

@@ -51,7 +51,9 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
             label: kanji.meaning,
             color: color,
             settings: drawingSettings,
-            autoAdvance: drawingSettings.autoAdvance,
+            // A single kanji has nowhere to advance to, so the drill always
+            // stops on the correction.
+            autoAdvance: false,
           ),
         ),
       ),
