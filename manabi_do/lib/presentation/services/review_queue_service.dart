@@ -45,6 +45,13 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
         id: kana.id,
         srsType: type,
         card: card,
+        summary: PracticeSummary(
+          item: kana.character,
+          question: (l) => l.mcqSelectKanaReading,
+          answer: kana.romaji,
+          kindLabel: (l) => type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
+          selfAssessed: false,
+        ),
         buildBody: (index, total, onAnswer, settings) => Builder(
           builder: (ctx) => PracticeMcqBody(
             question: ctx.l10n.mcqSelectKanaReading,
@@ -66,6 +73,13 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
       id: kana.id,
       srsType: type,
       card: card,
+      summary: PracticeSummary(
+        item: kana.character,
+        question: (l) => l.flashcardDefaultPrompt,
+        answer: kana.romaji,
+        kindLabel: (l) => type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
+        selfAssessed: true,
+      ),
       buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
         japanese: kana.character,
         answer: kana.romaji,
@@ -105,6 +119,13 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
       id: k.id,
       srsType: k.type,
       card: card,
+      summary: PracticeSummary(
+        item: k.character,
+        question: (l) => l.mcqSelectKanaReading,
+        answer: k.romaji,
+        kindLabel: (l) => k.type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
+        selfAssessed: false,
+      ),
       buildBody: (index, total, onAnswer, settings) => Builder(
         builder: (ctx) => PracticeMcqBody(
           question: ctx.l10n.mcqSelectKanaReading,
@@ -168,6 +189,13 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
         id: k.id,
         srsType: 'kanji',
         card: card,
+        summary: PracticeSummary(
+          item: k.character,
+          question: (l) => l.reviewDrawPrompt(meaningOf(k)),
+          answer: meaningOf(k),
+          kindLabel: (l) => l.reviewKindKanjiWriting,
+          selfAssessed: true,
+        ),
         buildBody: (index, total, onAnswer, settings) => KanjiDrawingBody(
           kanji: k,
           meaning: meaningOf(k),
@@ -197,6 +225,15 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
       id: k.id,
       srsType: 'kanji',
       card: card,
+      summary: PracticeSummary(
+        item: k.character,
+        question: (l) => isKanjiToMeaning
+            ? l.mcqSelectMeaning
+            : l.mcqSelectKanji(meaningOf(k)),
+        answer: isKanjiToMeaning ? meaningOf(k) : k.character,
+        kindLabel: (l) => l.tabKanji,
+        selfAssessed: false,
+      ),
       buildBody: (index, total, onAnswer, settings) => Builder(
         builder: (ctx) => PracticeMcqBody(
           question: isKanjiToMeaning
@@ -280,6 +317,14 @@ Future<List<PracticeItem>> loadVocabularyQueue(WidgetRef ref) async {
         id: entry.id,
         srsType: 'vocabulary',
         card: card,
+        summary: PracticeSummary(
+          item: entry.word,
+          reading: entry.reading != entry.word ? entry.reading : null,
+          question: (l) => l.mcqSelectWordMeaning,
+          answer: meaningOf(entry),
+          kindLabel: (l) => l.sectionVocabulary,
+          selfAssessed: false,
+        ),
         buildBody: (index, total, onAnswer, settings) => Builder(
           builder: (ctx) => PracticeMcqBody(
             question: ctx.l10n.mcqSelectWordMeaning,
@@ -312,6 +357,16 @@ Future<List<PracticeItem>> loadVocabularyQueue(WidgetRef ref) async {
       id: entry.id,
       srsType: 'vocabulary',
       card: card,
+      summary: PracticeSummary(
+        item: entry.word,
+        reading: entry.reading != entry.word ? entry.reading : null,
+        question: (l) => l.reviewClozePrompt,
+        answer: entry.word,
+        kindLabel: (l) => l.reviewKindVocabularySentence,
+        selfAssessed: false,
+        sentence: sentence.japanese,
+        sentenceTranslation: sentenceTranslations[sentence.id],
+      ),
       buildBody: (index, total, onAnswer, settings) => SentenceClozeBody(
         sentence: sentence,
         translation: sentenceTranslations[sentence.id],

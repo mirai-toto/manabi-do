@@ -242,7 +242,7 @@ Widget buildGrammarBuilderBody(BuildContext context) {
     index: 0,
     total: 10,
     color: const Color(0xFF5C6BC0),
-    onAnswer: (_) {},
+    onAnswer: (_, {given, mistakes}) {},
   );
 }
 
@@ -261,7 +261,7 @@ Widget buildGrammarErrorDetectionBody(BuildContext context) {
     index: 1,
     total: 10,
     color: const Color(0xFF5C6BC0),
-    onAnswer: (_) {},
+    onAnswer: (_, {given, mistakes}) {},
   );
 }
 
@@ -287,6 +287,6 @@ Widget buildGrammarClozeBody(BuildContext context) {
     index: 2,
     total: 10,
     color: const Color(0xFF5C6BC0),
-    onAnswer: (_) {},
+    onAnswer: (_, {given, mistakes}) {},
   );
 }

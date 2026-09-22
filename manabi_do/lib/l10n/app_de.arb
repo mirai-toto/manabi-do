@@ -299,6 +299,29 @@
   "studyNow": "Jetzt lernen",
   "reviewAndStudy": "Üben & lernen",
   "viewDetail": "Details anzeigen",
+  "sessionReview": "Sitzungs\u00fcbersicht",
+  "reviewClozePrompt": "W\u00e4hle das passende Wort f\u00fcr den Satz",
+  "sessionReviewEmpty": "Du hast noch nichts beantwortet.",
+  "sessionReviewCount": "{answered} von {total}",
+  "@sessionReviewCount": {
+    "placeholders": { "answered": { "type": "int" }, "total": { "type": "int" } }
+  },
+  "sessionReviewYourAnswer": "Deine Antwort",
+  "sessionReviewCorrectAnswer": "Richtige Antwort",
+  "sessionReviewChangeGrade": "Bewertung \u00e4ndern",
+  "sessionReviewShowAll": "Alle {count} Bedeutungen anzeigen",
+  "@sessionReviewShowAll": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "sessionReviewShowLess": "Weniger anzeigen",
+  "ratingIncorrect": "Falsch",
+  "ratingCorrect": "Richtig",
+  "reviewKindKanjiWriting": "Kanji \u00b7 Schreiben",
+  "reviewKindVocabularySentence": "Wortschatz \u00b7 Satz",
+  "reviewDrawPrompt": "Zeichne das Kanji f\u00fcr: {meaning}",
+  "@reviewDrawPrompt": {
+    "placeholders": { "meaning": { "type": "String" } }
+  },
   "allCaughtUp": "Alles erledigt!",
   "allCaughtUpSubtitle": "Komm später für weitere Wiederholungen zurück",
   "grammarChapters": "Themen",

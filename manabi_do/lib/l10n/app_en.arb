@@ -318,6 +318,29 @@
   "studyNow": "Study now",
   "reviewAndStudy": "Review & study",
   "viewDetail": "View detail",
+  "sessionReview": "Session review",
+  "reviewClozePrompt": "Choose the word that fits the sentence",
+  "sessionReviewEmpty": "You haven't answered anything yet.",
+  "sessionReviewCount": "{answered} of {total}",
+  "@sessionReviewCount": {
+    "placeholders": { "answered": { "type": "int" }, "total": { "type": "int" } }
+  },
+  "sessionReviewYourAnswer": "Your answer",
+  "sessionReviewCorrectAnswer": "Correct answer",
+  "sessionReviewChangeGrade": "Change the grade",
+  "sessionReviewShowAll": "Show all {count} meanings",
+  "@sessionReviewShowAll": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "sessionReviewShowLess": "Show less",
+  "ratingIncorrect": "Incorrect",
+  "ratingCorrect": "Correct",
+  "reviewKindKanjiWriting": "Kanji \u00b7 writing",
+  "reviewKindVocabularySentence": "Vocabulary \u00b7 sentence",
+  "reviewDrawPrompt": "Draw the kanji for: {meaning}",
+  "@reviewDrawPrompt": {
+    "placeholders": { "meaning": { "type": "String" } }
+  },
   "allCaughtUp": "All caught up!",
   "allCaughtUpSubtitle": "Come back later for more reviews",
   "grammarChapters": "Themes",

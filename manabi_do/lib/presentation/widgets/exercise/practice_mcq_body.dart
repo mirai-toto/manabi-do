@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
+import '../../../core/models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
@@ -19,7 +20,7 @@ class PracticeMcqBody extends StatefulWidget {
   final int index;
   final int total;
   final Color color;
-  final void Function(Rating) onAnswer;
+  final AnswerCallback onAnswer;
   final VoidCallback? onDetailTap;
   final bool compactGrid;
 
@@ -57,6 +58,10 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
   bool _answered = false;
   bool _autoAdvancing = false;
 
+  /// Kept so the self-assessment path can report the choice too, not just the
+  /// auto-advance one.
+  String? _given;
+
   @override
   void initState() {
     super.initState();
@@ -68,6 +73,7 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
     final isCorrect = i == widget.correctIndex;
     setState(() {
       _answered = true;
+      _given = widget.options[i].text;
       _states = List.generate(widget.options.length, (j) {
         if (j == i) {
           return isCorrect ? McqOptionState.correct : McqOptionState.wrong;
@@ -81,7 +87,12 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
     if (widget.autoAdvance) {
       setState(() => _autoAdvancing = true);
       Future.delayed(const Duration(milliseconds: 800), () {
-        if (mounted) widget.onAnswer(isCorrect ? Rating.good : Rating.again);
+        if (mounted) {
+          widget.onAnswer(
+            isCorrect ? Rating.good : Rating.again,
+            given: _given,
+          );
+        }
       });
     }
   }
@@ -119,7 +130,7 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
               card: widget.card,
               isFreeMode: widget.isFreeMode,
               question: context.l10n.selfAssessQuestion,
-              onRate: widget.onAnswer,
+              onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),
             if (widget.onDetailTap != null) ...[
               const SizedBox(height: AppDimens.spaceSm),

@@ -4,7 +4,10 @@ import 'package:fsrs/fsrs.dart' show Card, Rating;
 
 import '../../../core/models/flashcard_settings.dart';
 import '../../../core/models/mcq_settings.dart';
+import '../../../core/models/practice_answer.dart';
 import '../../../core/models/sentence_settings.dart';
+
+export '../../../core/models/practice_answer.dart';
 
 /// The settings a practice body renders against.
 ///
@@ -32,7 +35,7 @@ typedef PracticeBodyBuilder =
     Widget Function(
       int index,
       int total,
-      void Function(Rating) onAnswer,
+      AnswerCallback onAnswer,
       PracticeBodySettings settings,
     );
 
@@ -41,13 +44,27 @@ class PracticeItem {
   final String srsType;
   final Card? card;
   final PracticeBodyBuilder buildBody;
+  final PracticeSummary summary;
 
   const PracticeItem({
     required this.id,
     required this.srsType,
     required this.card,
     required this.buildBody,
+    required this.summary,
   });
+
+  /// The answer record this item becomes once it has been graded.
+  SessionAnswer answered(Rating rating, {String? given, int? mistakes}) =>
+      SessionAnswer(
+        srsType: srsType,
+        id: id,
+        card: card,
+        summary: summary,
+        rating: rating,
+        given: given,
+        mistakes: mistakes,
+      );
 }
 
 typedef LoadQueue = Future<List<PracticeItem>> Function(WidgetRef ref);

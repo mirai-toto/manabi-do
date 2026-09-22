@@ -673,6 +673,54 @@ class AppLocalizationsDe extends AppLocalizations {
   String get viewDetail => 'Details anzeigen';
 
   @override
+  String get sessionReview => 'Sitzungsübersicht';
+
+  @override
+  String get reviewClozePrompt => 'Wähle das passende Wort für den Satz';
+
+  @override
+  String get sessionReviewEmpty => 'Du hast noch nichts beantwortet.';
+
+  @override
+  String sessionReviewCount(int answered, int total) {
+    return '$answered von $total';
+  }
+
+  @override
+  String get sessionReviewYourAnswer => 'Deine Antwort';
+
+  @override
+  String get sessionReviewCorrectAnswer => 'Richtige Antwort';
+
+  @override
+  String get sessionReviewChangeGrade => 'Bewertung ändern';
+
+  @override
+  String sessionReviewShowAll(int count) {
+    return 'Alle $count Bedeutungen anzeigen';
+  }
+
+  @override
+  String get sessionReviewShowLess => 'Weniger anzeigen';
+
+  @override
+  String get ratingIncorrect => 'Falsch';
+
+  @override
+  String get ratingCorrect => 'Richtig';
+
+  @override
+  String get reviewKindKanjiWriting => 'Kanji · Schreiben';
+
+  @override
+  String get reviewKindVocabularySentence => 'Wortschatz · Satz';
+
+  @override
+  String reviewDrawPrompt(String meaning) {
+    return 'Zeichne das Kanji für: $meaning';
+  }
+
+  @override
   String get allCaughtUp => 'Alles erledigt!';
 
   @override

@@ -150,6 +150,16 @@ class VocabularySessionService {
         id: entry.id,
         srsType: 'vocabulary',
         card: card,
+        summary: PracticeSummary(
+          item: entry.word,
+          reading: entry.reading != entry.word ? entry.reading : null,
+          question: (l) => isReversed
+              ? l.flashcardJapaneseQuestion
+              : l.flashcardDefaultPrompt,
+          answer: isReversed ? entry.word : meaningOf(entry),
+          kindLabel: (l) => l.sectionVocabulary,
+          selfAssessed: true,
+        ),
         buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
           japanese: entry.word,
           label: entry.reading != entry.word ? entry.reading : null,
@@ -189,6 +199,14 @@ class VocabularySessionService {
         id: entry.id,
         srsType: 'vocabulary',
         card: card,
+        summary: PracticeSummary(
+          item: entry.word,
+          reading: entry.reading != entry.word ? entry.reading : null,
+          question: (l) => l.mcqSelectWordMeaning,
+          answer: meaningOf(entry),
+          kindLabel: (l) => l.sectionVocabulary,
+          selfAssessed: false,
+        ),
         buildBody: (index, total, onAnswer, settings) => Builder(
           builder: (context) => PracticeMcqBody(
             question: context.l10n.mcqSelectWordMeaning,
@@ -266,6 +284,16 @@ class VocabularySessionService {
         id: entry.id,
         srsType: 'vocabulary',
         card: null,
+        summary: PracticeSummary(
+          item: entry.word,
+          reading: entry.reading != entry.word ? entry.reading : null,
+          question: (l) => l.reviewClozePrompt,
+          answer: entry.word,
+          kindLabel: (l) => l.reviewKindVocabularySentence,
+          selfAssessed: false,
+          sentence: sentence.japanese,
+          sentenceTranslation: sentenceTranslations[sentence.id],
+        ),
         buildBody: (index, total, onAnswer, settings) => SentenceClozeBody(
           sentence: sentence,
           translation: sentenceTranslations[sentence.id],
@@ -330,6 +358,16 @@ class VocabularySessionService {
           id: entry.id,
           srsType: 'vocabulary',
           card: card,
+          summary: PracticeSummary(
+            item: entry.word,
+            reading: entry.reading != entry.word ? entry.reading : null,
+            question: (l) => quizType == 1
+                ? l.flashcardJapaneseQuestion
+                : l.flashcardDefaultPrompt,
+            answer: quizType == 1 ? entry.word : meaningOf(entry),
+            kindLabel: (l) => l.sectionVocabulary,
+            selfAssessed: true,
+          ),
           buildBody: (index, total, onAnswer, settings) =>
               PracticeFlashcardBody(
                 japanese: entry.word,
@@ -359,6 +397,14 @@ class VocabularySessionService {
           id: entry.id,
           srsType: 'vocabulary',
           card: card,
+          summary: PracticeSummary(
+            item: entry.word,
+            reading: entry.reading != entry.word ? entry.reading : null,
+            question: (l) => l.mcqSelectWordMeaning,
+            answer: meaningOf(entry),
+            kindLabel: (l) => l.sectionVocabulary,
+            selfAssessed: false,
+          ),
           buildBody: (index, total, onAnswer, settings) => Builder(
             builder: (context) => PracticeMcqBody(
               question: context.l10n.mcqSelectWordMeaning,
@@ -395,6 +441,16 @@ class VocabularySessionService {
         id: entry.id,
         srsType: 'vocabulary',
         card: card,
+        summary: PracticeSummary(
+          item: entry.word,
+          reading: entry.reading != entry.word ? entry.reading : null,
+          question: (l) => l.reviewClozePrompt,
+          answer: entry.word,
+          kindLabel: (l) => l.reviewKindVocabularySentence,
+          selfAssessed: false,
+          sentence: sentence.japanese,
+          sentenceTranslation: sentenceTranslations[sentence.id],
+        ),
         buildBody: (index, total, onAnswer, settings) => SentenceClozeBody(
           sentence: sentence,
           translation: sentenceTranslations[sentence.id],

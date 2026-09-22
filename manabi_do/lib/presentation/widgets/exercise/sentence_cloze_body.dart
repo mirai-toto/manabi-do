@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card, Rating;
 
+import '../../../core/models/practice_answer.dart';
 import '../../../core/models/sentence_settings.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
@@ -21,7 +22,7 @@ class SentenceClozeBody extends StatefulWidget {
   final int index;
   final int total;
   final Color color;
-  final void Function(Rating) onAnswer;
+  final AnswerCallback onAnswer;
 
   /// Move on once the answer is in, deriving the rating from it, instead of
   /// stopping for a self-assessment. The caller decides which setting feeds
@@ -60,6 +61,10 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
   bool _autoAdvancing = false;
   bool _showTranslation = false;
 
+  /// Kept so the self-assessment path reports the choice too, not just the
+  /// auto-advance one.
+  String? _given;
+
   @override
   void initState() {
     super.initState();
@@ -71,6 +76,7 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
     final isCorrect = i == widget.correctIndex;
     setState(() {
       _answered = true;
+      _given = widget.options[i].text;
       _states = List.generate(widget.options.length, (j) {
         if (j == i) {
           return isCorrect ? McqOptionState.correct : McqOptionState.wrong;
@@ -84,7 +90,12 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
     if (widget.autoAdvance) {
       setState(() => _autoAdvancing = true);
       Future.delayed(const Duration(milliseconds: 800), () {
-        if (mounted) widget.onAnswer(isCorrect ? Rating.good : Rating.again);
+        if (mounted) {
+          widget.onAnswer(
+            isCorrect ? Rating.good : Rating.again,
+            given: _given,
+          );
+        }
       });
     }
   }
@@ -142,7 +153,7 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
               card: widget.card,
               isFreeMode: widget.isFreeMode,
               question: l.selfAssessQuestion,
-              onRate: widget.onAnswer,
+              onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),
           ],
         ],

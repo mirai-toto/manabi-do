@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Rating;
 
+import '../../../core/models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -16,7 +17,7 @@ class GrammarErrorDetectionBody extends StatefulWidget {
   final int index;
   final int total;
   final Color color;
-  final void Function(Rating) onAnswer;
+  final AnswerCallback onAnswer;
 
   const GrammarErrorDetectionBody({
     super.key,
@@ -132,8 +133,10 @@ class _GrammarErrorDetectionBodyState extends State<GrammarErrorDetectionBody> {
             FeedbackPanel(text: widget.explanation, isCorrect: _tappedCorrect),
             const SizedBox(height: AppDimens.spaceMd),
             FilledButton(
-              onPressed: () =>
-                  widget.onAnswer(_tappedCorrect ? Rating.good : Rating.again),
+              onPressed: () => widget.onAnswer(
+                _tappedCorrect ? Rating.good : Rating.again,
+                given: _tapped == null ? null : _options[_tapped!],
+              ),
               style: FilledButton.styleFrom(backgroundColor: widget.color),
               child: Text(l.next),
             ),
