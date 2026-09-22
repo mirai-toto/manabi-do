@@ -25,7 +25,7 @@ class SectionTitleBlock extends StatelessWidget {
           height: 22,
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(AppDimens.radiusXxs),
+            borderRadius: BorderRadius.circular(AppDimens.radiusPill),
           ),
         ),
         const SizedBox(width: AppDimens.spaceSm),

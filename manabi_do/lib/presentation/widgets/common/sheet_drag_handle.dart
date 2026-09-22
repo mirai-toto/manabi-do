@@ -15,7 +15,7 @@ class SheetDragHandle extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: AppDimens.spaceMd),
         decoration: BoxDecoration(
           color: context.tokens.outlineVariant,
-          borderRadius: BorderRadius.circular(AppDimens.radiusXxs),
+          borderRadius: BorderRadius.circular(AppDimens.radiusPill),
         ),
       ),
     );
