@@ -6,6 +6,14 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../l10n/l10n.dart';
 
+/// Chip-sized, like `AppFilterChip`, but the two never sit together so the
+/// numbers are kept here rather than shared.
+abstract final class _Dimens {
+  static const double paddingH = 14;
+  static const double paddingV = 6;
+  static const double flameSize = 18;
+}
+
 class StreakPill extends StatelessWidget {
   final int days;
 
@@ -19,8 +27,8 @@ class StreakPill extends StatelessWidget {
       excludeSemantics: true,
       child: Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.chipPaddingH,
-          vertical: AppDimens.chipPaddingV,
+          horizontal: _Dimens.paddingH,
+          vertical: _Dimens.paddingV,
         ),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
@@ -35,8 +43,8 @@ class StreakPill extends StatelessWidget {
           children: [
             SvgPicture.asset(
               'assets/icons/fire.svg',
-              width: 18,
-              height: 18,
+              width: _Dimens.flameSize,
+              height: _Dimens.flameSize,
               colorFilter: const ColorFilter.mode(
                 Colors.white,
                 BlendMode.srcIn,

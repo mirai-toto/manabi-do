@@ -12,6 +12,13 @@ import '../common/japanese_text.dart';
 import 'flashcard.dart';
 import 'practice_progress_row.dart';
 
+/// Chip-sized, matching `AppFilterChip` by eye. Kept local: a grammar-builder
+/// chip and a filter chip never appear on the same screen.
+abstract final class _Dimens {
+  static const double chipPaddingH = 14;
+  static const double chipPaddingV = 6;
+}
+
 class GrammarBuilderBody extends StatefulWidget {
   final List<String> parts;
   final String translation;
@@ -338,8 +345,8 @@ class _Chip extends StatelessWidget {
         onTap: enabled ? onTap : null,
         child: Container(
           padding: const EdgeInsets.symmetric(
-            horizontal: AppDimens.chipPaddingH,
-            vertical: AppDimens.chipPaddingV,
+            horizontal: _Dimens.chipPaddingH,
+            vertical: _Dimens.chipPaddingV,
           ),
           decoration: BoxDecoration(
             color: selected
