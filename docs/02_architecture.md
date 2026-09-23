@@ -104,14 +104,15 @@ design-reference/
   widgetbook/   ← the widgetbook web build the previews embed
 ```
 
-Run from the repo root:
+Run from the repo root. It builds, serves, and prints the URL:
 
 ```bash
-bash scripts/design/build_design_reference.sh --serve   # build, then serve on 8800
-bash scripts/design/build_design_reference.sh --debug   # readable exceptions while iterating
+bash scripts/design/build_design_reference.sh            # ~1 second
+bash scripts/design/build_design_reference.sh --rebuild  # after changing a widget, ~90 seconds
+bash scripts/design/build_design_reference.sh --help
 ```
 
-`--serve` starts the server and prints the URL. Without it the build just tells you how to serve it yourself.
+The widgetbook bundle is the slow half and rarely changes, so it is only rebuilt on `--rebuild` or when missing; regenerating the page itself takes under a second. If `widgetbook.directories.g.dart` is newer than the staged bundle the script says so rather than showing you stale previews.
 
 It has to go over HTTP. Opened from disk, `file://` renders each preview iframe as a directory listing rather than serving the folder's `index.html`, and Flutter will not boot from `file://` regardless.
 

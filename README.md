@@ -45,9 +45,13 @@ This enables:
 Colour tokens with contrast grades, the dimension and type scales, and a live preview of every widget, generated from the source:
 
 ```bash
-bash scripts/design/build_design_reference.sh --serve
-# open http://localhost:8800/design-reference/
+bash scripts/design/build_design_reference.sh            # ~1s, builds and serves
+bash scripts/design/build_design_reference.sh --rebuild  # after changing a widget
+bash scripts/design/build_design_reference.sh --help
 ```
+
+It prints the URL when it's ready. The widgetbook bundle is only rebuilt when
+you ask or when it's missing, so the everyday case is about a second.
 
 It must be served over HTTP. Opening `design-reference/index.html` from disk shows directory listings instead of widgets, because `file://` will not serve a folder's `index.html` and Flutter cannot boot from it either.
 

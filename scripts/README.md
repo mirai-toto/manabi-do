@@ -88,8 +88,9 @@ Playwright bootstrap is deliberately **not** here: only
 ## Design reference
 
 ```bash
-bash scripts/design/build_design_reference.sh --serve
-# open http://localhost:8800/design-reference/
+bash scripts/design/build_design_reference.sh            # builds, serves, prints the URL
+bash scripts/design/build_design_reference.sh --rebuild  # after changing a widget
+bash scripts/design/build_design_reference.sh --help
 ```
 
 Builds the widgetbook for web, stages it into `design-reference/widgetbook/`,
@@ -99,8 +100,14 @@ every widgetbook use case.
 
 | Flag | Effect |
 | --- | --- |
-| `--serve` | serve the repo root on 8800 when the build finishes |
-| `--debug` | debug build — release paints crashed widgets as silent grey boxes |
+| `-r`, `--rebuild` | rebuild the widgetbook bundle (~90 s); automatic when missing |
+| `-p`, `--port N` | port to serve on, default 8800 |
+| `-n`, `--no-serve` | build only |
+| `-d`, `--debug` | debug bundle — release paints crashed widgets as silent grey boxes |
+
+The everyday run takes about a second: the widgetbook bundle is the slow half and
+is left alone unless you ask for it. When the use-case file is newer than the
+staged bundle the script warns instead of quietly showing stale previews.
 
 It has to be served over HTTP. Opened from disk, `file://` renders each preview
 iframe as a directory listing and Flutter cannot boot from it. The page detects
