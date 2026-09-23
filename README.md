@@ -40,6 +40,20 @@ This enables:
 - **pre-commit**: `flutter analyze` + `dart format` check
 - **commit-msg**: conventional commit linting via `commitlint`
 
+### Design reference
+
+Colour tokens with contrast grades, the dimension and type scales, and a live preview of every widget, generated from the source:
+
+```bash
+(cd manabi_do && tool/build_design_reference.sh)
+python3 -m http.server 8800          # from the repo root
+# open http://localhost:8800/design-reference/
+```
+
+It must be served over HTTP. Opening `design-reference/index.html` from disk shows directory listings instead of widgets, because `file://` will not serve a folder's `index.html` and Flutter cannot boot from it either.
+
+Output is gitignored — rebuild it rather than committing it. See `docs/02_architecture.md` for what it checks. To browse widgets interactively instead, run `flutter run -t lib/widgetbook.dart`.
+
 ### Linux
 
 No local Flutter installation needed, everything runs inside Docker.

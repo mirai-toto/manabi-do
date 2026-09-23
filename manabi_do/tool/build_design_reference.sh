@@ -15,7 +15,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 MODE="--release"
-[[ "${1:-}" == "--debug" ]] && MODE="--profile"
+[[ "${1:-}" == "--debug" ]] && MODE="--debug"
 
 OUT="../design-reference"
 

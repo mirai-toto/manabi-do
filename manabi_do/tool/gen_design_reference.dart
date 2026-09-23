@@ -467,6 +467,11 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
 .tile figcaption a { color: var(--ink); text-decoration: none; }
 .tile figcaption a:hover { color: var(--accent); text-decoration: underline; }
 .note a { color: var(--accent); }
+.filewarn { background: color-mix(in srgb, var(--fail) 12%, transparent);
+            border: 1px solid var(--fail); color: var(--ink);
+            border-radius: 10px; padding: 14px 18px; margin-bottom: 20px;
+            font-size: 14.5px; line-height: 1.6; }
+.filewarn code { background: var(--line); padding: 1px 5px; border-radius: 4px; }
 </style>
 </head>
 <body>
@@ -747,6 +752,20 @@ void _writeType(StringBuffer b, List<TextStyleSpec> styles, String lib) {
 const _lazyScript = '''
 <script>
 (function () {
+  // Opened from disk, every preview iframe would render as a directory
+  // listing: file:// does not serve a folder's index.html, and Flutter cannot
+  // boot from it either. Say so once, loudly, instead of 112 times quietly.
+  if (location.protocol === 'file:') {
+    var warn = document.createElement('div');
+    warn.className = 'filewarn';
+    warn.innerHTML = '<strong>Serve this over HTTP.</strong> Opened from disk ' +
+      'the widget previews cannot load. From the repo root run ' +
+      '<code>python3 -m http.server 8800</code> and open ' +
+      '<code>http://localhost:8800/design-reference/</code>.';
+    document.querySelector('.wrap').prepend(warn);
+    return;
+  }
+
   var theme = new URLSearchParams(location.search).get('wb') === 'dark'
       ? 'Dark' : 'Light';
   document.documentElement.dataset.wb = theme.toLowerCase();
@@ -763,7 +782,7 @@ const _lazyScript = '''
       var frame = document.createElement('iframe');
       frame.loading = 'lazy';
       frame.title = box.dataset.label;
-      frame.src = 'widgetbook/#/?path=' + box.dataset.path +
+      frame.src = 'widgetbook/index.html#/?path=' + box.dataset.path +
                   '&preview&theme=%7Bname:' + theme + '%7D';
       box.appendChild(frame);
       box.classList.add('loaded');
@@ -803,7 +822,7 @@ void _writeWidgets(StringBuffer b, List<UseCase> useCases) {
         '</div><div class="tiles">',
       );
       for (final u in comp.value) {
-        final url = 'widgetbook/#/?path=${u.path}&preview';
+        final url = 'widgetbook/index.html#/?path=${u.path}&preview';
         b.writeln('''<figure class="tile">
   <div class="frame" data-path="${u.path}" data-label="${comp.key} — ${u.name}"></div>
   <figcaption><a href="$url" target="_blank" rel="noopener">${u.name}</a></figcaption>

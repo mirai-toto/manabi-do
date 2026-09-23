@@ -91,6 +91,53 @@ manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
 
 ---
 
+## Design Reference
+
+The design system is defined in code and inspected through two generated artefacts. Neither is committed: both are rebuilt on demand into `design-reference/` (gitignored).
+
+```
+lib/core/theme/*.dart          ← the design system itself
+lib/widgetbook/*_use_cases.dart ← one use case per widget state
+        ↓  manabi_do/tool/build_design_reference.sh
+design-reference/
+  index.html    ← tokens, contrast, dimensions, type, and live widget previews
+  widgetbook/   ← the widgetbook web build the previews embed
+```
+
+```bash
+cd manabi_do
+tool/build_design_reference.sh          # release
+tool/build_design_reference.sh --debug  # readable exceptions while iterating
+```
+
+Then serve the **repo root** and open `http://localhost:8800/design-reference/`:
+
+```bash
+python3 -m http.server 8800
+```
+
+It has to go over HTTP. Opened from disk, `file://` renders each preview iframe as a directory listing rather than serving the folder's `index.html`, and Flutter will not boot from `file://` regardless.
+
+The release bundle is ~90 MB on disk: 22 MB of content DB that the widgetbook never queries, 20 MB of bundled fonts, and 37 MB of CanvasKit variants of which a browser fetches exactly one. Transfer size per visitor is closer to 15 MB. If that ever matters for a deploy, the content DB is the obvious thing to drop first.
+
+**`tool/gen_design_reference.dart`** parses `app_tokens.dart`, `app_dimens.dart`, `app_text_styles.dart`, `jlpt_level.dart`, `srs_level.dart` and `widgetbook.directories.g.dart`, so the page cannot drift from the code. It fails loudly rather than emitting an empty page. Beyond listing the tokens it computes three things the source does not state:
+
+- **Contrast ratios** for every foreground/background pair the app actually uses, graded against WCAG AA, in both themes.
+- **Dimensions grouped by value**, so two names holding the same number are flagged as a likely collision.
+- **Usage counts** for every colour, dimension and text style, cross-referenced against `lib/`. Zero means dead.
+
+Widget previews are `<iframe>`s into the widgetbook in preview mode (`widgetbook/#/?path=<folder>/<component>/<use-case>&preview`), so a tile shows the real widget rather than a copy of it. They boot lazily on scroll because each one starts a Flutter engine.
+
+If you only want to browse widgets interactively, skip the reference and run the widgetbook directly:
+
+```bash
+flutter run -t lib/widgetbook.dart
+```
+
+Adding a widget means adding a `@widgetbook.UseCase` in `lib/widgetbook/<area>_use_cases.dart` and re-running `dart run build_runner build` to regenerate `widgetbook.directories.g.dart`. See `docs/07_widget_catalogue.md` for what each widget is for.
+
+---
+
 ## SRS Logic
 
 `AppDatabase` exposes session-building methods that return `List<(T, Card?)>` pairs:
