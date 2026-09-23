@@ -468,6 +468,24 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
 .tile figcaption a { color: var(--ink); text-decoration: none; }
 .tile figcaption a:hover { color: var(--accent); text-decoration: underline; }
 .note a { color: var(--accent); }
+.ctx-pair { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.ctx { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
+.ctx-label { font-size: 11px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase;
+             color: var(--muted); padding: 9px 14px; border-bottom: 1px solid var(--line); }
+.ctx-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.ctx-card { border: 1px solid; border-radius: 12px; padding: 14px;
+            display: flex; flex-direction: column; gap: 10px; }
+.ctx-title { font-size: 16px; font-weight: 600; }
+.ctx-sub { font-size: 13px; margin-top: -6px; }
+.ctx-track { height: 6px; border-radius: 4px; overflow: hidden; }
+.ctx-track i { display: block; height: 100%; border-radius: 4px; }
+.ctx-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.ctx-btn { padding: 7px 16px; border-radius: 100px; font-size: 13px; font-weight: 600; }
+.ctx-pill { padding: 3px 11px; border-radius: 100px; font-size: 11px; font-weight: 700; }
+.ctx-rule { height: 1px; }
+.ctx-jp { font-family: var(--jp); font-size: 14px; font-weight: 600; }
+.ctx-sunk { border: 1px solid; border-radius: 10px; padding: 9px 12px;
+            font-size: 11px; font-family: ui-monospace, monospace; }
 .filewarn { background: color-mix(in srgb, var(--fail) 12%, transparent);
             border: 1px solid var(--fail); color: var(--ink);
             border-radius: 10px; padding: 14px 18px; margin-bottom: 20px;
@@ -488,6 +506,7 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
   </p>
 </header>''');
 
+  _writeInContext(b, light, dark);
   _writeContrast(b, light, dark);
   _writeColors(b, light, dark, lib);
   _writeRamp(b, ramp, srs, light, dark);
@@ -870,4 +889,79 @@ void _writeWidgets(StringBuffer b, List<UseCase> useCases) {
       b.writeln('</div></div>');
     }
   }
+}
+
+// ── In context ───────────────────────────────────────────────────────────────
+
+/// Tokens composed the way the app composes them, rather than as isolated
+/// swatches.
+///
+/// The swatch tables answer "what colour is this". They cannot answer "does
+/// this work next to the thing it sits on", which is the question that actually
+/// bites — a foreground reads fine alone and then disappears on its own
+/// container. Both themes are drawn side by side so the comparison is direct,
+/// independent of whichever theme the page itself is in.
+void _writeInContext(
+  StringBuffer b,
+  Map<String, Rgb> light,
+  Map<String, Rgb> dark,
+) {
+  b.writeln('<h2>In context</h2>');
+  b.writeln(
+    '<p class="note">The same composition in both themes, built from the '
+    'tokens below. Swatches tell you what a colour is; this tells you whether '
+    'it survives contact with the colours around it.</p>',
+  );
+  b.writeln('<div class="ctx-pair">');
+  for (final e in [('Light', light), ('Dark', dark)]) {
+    b.writeln(_contextPanel(e.$1, e.$2));
+  }
+  b.writeln('</div>');
+}
+
+String _contextPanel(String label, Map<String, Rgb> t) {
+  String c(String k) => t[k]!.css;
+
+  String pill(String fg, String bg, String text) =>
+      '<span class="ctx-pill" style="color:${c(fg)};background:${c(bg)}">'
+      '$text</span>';
+
+  return '''
+<div class="ctx">
+  <div class="ctx-label">$label</div>
+  <div class="ctx-body" style="background:${c('surface')}">
+    <div class="ctx-card" style="background:${c('cardBackground')};
+         border-color:${c('outlineVariant')}">
+      <div class="ctx-title" style="color:${c('onSurface')}">Vocabulary</div>
+      <div class="ctx-sub" style="color:${c('onSurfaceVariant')}">
+        42 of 100 learned
+      </div>
+      <div class="ctx-track" style="background:${c('outlineVariant')}">
+        <i style="background:${c('primary')};width:42%"></i>
+      </div>
+      <div class="ctx-row">
+        <span class="ctx-btn" style="background:${c('primary')};
+              color:${c('onPrimary')}">Practice</span>
+        <span class="ctx-btn" style="background:${c('primaryContainer')};
+              color:${c('onPrimaryContainer')}">Browse</span>
+      </div>
+      <div class="ctx-rule" style="background:${c('outlineVariant')}"></div>
+      <div class="ctx-row">
+        ${pill('error', 'errorContainer', 'Again')}
+        ${pill('warning', 'warningContainer', 'Hard')}
+        ${pill('success', 'successContainer', 'Good')}
+        ${pill('info', 'infoContainer', 'Easy')}
+      </div>
+      <div class="ctx-row">
+        <span class="ctx-jp" style="color:${c('onyomi')}">オン</span>
+        <span class="ctx-jp" style="color:${c('kunyomi')}">くん</span>
+        <span class="ctx-jp" style="color:${c('hintStroke')}">hint</span>
+      </div>
+    </div>
+    <div class="ctx-sunk" style="background:${c('surfaceContainer')};
+         border-color:${c('outlineVariant')}">
+      <span style="color:${c('onSurfaceVariant')}">surfaceContainer</span>
+    </div>
+  </div>
+</div>''';
 }
