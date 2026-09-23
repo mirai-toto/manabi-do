@@ -36,13 +36,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color info;
   final Color infoContainer;
 
-  // Section brand. All three currently match `primary` so the sections read as
-  // one product rather than three. Kept as separate tokens so giving a section
-  // its own colour again is a one-line change, not a refactor.
-  final Color characters;
-  final Color vocabulary;
-  final Color grammar;
-
   // Drawing
   final Color hintStroke;
 
@@ -77,9 +70,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.warningContainer,
     required this.info,
     required this.infoContainer,
-    required this.characters,
-    required this.vocabulary,
-    required this.grammar,
     required this.hintStroke,
     required this.onyomi,
     required this.kunyomi,
@@ -112,9 +102,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     warningContainer: Color(0xFFFFDDB3),
     info: Color(0xFF1E88E5),
     infoContainer: Color(0xFFD6E9FB),
-    characters: Color(0xFF6B4EFF),
-    vocabulary: Color(0xFF6B4EFF),
-    grammar: Color(0xFF6B4EFF),
     hintStroke: Color(0xFFFF8F00),
     onyomi: Color(0xFF1565C0),
     kunyomi: Color(0xFFC62828),
@@ -147,9 +134,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     warningContainer: Color(0xFF3E2900),
     info: Color(0xFF90CAF9),
     infoContainer: Color(0xFF13344F),
-    characters: Color(0xFFCFBCFF),
-    vocabulary: Color(0xFFCFBCFF),
-    grammar: Color(0xFFCFBCFF),
     hintStroke: Color(0xFFFFB74D),
     onyomi: Color(0xFF90CAF9),
     kunyomi: Color(0xFFEF9A9A),
@@ -183,9 +167,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? warningContainer,
     Color? info,
     Color? infoContainer,
-    Color? characters,
-    Color? vocabulary,
-    Color? grammar,
     Color? hintStroke,
     Color? onyomi,
     Color? kunyomi,
@@ -216,9 +197,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     warningContainer: warningContainer ?? this.warningContainer,
     info: info ?? this.info,
     infoContainer: infoContainer ?? this.infoContainer,
-    characters: characters ?? this.characters,
-    vocabulary: vocabulary ?? this.vocabulary,
-    grammar: grammar ?? this.grammar,
     hintStroke: hintStroke ?? this.hintStroke,
     onyomi: onyomi ?? this.onyomi,
     kunyomi: kunyomi ?? this.kunyomi,
@@ -290,9 +268,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
         other.warningContainer,
         t,
       )!,
-      characters: Color.lerp(characters, other.characters, t)!,
-      vocabulary: Color.lerp(vocabulary, other.vocabulary, t)!,
-      grammar: Color.lerp(grammar, other.grammar, t)!,
       hintStroke: Color.lerp(hintStroke, other.hintStroke, t)!,
       onyomi: Color.lerp(onyomi, other.onyomi, t)!,
       kunyomi: Color.lerp(kunyomi, other.kunyomi, t)!,
