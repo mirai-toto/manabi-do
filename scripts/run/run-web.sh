@@ -1,21 +1,13 @@
 #!/usr/bin/env bash
-# Builds the Flutter web app and serves it on the given port.
-# Usage: bash scripts/build_web.sh [port]
-# Defaults to port 8767.
-set -e
+# Builds the Flutter web app and serves it.
+# Usage: bash scripts/run/run-web.sh [port]   (defaults to 8767)
+set -euo pipefail
 
-REPO="$(cd "$(dirname "$0")/../.." && pwd)"
-APP="$REPO/manabi_do"
+source "$(dirname "$0")/../common/env.sh"
+source "$SCRIPTS/common/flutter_web.sh"
+source "$SCRIPTS/common/serve.sh"
+
 PORT="${1:-8767}"
 
-echo "→ building Flutter web"
-cd "$APP"
-flutter build web -t lib/main.dart --no-web-resources-cdn --debug 2>&1 | tail -3
-
-echo "→ serving on port $PORT"
-pkill -f "http.server $PORT" 2>/dev/null || true
-setsid nohup python3 -m http.server "$PORT" --bind 0.0.0.0 \
-  --directory "$APP/build/web" > /tmp/webserver.log 2>&1 < /dev/null & disown
-sleep 1
-curl -sf "http://localhost:$PORT" > /dev/null
-echo "✓ serving at http://localhost:$PORT"
+flutter_web_build lib/main.dart --debug
+serve_dir "$APP/build/web" "$PORT" 0.0.0.0

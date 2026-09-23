@@ -45,8 +45,7 @@ This enables:
 Colour tokens with contrast grades, the dimension and type scales, and a live preview of every widget, generated from the source:
 
 ```bash
-(cd manabi_do && tool/build_design_reference.sh)
-python3 -m http.server 8800          # from the repo root
+bash scripts/design/build_design_reference.sh --serve
 # open http://localhost:8800/design-reference/
 ```
 

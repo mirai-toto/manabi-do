@@ -11,9 +11,9 @@ Prerequisites — download these files and place them in data/:
     → uncompress to data/kanjidic2.xml
 
 Run from the repo root:
-    python3 tools/gen_translations.py
+    python3 scripts/content_pipeline/gen_translations.py
 
-After running, re-run tools/build_content_db.py and commit the updated DB.
+After running, re-run scripts/content_pipeline/build_content_db.py and commit the updated DB.
 """
 
 import json
@@ -155,7 +155,7 @@ def main() -> None:
     print("\nEnriching vocabulary…")
     enrich_vocabulary(vocabulary_lookup)
 
-    print("\nDone. Re-run tools/build_content_db.py to rebuild the DB.")
+    print("\nDone. Re-run scripts/content_pipeline/build_content_db.py to rebuild the DB.")
 
 
 if __name__ == "__main__":

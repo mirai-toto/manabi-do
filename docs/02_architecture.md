@@ -83,11 +83,11 @@ All app content is authored outside the Flutter project and compiled into `manab
 Online sources (Bluskyo, JMdict, KANJIDIC2, KanjiVG)
         ↓  download & cache  →  data/  (gitignored)
 content/  ← versioned JSON snapshot, committed to git
-        ↓  tools/generate.py
+        ↓  scripts/content_pipeline/generate.py
 manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
 ```
 
-`content/` JSON files are committed to git as a versioned snapshot and can diverge from upstream as manual edits accumulate. `tools/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from online sources; `tools/generate.py --sync` is the end-to-end rebuild entry point. See `content/README.md` for the full rebuild workflow.
+`content/` JSON files are committed to git as a versioned snapshot and can diverge from upstream as manual edits accumulate. `scripts/content_pipeline/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from online sources; `scripts/content_pipeline/generate.py --sync` is the end-to-end rebuild entry point. See `content/README.md` for the full rebuild workflow.
 
 ---
 
@@ -98,29 +98,26 @@ The design system is defined in code and inspected through two generated artefac
 ```
 lib/core/theme/*.dart          ← the design system itself
 lib/widgetbook/*_use_cases.dart ← one use case per widget state
-        ↓  manabi_do/tool/build_design_reference.sh
+        ↓  scripts/design/build_design_reference.sh
 design-reference/
   index.html    ← tokens, contrast, dimensions, type, and live widget previews
   widgetbook/   ← the widgetbook web build the previews embed
 ```
 
-```bash
-cd manabi_do
-tool/build_design_reference.sh          # release
-tool/build_design_reference.sh --debug  # readable exceptions while iterating
-```
-
-Then serve the **repo root** and open `http://localhost:8800/design-reference/`:
+Run from the repo root:
 
 ```bash
-python3 -m http.server 8800
+bash scripts/design/build_design_reference.sh --serve   # build, then serve on 8800
+bash scripts/design/build_design_reference.sh --debug   # readable exceptions while iterating
 ```
+
+`--serve` starts the server and prints the URL. Without it the build just tells you how to serve it yourself.
 
 It has to go over HTTP. Opened from disk, `file://` renders each preview iframe as a directory listing rather than serving the folder's `index.html`, and Flutter will not boot from `file://` regardless.
 
 The release bundle is ~90 MB on disk: 22 MB of content DB that the widgetbook never queries, 20 MB of bundled fonts, and 37 MB of CanvasKit variants of which a browser fetches exactly one. Transfer size per visitor is closer to 15 MB. If that ever matters for a deploy, the content DB is the obvious thing to drop first.
 
-**`tool/gen_design_reference.dart`** parses `app_tokens.dart`, `app_dimens.dart`, `app_text_styles.dart`, `jlpt_level.dart`, `srs_level.dart` and `widgetbook.directories.g.dart`, so the page cannot drift from the code. It fails loudly rather than emitting an empty page. Beyond listing the tokens it computes three things the source does not state:
+**`scripts/design/gen_design_reference.dart`** parses `app_tokens.dart`, `app_dimens.dart`, `app_text_styles.dart`, `jlpt_level.dart`, `srs_level.dart` and `widgetbook.directories.g.dart`, so the page cannot drift from the code. It fails loudly rather than emitting an empty page. Beyond listing the tokens it computes three things the source does not state:
 
 - **Contrast ratios** for every foreground/background pair the app actually uses, graded against WCAG AA, in both themes.
 - **Dimensions grouped by value**, so two names holding the same number are flagged as a likely collision.
@@ -155,13 +152,13 @@ Streak is computed from `srs_cards.card_json` → `lastReview` dates: count cons
 
 ## Kanji SVG Assets
 
-Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db`. They are loaded at runtime by `KanjiStrokesProvider` via a DB query and rendered as animated paths. Source SVG files live in `content/characters/kanji_svg/` (committed) and are embedded into the DB by `tools/build_content_db.py`.
+Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db`. They are loaded at runtime by `KanjiStrokesProvider` via a DB query and rendered as animated paths. Source SVG files live in `content/characters/kanji_svg/` (committed) and are embedded into the DB by `scripts/content_pipeline/build_content_db.py`.
 
 ---
 
 ## Grammar Content
 
-Grammar lessons are authored as JSON files in `content/grammar/` using a recursive chapter/lesson structure. `tools/build_content_db.py` walks the tree and writes all lessons into the `grammar_lessons` table. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
+Grammar lessons are authored as JSON files in `content/grammar/` using a recursive chapter/lesson structure. `scripts/content_pipeline/build_content_db.py` walks the tree and writes all lessons into the `grammar_lessons` table. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
 
 ---
 

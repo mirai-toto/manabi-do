@@ -2,12 +2,12 @@
 Generates manabi_do/assets/manabi_do_content.db from the JSON source files.
 
 Run from the repo root:
-    python3 tools/build_content_db.py
+    python3 scripts/content_pipeline/build_content_db.py
 
 Commit the output file. The app copies it on first install — no runtime
 parsing or seeding loop.
 
-To add multilingual translations, run tools/gen_translations.py first,
+To add multilingual translations, run scripts/content_pipeline/gen_translations.py first,
 then re-run this script.
 
 Sentence exercises use Tatoeba (CC BY 2.0, tatoeba.org). The script
@@ -527,7 +527,7 @@ def main() -> None:
     inserted, missing = insert_svgs(db)
     print(f"{inserted} embedded, {missing} missing")
     if missing:
-        print(f"  (run python3 tools/download_kanjivg.py to fetch missing SVGs)")
+        print(f"  (run python3 scripts/content_pipeline/download_kanjivg.py to fetch missing SVGs)")
 
     for slug, jlpt in LEVELS:
         print(f"Inserting {jlpt} vocabulary… ", end="", flush=True)

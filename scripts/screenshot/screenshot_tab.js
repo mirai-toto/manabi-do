@@ -1,6 +1,6 @@
 /**
  * Screenshot each bottom-nav tab of the manabi_do web build.
- * Usage: NODE_PATH=scripts/pw/node_modules node scripts/screenshot_tab.js [port] [outputDir]
+ * Usage: NODE_PATH=scripts/pw/node_modules node scripts/screenshot/screenshot_tab.js [port] [outputDir]
  *
  * Note: the grammar tab requires the app to be built with _grammarEnabled = true,
  * otherwise it renders the lock overlay.

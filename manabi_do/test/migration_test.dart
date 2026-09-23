@@ -106,7 +106,7 @@ void main() {
       orderedEquals(want),
       reason:
           'assets/manabi_do_content.db does not open at the current schema. '
-          'The asset is built by tools/build_content_db.py from schema.drift, '
+          'The asset is built by scripts/content_pipeline/build_content_db.py from schema.drift, '
           'so a mismatch here means its _to_plain_sql has drifted from what '
           'drift generates. Rebuild the asset, or add the missing step.',
     );

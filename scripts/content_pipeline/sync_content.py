@@ -11,7 +11,7 @@ Sources:
             + JMdict-simplified (meanings in all languages, POS)
 
 Run from the repo root:
-    python3 tools/sync_content.py [--force]
+    python3 scripts/content_pipeline/sync_content.py [--force]
 
 Flags:
     --force   Re-download source files even if already cached in data/
@@ -21,7 +21,7 @@ Note:
     touched by this script.
 
 After running, rebuild the DB:
-    python3 tools/generate.py --no-sentences
+    python3 scripts/content_pipeline/generate.py --no-sentences
 """
 
 import argparse
@@ -352,7 +352,7 @@ def main() -> None:
     generate_vocabulary(kanji_ids, args.force)
 
     print("\nDone. Rebuild the DB:")
-    print("  python3 tools/generate.py --no-sentences")
+    print("  python3 scripts/content_pipeline/generate.py --no-sentences")
 
 
 if __name__ == "__main__":

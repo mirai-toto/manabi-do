@@ -4,7 +4,7 @@ All widgets live under `lib/presentation/widgets/`. Each widget is a pure presen
 
 The one explicit exception is `SpeakButton`, which reads `ttsProvider` to trigger a TTS action — a service action, not a display setting.
 
-This file says what each widget is *for*. To see what they *look like*, build the design reference (`manabi_do/tool/build_design_reference.sh`, see `docs/02_architecture.md`) — it renders every widgetbook use case live alongside the colour, dimension and type tokens.
+This file says what each widget is *for*. To see what they *look like*, build the design reference (`scripts/design/build_design_reference.sh`, see `docs/02_architecture.md`) — it renders every widgetbook use case live alongside the colour, dimension and type tokens.
 
 ---
 

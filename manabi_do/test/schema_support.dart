@@ -1,7 +1,7 @@
 /// Shared helpers for the schema guards.
 ///
 /// `schema.drift` is read by two independent implementations — drift's code
-/// generator, and `tools/build_content_db.py` via plain sqlite3 — so the tests
+/// generator, and `scripts/content_pipeline/build_content_db.py` via plain sqlite3 — so the tests
 /// compare the DDL each one produces. Quoting, whitespace and an explicit
 /// `NULL` carry no meaning in SQLite, so normalise them away first.
 library;

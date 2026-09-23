@@ -21,7 +21,7 @@ The schema has a single source of truth: **`manabi_do/lib/data/database/schema.d
 Two very different consumers read that one file:
 
 - **drift** generates the Dart table classes and row types from it
-- **`tools/build_content_db.py`** executes the same statements when building the shipped content DB
+- **`scripts/content_pipeline/build_content_db.py`** executes the same statements when building the shipped content DB
 
 Keep it to plain `CREATE TABLE`. Only two drift-isms are tolerated, and both are translated for the Python side: a trailing `) AS RowName` naming the generated row class, and `DATETIME` / `BOOLEAN`, which drift stores as `INTEGER`.
 
@@ -150,7 +150,7 @@ Primary key: (sentence_id, locale). English (`eng`) is the fallback locale.
 | blocks_json | TEXT       | JSON array of `{type, data}` blocks |
 | order_index | INTEGER    | Position within chapter             |
 
-Compiled from `content/grammar/` by `tools/build_content_db.py`. The app queries this table via `grammarThemesProvider` to build the Level → Theme → Lesson hierarchy.
+Compiled from `content/grammar/` by `scripts/content_pipeline/build_content_db.py`. The app queries this table via `grammarThemesProvider` to build the Level → Theme → Lesson hierarchy.
 
 **`grammar_exercises`**
 
@@ -203,7 +203,7 @@ Primary key: (item_type, item_id).
 | Example sentences         | [Tatoeba](https://tatoeba.org) community corpus                                                                                                                                | CC BY 2.0    |
 | Grammar lessons           | Hand-authored in `content/grammar/`                                                                                                                                            | —            |
 
-These sources feed into `content/` JSON files (committed) via the content pipeline. See `content/README.md` for the full rebuild workflow. `tools/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from upstream; run via `tools/generate.py --sync`.
+These sources feed into `content/` JSON files (committed) via the content pipeline. See `content/README.md` for the full rebuild workflow. `scripts/content_pipeline/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from upstream; run via `scripts/content_pipeline/generate.py --sync`.
 
 ## Content storage and recoverability
 
@@ -220,7 +220,7 @@ Every content type has a different resilience profile. This table maps where eac
 | Sentence translations | ❌ | ✅ `sentence_translations` | ✅ re-downloadable | Re-download Tatoeba → rebuild DB |
 | Grammar lessons | ✅ `content/grammar/` | ✅ `grammar_lessons` | — (hand-authored) | Rebuild from `content/` |
 
-**Key insight:** sentences are the only content with no committed fallback — they exist only in the DB and the gitignored Tatoeba download. All other content survives a DB loss via `content/` (JSON or SVG files). A full rebuild from scratch takes a few minutes with `python3 tools/generate.py --sync`.
+**Key insight:** sentences are the only content with no committed fallback — they exist only in the DB and the gitignored Tatoeba download. All other content survives a DB loss via `content/` (JSON or SVG files). A full rebuild from scratch takes a few minutes with `python3 scripts/content_pipeline/generate.py --sync`.
 
 ## Content organisation by JLPT level
 
