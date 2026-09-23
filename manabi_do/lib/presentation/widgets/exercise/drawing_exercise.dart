@@ -274,50 +274,78 @@ class _DrawingExerciseState extends State<DrawingExercise>
       ),
     );
 
-    if (widget.onNext != null) {
-      return Row(
-        children: [
-          Expanded(
-            child: OutlinedButton(
-              onPressed: _reset,
-              style: retryStyle,
-              child: Text(
-                l.retry,
-                style: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600),
-              ),
+    // Offered on both shapes below: after a wrong attempt the readings and
+    // stroke order are exactly what you want, and free practice had no way to
+    // reach them without leaving the session.
+    final detailLink = widget.onDetailTap == null
+        ? null
+        : TextButton.icon(
+            onPressed: widget.onDetailTap,
+            icon: const Icon(Icons.open_in_new_rounded, size: 16),
+            label: Text(l.viewDetail),
+            style: TextButton.styleFrom(
+              foregroundColor: context.tokens.onSurfaceVariant,
             ),
-          ),
-          const SizedBox(width: AppDimens.spaceSm),
-          Expanded(
-            child: FilledButton(
-              onPressed: () => widget.onNext!(
-                hintsUsed: _hintsUsed,
-                mistakes: _wrongStrokes.length,
-              ),
-              style: nextStyle,
-              child: Text(
-                l.next,
-                style: AppTextStyles.body.copyWith(
-                  color: onAccent,
-                  fontWeight: FontWeight.w600,
+          );
+
+    if (widget.onNext != null) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: _reset,
+                  style: retryStyle,
+                  child: Text(
+                    l.retry,
+                    style: AppTextStyles.body.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              const SizedBox(width: AppDimens.spaceSm),
+              Expanded(
+                child: FilledButton(
+                  onPressed: () => widget.onNext!(
+                    hintsUsed: _hintsUsed,
+                    mistakes: _wrongStrokes.length,
+                  ),
+                  style: nextStyle,
+                  child: Text(
+                    l.next,
+                    style: AppTextStyles.body.copyWith(
+                      color: onAccent,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
+          ?detailLink,
         ],
       );
     }
 
-    return FilledButton(
-      onPressed: _reset,
-      style: nextStyle,
-      child: Text(
-        l.retry,
-        style: AppTextStyles.body.copyWith(
-          color: onAccent,
-          fontWeight: FontWeight.w600,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        FilledButton(
+          onPressed: _reset,
+          style: nextStyle,
+          child: Text(
+            l.retry,
+            style: AppTextStyles.body.copyWith(
+              color: onAccent,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ),
-      ),
+        ?detailLink,
+      ],
     );
   }
 

@@ -9,6 +9,7 @@ import '../../../providers/drawing_settings_provider.dart';
 import '../../../providers/kanji_provider.dart';
 import '../../../providers/kanji_strokes_provider.dart';
 import '../../../widgets/widgets.dart';
+import 'kanji_detail_screen.dart';
 
 class KanjiDrawingPracticeScreen extends ConsumerWidget {
   final int kanjiId;
@@ -54,6 +55,11 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
             // A single kanji has nowhere to advance to, so the drill always
             // stops on the correction.
             autoAdvance: false,
+            onDetailTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => KanjiDetailScreen(kanjiId: kanjiId),
+              ),
+            ),
           ),
         ),
       ),
