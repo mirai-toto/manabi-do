@@ -3,8 +3,9 @@
 //
 //   dart run tool/gen_design_reference.dart
 //
-// Writes ../docs/design-reference.html. Run it after touching anything under
-// lib/core/theme/ or lib/core/srs/srs_level.dart.
+// Writes ../design-reference/index.html, which is gitignored: it is derived
+// output, and a folder with an index is what a Pages deploy wants later.
+// Run it after touching anything under lib/core/theme/ or lib/core/srs/.
 //
 // The page is deliberately more than documentation: it computes contrast ratios
 // against WCAG AA, groups dimensions by the number they hold so duplicate names
@@ -21,7 +22,7 @@ const _dimensPath = 'lib/core/theme/app_dimens.dart';
 const _stylesPath = 'lib/core/theme/app_text_styles.dart';
 const _jlptPath = 'lib/core/theme/jlpt_level.dart';
 const _srsPath = 'lib/core/srs/srs_level.dart';
-const _outPath = '../docs/design-reference.html';
+const _outPath = '../design-reference/index.html';
 
 /// Where the page reaches for the real typefaces, relative to [_outPath].
 const _fontDir = '../manabi_do/assets/fonts';
