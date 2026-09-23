@@ -180,6 +180,30 @@ Map<String, Rgb> parseRamp(String src) {
   return out;
 }
 
+/// The `// Section` comments above the field declarations, in source order.
+///
+/// Grouping is read from the source rather than hardcoded here, so a new
+/// section in `app_tokens.dart` shows up on the page without touching this
+/// tool, and a token cannot quietly end up in the wrong group.
+List<(String, List<String>)> parseColorGroups(String src) {
+  final body = src.substring(
+    src.indexOf('class AppTokens'),
+    src.indexOf('const AppTokens({'),
+  );
+  final out = <(String, List<String>)>[];
+  for (final line in body.split('\n')) {
+    final heading = RegExp(r'^\s*// ([A-Z][\w ]*)$').firstMatch(line);
+    if (heading != null) {
+      out.add((heading.group(1)!.trim(), <String>[]));
+      continue;
+    }
+    final field = RegExp(r'^\s*final Color (\w+);').firstMatch(line);
+    if (field != null && out.isNotEmpty) out.last.$2.add(field.group(1)!);
+  }
+  if (out.isEmpty) throw StateError('Parsed no colour groups');
+  return out;
+}
+
 /// One widgetbook use case, and the URL that renders it on its own.
 class UseCase {
   final List<String> folders;
@@ -293,6 +317,7 @@ void main() {
   final ramp = parseRamp(_read(_jlptPath));
   final srs = parseSrsLevels(_read(_srsPath));
   final useCases = parseUseCases(_read(_useCasesPath));
+  final colorGroups = parseColorGroups(tokensSrc);
   final lib = readLibSources();
 
   final html = buildPage(
@@ -303,6 +328,7 @@ void main() {
     ramp: ramp,
     srs: srs,
     useCases: useCases,
+    colorGroups: colorGroups,
     lib: lib,
   );
 
@@ -364,6 +390,7 @@ String buildPage({
   required Map<String, Rgb> ramp,
   required Map<String, String> srs,
   required List<UseCase> useCases,
+  required List<(String, List<String>)> colorGroups,
   required String lib,
 }) {
   final b = StringBuffer();
@@ -468,6 +495,12 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
 .tile figcaption a { color: var(--ink); text-decoration: none; }
 .tile figcaption a:hover { color: var(--accent); text-decoration: underline; }
 .note a { color: var(--accent); }
+tr.grp td { background: var(--ground); font-size: 11px; font-weight: 650;
+            letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+            padding-top: 11px; padding-bottom: 7px; }
+.grp-n { display: inline-block; margin-left: 8px; padding: 0 6px; border-radius: 100px;
+         background: var(--line); font-size: 10px; letter-spacing: 0; }
+td.pad { padding-left: 26px; }
 .ctx-pair { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .ctx { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
 .ctx-label { font-size: 11px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase;
@@ -508,7 +541,7 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
 
   _writeInContext(b, light, dark);
   _writeContrast(b, light, dark);
-  _writeColors(b, light, dark, lib);
+  _writeColors(b, light, dark, colorGroups, lib);
   _writeRamp(b, ramp, srs, light, dark);
   _writeDimens(b, dimens, lib);
   _writeType(b, styles, lib);
@@ -565,29 +598,42 @@ void _writeColors(
   StringBuffer b,
   Map<String, Rgb> light,
   Map<String, Rgb> dark,
+  List<(String, List<String>)> groups,
   String lib,
 ) {
+  final total = groups.fold(0, (n, g) => n + g.$2.length);
+
   b.writeln('<h2>Colour tokens</h2>');
   b.writeln(
-    '<p class="note">Read through <code>context.tokens</code>. A count of zero '
-    'means nothing in <code>lib/</code> references it.</p>',
+    '<p class="note">$total tokens, grouped as the source groups them. '
+    'Read through <code>context.tokens</code>. A count of zero means nothing '
+    'in <code>lib/</code> references it.</p>',
   );
+
   b.writeln(
     '<div class="scroll"><table><tr>'
     '<th>Token</th><th>Light</th><th>Hex</th><th>Dark</th><th>Hex</th>'
     '<th class="num">Uses</th></tr>',
   );
 
-  for (final name in light.keys) {
-    final uses = countColor(lib, name);
+  for (final g in groups) {
+    final groupUses = g.$2.fold(0, (n, k) => n + countColor(lib, k));
     b.writeln(
-      '<tr><td class="mono">$name</td>'
-      '<td><span class="sw" style="background:${light[name]!.css}"></span></td>'
-      '<td class="mono">${light[name]!.hex}</td>'
-      '<td><span class="sw" style="background:${dark[name]!.css}"></span></td>'
-      '<td class="mono">${dark[name]!.hex}</td>'
-      '<td class="num${uses == 0 ? ' zero' : ''}">$uses</td></tr>',
+      '<tr class="grp"><td colspan="5">${g.$1}'
+      '<span class="grp-n">${g.$2.length}</span></td>'
+      '<td class="num">$groupUses</td></tr>',
     );
+    for (final name in g.$2) {
+      final uses = countColor(lib, name);
+      b.writeln(
+        '<tr><td class="mono pad">$name</td>'
+        '<td><span class="sw" style="background:${light[name]!.css}"></span></td>'
+        '<td class="mono">${light[name]!.hex}</td>'
+        '<td><span class="sw" style="background:${dark[name]!.css}"></span></td>'
+        '<td class="mono">${dark[name]!.hex}</td>'
+        '<td class="num${uses == 0 ? ' zero' : ''}">$uses</td></tr>',
+      );
+    }
   }
   b.writeln('</table></div>');
 }
