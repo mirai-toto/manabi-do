@@ -1,33 +1,42 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
+import '../../../core/models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/practice_session_provider.dart';
 import '../../widgets/widgets.dart';
 import '../characters/kanji/kanji_detail_screen.dart';
 
-/// Everything answered so far in the current session, with the grade of any of
-/// them open to being changed.
+/// Everything answered so far in a session, with the grade of any of them open
+/// to being changed where the session has grades to change.
 ///
-/// Pushed from the session app bar and reads the same provider the session
-/// does, so a re-grade is reflected the moment the user comes back.
-class SessionReviewScreen extends ConsumerStatefulWidget {
-  /// Whether grades are written through to the SRS. False for free practice,
-  /// where re-grading only moves the session's own score.
-  final bool persistSrs;
+/// Takes its answers rather than reading a provider, because the two kinds of
+/// session keep them in different places: a review session in
+/// `practiceSessionProvider`, a writing session in its own state.
+class SessionReviewScreen extends StatefulWidget {
+  final List<SessionAnswer> answers;
 
-  const SessionReviewScreen({super.key, required this.persistSrs});
+  /// How many items the session holds in total, for the "8 of 20" counter.
+  final int total;
+
+  /// Null where nothing can be re-graded, which is every free-practice session:
+  /// there is no SRS row to rewrite and no score to move.
+  final void Function(int index, Rating rating)? onRegrade;
+
+  const SessionReviewScreen({
+    super.key,
+    required this.answers,
+    required this.total,
+    this.onRegrade,
+  });
 
   @override
-  ConsumerState<SessionReviewScreen> createState() =>
-      _SessionReviewScreenState();
+  State<SessionReviewScreen> createState() => _SessionReviewScreenState();
 }
 
-class _SessionReviewScreenState extends ConsumerState<SessionReviewScreen> {
+class _SessionReviewScreenState extends State<SessionReviewScreen> {
   /// One row open at a time, so a long panel never buries the rest of the list.
   int? _expandedIndex;
 
@@ -52,10 +61,6 @@ class _SessionReviewScreenState extends ConsumerState<SessionReviewScreen> {
     });
   }
 
-  void _regrade(int index, Rating rating) => ref
-      .read(practiceSessionProvider.notifier)
-      .regrade(index, rating, persistSrs: widget.persistSrs);
-
   /// Kanji is the only item with a screen of its own, so it is the only one
   /// that gets a detail link.
   VoidCallback? _detailTapFor(String srsType, int id) => srsType == 'kanji'
@@ -70,9 +75,7 @@ class _SessionReviewScreenState extends ConsumerState<SessionReviewScreen> {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
-    final session = ref.watch(practiceSessionProvider);
-    final answers = session.answers;
-    final total = session.queue?.length ?? answers.length;
+    final answers = widget.answers;
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -88,7 +91,7 @@ class _SessionReviewScreenState extends ConsumerState<SessionReviewScreen> {
             padding: const EdgeInsets.only(right: AppDimens.spaceMd),
             child: Center(
               child: Text(
-                l.sessionReviewCount(answers.length, total),
+                l.sessionReviewCount(answers.length, widget.total),
                 style: AppTextStyles.bodySmall.copyWith(
                   color: t.onSurfaceVariant,
                 ),
@@ -124,7 +127,9 @@ class _SessionReviewScreenState extends ConsumerState<SessionReviewScreen> {
                   card: a.card,
                   isExpanded: _expandedIndex == i,
                   onToggle: () => _toggle(i),
-                  onRegrade: (rating) => _regrade(i, rating),
+                  onRegrade: widget.onRegrade == null
+                      ? null
+                      : (rating) => widget.onRegrade!(i, rating),
                   onDetailTap: _detailTapFor(a.srsType, a.id),
                 );
               },

@@ -38,7 +38,11 @@ class DrawingExercise extends StatefulWidget {
   onAutoAdvance;
   final String? question;
   final VoidCallback? onDetailTap;
-  final VoidCallback? onNext;
+
+  /// Moves a free-practice session on. Reports the attempt for the same reason
+  /// [onAutoAdvance] does: the session review needs to know how it went, and
+  /// the Next button is the only place that knows once auto-advance is off.
+  final void Function({required bool hintsUsed, required int mistakes})? onNext;
   final DrawingSettings settings;
 
   const DrawingExercise({
@@ -286,7 +290,10 @@ class _DrawingExerciseState extends State<DrawingExercise>
           const SizedBox(width: AppDimens.spaceSm),
           Expanded(
             child: FilledButton(
-              onPressed: widget.onNext,
+              onPressed: () => widget.onNext!(
+                hintsUsed: _hintsUsed,
+                mistakes: _wrongStrokes.length,
+              ),
               style: nextStyle,
               child: Text(
                 l.next,

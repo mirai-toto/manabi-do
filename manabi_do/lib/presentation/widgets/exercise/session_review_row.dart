@@ -39,7 +39,10 @@ class SessionReviewRow extends StatefulWidget {
 
   final bool isExpanded;
   final VoidCallback onToggle;
-  final void Function(Rating) onRegrade;
+
+  /// Null where a grade cannot be changed — free practice writes nothing back,
+  /// so the panel shows what happened without offering to re-score it.
+  final void Function(Rating)? onRegrade;
 
   /// Opens the item's own screen. Null when the item has no detail screen,
   /// which today is everything except kanji.
@@ -52,7 +55,7 @@ class SessionReviewRow extends StatefulWidget {
     required this.card,
     required this.isExpanded,
     required this.onToggle,
-    required this.onRegrade,
+    this.onRegrade,
     this.given,
     this.mistakes,
     this.onDetailTap,
@@ -362,7 +365,7 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
         bgColor: bg,
         fgColor: fg,
         selected: widget.rating == rating,
-        onTap: () => widget.onRegrade(rating),
+        onTap: () => widget.onRegrade!(rating),
       ),
     );
 

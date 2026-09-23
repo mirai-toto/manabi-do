@@ -136,8 +136,15 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
                 ),
                 onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute<void>(
-                    builder: (_) =>
-                        SessionReviewScreen(persistSrs: widget.persistSrs),
+                    builder: (_) => SessionReviewScreen(
+                      answers: session.answers,
+                      total: session.queue?.length ?? session.answers.length,
+                      onRegrade: (i, rating) => notifier.regrade(
+                        i,
+                        rating,
+                        persistSrs: widget.persistSrs,
+                      ),
+                    ),
                   ),
                 ),
               ),

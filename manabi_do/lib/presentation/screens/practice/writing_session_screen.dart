@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/models/practice_answer.dart';
+import '../../../core/srs/drawing_rating.dart';
 import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -13,6 +15,7 @@ import '../../providers/writing_session_provider.dart';
 import '../../providers/kanji_strokes_provider.dart';
 import '../../widgets/widgets.dart';
 import 'practice_settings_sheet.dart';
+import 'session_review_screen.dart';
 
 class WritingSessionScreen extends ConsumerStatefulWidget {
   final String level;
@@ -34,6 +37,11 @@ class WritingSessionScreen extends ConsumerStatefulWidget {
 class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
   int _index = 0;
   DateTime _startedAt = DateTime.now();
+
+  /// Every kanji drawn so far. Free practice writes nothing back to the SRS, so
+  /// these are kept here rather than in `practiceSessionProvider`, and the
+  /// review shows them without offering to re-grade.
+  final List<SessionAnswer> _answers = [];
   late final PracticeActiveNotifier _practiceNotifier;
 
   @override
@@ -56,10 +64,36 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
 
   void _advance() => setState(() => _index++);
 
+  void _record(
+    Kanji kanji,
+    String meaning, {
+    required bool hintsUsed,
+    required int mistakes,
+  }) {
+    _answers.add(
+      SessionAnswer(
+        srsType: 'kanji',
+        id: kanji.id,
+        card: null,
+        rating: drawingRating(hintsUsed: hintsUsed, mistakes: mistakes),
+        mistakes: mistakes,
+        summary: PracticeSummary(
+          item: kanji.character,
+          question: (l) => l.reviewDrawPrompt(meaning),
+          answer: meaning,
+          kindLabel: (l) => l.reviewKindKanjiWriting,
+          selfAssessed: true,
+        ),
+      ),
+    );
+    _advance();
+  }
+
   void _restart() {
     ref.invalidate(writingKanjiProvider(_args));
     setState(() {
       _index = 0;
+      _answers.clear();
       _startedAt = DateTime.now();
     });
   }
@@ -98,7 +132,13 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
               meaning: queue[_index].$2,
               index: _index,
               total: queue.length,
-              onAdvance: _advance,
+              answers: _answers,
+              onDone: ({required hintsUsed, required mistakes}) => _record(
+                queue[_index].$1,
+                queue[_index].$2,
+                hintsUsed: hintsUsed,
+                mistakes: mistakes,
+              ),
             ),
     );
   }
@@ -113,7 +153,8 @@ class _ActiveScreen extends ConsumerWidget {
   final String meaning;
   final int index;
   final int total;
-  final VoidCallback onAdvance;
+  final List<SessionAnswer> answers;
+  final void Function({required bool hintsUsed, required int mistakes}) onDone;
 
   const _ActiveScreen({
     required this.level,
@@ -122,7 +163,8 @@ class _ActiveScreen extends ConsumerWidget {
     required this.meaning,
     required this.index,
     required this.total,
-    required this.onAdvance,
+    required this.answers,
+    required this.onDone,
   });
 
   @override
@@ -140,6 +182,24 @@ class _ActiveScreen extends ConsumerWidget {
           style: AppTextStyles.title.copyWith(color: t.onSurface),
         ),
         actions: [
+          // Nothing to look back at until something has been drawn.
+          if (answers.isNotEmpty)
+            IconButton(
+              iconSize: 20,
+              tooltip: context.l10n.sessionReview,
+              icon: Badge.count(
+                count: answers.length,
+                backgroundColor: color,
+                textColor: onAccentFor(color),
+                child: Icon(Icons.history_rounded, color: t.onSurfaceVariant),
+              ),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) =>
+                      SessionReviewScreen(answers: answers, total: total),
+                ),
+              ),
+            ),
           IconButton(
             iconSize: 18,
             icon: Icon(Icons.tune_rounded, color: t.onSurfaceVariant),
@@ -176,9 +236,8 @@ class _ActiveScreen extends ConsumerWidget {
                     color: color,
                     settings: drawingSettings,
                     autoAdvance: drawingSettings.autoAdvance,
-                    onNext: onAdvance,
-                    onAutoAdvance: ({required hintsUsed, required mistakes}) =>
-                        onAdvance(),
+                    onNext: onDone,
+                    onAutoAdvance: onDone,
                   ),
                 ),
               ),
