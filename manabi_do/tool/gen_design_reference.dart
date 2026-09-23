@@ -460,6 +460,7 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
 .frame::after { content: "…"; position: absolute; inset: 0; display: grid;
                 place-items: center; color: var(--muted); font-size: 20px; }
 .frame.loaded::after { content: none; }
+.frame.capped::after { content: "preview capped"; font-size: 11px; letter-spacing: .05em; }
 .frame iframe { width: 100%; height: 100%; border: 0; display: block;
                 position: relative; z-index: 1; }
 .tile figcaption { padding: 7px 10px; border-top: 1px solid var(--line);
@@ -766,28 +767,64 @@ const _lazyScript = '''
     return;
   }
 
-  var theme = new URLSearchParams(location.search).get('wb') === 'dark'
-      ? 'Dark' : 'Light';
+  var params = new URLSearchParams(location.search);
+  var theme = params.get('wb') === 'dark' ? 'Dark' : 'Light';
+
+  // No cap by default: every preview scrolled into view eventually boots.
+  // `?tiles=N` caps it, which is the way to open the page quickly when you
+  // only came for the tokens — one engine costs roughly 44 MB and 3 seconds.
+  var cap = params.has('tiles') ? parseInt(params.get('tiles'), 10) : Infinity;
+  var booted = 0;
   document.documentElement.dataset.wb = theme.toLowerCase();
   document.querySelectorAll('[data-theme-link]').forEach(function (a) {
     a.href = location.pathname + (theme === 'Dark' ? '' : '?wb=dark');
     a.textContent = theme === 'Dark' ? 'Viewing dark' : 'Viewing light';
   });
 
+  // Boot strictly one at a time. Each preview is a whole Flutter app, and
+  // letting several start together means each one downloads its own copy of
+  // canvaskit.wasm, main.dart.js and the fonts — measured at 320 MB for nine
+  // tiles, because nothing is in cache yet while they all race. Serialised,
+  // the first tile pays that cost once and the rest revalidate to 304.
+  var queue = [];
+  var busy = false;
+
+  function pump() {
+    if (busy || !queue.length) return;
+    if (booted >= cap) {
+      queue.splice(0).forEach(function (b) { b.classList.add('capped'); });
+      return;
+    }
+    busy = true;
+    booted++;
+    var box = queue.shift();
+    var frame = document.createElement('iframe');
+    frame.title = box.dataset.label;
+    var done = false;
+    var next = function () {
+      if (done) return;
+      done = true;
+      box.classList.add('loaded');
+      busy = false;
+      pump();
+    };
+    // `load` fires when the bundle is in; give a slow or failed boot a ceiling
+    // so one bad tile cannot stall every tile behind it.
+    frame.addEventListener('load', function () { setTimeout(next, 150); });
+    setTimeout(next, 20000);
+    frame.src = 'widgetbook/index.html#/?path=' + box.dataset.path +
+                '&preview&theme=%7Bname:' + theme + '%7D';
+    box.appendChild(frame);
+  }
+
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
-      var box = e.target;
-      io.unobserve(box);
-      var frame = document.createElement('iframe');
-      frame.loading = 'lazy';
-      frame.title = box.dataset.label;
-      frame.src = 'widgetbook/index.html#/?path=' + box.dataset.path +
-                  '&preview&theme=%7Bname:' + theme + '%7D';
-      box.appendChild(frame);
-      box.classList.add('loaded');
+      io.unobserve(e.target);
+      queue.push(e.target);
+      pump();
     });
-  }, { rootMargin: '400px' });
+  }, { rootMargin: '200px' });
 
   document.querySelectorAll('.frame').forEach(function (f) { io.observe(f); });
 })();
@@ -799,9 +836,11 @@ void _writeWidgets(StringBuffer b, List<UseCase> useCases) {
     '<p class="note">${useCases.length} use cases, rendered live from the '
     'widgetbook build sitting next to this page. These are the real widgets, '
     'not drawings of them — click a tile to open it full size with the '
-    'knobs and addons panel. Previews load as you scroll, because each one '
-    'starts a Flutter engine. '
-    '<a data-theme-link href="#">Viewing light</a>.</p>',
+    'knobs and addons panel. Previews boot one at a time as you scroll to '
+    'them, because each is a whole Flutter engine — roughly 44&nbsp;MB and '
+    '3&nbsp;seconds each, so give a long scroll a moment to catch up. Add '
+    '<code>?tiles=3</code> to the URL to cap it when you only came for the '
+    'tokens. <a data-theme-link href="#">Viewing light</a>.</p>',
   );
 
   // Group by folder path, then by component, preserving declaration order.

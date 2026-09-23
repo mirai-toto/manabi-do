@@ -20,7 +20,7 @@ MODE="--release"
 OUT="../design-reference"
 
 echo "▶ building widgetbook ($MODE)"
-flutter build web -t lib/widgetbook.dart --no-web-resources-cdn "$MODE"
+flutter build web -t lib/widgetbook.dart --no-web-resources-cdn --no-wasm-dry-run "$MODE"
 
 echo "▶ staging into $OUT/widgetbook"
 mkdir -p "$OUT"
