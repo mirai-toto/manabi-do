@@ -20,12 +20,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color onPrimary;
   final Color onPrimaryContainer;
 
-  // Secondary
-  final Color secondary;
-  final Color secondaryContainer;
-  final Color onSecondary;
-  final Color onSecondaryContainer;
-
   // Semantic
   final Color error;
   final Color errorContainer;
@@ -58,10 +52,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.primaryContainer,
     required this.onPrimary,
     required this.onPrimaryContainer,
-    required this.secondary,
-    required this.secondaryContainer,
-    required this.onSecondary,
-    required this.onSecondaryContainer,
     required this.error,
     required this.errorContainer,
     required this.success,
@@ -90,10 +80,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     primaryContainer: Color(0xFFE8E0FF),
     onPrimary: Color(0xFFFFFFFF),
     onPrimaryContainer: Color(0xFF1E0085),
-    secondary: Color(0xFF5E5791),
-    secondaryContainer: Color(0xFFE4DFFF),
-    onSecondary: Color(0xFFFFFFFF),
-    onSecondaryContainer: Color(0xFF1A1250),
     error: Color(0xFFB3261E),
     errorContainer: Color(0xFFFCE8E6),
     success: Color(0xFF146B3A),
@@ -122,10 +108,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     primaryContainer: Color(0xFF4F378B),
     onPrimary: Color(0xFF381E72),
     onPrimaryContainer: Color(0xFFEADDFF),
-    secondary: Color(0xFFCCC2DC),
-    secondaryContainer: Color(0xFF4A4458),
-    onSecondary: Color(0xFF332D41),
-    onSecondaryContainer: Color(0xFFE8DEF8),
     error: Color(0xFFF2B8B5),
     errorContainer: Color(0xFF8C1D18),
     success: Color(0xFF6CDFAB),
@@ -155,10 +137,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? primaryContainer,
     Color? onPrimary,
     Color? onPrimaryContainer,
-    Color? secondary,
-    Color? secondaryContainer,
-    Color? onSecondary,
-    Color? onSecondaryContainer,
     Color? error,
     Color? errorContainer,
     Color? success,
@@ -185,10 +163,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     primaryContainer: primaryContainer ?? this.primaryContainer,
     onPrimary: onPrimary ?? this.onPrimary,
     onPrimaryContainer: onPrimaryContainer ?? this.onPrimaryContainer,
-    secondary: secondary ?? this.secondary,
-    secondaryContainer: secondaryContainer ?? this.secondaryContainer,
-    onSecondary: onSecondary ?? this.onSecondary,
-    onSecondaryContainer: onSecondaryContainer ?? this.onSecondaryContainer,
     error: error ?? this.error,
     errorContainer: errorContainer ?? this.errorContainer,
     success: success ?? this.success,
@@ -238,18 +212,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
       onPrimaryContainer: Color.lerp(
         onPrimaryContainer,
         other.onPrimaryContainer,
-        t,
-      )!,
-      secondary: Color.lerp(secondary, other.secondary, t)!,
-      secondaryContainer: Color.lerp(
-        secondaryContainer,
-        other.secondaryContainer,
-        t,
-      )!,
-      onSecondary: Color.lerp(onSecondary, other.onSecondary, t)!,
-      onSecondaryContainer: Color.lerp(
-        onSecondaryContainer,
-        other.onSecondaryContainer,
         t,
       )!,
       error: Color.lerp(error, other.error, t)!,
