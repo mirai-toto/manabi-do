@@ -22,6 +22,7 @@ const _dimensPath = 'lib/core/theme/app_dimens.dart';
 const _stylesPath = 'lib/core/theme/app_text_styles.dart';
 const _jlptPath = 'lib/core/theme/jlpt_level.dart';
 const _srsPath = 'lib/core/srs/srs_level.dart';
+const _useCasesPath = 'lib/widgetbook.directories.g.dart';
 const _outPath = '../design-reference/index.html';
 
 /// Where the page reaches for the real typefaces, relative to [_outPath].
@@ -179,6 +180,68 @@ Map<String, Rgb> parseRamp(String src) {
   return out;
 }
 
+/// One widgetbook use case, and the URL that renders it on its own.
+class UseCase {
+  final List<String> folders;
+  final String component;
+  final String name;
+  const UseCase(this.folders, this.component, this.name);
+
+  /// Widgetbook builds a node path by joining the names from the root, turning
+  /// spaces into dashes and lowercasing. See `WidgetbookNode.path`.
+  String get path => [
+    ...folders,
+    component,
+    name,
+  ].join('/').replaceAll(' ', '-').toLowerCase();
+}
+
+/// Walks the generated directories file. The node type is decided by the
+/// constructor name and the nesting by indentation, which the generator always
+/// formats on a 4-space ladder.
+List<UseCase> parseUseCases(String src) {
+  final out = <UseCase>[];
+  final stack = <({int indent, String kind, String name})>[];
+  final node = RegExp(
+    r'^(\s*)_widgetbook\.Widgetbook(Folder|Component|LeafComponent|UseCase)\(',
+  );
+  final nameLine = RegExp(r"^\s*name: '([^']*)'");
+
+  int? pendingIndent;
+  String? pendingKind;
+
+  for (final line in src.split('\n')) {
+    final m = node.firstMatch(line);
+    if (m != null) {
+      pendingIndent = m.group(1)!.length;
+      pendingKind = m.group(2)!;
+      continue;
+    }
+    final n = nameLine.firstMatch(line);
+    if (n == null || pendingKind == null) continue;
+
+    stack.removeWhere((e) => e.indent >= pendingIndent!);
+    stack.add((indent: pendingIndent!, kind: pendingKind, name: n.group(1)!));
+
+    if (pendingKind == 'UseCase') {
+      final folders = stack
+          .where((e) => e.kind == 'Folder')
+          .map((e) => e.name)
+          .toList();
+      final component = stack
+          .lastWhere(
+            (e) => e.kind == 'Component' || e.kind == 'LeafComponent',
+            orElse: () => (indent: 0, kind: '', name: ''),
+          )
+          .name;
+      out.add(UseCase(folders, component, n.group(1)!));
+    }
+    pendingKind = null;
+  }
+  if (out.isEmpty) throw StateError('Parsed no widgetbook use cases');
+  return out;
+}
+
 /// Maps each `SrsLevel` to the ramp entry it borrows, per `srs_level.dart`.
 Map<String, String> parseSrsLevels(String src) {
   final out = <String, String>{};
@@ -229,6 +292,7 @@ void main() {
   final styles = parseTextStyles(_read(_stylesPath));
   final ramp = parseRamp(_read(_jlptPath));
   final srs = parseSrsLevels(_read(_srsPath));
+  final useCases = parseUseCases(_read(_useCasesPath));
   final lib = readLibSources();
 
   final html = buildPage(
@@ -238,6 +302,7 @@ void main() {
     styles: styles,
     ramp: ramp,
     srs: srs,
+    useCases: useCases,
     lib: lib,
   );
 
@@ -248,8 +313,15 @@ void main() {
   stdout.writeln('Wrote ${out.path}');
   stdout.writeln(
     '  ${light.length} colours x 2 themes, ${dimens.length} dimensions, '
-    '${styles.length} text styles, ${ramp.length} ramp colours',
+    '${styles.length} text styles, ${ramp.length} ramp colours, '
+    '${useCases.length} widget use cases',
   );
+  if (!Directory('${out.parent.path}/widgetbook').existsSync()) {
+    stdout.writeln(
+      '  ! No widgetbook build beside it — the widget previews will be blank.\n'
+      '    Run tool/build_design_reference.sh to build both.',
+    );
+  }
 }
 
 // ── Page ─────────────────────────────────────────────────────────────────────
@@ -291,6 +363,7 @@ String buildPage({
   required List<TextStyleSpec> styles,
   required Map<String, Rgb> ramp,
   required Map<String, String> srs,
+  required List<UseCase> useCases,
   required String lib,
 }) {
   final b = StringBuffer();
@@ -374,6 +447,26 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
 .pair span { flex: 1; height: 30px; }
 .chip-demo { display: inline-block; padding: 3px 10px; border-radius: 100px;
              font-size: 11px; font-weight: 700; }
+.comp { margin-bottom: 20px; }
+.comp-name { font-size: 13px; font-weight: 650; margin-bottom: 8px;
+             display: flex; align-items: center; gap: 8px; }
+.comp-count { font-size: 10px; font-weight: 700; color: var(--muted);
+              background: var(--line); padding: 0 6px; border-radius: 100px; }
+.tiles { display: grid; gap: 12px;
+         grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.tile { margin: 0; background: var(--panel); border: 1px solid var(--line);
+        border-radius: 10px; overflow: hidden; }
+.frame { height: 200px; background: var(--ground); position: relative; }
+.frame::after { content: "…"; position: absolute; inset: 0; display: grid;
+                place-items: center; color: var(--muted); font-size: 20px; }
+.frame.loaded::after { content: none; }
+.frame iframe { width: 100%; height: 100%; border: 0; display: block;
+                position: relative; z-index: 1; }
+.tile figcaption { padding: 7px 10px; border-top: 1px solid var(--line);
+                   font-size: 12px; }
+.tile figcaption a { color: var(--ink); text-decoration: none; }
+.tile figcaption a:hover { color: var(--accent); text-decoration: underline; }
+.note a { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -394,8 +487,9 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
   _writeRamp(b, ramp, srs, light, dark);
   _writeDimens(b, dimens, lib);
   _writeType(b, styles, lib);
+  _writeWidgets(b, useCases);
 
-  b.writeln('</div></body></html>');
+  b.writeln('</div>$_lazyScript</body></html>');
   return b.toString();
 }
 
@@ -640,5 +734,82 @@ void _writeType(StringBuffer b, List<TextStyleSpec> styles, String lib) {
               line-height:${s.height ?? 1.3};
               letter-spacing:${s.letterSpacing ?? 0}px">$sample</div>
 </div>''');
+  }
+}
+
+// ── Widgets ──────────────────────────────────────────────────────────────────
+
+/// Each tile is an iframe into the real widgetbook in `preview` mode, so the
+/// widget on the page is the widget the app ships — not a copy of it.
+///
+/// Booting 112 Flutter engines at once would sink the page, so a tile only gets
+/// its `src` when it is about to come into view.
+const _lazyScript = '''
+<script>
+(function () {
+  var theme = new URLSearchParams(location.search).get('wb') === 'dark'
+      ? 'Dark' : 'Light';
+  document.documentElement.dataset.wb = theme.toLowerCase();
+  document.querySelectorAll('[data-theme-link]').forEach(function (a) {
+    a.href = location.pathname + (theme === 'Dark' ? '' : '?wb=dark');
+    a.textContent = theme === 'Dark' ? 'Viewing dark' : 'Viewing light';
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var box = e.target;
+      io.unobserve(box);
+      var frame = document.createElement('iframe');
+      frame.loading = 'lazy';
+      frame.title = box.dataset.label;
+      frame.src = 'widgetbook/#/?path=' + box.dataset.path +
+                  '&preview&theme=%7Bname:' + theme + '%7D';
+      box.appendChild(frame);
+      box.classList.add('loaded');
+    });
+  }, { rootMargin: '400px' });
+
+  document.querySelectorAll('.frame').forEach(function (f) { io.observe(f); });
+})();
+</script>''';
+
+void _writeWidgets(StringBuffer b, List<UseCase> useCases) {
+  b.writeln('<h2>Widgets</h2>');
+  b.writeln(
+    '<p class="note">${useCases.length} use cases, rendered live from the '
+    'widgetbook build sitting next to this page. These are the real widgets, '
+    'not drawings of them — click a tile to open it full size with the '
+    'knobs and addons panel. Previews load as you scroll, because each one '
+    'starts a Flutter engine. '
+    '<a data-theme-link href="#">Viewing light</a>.</p>',
+  );
+
+  // Group by folder path, then by component, preserving declaration order.
+  final byFolder = <String, Map<String, List<UseCase>>>{};
+  for (final u in useCases) {
+    byFolder
+        .putIfAbsent(u.folders.join(' › '), () => {})
+        .putIfAbsent(u.component, () => [])
+        .add(u);
+  }
+
+  for (final folder in byFolder.entries) {
+    b.writeln('<h3>${folder.key}</h3>');
+    for (final comp in folder.value.entries) {
+      b.writeln(
+        '<div class="comp"><div class="comp-name mono">'
+        '${comp.key} <span class="comp-count">${comp.value.length}</span>'
+        '</div><div class="tiles">',
+      );
+      for (final u in comp.value) {
+        final url = 'widgetbook/#/?path=${u.path}&preview';
+        b.writeln('''<figure class="tile">
+  <div class="frame" data-path="${u.path}" data-label="${comp.key} — ${u.name}"></div>
+  <figcaption><a href="$url" target="_blank" rel="noopener">${u.name}</a></figcaption>
+</figure>''');
+      }
+      b.writeln('</div></div>');
+    }
   }
 }
