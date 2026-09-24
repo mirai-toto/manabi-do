@@ -90,6 +90,20 @@ class GrammarSessionService {
         id: id,
         srsType: 'grammar',
         card: null,
+        summary: PracticeSummary(
+          item: exercise.front,
+          question: (l) =>
+              exercise.question?[locale] ??
+              exercise.question?['en'] ??
+              (exercise.isReversed
+                  ? l.flashcardJapaneseQuestion
+                  : l.flashcardDefaultPrompt),
+          answer: exercise.isReversed
+              ? exercise.front
+              : (exercise.back[locale] ?? exercise.back['en'] ?? ''),
+          kindLabel: (l) => l.sectionGrammar,
+          selfAssessed: true,
+        ),
         buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
           japanese: exercise.front,
           answer: exercise.back[locale] ?? exercise.back['en'] ?? '',
@@ -111,6 +125,16 @@ class GrammarSessionService {
         id: id,
         srsType: 'grammar',
         card: null,
+        summary: PracticeSummary(
+          item: exercise.sentence,
+          question: (l) => l.grammarMcqPrompt,
+          answer:
+              exercise.choices[locale]?[exercise.answerIndex] ??
+              exercise.choices['en']?[exercise.answerIndex] ??
+              '',
+          kindLabel: (l) => l.sectionGrammar,
+          selfAssessed: false,
+        ),
         buildBody: (index, total, onAnswer, settings) {
           final choices =
               exercise.choices[locale] ?? exercise.choices['en'] ?? [];
@@ -140,6 +164,14 @@ class GrammarSessionService {
         id: id,
         srsType: 'grammar',
         card: null,
+        summary: PracticeSummary(
+          item: exercise.sentence,
+          question: (l) => l.reviewClozePrompt,
+          answer: exercise.answer,
+          kindLabel: (l) => l.sectionGrammar,
+          selfAssessed: false,
+          sentence: exercise.sentence,
+        ),
         buildBody: (index, total, onAnswer, settings) {
           final allOptions = [exercise.answer, ...exercise.distractors];
           allOptions.shuffle(math.Random());
@@ -168,6 +200,13 @@ class GrammarSessionService {
         id: id,
         srsType: 'grammar',
         card: null,
+        summary: PracticeSummary(
+          item: exercise.parts.join(),
+          question: (l) => l.grammarBuilderPrompt,
+          answer: exercise.parts.join(),
+          kindLabel: (l) => l.sectionGrammar,
+          selfAssessed: false,
+        ),
         buildBody: (index, total, onAnswer, settings) => GrammarBuilderBody(
           parts: exercise.parts,
           translation:
@@ -183,6 +222,13 @@ class GrammarSessionService {
         id: id,
         srsType: 'grammar',
         card: null,
+        summary: PracticeSummary(
+          item: exercise.correct,
+          question: (l) => l.grammarErrorDetectionPrompt,
+          answer: exercise.correct,
+          kindLabel: (l) => l.sectionGrammar,
+          selfAssessed: false,
+        ),
         buildBody: (index, total, onAnswer, settings) =>
             GrammarErrorDetectionBody(
               correct: exercise.correct,

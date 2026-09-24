@@ -16,6 +16,7 @@ import '../../providers/sentence_settings_provider.dart';
 import '../../widgets/widgets.dart';
 import 'practice_item.dart';
 import 'practice_settings_sheet.dart';
+import 'session_review_screen.dart';
 
 export 'practice_item.dart';
 export '../../widgets/exercise/practice_flashcard_body.dart';
@@ -122,6 +123,42 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
             style: AppTextStyles.title.copyWith(color: t.onSurface),
           ),
           actions: [
+            // Nothing to look back at until something has been answered.
+            if (session.answers.isNotEmpty)
+              IconButton(
+                iconSize: 20,
+                tooltip: context.l10n.sessionReview,
+                icon: Badge.count(
+                  count: session.answers.length,
+                  backgroundColor: widget.color,
+                  textColor: onAccentFor(widget.color),
+                  child: Icon(Icons.history_rounded, color: t.onSurfaceVariant),
+                ),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    // Watched inside the route, not captured when it is pushed:
+                    // re-grading rewrites the provider, and a captured list
+                    // would leave the open review showing the old grade until
+                    // it was closed and reopened.
+                    builder: (_) => Consumer(
+                      builder: (context, ref, _) {
+                        final s = ref.watch(practiceSessionProvider);
+                        return SessionReviewScreen(
+                          answers: s.answers,
+                          total: s.queue?.length ?? s.answers.length,
+                          onRegrade: (i, rating) => ref
+                              .read(practiceSessionProvider.notifier)
+                              .regrade(
+                                i,
+                                rating,
+                                persistSrs: widget.persistSrs,
+                              ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
             IconButton(
               iconSize: 18,
               icon: Icon(Icons.tune_rounded, color: t.onSurfaceVariant),
@@ -149,8 +186,13 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
                   child: session.currentItem!.buildBody(
                     session.index,
                     session.queue!.length,
-                    (Rating rating) =>
-                        notifier.answer(rating, persistSrs: widget.persistSrs),
+                    (Rating rating, {String? given, int? mistakes}) =>
+                        notifier.answer(
+                          rating,
+                          persistSrs: widget.persistSrs,
+                          given: given,
+                          mistakes: mistakes,
+                        ),
                     bodySettings,
                   ),
                 ),

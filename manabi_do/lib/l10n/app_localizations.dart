@@ -1270,6 +1270,90 @@ abstract class AppLocalizations {
   /// **'View detail'**
   String get viewDetail;
 
+  /// No description provided for @sessionReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Session review'**
+  String get sessionReview;
+
+  /// No description provided for @reviewClozePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the word that fits the sentence'**
+  String get reviewClozePrompt;
+
+  /// No description provided for @sessionReviewEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t answered anything yet.'**
+  String get sessionReviewEmpty;
+
+  /// No description provided for @sessionReviewCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{answered} of {total}'**
+  String sessionReviewCount(int answered, int total);
+
+  /// No description provided for @sessionReviewYourAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Your answer'**
+  String get sessionReviewYourAnswer;
+
+  /// No description provided for @sessionReviewCorrectAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct answer'**
+  String get sessionReviewCorrectAnswer;
+
+  /// No description provided for @sessionReviewChangeGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Change the grade'**
+  String get sessionReviewChangeGrade;
+
+  /// No description provided for @sessionReviewShowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all {count} meanings'**
+  String sessionReviewShowAll(int count);
+
+  /// No description provided for @sessionReviewShowLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get sessionReviewShowLess;
+
+  /// No description provided for @ratingIncorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect'**
+  String get ratingIncorrect;
+
+  /// No description provided for @ratingCorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct'**
+  String get ratingCorrect;
+
+  /// No description provided for @reviewKindKanjiWriting.
+  ///
+  /// In en, this message translates to:
+  /// **'Kanji · writing'**
+  String get reviewKindKanjiWriting;
+
+  /// No description provided for @reviewKindVocabularySentence.
+  ///
+  /// In en, this message translates to:
+  /// **'Vocabulary · sentence'**
+  String get reviewKindVocabularySentence;
+
+  /// No description provided for @reviewDrawPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Draw the kanji for: {meaning}'**
+  String reviewDrawPrompt(String meaning);
+
   /// No description provided for @allCaughtUp.
   ///
   /// In en, this message translates to:

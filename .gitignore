@@ -1,5 +1,9 @@
 # Local audit/planning notes
 WIDGET_AUDIT.md
+DIMENS_AUDIT.md
+
+# Generated design reference (rebuild: dart run tool/gen_design_reference.dart)
+/design-reference/
 
 # Raw source data — large downloads, not committed (see data/)
 /data/

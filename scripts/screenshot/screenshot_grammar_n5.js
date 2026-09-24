@@ -4,7 +4,7 @@
  *   - A selection of lessons covering every block type
  *
  * Usage:
- *   NODE_PATH=/tmp/pw-test/node_modules node scripts/screenshot_grammar_n5.js [port]
+ *   NODE_PATH=/tmp/pw-test/node_modules node scripts/screenshot/screenshot_grammar_n5.js [port]
  *
  * Requires the app to be built with _grammarEnabled = true and served on the given port.
  */

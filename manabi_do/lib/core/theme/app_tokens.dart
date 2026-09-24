@@ -20,12 +20,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color onPrimary;
   final Color onPrimaryContainer;
 
-  // Secondary
-  final Color secondary;
-  final Color secondaryContainer;
-  final Color onSecondary;
-  final Color onSecondaryContainer;
-
   // Semantic
   final Color error;
   final Color errorContainer;
@@ -35,13 +29,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color warningContainer;
   final Color info;
   final Color infoContainer;
-
-  // Section brand. All three currently match `primary` so the sections read as
-  // one product rather than three. Kept as separate tokens so giving a section
-  // its own colour again is a one-line change, not a refactor.
-  final Color characters;
-  final Color vocabulary;
-  final Color grammar;
 
   // Drawing
   final Color hintStroke;
@@ -65,10 +52,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.primaryContainer,
     required this.onPrimary,
     required this.onPrimaryContainer,
-    required this.secondary,
-    required this.secondaryContainer,
-    required this.onSecondary,
-    required this.onSecondaryContainer,
     required this.error,
     required this.errorContainer,
     required this.success,
@@ -77,9 +60,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.warningContainer,
     required this.info,
     required this.infoContainer,
-    required this.characters,
-    required this.vocabulary,
-    required this.grammar,
     required this.hintStroke,
     required this.onyomi,
     required this.kunyomi,
@@ -100,21 +80,17 @@ class AppTokens extends ThemeExtension<AppTokens> {
     primaryContainer: Color(0xFFE8E0FF),
     onPrimary: Color(0xFFFFFFFF),
     onPrimaryContainer: Color(0xFF1E0085),
-    secondary: Color(0xFF5E5791),
-    secondaryContainer: Color(0xFFE4DFFF),
-    onSecondary: Color(0xFFFFFFFF),
-    onSecondaryContainer: Color(0xFF1A1250),
     error: Color(0xFFB3261E),
     errorContainer: Color(0xFFFCE8E6),
     success: Color(0xFF146B3A),
     successContainer: Color(0xFFC8F5DA),
     warning: Color(0xFF7A5200),
     warningContainer: Color(0xFFFFDDB3),
-    info: Color(0xFF1E88E5),
+    // Darkened from #1E88E5, which failed WCAG AA at 2.96:1 against its own
+    // container. The other three semantic foregrounds are dark and land at
+    // 5.35-5.55; this sits with them at 5.45 rather than staying a mid-tone.
+    info: Color(0xFF175AAD),
     infoContainer: Color(0xFFD6E9FB),
-    characters: Color(0xFF6B4EFF),
-    vocabulary: Color(0xFF6B4EFF),
-    grammar: Color(0xFF6B4EFF),
     hintStroke: Color(0xFFFF8F00),
     onyomi: Color(0xFF1565C0),
     kunyomi: Color(0xFFC62828),
@@ -123,7 +99,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
   static const dark = AppTokens(
     surface: Color(0xFF141218),
     surfaceVariant: Color(0xFF49454F),
-    surfaceContainer: Color(0xFF141218),
+    // Was #141218, identical to `surface`, which made every fill drawn on the
+    // surface invisible in dark: the zebra striping in grammar tables, the nav
+    // bar, the segmented tab track. This is M3's own step between `surface`
+    // and `surfaceContainerHigh`, matching the light values either side of it.
+    surfaceContainer: Color(0xFF211F26),
     surfaceContainerHigh: Color(0xFF2B2930),
     cardBackground: Color(0xFF1E1B24),
     onSurface: Color(0xFFE6E1E5),
@@ -135,10 +115,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     primaryContainer: Color(0xFF4F378B),
     onPrimary: Color(0xFF381E72),
     onPrimaryContainer: Color(0xFFEADDFF),
-    secondary: Color(0xFFCCC2DC),
-    secondaryContainer: Color(0xFF4A4458),
-    onSecondary: Color(0xFF332D41),
-    onSecondaryContainer: Color(0xFFE8DEF8),
     error: Color(0xFFF2B8B5),
     errorContainer: Color(0xFF8C1D18),
     success: Color(0xFF6CDFAB),
@@ -147,9 +123,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     warningContainer: Color(0xFF3E2900),
     info: Color(0xFF90CAF9),
     infoContainer: Color(0xFF13344F),
-    characters: Color(0xFFCFBCFF),
-    vocabulary: Color(0xFFCFBCFF),
-    grammar: Color(0xFFCFBCFF),
     hintStroke: Color(0xFFFFB74D),
     onyomi: Color(0xFF90CAF9),
     kunyomi: Color(0xFFEF9A9A),
@@ -171,10 +144,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? primaryContainer,
     Color? onPrimary,
     Color? onPrimaryContainer,
-    Color? secondary,
-    Color? secondaryContainer,
-    Color? onSecondary,
-    Color? onSecondaryContainer,
     Color? error,
     Color? errorContainer,
     Color? success,
@@ -183,9 +152,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? warningContainer,
     Color? info,
     Color? infoContainer,
-    Color? characters,
-    Color? vocabulary,
-    Color? grammar,
     Color? hintStroke,
     Color? onyomi,
     Color? kunyomi,
@@ -204,10 +170,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     primaryContainer: primaryContainer ?? this.primaryContainer,
     onPrimary: onPrimary ?? this.onPrimary,
     onPrimaryContainer: onPrimaryContainer ?? this.onPrimaryContainer,
-    secondary: secondary ?? this.secondary,
-    secondaryContainer: secondaryContainer ?? this.secondaryContainer,
-    onSecondary: onSecondary ?? this.onSecondary,
-    onSecondaryContainer: onSecondaryContainer ?? this.onSecondaryContainer,
     error: error ?? this.error,
     errorContainer: errorContainer ?? this.errorContainer,
     success: success ?? this.success,
@@ -216,9 +178,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     warningContainer: warningContainer ?? this.warningContainer,
     info: info ?? this.info,
     infoContainer: infoContainer ?? this.infoContainer,
-    characters: characters ?? this.characters,
-    vocabulary: vocabulary ?? this.vocabulary,
-    grammar: grammar ?? this.grammar,
     hintStroke: hintStroke ?? this.hintStroke,
     onyomi: onyomi ?? this.onyomi,
     kunyomi: kunyomi ?? this.kunyomi,
@@ -262,18 +221,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
         other.onPrimaryContainer,
         t,
       )!,
-      secondary: Color.lerp(secondary, other.secondary, t)!,
-      secondaryContainer: Color.lerp(
-        secondaryContainer,
-        other.secondaryContainer,
-        t,
-      )!,
-      onSecondary: Color.lerp(onSecondary, other.onSecondary, t)!,
-      onSecondaryContainer: Color.lerp(
-        onSecondaryContainer,
-        other.onSecondaryContainer,
-        t,
-      )!,
       error: Color.lerp(error, other.error, t)!,
       errorContainer: Color.lerp(errorContainer, other.errorContainer, t)!,
       success: Color.lerp(success, other.success, t)!,
@@ -290,9 +237,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
         other.warningContainer,
         t,
       )!,
-      characters: Color.lerp(characters, other.characters, t)!,
-      vocabulary: Color.lerp(vocabulary, other.vocabulary, t)!,
-      grammar: Color.lerp(grammar, other.grammar, t)!,
       hintStroke: Color.lerp(hintStroke, other.hintStroke, t)!,
       onyomi: Color.lerp(onyomi, other.onyomi, t)!,
       kunyomi: Color.lerp(kunyomi, other.kunyomi, t)!,

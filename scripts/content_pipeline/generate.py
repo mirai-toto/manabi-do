@@ -8,7 +8,7 @@ Steps (run from the repo root):
   4. Build manabi_do/assets/manabi_do_content.db
 
 Usage:
-    python3 tools/generate.py [--no-sentences] [--sync [--force]] [--translations]
+    python3 scripts/content_pipeline/generate.py [--no-sentences] [--sync [--force]] [--translations]
 
 Flags:
     --no-sentences   Skip Tatoeba sentence import (much faster, good for grammar/kanji edits)
@@ -21,6 +21,11 @@ Flags:
 import argparse
 import subprocess
 import sys
+from pathlib import Path
+
+# Siblings are resolved from this file, not from the caller's cwd, so moving the
+# pipeline between directories cannot silently break the orchestration again.
+HERE = Path(__file__).resolve().parent
 
 
 def run(cmd: list[str]) -> None:
@@ -60,17 +65,17 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.sync:
-        sync_cmd = [sys.executable, "tools/sync_content.py"]
+        sync_cmd = [sys.executable, str(HERE / "sync_content.py")]
         if args.force:
             sync_cmd.append("--force")
         run(sync_cmd)
 
     if args.translations:
-        run([sys.executable, "tools/gen_translations.py"])
+        run([sys.executable, str(HERE / "gen_translations.py")])
 
-    run([sys.executable, "tools/download_kanjivg.py"])
+    run([sys.executable, str(HERE / "download_kanjivg.py")])
 
-    build_cmd = [sys.executable, "tools/build_content_db.py"]
+    build_cmd = [sys.executable, str(HERE / "build_content_db.py")]
     if args.no_sentences:
         build_cmd.append("--no-sentences")
     run(build_cmd)

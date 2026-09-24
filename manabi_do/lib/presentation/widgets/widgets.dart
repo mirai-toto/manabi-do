@@ -96,4 +96,5 @@ export 'exercise/practice_mcq_body.dart';
 export 'exercise/practice_progress_row.dart';
 export 'exercise/sentence_cloze_body.dart';
 export 'exercise/sentence_cloze_card.dart';
+export 'exercise/session_review_row.dart';
 export 'exercise/summary_card.dart';

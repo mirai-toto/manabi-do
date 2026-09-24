@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_dimens.dart';
+/// Nothing else in the app draws these dots, so their scale lives with them
+/// rather than in `AppDimens`.
+abstract final class _Dimens {
+  static const double dotSize = 6;
+  static const double dotGap = 3;
+}
 
 class DifficultyDots extends StatelessWidget {
   final int total;
@@ -24,9 +29,9 @@ class DifficultyDots extends StatelessWidget {
       children: List.generate(
         total,
         (i) => Container(
-          margin: EdgeInsets.only(left: i > 0 ? AppDimens.pipGap : 0),
-          width: AppDimens.pipSize,
-          height: AppDimens.pipSize,
+          margin: EdgeInsets.only(left: i > 0 ? _Dimens.dotGap : 0),
+          width: _Dimens.dotSize,
+          height: _Dimens.dotSize,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: i < filled ? color : empty,

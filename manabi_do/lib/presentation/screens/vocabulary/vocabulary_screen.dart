@@ -77,7 +77,7 @@ class VocabularyScreen extends ConsumerWidget {
               title: l.sectionVocabulary,
               subtitle: subtitle,
               glyph: '語',
-              color: t.vocabulary,
+              color: t.primary,
             ),
             Expanded(child: body),
           ],

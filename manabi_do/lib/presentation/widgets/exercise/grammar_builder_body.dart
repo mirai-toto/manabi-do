@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Rating;
 
+import '../../../core/models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -11,6 +12,13 @@ import '../common/japanese_text.dart';
 import 'flashcard.dart';
 import 'practice_progress_row.dart';
 
+/// Chip-sized, matching `AppFilterChip` by eye. Kept local: a grammar-builder
+/// chip and a filter chip never appear on the same screen.
+abstract final class _Dimens {
+  static const double chipPaddingH = 14;
+  static const double chipPaddingV = 6;
+}
+
 class GrammarBuilderBody extends StatefulWidget {
   final List<String> parts;
   final String translation;
@@ -18,7 +26,7 @@ class GrammarBuilderBody extends StatefulWidget {
   final int total;
   final Color color;
   final bool autoAdvance;
-  final void Function(Rating) onAnswer;
+  final AnswerCallback onAnswer;
 
   const GrammarBuilderBody({
     super.key,
@@ -78,6 +86,10 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
     setState(() => _placed.removeAt(placedPos));
   }
 
+  /// The sentence as the user assembled it, which is what the session review
+  /// shows back to them.
+  String get _given => _placed.map((i) => widget.parts[i]).join();
+
   void _evaluate() {
     final isCorrect = _listEquals(
       _placed,
@@ -88,8 +100,11 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
       _isCorrect = isCorrect;
     });
     if (widget.autoAdvance) {
+      final given = _given;
       Future.delayed(const Duration(milliseconds: 1000), () {
-        if (mounted) widget.onAnswer(isCorrect ? Rating.good : Rating.again);
+        if (mounted) {
+          widget.onAnswer(isCorrect ? Rating.good : Rating.again, given: given);
+        }
       });
     }
   }
@@ -151,7 +166,7 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
               card: null,
               isFreeMode: true,
               question: l.selfAssessQuestion,
-              onRate: widget.onAnswer,
+              onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),
           ],
         ],
@@ -330,8 +345,8 @@ class _Chip extends StatelessWidget {
         onTap: enabled ? onTap : null,
         child: Container(
           padding: const EdgeInsets.symmetric(
-            horizontal: AppDimens.chipPaddingH,
-            vertical: AppDimens.chipPaddingV,
+            horizontal: _Dimens.chipPaddingH,
+            vertical: _Dimens.chipPaddingV,
           ),
           decoration: BoxDecoration(
             color: selected

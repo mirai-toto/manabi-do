@@ -297,6 +297,29 @@
   "studyNow": "Étudier",
   "reviewAndStudy": "Réviser & étudier",
   "viewDetail": "Voir le détail",
+  "sessionReview": "R\u00e9vision de la session",
+  "reviewClozePrompt": "Choisissez le mot qui convient \u00e0 la phrase",
+  "sessionReviewEmpty": "Vous n'avez encore rien r\u00e9pondu.",
+  "sessionReviewCount": "{answered} sur {total}",
+  "@sessionReviewCount": {
+    "placeholders": { "answered": { "type": "int" }, "total": { "type": "int" } }
+  },
+  "sessionReviewYourAnswer": "Votre r\u00e9ponse",
+  "sessionReviewCorrectAnswer": "Bonne r\u00e9ponse",
+  "sessionReviewChangeGrade": "Modifier la note",
+  "sessionReviewShowAll": "Afficher les {count} sens",
+  "@sessionReviewShowAll": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "sessionReviewShowLess": "Afficher moins",
+  "ratingIncorrect": "Incorrect",
+  "ratingCorrect": "Correct",
+  "reviewKindKanjiWriting": "Kanji \u00b7 \u00e9criture",
+  "reviewKindVocabularySentence": "Vocabulaire \u00b7 phrase",
+  "reviewDrawPrompt": "Dessinez le kanji pour\u00a0: {meaning}",
+  "@reviewDrawPrompt": {
+    "placeholders": { "meaning": { "type": "String" } }
+  },
   "allCaughtUp": "Tout est à jour !",
   "allCaughtUpSubtitle": "Revenez plus tard pour de nouvelles révisions",
   "grammarChapters": "Thèmes",

@@ -16,9 +16,11 @@ final practiceSessionProvider =
 class PracticeSessionState {
   final List<PracticeItem>? queue;
   final List<PracticeItem>? completedQueue;
+
+  /// Everything answered so far, in the order it was answered. The session
+  /// review reads this, and re-grading rewrites an entry in place.
+  final List<SessionAnswer> answers;
   final int index;
-  final int gotIt;
-  final int notYet;
   final bool done;
   final bool isRetry;
   final DateTime startedAt;
@@ -26,15 +28,19 @@ class PracticeSessionState {
   const PracticeSessionState({
     this.queue,
     this.completedQueue,
+    this.answers = const [],
     this.index = 0,
-    this.gotIt = 0,
-    this.notYet = 0,
     this.done = false,
     this.isRetry = false,
     required this.startedAt,
   });
 
   bool get isLoading => queue == null;
+
+  // Counted from [answers] rather than tracked alongside it, so re-grading
+  // cannot leave the score disagreeing with the list it came from.
+  int get gotIt => answers.where((a) => a.isCorrect).length;
+  int get notYet => answers.length - gotIt;
 
   PracticeItem? get currentItem =>
       queue != null && !done && index < queue!.length ? queue![index] : null;
@@ -49,9 +55,8 @@ class PracticeSessionState {
   PracticeSessionState copyWith({
     List<PracticeItem>? queue,
     List<PracticeItem>? completedQueue,
+    List<SessionAnswer>? answers,
     int? index,
-    int? gotIt,
-    int? notYet,
     bool? done,
     bool? isRetry,
     DateTime? startedAt,
@@ -59,9 +64,8 @@ class PracticeSessionState {
     return PracticeSessionState(
       queue: queue ?? this.queue,
       completedQueue: completedQueue ?? this.completedQueue,
+      answers: answers ?? this.answers,
       index: index ?? this.index,
-      gotIt: gotIt ?? this.gotIt,
-      notYet: notYet ?? this.notYet,
       done: done ?? this.done,
       isRetry: isRetry ?? this.isRetry,
       startedAt: startedAt ?? this.startedAt,
@@ -82,7 +86,12 @@ class PracticeSessionNotifier extends Notifier<PracticeSessionState> {
     );
   }
 
-  Future<void> answer(Rating rating, {required bool persistSrs}) async {
+  Future<void> answer(
+    Rating rating, {
+    required bool persistSrs,
+    String? given,
+    int? mistakes,
+  }) async {
     final s = state;
     final item = s.currentItem;
     if (item == null) return;
@@ -95,11 +104,46 @@ class PracticeSessionNotifier extends Notifier<PracticeSessionState> {
 
     final isLast = s.index + 1 >= s.queue!.length;
     state = s.copyWith(
-      gotIt: rating != Rating.again ? s.gotIt + 1 : s.gotIt,
-      notYet: rating == Rating.again ? s.notYet + 1 : s.notYet,
+      answers: [
+        ...s.answers,
+        item.answered(rating, given: given, mistakes: mistakes),
+      ],
       completedQueue: isLast ? List.from(s.queue!) : s.completedQueue,
       done: isLast,
       index: isLast ? s.index : s.index + 1,
+    );
+  }
+
+  /// Replaces the grade given to an already-answered item.
+  ///
+  /// The rating is re-applied to the card as it was *before* the session
+  /// touched it, which [PracticeItem.card] still holds, so the result is the
+  /// same as if this grade had been the first one. That makes the write an
+  /// overwrite rather than a second review, and re-grading twice is harmless.
+  Future<void> regrade(
+    int answerIndex,
+    Rating rating, {
+    required bool persistSrs,
+  }) async {
+    final s = state;
+    if (answerIndex < 0 || answerIndex >= s.answers.length) return;
+
+    final answered = s.answers[answerIndex];
+    if (answered.rating == rating) return;
+
+    if (persistSrs && !s.isRetry) {
+      await ref
+          .read(databaseProvider)
+          .upsertSrsCard(
+            answered.srsType,
+            answered.id,
+            applyRating(answered.card, rating),
+          );
+    }
+
+    state = s.copyWith(
+      answers: [...s.answers]
+        ..[answerIndex] = answered.copyWith(rating: rating),
     );
   }
 

@@ -130,6 +130,13 @@ class KanjiSessionService {
       id: kanji.id,
       srsType: 'kanji',
       card: card,
+      summary: PracticeSummary(
+        item: kanji.character,
+        question: (l) => l.flashcardDefaultPrompt,
+        answer: meaningOf(kanji),
+        kindLabel: (l) => l.tabKanji,
+        selfAssessed: true,
+      ),
       buildBody: (index, total, onAnswer, settings) => Builder(
         builder: (ctx) => PracticeFlashcardBody(
           japanese: kanji.character,
@@ -162,6 +169,13 @@ class KanjiSessionService {
       id: kanji.id,
       srsType: 'kanji',
       card: card,
+      summary: PracticeSummary(
+        item: kanji.character,
+        question: (l) => l.reviewDrawPrompt(meaningOf(kanji)),
+        answer: meaningOf(kanji),
+        kindLabel: (l) => l.reviewKindKanjiWriting,
+        selfAssessed: true,
+      ),
       buildBody: (index, total, onAnswer, settings) => Builder(
         builder: (ctx) => KanjiDrawingBody(
           kanji: kanji,
@@ -206,6 +220,15 @@ class KanjiSessionService {
       id: kanji.id,
       srsType: 'kanji',
       card: card,
+      summary: PracticeSummary(
+        item: kanji.character,
+        question: (l) => isKanjiToMeaning
+            ? l.mcqSelectMeaning
+            : l.mcqSelectKanji(meaningOf(kanji)),
+        answer: isKanjiToMeaning ? meaningOf(kanji) : kanji.character,
+        kindLabel: (l) => l.tabKanji,
+        selfAssessed: false,
+      ),
       buildBody: (index, total, onAnswer, settings) => Builder(
         builder: (ctx) => PracticeMcqBody(
           question: isKanjiToMeaning

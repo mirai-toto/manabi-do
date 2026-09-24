@@ -157,29 +157,15 @@ class FlashcardActions extends StatelessWidget {
     this.question,
   });
 
-  String _fmt(Card preview) {
-    final diff = preview.due.difference(DateTime.now());
-    if (diff.inMinutes < 60) return '${diff.inMinutes.clamp(1, 59)}m';
-    if (diff.inHours < 24) return '${diff.inHours}h';
-    if (diff.inDays < 30) return '${diff.inDays}d';
-    return '${(diff.inDays / 30).round()}mo';
-  }
-
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
 
-    String? interval(Rating rating) {
-      if (card == null) return null;
-      final s = Scheduler();
-      return _fmt(s.reviewCard(card!, rating).card);
-    }
-
     Widget btn(String label, Rating rating, Color bg, Color fg) => Expanded(
-      child: _RatingButton(
+      child: RatingButton(
         label: label,
-        interval: interval(rating),
+        interval: srsIntervalPreview(card, rating),
         bgColor: bg,
         fgColor: fg,
         onTap: () => onRate(rating),
@@ -230,31 +216,56 @@ class FlashcardActions extends StatelessWidget {
   }
 }
 
-class _RatingButton extends StatelessWidget {
+/// How far out [rating] would push [card], as a short label.
+///
+/// Null for a card that has never been reviewed, where there is no interval to
+/// preview yet.
+String? srsIntervalPreview(Card? card, Rating rating) {
+  if (card == null) return null;
+  final preview = Scheduler().reviewCard(card, rating).card;
+  final diff = preview.due.difference(DateTime.now());
+  if (diff.inMinutes < 60) return '${diff.inMinutes.clamp(1, 59)}m';
+  if (diff.inHours < 24) return '${diff.inHours}h';
+  if (diff.inDays < 30) return '${diff.inDays}d';
+  return '${(diff.inDays / 30).round()}mo';
+}
+
+/// One grade in a rating row: a label, the interval it would schedule, and the
+/// semantic colour of that grade.
+///
+/// [selected] rings the button, for the session review where one of the grades
+/// is the one already given. Answering leaves it off — there is nothing chosen
+/// yet at that point.
+class RatingButton extends StatelessWidget {
   final String label;
   final String? interval;
   final Color bgColor;
   final Color fgColor;
   final VoidCallback? onTap;
+  final bool selected;
 
-  const _RatingButton({
+  const RatingButton({
+    super.key,
     required this.label,
     required this.bgColor,
     required this.fgColor,
     this.interval,
     this.onTap,
+    this.selected = false,
   });
 
   @override
   Widget build(BuildContext context) => Semantics(
     label: interval != null ? '$label $interval' : label,
     button: true,
+    selected: selected,
     excludeSemantics: true,
     child: Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(AppDimens.radiusLg),
+        border: selected ? Border.all(color: fgColor, width: 2) : null,
       ),
       child: Material(
         color: Colors.transparent,

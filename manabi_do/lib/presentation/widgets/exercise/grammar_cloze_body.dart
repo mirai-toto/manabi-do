@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Rating;
 
+import '../../../core/models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -19,7 +20,7 @@ class GrammarClozeBody extends StatefulWidget {
   final int total;
   final Color color;
   final bool autoAdvance;
-  final void Function(Rating) onAnswer;
+  final AnswerCallback onAnswer;
 
   const GrammarClozeBody({
     super.key,
@@ -42,6 +43,10 @@ class _GrammarClozeBodyState extends State<GrammarClozeBody> {
   bool _answered = false;
   bool _autoAdvancing = false;
 
+  /// Kept so the self-assessment path reports the choice too, not just the
+  /// auto-advance one.
+  String? _given;
+
   @override
   void initState() {
     super.initState();
@@ -53,6 +58,7 @@ class _GrammarClozeBodyState extends State<GrammarClozeBody> {
     final isCorrect = i == widget.correctIndex;
     setState(() {
       _answered = true;
+      _given = widget.options[i].text;
       _states = List.generate(widget.options.length, (j) {
         if (j == i) {
           return isCorrect ? McqOptionState.correct : McqOptionState.wrong;
@@ -66,7 +72,12 @@ class _GrammarClozeBodyState extends State<GrammarClozeBody> {
     if (widget.autoAdvance) {
       setState(() => _autoAdvancing = true);
       Future.delayed(const Duration(milliseconds: 800), () {
-        if (mounted) widget.onAnswer(isCorrect ? Rating.good : Rating.again);
+        if (mounted) {
+          widget.onAnswer(
+            isCorrect ? Rating.good : Rating.again,
+            given: _given,
+          );
+        }
       });
     }
   }
@@ -107,7 +118,7 @@ class _GrammarClozeBodyState extends State<GrammarClozeBody> {
               card: null,
               isFreeMode: true,
               question: context.l10n.selfAssessQuestion,
-              onRate: widget.onAnswer,
+              onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),
           ],
         ],

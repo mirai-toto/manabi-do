@@ -6,6 +6,12 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../widgets.dart';
 
+/// A reading chip is a rounded rectangle, not a pill, so it does not share
+/// `PillBadge`'s padding. It was only borrowing the number.
+abstract final class _Dimens {
+  static const double readingPaddingV = 3;
+}
+
 const int kMaxReadingsPerType = 4;
 
 List<String> parseKanjiReadings(String raw) =>
@@ -135,7 +141,7 @@ class KanjiReadingChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppDimens.spaceSm,
-        vertical: AppDimens.badgePaddingV,
+        vertical: _Dimens.readingPaddingV,
       ),
       decoration: BoxDecoration(
         color: textColor.withValues(alpha: 0.12),

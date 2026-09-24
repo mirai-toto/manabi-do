@@ -3,6 +3,14 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 
+/// The chip rung of the pill scale. Shared by eye with `StreakPill` and the
+/// grammar builder's chip, but those never appear alongside this one, so they
+/// each keep their own copy rather than agreeing through `AppDimens`.
+abstract final class _Dimens {
+  static const double paddingH = 14;
+  static const double paddingV = 6;
+}
+
 class AppFilterChip extends StatelessWidget {
   final String label;
   final bool isActive;
@@ -47,8 +55,8 @@ class AppFilterChip extends StatelessWidget {
               onTap: onTap,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimens.chipPaddingH,
-                  vertical: AppDimens.chipPaddingV,
+                  horizontal: _Dimens.paddingH,
+                  vertical: _Dimens.paddingV,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

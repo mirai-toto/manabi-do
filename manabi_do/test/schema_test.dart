@@ -9,7 +9,7 @@ import 'package:sqlite3/sqlite3.dart' as raw;
 import 'schema_support.dart';
 
 /// `schema.drift` is read by two very different consumers: drift's code
-/// generator, and `tools/build_content_db.py` via plain sqlite3. The only
+/// generator, and `scripts/content_pipeline/build_content_db.py` via plain sqlite3. The only
 /// drift-specific syntax allowed is the `) AS RowName` suffix, which a plain
 /// SQL engine cannot parse, so strip it the same way Python does.
 String _toPlainSql(String driftFile) => driftFile

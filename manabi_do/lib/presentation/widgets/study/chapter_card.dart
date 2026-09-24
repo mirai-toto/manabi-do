@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../common/pill_badge.dart';
 import '../common/tappable_surface.dart';
 
 class ChapterCard extends StatelessWidget {
@@ -79,23 +80,12 @@ class ChapterCard extends StatelessWidget {
                         color: t.onSurfaceVariant,
                       )
                     else
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppDimens.badgePaddingH,
-                          vertical: AppDimens.badgePaddingV,
-                        ),
-                        decoration: BoxDecoration(
-                          color: accentColor.withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(
-                            AppDimens.radiusPill,
-                          ),
-                        ),
-                        child: Text(
-                          badge,
-                          style: AppTextStyles.labelSmall.copyWith(
-                            color: accentColor,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      PillBadge(
+                        label: badge,
+                        color: accentColor,
+                        background: accentColor.withValues(alpha: 0.12),
+                        textStyle: AppTextStyles.labelSmall.copyWith(
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                   ],

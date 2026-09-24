@@ -83,11 +83,56 @@ All app content is authored outside the Flutter project and compiled into `manab
 Online sources (Bluskyo, JMdict, KANJIDIC2, KanjiVG)
         ↓  download & cache  →  data/  (gitignored)
 content/  ← versioned JSON snapshot, committed to git
-        ↓  tools/generate.py
+        ↓  scripts/content_pipeline/generate.py
 manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
 ```
 
-`content/` JSON files are committed to git as a versioned snapshot and can diverge from upstream as manual edits accumulate. `tools/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from online sources; `tools/generate.py --sync` is the end-to-end rebuild entry point. See `content/README.md` for the full rebuild workflow.
+`content/` JSON files are committed to git as a versioned snapshot and can diverge from upstream as manual edits accumulate. `scripts/content_pipeline/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from online sources; `scripts/content_pipeline/generate.py --sync` is the end-to-end rebuild entry point. See `content/README.md` for the full rebuild workflow.
+
+---
+
+## Design Reference
+
+The design system is defined in code and inspected through two generated artefacts. Neither is committed: both are rebuilt on demand into `design-reference/` (gitignored).
+
+```
+lib/core/theme/*.dart          ← the design system itself
+lib/widgetbook/*_use_cases.dart ← one use case per widget state
+        ↓  scripts/design/build_design_reference.sh
+design-reference/
+  index.html    ← tokens, contrast, dimensions, type, and live widget previews
+  widgetbook/   ← the widgetbook web build the previews embed
+```
+
+Run from the repo root. It builds, serves, and prints the URL:
+
+```bash
+bash scripts/design/build_design_reference.sh            # ~1 second
+bash scripts/design/build_design_reference.sh --rebuild  # after changing a widget, ~90 seconds
+bash scripts/design/build_design_reference.sh --help
+```
+
+The widgetbook bundle is the slow half and rarely changes, so it is only rebuilt on `--rebuild` or when missing; regenerating the page itself takes under a second. If `widgetbook.directories.g.dart` is newer than the staged bundle the script says so rather than showing you stale previews.
+
+It has to go over HTTP. Opened from disk, `file://` renders each preview iframe as a directory listing rather than serving the folder's `index.html`, and Flutter will not boot from `file://` regardless.
+
+The release bundle is ~90 MB on disk: 22 MB of content DB that the widgetbook never queries, 20 MB of bundled fonts, and 37 MB of CanvasKit variants of which a browser fetches exactly one. Transfer size per visitor is closer to 15 MB. If that ever matters for a deploy, the content DB is the obvious thing to drop first.
+
+**`scripts/design/gen_design_reference.dart`** parses `app_tokens.dart`, `app_dimens.dart`, `app_text_styles.dart`, `jlpt_level.dart`, `srs_level.dart` and `widgetbook.directories.g.dart`, so the page cannot drift from the code. It fails loudly rather than emitting an empty page. Beyond listing the tokens it computes three things the source does not state:
+
+- **Contrast ratios** for every foreground/background pair the app actually uses, graded against WCAG AA, in both themes.
+- **Dimensions grouped by value**, so two names holding the same number are flagged as a likely collision.
+- **Usage counts** for every colour, dimension and text style, cross-referenced against `lib/`. Zero means dead.
+
+Widget previews are `<iframe>`s into the widgetbook in preview mode (`widgetbook/#/?path=<folder>/<component>/<use-case>&preview`), so a tile shows the real widget rather than a copy of it. They boot lazily on scroll because each one starts a Flutter engine.
+
+If you only want to browse widgets interactively, skip the reference and run the widgetbook directly:
+
+```bash
+flutter run -t lib/widgetbook.dart
+```
+
+Adding a widget means adding a `@widgetbook.UseCase` in `lib/widgetbook/<area>_use_cases.dart` and re-running `dart run build_runner build` to regenerate `widgetbook.directories.g.dart`. See `docs/07_widget_catalogue.md` for what each widget is for.
 
 ---
 
@@ -108,13 +153,13 @@ Streak is computed from `srs_cards.card_json` → `lastReview` dates: count cons
 
 ## Kanji SVG Assets
 
-Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db`. They are loaded at runtime by `KanjiStrokesProvider` via a DB query and rendered as animated paths. Source SVG files live in `content/characters/kanji_svg/` (committed) and are embedded into the DB by `tools/build_content_db.py`.
+Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db`. They are loaded at runtime by `KanjiStrokesProvider` via a DB query and rendered as animated paths. Source SVG files live in `content/characters/kanji_svg/` (committed) and are embedded into the DB by `scripts/content_pipeline/build_content_db.py`.
 
 ---
 
 ## Grammar Content
 
-Grammar lessons are authored as JSON files in `content/grammar/` using a recursive chapter/lesson structure. `tools/build_content_db.py` walks the tree and writes all lessons into the `grammar_lessons` table. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
+Grammar lessons are authored as JSON files in `content/grammar/` using a recursive chapter/lesson structure. `scripts/content_pipeline/build_content_db.py` walks the tree and writes all lessons into the `grammar_lessons` table. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
 
 ---
 
