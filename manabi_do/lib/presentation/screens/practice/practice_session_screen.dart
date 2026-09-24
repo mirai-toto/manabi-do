@@ -136,14 +136,25 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
                 ),
                 onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute<void>(
-                    builder: (_) => SessionReviewScreen(
-                      answers: session.answers,
-                      total: session.queue?.length ?? session.answers.length,
-                      onRegrade: (i, rating) => notifier.regrade(
-                        i,
-                        rating,
-                        persistSrs: widget.persistSrs,
-                      ),
+                    // Watched inside the route, not captured when it is pushed:
+                    // re-grading rewrites the provider, and a captured list
+                    // would leave the open review showing the old grade until
+                    // it was closed and reopened.
+                    builder: (_) => Consumer(
+                      builder: (context, ref, _) {
+                        final s = ref.watch(practiceSessionProvider);
+                        return SessionReviewScreen(
+                          answers: s.answers,
+                          total: s.queue?.length ?? s.answers.length,
+                          onRegrade: (i, rating) => ref
+                              .read(practiceSessionProvider.notifier)
+                              .regrade(
+                                i,
+                                rating,
+                                persistSrs: widget.persistSrs,
+                              ),
+                        );
+                      },
                     ),
                   ),
                 ),
