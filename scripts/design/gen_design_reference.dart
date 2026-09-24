@@ -474,11 +474,22 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
 .pair span { flex: 1; height: 30px; }
 .chip-demo { display: inline-block; padding: 3px 10px; border-radius: 100px;
              font-size: 11px; font-weight: 700; }
-.comp { margin-bottom: 20px; }
-.comp-name { font-size: 13px; font-weight: 650; margin-bottom: 8px;
-             display: flex; align-items: center; gap: 8px; }
-.comp-count { font-size: 10px; font-weight: 700; color: var(--muted);
-              background: var(--line); padding: 0 6px; border-radius: 100px; }
+.comp { border: 1px solid var(--line); border-radius: 10px; margin-bottom: 8px;
+        background: var(--panel); overflow: hidden; }
+.comp[open] { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.comp > summary { cursor: pointer; list-style: none; padding: 10px 14px;
+                  display: flex; align-items: center; gap: 10px; font-size: 13px;
+                  font-weight: 650; user-select: none; }
+.comp > summary::-webkit-details-marker { display: none; }
+.comp > summary::before { content: "▸"; color: var(--muted); font-size: 11px;
+                          transition: transform .15s ease; }
+.comp[open] > summary::before { transform: rotate(90deg); }
+.comp > summary:hover { background: var(--ground); }
+.comp > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.comp-count { margin-left: auto; font-size: 10px; font-weight: 700;
+              color: var(--muted); background: var(--line);
+              padding: 0 7px; border-radius: 100px; }
+.comp .tiles { padding: 0 14px 14px; }
 .tiles { display: grid; gap: 12px;
          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 .tile { margin: 0; background: var(--panel); border: 1px solid var(--line);
@@ -900,15 +911,16 @@ void _writeWidgets(StringBuffer b, List<UseCase> useCases) {
   b.writeln(
     '<p class="note">${useCases.length} use cases, rendered live from the '
     'widgetbook build sitting next to this page. These are the real widgets, '
-    'not drawings of them — click a tile to open it full size with the '
-    'knobs and addons panel. Previews boot one at a time as you scroll to '
-    'them, because each is a whole Flutter engine — roughly 44&nbsp;MB and '
-    '3&nbsp;seconds each, so give a long scroll a moment to catch up. Add '
-    '<code>?tiles=3</code> to the URL to cap it when you only came for the '
-    'tokens. <a data-theme-link href="#">Viewing light</a>.</p>',
+    'not drawings of them. Open a component to load its previews, and click a '
+    'preview to see it full size with knobs and addons. Nothing renders until '
+    'you ask: each one is a whole Flutter engine, roughly 44&nbsp;MB and '
+    '3&nbsp;seconds. <a data-theme-link href="#">Viewing light</a>.</p>',
   );
 
-  // Group by folder path, then by component, preserving declaration order.
+  // Folders stay plain headings and only the component is a disclosure: that
+  // is one click to a widget rather than two, and 59 closed rows still scan
+  // quickly. A tile inside a closed `details` is never laid out, so it never
+  // intersects and never boots — the lazy loader needs no special case.
   final byFolder = <String, Map<String, List<UseCase>>>{};
   for (final u in useCases) {
     byFolder
@@ -918,21 +930,28 @@ void _writeWidgets(StringBuffer b, List<UseCase> useCases) {
   }
 
   for (final folder in byFolder.entries) {
-    b.writeln('<h3>${folder.key}</h3>');
+    final count = folder.value.values.fold(0, (n, v) => n + v.length);
+    b.writeln('<h3>${folder.key}<span class="grp-n">$count</span></h3>');
+
     for (final comp in folder.value.entries) {
       b.writeln(
-        '<div class="comp"><div class="comp-name mono">'
-        '${comp.key} <span class="comp-count">${comp.value.length}</span>'
-        '</div><div class="tiles">',
+        '<details class="comp"><summary>'
+        '<span class="mono">${comp.key}</span>'
+        '<span class="comp-count">${comp.value.length}</span>'
+        '</summary><div class="tiles">',
       );
       for (final u in comp.value) {
         final url = 'widgetbook/index.html#/?path=${u.path}&preview';
-        b.writeln('''<figure class="tile">
-  <div class="frame" data-path="${u.path}" data-label="${comp.key} — ${u.name}"></div>
-  <figcaption><a href="$url" target="_blank" rel="noopener">${u.name}</a></figcaption>
-</figure>''');
+        b.writeln(
+          '<figure class="tile">'
+          '<div class="frame" data-path="${u.path}" '
+          'data-label="${comp.key} — ${u.name}"></div>'
+          '<figcaption><a href="$url" target="_blank" rel="noopener">'
+          '${u.name}</a></figcaption>'
+          '</figure>',
+        );
       }
-      b.writeln('</div></div>');
+      b.writeln('</div></details>');
     }
   }
 }
