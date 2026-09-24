@@ -153,33 +153,14 @@ class SentenceClozeCard extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              if (onToggleTranslation != null)
-                Semantics(
-                  label: showTranslation ? l.hide : l.translationModeLabel,
-                  button: true,
-                  toggled: showTranslation,
-                  excludeSemantics: true,
-                  child: GestureDetector(
-                    onTap: onToggleTranslation,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.translate_rounded,
-                          size: 14,
-                          color: showTranslation ? color : t.onSurfaceVariant,
-                        ),
-                        const SizedBox(width: AppDimens.spaceXs),
-                        Text(
-                          showTranslation ? l.hide : l.translationModeLabel,
-                          style: AppTextStyles.labelSmall.copyWith(
-                            color: showTranslation ? color : t.onSurfaceVariant,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+              if (onToggleTranslation != null) ...[
+                _TranslationToggle(
+                  showing: showTranslation,
+                  color: color,
+                  onTap: onToggleTranslation!,
                 ),
+                const SizedBox(width: AppDimens.spaceSm),
+              ],
               SpeakButton(text: sentence.japanese, color: color),
               const SizedBox(width: AppDimens.spaceXs),
               InkWell(
@@ -364,3 +345,76 @@ WidgetSpan _blankSpan(Color color) => WidgetSpan(
     ),
   ),
 );
+
+/// Shows or hides the sentence translation.
+///
+/// Always drawn in the level colour. It used to grey out in one of its two
+/// states, which read as "disabled" rather than "off" — the control is
+/// available either way, so the state is carried by the fill instead: tinted
+/// when the translation is showing, outlined when it is not.
+class _TranslationToggle extends StatelessWidget {
+  final bool showing;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _TranslationToggle({
+    required this.showing,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final label = showing ? l.hide : l.translationModeLabel;
+
+    return Semantics(
+      label: label,
+      button: true,
+      toggled: showing,
+      excludeSemantics: true,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(AppDimens.radiusPill),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            curve: Curves.easeOut,
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.spaceSnug,
+              vertical: AppDimens.spaceTight,
+            ),
+            decoration: BoxDecoration(
+              color: showing
+                  ? color.withValues(alpha: 0.14)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(AppDimens.radiusPill),
+              border: Border.all(
+                color: color.withValues(alpha: showing ? 0.0 : 0.4),
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  showing ? Icons.translate_rounded : Icons.translate_outlined,
+                  size: 14,
+                  color: color,
+                ),
+                const SizedBox(width: AppDimens.spaceXs),
+                Text(
+                  label,
+                  style: AppTextStyles.labelSmall.copyWith(
+                    color: color,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

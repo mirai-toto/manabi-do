@@ -504,6 +504,21 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
+        name: 'SentenceClozeCard',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Translation hidden',
+            builder: _manabi_do_widgetbook_exercise_use_cases
+                .buildSentenceClozeCardHidden,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Translation showing',
+            builder: _manabi_do_widgetbook_exercise_use_cases
+                .buildSentenceClozeCardShowing,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
         name: 'SummaryCard',
         useCases: [
           _widgetbook.WidgetbookUseCase(

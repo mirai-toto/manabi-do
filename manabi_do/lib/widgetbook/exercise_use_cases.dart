@@ -12,6 +12,8 @@ import '../presentation/widgets/exercise/drawing_exercise.dart';
 import '../presentation/widgets/exercise/flashcard.dart';
 import '../presentation/widgets/exercise/lesson_reader.dart';
 import '../presentation/widgets/exercise/mcq_card.dart';
+import '../presentation/widgets/exercise/sentence_cloze_card.dart';
+import '../data/database/app_database.dart';
 import '../presentation/widgets/exercise/summary_card.dart';
 
 // ── Flashcard ─────────────────────────────────────────────────────────────────
@@ -290,3 +292,53 @@ Widget buildGrammarClozeBody(BuildContext context) {
     onAnswer: (_, {given, mistakes}) {},
   );
 }
+
+// ── SentenceClozeCard ─────────────────────────────────────────────────────────
+
+const _clozeSentence = Sentence(
+  id: 1,
+  japanese: '毎朝、新しいシャツを着て学校に行きます。',
+  targetWord: '新しい',
+  vocabularyId: 1,
+);
+
+Widget _cloze(BuildContext context, {required bool showTranslation}) {
+  final color = Theme.of(context).colorScheme.primary;
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: SingleChildScrollView(
+      child: SentenceClozeCard(
+        sentence: _clozeSentence,
+        translation: 'Every morning I put on a new shirt and go to school.',
+        showTranslation: showTranslation,
+        onToggleTranslation: () {},
+        showSentenceFurigana: false,
+        showChoiceFurigana: false,
+        answered: false,
+        color: color,
+        onOptionTap: (_) {},
+        options: const [
+          McqOption(letter: 'A', text: '新しい', useJpFont: true),
+          McqOption(letter: 'B', text: '古い', useJpFont: true),
+          McqOption(letter: 'C', text: '大きい', useJpFont: true),
+        ],
+      ),
+    ),
+  );
+}
+
+@widgetbook.UseCase(
+  name: 'Translation hidden',
+  type: SentenceClozeCard,
+  path: 'Exercise',
+)
+Widget buildSentenceClozeCardHidden(BuildContext context) =>
+    _cloze(context, showTranslation: false);
+
+@widgetbook.UseCase(
+  name: 'Translation showing',
+  type: SentenceClozeCard,
+  path: 'Exercise',
+)
+Widget buildSentenceClozeCardShowing(BuildContext context) =>
+    _cloze(context, showTranslation: true);
