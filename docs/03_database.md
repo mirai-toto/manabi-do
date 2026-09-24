@@ -285,9 +285,20 @@ Gaps: mainly N1 — 735 missing FR vocabulary, ~233 missing DE vocabulary. N2–
 
 Sentences come from Tatoeba where translations depend on community contributions. Coverage is sparse across all non-English locales — the app falls back to the English sentence when no translation exists for the user's locale (configurable via the "My language only" setting).
 
+## Duplicate and overlapping entries
+
+Three kinds of repetition exist in the content. Only the first is a defect.
+
+**57 exact duplicate vocabulary rows.** Same `word`, `reading` and `meaning`, differing only by `id` and the `jlpt_level` they were filed under — `いい` at N5 and N3, `だから` at N4 and N3. Each is its own SRS card, so both fall due together and daily training, which merges every level, asked the identical question twice. Worked around in `loadAllDueQueue` by `_dropRepeatedPrompts`, which drops later items whose prompt and answer match one already in the queue. The proper fix is in the content pipeline: merge the rows and keep the lower level. Until then `test/duplicate_prompt_test.dart` fails if they ever disappear, so the workaround does not outlive the problem.
+
+**800 single-character words that are also kanji.** `塩` is both a `kanjis` row (*"What does this kanji mean?"* → salt) and a `vocabulary_entries` row (*"What does this word mean?"* → salt; common salt; …). **Left in deliberately.** They are different learning objectives with separate SRS cards, and the readings a kanji carries are not the same knowledge as the word it forms alone. The dedupe above keys on `srsType` precisely so it does not collapse these. If a session ever feels repetitive because of it, that is a product decision to revisit — not a data bug.
+
+**263 words sharing a spelling with different readings.** `いい` / `よい`, `けれど` / `けれども`. Genuinely distinct words that happen to share a spelling. Left alone: suppressing one would hide real vocabulary.
+
 ## Known gaps to address
 
 - [ ] N1 kanji meanings in FR (219 missing) and PT (283 missing)
 - [ ] German kanji meanings: 0% coverage — no translations in DB at any level
 - [ ] N1 vocabulary meanings in FR (~735 missing)
 - [ ] Sentence translations: structural gap — Tatoeba does not cover most sentences in FR/DE/ES
+- [ ] 57 exact duplicate vocabulary rows: merge in the content pipeline and drop the `loadAllDueQueue` workaround
