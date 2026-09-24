@@ -261,14 +261,18 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
           ..._buildAnswers(context),
           const SizedBox(height: AppDimens.spaceMd),
           ReviewProgressInfo(srsCard: widget.card),
-          const SizedBox(height: AppDimens.spaceMd),
-          Text(
-            l.sessionReviewChangeGrade,
-            style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: AppDimens.spaceXs),
-          ..._buildGrades(context),
+          if (widget.onRegrade != null) ...[
+            const SizedBox(height: AppDimens.spaceMd),
+            Text(
+              l.sessionReviewChangeGrade,
+              style: AppTextStyles.labelSmall.copyWith(
+                color: t.onSurfaceVariant,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: AppDimens.spaceXs),
+            ..._buildGrades(context),
+          ],
           if (widget.onDetailTap != null)
             Center(
               child: TextButton.icon(
