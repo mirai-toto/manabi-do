@@ -8,8 +8,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_strokes_provider.dart';
 import '../common/app_spinner.dart';
-
-const double _kCanvasSize = 260.0;
+import 'kanji_drawing_canvas.dart';
 
 // ── Shared shell ─────────────────────────────────────────────────────────────
 
@@ -230,11 +229,17 @@ class UserStrokeAnimator extends StatefulWidget {
   final List<bool>? strokeResults;
   final double size;
 
+  /// The pad size [strokes] were drawn at. They arrive as raw touch positions,
+  /// so replaying them at any other [size] means scaling by `size / sourceSize`.
+  /// Pass whatever the [KanjiDrawingCanvas] that captured them was set to.
+  final double sourceSize;
+
   const UserStrokeAnimator({
     super.key,
     required this.strokes,
     required this.strokeResults,
     this.size = 160,
+    this.sourceSize = kanjiCanvasSize,
   });
 
   @override
@@ -275,6 +280,7 @@ class _UserStrokeAnimatorState extends State<UserStrokeAnimator>
         strokes: widget.strokes,
         strokeResults: widget.strokeResults,
         progress: v * widget.strokes.length,
+        sourceSize: widget.sourceSize,
         strokeColor: t.onSurface,
         correctColor: t.success,
         wrongColor: t.error,
@@ -288,6 +294,7 @@ class _UserStrokePainter extends CustomPainter {
   final List<List<Offset>> strokes;
   final List<bool>? strokeResults;
   final double progress;
+  final double sourceSize;
   final Color strokeColor;
   final Color correctColor;
   final Color wrongColor;
@@ -297,6 +304,7 @@ class _UserStrokePainter extends CustomPainter {
     required this.strokes,
     required this.strokeResults,
     required this.progress,
+    required this.sourceSize,
     required this.strokeColor,
     required this.correctColor,
     required this.wrongColor,
@@ -307,7 +315,7 @@ class _UserStrokePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     _drawGuides(canvas, size);
 
-    final scale = size.width / _kCanvasSize;
+    final scale = size.width / sourceSize;
     final paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5.0
@@ -370,5 +378,6 @@ class _UserStrokePainter extends CustomPainter {
   bool shouldRepaint(_UserStrokePainter old) =>
       old.progress != progress ||
       old.strokes != strokes ||
-      old.strokeResults != strokeResults;
+      old.strokeResults != strokeResults ||
+      old.sourceSize != sourceSize;
 }

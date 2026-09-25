@@ -6,6 +6,12 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../providers/kanji_strokes_provider.dart';
 
+/// Default side of the drawing pad, and so the coordinate space the strokes it
+/// reports are expressed in — `onStrokesChanged` hands back raw touch positions,
+/// not normalised ones. Anything replaying those strokes at a different size has
+/// to divide by the size they were drawn at.
+const double kanjiCanvasSize = 260;
+
 class KanjiDrawingCanvas extends StatefulWidget {
   final void Function(List<List<Offset>>) onStrokesChanged;
   final List<bool>? strokeResults;
@@ -20,9 +26,14 @@ class KanjiDrawingCanvas extends StatefulWidget {
   /// Colour of the faint reference overlay; falls back to the theme accent.
   final Color? accentColor;
 
+  /// Side of the pad. Also the scale the reported strokes are in, so a caller
+  /// that changes this has to tell anything replaying them the same number.
+  final double size;
+
   const KanjiDrawingCanvas({
     super.key,
     required this.onStrokesChanged,
+    this.size = kanjiCanvasSize,
     this.strokeResults,
     this.referenceStrokes,
     this.enabled = true,
@@ -75,11 +86,14 @@ class KanjiDrawingCanvasState extends State<KanjiDrawingCanvas> {
       pendingWrong: widget.pendingWrong,
     );
 
-    final canvas = CustomPaint(painter: painter, size: const Size(260, 260));
+    final canvas = CustomPaint(
+      painter: painter,
+      size: Size(widget.size, widget.size),
+    );
 
     return Container(
-      width: 260,
-      height: 260,
+      width: widget.size,
+      height: widget.size,
       decoration: BoxDecoration(
         color: t.cardBackground,
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
