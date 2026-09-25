@@ -13,6 +13,11 @@ final vocabularyByLevelProvider =
       (ref, level) => ref.watch(databaseProvider).getVocabularyByLevel(level),
     );
 
+final vocabularySearchProvider =
+    FutureProvider.family<List<VocabularyEntry>, String>(
+      (ref, query) => ref.read(databaseProvider).searchVocabulary(query),
+    );
+
 final vocabularySrsCardsProvider = StreamProvider<Map<int, Card>>(
   (ref) => ref.watch(databaseProvider).watchAllSrsCardsForType('vocabulary'),
 );

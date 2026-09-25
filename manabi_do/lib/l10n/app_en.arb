@@ -350,6 +350,8 @@
   "searchKanji": "Search kanji",
   "searchKanjiHint": "Kanji, reading, or meaning…",
   "searchKanjiPrompt": "Search by kanji, reading, or meaning",
+  "searchVocabulary": "Search vocabulary",
+  "searchVocabularyHint": "Word, reading, or meaning…",
   "noResults": "No results",
 
   "groupN": "Group {n}",

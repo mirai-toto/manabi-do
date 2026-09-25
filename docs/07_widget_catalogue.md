@@ -1439,17 +1439,18 @@ GrammarChapterView(
 
 ### VocabularyWordTile
 
-Expandable vocabulary list row. Shows word, reading, abbreviated meaning. Tap expands to full meaning, part-of-speech chips, and `SpeakButton`. Localized meaning fetched via provider.
+Expandable vocabulary list row. Shows word, reading, abbreviated meaning. Tap expands to full meaning, part-of-speech chips, and `SpeakButton`. Localized meaning fetched via provider. `showLevel` adds a JLPT badge on the right, for lists that mix levels.
 
 ```dart
 VocabularyWordTile(entry: vocabularyEntry)
+VocabularyWordTile(entry: vocabularyEntry, showLevel: true)
 ```
 
 ---
 
 ### VocabularyLevelSelector
 
-Full-screen-width list of JLPT level tiles. Tapping a level calls `onSelect`.
+Search field over a full-screen-width list of JLPT level tiles. Tapping a level calls `onSelect`. Typing replaces the tiles with matching words from `vocabularySearchProvider` (word, reading or meaning; easiest level first, capped at 50).
 
 ```dart
 VocabularyLevelSelector(onSelect: (level) => selectLevel(level))

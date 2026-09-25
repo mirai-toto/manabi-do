@@ -746,6 +746,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchKanjiPrompt => 'Search by kanji, reading, or meaning';
 
   @override
+  String get searchVocabulary => 'Search vocabulary';
+
+  @override
+  String get searchVocabularyHint => 'Word, reading, or meaning…';
+
+  @override
   String get noResults => 'No results';
 
   @override

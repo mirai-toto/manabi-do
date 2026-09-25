@@ -750,6 +750,12 @@ class AppLocalizationsFr extends AppLocalizations {
       'Rechercher par kanji, lecture ou signification';
 
   @override
+  String get searchVocabulary => 'Rechercher un mot';
+
+  @override
+  String get searchVocabularyHint => 'Mot, lecture ou signification…';
+
+  @override
   String get noResults => 'Aucun résultat';
 
   @override

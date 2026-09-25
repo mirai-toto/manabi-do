@@ -331,6 +331,8 @@
   "searchKanji": "Kanji suchen",
   "searchKanjiHint": "Kanji, Lesung oder Bedeutung…",
   "searchKanjiPrompt": "Nach Kanji, Lesung oder Bedeutung suchen",
+  "searchVocabulary": "Wortschatz suchen",
+  "searchVocabularyHint": "Wort, Lesung oder Bedeutung…",
   "noResults": "Keine Ergebnisse",
 
   "groupN": "Gruppe {n}",
