@@ -913,6 +913,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get speakPronunciation => 'Play pronunciation';
 
   @override
+  String get replayStrokeOrder => 'Replay stroke order';
+
+  @override
+  String get replayYourDrawing => 'Replay your drawing';
+
+  @override
   String increaseSetting(String label) {
     return 'Increase $label';
   }

@@ -920,6 +920,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get speakPronunciation => 'Écouter la prononciation';
 
   @override
+  String get replayStrokeOrder => 'Rejouer l\'ordre des traits';
+
+  @override
+  String get replayYourDrawing => 'Rejouer votre tracé';
+
+  @override
   String increaseSetting(String label) {
     return 'Augmenter $label';
   }

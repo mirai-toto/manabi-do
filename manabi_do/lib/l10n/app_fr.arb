@@ -394,6 +394,8 @@
   "showExampleSubtitle": "Afficher une phrase d'exemple sur les flashcards",
 
   "speakPronunciation": "Écouter la prononciation",
+  "replayStrokeOrder": "Rejouer l'ordre des traits",
+  "replayYourDrawing": "Rejouer votre tracé",
   "increaseSetting": "Augmenter {label}",
   "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
   "decreaseSetting": "Diminuer {label}",

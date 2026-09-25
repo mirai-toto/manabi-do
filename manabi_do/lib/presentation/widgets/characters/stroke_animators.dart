@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/l10n.dart';
 import '../../providers/kanji_strokes_provider.dart';
 import '../common/app_spinner.dart';
 
@@ -18,59 +19,69 @@ class _AnimatorShell extends StatelessWidget {
   final VoidCallback onReplay;
   final CustomPainter Function(double value) buildPainter;
 
+  /// What tapping replays. Supplied by the caller — the shell animates strokes
+  /// without knowing whose they are.
+  final String replayLabel;
+
   const _AnimatorShell({
     required this.size,
     required this.controller,
     required this.onReplay,
     required this.buildPainter,
+    required this.replayLabel,
   });
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
     final s = size;
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: onReplay,
-        child: AnimatedBuilder(
-          animation: controller,
-          builder: (_, _) => Stack(
-            alignment: Alignment.center,
-            children: [
-              SizedBox(width: s, height: s),
-              Container(
-                width: s,
-                height: s,
-                decoration: BoxDecoration(
-                  color: t.cardBackground,
-                  borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: CustomPaint(
-                  size: Size(s, s),
-                  painter: buildPainter(controller.value),
-                ),
-              ),
-              if (controller.isCompleted)
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    width: 28,
-                    height: 28,
-                    decoration: BoxDecoration(
-                      color: t.onSurfaceVariant.withValues(alpha: 0.12),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.replay_rounded,
-                      size: 18,
-                      color: t.onSurfaceVariant,
-                    ),
+    return Semantics(
+      label: replayLabel,
+      button: true,
+      excludeSemantics: true,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: onReplay,
+          child: AnimatedBuilder(
+            animation: controller,
+            builder: (_, _) => Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(width: s, height: s),
+                Container(
+                  width: s,
+                  height: s,
+                  decoration: BoxDecoration(
+                    color: t.cardBackground,
+                    borderRadius: BorderRadius.circular(AppDimens.radiusSm),
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: CustomPaint(
+                    size: Size(s, s),
+                    painter: buildPainter(controller.value),
                   ),
                 ),
-            ],
+                if (controller.isCompleted)
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                        color: t.onSurfaceVariant.withValues(alpha: 0.12),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.replay_rounded,
+                        size: 18,
+                        color: t.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
@@ -156,6 +167,7 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
       size: widget.size,
       controller: _controller,
       onReplay: () => _play(strokes),
+      replayLabel: context.l10n.replayStrokeOrder,
       buildPainter: (v) => _StrokeOrderPainter(
         strokes: strokes,
         progress: v * strokes.length,
@@ -258,6 +270,7 @@ class _UserStrokeAnimatorState extends State<UserStrokeAnimator>
       size: widget.size,
       controller: _controller,
       onReplay: () => _controller.forward(from: 0),
+      replayLabel: context.l10n.replayYourDrawing,
       buildPainter: (v) => _UserStrokePainter(
         strokes: widget.strokes,
         strokeResults: widget.strokeResults,

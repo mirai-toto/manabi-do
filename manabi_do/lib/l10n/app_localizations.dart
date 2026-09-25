@@ -1726,6 +1726,18 @@ abstract class AppLocalizations {
   /// **'Play pronunciation'**
   String get speakPronunciation;
 
+  /// No description provided for @replayStrokeOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay stroke order'**
+  String get replayStrokeOrder;
+
+  /// No description provided for @replayYourDrawing.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay your drawing'**
+  String get replayYourDrawing;
+
   /// No description provided for @increaseSetting.
   ///
   /// In en, this message translates to:
