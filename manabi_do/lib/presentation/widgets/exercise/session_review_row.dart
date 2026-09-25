@@ -7,6 +7,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/app_button.dart';
 import '../common/pill_badge.dart';
 import '../common/review_progress_info.dart';
 import 'flashcard.dart';
@@ -17,6 +18,10 @@ import 'flashcard.dart';
 /// runs past a row's worth; the longest has 77 glosses. Four lines is enough to
 /// recognise the word without the panel swallowing the list.
 const int _kGlossesBeforeFold = 4;
+
+/// Ring on the grade already given. Heavier than any shared border weight, and
+/// only this screen draws it, so it stays here.
+const double _kSelectedRingWidth = 2;
 
 /// One answered item in the session review: what was asked, what was answered,
 /// how well it is known, and the grade it was given.
@@ -367,16 +372,26 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
     final t = context.tokens;
     final l = context.l10n;
 
-    Widget btn(String label, Rating rating, Color bg, Color fg) => Expanded(
-      child: RatingButton(
-        label: label,
-        interval: srsIntervalPreview(widget.card, rating),
-        bgColor: bg,
-        fgColor: fg,
-        selected: widget.rating == rating,
-        onTap: () => widget.onRegrade!(rating),
-      ),
-    );
+    Widget btn(String label, Rating rating, Color bg, Color fg) {
+      final isGiven = widget.rating == rating;
+      return Expanded(
+        child: AppButton(
+          label: label,
+          subtitle: srsIntervalPreview(widget.card, rating),
+          backgroundColor: bg,
+          foregroundColor: fg,
+          radius: AppDimens.radiusLg,
+          padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+          visualDensity: VisualDensity.standard,
+          // Rings the grade already given, so you can see it before changing it.
+          selected: isGiven,
+          side: isGiven
+              ? BorderSide(color: fg, width: _kSelectedRingWidth)
+              : BorderSide.none,
+          onPressed: () => widget.onRegrade!(rating),
+        ),
+      );
+    }
 
     if (!widget.summary.selfAssessed) {
       return [

@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import argparse
 import re
-import subprocess
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -52,17 +51,15 @@ CLASSIFIED: dict[str, str] = {
     "AppButton": "action",
     "AuthButton": "action",
     "SpeakButton": "action",
-    "RatingButton": "action",
-    "FlashcardActions": "action",
     "LessonReadToggle": "action",
     "AppFilterChip": "action",
-    "SettingsToggle": "action",
     # input
     "AppTextField": "input",
     "SearchField": "input",
     "SegmentedControl": "input",
     "SegmentedTabBar": "input",
     "SettingsStepper": "input",
+    "SettingsToggle": "input",
     "KanjiDrawingCanvas": "input",
     "LanguagePickerSheet": "input",
     # navigation
@@ -164,6 +161,7 @@ CLASSIFIED: dict[str, str] = {
     "PracticeSettingsCard": "composite",
     "HomeHeader": "composite",
     "KanjiLevelHeader": "composite",
+    "FlashcardActions": "composite",
     # decoration
     "SheetDragHandle": "decoration",
     "ScrollFade": "decoration",
