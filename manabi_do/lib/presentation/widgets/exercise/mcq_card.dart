@@ -7,6 +7,7 @@ import '../../../l10n/l10n.dart';
 import '../common/japanese_text.dart';
 import '../common/pill_badge.dart';
 import '../common/speak_button.dart';
+import 'letter_circle.dart';
 
 export '../../../core/models/mcq_option.dart';
 
@@ -254,7 +255,7 @@ class _McqOptionTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            _LetterCircle(letter: option.letter, color: contentColor),
+            LetterCircle(letter: option.letter, color: contentColor),
             const SizedBox(width: AppDimens.spaceSm + 4),
             Expanded(
               child: JapaneseText(
@@ -293,22 +294,9 @@ class _McqGridCell extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(AppDimens.spaceXs),
-            child: Container(
-              width: 20,
-              height: 20,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: contentColor, width: 1.5),
-              ),
-              child: Center(
-                child: Text(
-                  option.letter,
-                  style: AppTextStyles.labelXs.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: contentColor,
-                  ),
-                ),
-              ),
+            child: LetterCircle.compact(
+              letter: option.letter,
+              color: contentColor,
             ),
           ),
           Center(
@@ -320,33 +308,6 @@ class _McqGridCell extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _LetterCircle extends StatelessWidget {
-  final String letter;
-  final Color color;
-  const _LetterCircle({required this.letter, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 28,
-      height: 28,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: color, width: 1.5),
-      ),
-      child: Center(
-        child: Text(
-          letter,
-          style: AppTextStyles.label.copyWith(
-            fontWeight: FontWeight.w700,
-            color: color,
-          ),
-        ),
       ),
     );
   }

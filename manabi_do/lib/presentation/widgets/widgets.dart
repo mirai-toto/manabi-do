@@ -92,6 +92,7 @@ export 'exercise/grammar_builder_body.dart';
 export 'exercise/grammar_cloze_body.dart';
 export 'exercise/grammar_error_detection_body.dart';
 export 'exercise/lesson_reader.dart';
+export 'exercise/letter_circle.dart';
 export 'exercise/mcq_card.dart';
 export 'exercise/practice_flashcard_body.dart';
 export 'exercise/practice_mcq_body.dart';

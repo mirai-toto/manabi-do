@@ -4,6 +4,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../common/japanese_text.dart';
+import 'letter_circle.dart';
 import 'mcq_card.dart';
 
 class ClozeOption extends StatelessWidget {
@@ -88,33 +89,6 @@ class ClozeOption extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class LetterCircle extends StatelessWidget {
-  final String letter;
-  final Color color;
-  const LetterCircle({super.key, required this.letter, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 28,
-      height: 28,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: color, width: 1.5),
-      ),
-      child: Center(
-        child: Text(
-          letter,
-          style: AppTextStyles.label.copyWith(
-            fontWeight: FontWeight.w700,
-            color: color,
           ),
         ),
       ),
