@@ -31,7 +31,7 @@ _Things you press. One button engine; anything else here needs a reason._
 
 | Widget | Uses | File |
 | --- | --- | --- |
-| `AppButton` | 11 | `common/app_button.dart` |
+| `AppButton` | 16 | `common/app_button.dart` |
 | `SpeakButton` | 6 | `common/speak_button.dart` |
 | `AuthButton` | 3 | `common/auth_button.dart` |
 | `LessonReadToggle` | 1 | `grammar/lesson_read_toggle.dart` |
@@ -231,13 +231,15 @@ Candidates for a leading underscore, so the barrel stops exporting them.
 
 ## Design-system bypasses
 
-36 raw Material button usages across 11 files outside `widgets/common/`. Each one is a button `AppButton` is not styling.
+42 raw Material button usages across 15 files outside `widgets/common/`. Each one is a button `AppButton` is not styling.
 
 | Material widget | Files | Usages |
 | --- | --- | --- |
 | `OutlinedButton` | 3 | 6 |
 | `FilledButton` | 3 | 7 |
-| `TextButton` | 9 | 23 |
+| `TextButton` | 6 | 13 |
+| `IconButton` | 10 | 14 |
+| `FloatingActionButton` | 2 | 2 |
 
 ## Findings
 
@@ -248,5 +250,5 @@ Candidates for a leading underscore, so the barrel stops exporting them.
 - `ReaderBodyText` is unused (lib/presentation/widgets/exercise/lesson_reader.dart)
 - `ReaderSectionTitle` is unused (lib/presentation/widgets/exercise/lesson_reader.dart)
 - `ReaderJpExample` is unused (lib/presentation/widgets/exercise/lesson_reader.dart)
-- 36 raw Material button usages bypass AppButton
+- 42 raw Material button usages bypass AppButton
 

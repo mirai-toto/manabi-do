@@ -172,9 +172,18 @@ CLASSIFIED: dict[str, str] = {
     "StrokeOrderAnimator": "decoration",
 }
 
-# Material widgets that AppButton is meant to stand in front of. Counted outside
-# widgets/common to measure how often the design system is bypassed.
-BYPASS = ["ElevatedButton", "OutlinedButton", "FilledButton", "TextButton"]
+# Material buttons the app builds directly, counted outside widgets/common to
+# measure how often the design system is bypassed. IconButton and
+# FloatingActionButton are here because leaving them out understated the total:
+# a hand-picked list is only as good as what you remember to put in it.
+BYPASS = [
+    "ElevatedButton",
+    "OutlinedButton",
+    "FilledButton",
+    "TextButton",
+    "IconButton",
+    "FloatingActionButton",
+]
 
 
 @dataclass

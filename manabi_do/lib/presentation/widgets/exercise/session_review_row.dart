@@ -283,13 +283,12 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
           ],
           if (widget.onDetailTap != null)
             Center(
-              child: TextButton.icon(
-                onPressed: widget.onDetailTap,
+              child: AppButton(
+                label: l.viewDetail,
                 icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                label: Text(l.viewDetail),
-                style: TextButton.styleFrom(
-                  foregroundColor: t.onSurfaceVariant,
-                ),
+                variant: AppButtonVariant.text,
+                foregroundColor: t.onSurfaceVariant,
+                onPressed: widget.onDetailTap,
               ),
             ),
         ],
