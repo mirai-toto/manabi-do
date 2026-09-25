@@ -112,16 +112,26 @@ See `docs/08_widget_inventory.md` (generated) for live usage counts.
 | `RatingButton` | `InkWell` | **Yes.** Needs `subtitle` and `selected`; everything else already expressible |
 | `SpeakButton` | `IconButton` | **Yes, once `AppButton` supports icon-only.** `label` is currently required |
 | `AppFilterChip` | `InkWell` | **No.** A chip toggles — a different affordance. Keep; there are plans for it |
-| `LessonReadToggle` | `GestureDetector` | **No.** A tappable card, not a button |
+| `LessonReadToggle` | `GestureDetector` | **Yes.** Needs `toggled`, plus a decision on animating state changes. Calling it "a card" was wrong: it is `Row[Icon, Text]` in a padded rounded box with an `onTap`, and nothing is composed inside it |
 | `SettingsToggle` | `Switch` | **No** — and it is mis-roled. Belongs in `input` |
 | `FlashcardActions` | composes `RatingButton` | **No** — and it is mis-roled. A row of buttons; belongs in `composite` |
 
 ### Decided
 
-- `AppButton` gains `subtitle` (a second line under the label) and `selected`.
-  `selected` drives both the ring and the accessibility state, so a call site
-  states it once. It is `bool?`: `null` means "not part of a selection", because
-  `Semantics(selected: false)` on an ordinary button announces "not selected".
+- `AppButton` gains `subtitle` (a second line under the label), plus `selected`
+  and `toggled`, both `bool?` mirroring `SemanticsProperties`. `null` means the
+  button has no such state, because `Semantics(selected: false)` on an ordinary
+  button announces "not selected".
+- **`selected` and `toggled` are semantics-only. Neither touches appearance.**
+  An earlier draft had `selected` draw the ring, which left `AppButton` holding
+  an opinion in one case and not the other, invisible from the call site. The
+  ring is just a border, so the caller passes `side`. `AppButton` keeps no
+  opinions of its own.
+- Both are kept because they are not two names for one idea: `toggled` is
+  announced "on"/"off" and `selected` as one choice among siblings. Collapsing
+  them would have the read toggle announce "selected", implying siblings it does
+  not have. Not worth a sealed type to forbid setting both — that emits two
+  semantic flags, which is degraded, not broken.
 - `AppButton` gains icon-only support, so `SpeakButton` can fold in.
 - `AppButton` accepts `subtitle`, `selected` and `icon` — typed content slots. It
   will **not** accept a generic `child`. A button that can contain anything
@@ -175,6 +185,12 @@ whether the two local copies should reference the real one.
 
 ### Open
 
+- **Does `AppButton` animate state changes?** The only gap found so far that is
+  about behaviour rather than a styling knob. `LessonReadToggle` cross-fades its
+  colours over 150ms with an `AnimatedContainer`; `ElevatedButton` resolves
+  colours through `WidgetStateProperty` and repaints instantly, so folding it in
+  as-is loses the transition. Options: wrap `AppButton` in an
+  `AnimatedContainer`, or take an `animationDuration`. Decide before folding.
 - Triage the 36 raw Material buttons: convert all, or only the seven outlined
   ones where the duplication is real?
 - The landing screen: keep for future accounts, or delete with `AuthButton` and
