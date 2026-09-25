@@ -14,6 +14,22 @@ extension KanjiQueries on AppDatabase {
 
   Future<List<Kanji>> getAllKanji() => select(kanjis).get();
 
+  /// The kanji of each JLPT level that have no SRS card yet.
+  Future<Map<String, List<Kanji>>> unseenKanjiByLevel() async {
+    final seenIds =
+        await (select(srsCards)..where((s) => s.itemType.equals('kanji')))
+            .get()
+            .then((rows) => {for (final r in rows) r.itemId});
+
+    final byLevel = <String, List<Kanji>>{};
+    for (final kanji in await select(kanjis).get()) {
+      if (!seenIds.contains(kanji.id)) {
+        (byLevel[kanji.jlptLevel] ??= []).add(kanji);
+      }
+    }
+    return byLevel;
+  }
+
   Stream<List<Kanji>> watchKanjiByLevel(String level) =>
       (select(kanjis)..where((k) => k.jlptLevel.equals(level))).watch();
 

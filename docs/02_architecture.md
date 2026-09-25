@@ -147,7 +147,13 @@ Adding a widget means adding a `@widgetbook.UseCase` in `lib/widgetbook/<area>_u
 
 New card rate is enforced by `countSeenToday(itemType)` — cards whose `first_seen_at` falls on the current calendar day count against the daily limit. `remainingNewCards` and `newCardsFromEasiestLevel` are pure functions in `core/srs/srs_queue.dart`, shared with the home screen's new-card counters so the two cannot disagree.
 
-Streak is computed from `srs_cards.card_json` → `lastReview` dates: count consecutive calendar days ending today that have at least one review.
+`DashboardService` drives the home screen's counters off the same rules, with the arithmetic in `core/srs/dashboard_stats.dart`:
+
+- due counts read a projection of `(item_type, due)` rather than parsing card JSON
+- progress counts parse the cards, because "known" is a stability threshold (`isSrsKnown`)
+- new-card counts ask for totals only once today's budget is known to have something left
+
+Streak and the week strip both come from `watchReviewDates()` — `srs_cards.card_json` → `lastReview`, grouped to local calendar days. The streak is the run of consecutive days ending today.
 
 ---
 

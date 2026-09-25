@@ -29,11 +29,12 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - ✅ `grammar_progress_service.dart` — the six direct `databaseProvider` writes in `home_screen`, `grammar_chapter_view`, `grammar_lesson_list_screen` and `grammar_lesson_screen` replaced by service calls; unlock key formats (`$level:$i`, `group:…`, `lesson:…`) now built in one place instead of inline at each read and write
 - ✅ `srs_queue_service.dart` — `srs_session_queries.dart` deleted; the queue policy it held (due items, daily new-card budget, N5→N1 progression) split between `core/srs/srs_queue.dart` (pure) and a service that reads rows through `AppDatabase`
 - ✅ `core/srs/srs_queue.dart` — the N5→N1 rule and "take the first N unseen items" each had two or three copies between the service and `dashboard_queries`; both now have one implementation that every caller shares
+- ✅ `dashboard_service.dart` — `dashboard_queries.dart` deleted. The home counters moved to a service, the rules behind them (what is due, what is known, how much of today's budget is left, the streak walk, the week strip) to `core/srs/dashboard_stats.dart`. `home_provider` no longer reads the database at all, and the week strip is no longer derived inside a provider
 
 **Known gaps:**
 
 - Session services (`kanji_session_service`, `vocabulary_session_service`, `grammar_session_service`, `review_queue_service`) build widgets and import screens, so a session cannot be built without a widget tree.
-- `dashboard_queries.dart` still holds policy: the home counters, the `isSrsKnown` threshold and the streak walk, with the "total − seen" arithmetic spelled out once per counter.
+- "Kanji unseen per level" is computed twice: `unseenKanjiByLevel()` as its own query for the dashboard, and inline in `SrsQueueService.allDueKanji`, which needs the same pass to find due cards and would otherwise query twice.
 
 **Repository layer:** `AppDatabase` (Drift) already exposes domain-level methods and effectively IS the repository. A wrapper layer adds no behaviour. Deferred until unit testing is introduced.
 
