@@ -22,76 +22,61 @@ class VocabularyLevelSelector extends ConsumerStatefulWidget {
 
 class _VocabularyLevelSelectorState
     extends ConsumerState<VocabularyLevelSelector> {
-  final _controller = TextEditingController();
   String _query = '';
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _search(String query) => setState(() => _query = query.trim());
-
-  void _clear() {
-    _controller.clear();
-    setState(() => _query = '');
-  }
 
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    final t = context.tokens;
-    return ScrollFade(
-      builder: (controller) => ListView(
-        controller: controller,
-        padding: const EdgeInsets.all(AppDimens.spaceMd),
-        children: [
-          AppTextField(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Sits outside the scrollables below, so switching between the level
+        // list and results never rebuilds the field or drops the keyboard.
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppDimens.spaceMd,
+            AppDimens.spaceMd,
+            AppDimens.spaceMd,
+            AppDimens.spaceSm,
+          ),
+          child: SearchField(
             label: l.searchVocabulary,
             hint: l.searchVocabularyHint,
-            controller: _controller,
-            onChanged: _search,
-            prefixIcon: Icon(Icons.search_rounded, color: t.onSurfaceVariant),
-            suffixIcon: _query.isNotEmpty
-                ? IconButton(icon: const Icon(Icons.clear), onPressed: _clear)
-                : null,
+            onChanged: (query) => setState(() => _query = query),
           ),
-          const SizedBox(height: AppDimens.spaceMd),
-          if (_query.isEmpty) ...[
-            SectionLabel(l.selectLevel),
-            const SizedBox(height: AppDimens.spaceSm),
-            for (final code in _levels)
-              JlptLevelCard(
-                code: code,
-                subtitle: _subtitle(context, code),
-                onTap: () => widget.onSelect(code),
-              ),
-          ] else
-            ref
-                .watch(vocabularySearchProvider(_query))
-                .when(
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
-                  error: (e, s) => const SizedBox.shrink(),
-                  data: (results) => results.isEmpty
-                      ? Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(AppDimens.spaceLg),
-                            child: Text(
-                              l.noResults,
-                              style: AppTextStyles.body.copyWith(
-                                color: t.onSurfaceVariant,
-                              ),
-                            ),
-                          ),
-                        )
-                      : _Results(entries: results),
-                ),
-        ],
-      ),
+        ),
+        Expanded(
+          child: isSearchableQuery(_query) ? _results() : _levelList(context),
+        ),
+      ],
     );
   }
+
+  Widget _levelList(BuildContext context) => ScrollFade(
+    builder: (controller) => ListView(
+      controller: controller,
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
+      children: [
+        SectionLabel(context.l10n.selectLevel),
+        const SizedBox(height: AppDimens.spaceSm),
+        for (final code in _levels)
+          JlptLevelCard(
+            code: code,
+            subtitle: _subtitle(context, code),
+            onTap: () => widget.onSelect(code),
+          ),
+      ],
+    ),
+  );
+
+  Widget _results() => ref
+      .watch(vocabularySearchProvider(_query))
+      .when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e, s) => const SizedBox.shrink(),
+        data: (results) =>
+            results.isEmpty ? const _NoResults() : _ResultList(results),
+      );
 
   String? _subtitle(BuildContext context, String code) {
     final count = ref
@@ -103,20 +88,53 @@ class _VocabularyLevelSelectorState
   }
 }
 
-class _Results extends StatelessWidget {
-  final List<VocabularyEntry> entries;
-  const _Results({required this.entries});
+/// Result rows, built as they scroll into view.
+///
+/// Laying out fifty at once — each measuring its meaning to decide whether it
+/// needs an expand arrow — is more than a frame's worth of work.
+class _ResultList extends StatelessWidget {
+  final List<VocabularyEntry> results;
+  const _ResultList(this.results);
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    return Column(
-      children: [
-        for (int i = 0; i < entries.length; i++) ...[
-          if (i > 0) Divider(height: 1, thickness: 1, color: t.outlineVariant),
-          VocabularyWordTile(entry: entries[i], showLevel: true),
-        ],
-      ],
+    return ScrollFade(
+      builder: (controller) => ListView.builder(
+        controller: controller,
+        padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
+        itemCount: results.length,
+        itemBuilder: (context, index) => Column(
+          children: [
+            if (index > 0)
+              Divider(
+                height: 1,
+                thickness: 1,
+                color: t.outlineVariant,
+                indent: AppDimens.spaceMd,
+                endIndent: AppDimens.spaceMd,
+              ),
+            VocabularyWordTile(entry: results[index], showLevel: true),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _NoResults extends StatelessWidget {
+  const _NoResults();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    return Padding(
+      padding: const EdgeInsets.all(AppDimens.spaceLg),
+      child: Text(
+        context.l10n.noResults,
+        textAlign: TextAlign.center,
+        style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant),
+      ),
     );
   }
 }

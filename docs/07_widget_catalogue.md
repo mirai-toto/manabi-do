@@ -75,6 +75,20 @@ AppTextField(label: 'Search', hint: 'Type a kanji…', onChanged: (v) {})
 
 ---
 
+### SearchField
+
+`AppTextField` with a search icon, a clear button, and a 250 ms debounce: `onChanged` fires once typing settles, with the trimmed query. Pairs with `isSearchableQuery`, which holds a single latin letter back until a second character arrives while letting one kanji through.
+
+```dart
+SearchField(
+  label: l.searchVocabulary,
+  hint: l.searchVocabularyHint,
+  onChanged: (query) => setState(() => _query = query),
+)
+```
+
+---
+
 ### AppProgressBar
 
 Thin horizontal progress bar (0–1). Accepts an optional `color` and `height`.
@@ -1450,7 +1464,7 @@ VocabularyWordTile(entry: vocabularyEntry, showLevel: true)
 
 ### VocabularyLevelSelector
 
-Search field over a full-screen-width list of JLPT level tiles. Tapping a level calls `onSelect`. Typing replaces the tiles with matching words from `vocabularySearchProvider` (word, reading or meaning; easiest level first, capped at 50).
+Pinned `SearchField` over a full-screen-width list of JLPT level tiles. Tapping a level calls `onSelect`. Typing replaces the tiles with matching words from `vocabularySearchProvider` (word, reading or meaning; ranked by `searchRank`, capped at 50), built lazily as they scroll into view.
 
 ```dart
 VocabularyLevelSelector(onSelect: (level) => selectLevel(level))
@@ -1484,10 +1498,13 @@ VocabularyLevelView(level: 'N5', groupIndex: 0, onBack: () {})
 
 ### KanjiLevelSelector
 
-Full-screen list of JLPT level tiles for the kanji section. Tapping a level calls `onSelect`.
+Pinned `SearchField` over a full-screen list of JLPT level tiles for the kanji section. Tapping a level calls `onSelect`. Typing replaces the tiles with ranked matches from `kanjiSearchProvider`; tapping a result calls `onOpenKanji`.
 
 ```dart
-KanjiLevelSelector(onSelect: (level) => selectLevel(level))
+KanjiLevelSelector(
+  onSelect: (level) => selectLevel(level),
+  onOpenKanji: (id) => openKanji(id),
+)
 ```
 
 ---

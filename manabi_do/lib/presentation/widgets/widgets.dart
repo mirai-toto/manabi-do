@@ -18,6 +18,7 @@ export 'common/progress_bar.dart';
 export 'common/progress_row.dart';
 export 'common/section_header.dart';
 export 'common/scroll_fade.dart';
+export 'common/search_field.dart';
 export 'common/section_label.dart';
 export 'common/segmented_control.dart';
 export 'common/sheet_drag_handle.dart';
