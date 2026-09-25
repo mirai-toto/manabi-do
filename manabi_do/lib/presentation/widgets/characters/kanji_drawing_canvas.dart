@@ -6,10 +6,11 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../providers/kanji_strokes_provider.dart';
 
-/// Default side of the drawing pad, and so the coordinate space the strokes it
-/// reports are expressed in — `onStrokesChanged` hands back raw touch positions,
-/// not normalised ones. Anything replaying those strokes at a different size has
-/// to divide by the size they were drawn at.
+/// The side the app draws kanji at, named here because [KanjiDrawingCanvas] is
+/// what gives the number meaning: `onStrokesChanged` reports raw touch
+/// positions, so this is also the coordinate space those strokes come back in.
+/// Anything replaying them at a different size divides by the size they were
+/// drawn at, which is why both ends read this one constant.
 const double kanjiCanvasSize = 260;
 
 class KanjiDrawingCanvas extends StatefulWidget {
@@ -33,7 +34,7 @@ class KanjiDrawingCanvas extends StatefulWidget {
   const KanjiDrawingCanvas({
     super.key,
     required this.onStrokesChanged,
-    this.size = kanjiCanvasSize,
+    required this.size,
     this.strokeResults,
     this.referenceStrokes,
     this.enabled = true,

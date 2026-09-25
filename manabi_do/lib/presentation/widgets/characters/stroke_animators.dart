@@ -231,15 +231,17 @@ class UserStrokeAnimator extends StatefulWidget {
 
   /// The pad size [strokes] were drawn at. They arrive as raw touch positions,
   /// so replaying them at any other [size] means scaling by `size / sourceSize`.
-  /// Pass whatever the [KanjiDrawingCanvas] that captured them was set to.
+  /// Required rather than defaulted: a wrong guess here renders silently at the
+  /// wrong scale. Pass whatever the [KanjiDrawingCanvas] that captured them was
+  /// given.
   final double sourceSize;
 
   const UserStrokeAnimator({
     super.key,
     required this.strokes,
     required this.strokeResults,
+    required this.sourceSize,
     this.size = 160,
-    this.sourceSize = kanjiCanvasSize,
   });
 
   @override

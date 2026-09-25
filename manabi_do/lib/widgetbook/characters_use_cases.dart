@@ -49,7 +49,9 @@ Widget buildCharacterCellAccent(BuildContext context) {
   path: 'Characters',
 )
 Widget buildKanjiDrawingCanvas(BuildContext context) {
-  return Center(child: KanjiDrawingCanvas(onStrokesChanged: (_) {}));
+  return Center(
+    child: KanjiDrawingCanvas(size: kanjiCanvasSize, onStrokesChanged: (_) {}),
+  );
 }
 
 @widgetbook.UseCase(
@@ -63,6 +65,7 @@ Widget buildKanjiDrawingCanvasWithGhost(BuildContext context) {
       final strokes = ref.watch(kanjiStrokesProvider(_water)).asData?.value;
       return Center(
         child: KanjiDrawingCanvas(
+          size: kanjiCanvasSize,
           onStrokesChanged: (_) {},
           referenceStrokes: strokes,
           ghostEnabled: true,
@@ -83,6 +86,7 @@ Widget buildKanjiDrawingCanvasWithResults(BuildContext context) {
       final strokes = ref.watch(kanjiStrokesProvider(_water)).asData?.value;
       return Center(
         child: KanjiDrawingCanvas(
+          size: kanjiCanvasSize,
           onStrokesChanged: (_) {},
           referenceStrokes: strokes,
           ghostEnabled: true,
@@ -124,6 +128,8 @@ Widget buildStrokeOrderAnimatorLarge(BuildContext context) {
 Widget buildUserStrokeAnimator(BuildContext context) {
   return Center(
     child: UserStrokeAnimator(
+      // Drawn on a full-size pad, so they replay against that scale.
+      sourceSize: kanjiCanvasSize,
       strokes: const [
         [Offset(50, 130), Offset(210, 130)],
         [Offset(130, 50), Offset(130, 210)],

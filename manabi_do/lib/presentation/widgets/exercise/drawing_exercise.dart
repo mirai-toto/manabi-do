@@ -121,6 +121,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
           Center(
             child: KanjiDrawingCanvas(
               key: _canvasKey,
+              size: kanjiCanvasSize,
               onStrokesChanged: _onStrokeChanged,
               strokeResults: _strokeResults.isEmpty ? null : _strokeResults,
               referenceStrokes: refStrokes,
