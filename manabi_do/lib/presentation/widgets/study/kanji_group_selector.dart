@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
+import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
@@ -44,7 +45,29 @@ class KanjiGroupSelector extends ConsumerWidget {
             color: color,
             onBack: onBack,
           ),
-          PracticeButton(color: color, onTap: onPractice),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.spaceMd,
+              vertical: AppDimens.spaceSm,
+            ),
+            child: AppButton(
+              label: context.l10n.freePractice,
+              icon: Icon(Icons.school_rounded, color: color, size: 20),
+              onPressed: onPractice,
+              fullWidth: true,
+              backgroundColor: color.withValues(alpha: 0.08),
+              foregroundColor: color,
+              side: BorderSide(
+                color: color.withValues(alpha: 0.35),
+                width: AppDimens.borderWidth,
+              ),
+              radius: AppDimens.radiusMd,
+              padding: const EdgeInsets.all(AppDimens.spaceMd),
+              textStyle: AppTextStyles.body.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
           if (kanjiAsync is AsyncLoading)
             const Center(child: AppSpinner.page())
           else

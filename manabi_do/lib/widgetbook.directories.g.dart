@@ -104,6 +104,11 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'AppButton',
         useCases: [
           _widgetbook.WidgetbookUseCase(
+            name: 'Accent tonal',
+            builder: _manabi_do_widgetbook_common_use_cases
+                .buildAppButtonAccentTonal,
+          ),
+          _widgetbook.WidgetbookUseCase(
             name: 'Danger',
             builder:
                 _manabi_do_widgetbook_common_use_cases.buildAppButtonDanger,
@@ -291,15 +296,6 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Success',
             builder:
                 _manabi_do_widgetbook_common_use_cases.buildPillBadgeSuccess,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'PracticeButton',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_common_use_cases.buildPracticeButton,
           ),
         ],
       ),

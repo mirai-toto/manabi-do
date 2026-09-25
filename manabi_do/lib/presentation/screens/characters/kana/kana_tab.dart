@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart';
 import '../../../../core/srs/srs_level.dart';
 import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../domain/data/kana_data.dart';
 import '../../../../l10n/l10n.dart';
@@ -54,7 +55,29 @@ class KanaTabView extends ConsumerWidget {
         padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
         children: [
           ProgressRow(known: learnedCount, total: allKana.length, color: color),
-          PracticeButton(color: color, onTap: onPractice),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.spaceMd,
+              vertical: AppDimens.spaceSm,
+            ),
+            child: AppButton(
+              label: context.l10n.freePractice,
+              icon: Icon(Icons.school_rounded, color: color, size: 20),
+              onPressed: onPractice,
+              fullWidth: true,
+              backgroundColor: color.withValues(alpha: 0.08),
+              foregroundColor: color,
+              side: BorderSide(
+                color: color.withValues(alpha: 0.35),
+                width: AppDimens.borderWidth,
+              ),
+              radius: AppDimens.radiusMd,
+              padding: const EdgeInsets.all(AppDimens.spaceMd),
+              textStyle: AppTextStyles.body.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
           for (final row in rows)
             _KanaRowSection(
               row: row,

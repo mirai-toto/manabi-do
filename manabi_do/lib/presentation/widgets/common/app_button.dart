@@ -21,9 +21,15 @@ class AppButton extends StatelessWidget {
   final AppButtonSize size;
   final bool fullWidth;
   final Widget? icon;
+
+  // Overrides. The variant and size below cover the common cases; a caller
+  // that wants a different look states it here rather than growing a variant.
   final Color? backgroundColor;
   final Color? foregroundColor;
   final BorderSide? side;
+  final double? radius;
+  final EdgeInsetsGeometry? padding;
+  final TextStyle? textStyle;
 
   const AppButton({
     super.key,
@@ -36,6 +42,9 @@ class AppButton extends StatelessWidget {
     this.backgroundColor,
     this.foregroundColor,
     this.side,
+    this.radius,
+    this.padding,
+    this.textStyle,
   });
 
   @override
@@ -72,23 +81,25 @@ class AppButton extends StatelessWidget {
           _ => BorderSide.none,
         };
 
-    final padding = switch (size) {
-      AppButtonSize.small => const EdgeInsets.symmetric(
-        horizontal: AppDimens.spaceMd,
-        vertical: AppDimens.spaceSm,
-      ),
-      AppButtonSize.regular =>
-        (variant == AppButtonVariant.outlined ||
-                variant == AppButtonVariant.text)
-            ? const EdgeInsets.symmetric(
-                horizontal: _Dimens.compactPaddingH,
-                vertical: _Dimens.compactPaddingV,
-              )
-            : const EdgeInsets.symmetric(
-                horizontal: AppDimens.spaceLg,
-                vertical: AppDimens.buttonPaddingV,
-              ),
-    };
+    final resolvedPadding =
+        padding ??
+        switch (size) {
+          AppButtonSize.small => const EdgeInsets.symmetric(
+            horizontal: AppDimens.spaceMd,
+            vertical: AppDimens.spaceSm,
+          ),
+          AppButtonSize.regular =>
+            (variant == AppButtonVariant.outlined ||
+                    variant == AppButtonVariant.text)
+                ? const EdgeInsets.symmetric(
+                    horizontal: _Dimens.compactPaddingH,
+                    vertical: _Dimens.compactPaddingV,
+                  )
+                : const EdgeInsets.symmetric(
+                    horizontal: AppDimens.spaceLg,
+                    vertical: AppDimens.buttonPaddingV,
+                  ),
+        };
 
     final button = ElevatedButton(
       onPressed: onPressed,
@@ -101,16 +112,18 @@ class AppButton extends StatelessWidget {
             ? t.primary.withValues(alpha: 0.08)
             : null,
         elevation: 0,
-        padding: padding,
+        padding: resolvedPadding,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppDimens.radiusPill),
+          borderRadius: BorderRadius.circular(radius ?? AppDimens.radiusPill),
           side: borderSide,
         ),
-        textStyle: AppTextStyles.labelLarge.copyWith(
-          fontSize: size == AppButtonSize.small
-              ? AppTextStyles.labelSmall.fontSize
-              : AppTextStyles.labelLarge.fontSize,
-        ),
+        textStyle:
+            textStyle ??
+            AppTextStyles.labelLarge.copyWith(
+              fontSize: size == AppButtonSize.small
+                  ? AppTextStyles.labelSmall.fontSize
+                  : AppTextStyles.labelLarge.fontSize,
+            ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

@@ -14,7 +14,6 @@ export 'common/japanese_text.dart';
 export 'common/jlpt_level_card.dart';
 export 'common/landing_hero_panel.dart';
 export 'common/pill_badge.dart';
-export 'common/practice_button.dart';
 export 'common/progress_bar.dart';
 export 'common/progress_row.dart';
 export 'common/section_header.dart';
