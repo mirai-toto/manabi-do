@@ -109,10 +109,10 @@ See `docs/08_widget_inventory.md` (generated) for live usage counts.
 | --- | --- | --- |
 | `AppButton` | `ElevatedButton` | — it is the engine |
 | `AuthButton` | `ElevatedButton` | **Yes.** Same base; only radius, padding and text style differ, all of which are already overrides. Needs an icon-gap knob (10px vs 8px). Blocked on the landing-screen decision — it has no other caller |
-| `RatingButton` | `InkWell` | **Yes.** Needs `subtitle` and `selected`; everything else already expressible |
-| `SpeakButton` | `IconButton` | **Yes, once `AppButton` supports icon-only.** `label` is currently required |
+| `RatingButton` | `InkWell` | ✅ Folded in. `subtitle` + `selected` were the only gaps |
+| `SpeakButton` | `IconButton` | **No.** A bare icon: zero padding, no constraints, compact density, a tooltip. Folding it in would mean overriding `minimumSize`, padding, background and elevation — neutralising everything `ElevatedButton` provides. The test is whether `AppButton`'s shape is the right *starting point*, not whether it can be bent into shape |
 | `AppFilterChip` | `InkWell` | **No.** A chip toggles — a different affordance. Keep; there are plans for it |
-| `LessonReadToggle` | `GestureDetector` | **Yes.** Needs `toggled`, plus a decision on animating state changes. Calling it "a card" was wrong: it is `Row[Icon, Text]` in a padded rounded box with an `onTap`, and nothing is composed inside it |
+| `LessonReadToggle` | `GestureDetector` | **Yes, but deferred** — see the animation note below. Calling it "a card" was wrong: it is `Row[Icon, Text]` in a padded rounded box with an `onTap`, and nothing is composed inside it |
 | `SettingsToggle` | `Switch` | **No** — and it is mis-roled. Belongs in `input` |
 | `FlashcardActions` | composes `RatingButton` | **No** — and it is mis-roled. A row of buttons; belongs in `composite` |
 
@@ -132,7 +132,8 @@ See `docs/08_widget_inventory.md` (generated) for live usage counts.
   them would have the read toggle announce "selected", implying siblings it does
   not have. Not worth a sealed type to forbid setting both — that emits two
   semantic flags, which is degraded, not broken.
-- `AppButton` gains icon-only support, so `SpeakButton` can fold in.
+- No icon-only support. It was planned for `SpeakButton`, which then turned out
+  not to belong here at all.
 - `AppButton` accepts `subtitle`, `selected` and `icon` — typed content slots. It
   will **not** accept a generic `child`. A button that can contain anything
   guarantees nothing, and every caller reinvents the layout.
@@ -185,12 +186,25 @@ whether the two local copies should reference the real one.
 
 ### Open
 
-- **Does `AppButton` animate state changes?** The only gap found so far that is
-  about behaviour rather than a styling knob. `LessonReadToggle` cross-fades its
-  colours over 150ms with an `AnimatedContainer`; `ElevatedButton` resolves
-  colours through `WidgetStateProperty` and repaints instantly, so folding it in
-  as-is loses the transition. Options: wrap `AppButton` in an
-  `AnimatedContainer`, or take an `animationDuration`. Decide before folding.
+- **`LessonReadToggle` is deferred until there is a view on animation across the
+  whole app.** It is the last fold and the only one blocked on behaviour rather
+  than a styling knob.
+
+  What its `AnimatedContainer` animates today is less than it looks: the
+  background and border cross-fade over 150ms, while the icon and label colours
+  snap, because `AnimatedContainer` animates its own decoration and not its
+  child. Folding it in as-is would keep the border fade (`Material` tweens shape
+  via `ShapeBorderTween`) and lose the background one, since `material.dart`
+  applies its colour without a tween.
+
+  When it happens, the approach is for the **caller** to animate the values it
+  passes — a `TweenAnimationBuilder` walking 0→1 and `Color.lerp` for
+  background, foreground and border — not for `AppButton` to grow an animation.
+  Six lines in one widget, `AppButton` stays opinion-free, and the icon and
+  label start gliding too, so the pill ends up smoother than it is now. What to
+  avoid is wrapping `AppButton` in an `AnimatedContainer` internally: that means
+  a transparent button over a painted box, radius and border specified twice,
+  and every button in the app paying for one pill's transition.
 - Triage the 36 raw Material buttons: convert all, or only the seven outlined
   ones where the duplication is real?
 - The landing screen: keep for future accounts, or delete with `AuthButton` and
