@@ -151,26 +151,60 @@ Since every fold-in hits it, standard density probably belongs inside
 
 ### Raw Material buttons
 
-36 usages across 11 files bypass `AppButton` entirely. Roughly half that many
-actual buttons — a styled button contributes both its constructor and its
-`styleFrom`. Not yet triaged.
+42 usages outside `widgets/common/`, counted by
+`scripts/design/widget_inventory.py`. Fewer actual buttons than that: a styled
+button contributes both its constructor and its `styleFrom`. Triaged 2026-09-25.
 
-| Where | Buttons | Note |
-| --- | --- | --- |
-| `widgets/exercise/drawing_exercise.dart` | 15 usages | The worst single file. Undo / Clear / Hint / Retry / Next, plus a `retryStyle` and `nextStyle` built by hand |
-| `screens/practice/writing_session_screen.dart` | 4 | Retry and Next. The Retry style is near-identical to `drawing_exercise`'s — the same button styled twice |
-| `screens/characters/kanji/kanji_detail_screen.dart` | 3 | Action button under the character, plus a text button |
-| `widgets/exercise/session_review_row.dart` | 2 | Expand / collapse |
-| `widgets/exercise/grammar_error_detection_body.dart` | 2 | Check answer |
-| `widgets/exercise/practice_flashcard_body.dart` | 2 | |
-| `widgets/exercise/practice_mcq_body.dart` | 2 | |
-| `screens/grammar/grammar_chapter_view.dart` | 2 | |
-| `screens/grammar/grammar_lesson_list_screen.dart` | 2 | |
-| `widgets/exercise/sentence_cloze_card.dart` | 1 | |
-| `screens/characters/kana/kana_detail_sheet.dart` | 1 | |
+**Convert to `AppButton`** — labelled buttons where `AppButton`'s shape already
+fits. Agreed list:
 
-Seven are outlined buttons, which is why `AppButtonVariant.outlined` reads as
+| Where | Buttons |
+| --- | --- |
+| Drawing practice | Undo, Clear, Hint, Retry, Next, and one more |
+| Writing session | Retry, Next |
+| Grammar error detection | the answer button |
+| Kanji detail | the action button under the character, plus a text button |
+| Kana detail sheet | one text button |
+| Grammar lesson list | Unlock anyway |
+
+Drawing practice is the worst single file, and its Retry is styled independently
+from the writing session's Retry — the same button written twice, which is the
+drift this goal exists to stop. Start there.
+
+Seven are outlined buttons, which is why `AppButtonVariant.outlined` read as
 unused: the app does use outlined buttons, just never through `AppButton`.
+
+**Leave alone**, with reasons, so nobody folds them in later out of tidiness:
+
+- **Dialog buttons** (four, including three `Cancel`s). `AlertDialog`'s
+  `actions:` owns their layout and spacing; `AppButton` would fight it.
+- **Icon taps** (14: five back arrows, close buttons, the settings tune icon,
+  stepper + / −). `AppButton` is an `ElevatedButton`, and an icon-only tap needs
+  its background, padding, minimum size and border all overridden — nothing of
+  the component would be left. The test is whether `AppButton`'s shape is the
+  right *starting point*, not whether it can be bent into one.
+- **The two grammar FABs.** A floating action button positions and elevates
+  itself and `Scaffold` knows about it. Not `AppButton`'s business.
+
+**Rejected: a global button theme.** `AppTheme` sets only colours, so the idea
+was to fill in `textButtonTheme` / `iconButtonTheme` / `outlinedButtonTheme` and
+let buttons inherit. Dropped because:
+
+- The icon buttons are already coherent — all five back arrows are identical, as
+  are the close buttons, and not one uses `styleFrom`. The problem it solved was
+  hypothetical.
+- A theme is implicit inheritance, against the explicit-at-the-call-site
+  preference this codebase has settled on. Nine call sites saying
+  `color: t.onSurface` are readable without opening the theme file.
+- It would change every Material button in the app at once, including ones
+  nobody has looked at, to delete nine lines.
+
+The one real argument for it: Material 3's default `IconButton` colour is
+`onSurfaceVariant` (`icon_button.dart:990`), but the app wants `onSurface`, so
+those nine sites override a default they do not want and a tenth author might
+forget. If drift ever appears, the cheap catch is a check in the inventory
+script — flag any `IconButton` whose colour is not `t.onSurface` — rather than a
+theme that changes behaviour.
 
 ### Chips
 
