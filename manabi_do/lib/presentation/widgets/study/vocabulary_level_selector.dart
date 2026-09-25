@@ -72,7 +72,7 @@ class _VocabularyLevelSelectorState
   Widget _results() => ref
       .watch(vocabularySearchProvider(_query))
       .when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: AppSpinner.page()),
         error: (e, s) => const SizedBox.shrink(),
         data: (results) =>
             results.isEmpty ? const _NoResults() : _ResultList(results),

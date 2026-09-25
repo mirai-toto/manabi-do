@@ -30,7 +30,7 @@ class VocabularyLevelView extends ConsumerWidget {
     final color = levelColor(level);
 
     return switch (vocabularyAsync) {
-      AsyncLoading() => const Center(child: CircularProgressIndicator()),
+      AsyncLoading() => const Center(child: AppSpinner.page()),
       AsyncError() => const SizedBox.shrink(),
       AsyncData(:final value) => _LevelContent(
         level: level,

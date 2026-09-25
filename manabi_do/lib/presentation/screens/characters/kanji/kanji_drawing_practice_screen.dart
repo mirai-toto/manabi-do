@@ -20,7 +20,7 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final kanji = ref.watch(kanjiDetailProvider(kanjiId)).asData?.value;
     if (kanji == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(body: Center(child: AppSpinner.page()));
     }
 
     final t = context.tokens;
@@ -45,7 +45,7 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(AppDimens.spaceMd),
         child: strokesAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: AppSpinner.page()),
           error: (_, _) => const SizedBox.shrink(),
           data: (refStrokes) => DrawingExercise(
             referenceStrokes: refStrokes,

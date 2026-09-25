@@ -46,7 +46,7 @@ class KanjiGroupSelector extends ConsumerWidget {
           ),
           PracticeButton(color: color, onTap: onPractice),
           if (kanjiAsync is AsyncLoading)
-            const Center(child: CircularProgressIndicator())
+            const Center(child: AppSpinner.page())
           else
             Padding(
               padding: const EdgeInsets.all(AppDimens.spaceMd),

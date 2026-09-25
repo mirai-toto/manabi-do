@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../providers/kanji_strokes_provider.dart';
+import '../common/app_spinner.dart';
 
 const double _kCanvasSize = 260.0;
 
@@ -146,13 +147,7 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
       return SizedBox(
         width: widget.size,
         height: widget.size,
-        child: const Center(
-          child: SizedBox(
-            width: 24,
-            height: 24,
-            child: CircularProgressIndicator(strokeWidth: 2),
-          ),
-        ),
+        child: const Center(child: AppSpinner()),
       );
     }
 

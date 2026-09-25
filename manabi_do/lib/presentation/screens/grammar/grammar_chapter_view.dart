@@ -84,7 +84,7 @@ class GrammarChapterView extends ConsumerWidget {
             )
           : null,
       body: themesAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: AppSpinner.page()),
         error: (_, _) => const SizedBox.shrink(),
         data: (themes) => ScrollFade(
           builder: (controller) => ListView(

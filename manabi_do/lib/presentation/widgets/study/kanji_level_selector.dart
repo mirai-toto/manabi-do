@@ -73,7 +73,7 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
   Widget _results() => ref
       .watch(kanjiSearchProvider(_query))
       .when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: AppSpinner.page()),
         error: (e, s) => const SizedBox.shrink(),
         data: (results) => results.isEmpty
             ? const _NoResults()

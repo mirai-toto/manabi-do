@@ -179,7 +179,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
         body: AccentTheme(
           accent: widget.color,
           child: session.isLoading
-              ? const Center(child: CircularProgressIndicator())
+              ? const Center(child: AppSpinner.page())
               : session.done
               ? _buildSummary(session, notifier)
               : KeyedSubtree(

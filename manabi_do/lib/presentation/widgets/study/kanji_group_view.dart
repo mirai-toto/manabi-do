@@ -29,7 +29,7 @@ class KanjiGroupView extends ConsumerWidget {
     final srsCards = ref.watch(kanjiSrsCardsProvider).asData?.value ?? {};
 
     if (kanjiAsync is AsyncLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return const Center(child: AppSpinner.page());
     }
 
     final allKanji = kanjiAsync.asData?.value.kanji ?? [];

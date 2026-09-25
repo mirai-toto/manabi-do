@@ -73,7 +73,7 @@ class _StrokeStepRowState extends ConsumerState<StrokeStepRow> {
             height: 48,
             decoration: BoxDecoration(
               color: t.cardBackground,
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(AppDimens.radiusSm),
               border: Border.all(color: t.outlineVariant),
             ),
             clipBehavior: Clip.antiAlias,

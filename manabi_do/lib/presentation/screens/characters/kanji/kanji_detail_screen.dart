@@ -21,7 +21,7 @@ class KanjiDetailScreen extends ConsumerWidget {
     final kanji = ref.watch(kanjiDetailProvider(kanjiId)).asData?.value;
 
     if (kanji == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(body: Center(child: AppSpinner.page()));
     }
 
     final color = levelColor(kanji.jlptLevel);
