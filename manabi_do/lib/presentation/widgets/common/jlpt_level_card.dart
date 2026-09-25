@@ -31,7 +31,10 @@ class JlptLevelCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: t.cardBackground,
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          border: Border.all(color: color.withValues(alpha: 0.35)),
+          border: Border.all(
+            color: color.withValues(alpha: 0.35),
+            width: AppDimens.borderWidthContainer,
+          ),
         ),
         onTap: onTap,
         child: Padding(

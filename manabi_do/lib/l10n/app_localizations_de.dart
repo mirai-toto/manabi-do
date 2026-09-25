@@ -749,6 +749,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get searchKanjiPrompt => 'Nach Kanji, Lesung oder Bedeutung suchen';
 
   @override
+  String get searchVocabulary => 'Wortschatz suchen';
+
+  @override
+  String get searchVocabularyHint => 'Wort, Lesung oder Bedeutung…';
+
+  @override
   String get noResults => 'Keine Ergebnisse';
 
   @override
@@ -910,6 +916,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get speakPronunciation => 'Aussprache abspielen';
+
+  @override
+  String get replayStrokeOrder => 'Strichfolge erneut abspielen';
 
   @override
   String increaseSetting(String label) {

@@ -49,7 +49,9 @@ Widget buildCharacterCellAccent(BuildContext context) {
   path: 'Characters',
 )
 Widget buildKanjiDrawingCanvas(BuildContext context) {
-  return Center(child: KanjiDrawingCanvas(onStrokesChanged: (_) {}));
+  return Center(
+    child: KanjiDrawingCanvas(size: kanjiCanvasSize, onStrokesChanged: (_) {}),
+  );
 }
 
 @widgetbook.UseCase(
@@ -63,6 +65,7 @@ Widget buildKanjiDrawingCanvasWithGhost(BuildContext context) {
       final strokes = ref.watch(kanjiStrokesProvider(_water)).asData?.value;
       return Center(
         child: KanjiDrawingCanvas(
+          size: kanjiCanvasSize,
           onStrokesChanged: (_) {},
           referenceStrokes: strokes,
           ghostEnabled: true,
@@ -83,6 +86,7 @@ Widget buildKanjiDrawingCanvasWithResults(BuildContext context) {
       final strokes = ref.watch(kanjiStrokesProvider(_water)).asData?.value;
       return Center(
         child: KanjiDrawingCanvas(
+          size: kanjiCanvasSize,
           onStrokesChanged: (_) {},
           referenceStrokes: strokes,
           ghostEnabled: true,
@@ -96,7 +100,7 @@ Widget buildKanjiDrawingCanvasWithResults(BuildContext context) {
   );
 }
 
-// ── StrokeOrderAnimator / UserStrokeAnimator ──────────────────────────────────
+// ── StrokeOrderAnimator ───────────────────────────────────────────────────────
 
 @widgetbook.UseCase(
   name: 'Default',
@@ -114,24 +118,6 @@ Widget buildStrokeOrderAnimator(BuildContext context) {
 )
 Widget buildStrokeOrderAnimatorLarge(BuildContext context) {
   return const Center(child: StrokeOrderAnimator(kanjiId: _water, size: 260));
-}
-
-@widgetbook.UseCase(
-  name: 'Default',
-  type: UserStrokeAnimator,
-  path: 'Characters',
-)
-Widget buildUserStrokeAnimator(BuildContext context) {
-  return Center(
-    child: UserStrokeAnimator(
-      strokes: const [
-        [Offset(50, 130), Offset(210, 130)],
-        [Offset(130, 50), Offset(130, 210)],
-        [Offset(70, 80), Offset(130, 130), Offset(190, 80)],
-      ],
-      strokeResults: const [true, true, false],
-    ),
-  );
 }
 
 // ── StrokeStepRow ─────────────────────────────────────────────────────────────

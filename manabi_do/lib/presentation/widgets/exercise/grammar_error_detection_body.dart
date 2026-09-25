@@ -199,7 +199,9 @@ class _SentenceCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppDimens.radiusMd),
             border: Border.all(
               color: borderColor,
-              width: state != _SentenceCardState.idle ? 2 : 1,
+              width: state != _SentenceCardState.idle
+                  ? AppDimens.borderWidthSelected
+                  : AppDimens.borderWidthContainer,
             ),
           ),
           child: Text.rich(

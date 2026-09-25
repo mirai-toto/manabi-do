@@ -81,7 +81,12 @@ class _DayDot extends StatelessWidget {
                 ? t.success.withValues(alpha: 0.18)
                 : t.surfaceContainerHigh,
             shape: BoxShape.circle,
-            border: isToday ? Border.all(color: t.primary, width: 2) : null,
+            border: isToday
+                ? Border.all(
+                    color: t.primary,
+                    width: AppDimens.borderWidthSelected,
+                  )
+                : null,
           ),
           child: reviewed
               ? Icon(Icons.check_rounded, size: 16, color: t.success)

@@ -179,7 +179,12 @@ class _ClozeSentence extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: color.withValues(alpha: answered ? 0.15 : 0.08),
                   borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-                  border: Border.all(color: color, width: answered ? 1.5 : 1),
+                  border: Border.all(
+                    color: color,
+                    width: answered
+                        ? AppDimens.borderWidthInteractive
+                        : AppDimens.borderWidthContainer,
+                  ),
                 ),
                 child: Text(
                   answered ? stripAnnotation(correctAnswer) : '　　',

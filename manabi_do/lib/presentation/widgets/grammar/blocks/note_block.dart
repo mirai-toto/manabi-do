@@ -16,7 +16,12 @@ class NoteBlock extends StatelessWidget {
       decoration: BoxDecoration(
         color: t.warningContainer,
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border(left: BorderSide(color: t.warning, width: 3)),
+        border: Border(
+          left: BorderSide(
+            color: t.warning,
+            width: AppDimens.borderWidthAccent,
+          ),
+        ),
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: AppDimens.spaceMd,

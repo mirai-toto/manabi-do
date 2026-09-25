@@ -138,16 +138,44 @@ Adding a widget means adding a `@widgetbook.UseCase` in `lib/widgetbook/<area>_u
 
 ## SRS Logic
 
-`AppDatabase` exposes session-building methods that return `List<(T, Card?)>` pairs:
+`SrsQueueService` builds the review queues, returning `List<(T, Card?)>` pairs. It reads rows through `AppDatabase` and applies the policy from `core/srs/srs_queue.dart`:
 
-- `getAllDueKanaSrsSession` — due hiragana + katakana with a shared new-card budget
-- `getAllDueKanjiSrsSession` — due kanji from all levels; new cards from the lowest JLPT level with unseen items
-- `getAllDueVocabularySrsSession` / `getVocabularySrsSession` — due vocabulary globally or per level
-- `getKanaSrsSession` / `getKanjiSrsSession` — per-type sessions for Characters tab
+- `allDueKana` — due hiragana + katakana with a shared new-card budget
+- `allDueKanji` — due kanji from all levels; new cards from the lowest JLPT level with unseen items
+- `allDueVocabulary` / `vocabulary(level)` — due vocabulary globally or per level
+- `kana(type)` / `kanji(level)` — per-type sessions for the Characters tab
 
-New card rate is enforced by `_countSeenToday(itemType)` — cards whose `first_seen_at` falls on the current calendar day count against the daily limit.
+New card rate is enforced by `countSeenToday(itemType)` — cards whose `first_seen_at` falls on the current calendar day count against the daily limit. `remainingNewCards` and `newCardsFromEasiestLevel` are pure functions in `core/srs/srs_queue.dart`, shared with the home screen's new-card counters so the two cannot disagree.
 
-Streak is computed from `srs_cards.card_json` → `lastReview` dates: count consecutive calendar days ending today that have at least one review.
+`DashboardService` drives the home screen's counters off the same rules, with the arithmetic in `core/srs/dashboard_stats.dart`:
+
+- due counts read a projection of `(item_type, due)` rather than parsing card JSON
+- progress counts parse the cards, because "known" is a stability threshold (`isSrsKnown`)
+- new-card counts ask for totals only once today's budget is known to have something left
+
+Streak and the week strip both come from `watchReviewDates()` — `srs_cards.card_json` → `lastReview`, grouped to local calendar days. The streak is the run of consecutive days ending today.
+
+---
+
+## Practice Sessions
+
+A session service turns a queue of `(item, Card?)` pairs into `PracticeItem`s. Each one carries the SRS identity, a `PracticeSummary` for the review screen, and a `PracticeQuestion` — a sealed type in `core/models/practice_question.dart` describing what to ask:
+
+| Question | Body |
+| --- | --- |
+| `FlashcardQuestion` | `PracticeFlashcardBody` |
+| `McqQuestion` | `PracticeMcqBody` |
+| `DrawingQuestion` | `KanjiDrawingBody` |
+| `SentenceClozeQuestion` | `SentenceClozeBody` |
+| `GrammarClozeQuestion` / `GrammarBuilderQuestion` / `GrammarErrorQuestion` | the matching grammar body |
+
+`PracticeQuestionBody` is the only place that maps one to the other. It also resolves the three things a question deliberately leaves out, because they are not the service's to decide:
+
+- **colour** — from `level`, or the session's own colour when the question has no level of its own (grammar)
+- **wording** — `L10nText` callbacks resolved against the active translations at build time, so a locale change is picked up without rebuilding the queue
+- **detail navigation** — `kanjiDetailId` becomes a route push
+
+Anything that changes while a card is on screen — position in the queue, the answer callback, the settings — is passed at build time rather than captured when the queue was built. That is what lets the in-session settings sheet affect the card already showing.
 
 ---
 

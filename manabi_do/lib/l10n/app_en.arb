@@ -350,6 +350,8 @@
   "searchKanji": "Search kanji",
   "searchKanjiHint": "Kanji, reading, or meaning…",
   "searchKanjiPrompt": "Search by kanji, reading, or meaning",
+  "searchVocabulary": "Search vocabulary",
+  "searchVocabularyHint": "Word, reading, or meaning…",
   "noResults": "No results",
 
   "groupN": "Group {n}",
@@ -413,6 +415,7 @@
   "showExampleSubtitle": "Display an example sentence on flashcards",
 
   "speakPronunciation": "Play pronunciation",
+  "replayStrokeOrder": "Replay stroke order",
   "increaseSetting": "Increase {label}",
   "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
   "decreaseSetting": "Decrease {label}",

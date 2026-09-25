@@ -6,6 +6,13 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../providers/kanji_strokes_provider.dart';
 
+/// The side the app draws kanji at, named here because [KanjiDrawingCanvas] is
+/// what gives the number meaning: `onStrokesChanged` reports raw touch
+/// positions, so this is also the coordinate space those strokes come back in.
+/// Anything replaying them at a different size divides by the size they were
+/// drawn at, which is why both ends read this one constant.
+const double kanjiCanvasSize = 260;
+
 class KanjiDrawingCanvas extends StatefulWidget {
   final void Function(List<List<Offset>>) onStrokesChanged;
   final List<bool>? strokeResults;
@@ -20,9 +27,14 @@ class KanjiDrawingCanvas extends StatefulWidget {
   /// Colour of the faint reference overlay; falls back to the theme accent.
   final Color? accentColor;
 
+  /// Side of the pad. Also the scale the reported strokes are in, so a caller
+  /// that changes this has to tell anything replaying them the same number.
+  final double size;
+
   const KanjiDrawingCanvas({
     super.key,
     required this.onStrokesChanged,
+    required this.size,
     this.strokeResults,
     this.referenceStrokes,
     this.enabled = true,
@@ -75,15 +87,21 @@ class KanjiDrawingCanvasState extends State<KanjiDrawingCanvas> {
       pendingWrong: widget.pendingWrong,
     );
 
-    final canvas = CustomPaint(painter: painter, size: const Size(260, 260));
+    final canvas = CustomPaint(
+      painter: painter,
+      size: Size(widget.size, widget.size),
+    );
 
     return Container(
-      width: 260,
-      height: 260,
+      width: widget.size,
+      height: widget.size,
       decoration: BoxDecoration(
         color: t.cardBackground,
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: t.outlineVariant, width: 1.5),
+        border: Border.all(
+          color: t.outlineVariant,
+          width: AppDimens.borderWidthInteractive,
+        ),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppDimens.radiusMd - 1),

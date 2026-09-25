@@ -3,21 +3,23 @@ import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers/locale_provider.dart';
+import '../../core/text/short_meaning.dart';
 import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
 import '../providers/drawing_settings_provider.dart';
 import '../providers/writing_session_provider.dart';
 
 class WritingSessionService {
-  const WritingSessionService();
+  final Ref _ref;
+
+  const WritingSessionService(this._ref);
 
   Future<List<(Kanji, String)>> buildQueue({
-    required Ref ref,
     required WritingSessionArgs args,
   }) async {
-    final db = ref.read(databaseProvider);
-    final settings = ref.read(drawingSettingsProvider);
-    final locale = ref.read(localeProvider).languageCode;
+    final db = _ref.read(databaseProvider);
+    final settings = _ref.read(drawingSettingsProvider);
+    final locale = _ref.read(localeProvider).languageCode;
 
     final all = await db.getKanjiByLevel(args.level);
     final kanji = args.kanjiIds != null
@@ -40,17 +42,17 @@ class WritingSessionService {
         .map(
           (k) => (
             k,
-            translations[k.id]?.isNotEmpty == true
-                ? translations[k.id]!
-                : k.meaning,
+            shortMeaning(
+              translations[k.id]?.isNotEmpty == true
+                  ? translations[k.id]!
+                  : k.meaning,
+            ),
           ),
         )
         .toList();
   }
 }
 
-const writingSessionService = WritingSessionService();
-
 final writingSessionServiceProvider = Provider(
-  (_) => const WritingSessionService(),
+  (ref) => WritingSessionService(ref),
 );

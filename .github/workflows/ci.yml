@@ -37,9 +37,9 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
         working-directory: manabi_do
 
-      # Guards the database: that schema.drift and drift agree, that the
-      # shipped asset still matches the schema, and that a content refresh
-      # cannot silently drop a user's review history.
+      # Guards that a content refresh cannot silently drop a user's review
+      # history. Kept deliberately small: the app is still changing shape, so
+      # this is the one failure that a later release could not undo.
       - name: Test
         run: flutter test
         working-directory: manabi_do

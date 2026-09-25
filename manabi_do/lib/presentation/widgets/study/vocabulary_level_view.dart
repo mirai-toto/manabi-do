@@ -30,7 +30,7 @@ class VocabularyLevelView extends ConsumerWidget {
     final color = levelColor(level);
 
     return switch (vocabularyAsync) {
-      AsyncLoading() => const Center(child: CircularProgressIndicator()),
+      AsyncLoading() => const Center(child: AppSpinner.page()),
       AsyncError() => const SizedBox.shrink(),
       AsyncData(:final value) => _LevelContent(
         level: level,
@@ -121,7 +121,30 @@ class _LevelContent extends ConsumerWidget {
             ),
           ),
           ProgressRow(known: learnedCount, total: entries.length, color: color),
-          PracticeButton(color: color, onTap: () => onPractice(groupIds)),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.spaceMd,
+              vertical: AppDimens.spaceSm,
+            ),
+            child: AppButton(
+              label: context.l10n.freePractice,
+              icon: Icon(Icons.school_rounded, color: color, size: 20),
+              onPressed: () => onPractice(groupIds),
+              fullWidth: true,
+              backgroundColor: color.withValues(alpha: 0.08),
+              foregroundColor: color,
+              side: BorderSide(
+                color: color.withValues(alpha: 0.35),
+                width: AppDimens.borderWidthContainer,
+              ),
+              radius: AppDimens.radiusMd,
+              visualDensity: VisualDensity.standard,
+              padding: const EdgeInsets.all(AppDimens.spaceMd),
+              textStyle: AppTextStyles.body.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
           for (int i = 0; i < entries.length; i++) ...[
             if (i > 0)
               Divider(
