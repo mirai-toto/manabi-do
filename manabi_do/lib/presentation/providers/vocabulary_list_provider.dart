@@ -17,9 +17,7 @@ final vocabularyByLevelProvider =
 
 final vocabularySearchProvider =
     FutureProvider.family<List<VocabularyEntry>, String>(
-      (ref, query) => ref
-          .read(searchServiceProvider)
-          .vocabulary(ref.read(databaseProvider), query),
+      (ref, query) => ref.read(searchServiceProvider).vocabulary(query),
     );
 
 final vocabularySrsCardsProvider = StreamProvider<Map<int, Card>>(

@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/text/search_rank.dart';
 import '../../data/database/app_database.dart';
+import '../providers/database_provider.dart';
 
 /// How many results a search returns. A one-letter query matches thousands of
 /// entries and nobody scrolls that far.
@@ -21,10 +22,12 @@ typedef SearchFields = ({
 /// Both searches share one policy — best match first, ties to the easier level,
 /// capped — so neither can drift away from the other.
 class SearchService {
-  const SearchService();
+  final AppDatabase _db;
 
-  Future<List<VocabularyEntry>> vocabulary(AppDatabase db, String query) async {
-    final candidates = await db.searchVocabularyCandidates(query);
+  const SearchService(this._db);
+
+  Future<List<VocabularyEntry>> vocabulary(String query) async {
+    final candidates = await _db.searchVocabularyCandidates(query);
     return _ranked(
       query: query,
       candidates: candidates,
@@ -39,8 +42,8 @@ class SearchService {
     );
   }
 
-  Future<List<Kanji>> kanji(AppDatabase db, String query) async {
-    final candidates = await db.searchKanjiCandidates(query);
+  Future<List<Kanji>> kanji(String query) async {
+    final candidates = await _db.searchKanjiCandidates(query);
     return _ranked(
       query: query,
       candidates: candidates,
@@ -98,6 +101,6 @@ int _levelRank(String level) => switch (level) {
   _ => 5,
 };
 
-const searchService = SearchService();
-
-final searchServiceProvider = Provider((_) => const SearchService());
+final searchServiceProvider = Provider(
+  (ref) => SearchService(ref.read(databaseProvider)),
+);
