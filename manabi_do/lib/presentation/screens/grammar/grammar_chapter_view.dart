@@ -5,11 +5,10 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
-import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
-import '../../providers/database_provider.dart';
 import '../../providers/grammar_provider.dart';
+import '../../services/grammar_progress_service.dart';
 import '../../services/grammar_session_service.dart';
 import '../../widgets/widgets.dart';
 import '../practice/practice_session_screen.dart';
@@ -57,7 +56,7 @@ class GrammarChapterView extends ConsumerWidget {
           .where((l) => readLessons.contains(l.id))
           .length;
       if (prevDone == prevLessons.length) return false;
-      return !unlockedChapters.contains('$level:$index');
+      return !unlockedChapters.contains(grammarThemeKey(level, index));
     }
 
     return Scaffold(
@@ -189,8 +188,10 @@ class GrammarChapterView extends ConsumerWidget {
                                       onPressed: () {
                                         Navigator.of(ctx).pop();
                                         ref
-                                            .read(databaseProvider)
-                                            .unlockGrammarChapter('$level:$i');
+                                            .read(
+                                              grammarProgressServiceProvider,
+                                            )
+                                            .unlockTheme(level, i);
                                         Navigator.of(context).push(
                                           MaterialPageRoute<void>(
                                             builder: (_) =>

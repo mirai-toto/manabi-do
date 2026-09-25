@@ -25,6 +25,10 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - ✅ `vocab_session_service.dart` — monolithic `buildQueue` split into `_buildFlashcardItems`, `_buildMcqItems`, `_buildSentenceItems`, `_buildMixedItems`
 - ✅ `kanji_session_service.dart` — `buildQueue` dispatch loop split into `_buildFlashcardItem`, `_buildDrawingItem`, `_buildMcqItem`
 - ✅ `srs_service.dart` — `applyRating(Card?, Rating) -> Card` extracted as a pure function; `PracticeSessionNotifier` now uses it instead of duplicating the scheduler logic
+- ✅ `search_service.dart` — result ranking, level tiebreak and the 50-result cap moved out of `kanji_queries`/`vocabulary_queries`, which now only run the `LIKE` filter
+- ✅ `grammar_progress_service.dart` — the six direct `databaseProvider` writes in `home_screen`, `grammar_chapter_view`, `grammar_lesson_list_screen` and `grammar_lesson_screen` replaced by service calls; unlock key formats (`$level:$i`, `group:…`, `lesson:…`) now built in one place instead of inline at each read and write
+
+**Known gaps:** session services (`kanji_session_service`, `vocabulary_session_service`, `grammar_session_service`, `review_queue_service`) build widgets and import screens, so session building cannot be tested without a widget tree. SRS queue policy (new-card budget, N5→N1 progression, "known" threshold, streaks) still lives in `srs_session_queries.dart` and `dashboard_queries.dart` rather than a service.
 
 **Repository layer:** `AppDatabase` (Drift) already exposes domain-level methods and effectively IS the repository. A wrapper layer adds no behaviour. Deferred until unit testing is introduced.
 
