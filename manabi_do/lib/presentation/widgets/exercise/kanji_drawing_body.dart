@@ -2,13 +2,13 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 
+import '../../../core/models/drawing_settings.dart';
 import '../../../core/models/practice_answer.dart';
 import '../../../core/srs/drawing_rating.dart';
 import '../../../core/text/short_meaning.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/drawing_settings_provider.dart';
 import '../../providers/kanji_strokes_provider.dart';
 import 'drawing_exercise.dart';
 import 'practice_progress_row.dart';
@@ -18,9 +18,10 @@ class KanjiDrawingBody extends ConsumerWidget {
   final Kanji kanji;
   final Card? card;
   final bool isFreeMode;
+  final DrawingSettings drawingSettings;
 
-  /// The review session's switch. Ignored in free mode, which has its own
-  /// inside the drawing settings.
+  /// Whether to advance on a correct answer. Which switch decides that is the
+  /// caller's call, as it is for every other body.
   final bool autoAdvance;
   final int index;
   final int total;
@@ -38,6 +39,7 @@ class KanjiDrawingBody extends ConsumerWidget {
     required this.total,
     required this.color,
     required this.onAnswer,
+    required this.drawingSettings,
     this.meaning,
     this.isFreeMode = false,
     this.autoAdvance = false,
@@ -48,10 +50,6 @@ class KanjiDrawingBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final strokesAsync = ref.watch(kanjiStrokesProvider(kanji.id));
-    final drawingSettings = ref.watch(drawingSettingsProvider);
-    final bool advances = isFreeMode
-        ? drawingSettings.autoAdvance
-        : autoAdvance;
 
     return Padding(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -73,7 +71,7 @@ class KanjiDrawingBody extends ConsumerWidget {
                 color: color,
                 card: card,
                 isFreeMode: isFreeMode,
-                autoAdvance: advances,
+                autoAdvance: autoAdvance,
                 onRate: onAnswer,
                 onAutoAdvance: ({required hintsUsed, required mistakes}) =>
                     onAnswer(

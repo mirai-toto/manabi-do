@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card;
 
+import '../../../core/models/drawing_settings.dart';
 import '../../../core/models/flashcard_settings.dart';
 import '../../../core/models/mcq_settings.dart';
 import '../../../core/models/practice_item.dart';
@@ -25,6 +26,7 @@ class PracticeBodySettings {
   final McqSettings mcq;
   final FlashcardSettings flashcard;
   final SentenceSettings sentence;
+  final DrawingSettings drawing;
 
   /// The review session's auto-advance switch. Covers the whole queue, unlike
   /// the per-exercise switches free practice keeps in [mcq] and [sentence].
@@ -35,6 +37,7 @@ class PracticeBodySettings {
     required this.mcq,
     required this.flashcard,
     required this.sentence,
+    required this.drawing,
     required this.autoAdvance,
   });
 }
@@ -136,9 +139,12 @@ class PracticeQuestionBody extends StatelessWidget {
         total: total,
         color: color,
         onAnswer: onAnswer,
-        // Drawing has no per-exercise switch of its own outside free mode,
-        // where the body reads the drawing settings directly.
-        autoAdvance: settings.autoAdvance,
+        drawingSettings: settings.drawing,
+        // Free practice follows the drawing settings' own switch; a review
+        // follows the session one.
+        autoAdvance: q.isFreeMode
+            ? settings.drawing.autoAdvance
+            : settings.autoAdvance,
         onDetailTap: _onDetailTap(context),
       ),
       final SentenceClozeQuestion q => SentenceClozeBody(

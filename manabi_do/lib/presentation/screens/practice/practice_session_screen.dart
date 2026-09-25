@@ -9,6 +9,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../../providers/drawing_settings_provider.dart';
 import '../../providers/flashcard_settings_provider.dart';
 import '../../providers/home_provider.dart';
 import '../../providers/mcq_settings_provider.dart';
@@ -99,6 +100,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
       mcq: ref.watch(mcqSettingsProvider),
       flashcard: ref.watch(flashcardSettingsProvider),
       sentence: ref.watch(sentenceSettingsProvider),
+      drawing: ref.watch(drawingSettingsProvider),
       // Only a session that writes its results back has a grade to decide.
       autoAdvance: widget.persistSrs && srs.autoAdvance,
     );
