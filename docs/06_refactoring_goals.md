@@ -34,7 +34,7 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - Session services (`kanji_session_service`, `vocabulary_session_service`, `grammar_session_service`, `review_queue_service`) build widgets and import screens, so session building cannot be tested without a widget tree.
 - The N5→N1 new-card rule exists twice: `newCardsFromEasiestLevel` in `core/srs/srs_queue.dart` (counts, used by the dashboard) and an inline walk in `srs_queue_service.dart` (lists).
 - `dashboard_queries.dart` still holds policy: the home counters, the `isSrsKnown` threshold and the streak walk, with the "total − seen" arithmetic spelled out once per counter.
-- The pure modules (`core/srs/srs_queue.dart`, `core/text/search_rank.dart`, `core/text/short_meaning.dart`) have no tests, which was the point of making them pure.
+- Picking unseen items is written three times: `buildSrsQueue` in core, plus the hiragana and katakana branches of `allDueKana`.
 
 **Repository layer:** `AppDatabase` (Drift) already exposes domain-level methods and effectively IS the repository. A wrapper layer adds no behaviour. Deferred until unit testing is introduced.
 
