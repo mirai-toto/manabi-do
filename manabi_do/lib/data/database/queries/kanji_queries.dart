@@ -31,19 +31,32 @@ extension KanjiQueries on AppDatabase {
                   k.kunReading.like(q),
             ))
             .get();
-    // Easiest first. Ordering on the level string runs N1 to N5, which is
-    // backwards: searching "water" should surface 水 above the rare N1 kanji
-    // whose meanings happen to mention water.
+
+    final ranks = {
+      for (final kanji in results)
+        kanji.id: searchRank(
+          query: query,
+          japanese: kanji.character,
+          readings: [kanji.onReading, kanji.kunReading],
+          meaning: kanji.meaning,
+        ),
+    };
+
+    // Best match first, then easiest. Ordering on the level string runs N1 to
+    // N5, which is backwards: searching "water" should surface 水 above the rare
+    // N1 kanji whose meanings happen to mention water.
     results.sort((a, b) {
-      final byLevel = _searchRank(
+      final byRank = ranks[a.id]!.compareTo(ranks[b.id]!);
+      if (byRank != 0) return byRank;
+      final byLevel = _levelRank(
         a.jlptLevel,
-      ).compareTo(_searchRank(b.jlptLevel));
+      ).compareTo(_levelRank(b.jlptLevel));
       return byLevel != 0 ? byLevel : a.id.compareTo(b.id);
     });
     return results;
   }
 
-  static int _searchRank(String level) => switch (level) {
+  static int _levelRank(String level) => switch (level) {
     'N5' => 0,
     'N4' => 1,
     'N3' => 2,
