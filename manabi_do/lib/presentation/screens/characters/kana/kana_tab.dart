@@ -72,6 +72,7 @@ class KanaTabView extends ConsumerWidget {
                 width: AppDimens.borderWidth,
               ),
               radius: AppDimens.radiusMd,
+              visualDensity: VisualDensity.standard,
               padding: const EdgeInsets.all(AppDimens.spaceMd),
               textStyle: AppTextStyles.body.copyWith(
                 fontWeight: FontWeight.w600,

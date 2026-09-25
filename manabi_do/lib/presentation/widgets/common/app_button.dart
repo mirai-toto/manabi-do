@@ -31,6 +31,11 @@ class AppButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final TextStyle? textStyle;
 
+  /// Material shrinks a button's padding by the platform's density adjustment,
+  /// so the same [padding] yields a shorter button on desktop than on mobile.
+  /// Pass [VisualDensity.standard] when the height has to match everywhere.
+  final VisualDensity? visualDensity;
+
   const AppButton({
     super.key,
     required this.label,
@@ -45,6 +50,7 @@ class AppButton extends StatelessWidget {
     this.radius,
     this.padding,
     this.textStyle,
+    this.visualDensity,
   });
 
   @override
@@ -113,6 +119,7 @@ class AppButton extends StatelessWidget {
             : null,
         elevation: 0,
         padding: resolvedPadding,
+        visualDensity: visualDensity,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius ?? AppDimens.radiusPill),
           side: borderSide,
