@@ -29,7 +29,10 @@ class StudyGroupCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: t.cardBackground,
         borderRadius: BorderRadius.circular(AppDimens.radiusLg),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
+        border: Border.all(
+          color: color.withValues(alpha: 0.2),
+          width: AppDimens.borderWidth,
+        ),
       ),
       onTap: onTap,
       child: Padding(

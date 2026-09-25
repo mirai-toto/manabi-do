@@ -65,7 +65,10 @@ class AppButton extends StatelessWidget {
     final borderSide =
         side ??
         switch (variant) {
-          AppButtonVariant.outlined => BorderSide(color: t.primary, width: 1.5),
+          AppButtonVariant.outlined => BorderSide(
+            color: t.primary,
+            width: AppDimens.borderWidthStrong,
+          ),
           _ => BorderSide.none,
         };
 

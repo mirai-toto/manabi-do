@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 
 /// The A / B / C / D badge in front of an answer option.
@@ -34,7 +35,7 @@ class LetterCircle extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: color, width: 1.5),
+        border: Border.all(color: color, width: AppDimens.borderWidthStrong),
       ),
       child: Center(
         child: Text(

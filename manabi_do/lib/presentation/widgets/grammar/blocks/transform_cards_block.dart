@@ -333,7 +333,10 @@ class _NoteChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
+        border: Border.all(
+          color: color.withValues(alpha: 0.3),
+          width: AppDimens.borderWidth,
+        ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

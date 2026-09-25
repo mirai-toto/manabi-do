@@ -39,7 +39,10 @@ class ContinueLessonCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: t.cardBackground,
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          border: Border.all(color: t.outlineVariant),
+          border: Border.all(
+            color: t.outlineVariant,
+            width: AppDimens.borderWidth,
+          ),
         ),
         onTap: onTap,
         child: Padding(

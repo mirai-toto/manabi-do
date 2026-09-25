@@ -172,7 +172,10 @@ class SentenceClozeCard extends StatelessWidget {
                     vertical: AppDimens.spaceXs,
                   ),
                   decoration: BoxDecoration(
-                    border: Border.all(color: t.outlineVariant),
+                    border: Border.all(
+                      color: t.outlineVariant,
+                      width: AppDimens.borderWidth,
+                    ),
                     borderRadius: BorderRadius.circular(AppDimens.radiusXs),
                   ),
                   child: Icon(

@@ -61,7 +61,10 @@ class ClozeOption extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: bgColor,
-          border: Border.all(color: borderColor, width: 1.5),
+          border: Border.all(
+            color: borderColor,
+            width: AppDimens.borderWidthStrong,
+          ),
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
         ),
         child: Material(

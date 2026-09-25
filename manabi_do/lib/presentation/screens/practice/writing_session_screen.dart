@@ -312,7 +312,10 @@ class _DoneScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                           vertical: AppDimens.spaceMd,
                         ),
-                        side: BorderSide(color: color),
+                        side: BorderSide(
+                          color: color,
+                          width: AppDimens.borderWidth,
+                        ),
                         foregroundColor: color,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(

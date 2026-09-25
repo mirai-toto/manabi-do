@@ -20,7 +20,10 @@ class PracticeButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color.withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          border: Border.all(color: color.withValues(alpha: 0.35)),
+          border: Border.all(
+            color: color.withValues(alpha: 0.35),
+            width: AppDimens.borderWidth,
+          ),
         ),
         onTap: onTap,
         child: Padding(

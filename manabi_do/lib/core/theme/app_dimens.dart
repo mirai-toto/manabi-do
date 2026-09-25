@@ -30,4 +30,9 @@ abstract final class AppDimens {
   static const double optionTilePaddingV = 14;
   static const double iconTextGap = 14;
   static const double fabClearance = 80;
+
+  // Border weights: strong for surfaces whose border carries state or invites
+  // a tap, plain for containers.
+  static const double borderWidth = 1;
+  static const double borderWidthStrong = 1.5;
 }

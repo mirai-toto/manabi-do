@@ -98,7 +98,10 @@ class KanjiDrawingCanvasState extends State<KanjiDrawingCanvas> {
       decoration: BoxDecoration(
         color: t.cardBackground,
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: t.outlineVariant, width: 1.5),
+        border: Border.all(
+          color: t.outlineVariant,
+          width: AppDimens.borderWidthStrong,
+        ),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppDimens.radiusMd - 1),

@@ -36,7 +36,10 @@ class TodaysSessionCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: t.cardBackground,
         borderRadius: BorderRadius.circular(AppDimens.radiusLg),
-        border: Border.all(color: t.outlineVariant),
+        border: Border.all(
+          color: t.outlineVariant,
+          width: AppDimens.borderWidth,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

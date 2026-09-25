@@ -84,7 +84,7 @@ class _KanjiBody extends ConsumerWidget {
                 ),
               ),
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: color),
+                side: BorderSide(color: color, width: AppDimens.borderWidth),
                 padding: const EdgeInsets.symmetric(
                   vertical: AppDimens.spaceMd,
                 ),

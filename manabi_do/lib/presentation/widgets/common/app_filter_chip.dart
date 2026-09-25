@@ -45,7 +45,7 @@ class AppFilterChip extends StatelessWidget {
             color: isActive ? t.primaryContainer : Colors.transparent,
             border: Border.all(
               color: isActive ? t.primary : t.outlineVariant,
-              width: 1.5,
+              width: AppDimens.borderWidthStrong,
             ),
             borderRadius: BorderRadius.circular(AppDimens.radiusPill),
           ),

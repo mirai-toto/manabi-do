@@ -217,7 +217,12 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: t.surfaceContainerHigh,
-        border: Border(top: BorderSide(color: t.outlineVariant)),
+        border: Border(
+          top: BorderSide(
+            color: t.outlineVariant,
+            width: AppDimens.borderWidth,
+          ),
+        ),
       ),
       padding: const EdgeInsets.fromLTRB(
         AppDimens.spaceCozy,
@@ -479,7 +484,7 @@ class _AnswerBlock extends StatelessWidget {
           decoration: BoxDecoration(
             color: isCorrect ? t.successContainer : t.errorContainer,
             borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-            border: Border.all(color: color),
+            border: Border.all(color: color, width: AppDimens.borderWidth),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

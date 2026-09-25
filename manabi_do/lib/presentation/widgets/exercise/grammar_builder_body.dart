@@ -256,7 +256,7 @@ class _CorrectAnswer extends StatelessWidget {
       decoration: BoxDecoration(
         color: t.successContainer,
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: t.success),
+        border: Border.all(color: t.success, width: AppDimens.borderWidth),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,7 +353,10 @@ class _Chip extends StatelessWidget {
                 ? color.withValues(alpha: 0.15)
                 : t.surfaceContainerHigh,
             borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-            border: Border.all(color: selected ? color : t.outlineVariant),
+            border: Border.all(
+              color: selected ? color : t.outlineVariant,
+              width: AppDimens.borderWidth,
+            ),
           ),
           child: JapaneseText(
             word: label,
