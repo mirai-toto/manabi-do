@@ -90,6 +90,102 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 
 ---
 
+## 5. One Button Engine 🔄
+
+**Rule:** `AppButton` styles every button. A second button widget exists only when
+the *affordance* differs, never because `AppButton` was missing a knob.
+
+Three button widgets were built because of a missing knob, not a missing concept:
+`PracticeButton` (folded in), `AuthButton`, `RatingButton`. Each time, adding a
+parameter was the larger-looking change and writing a new widget was the smaller
+one, so the inventory grew. That is the mechanism to stop, and it is why the
+default answer to "should this be its own button?" is no.
+
+See `docs/08_widget_inventory.md` (generated) for live usage counts.
+
+### The action role, widget by widget
+
+| Widget | Built on | Fold into `AppButton`? |
+| --- | --- | --- |
+| `AppButton` | `ElevatedButton` | — it is the engine |
+| `AuthButton` | `ElevatedButton` | **Yes.** Same base; only radius, padding and text style differ, all of which are already overrides. Needs an icon-gap knob (10px vs 8px). Blocked on the landing-screen decision — it has no other caller |
+| `RatingButton` | `InkWell` | **Yes.** Needs `subtitle` and `selected`; everything else already expressible |
+| `SpeakButton` | `IconButton` | **Yes, once `AppButton` supports icon-only.** `label` is currently required |
+| `AppFilterChip` | `InkWell` | **No.** A chip toggles — a different affordance. Keep; there are plans for it |
+| `LessonReadToggle` | `GestureDetector` | **No.** A tappable card, not a button |
+| `SettingsToggle` | `Switch` | **No** — and it is mis-roled. Belongs in `input` |
+| `FlashcardActions` | composes `RatingButton` | **No** — and it is mis-roled. A row of buttons; belongs in `composite` |
+
+### Decided
+
+- `AppButton` gains `subtitle` (a second line under the label) and `selected`.
+  `selected` drives both the ring and the accessibility state, so a call site
+  states it once. It is `bool?`: `null` means "not part of a selection", because
+  `Semantics(selected: false)` on an ordinary button announces "not selected".
+- `AppButton` gains icon-only support, so `SpeakButton` can fold in.
+- `AppButton` accepts `subtitle`, `selected` and `icon` — typed content slots. It
+  will **not** accept a generic `child`. A button that can contain anything
+  guarantees nothing, and every caller reinvents the layout.
+- `AppFilterChip` stays despite reading as unused.
+
+### Watch out: visual density
+
+Material subtracts the platform's density adjustment from a button's padding
+(`button_style_button.dart`), so the same padding is 16px shorter on desktop than
+on mobile. Widgets built on `Padding` + `InkWell` have no such adjustment, so
+every fold-in silently loses height on desktop unless `visualDensity:
+VisualDensity.standard` is passed. This already bit the Free Practice button.
+Since every fold-in hits it, standard density probably belongs inside
+`AppButton` rather than at each call site.
+
+### Raw Material buttons
+
+36 usages across 11 files bypass `AppButton` entirely. Roughly half that many
+actual buttons — a styled button contributes both its constructor and its
+`styleFrom`. Not yet triaged.
+
+| Where | Buttons | Note |
+| --- | --- | --- |
+| `widgets/exercise/drawing_exercise.dart` | 15 usages | The worst single file. Undo / Clear / Hint / Retry / Next, plus a `retryStyle` and `nextStyle` built by hand |
+| `screens/practice/writing_session_screen.dart` | 4 | Retry and Next. The Retry style is near-identical to `drawing_exercise`'s — the same button styled twice |
+| `screens/characters/kanji/kanji_detail_screen.dart` | 3 | Action button under the character, plus a text button |
+| `widgets/exercise/session_review_row.dart` | 2 | Expand / collapse |
+| `widgets/exercise/grammar_error_detection_body.dart` | 2 | Check answer |
+| `widgets/exercise/practice_flashcard_body.dart` | 2 | |
+| `widgets/exercise/practice_mcq_body.dart` | 2 | |
+| `screens/grammar/grammar_chapter_view.dart` | 2 | |
+| `screens/grammar/grammar_lesson_list_screen.dart` | 2 | |
+| `widgets/exercise/sentence_cloze_card.dart` | 1 | |
+| `screens/characters/kana/kana_detail_sheet.dart` | 1 | |
+
+Seven are outlined buttons, which is why `AppButtonVariant.outlined` reads as
+unused: the app does use outlined buttons, just never through `AppButton`.
+
+### Chips
+
+Three implementations of the same visual idea, two of which say so in their own
+doc comments:
+
+- `AppFilterChip` — the real one, currently unused
+- `streak_pill.dart:9` — *"Chip-sized, like `AppFilterChip`, but the two never sit together"*
+- `grammar_builder_body.dart:15` — *"Chip-sized, matching `AppFilterChip` by eye. Kept local"*
+
+Nothing to delete. The question is whether chips are a role of their own and
+whether the two local copies should reference the real one.
+
+### Open
+
+- Triage the 36 raw Material buttons: convert all, or only the seven outlined
+  ones where the duplication is real?
+- The landing screen: keep for future accounts, or delete with `AuthButton` and
+  `LandingHeroPanel`? Deferred.
+- **Bug:** on the session review, the `selected` ring does not appear in the
+  two-grade Correct/Incorrect layout, only in the four-grade one. Auto-marked
+  exercises only ever produce `again` or `good` (`drawing_rating.dart`), which
+  are exactly the two on offer, so the ring should show. Cause not identified.
+
+---
+
 ## Approach
 
 Work through these one targeted change at a time — not a big-bang rewrite. Each PR should:
