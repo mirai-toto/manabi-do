@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
+import '../../../core/models/practice_item.dart';
 import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
@@ -14,13 +15,11 @@ import '../../providers/mcq_settings_provider.dart';
 import '../../providers/practice_session_provider.dart';
 import '../../providers/sentence_settings_provider.dart';
 import '../../widgets/widgets.dart';
-import 'practice_item.dart';
+import 'practice_question_body.dart';
 import 'practice_settings_sheet.dart';
 import 'session_review_screen.dart';
 
-export 'practice_item.dart';
-export '../../widgets/exercise/practice_flashcard_body.dart';
-export '../../widgets/exercise/practice_mcq_body.dart';
+export '../../../core/models/practice_item.dart';
 export 'practice_settings_sheet.dart' show SettingsContext;
 
 class PracticeSessionScreen extends ConsumerStatefulWidget {
@@ -183,17 +182,20 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
               ? _buildSummary(session, notifier)
               : KeyedSubtree(
                   key: ValueKey(session.index),
-                  child: session.currentItem!.buildBody(
-                    session.index,
-                    session.queue!.length,
-                    (Rating rating, {String? given, int? mistakes}) =>
+                  child: PracticeQuestionBody(
+                    question: session.currentItem!.question,
+                    card: session.currentItem!.card,
+                    index: session.index,
+                    total: session.queue!.length,
+                    settings: bodySettings,
+                    sessionColor: widget.color,
+                    onAnswer: (Rating rating, {String? given, int? mistakes}) =>
                         notifier.answer(
                           rating,
                           persistSrs: widget.persistSrs,
                           given: given,
                           mistakes: mistakes,
                         ),
-                    bodySettings,
                   ),
                 ),
         ),

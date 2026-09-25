@@ -138,11 +138,7 @@ class _GrammarLessonListScreenState
           hasExamples: true,
           loadQueue: (ref) => ref
               .read(grammarSessionServiceProvider)
-              .buildQueueForChapter(
-                lessonPaths: _allLessonPaths,
-                ref: ref,
-                color: widget.levelColor,
-              ),
+              .buildQueueForChapter(lessonPaths: _allLessonPaths, ref: ref),
         ),
       ),
     );

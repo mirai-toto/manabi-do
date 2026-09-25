@@ -1,20 +1,16 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers/home_settings_provider.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
-import '../../core/theme/jlpt_level.dart';
 import '../../data/database/app_database.dart';
-import '../../l10n/l10n.dart';
 import '../providers/database_provider.dart';
 import '../providers/mcq_settings_provider.dart';
 import '../providers/sentence_settings_provider.dart';
-import '../screens/characters/kanji/kanji_practice_screen.dart';
-import '../screens/practice/practice_session_screen.dart';
-import '../widgets/exercise/sentence_cloze_body.dart';
+import '../../core/models/practice_item.dart';
+import '../../core/models/practice_question.dart';
 import 'session_item_builders.dart';
 import 'srs_queue_service.dart';
 
@@ -25,7 +21,6 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
   final db = ref.read(databaseProvider);
   final settings = await ref.read(srsSettingsProvider.future);
   final mcqSettings = ref.read(mcqSettingsProvider);
-  final color = levelColor('kana');
   final queue = await ref
       .read(srsQueueServiceProvider)
       .kana(type, newCardLimit: settings.newCharactersPerDay);
@@ -52,20 +47,12 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
           kindLabel: (l) => type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
           selfAssessed: false,
         ),
-        buildBody: (index, total, onAnswer, settings) => Builder(
-          builder: (ctx) => PracticeMcqBody(
-            question: ctx.l10n.mcqSelectKanaReading,
-            japanesePrompt: kana.character,
-            options: kanaMcq.options,
-            correctIndex: kanaMcq.correctIndex,
-            card: card,
-            index: index,
-            total: total,
-            color: color,
-            onAnswer: onAnswer,
-            autoAdvance: settings.autoAdvance,
-            showPromptFurigana: settings.mcq.showPromptFurigana,
-          ),
+        question: McqQuestion(
+          prompt: (l) => l.mcqSelectKanaReading,
+          japanesePrompt: kana.character,
+          options: kanaMcq.options,
+          correctIndex: kanaMcq.correctIndex,
+          level: 'kana',
         ),
       );
     }
@@ -80,15 +67,10 @@ Future<List<PracticeItem>> loadKanaPracticeQueue(
         kindLabel: (l) => type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
         selfAssessed: true,
       ),
-      buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
+      question: FlashcardQuestion(
         japanese: kana.character,
         answer: kana.romaji,
-        card: card,
-        index: index,
-        total: total,
-        color: color,
-        onAnswer: onAnswer,
-        showExample: settings.flashcard.showExample,
+        level: 'kana',
       ),
     );
   }).toList();
@@ -103,7 +85,6 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
       .allDueKana(newCardLimit: settings.newCharactersPerDay);
   final allHiragana = await db.getKanaByType('hiragana');
   final allKatakana = await db.getKanaByType('katakana');
-  final color = levelColor('kana');
   final rng = Random();
 
   return (pairs.map((pair) {
@@ -126,20 +107,12 @@ Future<List<PracticeItem>> loadKanaQueue(WidgetRef ref) async {
         kindLabel: (l) => k.type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
         selfAssessed: false,
       ),
-      buildBody: (index, total, onAnswer, settings) => Builder(
-        builder: (ctx) => PracticeMcqBody(
-          question: ctx.l10n.mcqSelectKanaReading,
-          japanesePrompt: k.character,
-          options: kanaMcq.options,
-          correctIndex: kanaMcq.correctIndex,
-          card: card,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          autoAdvance: settings.autoAdvance,
-          showPromptFurigana: settings.mcq.showPromptFurigana,
-        ),
+      question: McqQuestion(
+        prompt: (l) => l.mcqSelectKanaReading,
+        japanesePrompt: k.character,
+        options: kanaMcq.options,
+        correctIndex: kanaMcq.correctIndex,
+        level: 'kana',
       ),
     );
   }).toList())..shuffle(rng);
@@ -206,7 +179,6 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
 
   return pairs.map((pair) {
     final (k, card) = pair;
-    final color = levelColor(k.jlptLevel);
     // 0: kanji -> meaning, 1: meaning -> kanji, 2: drawing. No flashcard here:
     // the daily queue only asks questions you have to answer.
     final quizType = rng.nextInt(3);
@@ -223,15 +195,10 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
           kindLabel: (l) => l.reviewKindKanjiWriting,
           selfAssessed: true,
         ),
-        buildBody: (index, total, onAnswer, settings) => KanjiDrawingBody(
+        question: DrawingQuestion(
           kanji: k,
           meaning: meaningOf(k),
-          card: card,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          autoAdvance: settings.autoAdvance,
+          level: k.jlptLevel,
         ),
       );
     }
@@ -261,23 +228,15 @@ Future<List<PracticeItem>> loadKanjiQueue(WidgetRef ref) async {
         kindLabel: (l) => l.tabKanji,
         selfAssessed: false,
       ),
-      buildBody: (index, total, onAnswer, settings) => Builder(
-        builder: (ctx) => PracticeMcqBody(
-          question: isKanjiToMeaning
-              ? ctx.l10n.mcqSelectMeaning
-              : ctx.l10n.mcqSelectKanji(meaningOf(k)),
-          japanesePrompt: isKanjiToMeaning ? k.character : null,
-          options: mcqOptions,
-          correctIndex: correctIndex,
-          card: card,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          autoAdvance: settings.autoAdvance,
-          showPromptFurigana: settings.mcq.showPromptFurigana,
-          compactGrid: !isKanjiToMeaning,
-        ),
+      question: McqQuestion(
+        prompt: (l) => isKanjiToMeaning
+            ? l.mcqSelectMeaning
+            : l.mcqSelectKanji(meaningOf(k)),
+        japanesePrompt: isKanjiToMeaning ? k.character : null,
+        options: mcqOptions,
+        correctIndex: correctIndex,
+        compactGrid: !isKanjiToMeaning,
+        level: k.jlptLevel,
       ),
     );
   }).toList()..shuffle(rng);
@@ -318,7 +277,6 @@ Future<List<PracticeItem>> loadVocabularyQueue(WidgetRef ref) async {
 
   return pairs.map((pair) {
     final (entry, card) = pair;
-    final color = levelColor(entry.jlptLevel);
     final allSentences = sentencesByVocabularyId[entry.id] ?? [];
     final sentences = nativeOnly
         ? allSentences
@@ -352,21 +310,13 @@ Future<List<PracticeItem>> loadVocabularyQueue(WidgetRef ref) async {
           kindLabel: (l) => l.sectionVocabulary,
           selfAssessed: false,
         ),
-        buildBody: (index, total, onAnswer, settings) => Builder(
-          builder: (ctx) => PracticeMcqBody(
-            question: ctx.l10n.mcqSelectWordMeaning,
-            japanesePrompt: entry.word,
-            japaneseReading: entry.reading != entry.word ? entry.reading : null,
-            options: mcqOptions,
-            correctIndex: correctIndex,
-            card: card,
-            index: index,
-            total: total,
-            color: color,
-            onAnswer: onAnswer,
-            autoAdvance: settings.autoAdvance,
-            showPromptFurigana: settings.mcq.showPromptFurigana,
-          ),
+        question: McqQuestion(
+          prompt: (l) => l.mcqSelectWordMeaning,
+          japanesePrompt: entry.word,
+          japaneseReading: entry.reading != entry.word ? entry.reading : null,
+          options: mcqOptions,
+          correctIndex: correctIndex,
+          level: entry.jlptLevel,
         ),
       );
     }
@@ -394,21 +344,13 @@ Future<List<PracticeItem>> loadVocabularyQueue(WidgetRef ref) async {
         sentence: sentence.japanese,
         sentenceTranslation: sentenceTranslations[sentence.id],
       ),
-      buildBody: (index, total, onAnswer, settings) => SentenceClozeBody(
+      question: SentenceClozeQuestion(
         sentence: sentence,
         translation: sentenceTranslations[sentence.id],
         targetReading: entry.reading,
         options: clozeOptions,
         correctIndex: correctIndex,
-        card: card,
-        index: index,
-        total: total,
-        color: color,
-        onAnswer: onAnswer,
-        autoAdvance: settings.autoAdvance,
-        translationMode: settings.sentence.translationMode,
-        showSentenceFurigana: settings.sentence.showSentenceFurigana,
-        showChoiceFurigana: settings.sentence.showChoiceFurigana,
+        level: entry.jlptLevel,
       ),
     );
   }).toList()..shuffle(rng);

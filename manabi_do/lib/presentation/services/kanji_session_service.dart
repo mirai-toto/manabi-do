@@ -1,22 +1,19 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 
+import '../../core/models/exercise_filter.dart';
 import '../../core/models/mcq_settings.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
 import '../../core/text/short_meaning.dart';
-import '../../core/theme/jlpt_level.dart';
 import '../../data/database/app_database.dart';
-import '../../l10n/l10n.dart';
 import '../providers/database_provider.dart';
 import '../providers/flashcard_settings_provider.dart';
 import '../providers/mcq_settings_provider.dart';
-import '../screens/characters/kanji/kanji_detail_screen.dart';
-import '../screens/characters/kanji/kanji_practice_screen.dart';
-import '../screens/practice/practice_session_screen.dart';
+import '../../core/models/practice_item.dart';
+import '../../core/models/practice_question.dart';
 import 'session_item_builders.dart';
 import 'srs_queue_service.dart';
 
@@ -31,7 +28,6 @@ class KanjiSessionService {
     required bool freeMode,
   }) async {
     final db = ref.read(databaseProvider);
-    final color = levelColor(level);
     final rng = Random();
     final locale = ref.read(localeProvider).languageCode;
     final mcqSettings = ref.read(mcqSettingsProvider);
@@ -96,21 +92,21 @@ class KanjiSessionService {
         _QuizType.flashcard => _buildFlashcardItem(
           kanji: kanji,
           card: card,
-          color: color,
+          level: level,
           freeMode: freeMode,
           meaningOf: meaningOf,
         ),
         _QuizType.drawing => _buildDrawingItem(
           kanji: kanji,
           card: card,
-          color: color,
+          level: level,
           freeMode: freeMode,
           meaningOf: meaningOf,
         ),
         _QuizType.kanjiToMeaning || _QuizType.meaningToKanji => _buildMcqItem(
           kanji: kanji,
           card: card,
-          color: color,
+          level: level,
           pool: pool,
           freeMode: freeMode,
           isKanjiToMeaning: type == _QuizType.kanjiToMeaning,
@@ -125,7 +121,7 @@ class KanjiSessionService {
   PracticeItem _buildFlashcardItem({
     required Kanji kanji,
     required Card? card,
-    required Color color,
+    required String level,
     required bool freeMode,
     required String Function(Kanji) meaningOf,
   }) {
@@ -140,23 +136,12 @@ class KanjiSessionService {
         kindLabel: (l) => l.tabKanji,
         selfAssessed: true,
       ),
-      buildBody: (index, total, onAnswer, settings) => Builder(
-        builder: (ctx) => PracticeFlashcardBody(
-          japanese: kanji.character,
-          answer: meaningOf(kanji),
-          isFreeMode: freeMode,
-          card: card,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          showExample: settings.flashcard.showExample,
-          onDetailTap: () => Navigator.of(ctx).push(
-            MaterialPageRoute<void>(
-              builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-            ),
-          ),
-        ),
+      question: FlashcardQuestion(
+        japanese: kanji.character,
+        answer: meaningOf(kanji),
+        level: level,
+        isFreeMode: freeMode,
+        kanjiDetailId: kanji.id,
       ),
     );
   }
@@ -164,7 +149,7 @@ class KanjiSessionService {
   PracticeItem _buildDrawingItem({
     required Kanji kanji,
     required Card? card,
-    required Color color,
+    required String level,
     required bool freeMode,
     required String Function(Kanji) meaningOf,
   }) {
@@ -179,23 +164,12 @@ class KanjiSessionService {
         kindLabel: (l) => l.reviewKindKanjiWriting,
         selfAssessed: true,
       ),
-      buildBody: (index, total, onAnswer, settings) => Builder(
-        builder: (ctx) => KanjiDrawingBody(
-          kanji: kanji,
-          meaning: meaningOf(kanji),
-          card: card,
-          isFreeMode: freeMode,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          autoAdvance: settings.autoAdvance,
-          onDetailTap: () => Navigator.of(ctx).push(
-            MaterialPageRoute<void>(
-              builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-            ),
-          ),
-        ),
+      question: DrawingQuestion(
+        kanji: kanji,
+        meaning: meaningOf(kanji),
+        level: level,
+        isFreeMode: freeMode,
+        kanjiDetailId: kanji.id,
       ),
     );
   }
@@ -203,7 +177,7 @@ class KanjiSessionService {
   PracticeItem _buildMcqItem({
     required Kanji kanji,
     required Card? card,
-    required Color color,
+    required String level,
     required List<Kanji> pool,
     required bool freeMode,
     required bool isKanjiToMeaning,
@@ -232,36 +206,22 @@ class KanjiSessionService {
         kindLabel: (l) => l.tabKanji,
         selfAssessed: false,
       ),
-      buildBody: (index, total, onAnswer, settings) => Builder(
-        builder: (ctx) => PracticeMcqBody(
-          question: isKanjiToMeaning
-              ? ctx.l10n.mcqSelectMeaning
-              : ctx.l10n.mcqSelectKanji(meaningOf(kanji)),
-          japanesePrompt: isKanjiToMeaning ? kanji.character : null,
-          japaneseReading: isKanjiToMeaning
-              ? (kanji.onReading.isNotEmpty
-                    ? kanji.onReading.split('、').first
-                    : kanji.kunReading.split('、').firstOrNull)
-              : null,
-          options: kanjiMcq.options,
-          correctIndex: kanjiMcq.correctIndex,
-          isFreeMode: freeMode,
-          card: card,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          autoAdvance: freeMode
-              ? settings.mcq.autoAdvance
-              : settings.autoAdvance,
-          showPromptFurigana: settings.mcq.showPromptFurigana,
-          onDetailTap: () => Navigator.of(ctx).push(
-            MaterialPageRoute<void>(
-              builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-            ),
-          ),
-          compactGrid: !isKanjiToMeaning,
-        ),
+      question: McqQuestion(
+        prompt: (l) => isKanjiToMeaning
+            ? l.mcqSelectMeaning
+            : l.mcqSelectKanji(meaningOf(kanji)),
+        japanesePrompt: isKanjiToMeaning ? kanji.character : null,
+        japaneseReading: isKanjiToMeaning
+            ? (kanji.onReading.isNotEmpty
+                  ? kanji.onReading.split('、').first
+                  : kanji.kunReading.split('、').firstOrNull)
+            : null,
+        options: kanjiMcq.options,
+        correctIndex: kanjiMcq.correctIndex,
+        compactGrid: !isKanjiToMeaning,
+        level: level,
+        isFreeMode: freeMode,
+        kanjiDetailId: kanji.id,
       ),
     );
   }

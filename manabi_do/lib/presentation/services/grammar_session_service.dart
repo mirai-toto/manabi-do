@@ -1,23 +1,16 @@
-import '../../data/database/app_database.dart';
 import 'dart:convert';
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/models/mcq_settings.dart';
+import '../../core/models/mcq_option.dart';
 import '../../core/providers/locale_provider.dart';
+import '../../data/database/app_database.dart';
 import '../../data/grammar/grammar_models.dart';
-import '../../l10n/l10n.dart';
 import '../providers/database_provider.dart';
 import '../providers/mcq_settings_provider.dart';
-import '../screens/practice/practice_item.dart';
-import '../widgets/exercise/grammar_builder_body.dart';
-import '../widgets/exercise/grammar_cloze_body.dart';
-import '../widgets/exercise/grammar_error_detection_body.dart';
-import '../widgets/exercise/practice_flashcard_body.dart';
-import '../widgets/exercise/practice_mcq_body.dart';
-import '../widgets/exercise/mcq_card.dart';
+import '../../core/models/practice_item.dart';
+import '../../core/models/practice_question.dart';
 
 const _letters = ['A', 'B', 'C', 'D'];
 
@@ -27,63 +20,32 @@ class GrammarSessionService {
   Future<List<PracticeItem>> buildQueueForChapter({
     required List<String> lessonPaths,
     required WidgetRef ref,
-    required Color color,
   }) async {
     final db = ref.read(databaseProvider);
     final locale = ref.read(localeProvider).languageCode;
-    final mcqSettings = ref.read(mcqSettingsProvider);
+    final sessionLength = ref.read(mcqSettingsProvider).sessionLength;
+    final rng = math.Random();
 
-    final sessionLength = mcqSettings.sessionLength;
     var rows = await db.getGrammarExercisesForLessons(lessonPaths);
     if (rows.isEmpty) return [];
-    rows = List.of(rows)..shuffle(math.Random());
+    rows = List<GrammarExerciseRow>.of(rows)..shuffle(rng);
     if (sessionLength != null) rows = rows.take(sessionLength).toList();
 
     final items = <PracticeItem>[];
     for (var i = 0; i < rows.length; i++) {
-      final row = rows[i];
       final exercise = GrammarExercise.fromJson(
-        Map<String, dynamic>.from(jsonDecode(row.dataJson) as Map),
+        Map<String, dynamic>.from(jsonDecode(rows[i].dataJson) as Map),
       );
-      final item = _buildItem(i, exercise, locale, color, mcqSettings);
-      if (item != null) items.add(item);
+      items.add(_buildItem(i, exercise, locale, rng));
     }
     return items;
   }
 
-  Future<List<PracticeItem>> buildQueue({
-    required String lessonPath,
-    required WidgetRef ref,
-    required Color color,
-  }) async {
-    final db = ref.read(databaseProvider);
-    final locale = ref.read(localeProvider).languageCode;
-    final mcqSettings = ref.read(mcqSettingsProvider);
-
-    final sessionLength = mcqSettings.sessionLength;
-    var rows = await db.getGrammarExercisesForLesson(lessonPath);
-    if (rows.isEmpty) return [];
-    rows = List.of(rows)..shuffle(math.Random());
-    if (sessionLength != null) rows = rows.take(sessionLength).toList();
-
-    final items = <PracticeItem>[];
-    for (var i = 0; i < rows.length; i++) {
-      final row = rows[i];
-      final exercise = GrammarExercise.fromJson(
-        Map<String, dynamic>.from(jsonDecode(row.dataJson) as Map),
-      );
-      final item = _buildItem(i, exercise, locale, color, mcqSettings);
-      if (item != null) items.add(item);
-    }
-    return items;
-  }
-
-  PracticeItem? _buildItem(
+  PracticeItem _buildItem(
     int id,
     GrammarExercise exercise,
     String locale,
-    Color color,
-    McqSettings mcqSettings,
+    math.Random rng,
   ) {
     return switch (exercise) {
       FlashcardExercise() => PracticeItem(
@@ -104,7 +66,7 @@ class GrammarSessionService {
           kindLabel: (l) => l.sectionGrammar,
           selfAssessed: true,
         ),
-        buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
+        question: FlashcardQuestion(
           japanese: exercise.front,
           answer: exercise.back[locale] ?? exercise.back['en'] ?? '',
           example: exercise.example,
@@ -112,13 +74,7 @@ class GrammarSessionService {
           isReversed: exercise.isReversed,
           questionOverride:
               exercise.question?[locale] ?? exercise.question?['en'] ?? '',
-          card: null,
           isFreeMode: true,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          showExample: settings.flashcard.showExample,
         ),
       ),
       McqExercise() => PracticeItem(
@@ -135,67 +91,17 @@ class GrammarSessionService {
           kindLabel: (l) => l.sectionGrammar,
           selfAssessed: false,
         ),
-        buildBody: (index, total, onAnswer, settings) {
-          final choices =
-              exercise.choices[locale] ?? exercise.choices['en'] ?? [];
-          final options = List.generate(
-            choices.length,
-            (i) => McqOption(letter: _letters[i], text: choices[i]),
-          );
-          return Builder(
-            builder: (context) => PracticeMcqBody(
-              question: context.l10n.grammarMcqPrompt,
-              japanesePrompt: exercise.sentence,
-              options: options,
-              correctIndex: exercise.answerIndex,
-              card: null,
-              isFreeMode: true,
-              index: index,
-              total: total,
-              color: color,
-              onAnswer: onAnswer,
-              autoAdvance: settings.mcq.autoAdvance,
-              showPromptFurigana: settings.mcq.showPromptFurigana,
-            ),
-          );
-        },
-      ),
-      ClozeExercise() => PracticeItem(
-        id: id,
-        srsType: 'grammar',
-        card: null,
-        summary: PracticeSummary(
-          item: exercise.sentence,
-          question: (l) => l.reviewClozePrompt,
-          answer: exercise.answer,
-          kindLabel: (l) => l.sectionGrammar,
-          selfAssessed: false,
-          sentence: exercise.sentence,
+        question: McqQuestion(
+          prompt: (l) => l.grammarMcqPrompt,
+          japanesePrompt: exercise.sentence,
+          options: _options(
+            exercise.choices[locale] ?? exercise.choices['en'] ?? [],
+          ),
+          correctIndex: exercise.answerIndex,
+          isFreeMode: true,
         ),
-        buildBody: (index, total, onAnswer, settings) {
-          final allOptions = [exercise.answer, ...exercise.distractors];
-          allOptions.shuffle(math.Random());
-          final correctIndex = allOptions.indexOf(exercise.answer);
-          final options = List.generate(
-            allOptions.length,
-            (i) => McqOption(
-              letter: _letters[i],
-              text: allOptions[i],
-              useJpFont: true,
-            ),
-          );
-          return GrammarClozeBody(
-            sentence: exercise.sentence,
-            options: options,
-            correctIndex: correctIndex,
-            index: index,
-            total: total,
-            color: color,
-            autoAdvance: settings.mcq.autoAdvance,
-            onAnswer: onAnswer,
-          );
-        },
       ),
+      ClozeExercise() => _clozeItem(id, exercise, rng),
       BuilderExercise() => PracticeItem(
         id: id,
         srsType: 'grammar',
@@ -207,15 +113,11 @@ class GrammarSessionService {
           kindLabel: (l) => l.sectionGrammar,
           selfAssessed: false,
         ),
-        buildBody: (index, total, onAnswer, settings) => GrammarBuilderBody(
+        question: GrammarBuilderQuestion(
           parts: exercise.parts,
           translation:
               exercise.translation[locale] ?? exercise.translation['en'] ?? '',
-          index: index,
-          total: total,
-          color: color,
-          autoAdvance: settings.mcq.autoAdvance,
-          onAnswer: onAnswer,
+          isFreeMode: true,
         ),
       ),
       ErrorDetectionExercise() => PracticeItem(
@@ -229,22 +131,51 @@ class GrammarSessionService {
           kindLabel: (l) => l.sectionGrammar,
           selfAssessed: false,
         ),
-        buildBody: (index, total, onAnswer, settings) =>
-            GrammarErrorDetectionBody(
-              correct: exercise.correct,
-              wrong: exercise.wrong,
-              explanation:
-                  exercise.explanation[locale] ??
-                  exercise.explanation['en'] ??
-                  '',
-              index: index,
-              total: total,
-              color: color,
-              onAnswer: onAnswer,
-            ),
+        question: GrammarErrorQuestion(
+          correct: exercise.correct,
+          wrong: exercise.wrong,
+          explanation:
+              exercise.explanation[locale] ?? exercise.explanation['en'] ?? '',
+          isFreeMode: true,
+        ),
       ),
     };
   }
+
+  /// The choices are shuffled once, here, rather than every time the card is
+  /// drawn — a rebuild used to reorder them under the learner's finger.
+  PracticeItem _clozeItem(int id, ClozeExercise exercise, math.Random rng) {
+    final choices = [exercise.answer, ...exercise.distractors]..shuffle(rng);
+    return PracticeItem(
+      id: id,
+      srsType: 'grammar',
+      card: null,
+      summary: PracticeSummary(
+        item: exercise.sentence,
+        question: (l) => l.reviewClozePrompt,
+        answer: exercise.answer,
+        kindLabel: (l) => l.sectionGrammar,
+        selfAssessed: false,
+        sentence: exercise.sentence,
+      ),
+      question: GrammarClozeQuestion(
+        sentence: exercise.sentence,
+        options: _options(choices, useJpFont: true),
+        correctIndex: choices.indexOf(exercise.answer),
+        isFreeMode: true,
+      ),
+    );
+  }
+
+  List<McqOption> _options(List<String> choices, {bool useJpFont = false}) =>
+      List.generate(
+        choices.length,
+        (i) => McqOption(
+          letter: _letters[i],
+          text: choices[i],
+          useJpFont: useJpFont,
+        ),
+      );
 }
 
 final grammarSessionServiceProvider = Provider(

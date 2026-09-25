@@ -76,7 +76,6 @@ class GrammarChapterView extends ConsumerWidget {
                         .buildQueueForChapter(
                           lessonPaths: allLessonPaths,
                           ref: ref,
-                          color: color,
                         ),
                   ),
                 ),

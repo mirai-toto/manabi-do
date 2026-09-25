@@ -157,6 +157,28 @@ Streak and the week strip both come from `watchReviewDates()` — `srs_cards.car
 
 ---
 
+## Practice Sessions
+
+A session service turns a queue of `(item, Card?)` pairs into `PracticeItem`s. Each one carries the SRS identity, a `PracticeSummary` for the review screen, and a `PracticeQuestion` — a sealed type in `core/models/practice_question.dart` describing what to ask:
+
+| Question | Body |
+| --- | --- |
+| `FlashcardQuestion` | `PracticeFlashcardBody` |
+| `McqQuestion` | `PracticeMcqBody` |
+| `DrawingQuestion` | `KanjiDrawingBody` |
+| `SentenceClozeQuestion` | `SentenceClozeBody` |
+| `GrammarClozeQuestion` / `GrammarBuilderQuestion` / `GrammarErrorQuestion` | the matching grammar body |
+
+`PracticeQuestionBody` is the only place that maps one to the other. It also resolves the three things a question deliberately leaves out, because they are not the service's to decide:
+
+- **colour** — from `level`, or the session's own colour when the question has no level of its own (grammar)
+- **wording** — `L10nText` callbacks resolved against the active translations at build time, so a locale change is picked up without rebuilding the queue
+- **detail navigation** — `kanjiDetailId` becomes a route push
+
+Anything that changes while a card is on screen — position in the queue, the answer callback, the settings — is passed at build time rather than captured when the queue was built. That is what lets the in-session settings sheet affect the card already showing.
+
+---
+
 ## Kanji SVG Assets
 
 Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db`. They are loaded at runtime by `KanjiStrokesProvider` via a DB query and rendered as animated paths. Source SVG files live in `content/characters/kanji_svg/` (committed) and are embedded into the DB by `scripts/content_pipeline/build_content_db.py`.

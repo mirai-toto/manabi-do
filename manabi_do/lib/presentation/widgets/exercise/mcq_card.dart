@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/models/mcq_option.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -7,31 +8,7 @@ import '../common/japanese_text.dart';
 import '../common/pill_badge.dart';
 import '../common/speak_button.dart';
 
-enum McqOptionState { idle, selected, correct, wrong }
-
-class McqOption {
-  final String letter;
-  final String text;
-  final String? reading;
-  final McqOptionState state;
-  final bool useJpFont;
-
-  const McqOption({
-    required this.letter,
-    required this.text,
-    this.reading,
-    this.state = McqOptionState.idle,
-    this.useJpFont = false,
-  });
-
-  McqOption copyWith({McqOptionState? state}) => McqOption(
-    letter: letter,
-    text: text,
-    reading: reading,
-    state: state ?? this.state,
-    useJpFont: useJpFont,
-  );
-}
+export '../../../core/models/mcq_option.dart';
 
 ({Color borderColor, Color bgColor, Color contentColor}) _resolveOptionColors(
   McqOptionState state,
