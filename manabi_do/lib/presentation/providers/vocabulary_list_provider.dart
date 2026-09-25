@@ -4,6 +4,7 @@ import 'package:fsrs/fsrs.dart';
 import '../../core/providers/srs_settings_provider.dart';
 import '../../core/srs/srs_level.dart';
 import '../../data/database/app_database.dart';
+import '../services/search_service.dart';
 import 'database_provider.dart';
 
 const kVocabularyGroupSize = 30;
@@ -15,7 +16,9 @@ final vocabularyByLevelProvider =
 
 final vocabularySearchProvider =
     FutureProvider.family<List<VocabularyEntry>, String>(
-      (ref, query) => ref.read(databaseProvider).searchVocabulary(query),
+      (ref, query) => ref
+          .read(searchServiceProvider)
+          .vocabulary(ref.read(databaseProvider), query),
     );
 
 final vocabularySrsCardsProvider = StreamProvider<Map<int, Card>>(

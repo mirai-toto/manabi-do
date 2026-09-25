@@ -8,7 +8,6 @@ import 'db_connection_native.dart'
     if (dart.library.js_interop) 'db_connection_web.dart';
 
 import '../../core/srs/srs_level.dart';
-import '../../core/text/search_rank.dart';
 import '../../domain/data/kana_data.dart';
 import 'schema_versions.dart';
 
