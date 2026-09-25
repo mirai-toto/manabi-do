@@ -11,6 +11,25 @@ const List<String> kNewCardLevelOrder = ['N5', 'N4', 'N3', 'N2', 'N1'];
 int remainingNewCards({required int dailyLimit, required int seenToday}) =>
     (dailyLimit - seenToday).clamp(0, dailyLimit);
 
+/// The first [limit] items that have no SRS card yet, each paired with a null
+/// card so they slot straight into a queue.
+///
+/// Order follows [items], so whatever order the database returned is the order
+/// they are introduced in.
+List<(T, Card?)> unseenItems<T>({
+  required List<T> items,
+  required Map<int, Card> cards,
+  required int Function(T) idOf,
+  required int limit,
+}) {
+  if (limit <= 0) return [];
+  return items
+      .where((item) => cards[idOf(item)] == null)
+      .take(limit)
+      .map((item) => (item, null as Card?))
+      .toList();
+}
+
 /// A review queue: everything due now, then unseen items up to [remainingNew].
 ///
 /// Items with a card that is not yet due are left out entirely — this is a
@@ -23,29 +42,33 @@ List<(T, Card?)> buildSrsQueue<T>({
   DateTime? now,
 }) {
   final at = now ?? DateTime.now();
-  final pairs = items.map((item) => (item, cards[idOf(item)])).toList();
-
-  final due = pairs
+  final due = items
+      .map((item) => (item, cards[idOf(item)]))
       .where((pair) => pair.$2 != null && !pair.$2!.due.isAfter(at))
       .toList();
-  final fresh = pairs
-      .where((pair) => pair.$2 == null)
-      .take(remainingNew)
-      .toList();
 
-  return [...due, ...fresh];
+  return [
+    ...due,
+    ...unseenItems(items: items, cards: cards, idOf: idOf, limit: remainingNew),
+  ];
 }
 
-/// The first level in [kNewCardLevelOrder] that still has unseen items, and how
-/// many of them the budget allows. Zero when every level is exhausted.
-int newCardsFromEasiestLevel(
-  Map<String, int> unseenByLevel, {
+/// The unseen items of the easiest level that still has any, capped at
+/// [remainingNew]. Empty once every level is exhausted.
+///
+/// New cards come from one level at a time, so a learner with N5 left to finish
+/// is never handed N1 items. The budget is deliberately not topped up from the
+/// next level when the easiest one runs short.
+List<T> newCardsFromEasiestLevel<T>(
+  Map<String, List<T>> unseenByLevel, {
   required int remainingNew,
 }) {
-  if (remainingNew <= 0) return 0;
+  if (remainingNew <= 0) return [];
   for (final level in kNewCardLevelOrder) {
-    final unseen = unseenByLevel[level] ?? 0;
-    if (unseen > 0) return unseen.clamp(0, remainingNew);
+    final pool = unseenByLevel[level];
+    if (pool != null && pool.isNotEmpty) {
+      return pool.take(remainingNew).toList();
+    }
   }
-  return 0;
+  return [];
 }

@@ -76,21 +76,18 @@ class SrsQueueService {
     if (remaining == 0) return due;
 
     // Hiragana first, katakana with whatever the budget has left.
-    final hiraganaCards = await _db.getAllSrsCardsForType('hiragana');
-    final katakanaCards = await _db.getAllSrsCardsForType('katakana');
-    final freshHiragana = hiragana
-        .where((kana) => hiraganaCards[kana.id] == null)
-        .take(remaining)
-        .map((kana) => (kana, null as Card?))
-        .toList();
-    final leftover = remaining - freshHiragana.length;
-    final freshKatakana = leftover > 0
-        ? katakana
-              .where((kana) => katakanaCards[kana.id] == null)
-              .take(leftover)
-              .map((kana) => (kana, null as Card?))
-              .toList()
-        : <(Kana, Card?)>[];
+    final freshHiragana = unseenItems(
+      items: hiragana,
+      cards: await _db.getAllSrsCardsForType('hiragana'),
+      idOf: (kana) => kana.id,
+      limit: remaining,
+    );
+    final freshKatakana = unseenItems(
+      items: katakana,
+      cards: await _db.getAllSrsCardsForType('katakana'),
+      idOf: (kana) => kana.id,
+      limit: remaining - freshHiragana.length,
+    );
 
     return [...due, ...freshHiragana, ...freshKatakana];
   }
@@ -115,22 +112,15 @@ class SrsQueueService {
     }
 
     if (newCardLimit <= 0) return due;
-    final remaining = remainingNewCards(
-      dailyLimit: newCardLimit,
-      seenToday: await _db.countSeenToday('kanji'),
+    final fresh = newCardsFromEasiestLevel(
+      unseenByLevel,
+      remainingNew: remainingNewCards(
+        dailyLimit: newCardLimit,
+        seenToday: await _db.countSeenToday('kanji'),
+      ),
     );
-    if (remaining == 0) return due;
 
-    for (final level in kNewCardLevelOrder) {
-      final pool = unseenByLevel[level];
-      if (pool != null && pool.isNotEmpty) {
-        return [
-          ...due,
-          ...pool.take(remaining).map((kanji) => (kanji, null as Card?)),
-        ];
-      }
-    }
-    return due;
+    return [...due, ...fresh.map((kanji) => (kanji, null as Card?))];
   }
 
   /// Due vocabulary across every level, for the home screen review.

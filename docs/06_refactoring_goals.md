@@ -28,13 +28,12 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - ✅ `search_service.dart` — result ranking, level tiebreak and the 50-result cap moved out of `kanji_queries`/`vocabulary_queries`, which now only run the `LIKE` filter
 - ✅ `grammar_progress_service.dart` — the six direct `databaseProvider` writes in `home_screen`, `grammar_chapter_view`, `grammar_lesson_list_screen` and `grammar_lesson_screen` replaced by service calls; unlock key formats (`$level:$i`, `group:…`, `lesson:…`) now built in one place instead of inline at each read and write
 - ✅ `srs_queue_service.dart` — `srs_session_queries.dart` deleted; the queue policy it held (due items, daily new-card budget, N5→N1 progression) split between `core/srs/srs_queue.dart` (pure) and a service that reads rows through `AppDatabase`
+- ✅ `core/srs/srs_queue.dart` — the N5→N1 rule and "take the first N unseen items" each had two or three copies between the service and `dashboard_queries`; both now have one implementation that every caller shares
 
 **Known gaps:**
 
-- Session services (`kanji_session_service`, `vocabulary_session_service`, `grammar_session_service`, `review_queue_service`) build widgets and import screens, so session building cannot be tested without a widget tree.
-- The N5→N1 new-card rule exists twice: `newCardsFromEasiestLevel` in `core/srs/srs_queue.dart` (counts, used by the dashboard) and an inline walk in `srs_queue_service.dart` (lists).
+- Session services (`kanji_session_service`, `vocabulary_session_service`, `grammar_session_service`, `review_queue_service`) build widgets and import screens, so a session cannot be built without a widget tree.
 - `dashboard_queries.dart` still holds policy: the home counters, the `isSrsKnown` threshold and the streak walk, with the "total − seen" arithmetic spelled out once per counter.
-- Picking unseen items is written three times: `buildSrsQueue` in core, plus the hiragana and katakana branches of `allDueKana`.
 
 **Repository layer:** `AppDatabase` (Drift) already exposes domain-level methods and effectively IS the repository. A wrapper layer adds no behaviour. Deferred until unit testing is introduced.
 

@@ -98,7 +98,7 @@ extension DashboardQueries on AppDatabase {
             : newCardsFromEasiestLevel(
                 await _unseenKanjiByLevel(),
                 remainingNew: kanjiRemaining,
-              );
+              ).length;
 
         return hiraganaNew + katakanaNew + kanjiNew;
       });
@@ -137,7 +137,7 @@ extension DashboardQueries on AppDatabase {
         return newCardsFromEasiestLevel(
           await _unseenKanjiByLevel(),
           remainingNew: remaining,
-        );
+        ).length;
       });
 
   Stream<int> watchVocabularyNewCount({required int newCardLimit}) =>
@@ -158,19 +158,19 @@ extension DashboardQueries on AppDatabase {
         return (total - seen).clamp(0, remaining);
       });
 
-  /// How many kanji of each JLPT level have never been seen.
-  Future<Map<String, int>> _unseenKanjiByLevel() async {
+  /// The kanji of each JLPT level that have never been seen.
+  Future<Map<String, List<Kanji>>> _unseenKanjiByLevel() async {
     final seenIds =
         await (select(srsCards)..where((s) => s.itemType.equals('kanji')))
             .get()
             .then((rows) => {for (final r in rows) r.itemId});
-    final counts = <String, int>{};
+    final byLevel = <String, List<Kanji>>{};
     for (final kanji in await select(kanjis).get()) {
       if (!seenIds.contains(kanji.id)) {
-        counts[kanji.jlptLevel] = (counts[kanji.jlptLevel] ?? 0) + 1;
+        (byLevel[kanji.jlptLevel] ??= []).add(kanji);
       }
     }
-    return counts;
+    return byLevel;
   }
 
   Stream<int> watchStreakDays() {
