@@ -790,20 +790,13 @@ final strokes = strokesAsync.asData?.value ?? [];
 
 ---
 
-### StrokeOrderAnimator / UserStrokeAnimator
+### StrokeOrderAnimator
 
-`StrokeOrderAnimator` plays back reference strokes sequentially. `UserStrokeAnimator` replays the user's drawn strokes with pass/fail colouring.
+Plays back reference strokes sequentially. Auto-plays on load; tap to replay.
 
 ```dart
-StrokeOrderAnimator(kanjiId: 0x6c34)           // auto-plays; tap to replay
+StrokeOrderAnimator(kanjiId: 0x6c34)
 StrokeOrderAnimator(kanjiId: 0x6c34, size: 260)
-
-UserStrokeAnimator(
-  strokes: const [
-    [Offset(50, 130), Offset(210, 130)],
-  ],
-  strokeResults: const [true],   // null = all neutral
-)
 ```
 
 ---

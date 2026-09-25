@@ -394,7 +394,6 @@
 
   "speakPronunciation": "Aussprache abspielen",
   "replayStrokeOrder": "Strichfolge erneut abspielen",
-  "replayYourDrawing": "Deine Zeichnung erneut abspielen",
   "increaseSetting": "{label} erhöhen",
   "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
   "decreaseSetting": "{label} verringern",

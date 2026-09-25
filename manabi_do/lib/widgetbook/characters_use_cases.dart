@@ -100,7 +100,7 @@ Widget buildKanjiDrawingCanvasWithResults(BuildContext context) {
   );
 }
 
-// ── StrokeOrderAnimator / UserStrokeAnimator ──────────────────────────────────
+// ── StrokeOrderAnimator ───────────────────────────────────────────────────────
 
 @widgetbook.UseCase(
   name: 'Default',
@@ -118,26 +118,6 @@ Widget buildStrokeOrderAnimator(BuildContext context) {
 )
 Widget buildStrokeOrderAnimatorLarge(BuildContext context) {
   return const Center(child: StrokeOrderAnimator(kanjiId: _water, size: 260));
-}
-
-@widgetbook.UseCase(
-  name: 'Default',
-  type: UserStrokeAnimator,
-  path: 'Characters',
-)
-Widget buildUserStrokeAnimator(BuildContext context) {
-  return Center(
-    child: UserStrokeAnimator(
-      // Drawn on a full-size pad, so they replay against that scale.
-      sourceSize: kanjiCanvasSize,
-      strokes: const [
-        [Offset(50, 130), Offset(210, 130)],
-        [Offset(130, 50), Offset(130, 210)],
-        [Offset(70, 80), Offset(130, 130), Offset(190, 80)],
-      ],
-      strokeResults: const [true, true, false],
-    ),
-  );
 }
 
 // ── StrokeStepRow ─────────────────────────────────────────────────────────────

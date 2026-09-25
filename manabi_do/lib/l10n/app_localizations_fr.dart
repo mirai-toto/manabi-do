@@ -923,9 +923,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get replayStrokeOrder => 'Rejouer l\'ordre des traits';
 
   @override
-  String get replayYourDrawing => 'Rejouer votre tracé';
-
-  @override
   String increaseSetting(String label) {
     return 'Augmenter $label';
   }

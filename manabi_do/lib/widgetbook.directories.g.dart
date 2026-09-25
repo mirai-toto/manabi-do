@@ -95,16 +95,6 @@ final directories = <_widgetbook.WidgetbookNode>[
           ),
         ],
       ),
-      _widgetbook.WidgetbookComponent(
-        name: 'UserStrokeAnimator',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_characters_use_cases
-                .buildUserStrokeAnimator,
-          ),
-        ],
-      ),
     ],
   ),
   _widgetbook.WidgetbookFolder(

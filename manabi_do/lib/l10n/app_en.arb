@@ -416,7 +416,6 @@
 
   "speakPronunciation": "Play pronunciation",
   "replayStrokeOrder": "Replay stroke order",
-  "replayYourDrawing": "Replay your drawing",
   "increaseSetting": "Increase {label}",
   "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
   "decreaseSetting": "Decrease {label}",

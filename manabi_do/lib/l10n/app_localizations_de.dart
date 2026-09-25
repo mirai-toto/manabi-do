@@ -921,9 +921,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get replayStrokeOrder => 'Strichfolge erneut abspielen';
 
   @override
-  String get replayYourDrawing => 'Deine Zeichnung erneut abspielen';
-
-  @override
   String increaseSetting(String label) {
     return '$label erhöhen';
   }
