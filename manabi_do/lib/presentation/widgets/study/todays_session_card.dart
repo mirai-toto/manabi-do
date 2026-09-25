@@ -38,7 +38,7 @@ class TodaysSessionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimens.radiusLg),
         border: Border.all(
           color: t.outlineVariant,
-          width: AppDimens.borderWidth,
+          width: AppDimens.borderWidthContainer,
         ),
       ),
       child: Column(

@@ -174,7 +174,7 @@ class SentenceClozeCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: t.outlineVariant,
-                      width: AppDimens.borderWidth,
+                      width: AppDimens.borderWidthContainer,
                     ),
                     borderRadius: BorderRadius.circular(AppDimens.radiusXs),
                   ),

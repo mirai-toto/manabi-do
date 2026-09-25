@@ -100,7 +100,7 @@ class KanjiDrawingCanvasState extends State<KanjiDrawingCanvas> {
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
         border: Border.all(
           color: t.outlineVariant,
-          width: AppDimens.borderWidthStrong,
+          width: AppDimens.borderWidthInteractive,
         ),
       ),
       child: ClipRRect(

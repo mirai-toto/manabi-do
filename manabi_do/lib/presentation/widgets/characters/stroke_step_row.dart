@@ -76,7 +76,7 @@ class _StrokeStepRowState extends ConsumerState<StrokeStepRow> {
               borderRadius: BorderRadius.circular(AppDimens.radiusSm),
               border: Border.all(
                 color: t.outlineVariant,
-                width: AppDimens.borderWidth,
+                width: AppDimens.borderWidthContainer,
               ),
             ),
             clipBehavior: Clip.antiAlias,

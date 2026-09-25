@@ -224,7 +224,7 @@ class _McqOptionShell extends StatelessWidget {
           color: bgColor,
           border: Border.all(
             color: borderColor,
-            width: AppDimens.borderWidthStrong,
+            width: AppDimens.borderWidthInteractive,
           ),
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
         ),

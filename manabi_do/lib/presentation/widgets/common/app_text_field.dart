@@ -29,7 +29,10 @@ class AppTextField extends StatelessWidget {
 
   OutlineInputBorder _border(Color color) => OutlineInputBorder(
     borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-    borderSide: BorderSide(color: color, width: AppDimens.borderWidthStrong),
+    borderSide: BorderSide(
+      color: color,
+      width: AppDimens.borderWidthInteractive,
+    ),
   );
 
   @override

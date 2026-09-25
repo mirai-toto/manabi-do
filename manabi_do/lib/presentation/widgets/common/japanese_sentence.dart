@@ -61,7 +61,7 @@ class JapaneseSentence extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppDimens.radiusXs),
                 border: Border.all(
                   color: accentColor,
-                  width: AppDimens.borderWidth,
+                  width: AppDimens.borderWidthContainer,
                 ),
               ),
               child: Text(

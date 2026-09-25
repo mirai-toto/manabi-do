@@ -97,7 +97,7 @@ class LessonRow extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppDimens.radiusMd),
             border: Border.all(
               color: _borderColor(t),
-              width: AppDimens.borderWidth,
+              width: AppDimens.borderWidthContainer,
             ),
           ),
           onTap: onTap,

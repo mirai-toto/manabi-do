@@ -92,7 +92,7 @@ class VocabularyGroupSelector extends ConsumerWidget {
               foregroundColor: color,
               side: BorderSide(
                 color: color.withValues(alpha: 0.35),
-                width: AppDimens.borderWidth,
+                width: AppDimens.borderWidthContainer,
               ),
               radius: AppDimens.radiusMd,
               visualDensity: VisualDensity.standard,

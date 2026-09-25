@@ -66,7 +66,7 @@ class _AuthSection extends StatelessWidget {
               foregroundColor: t.onSurface,
               side: BorderSide(
                 color: t.outlineVariant,
-                width: AppDimens.borderWidthStrong,
+                width: AppDimens.borderWidthInteractive,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

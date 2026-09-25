@@ -35,7 +35,10 @@ class LetterCircle extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: color, width: AppDimens.borderWidthStrong),
+        border: Border.all(
+          color: color,
+          width: AppDimens.borderWidthInteractive,
+        ),
       ),
       child: Center(
         child: Text(

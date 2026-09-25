@@ -335,7 +335,7 @@ class _NoteChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimens.radiusSm),
         border: Border.all(
           color: color.withValues(alpha: 0.3),
-          width: AppDimens.borderWidth,
+          width: AppDimens.borderWidthContainer,
         ),
       ),
       child: Row(

@@ -314,7 +314,7 @@ class _DoneScreen extends StatelessWidget {
                         ),
                         side: BorderSide(
                           color: color,
-                          width: AppDimens.borderWidth,
+                          width: AppDimens.borderWidthContainer,
                         ),
                         foregroundColor: color,
                         shape: RoundedRectangleBorder(

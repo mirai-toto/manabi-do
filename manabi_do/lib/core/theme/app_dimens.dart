@@ -30,8 +30,8 @@ abstract final class AppDimens {
   static const double fabClearance = 80;
 
   // Border
-  static const double borderWidth = 1;
-  static const double borderWidthStrong = 1.5;
+  static const double borderWidthContainer = 1;
+  static const double borderWidthInteractive = 1.5;
   static const double borderWidthSelected = 2;
   static const double borderWidthAccent = 3;
 }

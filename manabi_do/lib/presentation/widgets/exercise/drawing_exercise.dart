@@ -260,7 +260,10 @@ class _DrawingExerciseState extends State<DrawingExercise>
     final l = context.l10n;
     final retryStyle = OutlinedButton.styleFrom(
       padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-      side: BorderSide(color: widget.color, width: AppDimens.borderWidth),
+      side: BorderSide(
+        color: widget.color,
+        width: AppDimens.borderWidthContainer,
+      ),
       foregroundColor: widget.color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),

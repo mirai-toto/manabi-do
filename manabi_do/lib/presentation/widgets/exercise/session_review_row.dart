@@ -94,7 +94,9 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
         border: Border.all(
           color: widget.isExpanded ? t.primary : t.outlineVariant,
-          width: widget.isExpanded ? 2 : 1,
+          width: widget.isExpanded
+              ? AppDimens.borderWidthSelected
+              : AppDimens.borderWidthContainer,
         ),
       ),
       child: Column(
@@ -221,7 +223,7 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
         border: Border(
           top: BorderSide(
             color: t.outlineVariant,
-            width: AppDimens.borderWidth,
+            width: AppDimens.borderWidthContainer,
           ),
         ),
       ),
@@ -495,7 +497,10 @@ class _AnswerBlock extends StatelessWidget {
           decoration: BoxDecoration(
             color: isCorrect ? t.successContainer : t.errorContainer,
             borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-            border: Border.all(color: color, width: AppDimens.borderWidth),
+            border: Border.all(
+              color: color,
+              width: AppDimens.borderWidthContainer,
+            ),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
