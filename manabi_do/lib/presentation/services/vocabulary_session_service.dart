@@ -19,6 +19,7 @@ import '../providers/sentence_settings_provider.dart';
 import '../screens/practice/practice_session_screen.dart';
 import '../widgets/exercise/sentence_cloze_body.dart';
 import 'session_item_builders.dart';
+import 'srs_queue_service.dart';
 
 class VocabularySessionService {
   const VocabularySessionService();
@@ -62,10 +63,9 @@ class VocabularySessionService {
       pairs = limited.map((v) => (v, null)).toList();
     } else {
       final settings = await ref.read(srsSettingsProvider.future);
-      final allPairs = await db.getVocabularySrsSession(
-        level,
-        newCardLimit: settings.newVocabularyPerDay,
-      );
+      final allPairs = await ref
+          .read(srsQueueServiceProvider)
+          .vocabulary(level, newCardLimit: settings.newVocabularyPerDay);
       final filtered = allowedIds != null
           ? allPairs.where((p) => allowedIds.contains(p.$1.id)).toList()
           : allPairs;

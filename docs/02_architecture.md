@@ -138,14 +138,14 @@ Adding a widget means adding a `@widgetbook.UseCase` in `lib/widgetbook/<area>_u
 
 ## SRS Logic
 
-`AppDatabase` exposes session-building methods that return `List<(T, Card?)>` pairs:
+`SrsQueueService` builds the review queues, returning `List<(T, Card?)>` pairs. It reads rows through `AppDatabase` and applies the policy from `core/srs/srs_queue.dart`:
 
-- `getAllDueKanaSrsSession` — due hiragana + katakana with a shared new-card budget
-- `getAllDueKanjiSrsSession` — due kanji from all levels; new cards from the lowest JLPT level with unseen items
-- `getAllDueVocabularySrsSession` / `getVocabularySrsSession` — due vocabulary globally or per level
-- `getKanaSrsSession` / `getKanjiSrsSession` — per-type sessions for Characters tab
+- `allDueKana` — due hiragana + katakana with a shared new-card budget
+- `allDueKanji` — due kanji from all levels; new cards from the lowest JLPT level with unseen items
+- `allDueVocabulary` / `vocabulary(level)` — due vocabulary globally or per level
+- `kana(type)` / `kanji(level)` — per-type sessions for the Characters tab
 
-New card rate is enforced by `_countSeenToday(itemType)` — cards whose `first_seen_at` falls on the current calendar day count against the daily limit.
+New card rate is enforced by `countSeenToday(itemType)` — cards whose `first_seen_at` falls on the current calendar day count against the daily limit. `remainingNewCards` and `newCardsFromEasiestLevel` are pure functions in `core/srs/srs_queue.dart`, shared with the home screen's new-card counters so the two cannot disagree.
 
 Streak is computed from `srs_cards.card_json` → `lastReview` dates: count consecutive calendar days ending today that have at least one review.
 

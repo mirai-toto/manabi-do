@@ -18,6 +18,7 @@ import '../screens/characters/kanji/kanji_detail_screen.dart';
 import '../screens/characters/kanji/kanji_practice_screen.dart';
 import '../screens/practice/practice_session_screen.dart';
 import 'session_item_builders.dart';
+import 'srs_queue_service.dart';
 
 class KanjiSessionService {
   const KanjiSessionService();
@@ -55,10 +56,9 @@ class KanjiSessionService {
       pairs = limited.map((k) => (k, null)).toList();
     } else {
       final settings = await ref.read(srsSettingsProvider.future);
-      final allPairs = await db.getKanjiSrsSession(
-        level,
-        newCardLimit: settings.newCharactersPerDay,
-      );
+      final allPairs = await ref
+          .read(srsQueueServiceProvider)
+          .kanji(level, newCardLimit: settings.newCharactersPerDay);
       final filtered = allowedIds != null
           ? allPairs.where((p) => allowedIds.contains(p.$1.id)).toList()
           : allPairs;

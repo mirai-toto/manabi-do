@@ -5,6 +5,7 @@ import '../../core/providers/srs_settings_provider.dart';
 import '../../core/srs/srs_level.dart';
 import '../../data/database/app_database.dart';
 import '../services/search_service.dart';
+import '../services/srs_queue_service.dart';
 import 'database_provider.dart';
 
 const kVocabularyGroupSize = 30;
@@ -72,11 +73,8 @@ final vocabularyGroupSrsCountProvider =
           .toSet();
       final settings = await ref.read(srsSettingsProvider.future);
       final session = await ref
-          .read(databaseProvider)
-          .getVocabularySrsSession(
-            args.level,
-            newCardLimit: settings.newVocabularyPerDay,
-          );
+          .read(srsQueueServiceProvider)
+          .vocabulary(args.level, newCardLimit: settings.newVocabularyPerDay);
       final group = session.where((p) => groupIds.contains(p.$1.id)).toList();
       return (
         group.where((p) => p.$2 != null).length,

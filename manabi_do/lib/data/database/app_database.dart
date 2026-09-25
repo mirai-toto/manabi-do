@@ -8,6 +8,7 @@ import 'db_connection_native.dart'
     if (dart.library.js_interop) 'db_connection_web.dart';
 
 import '../../core/srs/srs_level.dart';
+import '../../core/srs/srs_queue.dart';
 import '../../domain/data/kana_data.dart';
 import 'schema_versions.dart';
 
@@ -19,7 +20,6 @@ part 'queries/translation_queries.dart';
 part 'queries/sentence_queries.dart';
 part 'queries/grammar_queries.dart';
 part 'queries/dashboard_queries.dart';
-part 'queries/srs_session_queries.dart';
 part 'queries/srs_card_queries.dart';
 
 @DriftDatabase(include: {'schema.drift'})
@@ -88,7 +88,9 @@ class AppDatabase extends _$AppDatabase {
     ),
   );
 
-  Future<int> _countSeenToday(String itemType) {
+  /// Cards of [itemType] first seen today, which the daily new-card budget
+  /// is measured against.
+  Future<int> countSeenToday(String itemType) {
     final now = DateTime.now();
     final todayStart = DateTime(now.year, now.month, now.day);
     return (select(srsCards)..where(
