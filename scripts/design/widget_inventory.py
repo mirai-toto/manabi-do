@@ -290,17 +290,22 @@ def render(widgets: list[Widget]) -> tuple[str, list[str]]:
 
     b.append("## Roles at a glance")
     b.append("")
+    # Roles only. One node per widget was 126 nodes, unreadable, and mermaid's
+    # mindmap parser rejects annotated bare text — the per-widget detail belongs
+    # in the tables below. Labels stay bracket-delimited and ASCII: parentheses
+    # and colons are shape and class delimiters in mindmap syntax.
     b.append("```mermaid")
     b.append("mindmap")
     b.append("  root((widgets))")
     for role in sorted(by_role):
-        b.append(f"    {role}")
-        for w in sorted(by_role[role], key=lambda x: x.name):
-            mark = " ✗" if w.dead else (" ·" if w.internal_only else "")
-            b.append(f"      {w.name}{mark}")
+        group = by_role[role]
+        unused = sum(1 for w in group if w.dead)
+        label = f"{role} - {len(group)}"
+        if unused:
+            label += f", {unused} unused"
+        node_id = role.replace("-", "_")
+        b.append(f"    {node_id}[{label}]")
     b.append("```")
-    b.append("")
-    b.append("`✗` unused anywhere. `·` used only inside its own file.")
     b.append("")
 
     for role in sorted(by_role):

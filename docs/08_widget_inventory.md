@@ -11,133 +11,19 @@ Widgets are grouped by **purpose**, not by directory. Directory groups by featur
 ```mermaid
 mindmap
   root((widgets))
-    action
-      AppButton
-      AppFilterChip ✗
-      AuthButton
-      FlashcardActions
-      LessonReadToggle
-      RatingButton
-      SettingsToggle
-      SpeakButton
-    composite
-      AttributionCard ·
-      HomeHeader
-      HomeSettingsCard
-      KanjiExampleWords
-      KanjiGrid
-      KanjiGroupSelector
-      KanjiGroupView
-      KanjiLevelHeader
-      KanjiLevelSelector
-      KanjiReadingsCard
-      PracticeSettingsCard
-      SettingsAboutSection
-      StrokeOrderSection
-      StrokeStepRow
-      VocabularyGroupSelector
-      VocabularyLevelSelector
-      VocabularyLevelView
-    decoration
-      AppEmoji ✗
-      CharacterHeroBox
-      KanjiHero
-      LandingHeroPanel
-      ScrollFade
-      SheetDragHandle
-      StrokeOrderAnimator
-    exercise-body
-      DrawingExercise
-      GrammarBuilderBody
-      GrammarClozeBody
-      GrammarErrorDetectionBody
-      KanjiDrawingBody
-      PracticeFlashcardBody
-      PracticeMcqBody
-      SentenceClozeBody
-    exercise-part
-      ClozeOption
-      ExampleCard
-      FeedbackPanel
-      Flashcard
-      LessonReaderCard ✗
-      LetterCircle
-      McqCard
-      ReaderBodyText ✗
-      ReaderJpExample ✗
-      ReaderSectionTitle ✗
-      SentenceClozeCard
-      SummaryCard
-    grammar-block
-      ComparisonBlock
-      ComparisonSide
-      ConjugationTableBlock
-      ExampleTableBlock
-      GrammarBlockRenderer
-      GrammarTable
-      ListBlock
-      NoteBlock
-      PatternBlock
-      SectionTitleBlock
-      TextBlock
-      TransformCardsBlock
-      TransformGroup
-      TransformRow ·
-      VocabularyTableBlock
-    indicator
-      AppProgressBar
-      AppSpinner
-      DifficultyDots
-      LevelBadge ·
-      PillBadge
-      PracticeProgressRow
-      ProgressRow
-      ReviewProgressInfo
-      SrsProgressCard
-      StreakPill
-      WeekStrip
-    input
-      AppTextField
-      KanjiDrawingCanvas
-      LanguagePickerSheet
-      SearchField
-      SegmentedControl
-      SegmentedTabBar
-      SettingsStepper
-    label
-      FuriganaSegment ·
-      JapaneseSentence
-      JapaneseText
-      SectionHeader
-      SectionLabel
-      SettingsInfo
-    list-item
-      ChapterCard
-      CharacterCell
-      ContinueLessonCard
-      DeckRow
-      JlptLevelCard
-      KanjiReadingChip
-      LessonRow
-      PracticeModeCard
-      SessionReviewRow
-      SettingsTile
-      StudyGroupCard
-      TodaysSessionCard
-      VocabularyWordTile
-    navigation
-      AppNavBar
-      AppNavRail
-      NavDestination
-      NavItem
-    surface
-      CardContainer
-      CollapsibleSection
-      SettingsCard
-      TappableSurface
+    action[action - 8, 1 unused]
+    composite[composite - 17]
+    decoration[decoration - 7, 1 unused]
+    exercise_body[exercise-body - 8]
+    exercise_part[exercise-part - 12, 4 unused]
+    grammar_block[grammar-block - 15]
+    indicator[indicator - 11]
+    input[input - 7]
+    label[label - 6]
+    list_item[list-item - 13]
+    navigation[navigation - 4]
+    surface[surface - 4]
 ```
-
-`✗` unused anywhere. `·` used only inside its own file.
 
 ## action
 
