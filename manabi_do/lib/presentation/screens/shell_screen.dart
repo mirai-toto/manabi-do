@@ -72,13 +72,25 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
       _navKeys[index].currentState!.maybePop();
       return;
     }
-    if (index == 1 && ref.read(kanjiSelectedLevelProvider) != null) {
-      ref.read(kanjiSelectedLevelProvider.notifier).clear();
-      return;
+    if (index == 1) {
+      if (ref.read(kanjiSelectedGroupProvider) != null) {
+        ref.read(kanjiSelectedGroupProvider.notifier).clear();
+        return;
+      }
+      if (ref.read(kanjiSelectedLevelProvider) != null) {
+        ref.read(kanjiSelectedLevelProvider.notifier).clear();
+        return;
+      }
     }
-    if (index == 2 && ref.read(vocabularySelectedLevelProvider) != null) {
-      ref.read(vocabularySelectedLevelProvider.notifier).clear();
-      return;
+    if (index == 2) {
+      if (ref.read(vocabularySelectedGroupProvider) != null) {
+        ref.read(vocabularySelectedGroupProvider.notifier).clear();
+        return;
+      }
+      if (ref.read(vocabularySelectedLevelProvider) != null) {
+        ref.read(vocabularySelectedLevelProvider.notifier).clear();
+        return;
+      }
     }
     if (index == 3 && ref.read(grammarSelectedLevelProvider) != null) {
       ref.read(grammarSelectedLevelProvider.notifier).clear();
