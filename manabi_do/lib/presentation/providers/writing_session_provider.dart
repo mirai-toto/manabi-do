@@ -32,7 +32,6 @@ class WritingSessionArgs {
 /// the screen is entered or [ref.invalidate] is called (on restart).
 final writingKanjiProvider = FutureProvider.autoDispose
     .family<List<(Kanji, String)>, WritingSessionArgs>(
-      (ref, args) => ref
-          .read(writingSessionServiceProvider)
-          .buildQueue(ref: ref, args: args),
+      (ref, args) =>
+          ref.read(writingSessionServiceProvider).buildQueue(args: args),
     );

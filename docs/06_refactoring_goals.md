@@ -30,12 +30,13 @@ Priority-ordered list of structural improvements for the codebase. Each goal is 
 - ✅ `srs_queue_service.dart` — `srs_session_queries.dart` deleted; the queue policy it held (due items, daily new-card budget, N5→N1 progression) split between `core/srs/srs_queue.dart` (pure) and a service that reads rows through `AppDatabase`
 - ✅ `core/srs/srs_queue.dart` — the N5→N1 rule and "take the first N unseen items" each had two or three copies between the service and `dashboard_queries`; both now have one implementation that every caller shares
 - ✅ `practice_question.dart` — session services no longer build widgets. `PracticeItem.buildBody`, a closure that constructed the exercise body, is replaced by a sealed `PracticeQuestion` describing what to ask; `PracticeQuestionBody` turns that into a widget and is the only place that knows which body answers which kind of question. No service imports `flutter/material`, a screen or a widget any more
+- ✅ Every service now holds a `Ref` and is reached through its own provider, instead of taking the screen's `WidgetRef` as a method argument. Queue building no longer depends on anything from the widget layer, and the free-floating `const kanjiSessionService` / `srsService` / `writingSessionService` singletons are gone. `review_queue_service.dart`'s five top-level functions became `ReviewQueueService`
 - ✅ `dashboard_service.dart` — `dashboard_queries.dart` deleted. The home counters moved to a service, the rules behind them (what is due, what is known, how much of today's budget is left, the streak walk, the week strip) to `core/srs/dashboard_stats.dart`. `home_provider` no longer reads the database at all, and the week strip is no longer derived inside a provider
 
 **Known gaps:**
 
-- Session services still take a `WidgetRef`, so building a queue needs a container even though it no longer needs a widget tree. Moving them to `Ref` behind providers is what would finish the job.
 - "Kanji unseen per level" is computed twice: `unseenKanjiByLevel()` as its own query for the dashboard, and inline in `SrsQueueService.allDueKanji`, which needs the same pass to find due cards and would otherwise query twice.
+- Eleven widgets under `widgets/` fetch their own data through providers (`kanjiListProvider`, `kanjiStrokesProvider`, `ttsProvider` and friends). Deliberate: they are self-contained list and detail widgets, and threading that data through constructors would cost more than it buys. Settings are a different matter and are always passed in.
 
 **Repository layer:** `AppDatabase` (Drift) already exposes domain-level methods and effectively IS the repository. A wrapper layer adds no behaviour. Deferred until unit testing is introduced.
 

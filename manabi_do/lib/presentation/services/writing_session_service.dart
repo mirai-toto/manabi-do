@@ -10,15 +10,16 @@ import '../providers/drawing_settings_provider.dart';
 import '../providers/writing_session_provider.dart';
 
 class WritingSessionService {
-  const WritingSessionService();
+  final Ref _ref;
+
+  const WritingSessionService(this._ref);
 
   Future<List<(Kanji, String)>> buildQueue({
-    required Ref ref,
     required WritingSessionArgs args,
   }) async {
-    final db = ref.read(databaseProvider);
-    final settings = ref.read(drawingSettingsProvider);
-    final locale = ref.read(localeProvider).languageCode;
+    final db = _ref.read(databaseProvider);
+    final settings = _ref.read(drawingSettingsProvider);
+    final locale = _ref.read(localeProvider).languageCode;
 
     final all = await db.getKanjiByLevel(args.level);
     final kanji = args.kanjiIds != null
@@ -52,8 +53,6 @@ class WritingSessionService {
   }
 }
 
-const writingSessionService = WritingSessionService();
-
 final writingSessionServiceProvider = Provider(
-  (_) => const WritingSessionService(),
+  (ref) => WritingSessionService(ref),
 );

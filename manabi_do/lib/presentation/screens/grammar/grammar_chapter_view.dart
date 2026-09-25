@@ -73,10 +73,7 @@ class GrammarChapterView extends ConsumerWidget {
                     hasExamples: true,
                     loadQueue: (ref) => ref
                         .read(grammarSessionServiceProvider)
-                        .buildQueueForChapter(
-                          lessonPaths: allLessonPaths,
-                          ref: ref,
-                        ),
+                        .buildQueueForChapter(lessonPaths: allLessonPaths),
                   ),
                 ),
               ),

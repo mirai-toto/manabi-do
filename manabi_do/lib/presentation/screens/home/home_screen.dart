@@ -67,7 +67,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     _openPractice(
       title: l.todaysSession,
       color: t.primary,
-      loadQueue: loadAllDueQueue,
+      loadQueue: (ref) => ref.read(reviewQueueServiceProvider).allDue(),
     );
   }
 
@@ -185,7 +185,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         onTap: () => _openPractice(
                           title: l.kana,
                           color: t.primary,
-                          loadQueue: loadKanaQueue,
+                          loadQueue: (ref) =>
+                              ref.read(reviewQueueServiceProvider).kana(),
                         ),
                       ),
                     ],
@@ -202,7 +203,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         onTap: () => _openPractice(
                           title: l.tabKanji,
                           color: t.primary,
-                          loadQueue: loadKanjiQueue,
+                          loadQueue: (ref) =>
+                              ref.read(reviewQueueServiceProvider).kanji(),
                         ),
                       ),
                     ],
@@ -219,7 +221,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         onTap: () => _openPractice(
                           title: l.sectionVocabulary,
                           color: t.primary,
-                          loadQueue: loadVocabularyQueue,
+                          loadQueue: (ref) =>
+                              ref.read(reviewQueueServiceProvider).vocabulary(),
                         ),
                       ),
                     ],

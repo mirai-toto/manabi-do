@@ -110,7 +110,9 @@ class _KanjiBody extends ConsumerWidget {
                     body: l.resetKanaBody,
                   );
                   if (!confirmed) return;
-                  await srsService.resetCard(ref, 'kanji', kanji.id);
+                  await ref
+                      .read(srsServiceProvider)
+                      .resetCard('kanji', kanji.id);
                 },
                 icon: Icon(Icons.restart_alt_rounded, size: 18, color: t.error),
                 label: Text(

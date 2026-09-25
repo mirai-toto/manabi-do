@@ -38,7 +38,9 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
   }
 
   Future<void> _loadCard() async {
-    final card = await srsService.getCard(ref, widget.type, widget.entry.id);
+    final card = await ref
+        .read(srsServiceProvider)
+        .getCard(widget.type, widget.entry.id);
     if (mounted) {
       setState(() {
         _srsCard = card;
@@ -55,7 +57,7 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
       body: l.resetKanaBody,
     );
     if (!confirmed) return;
-    await srsService.resetCard(ref, widget.type, widget.entry.id);
+    await ref.read(srsServiceProvider).resetCard(widget.type, widget.entry.id);
     if (mounted) setState(() => _srsCard = null);
   }
 

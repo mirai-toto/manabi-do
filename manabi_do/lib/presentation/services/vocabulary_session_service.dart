@@ -19,10 +19,11 @@ import 'session_item_builders.dart';
 import 'srs_queue_service.dart';
 
 class VocabularySessionService {
-  const VocabularySessionService();
+  final Ref _ref;
+
+  const VocabularySessionService(this._ref);
 
   Future<List<PracticeItem>> buildQueue({
-    required WidgetRef ref,
     required String level,
     required Set<int>? allowedIds,
     required bool freeMode,
@@ -30,12 +31,12 @@ class VocabularySessionService {
     required bool mcqOnly,
     required bool flashcardOnly,
   }) async {
-    final db = ref.read(databaseProvider);
-    final locale = ref.read(localeProvider).languageCode;
+    final db = _ref.read(databaseProvider);
+    final locale = _ref.read(localeProvider).languageCode;
     final rng = Random();
-    final mcqSettings = ref.read(mcqSettingsProvider);
-    final sentenceSettings = ref.read(sentenceSettingsProvider);
-    final flashcardSettings = ref.read(flashcardSettingsProvider);
+    final mcqSettings = _ref.read(mcqSettingsProvider);
+    final sentenceSettings = _ref.read(sentenceSettingsProvider);
+    final flashcardSettings = _ref.read(flashcardSettingsProvider);
 
     final int? sessionLimit = sentenceOnly
         ? sentenceSettings.sessionLength
@@ -58,8 +59,8 @@ class VocabularySessionService {
           : filtered;
       pairs = limited.map((v) => (v, null)).toList();
     } else {
-      final settings = await ref.read(srsSettingsProvider.future);
-      final allPairs = await ref
+      final settings = await _ref.read(srsSettingsProvider.future);
+      final allPairs = await _ref
           .read(srsQueueServiceProvider)
           .vocabulary(level, newCardLimit: settings.newVocabularyPerDay);
       final filtered = allowedIds != null
@@ -421,5 +422,5 @@ class VocabularySessionService {
 }
 
 final vocabularySessionServiceProvider = Provider(
-  (_) => const VocabularySessionService(),
+  (ref) => VocabularySessionService(ref),
 );

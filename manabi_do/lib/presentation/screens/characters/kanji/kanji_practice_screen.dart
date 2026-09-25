@@ -36,13 +36,14 @@ class KanjiPracticeScreen extends StatelessWidget {
     return PracticeSessionScreen(
       title: levelLabel(level, context),
       color: levelColor(level),
-      loadQueue: (ref) => kanjiSessionService.buildQueue(
-        ref: ref,
-        level: level,
-        allowedIds: allowedIds,
-        exerciseFilter: exerciseFilter,
-        freeMode: freeMode,
-      ),
+      loadQueue: (ref) => ref
+          .read(kanjiSessionServiceProvider)
+          .buildQueue(
+            level: level,
+            allowedIds: allowedIds,
+            exerciseFilter: exerciseFilter,
+            freeMode: freeMode,
+          ),
       persistSrs: !freeMode,
       settingsContexts: _contexts,
     );

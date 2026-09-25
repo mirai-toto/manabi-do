@@ -15,15 +15,16 @@ import '../../core/models/practice_question.dart';
 const _letters = ['A', 'B', 'C', 'D'];
 
 class GrammarSessionService {
-  const GrammarSessionService();
+  final Ref _ref;
+
+  const GrammarSessionService(this._ref);
 
   Future<List<PracticeItem>> buildQueueForChapter({
     required List<String> lessonPaths,
-    required WidgetRef ref,
   }) async {
-    final db = ref.read(databaseProvider);
-    final locale = ref.read(localeProvider).languageCode;
-    final sessionLength = ref.read(mcqSettingsProvider).sessionLength;
+    final db = _ref.read(databaseProvider);
+    final locale = _ref.read(localeProvider).languageCode;
+    final sessionLength = _ref.read(mcqSettingsProvider).sessionLength;
     final rng = math.Random();
 
     var rows = await db.getGrammarExercisesForLessons(lessonPaths);
@@ -179,5 +180,5 @@ class GrammarSessionService {
 }
 
 final grammarSessionServiceProvider = Provider(
-  (_) => const GrammarSessionService(),
+  (ref) => GrammarSessionService(ref),
 );

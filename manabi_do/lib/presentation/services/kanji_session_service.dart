@@ -18,20 +18,21 @@ import 'session_item_builders.dart';
 import 'srs_queue_service.dart';
 
 class KanjiSessionService {
-  const KanjiSessionService();
+  final Ref _ref;
+
+  const KanjiSessionService(this._ref);
 
   Future<List<PracticeItem>> buildQueue({
-    required WidgetRef ref,
     required String level,
     required Set<int>? allowedIds,
     required ExerciseFilter exerciseFilter,
     required bool freeMode,
   }) async {
-    final db = ref.read(databaseProvider);
+    final db = _ref.read(databaseProvider);
     final rng = Random();
-    final locale = ref.read(localeProvider).languageCode;
-    final mcqSettings = ref.read(mcqSettingsProvider);
-    final flashcardSettings = ref.read(flashcardSettingsProvider);
+    final locale = _ref.read(localeProvider).languageCode;
+    final mcqSettings = _ref.read(mcqSettingsProvider);
+    final flashcardSettings = _ref.read(flashcardSettingsProvider);
 
     final int? sessionLimit = switch (exerciseFilter) {
       ExerciseFilter.flashcardOnly => flashcardSettings.sessionLength,
@@ -51,8 +52,8 @@ class KanjiSessionService {
           : filtered;
       pairs = limited.map((k) => (k, null)).toList();
     } else {
-      final settings = await ref.read(srsSettingsProvider.future);
-      final allPairs = await ref
+      final settings = await _ref.read(srsSettingsProvider.future);
+      final allPairs = await _ref
           .read(srsQueueServiceProvider)
           .kanji(level, newCardLimit: settings.newCharactersPerDay);
       final filtered = allowedIds != null
@@ -227,6 +228,6 @@ class KanjiSessionService {
   }
 }
 
-const kanjiSessionService = KanjiSessionService();
+final kanjiSessionServiceProvider = Provider((ref) => KanjiSessionService(ref));
 
 enum _QuizType { kanjiToMeaning, meaningToKanji, drawing, flashcard }

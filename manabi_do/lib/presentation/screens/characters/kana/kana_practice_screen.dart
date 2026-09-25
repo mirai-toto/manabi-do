@@ -15,7 +15,8 @@ class KanaPracticeScreen extends StatelessWidget {
     return PracticeSessionScreen(
       title: type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
       color: levelColor('kana'),
-      loadQueue: (ref) => loadKanaPracticeQueue(type, ref),
+      loadQueue: (ref) =>
+          ref.read(reviewQueueServiceProvider).kanaPractice(type),
     );
   }
 }
