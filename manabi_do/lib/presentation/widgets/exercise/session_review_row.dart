@@ -19,10 +19,6 @@ import 'flashcard.dart';
 /// recognise the word without the panel swallowing the list.
 const int _kGlossesBeforeFold = 4;
 
-/// Ring on the grade already given. Heavier than any shared border weight, and
-/// only this screen draws it, so it stays here.
-const double _kSelectedRingWidth = 2;
-
 /// One answered item in the session review: what was asked, what was answered,
 /// how well it is known, and the grade it was given.
 ///
@@ -386,7 +382,7 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
           // Rings the grade already given, so you can see it before changing it.
           selected: isGiven,
           side: isGiven
-              ? BorderSide(color: fg, width: _kSelectedRingWidth)
+              ? BorderSide(color: fg, width: AppDimens.borderWidthSelected)
               : BorderSide.none,
           onPressed: () => widget.onRegrade!(rating),
         ),
