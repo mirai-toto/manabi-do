@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../../../core/srs/drawing_rating.dart';
+import '../../../../core/text/short_meaning.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
@@ -114,7 +115,7 @@ class KanjiDrawingBody extends ConsumerWidget {
               data: (refStrokes) => DrawingExercise(
                 referenceStrokes: refStrokes,
                 kanjiId: kanji.id,
-                label: meaning ?? kanji.meaning,
+                label: meaning ?? shortMeaning(kanji.meaning),
                 onReading: kanji.onReading,
                 kunReading: kanji.kunReading,
                 color: color,

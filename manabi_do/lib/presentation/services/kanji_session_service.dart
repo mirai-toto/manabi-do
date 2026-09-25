@@ -7,6 +7,7 @@ import 'package:fsrs/fsrs.dart' show Card;
 import '../../core/models/mcq_settings.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
+import '../../core/text/short_meaning.dart';
 import '../../core/theme/jlpt_level.dart';
 import '../../data/database/app_database.dart';
 import '../../l10n/l10n.dart';
@@ -73,9 +74,11 @@ class KanjiSessionService {
     final kanjiTranslations = locale != 'en'
         ? await db.getKanjiTranslations(allIds.toSet().toList(), locale)
         : <int, String>{};
-    String meaningOf(Kanji k) => kanjiTranslations[k.id]?.isNotEmpty == true
-        ? kanjiTranslations[k.id]!
-        : k.meaning;
+    String meaningOf(Kanji k) => shortMeaning(
+      kanjiTranslations[k.id]?.isNotEmpty == true
+          ? kanjiTranslations[k.id]!
+          : k.meaning,
+    );
 
     final availableTypes = switch (exerciseFilter) {
       ExerciseFilter.flashcardOnly => [_QuizType.flashcard],

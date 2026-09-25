@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers/locale_provider.dart';
+import '../../core/text/short_meaning.dart';
 import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
 import '../providers/drawing_settings_provider.dart';
@@ -40,9 +41,11 @@ class WritingSessionService {
         .map(
           (k) => (
             k,
-            translations[k.id]?.isNotEmpty == true
-                ? translations[k.id]!
-                : k.meaning,
+            shortMeaning(
+              translations[k.id]?.isNotEmpty == true
+                  ? translations[k.id]!
+                  : k.meaning,
+            ),
           ),
         )
         .toList();

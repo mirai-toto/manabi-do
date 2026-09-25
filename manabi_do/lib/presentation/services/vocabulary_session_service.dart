@@ -8,6 +8,7 @@ import '../../core/models/mcq_settings.dart';
 import '../../core/models/sentence_settings.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
+import '../../core/text/short_meaning.dart';
 import '../../core/theme/jlpt_level.dart';
 import '../../data/database/app_database.dart';
 import '../../l10n/l10n.dart';
@@ -85,10 +86,9 @@ class VocabularySessionService {
           )
         : <int, String>{};
 
-    String meaningOf(VocabularyEntry v) =>
-        translations[v.id]?.isNotEmpty == true
-        ? translations[v.id]!
-        : v.meaning;
+    String meaningOf(VocabularyEntry v) => shortMeaning(
+      translations[v.id]?.isNotEmpty == true ? translations[v.id]! : v.meaning,
+    );
 
     if (flashcardOnly) {
       return _buildFlashcardItems(
