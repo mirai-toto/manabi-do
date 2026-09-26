@@ -33,8 +33,8 @@ class PracticeBodySettings {
   /// False outside a review, where those per-exercise ones apply instead.
   final bool autoAdvance;
 
-  /// Offer the full four-point scale when the user grades. False where the
-  /// grade is discarded, whatever the setting says.
+  /// Offer the full four-point scale when the user grades. Straight from the
+  /// user's setting: unlike [autoAdvance] it applies in free practice too.
   final bool fourPointGrading;
 
   const PracticeBodySettings({
@@ -177,6 +177,7 @@ class PracticeQuestionBody extends StatelessWidget {
         total: total,
         color: color,
         autoAdvance: _autoAdvanceMcq,
+        fourPointGrading: settings.fourPointGrading,
         onAnswer: onAnswer,
       ),
       final GrammarBuilderQuestion q => GrammarBuilderBody(
@@ -186,6 +187,7 @@ class PracticeQuestionBody extends StatelessWidget {
         total: total,
         color: color,
         autoAdvance: _autoAdvanceMcq,
+        fourPointGrading: settings.fourPointGrading,
         onAnswer: onAnswer,
       ),
       final GrammarErrorQuestion q => GrammarErrorDetectionBody(

@@ -21,6 +21,7 @@ class GrammarClozeBody extends StatefulWidget {
   final Color color;
   final bool autoAdvance;
   final AnswerCallback onAnswer;
+  final bool fourPointGrading;
 
   const GrammarClozeBody({
     super.key,
@@ -32,6 +33,7 @@ class GrammarClozeBody extends StatefulWidget {
     required this.color,
     required this.onAnswer,
     this.autoAdvance = false,
+    required this.fourPointGrading,
   });
 
   @override
@@ -116,7 +118,7 @@ class _GrammarClozeBodyState extends State<GrammarClozeBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: null,
-              fourPointGrading: false,
+              fourPointGrading: widget.fourPointGrading,
               question: context.l10n.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),

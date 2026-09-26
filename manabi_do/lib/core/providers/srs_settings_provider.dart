@@ -22,8 +22,9 @@ class SrsSettings {
   /// mixes exercise types, and a scale that changed between them would make
   /// your own grades incomparable.
   ///
-  /// Only applies where the grade is kept. A session that writes nothing
-  /// back always asks the short way — there is no precision to be had.
+  /// Applies wherever you grade, including free practice. The grade is
+  /// discarded there, but each button still previews the interval it would
+  /// schedule, so the finer scale is informative either way.
   final bool detailedGrading;
 
   const SrsSettings({
