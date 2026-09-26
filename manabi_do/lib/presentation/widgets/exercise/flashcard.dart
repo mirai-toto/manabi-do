@@ -172,36 +172,75 @@ class FlashcardActions extends StatelessWidget {
     final l = context.l10n;
     final brightness = Theme.of(context).brightness;
 
-    // Grades take their colour from the JLPT ramp via `ratingAccent`, so the
-    // scale reads red-to-green like every other difficulty in the app.
-    Widget btn(String label, Rating rating, Color accent) {
-      return Expanded(
-        child: AppButton(
-          label: label,
-          subtitle: srsIntervalPreview(card, rating),
-          backgroundColor: accentContainer(accent, brightness),
-          foregroundColor: onAccentContainer(accent, brightness),
-          radius: AppDimens.radiusLg,
-          padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-          visualDensity: VisualDensity.standard,
-          onPressed: () => onRate(rating),
-        ),
-      );
-    }
+    Widget btn(
+      String label,
+      Rating rating, {
+      required Color background,
+      required Color foreground,
+      BorderSide side = BorderSide.none,
+    }) => Expanded(
+      child: AppButton(
+        label: label,
+        subtitle: srsIntervalPreview(card, rating),
+        backgroundColor: background,
+        foregroundColor: foreground,
+        side: side,
+        radius: AppDimens.radiusLg,
+        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+        visualDensity: VisualDensity.standard,
+        onPressed: () => onRate(rating),
+      ),
+    );
+
+    // A recorded grade takes its colour from the JLPT ramp, so the scale reads
+    // red-to-green like every other difficulty in the app.
+    Widget rampBtn(String label, Rating rating, Color accent) => btn(
+      label,
+      rating,
+      background: accentContainer(accent, brightness),
+      foreground: onAccentContainer(accent, brightness),
+    );
 
     if (!fourPointGrading) {
+      final accent = gradeAccent;
+      if (accent != null) {
+        // Free practice: one level colour, split outlined and filled the way
+        // the confirm dialog splits Cancel from its action. Same hue keeps the
+        // session of a piece; the fill still marks which one is the pass.
+        return Row(
+          children: [
+            btn(
+              l.flashcardNotYet,
+              Rating.again,
+              background: Colors.transparent,
+              foreground: accent,
+              side: BorderSide(
+                color: accent,
+                width: AppDimens.borderWidthInteractive,
+              ),
+            ),
+            const SizedBox(width: AppDimens.spaceSm),
+            btn(
+              l.flashcardGotIt,
+              Rating.good,
+              background: accent,
+              foreground: onAccentFor(accent),
+            ),
+          ],
+        );
+      }
       return Row(
         children: [
-          btn(
+          rampBtn(
             l.flashcardNotYet,
             Rating.again,
-            gradeAccent ?? twoPointRatingAccent(Rating.again),
+            twoPointRatingAccent(Rating.again),
           ),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(
+          rampBtn(
             l.flashcardGotIt,
             Rating.good,
-            gradeAccent ?? twoPointRatingAccent(Rating.good),
+            twoPointRatingAccent(Rating.good),
           ),
         ],
       );
@@ -220,17 +259,17 @@ class FlashcardActions extends StatelessWidget {
         ],
         Row(
           children: [
-            btn(l.ratingAgain, Rating.again, ratingAccent(Rating.again)),
+            rampBtn(l.ratingAgain, Rating.again, ratingAccent(Rating.again)),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingHard, Rating.hard, ratingAccent(Rating.hard)),
+            rampBtn(l.ratingHard, Rating.hard, ratingAccent(Rating.hard)),
           ],
         ),
         const SizedBox(height: AppDimens.spaceSm),
         Row(
           children: [
-            btn(l.ratingGood, Rating.good, ratingAccent(Rating.good)),
+            rampBtn(l.ratingGood, Rating.good, ratingAccent(Rating.good)),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingEasy, Rating.easy, ratingAccent(Rating.easy)),
+            rampBtn(l.ratingEasy, Rating.easy, ratingAccent(Rating.easy)),
           ],
         ),
       ],
