@@ -155,7 +155,6 @@ class VocabularySessionService {
               : l.flashcardDefaultPrompt,
           answer: isReversed ? entry.word : meaningOf(entry),
           kindLabel: (l) => l.sectionVocabulary,
-          selfAssessed: true,
         ),
         question: FlashcardQuestion(
           japanese: entry.word,
@@ -197,7 +196,6 @@ class VocabularySessionService {
           question: (l) => l.mcqSelectWordMeaning,
           answer: meaningOf(entry),
           kindLabel: (l) => l.sectionVocabulary,
-          selfAssessed: false,
         ),
         question: McqQuestion(
           prompt: (l) => l.mcqSelectWordMeaning,
@@ -272,7 +270,6 @@ class VocabularySessionService {
           question: (l) => l.reviewClozePrompt,
           answer: entry.word,
           kindLabel: (l) => l.reviewKindVocabularySentence,
-          selfAssessed: false,
           sentence: sentence.japanese,
           sentenceTranslation: sentenceTranslations[sentence.id],
         ),
@@ -340,7 +337,6 @@ class VocabularySessionService {
                 : l.flashcardDefaultPrompt,
             answer: quizType == 1 ? entry.word : meaningOf(entry),
             kindLabel: (l) => l.sectionVocabulary,
-            selfAssessed: true,
           ),
           question: FlashcardQuestion(
             japanese: entry.word,
@@ -371,7 +367,6 @@ class VocabularySessionService {
             question: (l) => l.mcqSelectWordMeaning,
             answer: meaningOf(entry),
             kindLabel: (l) => l.sectionVocabulary,
-            selfAssessed: false,
           ),
           question: McqQuestion(
             prompt: (l) => l.mcqSelectWordMeaning,
@@ -403,7 +398,6 @@ class VocabularySessionService {
           question: (l) => l.reviewClozePrompt,
           answer: entry.word,
           kindLabel: (l) => l.reviewKindVocabularySentence,
-          selfAssessed: false,
           sentence: sentence.japanese,
           sentenceTranslation: sentenceTranslations[sentence.id],
         ),

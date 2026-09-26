@@ -83,7 +83,6 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
           question: (l) => l.reviewDrawPrompt(meaning),
           answer: meaning,
           kindLabel: (l) => l.reviewKindKanjiWriting,
-          selfAssessed: true,
         ),
       ),
     );

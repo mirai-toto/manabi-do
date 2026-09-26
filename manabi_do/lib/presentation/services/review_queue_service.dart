@@ -52,7 +52,6 @@ class ReviewQueueService {
             answer: kana.romaji,
             kindLabel: (l) =>
                 type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
-            selfAssessed: false,
           ),
           question: McqQuestion(
             prompt: (l) => l.mcqSelectKanaReading,
@@ -72,7 +71,6 @@ class ReviewQueueService {
           question: (l) => l.flashcardDefaultPrompt,
           answer: kana.romaji,
           kindLabel: (l) => type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
-          selfAssessed: true,
         ),
         question: FlashcardQuestion(
           japanese: kana.character,
@@ -113,7 +111,6 @@ class ReviewQueueService {
           answer: k.romaji,
           kindLabel: (l) =>
               k.type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
-          selfAssessed: false,
         ),
         question: McqQuestion(
           prompt: (l) => l.mcqSelectKanaReading,
@@ -201,7 +198,6 @@ class ReviewQueueService {
             question: (l) => l.reviewDrawPrompt(meaningOf(k)),
             answer: meaningOf(k),
             kindLabel: (l) => l.reviewKindKanjiWriting,
-            selfAssessed: true,
           ),
           question: DrawingQuestion(
             kanji: k,
@@ -234,7 +230,6 @@ class ReviewQueueService {
               : l.mcqSelectKanji(meaningOf(k)),
           answer: isKanjiToMeaning ? meaningOf(k) : k.character,
           kindLabel: (l) => l.tabKanji,
-          selfAssessed: false,
         ),
         question: McqQuestion(
           prompt: (l) => isKanjiToMeaning
@@ -316,7 +311,6 @@ class ReviewQueueService {
             question: (l) => l.mcqSelectWordMeaning,
             answer: meaningOf(entry),
             kindLabel: (l) => l.sectionVocabulary,
-            selfAssessed: false,
           ),
           question: McqQuestion(
             prompt: (l) => l.mcqSelectWordMeaning,
@@ -348,7 +342,6 @@ class ReviewQueueService {
           question: (l) => l.reviewClozePrompt,
           answer: entry.word,
           kindLabel: (l) => l.reviewKindVocabularySentence,
-          selfAssessed: false,
           sentence: sentence.japanese,
           sentenceTranslation: sentenceTranslations[sentence.id],
         ),

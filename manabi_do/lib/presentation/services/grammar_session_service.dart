@@ -65,7 +65,6 @@ class GrammarSessionService {
               ? exercise.front
               : (exercise.back[locale] ?? exercise.back['en'] ?? ''),
           kindLabel: (l) => l.sectionGrammar,
-          selfAssessed: true,
         ),
         question: FlashcardQuestion(
           japanese: exercise.front,
@@ -90,7 +89,6 @@ class GrammarSessionService {
               exercise.choices['en']?[exercise.answerIndex] ??
               '',
           kindLabel: (l) => l.sectionGrammar,
-          selfAssessed: false,
         ),
         question: McqQuestion(
           prompt: (l) => l.grammarMcqPrompt,
@@ -112,7 +110,6 @@ class GrammarSessionService {
           question: (l) => l.grammarBuilderPrompt,
           answer: exercise.parts.join(),
           kindLabel: (l) => l.sectionGrammar,
-          selfAssessed: false,
         ),
         question: GrammarBuilderQuestion(
           parts: exercise.parts,
@@ -130,7 +127,6 @@ class GrammarSessionService {
           question: (l) => l.grammarErrorDetectionPrompt,
           answer: exercise.correct,
           kindLabel: (l) => l.sectionGrammar,
-          selfAssessed: false,
         ),
         question: GrammarErrorQuestion(
           correct: exercise.correct,
@@ -156,7 +152,6 @@ class GrammarSessionService {
         question: (l) => l.reviewClozePrompt,
         answer: exercise.answer,
         kindLabel: (l) => l.sectionGrammar,
-        selfAssessed: false,
         sentence: exercise.sentence,
       ),
       question: GrammarClozeQuestion(

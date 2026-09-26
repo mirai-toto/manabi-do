@@ -135,7 +135,6 @@ class KanjiSessionService {
         question: (l) => l.flashcardDefaultPrompt,
         answer: meaningOf(kanji),
         kindLabel: (l) => l.tabKanji,
-        selfAssessed: true,
       ),
       question: FlashcardQuestion(
         japanese: kanji.character,
@@ -163,7 +162,6 @@ class KanjiSessionService {
         question: (l) => l.reviewDrawPrompt(meaningOf(kanji)),
         answer: meaningOf(kanji),
         kindLabel: (l) => l.reviewKindKanjiWriting,
-        selfAssessed: true,
       ),
       question: DrawingQuestion(
         kanji: kanji,
@@ -205,7 +203,6 @@ class KanjiSessionService {
             : l.mcqSelectKanji(meaningOf(kanji)),
         answer: isKanjiToMeaning ? meaningOf(kanji) : kanji.character,
         kindLabel: (l) => l.tabKanji,
-        selfAssessed: false,
       ),
       question: McqQuestion(
         prompt: (l) => isKanjiToMeaning
