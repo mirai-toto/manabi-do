@@ -69,6 +69,23 @@ Widget buildFlashcardActions(BuildContext context) {
     child: FlashcardActions(
       card: Card(cardId: 0, due: DateTime.now()),
       question: 'How well did you know this?',
+      fourPointGrading: true,
+      onRate: (_) {},
+    ),
+  );
+}
+
+@widgetbook.UseCase(
+  name: 'Two grades',
+  type: FlashcardActions,
+  path: 'Exercise',
+)
+Widget buildFlashcardActionsTwoGrades(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: FlashcardActions(
+      card: Card(cardId: 0, due: DateTime.now()),
+      fourPointGrading: false,
       onRate: (_) {},
     ),
   );
@@ -93,6 +110,7 @@ Widget buildDrawingExercise(BuildContext context) {
             color: Theme.of(context).colorScheme.primary,
             settings: drawingSettings,
             autoAdvance: drawingSettings.autoAdvance,
+            fourPointGrading: true,
           ),
         ),
       );

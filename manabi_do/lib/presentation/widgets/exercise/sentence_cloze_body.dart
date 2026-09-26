@@ -46,7 +46,7 @@ class SentenceClozeBody extends StatefulWidget {
     required this.translationMode,
     required this.showSentenceFurigana,
     required this.showChoiceFurigana,
-    this.fourPointGrading = true,
+    required this.fourPointGrading,
     this.translation,
     this.targetReading,
   });

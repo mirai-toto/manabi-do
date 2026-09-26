@@ -42,7 +42,7 @@ class KanjiDrawingBody extends ConsumerWidget {
     required this.onAnswer,
     required this.drawingSettings,
     this.meaning,
-    this.fourPointGrading = true,
+    required this.fourPointGrading,
     this.autoAdvance = false,
     this.onDetailTap,
   });

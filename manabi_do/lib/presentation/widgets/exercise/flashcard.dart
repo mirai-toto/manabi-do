@@ -154,7 +154,7 @@ class FlashcardActions extends StatelessWidget {
     super.key,
     required this.card,
     required this.onRate,
-    this.fourPointGrading = true,
+    required this.fourPointGrading,
     this.question,
   });
 

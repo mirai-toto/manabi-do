@@ -38,7 +38,7 @@ class PracticeFlashcardBody extends StatefulWidget {
     required this.color,
     required this.onAnswer,
     required this.showExample,
-    this.fourPointGrading = true,
+    required this.fourPointGrading,
     this.label,
     this.isReversed = false,
     this.onDetailTap,

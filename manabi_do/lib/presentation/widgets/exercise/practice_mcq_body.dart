@@ -43,7 +43,7 @@ class PracticeMcqBody extends StatefulWidget {
     required this.onAnswer,
     required this.autoAdvance,
     required this.showPromptFurigana,
-    this.fourPointGrading = true,
+    required this.fourPointGrading,
     this.japanesePrompt,
     this.japaneseReading,
     this.onDetailTap,

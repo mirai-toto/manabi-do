@@ -57,7 +57,7 @@ class DrawingExercise extends StatefulWidget {
     this.onReading = '',
     this.kunReading = '',
     this.card,
-    this.fourPointGrading = true,
+    required this.fourPointGrading,
     this.onRate,
     this.onAutoAdvance,
     this.question,
@@ -224,6 +224,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
           FlashcardActions(
             card: widget.card,
             question: widget.question,
+            fourPointGrading: widget.fourPointGrading,
             onRate: widget.onRate!,
           ),
           const SizedBox(height: AppDimens.spaceSm),

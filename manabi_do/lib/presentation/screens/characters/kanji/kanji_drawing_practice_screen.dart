@@ -56,6 +56,8 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
             // A single kanji has nowhere to advance to, so the drill always
             // stops on the correction.
             autoAdvance: false,
+            // No `onRate`, so nothing is ever graded here.
+            fourPointGrading: false,
             onDetailTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => KanjiDetailScreen(kanjiId: kanjiId),

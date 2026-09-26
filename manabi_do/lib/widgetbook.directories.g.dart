@@ -419,6 +419,11 @@ final directories = <_widgetbook.WidgetbookNode>[
             builder:
                 _manabi_do_widgetbook_exercise_use_cases.buildFlashcardActions,
           ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Two grades',
+            builder: _manabi_do_widgetbook_exercise_use_cases
+                .buildFlashcardActionsTwoGrades,
+          ),
         ],
       ),
       _widgetbook.WidgetbookFolder(
