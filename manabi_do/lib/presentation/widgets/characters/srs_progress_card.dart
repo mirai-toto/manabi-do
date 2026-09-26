@@ -3,6 +3,7 @@ import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../common/app_spinner.dart';
 import '../common/review_progress_info.dart';
 
 class SrsProgressCard extends StatelessWidget {
@@ -27,13 +28,7 @@ class SrsProgressCard extends StatelessWidget {
       ),
       child: isLoaded
           ? ReviewProgressInfo(srsCard: srsCard)
-          : const Center(
-              child: SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(strokeWidth: 2),
-              ),
-            ),
+          : const Center(child: AppSpinner()),
     );
   }
 }

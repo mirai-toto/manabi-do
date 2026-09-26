@@ -22,6 +22,59 @@ extension SrsCardQueries on AppDatabase {
         },
       );
 
+  /// Item type and due date for every card, without parsing the card JSON.
+  /// The home screen's due counters need nothing else.
+  Stream<List<({String itemType, DateTime due})>> watchSrsDueDates() {
+    final query = selectOnly(srsCards)
+      ..addColumns([srsCards.itemType, srsCards.due]);
+    return query.watch().map(
+      (rows) => [
+        for (final row in rows)
+          (
+            itemType: row.read(srsCards.itemType)!,
+            due: row.read(srsCards.due)!,
+          ),
+      ],
+    );
+  }
+
+  /// Every card, grouped by the kind of item it belongs to.
+  Stream<Map<String, List<Card>>> watchSrsCardsByType() =>
+      select(srsCards).watch().map((rows) {
+        final byType = <String, List<Card>>{};
+        for (final r in rows) {
+          (byType[r.itemType] ??= []).add(
+            Card.fromMap(jsonDecode(r.cardJson) as Map<String, dynamic>),
+          );
+        }
+        return byType;
+      });
+
+  Future<int> countSrsCardsOfType(String itemType) =>
+      (select(srsCards)..where((s) => s.itemType.equals(itemType))).get().then(
+        (rows) => rows.length,
+      );
+
+  /// Local dates (at midnight) on which at least one card was reviewed.
+  ///
+  /// Derived from each card's last review, so only the most recent pass per
+  /// card is visible.
+  Stream<Set<DateTime>> watchReviewDates() {
+    const sql =
+        "SELECT json_extract(card_json, '\$.lastReview') AS lr "
+        "FROM srs_cards "
+        "WHERE json_extract(card_json, '\$.lastReview') IS NOT NULL "
+        "GROUP BY date(json_extract(card_json, '\$.lastReview'))";
+    return customSelect(sql, readsFrom: {srsCards}).watch().map((rows) {
+      final dates = <DateTime>{};
+      for (final row in rows) {
+        final dt = DateTime.parse(row.read<String>('lr')).toLocal();
+        dates.add(DateTime(dt.year, dt.month, dt.day));
+      }
+      return dates;
+    });
+  }
+
   Future<Card?> getSrsCard(String itemType, int itemId) async {
     final row =
         await (select(srsCards)..where(

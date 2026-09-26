@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 
@@ -8,22 +7,23 @@ import '../../core/models/mcq_settings.dart';
 import '../../core/models/sentence_settings.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
-import '../../core/theme/jlpt_level.dart';
+import '../../core/text/short_meaning.dart';
 import '../../data/database/app_database.dart';
-import '../../l10n/l10n.dart';
 import '../providers/database_provider.dart';
 import '../providers/flashcard_settings_provider.dart';
 import '../providers/mcq_settings_provider.dart';
 import '../providers/sentence_settings_provider.dart';
-import '../screens/practice/practice_session_screen.dart';
-import '../widgets/exercise/sentence_cloze_body.dart';
+import '../../core/models/practice_item.dart';
+import '../../core/models/practice_question.dart';
 import 'session_item_builders.dart';
+import 'srs_queue_service.dart';
 
 class VocabularySessionService {
-  const VocabularySessionService();
+  final Ref _ref;
+
+  const VocabularySessionService(this._ref);
 
   Future<List<PracticeItem>> buildQueue({
-    required WidgetRef ref,
     required String level,
     required Set<int>? allowedIds,
     required bool freeMode,
@@ -31,13 +31,12 @@ class VocabularySessionService {
     required bool mcqOnly,
     required bool flashcardOnly,
   }) async {
-    final db = ref.read(databaseProvider);
-    final locale = ref.read(localeProvider).languageCode;
-    final color = levelColor(level);
+    final db = _ref.read(databaseProvider);
+    final locale = _ref.read(localeProvider).languageCode;
     final rng = Random();
-    final mcqSettings = ref.read(mcqSettingsProvider);
-    final sentenceSettings = ref.read(sentenceSettingsProvider);
-    final flashcardSettings = ref.read(flashcardSettingsProvider);
+    final mcqSettings = _ref.read(mcqSettingsProvider);
+    final sentenceSettings = _ref.read(sentenceSettingsProvider);
+    final flashcardSettings = _ref.read(flashcardSettingsProvider);
 
     final int? sessionLimit = sentenceOnly
         ? sentenceSettings.sessionLength
@@ -60,11 +59,10 @@ class VocabularySessionService {
           : filtered;
       pairs = limited.map((v) => (v, null)).toList();
     } else {
-      final settings = await ref.read(srsSettingsProvider.future);
-      final allPairs = await db.getVocabularySrsSession(
-        level,
-        newCardLimit: settings.newVocabularyPerDay,
-      );
+      final settings = await _ref.read(srsSettingsProvider.future);
+      final allPairs = await _ref
+          .read(srsQueueServiceProvider)
+          .vocabulary(level, newCardLimit: settings.newVocabularyPerDay);
       final filtered = allowedIds != null
           ? allPairs.where((p) => allowedIds.contains(p.$1.id)).toList()
           : allPairs;
@@ -85,15 +83,14 @@ class VocabularySessionService {
           )
         : <int, String>{};
 
-    String meaningOf(VocabularyEntry v) =>
-        translations[v.id]?.isNotEmpty == true
-        ? translations[v.id]!
-        : v.meaning;
+    String meaningOf(VocabularyEntry v) => shortMeaning(
+      translations[v.id]?.isNotEmpty == true ? translations[v.id]! : v.meaning,
+    );
 
     if (flashcardOnly) {
       return _buildFlashcardItems(
         pairs: pairs,
-        color: color,
+        level: level,
         rng: rng,
         isFreeMode: true,
         meaningOf: meaningOf,
@@ -104,7 +101,7 @@ class VocabularySessionService {
         db: db,
         pool: groupPool,
         distractorPool: allPool,
-        color: color,
+        level: level,
         locale: locale,
         rng: rng,
         sessionLimit: sessionLimit,
@@ -115,7 +112,7 @@ class VocabularySessionService {
       return _buildMcqItems(
         pairs: pairs,
         pool: allPool,
-        color: color,
+        level: level,
         rng: rng,
         mcqSettings: mcqSettings,
         isFreeMode: true,
@@ -126,7 +123,7 @@ class VocabularySessionService {
       db: db,
       pairs: pairs,
       pool: allPool,
-      color: color,
+      level: level,
       locale: locale,
       rng: rng,
       freeMode: freeMode,
@@ -138,7 +135,7 @@ class VocabularySessionService {
 
   List<PracticeItem> _buildFlashcardItems({
     required List<(VocabularyEntry, Card?)> pairs,
-    required Color color,
+    required String level,
     required Random rng,
     required bool isFreeMode,
     required String Function(VocabularyEntry) meaningOf,
@@ -160,18 +157,13 @@ class VocabularySessionService {
           kindLabel: (l) => l.sectionVocabulary,
           selfAssessed: true,
         ),
-        buildBody: (index, total, onAnswer, settings) => PracticeFlashcardBody(
+        question: FlashcardQuestion(
           japanese: entry.word,
           label: entry.reading != entry.word ? entry.reading : null,
           answer: meaningOf(entry),
           isReversed: isReversed,
+          level: level,
           isFreeMode: isFreeMode,
-          card: card,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          showExample: settings.flashcard.showExample,
         ),
       );
     }).toList();
@@ -180,7 +172,7 @@ class VocabularySessionService {
   List<PracticeItem> _buildMcqItems({
     required List<(VocabularyEntry, Card?)> pairs,
     required List<VocabularyEntry> pool,
-    required Color color,
+    required String level,
     required Random rng,
     required McqSettings mcqSettings,
     required bool isFreeMode,
@@ -207,24 +199,14 @@ class VocabularySessionService {
           kindLabel: (l) => l.sectionVocabulary,
           selfAssessed: false,
         ),
-        buildBody: (index, total, onAnswer, settings) => Builder(
-          builder: (context) => PracticeMcqBody(
-            question: context.l10n.mcqSelectWordMeaning,
-            japanesePrompt: entry.word,
-            japaneseReading: entry.reading != entry.word ? entry.reading : null,
-            options: vocabularyMcq.options,
-            correctIndex: vocabularyMcq.correctIndex,
-            isFreeMode: isFreeMode,
-            card: card,
-            index: index,
-            total: total,
-            color: color,
-            onAnswer: onAnswer,
-            autoAdvance: isFreeMode
-                ? settings.mcq.autoAdvance
-                : settings.autoAdvance,
-            showPromptFurigana: settings.mcq.showPromptFurigana,
-          ),
+        question: McqQuestion(
+          prompt: (l) => l.mcqSelectWordMeaning,
+          japanesePrompt: entry.word,
+          japaneseReading: entry.reading != entry.word ? entry.reading : null,
+          options: vocabularyMcq.options,
+          correctIndex: vocabularyMcq.correctIndex,
+          level: level,
+          isFreeMode: isFreeMode,
         ),
       );
     }).toList();
@@ -234,7 +216,7 @@ class VocabularySessionService {
     required AppDatabase db,
     required List<VocabularyEntry> pool,
     required List<VocabularyEntry> distractorPool,
-    required Color color,
+    required String level,
     required String locale,
     required Random rng,
     required int? sessionLimit,
@@ -294,22 +276,14 @@ class VocabularySessionService {
           sentence: sentence.japanese,
           sentenceTranslation: sentenceTranslations[sentence.id],
         ),
-        buildBody: (index, total, onAnswer, settings) => SentenceClozeBody(
+        question: SentenceClozeQuestion(
           sentence: sentence,
           translation: sentenceTranslations[sentence.id],
           targetReading: entry.reading,
           options: cloze.options,
           correctIndex: cloze.correctIndex,
+          level: level,
           isFreeMode: true,
-          card: null,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          autoAdvance: settings.sentence.autoAdvance,
-          translationMode: settings.sentence.translationMode,
-          showSentenceFurigana: settings.sentence.showSentenceFurigana,
-          showChoiceFurigana: settings.sentence.showChoiceFurigana,
         ),
       );
     }).toList();
@@ -319,7 +293,7 @@ class VocabularySessionService {
     required AppDatabase db,
     required List<(VocabularyEntry, Card?)> pairs,
     required List<VocabularyEntry> pool,
-    required Color color,
+    required String level,
     required String locale,
     required Random rng,
     required bool freeMode,
@@ -368,20 +342,14 @@ class VocabularySessionService {
             kindLabel: (l) => l.sectionVocabulary,
             selfAssessed: true,
           ),
-          buildBody: (index, total, onAnswer, settings) =>
-              PracticeFlashcardBody(
-                japanese: entry.word,
-                label: entry.reading != entry.word ? entry.reading : null,
-                answer: meaningOf(entry),
-                isReversed: quizType == 1,
-                isFreeMode: freeMode,
-                card: card,
-                index: index,
-                total: total,
-                color: color,
-                onAnswer: onAnswer,
-                showExample: settings.flashcard.showExample,
-              ),
+          question: FlashcardQuestion(
+            japanese: entry.word,
+            label: entry.reading != entry.word ? entry.reading : null,
+            answer: meaningOf(entry),
+            isReversed: quizType == 1,
+            level: level,
+            isFreeMode: freeMode,
+          ),
         );
       }
 
@@ -405,26 +373,14 @@ class VocabularySessionService {
             kindLabel: (l) => l.sectionVocabulary,
             selfAssessed: false,
           ),
-          buildBody: (index, total, onAnswer, settings) => Builder(
-            builder: (context) => PracticeMcqBody(
-              question: context.l10n.mcqSelectWordMeaning,
-              japanesePrompt: entry.word,
-              japaneseReading: entry.reading != entry.word
-                  ? entry.reading
-                  : null,
-              options: vocabularyMcq.options,
-              correctIndex: vocabularyMcq.correctIndex,
-              isFreeMode: freeMode,
-              card: card,
-              index: index,
-              total: total,
-              color: color,
-              onAnswer: onAnswer,
-              autoAdvance: freeMode
-                  ? settings.mcq.autoAdvance
-                  : settings.autoAdvance,
-              showPromptFurigana: settings.mcq.showPromptFurigana,
-            ),
+          question: McqQuestion(
+            prompt: (l) => l.mcqSelectWordMeaning,
+            japanesePrompt: entry.word,
+            japaneseReading: entry.reading != entry.word ? entry.reading : null,
+            options: vocabularyMcq.options,
+            correctIndex: vocabularyMcq.correctIndex,
+            level: level,
+            isFreeMode: freeMode,
           ),
         );
       }
@@ -451,24 +407,14 @@ class VocabularySessionService {
           sentence: sentence.japanese,
           sentenceTranslation: sentenceTranslations[sentence.id],
         ),
-        buildBody: (index, total, onAnswer, settings) => SentenceClozeBody(
+        question: SentenceClozeQuestion(
           sentence: sentence,
           translation: sentenceTranslations[sentence.id],
           targetReading: entry.reading,
           options: cloze.options,
           correctIndex: cloze.correctIndex,
+          level: level,
           isFreeMode: freeMode,
-          card: card,
-          index: index,
-          total: total,
-          color: color,
-          onAnswer: onAnswer,
-          autoAdvance: freeMode
-              ? settings.sentence.autoAdvance
-              : settings.autoAdvance,
-          translationMode: settings.sentence.translationMode,
-          showSentenceFurigana: settings.sentence.showSentenceFurigana,
-          showChoiceFurigana: settings.sentence.showChoiceFurigana,
         ),
       );
     }).toList();
@@ -476,5 +422,5 @@ class VocabularySessionService {
 }
 
 final vocabularySessionServiceProvider = Provider(
-  (_) => const VocabularySessionService(),
+  (ref) => VocabularySessionService(ref),
 );

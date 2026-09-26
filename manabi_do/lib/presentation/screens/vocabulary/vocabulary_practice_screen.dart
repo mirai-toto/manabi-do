@@ -42,7 +42,6 @@ class VocabularyPracticeScreen extends StatelessWidget {
       loadQueue: (ref) => ref
           .read(vocabularySessionServiceProvider)
           .buildQueue(
-            ref: ref,
             level: level,
             allowedIds: allowedIds,
             freeMode: freeMode,

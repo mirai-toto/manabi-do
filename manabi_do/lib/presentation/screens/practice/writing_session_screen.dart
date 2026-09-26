@@ -114,7 +114,7 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
     return queueAsync.when(
       loading: () => Scaffold(
         backgroundColor: t.surface,
-        body: const Center(child: CircularProgressIndicator()),
+        body: const Center(child: AppSpinner.page()),
       ),
       error: (_, _) =>
           Scaffold(backgroundColor: t.surface, body: const SizedBox.shrink()),
@@ -225,8 +225,7 @@ class _ActiveScreen extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceMd),
               Expanded(
                 child: strokesAsync.when(
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
+                  loading: () => const Center(child: AppSpinner.page()),
                   error: (_, _) => const SizedBox.shrink(),
                   data: (refStrokes) => DrawingExercise(
                     referenceStrokes: refStrokes,
@@ -313,7 +312,10 @@ class _DoneScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                           vertical: AppDimens.spaceMd,
                         ),
-                        side: BorderSide(color: color),
+                        side: BorderSide(
+                          color: color,
+                          width: AppDimens.borderWidthContainer,
+                        ),
                         foregroundColor: color,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(

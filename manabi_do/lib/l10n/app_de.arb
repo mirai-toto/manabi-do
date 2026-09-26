@@ -331,6 +331,8 @@
   "searchKanji": "Kanji suchen",
   "searchKanjiHint": "Kanji, Lesung oder Bedeutung…",
   "searchKanjiPrompt": "Nach Kanji, Lesung oder Bedeutung suchen",
+  "searchVocabulary": "Wortschatz suchen",
+  "searchVocabularyHint": "Wort, Lesung oder Bedeutung…",
   "noResults": "Keine Ergebnisse",
 
   "groupN": "Gruppe {n}",
@@ -391,6 +393,7 @@
   "showExampleSubtitle": "Einen Beispielsatz auf Karteikarten anzeigen",
 
   "speakPronunciation": "Aussprache abspielen",
+  "replayStrokeOrder": "Strichfolge erneut abspielen",
   "increaseSetting": "{label} erhöhen",
   "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
   "decreaseSetting": "{label} verringern",

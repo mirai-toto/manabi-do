@@ -21,9 +21,33 @@ class AppButton extends StatelessWidget {
   final AppButtonSize size;
   final bool fullWidth;
   final Widget? icon;
+
+  /// A second line under [label], for what pressing this would do — the SRS
+  /// interval a grade would schedule, say.
+  final String? subtitle;
+
+  /// Accessibility state, mirroring [SemanticsProperties]. Both are
+  /// semantics-only: neither changes how the button looks, so a caller that
+  /// wants a ring passes [side]. `null` means the button has no such state.
+  ///
+  /// [selected] is one choice among siblings, announced as selected. [toggled]
+  /// is a single on/off control, announced as "on" or "off".
+  final bool? selected;
+  final bool? toggled;
+
+  // Overrides. The variant and size below cover the common cases; a caller
+  // that wants a different look states it here rather than growing a variant.
   final Color? backgroundColor;
   final Color? foregroundColor;
   final BorderSide? side;
+  final double? radius;
+  final EdgeInsetsGeometry? padding;
+  final TextStyle? textStyle;
+
+  /// Material shrinks a button's padding by the platform's density adjustment,
+  /// so the same [padding] yields a shorter button on desktop than on mobile.
+  /// Pass [VisualDensity.standard] when the height has to match everywhere.
+  final VisualDensity? visualDensity;
 
   const AppButton({
     super.key,
@@ -33,9 +57,16 @@ class AppButton extends StatelessWidget {
     this.size = AppButtonSize.regular,
     this.fullWidth = false,
     this.icon,
+    this.subtitle,
+    this.selected,
+    this.toggled,
     this.backgroundColor,
     this.foregroundColor,
     this.side,
+    this.radius,
+    this.padding,
+    this.textStyle,
+    this.visualDensity,
   });
 
   @override
@@ -65,27 +96,32 @@ class AppButton extends StatelessWidget {
     final borderSide =
         side ??
         switch (variant) {
-          AppButtonVariant.outlined => BorderSide(color: t.primary, width: 1.5),
+          AppButtonVariant.outlined => BorderSide(
+            color: t.primary,
+            width: AppDimens.borderWidthInteractive,
+          ),
           _ => BorderSide.none,
         };
 
-    final padding = switch (size) {
-      AppButtonSize.small => const EdgeInsets.symmetric(
-        horizontal: AppDimens.spaceMd,
-        vertical: AppDimens.spaceSm,
-      ),
-      AppButtonSize.regular =>
-        (variant == AppButtonVariant.outlined ||
-                variant == AppButtonVariant.text)
-            ? const EdgeInsets.symmetric(
-                horizontal: _Dimens.compactPaddingH,
-                vertical: _Dimens.compactPaddingV,
-              )
-            : const EdgeInsets.symmetric(
-                horizontal: AppDimens.spaceLg,
-                vertical: AppDimens.buttonPaddingV,
-              ),
-    };
+    final resolvedPadding =
+        padding ??
+        switch (size) {
+          AppButtonSize.small => const EdgeInsets.symmetric(
+            horizontal: AppDimens.spaceMd,
+            vertical: AppDimens.spaceSm,
+          ),
+          AppButtonSize.regular =>
+            (variant == AppButtonVariant.outlined ||
+                    variant == AppButtonVariant.text)
+                ? const EdgeInsets.symmetric(
+                    horizontal: _Dimens.compactPaddingH,
+                    vertical: _Dimens.compactPaddingV,
+                  )
+                : const EdgeInsets.symmetric(
+                    horizontal: AppDimens.spaceLg,
+                    vertical: AppDimens.buttonPaddingV,
+                  ),
+        };
 
     final button = ElevatedButton(
       onPressed: onPressed,
@@ -98,16 +134,19 @@ class AppButton extends StatelessWidget {
             ? t.primary.withValues(alpha: 0.08)
             : null,
         elevation: 0,
-        padding: padding,
+        padding: resolvedPadding,
+        visualDensity: visualDensity,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppDimens.radiusPill),
+          borderRadius: BorderRadius.circular(radius ?? AppDimens.radiusPill),
           side: borderSide,
         ),
-        textStyle: AppTextStyles.labelLarge.copyWith(
-          fontSize: size == AppButtonSize.small
-              ? AppTextStyles.labelSmall.fontSize
-              : AppTextStyles.labelLarge.fontSize,
-        ),
+        textStyle:
+            textStyle ??
+            AppTextStyles.labelLarge.copyWith(
+              fontSize: size == AppButtonSize.small
+                  ? AppTextStyles.labelSmall.fontSize
+                  : AppTextStyles.labelLarge.fontSize,
+            ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -116,12 +155,43 @@ class AppButton extends StatelessWidget {
             icon!,
             const SizedBox(width: AppDimens.spaceSm),
           ],
-          Flexible(child: Text(label, overflow: TextOverflow.ellipsis)),
+          Flexible(child: _body(fgColor)),
         ],
       ),
     );
 
-    if (fullWidth) return SizedBox(width: double.infinity, child: button);
-    return button;
+    final sized = fullWidth
+        ? SizedBox(width: double.infinity, child: button)
+        : button;
+
+    // Only annotate when the caller says this button has such a state.
+    // `Semantics(selected: false)` on an ordinary button announces
+    // "not selected", which is noise.
+    if (selected == null && toggled == null) return sized;
+    return Semantics(selected: selected, toggled: toggled, child: sized);
+  }
+
+  /// The label, with [subtitle] stacked underneath when there is one.
+  Widget _body(Color fgColor) {
+    final labelText = Text(
+      label,
+      textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+    );
+    if (subtitle == null) return labelText;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        labelText,
+        Text(
+          subtitle!,
+          textAlign: TextAlign.center,
+          style: AppTextStyles.labelSmall.copyWith(
+            color: fgColor.withValues(alpha: 0.75),
+          ),
+        ),
+      ],
+    );
   }
 }

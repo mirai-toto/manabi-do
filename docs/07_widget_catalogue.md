@@ -75,6 +75,20 @@ AppTextField(label: 'Search', hint: 'Type a kanji…', onChanged: (v) {})
 
 ---
 
+### SearchField
+
+`AppTextField` with a search icon, a clear button, and a 250 ms debounce: `onChanged` fires once typing settles, with the trimmed query. Pairs with `isSearchableQuery`, which holds a single latin letter back until a second character arrives while letting one kanji through.
+
+```dart
+SearchField(
+  label: l.searchVocabulary,
+  hint: l.searchVocabularyHint,
+  onChanged: (query) => setState(() => _query = query),
+)
+```
+
+---
+
 ### AppProgressBar
 
 Thin horizontal progress bar (0–1). Accepts an optional `color` and `height`.
@@ -776,20 +790,13 @@ final strokes = strokesAsync.asData?.value ?? [];
 
 ---
 
-### StrokeOrderAnimator / UserStrokeAnimator
+### StrokeOrderAnimator
 
-`StrokeOrderAnimator` plays back reference strokes sequentially. `UserStrokeAnimator` replays the user's drawn strokes with pass/fail colouring.
+Plays back reference strokes sequentially. Auto-plays on load; tap to replay.
 
 ```dart
-StrokeOrderAnimator(kanjiId: 0x6c34)           // auto-plays; tap to replay
+StrokeOrderAnimator(kanjiId: 0x6c34)
 StrokeOrderAnimator(kanjiId: 0x6c34, size: 260)
-
-UserStrokeAnimator(
-  strokes: const [
-    [Offset(50, 130), Offset(210, 130)],
-  ],
-  strokeResults: const [true],   // null = all neutral
-)
 ```
 
 ---
@@ -1439,17 +1446,18 @@ GrammarChapterView(
 
 ### VocabularyWordTile
 
-Expandable vocabulary list row. Shows word, reading, abbreviated meaning. Tap expands to full meaning, part-of-speech chips, and `SpeakButton`. Localized meaning fetched via provider.
+Expandable vocabulary list row. Shows word, reading, abbreviated meaning. Tap expands to full meaning, part-of-speech chips, and `SpeakButton`. Localized meaning fetched via provider. `showLevel` adds a JLPT badge on the right, for lists that mix levels.
 
 ```dart
 VocabularyWordTile(entry: vocabularyEntry)
+VocabularyWordTile(entry: vocabularyEntry, showLevel: true)
 ```
 
 ---
 
 ### VocabularyLevelSelector
 
-Full-screen-width list of JLPT level tiles. Tapping a level calls `onSelect`.
+Pinned `SearchField` over a full-screen-width list of JLPT level tiles. Tapping a level calls `onSelect`. Typing replaces the tiles with matching words from `vocabularySearchProvider` (word, reading or meaning; ranked by `searchRank`, capped at 50), built lazily as they scroll into view.
 
 ```dart
 VocabularyLevelSelector(onSelect: (level) => selectLevel(level))
@@ -1483,10 +1491,13 @@ VocabularyLevelView(level: 'N5', groupIndex: 0, onBack: () {})
 
 ### KanjiLevelSelector
 
-Full-screen list of JLPT level tiles for the kanji section. Tapping a level calls `onSelect`.
+Pinned `SearchField` over a full-screen list of JLPT level tiles for the kanji section. Tapping a level calls `onSelect`. Typing replaces the tiles with ranked matches from `kanjiSearchProvider`; tapping a result calls `onOpenKanji`.
 
 ```dart
-KanjiLevelSelector(onSelect: (level) => selectLevel(level))
+KanjiLevelSelector(
+  onSelect: (level) => selectLevel(level),
+  onOpenKanji: (id) => openKanji(id),
+)
 ```
 
 ---

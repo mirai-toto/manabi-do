@@ -5,6 +5,7 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
+import '../../../../core/text/short_meaning.dart';
 import '../../../providers/drawing_settings_provider.dart';
 import '../../../providers/kanji_provider.dart';
 import '../../../providers/kanji_strokes_provider.dart';
@@ -19,7 +20,7 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final kanji = ref.watch(kanjiDetailProvider(kanjiId)).asData?.value;
     if (kanji == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(body: Center(child: AppSpinner.page()));
     }
 
     final t = context.tokens;
@@ -44,12 +45,12 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(AppDimens.spaceMd),
         child: strokesAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: AppSpinner.page()),
           error: (_, _) => const SizedBox.shrink(),
           data: (refStrokes) => DrawingExercise(
             referenceStrokes: refStrokes,
             kanjiId: kanjiId,
-            label: kanji.meaning,
+            label: shortMeaning(kanji.meaning),
             color: color,
             settings: drawingSettings,
             // A single kanji has nowhere to advance to, so the drill always

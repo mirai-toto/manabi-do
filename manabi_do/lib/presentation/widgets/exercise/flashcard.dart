@@ -4,6 +4,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/app_button.dart';
 import '../common/speak_button.dart';
 
 class Flashcard extends StatelessWidget {
@@ -163,12 +164,15 @@ class FlashcardActions extends StatelessWidget {
     final l = context.l10n;
 
     Widget btn(String label, Rating rating, Color bg, Color fg) => Expanded(
-      child: RatingButton(
+      child: AppButton(
         label: label,
-        interval: srsIntervalPreview(card, rating),
-        bgColor: bg,
-        fgColor: fg,
-        onTap: () => onRate(rating),
+        subtitle: srsIntervalPreview(card, rating),
+        backgroundColor: bg,
+        foregroundColor: fg,
+        radius: AppDimens.radiusLg,
+        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+        visualDensity: VisualDensity.standard,
+        onPressed: () => onRate(rating),
       ),
     );
 
@@ -228,72 +232,4 @@ String? srsIntervalPreview(Card? card, Rating rating) {
   if (diff.inHours < 24) return '${diff.inHours}h';
   if (diff.inDays < 30) return '${diff.inDays}d';
   return '${(diff.inDays / 30).round()}mo';
-}
-
-/// One grade in a rating row: a label, the interval it would schedule, and the
-/// semantic colour of that grade.
-///
-/// [selected] rings the button, for the session review where one of the grades
-/// is the one already given. Answering leaves it off — there is nothing chosen
-/// yet at that point.
-class RatingButton extends StatelessWidget {
-  final String label;
-  final String? interval;
-  final Color bgColor;
-  final Color fgColor;
-  final VoidCallback? onTap;
-  final bool selected;
-
-  const RatingButton({
-    super.key,
-    required this.label,
-    required this.bgColor,
-    required this.fgColor,
-    this.interval,
-    this.onTap,
-    this.selected = false,
-  });
-
-  @override
-  Widget build(BuildContext context) => Semantics(
-    label: interval != null ? '$label $interval' : label,
-    button: true,
-    selected: selected,
-    excludeSemantics: true,
-    child: Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(AppDimens.radiusLg),
-        border: selected ? Border.all(color: fgColor, width: 2) : null,
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  style: AppTextStyles.labelLarge.copyWith(color: fgColor),
-                ),
-                if (interval != null)
-                  Text(
-                    interval!,
-                    textAlign: TextAlign.center,
-                    style: AppTextStyles.labelSmall.copyWith(
-                      color: fgColor.withValues(alpha: 0.75),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
 }

@@ -1408,6 +1408,18 @@ abstract class AppLocalizations {
   /// **'Search by kanji, reading, or meaning'**
   String get searchKanjiPrompt;
 
+  /// No description provided for @searchVocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'Search vocabulary'**
+  String get searchVocabulary;
+
+  /// No description provided for @searchVocabularyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Word, reading, or meaning…'**
+  String get searchVocabularyHint;
+
   /// No description provided for @noResults.
   ///
   /// In en, this message translates to:
@@ -1713,6 +1725,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Play pronunciation'**
   String get speakPronunciation;
+
+  /// No description provided for @replayStrokeOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay stroke order'**
+  String get replayStrokeOrder;
 
   /// No description provided for @increaseSetting.
   ///

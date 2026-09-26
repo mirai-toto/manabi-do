@@ -158,7 +158,12 @@ class ReaderJpExample extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: t.primaryContainer,
-        border: Border(left: BorderSide(color: t.primary, width: 3)),
+        border: Border(
+          left: BorderSide(
+            color: t.primary,
+            width: AppDimens.borderWidthAccent,
+          ),
+        ),
         borderRadius: const BorderRadius.horizontal(
           right: Radius.circular(AppDimens.radiusSm),
         ),

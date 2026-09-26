@@ -95,16 +95,6 @@ final directories = <_widgetbook.WidgetbookNode>[
           ),
         ],
       ),
-      _widgetbook.WidgetbookComponent(
-        name: 'UserStrokeAnimator',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_characters_use_cases
-                .buildUserStrokeAnimator,
-          ),
-        ],
-      ),
     ],
   ),
   _widgetbook.WidgetbookFolder(
@@ -113,6 +103,11 @@ final directories = <_widgetbook.WidgetbookNode>[
       _widgetbook.WidgetbookComponent(
         name: 'AppButton',
         useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Accent tonal',
+            builder: _manabi_do_widgetbook_common_use_cases
+                .buildAppButtonAccentTonal,
+          ),
           _widgetbook.WidgetbookUseCase(
             name: 'Danger',
             builder:
@@ -301,15 +296,6 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Success',
             builder:
                 _manabi_do_widgetbook_common_use_cases.buildPillBadgeSuccess,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'PracticeButton',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_common_use_cases.buildPracticeButton,
           ),
         ],
       ),

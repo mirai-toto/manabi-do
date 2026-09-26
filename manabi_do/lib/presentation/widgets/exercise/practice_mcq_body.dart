@@ -5,6 +5,7 @@ import '../../../core/models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/app_button.dart';
 import 'flashcard.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
@@ -134,13 +135,12 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
             ),
             if (widget.onDetailTap != null) ...[
               const SizedBox(height: AppDimens.spaceSm),
-              TextButton.icon(
-                onPressed: widget.onDetailTap,
+              AppButton(
+                label: context.l10n.viewDetail,
                 icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                label: Text(context.l10n.viewDetail),
-                style: TextButton.styleFrom(
-                  foregroundColor: context.tokens.onSurfaceVariant,
-                ),
+                variant: AppButtonVariant.text,
+                foregroundColor: context.tokens.onSurfaceVariant,
+                onPressed: widget.onDetailTap,
               ),
             ],
           ],

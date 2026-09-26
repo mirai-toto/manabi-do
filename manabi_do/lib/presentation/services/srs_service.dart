@@ -14,29 +14,29 @@ Card applyRating(Card? existing, Rating rating) {
 }
 
 class SrsService {
-  const SrsService();
+  final Ref _ref;
 
-  Future<Card?> getCard(WidgetRef ref, String type, int id) =>
-      ref.read(databaseProvider).getSrsCard(type, id);
+  const SrsService(this._ref);
 
-  Future<void> resetCard(WidgetRef ref, String type, int id) =>
-      ref.read(databaseProvider).resetSrsCard(type, id);
+  Future<Card?> getCard(String type, int id) =>
+      _ref.read(databaseProvider).getSrsCard(type, id);
 
-  Future<void> resetAll(WidgetRef ref) =>
-      ref.read(databaseProvider).resetAllProgress();
+  Future<void> resetCard(String type, int id) =>
+      _ref.read(databaseProvider).resetSrsCard(type, id);
 
-  Future<void> seedFakeReviews(WidgetRef ref) =>
-      ref.read(databaseProvider).seedFakeReviews();
+  Future<void> resetAll() => _ref.read(databaseProvider).resetAllProgress();
+
+  Future<void> seedFakeReviews() =>
+      _ref.read(databaseProvider).seedFakeReviews();
 
   Future<void> review(
-    WidgetRef ref,
     String srsType,
     int id,
     Card? existingCard,
     Rating rating,
-  ) => ref
+  ) => _ref
       .read(databaseProvider)
       .upsertSrsCard(srsType, id, applyRating(existingCard, rating));
 }
 
-const srsService = SrsService();
+final srsServiceProvider = Provider((ref) => SrsService(ref));

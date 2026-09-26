@@ -59,7 +59,10 @@ class JapaneseSentence extends StatelessWidget {
               decoration: BoxDecoration(
                 color: accentColor.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(AppDimens.radiusXs),
-                border: Border.all(color: accentColor),
+                border: Border.all(
+                  color: accentColor,
+                  width: AppDimens.borderWidthContainer,
+                ),
               ),
               child: Text(
                 stripAnnotation(target),

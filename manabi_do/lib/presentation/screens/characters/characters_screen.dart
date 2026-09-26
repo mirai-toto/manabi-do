@@ -78,7 +78,7 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
                     ),
                   ),
                 ),
-                _ => const Center(child: CircularProgressIndicator()),
+                _ => const Center(child: AppSpinner.page()),
               },
             ),
           ],

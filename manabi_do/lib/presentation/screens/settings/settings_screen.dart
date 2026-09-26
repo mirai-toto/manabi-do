@@ -38,7 +38,7 @@ class SettingsScreen extends ConsumerWidget {
       body: l.resetProgressBody,
     );
     if (!confirmed) return;
-    await srsService.resetAll(ref);
+    await ref.read(srsServiceProvider).resetAll();
   }
 
   Future<void> _sendFeedback(

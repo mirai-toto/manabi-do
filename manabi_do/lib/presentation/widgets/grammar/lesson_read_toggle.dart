@@ -37,7 +37,7 @@ class LessonReadToggle extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppDimens.radiusXl),
             border: Border.all(
               color: isRead ? t.success : Colors.transparent,
-              width: 2,
+              width: AppDimens.borderWidthSelected,
             ),
           ),
           child: Row(

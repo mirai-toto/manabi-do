@@ -25,21 +25,17 @@ Two very different consumers read that one file:
 
 Keep it to plain `CREATE TABLE`. Only two drift-isms are tolerated, and both are translated for the Python side: a trailing `) AS RowName` naming the generated row class, and `DATETIME` / `BOOLEAN`, which drift stores as `INTEGER`.
 
-Two tests guard this:
-
-- `test/schema_test.dart` builds the schema twice — once through drift, once by executing `schema.drift` as plain SQL the way Python does — and asserts they are identical.
-- `test/migration_test.dart` checks the live schema against the snapshot in `drift_schemas/`, and that a fresh database is stamped with the declared `schemaVersion`.
-
-If any of those ever diverge, a test fails rather than a user's device.
+Nothing checks the two consumers against each other automatically, so a change to `schema.drift` that drift accepts but Python does not will only show up when the content pipeline runs. Build the asset after a schema change.
 
 ### Changing the schema
 
 1. Edit `schema.drift`
 2. Bump `schemaVersion` in `app_database.dart`
 3. `dart run drift_dev schema dump lib/data/database/app_database.dart drift_schemas/`
-4. `dart run drift_dev schema generate drift_schemas/ test/generated_migrations/`
-5. `dart run drift_dev schema steps drift_schemas/ lib/data/database/schema_versions.dart`
-6. Fill in the generated `fromNToN+1` case
+4. `dart run drift_dev schema steps drift_schemas/ lib/data/database/schema_versions.dart`
+5. Fill in the generated `fromNToN+1` case
+
+`drift_schemas/` holds the frozen snapshot per version and feeds step 4, so it stays under version control.
 
 You do **not** need to rebuild the 22 MB asset for a schema change — `stepByStep` migrates it forward on open.
 
@@ -289,7 +285,7 @@ Sentences come from Tatoeba where translations depend on community contributions
 
 Three kinds of repetition exist in the content. Only the first is a defect.
 
-**57 exact duplicate vocabulary rows.** Same `word`, `reading` and `meaning`, differing only by `id` and the `jlpt_level` they were filed under — `いい` at N5 and N3, `だから` at N4 and N3. Each is its own SRS card, so both fall due together and daily training, which merges every level, asked the identical question twice. Worked around in `loadAllDueQueue` by `_dropRepeatedPrompts`, which drops later items whose prompt and answer match one already in the queue. The proper fix is in the content pipeline: merge the rows and keep the lower level. Until then `test/duplicate_prompt_test.dart` fails if they ever disappear, so the workaround does not outlive the problem.
+**57 exact duplicate vocabulary rows.** Same `word`, `reading` and `meaning`, differing only by `id` and the `jlpt_level` they were filed under — `いい` at N5 and N3, `だから` at N4 and N3. Each is its own SRS card, so both fall due together and daily training, which merges every level, asked the identical question twice. Worked around in `loadAllDueQueue` by `_dropRepeatedPrompts`, which drops later items whose prompt and answer match one already in the queue. The proper fix is in the content pipeline: merge the rows and keep the lower level. When that lands, `_dropRepeatedPrompts` becomes dead weight and should go with it.
 
 **800 single-character words that are also kanji.** `塩` is both a `kanjis` row (*"What does this kanji mean?"* → salt) and a `vocabulary_entries` row (*"What does this word mean?"* → salt; common salt; …). **Left in deliberately.** They are different learning objectives with separate SRS cards, and the readings a kanji carries are not the same knowledge as the word it forms alone. The dedupe above keys on `srsType` precisely so it does not collapse these. If a session ever feels repetitive because of it, that is a product decision to revisit — not a data bug.
 

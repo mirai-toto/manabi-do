@@ -2,6 +2,8 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+import '../core/theme/app_dimens.dart';
+import '../core/theme/app_text_styles.dart';
 import '../core/theme/jlpt_level.dart';
 import '../presentation/widgets/common/app_button.dart';
 import '../presentation/widgets/common/app_emoji.dart';
@@ -12,7 +14,6 @@ import '../presentation/widgets/common/difficulty_dots.dart';
 import '../presentation/widgets/common/japanese_text.dart';
 import '../presentation/widgets/common/jlpt_level_card.dart';
 import '../presentation/widgets/common/pill_badge.dart';
-import '../presentation/widgets/common/practice_button.dart';
 import '../presentation/widgets/common/progress_bar.dart';
 import '../presentation/widgets/common/progress_row.dart';
 import '../presentation/widgets/common/section_header.dart';
@@ -278,6 +279,29 @@ Widget buildAppButtonDanger(BuildContext context) {
   );
 }
 
+/// The look the study screens ask for: tinted with the JLPT level colour,
+/// squarer than the pill default, roomier padding, and an icon.
+@widgetbook.UseCase(name: 'Accent tonal', type: AppButton, path: 'Common')
+Widget buildAppButtonAccentTonal(BuildContext context) {
+  final color = Theme.of(context).colorScheme.primary;
+  return AppButton(
+    label: 'Free Practice',
+    icon: Icon(Icons.school_rounded, color: color, size: 20),
+    onPressed: () {},
+    fullWidth: true,
+    backgroundColor: color.withValues(alpha: 0.08),
+    foregroundColor: color,
+    side: BorderSide(
+      color: color.withValues(alpha: 0.35),
+      width: AppDimens.borderWidthContainer,
+    ),
+    radius: AppDimens.radiusMd,
+    visualDensity: VisualDensity.standard,
+    padding: const EdgeInsets.all(AppDimens.spaceMd),
+    textStyle: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600),
+  );
+}
+
 @widgetbook.UseCase(name: 'Small', type: AppButton, path: 'Common')
 Widget buildAppButtonSmall(BuildContext context) {
   return AppButton(
@@ -328,16 +352,6 @@ Widget buildProgressRowPartial(BuildContext context) {
 @widgetbook.UseCase(name: 'Complete', type: ProgressRow, path: 'Common')
 Widget buildProgressRowComplete(BuildContext context) {
   return const ProgressRow(known: 100, total: 100);
-}
-
-// ── PracticeButton ────────────────────────────────────────────────────────────
-
-@widgetbook.UseCase(name: 'Default', type: PracticeButton, path: 'Common')
-Widget buildPracticeButton(BuildContext context) {
-  return PracticeButton(
-    color: Theme.of(context).colorScheme.primary,
-    onTap: () {},
-  );
 }
 
 // ── SegmentedTabBar ───────────────────────────────────────────────────────────

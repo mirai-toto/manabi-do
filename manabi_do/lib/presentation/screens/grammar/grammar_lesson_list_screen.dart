@@ -6,10 +6,9 @@ import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
 import '../../providers/grammar_provider.dart';
+import '../../services/grammar_progress_service.dart';
 import '../../services/grammar_session_service.dart';
 import '../../widgets/widgets.dart';
 import '../practice/practice_session_screen.dart';
@@ -70,7 +69,7 @@ class _GrammarLessonListScreenState
         .where((l) => readLessons.contains(l.id))
         .length;
     if (prevDone == prev.lessons.length) return false;
-    return !unlockedKeys.contains('group:${widget.theme.title}:$ci');
+    return !unlockedKeys.contains(grammarGroupKey(widget.theme.title, ci));
   }
 
   bool _isLessonLocked(
@@ -83,7 +82,7 @@ class _GrammarLessonListScreenState
     final prevLesson = widget.theme.chapters[ci].lessons[li - 1];
     if (readLessons.contains(prevLesson.id)) return false;
     final lessonId = widget.theme.chapters[ci].lessons[li].id;
-    return !unlockedKeys.contains('lesson:$lessonId');
+    return !unlockedKeys.contains(grammarLessonKey(lessonId));
   }
 
   void _showUnlockDialog({
@@ -115,7 +114,7 @@ class _GrammarLessonListScreenState
   }
 
   void _openLesson(GrammarLesson lesson) {
-    ref.read(databaseProvider).markGrammarLessonStarted(lesson.id);
+    ref.read(grammarProgressServiceProvider).markLessonStarted(lesson.id);
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => GrammarLessonScreen(
@@ -139,11 +138,7 @@ class _GrammarLessonListScreenState
           hasExamples: true,
           loadQueue: (ref) => ref
               .read(grammarSessionServiceProvider)
-              .buildQueueForChapter(
-                lessonPaths: _allLessonPaths,
-                ref: ref,
-                color: widget.levelColor,
-              ),
+              .buildQueueForChapter(lessonPaths: _allLessonPaths),
         ),
       ),
     );
@@ -234,10 +229,8 @@ class _GrammarLessonListScreenState
                               title: l.groupLocked,
                               body: l.groupLockedBody,
                               onConfirm: () => ref
-                                  .read(databaseProvider)
-                                  .unlockGrammarChapter(
-                                    'group:${widget.theme.title}:$ci',
-                                  ),
+                                  .read(grammarProgressServiceProvider)
+                                  .unlockGroup(widget.theme.title, ci),
                             );
                           } else {
                             setState(() {
@@ -291,10 +284,8 @@ class _GrammarLessonListScreenState
                                     body: l.lessonLockedBody,
                                     onConfirm: () {
                                       ref
-                                          .read(databaseProvider)
-                                          .unlockGrammarChapter(
-                                            'lesson:${lesson.id}',
-                                          );
+                                          .read(grammarProgressServiceProvider)
+                                          .unlockLesson(lesson.id);
                                       _openLesson(lesson);
                                     },
                                   );

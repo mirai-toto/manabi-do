@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../common/app_spinner.dart';
 import '../common/tappable_surface.dart';
 
 class PracticeModeCard extends StatelessWidget {
@@ -32,7 +33,10 @@ class PracticeModeCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: t.cardBackground,
         borderRadius: BorderRadius.circular(AppDimens.radiusLg),
-        border: Border.all(color: color.withValues(alpha: 0.25)),
+        border: Border.all(
+          color: color.withValues(alpha: 0.25),
+          width: AppDimens.borderWidthContainer,
+        ),
       ),
       onTap: onTap,
       child: Padding(
@@ -72,11 +76,7 @@ class PracticeModeCard extends StatelessWidget {
                   if (isCountLoading)
                     const Padding(
                       padding: EdgeInsets.only(top: AppDimens.spaceXxs),
-                      child: SizedBox(
-                        width: 14,
-                        height: 14,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      ),
+                      child: AppSpinner(size: AppSpinner.small),
                     )
                   else if (countLabel != null)
                     Padding(

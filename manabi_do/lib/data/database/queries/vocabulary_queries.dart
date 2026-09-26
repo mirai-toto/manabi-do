@@ -26,6 +26,19 @@ extension VocabularyQueries on AppDatabase {
   Future<List<VocabularyEntry>> getAllVocabulary() =>
       (select(vocabularyEntries)).get();
 
+  Future<int> countVocabularyEntries() =>
+      select(vocabularyEntries).get().then((rows) => rows.length);
+
+  /// Every word whose spelling, reading or meaning contains [query], in no
+  /// particular order. `SearchService` ranks them.
+  Future<List<VocabularyEntry>> searchVocabularyCandidates(String query) {
+    final q = '%$query%';
+    return (select(
+          vocabularyEntries,
+        )..where((v) => v.word.like(q) | v.reading.like(q) | v.meaning.like(q)))
+        .get();
+  }
+
   Future<int> countTotalVocabulary() =>
       (select(vocabularyEntries)).get().then((r) => r.length);
 }

@@ -4,9 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../data/database/app_database.dart';
-import '../../providers/database_provider.dart';
 import '../../providers/grammar_provider.dart';
+import '../../services/grammar_progress_service.dart';
 import '../../widgets/widgets.dart';
 
 class GrammarLessonScreen extends ConsumerWidget {
@@ -29,7 +28,6 @@ class GrammarLessonScreen extends ConsumerWidget {
     final readLessons =
         ref.watch(grammarReadLessonsProvider).asData?.value ?? {};
     final isRead = readLessons.contains(lessonId);
-    final db = ref.read(databaseProvider);
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -54,13 +52,9 @@ class GrammarLessonScreen extends ConsumerWidget {
             controller: controller,
             trailing: LessonReadToggle(
               isRead: isRead,
-              onTap: () {
-                if (isRead) {
-                  db.unmarkGrammarLessonRead(lessonId);
-                } else {
-                  db.markGrammarLessonRead(lessonId);
-                }
-              },
+              onTap: () => ref
+                  .read(grammarProgressServiceProvider)
+                  .setLessonRead(lessonId, isRead: !isRead),
             ),
           ),
         ),

@@ -4,6 +4,8 @@ import 'package:fsrs/fsrs.dart';
 import '../../core/providers/srs_settings_provider.dart';
 import '../../core/srs/srs_level.dart';
 import '../../data/database/app_database.dart';
+import '../services/search_service.dart';
+import '../services/srs_queue_service.dart';
 import 'database_provider.dart';
 
 const kVocabularyGroupSize = 30;
@@ -11,6 +13,11 @@ const kVocabularyGroupSize = 30;
 final vocabularyByLevelProvider =
     FutureProvider.family<List<VocabularyEntry>, String>(
       (ref, level) => ref.watch(databaseProvider).getVocabularyByLevel(level),
+    );
+
+final vocabularySearchProvider =
+    FutureProvider.family<List<VocabularyEntry>, String>(
+      (ref, query) => ref.read(searchServiceProvider).vocabulary(query),
     );
 
 final vocabularySrsCardsProvider = StreamProvider<Map<int, Card>>(
@@ -64,11 +71,8 @@ final vocabularyGroupSrsCountProvider =
           .toSet();
       final settings = await ref.read(srsSettingsProvider.future);
       final session = await ref
-          .read(databaseProvider)
-          .getVocabularySrsSession(
-            args.level,
-            newCardLimit: settings.newVocabularyPerDay,
-          );
+          .read(srsQueueServiceProvider)
+          .vocabulary(args.level, newCardLimit: settings.newVocabularyPerDay);
       final group = session.where((p) => groupIds.contains(p.$1.id)).toList();
       return (
         group.where((p) => p.$2 != null).length,

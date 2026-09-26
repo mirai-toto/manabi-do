@@ -208,7 +208,12 @@ class _TargetArea extends StatelessWidget {
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: borderColor, width: answered ? 2 : 1),
+        border: Border.all(
+          color: borderColor,
+          width: answered
+              ? AppDimens.borderWidthSelected
+              : AppDimens.borderWidthContainer,
+        ),
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: AppDimens.spaceSm,
@@ -256,7 +261,10 @@ class _CorrectAnswer extends StatelessWidget {
       decoration: BoxDecoration(
         color: t.successContainer,
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        border: Border.all(color: t.success),
+        border: Border.all(
+          color: t.success,
+          width: AppDimens.borderWidthContainer,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,7 +361,10 @@ class _Chip extends StatelessWidget {
                 ? color.withValues(alpha: 0.15)
                 : t.surfaceContainerHigh,
             borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-            border: Border.all(color: selected ? color : t.outlineVariant),
+            border: Border.all(
+              color: selected ? color : t.outlineVariant,
+              width: AppDimens.borderWidthContainer,
+            ),
           ),
           child: JapaneseText(
             word: label,

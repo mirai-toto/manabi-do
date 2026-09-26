@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/pos_label.dart';
 import '../../providers/vocabulary_provider.dart';
@@ -12,7 +13,15 @@ import '../widgets.dart';
 class VocabularyWordTile extends ConsumerStatefulWidget {
   final VocabularyEntry entry;
 
-  const VocabularyWordTile({super.key, required this.entry});
+  /// Shows a JLPT badge next to the part of speech. Search results mix levels,
+  /// so they need it; a group already knows which level it belongs to.
+  final bool showLevel;
+
+  const VocabularyWordTile({
+    super.key,
+    required this.entry,
+    this.showLevel = false,
+  });
 
   @override
   ConsumerState<VocabularyWordTile> createState() => _VocabularyWordTileState();
@@ -114,6 +123,18 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                                       : Icons.expand_more_rounded,
                                   size: 16,
                                   color: t.onSurfaceVariant,
+                                ),
+                              ),
+                            if (widget.showLevel)
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: PillBadge(
+                                  label: widget.entry.jlptLevel,
+                                  color: levelColor(widget.entry.jlptLevel),
+                                  background: levelColor(
+                                    widget.entry.jlptLevel,
+                                  ).withValues(alpha: 0.12),
+                                  textStyle: AppTextStyles.labelSmall,
                                 ),
                               ),
                           ],

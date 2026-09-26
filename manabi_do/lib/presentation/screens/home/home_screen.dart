@@ -1,4 +1,3 @@
-import '../../../data/database/app_database.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -10,9 +9,9 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/database_provider.dart';
 import '../../providers/grammar_provider.dart';
 import '../../providers/home_provider.dart';
+import '../../services/grammar_progress_service.dart';
 import '../../services/review_queue_service.dart';
 import '../../widgets/widgets.dart';
 import '../grammar/grammar_lesson_screen.dart';
@@ -68,7 +67,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     _openPractice(
       title: l.todaysSession,
       color: t.primary,
-      loadQueue: loadAllDueQueue,
+      loadQueue: (ref) => ref.read(reviewQueueServiceProvider).allDue(),
     );
   }
 
@@ -90,7 +89,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   }
 
   void _continueLesson(GrammarContinueTarget target) {
-    ref.read(databaseProvider).markGrammarLessonStarted(target.lesson.id);
+    ref
+        .read(grammarProgressServiceProvider)
+        .markLessonStarted(target.lesson.id);
     Navigator.push(
       context,
       MaterialPageRoute<void>(
@@ -184,7 +185,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         onTap: () => _openPractice(
                           title: l.kana,
                           color: t.primary,
-                          loadQueue: loadKanaQueue,
+                          loadQueue: (ref) =>
+                              ref.read(reviewQueueServiceProvider).kana(),
                         ),
                       ),
                     ],
@@ -201,7 +203,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         onTap: () => _openPractice(
                           title: l.tabKanji,
                           color: t.primary,
-                          loadQueue: loadKanjiQueue,
+                          loadQueue: (ref) =>
+                              ref.read(reviewQueueServiceProvider).kanji(),
                         ),
                       ),
                     ],
@@ -218,7 +221,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         onTap: () => _openPractice(
                           title: l.sectionVocabulary,
                           color: t.primary,
-                          loadQueue: loadVocabularyQueue,
+                          loadQueue: (ref) =>
+                              ref.read(reviewQueueServiceProvider).vocabulary(),
                         ),
                       ),
                     ],

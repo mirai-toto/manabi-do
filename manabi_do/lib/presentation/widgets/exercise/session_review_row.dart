@@ -7,6 +7,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../common/app_button.dart';
 import '../common/pill_badge.dart';
 import '../common/review_progress_info.dart';
 import 'flashcard.dart';
@@ -93,7 +94,9 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
         border: Border.all(
           color: widget.isExpanded ? t.primary : t.outlineVariant,
-          width: widget.isExpanded ? 2 : 1,
+          width: widget.isExpanded
+              ? AppDimens.borderWidthSelected
+              : AppDimens.borderWidthContainer,
         ),
       ),
       child: Column(
@@ -217,7 +220,12 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: t.surfaceContainerHigh,
-        border: Border(top: BorderSide(color: t.outlineVariant)),
+        border: Border(
+          top: BorderSide(
+            color: t.outlineVariant,
+            width: AppDimens.borderWidthContainer,
+          ),
+        ),
       ),
       padding: const EdgeInsets.fromLTRB(
         AppDimens.spaceCozy,
@@ -275,13 +283,12 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
           ],
           if (widget.onDetailTap != null)
             Center(
-              child: TextButton.icon(
-                onPressed: widget.onDetailTap,
+              child: AppButton(
+                label: l.viewDetail,
                 icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                label: Text(l.viewDetail),
-                style: TextButton.styleFrom(
-                  foregroundColor: t.onSurfaceVariant,
-                ),
+                variant: AppButtonVariant.text,
+                foregroundColor: t.onSurfaceVariant,
+                onPressed: widget.onDetailTap,
               ),
             ),
         ],
@@ -362,16 +369,26 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
     final t = context.tokens;
     final l = context.l10n;
 
-    Widget btn(String label, Rating rating, Color bg, Color fg) => Expanded(
-      child: RatingButton(
-        label: label,
-        interval: srsIntervalPreview(widget.card, rating),
-        bgColor: bg,
-        fgColor: fg,
-        selected: widget.rating == rating,
-        onTap: () => widget.onRegrade!(rating),
-      ),
-    );
+    Widget btn(String label, Rating rating, Color bg, Color fg) {
+      final isGiven = widget.rating == rating;
+      return Expanded(
+        child: AppButton(
+          label: label,
+          subtitle: srsIntervalPreview(widget.card, rating),
+          backgroundColor: bg,
+          foregroundColor: fg,
+          radius: AppDimens.radiusLg,
+          padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+          visualDensity: VisualDensity.standard,
+          // Rings the grade already given, so you can see it before changing it.
+          selected: isGiven,
+          side: isGiven
+              ? BorderSide(color: fg, width: AppDimens.borderWidthSelected)
+              : BorderSide.none,
+          onPressed: () => widget.onRegrade!(rating),
+        ),
+      );
+    }
 
     if (!widget.summary.selfAssessed) {
       return [
@@ -479,7 +496,10 @@ class _AnswerBlock extends StatelessWidget {
           decoration: BoxDecoration(
             color: isCorrect ? t.successContainer : t.errorContainer,
             borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-            border: Border.all(color: color),
+            border: Border.all(
+              color: color,
+              width: AppDimens.borderWidthContainer,
+            ),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

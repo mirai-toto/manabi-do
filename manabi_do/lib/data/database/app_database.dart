@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:drift/drift.dart';
 import 'package:fsrs/fsrs.dart';
@@ -7,7 +6,6 @@ import 'package:fsrs/fsrs.dart';
 import 'db_connection_native.dart'
     if (dart.library.js_interop) 'db_connection_web.dart';
 
-import '../../core/srs/srs_level.dart';
 import '../../domain/data/kana_data.dart';
 import 'schema_versions.dart';
 
@@ -18,8 +16,6 @@ part 'queries/vocabulary_queries.dart';
 part 'queries/translation_queries.dart';
 part 'queries/sentence_queries.dart';
 part 'queries/grammar_queries.dart';
-part 'queries/dashboard_queries.dart';
-part 'queries/srs_session_queries.dart';
 part 'queries/srs_card_queries.dart';
 
 @DriftDatabase(include: {'schema.drift'})
@@ -46,12 +42,11 @@ class AppDatabase extends _$AppDatabase {
   /// ```sh
   /// dart run drift_dev schema dump lib/data/database/app_database.dart drift_schemas/
   /// dart run drift_dev schema steps drift_schemas/ lib/data/database/schema_versions.dart
-  /// dart run drift_dev schema generate drift_schemas/ test/generated_migrations/
   /// ```
   ///
-  /// The generator adds a `from22To23` parameter here and `migration_test.dart`
-  /// proves it lands on the v23 snapshot exactly. The 22 MB asset does not need
-  /// rebuilding for a schema change — drift migrates it forward on open.
+  /// The generator adds a `from22To23` parameter here for the step to be filled
+  /// in. The 22 MB asset does not need rebuilding for a schema change — drift
+  /// migrates it forward on open.
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onUpgrade: stepByStep(
@@ -88,7 +83,9 @@ class AppDatabase extends _$AppDatabase {
     ),
   );
 
-  Future<int> _countSeenToday(String itemType) {
+  /// Cards of [itemType] first seen today, which the daily new-card budget
+  /// is measured against.
+  Future<int> countSeenToday(String itemType) {
     final now = DateTime.now();
     final todayStart = DateTime(now.year, now.month, now.day);
     return (select(srsCards)..where(

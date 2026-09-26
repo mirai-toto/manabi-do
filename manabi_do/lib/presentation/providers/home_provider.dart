@@ -1,8 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers/srs_settings_provider.dart';
-import '../../data/database/app_database.dart';
-import 'database_provider.dart';
+import '../services/dashboard_service.dart';
 
 /// Drives tab selection across ShellScreen and HomeScreen.
 final selectedTabProvider = NotifierProvider<_SelectedTabNotifier, int>(
@@ -33,58 +32,48 @@ class _SelectedTabNotifier extends Notifier<int> {
 }
 
 final kanaDueCountProvider = StreamProvider<int>(
-  (ref) => ref.watch(databaseProvider).watchKanaDueCount(),
+  (ref) => ref.watch(dashboardServiceProvider).kanaDueCount(),
 );
 
 final kanjiDueCountProvider = StreamProvider<int>(
-  (ref) => ref.watch(databaseProvider).watchKanjiDueCount(),
+  (ref) => ref.watch(dashboardServiceProvider).kanjiDueCount(),
 );
 
 final vocabularyDueCountProvider = StreamProvider<int>(
-  (ref) => ref.watch(databaseProvider).watchVocabularyDueCount(),
+  (ref) => ref.watch(dashboardServiceProvider).vocabularyDueCount(),
 );
 
 final streakDaysProvider = StreamProvider<int>(
-  (ref) => ref.watch(databaseProvider).watchStreakDays(),
+  (ref) => ref.watch(dashboardServiceProvider).streakDays(),
 );
 
 final kanaProgressProvider = StreamProvider<({int known, int seen})>(
-  (ref) => ref.watch(databaseProvider).watchKanaProgress(),
+  (ref) => ref.watch(dashboardServiceProvider).kanaProgress(),
 );
 
 final kanjiProgressProvider = StreamProvider<({int known, int seen})>(
-  (ref) => ref.watch(databaseProvider).watchKanjiProgress(),
+  (ref) => ref.watch(dashboardServiceProvider).kanjiProgress(),
 );
 
 final vocabularyProgressProvider = StreamProvider<({int known, int seen})>(
-  (ref) => ref.watch(databaseProvider).watchVocabularyProgress(),
+  (ref) => ref.watch(dashboardServiceProvider).vocabularyProgress(),
 );
 
 /// Which days of the current week (Monday-first, 7 entries) had reviews.
 final weekActivityProvider = StreamProvider<List<bool>>(
-  (ref) => ref.watch(databaseProvider).watchReviewDates().map((dates) {
-    final now = DateTime.now();
-    final monday = DateTime(now.year, now.month, now.day - (now.weekday - 1));
-    return List.generate(
-      7,
-      (i) =>
-          dates.contains(DateTime(monday.year, monday.month, monday.day + i)),
-    );
-  }),
+  (ref) => ref.watch(dashboardServiceProvider).weekActivity(),
 );
 
 final kanaNewCountProvider = StreamProvider<int>((ref) {
-  final db = ref.watch(databaseProvider);
   final limit =
       ref.watch(srsSettingsProvider).asData?.value.newCharactersPerDay ?? 10;
-  return db.watchKanaNewCount(newCardLimit: limit);
+  return ref.watch(dashboardServiceProvider).kanaNewCount(newCardLimit: limit);
 });
 
 final kanjiNewCountProvider = StreamProvider<int>((ref) {
-  final db = ref.watch(databaseProvider);
   final limit =
       ref.watch(srsSettingsProvider).asData?.value.newCharactersPerDay ?? 10;
-  return db.watchKanjiNewCount(newCardLimit: limit);
+  return ref.watch(dashboardServiceProvider).kanjiNewCount(newCardLimit: limit);
 });
 
 final practiceActiveProvider = NotifierProvider<PracticeActiveNotifier, bool>(
@@ -99,10 +88,11 @@ class PracticeActiveNotifier extends Notifier<bool> {
 }
 
 final vocabularyNewCountProvider = StreamProvider<int>((ref) {
-  final db = ref.watch(databaseProvider);
   final limit =
       ref.watch(srsSettingsProvider).asData?.value.newVocabularyPerDay ?? 10;
-  return db.watchVocabularyNewCount(newCardLimit: limit);
+  return ref
+      .watch(dashboardServiceProvider)
+      .vocabularyNewCount(newCardLimit: limit);
 });
 
 final kanjiSelectedLevelProvider = NotifierProvider<_LevelNotifier, String?>(

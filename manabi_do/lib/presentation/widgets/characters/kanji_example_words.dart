@@ -46,11 +46,7 @@ class _Loading extends StatelessWidget {
   Widget build(BuildContext context) => const Center(
     child: Padding(
       padding: EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-      child: SizedBox(
-        width: 24,
-        height: 24,
-        child: CircularProgressIndicator(strokeWidth: 2),
-      ),
+      child: AppSpinner(),
     ),
   );
 }

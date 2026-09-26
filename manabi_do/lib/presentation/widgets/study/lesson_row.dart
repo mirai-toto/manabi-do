@@ -95,7 +95,10 @@ class LessonRow extends StatelessWidget {
           decoration: BoxDecoration(
             color: t.cardBackground,
             borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-            border: Border.all(color: _borderColor(t)),
+            border: Border.all(
+              color: _borderColor(t),
+              width: AppDimens.borderWidthContainer,
+            ),
           ),
           onTap: onTap,
           child: Padding(

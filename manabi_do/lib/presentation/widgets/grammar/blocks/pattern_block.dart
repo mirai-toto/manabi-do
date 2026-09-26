@@ -18,7 +18,9 @@ class PatternBlock extends StatelessWidget {
     return CardContainer(
       child: Container(
         decoration: BoxDecoration(
-          border: Border(left: BorderSide(color: color, width: 3)),
+          border: Border(
+            left: BorderSide(color: color, width: AppDimens.borderWidthAccent),
+          ),
           color: color.withValues(alpha: 0.06),
           borderRadius: BorderRadius.circular(AppDimens.radiusMd),
         ),
