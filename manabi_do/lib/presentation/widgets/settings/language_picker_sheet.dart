@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../common/sheet_drag_handle.dart';
+import '../common/decoration/sheet_drag_handle.dart';
 
 const languages = [
   (code: 'en', flag: '🇬🇧', name: 'English'),

@@ -31,11 +31,11 @@ _Things you press. One button engine; anything else here needs a reason._
 
 | Widget | Uses | File |
 | --- | --- | --- |
-| `AppButton` | 16 | `common/app_button.dart` |
-| `SpeakButton` | 6 | `common/speak_button.dart` |
-| `AuthButton` | 3 | `common/auth_button.dart` |
+| `AppButton` | 16 | `common/action/app_button.dart` |
+| `SpeakButton` | 6 | `common/action/speak_button.dart` |
+| `AuthButton` | 3 | `common/action/auth_button.dart` |
 | `LessonReadToggle` | 1 | `grammar/lesson_read_toggle.dart` |
-| `AppFilterChip` | **0** | `common/app_filter_chip.dart` |
+| `AppFilterChip` | **0** | `common/action/app_filter_chip.dart` |
 
 ## composite
 
@@ -68,13 +68,13 @@ _Purely visual furniture with no state of its own._
 
 | Widget | Uses | File |
 | --- | --- | --- |
-| `ScrollFade` | 11 | `common/scroll_fade.dart` |
-| `SheetDragHandle` | 3 | `common/sheet_drag_handle.dart` |
+| `ScrollFade` | 11 | `common/decoration/scroll_fade.dart` |
+| `SheetDragHandle` | 3 | `common/decoration/sheet_drag_handle.dart` |
 | `CharacterHeroBox` | 2 | `characters/character_hero_box.dart` |
 | `StrokeOrderAnimator` | 2 | `characters/stroke_animators.dart` |
 | `KanjiHero` | 1 | `characters/kanji_hero.dart` |
-| `LandingHeroPanel` | 1 | `common/landing_hero_panel.dart` |
-| `AppEmoji` | **0** | `common/app_emoji.dart` |
+| `LandingHeroPanel` | 1 | `common/decoration/landing_hero_panel.dart` |
+| `AppEmoji` | **0** | `common/decoration/app_emoji.dart` |
 
 ## exercise-body
 
@@ -138,17 +138,17 @@ _Read-only status: progress, counts, streaks, badges._
 
 | Widget | Uses | File |
 | --- | --- | --- |
-| `PillBadge` | 20 | `common/pill_badge.dart` |
-| `AppSpinner` | 19 | `common/app_spinner.dart` |
+| `PillBadge` | 20 | `common/indicator/pill_badge.dart` |
+| `AppSpinner` | 19 | `common/indicator/app_spinner.dart` |
 | `PracticeProgressRow` | 8 | `exercise/practice_progress_row.dart` |
-| `AppProgressBar` | 3 | `common/progress_bar.dart` |
-| `ProgressRow` | 3 | `common/progress_row.dart` |
-| `DifficultyDots` | 2 | `common/difficulty_dots.dart` |
-| `ReviewProgressInfo` | 2 | `common/review_progress_info.dart` |
+| `AppProgressBar` | 3 | `common/indicator/progress_bar.dart` |
+| `ProgressRow` | 3 | `common/indicator/progress_row.dart` |
+| `DifficultyDots` | 2 | `common/indicator/difficulty_dots.dart` |
+| `ReviewProgressInfo` | 2 | `common/indicator/review_progress_info.dart` |
 | `SrsProgressCard` | 2 | `characters/srs_progress_card.dart` |
 | `StreakPill` | 1 | `study/streak_pill.dart` |
 | `WeekStrip` | 1 | `study/week_strip.dart` |
-| `LevelBadge` | 0 (internal ×1) | `common/jlpt_level_card.dart` |
+| `LevelBadge` | 0 (internal ×1) | `common/list_item/jlpt_level_card.dart` |
 
 ## input
 
@@ -156,14 +156,14 @@ _Things you type into, draw on, or pick from._
 
 | Widget | Uses | File |
 | --- | --- | --- |
-| `SegmentedControl` | 6 | `common/segmented_control.dart` |
-| `SettingsToggle` | 3 | `settings/settings_toggle.dart` |
-| `SearchField` | 2 | `common/search_field.dart` |
+| `SegmentedControl` | 6 | `common/input/segmented_control.dart` |
+| `SettingsToggle` | 4 | `settings/settings_toggle.dart` |
+| `SearchField` | 2 | `common/input/search_field.dart` |
 | `SettingsStepper` | 2 | `settings/settings_stepper.dart` |
-| `AppTextField` | 1 | `common/app_text_field.dart` |
+| `AppTextField` | 1 | `common/input/app_text_field.dart` |
 | `KanjiDrawingCanvas` | 1 | `characters/kanji_drawing_canvas.dart` |
 | `LanguagePickerSheet` | 1 | `settings/language_picker_sheet.dart` |
-| `SegmentedTabBar` | 1 | `common/segmented_tab_bar.dart` |
+| `SegmentedTabBar` | 1 | `common/input/segmented_tab_bar.dart` |
 
 ## label
 
@@ -171,12 +171,12 @@ _Text presentation, including Japanese-specific typography._
 
 | Widget | Uses | File |
 | --- | --- | --- |
-| `SectionLabel` | 18 | `common/section_label.dart` |
-| `JapaneseText` | 7 | `common/japanese_text.dart` |
-| `SectionHeader` | 3 | `common/section_header.dart` |
-| `JapaneseSentence` | 1 | `common/japanese_sentence.dart` |
+| `SectionLabel` | 18 | `common/label/section_label.dart` |
+| `JapaneseText` | 7 | `common/label/japanese_text.dart` |
+| `SectionHeader` | 3 | `common/label/section_header.dart` |
+| `JapaneseSentence` | 1 | `common/label/japanese_sentence.dart` |
 | `SettingsInfo` | 1 | `settings/settings_info.dart` |
-| `FuriganaSegment` | 0 (internal ×8) | `common/japanese_text.dart` |
+| `FuriganaSegment` | 0 (internal ×8) | `common/label/japanese_text.dart` |
 
 ## list-item
 
@@ -186,7 +186,7 @@ _One row or tile inside a list or grid._
 | --- | --- | --- |
 | `SettingsTile` | 5 | `settings/settings_tile.dart` |
 | `DeckRow` | 3 | `study/deck_row.dart` |
-| `JlptLevelCard` | 3 | `common/jlpt_level_card.dart` |
+| `JlptLevelCard` | 3 | `common/list_item/jlpt_level_card.dart` |
 | `CharacterCell` | 2 | `characters/character_cell.dart` |
 | `KanjiReadingChip` | 2 | `characters/kanji_readings_card.dart` |
 | `PracticeModeCard` | 2 | `study/practice_mode_card.dart` |
@@ -215,18 +215,18 @@ _Generic containers other widgets sit inside._
 
 | Widget | Uses | File |
 | --- | --- | --- |
-| `CardContainer` | 10 | `common/card_container.dart` |
+| `CardContainer` | 10 | `common/surface/card_container.dart` |
 | `SettingsCard` | 7 | `settings/settings_card.dart` |
-| `TappableSurface` | 7 | `common/tappable_surface.dart` |
-| `CollapsibleSection` | 1 | `common/collapsible_section.dart` |
+| `TappableSurface` | 7 | `common/surface/tappable_surface.dart` |
+| `CollapsibleSection` | 1 | `common/surface/collapsible_section.dart` |
 
 ## Used only inside their own file
 
 Candidates for a leading underscore, so the barrel stops exporting them.
 
 - `AttributionCard` — `settings/settings_about_section.dart`
-- `FuriganaSegment` — `common/japanese_text.dart`
-- `LevelBadge` — `common/jlpt_level_card.dart`
+- `FuriganaSegment` — `common/label/japanese_text.dart`
+- `LevelBadge` — `common/list_item/jlpt_level_card.dart`
 - `TransformRow` — `grammar/blocks/transform_cards_block.dart`
 
 ## Design-system bypasses
@@ -244,8 +244,8 @@ Candidates for a leading underscore, so the barrel stops exporting them.
 ## Findings
 
 - 4 widgets share the `action` role: `AppButton`, `SpeakButton`, `AuthButton`, `LessonReadToggle`
-- `AppEmoji` is unused (lib/presentation/widgets/common/app_emoji.dart)
-- `AppFilterChip` is unused (lib/presentation/widgets/common/app_filter_chip.dart)
+- `AppFilterChip` is unused (lib/presentation/widgets/common/action/app_filter_chip.dart)
+- `AppEmoji` is unused (lib/presentation/widgets/common/decoration/app_emoji.dart)
 - `LessonReaderCard` is unused (lib/presentation/widgets/exercise/lesson_reader.dart)
 - `ReaderBodyText` is unused (lib/presentation/widgets/exercise/lesson_reader.dart)
 - `ReaderSectionTitle` is unused (lib/presentation/widgets/exercise/lesson_reader.dart)

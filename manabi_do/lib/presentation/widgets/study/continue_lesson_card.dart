@@ -4,7 +4,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/tappable_surface.dart';
+import '../common/surface/tappable_surface.dart';
 
 /// "Keep learning" entry on the home screen: the next grammar lesson to
 /// read, with progress through its chapter.

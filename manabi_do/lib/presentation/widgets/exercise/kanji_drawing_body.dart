@@ -6,7 +6,7 @@ import '../../../core/models/drawing_settings.dart';
 import '../../../core/models/practice_answer.dart';
 import '../../../core/srs/drawing_rating.dart';
 import '../../../core/text/short_meaning.dart';
-import '../common/app_spinner.dart';
+import '../common/indicator/app_spinner.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';

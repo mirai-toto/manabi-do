@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_tokens.dart';
+import '../../../../core/theme/app_tokens.dart';
 import 'app_text_field.dart';
 
 /// How long typing has to settle before the query is reported.

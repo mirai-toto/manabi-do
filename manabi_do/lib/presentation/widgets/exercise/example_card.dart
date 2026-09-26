@@ -6,7 +6,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/grammar/grammar_models.dart';
 import '../../../l10n/l10n.dart';
-import '../common/japanese_sentence.dart';
+import '../common/label/japanese_sentence.dart';
 
 class ExampleCard extends StatelessWidget {
   final GrammarExample example;

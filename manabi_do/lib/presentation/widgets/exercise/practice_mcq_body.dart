@@ -5,7 +5,7 @@ import '../../../core/models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/app_button.dart';
+import '../common/action/app_button.dart';
 import 'flashcard.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';

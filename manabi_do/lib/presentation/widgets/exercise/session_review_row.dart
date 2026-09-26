@@ -7,9 +7,9 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/app_button.dart';
-import '../common/pill_badge.dart';
-import '../common/review_progress_info.dart';
+import '../common/action/app_button.dart';
+import '../common/indicator/pill_badge.dart';
+import '../common/indicator/review_progress_info.dart';
 import 'flashcard.dart';
 
 /// Glosses beyond this many are folded away behind "show all".

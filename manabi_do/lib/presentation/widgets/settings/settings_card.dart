@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common/card_container.dart';
+import '../common/surface/card_container.dart';
 
 class SettingsCard extends StatelessWidget {
   final List<Widget> children;

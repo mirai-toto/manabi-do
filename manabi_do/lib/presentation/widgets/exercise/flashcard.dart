@@ -5,8 +5,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/app_button.dart';
-import '../common/speak_button.dart';
+import '../common/action/app_button.dart';
+import '../common/action/speak_button.dart';
 
 class Flashcard extends StatelessWidget {
   final String prompt;

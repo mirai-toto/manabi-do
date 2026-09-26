@@ -8,7 +8,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/japanese_text.dart';
+import '../common/label/japanese_text.dart';
 import 'flashcard.dart';
 import 'practice_progress_row.dart';
 

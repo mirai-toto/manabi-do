@@ -10,6 +10,11 @@ This file says what each widget is *for*. To see what they *look like*, build th
 
 ## common/
 
+Split by role on disk — `action/`, `input/`, `indicator/`, `label/`, `list_item/`,
+`surface/`, `decoration/` — so the folder answers "how many buttons do we have?"
+without a script. Screens import the barrel and never see the paths.
+`docs/08_widget_inventory.md` lists which widget sits in which role.
+
 ### AuthButton
 
 Full-width landing/onboarding button. Elevation 0, `radiusLg` corners, vertical padding `spaceMd`, bold `body` text. Accepts `backgroundColor`, `foregroundColor`, and an optional `BorderSide` for outlined variants.

@@ -6,9 +6,9 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/pill_badge.dart';
-import '../common/progress_bar.dart';
-import '../common/tappable_surface.dart';
+import '../common/indicator/pill_badge.dart';
+import '../common/indicator/progress_bar.dart';
+import '../common/surface/tappable_surface.dart';
 
 /// One study domain on the home screen: glyph, known/seen progress,
 /// new-today count, and a due badge. Tapping starts the domain's

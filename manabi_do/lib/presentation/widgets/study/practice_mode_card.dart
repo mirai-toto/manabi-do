@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../common/app_spinner.dart';
-import '../common/tappable_surface.dart';
+import '../common/indicator/app_spinner.dart';
+import '../common/surface/tappable_surface.dart';
 
 class PracticeModeCard extends StatelessWidget {
   final String title;

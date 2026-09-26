@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../common/pill_badge.dart';
-import '../common/tappable_surface.dart';
+import '../common/indicator/pill_badge.dart';
+import '../common/surface/tappable_surface.dart';
 
 class ChapterCard extends StatelessWidget {
   final String chapterLabel;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/providers/tts_provider.dart';
-import '../../../l10n/l10n.dart';
+import '../../../../core/providers/tts_provider.dart';
+import '../../../../l10n/l10n.dart';
 
 class SpeakButton extends ConsumerWidget {
   final String text;

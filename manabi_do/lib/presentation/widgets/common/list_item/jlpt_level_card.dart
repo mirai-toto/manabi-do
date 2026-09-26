@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
-import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
-import '../../../l10n/level_label.dart';
-import 'difficulty_dots.dart';
-import 'tappable_surface.dart';
+import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_tokens.dart';
+import '../../../../core/theme/jlpt_level.dart';
+import '../../../../l10n/level_label.dart';
+import '../indicator/difficulty_dots.dart';
+import '../surface/tappable_surface.dart';
 
 class JlptLevelCard extends StatelessWidget {
   final String code;

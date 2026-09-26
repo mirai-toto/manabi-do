@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card;
 
-import '../../../core/srs/srs_level.dart';
-import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
-import '../../../core/theme/app_tokens.dart';
-import '../../../l10n/l10n.dart';
+import '../../../../core/srs/srs_level.dart';
+import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_tokens.dart';
+import '../../../../l10n/l10n.dart';
 import 'pill_badge.dart';
 
 class ReviewProgressInfo extends StatelessWidget {

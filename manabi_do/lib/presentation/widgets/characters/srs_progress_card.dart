@@ -3,8 +3,8 @@ import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../common/app_spinner.dart';
-import '../common/review_progress_info.dart';
+import '../common/indicator/app_spinner.dart';
+import '../common/indicator/review_progress_info.dart';
 
 class SrsProgressCard extends StatelessWidget {
   final bool isLoaded;

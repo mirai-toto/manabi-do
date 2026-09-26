@@ -6,7 +6,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/grammar/grammar_models.dart';
 import '../../../l10n/l10n.dart';
-import '../common/app_button.dart';
+import '../common/action/app_button.dart';
 import 'example_card.dart';
 import 'flashcard.dart';
 import 'practice_progress_row.dart';

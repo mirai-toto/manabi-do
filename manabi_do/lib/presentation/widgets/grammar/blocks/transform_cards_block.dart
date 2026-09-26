@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
-import '../../common/card_container.dart';
-import '../../common/pill_badge.dart';
+import '../../common/surface/card_container.dart';
+import '../../common/indicator/pill_badge.dart';
 
 // ── Data models ──────────────────────────────────────────────────────────────
 

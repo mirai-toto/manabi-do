@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../common/progress_bar.dart';
-import '../common/tappable_surface.dart';
+import '../common/indicator/progress_bar.dart';
+import '../common/surface/tappable_surface.dart';
 
 class StudyGroupCard extends StatelessWidget {
   final String title;
