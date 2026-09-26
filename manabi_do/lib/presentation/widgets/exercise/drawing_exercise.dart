@@ -24,6 +24,7 @@ class DrawingExercise extends StatefulWidget {
   final Color color;
   final Card? card;
   final bool fourPointGrading;
+  final Color? gradeAccent;
 
   /// Move on once the attempt is done, deriving the rating from it, instead
   /// of stopping for a self-assessment. The caller decides which setting feeds
@@ -58,6 +59,7 @@ class DrawingExercise extends StatefulWidget {
     this.kunReading = '',
     this.card,
     required this.fourPointGrading,
+    this.gradeAccent,
     this.onRate,
     this.onAutoAdvance,
     this.question,
@@ -225,6 +227,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
             card: widget.card,
             question: widget.question,
             fourPointGrading: widget.fourPointGrading,
+            gradeAccent: widget.gradeAccent,
             onRate: widget.onRate!,
           ),
           const SizedBox(height: AppDimens.spaceSm),

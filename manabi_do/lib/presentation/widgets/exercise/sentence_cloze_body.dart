@@ -19,6 +19,7 @@ class SentenceClozeBody extends StatefulWidget {
   final int correctIndex;
   final Card? card;
   final bool fourPointGrading;
+  final Color? gradeAccent;
   final int index;
   final int total;
   final Color color;
@@ -47,6 +48,7 @@ class SentenceClozeBody extends StatefulWidget {
     required this.showSentenceFurigana,
     required this.showChoiceFurigana,
     required this.fourPointGrading,
+    this.gradeAccent,
     this.translation,
     this.targetReading,
   });
@@ -152,6 +154,7 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
             FlashcardActions(
               card: widget.card,
               fourPointGrading: widget.fourPointGrading,
+              gradeAccent: widget.gradeAccent,
               question: l.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),

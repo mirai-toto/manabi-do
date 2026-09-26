@@ -18,6 +18,7 @@ class PracticeMcqBody extends StatefulWidget {
   final int correctIndex;
   final Card? card;
   final bool fourPointGrading;
+  final Color? gradeAccent;
   final int index;
   final int total;
   final Color color;
@@ -44,6 +45,7 @@ class PracticeMcqBody extends StatefulWidget {
     required this.autoAdvance,
     required this.showPromptFurigana,
     required this.fourPointGrading,
+    this.gradeAccent,
     this.japanesePrompt,
     this.japaneseReading,
     this.onDetailTap,
@@ -130,6 +132,7 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
             FlashcardActions(
               card: widget.card,
               fourPointGrading: widget.fourPointGrading,
+              gradeAccent: widget.gradeAccent,
               question: context.l10n.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),

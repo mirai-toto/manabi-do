@@ -33,9 +33,15 @@ class PracticeBodySettings {
   /// False outside a review, where those per-exercise ones apply instead.
   final bool autoAdvance;
 
-  /// Offer the full four-point scale when the user grades. Straight from the
-  /// user's setting: unlike [autoAdvance] it applies in free practice too.
+  /// Offer the full four-point scale when the user grades. The setting, but
+  /// only where [gradesRecorded]: free practice paints grading in the level
+  /// colour, and one colour cannot express a four-step scale.
   final bool fourPointGrading;
+
+  /// False in free practice, where a grade moves the session score and
+  /// nothing else. Grading is themed to the level there rather than the
+  /// rating ramp, which says "this is not being recorded" without a label.
+  final bool gradesRecorded;
 
   const PracticeBodySettings({
     required this.mcq,
@@ -44,6 +50,7 @@ class PracticeBodySettings {
     required this.drawing,
     required this.autoAdvance,
     required this.fourPointGrading,
+    required this.gradesRecorded,
   });
 }
 
@@ -110,6 +117,7 @@ class PracticeQuestionBody extends StatelessWidget {
         locale: q.locale,
         questionOverride: q.questionOverride,
         fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         card: card,
         index: index,
         total: total,
@@ -126,6 +134,7 @@ class PracticeQuestionBody extends StatelessWidget {
         correctIndex: q.correctIndex,
         compactGrid: q.compactGrid,
         fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         card: card,
         index: index,
         total: total,
@@ -139,6 +148,7 @@ class PracticeQuestionBody extends StatelessWidget {
         kanji: q.kanji,
         meaning: q.meaning,
         fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         card: card,
         index: index,
         total: total,
@@ -159,6 +169,7 @@ class PracticeQuestionBody extends StatelessWidget {
         options: q.options,
         correctIndex: q.correctIndex,
         fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         card: card,
         index: index,
         total: total,
@@ -178,6 +189,7 @@ class PracticeQuestionBody extends StatelessWidget {
         color: color,
         autoAdvance: _autoAdvanceMcq,
         fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         onAnswer: onAnswer,
       ),
       final GrammarBuilderQuestion q => GrammarBuilderBody(
@@ -188,6 +200,7 @@ class PracticeQuestionBody extends StatelessWidget {
         color: color,
         autoAdvance: _autoAdvanceMcq,
         fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         onAnswer: onAnswer,
       ),
       final GrammarErrorQuestion q => GrammarErrorDetectionBody(

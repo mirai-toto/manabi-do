@@ -103,10 +103,10 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
       drawing: ref.watch(drawingSettingsProvider),
       // Only a session that writes its results back has a grade to decide.
       autoAdvance: widget.persistSrs && srs.autoAdvance,
-      // The scale, though, is the user's choice everywhere. Free practice
-      // discards the grade but still previews the interval each one would
-      // schedule, so the finer scale is informative either way.
-      fourPointGrading: srs.detailedGrading,
+      // Free practice always asks the short way: its grading is painted in
+      // the level colour, and one colour cannot carry a four-step scale.
+      fourPointGrading: widget.persistSrs && srs.detailedGrading,
+      gradesRecorded: widget.persistSrs,
     );
 
     return PopScope(

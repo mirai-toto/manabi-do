@@ -19,6 +19,7 @@ class KanjiDrawingBody extends ConsumerWidget {
   final Kanji kanji;
   final Card? card;
   final bool fourPointGrading;
+  final Color? gradeAccent;
   final DrawingSettings drawingSettings;
 
   /// Whether to advance on a correct answer. Which switch decides that is the
@@ -43,6 +44,7 @@ class KanjiDrawingBody extends ConsumerWidget {
     required this.drawingSettings,
     this.meaning,
     required this.fourPointGrading,
+    this.gradeAccent,
     this.autoAdvance = false,
     this.onDetailTap,
   });
@@ -72,6 +74,7 @@ class KanjiDrawingBody extends ConsumerWidget {
                 color: color,
                 card: card,
                 fourPointGrading: fourPointGrading,
+                gradeAccent: gradeAccent,
                 autoAdvance: autoAdvance,
                 onRate: onAnswer,
                 onAutoAdvance: ({required hintsUsed, required mistakes}) =>

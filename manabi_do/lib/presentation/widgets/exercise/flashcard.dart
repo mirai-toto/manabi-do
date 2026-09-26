@@ -148,6 +148,12 @@ bool _looksJapanese(String text) {
 class FlashcardActions extends StatelessWidget {
   final Card? card;
   final bool fourPointGrading;
+
+  /// Paint every grade this colour instead of reading the rating ramp.
+  /// Free practice passes the level's colour: it keeps the session of a
+  /// piece, and a grade that is not the ramp's colour is a quiet reminder
+  /// that nothing is being recorded. Null uses the ramp.
+  final Color? gradeAccent;
   final String? question;
   final void Function(Rating) onRate;
 
@@ -156,6 +162,7 @@ class FlashcardActions extends StatelessWidget {
     required this.card,
     required this.onRate,
     required this.fourPointGrading,
+    this.gradeAccent,
     this.question,
   });
 
@@ -188,10 +195,14 @@ class FlashcardActions extends StatelessWidget {
           btn(
             l.flashcardNotYet,
             Rating.again,
-            twoPointRatingAccent(Rating.again),
+            gradeAccent ?? twoPointRatingAccent(Rating.again),
           ),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.flashcardGotIt, Rating.good, twoPointRatingAccent(Rating.good)),
+          btn(
+            l.flashcardGotIt,
+            Rating.good,
+            gradeAccent ?? twoPointRatingAccent(Rating.good),
+          ),
         ],
       );
     }

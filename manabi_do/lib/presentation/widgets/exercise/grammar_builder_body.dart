@@ -28,6 +28,7 @@ class GrammarBuilderBody extends StatefulWidget {
   final bool autoAdvance;
   final AnswerCallback onAnswer;
   final bool fourPointGrading;
+  final Color? gradeAccent;
 
   const GrammarBuilderBody({
     super.key,
@@ -39,6 +40,7 @@ class GrammarBuilderBody extends StatefulWidget {
     required this.onAnswer,
     this.autoAdvance = false,
     required this.fourPointGrading,
+    this.gradeAccent,
   });
 
   @override
@@ -167,6 +169,7 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
             FlashcardActions(
               card: null,
               fourPointGrading: widget.fourPointGrading,
+              gradeAccent: widget.gradeAccent,
               question: l.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),
