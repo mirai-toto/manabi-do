@@ -25,11 +25,16 @@ class SessionReviewScreen extends StatefulWidget {
   /// there is no SRS row to rewrite and no score to move.
   final void Function(int index, Rating rating)? onRegrade;
 
+  /// The scale re-grading offers. Follows the user's setting like the
+  /// exercise did, so you are not asked for four grades having given two.
+  final bool fourPointGrading;
+
   const SessionReviewScreen({
     super.key,
     required this.answers,
     required this.total,
     this.onRegrade,
+    this.fourPointGrading = true,
   });
 
   @override
@@ -127,6 +132,7 @@ class _SessionReviewScreenState extends State<SessionReviewScreen> {
                   card: a.card,
                   isExpanded: _expandedIndex == i,
                   onToggle: () => _toggle(i),
+                  fourPointGrading: widget.fourPointGrading,
                   onRegrade: widget.onRegrade == null
                       ? null
                       : (rating) => widget.onRegrade!(i, rating),

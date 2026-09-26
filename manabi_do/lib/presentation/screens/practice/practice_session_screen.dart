@@ -151,6 +151,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
                         return SessionReviewScreen(
                           answers: s.answers,
                           total: s.queue?.length ?? s.answers.length,
+                          fourPointGrading: bodySettings.fourPointGrading,
                           onRegrade: (i, rating) => ref
                               .read(practiceSessionProvider.notifier)
                               .regrade(

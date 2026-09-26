@@ -27,8 +27,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color successContainer;
   final Color warning;
   final Color warningContainer;
-  final Color info;
-  final Color infoContainer;
 
   // Drawing
   final Color hintStroke;
@@ -58,8 +56,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.successContainer,
     required this.warning,
     required this.warningContainer,
-    required this.info,
-    required this.infoContainer,
     required this.hintStroke,
     required this.onyomi,
     required this.kunyomi,
@@ -89,8 +85,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     // Darkened from #1E88E5, which failed WCAG AA at 2.96:1 against its own
     // container. The other three semantic foregrounds are dark and land at
     // 5.35-5.55; this sits with them at 5.45 rather than staying a mid-tone.
-    info: Color(0xFF175AAD),
-    infoContainer: Color(0xFFD6E9FB),
     hintStroke: Color(0xFFFF8F00),
     onyomi: Color(0xFF1565C0),
     kunyomi: Color(0xFFC62828),
@@ -121,8 +115,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: Color(0xFF0A3D22),
     warning: Color(0xFFFFBA60),
     warningContainer: Color(0xFF3E2900),
-    info: Color(0xFF90CAF9),
-    infoContainer: Color(0xFF13344F),
     hintStroke: Color(0xFFFFB74D),
     onyomi: Color(0xFF90CAF9),
     kunyomi: Color(0xFFEF9A9A),
@@ -150,8 +142,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? successContainer,
     Color? warning,
     Color? warningContainer,
-    Color? info,
-    Color? infoContainer,
     Color? hintStroke,
     Color? onyomi,
     Color? kunyomi,
@@ -176,8 +166,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: successContainer ?? this.successContainer,
     warning: warning ?? this.warning,
     warningContainer: warningContainer ?? this.warningContainer,
-    info: info ?? this.info,
-    infoContainer: infoContainer ?? this.infoContainer,
     hintStroke: hintStroke ?? this.hintStroke,
     onyomi: onyomi ?? this.onyomi,
     kunyomi: kunyomi ?? this.kunyomi,
@@ -230,8 +218,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
         t,
       )!,
       warning: Color.lerp(warning, other.warning, t)!,
-      info: Color.lerp(info, other.info, t)!,
-      infoContainer: Color.lerp(infoContainer, other.infoContainer, t)!,
       warningContainer: Color.lerp(
         warningContainer,
         other.warningContainer,

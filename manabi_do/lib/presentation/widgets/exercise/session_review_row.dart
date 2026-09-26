@@ -41,6 +41,9 @@ class SessionReviewRow extends StatefulWidget {
   final bool isExpanded;
   final VoidCallback onToggle;
 
+  /// The scale re-grading offers, matching what the exercise asked for.
+  final bool fourPointGrading;
+
   /// Null where a grade cannot be changed — free practice writes nothing back,
   /// so the panel shows what happened without offering to re-score it.
   final void Function(Rating)? onRegrade;
@@ -56,6 +59,7 @@ class SessionReviewRow extends StatefulWidget {
     required this.card,
     required this.isExpanded,
     required this.onToggle,
+    required this.fourPointGrading,
     this.onRegrade,
     this.given,
     this.mistakes,
@@ -368,9 +372,11 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
       ? () => setState(() => _showAllGlosses = !_showAllGlosses)
       : null;
 
-  /// The grades on offer, mirroring what the exercise itself asked for: an
-  /// exercise that marked its own answer gets correct and incorrect, one the
-  /// user judged keeps the full scale.
+  /// The grades on offer, mirroring what the exercise itself asked for.
+  ///
+  /// Driven by the user's grading-precision setting, not by who marked the
+  /// answer: grading with two buttons and then being offered four to change
+  /// it read as a different scale for the same decision.
   List<Widget> _buildGrades(BuildContext context) {
     final l = context.l10n;
     final brightness = Theme.of(context).brightness;
@@ -397,7 +403,7 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
       );
     }
 
-    if (!widget.summary.selfAssessed) {
+    if (!widget.fourPointGrading) {
       return [
         Row(
           children: [
