@@ -17,6 +17,9 @@ class KanaPracticeScreen extends StatelessWidget {
       color: levelColor('kana'),
       loadQueue: (ref) =>
           ref.read(reviewQueueServiceProvider).kanaPractice(type),
+      // Reached from the kana tab's Free Practice button, so it is practice:
+      // only daily training moves the scheduler.
+      persistSrs: false,
     );
   }
 }
