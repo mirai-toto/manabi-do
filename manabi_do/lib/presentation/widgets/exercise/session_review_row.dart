@@ -375,9 +375,8 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
     final l = context.l10n;
     final brightness = Theme.of(context).brightness;
 
-    Widget btn(String label, Rating rating) {
+    Widget btn(String label, Rating rating, Color accent) {
       final isGiven = widget.rating == rating;
-      final accent = ratingAccent(rating);
       final fg = onAccentContainer(accent, brightness);
       return Expanded(
         child: AppButton(
@@ -402,9 +401,17 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
       return [
         Row(
           children: [
-            btn(l.ratingIncorrect, Rating.again),
+            btn(
+              l.ratingIncorrect,
+              Rating.again,
+              twoPointRatingAccent(Rating.again),
+            ),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingCorrect, Rating.good),
+            btn(
+              l.ratingCorrect,
+              Rating.good,
+              twoPointRatingAccent(Rating.good),
+            ),
           ],
         ),
       ];
@@ -413,17 +420,17 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
     return [
       Row(
         children: [
-          btn(l.ratingAgain, Rating.again),
+          btn(l.ratingAgain, Rating.again, ratingAccent(Rating.again)),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.ratingHard, Rating.hard),
+          btn(l.ratingHard, Rating.hard, ratingAccent(Rating.hard)),
         ],
       ),
       const SizedBox(height: AppDimens.spaceSm),
       Row(
         children: [
-          btn(l.ratingGood, Rating.good),
+          btn(l.ratingGood, Rating.good, ratingAccent(Rating.good)),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.ratingEasy, Rating.easy),
+          btn(l.ratingEasy, Rating.easy, ratingAccent(Rating.easy)),
         ],
       ),
     ];

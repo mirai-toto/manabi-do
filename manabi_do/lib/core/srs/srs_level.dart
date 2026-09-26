@@ -48,3 +48,11 @@ Color ratingAccent(Rating rating) => switch (rating) {
   Rating.good => levelColor('N4'),
   Rating.easy => levelColor('N5'),
 };
+
+/// The same ramp for the two-point scale, which has no middle: "not yet" is the
+/// worst outcome and "got it" the best, so they take the ramp's ends.
+///
+/// Reading them through [ratingAccent] would give `good` its mid-ramp sage,
+/// which looks lukewarm for what is actually a clean pass.
+Color twoPointRatingAccent(Rating rating) =>
+    rating == Rating.again ? levelColor('N1') : levelColor('N5');

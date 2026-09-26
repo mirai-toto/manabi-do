@@ -167,8 +167,7 @@ class FlashcardActions extends StatelessWidget {
 
     // Grades take their colour from the JLPT ramp via `ratingAccent`, so the
     // scale reads red-to-green like every other difficulty in the app.
-    Widget btn(String label, Rating rating) {
-      final accent = ratingAccent(rating);
+    Widget btn(String label, Rating rating, Color accent) {
       return Expanded(
         child: AppButton(
           label: label,
@@ -186,9 +185,13 @@ class FlashcardActions extends StatelessWidget {
     if (!fourPointGrading) {
       return Row(
         children: [
-          btn(l.flashcardNotYet, Rating.again),
+          btn(
+            l.flashcardNotYet,
+            Rating.again,
+            twoPointRatingAccent(Rating.again),
+          ),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.flashcardGotIt, Rating.good),
+          btn(l.flashcardGotIt, Rating.good, twoPointRatingAccent(Rating.good)),
         ],
       );
     }
@@ -206,17 +209,17 @@ class FlashcardActions extends StatelessWidget {
         ],
         Row(
           children: [
-            btn(l.ratingAgain, Rating.again),
+            btn(l.ratingAgain, Rating.again, ratingAccent(Rating.again)),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingHard, Rating.hard),
+            btn(l.ratingHard, Rating.hard, ratingAccent(Rating.hard)),
           ],
         ),
         const SizedBox(height: AppDimens.spaceSm),
         Row(
           children: [
-            btn(l.ratingGood, Rating.good),
+            btn(l.ratingGood, Rating.good, ratingAccent(Rating.good)),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingEasy, Rating.easy),
+            btn(l.ratingEasy, Rating.easy, ratingAccent(Rating.easy)),
           ],
         ),
       ],
