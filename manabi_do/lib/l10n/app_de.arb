@@ -393,6 +393,8 @@
   "showExampleSubtitle": "Einen Beispielsatz auf Karteikarten anzeigen",
 
   "speakPronunciation": "Aussprache abspielen",
+  "settingsDetailedGrading": "Detaillierte Bewertung",
+  "settingsDetailedGradingSubtitle": "Mit Nochmal / Schwer / Gut / Leicht bewerten statt nur Noch nicht / Gewusst",
   "replayStrokeOrder": "Strichfolge erneut abspielen",
   "increaseSetting": "{label} erhöhen",
   "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },

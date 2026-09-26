@@ -146,7 +146,7 @@ bool _looksJapanese(String text) {
 
 class FlashcardActions extends StatelessWidget {
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
   final String? question;
   final void Function(Rating) onRate;
 
@@ -154,7 +154,7 @@ class FlashcardActions extends StatelessWidget {
     super.key,
     required this.card,
     required this.onRate,
-    this.isFreeMode = false,
+    this.fourPointGrading = true,
     this.question,
   });
 
@@ -176,7 +176,7 @@ class FlashcardActions extends StatelessWidget {
       ),
     );
 
-    if (isFreeMode) {
+    if (!fourPointGrading) {
       return Row(
         children: [
           btn(l.flashcardNotYet, Rating.again, t.errorContainer, t.error),

@@ -172,6 +172,8 @@ class SettingsScreen extends ConsumerWidget {
               newVocabularyPerDay: srs.newVocabularyPerDay,
               onNewCharactersChanged: srsNotifier.setNewCharactersPerDay,
               onNewVocabularyChanged: srsNotifier.setNewVocabularyPerDay,
+              detailedGrading: srs.detailedGrading,
+              onDetailedGradingChanged: srsNotifier.setDetailedGrading,
             ),
 
             const SizedBox(height: AppDimens.spaceLg),

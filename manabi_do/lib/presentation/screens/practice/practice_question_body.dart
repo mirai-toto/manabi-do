@@ -33,12 +33,17 @@ class PracticeBodySettings {
   /// False outside a review, where those per-exercise ones apply instead.
   final bool autoAdvance;
 
+  /// Offer the full four-point scale when the user grades. False where the
+  /// grade is discarded, whatever the setting says.
+  final bool fourPointGrading;
+
   const PracticeBodySettings({
     required this.mcq,
     required this.flashcard,
     required this.sentence,
     required this.drawing,
     required this.autoAdvance,
+    required this.fourPointGrading,
   });
 }
 
@@ -104,7 +109,7 @@ class PracticeQuestionBody extends StatelessWidget {
         example: q.example,
         locale: q.locale,
         questionOverride: q.questionOverride,
-        isFreeMode: q.isFreeMode,
+        fourPointGrading: settings.fourPointGrading,
         card: card,
         index: index,
         total: total,
@@ -120,7 +125,7 @@ class PracticeQuestionBody extends StatelessWidget {
         options: q.options,
         correctIndex: q.correctIndex,
         compactGrid: q.compactGrid,
-        isFreeMode: q.isFreeMode,
+        fourPointGrading: settings.fourPointGrading,
         card: card,
         index: index,
         total: total,
@@ -133,7 +138,7 @@ class PracticeQuestionBody extends StatelessWidget {
       final DrawingQuestion q => KanjiDrawingBody(
         kanji: q.kanji,
         meaning: q.meaning,
-        isFreeMode: q.isFreeMode,
+        fourPointGrading: settings.fourPointGrading,
         card: card,
         index: index,
         total: total,
@@ -153,7 +158,7 @@ class PracticeQuestionBody extends StatelessWidget {
         targetReading: q.targetReading,
         options: q.options,
         correctIndex: q.correctIndex,
-        isFreeMode: q.isFreeMode,
+        fourPointGrading: settings.fourPointGrading,
         card: card,
         index: index,
         total: total,

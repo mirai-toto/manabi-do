@@ -920,6 +920,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get speakPronunciation => 'Écouter la prononciation';
 
   @override
+  String get settingsDetailedGrading => 'Notation détaillée';
+
+  @override
+  String get settingsDetailedGradingSubtitle =>
+      'Noter avec À revoir / Difficile / Correct / Facile au lieu de Pas encore / Acquis';
+
+  @override
   String get replayStrokeOrder => 'Rejouer l\'ordre des traits';
 
   @override

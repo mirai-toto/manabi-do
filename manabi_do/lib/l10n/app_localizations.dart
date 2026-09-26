@@ -1726,6 +1726,18 @@ abstract class AppLocalizations {
   /// **'Play pronunciation'**
   String get speakPronunciation;
 
+  /// No description provided for @settingsDetailedGrading.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed grading'**
+  String get settingsDetailedGrading;
+
+  /// No description provided for @settingsDetailedGradingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade with Again / Hard / Good / Easy instead of just Not yet / Got it'**
+  String get settingsDetailedGradingSubtitle;
+
   /// No description provided for @replayStrokeOrder.
   ///
   /// In en, this message translates to:

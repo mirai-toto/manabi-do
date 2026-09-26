@@ -18,7 +18,7 @@ import 'practice_progress_row.dart';
 class KanjiDrawingBody extends ConsumerWidget {
   final Kanji kanji;
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
   final DrawingSettings drawingSettings;
 
   /// Whether to advance on a correct answer. Which switch decides that is the
@@ -42,7 +42,7 @@ class KanjiDrawingBody extends ConsumerWidget {
     required this.onAnswer,
     required this.drawingSettings,
     this.meaning,
-    this.isFreeMode = false,
+    this.fourPointGrading = true,
     this.autoAdvance = false,
     this.onDetailTap,
   });
@@ -71,7 +71,7 @@ class KanjiDrawingBody extends ConsumerWidget {
                 kunReading: kanji.kunReading,
                 color: color,
                 card: card,
-                isFreeMode: isFreeMode,
+                fourPointGrading: fourPointGrading,
                 autoAdvance: autoAdvance,
                 onRate: onAnswer,
                 onAutoAdvance: ({required hintsUsed, required mistakes}) =>

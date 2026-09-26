@@ -164,7 +164,7 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: null,
-              isFreeMode: true,
+              fourPointGrading: false,
               question: l.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),

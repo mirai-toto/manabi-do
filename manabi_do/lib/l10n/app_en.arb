@@ -415,6 +415,8 @@
   "showExampleSubtitle": "Display an example sentence on flashcards",
 
   "speakPronunciation": "Play pronunciation",
+  "settingsDetailedGrading": "Detailed grading",
+  "settingsDetailedGradingSubtitle": "Grade with Again / Hard / Good / Easy instead of just Not yet / Got it",
   "replayStrokeOrder": "Replay stroke order",
   "increaseSetting": "Increase {label}",
   "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },

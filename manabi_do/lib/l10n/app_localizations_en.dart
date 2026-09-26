@@ -913,6 +913,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get speakPronunciation => 'Play pronunciation';
 
   @override
+  String get settingsDetailedGrading => 'Detailed grading';
+
+  @override
+  String get settingsDetailedGradingSubtitle =>
+      'Grade with Again / Hard / Good / Easy instead of just Not yet / Got it';
+
+  @override
   String get replayStrokeOrder => 'Replay stroke order';
 
   @override

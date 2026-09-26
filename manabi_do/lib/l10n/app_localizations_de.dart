@@ -918,6 +918,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get speakPronunciation => 'Aussprache abspielen';
 
   @override
+  String get settingsDetailedGrading => 'Detaillierte Bewertung';
+
+  @override
+  String get settingsDetailedGradingSubtitle =>
+      'Mit Nochmal / Schwer / Gut / Leicht bewerten statt nur Noch nicht / Gewusst';
+
+  @override
   String get replayStrokeOrder => 'Strichfolge erneut abspielen';
 
   @override

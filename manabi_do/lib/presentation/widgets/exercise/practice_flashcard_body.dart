@@ -17,7 +17,7 @@ class PracticeFlashcardBody extends StatefulWidget {
   final String answer;
   final bool isReversed;
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
   final int index;
   final int total;
   final Color color;
@@ -38,7 +38,7 @@ class PracticeFlashcardBody extends StatefulWidget {
     required this.color,
     required this.onAnswer,
     required this.showExample,
-    this.isFreeMode = false,
+    this.fourPointGrading = true,
     this.label,
     this.isReversed = false,
     this.onDetailTap,
@@ -130,7 +130,7 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: widget.card,
-              isFreeMode: widget.isFreeMode,
+              fourPointGrading: widget.fourPointGrading,
               question: l.selfAssessQuestion,
               onRate: widget.onAnswer,
             ),

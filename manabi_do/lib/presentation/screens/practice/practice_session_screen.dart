@@ -101,8 +101,10 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
       flashcard: ref.watch(flashcardSettingsProvider),
       sentence: ref.watch(sentenceSettingsProvider),
       drawing: ref.watch(drawingSettingsProvider),
-      // Only a session that writes its results back has a grade to decide.
+      // Only a session that writes its results back has a grade to decide,
+      // so neither switch applies to free practice.
       autoAdvance: widget.persistSrs && srs.autoAdvance,
+      fourPointGrading: widget.persistSrs && srs.detailedGrading,
     );
 
     return PopScope(

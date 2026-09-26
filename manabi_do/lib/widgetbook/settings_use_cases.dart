@@ -169,6 +169,8 @@ Widget buildPracticeSettingsCard(BuildContext context) {
       newVocabularyPerDay: 10,
       onNewCharactersChanged: (_) {},
       onNewVocabularyChanged: (_) {},
+      detailedGrading: true,
+      onDetailedGradingChanged: (_) {},
     ),
   );
 }
@@ -186,6 +188,8 @@ Widget buildPracticeSettingsCardAtBounds(BuildContext context) {
       newVocabularyPerDay: 50,
       onNewCharactersChanged: (_) {},
       onNewVocabularyChanged: (_) {},
+      detailedGrading: false,
+      onDetailedGradingChanged: (_) {},
     ),
   );
 }

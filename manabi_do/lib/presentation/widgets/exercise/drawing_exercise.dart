@@ -23,7 +23,7 @@ class DrawingExercise extends StatefulWidget {
   final String kunReading;
   final Color color;
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
 
   /// Move on once the attempt is done, deriving the rating from it, instead
   /// of stopping for a self-assessment. The caller decides which setting feeds
@@ -57,7 +57,7 @@ class DrawingExercise extends StatefulWidget {
     this.onReading = '',
     this.kunReading = '',
     this.card,
-    this.isFreeMode = false,
+    this.fourPointGrading = true,
     this.onRate,
     this.onAutoAdvance,
     this.question,

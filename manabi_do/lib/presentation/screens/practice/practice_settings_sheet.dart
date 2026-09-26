@@ -139,6 +139,16 @@ class PracticeSettingsSheet extends ConsumerWidget {
                 onChanged: (v) =>
                     ref.read(srsSettingsProvider.notifier).setAutoAdvance(v),
               ),
+              // Only offered where the grade is kept: free practice discards it,
+              // so there is no precision to choose.
+              _SwitchRow(
+                label: l.settingsDetailedGrading,
+                subtitle: l.settingsDetailedGradingSubtitle,
+                value: srs.detailedGrading,
+                onChanged: (v) => ref
+                    .read(srsSettingsProvider.notifier)
+                    .setDetailedGrading(v),
+              ),
               const SizedBox(height: AppDimens.spaceMd),
             ],
 

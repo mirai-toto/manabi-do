@@ -116,7 +116,7 @@ class _GrammarClozeBodyState extends State<GrammarClozeBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: null,
-              isFreeMode: true,
+              fourPointGrading: false,
               question: context.l10n.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),

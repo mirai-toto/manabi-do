@@ -18,7 +18,7 @@ class SentenceClozeBody extends StatefulWidget {
   final List<McqOption> options;
   final int correctIndex;
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
   final int index;
   final int total;
   final Color color;
@@ -46,7 +46,7 @@ class SentenceClozeBody extends StatefulWidget {
     required this.translationMode,
     required this.showSentenceFurigana,
     required this.showChoiceFurigana,
-    this.isFreeMode = false,
+    this.fourPointGrading = true,
     this.translation,
     this.targetReading,
   });
@@ -151,7 +151,7 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: widget.card,
-              isFreeMode: widget.isFreeMode,
+              fourPointGrading: widget.fourPointGrading,
               question: l.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),
