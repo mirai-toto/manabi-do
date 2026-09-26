@@ -190,8 +190,14 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
                 PillBadge(
                   label: _ratingLabel(widget.rating, l),
                   icon: _isCorrect ? Icons.check_rounded : Icons.close_rounded,
-                  color: _ratingColor(widget.rating, t),
-                  background: _ratingBackground(widget.rating, t),
+                  color: _ratingColor(
+                    widget.rating,
+                    Theme.of(context).brightness,
+                  ),
+                  background: _ratingBackground(
+                    widget.rating,
+                    Theme.of(context).brightness,
+                  ),
                 ),
                 AnimatedRotation(
                   turns: widget.isExpanded ? 0.25 : 0,
@@ -366,16 +372,18 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
   /// exercise that marked its own answer gets correct and incorrect, one the
   /// user judged keeps the full scale.
   List<Widget> _buildGrades(BuildContext context) {
-    final t = context.tokens;
     final l = context.l10n;
+    final brightness = Theme.of(context).brightness;
 
-    Widget btn(String label, Rating rating, Color bg, Color fg) {
+    Widget btn(String label, Rating rating) {
       final isGiven = widget.rating == rating;
+      final accent = ratingAccent(rating);
+      final fg = onAccentContainer(accent, brightness);
       return Expanded(
         child: AppButton(
           label: label,
           subtitle: srsIntervalPreview(widget.card, rating),
-          backgroundColor: bg,
+          backgroundColor: accentContainer(accent, brightness),
           foregroundColor: fg,
           radius: AppDimens.radiusLg,
           padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
@@ -394,9 +402,9 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
       return [
         Row(
           children: [
-            btn(l.ratingIncorrect, Rating.again, t.errorContainer, t.error),
+            btn(l.ratingIncorrect, Rating.again),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingCorrect, Rating.good, t.successContainer, t.success),
+            btn(l.ratingCorrect, Rating.good),
           ],
         ),
       ];
@@ -405,17 +413,17 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
     return [
       Row(
         children: [
-          btn(l.ratingAgain, Rating.again, t.errorContainer, t.error),
+          btn(l.ratingAgain, Rating.again),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.ratingHard, Rating.hard, t.warningContainer, t.warning),
+          btn(l.ratingHard, Rating.hard),
         ],
       ),
       const SizedBox(height: AppDimens.spaceSm),
       Row(
         children: [
-          btn(l.ratingGood, Rating.good, t.successContainer, t.success),
+          btn(l.ratingGood, Rating.good),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.ratingEasy, Rating.easy, t.infoContainer, t.info),
+          btn(l.ratingEasy, Rating.easy),
         ],
       ),
     ];
@@ -439,19 +447,11 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
     Rating.easy => l.ratingEasy,
   };
 
-  Color _ratingColor(Rating rating, AppTokens t) => switch (rating) {
-    Rating.again => t.error,
-    Rating.hard => t.warning,
-    Rating.good => t.success,
-    Rating.easy => t.info,
-  };
+  Color _ratingColor(Rating rating, Brightness b) =>
+      onAccentContainer(ratingAccent(rating), b);
 
-  Color _ratingBackground(Rating rating, AppTokens t) => switch (rating) {
-    Rating.again => t.errorContainer,
-    Rating.hard => t.warningContainer,
-    Rating.good => t.successContainer,
-    Rating.easy => t.infoContainer,
-  };
+  Color _ratingBackground(Rating rating, Brightness b) =>
+      accentContainer(ratingAccent(rating), b);
 }
 
 /// A bordered answer, folded down to [_kGlossesBeforeFold] entries when there

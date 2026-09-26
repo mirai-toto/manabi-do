@@ -249,22 +249,31 @@ class AppTokens extends ThemeExtension<AppTokens> {
   /// Used by [AccentTheme] to scope a subtree to a level's colour so widgets
   /// that paint themselves `t.primary` follow the level without being edited.
   AppTokens accented(Color accent, Brightness brightness) {
-    final isDark = brightness == Brightness.dark;
     final onAccent = onAccentFor(accent);
 
     return copyWith(
       primary: accent,
       primaryLight: Color.lerp(accent, const Color(0xFFFFFFFF), 0.35),
-      primaryContainer: isDark
-          ? Color.lerp(accent, const Color(0xFF000000), 0.55)
-          : Color.lerp(accent, const Color(0xFFFFFFFF), 0.88),
+      primaryContainer: accentContainer(accent, brightness),
       onPrimary: onAccent,
-      onPrimaryContainer: isDark
-          ? Color.lerp(accent, const Color(0xFFFFFFFF), 0.60)
-          : Color.lerp(accent, const Color(0xFF000000), 0.55),
+      onPrimaryContainer: onAccentContainer(accent, brightness),
     );
   }
 }
+
+/// The pale surface [accent] sits on, and the readable text colour for that
+/// surface. Same relationship the theme's own primary container has, so a
+/// widget handed a bare colour can build the pair without inventing one.
+Color accentContainer(Color accent, Brightness brightness) =>
+    brightness == Brightness.dark
+    ? Color.lerp(accent, const Color(0xFF000000), 0.55)!
+    : Color.lerp(accent, const Color(0xFFFFFFFF), 0.88)!;
+
+/// The readable foreground for [accentContainer].
+Color onAccentContainer(Color accent, Brightness brightness) =>
+    brightness == Brightness.dark
+    ? Color.lerp(accent, const Color(0xFFFFFFFF), 0.60)!
+    : Color.lerp(accent, const Color(0xFF000000), 0.55)!;
 
 /// The readable foreground for [accent].
 ///

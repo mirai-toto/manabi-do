@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
+import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -162,26 +163,32 @@ class FlashcardActions extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
+    final brightness = Theme.of(context).brightness;
 
-    Widget btn(String label, Rating rating, Color bg, Color fg) => Expanded(
-      child: AppButton(
-        label: label,
-        subtitle: srsIntervalPreview(card, rating),
-        backgroundColor: bg,
-        foregroundColor: fg,
-        radius: AppDimens.radiusLg,
-        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-        visualDensity: VisualDensity.standard,
-        onPressed: () => onRate(rating),
-      ),
-    );
+    // Grades take their colour from the JLPT ramp via `ratingAccent`, so the
+    // scale reads red-to-green like every other difficulty in the app.
+    Widget btn(String label, Rating rating) {
+      final accent = ratingAccent(rating);
+      return Expanded(
+        child: AppButton(
+          label: label,
+          subtitle: srsIntervalPreview(card, rating),
+          backgroundColor: accentContainer(accent, brightness),
+          foregroundColor: onAccentContainer(accent, brightness),
+          radius: AppDimens.radiusLg,
+          padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+          visualDensity: VisualDensity.standard,
+          onPressed: () => onRate(rating),
+        ),
+      );
+    }
 
     if (!fourPointGrading) {
       return Row(
         children: [
-          btn(l.flashcardNotYet, Rating.again, t.errorContainer, t.error),
+          btn(l.flashcardNotYet, Rating.again),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.flashcardGotIt, Rating.good, t.successContainer, t.success),
+          btn(l.flashcardGotIt, Rating.good),
         ],
       );
     }
@@ -199,20 +206,17 @@ class FlashcardActions extends StatelessWidget {
         ],
         Row(
           children: [
-            btn(l.ratingAgain, Rating.again, t.errorContainer, t.error),
+            btn(l.ratingAgain, Rating.again),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingHard, Rating.hard, t.warningContainer, t.warning),
+            btn(l.ratingHard, Rating.hard),
           ],
         ),
         const SizedBox(height: AppDimens.spaceSm),
         Row(
           children: [
-            btn(l.ratingGood, Rating.good, t.successContainer, t.success),
+            btn(l.ratingGood, Rating.good),
             const SizedBox(width: AppDimens.spaceSm),
-            // Ratings are a semantic scale, not an accent. Again/Hard/Good
-            // take error/warning/success; Easy needs a fourth that reads as
-            // positive without being another green, hence `info`.
-            btn(l.ratingEasy, Rating.easy, t.infoContainer, t.info),
+            btn(l.ratingEasy, Rating.easy),
           ],
         ),
       ],
