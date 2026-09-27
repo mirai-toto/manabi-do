@@ -308,6 +308,21 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
+            name: 'LevelFilterBar',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Nothing selected',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildLevelFilterBarEmpty,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Two selected',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildLevelFilterBarSelected,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'SegmentedTabBar',
             useCases: [
               _widgetbook.WidgetbookUseCase(

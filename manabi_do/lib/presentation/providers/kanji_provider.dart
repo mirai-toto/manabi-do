@@ -4,8 +4,8 @@ import '../../data/database/app_database.dart';
 import '../services/search_service.dart';
 import 'database_provider.dart';
 
-final kanjiSearchProvider = FutureProvider.family<List<Kanji>, String>(
-  (ref, query) => ref.read(searchServiceProvider).kanji(query),
+final kanjiSearchProvider = FutureProvider.family<List<Kanji>, SearchQuery>(
+  (ref, q) => ref.read(searchServiceProvider).kanji(q.text, levels: q.levels),
 );
 
 class KanjiLevelData {

@@ -1,8 +1,32 @@
+import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/text/search_rank.dart';
 import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
+
+/// A search request: the text, and which JLPT levels to keep.
+///
+/// A class rather than a record because Riverpod families key on equality and
+/// a `Set` inside a record compares by identity — every rebuild would look
+/// like a new request and refetch.
+@immutable
+class SearchQuery {
+  final String text;
+  final Set<String> levels;
+
+  const SearchQuery(this.text, [this.levels = const {}]);
+
+  @override
+  bool operator ==(Object other) =>
+      other is SearchQuery &&
+      other.text == text &&
+      other.levels.length == levels.length &&
+      other.levels.containsAll(levels);
+
+  @override
+  int get hashCode => Object.hash(text, Object.hashAllUnordered(levels));
+}
 
 /// How many results a search returns. A one-letter query matches thousands of
 /// entries and nobody scrolls that far.
@@ -26,10 +50,15 @@ class SearchService {
 
   const SearchService(this._db);
 
-  Future<List<VocabularyEntry>> vocabulary(String query) async {
+  /// [levels] narrows the result to those JLPT levels. Empty means all.
+  Future<List<VocabularyEntry>> vocabulary(
+    String query, {
+    Set<String> levels = const {},
+  }) async {
     final candidates = await _db.searchVocabularyCandidates(query);
     return _ranked(
       query: query,
+      levels: levels,
       candidates: candidates,
       fieldsOf: (entry) => (
         japanese: entry.word,
@@ -42,10 +71,15 @@ class SearchService {
     );
   }
 
-  Future<List<Kanji>> kanji(String query) async {
+  /// [levels] narrows the result to those JLPT levels. Empty means all.
+  Future<List<Kanji>> kanji(
+    String query, {
+    Set<String> levels = const {},
+  }) async {
     final candidates = await _db.searchKanjiCandidates(query);
     return _ranked(
       query: query,
+      levels: levels,
       candidates: candidates,
       fieldsOf: (kanji) => (
         japanese: kanji.character,
@@ -60,12 +94,20 @@ class SearchService {
 
 List<T> _ranked<T>({
   required String query,
+  required Set<String> levels,
   required List<T> candidates,
   required SearchFields Function(T) fieldsOf,
   required Comparator<T> tiebreak,
 }) {
+  // Filtered before the cap, not after: a level filter applied to an already
+  // truncated list would return the two N1 entries that happened to survive
+  // rather than the fifty that exist.
+  final pool = levels.isEmpty
+      ? candidates
+      : candidates.where((c) => levels.contains(fieldsOf(c).level)).toList();
+
   final scored =
-      candidates.map((candidate) {
+      pool.map((candidate) {
         final fields = fieldsOf(candidate);
         return (
           item: candidate,

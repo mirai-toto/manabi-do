@@ -62,10 +62,24 @@ const AppEmoji('👋', size: 22)
 
 ### AppFilterChip
 
-Selectable filter chip used in lists and search screens.
+Selectable filter chip. Animates between states over 120ms; a null `onTap` renders it disabled at 38% opacity. Carries `Semantics(selected:)`, so a screen reader announces which chips are on.
 
 ```dart
 AppFilterChip(label: 'N5', isActive: true, onTap: () {})
+```
+
+---
+
+### LevelFilterBar
+
+A wrapped row of level chips that narrows search results. Nothing selected means every level, which is what an empty filter should do and saves an "All" chip that would only ever undo the others. Shown by the kanji and vocabulary search screens while a query is active; without one, the level list underneath already is the picker.
+
+```dart
+LevelFilterBar(
+  levels: const ['N5', 'N4', 'N3', 'N2', 'N1'],
+  selected: _filter,
+  onToggle: (level) => setState(() => …),
+)
 ```
 
 ---

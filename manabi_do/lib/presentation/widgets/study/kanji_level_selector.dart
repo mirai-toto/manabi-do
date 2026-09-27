@@ -7,6 +7,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
+import '../../services/search_service.dart';
 import '../../providers/kanji_provider.dart';
 import '../widgets.dart';
 
@@ -27,6 +28,7 @@ class KanjiLevelSelector extends ConsumerStatefulWidget {
 
 class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
   String _query = '';
+  final Set<String> _filter = <String>{};
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,26 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
             onChanged: (query) => setState(() => _query = query),
           ),
         ),
+        // Only while searching: without a query the level list below already
+        // is the level picker, and two ways to do one thing reads as a bug.
+        if (isSearchableQuery(_query))
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppDimens.spaceMd,
+              0,
+              AppDimens.spaceMd,
+              AppDimens.spaceSm,
+            ),
+            child: LevelFilterBar(
+              levels: _kanjiLevels,
+              selected: _filter,
+              onToggle: (level) => setState(
+                () => _filter.contains(level)
+                    ? _filter.remove(level)
+                    : _filter.add(level),
+              ),
+            ),
+          ),
         Expanded(
           child: isSearchableQuery(_query) ? _results() : _levelList(context),
         ),
@@ -71,7 +93,7 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
   );
 
   Widget _results() => ref
-      .watch(kanjiSearchProvider(_query))
+      .watch(kanjiSearchProvider(SearchQuery(_query, _filter)))
       .when(
         loading: () => const Center(child: AppSpinner.page()),
         error: (e, s) => const SizedBox.shrink(),
