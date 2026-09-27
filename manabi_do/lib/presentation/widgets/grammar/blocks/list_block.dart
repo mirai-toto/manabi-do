@@ -7,6 +7,7 @@ import 'text_block.dart';
 
 enum ListStyle { bullet, numbered }
 
+/// Bulleted or numbered list of grammar points.
 class ListBlock extends StatelessWidget {
   final ListStyle style;
   final List<String> items;

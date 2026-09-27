@@ -4,6 +4,7 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 
+/// Bold section title with optional subtitle, glyph accent, and color.
 class SectionHeader extends StatelessWidget {
   final String title;
   final String subtitle;

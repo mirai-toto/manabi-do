@@ -8,6 +8,8 @@ import '../../../../core/theme/app_tokens.dart';
 import '../../../../l10n/l10n.dart';
 import 'pill_badge.dart';
 
+/// SRS state pill + stability progress bar for a single `Card?`. Shows level
+/// label and due date.
 class ReviewProgressInfo extends StatelessWidget {
   final Card? srsCard;
   const ReviewProgressInfo({super.key, required this.srsCard});

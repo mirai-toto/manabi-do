@@ -17,6 +17,8 @@ const int kMaxReadingsPerType = 4;
 List<String> parseKanjiReadings(String raw) =>
     raw.split('、').where((s) => s.trim().isNotEmpty).toList();
 
+/// `SectionLabel` + `CardContainer` listing on-yomi and kun-yomi readings as
+/// `KanjiReadingChip` pills.
 class KanjiReadingsCard extends StatelessWidget {
   final Kanji kanji;
   const KanjiReadingsCard({super.key, required this.kanji});

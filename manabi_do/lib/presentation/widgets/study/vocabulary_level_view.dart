@@ -10,6 +10,9 @@ import '../../../l10n/l10n.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../widgets.dart';
 
+/// Shows the vocabulary word list for one paginated group within a level.
+/// Fetches entries via `vocabularyByLevelProvider`, renders
+/// `VocabularyWordTile` rows, and shows learned-count progress.
 class VocabularyLevelView extends ConsumerWidget {
   final String level;
   final int groupIndex;

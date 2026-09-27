@@ -11,6 +11,9 @@ abstract final class _Dimens {
   static const double paddingV = 6;
 }
 
+/// Selectable filter chip. Animates between states over 120ms; a null `onTap`
+/// renders it disabled at 38% opacity. Carries `Semantics(selected:)`, so a
+/// screen reader announces which chips are on.
 class AppFilterChip extends StatelessWidget {
   final String label;
   final bool isActive;

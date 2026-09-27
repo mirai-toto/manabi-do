@@ -6,6 +6,10 @@ import '../../../core/theme/app_tokens.dart';
 import '../common/indicator/progress_bar.dart';
 import '../common/surface/tappable_surface.dart';
 
+/// Tappable card for selecting a study group. Shows a group title, a
+/// range/count label, an `AppProgressBar`, and a trailing chevron. Decoration:
+/// `cardBackground`, `radiusLg`, accent-coloured border at 20% opacity. All
+/// display strings are pre-formatted by the caller.
 class StudyGroupCard extends StatelessWidget {
   final String title;
   final String rangeLabel;

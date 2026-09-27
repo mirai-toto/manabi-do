@@ -5,6 +5,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
 import '../widgets.dart';
 
+/// 4-column grid of `CharacterCell` tiles for a set of kanji. Tapping a cell
+/// navigates to `KanjiDetailScreen`.
 class KanjiGrid extends StatelessWidget {
   final List<Kanji> kanjis;
   final Map<int, Card> srsCards;

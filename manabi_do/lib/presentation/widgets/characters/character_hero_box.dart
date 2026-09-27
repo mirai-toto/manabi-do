@@ -4,6 +4,10 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 
+/// Fixed-size square box displaying a single Japanese character on a styled
+/// background. When `accentColor` is provided: diagonal gradient (dark-to-
+/// accent). When null: translucent white fill. Both variants use `radiusMd`
+/// corners and white character text.
 class CharacterHeroBox extends StatelessWidget {
   final String character;
   final double size;

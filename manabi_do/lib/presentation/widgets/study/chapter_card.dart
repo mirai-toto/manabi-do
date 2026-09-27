@@ -6,6 +6,9 @@ import '../../../core/theme/app_tokens.dart';
 import '../common/indicator/pill_badge.dart';
 import '../common/surface/tappable_surface.dart';
 
+/// Card showing a chapter label, title, description, lesson count badge, and
+/// completion progress bar. All display strings are pre-formatted by the caller
+/// — the widget contains no l10n calls.
 class ChapterCard extends StatelessWidget {
   final String chapterLabel;
   final String title;

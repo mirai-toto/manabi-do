@@ -4,6 +4,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 
+/// Greeting banner at the top of the home screen. Displays a pre-formatted
+/// greeting and subtitle string.
 class HomeHeader extends StatelessWidget {
   final String title;
   final String subtitle;

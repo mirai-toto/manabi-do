@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_tokens.dart';
 
+/// Rounded card shell (`cardBackground` fill, `outlineVariant` border). Wraps
+/// any child.
 class CardContainer extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;

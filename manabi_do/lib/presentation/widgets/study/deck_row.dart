@@ -44,6 +44,8 @@ double _pillWidth(BuildContext context, AppLocalizations l) {
   return widest + PillBadge.paddingH * 2;
 }
 
+/// One review deck on the home screen: a tinted icon tile, the deck's name, its
+/// due and new counts, a progress bar and a status pill.
 class DeckRow extends StatelessWidget {
   final String title;
   final String glyph;

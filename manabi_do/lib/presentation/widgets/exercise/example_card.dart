@@ -8,6 +8,9 @@ import '../../../data/grammar/grammar_models.dart';
 import '../../../l10n/l10n.dart';
 import '../common/label/japanese_sentence.dart';
 
+/// Displays a grammar example sentence with an "Example" pill badge. Pass
+/// `showTranslation: false` to hide translation and mask the highlighted word.
+/// Visibility is controlled by the caller.
 class ExampleCard extends StatelessWidget {
   final GrammarExample example;
   final String locale;

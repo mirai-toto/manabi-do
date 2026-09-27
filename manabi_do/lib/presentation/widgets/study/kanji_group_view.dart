@@ -9,6 +9,8 @@ import '../../../l10n/l10n.dart';
 import '../../providers/kanji_provider.dart';
 import '../widgets.dart';
 
+/// Shows `KanjiLevelHeader`, `KanjiGrid`, and practice/writing-session
+/// shortcuts for a single kanji group.
 class KanjiGroupView extends ConsumerWidget {
   final String level;
   final int groupIndex;

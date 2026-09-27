@@ -12,6 +12,10 @@ final packageInfoProvider = FutureProvider<PackageInfo>(
   (_) => PackageInfo.fromPlatform(),
 );
 
+/// `SettingsAboutSection` is a `ConsumerWidget` that renders the app version
+/// row and a list of `AttributionCard` entries for third-party libraries.
+/// `AttributionCard` is a `CardContainer` with a notice text and a tappable URL
+/// link.
 class SettingsAboutSection extends ConsumerWidget {
   const SettingsAboutSection({super.key});
 

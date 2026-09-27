@@ -5,6 +5,9 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../indicator/pill_badge.dart';
 
+/// Tappable section header with an animated chevron and a tinted background.
+/// Used to group collapsible lists (e.g. grammar chapters inside a theme). The
+/// caller owns the collapsed state and provides `onToggle`.
 class CollapsibleSection extends StatelessWidget {
   final String title;
   final bool isCollapsed;

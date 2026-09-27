@@ -12,6 +12,10 @@ import '../widgets.dart';
 
 const _levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
+/// Pinned `SearchField` over a full-screen-width list of JLPT level tiles.
+/// Tapping a level calls `onSelect`. Typing replaces the tiles with matching
+/// words from `vocabularySearchProvider` (word, reading or meaning; ranked by
+/// `searchRank`, capped at 50), built lazily as they scroll into view.
 class VocabularyLevelSelector extends ConsumerStatefulWidget {
   final void Function(String) onSelect;
   const VocabularyLevelSelector({super.key, required this.onSelect});

@@ -14,6 +14,8 @@ import 'nav_destination.dart';
 /// 5.4% to 7.6% of the em; this is their average.
 const double _glyphRise = 0.060;
 
+/// Individual nav item with active/inactive state styling. Used internally by
+/// `AppNavBar`/`AppNavRail`; rarely constructed directly.
 class NavItem extends StatelessWidget {
   final NavDestination destination;
   final bool isActive;

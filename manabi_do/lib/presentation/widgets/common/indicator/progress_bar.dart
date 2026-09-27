@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_tokens.dart';
 
+/// Thin horizontal progress bar (0–1). Accepts an optional `color` and
+/// `height`.
 class AppProgressBar extends StatelessWidget {
   final double progress; // 0.0 – 1.0
   final Color? color;

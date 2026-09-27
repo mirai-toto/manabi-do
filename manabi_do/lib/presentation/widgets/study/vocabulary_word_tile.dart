@@ -10,6 +10,10 @@ import '../../../l10n/pos_label.dart';
 import '../../providers/vocabulary_provider.dart';
 import '../widgets.dart';
 
+/// Expandable vocabulary list row. Shows word, reading, abbreviated meaning.
+/// Tap expands to full meaning, part-of-speech chips, and `SpeakButton`.
+/// Localized meaning fetched via provider. `showLevel` adds a JLPT badge on the
+/// right, for lists that mix levels.
 class VocabularyWordTile extends ConsumerStatefulWidget {
   final VocabularyEntry entry;
 

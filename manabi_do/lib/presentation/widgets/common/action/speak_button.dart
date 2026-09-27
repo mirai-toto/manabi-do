@@ -4,6 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/providers/tts_provider.dart';
 import '../../../../l10n/l10n.dart';
 
+/// Icon button that triggers Japanese TTS for a given text string. Reads
+/// `ttsProvider` internally — the only widget allowed to do so because TTS is a
+/// service action, not a display setting.
 class SpeakButton extends ConsumerWidget {
   final String text;
   final Color color;

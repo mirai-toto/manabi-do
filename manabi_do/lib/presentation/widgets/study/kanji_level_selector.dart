@@ -13,6 +13,10 @@ import '../widgets.dart';
 
 const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
+/// Pinned `SearchField` over a full-screen list of JLPT level tiles for the
+/// kanji section. Tapping a level calls `onSelect`. Typing replaces the tiles
+/// with ranked matches from `kanjiSearchProvider`; tapping a result calls
+/// `onOpenKanji`.
 class KanjiLevelSelector extends ConsumerStatefulWidget {
   final void Function(String) onSelect;
   final void Function(int kanjiId) onOpenKanji;

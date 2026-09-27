@@ -15,6 +15,9 @@ import '../characters/kanji_readings_card.dart';
 import '../characters/stroke_animators.dart';
 import 'flashcard.dart';
 
+/// Kanji stroke-order exercise. Manages canvas strokes, DTW comparison, and SRS
+/// rating. The caller reads `drawingSettingsProvider` and passes the result as
+/// `settings`.
 class DrawingExercise extends StatefulWidget {
   final List<ui.Path> referenceStrokes;
   final int kanjiId;

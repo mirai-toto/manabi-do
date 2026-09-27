@@ -7,6 +7,9 @@ import '../common/label/japanese_text.dart';
 import 'letter_circle.dart';
 import 'mcq_card.dart';
 
+/// `ClozeOption` is a tappable answer chip for fill-in-the-blank exercises.
+/// Shows a lettered circle (`LetterCircle`) alongside the option text/furigana.
+/// Colours change to success/error after answer.
 class ClozeOption extends StatelessWidget {
   final McqOption option;
   final bool showFurigana;

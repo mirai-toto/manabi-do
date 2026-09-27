@@ -12,6 +12,9 @@ import '../common/action/speak_button.dart';
 import 'mcq_card.dart';
 import 'cloze_option.dart';
 
+/// Stateless display card for a sentence cloze item. Renders the gapped
+/// sentence, optional furigana, translation toggle, and `ClozeOption` chips. No
+/// answer-handling logic.
 class SentenceClozeCard extends StatelessWidget {
   final Sentence sentence;
   final String? translation;

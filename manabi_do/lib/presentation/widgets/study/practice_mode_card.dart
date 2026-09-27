@@ -6,6 +6,11 @@ import '../../../core/theme/app_tokens.dart';
 import '../common/indicator/app_spinner.dart';
 import '../common/surface/tappable_surface.dart';
 
+/// Tappable card for a single practice mode or feature entry point. Left-side
+/// tinted icon box (`color 12% opacity`, `radiusMd`), title, optional subtitle
+/// and count label, trailing chevron. Decoration: `cardBackground`, `radiusLg`,
+/// accent border at 25% opacity. Shows a `CircularProgressIndicator` when
+/// `isCountLoading: true`. All display strings pre-formatted by the caller.
 class PracticeModeCard extends StatelessWidget {
   final String title;
   final IconData icon;

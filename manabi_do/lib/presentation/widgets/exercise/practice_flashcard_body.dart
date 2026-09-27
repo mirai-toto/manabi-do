@@ -11,6 +11,8 @@ import 'example_card.dart';
 import 'flashcard.dart';
 import 'practice_progress_row.dart';
 
+/// Flashcard exercise body. Shows a `Flashcard` (front/back flip), then SRS
+/// rating buttons. Handles the flip animation and rating UI internally.
 class PracticeFlashcardBody extends StatefulWidget {
   final String japanese;
   final String? label;

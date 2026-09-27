@@ -8,6 +8,7 @@ import '../../../../l10n/level_label.dart';
 import '../indicator/difficulty_dots.dart';
 import '../surface/tappable_surface.dart';
 
+/// Compact badge showing a JLPT level (N1–N5) in brand colours.
 class JlptLevelCard extends StatelessWidget {
   final String code;
   final String? subtitle;
@@ -85,6 +86,8 @@ class JlptLevelCard extends StatelessWidget {
   }
 }
 
+/// The square JLPT code chip inside a level card, filled with that level's ramp
+/// colour.
 class LevelBadge extends StatelessWidget {
   final String code;
   final Color color;

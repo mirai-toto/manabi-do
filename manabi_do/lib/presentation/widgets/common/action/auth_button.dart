@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 
+/// Full-width landing/onboarding button. Elevation 0, `radiusLg` corners,
+/// vertical padding `spaceMd`, bold `body` text. Accepts `backgroundColor`,
+/// `foregroundColor`, and an optional `BorderSide` for outlined variants.
 class AuthButton extends StatelessWidget {
   final Widget child;
   final Color backgroundColor;

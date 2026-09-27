@@ -12,6 +12,8 @@ import '../widgets.dart';
 
 const kKanjiGroupSize = 20;
 
+/// Shows group cards for one kanji JLPT level with SRS progress. Navigates into
+/// `KanjiGroupView` on tap; back button calls `onBack`.
 class KanjiGroupSelector extends ConsumerWidget {
   final String level;
   final VoidCallback onBack;

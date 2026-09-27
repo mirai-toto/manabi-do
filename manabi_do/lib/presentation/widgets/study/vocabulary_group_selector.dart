@@ -13,6 +13,9 @@ import '../widgets.dart';
 
 const kVocabularyGroupSize = 30;
 
+/// Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for
+/// pagination within a vocabulary level. `kVocabularyGroupSize` groups of 30
+/// words each.
 class VocabularyGroupSelector extends ConsumerWidget {
   final String level;
   final VoidCallback onBack;

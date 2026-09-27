@@ -13,6 +13,7 @@ import '../../providers/kanji_strokes_provider.dart';
 /// drawn at, which is why both ends read this one constant.
 const double kanjiCanvasSize = 260;
 
+/// Interactive canvas that captures user strokes for kanji writing practice.
 class KanjiDrawingCanvas extends StatefulWidget {
   final void Function(List<List<Offset>>) onStrokesChanged;
   final List<bool>? strokeResults;

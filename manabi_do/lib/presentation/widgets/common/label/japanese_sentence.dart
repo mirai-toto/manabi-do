@@ -5,6 +5,9 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import 'japanese_text.dart';
 
+/// Renders a Japanese sentence with optional furigana and a highlighted target
+/// word. Pass `hideHighlight: true` to mask the target as a blank pill before
+/// reveal.
 class JapaneseSentence extends StatelessWidget {
   final String sentence;
   final String? highlight;

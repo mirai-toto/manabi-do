@@ -89,6 +89,8 @@ class _AnimatorShell extends StatelessWidget {
 
 // ── StrokeOrderAnimator ───────────────────────────────────────────────────────
 
+/// Plays back reference strokes sequentially. Auto-plays on load; tap to
+/// replay.
 class StrokeOrderAnimator extends ConsumerStatefulWidget {
   final int kanjiId;
   final double size;

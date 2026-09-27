@@ -3,6 +3,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 
+/// Small grid cell for a single kana or kanji character with reading label.
 class CharacterCell extends StatelessWidget {
   final String character;
   final String subLabel;

@@ -132,7 +132,9 @@ If you only want to browse widgets interactively, skip the reference and run the
 flutter run -t lib/widgetbook.dart
 ```
 
-Adding a widget means adding a `@widgetbook.UseCase` in `lib/widgetbook/<area>_use_cases.dart` and re-running `dart run build_runner build` to regenerate `widgetbook.directories.g.dart`. See `docs/07_widget_catalogue.md` for what each widget is for.
+Adding a widget means adding a `@widgetbook.UseCase` in `lib/widgetbook/<area>_use_cases.dart` and re-running `dart run build_runner build` to regenerate `widgetbook.directories.g.dart`.
+
+What a widget is *for* is the doc comment on its class. The reference reads those and prints them beside the live preview, and reports any previewed widget that has none — so the description lives next to the code and cannot drift from it. There is no separate catalogue.
 
 ---
 

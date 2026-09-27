@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 
+/// Small all-caps label used above content groups.
 class SectionLabel extends StatelessWidget {
   final String label;
   const SectionLabel(this.label, {super.key});

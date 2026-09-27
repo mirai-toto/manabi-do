@@ -7,6 +7,9 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../providers/vocabulary_provider.dart';
 
+/// Full-width gradient hero banner for a kanji detail screen. Shows the
+/// character, JLPT level badge, meanings, and a back button. Fetches localized
+/// meaning via `localizedKanjiMeaningProvider`.
 class KanjiHero extends ConsumerWidget {
   final Kanji kanji;
   final Color color;

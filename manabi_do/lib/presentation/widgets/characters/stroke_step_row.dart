@@ -5,6 +5,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../providers/kanji_strokes_provider.dart';
 
+/// Horizontal scrollable row of mini stroke-step previews; tap a step to jump
+/// to it.
 class StrokeStepRow extends ConsumerStatefulWidget {
   final int kanjiId;
   const StrokeStepRow({super.key, required this.kanjiId});

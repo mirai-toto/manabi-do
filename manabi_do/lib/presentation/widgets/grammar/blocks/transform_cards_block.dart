@@ -68,6 +68,7 @@ class TransformGroup {
 
 const double _kArrowWidth = 32.0;
 
+/// Horizontal set of before/after cards showing a grammatical transformation.
 class TransformCardsBlock extends StatelessWidget {
   final List<TransformGroup> groups;
   final Color? accentColor;

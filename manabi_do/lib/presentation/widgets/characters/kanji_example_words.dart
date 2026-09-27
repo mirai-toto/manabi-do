@@ -10,6 +10,9 @@ import '../../../l10n/pos_label.dart';
 import '../widgets.dart';
 import '../../providers/vocabulary_provider.dart';
 
+/// `SectionLabel` + list of example vocabulary words for a kanji. Fetches
+/// localized vocabulary via provider; shows a loading indicator, empty state,
+/// or word list with `PillBadge` JLPT tags.
 class KanjiExampleWords extends ConsumerWidget {
   final Kanji kanji;
   const KanjiExampleWords({super.key, required this.kanji});

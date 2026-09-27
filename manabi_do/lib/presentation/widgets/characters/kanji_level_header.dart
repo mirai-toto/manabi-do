@@ -4,6 +4,8 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../widgets.dart';
 
+/// In-page back-navigation row used at the top of kanji group/level views.
+/// Shows a back button, JLPT level `PillBadge`, and a subtitle label.
 class KanjiLevelHeader extends StatelessWidget {
   final String level;
   final String label;

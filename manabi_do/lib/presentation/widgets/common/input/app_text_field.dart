@@ -3,6 +3,7 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 
+/// Themed text input with label, hint, and error state.
 class AppTextField extends StatelessWidget {
   final String label;
   final TextEditingController? controller;

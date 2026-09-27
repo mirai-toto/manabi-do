@@ -21,6 +21,7 @@ class ComparisonSide {
   });
 }
 
+/// Side-by-side comparison of two grammar patterns.
 class ComparisonBlock extends StatelessWidget {
   final ComparisonSide left;
   final ComparisonSide right;

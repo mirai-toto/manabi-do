@@ -5,6 +5,8 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/action/app_button.dart';
 
+/// End-of-session results card. Shows score, correct/missed counts, time spent,
+/// and retry/next actions.
 class SummaryCard extends StatelessWidget {
   final int score;
   final int total;

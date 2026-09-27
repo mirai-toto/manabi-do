@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 
+/// Rounded pill label. Accepts `label`, `color`, and `background` — no default
+/// colours.
 class PillBadge extends StatelessWidget {
   /// The pill's own padding.
   ///

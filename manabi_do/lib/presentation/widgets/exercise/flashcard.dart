@@ -8,6 +8,8 @@ import '../../../l10n/l10n.dart';
 import '../common/action/app_button.dart';
 import '../common/action/speak_button.dart';
 
+/// Large gradient card showing a prompt and, when revealed, an answer. Includes
+/// a `SpeakButton` and a tap-to-reveal/hide label.
 class Flashcard extends StatelessWidget {
   final String prompt;
   final String? promptSub;
@@ -145,6 +147,8 @@ bool _looksJapanese(String text) {
   return jpCount / runes.length > 0.5;
 }
 
+/// Rating button row shown after a flashcard is revealed. Shows FSRS interval
+/// previews in SRS mode; shows "Got it / Not yet" in free mode.
 class FlashcardActions extends StatelessWidget {
   final Card? card;
   final bool fourPointGrading;

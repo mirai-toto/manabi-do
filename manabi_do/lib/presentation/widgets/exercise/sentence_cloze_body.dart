@@ -11,6 +11,8 @@ import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 import 'sentence_cloze_card.dart';
 
+/// Sentence-level cloze exercise. Fetches per-card SRS state, renders
+/// `SentenceClozeCard`, and handles rating.
 class SentenceClozeBody extends StatefulWidget {
   final Sentence sentence;
   final String? translation;

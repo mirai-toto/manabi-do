@@ -7,6 +7,10 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../l10n/l10n.dart';
 
+/// Full-bleed hero at the top of the landing screen. 3-stop vertical gradient
+/// (`heroDeep → heroMid → primaryLight`), app glyph `'学び'` with glow shadow,
+/// app name in letter-spaced label, and tagline. Reads `context.tokens` and
+/// `context.l10n` internally — no parameters.
 class LandingHeroPanel extends StatelessWidget {
   const LandingHeroPanel({super.key});
 

@@ -7,6 +7,7 @@ abstract final class _Dimens {
   static const double dotGap = 3;
 }
 
+/// Row of filled/empty dots indicating difficulty level.
 class DifficultyDots extends StatelessWidget {
   final int total;
   final int filled;

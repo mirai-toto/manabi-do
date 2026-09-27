@@ -9,6 +9,9 @@ import '../common/indicator/difficulty_dots.dart';
 import '../common/indicator/pill_badge.dart';
 import '../common/surface/tappable_surface.dart';
 
+/// List row for a single lesson showing an index number, title,
+/// `DifficultyDots`, exercise count chip, and state pill. `state` drives the
+/// border colour, chip label/colour, and optional lock icon.
 class LessonRow extends StatelessWidget {
   final String title;
   final int index;

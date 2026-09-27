@@ -14,6 +14,7 @@ enum AppButtonVariant { filled, tonal, outlined, text, danger }
 
 enum AppButtonSize { regular, small }
 
+/// Themed filled/outlined button with consistent padding and style.
 class AppButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;

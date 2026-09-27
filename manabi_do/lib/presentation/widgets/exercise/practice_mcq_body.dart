@@ -10,6 +10,8 @@ import 'flashcard.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 
+/// Multiple-choice exercise body. Renders `McqCard` options and advances on
+/// selection.
 class PracticeMcqBody extends StatefulWidget {
   final String question;
   final String? japanesePrompt;

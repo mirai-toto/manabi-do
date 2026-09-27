@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Renders an emoji with a fixed font so it displays consistently across
+/// platforms.
 class AppEmoji extends StatelessWidget {
   final String emoji;
   final double size;

@@ -10,6 +10,8 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../widgets.dart';
 
+/// Error-detection exercise body. Shows two sentences side by side (correct vs.
+/// wrong); the user picks the grammatically correct one.
 class GrammarErrorDetectionBody extends StatefulWidget {
   final String correct;
   final String wrong;

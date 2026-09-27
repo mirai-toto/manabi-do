@@ -5,6 +5,10 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/action/app_button.dart';
 
+/// Card shell for grammar lesson content. Shows chapter label, title, body
+/// widgets, and an optional "Practice" button. Lives in `lesson_reader.dart`
+/// together with its body blocks: `ReaderBodyText`, `ReaderSectionTitle`,
+/// `ReaderJpExample`.
 class LessonReaderCard extends StatelessWidget {
   final String chapterLabel;
   final String title;

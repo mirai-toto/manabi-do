@@ -4,6 +4,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 
+/// Full-width result banner shown after an exercise answer. Background is
+/// `successContainer` or `errorContainer`; text is `success` or `error`.
 class FeedbackPanel extends StatelessWidget {
   final String text;
   final bool isCorrect;

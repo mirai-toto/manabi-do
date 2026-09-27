@@ -19,6 +19,8 @@ abstract final class _Dimens {
   static const double chipPaddingV = 6;
 }
 
+/// Sentence-builder exercise body. Displays a shuffled word bank; the user taps
+/// words into order. Advances automatically or on confirmation.
 class GrammarBuilderBody extends StatefulWidget {
   final List<String> parts;
   final String translation;

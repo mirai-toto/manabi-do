@@ -11,6 +11,9 @@
 // against WCAG AA, groups dimensions by the number they hold so duplicate names
 // cannot hide, and cross-references every token against lib/ so dead entries
 // show up. Those are the things reading the Dart file will not tell you.
+//
+// It also prints each widget's own doc comment beside its live preview, which
+// is why there is no separate widget catalogue to keep in step.
 
 import 'dart:io';
 import 'dart:math' as math;
@@ -23,7 +26,6 @@ const _stylesPath = 'lib/core/theme/app_text_styles.dart';
 const _jlptPath = 'lib/core/theme/jlpt_level.dart';
 const _srsPath = 'lib/core/srs/srs_level.dart';
 const _useCasesPath = 'lib/widgetbook.directories.g.dart';
-const _cataloguePath = '../docs/07_widget_catalogue.md';
 const _widgetsDir = 'lib/presentation/widgets';
 const _outPath = '../design-reference/index.html';
 
@@ -280,47 +282,40 @@ List<UseCase> parseUseCases(String src) {
   return out;
 }
 
-/// What each widget is for, lifted from the catalogue's `### Name` sections.
+/// What each widget is for, read from the doc comment on its class.
 ///
-/// The prose lives in markdown because that is where it is written and reviewed;
-/// duplicating it here would guarantee it drifts. Only the opening paragraph is
-/// taken — the rest of each entry is usage code, which the live preview beside
-/// it already shows better than text can.
-Map<String, String> parseCatalogue(String src) {
+/// The description lives in the code because that is the only place it cannot
+/// drift from the thing it describes — the same reason this page reads the theme
+/// source rather than a written copy of it. Only the leading prose is taken:
+/// everything up to the first blank doc line, which by convention is the summary.
+Map<String, String> parseWidgetDocs() {
+  final dir = Directory(_widgetsDir);
+  if (!dir.existsSync()) return const {};
   final out = <String, String>{};
-  String? name;
-  final para = <String>[];
 
-  void flush() {
-    final key = name;
-    if (key != null && para.isNotEmpty) {
-      out.putIfAbsent(key, () => para.join(' ').trim());
-    }
-    para.clear();
-  }
+  for (final f in dir.listSync(recursive: true)) {
+    if (f is! File || !f.path.endsWith('.dart')) continue;
+    final lines = f.readAsStringSync().split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      final cls = RegExp(r'^class ([A-Z]\w*)').firstMatch(lines[i]);
+      if (cls == null) continue;
 
-  for (final line in src.split('\n')) {
-    final heading = RegExp(r'^### +(.+)').firstMatch(line);
-    if (heading != null) {
-      flush();
-      // Entries like `StrokeOrderAnimator / UserStrokeAnimator` name two.
-      name = heading.group(1)!.split('/').first.trim();
-      continue;
+      final doc = <String>[];
+      for (var j = i - 1; j >= 0; j--) {
+        final line = lines[j].trimLeft();
+        if (!line.startsWith('///')) break;
+        final text = line.substring(3).trim();
+        // A blank doc line ends the summary; the rest is detail this page has
+        // no room for.
+        if (text.isEmpty) {
+          doc.clear();
+          continue;
+        }
+        doc.insert(0, text);
+      }
+      if (doc.isNotEmpty) out[cls.group(1)!] = doc.join(' ');
     }
-    if (name == null) continue;
-    if (line.startsWith('#') || line.startsWith('```')) {
-      flush();
-      if (line.startsWith('#')) name = null;
-      continue;
-    }
-    if (line.trim().isEmpty) {
-      if (para.isNotEmpty) flush();
-      continue;
-    }
-    para.add(line.trim());
   }
-  flush();
-  if (out.isEmpty) throw StateError('Parsed no catalogue entries');
   return out;
 }
 
@@ -394,7 +389,7 @@ void main() {
   final srs = parseSrsLevels(_read(_srsPath));
   final useCases = parseUseCases(_read(_useCasesPath));
   final colorGroups = parseColorGroups(tokensSrc);
-  final blurbs = parseCatalogue(_read(_cataloguePath));
+  final blurbs = parseWidgetDocs();
   final lib = readLibSources();
 
   final html = buildPage(
@@ -428,25 +423,18 @@ void main() {
   final declared = declaredWidgets();
   final undocumented = previewed.difference(blurbs.keys.toSet()).toList()
     ..sort();
-  // An entry for a class that no longer exists is rot; one for a class that
-  // does exist is only missing a preview. Reporting them together buries the
-  // first in the second.
-  final gone = blurbs.keys.where((k) => !declared.contains(k)).toList()..sort();
   final unpreviewed =
-      blurbs.keys
-          .where((k) => declared.contains(k) && !previewed.contains(k))
+      declared
+          .where((k) => blurbs.containsKey(k) && !previewed.contains(k))
           .toList()
         ..sort();
   stdout.writeln(
-    '  ${blurbs.length} catalogue entries, '
+    '  ${blurbs.length} documented widgets, '
     '${previewed.length - undocumented.length}/${previewed.length} previewed '
     'widgets described',
   );
   if (undocumented.isNotEmpty) {
-    stdout.writeln('  ! No catalogue entry: ${undocumented.join(', ')}');
-  }
-  if (gone.isNotEmpty) {
-    stdout.writeln('  ! Catalogue entry, widget deleted: ${gone.join(', ')}');
+    stdout.writeln('  ! No doc comment: ${undocumented.join(', ')}');
   }
   if (unpreviewed.isNotEmpty) {
     stdout.writeln('  . No widgetbook preview: ${unpreviewed.join(', ')}');

@@ -37,6 +37,9 @@ export '../../../core/models/mcq_option.dart';
   ),
 };
 
+/// Multiple-choice question card. Renders a question prompt and a list of
+/// `McqOption` tiles with idle/correct/wrong states. The caller reads
+/// `mcqSettingsProvider` and passes `showFurigana`.
 class McqCard extends StatelessWidget {
   final String question;
   final String? japanesePrompt;
