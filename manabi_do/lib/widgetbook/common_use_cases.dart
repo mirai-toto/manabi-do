@@ -25,31 +25,39 @@ import '../presentation/widgets/common/surface/tappable_surface.dart';
 
 // ── AppEmoji ──────────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Default', type: AppEmoji, path: 'Common')
+@widgetbook.UseCase(name: 'Default', type: AppEmoji, path: 'Common/Decoration')
 Widget buildAppEmoji(BuildContext context) {
   return const AppEmoji('🎉', size: 48);
 }
 
 // ── AppFilterChip ─────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Inactive', type: AppFilterChip, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Inactive',
+  type: AppFilterChip,
+  path: 'Common/Action',
+)
 Widget buildAppFilterChipInactive(BuildContext context) {
   return AppFilterChip(label: 'N5', isActive: false, onTap: () {});
 }
 
-@widgetbook.UseCase(name: 'Active', type: AppFilterChip, path: 'Common')
+@widgetbook.UseCase(name: 'Active', type: AppFilterChip, path: 'Common/Action')
 Widget buildAppFilterChipActive(BuildContext context) {
   return AppFilterChip(label: 'N5', isActive: true, onTap: () {});
 }
 
-@widgetbook.UseCase(name: 'Disabled', type: AppFilterChip, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Disabled',
+  type: AppFilterChip,
+  path: 'Common/Action',
+)
 Widget buildAppFilterChipDisabled(BuildContext context) {
   return const AppFilterChip(label: 'N5');
 }
 
 // ── AppTextField ──────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Empty', type: AppTextField, path: 'Common')
+@widgetbook.UseCase(name: 'Empty', type: AppTextField, path: 'Common/Input')
 Widget buildAppTextFieldEmpty(BuildContext context) {
   return const Padding(
     padding: EdgeInsets.all(16),
@@ -57,7 +65,11 @@ Widget buildAppTextFieldEmpty(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'With icons', type: AppTextField, path: 'Common')
+@widgetbook.UseCase(
+  name: 'With icons',
+  type: AppTextField,
+  path: 'Common/Input',
+)
 Widget buildAppTextFieldIcons(BuildContext context) {
   return const Padding(
     padding: EdgeInsets.all(16),
@@ -71,7 +83,11 @@ Widget buildAppTextFieldIcons(BuildContext context) {
 
 // ── CardContainer ─────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Default', type: CardContainer, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Default',
+  type: CardContainer,
+  path: 'Common/Surface',
+)
 Widget buildCardContainerDefault(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
@@ -84,7 +100,11 @@ Widget buildCardContainerDefault(BuildContext context) {
 
 // ── TappableSurface ──────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Default', type: TappableSurface, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Default',
+  type: TappableSurface,
+  path: 'Common/Surface',
+)
 Widget buildTappableSurface(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
@@ -105,7 +125,11 @@ Widget buildTappableSurface(BuildContext context) {
 
 // ── DifficultyDots ────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Empty', type: DifficultyDots, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Empty',
+  type: DifficultyDots,
+  path: 'Common/Indicator',
+)
 Widget buildDifficultyDotsEmpty(BuildContext context) {
   return DifficultyDots(
     total: 5,
@@ -114,7 +138,11 @@ Widget buildDifficultyDotsEmpty(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Half', type: DifficultyDots, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Half',
+  type: DifficultyDots,
+  path: 'Common/Indicator',
+)
 Widget buildDifficultyDotsHalf(BuildContext context) {
   return DifficultyDots(
     total: 5,
@@ -123,7 +151,11 @@ Widget buildDifficultyDotsHalf(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Full', type: DifficultyDots, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Full',
+  type: DifficultyDots,
+  path: 'Common/Indicator',
+)
 Widget buildDifficultyDotsFull(BuildContext context) {
   return DifficultyDots(
     total: 5,
@@ -134,7 +166,7 @@ Widget buildDifficultyDotsFull(BuildContext context) {
 
 // ── JapaneseText ──────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'All kanji', type: JapaneseText, path: 'Common')
+@widgetbook.UseCase(name: 'All kanji', type: JapaneseText, path: 'Common/Label')
 Widget buildJapaneseTextAllKanji(BuildContext context) {
   return JapaneseText(
     word: '日本語',
@@ -146,7 +178,7 @@ Widget buildJapaneseTextAllKanji(BuildContext context) {
 @widgetbook.UseCase(
   name: 'Mixed kanji/kana',
   type: JapaneseText,
-  path: 'Common',
+  path: 'Common/Label',
 )
 Widget buildJapaneseTextMixed(BuildContext context) {
   return JapaneseText(
@@ -156,7 +188,7 @@ Widget buildJapaneseTextMixed(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Kana only', type: JapaneseText, path: 'Common')
+@widgetbook.UseCase(name: 'Kana only', type: JapaneseText, path: 'Common/Label')
 Widget buildJapaneseTextKana(BuildContext context) {
   return JapaneseText(
     word: 'たべる',
@@ -167,7 +199,7 @@ Widget buildJapaneseTextKana(BuildContext context) {
 
 // ── JlptLevelCard / LevelBadge ────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'N5', type: JlptLevelCard, path: 'Common')
+@widgetbook.UseCase(name: 'N5', type: JlptLevelCard, path: 'Common/List item')
 Widget buildJlptLevelCardN5(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
@@ -175,7 +207,7 @@ Widget buildJlptLevelCardN5(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'N1', type: JlptLevelCard, path: 'Common')
+@widgetbook.UseCase(name: 'N1', type: JlptLevelCard, path: 'Common/List item')
 Widget buildJlptLevelCardN1(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
@@ -183,21 +215,21 @@ Widget buildJlptLevelCardN1(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Default', type: LevelBadge, path: 'Common')
+@widgetbook.UseCase(name: 'Default', type: LevelBadge, path: 'Common/List item')
 Widget buildLevelBadge(BuildContext context) {
   return LevelBadge(code: 'N3', color: levelColor('N3'));
 }
 
 // ── SectionLabel ──────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Default', type: SectionLabel, path: 'Common')
+@widgetbook.UseCase(name: 'Default', type: SectionLabel, path: 'Common/Label')
 Widget buildSectionLabel(BuildContext context) {
   return const SectionLabel('Stroke order');
 }
 
 // ── SectionHeader ─────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Default', type: SectionHeader, path: 'Common')
+@widgetbook.UseCase(name: 'Default', type: SectionHeader, path: 'Common/Label')
 Widget buildSectionHeader(BuildContext context) {
   return SectionHeader(
     title: 'Kanji',
@@ -209,7 +241,7 @@ Widget buildSectionHeader(BuildContext context) {
 
 // ── PillBadge ─────────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Primary', type: PillBadge, path: 'Common')
+@widgetbook.UseCase(name: 'Primary', type: PillBadge, path: 'Common/Indicator')
 Widget buildPillBadgePrimary(BuildContext context) {
   return PillBadge(
     label: 'N5',
@@ -218,7 +250,7 @@ Widget buildPillBadgePrimary(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Success', type: PillBadge, path: 'Common')
+@widgetbook.UseCase(name: 'Success', type: PillBadge, path: 'Common/Indicator')
 Widget buildPillBadgeSuccess(BuildContext context) {
   return const PillBadge(
     label: 'KNOWN',
@@ -227,7 +259,7 @@ Widget buildPillBadgeSuccess(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Error', type: PillBadge, path: 'Common')
+@widgetbook.UseCase(name: 'Error', type: PillBadge, path: 'Common/Indicator')
 Widget buildPillBadgeError(BuildContext context) {
   return const PillBadge(
     label: 'DUE',
@@ -238,12 +270,12 @@ Widget buildPillBadgeError(BuildContext context) {
 
 // ── AppButton ─────────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Filled', type: AppButton, path: 'Common')
+@widgetbook.UseCase(name: 'Filled', type: AppButton, path: 'Common/Action')
 Widget buildAppButtonFilled(BuildContext context) {
   return AppButton(label: 'Start practice', onPressed: () {});
 }
 
-@widgetbook.UseCase(name: 'Tonal', type: AppButton, path: 'Common')
+@widgetbook.UseCase(name: 'Tonal', type: AppButton, path: 'Common/Action')
 Widget buildAppButtonTonal(BuildContext context) {
   return AppButton(
     label: 'Learn more',
@@ -252,7 +284,7 @@ Widget buildAppButtonTonal(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Outlined', type: AppButton, path: 'Common')
+@widgetbook.UseCase(name: 'Outlined', type: AppButton, path: 'Common/Action')
 Widget buildAppButtonOutlined(BuildContext context) {
   return AppButton(
     label: 'Skip',
@@ -261,7 +293,7 @@ Widget buildAppButtonOutlined(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Text', type: AppButton, path: 'Common')
+@widgetbook.UseCase(name: 'Text', type: AppButton, path: 'Common/Action')
 Widget buildAppButtonText(BuildContext context) {
   return AppButton(
     label: 'Cancel',
@@ -270,7 +302,7 @@ Widget buildAppButtonText(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Danger', type: AppButton, path: 'Common')
+@widgetbook.UseCase(name: 'Danger', type: AppButton, path: 'Common/Action')
 Widget buildAppButtonDanger(BuildContext context) {
   return AppButton(
     label: 'Reset progress',
@@ -281,7 +313,11 @@ Widget buildAppButtonDanger(BuildContext context) {
 
 /// The look the study screens ask for: tinted with the JLPT level colour,
 /// squarer than the pill default, roomier padding, and an icon.
-@widgetbook.UseCase(name: 'Accent tonal', type: AppButton, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Accent tonal',
+  type: AppButton,
+  path: 'Common/Action',
+)
 Widget buildAppButtonAccentTonal(BuildContext context) {
   final color = Theme.of(context).colorScheme.primary;
   return AppButton(
@@ -302,7 +338,7 @@ Widget buildAppButtonAccentTonal(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Small', type: AppButton, path: 'Common')
+@widgetbook.UseCase(name: 'Small', type: AppButton, path: 'Common/Action')
 Widget buildAppButtonSmall(BuildContext context) {
   return AppButton(
     label: 'Filter',
@@ -311,14 +347,14 @@ Widget buildAppButtonSmall(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Disabled', type: AppButton, path: 'Common')
+@widgetbook.UseCase(name: 'Disabled', type: AppButton, path: 'Common/Action')
 Widget buildAppButtonDisabled(BuildContext context) {
   return const AppButton(label: 'Unavailable');
 }
 
 // ── AppProgressBar ────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: '0%', type: AppProgressBar, path: 'Common')
+@widgetbook.UseCase(name: '0%', type: AppProgressBar, path: 'Common/Indicator')
 Widget buildProgressBarEmpty(BuildContext context) {
   return const Padding(
     padding: EdgeInsets.symmetric(horizontal: 24),
@@ -326,7 +362,7 @@ Widget buildProgressBarEmpty(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: '60%', type: AppProgressBar, path: 'Common')
+@widgetbook.UseCase(name: '60%', type: AppProgressBar, path: 'Common/Indicator')
 Widget buildProgressBarHalf(BuildContext context) {
   return const Padding(
     padding: EdgeInsets.symmetric(horizontal: 24),
@@ -334,7 +370,11 @@ Widget buildProgressBarHalf(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: '100%', type: AppProgressBar, path: 'Common')
+@widgetbook.UseCase(
+  name: '100%',
+  type: AppProgressBar,
+  path: 'Common/Indicator',
+)
 Widget buildProgressBarFull(BuildContext context) {
   return const Padding(
     padding: EdgeInsets.symmetric(horizontal: 24),
@@ -344,19 +384,31 @@ Widget buildProgressBarFull(BuildContext context) {
 
 // ── ProgressRow ───────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Partial', type: ProgressRow, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Partial',
+  type: ProgressRow,
+  path: 'Common/Indicator',
+)
 Widget buildProgressRowPartial(BuildContext context) {
   return const ProgressRow(known: 42, total: 100);
 }
 
-@widgetbook.UseCase(name: 'Complete', type: ProgressRow, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Complete',
+  type: ProgressRow,
+  path: 'Common/Indicator',
+)
 Widget buildProgressRowComplete(BuildContext context) {
   return const ProgressRow(known: 100, total: 100);
 }
 
 // ── SegmentedTabBar ───────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Default', type: SegmentedTabBar, path: 'Common')
+@widgetbook.UseCase(
+  name: 'Default',
+  type: SegmentedTabBar,
+  path: 'Common/Input',
+)
 Widget buildSegmentedTabBar(BuildContext context) {
   return DefaultTabController(
     length: 3,
@@ -371,7 +423,7 @@ Widget buildSegmentedTabBar(BuildContext context) {
 
 // ── SpeakButton ───────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Default', type: SpeakButton, path: 'Common')
+@widgetbook.UseCase(name: 'Default', type: SpeakButton, path: 'Common/Action')
 Widget buildSpeakButton(BuildContext context) {
   return SpeakButton(
     text: '日本語',
@@ -382,7 +434,11 @@ Widget buildSpeakButton(BuildContext context) {
 
 // ── ReviewProgressInfo ───────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'New card', type: ReviewProgressInfo, path: 'Common')
+@widgetbook.UseCase(
+  name: 'New card',
+  type: ReviewProgressInfo,
+  path: 'Common/Indicator',
+)
 Widget buildReviewProgressInfoNew(BuildContext context) {
   return const Padding(
     padding: EdgeInsets.all(16),
@@ -393,7 +449,7 @@ Widget buildReviewProgressInfoNew(BuildContext context) {
 @widgetbook.UseCase(
   name: 'Has SRS data',
   type: ReviewProgressInfo,
-  path: 'Common',
+  path: 'Common/Indicator',
 )
 Widget buildReviewProgressInfoWithCard(BuildContext context) {
   return Padding(

@@ -100,279 +100,321 @@ final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
     name: 'Common',
     children: [
-      _widgetbook.WidgetbookComponent(
-        name: 'AppButton',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Accent tonal',
-            builder: _manabi_do_widgetbook_common_use_cases
-                .buildAppButtonAccentTonal,
+      _widgetbook.WidgetbookFolder(
+        name: 'Action',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppButton',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Accent tonal',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildAppButtonAccentTonal,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Danger',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildAppButtonDanger,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildAppButtonDisabled,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Filled',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildAppButtonFilled,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Outlined',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildAppButtonOutlined,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Small',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildAppButtonSmall,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Text',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildAppButtonText,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Tonal',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildAppButtonTonal,
+              ),
+            ],
           ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Danger',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildAppButtonDanger,
+          _widgetbook.WidgetbookComponent(
+            name: 'AppFilterChip',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Active',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildAppFilterChipActive,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildAppFilterChipDisabled,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Inactive',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildAppFilterChipInactive,
+              ),
+            ],
           ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Disabled',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildAppButtonDisabled,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Filled',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildAppButtonFilled,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Outlined',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildAppButtonOutlined,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Small',
-            builder: _manabi_do_widgetbook_common_use_cases.buildAppButtonSmall,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Text',
-            builder: _manabi_do_widgetbook_common_use_cases.buildAppButtonText,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Tonal',
-            builder: _manabi_do_widgetbook_common_use_cases.buildAppButtonTonal,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'AppEmoji',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_common_use_cases.buildAppEmoji,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'AppFilterChip',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Active',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildAppFilterChipActive,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Disabled',
-            builder: _manabi_do_widgetbook_common_use_cases
-                .buildAppFilterChipDisabled,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Inactive',
-            builder: _manabi_do_widgetbook_common_use_cases
-                .buildAppFilterChipInactive,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'AppProgressBar',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: '0%',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildProgressBarEmpty,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: '100%',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildProgressBarFull,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: '60%',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildProgressBarHalf,
+          _widgetbook.WidgetbookComponent(
+            name: 'SpeakButton',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildSpeakButton,
+              ),
+            ],
           ),
         ],
       ),
-      _widgetbook.WidgetbookComponent(
-        name: 'AppTextField',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Empty',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildAppTextFieldEmpty,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'With icons',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildAppTextFieldIcons,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'CardContainer',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_common_use_cases
-                .buildCardContainerDefault,
+      _widgetbook.WidgetbookFolder(
+        name: 'Decoration',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppEmoji',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder: _manabi_do_widgetbook_common_use_cases.buildAppEmoji,
+              ),
+            ],
           ),
         ],
       ),
-      _widgetbook.WidgetbookComponent(
-        name: 'DifficultyDots',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Empty',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildDifficultyDotsEmpty,
+      _widgetbook.WidgetbookFolder(
+        name: 'Indicator',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppProgressBar',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: '0%',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildProgressBarEmpty,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: '100%',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildProgressBarFull,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: '60%',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildProgressBarHalf,
+              ),
+            ],
           ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Full',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildDifficultyDotsFull,
+          _widgetbook.WidgetbookComponent(
+            name: 'DifficultyDots',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Empty',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildDifficultyDotsEmpty,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildDifficultyDotsFull,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Half',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildDifficultyDotsHalf,
+              ),
+            ],
           ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Half',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildDifficultyDotsHalf,
+          _widgetbook.WidgetbookComponent(
+            name: 'PillBadge',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Error',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildPillBadgeError,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Primary',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildPillBadgePrimary,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Success',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildPillBadgeSuccess,
+              ),
+            ],
           ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'JapaneseText',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'All kanji',
-            builder: _manabi_do_widgetbook_common_use_cases
-                .buildJapaneseTextAllKanji,
+          _widgetbook.WidgetbookComponent(
+            name: 'ProgressRow',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Complete',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildProgressRowComplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Partial',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildProgressRowPartial,
+              ),
+            ],
           ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Kana only',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildJapaneseTextKana,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Mixed kanji/kana',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildJapaneseTextMixed,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'JlptLevelCard',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'N1',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildJlptLevelCardN1,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'N5',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildJlptLevelCardN5,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'LevelBadge',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_common_use_cases.buildLevelBadge,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'PillBadge',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Error',
-            builder: _manabi_do_widgetbook_common_use_cases.buildPillBadgeError,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Primary',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildPillBadgePrimary,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Success',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildPillBadgeSuccess,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'ProgressRow',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Complete',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildProgressRowComplete,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Partial',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildProgressRowPartial,
+          _widgetbook.WidgetbookComponent(
+            name: 'ReviewProgressInfo',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Has SRS data',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildReviewProgressInfoWithCard,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'New card',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildReviewProgressInfoNew,
+              ),
+            ],
           ),
         ],
       ),
-      _widgetbook.WidgetbookComponent(
-        name: 'ReviewProgressInfo',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Has SRS data',
-            builder: _manabi_do_widgetbook_common_use_cases
-                .buildReviewProgressInfoWithCard,
+      _widgetbook.WidgetbookFolder(
+        name: 'Input',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppTextField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Empty',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildAppTextFieldEmpty,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With icons',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildAppTextFieldIcons,
+              ),
+            ],
           ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'New card',
-            builder: _manabi_do_widgetbook_common_use_cases
-                .buildReviewProgressInfoNew,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'SectionHeader',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_common_use_cases.buildSectionHeader,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'SectionLabel',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_common_use_cases.buildSectionLabel,
+          _widgetbook.WidgetbookComponent(
+            name: 'SegmentedTabBar',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildSegmentedTabBar,
+              ),
+            ],
           ),
         ],
       ),
-      _widgetbook.WidgetbookComponent(
-        name: 'SegmentedTabBar',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildSegmentedTabBar,
+      _widgetbook.WidgetbookFolder(
+        name: 'Label',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'JapaneseText',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All kanji',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildJapaneseTextAllKanji,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Kana only',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildJapaneseTextKana,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Mixed kanji/kana',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildJapaneseTextMixed,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'SectionHeader',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildSectionHeader,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'SectionLabel',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildSectionLabel,
+              ),
+            ],
           ),
         ],
       ),
-      _widgetbook.WidgetbookComponent(
-        name: 'SpeakButton',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_common_use_cases.buildSpeakButton,
+      _widgetbook.WidgetbookFolder(
+        name: 'List item',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'JlptLevelCard',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'N1',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildJlptLevelCardN1,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'N5',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildJlptLevelCardN5,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'LevelBadge',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder: _manabi_do_widgetbook_common_use_cases.buildLevelBadge,
+              ),
+            ],
           ),
         ],
       ),
-      _widgetbook.WidgetbookComponent(
-        name: 'TappableSurface',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder:
-                _manabi_do_widgetbook_common_use_cases.buildTappableSurface,
+      _widgetbook.WidgetbookFolder(
+        name: 'Surface',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'CardContainer',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder: _manabi_do_widgetbook_common_use_cases
+                    .buildCardContainerDefault,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'TappableSurface',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _manabi_do_widgetbook_common_use_cases.buildTappableSurface,
+              ),
+            ],
           ),
         ],
       ),
