@@ -26,7 +26,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 23;
+  int get schemaVersion => 24;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -91,6 +91,34 @@ class AppDatabase extends _$AppDatabase {
       from22To23: (m, schema) async {
         await m.createTable(schema.vocabularyKanji);
         await m.alterTable(TableMigration(schema.vocabularyEntries));
+      },
+
+      // Difficulty stops being a number copied from a downloaded list and
+      // becomes one computed from JMdict's frequency bands and KANJIDIC2's
+      // school grades — both of which were already being downloaded and
+      // thrown away. `jlpt_level` stays, so the two can be compared.
+      //
+      // Empty here for the same reason as the step above: a schema change
+      // ships a new asset and the refresh replaces the file.
+      from23To24: (m, schema) async {
+        await m.addColumn(schema.kanjis, schema.kanjis.grade);
+        await m.addColumn(schema.kanjis, schema.kanjis.freq);
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.freqBand,
+        );
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.difficulty,
+        );
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.difficultyTier,
+        );
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.difficultySource,
+        );
       },
     ),
   );

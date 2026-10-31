@@ -82,6 +82,24 @@ class Kanjis extends Table with TableInfo<Kanjis, Kanji> {
     requiredDuringInsert: false,
     $customConstraints: '',
   );
+  static const VerificationMeta _gradeMeta = const VerificationMeta('grade');
+  late final GeneratedColumn<int> grade = GeneratedColumn<int>(
+    'grade',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: '',
+  );
+  static const VerificationMeta _freqMeta = const VerificationMeta('freq');
+  late final GeneratedColumn<int> freq = GeneratedColumn<int>(
+    'freq',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: '',
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -91,6 +109,8 @@ class Kanjis extends Table with TableInfo<Kanjis, Kanji> {
     kunReading,
     jlptLevel,
     svg,
+    grade,
+    freq,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -153,6 +173,18 @@ class Kanjis extends Table with TableInfo<Kanjis, Kanji> {
         svg.isAcceptableOrUnknown(data['svg']!, _svgMeta),
       );
     }
+    if (data.containsKey('grade')) {
+      context.handle(
+        _gradeMeta,
+        grade.isAcceptableOrUnknown(data['grade']!, _gradeMeta),
+      );
+    }
+    if (data.containsKey('freq')) {
+      context.handle(
+        _freqMeta,
+        freq.isAcceptableOrUnknown(data['freq']!, _freqMeta),
+      );
+    }
     return context;
   }
 
@@ -190,6 +222,14 @@ class Kanjis extends Table with TableInfo<Kanjis, Kanji> {
         DriftSqlType.string,
         data['${effectivePrefix}svg'],
       ),
+      grade: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}grade'],
+      ),
+      freq: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}freq'],
+      ),
     );
   }
 
@@ -210,6 +250,13 @@ class Kanji extends DataClass implements Insertable<Kanji> {
   final String kunReading;
   final String jlptLevel;
   final String? svg;
+
+  /// Measured difficulty from KANJIDIC2, downloaded since the start and
+  /// discarded until now. `grade` is the school year a kanji is taught in,
+  /// `freq` its rank in a newspaper corpus. Both null for a kanji KANJIDIC2
+  /// does not rank.
+  final int? grade;
+  final int? freq;
   const Kanji({
     required this.id,
     required this.character,
@@ -218,6 +265,8 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     required this.kunReading,
     required this.jlptLevel,
     this.svg,
+    this.grade,
+    this.freq,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -231,6 +280,12 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     if (!nullToAbsent || svg != null) {
       map['svg'] = Variable<String>(svg);
     }
+    if (!nullToAbsent || grade != null) {
+      map['grade'] = Variable<int>(grade);
+    }
+    if (!nullToAbsent || freq != null) {
+      map['freq'] = Variable<int>(freq);
+    }
     return map;
   }
 
@@ -243,6 +298,10 @@ class Kanji extends DataClass implements Insertable<Kanji> {
       kunReading: Value(kunReading),
       jlptLevel: Value(jlptLevel),
       svg: svg == null && nullToAbsent ? const Value.absent() : Value(svg),
+      grade: grade == null && nullToAbsent
+          ? const Value.absent()
+          : Value(grade),
+      freq: freq == null && nullToAbsent ? const Value.absent() : Value(freq),
     );
   }
 
@@ -259,6 +318,8 @@ class Kanji extends DataClass implements Insertable<Kanji> {
       kunReading: serializer.fromJson<String>(json['kun_reading']),
       jlptLevel: serializer.fromJson<String>(json['jlpt_level']),
       svg: serializer.fromJson<String?>(json['svg']),
+      grade: serializer.fromJson<int?>(json['grade']),
+      freq: serializer.fromJson<int?>(json['freq']),
     );
   }
   @override
@@ -272,6 +333,8 @@ class Kanji extends DataClass implements Insertable<Kanji> {
       'kun_reading': serializer.toJson<String>(kunReading),
       'jlpt_level': serializer.toJson<String>(jlptLevel),
       'svg': serializer.toJson<String?>(svg),
+      'grade': serializer.toJson<int?>(grade),
+      'freq': serializer.toJson<int?>(freq),
     };
   }
 
@@ -283,6 +346,8 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     String? kunReading,
     String? jlptLevel,
     Value<String?> svg = const Value.absent(),
+    Value<int?> grade = const Value.absent(),
+    Value<int?> freq = const Value.absent(),
   }) => Kanji(
     id: id ?? this.id,
     character: character ?? this.character,
@@ -291,6 +356,8 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     kunReading: kunReading ?? this.kunReading,
     jlptLevel: jlptLevel ?? this.jlptLevel,
     svg: svg.present ? svg.value : this.svg,
+    grade: grade.present ? grade.value : this.grade,
+    freq: freq.present ? freq.value : this.freq,
   );
   Kanji copyWithCompanion(KanjisCompanion data) {
     return Kanji(
@@ -303,6 +370,8 @@ class Kanji extends DataClass implements Insertable<Kanji> {
           : this.kunReading,
       jlptLevel: data.jlptLevel.present ? data.jlptLevel.value : this.jlptLevel,
       svg: data.svg.present ? data.svg.value : this.svg,
+      grade: data.grade.present ? data.grade.value : this.grade,
+      freq: data.freq.present ? data.freq.value : this.freq,
     );
   }
 
@@ -315,7 +384,9 @@ class Kanji extends DataClass implements Insertable<Kanji> {
           ..write('onReading: $onReading, ')
           ..write('kunReading: $kunReading, ')
           ..write('jlptLevel: $jlptLevel, ')
-          ..write('svg: $svg')
+          ..write('svg: $svg, ')
+          ..write('grade: $grade, ')
+          ..write('freq: $freq')
           ..write(')'))
         .toString();
   }
@@ -329,6 +400,8 @@ class Kanji extends DataClass implements Insertable<Kanji> {
     kunReading,
     jlptLevel,
     svg,
+    grade,
+    freq,
   );
   @override
   bool operator ==(Object other) =>
@@ -340,7 +413,9 @@ class Kanji extends DataClass implements Insertable<Kanji> {
           other.onReading == this.onReading &&
           other.kunReading == this.kunReading &&
           other.jlptLevel == this.jlptLevel &&
-          other.svg == this.svg);
+          other.svg == this.svg &&
+          other.grade == this.grade &&
+          other.freq == this.freq);
 }
 
 class KanjisCompanion extends UpdateCompanion<Kanji> {
@@ -351,6 +426,8 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
   final Value<String> kunReading;
   final Value<String> jlptLevel;
   final Value<String?> svg;
+  final Value<int?> grade;
+  final Value<int?> freq;
   const KanjisCompanion({
     this.id = const Value.absent(),
     this.character = const Value.absent(),
@@ -359,6 +436,8 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     this.kunReading = const Value.absent(),
     this.jlptLevel = const Value.absent(),
     this.svg = const Value.absent(),
+    this.grade = const Value.absent(),
+    this.freq = const Value.absent(),
   });
   KanjisCompanion.insert({
     this.id = const Value.absent(),
@@ -368,6 +447,8 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     required String kunReading,
     required String jlptLevel,
     this.svg = const Value.absent(),
+    this.grade = const Value.absent(),
+    this.freq = const Value.absent(),
   }) : character = Value(character),
        meaning = Value(meaning),
        onReading = Value(onReading),
@@ -381,6 +462,8 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     Expression<String>? kunReading,
     Expression<String>? jlptLevel,
     Expression<String>? svg,
+    Expression<int>? grade,
+    Expression<int>? freq,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -390,6 +473,8 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
       if (kunReading != null) 'kun_reading': kunReading,
       if (jlptLevel != null) 'jlpt_level': jlptLevel,
       if (svg != null) 'svg': svg,
+      if (grade != null) 'grade': grade,
+      if (freq != null) 'freq': freq,
     });
   }
 
@@ -401,6 +486,8 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     Value<String>? kunReading,
     Value<String>? jlptLevel,
     Value<String?>? svg,
+    Value<int?>? grade,
+    Value<int?>? freq,
   }) {
     return KanjisCompanion(
       id: id ?? this.id,
@@ -410,6 +497,8 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
       kunReading: kunReading ?? this.kunReading,
       jlptLevel: jlptLevel ?? this.jlptLevel,
       svg: svg ?? this.svg,
+      grade: grade ?? this.grade,
+      freq: freq ?? this.freq,
     );
   }
 
@@ -437,6 +526,12 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
     if (svg.present) {
       map['svg'] = Variable<String>(svg.value);
     }
+    if (grade.present) {
+      map['grade'] = Variable<int>(grade.value);
+    }
+    if (freq.present) {
+      map['freq'] = Variable<int>(freq.value);
+    }
     return map;
   }
 
@@ -449,7 +544,9 @@ class KanjisCompanion extends UpdateCompanion<Kanji> {
           ..write('onReading: $onReading, ')
           ..write('kunReading: $kunReading, ')
           ..write('jlptLevel: $jlptLevel, ')
-          ..write('svg: $svg')
+          ..write('svg: $svg, ')
+          ..write('grade: $grade, ')
+          ..write('freq: $freq')
           ..write(')'))
         .toString();
   }
@@ -962,6 +1059,53 @@ class VocabularyEntries extends Table
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  static const VerificationMeta _freqBandMeta = const VerificationMeta(
+    'freqBand',
+  );
+  late final GeneratedColumn<int> freqBand = GeneratedColumn<int>(
+    'freq_band',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: '',
+  );
+  static const VerificationMeta _difficultyMeta = const VerificationMeta(
+    'difficulty',
+  );
+  late final GeneratedColumn<int> difficulty = GeneratedColumn<int>(
+    'difficulty',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 0',
+    defaultValue: const CustomExpression('0'),
+  );
+  static const VerificationMeta _difficultyTierMeta = const VerificationMeta(
+    'difficultyTier',
+  );
+  late final GeneratedColumn<int> difficultyTier = GeneratedColumn<int>(
+    'difficulty_tier',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 5',
+    defaultValue: const CustomExpression('5'),
+  );
+  static const VerificationMeta _difficultySourceMeta = const VerificationMeta(
+    'difficultySource',
+  );
+  late final GeneratedColumn<String> difficultySource = GeneratedColumn<String>(
+    'difficulty_source',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'\'',
+    defaultValue: const CustomExpression('\'\''),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -970,6 +1114,10 @@ class VocabularyEntries extends Table
     meaning,
     jlptLevel,
     partOfSpeech,
+    freqBand,
+    difficulty,
+    difficultyTier,
+    difficultySource,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1029,6 +1177,36 @@ class VocabularyEntries extends Table
     } else if (isInserting) {
       context.missing(_partOfSpeechMeta);
     }
+    if (data.containsKey('freq_band')) {
+      context.handle(
+        _freqBandMeta,
+        freqBand.isAcceptableOrUnknown(data['freq_band']!, _freqBandMeta),
+      );
+    }
+    if (data.containsKey('difficulty')) {
+      context.handle(
+        _difficultyMeta,
+        difficulty.isAcceptableOrUnknown(data['difficulty']!, _difficultyMeta),
+      );
+    }
+    if (data.containsKey('difficulty_tier')) {
+      context.handle(
+        _difficultyTierMeta,
+        difficultyTier.isAcceptableOrUnknown(
+          data['difficulty_tier']!,
+          _difficultyTierMeta,
+        ),
+      );
+    }
+    if (data.containsKey('difficulty_source')) {
+      context.handle(
+        _difficultySourceMeta,
+        difficultySource.isAcceptableOrUnknown(
+          data['difficulty_source']!,
+          _difficultySourceMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -1062,6 +1240,22 @@ class VocabularyEntries extends Table
         DriftSqlType.string,
         data['${effectivePrefix}part_of_speech'],
       )!,
+      freqBand: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}freq_band'],
+      ),
+      difficulty: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}difficulty'],
+      )!,
+      difficultyTier: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}difficulty_tier'],
+      )!,
+      difficultySource: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}difficulty_source'],
+      )!,
     );
   }
 
@@ -1081,6 +1275,17 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   final String meaning;
   final String jlptLevel;
   final String partOfSpeech;
+
+  /// JMdict's newspaper frequency band, 1 (most common) to 48, or 49 for a word
+  /// on another of its common lists with no band. Null means no evidence.
+  final int? freqBand;
+
+  /// Computed difficulty, 0 (easiest) to 1000, with the tier it falls in and
+  /// what fed the number. `jlpt_level` above is still the downloaded value and
+  /// is kept alongside so the two can be compared.
+  final int difficulty;
+  final int difficultyTier;
+  final String difficultySource;
   const VocabularyEntry({
     required this.id,
     required this.word,
@@ -1088,6 +1293,10 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     required this.meaning,
     required this.jlptLevel,
     required this.partOfSpeech,
+    this.freqBand,
+    required this.difficulty,
+    required this.difficultyTier,
+    required this.difficultySource,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1098,6 +1307,12 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     map['meaning'] = Variable<String>(meaning);
     map['jlpt_level'] = Variable<String>(jlptLevel);
     map['part_of_speech'] = Variable<String>(partOfSpeech);
+    if (!nullToAbsent || freqBand != null) {
+      map['freq_band'] = Variable<int>(freqBand);
+    }
+    map['difficulty'] = Variable<int>(difficulty);
+    map['difficulty_tier'] = Variable<int>(difficultyTier);
+    map['difficulty_source'] = Variable<String>(difficultySource);
     return map;
   }
 
@@ -1109,6 +1324,12 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       meaning: Value(meaning),
       jlptLevel: Value(jlptLevel),
       partOfSpeech: Value(partOfSpeech),
+      freqBand: freqBand == null && nullToAbsent
+          ? const Value.absent()
+          : Value(freqBand),
+      difficulty: Value(difficulty),
+      difficultyTier: Value(difficultyTier),
+      difficultySource: Value(difficultySource),
     );
   }
 
@@ -1124,6 +1345,10 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       meaning: serializer.fromJson<String>(json['meaning']),
       jlptLevel: serializer.fromJson<String>(json['jlpt_level']),
       partOfSpeech: serializer.fromJson<String>(json['part_of_speech']),
+      freqBand: serializer.fromJson<int?>(json['freq_band']),
+      difficulty: serializer.fromJson<int>(json['difficulty']),
+      difficultyTier: serializer.fromJson<int>(json['difficulty_tier']),
+      difficultySource: serializer.fromJson<String>(json['difficulty_source']),
     );
   }
   @override
@@ -1136,6 +1361,10 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       'meaning': serializer.toJson<String>(meaning),
       'jlpt_level': serializer.toJson<String>(jlptLevel),
       'part_of_speech': serializer.toJson<String>(partOfSpeech),
+      'freq_band': serializer.toJson<int?>(freqBand),
+      'difficulty': serializer.toJson<int>(difficulty),
+      'difficulty_tier': serializer.toJson<int>(difficultyTier),
+      'difficulty_source': serializer.toJson<String>(difficultySource),
     };
   }
 
@@ -1146,6 +1375,10 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     String? meaning,
     String? jlptLevel,
     String? partOfSpeech,
+    Value<int?> freqBand = const Value.absent(),
+    int? difficulty,
+    int? difficultyTier,
+    String? difficultySource,
   }) => VocabularyEntry(
     id: id ?? this.id,
     word: word ?? this.word,
@@ -1153,6 +1386,10 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     meaning: meaning ?? this.meaning,
     jlptLevel: jlptLevel ?? this.jlptLevel,
     partOfSpeech: partOfSpeech ?? this.partOfSpeech,
+    freqBand: freqBand.present ? freqBand.value : this.freqBand,
+    difficulty: difficulty ?? this.difficulty,
+    difficultyTier: difficultyTier ?? this.difficultyTier,
+    difficultySource: difficultySource ?? this.difficultySource,
   );
   VocabularyEntry copyWithCompanion(VocabularyEntriesCompanion data) {
     return VocabularyEntry(
@@ -1164,6 +1401,16 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       partOfSpeech: data.partOfSpeech.present
           ? data.partOfSpeech.value
           : this.partOfSpeech,
+      freqBand: data.freqBand.present ? data.freqBand.value : this.freqBand,
+      difficulty: data.difficulty.present
+          ? data.difficulty.value
+          : this.difficulty,
+      difficultyTier: data.difficultyTier.present
+          ? data.difficultyTier.value
+          : this.difficultyTier,
+      difficultySource: data.difficultySource.present
+          ? data.difficultySource.value
+          : this.difficultySource,
     );
   }
 
@@ -1175,14 +1422,28 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
           ..write('reading: $reading, ')
           ..write('meaning: $meaning, ')
           ..write('jlptLevel: $jlptLevel, ')
-          ..write('partOfSpeech: $partOfSpeech')
+          ..write('partOfSpeech: $partOfSpeech, ')
+          ..write('freqBand: $freqBand, ')
+          ..write('difficulty: $difficulty, ')
+          ..write('difficultyTier: $difficultyTier, ')
+          ..write('difficultySource: $difficultySource')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, word, reading, meaning, jlptLevel, partOfSpeech);
+  int get hashCode => Object.hash(
+    id,
+    word,
+    reading,
+    meaning,
+    jlptLevel,
+    partOfSpeech,
+    freqBand,
+    difficulty,
+    difficultyTier,
+    difficultySource,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1192,7 +1453,11 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
           other.reading == this.reading &&
           other.meaning == this.meaning &&
           other.jlptLevel == this.jlptLevel &&
-          other.partOfSpeech == this.partOfSpeech);
+          other.partOfSpeech == this.partOfSpeech &&
+          other.freqBand == this.freqBand &&
+          other.difficulty == this.difficulty &&
+          other.difficultyTier == this.difficultyTier &&
+          other.difficultySource == this.difficultySource);
 }
 
 class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
@@ -1202,6 +1467,10 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   final Value<String> meaning;
   final Value<String> jlptLevel;
   final Value<String> partOfSpeech;
+  final Value<int?> freqBand;
+  final Value<int> difficulty;
+  final Value<int> difficultyTier;
+  final Value<String> difficultySource;
   const VocabularyEntriesCompanion({
     this.id = const Value.absent(),
     this.word = const Value.absent(),
@@ -1209,6 +1478,10 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     this.meaning = const Value.absent(),
     this.jlptLevel = const Value.absent(),
     this.partOfSpeech = const Value.absent(),
+    this.freqBand = const Value.absent(),
+    this.difficulty = const Value.absent(),
+    this.difficultyTier = const Value.absent(),
+    this.difficultySource = const Value.absent(),
   });
   VocabularyEntriesCompanion.insert({
     this.id = const Value.absent(),
@@ -1217,6 +1490,10 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     required String meaning,
     required String jlptLevel,
     required String partOfSpeech,
+    this.freqBand = const Value.absent(),
+    this.difficulty = const Value.absent(),
+    this.difficultyTier = const Value.absent(),
+    this.difficultySource = const Value.absent(),
   }) : word = Value(word),
        reading = Value(reading),
        meaning = Value(meaning),
@@ -1229,6 +1506,10 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     Expression<String>? meaning,
     Expression<String>? jlptLevel,
     Expression<String>? partOfSpeech,
+    Expression<int>? freqBand,
+    Expression<int>? difficulty,
+    Expression<int>? difficultyTier,
+    Expression<String>? difficultySource,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1237,6 +1518,10 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
       if (meaning != null) 'meaning': meaning,
       if (jlptLevel != null) 'jlpt_level': jlptLevel,
       if (partOfSpeech != null) 'part_of_speech': partOfSpeech,
+      if (freqBand != null) 'freq_band': freqBand,
+      if (difficulty != null) 'difficulty': difficulty,
+      if (difficultyTier != null) 'difficulty_tier': difficultyTier,
+      if (difficultySource != null) 'difficulty_source': difficultySource,
     });
   }
 
@@ -1247,6 +1532,10 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     Value<String>? meaning,
     Value<String>? jlptLevel,
     Value<String>? partOfSpeech,
+    Value<int?>? freqBand,
+    Value<int>? difficulty,
+    Value<int>? difficultyTier,
+    Value<String>? difficultySource,
   }) {
     return VocabularyEntriesCompanion(
       id: id ?? this.id,
@@ -1255,6 +1544,10 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
       meaning: meaning ?? this.meaning,
       jlptLevel: jlptLevel ?? this.jlptLevel,
       partOfSpeech: partOfSpeech ?? this.partOfSpeech,
+      freqBand: freqBand ?? this.freqBand,
+      difficulty: difficulty ?? this.difficulty,
+      difficultyTier: difficultyTier ?? this.difficultyTier,
+      difficultySource: difficultySource ?? this.difficultySource,
     );
   }
 
@@ -1279,6 +1572,18 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     if (partOfSpeech.present) {
       map['part_of_speech'] = Variable<String>(partOfSpeech.value);
     }
+    if (freqBand.present) {
+      map['freq_band'] = Variable<int>(freqBand.value);
+    }
+    if (difficulty.present) {
+      map['difficulty'] = Variable<int>(difficulty.value);
+    }
+    if (difficultyTier.present) {
+      map['difficulty_tier'] = Variable<int>(difficultyTier.value);
+    }
+    if (difficultySource.present) {
+      map['difficulty_source'] = Variable<String>(difficultySource.value);
+    }
     return map;
   }
 
@@ -1290,7 +1595,11 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
           ..write('reading: $reading, ')
           ..write('meaning: $meaning, ')
           ..write('jlptLevel: $jlptLevel, ')
-          ..write('partOfSpeech: $partOfSpeech')
+          ..write('partOfSpeech: $partOfSpeech, ')
+          ..write('freqBand: $freqBand, ')
+          ..write('difficulty: $difficulty, ')
+          ..write('difficultyTier: $difficultyTier, ')
+          ..write('difficultySource: $difficultySource')
           ..write(')'))
         .toString();
   }
@@ -5766,6 +6075,8 @@ typedef $KanjisCreateCompanionBuilder =
       required String kunReading,
       required String jlptLevel,
       Value<String?> svg,
+      Value<int?> grade,
+      Value<int?> freq,
     });
 typedef $KanjisUpdateCompanionBuilder =
     KanjisCompanion Function({
@@ -5776,6 +6087,8 @@ typedef $KanjisUpdateCompanionBuilder =
       Value<String> kunReading,
       Value<String> jlptLevel,
       Value<String?> svg,
+      Value<int?> grade,
+      Value<int?> freq,
     });
 
 final class $KanjisReferences
@@ -5864,6 +6177,16 @@ class $KanjisFilterComposer extends Composer<_$AppDatabase, Kanjis> {
 
   ColumnFilters<String> get svg => $composableBuilder(
     column: $table.svg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get grade => $composableBuilder(
+    column: $table.grade,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get freq => $composableBuilder(
+    column: $table.freq,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -5960,6 +6283,16 @@ class $KanjisOrderingComposer extends Composer<_$AppDatabase, Kanjis> {
     column: $table.svg,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<int> get grade => $composableBuilder(
+    column: $table.grade,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get freq => $composableBuilder(
+    column: $table.freq,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $KanjisAnnotationComposer extends Composer<_$AppDatabase, Kanjis> {
@@ -5992,6 +6325,12 @@ class $KanjisAnnotationComposer extends Composer<_$AppDatabase, Kanjis> {
 
   GeneratedColumn<String> get svg =>
       $composableBuilder(column: $table.svg, builder: (column) => column);
+
+  GeneratedColumn<int> get grade =>
+      $composableBuilder(column: $table.grade, builder: (column) => column);
+
+  GeneratedColumn<int> get freq =>
+      $composableBuilder(column: $table.freq, builder: (column) => column);
 
   Expression<T> vocabularyKanjiRefs<T extends Object>(
     Expression<T> Function($VocabularyKanjiAnnotationComposer a) f,
@@ -6082,6 +6421,8 @@ class $KanjisTableManager
                 Value<String> kunReading = const Value.absent(),
                 Value<String> jlptLevel = const Value.absent(),
                 Value<String?> svg = const Value.absent(),
+                Value<int?> grade = const Value.absent(),
+                Value<int?> freq = const Value.absent(),
               }) => KanjisCompanion(
                 id: id,
                 character: character,
@@ -6090,6 +6431,8 @@ class $KanjisTableManager
                 kunReading: kunReading,
                 jlptLevel: jlptLevel,
                 svg: svg,
+                grade: grade,
+                freq: freq,
               ),
           createCompanionCallback:
               ({
@@ -6100,6 +6443,8 @@ class $KanjisTableManager
                 required String kunReading,
                 required String jlptLevel,
                 Value<String?> svg = const Value.absent(),
+                Value<int?> grade = const Value.absent(),
+                Value<int?> freq = const Value.absent(),
               }) => KanjisCompanion.insert(
                 id: id,
                 character: character,
@@ -6108,6 +6453,8 @@ class $KanjisTableManager
                 kunReading: kunReading,
                 jlptLevel: jlptLevel,
                 svg: svg,
+                grade: grade,
+                freq: freq,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), $KanjisReferences(db, table, e)))
@@ -6419,6 +6766,10 @@ typedef $VocabularyEntriesCreateCompanionBuilder =
       required String meaning,
       required String jlptLevel,
       required String partOfSpeech,
+      Value<int?> freqBand,
+      Value<int> difficulty,
+      Value<int> difficultyTier,
+      Value<String> difficultySource,
     });
 typedef $VocabularyEntriesUpdateCompanionBuilder =
     VocabularyEntriesCompanion Function({
@@ -6428,6 +6779,10 @@ typedef $VocabularyEntriesUpdateCompanionBuilder =
       Value<String> meaning,
       Value<String> jlptLevel,
       Value<String> partOfSpeech,
+      Value<int?> freqBand,
+      Value<int> difficulty,
+      Value<int> difficultyTier,
+      Value<String> difficultySource,
     });
 
 final class $VocabularyEntriesReferences
@@ -6535,6 +6890,26 @@ class $VocabularyEntriesFilterComposer
 
   ColumnFilters<String> get partOfSpeech => $composableBuilder(
     column: $table.partOfSpeech,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get freqBand => $composableBuilder(
+    column: $table.freqBand,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get difficulty => $composableBuilder(
+    column: $table.difficulty,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get difficultyTier => $composableBuilder(
+    column: $table.difficultyTier,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get difficultySource => $composableBuilder(
+    column: $table.difficultySource,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -6652,6 +7027,26 @@ class $VocabularyEntriesOrderingComposer
     column: $table.partOfSpeech,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<int> get freqBand => $composableBuilder(
+    column: $table.freqBand,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get difficulty => $composableBuilder(
+    column: $table.difficulty,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get difficultyTier => $composableBuilder(
+    column: $table.difficultyTier,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get difficultySource => $composableBuilder(
+    column: $table.difficultySource,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $VocabularyEntriesAnnotationComposer
@@ -6680,6 +7075,24 @@ class $VocabularyEntriesAnnotationComposer
 
   GeneratedColumn<String> get partOfSpeech => $composableBuilder(
     column: $table.partOfSpeech,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get freqBand =>
+      $composableBuilder(column: $table.freqBand, builder: (column) => column);
+
+  GeneratedColumn<int> get difficulty => $composableBuilder(
+    column: $table.difficulty,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get difficultyTier => $composableBuilder(
+    column: $table.difficultyTier,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get difficultySource => $composableBuilder(
+    column: $table.difficultySource,
     builder: (column) => column,
   );
 
@@ -6797,6 +7210,10 @@ class $VocabularyEntriesTableManager
                 Value<String> meaning = const Value.absent(),
                 Value<String> jlptLevel = const Value.absent(),
                 Value<String> partOfSpeech = const Value.absent(),
+                Value<int?> freqBand = const Value.absent(),
+                Value<int> difficulty = const Value.absent(),
+                Value<int> difficultyTier = const Value.absent(),
+                Value<String> difficultySource = const Value.absent(),
               }) => VocabularyEntriesCompanion(
                 id: id,
                 word: word,
@@ -6804,6 +7221,10 @@ class $VocabularyEntriesTableManager
                 meaning: meaning,
                 jlptLevel: jlptLevel,
                 partOfSpeech: partOfSpeech,
+                freqBand: freqBand,
+                difficulty: difficulty,
+                difficultyTier: difficultyTier,
+                difficultySource: difficultySource,
               ),
           createCompanionCallback:
               ({
@@ -6813,6 +7234,10 @@ class $VocabularyEntriesTableManager
                 required String meaning,
                 required String jlptLevel,
                 required String partOfSpeech,
+                Value<int?> freqBand = const Value.absent(),
+                Value<int> difficulty = const Value.absent(),
+                Value<int> difficultyTier = const Value.absent(),
+                Value<String> difficultySource = const Value.absent(),
               }) => VocabularyEntriesCompanion.insert(
                 id: id,
                 word: word,
@@ -6820,6 +7245,10 @@ class $VocabularyEntriesTableManager
                 meaning: meaning,
                 jlptLevel: jlptLevel,
                 partOfSpeech: partOfSpeech,
+                freqBand: freqBand,
+                difficulty: difficulty,
+                difficultyTier: difficultyTier,
+                difficultySource: difficultySource,
               ),
           withReferenceMapper: (p0) => p0
               .map(
