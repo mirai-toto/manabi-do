@@ -74,4 +74,16 @@ else
 fi
 
 cp "$CACHED" "$DEST"
+
+# Verify what we leave behind, not just the cache. A truncated or partly
+# written asset otherwise surfaces much later as "no such table", with
+# nothing pointing back at this step.
+DEST_SHA="$(sha_of "$DEST")"
+if [ "$DEST_SHA" != "$GOT_SHA" ]; then
+  echo "error: $DEST does not match the file that was copied into it" >&2
+  echo "  cache $GOT_SHA" >&2
+  echo "  dest  $DEST_SHA" >&2
+  exit 1
+fi
+
 echo "content $TAG in place at manabi_do/assets/$ASSET"
