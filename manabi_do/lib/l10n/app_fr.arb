@@ -213,6 +213,12 @@
   "aboutKanjiVgLink": "kanjivg.tagaini.net",
   "aboutTatoebaNotice": "Les exemples de phrases proviennent de Tatoeba (tatoeba.org), un corpus multilingue communautaire, sous licence Creative Commons Attribution 2.0.",
   "aboutTatoebaLink": "tatoeba.org",
+  "aboutWallerNotice": "Les niveaux de difficulté des kanji proviennent de davidluzgouveia/kanji-data, construit sur les listes de vocabulaire et de kanji JLPT compilées par Jonathan Waller, sous licence Creative Commons Attribution. Ses listes de vocabulaire définissaient aussi les niveaux des mots dans les versions antérieures à 24.",
+  "aboutWallerLink": "tanos.co.uk",
+  "aboutPykakasiNotice": "Les furigana affichés sur les phrases d'exemple ont été générés avec pykakasi, sous licence GNU General Public License v3 ou ultérieure.",
+  "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
+  "aboutBccwjNotice": "La difficulté des mots est calculée à partir de leur fréquence dans le Balanced Corpus of Contemporary Written Japanese, publié par le National Institute for Japanese Language and Linguistics (NINJAL).",
+  "aboutBccwjLink": "clrd.ninjal.ac.jp",
   "aboutOpenSourceLicenses": "Licences open source",
 
   "practiceSessionDone": "Session terminée !",

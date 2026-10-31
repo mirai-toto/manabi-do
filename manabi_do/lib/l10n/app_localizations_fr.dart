@@ -506,6 +506,27 @@ class AppLocalizationsFr extends AppLocalizations {
   String get aboutTatoebaLink => 'tatoeba.org';
 
   @override
+  String get aboutWallerNotice =>
+      'Les niveaux de difficulté des kanji proviennent de davidluzgouveia/kanji-data, construit sur les listes de vocabulaire et de kanji JLPT compilées par Jonathan Waller, sous licence Creative Commons Attribution. Ses listes de vocabulaire définissaient aussi les niveaux des mots dans les versions antérieures à 24.';
+
+  @override
+  String get aboutWallerLink => 'tanos.co.uk';
+
+  @override
+  String get aboutPykakasiNotice =>
+      'Les furigana affichés sur les phrases d\'exemple ont été générés avec pykakasi, sous licence GNU General Public License v3 ou ultérieure.';
+
+  @override
+  String get aboutPykakasiLink => 'codeberg.org/miurahr/pykakasi';
+
+  @override
+  String get aboutBccwjNotice =>
+      'La difficulté des mots est calculée à partir de leur fréquence dans le Balanced Corpus of Contemporary Written Japanese, publié par le National Institute for Japanese Language and Linguistics (NINJAL).';
+
+  @override
+  String get aboutBccwjLink => 'clrd.ninjal.ac.jp';
+
+  @override
   String get aboutOpenSourceLicenses => 'Licences open source';
 
   @override

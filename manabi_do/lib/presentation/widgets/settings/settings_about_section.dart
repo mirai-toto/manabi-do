@@ -62,6 +62,23 @@ class SettingsAboutSection extends ConsumerWidget {
         AttributionCard(notice: l.aboutKanjiVgNotice, link: l.aboutKanjiVgLink),
         const SizedBox(height: AppDimens.spaceSm),
         AttributionCard(notice: l.aboutTatoebaNotice, link: l.aboutTatoebaLink),
+        const SizedBox(height: AppDimens.spaceSm),
+        // Owed since the first release and missing until now. Waller's lists
+        // decide which kanji the app teaches and how hard each one is, and his
+        // vocabulary lists set every word level before version 24. CC BY asks
+        // for credit.
+        AttributionCard(notice: l.aboutWallerNotice, link: l.aboutWallerLink),
+        const SizedBox(height: AppDimens.spaceSm),
+        AttributionCard(
+          notice: l.aboutBccwjNotice,
+          link: l.aboutBccwjLink,
+        ),
+        const SizedBox(height: AppDimens.spaceSm),
+        // The tool is not shipped, but the furigana it produced is.
+        AttributionCard(
+          notice: l.aboutPykakasiNotice,
+          link: l.aboutPykakasiLink,
+        ),
       ],
     );
   }

@@ -994,6 +994,42 @@ abstract class AppLocalizations {
   /// **'tatoeba.org'**
   String get aboutTatoebaLink;
 
+  /// No description provided for @aboutWallerNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Kanji difficulty levels come from davidluzgouveia/kanji-data, built on the JLPT vocabulary and kanji lists compiled by Jonathan Waller, licensed under Creative Commons Attribution. His vocabulary lists also set the word levels in versions before 24.'**
+  String get aboutWallerNotice;
+
+  /// No description provided for @aboutWallerLink.
+  ///
+  /// In en, this message translates to:
+  /// **'tanos.co.uk'**
+  String get aboutWallerLink;
+
+  /// No description provided for @aboutPykakasiNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Furigana readings over example sentences were generated with pykakasi, licensed under the GNU General Public License v3 or later.'**
+  String get aboutPykakasiNotice;
+
+  /// No description provided for @aboutPykakasiLink.
+  ///
+  /// In en, this message translates to:
+  /// **'codeberg.org/miurahr/pykakasi'**
+  String get aboutPykakasiLink;
+
+  /// No description provided for @aboutBccwjNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Word difficulty is calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).'**
+  String get aboutBccwjNotice;
+
+  /// No description provided for @aboutBccwjLink.
+  ///
+  /// In en, this message translates to:
+  /// **'clrd.ninjal.ac.jp'**
+  String get aboutBccwjLink;
+
   /// No description provided for @aboutOpenSourceLicenses.
   ///
   /// In en, this message translates to:

@@ -234,6 +234,12 @@
   "aboutKanjiVgLink": "kanjivg.tagaini.net",
   "aboutTatoebaNotice": "Example sentences are sourced from Tatoeba (tatoeba.org), a community-built multilingual corpus, licensed under Creative Commons Attribution 2.0.",
   "aboutTatoebaLink": "tatoeba.org",
+  "aboutWallerNotice": "Kanji difficulty levels come from davidluzgouveia/kanji-data, built on the JLPT vocabulary and kanji lists compiled by Jonathan Waller, licensed under Creative Commons Attribution. His vocabulary lists also set the word levels in versions before 24.",
+  "aboutWallerLink": "tanos.co.uk",
+  "aboutPykakasiNotice": "Furigana readings over example sentences were generated with pykakasi, licensed under the GNU General Public License v3 or later.",
+  "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
+  "aboutBccwjNotice": "Word difficulty is calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).",
+  "aboutBccwjLink": "clrd.ninjal.ac.jp",
   "aboutOpenSourceLicenses": "Open source licenses",
 
   "practiceSessionDone": "Session complete",

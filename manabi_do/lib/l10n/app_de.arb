@@ -215,6 +215,12 @@
   "aboutKanjiVgLink": "kanjivg.tagaini.net",
   "aboutTatoebaNotice": "Beispielsätze stammen von Tatoeba (tatoeba.org), einem gemeinschaftlich erstellten mehrsprachigen Korpus, lizenziert unter Creative Commons Attribution 2.0.",
   "aboutTatoebaLink": "tatoeba.org",
+  "aboutWallerNotice": "Die Schwierigkeitsstufen der Kanji stammen aus davidluzgouveia/kanji-data, das auf den von Jonathan Waller zusammengestellten JLPT-Wortschatz- und Kanji-Listen aufbaut, lizenziert unter Creative Commons Attribution. Seine Wortschatzlisten bestimmten in Versionen vor 24 auch die Wortstufen.",
+  "aboutWallerLink": "tanos.co.uk",
+  "aboutPykakasiNotice": "Die Furigana über den Beispielsätzen wurden mit pykakasi erzeugt, lizenziert unter der GNU General Public License v3 oder später.",
+  "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
+  "aboutBccwjNotice": "Die Wortschwierigkeit wird aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).",
+  "aboutBccwjLink": "clrd.ninjal.ac.jp",
   "aboutOpenSourceLicenses": "Open-Source-Lizenzen",
 
   "practiceSessionDone": "Sitzung abgeschlossen",

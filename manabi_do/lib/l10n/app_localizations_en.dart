@@ -504,6 +504,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutTatoebaLink => 'tatoeba.org';
 
   @override
+  String get aboutWallerNotice =>
+      'Kanji difficulty levels come from davidluzgouveia/kanji-data, built on the JLPT vocabulary and kanji lists compiled by Jonathan Waller, licensed under Creative Commons Attribution. His vocabulary lists also set the word levels in versions before 24.';
+
+  @override
+  String get aboutWallerLink => 'tanos.co.uk';
+
+  @override
+  String get aboutPykakasiNotice =>
+      'Furigana readings over example sentences were generated with pykakasi, licensed under the GNU General Public License v3 or later.';
+
+  @override
+  String get aboutPykakasiLink => 'codeberg.org/miurahr/pykakasi';
+
+  @override
+  String get aboutBccwjNotice =>
+      'Word difficulty is calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).';
+
+  @override
+  String get aboutBccwjLink => 'clrd.ninjal.ac.jp';
+
+  @override
   String get aboutOpenSourceLicenses => 'Open source licenses';
 
   @override
