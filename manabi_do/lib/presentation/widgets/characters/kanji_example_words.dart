@@ -20,10 +20,7 @@ class KanjiExampleWords extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(
-      localizedKanjiVocabularyProvider((
-        kanjiId: kanji.id,
-        character: kanji.character,
-      )),
+      localizedKanjiVocabularyProvider((kanjiId: kanji.id,)),
     );
 
     return Column(

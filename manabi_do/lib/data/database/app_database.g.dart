@@ -962,17 +962,6 @@ class VocabularyEntries extends Table
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
-  static const VerificationMeta _kanjiIdMeta = const VerificationMeta(
-    'kanjiId',
-  );
-  late final GeneratedColumn<int> kanjiId = GeneratedColumn<int>(
-    'kanji_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    $customConstraints: 'REFERENCES kanjis(id)',
-  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -981,7 +970,6 @@ class VocabularyEntries extends Table
     meaning,
     jlptLevel,
     partOfSpeech,
-    kanjiId,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1041,12 +1029,6 @@ class VocabularyEntries extends Table
     } else if (isInserting) {
       context.missing(_partOfSpeechMeta);
     }
-    if (data.containsKey('kanji_id')) {
-      context.handle(
-        _kanjiIdMeta,
-        kanjiId.isAcceptableOrUnknown(data['kanji_id']!, _kanjiIdMeta),
-      );
-    }
     return context;
   }
 
@@ -1080,10 +1062,6 @@ class VocabularyEntries extends Table
         DriftSqlType.string,
         data['${effectivePrefix}part_of_speech'],
       )!,
-      kanjiId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}kanji_id'],
-      ),
     );
   }
 
@@ -1103,7 +1081,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   final String meaning;
   final String jlptLevel;
   final String partOfSpeech;
-  final int? kanjiId;
   const VocabularyEntry({
     required this.id,
     required this.word,
@@ -1111,7 +1088,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     required this.meaning,
     required this.jlptLevel,
     required this.partOfSpeech,
-    this.kanjiId,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1122,9 +1098,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     map['meaning'] = Variable<String>(meaning);
     map['jlpt_level'] = Variable<String>(jlptLevel);
     map['part_of_speech'] = Variable<String>(partOfSpeech);
-    if (!nullToAbsent || kanjiId != null) {
-      map['kanji_id'] = Variable<int>(kanjiId);
-    }
     return map;
   }
 
@@ -1136,9 +1109,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       meaning: Value(meaning),
       jlptLevel: Value(jlptLevel),
       partOfSpeech: Value(partOfSpeech),
-      kanjiId: kanjiId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(kanjiId),
     );
   }
 
@@ -1154,7 +1124,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       meaning: serializer.fromJson<String>(json['meaning']),
       jlptLevel: serializer.fromJson<String>(json['jlpt_level']),
       partOfSpeech: serializer.fromJson<String>(json['part_of_speech']),
-      kanjiId: serializer.fromJson<int?>(json['kanji_id']),
     );
   }
   @override
@@ -1167,7 +1136,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       'meaning': serializer.toJson<String>(meaning),
       'jlpt_level': serializer.toJson<String>(jlptLevel),
       'part_of_speech': serializer.toJson<String>(partOfSpeech),
-      'kanji_id': serializer.toJson<int?>(kanjiId),
     };
   }
 
@@ -1178,7 +1146,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     String? meaning,
     String? jlptLevel,
     String? partOfSpeech,
-    Value<int?> kanjiId = const Value.absent(),
   }) => VocabularyEntry(
     id: id ?? this.id,
     word: word ?? this.word,
@@ -1186,7 +1153,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     meaning: meaning ?? this.meaning,
     jlptLevel: jlptLevel ?? this.jlptLevel,
     partOfSpeech: partOfSpeech ?? this.partOfSpeech,
-    kanjiId: kanjiId.present ? kanjiId.value : this.kanjiId,
   );
   VocabularyEntry copyWithCompanion(VocabularyEntriesCompanion data) {
     return VocabularyEntry(
@@ -1198,7 +1164,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       partOfSpeech: data.partOfSpeech.present
           ? data.partOfSpeech.value
           : this.partOfSpeech,
-      kanjiId: data.kanjiId.present ? data.kanjiId.value : this.kanjiId,
     );
   }
 
@@ -1210,15 +1175,14 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
           ..write('reading: $reading, ')
           ..write('meaning: $meaning, ')
           ..write('jlptLevel: $jlptLevel, ')
-          ..write('partOfSpeech: $partOfSpeech, ')
-          ..write('kanjiId: $kanjiId')
+          ..write('partOfSpeech: $partOfSpeech')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode =>
-      Object.hash(id, word, reading, meaning, jlptLevel, partOfSpeech, kanjiId);
+      Object.hash(id, word, reading, meaning, jlptLevel, partOfSpeech);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1228,8 +1192,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
           other.reading == this.reading &&
           other.meaning == this.meaning &&
           other.jlptLevel == this.jlptLevel &&
-          other.partOfSpeech == this.partOfSpeech &&
-          other.kanjiId == this.kanjiId);
+          other.partOfSpeech == this.partOfSpeech);
 }
 
 class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
@@ -1239,7 +1202,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   final Value<String> meaning;
   final Value<String> jlptLevel;
   final Value<String> partOfSpeech;
-  final Value<int?> kanjiId;
   const VocabularyEntriesCompanion({
     this.id = const Value.absent(),
     this.word = const Value.absent(),
@@ -1247,7 +1209,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     this.meaning = const Value.absent(),
     this.jlptLevel = const Value.absent(),
     this.partOfSpeech = const Value.absent(),
-    this.kanjiId = const Value.absent(),
   });
   VocabularyEntriesCompanion.insert({
     this.id = const Value.absent(),
@@ -1256,7 +1217,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     required String meaning,
     required String jlptLevel,
     required String partOfSpeech,
-    this.kanjiId = const Value.absent(),
   }) : word = Value(word),
        reading = Value(reading),
        meaning = Value(meaning),
@@ -1269,7 +1229,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     Expression<String>? meaning,
     Expression<String>? jlptLevel,
     Expression<String>? partOfSpeech,
-    Expression<int>? kanjiId,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1278,7 +1237,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
       if (meaning != null) 'meaning': meaning,
       if (jlptLevel != null) 'jlpt_level': jlptLevel,
       if (partOfSpeech != null) 'part_of_speech': partOfSpeech,
-      if (kanjiId != null) 'kanji_id': kanjiId,
     });
   }
 
@@ -1289,7 +1247,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     Value<String>? meaning,
     Value<String>? jlptLevel,
     Value<String>? partOfSpeech,
-    Value<int?>? kanjiId,
   }) {
     return VocabularyEntriesCompanion(
       id: id ?? this.id,
@@ -1298,7 +1255,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
       meaning: meaning ?? this.meaning,
       jlptLevel: jlptLevel ?? this.jlptLevel,
       partOfSpeech: partOfSpeech ?? this.partOfSpeech,
-      kanjiId: kanjiId ?? this.kanjiId,
     );
   }
 
@@ -1323,9 +1279,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     if (partOfSpeech.present) {
       map['part_of_speech'] = Variable<String>(partOfSpeech.value);
     }
-    if (kanjiId.present) {
-      map['kanji_id'] = Variable<int>(kanjiId.value);
-    }
     return map;
   }
 
@@ -1337,8 +1290,289 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
           ..write('reading: $reading, ')
           ..write('meaning: $meaning, ')
           ..write('jlptLevel: $jlptLevel, ')
-          ..write('partOfSpeech: $partOfSpeech, ')
-          ..write('kanjiId: $kanjiId')
+          ..write('partOfSpeech: $partOfSpeech')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class VocabularyKanji extends Table
+    with TableInfo<VocabularyKanji, VocabularyKanjiData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  VocabularyKanji(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _vocabularyIdMeta = const VerificationMeta(
+    'vocabularyId',
+  );
+  late final GeneratedColumn<int> vocabularyId = GeneratedColumn<int>(
+    'vocabulary_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES vocabulary_entries(id)',
+  );
+  static const VerificationMeta _kanjiIdMeta = const VerificationMeta(
+    'kanjiId',
+  );
+  late final GeneratedColumn<int> kanjiId = GeneratedColumn<int>(
+    'kanji_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES kanjis(id)',
+  );
+  static const VerificationMeta _positionMeta = const VerificationMeta(
+    'position',
+  );
+  late final GeneratedColumn<int> position = GeneratedColumn<int>(
+    'position',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [vocabularyId, kanjiId, position];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'vocabulary_kanji';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<VocabularyKanjiData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('vocabulary_id')) {
+      context.handle(
+        _vocabularyIdMeta,
+        vocabularyId.isAcceptableOrUnknown(
+          data['vocabulary_id']!,
+          _vocabularyIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_vocabularyIdMeta);
+    }
+    if (data.containsKey('kanji_id')) {
+      context.handle(
+        _kanjiIdMeta,
+        kanjiId.isAcceptableOrUnknown(data['kanji_id']!, _kanjiIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kanjiIdMeta);
+    }
+    if (data.containsKey('position')) {
+      context.handle(
+        _positionMeta,
+        position.isAcceptableOrUnknown(data['position']!, _positionMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_positionMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {vocabularyId, kanjiId};
+  @override
+  VocabularyKanjiData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return VocabularyKanjiData(
+      vocabularyId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}vocabulary_id'],
+      )!,
+      kanjiId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}kanji_id'],
+      )!,
+      position: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}position'],
+      )!,
+    );
+  }
+
+  @override
+  VocabularyKanji createAlias(String alias) {
+    return VocabularyKanji(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const [
+    'PRIMARY KEY(vocabulary_id, kanji_id)',
+  ];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class VocabularyKanjiData extends DataClass
+    implements Insertable<VocabularyKanjiData> {
+  final int vocabularyId;
+  final int kanjiId;
+  final int position;
+  const VocabularyKanjiData({
+    required this.vocabularyId,
+    required this.kanjiId,
+    required this.position,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['vocabulary_id'] = Variable<int>(vocabularyId);
+    map['kanji_id'] = Variable<int>(kanjiId);
+    map['position'] = Variable<int>(position);
+    return map;
+  }
+
+  VocabularyKanjiCompanion toCompanion(bool nullToAbsent) {
+    return VocabularyKanjiCompanion(
+      vocabularyId: Value(vocabularyId),
+      kanjiId: Value(kanjiId),
+      position: Value(position),
+    );
+  }
+
+  factory VocabularyKanjiData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return VocabularyKanjiData(
+      vocabularyId: serializer.fromJson<int>(json['vocabulary_id']),
+      kanjiId: serializer.fromJson<int>(json['kanji_id']),
+      position: serializer.fromJson<int>(json['position']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'vocabulary_id': serializer.toJson<int>(vocabularyId),
+      'kanji_id': serializer.toJson<int>(kanjiId),
+      'position': serializer.toJson<int>(position),
+    };
+  }
+
+  VocabularyKanjiData copyWith({
+    int? vocabularyId,
+    int? kanjiId,
+    int? position,
+  }) => VocabularyKanjiData(
+    vocabularyId: vocabularyId ?? this.vocabularyId,
+    kanjiId: kanjiId ?? this.kanjiId,
+    position: position ?? this.position,
+  );
+  VocabularyKanjiData copyWithCompanion(VocabularyKanjiCompanion data) {
+    return VocabularyKanjiData(
+      vocabularyId: data.vocabularyId.present
+          ? data.vocabularyId.value
+          : this.vocabularyId,
+      kanjiId: data.kanjiId.present ? data.kanjiId.value : this.kanjiId,
+      position: data.position.present ? data.position.value : this.position,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('VocabularyKanjiData(')
+          ..write('vocabularyId: $vocabularyId, ')
+          ..write('kanjiId: $kanjiId, ')
+          ..write('position: $position')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(vocabularyId, kanjiId, position);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is VocabularyKanjiData &&
+          other.vocabularyId == this.vocabularyId &&
+          other.kanjiId == this.kanjiId &&
+          other.position == this.position);
+}
+
+class VocabularyKanjiCompanion extends UpdateCompanion<VocabularyKanjiData> {
+  final Value<int> vocabularyId;
+  final Value<int> kanjiId;
+  final Value<int> position;
+  final Value<int> rowid;
+  const VocabularyKanjiCompanion({
+    this.vocabularyId = const Value.absent(),
+    this.kanjiId = const Value.absent(),
+    this.position = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  VocabularyKanjiCompanion.insert({
+    required int vocabularyId,
+    required int kanjiId,
+    required int position,
+    this.rowid = const Value.absent(),
+  }) : vocabularyId = Value(vocabularyId),
+       kanjiId = Value(kanjiId),
+       position = Value(position);
+  static Insertable<VocabularyKanjiData> custom({
+    Expression<int>? vocabularyId,
+    Expression<int>? kanjiId,
+    Expression<int>? position,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (vocabularyId != null) 'vocabulary_id': vocabularyId,
+      if (kanjiId != null) 'kanji_id': kanjiId,
+      if (position != null) 'position': position,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  VocabularyKanjiCompanion copyWith({
+    Value<int>? vocabularyId,
+    Value<int>? kanjiId,
+    Value<int>? position,
+    Value<int>? rowid,
+  }) {
+    return VocabularyKanjiCompanion(
+      vocabularyId: vocabularyId ?? this.vocabularyId,
+      kanjiId: kanjiId ?? this.kanjiId,
+      position: position ?? this.position,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (vocabularyId.present) {
+      map['vocabulary_id'] = Variable<int>(vocabularyId.value);
+    }
+    if (kanjiId.present) {
+      map['kanji_id'] = Variable<int>(kanjiId.value);
+    }
+    if (position.present) {
+      map['position'] = Variable<int>(position.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('VocabularyKanjiCompanion(')
+          ..write('vocabularyId: $vocabularyId, ')
+          ..write('kanjiId: $kanjiId, ')
+          ..write('position: $position, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
@@ -5479,6 +5713,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final Kanjis kanjis = Kanjis(this);
   late final Kanas kanas = Kanas(this);
   late final VocabularyEntries vocabularyEntries = VocabularyEntries(this);
+  late final VocabularyKanji vocabularyKanji = VocabularyKanji(this);
   late final KanjiTranslations kanjiTranslations = KanjiTranslations(this);
   late final VocabularyTranslations vocabularyTranslations =
       VocabularyTranslations(this);
@@ -5506,6 +5741,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     kanjis,
     kanas,
     vocabularyEntries,
+    vocabularyKanji,
     kanjiTranslations,
     vocabularyTranslations,
     sentences,
@@ -5546,21 +5782,20 @@ final class $KanjisReferences
     extends BaseReferences<_$AppDatabase, Kanjis, Kanji> {
   $KanjisReferences(super.$_db, super.$_table, super.$_typedResult);
 
-  static MultiTypedResultKey<VocabularyEntries, List<VocabularyEntry>>
-  _vocabularyEntriesRefsTable(_$AppDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.vocabularyEntries,
-        aliasName: 'kanjis__id__vocabulary_entries__kanji_id',
-      );
+  static MultiTypedResultKey<VocabularyKanji, List<VocabularyKanjiData>>
+  _vocabularyKanjiRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.vocabularyKanji,
+    aliasName: 'kanjis__id__vocabulary_kanji__kanji_id',
+  );
 
-  $VocabularyEntriesProcessedTableManager get vocabularyEntriesRefs {
-    final manager = $VocabularyEntriesTableManager(
+  $VocabularyKanjiProcessedTableManager get vocabularyKanjiRefs {
+    final manager = $VocabularyKanjiTableManager(
       $_db,
-      $_db.vocabularyEntries,
+      $_db.vocabularyKanji,
     ).filter((f) => f.kanjiId.id.sqlEquals($_itemColumn<int>('id')!));
 
     final cache = $_typedResult.readTableOrNull(
-      _vocabularyEntriesRefsTable($_db),
+      _vocabularyKanjiRefsTable($_db),
     );
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
@@ -5632,22 +5867,22 @@ class $KanjisFilterComposer extends Composer<_$AppDatabase, Kanjis> {
     builder: (column) => ColumnFilters(column),
   );
 
-  Expression<bool> vocabularyEntriesRefs(
-    Expression<bool> Function($VocabularyEntriesFilterComposer f) f,
+  Expression<bool> vocabularyKanjiRefs(
+    Expression<bool> Function($VocabularyKanjiFilterComposer f) f,
   ) {
-    final $VocabularyEntriesFilterComposer composer = $composerBuilder(
+    final $VocabularyKanjiFilterComposer composer = $composerBuilder(
       composer: this,
       getCurrentColumn: (t) => t.id,
-      referencedTable: $db.vocabularyEntries,
+      referencedTable: $db.vocabularyKanji,
       getReferencedColumn: (t) => t.kanjiId,
       builder:
           (
             joinBuilder, {
             $addJoinBuilderToRootComposer,
             $removeJoinBuilderFromRootComposer,
-          }) => $VocabularyEntriesFilterComposer(
+          }) => $VocabularyKanjiFilterComposer(
             $db: $db,
-            $table: $db.vocabularyEntries,
+            $table: $db.vocabularyKanji,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -5758,22 +5993,22 @@ class $KanjisAnnotationComposer extends Composer<_$AppDatabase, Kanjis> {
   GeneratedColumn<String> get svg =>
       $composableBuilder(column: $table.svg, builder: (column) => column);
 
-  Expression<T> vocabularyEntriesRefs<T extends Object>(
-    Expression<T> Function($VocabularyEntriesAnnotationComposer a) f,
+  Expression<T> vocabularyKanjiRefs<T extends Object>(
+    Expression<T> Function($VocabularyKanjiAnnotationComposer a) f,
   ) {
-    final $VocabularyEntriesAnnotationComposer composer = $composerBuilder(
+    final $VocabularyKanjiAnnotationComposer composer = $composerBuilder(
       composer: this,
       getCurrentColumn: (t) => t.id,
-      referencedTable: $db.vocabularyEntries,
+      referencedTable: $db.vocabularyKanji,
       getReferencedColumn: (t) => t.kanjiId,
       builder:
           (
             joinBuilder, {
             $addJoinBuilderToRootComposer,
             $removeJoinBuilderFromRootComposer,
-          }) => $VocabularyEntriesAnnotationComposer(
+          }) => $VocabularyKanjiAnnotationComposer(
             $db: $db,
-            $table: $db.vocabularyEntries,
+            $table: $db.vocabularyKanji,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -5823,7 +6058,7 @@ class $KanjisTableManager
           (Kanji, $KanjisReferences),
           Kanji,
           PrefetchHooks Function({
-            bool vocabularyEntriesRefs,
+            bool vocabularyKanjiRefs,
             bool kanjiTranslationsRefs,
           })
         > {
@@ -5878,30 +6113,30 @@ class $KanjisTableManager
               .map((e) => (e.readTable(table), $KanjisReferences(db, table, e)))
               .toList(),
           prefetchHooksCallback:
-              ({vocabularyEntriesRefs = false, kanjiTranslationsRefs = false}) {
+              ({vocabularyKanjiRefs = false, kanjiTranslationsRefs = false}) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
-                    if (vocabularyEntriesRefs) db.vocabularyEntries,
+                    if (vocabularyKanjiRefs) db.vocabularyKanji,
                     if (kanjiTranslationsRefs) db.kanjiTranslations,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
                     return [
-                      if (vocabularyEntriesRefs)
+                      if (vocabularyKanjiRefs)
                         await $_getPrefetchedData<
                           Kanji,
                           Kanjis,
-                          VocabularyEntry
+                          VocabularyKanjiData
                         >(
                           currentTable: table,
                           referencedTable: $KanjisReferences
-                              ._vocabularyEntriesRefsTable(db),
+                              ._vocabularyKanjiRefsTable(db),
                           managerFromTypedResult: (p0) => $KanjisReferences(
                             db,
                             table,
                             p0,
-                          ).vocabularyEntriesRefs,
+                          ).vocabularyKanjiRefs,
                           referencedItemsForCurrentItem:
                               (item, referencedItems) => referencedItems.where(
                                 (e) => e.kanjiId == item.id,
@@ -5949,7 +6184,7 @@ typedef $KanjisProcessedTableManager =
       (Kanji, $KanjisReferences),
       Kanji,
       PrefetchHooks Function({
-        bool vocabularyEntriesRefs,
+        bool vocabularyKanjiRefs,
         bool kanjiTranslationsRefs,
       })
     >;
@@ -6184,7 +6419,6 @@ typedef $VocabularyEntriesCreateCompanionBuilder =
       required String meaning,
       required String jlptLevel,
       required String partOfSpeech,
-      Value<int?> kanjiId,
     });
 typedef $VocabularyEntriesUpdateCompanionBuilder =
     VocabularyEntriesCompanion Function({
@@ -6194,27 +6428,29 @@ typedef $VocabularyEntriesUpdateCompanionBuilder =
       Value<String> meaning,
       Value<String> jlptLevel,
       Value<String> partOfSpeech,
-      Value<int?> kanjiId,
     });
 
 final class $VocabularyEntriesReferences
     extends BaseReferences<_$AppDatabase, VocabularyEntries, VocabularyEntry> {
   $VocabularyEntriesReferences(super.$_db, super.$_table, super.$_typedResult);
 
-  static Kanjis _kanjiIdTable(_$AppDatabase db) =>
-      db.kanjis.createAlias('vocabulary_entries__kanji_id__kanjis__id');
+  static MultiTypedResultKey<VocabularyKanji, List<VocabularyKanjiData>>
+  _vocabularyKanjiRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.vocabularyKanji,
+    aliasName: 'vocabulary_entries__id__vocabulary_kanji__vocabulary_id',
+  );
 
-  $KanjisProcessedTableManager? get kanjiId {
-    final $_column = $_itemColumn<int>('kanji_id');
-    if ($_column == null) return null;
-    final manager = $KanjisTableManager(
+  $VocabularyKanjiProcessedTableManager get vocabularyKanjiRefs {
+    final manager = $VocabularyKanjiTableManager(
       $_db,
-      $_db.kanjis,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_kanjiIdTable($_db));
-    if (item == null) return manager;
+      $_db.vocabularyKanji,
+    ).filter((f) => f.vocabularyId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _vocabularyKanjiRefsTable($_db),
+    );
     return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
+      manager.$state.copyWith(prefetchedData: cache),
     );
   }
 
@@ -6302,27 +6538,29 @@ class $VocabularyEntriesFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  $KanjisFilterComposer get kanjiId {
-    final $KanjisFilterComposer composer = $composerBuilder(
+  Expression<bool> vocabularyKanjiRefs(
+    Expression<bool> Function($VocabularyKanjiFilterComposer f) f,
+  ) {
+    final $VocabularyKanjiFilterComposer composer = $composerBuilder(
       composer: this,
-      getCurrentColumn: (t) => t.kanjiId,
-      referencedTable: $db.kanjis,
-      getReferencedColumn: (t) => t.id,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.vocabularyKanji,
+      getReferencedColumn: (t) => t.vocabularyId,
       builder:
           (
             joinBuilder, {
             $addJoinBuilderToRootComposer,
             $removeJoinBuilderFromRootComposer,
-          }) => $KanjisFilterComposer(
+          }) => $VocabularyKanjiFilterComposer(
             $db: $db,
-            $table: $db.kanjis,
+            $table: $db.vocabularyKanji,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
                 $removeJoinBuilderFromRootComposer,
           ),
     );
-    return composer;
+    return f(composer);
   }
 
   Expression<bool> vocabularyTranslationsRefs(
@@ -6414,29 +6652,6 @@ class $VocabularyEntriesOrderingComposer
     column: $table.partOfSpeech,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $KanjisOrderingComposer get kanjiId {
-    final $KanjisOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.kanjiId,
-      referencedTable: $db.kanjis,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $KanjisOrderingComposer(
-            $db: $db,
-            $table: $db.kanjis,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $VocabularyEntriesAnnotationComposer
@@ -6468,27 +6683,29 @@ class $VocabularyEntriesAnnotationComposer
     builder: (column) => column,
   );
 
-  $KanjisAnnotationComposer get kanjiId {
-    final $KanjisAnnotationComposer composer = $composerBuilder(
+  Expression<T> vocabularyKanjiRefs<T extends Object>(
+    Expression<T> Function($VocabularyKanjiAnnotationComposer a) f,
+  ) {
+    final $VocabularyKanjiAnnotationComposer composer = $composerBuilder(
       composer: this,
-      getCurrentColumn: (t) => t.kanjiId,
-      referencedTable: $db.kanjis,
-      getReferencedColumn: (t) => t.id,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.vocabularyKanji,
+      getReferencedColumn: (t) => t.vocabularyId,
       builder:
           (
             joinBuilder, {
             $addJoinBuilderToRootComposer,
             $removeJoinBuilderFromRootComposer,
-          }) => $KanjisAnnotationComposer(
+          }) => $VocabularyKanjiAnnotationComposer(
             $db: $db,
-            $table: $db.kanjis,
+            $table: $db.vocabularyKanji,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
                 $removeJoinBuilderFromRootComposer,
           ),
     );
-    return composer;
+    return f(composer);
   }
 
   Expression<T> vocabularyTranslationsRefs<T extends Object>(
@@ -6556,7 +6773,7 @@ class $VocabularyEntriesTableManager
           (VocabularyEntry, $VocabularyEntriesReferences),
           VocabularyEntry,
           PrefetchHooks Function({
-            bool kanjiId,
+            bool vocabularyKanjiRefs,
             bool vocabularyTranslationsRefs,
             bool sentencesRefs,
           })
@@ -6580,7 +6797,6 @@ class $VocabularyEntriesTableManager
                 Value<String> meaning = const Value.absent(),
                 Value<String> jlptLevel = const Value.absent(),
                 Value<String> partOfSpeech = const Value.absent(),
-                Value<int?> kanjiId = const Value.absent(),
               }) => VocabularyEntriesCompanion(
                 id: id,
                 word: word,
@@ -6588,7 +6804,6 @@ class $VocabularyEntriesTableManager
                 meaning: meaning,
                 jlptLevel: jlptLevel,
                 partOfSpeech: partOfSpeech,
-                kanjiId: kanjiId,
               ),
           createCompanionCallback:
               ({
@@ -6598,7 +6813,6 @@ class $VocabularyEntriesTableManager
                 required String meaning,
                 required String jlptLevel,
                 required String partOfSpeech,
-                Value<int?> kanjiId = const Value.absent(),
               }) => VocabularyEntriesCompanion.insert(
                 id: id,
                 word: word,
@@ -6606,7 +6820,6 @@ class $VocabularyEntriesTableManager
                 meaning: meaning,
                 jlptLevel: jlptLevel,
                 partOfSpeech: partOfSpeech,
-                kanjiId: kanjiId,
               ),
           withReferenceMapper: (p0) => p0
               .map(
@@ -6618,52 +6831,41 @@ class $VocabularyEntriesTableManager
               .toList(),
           prefetchHooksCallback:
               ({
-                kanjiId = false,
+                vocabularyKanjiRefs = false,
                 vocabularyTranslationsRefs = false,
                 sentencesRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
+                    if (vocabularyKanjiRefs) db.vocabularyKanji,
                     if (vocabularyTranslationsRefs) db.vocabularyTranslations,
                     if (sentencesRefs) db.sentences,
                   ],
-                  addJoins:
-                      <
-                        T extends TableManagerState<
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic
-                        >
-                      >(state) {
-                        if (kanjiId) {
-                          state =
-                              state.withJoin(
-                                    currentTable: table,
-                                    currentColumn: table.kanjiId,
-                                    referencedTable:
-                                        $VocabularyEntriesReferences
-                                            ._kanjiIdTable(db),
-                                    referencedColumn:
-                                        $VocabularyEntriesReferences
-                                            ._kanjiIdTable(db)
-                                            .id,
-                                  )
-                                  as T;
-                        }
-
-                        return state;
-                      },
+                  addJoins: null,
                   getPrefetchedDataCallback: (items) async {
                     return [
+                      if (vocabularyKanjiRefs)
+                        await $_getPrefetchedData<
+                          VocabularyEntry,
+                          VocabularyEntries,
+                          VocabularyKanjiData
+                        >(
+                          currentTable: table,
+                          referencedTable: $VocabularyEntriesReferences
+                              ._vocabularyKanjiRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $VocabularyEntriesReferences(
+                                db,
+                                table,
+                                p0,
+                              ).vocabularyKanjiRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.vocabularyId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
                       if (vocabularyTranslationsRefs)
                         await $_getPrefetchedData<
                           VocabularyEntry,
@@ -6727,10 +6929,377 @@ typedef $VocabularyEntriesProcessedTableManager =
       (VocabularyEntry, $VocabularyEntriesReferences),
       VocabularyEntry,
       PrefetchHooks Function({
-        bool kanjiId,
+        bool vocabularyKanjiRefs,
         bool vocabularyTranslationsRefs,
         bool sentencesRefs,
       })
+    >;
+typedef $VocabularyKanjiCreateCompanionBuilder =
+    VocabularyKanjiCompanion Function({
+      required int vocabularyId,
+      required int kanjiId,
+      required int position,
+      Value<int> rowid,
+    });
+typedef $VocabularyKanjiUpdateCompanionBuilder =
+    VocabularyKanjiCompanion Function({
+      Value<int> vocabularyId,
+      Value<int> kanjiId,
+      Value<int> position,
+      Value<int> rowid,
+    });
+
+final class $VocabularyKanjiReferences
+    extends
+        BaseReferences<_$AppDatabase, VocabularyKanji, VocabularyKanjiData> {
+  $VocabularyKanjiReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static VocabularyEntries _vocabularyIdTable(_$AppDatabase db) => db
+      .vocabularyEntries
+      .createAlias('vocabulary_kanji__vocabulary_id__vocabulary_entries__id');
+
+  $VocabularyEntriesProcessedTableManager get vocabularyId {
+    final $_column = $_itemColumn<int>('vocabulary_id')!;
+
+    final manager = $VocabularyEntriesTableManager(
+      $_db,
+      $_db.vocabularyEntries,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_vocabularyIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static Kanjis _kanjiIdTable(_$AppDatabase db) =>
+      db.kanjis.createAlias('vocabulary_kanji__kanji_id__kanjis__id');
+
+  $KanjisProcessedTableManager get kanjiId {
+    final $_column = $_itemColumn<int>('kanji_id')!;
+
+    final manager = $KanjisTableManager(
+      $_db,
+      $_db.kanjis,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_kanjiIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $VocabularyKanjiFilterComposer
+    extends Composer<_$AppDatabase, VocabularyKanji> {
+  $VocabularyKanjiFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $VocabularyEntriesFilterComposer get vocabularyId {
+    final $VocabularyEntriesFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.vocabularyId,
+      referencedTable: $db.vocabularyEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularyEntriesFilterComposer(
+            $db: $db,
+            $table: $db.vocabularyEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $KanjisFilterComposer get kanjiId {
+    final $KanjisFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.kanjiId,
+      referencedTable: $db.kanjis,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $KanjisFilterComposer(
+            $db: $db,
+            $table: $db.kanjis,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $VocabularyKanjiOrderingComposer
+    extends Composer<_$AppDatabase, VocabularyKanji> {
+  $VocabularyKanjiOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $VocabularyEntriesOrderingComposer get vocabularyId {
+    final $VocabularyEntriesOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.vocabularyId,
+      referencedTable: $db.vocabularyEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularyEntriesOrderingComposer(
+            $db: $db,
+            $table: $db.vocabularyEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $KanjisOrderingComposer get kanjiId {
+    final $KanjisOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.kanjiId,
+      referencedTable: $db.kanjis,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $KanjisOrderingComposer(
+            $db: $db,
+            $table: $db.kanjis,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $VocabularyKanjiAnnotationComposer
+    extends Composer<_$AppDatabase, VocabularyKanji> {
+  $VocabularyKanjiAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get position =>
+      $composableBuilder(column: $table.position, builder: (column) => column);
+
+  $VocabularyEntriesAnnotationComposer get vocabularyId {
+    final $VocabularyEntriesAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.vocabularyId,
+      referencedTable: $db.vocabularyEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularyEntriesAnnotationComposer(
+            $db: $db,
+            $table: $db.vocabularyEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $KanjisAnnotationComposer get kanjiId {
+    final $KanjisAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.kanjiId,
+      referencedTable: $db.kanjis,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $KanjisAnnotationComposer(
+            $db: $db,
+            $table: $db.kanjis,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $VocabularyKanjiTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          VocabularyKanji,
+          VocabularyKanjiData,
+          $VocabularyKanjiFilterComposer,
+          $VocabularyKanjiOrderingComposer,
+          $VocabularyKanjiAnnotationComposer,
+          $VocabularyKanjiCreateCompanionBuilder,
+          $VocabularyKanjiUpdateCompanionBuilder,
+          (VocabularyKanjiData, $VocabularyKanjiReferences),
+          VocabularyKanjiData,
+          PrefetchHooks Function({bool vocabularyId, bool kanjiId})
+        > {
+  $VocabularyKanjiTableManager(_$AppDatabase db, VocabularyKanji table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $VocabularyKanjiFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $VocabularyKanjiOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $VocabularyKanjiAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> vocabularyId = const Value.absent(),
+                Value<int> kanjiId = const Value.absent(),
+                Value<int> position = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => VocabularyKanjiCompanion(
+                vocabularyId: vocabularyId,
+                kanjiId: kanjiId,
+                position: position,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required int vocabularyId,
+                required int kanjiId,
+                required int position,
+                Value<int> rowid = const Value.absent(),
+              }) => VocabularyKanjiCompanion.insert(
+                vocabularyId: vocabularyId,
+                kanjiId: kanjiId,
+                position: position,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $VocabularyKanjiReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({vocabularyId = false, kanjiId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (vocabularyId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.vocabularyId,
+                                referencedTable: $VocabularyKanjiReferences
+                                    ._vocabularyIdTable(db),
+                                referencedColumn: $VocabularyKanjiReferences
+                                    ._vocabularyIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+                    if (kanjiId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.kanjiId,
+                                referencedTable: $VocabularyKanjiReferences
+                                    ._kanjiIdTable(db),
+                                referencedColumn: $VocabularyKanjiReferences
+                                    ._kanjiIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $VocabularyKanjiProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      VocabularyKanji,
+      VocabularyKanjiData,
+      $VocabularyKanjiFilterComposer,
+      $VocabularyKanjiOrderingComposer,
+      $VocabularyKanjiAnnotationComposer,
+      $VocabularyKanjiCreateCompanionBuilder,
+      $VocabularyKanjiUpdateCompanionBuilder,
+      (VocabularyKanjiData, $VocabularyKanjiReferences),
+      VocabularyKanjiData,
+      PrefetchHooks Function({bool vocabularyId, bool kanjiId})
     >;
 typedef $KanjiTranslationsCreateCompanionBuilder =
     KanjiTranslationsCompanion Function({
@@ -9624,6 +10193,8 @@ class $AppDatabaseManager {
   $KanasTableManager get kanas => $KanasTableManager(_db, _db.kanas);
   $VocabularyEntriesTableManager get vocabularyEntries =>
       $VocabularyEntriesTableManager(_db, _db.vocabularyEntries);
+  $VocabularyKanjiTableManager get vocabularyKanji =>
+      $VocabularyKanjiTableManager(_db, _db.vocabularyKanji);
   $KanjiTranslationsTableManager get kanjiTranslations =>
       $KanjiTranslationsTableManager(_db, _db.kanjiTranslations);
   $VocabularyTranslationsTableManager get vocabularyTranslations =>

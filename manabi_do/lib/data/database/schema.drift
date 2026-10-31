@@ -34,8 +34,21 @@ CREATE TABLE vocabulary_entries (
   reading TEXT NOT NULL,
   meaning TEXT NOT NULL,
   jlpt_level TEXT NOT NULL,
-  part_of_speech TEXT NOT NULL,
-  kanji_id INTEGER REFERENCES kanjis (id)
+  part_of_speech TEXT NOT NULL
+);
+
+-- Which kanji a word is written with. A word has as many as it has: this
+-- replaced a single `vocabulary_entries.kanji_id`, which held the first one
+-- and discarded the rest, so 今日 knew about 今 and not 日. Scoring a word by
+-- the school grade of its kanji is impossible while a word knows only one.
+--
+-- `position` is where the kanji first appears in the word, so the order a
+-- reader sees is preserved. A kanji repeated in one word gets a single row.
+CREATE TABLE vocabulary_kanji (
+  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
+  kanji_id INTEGER NOT NULL REFERENCES kanjis (id),
+  position INTEGER NOT NULL,
+  PRIMARY KEY (vocabulary_id, kanji_id)
 );
 
 CREATE TABLE kanji_translations (

@@ -3,7 +3,7 @@ import '../../core/providers/locale_provider.dart';
 import '../../data/database/app_database.dart';
 import 'database_provider.dart';
 
-typedef KanjiVocabularyArgs = ({int kanjiId, String character});
+typedef KanjiVocabularyArgs = ({int kanjiId});
 
 final kanjiVocabularyProvider =
     FutureProvider.family<List<VocabularyEntry>, KanjiVocabularyArgs>((
@@ -12,7 +12,7 @@ final kanjiVocabularyProvider =
     ) {
       return ref
           .watch(databaseProvider)
-          .getVocabularyForKanji(args.kanjiId, args.character);
+          .getVocabularyForKanji(args.kanjiId);
     });
 
 /// Each element is (entry, localizedMeaning). Falls back to English.
@@ -21,10 +21,7 @@ final localizedKanjiVocabularyProvider =
       (ref, args) async {
         final locale = ref.watch(localeProvider).languageCode;
         final db = ref.watch(databaseProvider);
-        final entries = await db.getVocabularyForKanji(
-          args.kanjiId,
-          args.character,
-        );
+        final entries = await db.getVocabularyForKanji(args.kanjiId);
         if (locale == 'en' || entries.isEmpty) {
           return entries.map((e) => (e, e.meaning)).toList();
         }

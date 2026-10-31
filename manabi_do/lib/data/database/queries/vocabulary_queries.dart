@@ -2,20 +2,30 @@ part of '../app_database.dart';
 
 /// Vocabulary lookups.
 extension VocabularyQueries on AppDatabase {
-  Future<List<VocabularyEntry>> getVocabularyForKanji(
-    int kanjiId,
-    String character,
-  ) =>
-      (select(vocabularyEntries)
-            ..where(
-              (v) => v.kanjiId.equals(kanjiId) | v.word.like('%$character%'),
-            )
-            ..orderBy([
-              (v) => OrderingTerm.desc(v.jlptLevel),
-              (v) => OrderingTerm.asc(v.word),
-            ])
-            ..limit(30))
-          .get();
+  /// Words written with a given kanji.
+  ///
+  /// Joined through `vocabulary_kanji`, so a word is found by any of its
+  /// kanji rather than only its first. This used to read
+  /// `kanjiId.equals(id) | word.like('%$character%')` — the `like` was there
+  /// to paper over the single-kanji column, and it matched on the character
+  /// appearing anywhere, including inside a different kanji's reading. The
+  /// join is exact, so the fallback is gone and so is the `character`
+  /// argument.
+  Future<List<VocabularyEntry>> getVocabularyForKanji(int kanjiId) {
+    final query = select(vocabularyEntries).join([
+      innerJoin(
+        vocabularyKanji,
+        vocabularyKanji.vocabularyId.equalsExp(vocabularyEntries.id),
+      ),
+    ])
+      ..where(vocabularyKanji.kanjiId.equals(kanjiId))
+      ..orderBy([
+        OrderingTerm.desc(vocabularyEntries.jlptLevel),
+        OrderingTerm.asc(vocabularyEntries.word),
+      ])
+      ..limit(30);
+    return query.map((row) => row.readTable(vocabularyEntries)).get();
+  }
 
   Future<List<VocabularyEntry>> getVocabularyByLevel(String level) =>
       (select(vocabularyEntries)

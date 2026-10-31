@@ -26,7 +26,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 22;
+  int get schemaVersion => 23;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -79,6 +79,18 @@ class AppDatabase extends _$AppDatabase {
           'WHERE blocks_json LIKE ?',
           ['"vocab_table"', '"vocabulary_table"', '%"vocab_table"%'],
         );
+      },
+
+      // A word is written with as many kanji as it has. `kanji_id` held the
+      // first and discarded the rest, so 今日 knew 今 and not 日 — which made
+      // scoring a word by its kanji impossible.
+      //
+      // Nothing is backfilled here. A schema change ships a new asset, and the
+      // refresh replaces the file wholesale, so the rows arrive already built.
+      // This step exists for a database opened without that replacement.
+      from22To23: (m, schema) async {
+        await m.createTable(schema.vocabularyKanji);
+        await m.alterTable(TableMigration(schema.vocabularyEntries));
       },
     ),
   );
