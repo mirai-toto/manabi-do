@@ -5,8 +5,14 @@ DIMENS_AUDIT.md
 # Generated design reference (rebuild: dart run tool/gen_design_reference.dart)
 /design-reference/
 
-# Raw source data — large downloads, not committed (see data/)
+# Raw source data — large downloads. Only the content pipeline produced these,
+# and it now lives in mirai-toto/manabi-content.
 /data/
+
+# The content database is built in mirai-toto/manabi-content and published as a
+# release asset. scripts/content/fetch_content.sh downloads the version pinned
+# in manabi_do/content.lock. Tracking it put 91 MB of generated output in git.
+/manabi_do/assets/manabi_do_content.db
 
 # Dev-mode live DB (stored at repo root when running flutter run -d linux)
 manabi_do.db
