@@ -15,12 +15,9 @@ scripts/
     run-web.sh                     # Flutter web build + local HTTP server
     run-widgetbook-linux.sh        # Launch widgetbook on Linux
     run-widgetbook-windows.ps1     # Launch widgetbook on Windows
-  content_pipeline/                # compile content/ into the shipped DB
-    generate.py                    # orchestrator — the entry point
-    sync_content.py                # re-seed content/ from online sources
-    gen_translations.py            # multilingual meanings from JMdict/KANJIDIC2
-    download_kanjivg.py            # fetch missing stroke-order SVGs
-    build_content_db.py            # content/ → manabi_do_content.db
+  content/                         # get the content DB into the app
+    fetch_content.sh               # download the release pinned in content.lock
+    build_content.sh               # build it from source instead, for pipeline work
   design/                          # the design system reference
     build_design_reference.sh      # widgetbook build + page generation
     gen_design_reference.dart      # reads the theme source, writes the page
@@ -44,9 +41,9 @@ scripts/
   README.md
 ```
 
-`content_pipeline/` rather than `content/`, because the repo root already has a
-`content/` holding the JSON data and two directories with that name would be
-worse than the split this replaced.
+The pipeline that builds the database no longer lives here. It moved to
+[mirai-toto/manabi-content](https://github.com/mirai-toto/manabi-content), with
+the sources and the authored content. This app only consumes the result.
 
 ---
 
@@ -119,19 +116,31 @@ the tokens. Output is gitignored — rebuild rather than commit.
 
 ---
 
-## Content pipeline
+## content/
 
-Run through Docker so the Python dependencies stay out of your machine:
+The database is not in this repo. It is built in
+[mirai-toto/manabi-content](https://github.com/mirai-toto/manabi-content) and
+published as a release asset. `manabi_do/content.lock` pins one tag and one
+checksum, and changing that file is the whole upgrade.
+
+Two ways to get it, for two different jobs:
 
 ```bash
-docker compose run --rm content
+scripts/content/fetch_content.sh    # the pinned release. What CI uses
+scripts/content/build_content.sh    # build from source, for pipeline work
 ```
 
-That runs `generate.py`, which orchestrates the rest. See `content/README.md` for
-the full rebuild workflow and `docs/03_database.md` for the schema.
+`fetch_content.sh` caches under `~/.cache/manabi-content`, verifies the checksum
+before and after it copies, and refuses a file that does not match.
 
-`generate.py` resolves its siblings from its own location, so it works from any
-working directory.
+`build_content.sh` clones the content repo beside this one if it is missing,
+sets up its virtualenv, checks the two schema copies agree, builds, and copies
+the result in. Takes `--no-sentences` to skip the slow pass and `--sync` to
+re-seed from upstream first. Its output is a local build, not a release, so
+`content.lock` still decides what CI ships.
+
+The asset is gitignored, which means `git clean -fdX` deletes it. Re-run the
+fetch. See `docs/03_database.md` for the schema.
 
 ---
 

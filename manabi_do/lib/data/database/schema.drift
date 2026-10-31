@@ -1,7 +1,7 @@
 -- Single source of truth for the database schema.
 --
 -- drift generates the Dart table classes from this file, and
--- tools/build_content_db.py executes the same statements when building the
+-- pipeline/build_content_db.py in mirai-toto/manabi-content executes the same statements when building the
 -- shipped content DB. Keep it to plain CREATE TABLE so both readers cope.
 --
 -- Changing anything here is a schema change: bump `schemaVersion` in

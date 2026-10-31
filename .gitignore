@@ -61,6 +61,6 @@ manabi_do/coverage/
 scripts/screenshot/pw/
 node_modules/
 
-# Python bytecode from tools/
+# Python bytecode from scripts/
 __pycache__/
 *.pyc
