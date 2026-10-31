@@ -192,10 +192,11 @@ Primary key: (item_type, item_id).
 
 | Content                   | Source                                                                                                                                                                         | License      |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
-| Kanji JLPT level          | [davidluzgouveia/kanji-data](https://github.com/davidluzgouveia/kanji-data) (based on Jonathan Waller's JLPT lists)                                                            | MIT          |
+| Kanji JLPT level          | [davidluzgouveia/kanji-data](https://github.com/davidluzgouveia/kanji-data) (based on Jonathan Waller's JLPT lists)                                                            | MIT code, CC BY data |
 | Kanji meanings & readings | KANJIDIC2 — Electronic Dictionary Research and Development Group (EDRDG)                                                                                                       | CC BY-SA 4.0 |
 | Kanji stroke order SVGs   | [KanjiVG](https://kanjivg.tagaini.net/) by Ulrich Apel                                                                                                                        | CC BY-SA 3.0 |
-| Vocabulary                | JMdict (via [jmdict-simplified](https://github.com/scriptin/jmdict-simplified)) + [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) for JLPT level tagging | CC BY-SA 4.0 |
+| Vocabulary meanings, readings, part of speech | JMdict (via [jmdict-simplified](https://github.com/scriptin/jmdict-simplified))                                                             | CC BY-SA 4.0 |
+| Vocabulary word list & JLPT level | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) (based on Jonathan Waller's JLPT lists)                                           | MIT code, CC BY data |
 | Example sentences         | [Tatoeba](https://tatoeba.org) community corpus                                                                                                                                | CC BY 2.0    |
 | Grammar lessons           | Hand-authored in `content/grammar/`                                                                                                                                            | —            |
 
