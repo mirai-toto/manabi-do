@@ -17,7 +17,7 @@ Flutter SDK is pre-installed. No proxy restrictions.
 ### 1. Build
 
 ```bash
-cd /home/wsluser/manabi-do/manabi_do
+cd "$(git rev-parse --show-toplevel)/manabi_do"
 flutter build web -t lib/main.dart --no-web-resources-cdn --debug
 ```
 
@@ -34,14 +34,14 @@ curl -sf http://localhost:8767 | head -2
 
 ### 3. Screenshot with Playwright
 
-Playwright lives in `/tmp/pw-test/` (first time: `cd /tmp/pw-test && npm install playwright && npx playwright install chromium`).
+Playwright lives in `scripts/screenshot/pw/`, the same place `rebuild_and_screenshot.sh` installs it (first time: `cd scripts/screenshot/pw && npm install playwright && npx playwright install chromium`).
 
-A reusable base script lives at `scripts/screenshot.js` in the repo root. Run it with:
+A reusable base script lives at `scripts/screenshot/screenshot.js`. Run it with:
 
 ```bash
-NODE_PATH=/tmp/pw-test/node_modules node scripts/screenshot.js [port] [output_path]
+NODE_PATH=scripts/screenshot/pw/node_modules node scripts/screenshot/screenshot.js [port] [output_path]
 # e.g.
-NODE_PATH=/tmp/pw-test/node_modules node scripts/screenshot.js 8768 /tmp/home.png
+NODE_PATH=scripts/screenshot/pw/node_modules node scripts/screenshot/screenshot.js 8768 /tmp/home.png
 ```
 
 For multi-step navigation (click through screens), write a new script in `scripts/` that requires the same playwright setup:

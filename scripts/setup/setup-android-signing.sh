@@ -16,7 +16,7 @@
 #   - Java keytool on PATH (comes with any JDK)
 #
 # Usage:
-#   bash scripts/setup-android-signing.sh
+#   bash scripts/setup/setup-android-signing.sh
 #
 # After running:
 #   - Back up ~/.manabi-do-release.jks somewhere safe (e.g. Bitwarden file attachment)
