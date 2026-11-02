@@ -131,7 +131,7 @@ extension SrsCardQueries on AppDatabase {
 
     final vocabulary =
         await (select(vocabularyEntries)
-              ..where((v) => v.coverageBand.equals(1))
+              ..where((v) => v.vocabularyLevel.equals(1))
               ..limit(5))
             .get();
     for (final v in vocabulary) {

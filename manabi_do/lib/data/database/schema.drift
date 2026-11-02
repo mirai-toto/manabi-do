@@ -53,16 +53,18 @@ CREATE TABLE vocabulary_entries (
   -- label claimed an exam that had never been consulted.
   difficulty INTEGER NOT NULL DEFAULT 0,
   difficulty_source TEXT NOT NULL DEFAULT '',
-  -- Which coverage band the word sits in, 1 (commonest) to 5, and which group
-  -- of thirty inside that band. Together they are the study order: the app
-  -- teaches band 1 group 1 first, and those thirty words are 20.6% of running
-  -- Japanese on their own.
+  -- Which vocabulary level the word sits in, 1 (commonest) to 5, and which
+  -- group of thirty inside that level. Together they are the study order: the
+  -- app teaches level 1 group 1 first, and those thirty words are over a fifth
+  -- of running Japanese on their own.
   --
-  -- `coverage_band` replaced a `difficulty_tier` that banded words by share of
-  -- our own word list. A tier meant "the easiest fifth of what we happen to
-  -- ship", which is a fact about the app and not about Japanese. A band means
-  -- "this far into the language", which is what the screens claim.
-  coverage_band INTEGER NOT NULL DEFAULT 5,
+  -- Named `vocabulary_level` and not `level` so it cannot be read as the exam
+  -- level that `kanjis.jlpt_level` holds. It is measured, not assigned: a level
+  -- is a span of the frequency order, so "level 1" means "this far into the
+  -- language". It replaced a `difficulty_tier` that banded words by share of
+  -- our own word list, which was a fact about the app rather than about
+  -- Japanese.
+  vocabulary_level INTEGER NOT NULL DEFAULT 5,
   group_index INTEGER NOT NULL DEFAULT 1
 );
 
@@ -75,16 +77,16 @@ CREATE TABLE vocabulary_entries (
 -- so no per-word count or rank leaves the build machine. A share of thirty
 -- words together cannot be turned back into one.
 --
--- `corpus_share` is 0 for the groups in band 5, whose words the corpus cannot
+-- `corpus_share` is 0 for the groups in level 5, whose words the corpus cannot
 -- attribute: UniDic splits お願いします into pieces and counts お菓子 as お plus
 -- 菓子. That is a missing measurement, not a claim that the words are rare, and
 -- it is why the app says "at least" when it adds these numbers up.
 CREATE TABLE coverage_groups (
-  band INTEGER NOT NULL,
+  vocabulary_level INTEGER NOT NULL,
   group_index INTEGER NOT NULL,
   word_count INTEGER NOT NULL,
   corpus_share REAL NOT NULL,
-  PRIMARY KEY (band, group_index)
+  PRIMARY KEY (vocabulary_level, group_index)
 );
 
 -- Which kanji a word is written with. A word has as many as it has: this

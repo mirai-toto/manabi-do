@@ -37,11 +37,11 @@ class SrsQueueService {
   );
 
   Future<List<(VocabularyEntry, Card?)>> vocabulary(
-    int band, {
+    int level, {
     int newCardLimit = 10,
   }) async => _queue(
     itemType: 'vocabulary',
-    items: await _db.getVocabularyByBand(band),
+    items: await _db.getVocabularyByBand(level),
     idOf: (entry) => entry.id,
     newCardLimit: newCardLimit,
   );

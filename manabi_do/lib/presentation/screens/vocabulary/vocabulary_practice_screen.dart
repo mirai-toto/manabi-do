@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/coverage_band.dart';
-import '../../../l10n/band_label.dart';
+import '../../../core/theme/vocabulary_level.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../services/vocabulary_session_service.dart';
 import '../practice/practice_session_screen.dart';
 
 class VocabularyPracticeScreen extends StatelessWidget {
-  final int band;
+  final int level;
   final Set<int>? allowedIds;
   final bool freeMode;
   final bool sentenceOnly;
@@ -15,7 +15,7 @@ class VocabularyPracticeScreen extends StatelessWidget {
 
   const VocabularyPracticeScreen({
     super.key,
-    required this.band,
+    required this.level,
     this.allowedIds,
     this.freeMode = false,
     this.sentenceOnly = false,
@@ -37,12 +37,12 @@ class VocabularyPracticeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PracticeSessionScreen(
-      title: bandLabel(band, context),
-      color: bandColor(band, Theme.of(context).brightness),
+      title: vocabularyLevelLabel(level, context),
+      color: vocabularyLevelColor(level, Theme.of(context).brightness),
       loadQueue: (ref) => ref
           .read(vocabularySessionServiceProvider)
           .buildQueue(
-            band: band,
+            level: level,
             allowedIds: allowedIds,
             freeMode: freeMode,
             sentenceOnly: sentenceOnly,

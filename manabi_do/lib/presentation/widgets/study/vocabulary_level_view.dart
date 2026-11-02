@@ -4,26 +4,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/coverage_band.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../data/database/app_database.dart';
-import '../../../l10n/band_label.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../../screens/vocabulary/vocabulary_detail_screen.dart';
 import '../widgets.dart';
 
-/// Shows the vocabulary word list for one group within a coverage band.
-/// Fetches entries via `vocabularyByBandProvider`, renders
+/// Shows the vocabulary word list for one group within a vocabulary level.
+/// Fetches entries via `vocabularyByLevelProvider`, renders
 /// `VocabularyWordTile` rows, and shows learned-count progress.
-class VocabularyBandView extends ConsumerWidget {
-  final int band;
+class VocabularyLevelView extends ConsumerWidget {
+  final int level;
   final int groupIndex;
   final VoidCallback onBack;
   final void Function(Set<int> vocabularyIds) onPractice;
 
-  const VocabularyBandView({
+  const VocabularyLevelView({
     super.key,
-    required this.band,
+    required this.level,
     required this.groupIndex,
     required this.onBack,
     required this.onPractice,
@@ -31,14 +31,14 @@ class VocabularyBandView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vocabularyAsync = ref.watch(vocabularyByBandProvider(band));
-    final color = bandColor(band, Theme.of(context).brightness);
+    final vocabularyAsync = ref.watch(vocabularyByLevelProvider(level));
+    final color = vocabularyLevelColor(level, Theme.of(context).brightness);
 
     return switch (vocabularyAsync) {
       AsyncLoading() => const Center(child: AppSpinner.page()),
       AsyncError() => const SizedBox.shrink(),
       AsyncData(:final value) => _BandContent(
-        band: band,
+        level: level,
         groupIndex: groupIndex,
         color: color,
         entries: value
@@ -53,7 +53,7 @@ class VocabularyBandView extends ConsumerWidget {
 }
 
 class _BandContent extends ConsumerWidget {
-  final int band;
+  final int level;
   final int groupIndex;
   final Color color;
   final List<VocabularyEntry> entries;
@@ -61,7 +61,7 @@ class _BandContent extends ConsumerWidget {
   final void Function(Set<int> vocabularyIds) onPractice;
 
   const _BandContent({
-    required this.band,
+    required this.level,
     required this.groupIndex,
     required this.color,
     required this.entries,
@@ -75,7 +75,10 @@ class _BandContent extends ConsumerWidget {
     final l = context.l10n;
 
     final learnedCount = ref.watch(
-      vocabularyGroupLearnedCountProvider((band: band, groupIndex: groupIndex)),
+      vocabularyGroupLearnedCountProvider((
+        level: level,
+        groupIndex: groupIndex,
+      )),
     );
 
     final groupIds = entries.map((e) => e.id).toSet();
@@ -105,7 +108,7 @@ class _BandContent extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${bandLabel(band, context)} · ${l.groupN(groupIndex + 1)}',
+                        '${vocabularyLevelLabel(level, context)} · ${l.groupN(groupIndex + 1)}',
                         style: AppTextStyles.labelSmall.copyWith(
                           color: color,
                           fontWeight: FontWeight.w700,

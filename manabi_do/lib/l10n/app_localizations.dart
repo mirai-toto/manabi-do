@@ -760,35 +760,35 @@ abstract class AppLocalizations {
   /// **'Advanced'**
   String get levelN1;
 
-  /// No description provided for @band1.
+  /// No description provided for @vocabularyLevel1.
   ///
   /// In en, this message translates to:
   /// **'Most common'**
-  String get band1;
+  String get vocabularyLevel1;
 
-  /// No description provided for @band2.
+  /// No description provided for @vocabularyLevel2.
   ///
   /// In en, this message translates to:
   /// **'Very common'**
-  String get band2;
+  String get vocabularyLevel2;
 
-  /// No description provided for @band3.
+  /// No description provided for @vocabularyLevel3.
   ///
   /// In en, this message translates to:
   /// **'Common'**
-  String get band3;
+  String get vocabularyLevel3;
 
-  /// No description provided for @band4.
+  /// No description provided for @vocabularyLevel4.
   ///
   /// In en, this message translates to:
   /// **'Uncommon'**
-  String get band4;
+  String get vocabularyLevel4;
 
-  /// No description provided for @band5.
+  /// No description provided for @vocabularyLevel5.
   ///
   /// In en, this message translates to:
   /// **'Rare'**
-  String get band5;
+  String get vocabularyLevel5;
 
   /// No description provided for @meaning.
   ///
@@ -826,23 +826,23 @@ abstract class AppLocalizations {
   /// **'at least {percent}%'**
   String coverageAtLeast(int percent);
 
-  /// No description provided for @finishThisBand.
+  /// No description provided for @finishThisLevel.
   ///
   /// In en, this message translates to:
-  /// **'Finish this band'**
-  String get finishThisBand;
+  /// **'Finish this level'**
+  String get finishThisLevel;
 
-  /// No description provided for @bandReaches.
+  /// No description provided for @levelReaches.
   ///
   /// In en, this message translates to:
   /// **'readable, from {count} words'**
-  String bandReaches(int count);
+  String levelReaches(int count);
 
-  /// No description provided for @selectBand.
+  /// No description provided for @vocabularyLevels.
   ///
   /// In en, this message translates to:
   /// **'Levels'**
-  String get selectBand;
+  String get vocabularyLevels;
 
   /// No description provided for @charactersSubtitle.
   ///

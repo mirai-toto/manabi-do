@@ -8,7 +8,7 @@ import '../providers/database_provider.dart';
 /// A search request: the text, and which groups to keep.
 ///
 /// [F] is whatever identifies a group in the thing being searched: a JLPT
-/// level string for kanji, a coverage band number for vocabulary. One class
+/// level string for kanji, a vocabulary level number for vocabulary. One class
 /// with a type parameter rather than two, because the equality below is the
 /// only reason either exists.
 ///
@@ -50,16 +50,16 @@ typedef SearchFields = ({
 /// Both searches share one policy — best match first, ties to the easier
 /// entry, capped — so neither can drift away from the other. What "easier"
 /// means is the one thing each search supplies for itself: kanji have a JLPT
-/// level, words have a coverage band.
+/// level, words have a vocabulary level.
 class SearchService {
   final AppDatabase _db;
 
   const SearchService(this._db);
 
-  /// [bands] narrows the result to those coverage bands. Empty means all.
+  /// [levels] narrows the result to those coverage levels. Empty means all.
   Future<List<VocabularyEntry>> vocabulary(
     String query, {
-    Set<int> bands = const {},
+    Set<int> levels = const {},
   }) async {
     final candidates = await _db.searchVocabularyCandidates(query);
     return _ranked(
@@ -70,9 +70,9 @@ class SearchService {
         readings: [entry.reading],
         meaning: entry.meaning,
       ),
-      keep: (entry) => bands.isEmpty || bands.contains(entry.coverageBand),
+      keep: (entry) => levels.isEmpty || levels.contains(entry.vocabularyLevel),
       // Band 1 is the commonest, so the number is already the right order.
-      easiness: (entry) => entry.coverageBand,
+      easiness: (entry) => entry.vocabularyLevel,
       // Alphabetical, so equally good matches keep a stable order.
       tiebreak: (a, b) => a.word.compareTo(b.word),
     );

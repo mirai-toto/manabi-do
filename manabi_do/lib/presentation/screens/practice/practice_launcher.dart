@@ -78,12 +78,12 @@ Future<void> openKanjiPractice(
   );
 }
 
-/// Opens the vocabulary practice picker for a whole coverage [band], or for a
+/// Opens the vocabulary practice picker for a whole coverage [level], or for a
 /// single group when [vocabularyIds] is given.
 Future<void> openVocabularyPractice(
   BuildContext context, {
   required String title,
-  required int band,
+  required int level,
   required Color color,
   Set<int>? vocabularyIds,
 }) {
@@ -100,7 +100,7 @@ Future<void> openVocabularyPractice(
             onTap: () => _push(
               ctx,
               VocabularyPracticeScreen(
-                band: band,
+                level: level,
                 allowedIds: vocabularyIds,
                 freeMode: true,
               ),
@@ -112,7 +112,7 @@ Future<void> openVocabularyPractice(
             onTap: () => _push(
               ctx,
               VocabularyPracticeScreen(
-                band: band,
+                level: level,
                 allowedIds: vocabularyIds,
                 flashcardOnly: true,
               ),
@@ -124,7 +124,7 @@ Future<void> openVocabularyPractice(
             onTap: () => _push(
               ctx,
               VocabularyPracticeScreen(
-                band: band,
+                level: level,
                 allowedIds: vocabularyIds,
                 mcqOnly: true,
               ),
@@ -136,7 +136,7 @@ Future<void> openVocabularyPractice(
             onTap: () => _push(
               ctx,
               VocabularyPracticeScreen(
-                band: band,
+                level: level,
                 allowedIds: vocabularyIds,
                 sentenceOnly: true,
               ),

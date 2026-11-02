@@ -24,7 +24,7 @@ class VocabularySessionService {
   const VocabularySessionService(this._ref);
 
   Future<List<PracticeItem>> buildQueue({
-    required int band,
+    required int level,
     required Set<int>? allowedIds,
     required bool freeMode,
     required bool sentenceOnly,
@@ -49,7 +49,7 @@ class VocabularySessionService {
     if (sentenceOnly) {
       pairs = [];
     } else if (freeMode || mcqOnly || flashcardOnly) {
-      final all = await db.getVocabularyByBand(band);
+      final all = await db.getVocabularyByBand(level);
       final filtered = allowedIds != null
           ? all.where((v) => allowedIds.contains(v.id)).toList()
           : all;
@@ -62,7 +62,7 @@ class VocabularySessionService {
       final settings = await _ref.read(srsSettingsProvider.future);
       final allPairs = await _ref
           .read(srsQueueServiceProvider)
-          .vocabulary(band, newCardLimit: settings.newVocabularyPerDay);
+          .vocabulary(level, newCardLimit: settings.newVocabularyPerDay);
       final filtered = allowedIds != null
           ? allPairs.where((p) => allowedIds.contains(p.$1.id)).toList()
           : allPairs;
@@ -72,7 +72,7 @@ class VocabularySessionService {
     }
 
     // Full level pool for MCQ distractors; group pool only for sentence selection.
-    final allPool = await db.getVocabularyByBand(band);
+    final allPool = await db.getVocabularyByBand(level);
     final groupPool = allowedIds != null
         ? allPool.where((v) => allowedIds.contains(v.id)).toList()
         : allPool;
@@ -90,7 +90,7 @@ class VocabularySessionService {
     if (flashcardOnly) {
       return _buildFlashcardItems(
         pairs: pairs,
-        band: band,
+        level: level,
         rng: rng,
         isFreeMode: true,
         meaningOf: meaningOf,
@@ -101,7 +101,7 @@ class VocabularySessionService {
         db: db,
         pool: groupPool,
         distractorPool: allPool,
-        band: band,
+        level: level,
         locale: locale,
         rng: rng,
         sessionLimit: sessionLimit,
@@ -112,7 +112,7 @@ class VocabularySessionService {
       return _buildMcqItems(
         pairs: pairs,
         pool: allPool,
-        band: band,
+        level: level,
         rng: rng,
         mcqSettings: mcqSettings,
         isFreeMode: true,
@@ -123,7 +123,7 @@ class VocabularySessionService {
       db: db,
       pairs: pairs,
       pool: allPool,
-      band: band,
+      level: level,
       locale: locale,
       rng: rng,
       freeMode: freeMode,
@@ -135,7 +135,7 @@ class VocabularySessionService {
 
   List<PracticeItem> _buildFlashcardItems({
     required List<(VocabularyEntry, Card?)> pairs,
-    required int band,
+    required int level,
     required Random rng,
     required bool isFreeMode,
     required String Function(VocabularyEntry) meaningOf,
@@ -161,7 +161,7 @@ class VocabularySessionService {
           label: entry.reading != entry.word ? entry.reading : null,
           answer: meaningOf(entry),
           isReversed: isReversed,
-          band: band,
+          vocabularyLevel: level,
           isFreeMode: isFreeMode,
         ),
       );
@@ -171,7 +171,7 @@ class VocabularySessionService {
   List<PracticeItem> _buildMcqItems({
     required List<(VocabularyEntry, Card?)> pairs,
     required List<VocabularyEntry> pool,
-    required int band,
+    required int level,
     required Random rng,
     required McqSettings mcqSettings,
     required bool isFreeMode,
@@ -203,7 +203,7 @@ class VocabularySessionService {
           japaneseReading: entry.reading != entry.word ? entry.reading : null,
           options: vocabularyMcq.options,
           correctIndex: vocabularyMcq.correctIndex,
-          band: band,
+          vocabularyLevel: level,
           isFreeMode: isFreeMode,
         ),
       );
@@ -214,7 +214,7 @@ class VocabularySessionService {
     required AppDatabase db,
     required List<VocabularyEntry> pool,
     required List<VocabularyEntry> distractorPool,
-    required int band,
+    required int level,
     required String locale,
     required Random rng,
     required int? sessionLimit,
@@ -279,7 +279,7 @@ class VocabularySessionService {
           targetReading: entry.reading,
           options: cloze.options,
           correctIndex: cloze.correctIndex,
-          band: band,
+          vocabularyLevel: level,
           isFreeMode: true,
         ),
       );
@@ -290,7 +290,7 @@ class VocabularySessionService {
     required AppDatabase db,
     required List<(VocabularyEntry, Card?)> pairs,
     required List<VocabularyEntry> pool,
-    required int band,
+    required int level,
     required String locale,
     required Random rng,
     required bool freeMode,
@@ -343,7 +343,7 @@ class VocabularySessionService {
             label: entry.reading != entry.word ? entry.reading : null,
             answer: meaningOf(entry),
             isReversed: quizType == 1,
-            band: band,
+            vocabularyLevel: level,
             isFreeMode: freeMode,
           ),
         );
@@ -374,7 +374,7 @@ class VocabularySessionService {
             japaneseReading: entry.reading != entry.word ? entry.reading : null,
             options: vocabularyMcq.options,
             correctIndex: vocabularyMcq.correctIndex,
-            band: band,
+            vocabularyLevel: level,
             isFreeMode: freeMode,
           ),
         );
@@ -407,7 +407,7 @@ class VocabularySessionService {
           targetReading: entry.reading,
           options: cloze.options,
           correctIndex: cloze.correctIndex,
-          band: band,
+          vocabularyLevel: level,
           isFreeMode: freeMode,
         ),
       );

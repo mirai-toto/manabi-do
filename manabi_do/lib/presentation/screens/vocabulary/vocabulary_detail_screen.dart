@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/coverage_band.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../data/database/app_database.dart';
-import '../../../l10n/band_label.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/pos_label.dart';
 import '../../providers/vocabulary_provider.dart';
@@ -24,7 +24,10 @@ class VocabularyDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
-    final color = bandColor(entry.coverageBand, Theme.of(context).brightness);
+    final color = vocabularyLevelColor(
+      entry.vocabularyLevel,
+      Theme.of(context).brightness,
+    );
     final localized = ref
         .watch(localizedVocabularyMeaningProvider(entry.id))
         .asData
@@ -116,9 +119,9 @@ class _Hero extends StatelessWidget {
               textStyle: AppTextStyles.labelSmall,
             ),
             PillBadge(
-              label: bandLabel(entry.coverageBand, context),
-              color: onBandColor(
-                entry.coverageBand,
+              label: vocabularyLevelLabel(entry.vocabularyLevel, context),
+              color: onVocabularyLevelColor(
+                entry.vocabularyLevel,
                 Theme.of(context).brightness,
               ),
               background: color,

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
-import '../../../../core/theme/coverage_band.dart';
-import '../../../../l10n/band_label.dart';
+import '../../../../core/theme/vocabulary_level.dart';
+import '../../../../l10n/vocabulary_level_label.dart';
 import '../indicator/difficulty_dots.dart';
 import '../surface/tappable_surface.dart';
 import 'jlpt_level_card.dart';
 
-/// One coverage band in the band list: a set of words, named for how common
+/// One vocabulary level in the level list: a set of words, named for how common
 /// they are, with what learning them buys.
 ///
 /// The twin of [JlptLevelCard], which does the same job for kanji. Separate
@@ -21,17 +21,17 @@ import 'jlpt_level_card.dart';
 /// appears on the row at all: the screen's own meter already says how much of
 /// Japanese the learner can read, and repeating a share per level turned every
 /// row into a statistic.
-class CoverageBandCard extends StatelessWidget {
-  final int band;
+class VocabularyLevelCard extends StatelessWidget {
+  final int level;
 
-  /// How many words are in this band, already formatted for the locale.
+  /// How many words are in this level, already formatted for the locale.
   final String? wordCount;
 
   final VoidCallback onTap;
 
-  const CoverageBandCard({
+  const VocabularyLevelCard({
     super.key,
-    required this.band,
+    required this.level,
     required this.onTap,
     this.wordCount,
   });
@@ -40,7 +40,7 @@ class CoverageBandCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final brightness = Theme.of(context).brightness;
-    final color = bandColor(band, brightness);
+    final color = vocabularyLevelColor(level, brightness);
     final count = wordCount;
 
     return Padding(
@@ -60,9 +60,9 @@ class CoverageBandCard extends StatelessWidget {
           child: Row(
             children: [
               LevelBadge(
-                code: count ?? '$band',
+                code: count ?? '$level',
                 color: color,
-                foreground: onBandColor(band, brightness),
+                foreground: onVocabularyLevelColor(level, brightness),
               ),
               const SizedBox(width: AppDimens.spaceMd),
               Expanded(
@@ -70,7 +70,7 @@ class CoverageBandCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      bandLabel(band, context),
+                      vocabularyLevelLabel(level, context),
                       style: AppTextStyles.body.copyWith(
                         color: t.onSurface,
                         fontWeight: FontWeight.w600,
@@ -78,8 +78,8 @@ class CoverageBandCard extends StatelessWidget {
                     ),
                     const SizedBox(height: AppDimens.spaceXs),
                     DifficultyDots(
-                      total: kBandCount,
-                      filled: bandDifficulty(band),
+                      total: kVocabularyLevelCount,
+                      filled: vocabularyLevelDifficulty(level),
                       color: color,
                     ),
                   ],

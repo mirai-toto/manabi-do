@@ -4,16 +4,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/coverage_band.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/pos_label.dart';
-import '../../../l10n/band_label.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../providers/vocabulary_provider.dart';
 import '../widgets.dart';
 
 /// Expandable vocabulary list row. Shows word, reading, abbreviated meaning.
 /// Tap expands to full meaning, part-of-speech chips, and `SpeakButton`.
-/// Localized meaning fetched via provider. `showBand` adds a coverage-band
+/// Localized meaning fetched via provider. `showBand` adds a coverage-level
 /// badge on the
 /// right, for lists that mix levels.
 class VocabularyWordTile extends ConsumerStatefulWidget {
@@ -143,16 +143,16 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: PillBadge(
-                                  label: bandLabel(
-                                    widget.entry.coverageBand,
+                                  label: vocabularyLevelLabel(
+                                    widget.entry.vocabularyLevel,
                                     context,
                                   ),
-                                  color: bandColor(
-                                    widget.entry.coverageBand,
+                                  color: vocabularyLevelColor(
+                                    widget.entry.vocabularyLevel,
                                     Theme.of(context).brightness,
                                   ),
-                                  background: bandColor(
-                                    widget.entry.coverageBand,
+                                  background: vocabularyLevelColor(
+                                    widget.entry.vocabularyLevel,
                                     Theme.of(context).brightness,
                                   ).withValues(alpha: 0.12),
                                   textStyle: AppTextStyles.labelSmall,

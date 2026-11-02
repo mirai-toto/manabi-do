@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/coverage_band.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
-import '../../../l10n/band_label.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/pos_label.dart';
 import '../widgets.dart';
 import '../../providers/vocabulary_provider.dart';
@@ -98,8 +98,8 @@ class _WordRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final badgeColor = bandColor(
-      entry.coverageBand,
+    final badgeColor = vocabularyLevelColor(
+      entry.vocabularyLevel,
       Theme.of(context).brightness,
     );
     return Padding(
@@ -140,7 +140,7 @@ class _WordRow extends StatelessWidget {
           ),
           const SizedBox(width: AppDimens.spaceSm),
           PillBadge(
-            label: bandLabel(entry.coverageBand, context),
+            label: vocabularyLevelLabel(entry.vocabularyLevel, context),
             color: badgeColor,
             background: badgeColor.withValues(alpha: 0.12),
           ),

@@ -28,15 +28,15 @@ extension VocabularyQueries on AppDatabase {
     return query.map((row) => row.readTable(vocabularyEntries)).get();
   }
 
-  /// Every word in a coverage band, in study order.
+  /// Every word in a vocabulary level, in study order.
   ///
   /// Ordered by `group_index` first, so skipping thirty at a time lands on the
   /// groups the content pipeline cut. The groups are a property of the content,
   /// not something the app recomputes: they are where the per-group coverage
   /// figures in `coverage_groups` apply.
-  Future<List<VocabularyEntry>> getVocabularyByBand(int band) =>
+  Future<List<VocabularyEntry>> getVocabularyByBand(int level) =>
       (select(vocabularyEntries)
-            ..where((v) => v.coverageBand.equals(band))
+            ..where((v) => v.vocabularyLevel.equals(level))
             ..orderBy([
               (v) => OrderingTerm.asc(v.groupIndex),
               (v) => OrderingTerm.asc(v.difficulty),
@@ -47,7 +47,7 @@ extension VocabularyQueries on AppDatabase {
   /// What each study group buys, as a share of running Japanese.
   Future<List<CoverageGroup>> getCoverageGroups() =>
       (select(coverageGroups)..orderBy([
-            (g) => OrderingTerm.asc(g.band),
+            (g) => OrderingTerm.asc(g.vocabularyLevel),
             (g) => OrderingTerm.asc(g.groupIndex),
           ]))
           .get();

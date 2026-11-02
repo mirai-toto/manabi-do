@@ -372,19 +372,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get levelN1 => 'Avancé';
 
   @override
-  String get band1 => 'Les plus courants';
+  String get vocabularyLevel1 => 'Les plus courants';
 
   @override
-  String get band2 => 'Très courants';
+  String get vocabularyLevel2 => 'Très courants';
 
   @override
-  String get band3 => 'Courants';
+  String get vocabularyLevel3 => 'Courants';
 
   @override
-  String get band4 => 'Peu courants';
+  String get vocabularyLevel4 => 'Peu courants';
 
   @override
-  String get band5 => 'Rares';
+  String get vocabularyLevel5 => 'Rares';
 
   @override
   String get meaning => 'Sens';
@@ -407,15 +407,15 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get finishThisBand => 'Terminer ce palier';
+  String get finishThisLevel => 'Terminer ce niveau';
 
   @override
-  String bandReaches(int count) {
+  String levelReaches(int count) {
     return 'lisible, avec $count mots';
   }
 
   @override
-  String get selectBand => 'Niveaux';
+  String get vocabularyLevels => 'Niveaux';
 
   @override
   String charactersSubtitle(int total) {

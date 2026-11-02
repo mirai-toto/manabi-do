@@ -7,7 +7,7 @@ import '../../../core/models/mcq_settings.dart';
 import '../../../core/models/practice_item.dart';
 import '../../../core/models/practice_question.dart';
 import '../../../core/models/sentence_settings.dart';
-import '../../../core/theme/coverage_band.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../widgets/exercise/grammar_builder_body.dart';
@@ -104,13 +104,13 @@ class PracticeQuestionBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // A kanji carries a JLPT level, a word carries a coverage band, and the
+    // A kanji carries a JLPT level, a word carries a vocabulary level, and the
     // two are drawn from different ramps: the JLPT scale is categorical green
-    // to red, a band is a sequential share of the language.
-    final band = question.band;
+    // to red, a vocabularyLevel is a sequential share of the language.
+    final vocabularyLevel = question.vocabularyLevel;
     final level = question.level;
-    final Color color = band != null
-        ? bandColor(band, Theme.of(context).brightness)
+    final Color color = vocabularyLevel != null
+        ? vocabularyLevelColor(vocabularyLevel, Theme.of(context).brightness)
         : level != null
         ? levelColor(level)
         : sessionColor;

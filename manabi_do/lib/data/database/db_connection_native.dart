@@ -16,7 +16,7 @@ import 'user_data_preservation.dart';
 /// This used to be a hand-written constant. It was wrong for exactly as long as
 /// anybody failed to notice: a new asset shipped with schema 25 while the
 /// constant still said `9.0`, so every install kept its old content, ran the
-/// migration over it, and showed all 8,406 words in the last coverage band with
+/// migration over it, and showed all 8,406 words in the last vocabulary level with
 /// no group figures at all. Nothing in the build could catch that, because the
 /// constant was true of nothing.
 ///

@@ -141,11 +141,11 @@
   "levelN3": "Intermédiaire",
   "levelN2": "Intermédiaire supérieur",
   "levelN1": "Avancé",
-  "band1": "Les plus courants",
-  "band2": "Très courants",
-  "band3": "Courants",
-  "band4": "Peu courants",
-  "band5": "Rares",
+  "vocabularyLevel1": "Les plus courants",
+  "vocabularyLevel2": "Très courants",
+  "vocabularyLevel3": "Courants",
+  "vocabularyLevel4": "Peu courants",
+  "vocabularyLevel5": "Rares",
   "meaning": "Sens",
   "exampleSentences": "Dans une phrase",
   "writtenWith": "Écrit avec",
@@ -159,16 +159,16 @@
       }
     }
   },
-  "finishThisBand": "Terminer ce palier",
-  "bandReaches": "lisible, avec {count} mots",
-  "@bandReaches": {
+  "finishThisLevel": "Terminer ce niveau",
+  "levelReaches": "lisible, avec {count} mots",
+  "@levelReaches": {
     "placeholders": {
       "count": {
         "type": "int"
       }
     }
   },
-  "selectBand": "Niveaux",
+  "vocabularyLevels": "Niveaux",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
   "@charactersSubtitle": {
     "placeholders": {

@@ -94,7 +94,7 @@ class AppDatabase extends _$AppDatabase {
       },
 
       // Difficulty stops being a number copied from a downloaded list and
-      // becomes one computed from JMdict's frequency bands and KANJIDIC2's
+      // becomes one computed from JMdict's frequency levels and KANJIDIC2's
       // school grades — both of which were already being downloaded and
       // thrown away. `jlpt_level` stays, so the two can be compared.
       //
@@ -125,7 +125,7 @@ class AppDatabase extends _$AppDatabase {
       //
       // `difficulty_tier` banded words by share of the roster, so tier 1 meant
       // "the easiest tenth of whatever we ship" — a fact about the app, not
-      // about the language. `coverage_band` and `group_index` carry a share of
+      // about the language. `vocabulary_level` and `group_index` carry a share of
       // running Japanese instead, and `coverage_groups` says what each group of
       // thirty words buys.
       //
@@ -139,14 +139,14 @@ class AppDatabase extends _$AppDatabase {
         await m.createTable(schema.coverageGroups);
         // `newColumns` is not optional here. `alterTable` copies the old rows
         // into the new shape, and without it drift writes a SELECT naming
-        // `coverage_band` and `group_index` against the table that does not
+        // `vocabulary_level` and `group_index` against the table that does not
         // have them yet, so opening the database throws "no such column".
         // Their SQL defaults fill the copied rows.
         await m.alterTable(
           TableMigration(
             schema.vocabularyEntries,
             newColumns: [
-              schema.vocabularyEntries.coverageBand,
+              schema.vocabularyEntries.vocabularyLevel,
               schema.vocabularyEntries.groupIndex,
             ],
           ),

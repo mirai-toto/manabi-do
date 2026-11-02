@@ -26,9 +26,9 @@ class CoverageMeterCard extends StatelessWidget {
   /// What the bar shows, 0 to 1, when that is not [share].
   ///
   /// On the vocabulary home the two are the same thing: the number is how much
-  /// the learner can read and the bar fills with it. On a band screen they are
-  /// different facts — the number is what finishing the band would buy, the bar
-  /// is how far through the band they are — and drawing the band's share as a
+  /// the learner can read and the bar fills with it. On a level screen they are
+  /// different facts — the number is what finishing the level would buy, the bar
+  /// is how far through the level they are — and drawing the level's share as a
   /// progress bar would claim they had already read it.
   final double? progress;
 
@@ -42,7 +42,7 @@ class CoverageMeterCard extends StatelessWidget {
   /// "667 more reaches 60%".
   final String? nextLabel;
 
-  /// Defaults to `AppTokens.primary`. A band screen passes that band's colour.
+  /// Defaults to `AppTokens.primary`. A level screen passes that level's colour.
   final Color? color;
 
   const CoverageMeterCard({

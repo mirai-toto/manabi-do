@@ -3,7 +3,7 @@ import 'package:fsrs/fsrs.dart';
 
 import '../../core/providers/srs_settings_provider.dart';
 import '../../core/srs/srs_level.dart';
-import '../../core/theme/coverage_band.dart';
+import '../../core/theme/vocabulary_level.dart';
 import '../../data/database/app_database.dart';
 import '../services/search_service.dart';
 import '../services/srs_queue_service.dart';
@@ -11,15 +11,15 @@ import 'database_provider.dart';
 
 const kVocabularyGroupSize = 30;
 
-final vocabularyByBandProvider =
+final vocabularyByLevelProvider =
     FutureProvider.family<List<VocabularyEntry>, int>(
-      (ref, band) => ref.watch(databaseProvider).getVocabularyByBand(band),
+      (ref, level) => ref.watch(databaseProvider).getVocabularyByBand(level),
     );
 
 final vocabularySearchProvider =
     FutureProvider.family<List<VocabularyEntry>, SearchQuery<int>>(
       (ref, q) =>
-          ref.read(searchServiceProvider).vocabulary(q.text, bands: q.filters),
+          ref.read(searchServiceProvider).vocabulary(q.text, levels: q.filters),
     );
 
 /// What each study group buys, as a share of running Japanese.
@@ -27,37 +27,38 @@ final coverageGroupsProvider = FutureProvider<List<CoverageGroup>>(
   (ref) => ref.watch(databaseProvider).getCoverageGroups(),
 );
 
-/// Band → the share of running Japanese that band adds. Null when unknown.
+/// Band → the share of running Japanese that level adds. Null when unknown.
 ///
 /// Null covers both "still loading" and "the table is empty", and they are
 /// deliberately the same answer. A database migrated forward without its new
 /// asset has no group rows, and reporting 0% there would be a claim that the
 /// learner can read nothing rather than an admission that we do not know.
-final bandShareProvider = Provider<Map<int, double>?>((ref) {
+final vocabularyLevelShareProvider = Provider<Map<int, double>?>((ref) {
   final groups = ref.watch(coverageGroupsProvider).asData?.value;
   if (groups == null || groups.isEmpty) return null;
   final byBand = <int, double>{};
   for (final group in groups) {
-    byBand[group.band] = (byBand[group.band] ?? 0) + group.corpusShare;
+    byBand[group.vocabularyLevel] =
+        (byBand[group.vocabularyLevel] ?? 0) + group.corpusShare;
   }
   return byBand;
 });
 
-/// Band → the share of running Japanese a learner can read once that band and
-/// every band before it is finished. Null while loading.
-final bandReachedProvider = Provider<Map<int, double>?>((ref) {
-  final shares = ref.watch(bandShareProvider);
+/// Band → the share of running Japanese a learner can read once that level and
+/// every level before it is finished. Null while loading.
+final vocabularyLevelReachedProvider = Provider<Map<int, double>?>((ref) {
+  final shares = ref.watch(vocabularyLevelShareProvider);
   if (shares == null) return null;
   final reached = <int, double>{};
   var running = 0.0;
-  for (final band in kAllBands) {
-    running += shares[band] ?? 0;
-    reached[band] = running;
+  for (final level in kAllVocabularyLevels) {
+    running += shares[level] ?? 0;
+    reached[level] = running;
   }
   return reached;
 });
 
-/// (band, group) → the share of running Japanese that one group of thirty
+/// (level, group) → the share of running Japanese that one group of thirty
 /// words adds. Null while loading.
 ///
 /// A group is the finest grain any corpus figure is published at: BCCWJ is free
@@ -69,7 +70,7 @@ final groupShareProvider = Provider<Map<(int, int), double>?>((ref) {
   if (groups == null || groups.isEmpty) return null;
   return {
     for (final group in groups)
-      (group.band, group.groupIndex): group.corpusShare,
+      (group.vocabularyLevel, group.groupIndex): group.corpusShare,
   };
 });
 
@@ -86,8 +87,8 @@ final coverageReachedProvider = Provider<double?>((ref) {
   if (srsCards == null) return null;
 
   var reached = 0.0;
-  for (final band in kAllBands) {
-    final entries = ref.watch(vocabularyByBandProvider(band)).asData?.value;
+  for (final level in kAllVocabularyLevels) {
+    final entries = ref.watch(vocabularyByLevelProvider(level)).asData?.value;
     if (entries == null) return null;
     final learnedPerGroup = <int, int>{};
     final sizePerGroup = <int, int>{};
@@ -101,7 +102,7 @@ final coverageReachedProvider = Provider<double?>((ref) {
       }
     }
     for (final group in sizePerGroup.keys) {
-      final share = shares[(band, group)] ?? 0;
+      final share = shares[(level, group)] ?? 0;
       final size = sizePerGroup[group]!;
       reached += share * (learnedPerGroup[group] ?? 0) / size;
     }
@@ -113,12 +114,12 @@ final vocabularySrsCardsProvider = StreamProvider<Map<int, Card>>(
   (ref) => ref.watch(databaseProvider).watchAllSrsCardsForType('vocabulary'),
 );
 
-/// Total vocabulary count across every coverage band; null while any band is
+/// Total vocabulary count across every vocabulary level; null while any level is
 /// still loading.
 final vocabularyTotalCountProvider = Provider<int?>((ref) {
   var sum = 0;
-  for (final band in kAllBands) {
-    final data = ref.watch(vocabularyByBandProvider(band)).asData?.value;
+  for (final level in kAllVocabularyLevels) {
+    final data = ref.watch(vocabularyByLevelProvider(level)).asData?.value;
     if (data == null) return null;
     sum += data.length;
   }
@@ -127,10 +128,10 @@ final vocabularyTotalCountProvider = Provider<int?>((ref) {
 
 /// How many vocabulary entries in the given group have been learned (past new/learning).
 final vocabularyGroupLearnedCountProvider =
-    Provider.family<int, ({int band, int groupIndex})>((ref, args) {
+    Provider.family<int, ({int level, int groupIndex})>((ref, args) {
       final entries =
           ref
-              .watch(vocabularyByBandProvider(args.band))
+              .watch(vocabularyByLevelProvider(args.level))
               .asData
               ?.value
               .skip(args.groupIndex * kVocabularyGroupSize)
@@ -147,11 +148,11 @@ final vocabularyGroupLearnedCountProvider =
 
 /// Returns (reviewCount, newCount) for the given vocabulary group.
 final vocabularyGroupSrsCountProvider =
-    FutureProvider.family<(int, int), ({int band, int groupIndex})>((
+    FutureProvider.family<(int, int), ({int level, int groupIndex})>((
       ref,
       args,
     ) async {
-      final all = await ref.read(vocabularyByBandProvider(args.band).future);
+      final all = await ref.read(vocabularyByLevelProvider(args.level).future);
       final groupIds = all
           .skip(args.groupIndex * kVocabularyGroupSize)
           .take(kVocabularyGroupSize)
@@ -160,7 +161,7 @@ final vocabularyGroupSrsCountProvider =
       final settings = await ref.read(srsSettingsProvider.future);
       final session = await ref
           .read(srsQueueServiceProvider)
-          .vocabulary(args.band, newCardLimit: settings.newVocabularyPerDay);
+          .vocabulary(args.level, newCardLimit: settings.newVocabularyPerDay);
       final group = session.where((p) => groupIds.contains(p.$1.id)).toList();
       return (
         group.where((p) => p.$2 != null).length,

@@ -86,14 +86,15 @@ class JlptLevelCard extends StatelessWidget {
   }
 }
 
-/// The square chip inside a level or band card, filled with that step's ramp
+/// The square chip inside a JLPT level or vocabulary level card, filled with
+/// that step's ramp
 /// colour.
 class LevelBadge extends StatelessWidget {
   final String code;
   final Color color;
 
   /// The readable ink on [color]. Defaults to `onAccentFor`, which is right for
-  /// the JLPT ramp. The coverage-band ramp passes its own, because
+  /// the JLPT ramp. The vocabulary-level ramp passes its own, because
   /// `estimateBrightnessForColor` lands on the wrong side of its mid-purples.
   final Color? foreground;
 

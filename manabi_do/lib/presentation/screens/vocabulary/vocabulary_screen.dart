@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/coverage_band.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../l10n/l10n.dart';
-import '../../../l10n/band_label.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../providers/home_provider.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../../widgets/widgets.dart';
@@ -18,7 +18,7 @@ class VocabularyScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
-    final selectedBand = ref.watch(vocabularySelectedBandProvider);
+    final selectedLevel = ref.watch(vocabularySelectedLevelProvider);
     final selectedGroup = ref.watch(vocabularySelectedGroupProvider);
 
     final total = ref.watch(vocabularyTotalCountProvider);
@@ -29,40 +29,40 @@ class VocabularyScreen extends ConsumerWidget {
     final brightness = Theme.of(context).brightness;
 
     Widget body;
-    if (selectedBand == null) {
-      body = VocabularyBandSelector(
-        onSelect: (band) {
+    if (selectedLevel == null) {
+      body = VocabularyLevelSelector(
+        onSelect: (level) {
           ref.read(vocabularySelectedGroupProvider.notifier).clear();
-          ref.read(vocabularySelectedBandProvider.notifier).select(band);
+          ref.read(vocabularySelectedLevelProvider.notifier).select(level);
         },
       );
     } else if (selectedGroup == null) {
       body = VocabularyGroupSelector(
-        band: selectedBand,
+        level: selectedLevel,
         onBack: () {
           ref.read(vocabularySelectedGroupProvider.notifier).clear();
-          ref.read(vocabularySelectedBandProvider.notifier).clear();
+          ref.read(vocabularySelectedLevelProvider.notifier).clear();
         },
         onPractice: () => openVocabularyPractice(
           context,
-          title: bandLabel(selectedBand, context),
-          band: selectedBand,
-          color: bandColor(selectedBand, brightness),
+          title: vocabularyLevelLabel(selectedLevel, context),
+          level: selectedLevel,
+          color: vocabularyLevelColor(selectedLevel, brightness),
         ),
         onSelect: (i) =>
             ref.read(vocabularySelectedGroupProvider.notifier).select(i),
       );
     } else {
-      body = VocabularyBandView(
-        band: selectedBand,
+      body = VocabularyLevelView(
+        level: selectedLevel,
         groupIndex: selectedGroup,
         onBack: () =>
             ref.read(vocabularySelectedGroupProvider.notifier).clear(),
         onPractice: (vocabularyIds) => openVocabularyPractice(
           context,
           title: l.groupN(selectedGroup + 1),
-          band: selectedBand,
-          color: bandColor(selectedBand, brightness),
+          level: selectedLevel,
+          color: vocabularyLevelColor(selectedLevel, brightness),
           vocabularyIds: vocabularyIds,
         ),
       );

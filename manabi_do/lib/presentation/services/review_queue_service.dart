@@ -318,7 +318,7 @@ class ReviewQueueService {
             japaneseReading: entry.reading != entry.word ? entry.reading : null,
             options: mcqOptions,
             correctIndex: correctIndex,
-            band: entry.coverageBand,
+            vocabularyLevel: entry.vocabularyLevel,
           ),
         );
       }
@@ -351,7 +351,7 @@ class ReviewQueueService {
           targetReading: entry.reading,
           options: clozeOptions,
           correctIndex: correctIndex,
-          band: entry.coverageBand,
+          vocabularyLevel: entry.vocabularyLevel,
         ),
       );
     }).toList()..shuffle(rng);

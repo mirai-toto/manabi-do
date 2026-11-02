@@ -23,7 +23,7 @@ class _SelectedTabNotifier extends Notifier<int> {
         ref.read(kanjiSelectedLevelProvider.notifier).clear();
         ref.read(kanjiSelectedGroupProvider.notifier).clear();
       case 2:
-        ref.read(vocabularySelectedBandProvider.notifier).clear();
+        ref.read(vocabularySelectedLevelProvider.notifier).clear();
         ref.read(vocabularySelectedGroupProvider.notifier).clear();
       case 3:
         ref.read(grammarSelectedLevelProvider.notifier).clear();
@@ -100,16 +100,16 @@ final kanjiSelectedLevelProvider =
       _SelectionNotifier.new,
     );
 
-/// The coverage band being browsed. A number, not a level code: vocabulary has
+/// The vocabulary level being browsed. A number, not a level code: vocabulary has
 /// no JLPT level.
-final vocabularySelectedBandProvider =
+final vocabularySelectedLevelProvider =
     NotifierProvider<_SelectionNotifier<int>, int?>(_SelectionNotifier.new);
 final grammarSelectedLevelProvider =
     NotifierProvider<_SelectionNotifier<String>, String?>(
       _SelectionNotifier.new,
     );
 
-/// Which level or band a section has drilled into, or null for none.
+/// Which level or level a section has drilled into, or null for none.
 ///
 /// Within-screen back navigation lives in a provider rather than a `PopScope`,
 /// so the system back button and the in-app arrow run the same code.

@@ -12,7 +12,7 @@ import '../action/app_filter_chip.dart';
 /// on nothing, so a horizontal scroller would hide options for no gain.
 ///
 /// Generic over the option, because kanji filter by JLPT level — a string — and
-/// vocabulary by coverage band — a number. One bar with a label function rather
+/// words by vocabulary level — a number. One bar with a label function rather
 /// than two that drift apart.
 class FilterChipBar<T> extends StatelessWidget {
   final List<T> options;

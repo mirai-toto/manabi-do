@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 /// which is dark for N5-N3 and white for the deeper N2/N1.
 ///
 /// `basics` and `kana` sit outside the JLPT scale. Vocabulary is not here at
-/// all: it has no JLPT level, and its coverage bands are a magnitude rather
-/// than a category, so they use the sequential ramp in `coverage_band.dart`
+/// all: it has no JLPT level, and its vocabulary levels are a magnitude rather
+/// than a category, so they use the sequential ramp in `vocabulary_level.dart`
 /// instead of this green-to-red one.
 ///
 /// Known issue: N2 burnt orange and N1 brick red are neighbouring hues at

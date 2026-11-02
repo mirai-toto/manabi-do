@@ -185,11 +185,11 @@
   "levelN3": "Intermediate",
   "levelN2": "Upper-Intermediate",
   "levelN1": "Advanced",
-  "band1": "Most common",
-  "band2": "Very common",
-  "band3": "Common",
-  "band4": "Uncommon",
-  "band5": "Rare",
+  "vocabularyLevel1": "Most common",
+  "vocabularyLevel2": "Very common",
+  "vocabularyLevel3": "Common",
+  "vocabularyLevel4": "Uncommon",
+  "vocabularyLevel5": "Rare",
   "meaning": "Meaning",
   "exampleSentences": "In a sentence",
   "writtenWith": "Written with",
@@ -203,16 +203,16 @@
       }
     }
   },
-  "finishThisBand": "Finish this band",
-  "bandReaches": "readable, from {count} words",
-  "@bandReaches": {
+  "finishThisLevel": "Finish this level",
+  "levelReaches": "readable, from {count} words",
+  "@levelReaches": {
     "placeholders": {
       "count": {
         "type": "int"
       }
     }
   },
-  "selectBand": "Levels",
+  "vocabularyLevels": "Levels",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
   "@charactersSubtitle": {
     "placeholders": {

@@ -143,11 +143,11 @@
   "levelN3": "Mittelstufe",
   "levelN2": "Obere Mittelstufe",
   "levelN1": "Fortgeschritten",
-  "band1": "Am häufigsten",
-  "band2": "Sehr häufig",
-  "band3": "Häufig",
-  "band4": "Selten",
-  "band5": "Sehr selten",
+  "vocabularyLevel1": "Am häufigsten",
+  "vocabularyLevel2": "Sehr häufig",
+  "vocabularyLevel3": "Häufig",
+  "vocabularyLevel4": "Selten",
+  "vocabularyLevel5": "Sehr selten",
   "meaning": "Bedeutung",
   "exampleSentences": "Im Satz",
   "writtenWith": "Geschrieben mit",
@@ -161,16 +161,16 @@
       }
     }
   },
-  "finishThisBand": "Diese Stufe abschließen",
-  "bandReaches": "lesbar, mit {count} Wörtern",
-  "@bandReaches": {
+  "finishThisLevel": "Diese Stufe abschließen",
+  "levelReaches": "lesbar, mit {count} Wörtern",
+  "@levelReaches": {
     "placeholders": {
       "count": {
         "type": "int"
       }
     }
   },
-  "selectBand": "Stufen",
+  "vocabularyLevels": "Stufen",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} Kana",
   "@charactersSubtitle": {
     "placeholders": {

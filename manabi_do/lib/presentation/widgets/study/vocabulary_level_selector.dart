@@ -6,29 +6,29 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
-import '../../../core/theme/coverage_band.dart';
-import '../../../l10n/band_label.dart';
+import '../../../core/theme/vocabulary_level.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../services/search_service.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../../screens/vocabulary/vocabulary_detail_screen.dart';
 import '../widgets.dart';
 
-/// Pinned `SearchField` over a full-screen-width list of coverage bands.
-/// Tapping a band calls `onSelect`. Typing replaces the tiles with matching
+/// Pinned `SearchField` over a full-screen-width list of coverage levels.
+/// Tapping a level calls `onSelect`. Typing replaces the tiles with matching
 /// words from `vocabularySearchProvider` (word, reading or meaning; ranked by
 /// `searchRank`, capped at 50), built lazily as they scroll into view.
-class VocabularyBandSelector extends ConsumerStatefulWidget {
+class VocabularyLevelSelector extends ConsumerStatefulWidget {
   final void Function(int) onSelect;
-  const VocabularyBandSelector({super.key, required this.onSelect});
+  const VocabularyLevelSelector({super.key, required this.onSelect});
 
   @override
-  ConsumerState<VocabularyBandSelector> createState() =>
-      _VocabularyBandSelectorState();
+  ConsumerState<VocabularyLevelSelector> createState() =>
+      _VocabularyLevelSelectorState();
 }
 
-class _VocabularyBandSelectorState
-    extends ConsumerState<VocabularyBandSelector> {
+class _VocabularyLevelSelectorState
+    extends ConsumerState<VocabularyLevelSelector> {
   String _query = '';
   final Set<int> _filter = <int>{};
 
@@ -53,8 +53,8 @@ class _VocabularyBandSelectorState
             onChanged: (query) => setState(() => _query = query),
           ),
         ),
-        // Only while searching: without a query the band list below already
-        // is the band picker, and two ways to do one thing reads as a bug.
+        // Only while searching: without a query the level list below already
+        // is the level picker, and two ways to do one thing reads as a bug.
         if (isSearchableQuery(_query))
           Padding(
             padding: const EdgeInsets.fromLTRB(
@@ -64,24 +64,24 @@ class _VocabularyBandSelectorState
               AppDimens.spaceSm,
             ),
             child: FilterChipBar<int>(
-              options: kAllBands,
+              options: kAllVocabularyLevels,
               selected: _filter,
-              labelOf: (band) => bandLabel(band, context),
-              onToggle: (band) => setState(
-                () => _filter.contains(band)
-                    ? _filter.remove(band)
-                    : _filter.add(band),
+              labelOf: (level) => vocabularyLevelLabel(level, context),
+              onToggle: (level) => setState(
+                () => _filter.contains(level)
+                    ? _filter.remove(level)
+                    : _filter.add(level),
               ),
             ),
           ),
         Expanded(
-          child: isSearchableQuery(_query) ? _results() : _bandList(context),
+          child: isSearchableQuery(_query) ? _results() : _levelList(context),
         ),
       ],
     );
   }
 
-  Widget _bandList(BuildContext context) {
+  Widget _levelList(BuildContext context) {
     final mine = ref.watch(coverageReachedProvider);
     final l = context.l10n;
     return ScrollFade(
@@ -100,13 +100,13 @@ class _VocabularyBandSelectorState
               progressLabel: l.coverageAtLeast((mine * 100).round()),
             ),
           const SizedBox(height: AppDimens.spaceMd),
-          SectionLabel(l.selectBand),
+          SectionLabel(l.vocabularyLevels),
           const SizedBox(height: AppDimens.spaceSm),
-          for (final band in kAllBands)
-            CoverageBandCard(
-              band: band,
-              wordCount: _wordCount(band),
-              onTap: () => widget.onSelect(band),
+          for (final level in kAllVocabularyLevels)
+            VocabularyLevelCard(
+              level: level,
+              wordCount: _wordCount(level),
+              onTap: () => widget.onSelect(level),
             ),
           const SizedBox(height: AppDimens.spaceLg),
         ],
@@ -123,9 +123,9 @@ class _VocabularyBandSelectorState
             results.isEmpty ? const _NoResults() : _ResultList(results),
       );
 
-  String? _wordCount(int band) {
+  String? _wordCount(int level) {
     final count = ref
-        .watch(vocabularyByBandProvider(band))
+        .watch(vocabularyByLevelProvider(level))
         .asData
         ?.value
         .length;

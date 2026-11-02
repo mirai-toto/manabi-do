@@ -5,30 +5,30 @@ import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/coverage_band.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../l10n/l10n.dart';
-import '../../../l10n/band_label.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../widgets.dart';
 
 const kVocabularyGroupSize = 30;
 
 /// Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for
-/// pagination within a coverage band, in groups of `kVocabularyGroupSize`.
+/// pagination within a vocabulary level, in groups of `kVocabularyGroupSize`.
 ///
 /// Each row carries what the group buys: the share of running Japanese those
 /// thirty words account for. That number falls away sharply — the first group
-/// of band 1 is 20.6% of everything written and the last groups are rounding
+/// of level 1 is 20.6% of everything written and the last groups are rounding
 /// error — which is the whole point of ordering the app this way.
 class VocabularyGroupSelector extends ConsumerWidget {
-  final int band;
+  final int level;
   final VoidCallback onBack;
   final VoidCallback onPractice;
   final void Function(int) onSelect;
 
   const VocabularyGroupSelector({
     super.key,
-    required this.band,
+    required this.level,
     required this.onBack,
     required this.onPractice,
     required this.onSelect,
@@ -36,15 +36,15 @@ class VocabularyGroupSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vocabularyAsync = ref.watch(vocabularyByBandProvider(band));
+    final vocabularyAsync = ref.watch(vocabularyByLevelProvider(level));
     final srsCards = ref.watch(vocabularySrsCardsProvider).asData?.value ?? {};
     final shares = ref.watch(groupShareProvider);
-    final color = bandColor(band, Theme.of(context).brightness);
+    final color = vocabularyLevelColor(level, Theme.of(context).brightness);
     final t = context.tokens;
 
     final entries = vocabularyAsync.asData?.value ?? [];
     final groupCount = (entries.length / kVocabularyGroupSize).ceil();
-    final bandShare = ref.watch(bandReachedProvider)?[band];
+    final bandShare = ref.watch(vocabularyLevelReachedProvider)?[level];
     final learnedInBand = entries.where((e) {
       final srs = srsLevel(srsCards[e.id]);
       return srs != SrsLevel.newCard && srs != SrsLevel.learning;
@@ -74,7 +74,7 @@ class VocabularyGroupSelector extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        bandLabel(band, context),
+                        vocabularyLevelLabel(level, context),
                         style: AppTextStyles.labelSmall.copyWith(
                           color: color,
                           fontWeight: FontWeight.w700,
@@ -98,9 +98,9 @@ class VocabularyGroupSelector extends ConsumerWidget {
                 vertical: AppDimens.spaceSm,
               ),
               child: CoverageMeterCard(
-                label: context.l10n.finishThisBand,
+                label: context.l10n.finishThisLevel,
                 share: bandShare,
-                caption: context.l10n.bandReaches(entries.length),
+                caption: context.l10n.levelReaches(entries.length),
                 progress: entries.isEmpty ? 0 : learnedInBand / entries.length,
                 progressLabel: '$learnedInBand / ${entries.length}',
                 color: color,
@@ -161,7 +161,7 @@ class VocabularyGroupSelector extends ConsumerWidget {
                           '${start + 1}–$end · $learnedCount / ${groupEntries.length}',
                       progress: progress,
                       color: color,
-                      trailing: _ShareBadge(share: shares?[(band, i + 1)]),
+                      trailing: _ShareBadge(share: shares?[(level, i + 1)]),
                       onTap: () => onSelect(i),
                     ),
                   );

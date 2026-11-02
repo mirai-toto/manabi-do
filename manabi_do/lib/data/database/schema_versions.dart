@@ -1862,7 +1862,7 @@ final class Schema25 extends i0.VersionedSchema {
       entityName: 'coverage_groups',
       withoutRowId: false,
       isStrict: false,
-      tableConstraints: ['PRIMARY KEY(band, group_index)'],
+      tableConstraints: ['PRIMARY KEY(vocabulary_level, group_index)'],
       columns: [_column_61, _column_62, _column_63, _column_64],
       attachedDatabase: database,
     ),
@@ -2060,15 +2060,15 @@ class Shape19 extends i0.VersionedTable {
       columnsByName['difficulty']! as i1.GeneratedColumn<int>;
   i1.GeneratedColumn<String> get difficultySource =>
       columnsByName['difficulty_source']! as i1.GeneratedColumn<String>;
-  i1.GeneratedColumn<int> get coverageBand =>
-      columnsByName['coverage_band']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get vocabularyLevel =>
+      columnsByName['vocabulary_level']! as i1.GeneratedColumn<int>;
   i1.GeneratedColumn<int> get groupIndex =>
       columnsByName['group_index']! as i1.GeneratedColumn<int>;
 }
 
 i1.GeneratedColumn<int> _column_59(String aliasedName) =>
     i1.GeneratedColumn<int>(
-      'coverage_band',
+      'vocabulary_level',
       aliasedName,
       false,
       type: i1.DriftSqlType.int,
@@ -2087,8 +2087,8 @@ i1.GeneratedColumn<int> _column_60(String aliasedName) =>
 
 class Shape20 extends i0.VersionedTable {
   Shape20({required super.source, required super.alias}) : super.aliased();
-  i1.GeneratedColumn<int> get band =>
-      columnsByName['band']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<int> get vocabularyLevel =>
+      columnsByName['vocabulary_level']! as i1.GeneratedColumn<int>;
   i1.GeneratedColumn<int> get groupIndex =>
       columnsByName['group_index']! as i1.GeneratedColumn<int>;
   i1.GeneratedColumn<int> get wordCount =>
@@ -2099,7 +2099,7 @@ class Shape20 extends i0.VersionedTable {
 
 i1.GeneratedColumn<int> _column_61(String aliasedName) =>
     i1.GeneratedColumn<int>(
-      'band',
+      'vocabulary_level',
       aliasedName,
       false,
       type: i1.DriftSqlType.int,
