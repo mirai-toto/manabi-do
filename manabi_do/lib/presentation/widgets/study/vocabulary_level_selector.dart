@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -109,7 +108,7 @@ class _VocabularyLevelSelectorState
           for (final level in kAllVocabularyLevels)
             VocabularyLevelCard(
               level: level,
-              wordCount: _wordCount(level),
+              wordCount: _wordCount(context, level),
               onTap: () => widget.onSelect(level),
             ),
           const SizedBox(height: AppDimens.spaceLg),
@@ -127,13 +126,13 @@ class _VocabularyLevelSelectorState
             results.isEmpty ? const _NoResults() : _ResultList(results),
       );
 
-  String? _wordCount(int level) {
+  String? _wordCount(BuildContext context, int level) {
     final count = ref
         .watch(vocabularyByLevelProvider(level))
         .asData
         ?.value
         .length;
-    return count != null ? NumberFormat.decimalPattern().format(count) : null;
+    return count != null ? context.l10n.nWords(count) : null;
   }
 }
 

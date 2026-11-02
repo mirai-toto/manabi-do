@@ -16,15 +16,17 @@ import 'jlpt_level_card.dart';
 /// rather than shared, because the badge carries a different kind of fact: a
 /// kanji card shows a level code, and this shows how many words are in the set.
 ///
-/// The badge holds the word count rather than a coverage figure. The count is
-/// what someone weighs up when deciding what to take on next. No percentage
-/// appears on the row at all: the screen's own meter already says how much of
-/// Japanese the learner can read, and repeating a share per level turned every
-/// row into a statistic.
+/// The badge holds the level number and nothing else. A percentage there read
+/// as a statistic, and the word count read as the level's name; the number is
+/// the one thing the badge can say that the rest of the row does not. The count
+/// sits after the dots, where it belongs with the other measures of size.
+///
+/// No percentage appears on the row at all: the screen's own meter already says
+/// how much of Japanese the learner can read.
 class VocabularyLevelCard extends StatelessWidget {
   final int level;
 
-  /// How many words are in this level, already formatted for the locale.
+  /// How many words are in this level, already written out, e.g. "750 words".
   final String? wordCount;
 
   final VoidCallback onTap;
@@ -60,7 +62,7 @@ class VocabularyLevelCard extends StatelessWidget {
           child: Row(
             children: [
               LevelBadge(
-                code: count ?? '$level',
+                code: '$level',
                 color: color,
                 foreground: onVocabularyLevelColor(level, brightness),
               ),
@@ -77,10 +79,23 @@ class VocabularyLevelCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: AppDimens.spaceXs),
-                    DifficultyDots(
-                      total: kVocabularyLevelCount,
-                      filled: vocabularyLevelDifficulty(level),
-                      color: color,
+                    Row(
+                      children: [
+                        DifficultyDots(
+                          total: kVocabularyLevelCount,
+                          filled: vocabularyLevelDifficulty(level),
+                          color: color,
+                        ),
+                        if (count != null) ...[
+                          const SizedBox(width: AppDimens.spaceSm),
+                          Text(
+                            count,
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: t.onSurfaceVariant,
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                   ],
                 ),
