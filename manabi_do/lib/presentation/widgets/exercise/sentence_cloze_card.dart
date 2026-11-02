@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -8,6 +7,7 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../common/label/japanese_text.dart';
 import '../common/indicator/pill_badge.dart';
+import '../common/action/copy_button.dart';
 import '../common/action/speak_button.dart';
 import 'mcq_card.dart';
 import 'cloze_option.dart';
@@ -166,27 +166,15 @@ class SentenceClozeCard extends StatelessWidget {
               ],
               SpeakButton(text: sentence.japanese, color: color),
               const SizedBox(width: AppDimens.spaceXs),
-              InkWell(
-                onTap: () => _showCopyDialog(context, t),
-                borderRadius: BorderRadius.circular(AppDimens.radiusXs),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppDimens.spaceTight,
-                    vertical: AppDimens.spaceXs,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: t.outlineVariant,
-                      width: AppDimens.borderWidthContainer,
+              CopyButton(
+                choices: [
+                  CopyChoice(label: l.japanese, text: _copyableJapanese),
+                  if (translation != null)
+                    CopyChoice(
+                      label: l.translationModeLabel,
+                      text: translation!,
                     ),
-                    borderRadius: BorderRadius.circular(AppDimens.radiusXs),
-                  ),
-                  child: Icon(
-                    Icons.copy_rounded,
-                    size: 14,
-                    color: t.onSurfaceVariant,
-                  ),
-                ),
+                ],
               ),
             ],
           ),
@@ -232,113 +220,11 @@ class SentenceClozeCard extends StatelessWidget {
     );
   }
 
-  void _showCopyDialog(BuildContext context, AppTokens t) {
-    final l = context.l10n;
-    final japaneseText = answered
-        ? sentence.japanese
-        : sentence.japanese.replaceFirst(sentence.targetWord, '___');
-
-    showDialog<void>(
-      context: context,
-      builder: (ctx) {
-        Future<void> copy(String text) async {
-          Navigator.of(ctx).pop();
-          await Clipboard.setData(ClipboardData(text: text));
-        }
-
-        return AlertDialog(
-          title: Row(
-            children: [
-              Icon(Icons.copy_rounded, size: 18, color: t.onSurfaceVariant),
-              const SizedBox(width: AppDimens.spaceXs),
-              Text(
-                l.copy,
-                style: AppTextStyles.title.copyWith(color: t.onSurface),
-              ),
-            ],
-          ),
-          contentPadding: const EdgeInsets.fromLTRB(0, AppDimens.spaceSm, 0, 0),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _CopyOption(
-                label: l.japanese,
-                preview: japaneseText,
-                onTap: () => copy(japaneseText),
-                t: t,
-              ),
-              if (translation != null)
-                _CopyOption(
-                  label: l.translationModeLabel,
-                  preview: translation!,
-                  onTap: () => copy(translation!),
-                  t: t,
-                ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(ctx).pop(),
-              child: Text(l.cancel),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class _CopyOption extends StatelessWidget {
-  final String label;
-  final String preview;
-  final VoidCallback onTap;
-  final AppTokens t;
-
-  const _CopyOption({
-    required this.label,
-    required this.preview,
-    required this.onTap,
-    required this.t,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.spaceLg,
-          vertical: AppDimens.spaceMd,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    label,
-                    style: AppTextStyles.bodySmall.copyWith(
-                      color: t.onSurfaceVariant,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: AppDimens.spaceXxs),
-                  Text(
-                    preview,
-                    style: AppTextStyles.body.copyWith(color: t.onSurface),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-            Icon(Icons.copy_rounded, size: 16, color: t.onSurfaceVariant),
-          ],
-        ),
-      ),
-    );
-  }
+  /// What the Japanese reads before the answer is revealed. The exercise hides
+  /// the target word, so copying the sentence early must not hand it over.
+  String get _copyableJapanese => answered
+      ? sentence.japanese
+      : sentence.japanese.replaceFirst(sentence.targetWord, '___');
 }
 
 WidgetSpan _blankSpan(Color color) => WidgetSpan(

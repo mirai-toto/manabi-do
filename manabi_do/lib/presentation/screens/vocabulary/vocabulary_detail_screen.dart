@@ -137,6 +137,7 @@ class _Sentences extends ConsumerWidget {
         const <(Sentence, String?)>[];
     if (rows.isEmpty) return const SizedBox.shrink();
     final t = context.tokens;
+    final l = context.l10n;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,11 +158,35 @@ class _Sentences extends ConsumerWidget {
                   padding: const EdgeInsets.symmetric(
                     vertical: AppDimens.spaceSm,
                   ),
-                  child: JapaneseSentence(
-                    sentence: row.$1.japanese,
-                    highlight: entry.word,
-                    highlightColor: color,
-                    translation: row.$2,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        // The annotated form, not the plain one. Every
+                        // sentence in the database carries furigana in
+                        // `{漢字|かんじ}` form, and passing `japanese` meant
+                        // the readings were there and simply never drawn.
+                        child: JapaneseSentence(
+                          sentence: row.$1.furigana ?? row.$1.japanese,
+                          highlight: entry.word,
+                          highlightColor: color,
+                          translation: row.$2,
+                        ),
+                      ),
+                      const SizedBox(width: AppDimens.spaceSm),
+                      // The plain text, never the annotated form: nobody
+                      // wants to paste `{何|なに}するの？` anywhere.
+                      CopyButton(
+                        choices: [
+                          CopyChoice(label: l.japanese, text: row.$1.japanese),
+                          if (row.$2 != null)
+                            CopyChoice(
+                              label: l.translationModeLabel,
+                              text: row.$2!,
+                            ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ],

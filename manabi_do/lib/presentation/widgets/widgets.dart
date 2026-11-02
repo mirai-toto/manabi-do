@@ -1,6 +1,7 @@
 // common
 // — action
 export 'common/action/app_button.dart';
+export 'common/action/copy_button.dart';
 export 'common/action/app_filter_chip.dart';
 export 'common/action/auth_button.dart';
 export 'common/action/speak_button.dart';
