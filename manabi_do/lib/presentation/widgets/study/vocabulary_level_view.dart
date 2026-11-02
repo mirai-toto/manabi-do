@@ -37,7 +37,7 @@ class VocabularyLevelView extends ConsumerWidget {
     return switch (vocabularyAsync) {
       AsyncLoading() => const Center(child: AppSpinner.page()),
       AsyncError() => const SizedBox.shrink(),
-      AsyncData(:final value) => _BandContent(
+      AsyncData(:final value) => _LevelContent(
         level: level,
         groupIndex: groupIndex,
         color: color,
@@ -52,7 +52,7 @@ class VocabularyLevelView extends ConsumerWidget {
   }
 }
 
-class _BandContent extends ConsumerWidget {
+class _LevelContent extends ConsumerWidget {
   final int level;
   final int groupIndex;
   final Color color;
@@ -60,7 +60,7 @@ class _BandContent extends ConsumerWidget {
   final VoidCallback onBack;
   final void Function(Set<int> vocabularyIds) onPractice;
 
-  const _BandContent({
+  const _LevelContent({
     required this.level,
     required this.groupIndex,
     required this.color,

@@ -34,7 +34,7 @@ extension VocabularyQueries on AppDatabase {
   /// groups the content pipeline cut. The groups are a property of the content,
   /// not something the app recomputes: they are where the per-group coverage
   /// figures in `coverage_groups` apply.
-  Future<List<VocabularyEntry>> getVocabularyByBand(int level) =>
+  Future<List<VocabularyEntry>> getVocabularyByLevel(int level) =>
       (select(vocabularyEntries)
             ..where((v) => v.vocabularyLevel.equals(level))
             ..orderBy([

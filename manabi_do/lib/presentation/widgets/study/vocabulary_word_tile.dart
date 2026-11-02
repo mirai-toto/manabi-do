@@ -13,7 +13,7 @@ import '../widgets.dart';
 
 /// Expandable vocabulary list row. Shows word, reading, abbreviated meaning.
 /// Tap expands to full meaning, part-of-speech chips, and `SpeakButton`.
-/// Localized meaning fetched via provider. `showBand` adds a coverage-level
+/// Localized meaning fetched via provider. `showLevel` adds a vocabulary-level
 /// badge on the
 /// right, for lists that mix levels.
 class VocabularyWordTile extends ConsumerStatefulWidget {
@@ -21,7 +21,7 @@ class VocabularyWordTile extends ConsumerStatefulWidget {
 
   /// Shows a JLPT badge next to the part of speech. Search results mix levels,
   /// so they need it; a group already knows which level it belongs to.
-  final bool showBand;
+  final bool showLevel;
 
   /// Opens the word's own screen. The meaning keeps its own tap, which expands
   /// it, so only the word itself navigates.
@@ -30,7 +30,7 @@ class VocabularyWordTile extends ConsumerStatefulWidget {
   const VocabularyWordTile({
     super.key,
     required this.entry,
-    this.showBand = false,
+    this.showLevel = false,
     this.onOpen,
   });
 
@@ -139,7 +139,7 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                                   color: t.onSurfaceVariant,
                                 ),
                               ),
-                            if (widget.showBand)
+                            if (widget.showLevel)
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: PillBadge(

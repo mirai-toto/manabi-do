@@ -290,8 +290,8 @@
             "dsl_features": []
           },
           {
-            "name": "vocabulary_level",
-            "getter_name": "vocabularyLevel",
+            "name": "coverage_band",
+            "getter_name": "coverageBand",
             "moor_type": "int",
             "nullable": false,
             "customConstraints": "NOT NULL DEFAULT 5",
@@ -324,8 +324,8 @@
         "was_declared_in_moor": true,
         "columns": [
           {
-            "name": "vocabulary_level",
-            "getter_name": "vocabularyLevel",
+            "name": "band",
+            "getter_name": "band",
             "moor_type": "int",
             "nullable": false,
             "customConstraints": "NOT NULL",
@@ -367,10 +367,10 @@
         "is_virtual": false,
         "without_rowid": false,
         "constraints": [
-          "PRIMARY KEY(vocabulary_level, group_index)"
+          "PRIMARY KEY(band, group_index)"
         ],
         "explicit_pk": [
-          "vocabulary_level",
+          "band",
           "group_index"
         ]
       }
@@ -1298,7 +1298,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"vocabulary_entries\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"word\" TEXT NOT NULL, \"reading\" TEXT NOT NULL, \"meaning\" TEXT NOT NULL, \"part_of_speech\" TEXT NOT NULL, \"freq_band\" INTEGER, \"difficulty\" INTEGER NOT NULL DEFAULT 0, \"difficulty_source\" TEXT NOT NULL DEFAULT '', \"vocabulary_level\" INTEGER NOT NULL DEFAULT 5, \"group_index\" INTEGER NOT NULL DEFAULT 1);"
+          "sql": "CREATE TABLE IF NOT EXISTS \"vocabulary_entries\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"word\" TEXT NOT NULL, \"reading\" TEXT NOT NULL, \"meaning\" TEXT NOT NULL, \"part_of_speech\" TEXT NOT NULL, \"freq_band\" INTEGER, \"difficulty\" INTEGER NOT NULL DEFAULT 0, \"difficulty_source\" TEXT NOT NULL DEFAULT '', \"coverage_band\" INTEGER NOT NULL DEFAULT 5, \"group_index\" INTEGER NOT NULL DEFAULT 1);"
         }
       ]
     },
@@ -1307,7 +1307,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"coverage_groups\" (\"vocabulary_level\" INTEGER NOT NULL, \"group_index\" INTEGER NOT NULL, \"word_count\" INTEGER NOT NULL, \"corpus_share\" REAL NOT NULL, PRIMARY KEY(vocabulary_level, group_index));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"coverage_groups\" (\"band\" INTEGER NOT NULL, \"group_index\" INTEGER NOT NULL, \"word_count\" INTEGER NOT NULL, \"corpus_share\" REAL NOT NULL, PRIMARY KEY(band, group_index));"
         }
       ]
     },

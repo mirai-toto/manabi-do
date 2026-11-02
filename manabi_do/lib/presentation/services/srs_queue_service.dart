@@ -41,7 +41,7 @@ class SrsQueueService {
     int newCardLimit = 10,
   }) async => _queue(
     itemType: 'vocabulary',
-    items: await _db.getVocabularyByBand(level),
+    items: await _db.getVocabularyByLevel(level),
     idOf: (entry) => entry.id,
     newCardLimit: newCardLimit,
   );

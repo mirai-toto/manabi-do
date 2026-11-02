@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-/// The five coverage levels vocabulary is grouped into.
+/// The five vocabulary levels words are grouped into.
 ///
 /// A level is a share of **running Japanese**, measured on the BCCWJ corpus by
-/// the content pipeline. Band 1 is the 750 commonest words, which are 49.5% of
-/// everything written; level 5 is the long tail, which adds 1.5%.
+/// the content pipeline. Level 1 is the 750 commonest words, which are 51.2% of
+/// everything written; level 5 is the long tail of 4,500, which adds 1.5%.
 ///
 /// Vocabulary has no JLPT level and this is why. The JLPT publishes an official
 /// kanji list but no vocabulary list, so every dataset's "N5 word" is a guess

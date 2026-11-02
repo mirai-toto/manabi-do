@@ -45,7 +45,7 @@ class VocabularyGroupSelector extends ConsumerWidget {
     final entries = vocabularyAsync.asData?.value ?? [];
     final groupCount = (entries.length / kVocabularyGroupSize).ceil();
     final bandShare = ref.watch(vocabularyLevelReachedProvider)?[level];
-    final learnedInBand = entries.where((e) {
+    final learnedInLevel = entries.where((e) {
       final srs = srsLevel(srsCards[e.id]);
       return srs != SrsLevel.newCard && srs != SrsLevel.learning;
     }).length;
@@ -101,8 +101,8 @@ class VocabularyGroupSelector extends ConsumerWidget {
                 label: context.l10n.finishThisLevel,
                 share: bandShare,
                 caption: context.l10n.levelReaches(entries.length),
-                progress: entries.isEmpty ? 0 : learnedInBand / entries.length,
-                progressLabel: '$learnedInBand / ${entries.length}',
+                progress: entries.isEmpty ? 0 : learnedInLevel / entries.length,
+                progressLabel: '$learnedInLevel / ${entries.length}',
                 color: color,
               ),
             ),

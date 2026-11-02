@@ -26,7 +26,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 25;
+  int get schemaVersion => 26;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -146,10 +146,37 @@ class AppDatabase extends _$AppDatabase {
           TableMigration(
             schema.vocabularyEntries,
             newColumns: [
-              schema.vocabularyEntries.vocabularyLevel,
+              schema.vocabularyEntries.coverageBand,
               schema.vocabularyEntries.groupIndex,
             ],
           ),
+        );
+      },
+
+      // `coverage_band` becomes `vocabulary_level`, and `coverage_groups.band`
+      // with it.
+      //
+      // A rename and nothing else. The word "band" was ours alone: the screens
+      // call these levels, so the column now says the same thing. Spelled out
+      // rather than plain `level` so it cannot be read as the exam level that
+      // `kanjis.jlpt_level` holds.
+      //
+      // This needed its own version. The rename first went into v25 directly,
+      // on the grounds that v25 had never been released — but a v25 database
+      // already existed on a development machine, drift saw a version it had
+      // nothing to do for, and every vocabulary query then asked for a column
+      // that was no longer there. A schema that has reached any disk anywhere
+      // is frozen.
+      from25To26: (m, schema) async {
+        await m.renameColumn(
+          schema.vocabularyEntries,
+          'coverage_band',
+          schema.vocabularyEntries.vocabularyLevel,
+        );
+        await m.renameColumn(
+          schema.coverageGroups,
+          'band',
+          schema.coverageGroups.vocabularyLevel,
         );
       },
     ),

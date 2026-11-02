@@ -49,7 +49,7 @@ class VocabularySessionService {
     if (sentenceOnly) {
       pairs = [];
     } else if (freeMode || mcqOnly || flashcardOnly) {
-      final all = await db.getVocabularyByBand(level);
+      final all = await db.getVocabularyByLevel(level);
       final filtered = allowedIds != null
           ? all.where((v) => allowedIds.contains(v.id)).toList()
           : all;
@@ -72,7 +72,7 @@ class VocabularySessionService {
     }
 
     // Full level pool for MCQ distractors; group pool only for sentence selection.
-    final allPool = await db.getVocabularyByBand(level);
+    final allPool = await db.getVocabularyByLevel(level);
     final groupPool = allowedIds != null
         ? allPool.where((v) => allowedIds.contains(v.id)).toList()
         : allPool;

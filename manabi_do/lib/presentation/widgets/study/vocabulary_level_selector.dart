@@ -165,7 +165,7 @@ class _ResultList extends StatelessWidget {
               ),
             VocabularyWordTile(
               entry: results[index],
-              showBand: true,
+              showLevel: true,
               onOpen: () => Navigator.of(context).push(
                 MaterialPageRoute<void>(
                   builder: (_) => VocabularyDetailScreen(entry: results[index]),

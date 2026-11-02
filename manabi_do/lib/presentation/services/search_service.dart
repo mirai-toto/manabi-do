@@ -71,7 +71,7 @@ class SearchService {
         meaning: entry.meaning,
       ),
       keep: (entry) => levels.isEmpty || levels.contains(entry.vocabularyLevel),
-      // Band 1 is the commonest, so the number is already the right order.
+      // Level 1 is the commonest, so the number is already the right order.
       easiness: (entry) => entry.vocabularyLevel,
       // Alphabetical, so equally good matches keep a stable order.
       tiebreak: (a, b) => a.word.compareTo(b.word),

@@ -13,7 +13,7 @@ const kVocabularyGroupSize = 30;
 
 final vocabularyByLevelProvider =
     FutureProvider.family<List<VocabularyEntry>, int>(
-      (ref, level) => ref.watch(databaseProvider).getVocabularyByBand(level),
+      (ref, level) => ref.watch(databaseProvider).getVocabularyByLevel(level),
     );
 
 final vocabularySearchProvider =
@@ -27,7 +27,7 @@ final coverageGroupsProvider = FutureProvider<List<CoverageGroup>>(
   (ref) => ref.watch(databaseProvider).getCoverageGroups(),
 );
 
-/// Band → the share of running Japanese that level adds. Null when unknown.
+/// Level → the share of running Japanese that level adds. Null when unknown.
 ///
 /// Null covers both "still loading" and "the table is empty", and they are
 /// deliberately the same answer. A database migrated forward without its new
@@ -36,15 +36,15 @@ final coverageGroupsProvider = FutureProvider<List<CoverageGroup>>(
 final vocabularyLevelShareProvider = Provider<Map<int, double>?>((ref) {
   final groups = ref.watch(coverageGroupsProvider).asData?.value;
   if (groups == null || groups.isEmpty) return null;
-  final byBand = <int, double>{};
+  final byLevel = <int, double>{};
   for (final group in groups) {
-    byBand[group.vocabularyLevel] =
-        (byBand[group.vocabularyLevel] ?? 0) + group.corpusShare;
+    byLevel[group.vocabularyLevel] =
+        (byLevel[group.vocabularyLevel] ?? 0) + group.corpusShare;
   }
-  return byBand;
+  return byLevel;
 });
 
-/// Band → the share of running Japanese a learner can read once that level and
+/// Level → the share of running Japanese a learner can read once that level and
 /// every level before it is finished. Null while loading.
 final vocabularyLevelReachedProvider = Provider<Map<int, double>?>((ref) {
   final shares = ref.watch(vocabularyLevelShareProvider);
