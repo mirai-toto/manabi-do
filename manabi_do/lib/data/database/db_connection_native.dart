@@ -10,7 +10,32 @@ import 'package:sqlite3/sqlite3.dart' as raw;
 
 import 'user_data_preservation.dart';
 
-const _assetDbVersion = '9.0';
+/// Which content build the bundled asset is, read from the pin that ships
+/// beside it.
+///
+/// This used to be a hand-written constant. It was wrong for exactly as long as
+/// anybody failed to notice: a new asset shipped with schema 25 while the
+/// constant still said `9.0`, so every install kept its old content, ran the
+/// migration over it, and showed all 8,406 words in the last coverage band with
+/// no group figures at all. Nothing in the build could catch that, because the
+/// constant was true of nothing.
+///
+/// `content.lock` already is the record of which build the app ships, and
+/// `scripts/content/fetch_content.sh` rewrites it whenever the asset is
+/// replaced. Reading it here means the two cannot drift apart.
+Future<String> _assetContentVersion() async {
+  final String lock = await rootBundle.loadString('content.lock');
+  for (final String line in lock.split('\n')) {
+    final String trimmed = line.trim();
+    if (trimmed.startsWith('tag')) {
+      final int at = trimmed.indexOf('=');
+      if (at != -1) return trimmed.substring(at + 1).trim();
+    }
+  }
+  throw StateError(
+    'content.lock names no tag, so the content build is unknown',
+  );
+}
 
 // Walk up from the executable until a .git directory is found (repo root).
 String? _repoRoot() {
@@ -45,10 +70,11 @@ QueryExecutor openDbConnection() {
     final file = File(p.join(dbDir, 'manabi_do.db'));
     final marker = File(p.join(dbDir, 'manabi_do.db.version'));
 
+    final String assetVersion = await _assetContentVersion();
     final currentVersion = marker.existsSync()
         ? marker.readAsStringSync().trim()
         : '';
-    final needsCopy = !file.existsSync() || currentVersion != _assetDbVersion;
+    final needsCopy = !file.existsSync() || currentVersion != assetVersion;
 
     if (needsCopy) {
       // Save user data so it survives the content DB refresh.
@@ -116,7 +142,7 @@ QueryExecutor openDbConnection() {
       await staged.rename(file.path);
 
       // Write the marker only after the move succeeds so a crash here retries next launch.
-      await marker.writeAsString(_assetDbVersion);
+      await marker.writeAsString(assetVersion);
     }
 
     return NativeDatabase(file);
