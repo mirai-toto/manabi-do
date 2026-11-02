@@ -227,35 +227,42 @@ WidgetSpan rubySpan(
 /// Builds a list of [InlineSpan]s from [text], which may be a
 /// `{kanji|reading}`-annotated string or plain text.
 ///
-/// When [showFurigana] is true, ruby annotations are rendered above each
-/// kanji. When false, annotations are stripped and every character is wrapped
-/// in the same Column structure (empty ruby row) to keep line height uniform.
+/// Where a line carries any ruby at all, every character is wrapped in the
+/// same Column, empty ruby row included, so the characters keep one baseline
+/// instead of stepping up and down around the annotated ones.
+///
+/// Where a line carries none — no kanji, or furigana switched off — it becomes
+/// plain spans with no ruby row. That row is about 10 logical pixels of empty
+/// band above the text, and reserving it on a line that can never fill it left
+/// every kana-only sentence sitting low in its own space with a gap on top.
 List<InlineSpan> furiganaSpans(
   String text,
   TextStyle textStyle,
   TextStyle rubyStyle, {
   bool showFurigana = true,
 }) {
-  if (showFurigana) {
-    final segments = parseFuriganaAnnotation(text);
-    final spans = <InlineSpan>[];
-    for (final seg in segments) {
-      if (seg.ruby != null) {
-        spans.add(rubySpan(seg.text, seg.ruby!, textStyle, rubyStyle));
-      } else {
-        for (int i = 0; i < seg.text.length; i++) {
-          spans.add(rubySpan(seg.text[i], '', textStyle, rubyStyle));
-        }
+  if (!showFurigana) {
+    return [TextSpan(text: stripAnnotation(text), style: textStyle)];
+  }
+
+  final segments = parseFuriganaAnnotation(text);
+  if (!segments.any((seg) => seg.ruby != null)) {
+    return [
+      TextSpan(text: segments.map((seg) => seg.text).join(), style: textStyle),
+    ];
+  }
+
+  final spans = <InlineSpan>[];
+  for (final seg in segments) {
+    if (seg.ruby != null) {
+      spans.add(rubySpan(seg.text, seg.ruby!, textStyle, rubyStyle));
+    } else {
+      for (int i = 0; i < seg.text.length; i++) {
+        spans.add(rubySpan(seg.text[i], '', textStyle, rubyStyle));
       }
     }
-    return spans;
-  } else {
-    final plain = stripAnnotation(text);
-    return List.generate(
-      plain.length,
-      (i) => rubySpan(plain[i], '', textStyle, rubyStyle),
-    );
   }
+  return spans;
 }
 
 // ── Widget ────────────────────────────────────────────────────────────────────
