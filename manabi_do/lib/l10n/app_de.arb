@@ -107,6 +107,14 @@
   "thisWeek": "Diese Woche",
   "nNewToday": "{count} neue heute",
   "nDue": "{count} fällig",
+  "reviewNDue": "{count} fällige wiederholen",
+  "@reviewNDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "lessonOfTotal": "Lektion {index} von {total}",
   "strokeOrderPlaceholder": "▶ Strichfolge-Animation",
   "strokeOrder": "Strichfolge",

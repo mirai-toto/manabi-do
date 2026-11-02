@@ -262,6 +262,11 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String reviewNDue(int count) {
+    return 'Réviser $count en retard';
+  }
+
+  @override
   String lessonOfTotal(int index, int total) {
     return 'Leçon $index sur $total';
   }

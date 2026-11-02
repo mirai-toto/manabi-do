@@ -105,6 +105,14 @@
   "thisWeek": "Cette semaine",
   "nNewToday": "{count} nouveaux aujourd'hui",
   "nDue": "{count} à réviser",
+  "reviewNDue": "Réviser {count} en retard",
+  "@reviewNDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "lessonOfTotal": "Leçon {index} sur {total}",
   "strokeOrderPlaceholder": "▶ Animation de l'ordre des traits",
   "strokeOrder": "Ordre des traits",

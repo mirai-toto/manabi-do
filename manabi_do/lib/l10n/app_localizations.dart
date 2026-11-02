@@ -544,6 +544,12 @@ abstract class AppLocalizations {
   /// **'{count} due'**
   String nDue(int count);
 
+  /// No description provided for @reviewNDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Review {count} due'**
+  String reviewNDue(int count);
+
   /// No description provided for @lessonOfTotal.
   ///
   /// In en, this message translates to:

@@ -132,6 +132,14 @@
     }
   },
   "nDue": "{count} due",
+  "reviewNDue": "Review {count} due",
+  "@reviewNDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "@nDue": {
     "placeholders": {
       "count": {

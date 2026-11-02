@@ -262,6 +262,11 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String reviewNDue(int count) {
+    return '$count fällige wiederholen';
+  }
+
+  @override
   String lessonOfTotal(int index, int total) {
     return 'Lektion $index von $total';
   }

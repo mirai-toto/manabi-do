@@ -83,6 +83,7 @@ export 'study/coverage_meter_card.dart';
 export 'study/vocabulary_level_selector.dart';
 export 'study/vocabulary_kanji_list.dart';
 export 'study/vocabulary_level_view.dart';
+export 'study/vocabulary_word_row.dart';
 export 'study/vocabulary_word_tile.dart';
 export 'study/week_strip.dart';
 
