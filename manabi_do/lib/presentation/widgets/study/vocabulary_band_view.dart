@@ -4,24 +4,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
+import '../../../core/theme/coverage_band.dart';
 import '../../../data/database/app_database.dart';
+import '../../../l10n/band_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/vocabulary_list_provider.dart';
+import '../../screens/vocabulary/vocabulary_detail_screen.dart';
 import '../widgets.dart';
 
-/// Shows the vocabulary word list for one paginated group within a level.
-/// Fetches entries via `vocabularyByLevelProvider`, renders
+/// Shows the vocabulary word list for one group within a coverage band.
+/// Fetches entries via `vocabularyByBandProvider`, renders
 /// `VocabularyWordTile` rows, and shows learned-count progress.
-class VocabularyLevelView extends ConsumerWidget {
-  final String level;
+class VocabularyBandView extends ConsumerWidget {
+  final int band;
   final int groupIndex;
   final VoidCallback onBack;
   final void Function(Set<int> vocabularyIds) onPractice;
 
-  const VocabularyLevelView({
+  const VocabularyBandView({
     super.key,
-    required this.level,
+    required this.band,
     required this.groupIndex,
     required this.onBack,
     required this.onPractice,
@@ -29,14 +31,14 @@ class VocabularyLevelView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vocabularyAsync = ref.watch(vocabularyByLevelProvider(level));
-    final color = levelColor(level);
+    final vocabularyAsync = ref.watch(vocabularyByBandProvider(band));
+    final color = bandColor(band, Theme.of(context).brightness);
 
     return switch (vocabularyAsync) {
       AsyncLoading() => const Center(child: AppSpinner.page()),
       AsyncError() => const SizedBox.shrink(),
-      AsyncData(:final value) => _LevelContent(
-        level: level,
+      AsyncData(:final value) => _BandContent(
+        band: band,
         groupIndex: groupIndex,
         color: color,
         entries: value
@@ -50,16 +52,16 @@ class VocabularyLevelView extends ConsumerWidget {
   }
 }
 
-class _LevelContent extends ConsumerWidget {
-  final String level;
+class _BandContent extends ConsumerWidget {
+  final int band;
   final int groupIndex;
   final Color color;
   final List<VocabularyEntry> entries;
   final VoidCallback onBack;
   final void Function(Set<int> vocabularyIds) onPractice;
 
-  const _LevelContent({
-    required this.level,
+  const _BandContent({
+    required this.band,
     required this.groupIndex,
     required this.color,
     required this.entries,
@@ -73,10 +75,7 @@ class _LevelContent extends ConsumerWidget {
     final l = context.l10n;
 
     final learnedCount = ref.watch(
-      vocabularyGroupLearnedCountProvider((
-        level: level,
-        groupIndex: groupIndex,
-      )),
+      vocabularyGroupLearnedCountProvider((band: band, groupIndex: groupIndex)),
     );
 
     final groupIds = entries.map((e) => e.id).toSet();
@@ -106,7 +105,7 @@ class _LevelContent extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '$level · ${l.groupN(groupIndex + 1)}',
+                        '${bandLabel(band, context)} · ${l.groupN(groupIndex + 1)}',
                         style: AppTextStyles.labelSmall.copyWith(
                           color: color,
                           fontWeight: FontWeight.w700,
@@ -157,7 +156,14 @@ class _LevelContent extends ConsumerWidget {
                 indent: AppDimens.spaceMd,
                 endIndent: AppDimens.spaceMd,
               ),
-            VocabularyWordTile(entry: entries[i]),
+            VocabularyWordTile(
+              entry: entries[i],
+              onOpen: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => VocabularyDetailScreen(entry: entries[i]),
+                ),
+              ),
+            ),
           ],
         ],
       ),

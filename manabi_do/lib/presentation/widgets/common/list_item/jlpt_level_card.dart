@@ -86,13 +86,23 @@ class JlptLevelCard extends StatelessWidget {
   }
 }
 
-/// The square JLPT code chip inside a level card, filled with that level's ramp
+/// The square chip inside a level or band card, filled with that step's ramp
 /// colour.
 class LevelBadge extends StatelessWidget {
   final String code;
   final Color color;
 
-  const LevelBadge({super.key, required this.code, required this.color});
+  /// The readable ink on [color]. Defaults to `onAccentFor`, which is right for
+  /// the JLPT ramp. The coverage-band ramp passes its own, because
+  /// `estimateBrightnessForColor` lands on the wrong side of its mid-purples.
+  final Color? foreground;
+
+  const LevelBadge({
+    super.key,
+    required this.code,
+    required this.color,
+    this.foreground,
+  });
 
   @override
   Widget build(BuildContext context) => Container(
@@ -106,7 +116,7 @@ class LevelBadge extends StatelessWidget {
       child: Text(
         code,
         style: AppTextStyles.labelLarge.copyWith(
-          color: onAccentFor(color),
+          color: foreground ?? onAccentFor(color),
           fontWeight: FontWeight.w700,
         ),
       ),

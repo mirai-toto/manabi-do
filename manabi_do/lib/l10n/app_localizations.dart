@@ -760,6 +760,96 @@ abstract class AppLocalizations {
   /// **'Advanced'**
   String get levelN1;
 
+  /// No description provided for @band1.
+  ///
+  /// In en, this message translates to:
+  /// **'Core'**
+  String get band1;
+
+  /// No description provided for @band2.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyday'**
+  String get band2;
+
+  /// No description provided for @band3.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfortable'**
+  String get band3;
+
+  /// No description provided for @band4.
+  ///
+  /// In en, this message translates to:
+  /// **'Wide'**
+  String get band4;
+
+  /// No description provided for @band5.
+  ///
+  /// In en, this message translates to:
+  /// **'Long tail'**
+  String get band5;
+
+  /// No description provided for @meaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaning'**
+  String get meaning;
+
+  /// No description provided for @exampleSentences.
+  ///
+  /// In en, this message translates to:
+  /// **'In a sentence'**
+  String get exampleSentences;
+
+  /// No description provided for @writtenWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Written with'**
+  String get writtenWith;
+
+  /// No description provided for @youCanRead.
+  ///
+  /// In en, this message translates to:
+  /// **'You can read'**
+  String get youCanRead;
+
+  /// No description provided for @ofWrittenJapanese.
+  ///
+  /// In en, this message translates to:
+  /// **'of everything written in Japanese'**
+  String get ofWrittenJapanese;
+
+  /// No description provided for @coverageAtLeast.
+  ///
+  /// In en, this message translates to:
+  /// **'at least {percent}%'**
+  String coverageAtLeast(int percent);
+
+  /// No description provided for @finishThisBand.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish this band'**
+  String get finishThisBand;
+
+  /// No description provided for @bandReaches.
+  ///
+  /// In en, this message translates to:
+  /// **'readable, from {count} words'**
+  String bandReaches(int count);
+
+  /// No description provided for @selectBand.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a band'**
+  String get selectBand;
+
+  /// No description provided for @bandExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Each band is a share of everything written in Japanese, measured on the BCCWJ corpus. Not a JLPT level: the JLPT publishes no vocabulary list.'**
+  String get bandExplainer;
+
   /// No description provided for @charactersSubtitle.
   ///
   /// In en, this message translates to:
@@ -1021,7 +1111,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutBccwjNotice.
   ///
   /// In en, this message translates to:
-  /// **'Word difficulty is calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).'**
+  /// **'Word difficulty, the coverage bands and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).'**
   String get aboutBccwjNotice;
 
   /// No description provided for @aboutBccwjLink.

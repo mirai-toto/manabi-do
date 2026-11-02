@@ -15,7 +15,14 @@ import '../../data/grammar/grammar_models.dart';
 sealed class PracticeQuestion {
   /// The JLPT level whose colour this question is drawn in. Null means the
   /// session's own colour, which is what grammar and writing use.
+  ///
+  /// Kanji only. A word has no JLPT level, and its [band] is a different scale
+  /// drawn from a different ramp, so the two cannot share one field.
   final String? level;
+
+  /// The coverage band whose colour this question is drawn in, for vocabulary.
+  /// Null for everything else.
+  final int? band;
 
   /// Free practice: nothing is written back to the SRS, and the per-exercise
   /// auto-advance switches apply instead of the session-wide one.
@@ -27,6 +34,7 @@ sealed class PracticeQuestion {
 
   const PracticeQuestion({
     this.level,
+    this.band,
     this.isFreeMode = false,
     this.kanjiDetailId,
   });
@@ -57,6 +65,7 @@ final class FlashcardQuestion extends PracticeQuestion {
     this.locale = 'en',
     this.questionOverride,
     super.level,
+    super.band,
     super.isFreeMode,
     super.kanjiDetailId,
   });
@@ -81,6 +90,7 @@ final class McqQuestion extends PracticeQuestion {
     this.japaneseReading,
     this.compactGrid = false,
     super.level,
+    super.band,
     super.isFreeMode,
     super.kanjiDetailId,
   });
@@ -95,6 +105,7 @@ final class DrawingQuestion extends PracticeQuestion {
     required this.kanji,
     required this.meaning,
     super.level,
+    super.band,
     super.isFreeMode,
     super.kanjiDetailId,
   });
@@ -115,6 +126,7 @@ final class SentenceClozeQuestion extends PracticeQuestion {
     this.translation,
     this.targetReading,
     super.level,
+    super.band,
     super.isFreeMode,
   });
 }
@@ -130,6 +142,7 @@ final class GrammarClozeQuestion extends PracticeQuestion {
     required this.options,
     required this.correctIndex,
     super.level,
+    super.band,
     super.isFreeMode,
   });
 }
@@ -143,6 +156,7 @@ final class GrammarBuilderQuestion extends PracticeQuestion {
     required this.parts,
     required this.translation,
     super.level,
+    super.band,
     super.isFreeMode,
   });
 }
@@ -158,6 +172,7 @@ final class GrammarErrorQuestion extends PracticeQuestion {
     required this.wrong,
     required this.explanation,
     super.level,
+    super.band,
     super.isFreeMode,
   });
 }

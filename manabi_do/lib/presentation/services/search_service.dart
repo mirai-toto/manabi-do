@@ -5,27 +5,32 @@ import '../../core/text/search_rank.dart';
 import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
 
-/// A search request: the text, and which JLPT levels to keep.
+/// A search request: the text, and which groups to keep.
+///
+/// [F] is whatever identifies a group in the thing being searched: a JLPT
+/// level string for kanji, a coverage band number for vocabulary. One class
+/// with a type parameter rather than two, because the equality below is the
+/// only reason either exists.
 ///
 /// A class rather than a record because Riverpod families key on equality and
 /// a `Set` inside a record compares by identity — every rebuild would look
 /// like a new request and refetch.
 @immutable
-class SearchQuery {
+class SearchQuery<F> {
   final String text;
-  final Set<String> levels;
+  final Set<F> filters;
 
-  const SearchQuery(this.text, [this.levels = const {}]);
+  const SearchQuery(this.text, [this.filters = const {}]);
 
   @override
   bool operator ==(Object other) =>
-      other is SearchQuery &&
+      other is SearchQuery<F> &&
       other.text == text &&
-      other.levels.length == levels.length &&
-      other.levels.containsAll(levels);
+      other.filters.length == filters.length &&
+      other.filters.containsAll(filters);
 
   @override
-  int get hashCode => Object.hash(text, Object.hashAllUnordered(levels));
+  int get hashCode => Object.hash(text, Object.hashAllUnordered(filters));
 }
 
 /// How many results a search returns. A one-letter query matches thousands of
@@ -37,35 +42,37 @@ typedef SearchFields = ({
   String japanese,
   List<String> readings,
   String meaning,
-  String level,
 });
 
 /// Orders search matches. The database decides which rows contain the query;
 /// this decides which of them answer it.
 ///
-/// Both searches share one policy — best match first, ties to the easier level,
-/// capped — so neither can drift away from the other.
+/// Both searches share one policy — best match first, ties to the easier
+/// entry, capped — so neither can drift away from the other. What "easier"
+/// means is the one thing each search supplies for itself: kanji have a JLPT
+/// level, words have a coverage band.
 class SearchService {
   final AppDatabase _db;
 
   const SearchService(this._db);
 
-  /// [levels] narrows the result to those JLPT levels. Empty means all.
+  /// [bands] narrows the result to those coverage bands. Empty means all.
   Future<List<VocabularyEntry>> vocabulary(
     String query, {
-    Set<String> levels = const {},
+    Set<int> bands = const {},
   }) async {
     final candidates = await _db.searchVocabularyCandidates(query);
     return _ranked(
       query: query,
-      levels: levels,
       candidates: candidates,
       fieldsOf: (entry) => (
         japanese: entry.word,
         readings: [entry.reading],
         meaning: entry.meaning,
-        level: entry.jlptLevel,
       ),
+      keep: (entry) => bands.isEmpty || bands.contains(entry.coverageBand),
+      // Band 1 is the commonest, so the number is already the right order.
+      easiness: (entry) => entry.coverageBand,
       // Alphabetical, so equally good matches keep a stable order.
       tiebreak: (a, b) => a.word.compareTo(b.word),
     );
@@ -79,14 +86,14 @@ class SearchService {
     final candidates = await _db.searchKanjiCandidates(query);
     return _ranked(
       query: query,
-      levels: levels,
       candidates: candidates,
       fieldsOf: (kanji) => (
         japanese: kanji.character,
         readings: [kanji.onReading, kanji.kunReading],
         meaning: kanji.meaning,
-        level: kanji.jlptLevel,
       ),
+      keep: (kanji) => levels.isEmpty || levels.contains(kanji.jlptLevel),
+      easiness: (kanji) => _levelRank(kanji.jlptLevel),
       tiebreak: (a, b) => a.id.compareTo(b.id),
     );
   }
@@ -94,17 +101,16 @@ class SearchService {
 
 List<T> _ranked<T>({
   required String query,
-  required Set<String> levels,
   required List<T> candidates,
   required SearchFields Function(T) fieldsOf,
+  required bool Function(T) keep,
+  required int Function(T) easiness,
   required Comparator<T> tiebreak,
 }) {
-  // Filtered before the cap, not after: a level filter applied to an already
+  // Filtered before the cap, not after: a filter applied to an already
   // truncated list would return the two N1 entries that happened to survive
   // rather than the fifty that exist.
-  final pool = levels.isEmpty
-      ? candidates
-      : candidates.where((c) => levels.contains(fieldsOf(c).level)).toList();
+  final pool = candidates.where(keep).toList();
 
   final scored =
       pool.map((candidate) {
@@ -117,13 +123,13 @@ List<T> _ranked<T>({
             readings: fields.readings,
             meaning: fields.meaning,
           ),
-          level: _levelRank(fields.level),
+          easiness: easiness(candidate),
         );
       }).toList()..sort((a, b) {
         final byRank = a.rank.compareTo(b.rank);
         if (byRank != 0) return byRank;
-        final byLevel = a.level.compareTo(b.level);
-        return byLevel != 0 ? byLevel : tiebreak(a.item, b.item);
+        final byEase = a.easiness.compareTo(b.easiness);
+        return byEase != 0 ? byEase : tiebreak(a.item, b.item);
       });
 
   return scored

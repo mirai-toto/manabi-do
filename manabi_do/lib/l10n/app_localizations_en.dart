@@ -372,6 +372,56 @@ class AppLocalizationsEn extends AppLocalizations {
   String get levelN1 => 'Advanced';
 
   @override
+  String get band1 => 'Core';
+
+  @override
+  String get band2 => 'Everyday';
+
+  @override
+  String get band3 => 'Comfortable';
+
+  @override
+  String get band4 => 'Wide';
+
+  @override
+  String get band5 => 'Long tail';
+
+  @override
+  String get meaning => 'Meaning';
+
+  @override
+  String get exampleSentences => 'In a sentence';
+
+  @override
+  String get writtenWith => 'Written with';
+
+  @override
+  String get youCanRead => 'You can read';
+
+  @override
+  String get ofWrittenJapanese => 'of everything written in Japanese';
+
+  @override
+  String coverageAtLeast(int percent) {
+    return 'at least $percent%';
+  }
+
+  @override
+  String get finishThisBand => 'Finish this band';
+
+  @override
+  String bandReaches(int count) {
+    return 'readable, from $count words';
+  }
+
+  @override
+  String get selectBand => 'Choose a band';
+
+  @override
+  String get bandExplainer =>
+      'Each band is a share of everything written in Japanese, measured on the BCCWJ corpus. Not a JLPT level: the JLPT publishes no vocabulary list.';
+
+  @override
   String charactersSubtitle(int total) {
     return 'Kana · Kanji N5–N1 · $total kana';
   }
@@ -519,7 +569,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutBccwjNotice =>
-      'Word difficulty is calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).';
+      'Word difficulty, the coverage bands and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).';
 
   @override
   String get aboutBccwjLink => 'clrd.ninjal.ac.jp';

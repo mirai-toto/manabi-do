@@ -87,8 +87,8 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
         ref.read(vocabularySelectedGroupProvider.notifier).clear();
         return;
       }
-      if (ref.read(vocabularySelectedLevelProvider) != null) {
-        ref.read(vocabularySelectedLevelProvider.notifier).clear();
+      if (ref.read(vocabularySelectedBandProvider) != null) {
+        ref.read(vocabularySelectedBandProvider.notifier).clear();
         return;
       }
     }
@@ -124,10 +124,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
 
     ref.listen(kanjiSelectedLevelProvider, (_, _) => invalidateSrsCounts());
     ref.listen(kanjiSelectedGroupProvider, (_, _) => invalidateSrsCounts());
-    ref.listen(
-      vocabularySelectedLevelProvider,
-      (_, _) => invalidateSrsCounts(),
-    );
+    ref.listen(vocabularySelectedBandProvider, (_, _) => invalidateSrsCounts());
     ref.listen(
       vocabularySelectedGroupProvider,
       (_, _) => invalidateSrsCounts(),
@@ -148,7 +145,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
             ref.read(kanjiSelectedLevelProvider.notifier).clear();
           case 2:
             ref.read(vocabularySelectedGroupProvider.notifier).clear();
-            ref.read(vocabularySelectedLevelProvider.notifier).clear();
+            ref.read(vocabularySelectedBandProvider.notifier).clear();
           case 3:
             ref.read(grammarSelectedLevelProvider.notifier).clear();
         }

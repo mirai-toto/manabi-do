@@ -1,19 +1,17 @@
 {
   "@@locale": "en",
-
   "appTitle": "Manabi Do",
-  "@appTitle": { "description": "The name of the application" },
-
+  "@appTitle": {
+    "description": "The name of the application"
+  },
   "tagline": "Learn Japanese · offline, at your pace",
   "signInWithGoogle": "Sign in with Google",
   "signInWithApple": "Sign in with Apple",
   "continueAsGuest": "Continue as guest →",
   "or": "or",
-
   "sectionGrammar": "Grammar",
   "sectionCharacters": "Characters",
   "sectionVocabulary": "Vocabulary",
-
   "tabHiragana": "Hiragana",
   "@tabHiragana": {},
   "tabKatakana": "Katakana",
@@ -21,12 +19,9 @@
   "tabKanji": "Kanji",
   "kana": "Kana",
   "@tabKanji": {},
-
   "skipKana": "Skip (exclude from practice)",
   "skippedKana": "Skipped",
-
   "statusNotStarted": "Not started",
-
   "chapterLocked": "Chapter locked",
   "chapterLockedBody": "Complete the previous chapter to unlock this one, or continue anyway.",
   "groupLocked": "Group locked",
@@ -34,43 +29,47 @@
   "lessonLocked": "Lesson locked",
   "lessonLockedBody": "Complete the previous lesson to unlock this one, or continue anyway.",
   "chapterUnlockAnyway": "Unlock anyway",
-
   "exampleWords": "Example Words",
   "readings": "Readings",
-
   "difficultyLevel": "Difficulty {level}",
   "@difficultyLevel": {
     "placeholders": {
-      "level": { "type": "int" }
+      "level": {
+        "type": "int"
+      }
     }
   },
-
   "chapterN": "Chapter {number}",
   "@chapterN": {
     "placeholders": {
-      "number": { "type": "String" }
+      "number": {
+        "type": "String"
+      }
     }
   },
-
   "nLessons": "{count, plural, =1{1 lesson} other{{count} lessons}}",
   "@nLessons": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "lessonsProgress": "{done} / {total} lessons",
   "@lessonsProgress": {
     "placeholders": {
-      "done": { "type": "int" },
-      "total": { "type": "int" }
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
-
   "multipleChoice": "Multiple Choice",
   "sentenceFillIn": "Sentence",
   "sentenceFillInPrompt": "Fill in the blank",
   "practice": "Practice →",
-
   "sessionComplete": "Session complete!",
   "retry": "Retry",
   "nextLesson": "Next lesson →",
@@ -87,37 +86,38 @@
   "kanjiPracticed": "{count} kanji practiced",
   "@kanjiPracticed": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "correct": "Correct",
   "correctAnswer": "Correct answer",
   "missed": "Missed",
   "timeSpent": "Time spent",
-
   "flashcardDefaultPrompt": "What does this mean?",
   "flashcardJapaneseQuestion": "How do you say this in Japanese?",
   "tapToReveal": "Tap to reveal",
   "tapToHide": "Tap to hide",
   "flashcardNotYet": "✗  Not yet",
   "flashcardGotIt": "✓  Got it",
-
   "navSettings": "Settings",
   "navHome": "Home",
   "navVocabulary": "Vocab",
-
   "greetingMorning": "Good morning",
   "greetingAfternoon": "Good afternoon",
   "greetingEvening": "Good evening",
   "greetingSubtitle": "Let's study some Japanese",
-
   "streakLabel": "day streak",
   "streakSubtitle": "Keep it up!",
-
   "todaysSession": "Today's session",
   "reviewsDueUnit": "{count, plural, one{review due} other{reviews due}}",
   "@reviewsDueUnit": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "startReviews": "Start reviews",
   "yourDecks": "Your decks",
@@ -125,25 +125,37 @@
   "thisWeek": "This week",
   "nNewToday": "{count} new today",
   "@nNewToday": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "nDue": "{count} due",
   "@nDue": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "lessonOfTotal": "Lesson {index} of {total}",
   "@lessonOfTotal": {
-    "placeholders": { "index": { "type": "int" }, "total": { "type": "int" } }
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   },
-
   "strokeOrderPlaceholder": "▶ Stroke order animation",
-
   "strokeOrder": "Stroke Order",
   "selectLevel": "Select a Level",
   "onyomi": "onyomi",
   "kunyomi": "kunyomi",
   "noExampleWordsFound": "No example words found",
-
   "posNoun": "Noun",
   "posVerb": "Verb",
   "posAdverb": "Adverb",
@@ -168,24 +180,57 @@
   "posNounPrefix": "Noun prefix",
   "posSuruSpecial": "Suru verb (special)",
   "posSuruIrregular": "Suru verb (irreg.)",
-
   "levelN5": "Beginner",
   "levelN4": "Elementary",
   "levelN3": "Intermediate",
   "levelN2": "Upper-Intermediate",
   "levelN1": "Advanced",
-
+  "band1": "Core",
+  "band2": "Everyday",
+  "band3": "Comfortable",
+  "band4": "Wide",
+  "band5": "Long tail",
+  "meaning": "Meaning",
+  "exampleSentences": "In a sentence",
+  "writtenWith": "Written with",
+  "youCanRead": "You can read",
+  "ofWrittenJapanese": "of everything written in Japanese",
+  "coverageAtLeast": "at least {percent}%",
+  "@coverageAtLeast": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "finishThisBand": "Finish this band",
+  "bandReaches": "readable, from {count} words",
+  "@bandReaches": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectBand": "Choose a band",
+  "bandExplainer": "Each band is a share of everything written in Japanese, measured on the BCCWJ corpus. Not a JLPT level: the JLPT publishes no vocabulary list.",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
   "@charactersSubtitle": {
-    "placeholders": { "total": { "type": "int" } }
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
   },
   "charactersSubtitleShort": "Kana · Kanji N5–N1",
-
   "nKanji": "{count} kanji",
   "@nKanji": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "kanaRowVowels": "Vowels",
   "settingsResetProgress": "Reset all progress",
   "resetProgressTitle": "Reset all progress?",
@@ -196,12 +241,10 @@
   "resetCharacterProgress": "Reset this character's progress",
   "resetConfirm": "Reset",
   "cancel": "Cancel",
-
   "settingsPractice": "Practice",
   "settingsHomeScreen": "Home screen",
   "settingsPracticeNewCharacters": "New characters per day",
   "settingsPracticeNewVocabulary": "New vocabulary per day",
-
   "settingsAppearance": "Appearance",
   "settingsThemeSystem": "System",
   "settingsThemeLight": "Light",
@@ -212,20 +255,31 @@
   "feedbackEmailBodyHint": "What works, what doesn't, and what's missing.",
   "feedbackNoMailApp": "No email app found. Address: {email}",
   "@feedbackNoMailApp": {
-    "placeholders": { "email": { "type": "String" } }
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
   },
   "feedbackAddressCopied": "Address copied",
   "settingsSupportDeveloper": "Support development",
   "supportNoBrowser": "Couldn't open the link. {url}",
   "@supportNoBrowser": {
-    "placeholders": { "url": { "type": "String" } }
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
   },
   "supportLinkCopied": "Link copied",
-
   "aboutTitle": "About",
   "aboutVersion": "Version {version}",
   "@aboutVersion": {
-    "placeholders": { "version": { "type": "String" } }
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
   },
   "aboutDataSources": "Data sources",
   "aboutEdrdgNotice": "This app uses JMdict and KANJIDIC2, published by the Electronic Dictionary Research and Development Group (EDRDG) under a Creative Commons Attribution-ShareAlike 4.0 International licence.",
@@ -238,29 +292,39 @@
   "aboutWallerLink": "tanos.co.uk",
   "aboutPykakasiNotice": "Furigana readings over example sentences were generated with pykakasi, licensed under the GNU General Public License v3 or later.",
   "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
-  "aboutBccwjNotice": "Word difficulty is calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).",
+  "aboutBccwjNotice": "Word difficulty, the coverage bands and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).",
   "aboutBccwjLink": "clrd.ninjal.ac.jp",
   "aboutOpenSourceLicenses": "Open source licenses",
-
   "practiceSessionDone": "Session complete",
   "practiceReviewed": "{count} reviewed",
   "@practiceReviewed": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "practiceGotIt": "{count} got it",
   "@practiceGotIt": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "practiceNotYet": "{count} not yet",
   "@practiceNotYet": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "practiceEmpty": "Nothing to review · come back tomorrow!",
   "practiceDone": "Done",
   "quitPracticeTitle": "Leave session?",
   "quitPracticeBody": "Your remaining items won't be reviewed.",
   "quit": "Leave",
-
   "drawingPractice": "Practice Drawing",
   "selfAssessQuestion": "Did you get it right?",
   "ratingAgain": "Again",
@@ -275,22 +339,31 @@
   "drawingHint": "Hint",
   "drawingStrokeCount": "{count} strokes",
   "@drawingStrokeCount": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "drawingMistakeCount": "{count, plural, =0{Perfect!} one{1 mistake} other{{count} mistakes}}",
   "@drawingMistakeCount": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "mcqSelectKanaReading": "What is the reading of this kana?",
-
   "mcqSelectMeaning": "What does this kanji mean?",
   "mcqSelectWordMeaning": "What does this word mean?",
   "mcqSelectKanji": "Select the kanji for: \"{meaning}\"",
   "@mcqSelectKanji": {
-    "placeholders": { "meaning": { "type": "String" } }
+    "placeholders": {
+      "meaning": {
+        "type": "String"
+      }
+    }
   },
-
   "srsStateNew": "New",
   "srsStateLearning": "Learning",
   "srsStateApprentice": "Apprentice",
@@ -300,24 +373,44 @@
   "srsDueToday": "Due today",
   "srsDueIn": "Due in {days}d",
   "@srsDueIn": {
-    "placeholders": { "days": { "type": "int" } }
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
   },
   "nWords": "{count} words",
   "@nWords": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "vocabularySubtitle": "{total} words to discover",
   "@vocabularySubtitle": {
-    "placeholders": { "total": { "type": "int" } }
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
   },
   "vocabularySubtitleShort": "Words to discover",
   "reviewsDue": "{count} reviews",
   "@reviewsDue": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "nNew": "{count} new",
   "@nNew": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "reviewsDueSubtitle": "Tap to start your session",
   "reviewNow": "Review now",
@@ -329,23 +422,38 @@
   "sessionReviewEmpty": "You haven't answered anything yet.",
   "sessionReviewCount": "{answered} of {total}",
   "@sessionReviewCount": {
-    "placeholders": { "answered": { "type": "int" }, "total": { "type": "int" } }
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   },
   "sessionReviewYourAnswer": "Your answer",
   "sessionReviewCorrectAnswer": "Correct answer",
   "sessionReviewChangeGrade": "Change the grade",
   "sessionReviewShowAll": "Show all {count} meanings",
   "@sessionReviewShowAll": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "sessionReviewShowLess": "Show less",
   "ratingIncorrect": "Incorrect",
   "ratingCorrect": "Correct",
-  "reviewKindKanjiWriting": "Kanji \u00b7 writing",
-  "reviewKindVocabularySentence": "Vocabulary \u00b7 sentence",
+  "reviewKindKanjiWriting": "Kanji · writing",
+  "reviewKindVocabularySentence": "Vocabulary · sentence",
   "reviewDrawPrompt": "Draw the kanji for: {meaning}",
   "@reviewDrawPrompt": {
-    "placeholders": { "meaning": { "type": "String" } }
+    "placeholders": {
+      "meaning": {
+        "type": "String"
+      }
+    }
   },
   "allCaughtUp": "All caught up!",
   "allCaughtUpSubtitle": "Come back later for more reviews",
@@ -359,12 +467,14 @@
   "searchVocabulary": "Search vocabulary",
   "searchVocabularyHint": "Word, reading, or meaning…",
   "noResults": "No results",
-
   "groupN": "Group {n}",
   "@groupN": {
-    "placeholders": { "n": { "type": "int" } }
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
   },
-
   "practiceSettingsTitle": "Practice settings",
   "practiceSettingsRecognition": "Recognition",
   "recognitionStrict": "Strict",
@@ -385,14 +495,11 @@
   "showStrokeCountSubtitle": "Display number of strokes as a hint",
   "autoAdvanceLabel": "Auto-advance",
   "autoAdvanceSubtitle": "Move on automatically, scoring each answer for you",
-
   "hintUsedFeedback": "Hint used · marked as missed",
-
   "flashcardPractice": "Flashcard",
   "mcqPractice": "Multiple Choice",
   "freePractice": "Free Practice",
   "sentencePractice": "Sentences",
-
   "sentenceSettingsLabel": "Sentence exercise",
   "showMcqFuriganaLabel": "Furigana in prompt",
   "showMcqFuriganaSubtitle": "Show reading above kanji in the Japanese word",
@@ -406,29 +513,36 @@
   "translationModeNever": "Never",
   "nativeTranslationOnlyLabel": "My language only",
   "nativeTranslationOnlySubtitle": "Skip sentences with no translation in your language",
-
   "japanese": "Japanese",
   "copy": "Copy",
   "hide": "Hide",
-
   "grammarPractice": "Practice",
   "grammarMcqPrompt": "What does this sentence mean?",
   "grammarBuilderPrompt": "Arrange the sentence",
   "grammarErrorDetectionPrompt": "Which sentence is correct?",
   "example": "Example",
-
   "showExampleLabel": "Show example",
   "showExampleSubtitle": "Display an example sentence on flashcards",
-
   "speakPronunciation": "Play pronunciation",
   "settingsDetailedGrading": "Detailed grading",
   "settingsDetailedGradingSubtitle": "Grade with Again / Hard / Good / Easy instead of just Not yet / Got it",
   "replayStrokeOrder": "Replay stroke order",
   "increaseSetting": "Increase {label}",
-  "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
+  "@increaseSetting": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "decreaseSetting": "Decrease {label}",
-  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } },
-
+  "@decreaseSetting": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "deckCaughtUp": "Caught up",
   "deckNotStarted": "Start",
   "deckContinue": "Continue"

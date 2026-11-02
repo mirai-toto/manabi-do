@@ -69,10 +69,7 @@ class SettingsAboutSection extends ConsumerWidget {
         // for credit.
         AttributionCard(notice: l.aboutWallerNotice, link: l.aboutWallerLink),
         const SizedBox(height: AppDimens.spaceSm),
-        AttributionCard(
-          notice: l.aboutBccwjNotice,
-          link: l.aboutBccwjLink,
-        ),
+        AttributionCard(notice: l.aboutBccwjNotice, link: l.aboutBccwjLink),
         const SizedBox(height: AppDimens.spaceSm),
         // The tool is not shipped, but the furigana it produced is.
         AttributionCard(

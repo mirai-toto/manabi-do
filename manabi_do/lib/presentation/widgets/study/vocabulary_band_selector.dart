@@ -5,30 +5,31 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
+import '../../../core/theme/coverage_band.dart';
+import '../../../l10n/band_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../services/search_service.dart';
 import '../../providers/vocabulary_list_provider.dart';
+import '../../screens/vocabulary/vocabulary_detail_screen.dart';
 import '../widgets.dart';
 
-const _levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
-
-/// Pinned `SearchField` over a full-screen-width list of JLPT level tiles.
-/// Tapping a level calls `onSelect`. Typing replaces the tiles with matching
+/// Pinned `SearchField` over a full-screen-width list of coverage bands.
+/// Tapping a band calls `onSelect`. Typing replaces the tiles with matching
 /// words from `vocabularySearchProvider` (word, reading or meaning; ranked by
 /// `searchRank`, capped at 50), built lazily as they scroll into view.
-class VocabularyLevelSelector extends ConsumerStatefulWidget {
-  final void Function(String) onSelect;
-  const VocabularyLevelSelector({super.key, required this.onSelect});
+class VocabularyBandSelector extends ConsumerStatefulWidget {
+  final void Function(int) onSelect;
+  const VocabularyBandSelector({super.key, required this.onSelect});
 
   @override
-  ConsumerState<VocabularyLevelSelector> createState() =>
-      _VocabularyLevelSelectorState();
+  ConsumerState<VocabularyBandSelector> createState() =>
+      _VocabularyBandSelectorState();
 }
 
-class _VocabularyLevelSelectorState
-    extends ConsumerState<VocabularyLevelSelector> {
+class _VocabularyBandSelectorState
+    extends ConsumerState<VocabularyBandSelector> {
   String _query = '';
-  final Set<String> _filter = <String>{};
+  final Set<int> _filter = <int>{};
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +52,8 @@ class _VocabularyLevelSelectorState
             onChanged: (query) => setState(() => _query = query),
           ),
         ),
-        // Only while searching: without a query the level list below already
-        // is the level picker, and two ways to do one thing reads as a bug.
+        // Only while searching: without a query the band list below already
+        // is the band picker, and two ways to do one thing reads as a bug.
         if (isSearchableQuery(_query))
           Padding(
             padding: const EdgeInsets.fromLTRB(
@@ -61,39 +62,66 @@ class _VocabularyLevelSelectorState
               AppDimens.spaceMd,
               AppDimens.spaceSm,
             ),
-            child: LevelFilterBar(
-              levels: _levels,
+            child: FilterChipBar<int>(
+              options: kAllBands,
               selected: _filter,
-              onToggle: (level) => setState(
-                () => _filter.contains(level)
-                    ? _filter.remove(level)
-                    : _filter.add(level),
+              labelOf: (band) => bandLabel(band, context),
+              onToggle: (band) => setState(
+                () => _filter.contains(band)
+                    ? _filter.remove(band)
+                    : _filter.add(band),
               ),
             ),
           ),
         Expanded(
-          child: isSearchableQuery(_query) ? _results() : _levelList(context),
+          child: isSearchableQuery(_query) ? _results() : _bandList(context),
         ),
       ],
     );
   }
 
-  Widget _levelList(BuildContext context) => ScrollFade(
-    builder: (controller) => ListView(
-      controller: controller,
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-      children: [
-        SectionLabel(context.l10n.selectLevel),
-        const SizedBox(height: AppDimens.spaceSm),
-        for (final code in _levels)
-          JlptLevelCard(
-            code: code,
-            subtitle: _subtitle(context, code),
-            onTap: () => widget.onSelect(code),
+  Widget _bandList(BuildContext context) {
+    final reached = ref.watch(bandReachedProvider);
+    final mine = ref.watch(coverageReachedProvider);
+    final l = context.l10n;
+    return ScrollFade(
+      builder: (controller) => ListView(
+        controller: controller,
+        padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
+        children: [
+          // "At least", because 1,675 of the 12,000 words carry no measurable
+          // share: UniDic counts お願いします in pieces, so the corpus has
+          // nothing to attribute to it. The figure is a floor, not an estimate.
+          if (mine != null)
+            CoverageMeterCard(
+              label: l.youCanRead,
+              share: mine,
+              caption: l.ofWrittenJapanese,
+              progressLabel: l.coverageAtLeast((mine * 100).round()),
+            ),
+          const SizedBox(height: AppDimens.spaceMd),
+          SectionLabel(l.selectBand),
+          const SizedBox(height: AppDimens.spaceSm),
+          for (final band in kAllBands)
+            CoverageBandCard(
+              band: band,
+              reached: reached?[band],
+              subtitle: _subtitle(context, band),
+              onTap: () => widget.onSelect(band),
+            ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
+            child: Text(
+              context.l10n.bandExplainer,
+              style: AppTextStyles.bodySmall.copyWith(
+                color: context.tokens.onSurfaceVariant,
+              ),
+            ),
           ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 
   Widget _results() => ref
       .watch(vocabularySearchProvider(SearchQuery(_query, _filter)))
@@ -104,9 +132,9 @@ class _VocabularyLevelSelectorState
             results.isEmpty ? const _NoResults() : _ResultList(results),
       );
 
-  String? _subtitle(BuildContext context, String code) {
+  String? _subtitle(BuildContext context, int band) {
     final count = ref
-        .watch(vocabularyByLevelProvider(code))
+        .watch(vocabularyByBandProvider(band))
         .asData
         ?.value
         .length;
@@ -140,7 +168,15 @@ class _ResultList extends StatelessWidget {
                 indent: AppDimens.spaceMd,
                 endIndent: AppDimens.spaceMd,
               ),
-            VocabularyWordTile(entry: results[index], showLevel: true),
+            VocabularyWordTile(
+              entry: results[index],
+              showBand: true,
+              onOpen: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => VocabularyDetailScreen(entry: results[index]),
+                ),
+              ),
+            ),
           ],
         ),
       ),

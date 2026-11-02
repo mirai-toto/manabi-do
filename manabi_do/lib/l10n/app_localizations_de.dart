@@ -372,6 +372,57 @@ class AppLocalizationsDe extends AppLocalizations {
   String get levelN1 => 'Fortgeschritten';
 
   @override
+  String get band1 => 'Kern';
+
+  @override
+  String get band2 => 'Alltag';
+
+  @override
+  String get band3 => 'Sicher';
+
+  @override
+  String get band4 => 'Breit';
+
+  @override
+  String get band5 => 'Langer Schwanz';
+
+  @override
+  String get meaning => 'Bedeutung';
+
+  @override
+  String get exampleSentences => 'Im Satz';
+
+  @override
+  String get writtenWith => 'Geschrieben mit';
+
+  @override
+  String get youCanRead => 'Du kannst lesen';
+
+  @override
+  String get ofWrittenJapanese =>
+      'von allem, was auf Japanisch geschrieben wird';
+
+  @override
+  String coverageAtLeast(int percent) {
+    return 'mindestens $percent %';
+  }
+
+  @override
+  String get finishThisBand => 'Diese Stufe abschließen';
+
+  @override
+  String bandReaches(int count) {
+    return 'lesbar, mit $count Wörtern';
+  }
+
+  @override
+  String get selectBand => 'Stufe wählen';
+
+  @override
+  String get bandExplainer =>
+      'Jede Stufe ist ein Anteil an allem, was auf Japanisch geschrieben wird, gemessen am BCCWJ-Korpus. Keine JLPT-Stufe: der JLPT veröffentlicht keine Vokabelliste.';
+
+  @override
   String charactersSubtitle(int total) {
     return 'Kana · Kanji N5–N1 · $total Kana';
   }
@@ -520,7 +571,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aboutBccwjNotice =>
-      'Die Wortschwierigkeit wird aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).';
+      'Die Wortschwierigkeit, die Abdeckungsstufen und der Anteil des geschriebenen Japanisch, den jede Lerngruppe abdeckt, werden aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).';
 
   @override
   String get aboutBccwjLink => 'clrd.ninjal.ac.jp';

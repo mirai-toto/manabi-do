@@ -1037,17 +1037,6 @@ class VocabularyEntries extends Table
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
-  static const VerificationMeta _jlptLevelMeta = const VerificationMeta(
-    'jlptLevel',
-  );
-  late final GeneratedColumn<String> jlptLevel = GeneratedColumn<String>(
-    'jlpt_level',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
-  );
   static const VerificationMeta _partOfSpeechMeta = const VerificationMeta(
     'partOfSpeech',
   );
@@ -1082,18 +1071,6 @@ class VocabularyEntries extends Table
     $customConstraints: 'NOT NULL DEFAULT 0',
     defaultValue: const CustomExpression('0'),
   );
-  static const VerificationMeta _difficultyTierMeta = const VerificationMeta(
-    'difficultyTier',
-  );
-  late final GeneratedColumn<int> difficultyTier = GeneratedColumn<int>(
-    'difficulty_tier',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    $customConstraints: 'NOT NULL DEFAULT 5',
-    defaultValue: const CustomExpression('5'),
-  );
   static const VerificationMeta _difficultySourceMeta = const VerificationMeta(
     'difficultySource',
   );
@@ -1106,18 +1083,42 @@ class VocabularyEntries extends Table
     $customConstraints: 'NOT NULL DEFAULT \'\'',
     defaultValue: const CustomExpression('\'\''),
   );
+  static const VerificationMeta _coverageBandMeta = const VerificationMeta(
+    'coverageBand',
+  );
+  late final GeneratedColumn<int> coverageBand = GeneratedColumn<int>(
+    'coverage_band',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 5',
+    defaultValue: const CustomExpression('5'),
+  );
+  static const VerificationMeta _groupIndexMeta = const VerificationMeta(
+    'groupIndex',
+  );
+  late final GeneratedColumn<int> groupIndex = GeneratedColumn<int>(
+    'group_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 1',
+    defaultValue: const CustomExpression('1'),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
     word,
     reading,
     meaning,
-    jlptLevel,
     partOfSpeech,
     freqBand,
     difficulty,
-    difficultyTier,
     difficultySource,
+    coverageBand,
+    groupIndex,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1158,14 +1159,6 @@ class VocabularyEntries extends Table
     } else if (isInserting) {
       context.missing(_meaningMeta);
     }
-    if (data.containsKey('jlpt_level')) {
-      context.handle(
-        _jlptLevelMeta,
-        jlptLevel.isAcceptableOrUnknown(data['jlpt_level']!, _jlptLevelMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_jlptLevelMeta);
-    }
     if (data.containsKey('part_of_speech')) {
       context.handle(
         _partOfSpeechMeta,
@@ -1189,15 +1182,6 @@ class VocabularyEntries extends Table
         difficulty.isAcceptableOrUnknown(data['difficulty']!, _difficultyMeta),
       );
     }
-    if (data.containsKey('difficulty_tier')) {
-      context.handle(
-        _difficultyTierMeta,
-        difficultyTier.isAcceptableOrUnknown(
-          data['difficulty_tier']!,
-          _difficultyTierMeta,
-        ),
-      );
-    }
     if (data.containsKey('difficulty_source')) {
       context.handle(
         _difficultySourceMeta,
@@ -1205,6 +1189,21 @@ class VocabularyEntries extends Table
           data['difficulty_source']!,
           _difficultySourceMeta,
         ),
+      );
+    }
+    if (data.containsKey('coverage_band')) {
+      context.handle(
+        _coverageBandMeta,
+        coverageBand.isAcceptableOrUnknown(
+          data['coverage_band']!,
+          _coverageBandMeta,
+        ),
+      );
+    }
+    if (data.containsKey('group_index')) {
+      context.handle(
+        _groupIndexMeta,
+        groupIndex.isAcceptableOrUnknown(data['group_index']!, _groupIndexMeta),
       );
     }
     return context;
@@ -1232,10 +1231,6 @@ class VocabularyEntries extends Table
         DriftSqlType.string,
         data['${effectivePrefix}meaning'],
       )!,
-      jlptLevel: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}jlpt_level'],
-      )!,
       partOfSpeech: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}part_of_speech'],
@@ -1248,13 +1243,17 @@ class VocabularyEntries extends Table
         DriftSqlType.int,
         data['${effectivePrefix}difficulty'],
       )!,
-      difficultyTier: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}difficulty_tier'],
-      )!,
       difficultySource: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}difficulty_source'],
+      )!,
+      coverageBand: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}coverage_band'],
+      )!,
+      groupIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}group_index'],
       )!,
     );
   }
@@ -1273,7 +1272,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   final String word;
   final String reading;
   final String meaning;
-  final String jlptLevel;
   final String partOfSpeech;
 
   /// JMdict's newspaper frequency band, 1 (most common) to 48, or 49 for a word
@@ -1281,22 +1279,38 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   final int? freqBand;
 
   /// Computed difficulty, 0 (easiest) to 1000, with the tier it falls in and
-  /// what fed the number. `jlpt_level` above is still the downloaded value and
-  /// is kept alongside so the two can be compared.
+  /// what fed the number.
+  ///
+  /// There is no `jlpt_level` here, unlike `kanjis`. The JLPT publishes a kanji
+  /// list and no vocabulary list, so a word's "level" in any dataset is a guess
+  /// by whoever built it. The column used to hold such a guess, and after the
+  /// score arrived it held the tier wearing JLPT names, which was worse: the
+  /// label claimed an exam that had never been consulted.
   final int difficulty;
-  final int difficultyTier;
   final String difficultySource;
+
+  /// Which coverage band the word sits in, 1 (commonest) to 5, and which group
+  /// of thirty inside that band. Together they are the study order: the app
+  /// teaches band 1 group 1 first, and those thirty words are 20.6% of running
+  /// Japanese on their own.
+  ///
+  /// `coverage_band` replaced a `difficulty_tier` that banded words by share of
+  /// our own word list. A tier meant "the easiest fifth of what we happen to
+  /// ship", which is a fact about the app and not about Japanese. A band means
+  /// "this far into the language", which is what the screens claim.
+  final int coverageBand;
+  final int groupIndex;
   const VocabularyEntry({
     required this.id,
     required this.word,
     required this.reading,
     required this.meaning,
-    required this.jlptLevel,
     required this.partOfSpeech,
     this.freqBand,
     required this.difficulty,
-    required this.difficultyTier,
     required this.difficultySource,
+    required this.coverageBand,
+    required this.groupIndex,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1305,14 +1319,14 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     map['word'] = Variable<String>(word);
     map['reading'] = Variable<String>(reading);
     map['meaning'] = Variable<String>(meaning);
-    map['jlpt_level'] = Variable<String>(jlptLevel);
     map['part_of_speech'] = Variable<String>(partOfSpeech);
     if (!nullToAbsent || freqBand != null) {
       map['freq_band'] = Variable<int>(freqBand);
     }
     map['difficulty'] = Variable<int>(difficulty);
-    map['difficulty_tier'] = Variable<int>(difficultyTier);
     map['difficulty_source'] = Variable<String>(difficultySource);
+    map['coverage_band'] = Variable<int>(coverageBand);
+    map['group_index'] = Variable<int>(groupIndex);
     return map;
   }
 
@@ -1322,14 +1336,14 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       word: Value(word),
       reading: Value(reading),
       meaning: Value(meaning),
-      jlptLevel: Value(jlptLevel),
       partOfSpeech: Value(partOfSpeech),
       freqBand: freqBand == null && nullToAbsent
           ? const Value.absent()
           : Value(freqBand),
       difficulty: Value(difficulty),
-      difficultyTier: Value(difficultyTier),
       difficultySource: Value(difficultySource),
+      coverageBand: Value(coverageBand),
+      groupIndex: Value(groupIndex),
     );
   }
 
@@ -1343,12 +1357,12 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       word: serializer.fromJson<String>(json['word']),
       reading: serializer.fromJson<String>(json['reading']),
       meaning: serializer.fromJson<String>(json['meaning']),
-      jlptLevel: serializer.fromJson<String>(json['jlpt_level']),
       partOfSpeech: serializer.fromJson<String>(json['part_of_speech']),
       freqBand: serializer.fromJson<int?>(json['freq_band']),
       difficulty: serializer.fromJson<int>(json['difficulty']),
-      difficultyTier: serializer.fromJson<int>(json['difficulty_tier']),
       difficultySource: serializer.fromJson<String>(json['difficulty_source']),
+      coverageBand: serializer.fromJson<int>(json['coverage_band']),
+      groupIndex: serializer.fromJson<int>(json['group_index']),
     );
   }
   @override
@@ -1359,12 +1373,12 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       'word': serializer.toJson<String>(word),
       'reading': serializer.toJson<String>(reading),
       'meaning': serializer.toJson<String>(meaning),
-      'jlpt_level': serializer.toJson<String>(jlptLevel),
       'part_of_speech': serializer.toJson<String>(partOfSpeech),
       'freq_band': serializer.toJson<int?>(freqBand),
       'difficulty': serializer.toJson<int>(difficulty),
-      'difficulty_tier': serializer.toJson<int>(difficultyTier),
       'difficulty_source': serializer.toJson<String>(difficultySource),
+      'coverage_band': serializer.toJson<int>(coverageBand),
+      'group_index': serializer.toJson<int>(groupIndex),
     };
   }
 
@@ -1373,23 +1387,23 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     String? word,
     String? reading,
     String? meaning,
-    String? jlptLevel,
     String? partOfSpeech,
     Value<int?> freqBand = const Value.absent(),
     int? difficulty,
-    int? difficultyTier,
     String? difficultySource,
+    int? coverageBand,
+    int? groupIndex,
   }) => VocabularyEntry(
     id: id ?? this.id,
     word: word ?? this.word,
     reading: reading ?? this.reading,
     meaning: meaning ?? this.meaning,
-    jlptLevel: jlptLevel ?? this.jlptLevel,
     partOfSpeech: partOfSpeech ?? this.partOfSpeech,
     freqBand: freqBand.present ? freqBand.value : this.freqBand,
     difficulty: difficulty ?? this.difficulty,
-    difficultyTier: difficultyTier ?? this.difficultyTier,
     difficultySource: difficultySource ?? this.difficultySource,
+    coverageBand: coverageBand ?? this.coverageBand,
+    groupIndex: groupIndex ?? this.groupIndex,
   );
   VocabularyEntry copyWithCompanion(VocabularyEntriesCompanion data) {
     return VocabularyEntry(
@@ -1397,7 +1411,6 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       word: data.word.present ? data.word.value : this.word,
       reading: data.reading.present ? data.reading.value : this.reading,
       meaning: data.meaning.present ? data.meaning.value : this.meaning,
-      jlptLevel: data.jlptLevel.present ? data.jlptLevel.value : this.jlptLevel,
       partOfSpeech: data.partOfSpeech.present
           ? data.partOfSpeech.value
           : this.partOfSpeech,
@@ -1405,12 +1418,15 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       difficulty: data.difficulty.present
           ? data.difficulty.value
           : this.difficulty,
-      difficultyTier: data.difficultyTier.present
-          ? data.difficultyTier.value
-          : this.difficultyTier,
       difficultySource: data.difficultySource.present
           ? data.difficultySource.value
           : this.difficultySource,
+      coverageBand: data.coverageBand.present
+          ? data.coverageBand.value
+          : this.coverageBand,
+      groupIndex: data.groupIndex.present
+          ? data.groupIndex.value
+          : this.groupIndex,
     );
   }
 
@@ -1421,12 +1437,12 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
           ..write('word: $word, ')
           ..write('reading: $reading, ')
           ..write('meaning: $meaning, ')
-          ..write('jlptLevel: $jlptLevel, ')
           ..write('partOfSpeech: $partOfSpeech, ')
           ..write('freqBand: $freqBand, ')
           ..write('difficulty: $difficulty, ')
-          ..write('difficultyTier: $difficultyTier, ')
-          ..write('difficultySource: $difficultySource')
+          ..write('difficultySource: $difficultySource, ')
+          ..write('coverageBand: $coverageBand, ')
+          ..write('groupIndex: $groupIndex')
           ..write(')'))
         .toString();
   }
@@ -1437,12 +1453,12 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     word,
     reading,
     meaning,
-    jlptLevel,
     partOfSpeech,
     freqBand,
     difficulty,
-    difficultyTier,
     difficultySource,
+    coverageBand,
+    groupIndex,
   );
   @override
   bool operator ==(Object other) =>
@@ -1452,12 +1468,12 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
           other.word == this.word &&
           other.reading == this.reading &&
           other.meaning == this.meaning &&
-          other.jlptLevel == this.jlptLevel &&
           other.partOfSpeech == this.partOfSpeech &&
           other.freqBand == this.freqBand &&
           other.difficulty == this.difficulty &&
-          other.difficultyTier == this.difficultyTier &&
-          other.difficultySource == this.difficultySource);
+          other.difficultySource == this.difficultySource &&
+          other.coverageBand == this.coverageBand &&
+          other.groupIndex == this.groupIndex);
 }
 
 class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
@@ -1465,63 +1481,62 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   final Value<String> word;
   final Value<String> reading;
   final Value<String> meaning;
-  final Value<String> jlptLevel;
   final Value<String> partOfSpeech;
   final Value<int?> freqBand;
   final Value<int> difficulty;
-  final Value<int> difficultyTier;
   final Value<String> difficultySource;
+  final Value<int> coverageBand;
+  final Value<int> groupIndex;
   const VocabularyEntriesCompanion({
     this.id = const Value.absent(),
     this.word = const Value.absent(),
     this.reading = const Value.absent(),
     this.meaning = const Value.absent(),
-    this.jlptLevel = const Value.absent(),
     this.partOfSpeech = const Value.absent(),
     this.freqBand = const Value.absent(),
     this.difficulty = const Value.absent(),
-    this.difficultyTier = const Value.absent(),
     this.difficultySource = const Value.absent(),
+    this.coverageBand = const Value.absent(),
+    this.groupIndex = const Value.absent(),
   });
   VocabularyEntriesCompanion.insert({
     this.id = const Value.absent(),
     required String word,
     required String reading,
     required String meaning,
-    required String jlptLevel,
     required String partOfSpeech,
     this.freqBand = const Value.absent(),
     this.difficulty = const Value.absent(),
-    this.difficultyTier = const Value.absent(),
     this.difficultySource = const Value.absent(),
+    this.coverageBand = const Value.absent(),
+    this.groupIndex = const Value.absent(),
   }) : word = Value(word),
        reading = Value(reading),
        meaning = Value(meaning),
-       jlptLevel = Value(jlptLevel),
        partOfSpeech = Value(partOfSpeech);
   static Insertable<VocabularyEntry> custom({
     Expression<int>? id,
     Expression<String>? word,
     Expression<String>? reading,
     Expression<String>? meaning,
-    Expression<String>? jlptLevel,
     Expression<String>? partOfSpeech,
     Expression<int>? freqBand,
     Expression<int>? difficulty,
-    Expression<int>? difficultyTier,
     Expression<String>? difficultySource,
+    Expression<int>? coverageBand,
+    Expression<int>? groupIndex,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (word != null) 'word': word,
       if (reading != null) 'reading': reading,
       if (meaning != null) 'meaning': meaning,
-      if (jlptLevel != null) 'jlpt_level': jlptLevel,
       if (partOfSpeech != null) 'part_of_speech': partOfSpeech,
       if (freqBand != null) 'freq_band': freqBand,
       if (difficulty != null) 'difficulty': difficulty,
-      if (difficultyTier != null) 'difficulty_tier': difficultyTier,
       if (difficultySource != null) 'difficulty_source': difficultySource,
+      if (coverageBand != null) 'coverage_band': coverageBand,
+      if (groupIndex != null) 'group_index': groupIndex,
     });
   }
 
@@ -1530,24 +1545,24 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     Value<String>? word,
     Value<String>? reading,
     Value<String>? meaning,
-    Value<String>? jlptLevel,
     Value<String>? partOfSpeech,
     Value<int?>? freqBand,
     Value<int>? difficulty,
-    Value<int>? difficultyTier,
     Value<String>? difficultySource,
+    Value<int>? coverageBand,
+    Value<int>? groupIndex,
   }) {
     return VocabularyEntriesCompanion(
       id: id ?? this.id,
       word: word ?? this.word,
       reading: reading ?? this.reading,
       meaning: meaning ?? this.meaning,
-      jlptLevel: jlptLevel ?? this.jlptLevel,
       partOfSpeech: partOfSpeech ?? this.partOfSpeech,
       freqBand: freqBand ?? this.freqBand,
       difficulty: difficulty ?? this.difficulty,
-      difficultyTier: difficultyTier ?? this.difficultyTier,
       difficultySource: difficultySource ?? this.difficultySource,
+      coverageBand: coverageBand ?? this.coverageBand,
+      groupIndex: groupIndex ?? this.groupIndex,
     );
   }
 
@@ -1566,9 +1581,6 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     if (meaning.present) {
       map['meaning'] = Variable<String>(meaning.value);
     }
-    if (jlptLevel.present) {
-      map['jlpt_level'] = Variable<String>(jlptLevel.value);
-    }
     if (partOfSpeech.present) {
       map['part_of_speech'] = Variable<String>(partOfSpeech.value);
     }
@@ -1578,11 +1590,14 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     if (difficulty.present) {
       map['difficulty'] = Variable<int>(difficulty.value);
     }
-    if (difficultyTier.present) {
-      map['difficulty_tier'] = Variable<int>(difficultyTier.value);
-    }
     if (difficultySource.present) {
       map['difficulty_source'] = Variable<String>(difficultySource.value);
+    }
+    if (coverageBand.present) {
+      map['coverage_band'] = Variable<int>(coverageBand.value);
+    }
+    if (groupIndex.present) {
+      map['group_index'] = Variable<int>(groupIndex.value);
     }
     return map;
   }
@@ -1594,12 +1609,344 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
           ..write('word: $word, ')
           ..write('reading: $reading, ')
           ..write('meaning: $meaning, ')
-          ..write('jlptLevel: $jlptLevel, ')
           ..write('partOfSpeech: $partOfSpeech, ')
           ..write('freqBand: $freqBand, ')
           ..write('difficulty: $difficulty, ')
-          ..write('difficultyTier: $difficultyTier, ')
-          ..write('difficultySource: $difficultySource')
+          ..write('difficultySource: $difficultySource, ')
+          ..write('coverageBand: $coverageBand, ')
+          ..write('groupIndex: $groupIndex')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class CoverageGroups extends Table
+    with TableInfo<CoverageGroups, CoverageGroup> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  CoverageGroups(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _bandMeta = const VerificationMeta('band');
+  late final GeneratedColumn<int> band = GeneratedColumn<int>(
+    'band',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _groupIndexMeta = const VerificationMeta(
+    'groupIndex',
+  );
+  late final GeneratedColumn<int> groupIndex = GeneratedColumn<int>(
+    'group_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _wordCountMeta = const VerificationMeta(
+    'wordCount',
+  );
+  late final GeneratedColumn<int> wordCount = GeneratedColumn<int>(
+    'word_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _corpusShareMeta = const VerificationMeta(
+    'corpusShare',
+  );
+  late final GeneratedColumn<double> corpusShare = GeneratedColumn<double>(
+    'corpus_share',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    band,
+    groupIndex,
+    wordCount,
+    corpusShare,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'coverage_groups';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CoverageGroup> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('band')) {
+      context.handle(
+        _bandMeta,
+        band.isAcceptableOrUnknown(data['band']!, _bandMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_bandMeta);
+    }
+    if (data.containsKey('group_index')) {
+      context.handle(
+        _groupIndexMeta,
+        groupIndex.isAcceptableOrUnknown(data['group_index']!, _groupIndexMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_groupIndexMeta);
+    }
+    if (data.containsKey('word_count')) {
+      context.handle(
+        _wordCountMeta,
+        wordCount.isAcceptableOrUnknown(data['word_count']!, _wordCountMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_wordCountMeta);
+    }
+    if (data.containsKey('corpus_share')) {
+      context.handle(
+        _corpusShareMeta,
+        corpusShare.isAcceptableOrUnknown(
+          data['corpus_share']!,
+          _corpusShareMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_corpusShareMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {band, groupIndex};
+  @override
+  CoverageGroup map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CoverageGroup(
+      band: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}band'],
+      )!,
+      groupIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}group_index'],
+      )!,
+      wordCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}word_count'],
+      )!,
+      corpusShare: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}corpus_share'],
+      )!,
+    );
+  }
+
+  @override
+  CoverageGroups createAlias(String alias) {
+    return CoverageGroups(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const [
+    'PRIMARY KEY(band, group_index)',
+  ];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class CoverageGroup extends DataClass implements Insertable<CoverageGroup> {
+  final int band;
+  final int groupIndex;
+  final int wordCount;
+  final double corpusShare;
+  const CoverageGroup({
+    required this.band,
+    required this.groupIndex,
+    required this.wordCount,
+    required this.corpusShare,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['band'] = Variable<int>(band);
+    map['group_index'] = Variable<int>(groupIndex);
+    map['word_count'] = Variable<int>(wordCount);
+    map['corpus_share'] = Variable<double>(corpusShare);
+    return map;
+  }
+
+  CoverageGroupsCompanion toCompanion(bool nullToAbsent) {
+    return CoverageGroupsCompanion(
+      band: Value(band),
+      groupIndex: Value(groupIndex),
+      wordCount: Value(wordCount),
+      corpusShare: Value(corpusShare),
+    );
+  }
+
+  factory CoverageGroup.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CoverageGroup(
+      band: serializer.fromJson<int>(json['band']),
+      groupIndex: serializer.fromJson<int>(json['group_index']),
+      wordCount: serializer.fromJson<int>(json['word_count']),
+      corpusShare: serializer.fromJson<double>(json['corpus_share']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'band': serializer.toJson<int>(band),
+      'group_index': serializer.toJson<int>(groupIndex),
+      'word_count': serializer.toJson<int>(wordCount),
+      'corpus_share': serializer.toJson<double>(corpusShare),
+    };
+  }
+
+  CoverageGroup copyWith({
+    int? band,
+    int? groupIndex,
+    int? wordCount,
+    double? corpusShare,
+  }) => CoverageGroup(
+    band: band ?? this.band,
+    groupIndex: groupIndex ?? this.groupIndex,
+    wordCount: wordCount ?? this.wordCount,
+    corpusShare: corpusShare ?? this.corpusShare,
+  );
+  CoverageGroup copyWithCompanion(CoverageGroupsCompanion data) {
+    return CoverageGroup(
+      band: data.band.present ? data.band.value : this.band,
+      groupIndex: data.groupIndex.present
+          ? data.groupIndex.value
+          : this.groupIndex,
+      wordCount: data.wordCount.present ? data.wordCount.value : this.wordCount,
+      corpusShare: data.corpusShare.present
+          ? data.corpusShare.value
+          : this.corpusShare,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CoverageGroup(')
+          ..write('band: $band, ')
+          ..write('groupIndex: $groupIndex, ')
+          ..write('wordCount: $wordCount, ')
+          ..write('corpusShare: $corpusShare')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(band, groupIndex, wordCount, corpusShare);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CoverageGroup &&
+          other.band == this.band &&
+          other.groupIndex == this.groupIndex &&
+          other.wordCount == this.wordCount &&
+          other.corpusShare == this.corpusShare);
+}
+
+class CoverageGroupsCompanion extends UpdateCompanion<CoverageGroup> {
+  final Value<int> band;
+  final Value<int> groupIndex;
+  final Value<int> wordCount;
+  final Value<double> corpusShare;
+  final Value<int> rowid;
+  const CoverageGroupsCompanion({
+    this.band = const Value.absent(),
+    this.groupIndex = const Value.absent(),
+    this.wordCount = const Value.absent(),
+    this.corpusShare = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CoverageGroupsCompanion.insert({
+    required int band,
+    required int groupIndex,
+    required int wordCount,
+    required double corpusShare,
+    this.rowid = const Value.absent(),
+  }) : band = Value(band),
+       groupIndex = Value(groupIndex),
+       wordCount = Value(wordCount),
+       corpusShare = Value(corpusShare);
+  static Insertable<CoverageGroup> custom({
+    Expression<int>? band,
+    Expression<int>? groupIndex,
+    Expression<int>? wordCount,
+    Expression<double>? corpusShare,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (band != null) 'band': band,
+      if (groupIndex != null) 'group_index': groupIndex,
+      if (wordCount != null) 'word_count': wordCount,
+      if (corpusShare != null) 'corpus_share': corpusShare,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CoverageGroupsCompanion copyWith({
+    Value<int>? band,
+    Value<int>? groupIndex,
+    Value<int>? wordCount,
+    Value<double>? corpusShare,
+    Value<int>? rowid,
+  }) {
+    return CoverageGroupsCompanion(
+      band: band ?? this.band,
+      groupIndex: groupIndex ?? this.groupIndex,
+      wordCount: wordCount ?? this.wordCount,
+      corpusShare: corpusShare ?? this.corpusShare,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (band.present) {
+      map['band'] = Variable<int>(band.value);
+    }
+    if (groupIndex.present) {
+      map['group_index'] = Variable<int>(groupIndex.value);
+    }
+    if (wordCount.present) {
+      map['word_count'] = Variable<int>(wordCount.value);
+    }
+    if (corpusShare.present) {
+      map['corpus_share'] = Variable<double>(corpusShare.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CoverageGroupsCompanion(')
+          ..write('band: $band, ')
+          ..write('groupIndex: $groupIndex, ')
+          ..write('wordCount: $wordCount, ')
+          ..write('corpusShare: $corpusShare, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
@@ -6022,6 +6369,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final Kanjis kanjis = Kanjis(this);
   late final Kanas kanas = Kanas(this);
   late final VocabularyEntries vocabularyEntries = VocabularyEntries(this);
+  late final CoverageGroups coverageGroups = CoverageGroups(this);
   late final VocabularyKanji vocabularyKanji = VocabularyKanji(this);
   late final KanjiTranslations kanjiTranslations = KanjiTranslations(this);
   late final VocabularyTranslations vocabularyTranslations =
@@ -6050,6 +6398,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     kanjis,
     kanas,
     vocabularyEntries,
+    coverageGroups,
     vocabularyKanji,
     kanjiTranslations,
     vocabularyTranslations,
@@ -6764,12 +7113,12 @@ typedef $VocabularyEntriesCreateCompanionBuilder =
       required String word,
       required String reading,
       required String meaning,
-      required String jlptLevel,
       required String partOfSpeech,
       Value<int?> freqBand,
       Value<int> difficulty,
-      Value<int> difficultyTier,
       Value<String> difficultySource,
+      Value<int> coverageBand,
+      Value<int> groupIndex,
     });
 typedef $VocabularyEntriesUpdateCompanionBuilder =
     VocabularyEntriesCompanion Function({
@@ -6777,12 +7126,12 @@ typedef $VocabularyEntriesUpdateCompanionBuilder =
       Value<String> word,
       Value<String> reading,
       Value<String> meaning,
-      Value<String> jlptLevel,
       Value<String> partOfSpeech,
       Value<int?> freqBand,
       Value<int> difficulty,
-      Value<int> difficultyTier,
       Value<String> difficultySource,
+      Value<int> coverageBand,
+      Value<int> groupIndex,
     });
 
 final class $VocabularyEntriesReferences
@@ -6883,11 +7232,6 @@ class $VocabularyEntriesFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get jlptLevel => $composableBuilder(
-    column: $table.jlptLevel,
-    builder: (column) => ColumnFilters(column),
-  );
-
   ColumnFilters<String> get partOfSpeech => $composableBuilder(
     column: $table.partOfSpeech,
     builder: (column) => ColumnFilters(column),
@@ -6903,13 +7247,18 @@ class $VocabularyEntriesFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<int> get difficultyTier => $composableBuilder(
-    column: $table.difficultyTier,
+  ColumnFilters<String> get difficultySource => $composableBuilder(
+    column: $table.difficultySource,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get difficultySource => $composableBuilder(
-    column: $table.difficultySource,
+  ColumnFilters<int> get coverageBand => $composableBuilder(
+    column: $table.coverageBand,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get groupIndex => $composableBuilder(
+    column: $table.groupIndex,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -7018,11 +7367,6 @@ class $VocabularyEntriesOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get jlptLevel => $composableBuilder(
-    column: $table.jlptLevel,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   ColumnOrderings<String> get partOfSpeech => $composableBuilder(
     column: $table.partOfSpeech,
     builder: (column) => ColumnOrderings(column),
@@ -7038,13 +7382,18 @@ class $VocabularyEntriesOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<int> get difficultyTier => $composableBuilder(
-    column: $table.difficultyTier,
+  ColumnOrderings<String> get difficultySource => $composableBuilder(
+    column: $table.difficultySource,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get difficultySource => $composableBuilder(
-    column: $table.difficultySource,
+  ColumnOrderings<int> get coverageBand => $composableBuilder(
+    column: $table.coverageBand,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get groupIndex => $composableBuilder(
+    column: $table.groupIndex,
     builder: (column) => ColumnOrderings(column),
   );
 }
@@ -7070,9 +7419,6 @@ class $VocabularyEntriesAnnotationComposer
   GeneratedColumn<String> get meaning =>
       $composableBuilder(column: $table.meaning, builder: (column) => column);
 
-  GeneratedColumn<String> get jlptLevel =>
-      $composableBuilder(column: $table.jlptLevel, builder: (column) => column);
-
   GeneratedColumn<String> get partOfSpeech => $composableBuilder(
     column: $table.partOfSpeech,
     builder: (column) => column,
@@ -7086,13 +7432,18 @@ class $VocabularyEntriesAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumn<int> get difficultyTier => $composableBuilder(
-    column: $table.difficultyTier,
+  GeneratedColumn<String> get difficultySource => $composableBuilder(
+    column: $table.difficultySource,
     builder: (column) => column,
   );
 
-  GeneratedColumn<String> get difficultySource => $composableBuilder(
-    column: $table.difficultySource,
+  GeneratedColumn<int> get coverageBand => $composableBuilder(
+    column: $table.coverageBand,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get groupIndex => $composableBuilder(
+    column: $table.groupIndex,
     builder: (column) => column,
   );
 
@@ -7208,23 +7559,23 @@ class $VocabularyEntriesTableManager
                 Value<String> word = const Value.absent(),
                 Value<String> reading = const Value.absent(),
                 Value<String> meaning = const Value.absent(),
-                Value<String> jlptLevel = const Value.absent(),
                 Value<String> partOfSpeech = const Value.absent(),
                 Value<int?> freqBand = const Value.absent(),
                 Value<int> difficulty = const Value.absent(),
-                Value<int> difficultyTier = const Value.absent(),
                 Value<String> difficultySource = const Value.absent(),
+                Value<int> coverageBand = const Value.absent(),
+                Value<int> groupIndex = const Value.absent(),
               }) => VocabularyEntriesCompanion(
                 id: id,
                 word: word,
                 reading: reading,
                 meaning: meaning,
-                jlptLevel: jlptLevel,
                 partOfSpeech: partOfSpeech,
                 freqBand: freqBand,
                 difficulty: difficulty,
-                difficultyTier: difficultyTier,
                 difficultySource: difficultySource,
+                coverageBand: coverageBand,
+                groupIndex: groupIndex,
               ),
           createCompanionCallback:
               ({
@@ -7232,23 +7583,23 @@ class $VocabularyEntriesTableManager
                 required String word,
                 required String reading,
                 required String meaning,
-                required String jlptLevel,
                 required String partOfSpeech,
                 Value<int?> freqBand = const Value.absent(),
                 Value<int> difficulty = const Value.absent(),
-                Value<int> difficultyTier = const Value.absent(),
                 Value<String> difficultySource = const Value.absent(),
+                Value<int> coverageBand = const Value.absent(),
+                Value<int> groupIndex = const Value.absent(),
               }) => VocabularyEntriesCompanion.insert(
                 id: id,
                 word: word,
                 reading: reading,
                 meaning: meaning,
-                jlptLevel: jlptLevel,
                 partOfSpeech: partOfSpeech,
                 freqBand: freqBand,
                 difficulty: difficulty,
-                difficultyTier: difficultyTier,
                 difficultySource: difficultySource,
+                coverageBand: coverageBand,
+                groupIndex: groupIndex,
               ),
           withReferenceMapper: (p0) => p0
               .map(
@@ -7362,6 +7713,191 @@ typedef $VocabularyEntriesProcessedTableManager =
         bool vocabularyTranslationsRefs,
         bool sentencesRefs,
       })
+    >;
+typedef $CoverageGroupsCreateCompanionBuilder =
+    CoverageGroupsCompanion Function({
+      required int band,
+      required int groupIndex,
+      required int wordCount,
+      required double corpusShare,
+      Value<int> rowid,
+    });
+typedef $CoverageGroupsUpdateCompanionBuilder =
+    CoverageGroupsCompanion Function({
+      Value<int> band,
+      Value<int> groupIndex,
+      Value<int> wordCount,
+      Value<double> corpusShare,
+      Value<int> rowid,
+    });
+
+class $CoverageGroupsFilterComposer
+    extends Composer<_$AppDatabase, CoverageGroups> {
+  $CoverageGroupsFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get band => $composableBuilder(
+    column: $table.band,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get groupIndex => $composableBuilder(
+    column: $table.groupIndex,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get wordCount => $composableBuilder(
+    column: $table.wordCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get corpusShare => $composableBuilder(
+    column: $table.corpusShare,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $CoverageGroupsOrderingComposer
+    extends Composer<_$AppDatabase, CoverageGroups> {
+  $CoverageGroupsOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get band => $composableBuilder(
+    column: $table.band,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get groupIndex => $composableBuilder(
+    column: $table.groupIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get wordCount => $composableBuilder(
+    column: $table.wordCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get corpusShare => $composableBuilder(
+    column: $table.corpusShare,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $CoverageGroupsAnnotationComposer
+    extends Composer<_$AppDatabase, CoverageGroups> {
+  $CoverageGroupsAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get band =>
+      $composableBuilder(column: $table.band, builder: (column) => column);
+
+  GeneratedColumn<int> get groupIndex => $composableBuilder(
+    column: $table.groupIndex,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get wordCount =>
+      $composableBuilder(column: $table.wordCount, builder: (column) => column);
+
+  GeneratedColumn<double> get corpusShare => $composableBuilder(
+    column: $table.corpusShare,
+    builder: (column) => column,
+  );
+}
+
+class $CoverageGroupsTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          CoverageGroups,
+          CoverageGroup,
+          $CoverageGroupsFilterComposer,
+          $CoverageGroupsOrderingComposer,
+          $CoverageGroupsAnnotationComposer,
+          $CoverageGroupsCreateCompanionBuilder,
+          $CoverageGroupsUpdateCompanionBuilder,
+          (
+            CoverageGroup,
+            BaseReferences<_$AppDatabase, CoverageGroups, CoverageGroup>,
+          ),
+          CoverageGroup,
+          PrefetchHooks Function()
+        > {
+  $CoverageGroupsTableManager(_$AppDatabase db, CoverageGroups table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $CoverageGroupsFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $CoverageGroupsOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $CoverageGroupsAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> band = const Value.absent(),
+                Value<int> groupIndex = const Value.absent(),
+                Value<int> wordCount = const Value.absent(),
+                Value<double> corpusShare = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CoverageGroupsCompanion(
+                band: band,
+                groupIndex: groupIndex,
+                wordCount: wordCount,
+                corpusShare: corpusShare,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required int band,
+                required int groupIndex,
+                required int wordCount,
+                required double corpusShare,
+                Value<int> rowid = const Value.absent(),
+              }) => CoverageGroupsCompanion.insert(
+                band: band,
+                groupIndex: groupIndex,
+                wordCount: wordCount,
+                corpusShare: corpusShare,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $CoverageGroupsProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      CoverageGroups,
+      CoverageGroup,
+      $CoverageGroupsFilterComposer,
+      $CoverageGroupsOrderingComposer,
+      $CoverageGroupsAnnotationComposer,
+      $CoverageGroupsCreateCompanionBuilder,
+      $CoverageGroupsUpdateCompanionBuilder,
+      (
+        CoverageGroup,
+        BaseReferences<_$AppDatabase, CoverageGroups, CoverageGroup>,
+      ),
+      CoverageGroup,
+      PrefetchHooks Function()
     >;
 typedef $VocabularyKanjiCreateCompanionBuilder =
     VocabularyKanjiCompanion Function({
@@ -10622,6 +11158,8 @@ class $AppDatabaseManager {
   $KanasTableManager get kanas => $KanasTableManager(_db, _db.kanas);
   $VocabularyEntriesTableManager get vocabularyEntries =>
       $VocabularyEntriesTableManager(_db, _db.vocabularyEntries);
+  $CoverageGroupsTableManager get coverageGroups =>
+      $CoverageGroupsTableManager(_db, _db.coverageGroups);
   $VocabularyKanjiTableManager get vocabularyKanji =>
       $VocabularyKanjiTableManager(_db, _db.vocabularyKanji);
   $KanjiTranslationsTableManager get kanjiTranslations =>

@@ -3,9 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
+import '../../../core/theme/coverage_band.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
+import '../../../l10n/band_label.dart';
 import '../../../l10n/pos_label.dart';
 import '../widgets.dart';
 import '../../providers/vocabulary_provider.dart';
@@ -20,7 +21,7 @@ class KanjiExampleWords extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(
-      localizedKanjiVocabularyProvider((kanjiId: kanji.id,)),
+      localizedKanjiVocabularyProvider((kanjiId: kanji.id)),
     );
 
     return Column(
@@ -97,7 +98,10 @@ class _WordRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final badgeColor = levelColor(entry.jlptLevel);
+    final badgeColor = bandColor(
+      entry.coverageBand,
+      Theme.of(context).brightness,
+    );
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppDimens.spaceMd,
@@ -136,7 +140,7 @@ class _WordRow extends StatelessWidget {
           ),
           const SizedBox(width: AppDimens.spaceSm),
           PillBadge(
-            label: entry.jlptLevel,
+            label: bandLabel(entry.coverageBand, context),
             color: badgeColor,
             background: badgeColor.withValues(alpha: 0.12),
           ),

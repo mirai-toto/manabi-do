@@ -7,7 +7,7 @@ export 'common/action/speak_button.dart';
 
 // — input
 export 'common/input/app_text_field.dart';
-export 'common/input/level_filter_bar.dart';
+export 'common/input/filter_chip_bar.dart';
 export 'common/input/search_field.dart';
 export 'common/input/segmented_control.dart';
 export 'common/input/segmented_tab_bar.dart';
@@ -27,6 +27,7 @@ export 'common/label/section_header.dart';
 export 'common/label/section_label.dart';
 
 // — list_item
+export 'common/list_item/coverage_band_card.dart';
 export 'common/list_item/jlpt_level_card.dart';
 
 // — surface
@@ -78,8 +79,10 @@ export 'study/streak_pill.dart';
 export 'study/study_group_card.dart';
 export 'study/todays_session_card.dart';
 export 'study/vocabulary_group_selector.dart' hide kVocabularyGroupSize;
-export 'study/vocabulary_level_selector.dart';
-export 'study/vocabulary_level_view.dart';
+export 'study/coverage_meter_card.dart';
+export 'study/vocabulary_band_selector.dart';
+export 'study/vocabulary_kanji_list.dart';
+export 'study/vocabulary_band_view.dart';
 export 'study/vocabulary_word_tile.dart';
 export 'study/week_strip.dart';
 

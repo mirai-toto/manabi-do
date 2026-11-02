@@ -26,7 +26,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 24;
+  int get schemaVersion => 25;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -118,6 +118,38 @@ class AppDatabase extends _$AppDatabase {
         await m.addColumn(
           schema.vocabularyEntries,
           schema.vocabularyEntries.difficultySource,
+        );
+      },
+
+      // A word's place in Japanese, rather than its place in our word list.
+      //
+      // `difficulty_tier` banded words by share of the roster, so tier 1 meant
+      // "the easiest tenth of whatever we ship" — a fact about the app, not
+      // about the language. `coverage_band` and `group_index` carry a share of
+      // running Japanese instead, and `coverage_groups` says what each group of
+      // thirty words buys.
+      //
+      // `jlpt_level` goes at the same time. The JLPT publishes a kanji list and
+      // no vocabulary list, so the column only ever held somebody's guess.
+      //
+      // Nothing is backfilled: a schema change ships a new asset and the
+      // refresh replaces the file wholesale, so the rows arrive already built.
+      // This step exists for a database opened without that replacement.
+      from24To25: (m, schema) async {
+        await m.createTable(schema.coverageGroups);
+        // `newColumns` is not optional here. `alterTable` copies the old rows
+        // into the new shape, and without it drift writes a SELECT naming
+        // `coverage_band` and `group_index` against the table that does not
+        // have them yet, so opening the database throws "no such column".
+        // Their SQL defaults fill the copied rows.
+        await m.alterTable(
+          TableMigration(
+            schema.vocabularyEntries,
+            newColumns: [
+              schema.vocabularyEntries.coverageBand,
+              schema.vocabularyEntries.groupIndex,
+            ],
+          ),
         );
       },
     ),

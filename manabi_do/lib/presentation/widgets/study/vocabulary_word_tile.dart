@@ -4,27 +4,34 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
+import '../../../core/theme/coverage_band.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/pos_label.dart';
+import '../../../l10n/band_label.dart';
 import '../../providers/vocabulary_provider.dart';
 import '../widgets.dart';
 
 /// Expandable vocabulary list row. Shows word, reading, abbreviated meaning.
 /// Tap expands to full meaning, part-of-speech chips, and `SpeakButton`.
-/// Localized meaning fetched via provider. `showLevel` adds a JLPT badge on the
+/// Localized meaning fetched via provider. `showBand` adds a coverage-band
+/// badge on the
 /// right, for lists that mix levels.
 class VocabularyWordTile extends ConsumerStatefulWidget {
   final VocabularyEntry entry;
 
   /// Shows a JLPT badge next to the part of speech. Search results mix levels,
   /// so they need it; a group already knows which level it belongs to.
-  final bool showLevel;
+  final bool showBand;
+
+  /// Opens the word's own screen. The meaning keeps its own tap, which expands
+  /// it, so only the word itself navigates.
+  final VoidCallback? onOpen;
 
   const VocabularyWordTile({
     super.key,
     required this.entry,
-    this.showLevel = false,
+    this.showBand = false,
+    this.onOpen,
   });
 
   @override
@@ -67,14 +74,17 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: JapaneseText(
-                      word: widget.entry.word,
-                      reading: widget.entry.reading,
-                      style: AppTextStyles.jpMedium.copyWith(
-                        color: t.onSurface,
-                      ),
-                      rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                        color: t.onSurfaceVariant,
+                    child: GestureDetector(
+                      onTap: widget.onOpen,
+                      child: JapaneseText(
+                        word: widget.entry.word,
+                        reading: widget.entry.reading,
+                        style: AppTextStyles.jpMedium.copyWith(
+                          color: t.onSurface,
+                        ),
+                        rubyStyle: AppTextStyles.jpFurigana.copyWith(
+                          color: t.onSurfaceVariant,
+                        ),
                       ),
                     ),
                   ),
@@ -129,14 +139,21 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                                   color: t.onSurfaceVariant,
                                 ),
                               ),
-                            if (widget.showLevel)
+                            if (widget.showBand)
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: PillBadge(
-                                  label: widget.entry.jlptLevel,
-                                  color: levelColor(widget.entry.jlptLevel),
-                                  background: levelColor(
-                                    widget.entry.jlptLevel,
+                                  label: bandLabel(
+                                    widget.entry.coverageBand,
+                                    context,
+                                  ),
+                                  color: bandColor(
+                                    widget.entry.coverageBand,
+                                    Theme.of(context).brightness,
+                                  ),
+                                  background: bandColor(
+                                    widget.entry.coverageBand,
+                                    Theme.of(context).brightness,
                                   ).withValues(alpha: 0.12),
                                   textStyle: AppTextStyles.labelSmall,
                                 ),

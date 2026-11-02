@@ -12,25 +12,44 @@ extension VocabularyQueries on AppDatabase {
   /// join is exact, so the fallback is gone and so is the `character`
   /// argument.
   Future<List<VocabularyEntry>> getVocabularyForKanji(int kanjiId) {
-    final query = select(vocabularyEntries).join([
-      innerJoin(
-        vocabularyKanji,
-        vocabularyKanji.vocabularyId.equalsExp(vocabularyEntries.id),
-      ),
-    ])
-      ..where(vocabularyKanji.kanjiId.equals(kanjiId))
-      ..orderBy([
-        OrderingTerm.desc(vocabularyEntries.jlptLevel),
-        OrderingTerm.asc(vocabularyEntries.word),
-      ])
-      ..limit(30);
+    final query =
+        select(vocabularyEntries).join([
+            innerJoin(
+              vocabularyKanji,
+              vocabularyKanji.vocabularyId.equalsExp(vocabularyEntries.id),
+            ),
+          ])
+          ..where(vocabularyKanji.kanjiId.equals(kanjiId))
+          ..orderBy([
+            OrderingTerm.asc(vocabularyEntries.difficulty),
+            OrderingTerm.asc(vocabularyEntries.word),
+          ])
+          ..limit(30);
     return query.map((row) => row.readTable(vocabularyEntries)).get();
   }
 
-  Future<List<VocabularyEntry>> getVocabularyByLevel(String level) =>
+  /// Every word in a coverage band, in study order.
+  ///
+  /// Ordered by `group_index` first, so skipping thirty at a time lands on the
+  /// groups the content pipeline cut. The groups are a property of the content,
+  /// not something the app recomputes: they are where the per-group coverage
+  /// figures in `coverage_groups` apply.
+  Future<List<VocabularyEntry>> getVocabularyByBand(int band) =>
       (select(vocabularyEntries)
-            ..where((v) => v.jlptLevel.equals(level))
-            ..orderBy([(v) => OrderingTerm.asc(v.word)]))
+            ..where((v) => v.coverageBand.equals(band))
+            ..orderBy([
+              (v) => OrderingTerm.asc(v.groupIndex),
+              (v) => OrderingTerm.asc(v.difficulty),
+              (v) => OrderingTerm.asc(v.word),
+            ]))
+          .get();
+
+  /// What each study group buys, as a share of running Japanese.
+  Future<List<CoverageGroup>> getCoverageGroups() =>
+      (select(coverageGroups)..orderBy([
+            (g) => OrderingTerm.asc(g.band),
+            (g) => OrderingTerm.asc(g.groupIndex),
+          ]))
           .get();
 
   Future<List<VocabularyEntry>> getAllVocabulary() =>

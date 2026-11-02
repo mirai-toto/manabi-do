@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 /// Every colour clears WCAG AA — `onAccentFor` picks the readable foreground,
 /// which is dark for N5-N3 and white for the deeper N2/N1.
 ///
-/// `basics` and `kana` sit outside the JLPT scale.
+/// `basics` and `kana` sit outside the JLPT scale. Vocabulary is not here at
+/// all: it has no JLPT level, and its coverage bands are a magnitude rather
+/// than a category, so they use the sequential ramp in `coverage_band.dart`
+/// instead of this green-to-red one.
 ///
 /// Known issue: N2 burnt orange and N1 brick red are neighbouring hues at
 /// similar darkness, so they drop to ~20-26 separation under red-green colour

@@ -10,9 +10,7 @@ final kanjiVocabularyProvider =
       ref,
       args,
     ) {
-      return ref
-          .watch(databaseProvider)
-          .getVocabularyForKanji(args.kanjiId);
+      return ref.watch(databaseProvider).getVocabularyForKanji(args.kanjiId);
     });
 
 /// Each element is (entry, localizedMeaning). Falls back to English.
@@ -54,3 +52,24 @@ final localizedKanjiMeaningProvider = FutureProvider.family<String, int>((
   final tr = await db.getKanjiTranslations([kanjiId], locale);
   return tr[kanjiId] ?? '';
 });
+
+/// Example sentences for a word, with their translations in the current locale.
+///
+/// Matching is still a substring search in the content pipeline, so a word
+/// rarely gets more than a handful and an inflected form gets none. A
+/// tokeniser would find every sentence that uses the word.
+final vocabularySentencesProvider =
+    FutureProvider.family<List<(Sentence, String?)>, int>((
+      ref,
+      vocabularyId,
+    ) async {
+      final locale = ref.watch(localeProvider).languageCode;
+      final db = ref.watch(databaseProvider);
+      final sentences = await db.getSentencesForVocabulary(vocabularyId);
+      if (sentences.isEmpty) return const [];
+      final translations = await db.getSentenceTranslations(
+        sentences.map((s) => s.id).toList(),
+        locale,
+      );
+      return sentences.map((s) => (s, translations[s.id])).toList();
+    });

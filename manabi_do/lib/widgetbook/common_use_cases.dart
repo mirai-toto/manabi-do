@@ -9,7 +9,7 @@ import '../presentation/widgets/common/action/app_button.dart';
 import '../presentation/widgets/common/decoration/app_emoji.dart';
 import '../presentation/widgets/common/action/app_filter_chip.dart';
 import '../presentation/widgets/common/input/app_text_field.dart';
-import '../presentation/widgets/common/input/level_filter_bar.dart';
+import '../presentation/widgets/common/input/filter_chip_bar.dart';
 import '../presentation/widgets/common/surface/card_container.dart';
 import '../presentation/widgets/common/indicator/difficulty_dots.dart';
 import '../presentation/widgets/common/label/japanese_text.dart';
@@ -56,20 +56,24 @@ Widget buildAppFilterChipDisabled(BuildContext context) {
   return const AppFilterChip(label: 'N5');
 }
 
-// ── LevelFilterBar ────────────────────────────────────────────────────────────
+// ── FilterChipBar ────────────────────────────────────────────────────────────
 
 const _jlptLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
+/// A JLPT code is already its own label.
+String _asIs(String level) => level;
+
 @widgetbook.UseCase(
   name: 'Nothing selected',
-  type: LevelFilterBar,
+  type: FilterChipBar,
   path: 'Common/Input',
 )
-Widget buildLevelFilterBarEmpty(BuildContext context) {
+Widget buildFilterChipBarEmpty(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: LevelFilterBar(
-      levels: _jlptLevels,
+    child: FilterChipBar<String>(
+      options: _jlptLevels,
+      labelOf: _asIs,
       selected: const {},
       onToggle: (_) {},
     ),
@@ -78,14 +82,15 @@ Widget buildLevelFilterBarEmpty(BuildContext context) {
 
 @widgetbook.UseCase(
   name: 'Two selected',
-  type: LevelFilterBar,
+  type: FilterChipBar,
   path: 'Common/Input',
 )
-Widget buildLevelFilterBarSelected(BuildContext context) {
+Widget buildFilterChipBarSelected(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: LevelFilterBar(
-      levels: _jlptLevels,
+    child: FilterChipBar<String>(
+      options: _jlptLevels,
+      labelOf: _asIs,
       selected: const {'N5', 'N4'},
       onToggle: (_) {},
     ),

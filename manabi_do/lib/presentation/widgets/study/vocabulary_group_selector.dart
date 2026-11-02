@@ -5,26 +5,30 @@ import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
+import '../../../core/theme/coverage_band.dart';
 import '../../../l10n/l10n.dart';
-import '../../../l10n/level_label.dart';
+import '../../../l10n/band_label.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../widgets.dart';
 
 const kVocabularyGroupSize = 30;
 
 /// Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for
-/// pagination within a vocabulary level. `kVocabularyGroupSize` groups of 30
-/// words each.
+/// pagination within a coverage band, in groups of `kVocabularyGroupSize`.
+///
+/// Each row carries what the group buys: the share of running Japanese those
+/// thirty words account for. That number falls away sharply — the first group
+/// of band 1 is 20.6% of everything written and the last groups are rounding
+/// error — which is the whole point of ordering the app this way.
 class VocabularyGroupSelector extends ConsumerWidget {
-  final String level;
+  final int band;
   final VoidCallback onBack;
   final VoidCallback onPractice;
   final void Function(int) onSelect;
 
   const VocabularyGroupSelector({
     super.key,
-    required this.level,
+    required this.band,
     required this.onBack,
     required this.onPractice,
     required this.onSelect,
@@ -32,13 +36,19 @@ class VocabularyGroupSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vocabularyAsync = ref.watch(vocabularyByLevelProvider(level));
+    final vocabularyAsync = ref.watch(vocabularyByBandProvider(band));
     final srsCards = ref.watch(vocabularySrsCardsProvider).asData?.value ?? {};
-    final color = levelColor(level);
+    final shares = ref.watch(groupShareProvider);
+    final color = bandColor(band, Theme.of(context).brightness);
     final t = context.tokens;
 
     final entries = vocabularyAsync.asData?.value ?? [];
     final groupCount = (entries.length / kVocabularyGroupSize).ceil();
+    final bandShare = ref.watch(bandReachedProvider)?[band];
+    final learnedInBand = entries.where((e) {
+      final srs = srsLevel(srsCards[e.id]);
+      return srs != SrsLevel.newCard && srs != SrsLevel.learning;
+    }).length;
 
     return ScrollFade(
       builder: (controller) => ListView(
@@ -64,7 +74,7 @@ class VocabularyGroupSelector extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        level,
+                        bandLabel(band, context),
                         style: AppTextStyles.labelSmall.copyWith(
                           color: color,
                           fontWeight: FontWeight.w700,
@@ -72,7 +82,7 @@ class VocabularyGroupSelector extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        levelLabel(level, context),
+                        context.l10n.nWords(entries.length),
                         style: AppTextStyles.title.copyWith(color: t.onSurface),
                       ),
                     ],
@@ -81,6 +91,21 @@ class VocabularyGroupSelector extends ConsumerWidget {
               ],
             ),
           ),
+          if (bandShare != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceMd,
+                vertical: AppDimens.spaceSm,
+              ),
+              child: CoverageMeterCard(
+                label: context.l10n.finishThisBand,
+                share: bandShare,
+                caption: context.l10n.bandReaches(entries.length),
+                progress: entries.isEmpty ? 0 : learnedInBand / entries.length,
+                progressLabel: '$learnedInBand / ${entries.length}',
+                color: color,
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: AppDimens.spaceMd,
@@ -118,9 +143,8 @@ class VocabularyGroupSelector extends ConsumerWidget {
                       .take(kVocabularyGroupSize)
                       .toList();
                   final learnedCount = groupEntries.where((e) {
-                    final level = srsLevel(srsCards[e.id]);
-                    return level != SrsLevel.newCard &&
-                        level != SrsLevel.learning;
+                    final srs = srsLevel(srsCards[e.id]);
+                    return srs != SrsLevel.newCard && srs != SrsLevel.learning;
                   }).length;
                   final progress = groupEntries.isEmpty
                       ? 0.0
@@ -137,6 +161,7 @@ class VocabularyGroupSelector extends ConsumerWidget {
                           '${start + 1}–$end · $learnedCount / ${groupEntries.length}',
                       progress: progress,
                       color: color,
+                      trailing: _ShareBadge(share: shares?[(band, i + 1)]),
                       onTap: () => onSelect(i),
                     ),
                   );
@@ -145,6 +170,30 @@ class VocabularyGroupSelector extends ConsumerWidget {
             ),
         ],
       ),
+    );
+  }
+}
+
+/// What one group of thirty words adds to what a learner can read.
+///
+/// Absent rather than zero when the figure is missing, because a group can
+/// genuinely add nothing measurable: UniDic counts お願いします in pieces, so the
+/// corpus has no figure to attribute to it. Showing "+0.0%" would read as a
+/// claim that the words are worthless.
+class _ShareBadge extends StatelessWidget {
+  final double? share;
+  const _ShareBadge({this.share});
+
+  @override
+  Widget build(BuildContext context) {
+    final value = share;
+    if (value == null || value <= 0) return const SizedBox.shrink();
+    final t = context.tokens;
+    return PillBadge(
+      label: '+${(value * 100).toStringAsFixed(1)}%',
+      color: t.onPrimaryContainer,
+      background: t.primaryContainer,
+      textStyle: AppTextStyles.labelSmall,
     );
   }
 }

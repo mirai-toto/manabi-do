@@ -65,9 +65,10 @@ class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
               AppDimens.spaceMd,
               AppDimens.spaceSm,
             ),
-            child: LevelFilterBar(
-              levels: _kanjiLevels,
+            child: FilterChipBar<String>(
+              options: _kanjiLevels,
               selected: _filter,
+              labelOf: (level) => level,
               onToggle: (level) => setState(
                 () => _filter.contains(level)
                     ? _filter.remove(level)

@@ -372,6 +372,56 @@ class AppLocalizationsFr extends AppLocalizations {
   String get levelN1 => 'Avancé';
 
   @override
+  String get band1 => 'Noyau';
+
+  @override
+  String get band2 => 'Courant';
+
+  @override
+  String get band3 => 'À l\'aise';
+
+  @override
+  String get band4 => 'Étendu';
+
+  @override
+  String get band5 => 'Longue traîne';
+
+  @override
+  String get meaning => 'Sens';
+
+  @override
+  String get exampleSentences => 'Dans une phrase';
+
+  @override
+  String get writtenWith => 'Écrit avec';
+
+  @override
+  String get youCanRead => 'Vous pouvez lire';
+
+  @override
+  String get ofWrittenJapanese => 'de tout ce qui s\'écrit en japonais';
+
+  @override
+  String coverageAtLeast(int percent) {
+    return 'au moins $percent %';
+  }
+
+  @override
+  String get finishThisBand => 'Terminer ce palier';
+
+  @override
+  String bandReaches(int count) {
+    return 'lisible, avec $count mots';
+  }
+
+  @override
+  String get selectBand => 'Choisissez un palier';
+
+  @override
+  String get bandExplainer =>
+      'Chaque palier représente une part de tout ce qui s\'écrit en japonais, mesurée sur le corpus BCCWJ. Ce n\'est pas un niveau JLPT : le JLPT ne publie aucune liste de vocabulaire.';
+
+  @override
   String charactersSubtitle(int total) {
     return 'Kana · Kanji N5–N1 · $total kana';
   }
@@ -521,7 +571,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aboutBccwjNotice =>
-      'La difficulté des mots est calculée à partir de leur fréquence dans le Balanced Corpus of Contemporary Written Japanese, publié par le National Institute for Japanese Language and Linguistics (NINJAL).';
+      'La difficulté des mots, les paliers de couverture et la part du japonais écrit couverte par chaque groupe sont calculés à partir de la fréquence des mots dans le Balanced Corpus of Contemporary Written Japanese, publié par le National Institute for Japanese Language and Linguistics (NINJAL).';
 
   @override
   String get aboutBccwjLink => 'clrd.ninjal.ac.jp';
