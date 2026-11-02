@@ -83,6 +83,7 @@ class _VocabularyLevelSelectorState
 
   Widget _levelList(BuildContext context) {
     final mine = ref.watch(coverageReachedProvider);
+    final total = ref.watch(vocabularyTotalCountProvider);
     final l = context.l10n;
     return ScrollFade(
       builder: (controller) => ListView(
@@ -98,6 +99,9 @@ class _VocabularyLevelSelectorState
               share: mine,
               caption: l.ofWrittenJapanese,
               progressLabel: l.coverageAtLeast((mine * 100).round()),
+              // How much there is to read against how far through it you are.
+              // The percentage alone says nothing about the size of the job.
+              nextLabel: total != null ? l.nWords(total) : null,
             ),
           const SizedBox(height: AppDimens.spaceMd),
           SectionLabel(l.vocabularyLevels),
