@@ -387,11 +387,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get band5 => 'Sehr selten';
 
   @override
-  String bandAdds(String amount) {
-    return '+$amount von allem Geschriebenen';
-  }
-
-  @override
   String get meaning => 'Bedeutung';
 
   @override
@@ -421,7 +416,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get selectBand => 'Wo anfangen';
+  String get selectBand => 'Stufen';
 
   @override
   String charactersSubtitle(int total) {

@@ -146,14 +146,6 @@
   "band3": "Courants",
   "band4": "Peu courants",
   "band5": "Rares",
-  "bandAdds": "+{amount} de tout ce qui s'écrit",
-  "@bandAdds": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
   "meaning": "Sens",
   "exampleSentences": "Dans une phrase",
   "writtenWith": "Écrit avec",
@@ -176,7 +168,7 @@
       }
     }
   },
-  "selectBand": "Par où commencer",
+  "selectBand": "Niveaux",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
   "@charactersSubtitle": {
     "placeholders": {

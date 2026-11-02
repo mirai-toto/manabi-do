@@ -82,7 +82,6 @@ class _VocabularyBandSelectorState
   }
 
   Widget _bandList(BuildContext context) {
-    final shares = ref.watch(bandShareProvider);
     final mine = ref.watch(coverageReachedProvider);
     final l = context.l10n;
     return ScrollFade(
@@ -107,7 +106,6 @@ class _VocabularyBandSelectorState
             CoverageBandCard(
               band: band,
               wordCount: _wordCount(band),
-              adds: _adds(shares?[band]),
               onTap: () => widget.onSelect(band),
             ),
           const SizedBox(height: AppDimens.spaceLg),
@@ -132,16 +130,6 @@ class _VocabularyBandSelectorState
         ?.value
         .length;
     return count != null ? NumberFormat.decimalPattern().format(count) : null;
-  }
-
-  /// A band's share, kept to one decimal below ten per cent so the last band
-  /// reads "+1.5%" rather than rounding to "+2%" and overstating itself.
-  String? _adds(double? share) {
-    if (share == null || share <= 0) return null;
-    final percent = share * 100;
-    return percent >= 10
-        ? '${percent.round()}%'
-        : '${percent.toStringAsFixed(1)}%';
   }
 }
 

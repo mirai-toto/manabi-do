@@ -790,12 +790,6 @@ abstract class AppLocalizations {
   /// **'Rare'**
   String get band5;
 
-  /// No description provided for @bandAdds.
-  ///
-  /// In en, this message translates to:
-  /// **'+{amount} of everything written'**
-  String bandAdds(String amount);
-
   /// No description provided for @meaning.
   ///
   /// In en, this message translates to:
@@ -847,7 +841,7 @@ abstract class AppLocalizations {
   /// No description provided for @selectBand.
   ///
   /// In en, this message translates to:
-  /// **'Where to start'**
+  /// **'Levels'**
   String get selectBand;
 
   /// No description provided for @charactersSubtitle.

@@ -190,14 +190,6 @@
   "band3": "Common",
   "band4": "Uncommon",
   "band5": "Rare",
-  "bandAdds": "+{amount} of everything written",
-  "@bandAdds": {
-    "placeholders": {
-      "amount": {
-        "type": "String"
-      }
-    }
-  },
   "meaning": "Meaning",
   "exampleSentences": "In a sentence",
   "writtenWith": "Written with",
@@ -220,7 +212,7 @@
       }
     }
   },
-  "selectBand": "Where to start",
+  "selectBand": "Levels",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
   "@charactersSubtitle": {
     "placeholders": {
