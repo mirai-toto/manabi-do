@@ -44,6 +44,22 @@ extension VocabularyQueries on AppDatabase {
             ]))
           .get();
 
+  /// A word's meanings in [locale], in JMdict's own order.
+  ///
+  /// Empty when the content has no senses for that language, which is the
+  /// caller's cue to fall back to `VocabularyEntry.meaning`.
+  Future<List<VocabularySense>> getVocabularySenses(
+    int vocabularyId,
+    String locale,
+  ) =>
+      (select(vocabularySenses)
+            ..where(
+              (s) =>
+                  s.vocabularyId.equals(vocabularyId) & s.locale.equals(locale),
+            )
+            ..orderBy([(s) => OrderingTerm.asc(s.position)]))
+          .get();
+
   /// What each study group buys, as a share of running Japanese.
   Future<List<CoverageGroup>> getCoverageGroups() =>
       (select(coverageGroups)..orderBy([

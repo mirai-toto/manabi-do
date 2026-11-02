@@ -199,6 +199,24 @@
   "vocabularyLevel4": "Uncommon",
   "vocabularyLevel5": "Rare",
   "meaning": "Meaning",
+  "nMeanings": "{count} meanings",
+  "@nMeanings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "showNMoreMeanings": "Show {count} more",
+  "@showNMoreMeanings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "transitive": "transitive",
+  "intransitive": "intransitive",
   "exampleSentences": "In a sentence",
   "writtenWith": "Written with",
   "youCanRead": "You can read",

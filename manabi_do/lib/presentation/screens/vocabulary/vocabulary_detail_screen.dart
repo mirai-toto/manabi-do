@@ -23,7 +23,6 @@ class VocabularyDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
-    final l = context.l10n;
     final color = vocabularyLevelColor(
       entry.vocabularyLevel,
       Theme.of(context).brightness,
@@ -57,15 +56,7 @@ class VocabularyDetailScreen extends ConsumerWidget {
             children: [
               _Hero(entry: entry, color: color),
               const SizedBox(height: AppDimens.spaceMd),
-              SectionLabel(l.meaning),
-              const SizedBox(height: AppDimens.spaceSm),
-              CardContainer(
-                padding: const EdgeInsets.all(AppDimens.spaceMd),
-                child: Text(
-                  meaning,
-                  style: AppTextStyles.body.copyWith(color: t.onSurface),
-                ),
-              ),
+              _Meanings(entry: entry, fallback: meaning),
               const SizedBox(height: AppDimens.spaceMd),
               VocabularyKanjiList(vocabularyId: entry.id),
               const SizedBox(height: AppDimens.spaceMd),
@@ -178,6 +169,204 @@ class _Sentences extends ConsumerWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// A word's meanings, one numbered row per sense.
+///
+/// JMdict groups glosses into senses and the pipeline used to join every one of
+/// them with "; ": 824 characters for する, 37 glosses from 17 unrelated senses
+/// with nothing to mark the seams. These rows are JMdict's own grouping, its
+/// own usage notes and its own per-sense transitivity, none of it inferred.
+///
+/// A word with one sense shows no number — there is nothing to enumerate — and
+/// a word whose senses never reached the database falls back to the joined
+/// string, so the screen degrades instead of emptying.
+class _Meanings extends ConsumerWidget {
+  final VocabularyEntry entry;
+  final String fallback;
+
+  const _Meanings({required this.entry, required this.fallback});
+
+  /// How many senses to show before the rest go behind a tap. Six covers all
+  /// but 1% of words outright; する has seventeen and はい twenty.
+  static const int _shown = 6;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = context.tokens;
+    final l = context.l10n;
+    final senses =
+        ref.watch(vocabularySensesProvider(entry.id)).asData?.value ??
+        const <VocabularySense>[];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            SectionLabel(l.meaning),
+            const Spacer(),
+            if (senses.length > 1)
+              Text(
+                l.nMeanings(senses.length),
+                style: AppTextStyles.labelSmall.copyWith(
+                  color: t.onSurfaceVariant,
+                ),
+              ),
+          ],
+        ),
+        const SizedBox(height: AppDimens.spaceSm),
+        if (senses.isEmpty)
+          CardContainer(
+            padding: const EdgeInsets.all(AppDimens.spaceMd),
+            child: Text(
+              fallback,
+              style: AppTextStyles.body.copyWith(color: t.onSurface),
+            ),
+          )
+        else
+          _SenseList(senses: senses, limit: _shown),
+      ],
+    );
+  }
+}
+
+class _SenseList extends StatefulWidget {
+  final List<VocabularySense> senses;
+  final int limit;
+
+  const _SenseList({required this.senses, required this.limit});
+
+  @override
+  State<_SenseList> createState() => _SenseListState();
+}
+
+class _SenseListState extends State<_SenseList> {
+  bool _all = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final l = context.l10n;
+    final senses = widget.senses;
+    final hidden = senses.length - widget.limit;
+    final visible = _all || hidden <= 0
+        ? senses
+        : senses.take(widget.limit).toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        CardContainer(
+          padding: EdgeInsets.zero,
+          child: Column(
+            children: [
+              for (int i = 0; i < visible.length; i++) ...[
+                if (i > 0)
+                  Divider(height: 1, thickness: 1, color: t.outlineVariant),
+                _SenseRow(sense: visible[i], numbered: senses.length > 1),
+              ],
+            ],
+          ),
+        ),
+        if (hidden > 0 && !_all) ...[
+          const SizedBox(height: AppDimens.spaceSm),
+          AppButton(
+            label: l.showNMoreMeanings(hidden),
+            onPressed: () => setState(() => _all = true),
+            fullWidth: true,
+            backgroundColor: t.cardBackground,
+            foregroundColor: t.primary,
+            side: BorderSide(color: t.outlineVariant),
+            radius: AppDimens.radiusMd,
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class _SenseRow extends StatelessWidget {
+  final VocabularySense sense;
+  final bool numbered;
+
+  const _SenseRow({required this.sense, required this.numbered});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final l = context.l10n;
+    // JMdict writes several patterns in one note, comma separated, prefixed
+    // "as ". Splitting them is all that happens here; the text is the editors'.
+    final patterns = sense.note
+        .replaceFirst(RegExp(r'^as '), '')
+        .split(',')
+        .map((p) => p.trim())
+        .where((p) => p.isNotEmpty)
+        .toList();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppDimens.spaceMd,
+        vertical: AppDimens.spaceCozy,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (numbered) ...[
+            SizedBox(
+              width: 18,
+              child: Text(
+                '${sense.position}',
+                textAlign: TextAlign.right,
+                style: AppTextStyles.labelSmall.copyWith(
+                  color: t.primary,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            const SizedBox(width: AppDimens.spaceSnug),
+          ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  sense.glosses,
+                  style: AppTextStyles.bodySmall.copyWith(color: t.onSurface),
+                ),
+                if (patterns.isNotEmpty) ...[
+                  const SizedBox(height: AppDimens.spaceTight),
+                  Wrap(
+                    spacing: AppDimens.spaceXs,
+                    runSpacing: AppDimens.spaceXs,
+                    children: [
+                      for (final pattern in patterns)
+                        PillBadge(
+                          label: pattern,
+                          color: t.onSurfaceVariant,
+                          background: t.surfaceVariant,
+                          textStyle: AppTextStyles.labelSmall,
+                        ),
+                    ],
+                  ),
+                ],
+              ],
+            ),
+          ),
+          if (sense.kind.isNotEmpty) ...[
+            const SizedBox(width: AppDimens.spaceSm),
+            PillBadge(
+              label: sense.kind == 'vt' ? l.transitive : l.intransitive,
+              color: t.onPrimaryContainer,
+              background: t.primaryContainer,
+              textStyle: AppTextStyles.labelSmall,
+            ),
+          ],
+        ],
+      ),
     );
   }
 }

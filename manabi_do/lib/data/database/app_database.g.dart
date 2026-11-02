@@ -2514,6 +2514,423 @@ class KanjiTranslationsCompanion extends UpdateCompanion<KanjiTranslation> {
   }
 }
 
+class VocabularySenses extends Table
+    with TableInfo<VocabularySenses, VocabularySense> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  VocabularySenses(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _vocabularyIdMeta = const VerificationMeta(
+    'vocabularyId',
+  );
+  late final GeneratedColumn<int> vocabularyId = GeneratedColumn<int>(
+    'vocabulary_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES vocabulary_entries(id)',
+  );
+  static const VerificationMeta _localeMeta = const VerificationMeta('locale');
+  late final GeneratedColumn<String> locale = GeneratedColumn<String>(
+    'locale',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _positionMeta = const VerificationMeta(
+    'position',
+  );
+  late final GeneratedColumn<int> position = GeneratedColumn<int>(
+    'position',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _glossesMeta = const VerificationMeta(
+    'glosses',
+  );
+  late final GeneratedColumn<String> glosses = GeneratedColumn<String>(
+    'glosses',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _noteMeta = const VerificationMeta('note');
+  late final GeneratedColumn<String> note = GeneratedColumn<String>(
+    'note',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'\'',
+    defaultValue: const CustomExpression('\'\''),
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'\'',
+    defaultValue: const CustomExpression('\'\''),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    vocabularyId,
+    locale,
+    position,
+    glosses,
+    note,
+    kind,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'vocabulary_senses';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<VocabularySense> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('vocabulary_id')) {
+      context.handle(
+        _vocabularyIdMeta,
+        vocabularyId.isAcceptableOrUnknown(
+          data['vocabulary_id']!,
+          _vocabularyIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_vocabularyIdMeta);
+    }
+    if (data.containsKey('locale')) {
+      context.handle(
+        _localeMeta,
+        locale.isAcceptableOrUnknown(data['locale']!, _localeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_localeMeta);
+    }
+    if (data.containsKey('position')) {
+      context.handle(
+        _positionMeta,
+        position.isAcceptableOrUnknown(data['position']!, _positionMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_positionMeta);
+    }
+    if (data.containsKey('glosses')) {
+      context.handle(
+        _glossesMeta,
+        glosses.isAcceptableOrUnknown(data['glosses']!, _glossesMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_glossesMeta);
+    }
+    if (data.containsKey('note')) {
+      context.handle(
+        _noteMeta,
+        note.isAcceptableOrUnknown(data['note']!, _noteMeta),
+      );
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {vocabularyId, locale, position};
+  @override
+  VocabularySense map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return VocabularySense(
+      vocabularyId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}vocabulary_id'],
+      )!,
+      locale: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}locale'],
+      )!,
+      position: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}position'],
+      )!,
+      glosses: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}glosses'],
+      )!,
+      note: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}note'],
+      )!,
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+    );
+  }
+
+  @override
+  VocabularySenses createAlias(String alias) {
+    return VocabularySenses(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const [
+    'PRIMARY KEY(vocabulary_id, locale, position)',
+  ];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class VocabularySense extends DataClass implements Insertable<VocabularySense> {
+  final int vocabularyId;
+  final String locale;
+  final int position;
+  final String glosses;
+  final String note;
+  final String kind;
+  const VocabularySense({
+    required this.vocabularyId,
+    required this.locale,
+    required this.position,
+    required this.glosses,
+    required this.note,
+    required this.kind,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['vocabulary_id'] = Variable<int>(vocabularyId);
+    map['locale'] = Variable<String>(locale);
+    map['position'] = Variable<int>(position);
+    map['glosses'] = Variable<String>(glosses);
+    map['note'] = Variable<String>(note);
+    map['kind'] = Variable<String>(kind);
+    return map;
+  }
+
+  VocabularySensesCompanion toCompanion(bool nullToAbsent) {
+    return VocabularySensesCompanion(
+      vocabularyId: Value(vocabularyId),
+      locale: Value(locale),
+      position: Value(position),
+      glosses: Value(glosses),
+      note: Value(note),
+      kind: Value(kind),
+    );
+  }
+
+  factory VocabularySense.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return VocabularySense(
+      vocabularyId: serializer.fromJson<int>(json['vocabulary_id']),
+      locale: serializer.fromJson<String>(json['locale']),
+      position: serializer.fromJson<int>(json['position']),
+      glosses: serializer.fromJson<String>(json['glosses']),
+      note: serializer.fromJson<String>(json['note']),
+      kind: serializer.fromJson<String>(json['kind']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'vocabulary_id': serializer.toJson<int>(vocabularyId),
+      'locale': serializer.toJson<String>(locale),
+      'position': serializer.toJson<int>(position),
+      'glosses': serializer.toJson<String>(glosses),
+      'note': serializer.toJson<String>(note),
+      'kind': serializer.toJson<String>(kind),
+    };
+  }
+
+  VocabularySense copyWith({
+    int? vocabularyId,
+    String? locale,
+    int? position,
+    String? glosses,
+    String? note,
+    String? kind,
+  }) => VocabularySense(
+    vocabularyId: vocabularyId ?? this.vocabularyId,
+    locale: locale ?? this.locale,
+    position: position ?? this.position,
+    glosses: glosses ?? this.glosses,
+    note: note ?? this.note,
+    kind: kind ?? this.kind,
+  );
+  VocabularySense copyWithCompanion(VocabularySensesCompanion data) {
+    return VocabularySense(
+      vocabularyId: data.vocabularyId.present
+          ? data.vocabularyId.value
+          : this.vocabularyId,
+      locale: data.locale.present ? data.locale.value : this.locale,
+      position: data.position.present ? data.position.value : this.position,
+      glosses: data.glosses.present ? data.glosses.value : this.glosses,
+      note: data.note.present ? data.note.value : this.note,
+      kind: data.kind.present ? data.kind.value : this.kind,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('VocabularySense(')
+          ..write('vocabularyId: $vocabularyId, ')
+          ..write('locale: $locale, ')
+          ..write('position: $position, ')
+          ..write('glosses: $glosses, ')
+          ..write('note: $note, ')
+          ..write('kind: $kind')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(vocabularyId, locale, position, glosses, note, kind);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is VocabularySense &&
+          other.vocabularyId == this.vocabularyId &&
+          other.locale == this.locale &&
+          other.position == this.position &&
+          other.glosses == this.glosses &&
+          other.note == this.note &&
+          other.kind == this.kind);
+}
+
+class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
+  final Value<int> vocabularyId;
+  final Value<String> locale;
+  final Value<int> position;
+  final Value<String> glosses;
+  final Value<String> note;
+  final Value<String> kind;
+  final Value<int> rowid;
+  const VocabularySensesCompanion({
+    this.vocabularyId = const Value.absent(),
+    this.locale = const Value.absent(),
+    this.position = const Value.absent(),
+    this.glosses = const Value.absent(),
+    this.note = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  VocabularySensesCompanion.insert({
+    required int vocabularyId,
+    required String locale,
+    required int position,
+    required String glosses,
+    this.note = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : vocabularyId = Value(vocabularyId),
+       locale = Value(locale),
+       position = Value(position),
+       glosses = Value(glosses);
+  static Insertable<VocabularySense> custom({
+    Expression<int>? vocabularyId,
+    Expression<String>? locale,
+    Expression<int>? position,
+    Expression<String>? glosses,
+    Expression<String>? note,
+    Expression<String>? kind,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (vocabularyId != null) 'vocabulary_id': vocabularyId,
+      if (locale != null) 'locale': locale,
+      if (position != null) 'position': position,
+      if (glosses != null) 'glosses': glosses,
+      if (note != null) 'note': note,
+      if (kind != null) 'kind': kind,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  VocabularySensesCompanion copyWith({
+    Value<int>? vocabularyId,
+    Value<String>? locale,
+    Value<int>? position,
+    Value<String>? glosses,
+    Value<String>? note,
+    Value<String>? kind,
+    Value<int>? rowid,
+  }) {
+    return VocabularySensesCompanion(
+      vocabularyId: vocabularyId ?? this.vocabularyId,
+      locale: locale ?? this.locale,
+      position: position ?? this.position,
+      glosses: glosses ?? this.glosses,
+      note: note ?? this.note,
+      kind: kind ?? this.kind,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (vocabularyId.present) {
+      map['vocabulary_id'] = Variable<int>(vocabularyId.value);
+    }
+    if (locale.present) {
+      map['locale'] = Variable<String>(locale.value);
+    }
+    if (position.present) {
+      map['position'] = Variable<int>(position.value);
+    }
+    if (glosses.present) {
+      map['glosses'] = Variable<String>(glosses.value);
+    }
+    if (note.present) {
+      map['note'] = Variable<String>(note.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('VocabularySensesCompanion(')
+          ..write('vocabularyId: $vocabularyId, ')
+          ..write('locale: $locale, ')
+          ..write('position: $position, ')
+          ..write('glosses: $glosses, ')
+          ..write('note: $note, ')
+          ..write('kind: $kind, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class VocabularyTranslations extends Table
     with TableInfo<VocabularyTranslations, VocabularyTranslation> {
   @override
@@ -6382,6 +6799,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final CoverageGroups coverageGroups = CoverageGroups(this);
   late final VocabularyKanji vocabularyKanji = VocabularyKanji(this);
   late final KanjiTranslations kanjiTranslations = KanjiTranslations(this);
+  late final VocabularySenses vocabularySenses = VocabularySenses(this);
   late final VocabularyTranslations vocabularyTranslations =
       VocabularyTranslations(this);
   late final Sentences sentences = Sentences(this);
@@ -6411,6 +6829,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     coverageGroups,
     vocabularyKanji,
     kanjiTranslations,
+    vocabularySenses,
     vocabularyTranslations,
     sentences,
     sentenceTranslations,
@@ -7168,6 +7587,26 @@ final class $VocabularyEntriesReferences
     );
   }
 
+  static MultiTypedResultKey<VocabularySenses, List<VocabularySense>>
+  _vocabularySensesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.vocabularySenses,
+    aliasName: 'vocabulary_entries__id__vocabulary_senses__vocabulary_id',
+  );
+
+  $VocabularySensesProcessedTableManager get vocabularySensesRefs {
+    final manager = $VocabularySensesTableManager(
+      $_db,
+      $_db.vocabularySenses,
+    ).filter((f) => f.vocabularyId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _vocabularySensesRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
   static MultiTypedResultKey<
     VocabularyTranslations,
     List<VocabularyTranslation>
@@ -7288,6 +7727,31 @@ class $VocabularyEntriesFilterComposer
           }) => $VocabularyKanjiFilterComposer(
             $db: $db,
             $table: $db.vocabularyKanji,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> vocabularySensesRefs(
+    Expression<bool> Function($VocabularySensesFilterComposer f) f,
+  ) {
+    final $VocabularySensesFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.vocabularySenses,
+      getReferencedColumn: (t) => t.vocabularyId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularySensesFilterComposer(
+            $db: $db,
+            $table: $db.vocabularySenses,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -7482,6 +7946,31 @@ class $VocabularyEntriesAnnotationComposer
     return f(composer);
   }
 
+  Expression<T> vocabularySensesRefs<T extends Object>(
+    Expression<T> Function($VocabularySensesAnnotationComposer a) f,
+  ) {
+    final $VocabularySensesAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.vocabularySenses,
+      getReferencedColumn: (t) => t.vocabularyId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularySensesAnnotationComposer(
+            $db: $db,
+            $table: $db.vocabularySenses,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
   Expression<T> vocabularyTranslationsRefs<T extends Object>(
     Expression<T> Function($VocabularyTranslationsAnnotationComposer a) f,
   ) {
@@ -7548,6 +8037,7 @@ class $VocabularyEntriesTableManager
           VocabularyEntry,
           PrefetchHooks Function({
             bool vocabularyKanjiRefs,
+            bool vocabularySensesRefs,
             bool vocabularyTranslationsRefs,
             bool sentencesRefs,
           })
@@ -7622,6 +8112,7 @@ class $VocabularyEntriesTableManager
           prefetchHooksCallback:
               ({
                 vocabularyKanjiRefs = false,
+                vocabularySensesRefs = false,
                 vocabularyTranslationsRefs = false,
                 sentencesRefs = false,
               }) {
@@ -7629,6 +8120,7 @@ class $VocabularyEntriesTableManager
                   db: db,
                   explicitlyWatchedTables: [
                     if (vocabularyKanjiRefs) db.vocabularyKanji,
+                    if (vocabularySensesRefs) db.vocabularySenses,
                     if (vocabularyTranslationsRefs) db.vocabularyTranslations,
                     if (sentencesRefs) db.sentences,
                   ],
@@ -7650,6 +8142,27 @@ class $VocabularyEntriesTableManager
                                 table,
                                 p0,
                               ).vocabularyKanjiRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.vocabularyId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (vocabularySensesRefs)
+                        await $_getPrefetchedData<
+                          VocabularyEntry,
+                          VocabularyEntries,
+                          VocabularySense
+                        >(
+                          currentTable: table,
+                          referencedTable: $VocabularyEntriesReferences
+                              ._vocabularySensesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $VocabularyEntriesReferences(
+                                db,
+                                table,
+                                p0,
+                              ).vocabularySensesRefs,
                           referencedItemsForCurrentItem:
                               (item, referencedItems) => referencedItems.where(
                                 (e) => e.vocabularyId == item.id,
@@ -7720,6 +8233,7 @@ typedef $VocabularyEntriesProcessedTableManager =
       VocabularyEntry,
       PrefetchHooks Function({
         bool vocabularyKanjiRefs,
+        bool vocabularySensesRefs,
         bool vocabularyTranslationsRefs,
         bool sentencesRefs,
       })
@@ -8556,6 +9070,343 @@ typedef $KanjiTranslationsProcessedTableManager =
       (KanjiTranslation, $KanjiTranslationsReferences),
       KanjiTranslation,
       PrefetchHooks Function({bool kanjiId})
+    >;
+typedef $VocabularySensesCreateCompanionBuilder =
+    VocabularySensesCompanion Function({
+      required int vocabularyId,
+      required String locale,
+      required int position,
+      required String glosses,
+      Value<String> note,
+      Value<String> kind,
+      Value<int> rowid,
+    });
+typedef $VocabularySensesUpdateCompanionBuilder =
+    VocabularySensesCompanion Function({
+      Value<int> vocabularyId,
+      Value<String> locale,
+      Value<int> position,
+      Value<String> glosses,
+      Value<String> note,
+      Value<String> kind,
+      Value<int> rowid,
+    });
+
+final class $VocabularySensesReferences
+    extends BaseReferences<_$AppDatabase, VocabularySenses, VocabularySense> {
+  $VocabularySensesReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static VocabularyEntries _vocabularyIdTable(_$AppDatabase db) => db
+      .vocabularyEntries
+      .createAlias('vocabulary_senses__vocabulary_id__vocabulary_entries__id');
+
+  $VocabularyEntriesProcessedTableManager get vocabularyId {
+    final $_column = $_itemColumn<int>('vocabulary_id')!;
+
+    final manager = $VocabularyEntriesTableManager(
+      $_db,
+      $_db.vocabularyEntries,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_vocabularyIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $VocabularySensesFilterComposer
+    extends Composer<_$AppDatabase, VocabularySenses> {
+  $VocabularySensesFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get locale => $composableBuilder(
+    column: $table.locale,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get glosses => $composableBuilder(
+    column: $table.glosses,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $VocabularyEntriesFilterComposer get vocabularyId {
+    final $VocabularyEntriesFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.vocabularyId,
+      referencedTable: $db.vocabularyEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularyEntriesFilterComposer(
+            $db: $db,
+            $table: $db.vocabularyEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $VocabularySensesOrderingComposer
+    extends Composer<_$AppDatabase, VocabularySenses> {
+  $VocabularySensesOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get locale => $composableBuilder(
+    column: $table.locale,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get glosses => $composableBuilder(
+    column: $table.glosses,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $VocabularyEntriesOrderingComposer get vocabularyId {
+    final $VocabularyEntriesOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.vocabularyId,
+      referencedTable: $db.vocabularyEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularyEntriesOrderingComposer(
+            $db: $db,
+            $table: $db.vocabularyEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $VocabularySensesAnnotationComposer
+    extends Composer<_$AppDatabase, VocabularySenses> {
+  $VocabularySensesAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get locale =>
+      $composableBuilder(column: $table.locale, builder: (column) => column);
+
+  GeneratedColumn<int> get position =>
+      $composableBuilder(column: $table.position, builder: (column) => column);
+
+  GeneratedColumn<String> get glosses =>
+      $composableBuilder(column: $table.glosses, builder: (column) => column);
+
+  GeneratedColumn<String> get note =>
+      $composableBuilder(column: $table.note, builder: (column) => column);
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  $VocabularyEntriesAnnotationComposer get vocabularyId {
+    final $VocabularyEntriesAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.vocabularyId,
+      referencedTable: $db.vocabularyEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularyEntriesAnnotationComposer(
+            $db: $db,
+            $table: $db.vocabularyEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $VocabularySensesTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          VocabularySenses,
+          VocabularySense,
+          $VocabularySensesFilterComposer,
+          $VocabularySensesOrderingComposer,
+          $VocabularySensesAnnotationComposer,
+          $VocabularySensesCreateCompanionBuilder,
+          $VocabularySensesUpdateCompanionBuilder,
+          (VocabularySense, $VocabularySensesReferences),
+          VocabularySense,
+          PrefetchHooks Function({bool vocabularyId})
+        > {
+  $VocabularySensesTableManager(_$AppDatabase db, VocabularySenses table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $VocabularySensesFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $VocabularySensesOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $VocabularySensesAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> vocabularyId = const Value.absent(),
+                Value<String> locale = const Value.absent(),
+                Value<int> position = const Value.absent(),
+                Value<String> glosses = const Value.absent(),
+                Value<String> note = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => VocabularySensesCompanion(
+                vocabularyId: vocabularyId,
+                locale: locale,
+                position: position,
+                glosses: glosses,
+                note: note,
+                kind: kind,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required int vocabularyId,
+                required String locale,
+                required int position,
+                required String glosses,
+                Value<String> note = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => VocabularySensesCompanion.insert(
+                vocabularyId: vocabularyId,
+                locale: locale,
+                position: position,
+                glosses: glosses,
+                note: note,
+                kind: kind,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $VocabularySensesReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({vocabularyId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (vocabularyId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.vocabularyId,
+                                referencedTable: $VocabularySensesReferences
+                                    ._vocabularyIdTable(db),
+                                referencedColumn: $VocabularySensesReferences
+                                    ._vocabularyIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $VocabularySensesProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      VocabularySenses,
+      VocabularySense,
+      $VocabularySensesFilterComposer,
+      $VocabularySensesOrderingComposer,
+      $VocabularySensesAnnotationComposer,
+      $VocabularySensesCreateCompanionBuilder,
+      $VocabularySensesUpdateCompanionBuilder,
+      (VocabularySense, $VocabularySensesReferences),
+      VocabularySense,
+      PrefetchHooks Function({bool vocabularyId})
     >;
 typedef $VocabularyTranslationsCreateCompanionBuilder =
     VocabularyTranslationsCompanion Function({
@@ -11176,6 +12027,8 @@ class $AppDatabaseManager {
       $VocabularyKanjiTableManager(_db, _db.vocabularyKanji);
   $KanjiTranslationsTableManager get kanjiTranslations =>
       $KanjiTranslationsTableManager(_db, _db.kanjiTranslations);
+  $VocabularySensesTableManager get vocabularySenses =>
+      $VocabularySensesTableManager(_db, _db.vocabularySenses);
   $VocabularyTranslationsTableManager get vocabularyTranslations =>
       $VocabularyTranslationsTableManager(_db, _db.vocabularyTranslations);
   $SentencesTableManager get sentences =>

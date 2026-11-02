@@ -26,7 +26,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 26;
+  int get schemaVersion => 27;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -178,6 +178,22 @@ class AppDatabase extends _$AppDatabase {
           'band',
           schema.coverageGroups.vocabularyLevel,
         );
+      },
+
+      // A word's meanings become rows instead of one joined string.
+      //
+      // `vocabulary_entries.meaning` still holds every gloss of every sense
+      // joined with "; " — 824 characters for する — because search matches
+      // against it and a list row wants one truncated line. The word's own
+      // screen reads `vocabulary_senses` instead, which keeps JMdict's sense
+      // boundaries, its usage notes and the transitivity of each sense.
+      //
+      // Nothing is backfilled: a schema change ships a new asset and the
+      // refresh replaces the file wholesale. This step exists so a database
+      // opened without that replacement has the table and degrades to the
+      // joined string rather than failing.
+      from26To27: (m, schema) async {
+        await m.createTable(schema.vocabularySenses);
       },
     ),
   );

@@ -395,6 +395,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get meaning => 'Meaning';
 
   @override
+  String nMeanings(int count) {
+    return '$count meanings';
+  }
+
+  @override
+  String showNMoreMeanings(int count) {
+    return 'Show $count more';
+  }
+
+  @override
+  String get transitive => 'transitive';
+
+  @override
+  String get intransitive => 'intransitive';
+
+  @override
   String get exampleSentences => 'In a sentence';
 
   @override

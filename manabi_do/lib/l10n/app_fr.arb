@@ -155,6 +155,24 @@
   "vocabularyLevel4": "Peu courants",
   "vocabularyLevel5": "Rares",
   "meaning": "Sens",
+  "nMeanings": "{count} sens",
+  "@nMeanings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "showNMoreMeanings": "Afficher {count} de plus",
+  "@showNMoreMeanings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "transitive": "transitif",
+  "intransitive": "intransitif",
   "exampleSentences": "Dans une phrase",
   "writtenWith": "Écrit avec",
   "youCanRead": "Vous pouvez lire",

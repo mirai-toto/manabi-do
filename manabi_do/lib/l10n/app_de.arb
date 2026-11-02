@@ -157,6 +157,24 @@
   "vocabularyLevel4": "Selten",
   "vocabularyLevel5": "Sehr selten",
   "meaning": "Bedeutung",
+  "nMeanings": "{count} Bedeutungen",
+  "@nMeanings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "showNMoreMeanings": "{count} weitere anzeigen",
+  "@showNMoreMeanings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "transitive": "transitiv",
+  "intransitive": "intransitiv",
   "exampleSentences": "Im Satz",
   "writtenWith": "Geschrieben mit",
   "youCanRead": "Du kannst lesen",

@@ -802,6 +802,30 @@ abstract class AppLocalizations {
   /// **'Meaning'**
   String get meaning;
 
+  /// No description provided for @nMeanings.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} meanings'**
+  String nMeanings(int count);
+
+  /// No description provided for @showNMoreMeanings.
+  ///
+  /// In en, this message translates to:
+  /// **'Show {count} more'**
+  String showNMoreMeanings(int count);
+
+  /// No description provided for @transitive.
+  ///
+  /// In en, this message translates to:
+  /// **'transitive'**
+  String get transitive;
+
+  /// No description provided for @intransitive.
+  ///
+  /// In en, this message translates to:
+  /// **'intransitive'**
+  String get intransitive;
+
   /// No description provided for @exampleSentences.
   ///
   /// In en, this message translates to:

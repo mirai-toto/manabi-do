@@ -110,6 +110,34 @@ CREATE TABLE kanji_translations (
   PRIMARY KEY (kanji_id, locale)
 );
 
+-- A word's meanings, one row per sense per language, in JMdict's own order.
+--
+-- `vocabulary_entries.meaning` holds every gloss of every sense joined with
+-- "; ". That is 824 characters for する — 37 glosses from 17 unrelated senses
+-- run together, with nothing to say where one meaning stops. It stays, because
+-- search matches against it and a list row wants one truncated line, but it is
+-- not what a word's screen should read from.
+--
+-- Nothing here is inferred. JMdict ships `sense` as an array and each entry
+-- carries its own glosses, so the grouping already exists upstream and the
+-- pipeline was erasing it. `note` is the editors' `info` field verbatim —
+-- "as 〜にする,〜とする" — and `kind` is `vt` or `vi` off that sense's own part of
+-- speech, which is why one sense of する can be intransitive while its
+-- neighbour is not.
+--
+-- `position` counts per language. jmdict-all merges each language's sense list
+-- into one array, so a sense often has glosses in one language and none in the
+-- others; numbering across all of them would print English sense 7 as 23.
+CREATE TABLE vocabulary_senses (
+  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
+  locale TEXT NOT NULL,
+  position INTEGER NOT NULL,
+  glosses TEXT NOT NULL,
+  note TEXT NOT NULL DEFAULT '',
+  kind TEXT NOT NULL DEFAULT '',
+  PRIMARY KEY (vocabulary_id, locale, position)
+);
+
 CREATE TABLE vocabulary_translations (
   vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
   locale TEXT NOT NULL,

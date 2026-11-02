@@ -6,7 +6,7 @@ import 'package:manabi_do/data/database/app_database.dart';
 
 void main() {
   test(
-    'a v22 content database migrates to 26 with the vocabulary level columns',
+    'a v22 content database migrates to 27 with the vocabulary level columns',
     () async {
       final source = File(
         '${Platform.environment['HOME']}/.cache/manabi-content/v22.1-manabi_do_content.db',
@@ -33,7 +33,7 @@ void main() {
       // content asset replaces it, which is what ships with a schema change.
       await db.customSelect('SELECT COUNT(*) FROM coverage_groups').getSingle();
 
-      expect(version, 26);
+      expect(version, 27);
       expect(columns, contains('vocabulary_level'));
       expect(columns, contains('group_index'));
       expect(columns, isNot(contains('jlpt_level')));

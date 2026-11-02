@@ -73,3 +73,19 @@ final vocabularySentencesProvider =
       );
       return sentences.map((s) => (s, translations[s.id])).toList();
     });
+
+/// A word's meanings, split into senses, in the reader's language.
+///
+/// Falls back to English when the content has nothing in that language, and
+/// the caller falls back to the flattened `meaning` when even that is empty.
+final vocabularySensesProvider =
+    FutureProvider.family<List<VocabularySense>, int>((
+      ref,
+      vocabularyId,
+    ) async {
+      final locale = ref.watch(localeProvider).languageCode;
+      final db = ref.watch(databaseProvider);
+      final mine = await db.getVocabularySenses(vocabularyId, locale);
+      if (mine.isNotEmpty || locale == 'en') return mine;
+      return db.getVocabularySenses(vocabularyId, 'en');
+    });
