@@ -185,11 +185,19 @@
   "levelN3": "Intermediate",
   "levelN2": "Upper-Intermediate",
   "levelN1": "Advanced",
-  "band1": "Core",
-  "band2": "Everyday",
-  "band3": "Comfortable",
-  "band4": "Wide",
-  "band5": "Long tail",
+  "band1": "Most common",
+  "band2": "Very common",
+  "band3": "Common",
+  "band4": "Uncommon",
+  "band5": "Rare",
+  "bandAdds": "+{amount} of everything written",
+  "@bandAdds": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "meaning": "Meaning",
   "exampleSentences": "In a sentence",
   "writtenWith": "Written with",
@@ -212,8 +220,7 @@
       }
     }
   },
-  "selectBand": "Choose a band",
-  "bandExplainer": "Each band is a share of everything written in Japanese, measured on the BCCWJ corpus. Not a JLPT level: the JLPT publishes no vocabulary list.",
+  "selectBand": "Where to start",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
   "@charactersSubtitle": {
     "placeholders": {

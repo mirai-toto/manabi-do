@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -81,7 +82,7 @@ class _VocabularyBandSelectorState
   }
 
   Widget _bandList(BuildContext context) {
-    final reached = ref.watch(bandReachedProvider);
+    final shares = ref.watch(bandShareProvider);
     final mine = ref.watch(coverageReachedProvider);
     final l = context.l10n;
     return ScrollFade(
@@ -89,7 +90,7 @@ class _VocabularyBandSelectorState
         controller: controller,
         padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
         children: [
-          // "At least", because 1,675 of the 12,000 words carry no measurable
+          // "At least", because 3,448 of the 12,000 words carry no measurable
           // share: UniDic counts お願いします in pieces, so the corpus has
           // nothing to attribute to it. The figure is a floor, not an estimate.
           if (mine != null)
@@ -105,19 +106,11 @@ class _VocabularyBandSelectorState
           for (final band in kAllBands)
             CoverageBandCard(
               band: band,
-              reached: reached?[band],
-              subtitle: _subtitle(context, band),
+              wordCount: _wordCount(band),
+              adds: _adds(shares?[band]),
               onTap: () => widget.onSelect(band),
             ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-            child: Text(
-              context.l10n.bandExplainer,
-              style: AppTextStyles.bodySmall.copyWith(
-                color: context.tokens.onSurfaceVariant,
-              ),
-            ),
-          ),
+          const SizedBox(height: AppDimens.spaceLg),
         ],
       ),
     );
@@ -132,13 +125,23 @@ class _VocabularyBandSelectorState
             results.isEmpty ? const _NoResults() : _ResultList(results),
       );
 
-  String? _subtitle(BuildContext context, int band) {
+  String? _wordCount(int band) {
     final count = ref
         .watch(vocabularyByBandProvider(band))
         .asData
         ?.value
         .length;
-    return count != null ? context.l10n.nWords(count) : null;
+    return count != null ? NumberFormat.decimalPattern().format(count) : null;
+  }
+
+  /// A band's share, kept to one decimal below ten per cent so the last band
+  /// reads "+1.5%" rather than rounding to "+2%" and overstating itself.
+  String? _adds(double? share) {
+    if (share == null || share <= 0) return null;
+    final percent = share * 100;
+    return percent >= 10
+        ? '${percent.round()}%'
+        : '${percent.toStringAsFixed(1)}%';
   }
 }
 

@@ -372,19 +372,24 @@ class AppLocalizationsDe extends AppLocalizations {
   String get levelN1 => 'Fortgeschritten';
 
   @override
-  String get band1 => 'Kern';
+  String get band1 => 'Am häufigsten';
 
   @override
-  String get band2 => 'Alltag';
+  String get band2 => 'Sehr häufig';
 
   @override
-  String get band3 => 'Sicher';
+  String get band3 => 'Häufig';
 
   @override
-  String get band4 => 'Breit';
+  String get band4 => 'Selten';
 
   @override
-  String get band5 => 'Langer Schwanz';
+  String get band5 => 'Sehr selten';
+
+  @override
+  String bandAdds(String amount) {
+    return '+$amount von allem Geschriebenen';
+  }
 
   @override
   String get meaning => 'Bedeutung';
@@ -416,11 +421,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get selectBand => 'Stufe wählen';
-
-  @override
-  String get bandExplainer =>
-      'Jede Stufe ist ein Anteil an allem, was auf Japanisch geschrieben wird, gemessen am BCCWJ-Korpus. Keine JLPT-Stufe: der JLPT veröffentlicht keine Vokabelliste.';
+  String get selectBand => 'Wo anfangen';
 
   @override
   String charactersSubtitle(int total) {

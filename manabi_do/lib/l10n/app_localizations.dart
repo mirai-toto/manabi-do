@@ -763,32 +763,38 @@ abstract class AppLocalizations {
   /// No description provided for @band1.
   ///
   /// In en, this message translates to:
-  /// **'Core'**
+  /// **'Most common'**
   String get band1;
 
   /// No description provided for @band2.
   ///
   /// In en, this message translates to:
-  /// **'Everyday'**
+  /// **'Very common'**
   String get band2;
 
   /// No description provided for @band3.
   ///
   /// In en, this message translates to:
-  /// **'Comfortable'**
+  /// **'Common'**
   String get band3;
 
   /// No description provided for @band4.
   ///
   /// In en, this message translates to:
-  /// **'Wide'**
+  /// **'Uncommon'**
   String get band4;
 
   /// No description provided for @band5.
   ///
   /// In en, this message translates to:
-  /// **'Long tail'**
+  /// **'Rare'**
   String get band5;
+
+  /// No description provided for @bandAdds.
+  ///
+  /// In en, this message translates to:
+  /// **'+{amount} of everything written'**
+  String bandAdds(String amount);
 
   /// No description provided for @meaning.
   ///
@@ -841,14 +847,8 @@ abstract class AppLocalizations {
   /// No description provided for @selectBand.
   ///
   /// In en, this message translates to:
-  /// **'Choose a band'**
+  /// **'Where to start'**
   String get selectBand;
-
-  /// No description provided for @bandExplainer.
-  ///
-  /// In en, this message translates to:
-  /// **'Each band is a share of everything written in Japanese, measured on the BCCWJ corpus. Not a JLPT level: the JLPT publishes no vocabulary list.'**
-  String get bandExplainer;
 
   /// No description provided for @charactersSubtitle.
   ///

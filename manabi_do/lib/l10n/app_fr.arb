@@ -141,11 +141,19 @@
   "levelN3": "Intermédiaire",
   "levelN2": "Intermédiaire supérieur",
   "levelN1": "Avancé",
-  "band1": "Noyau",
-  "band2": "Courant",
-  "band3": "À l'aise",
-  "band4": "Étendu",
-  "band5": "Longue traîne",
+  "band1": "Les plus courants",
+  "band2": "Très courants",
+  "band3": "Courants",
+  "band4": "Peu courants",
+  "band5": "Rares",
+  "bandAdds": "+{amount} de tout ce qui s'écrit",
+  "@bandAdds": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "meaning": "Sens",
   "exampleSentences": "Dans une phrase",
   "writtenWith": "Écrit avec",
@@ -168,8 +176,7 @@
       }
     }
   },
-  "selectBand": "Choisissez un palier",
-  "bandExplainer": "Chaque palier représente une part de tout ce qui s'écrit en japonais, mesurée sur le corpus BCCWJ. Ce n'est pas un niveau JLPT : le JLPT ne publie aucune liste de vocabulaire.",
+  "selectBand": "Par où commencer",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} kana",
   "@charactersSubtitle": {
     "placeholders": {

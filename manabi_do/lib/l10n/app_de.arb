@@ -143,11 +143,19 @@
   "levelN3": "Mittelstufe",
   "levelN2": "Obere Mittelstufe",
   "levelN1": "Fortgeschritten",
-  "band1": "Kern",
-  "band2": "Alltag",
-  "band3": "Sicher",
-  "band4": "Breit",
-  "band5": "Langer Schwanz",
+  "band1": "Am häufigsten",
+  "band2": "Sehr häufig",
+  "band3": "Häufig",
+  "band4": "Selten",
+  "band5": "Sehr selten",
+  "bandAdds": "+{amount} von allem Geschriebenen",
+  "@bandAdds": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "meaning": "Bedeutung",
   "exampleSentences": "Im Satz",
   "writtenWith": "Geschrieben mit",
@@ -170,8 +178,7 @@
       }
     }
   },
-  "selectBand": "Stufe wählen",
-  "bandExplainer": "Jede Stufe ist ein Anteil an allem, was auf Japanisch geschrieben wird, gemessen am BCCWJ-Korpus. Keine JLPT-Stufe: der JLPT veröffentlicht keine Vokabelliste.",
+  "selectBand": "Wo anfangen",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} Kana",
   "@charactersSubtitle": {
     "placeholders": {
