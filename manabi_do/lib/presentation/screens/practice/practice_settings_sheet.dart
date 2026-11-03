@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/models/drawing_settings.dart';
-import '../../../core/models/flashcard_settings.dart';
-import '../../../core/models/mcq_settings.dart';
-import '../../../core/models/sentence_settings.dart';
 import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../../providers/drawing_settings_provider.dart';
-import '../../providers/flashcard_settings_provider.dart';
-import '../../providers/mcq_settings_provider.dart';
-import '../../providers/sentence_settings_provider.dart';
 import '../../widgets/widgets.dart';
 
 export '../../../core/models/sentence_settings.dart' show TranslationMode;
@@ -42,71 +34,10 @@ class PracticeSettingsSheet extends ConsumerWidget {
     final t = context.tokens;
     final l = context.l10n;
 
-    final sentence = ref.watch(sentenceSettingsProvider);
-    final mcq = ref.watch(mcqSettingsProvider);
-    final flashcard = ref.watch(flashcardSettingsProvider);
-    final drawing = ref.watch(drawingSettingsProvider);
     final SrsSettings srs =
         ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
 
-    void updateSentence(SentenceSettings next) =>
-        ref.read(sentenceSettingsProvider.notifier).update(next);
-    void updateMcq(McqSettings next) =>
-        ref.read(mcqSettingsProvider.notifier).update(next);
-    void updateFlashcard(FlashcardSettings next) =>
-        ref.read(flashcardSettingsProvider.notifier).update(next);
-    void updateDrawing(DrawingSettings next) =>
-        ref.read(drawingSettingsProvider.notifier).update(next);
-
     final showLabels = contexts.length > 1;
-
-    Widget sessionLengthRow(int? value, void Function(int?) onSelect) => Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _SectionLabel(l.practiceSettingsSessionLength),
-        const SizedBox(height: AppDimens.spaceXs),
-        SegmentedControl(
-          options: const ['10', '20', '50', '∞'],
-          selected: switch (value) {
-            10 => 0,
-            20 => 1,
-            50 => 2,
-            _ => value == null ? 3 : 1,
-          },
-          onSelect: (i) {
-            const lengths = [10, 20, 50, null];
-            onSelect(lengths[i]);
-          },
-        ),
-        const SizedBox(height: AppDimens.spaceXs),
-        Text(
-          l.sessionLengthHint,
-          style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-        ),
-      ],
-    );
-
-    Widget mcqChoicesRow(int value, void Function(int) onSelect) => Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _SectionLabel(l.practiceSettingsMcqChoices),
-        const SizedBox(height: AppDimens.spaceXs),
-        SegmentedControl(
-          options: const ['4', '6', '8'],
-          selected: switch (value) {
-            6 => 1,
-            8 => 2,
-            _ => 0,
-          },
-          onSelect: (i) => onSelect(const [4, 6, 8][i]),
-        ),
-        const SizedBox(height: AppDimens.spaceXs),
-        Text(
-          l.sessionLengthHint,
-          style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-        ),
-      ],
-    );
 
     return SafeArea(
       child: Padding(
@@ -132,7 +63,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
             // One switch, not one per exercise type: a review session mixes
             // them, and being asked by only half of them would be incoherent.
             if (showSessionAutoAdvance) ...[
-              _SwitchRow(
+              SettingsSwitchRow(
                 label: l.autoAdvanceLabel,
                 subtitle: l.autoAdvanceSubtitle,
                 value: srs.autoAdvance,
@@ -141,7 +72,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
               ),
               // Only offered where the grade is kept: free practice discards it,
               // so there is no precision to choose.
-              _SwitchRow(
+              SettingsSwitchRow(
                 label: l.settingsDetailedGrading,
                 subtitle: l.settingsDetailedGradingSubtitle,
                 value: srs.detailedGrading,
@@ -152,250 +83,56 @@ class PracticeSettingsSheet extends ConsumerWidget {
               const SizedBox(height: AppDimens.spaceMd),
             ],
 
-            // ── Flashcard ──────────────────────────────────────────────────
+            // Each block is a store, not a section: grammar keeps nothing of
+            // its own and reads the same flashcard and multiple-choice values
+            // that vocabulary and kanji do.
             if (contexts.contains(SettingsContext.flashcard)) ...[
               if (showLabels) ...[
                 _CategoryLabel(l.flashcardPractice),
                 const SizedBox(height: AppDimens.spaceXs),
               ],
-              sessionLengthRow(
-                flashcard.sessionLength,
-                (v) => updateFlashcard(
-                  v == null
-                      ? flashcard.copyWith(clearSessionLength: true)
-                      : flashcard.copyWith(sessionLength: v),
-                ),
-              ),
-              if (hasExamples) ...[
-                const SizedBox(height: AppDimens.spaceMd),
-                _SwitchRow(
-                  label: l.showExampleLabel,
-                  subtitle: l.showExampleSubtitle,
-                  value: flashcard.showExample,
-                  onChanged: (v) =>
-                      updateFlashcard(flashcard.copyWith(showExample: v)),
-                ),
-              ],
+              FlashcardSettingsSection(hasExamples: hasExamples),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
-            // ── MCQ ────────────────────────────────────────────────────────
             if (contexts.contains(SettingsContext.mcq)) ...[
               if (showLabels) ...[
                 _CategoryLabel(l.mcqPractice),
                 const SizedBox(height: AppDimens.spaceXs),
               ] else
                 const SizedBox(height: AppDimens.spaceSm),
-              sessionLengthRow(
-                mcq.sessionLength,
-                (v) => updateMcq(
-                  v == null
-                      ? mcq.copyWith(clearSessionLength: true)
-                      : mcq.copyWith(sessionLength: v),
-                ),
-              ),
-              const SizedBox(height: AppDimens.spaceMd),
-              mcqChoicesRow(
-                mcq.mcqChoiceCount,
-                (v) => updateMcq(mcq.copyWith(mcqChoiceCount: v)),
-              ),
-              if (showAutoAdvance) ...[
-                const SizedBox(height: AppDimens.spaceMd),
-                _SwitchRow(
-                  label: l.autoAdvanceLabel,
-                  subtitle: l.autoAdvanceSubtitle,
-                  value: mcq.autoAdvance,
-                  onChanged: (v) => updateMcq(mcq.copyWith(autoAdvance: v)),
-                ),
-              ],
-              _SwitchRow(
-                label: l.showMcqFuriganaLabel,
-                subtitle: l.showMcqFuriganaSubtitle,
-                value: mcq.showPromptFurigana,
-                onChanged: (v) =>
-                    updateMcq(mcq.copyWith(showPromptFurigana: v)),
-              ),
+              McqSettingsSection(showAutoAdvance: showAutoAdvance),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
-            // ── Grammar ───────────────────────────────────────────────────
+            // Grammar runs flashcards and multiple choice, so it shows those
+            // two stores under one heading of its own.
             if (contexts.contains(SettingsContext.grammar)) ...[
               if (showLabels) ...[
                 _CategoryLabel(l.grammarPractice),
                 const SizedBox(height: AppDimens.spaceXs),
               ],
-              sessionLengthRow(
-                mcq.sessionLength,
-                (v) => updateMcq(
-                  v == null
-                      ? mcq.copyWith(clearSessionLength: true)
-                      : mcq.copyWith(sessionLength: v),
-                ),
-              ),
-              const SizedBox(height: AppDimens.spaceMd),
-              if (hasExamples) ...[
-                _SwitchRow(
-                  label: l.showExampleLabel,
-                  subtitle: l.showExampleSubtitle,
-                  value: flashcard.showExample,
-                  onChanged: (v) =>
-                      updateFlashcard(flashcard.copyWith(showExample: v)),
-                ),
-              ],
-              if (showAutoAdvance) ...[
-                _SwitchRow(
-                  label: l.autoAdvanceLabel,
-                  subtitle: l.autoAdvanceSubtitle,
-                  value: mcq.autoAdvance,
-                  onChanged: (v) => updateMcq(mcq.copyWith(autoAdvance: v)),
-                ),
-              ],
-              _SwitchRow(
-                label: l.showMcqFuriganaLabel,
-                subtitle: l.showMcqFuriganaSubtitle,
-                value: mcq.showPromptFurigana,
-                onChanged: (v) =>
-                    updateMcq(mcq.copyWith(showPromptFurigana: v)),
-              ),
+              McqSettingsSection(showAutoAdvance: showAutoAdvance),
+              if (hasExamples)
+                FlashcardSettingsSection(hasExamples: hasExamples),
+              if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
-            // ── Sentence ──────────────────────────────────────────────────
             if (contexts.contains(SettingsContext.sentence)) ...[
               if (showLabels) ...[
                 _CategoryLabel(l.sentencePractice),
                 const SizedBox(height: AppDimens.spaceXs),
               ],
-              sessionLengthRow(
-                sentence.sessionLength,
-                (v) => updateSentence(
-                  v == null
-                      ? sentence.copyWith(clearSessionLength: true)
-                      : sentence.copyWith(sessionLength: v),
-                ),
-              ),
-              const SizedBox(height: AppDimens.spaceMd),
-              mcqChoicesRow(
-                sentence.mcqChoiceCount,
-                (v) => updateSentence(sentence.copyWith(mcqChoiceCount: v)),
-              ),
-              if (showAutoAdvance) ...[
-                const SizedBox(height: AppDimens.spaceMd),
-                _SwitchRow(
-                  label: l.autoAdvanceLabel,
-                  subtitle: l.autoAdvanceSubtitle,
-                  value: sentence.autoAdvance,
-                  onChanged: (v) =>
-                      updateSentence(sentence.copyWith(autoAdvance: v)),
-                ),
-              ],
-              _SwitchRow(
-                label: l.showSentenceFuriganaLabel,
-                subtitle: l.showSentenceFuriganaSubtitle,
-                value: sentence.showSentenceFurigana,
-                onChanged: (v) =>
-                    updateSentence(sentence.copyWith(showSentenceFurigana: v)),
-              ),
-              _SwitchRow(
-                label: l.showChoiceFuriganaLabel,
-                subtitle: l.showChoiceFuriganaSubtitle,
-                value: sentence.showChoiceFurigana,
-                onChanged: (v) =>
-                    updateSentence(sentence.copyWith(showChoiceFurigana: v)),
-              ),
-              _SwitchRow(
-                label: l.nativeTranslationOnlyLabel,
-                subtitle: l.nativeTranslationOnlySubtitle,
-                value: sentence.nativeTranslationOnly,
-                onChanged: (v) =>
-                    updateSentence(sentence.copyWith(nativeTranslationOnly: v)),
-              ),
-              const SizedBox(height: AppDimens.spaceXs),
-              _SectionLabel(l.translationModeLabel),
-              const SizedBox(height: AppDimens.spaceXs),
-              SegmentedControl(
-                options: [
-                  l.translationModeAlways,
-                  l.translationModeOnDemand,
-                  l.translationModeNever,
-                ],
-                selected: sentence.translationMode.index,
-                onSelect: (i) => updateSentence(
-                  sentence.copyWith(translationMode: TranslationMode.values[i]),
-                ),
-              ),
+              SentenceSettingsSection(showAutoAdvance: showAutoAdvance),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
-            // ── Writing ───────────────────────────────────────────────────
             if (contexts.contains(SettingsContext.writing)) ...[
               if (showLabels) ...[
                 _CategoryLabel(l.writingPractice),
                 const SizedBox(height: AppDimens.spaceXs),
               ],
-              sessionLengthRow(
-                drawing.sessionLength,
-                (v) => updateDrawing(
-                  v == null
-                      ? drawing.copyWith(clearSessionLength: true)
-                      : drawing.copyWith(sessionLength: v),
-                ),
-              ),
-              if (showAutoAdvance) ...[
-                const SizedBox(height: AppDimens.spaceMd),
-                _SwitchRow(
-                  label: l.autoAdvanceLabel,
-                  subtitle: l.autoAdvanceSubtitle,
-                  value: drawing.autoAdvance,
-                  onChanged: (v) =>
-                      updateDrawing(drawing.copyWith(autoAdvance: v)),
-                ),
-              ],
-              const SizedBox(height: AppDimens.spaceXs),
-              _SectionLabel(l.practiceSettingsRecognition),
-              const SizedBox(height: AppDimens.spaceXs),
-              SegmentedControl(
-                options: [
-                  l.recognitionStrict,
-                  l.recognitionNormal,
-                  l.recognitionLenient,
-                ],
-                selected: drawing.tolerance.index,
-                onSelect: (i) => updateDrawing(
-                  drawing.copyWith(tolerance: RecognitionTolerance.values[i]),
-                ),
-              ),
-              const SizedBox(height: AppDimens.spaceMd),
-              _SectionLabel(l.practiceSettingsHint),
-              const SizedBox(height: AppDimens.spaceXs),
-              SegmentedControl(
-                options: [l.hintMeaning, l.hintReadings, l.hintBoth],
-                selected: drawing.hintMode.index,
-                onSelect: (i) => updateDrawing(
-                  drawing.copyWith(hintMode: KanjiHintMode.values[i]),
-                ),
-              ),
-              const SizedBox(height: AppDimens.spaceMd),
-              _SwitchRow(
-                label: l.ghostKanjiLabel,
-                subtitle: l.ghostKanjiSubtitle,
-                value: drawing.ghostKanji,
-                onChanged: (v) =>
-                    updateDrawing(drawing.copyWith(ghostKanji: v)),
-              ),
-              _SwitchRow(
-                label: l.snapToReferenceLabel,
-                subtitle: l.snapToReferenceSubtitle,
-                value: drawing.snapToReference,
-                onChanged: (v) =>
-                    updateDrawing(drawing.copyWith(snapToReference: v)),
-              ),
-              _SwitchRow(
-                label: l.showStrokeCountLabel,
-                subtitle: l.showStrokeCountSubtitle,
-                value: drawing.showStrokeCount,
-                onChanged: (v) =>
-                    updateDrawing(drawing.copyWith(showStrokeCount: v)),
-              ),
+              WritingSettingsSection(showAutoAdvance: showAutoAdvance),
             ],
           ],
         ),
@@ -416,68 +153,6 @@ class _CategoryLabel extends StatelessWidget {
       style: AppTextStyles.body.copyWith(
         color: t.onSurface,
         fontWeight: FontWeight.w600,
-      ),
-    );
-  }
-}
-
-class _SectionLabel extends StatelessWidget {
-  final String text;
-  const _SectionLabel(this.text);
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Text(
-      text,
-      style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
-    );
-  }
-}
-
-class _SwitchRow extends StatelessWidget {
-  final String label;
-  final String subtitle;
-  final bool value;
-  final void Function(bool) onChanged;
-
-  const _SwitchRow({
-    required this.label,
-    required this.subtitle,
-    required this.value,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceXs),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  style: AppTextStyles.body.copyWith(color: t.onSurface),
-                ),
-                Text(
-                  subtitle,
-                  style: AppTextStyles.bodySmall.copyWith(
-                    color: t.onSurfaceVariant,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Switch(
-            value: value,
-            onChanged: onChanged,
-            activeThumbColor: t.primary,
-          ),
-        ],
       ),
     );
   }

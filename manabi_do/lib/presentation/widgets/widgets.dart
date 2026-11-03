@@ -58,6 +58,7 @@ export 'settings/practice_settings_card.dart';
 export 'settings/settings_about_section.dart';
 export 'settings/settings_card.dart';
 export 'settings/settings_info.dart';
+export 'settings/exercise_settings_sections.dart';
 export 'settings/settings_stepper.dart';
 export 'settings/settings_tile.dart';
 export 'settings/settings_toggle.dart';
