@@ -588,7 +588,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aboutBccwjNotice =>
-      'Die Wortschwierigkeit, die Abdeckungsstufen und der Anteil des geschriebenen Japanisch, den jede Lerngruppe abdeckt, werden aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).';
+      'Die Wortschwierigkeit, die Vokabelstufen und der Anteil des geschriebenen Japanisch, den jede Lerngruppe abdeckt, werden aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).';
 
   @override
   String get aboutBccwjLink => 'clrd.ninjal.ac.jp';

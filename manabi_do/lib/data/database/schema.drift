@@ -72,10 +72,10 @@ CREATE TABLE vocabulary_entries (
 -- BCCWJ corpus. Summing the groups a learner has finished is how the app knows
 -- what they can read.
 --
--- Per group of thirty words rather than per word, and that is deliberate.
--- BCCWJ is free for research and education and handled case by case otherwise,
--- so no per-word count or rank leaves the build machine. A share of thirty
--- words together cannot be turned back into one.
+-- Per group of thirty words rather than per word, and that is deliberate. No
+-- per-word count or rank leaves the build machine; a share of thirty words
+-- together cannot be turned back into one. NINJAL is credited for the lists
+-- these figures are derived from.
 --
 -- `corpus_share` is 0 for the groups in level 5, whose words the corpus cannot
 -- attribute: UniDic splits お願いします into pieces and counts お菓子 as お plus

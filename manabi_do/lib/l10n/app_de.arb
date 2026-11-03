@@ -275,7 +275,7 @@
   "aboutWallerLink": "tanos.co.uk",
   "aboutPykakasiNotice": "Die Furigana über den Beispielsätzen wurden mit pykakasi erzeugt, lizenziert unter der GNU General Public License v3 oder später.",
   "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
-  "aboutBccwjNotice": "Die Wortschwierigkeit, die Abdeckungsstufen und der Anteil des geschriebenen Japanisch, den jede Lerngruppe abdeckt, werden aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).",
+  "aboutBccwjNotice": "Die Wortschwierigkeit, die Vokabelstufen und der Anteil des geschriebenen Japanisch, den jede Lerngruppe abdeckt, werden aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).",
   "aboutBccwjLink": "clrd.ninjal.ac.jp",
   "aboutOpenSourceLicenses": "Open-Source-Lizenzen",
   "practiceSessionDone": "Sitzung abgeschlossen",

@@ -588,7 +588,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aboutBccwjNotice =>
-      'La difficulté des mots, les paliers de couverture et la part du japonais écrit couverte par chaque groupe sont calculés à partir de la fréquence des mots dans le Balanced Corpus of Contemporary Written Japanese, publié par le National Institute for Japanese Language and Linguistics (NINJAL).';
+      'La difficulté des mots, les niveaux de vocabulaire et la part du japonais écrit couverte par chaque groupe sont calculés à partir de la fréquence des mots dans le Balanced Corpus of Contemporary Written Japanese, publié par le National Institute for Japanese Language and Linguistics (NINJAL).';
 
   @override
   String get aboutBccwjLink => 'clrd.ninjal.ac.jp';

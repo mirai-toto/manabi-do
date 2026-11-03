@@ -1135,7 +1135,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutBccwjNotice.
   ///
   /// In en, this message translates to:
-  /// **'Word difficulty, the coverage bands and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).'**
+  /// **'Word difficulty, the vocabulary levels and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).'**
   String get aboutBccwjNotice;
 
   /// No description provided for @aboutBccwjLink.

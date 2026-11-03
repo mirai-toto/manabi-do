@@ -317,7 +317,7 @@
   "aboutWallerLink": "tanos.co.uk",
   "aboutPykakasiNotice": "Furigana readings over example sentences were generated with pykakasi, licensed under the GNU General Public License v3 or later.",
   "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
-  "aboutBccwjNotice": "Word difficulty, the coverage bands and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).",
+  "aboutBccwjNotice": "Word difficulty, the vocabulary levels and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).",
   "aboutBccwjLink": "clrd.ninjal.ac.jp",
   "aboutOpenSourceLicenses": "Open source licenses",
   "practiceSessionDone": "Session complete",

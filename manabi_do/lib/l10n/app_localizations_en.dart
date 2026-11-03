@@ -586,7 +586,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutBccwjNotice =>
-      'Word difficulty, the coverage bands and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).';
+      'Word difficulty, the vocabulary levels and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).';
 
   @override
   String get aboutBccwjLink => 'clrd.ninjal.ac.jp';

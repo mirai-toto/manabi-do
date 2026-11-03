@@ -61,10 +61,9 @@ final vocabularyLevelReachedProvider = Provider<Map<int, double>?>((ref) {
 /// (level, group) → the share of running Japanese that one group of thirty
 /// words adds. Null while loading.
 ///
-/// A group is the finest grain any corpus figure is published at: BCCWJ is free
-/// for research and education and handled case by case otherwise, so no
-/// per-word count or rank ships, and a share of thirty words together cannot be
-/// turned back into one.
+/// A group is the finest grain any corpus figure is published at: no per-word
+/// count or rank ships, and a share of thirty words together cannot be turned
+/// back into one.
 final groupShareProvider = Provider<Map<(int, int), double>?>((ref) {
   final groups = ref.watch(coverageGroupsProvider).asData?.value;
   if (groups == null || groups.isEmpty) return null;
