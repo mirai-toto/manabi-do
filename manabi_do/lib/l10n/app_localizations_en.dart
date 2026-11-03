@@ -596,6 +596,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutPykakasiLink => 'codeberg.org/miurahr/pykakasi';
 
   @override
+  String get aboutJanomeNotice =>
+      'Example sentences are chosen with Janome, a Japanese morphological analyser, licensed under the Apache License 2.0. It decides which words a sentence really contains.';
+
+  @override
+  String get aboutJanomeLink => 'mocobeta.github.io/janome';
+
+  @override
   String get aboutBccwjNotice =>
       'Word difficulty, the vocabulary levels and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).';
 

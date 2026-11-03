@@ -1150,6 +1150,18 @@ abstract class AppLocalizations {
   /// **'codeberg.org/miurahr/pykakasi'**
   String get aboutPykakasiLink;
 
+  /// No description provided for @aboutJanomeNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Example sentences are chosen with Janome, a Japanese morphological analyser, licensed under the Apache License 2.0. It decides which words a sentence really contains.'**
+  String get aboutJanomeNotice;
+
+  /// No description provided for @aboutJanomeLink.
+  ///
+  /// In en, this message translates to:
+  /// **'mocobeta.github.io/janome'**
+  String get aboutJanomeLink;
+
   /// No description provided for @aboutBccwjNotice.
   ///
   /// In en, this message translates to:

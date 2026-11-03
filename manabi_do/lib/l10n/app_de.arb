@@ -278,6 +278,8 @@
   "aboutWallerLink": "tanos.co.uk",
   "aboutPykakasiNotice": "Die Furigana über den Beispielsätzen wurden mit pykakasi erzeugt, lizenziert unter der GNU General Public License v3 oder später.",
   "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
+  "aboutJanomeNotice": "Beispielsätze werden mit Janome ausgewählt, einem morphologischen Analysewerkzeug für Japanisch, lizenziert unter der Apache-Lizenz 2.0. Es bestimmt, welche Wörter ein Satz wirklich enthält.",
+  "aboutJanomeLink": "mocobeta.github.io/janome",
   "aboutBccwjNotice": "Die Wortschwierigkeit, die Vokabelstufen und der Anteil des geschriebenen Japanisch, den jede Lerngruppe abdeckt, werden aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).",
   "aboutBccwjLink": "clrd.ninjal.ac.jp",
   "aboutOpenSourceLicenses": "Open-Source-Lizenzen",

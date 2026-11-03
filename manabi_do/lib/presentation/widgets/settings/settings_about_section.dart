@@ -71,6 +71,10 @@ class SettingsAboutSection extends ConsumerWidget {
         const SizedBox(height: AppDimens.spaceSm),
         AttributionCard(notice: l.aboutBccwjNotice, link: l.aboutBccwjLink),
         const SizedBox(height: AppDimens.spaceSm),
+        // Not shipped either, but which sentence illustrates which word was
+        // its decision.
+        AttributionCard(notice: l.aboutJanomeNotice, link: l.aboutJanomeLink),
+        const SizedBox(height: AppDimens.spaceSm),
         // The tool is not shipped, but the furigana it produced is.
         AttributionCard(
           notice: l.aboutPykakasiNotice,
