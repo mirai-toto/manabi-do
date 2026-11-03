@@ -488,6 +488,17 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsPractice => 'Übung';
 
   @override
+  String get settingsExercises => 'Übungen';
+
+  @override
+  String get settingsStudyScopeNote =>
+      'Gilt für jede bewertete Sitzung, welche Übungen auch vorkommen.';
+
+  @override
+  String get settingsExercisesNote =>
+      'Eine Einstellung je Übung, geteilt von jedem Bereich, der sie nutzt. Grammatik hat keine eigenen: sie nutzt Karten und Multiple Choice.';
+
+  @override
   String get settingsHomeScreen => 'Startbildschirm';
 
   @override
@@ -913,6 +924,10 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get autoAdvanceSubtitle =>
       'Automatisch weitergehen und jede Antwort für dich bewerten';
+
+  @override
+  String get autoAdvanceFreePracticeNote =>
+      'Gilt für freies Üben. Eine bewertete Sitzung nutzt den einen Schalter unter Lernen, da eine Sitzung Übungsarten mischt.';
 
   @override
   String get hintUsedFeedback => 'Hinweis benutzt · als falsch markiert';

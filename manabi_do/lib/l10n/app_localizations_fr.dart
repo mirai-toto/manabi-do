@@ -488,6 +488,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsPractice => 'Entraînement';
 
   @override
+  String get settingsExercises => 'Exercices';
+
+  @override
+  String get settingsStudyScopeNote =>
+      'S\'applique à toute session notée, quels que soient les exercices qui s\'y présentent.';
+
+  @override
+  String get settingsExercisesNote =>
+      'Un réglage par exercice, partagé par toutes les sections qui l\'utilisent. La grammaire n\'en a pas : elle utilise les cartes et le choix multiple.';
+
+  @override
   String get settingsHomeScreen => 'Écran d\'accueil';
 
   @override
@@ -914,6 +925,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get autoAdvanceSubtitle =>
       'Passer à la suite automatiquement, en notant chaque réponse à votre place';
+
+  @override
+  String get autoAdvanceFreePracticeNote =>
+      'Ceci s\'applique en entraînement libre. Une session notée utilise l\'option unique sous Étude, car une session mélange les types d\'exercices.';
 
   @override
   String get hintUsedFeedback => 'Indice utilisé · marqué comme raté';

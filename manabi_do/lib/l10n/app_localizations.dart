@@ -958,6 +958,24 @@ abstract class AppLocalizations {
   /// **'Practice'**
   String get settingsPractice;
 
+  /// No description provided for @settingsExercises.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercises'**
+  String get settingsExercises;
+
+  /// No description provided for @settingsStudyScopeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Applies to any graded session, whichever exercises come up in it.'**
+  String get settingsStudyScopeNote;
+
+  /// No description provided for @settingsExercisesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'One set of preferences per exercise, shared by every section that uses it. Grammar has none of its own: it runs flashcards and multiple choice.'**
+  String get settingsExercisesNote;
+
   /// No description provided for @settingsHomeScreen.
   ///
   /// In en, this message translates to:
@@ -1701,6 +1719,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Move on automatically, scoring each answer for you'**
   String get autoAdvanceSubtitle;
+
+  /// No description provided for @autoAdvanceFreePracticeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This applies in free practice. A graded session uses the one switch under Study, because a session mixes exercise types.'**
+  String get autoAdvanceFreePracticeNote;
 
   /// No description provided for @hintUsedFeedback.
   ///

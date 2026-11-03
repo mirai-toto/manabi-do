@@ -15,6 +15,7 @@ import '../../services/feedback_service.dart';
 import '../../services/srs_service.dart';
 import '../../services/support_service.dart';
 import '../../widgets/widgets.dart';
+import 'exercise_settings_screen.dart';
 
 /// Order the appearance segments are shown in. Listed explicitly so it cannot
 /// drift from `ThemeMode`'s declaration order.
@@ -176,6 +177,47 @@ class SettingsScreen extends ConsumerWidget {
               onDetailedGradingChanged: srsNotifier.setDetailedGrading,
             ),
 
+            const SizedBox(height: AppDimens.spaceSm),
+            Text(
+              l.settingsStudyScopeNote,
+              style: AppTextStyles.bodySmall.copyWith(
+                color: t.onSurfaceVariant,
+              ),
+            ),
+
+            // The twenty-two exercise settings that used to be reachable only
+            // from inside a running session. One row per store, because
+            // nothing is kept per section: grammar reads the same flashcard
+            // and multiple-choice values that vocabulary and kanji do.
+            const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.settingsExercises),
+            const SizedBox(height: AppDimens.spaceSm),
+            SettingsCard(
+              children: [
+                for (final kind in ExerciseKind.values)
+                  SettingsTile(
+                    leading: Icon(
+                      _exerciseIcon(kind),
+                      size: 20,
+                      color: t.onSurfaceVariant,
+                    ),
+                    label: _exerciseLabel(kind, l),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => ExerciseSettingsScreen(kind: kind),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            const SizedBox(height: AppDimens.spaceSm),
+            Text(
+              l.settingsExercisesNote,
+              style: AppTextStyles.bodySmall.copyWith(
+                color: t.onSurfaceVariant,
+              ),
+            ),
+
             const SizedBox(height: AppDimens.spaceLg),
             SectionLabel(l.settingsHomeScreen),
             const SizedBox(height: AppDimens.spaceSm),
@@ -308,3 +350,17 @@ class _ScreenHeader extends StatelessWidget {
     );
   }
 }
+
+IconData _exerciseIcon(ExerciseKind kind) => switch (kind) {
+  ExerciseKind.flashcard => Icons.style_rounded,
+  ExerciseKind.mcq => Icons.list_alt_rounded,
+  ExerciseKind.sentence => Icons.format_quote_rounded,
+  ExerciseKind.writing => Icons.edit_rounded,
+};
+
+String _exerciseLabel(ExerciseKind kind, AppLocalizations l) => switch (kind) {
+  ExerciseKind.flashcard => l.flashcardPractice,
+  ExerciseKind.mcq => l.mcqPractice,
+  ExerciseKind.sentence => l.sentencePractice,
+  ExerciseKind.writing => l.writingPractice,
+};

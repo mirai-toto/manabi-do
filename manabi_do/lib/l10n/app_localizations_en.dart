@@ -486,6 +486,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsPractice => 'Practice';
 
   @override
+  String get settingsExercises => 'Exercises';
+
+  @override
+  String get settingsStudyScopeNote =>
+      'Applies to any graded session, whichever exercises come up in it.';
+
+  @override
+  String get settingsExercisesNote =>
+      'One set of preferences per exercise, shared by every section that uses it. Grammar has none of its own: it runs flashcards and multiple choice.';
+
+  @override
   String get settingsHomeScreen => 'Home screen';
 
   @override
@@ -908,6 +919,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get autoAdvanceSubtitle =>
       'Move on automatically, scoring each answer for you';
+
+  @override
+  String get autoAdvanceFreePracticeNote =>
+      'This applies in free practice. A graded session uses the one switch under Study, because a session mixes exercise types.';
 
   @override
   String get hintUsedFeedback => 'Hint used · marked as missed';
