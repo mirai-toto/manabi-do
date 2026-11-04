@@ -8,14 +8,15 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
+import '../../../l10n/duration_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/drawing_settings_provider.dart';
-import '../../providers/home_provider.dart';
 import '../../providers/writing_session_provider.dart';
 import '../../providers/kanji_strokes_provider.dart';
 import '../../widgets/widgets.dart';
 import '../characters/kanji/kanji_detail_screen.dart';
 import 'practice_settings_sheet.dart';
+import 'session_app_bar.dart';
 import 'session_review_screen.dart';
 
 class WritingSessionScreen extends ConsumerStatefulWidget {
@@ -35,7 +36,8 @@ class WritingSessionScreen extends ConsumerStatefulWidget {
       _WritingSessionScreenState();
 }
 
-class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
+class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen>
+    with MarksPracticeActive<WritingSessionScreen> {
   int _index = 0;
   DateTime _startedAt = DateTime.now();
 
@@ -43,22 +45,6 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
   /// these are kept here rather than in `practiceSessionProvider`, and the
   /// review shows them without offering to re-grade.
   final List<SessionAnswer> _answers = [];
-  late final PracticeActiveNotifier _practiceNotifier;
-
-  @override
-  void initState() {
-    super.initState();
-    _practiceNotifier = ref.read(practiceActiveProvider.notifier);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) _practiceNotifier.setActive(true);
-    });
-  }
-
-  @override
-  void dispose() {
-    Future(() => _practiceNotifier.setActive(false));
-    super.dispose();
-  }
 
   WritingSessionArgs get _args =>
       WritingSessionArgs(level: widget.level, kanjiIds: widget.kanjiIds);
@@ -98,11 +84,32 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
     });
   }
 
-  String _elapsed() {
-    final diff = DateTime.now().difference(_startedAt);
-    final m = diff.inMinutes;
-    final s = diff.inSeconds % 60;
-    return m > 0 ? '${m}m ${s}s' : '${s}s';
+  Widget _buildSummary(int total) {
+    final int correct = _answers.where((a) => a.isCorrect).length;
+    return Scaffold(
+      backgroundColor: context.tokens.surface,
+      appBar: AppBar(backgroundColor: context.tokens.surface),
+      body: AccentTheme(
+        accent: widget.color,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(AppDimens.spaceMd),
+          child: SummaryCard(
+            score: correct,
+            total: total,
+            title: context.l10n.sessionComplete,
+            subtitle: widget.level,
+            correct: correct,
+            missed: _answers.length - correct,
+            timeSpent: durationLabel(
+              DateTime.now().difference(_startedAt),
+              context.l10n,
+            ),
+            onRetry: _restart,
+            onNext: () => Navigator.of(context).pop(),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -118,13 +125,7 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
       error: (_, _) =>
           Scaffold(backgroundColor: t.surface, body: const SizedBox.shrink()),
       data: (queue) => _index >= queue.length
-          ? _DoneScreen(
-              color: widget.color,
-              count: queue.length,
-              elapsed: _elapsed(),
-              onRestart: _restart,
-              onExit: () => Navigator.of(context).pop(),
-            )
+          ? _buildSummary(queue.length)
           : _ActiveScreen(
               level: widget.level,
               color: widget.color,
@@ -184,15 +185,9 @@ class _ActiveScreen extends ConsumerWidget {
         actions: [
           // Nothing to look back at until something has been drawn.
           if (answers.isNotEmpty)
-            IconButton(
-              iconSize: 20,
-              tooltip: context.l10n.sessionReview,
-              icon: Badge.count(
-                count: answers.length,
-                backgroundColor: color,
-                textColor: onAccentFor(color),
-                child: Icon(Icons.history_rounded, color: t.onSurfaceVariant),
-              ),
+            SessionHistoryButton(
+              count: answers.length,
+              color: color,
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute<void>(
                   builder: (_) =>
@@ -200,16 +195,10 @@ class _ActiveScreen extends ConsumerWidget {
                 ),
               ),
             ),
-          IconButton(
-            iconSize: 18,
-            icon: Icon(Icons.tune_rounded, color: t.onSurfaceVariant),
-            onPressed: () => showModalBottomSheet<void>(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) => const PracticeSettingsSheet(
-                contexts: {SettingsContext.writing},
-                showAutoAdvance: true,
-              ),
+          SessionSettingsButton(
+            sheetBuilder: (_) => const PracticeSettingsSheet(
+              contexts: {SettingsContext.writing},
+              showAutoAdvance: true,
             ),
           ),
         ],
@@ -247,117 +236,6 @@ class _ActiveScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// ── Done screen ───────────────────────────────────────────────────────────────
-
-class _DoneScreen extends StatelessWidget {
-  final Color color;
-  final int count;
-  final String elapsed;
-  final VoidCallback onRestart;
-  final VoidCallback onExit;
-
-  const _DoneScreen({
-    required this.color,
-    required this.count,
-    required this.elapsed,
-    required this.onRestart,
-    required this.onExit,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    final l = context.l10n;
-    return Scaffold(
-      backgroundColor: t.surface,
-      appBar: AppBar(backgroundColor: t.surface),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(AppDimens.spaceLg),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.check_circle_rounded, color: t.success, size: 72),
-              const SizedBox(height: AppDimens.spaceLg),
-              Text(
-                l.sessionComplete,
-                style: AppTextStyles.headline.copyWith(color: t.onSurface),
-              ),
-              const SizedBox(height: AppDimens.spaceXs),
-              Text(
-                l.kanjiPracticed(count),
-                style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant),
-              ),
-              const SizedBox(height: AppDimens.spaceXs),
-              Text(
-                elapsed,
-                style: AppTextStyles.bodySmall.copyWith(
-                  color: t.onSurfaceVariant,
-                ),
-              ),
-              const SizedBox(height: AppDimens.spaceLg),
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: onRestart,
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: AppDimens.spaceMd,
-                        ),
-                        side: BorderSide(
-                          color: color,
-                          width: AppDimens.borderWidthContainer,
-                        ),
-                        foregroundColor: color,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            AppDimens.radiusMd,
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        l.retry,
-                        style: AppTextStyles.body.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: AppDimens.spaceSm),
-                  Expanded(
-                    child: FilledButton(
-                      onPressed: onExit,
-                      style: FilledButton.styleFrom(
-                        backgroundColor: color,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: AppDimens.spaceMd,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            AppDimens.radiusMd,
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        l.next,
-                        style: AppTextStyles.body.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
               ),
             ],
           ),

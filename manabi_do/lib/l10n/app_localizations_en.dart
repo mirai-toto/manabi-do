@@ -164,11 +164,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get next => 'Next →';
 
   @override
-  String kanjiPracticed(int count) {
-    return '$count kanji practiced';
-  }
-
-  @override
   String get correct => 'Correct';
 
   @override
@@ -1109,4 +1104,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingPickOne => 'Choose at least one to carry on.';
+
+  @override
+  String durationMinutesSeconds(int minutes, int seconds) {
+    return '${minutes}m ${seconds}s';
+  }
+
+  @override
+  String durationSeconds(int seconds) {
+    return '${seconds}s';
+  }
 }

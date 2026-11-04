@@ -8,16 +8,17 @@ import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/duration_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/drawing_settings_provider.dart';
 import '../../providers/flashcard_settings_provider.dart';
-import '../../providers/home_provider.dart';
 import '../../providers/mcq_settings_provider.dart';
 import '../../providers/practice_session_provider.dart';
 import '../../providers/sentence_settings_provider.dart';
 import '../../widgets/widgets.dart';
 import 'practice_question_body.dart';
 import 'practice_settings_sheet.dart';
+import 'session_app_bar.dart';
 import 'session_review_screen.dart';
 
 export '../../../core/models/practice_item.dart';
@@ -46,23 +47,12 @@ class PracticeSessionScreen extends ConsumerStatefulWidget {
       _PracticeSessionScreenState();
 }
 
-class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
-  late final PracticeActiveNotifier _practiceNotifier;
-
+class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen>
+    with MarksPracticeActive<PracticeSessionScreen> {
   @override
   void initState() {
     super.initState();
-    _practiceNotifier = ref.read(practiceActiveProvider.notifier);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) _practiceNotifier.setActive(true);
-    });
     _initSession();
-  }
-
-  @override
-  void dispose() {
-    Future(() => _practiceNotifier.setActive(false));
-    super.dispose();
   }
 
   Future<void> _initSession() async {
@@ -129,15 +119,9 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
           actions: [
             // Nothing to look back at until something has been answered.
             if (session.answers.isNotEmpty)
-              IconButton(
-                iconSize: 20,
-                tooltip: context.l10n.sessionReview,
-                icon: Badge.count(
-                  count: session.answers.length,
-                  backgroundColor: widget.color,
-                  textColor: onAccentFor(widget.color),
-                  child: Icon(Icons.history_rounded, color: t.onSurfaceVariant),
-                ),
+              SessionHistoryButton(
+                count: session.answers.length,
+                color: widget.color,
                 onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     // Watched inside the route, not captured when it is pushed:
@@ -164,18 +148,12 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
                   ),
                 ),
               ),
-            IconButton(
-              iconSize: 18,
-              icon: Icon(Icons.tune_rounded, color: t.onSurfaceVariant),
-              onPressed: () => showModalBottomSheet<void>(
-                context: context,
-                isScrollControlled: true,
-                builder: (_) => PracticeSettingsSheet(
-                  contexts: widget.settingsContexts,
-                  hasExamples: widget.hasExamples,
-                  showAutoAdvance: !widget.persistSrs,
-                  showSessionAutoAdvance: widget.persistSrs,
-                ),
+            SessionSettingsButton(
+              sheetBuilder: (_) => PracticeSettingsSheet(
+                contexts: widget.settingsContexts,
+                hasExamples: widget.hasExamples,
+                showAutoAdvance: !widget.persistSrs,
+                showSessionAutoAdvance: widget.persistSrs,
               ),
             ),
           ],
@@ -222,7 +200,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
         subtitle: widget.title,
         correct: session.gotIt,
         missed: session.notYet,
-        timeSpent: session.formattedDuration,
+        timeSpent: durationLabel(session.elapsed, context.l10n),
         onRetry: notifier.retry,
         onNext: _onExit,
       ),

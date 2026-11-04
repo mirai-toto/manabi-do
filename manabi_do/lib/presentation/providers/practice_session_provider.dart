@@ -45,12 +45,7 @@ class PracticeSessionState {
   PracticeItem? get currentItem =>
       queue != null && !done && index < queue!.length ? queue![index] : null;
 
-  String get formattedDuration {
-    final d = DateTime.now().difference(startedAt);
-    final m = d.inMinutes;
-    final s = d.inSeconds % 60;
-    return m > 0 ? '${m}m ${s}s' : '${s}s';
-  }
+  Duration get elapsed => DateTime.now().difference(startedAt);
 
   PracticeSessionState copyWith({
     List<PracticeItem>? queue,

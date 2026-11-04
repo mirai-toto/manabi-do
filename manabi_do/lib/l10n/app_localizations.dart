@@ -376,12 +376,6 @@ abstract class AppLocalizations {
   /// **'Next →'**
   String get next;
 
-  /// No description provided for @kanjiPracticed.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} kanji practiced'**
-  String kanjiPracticed(int count);
-
   /// No description provided for @correct.
   ///
   /// In en, this message translates to:
@@ -2061,6 +2055,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose at least one to carry on.'**
   String get onboardingPickOne;
+
+  /// No description provided for @durationMinutesSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes}m {seconds}s'**
+  String durationMinutesSeconds(int minutes, int seconds);
+
+  /// No description provided for @durationSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds}s'**
+  String durationSeconds(int seconds);
 }
 
 class _AppLocalizationsDelegate

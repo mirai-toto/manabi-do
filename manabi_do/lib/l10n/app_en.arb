@@ -83,14 +83,6 @@
   "dailyTraining": "Daily Training",
   "writingPractice": "Writing Practice",
   "next": "Next →",
-  "kanjiPracticed": "{count} kanji practiced",
-  "@kanjiPracticed": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "correct": "Correct",
   "correctAnswer": "Correct answer",
   "missed": "Missed",
@@ -621,5 +613,24 @@
   },
   "onboardingStart": "Start learning",
   "onboardingSkip": "Set it up later",
-  "onboardingPickOne": "Choose at least one to carry on."
+  "onboardingPickOne": "Choose at least one to carry on.",
+  "durationMinutesSeconds": "{minutes}m {seconds}s",
+  "@durationMinutesSeconds": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "durationSeconds": "{seconds}s",
+  "@durationSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  }
 }

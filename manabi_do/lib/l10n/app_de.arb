@@ -78,7 +78,6 @@
   "dailyTraining": "Tägliches Training",
   "writingPractice": "Schreibübung",
   "next": "Weiter →",
-  "kanjiPracticed": "{count} Kanji geübt",
   "copy": "Kopieren",
   "correct": "Richtig",
   "correctAnswer": "Richtige Antwort",
@@ -542,5 +541,7 @@
   "onboardingPaceEstimate": "Etwa {minutes} Minuten pro Tag",
   "onboardingStart": "Loslegen",
   "onboardingSkip": "Später einrichten",
-  "onboardingPickOne": "Wählen Sie mindestens eines aus."
+  "onboardingPickOne": "Wählen Sie mindestens eines aus.",
+  "durationMinutesSeconds": "{minutes} Min. {seconds} s",
+  "durationSeconds": "{seconds} s"
 }
