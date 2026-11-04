@@ -84,11 +84,9 @@ class KanjiGroupSelector extends ConsumerWidget {
                     kanjiList.length,
                   );
                   final groupKanji = kanjiList.sublist(start, end);
-                  final learnedCount = groupKanji.where((k) {
-                    final level = srsLevel(srsCards[k.id]);
-                    return level != SrsLevel.newCard &&
-                        level != SrsLevel.learning;
-                  }).length;
+                  final learnedCount = groupKanji
+                      .where((k) => isSrsKnown(srsCards[k.id]))
+                      .length;
                   final progress = groupKanji.isEmpty
                       ? 0.0
                       : learnedCount / groupKanji.length;

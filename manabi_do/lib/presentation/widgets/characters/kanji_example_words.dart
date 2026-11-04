@@ -174,7 +174,7 @@ class _WordRow extends StatelessWidget {
             // reader is here for the word rather than for its band.
             DifficultyDots(
               total: kVocabularyLevelCount,
-              filled: kVocabularyLevelCount - entry.vocabularyLevel + 1,
+              filled: vocabularyLevelDifficulty(entry.vocabularyLevel),
               color: levelColour,
             ),
           ],

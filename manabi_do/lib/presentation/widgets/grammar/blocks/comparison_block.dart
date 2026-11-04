@@ -82,7 +82,9 @@ class _SideCard extends StatelessWidget {
         children: [
           PillBadge(
             label: side.label,
-            color: Colors.white,
+            color: accentColor == null
+                ? t.onPrimary
+                : onAccentFor(accentColor!),
             background: accentColor ?? t.primary,
           ),
           const SizedBox(height: AppDimens.spaceSm),

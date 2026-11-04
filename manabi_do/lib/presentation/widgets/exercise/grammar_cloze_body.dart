@@ -114,6 +114,7 @@ class _GrammarClozeBodyState extends State<GrammarClozeBody> {
           ),
           const SizedBox(height: AppDimens.spaceLg),
           McqCard(
+            badgeLabel: context.l10n.sentenceFillIn,
             question: context.l10n.sentenceFillInPrompt,
             options: options,
             onOptionTap: _answered ? null : _onTap,

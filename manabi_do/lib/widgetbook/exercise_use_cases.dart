@@ -157,6 +157,7 @@ Widget buildMcqCardIdle(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: McqCard(
+      badgeLabel: 'Multiple Choice',
       question: 'What is the meaning of this kanji?',
       japanesePrompt: '水',
       options: _options,
@@ -169,6 +170,7 @@ Widget buildMcqCardSelected(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: McqCard(
+      badgeLabel: 'Multiple Choice',
       question: 'What is the meaning of this kanji?',
       japanesePrompt: '水',
       options: [
@@ -184,6 +186,7 @@ Widget buildMcqCardCorrect(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: McqCard(
+      badgeLabel: 'Multiple Choice',
       question: 'What is the meaning of this kanji?',
       japanesePrompt: '水',
       options: [
@@ -199,6 +202,7 @@ Widget buildMcqCardWrong(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: McqCard(
+      badgeLabel: 'Multiple Choice',
       question: 'What is the meaning of this kanji?',
       japanesePrompt: '水',
       options: [

@@ -1,7 +1,12 @@
 import 'dart:math';
 
 import '../../data/database/app_database.dart';
-import '../widgets/exercise/mcq_card.dart';
+import '../../core/models/mcq_option.dart';
+
+// The reading shown under a kanji prompt: first on'yomi, else first kun'yomi.
+String? kanjiPromptReading(Kanji kanji) => kanji.onReading.isNotEmpty
+    ? kanji.onReading.split('、').first
+    : kanji.kunReading.split('、').firstOrNull;
 
 // Picks up to [count] distractors from [pool], shuffling first and skipping
 // any whose display key is already in [seen]. Mutates [seen] as it picks.
@@ -42,10 +47,7 @@ List<T> _pickDistractors<T>({
   return (
     options: List.generate(
       options.length,
-      (i) => McqOption(
-        letter: String.fromCharCode(65 + i),
-        text: options[i].romaji,
-      ),
+      (i) => McqOption(letter: optionLetter(i), text: options[i].romaji),
     ),
     correctIndex: correctIndex,
   );
@@ -76,7 +78,7 @@ List<T> _pickDistractors<T>({
     options: List.generate(
       options.length,
       (i) => McqOption(
-        letter: String.fromCharCode(65 + i),
+        letter: optionLetter(i),
         text: displayOf(options[i]),
         useJpFont: !isKanjiToMeaning,
       ),
@@ -105,10 +107,8 @@ List<T> _pickDistractors<T>({
   return (
     options: List.generate(
       optionEntries.length,
-      (i) => McqOption(
-        letter: String.fromCharCode(65 + i),
-        text: meaningOf(optionEntries[i]),
-      ),
+      (i) =>
+          McqOption(letter: optionLetter(i), text: meaningOf(optionEntries[i])),
     ),
     correctIndex: correctIndex,
   );
@@ -134,7 +134,7 @@ List<T> _pickDistractors<T>({
     options: List.generate(
       optionEntries.length,
       (i) => McqOption(
-        letter: String.fromCharCode(65 + i),
+        letter: optionLetter(i),
         text: optionEntries[i].word,
         reading: optionEntries[i].reading,
         useJpFont: true,

@@ -121,6 +121,7 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
           ),
           const SizedBox(height: AppDimens.spaceLg),
           McqCard(
+            badgeLabel: context.l10n.multipleChoice,
             question: widget.question,
             japanesePrompt: widget.japanesePrompt,
             japaneseReading: widget.japaneseReading,

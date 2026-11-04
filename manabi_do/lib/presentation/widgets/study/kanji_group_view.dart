@@ -39,10 +39,9 @@ class KanjiGroupView extends ConsumerWidget {
     final start = groupIndex * kKanjiGroupSize;
     final groupKanji = allKanji.skip(start).take(kKanjiGroupSize).toList();
     final groupIds = groupKanji.map((k) => k.id).toSet();
-    final learnedCount = groupKanji.where((k) {
-      final level = srsLevel(srsCards[k.id]);
-      return level != SrsLevel.newCard && level != SrsLevel.learning;
-    }).length;
+    final learnedCount = groupKanji
+        .where((k) => isSrsKnown(srsCards[k.id]))
+        .length;
     final color = levelColor(level);
 
     return ScrollFade(

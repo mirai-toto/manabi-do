@@ -209,11 +209,7 @@ class KanjiSessionService {
             ? l.mcqSelectMeaning
             : l.mcqSelectKanji(meaningOf(kanji)),
         japanesePrompt: isKanjiToMeaning ? kanji.character : null,
-        japaneseReading: isKanjiToMeaning
-            ? (kanji.onReading.isNotEmpty
-                  ? kanji.onReading.split('、').first
-                  : kanji.kunReading.split('、').firstOrNull)
-            : null,
+        japaneseReading: isKanjiToMeaning ? kanjiPromptReading(kanji) : null,
         options: kanjiMcq.options,
         correctIndex: kanjiMcq.correctIndex,
         compactGrid: !isKanjiToMeaning,

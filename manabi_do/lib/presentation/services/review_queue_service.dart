@@ -1,4 +1,3 @@
-import '../../core/text/sentence_language.dart';
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers/home_settings_provider.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
+import '../../core/text/sentence_language.dart';
+import '../../core/text/short_meaning.dart';
 import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
 import '../providers/mcq_settings_provider.dart';
@@ -178,9 +179,11 @@ class ReviewQueueService {
             locale,
           )
         : <int, String>{};
-    String meaningOf(Kanji k) => kanjiTranslations[k.id]?.isNotEmpty == true
-        ? kanjiTranslations[k.id]!
-        : k.meaning;
+    String meaningOf(Kanji k) => shortMeaning(
+      kanjiTranslations[k.id]?.isNotEmpty == true
+          ? kanjiTranslations[k.id]!
+          : k.meaning,
+    );
     final rng = Random();
 
     return pairs.map((pair) {
@@ -237,6 +240,7 @@ class ReviewQueueService {
               ? l.mcqSelectMeaning
               : l.mcqSelectKanji(meaningOf(k)),
           japanesePrompt: isKanjiToMeaning ? k.character : null,
+          japaneseReading: isKanjiToMeaning ? kanjiPromptReading(k) : null,
           options: mcqOptions,
           correctIndex: correctIndex,
           compactGrid: !isKanjiToMeaning,
@@ -274,10 +278,11 @@ class ReviewQueueService {
     );
     final rng = Random();
 
-    String meaningOf(VocabularyEntry v) =>
-        allTranslations[v.id]?.isNotEmpty == true
-        ? allTranslations[v.id]!
-        : v.meaning;
+    String meaningOf(VocabularyEntry v) => shortMeaning(
+      allTranslations[v.id]?.isNotEmpty == true
+          ? allTranslations[v.id]!
+          : v.meaning,
+    );
 
     return pairs.map((pair) {
       final (entry, card) = pair;

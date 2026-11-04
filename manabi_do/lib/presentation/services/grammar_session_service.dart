@@ -12,8 +12,6 @@ import '../providers/mcq_settings_provider.dart';
 import '../../core/models/practice_item.dart';
 import '../../core/models/practice_question.dart';
 
-const _letters = ['A', 'B', 'C', 'D'];
-
 class GrammarSessionService {
   final Ref _ref;
 
@@ -167,7 +165,7 @@ class GrammarSessionService {
       List.generate(
         choices.length,
         (i) => McqOption(
-          letter: _letters[i],
+          letter: optionLetter(i),
           text: choices[i],
           useJpFont: useJpFont,
         ),

@@ -45,10 +45,9 @@ class VocabularyGroupSelector extends ConsumerWidget {
     final entries = vocabularyAsync.asData?.value ?? [];
     final groupCount = (entries.length / kVocabularyGroupSize).ceil();
     final bandShare = ref.watch(vocabularyLevelReachedProvider)?[level];
-    final learnedInLevel = entries.where((e) {
-      final srs = srsLevel(srsCards[e.id]);
-      return srs != SrsLevel.newCard && srs != SrsLevel.learning;
-    }).length;
+    final learnedInLevel = entries
+        .where((e) => isSrsKnown(srsCards[e.id]))
+        .length;
 
     return ScrollFade(
       builder: (controller) => ListView(
@@ -142,10 +141,9 @@ class VocabularyGroupSelector extends ConsumerWidget {
                       .skip(start)
                       .take(kVocabularyGroupSize)
                       .toList();
-                  final learnedCount = groupEntries.where((e) {
-                    final srs = srsLevel(srsCards[e.id]);
-                    return srs != SrsLevel.newCard && srs != SrsLevel.learning;
-                  }).length;
+                  final learnedCount = groupEntries
+                      .where((e) => isSrsKnown(srsCards[e.id]))
+                      .length;
                   final progress = groupEntries.isEmpty
                       ? 0.0
                       : learnedCount / groupEntries.length;

@@ -44,10 +44,9 @@ class KanaTabView extends ConsumerWidget {
     // than carrying a section colour.
     final color = context.tokens.primary;
     final srsCards = ref.watch(kanaSrsCardsProvider(type)).asData?.value ?? {};
-    final learnedCount = allKana.where((e) {
-      final level = srsLevel(srsCards[e.id]);
-      return level != SrsLevel.newCard && level != SrsLevel.learning;
-    }).length;
+    final learnedCount = allKana
+        .where((e) => isSrsKnown(srsCards[e.id]))
+        .length;
 
     return ScrollFade(
       builder: (controller) => ListView(

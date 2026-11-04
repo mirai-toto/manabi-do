@@ -100,8 +100,7 @@ final coverageReachedProvider = Provider<double?>((ref) {
     for (final entry in entries) {
       sizePerGroup[entry.groupIndex] =
           (sizePerGroup[entry.groupIndex] ?? 0) + 1;
-      final level = srsLevel(srsCards[entry.id]);
-      if (level != SrsLevel.newCard && level != SrsLevel.learning) {
+      if (isSrsKnown(srsCards[entry.id])) {
         learnedPerGroup[entry.groupIndex] =
             (learnedPerGroup[entry.groupIndex] ?? 0) + 1;
       }
@@ -131,7 +130,7 @@ final vocabularyTotalCountProvider = Provider<int?>((ref) {
   return sum;
 });
 
-/// How many vocabulary entries in the given group have been learned (past new/learning).
+/// How many vocabulary entries in the given group are known (familiar or above, see `isSrsKnown`).
 final vocabularyGroupLearnedCountProvider =
     Provider.family<int, ({int level, int groupIndex})>((ref, args) {
       final entries =
@@ -145,10 +144,7 @@ final vocabularyGroupLearnedCountProvider =
           [];
       final srsCards =
           ref.watch(vocabularySrsCardsProvider).asData?.value ?? {};
-      return entries.where((e) {
-        final lvl = srsLevel(srsCards[e.id]);
-        return lvl != SrsLevel.newCard && lvl != SrsLevel.learning;
-      }).length;
+      return entries.where((e) => isSrsKnown(srsCards[e.id])).length;
     });
 
 /// Returns (reviewCount, newCount) for the given vocabulary group.
