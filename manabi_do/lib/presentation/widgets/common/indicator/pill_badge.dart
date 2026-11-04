@@ -63,7 +63,17 @@ class PillBadge extends StatelessWidget {
             Icon(icon, size: (style.fontSize ?? 12) + 2, color: color),
             const SizedBox(width: AppDimens.spaceXxs),
           ],
-          Text(label, style: style),
+          // Flexible, because a pill sized to its text overflows whatever
+          // row holds it the moment the text is long. It shrinks here instead;
+          // a label that needs more room than this does not belong in a pill.
+          Flexible(
+            child: Text(
+              label,
+              style: style,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ),
     );

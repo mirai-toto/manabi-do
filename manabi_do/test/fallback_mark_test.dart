@@ -9,6 +9,7 @@ import 'package:manabi_do/presentation/providers/vocabulary_provider.dart';
 import 'package:manabi_do/presentation/widgets/characters/kanji_example_words.dart';
 import 'package:manabi_do/core/text/sentence_language.dart';
 import 'package:manabi_do/l10n/app_localizations.dart';
+import 'package:manabi_do/presentation/widgets/common/indicator/pill_badge.dart';
 import 'package:manabi_do/presentation/widgets/common/label/translation_fallback_info.dart';
 
 void main() {
@@ -69,6 +70,33 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(find.byIcon(Icons.info_outline_rounded), findsOneWidget);
+  });
+
+  testWidgets('a long pill label does not overflow its row', (tester) async {
+    // JMdict usage notes reach 147 characters. A pill sized to its text blew
+    // the row by 97px rather than shrinking.
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.light,
+        home: Scaffold(
+          body: Row(
+            children: [
+              Expanded(
+                child: PillBadge(
+                  label:
+                      'indicating something distant from both speaker and '
+                      'listener (in space, time or psychological distance)',
+                  color: const Color(0xFF444444),
+                  background: const Color(0xFFEEEEEE),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('a truncated meaning still shows the mark', (tester) async {

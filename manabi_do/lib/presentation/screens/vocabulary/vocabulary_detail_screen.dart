@@ -364,6 +364,11 @@ class _SenseListState extends State<_SenseList> {
   }
 }
 
+/// Longest note still shown as pills. Above this it is a sentence, not a
+/// pattern: the shortest of JMdict's explanatory notes runs past 40 characters
+/// and the longest to 147.
+const int _maxPatternLength = 32;
+
 class _SenseRow extends StatelessWidget {
   final VocabularySense sense;
   final bool numbered;
@@ -374,14 +379,21 @@ class _SenseRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
-    // JMdict writes several patterns in one note, comma separated, prefixed
-    // "as ". Splitting them is all that happens here; the text is the editors'.
-    final patterns = sense.note
-        .replaceFirst(RegExp(r'^as '), '')
-        .split(',')
-        .map((p) => p.trim())
-        .where((p) => p.isNotEmpty)
-        .toList();
+    // JMdict writes two kinds of note in the same field. Short ones are
+    // patterns — "as 〜にする" — and read as tags. Others are whole sentences
+    // of explanation, up to 147 characters, and a pill is the wrong shape for
+    // those: splitting them on commas makes fragments, and a pill sized to
+    // hold one overflows the row.
+    final String note = sense.note.trim();
+    final bool isPattern = note.isNotEmpty && note.length <= _maxPatternLength;
+    final patterns = isPattern
+        ? note
+              .replaceFirst(RegExp(r'^as '), '')
+              .split(',')
+              .map((p) => p.trim())
+              .where((p) => p.isNotEmpty)
+              .toList()
+        : const <String>[];
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -413,6 +425,16 @@ class _SenseRow extends StatelessWidget {
                   sense.glosses,
                   style: AppTextStyles.bodySmall.copyWith(color: t.onSurface),
                 ),
+                if (!isPattern && note.isNotEmpty) ...[
+                  const SizedBox(height: AppDimens.spaceTight),
+                  Text(
+                    note,
+                    style: AppTextStyles.bodySmall.copyWith(
+                      color: t.onSurfaceVariant,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
                 if (patterns.isNotEmpty) ...[
                   const SizedBox(height: AppDimens.spaceTight),
                   Wrap(
