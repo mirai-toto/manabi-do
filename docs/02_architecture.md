@@ -16,17 +16,37 @@
 
 ## Application Architecture
 
-Two meaningful layers: **Data** and **Presentation**. There is no use-case layer — providers in the presentation layer call `AppDatabase` methods directly.
+Two layers: **Data** and **Presentation**. Inside Presentation, screens and providers sit on top of a thin **services** layer (`lib/presentation/services/`).
 
 ```
-Presentation (screens, providers)
+Presentation
+  screens, widgets
+      ↓
+  providers (Riverpod)
+      ↓
+  services (queue and session building)
       ↓
 AppDatabase (drift, all queries)
       ↓
 SQLite (manabi_do_content.db)
 ```
 
-**Domain** (`lib/domain/`) contains entity definitions and static data (kana hardcoded data). It has no runtime logic and no external dependencies.
+Services hold the logic that is more than a query: which cards are due, which questions a session asks, how search ranks its matches. Providers call them, or call `AppDatabase` directly when a plain read is all they need.
+
+| Service | What it does |
+| --- | --- |
+| `SrsQueueService` | Builds the due and new-card queues (see SRS Logic) |
+| `ReviewQueueService` | Turns the daily queues into practice items |
+| `KanjiSessionService`, `VocabularySessionService`, `GrammarSessionService`, `WritingSessionService` | Build the free-practice sessions for a level or group |
+| `session_item_builders.dart` | One builder per exercise kind, shared by all of the above |
+| `DashboardService` | The home screen's counters |
+| `SearchService` | Ranked kanji and vocabulary search |
+| `SrsService`, `GrammarProgressService` | Thin writers for SRS cards and grammar progress, so screens have one place to reset or unlock |
+| `feedback_service.dart`, `support_service.dart` | Open the feedback email and the support page |
+
+Pure rules that do not need the database (scheduling previews, queue budgets, reading parsers) live in `lib/core/`, so services and widgets can share them.
+
+**Domain** (`lib/domain/`) holds the kana chart shapes (`KanaData`, `KanaRow`, `KanaEntry`) that the kana queries build. It has no runtime logic and no external dependencies.
 
 ---
 
@@ -166,7 +186,7 @@ Streak and the week strip both come from `watchReviewDates()` — `srs_cards.car
 
 ## Practice Sessions
 
-A session service turns a queue of `(item, Card?)` pairs into `PracticeItem`s. Each one carries the SRS identity, a `PracticeSummary` for the review screen, and a `PracticeQuestion` — a sealed type in `core/models/practice_question.dart` describing what to ask:
+A session service turns a queue of `(item, Card?)` pairs into `PracticeItem`s. Each one carries the SRS identity, a `PracticeSummary` for the review screen, and a `PracticeQuestion` — a sealed type in `presentation/models/practice_question.dart` describing what to ask:
 
 | Question | Body |
 | --- | --- |
