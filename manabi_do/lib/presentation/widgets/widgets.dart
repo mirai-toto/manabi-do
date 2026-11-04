@@ -82,7 +82,7 @@ export 'study/practice_mode_card.dart';
 export 'study/streak_pill.dart';
 export 'study/study_group_card.dart';
 export 'study/todays_session_card.dart';
-export 'study/vocabulary_group_selector.dart' hide kVocabularyGroupSize;
+export 'study/vocabulary_group_selector.dart';
 export 'study/coverage_meter_card.dart';
 export 'study/vocabulary_level_selector.dart';
 export 'study/vocabulary_kanji_list.dart';

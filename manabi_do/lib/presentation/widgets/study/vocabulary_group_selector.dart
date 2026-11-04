@@ -11,8 +11,6 @@ import '../../../l10n/vocabulary_level_label.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../widgets.dart';
 
-const kVocabularyGroupSize = 30;
-
 /// Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for
 /// pagination within a vocabulary level, in groups of `kVocabularyGroupSize`.
 ///

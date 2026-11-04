@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../l10n/app_localizations.dart';
 import 'shared_preferences_provider.dart';
 
 const _kLocaleKey = 'app_locale';
-const _kSupportedLocales = ['en', 'fr', 'de'];
 
 class LocaleNotifier extends Notifier<Locale> {
   @override
@@ -14,7 +14,10 @@ class LocaleNotifier extends Notifier<Locale> {
     final saved = prefs.getString(_kLocaleKey);
     if (saved != null) return Locale(saved);
     final deviceCode = PlatformDispatcher.instance.locale.languageCode;
-    if (_kSupportedLocales.contains(deviceCode)) return Locale(deviceCode);
+    final bool supported = AppLocalizations.supportedLocales.any(
+      (l) => l.languageCode == deviceCode,
+    );
+    if (supported) return Locale(deviceCode);
     return const Locale('en');
   }
 

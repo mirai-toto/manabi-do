@@ -22,6 +22,7 @@ const Map<String, String> _endonyms = {
   'rus': 'Русский',
 };
 
+// sentence_translations uses ISO 639-2 (3-letter) codes; the app uses 639-1.
 const Map<String, String> _iso1To2 = {
   'en': 'eng',
   'fr': 'fra',
@@ -32,6 +33,10 @@ const Map<String, String> _iso1To2 = {
   'ru': 'rus',
 };
 
+/// [locale] (ISO 639-1) as the 639-2 code sentence translations are stored
+/// under. Unknown codes pass through unchanged.
+String sentenceLocaleCode(String locale) => _iso1To2[locale] ?? locale;
+
 /// The reader's own language, named, when [sentenceLocale] is not it — which
 /// is the language the content is missing. Null when the translation is
 /// already in their language, because then there is nothing to explain.
@@ -40,7 +45,7 @@ String? missingLanguageForSentence(
   String readerLocale,
 ) {
   if (sentenceLocale == null) return null;
-  final String reader3 = _iso1To2[readerLocale] ?? readerLocale;
+  final String reader3 = sentenceLocaleCode(readerLocale);
   if (sentenceLocale == reader3) return null;
   return _endonyms[reader3];
 }

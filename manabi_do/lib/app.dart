@@ -33,7 +33,7 @@ class ManabiDoApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: locale,
-      supportedLocales: const [Locale('en'), Locale('fr'), Locale('de')],
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,

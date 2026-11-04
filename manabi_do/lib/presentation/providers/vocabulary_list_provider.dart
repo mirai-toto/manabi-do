@@ -8,6 +8,7 @@ import '../../data/database/app_database.dart';
 import '../services/search_service.dart';
 import 'database_provider.dart';
 
+/// Words per group within a vocabulary level.
 const kVocabularyGroupSize = 30;
 
 final vocabularyByLevelProvider =

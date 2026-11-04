@@ -6,6 +6,7 @@ import 'package:fsrs/fsrs.dart';
 import 'db_connection_native.dart'
     if (dart.library.js_interop) 'db_connection_web.dart';
 
+import '../../core/text/sentence_language.dart';
 import '../../domain/data/kana_data.dart';
 import 'schema_versions.dart';
 
