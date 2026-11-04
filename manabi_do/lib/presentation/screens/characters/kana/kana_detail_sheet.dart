@@ -8,10 +8,11 @@ import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../domain/data/kana_data.dart';
 import '../../../../l10n/l10n.dart';
-import '../../../services/srs_service.dart';
+import '../../../providers/kana_progress_provider.dart';
+import '../reset_progress_button.dart';
 import '../../../widgets/widgets.dart';
 
-class KanaDetailSheet extends ConsumerStatefulWidget {
+class KanaDetailSheet extends ConsumerWidget {
   final KanaEntry entry;
   final String rowLabel;
   final String type; // 'hiragana' | 'katakana'
@@ -24,45 +25,10 @@ class KanaDetailSheet extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<KanaDetailSheet> createState() => _KanaDetailSheetState();
-}
-
-class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
-  Card? _srsCard;
-  bool _loaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadCard();
-  }
-
-  Future<void> _loadCard() async {
-    final card = await ref
-        .read(srsServiceProvider)
-        .getCard(widget.type, widget.entry.id);
-    if (mounted) {
-      setState(() {
-        _srsCard = card;
-        _loaded = true;
-      });
-    }
-  }
-
-  Future<void> _resetProgress() async {
-    final l = context.l10n;
-    final confirmed = await showConfirmDialog(
-      context,
-      title: l.resetKanaTitle,
-      body: l.resetKanaBody,
-    );
-    if (!confirmed) return;
-    await ref.read(srsServiceProvider).resetCard(widget.type, widget.entry.id);
-    if (mounted) setState(() => _srsCard = null);
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final srsCardsAsync = ref.watch(kanaSrsCardsProvider(type));
+    final bool loaded = srsCardsAsync.asData != null;
+    final Card? srsCard = srsCardsAsync.asData?.value[entry.id];
     final t = context.tokens;
     final l = context.l10n;
     final color = levelColor('kana');
@@ -86,7 +52,7 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
                 Stack(
                   children: [
                     CharacterHeroBox(
-                      character: widget.entry.kana,
+                      character: entry.kana,
                       size: 88,
                       accentColor: color,
                     ),
@@ -94,7 +60,7 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
                       top: AppDimens.spaceSm,
                       right: AppDimens.spaceSm,
                       child: SpeakButton(
-                        text: widget.entry.kana,
+                        text: entry.kana,
                         color: Colors.white.withValues(alpha: 0.8),
                         size: 18,
                       ),
@@ -107,23 +73,21 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.entry.romaji,
+                        entry.romaji,
                         style: AppTextStyles.titleLarge.copyWith(
                           color: t.onSurface,
                         ),
                       ),
                       const SizedBox(height: AppDimens.spaceXs),
                       Text(
-                        widget.rowLabel,
+                        rowLabel,
                         style: AppTextStyles.bodySmall.copyWith(
                           color: t.onSurfaceVariant,
                         ),
                       ),
                       const SizedBox(height: AppDimens.spaceXs),
                       Text(
-                        widget.type == 'hiragana'
-                            ? l.tabHiragana
-                            : l.tabKatakana,
+                        type == 'hiragana' ? l.tabHiragana : l.tabKatakana,
                         style: AppTextStyles.labelSmall.copyWith(
                           color: t.onSurfaceVariant,
                         ),
@@ -137,24 +101,14 @@ class _KanaDetailSheetState extends ConsumerState<KanaDetailSheet> {
             const SizedBox(height: AppDimens.spaceLg),
 
             // Progress row
-            SrsProgressCard(isLoaded: _loaded, srsCard: _srsCard),
+            SrsProgressCard(isLoaded: loaded, srsCard: srsCard),
 
-            if (_loaded && _srsCard != null) ...[
+            if (loaded && srsCard != null) ...[
               const SizedBox(height: AppDimens.spaceMd),
-              SizedBox(
-                width: double.infinity,
-                child: TextButton.icon(
-                  onPressed: _resetProgress,
-                  icon: Icon(
-                    Icons.restart_alt_rounded,
-                    size: 18,
-                    color: t.error,
-                  ),
-                  label: Text(
-                    l.resetCharacterProgress,
-                    style: AppTextStyles.bodySmall.copyWith(color: t.error),
-                  ),
-                ),
+              ResetProgressButton(
+                srsType: type,
+                id: entry.id,
+                confirmTitle: context.l10n.resetKanaTitle,
               ),
             ],
           ],

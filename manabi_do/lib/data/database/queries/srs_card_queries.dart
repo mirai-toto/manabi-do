@@ -75,16 +75,6 @@ extension SrsCardQueries on AppDatabase {
     });
   }
 
-  Future<Card?> getSrsCard(String itemType, int itemId) async {
-    final row =
-        await (select(srsCards)..where(
-              (s) => s.itemType.equals(itemType) & s.itemId.equals(itemId),
-            ))
-            .getSingleOrNull();
-    if (row == null) return null;
-    return Card.fromMap(jsonDecode(row.cardJson) as Map<String, dynamic>);
-  }
-
   Future<void> upsertSrsCard(
     String itemType,
     int itemId,

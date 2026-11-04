@@ -18,9 +18,6 @@ class SrsService {
 
   const SrsService(this._ref);
 
-  Future<Card?> getCard(String type, int id) =>
-      _ref.read(databaseProvider).getSrsCard(type, id);
-
   Future<void> resetCard(String type, int id) =>
       _ref.read(databaseProvider).resetSrsCard(type, id);
 
