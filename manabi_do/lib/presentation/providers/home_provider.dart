@@ -106,7 +106,7 @@ final grammarSelectedLevelProvider =
       _SelectionNotifier.new,
     );
 
-/// Which level or level a section has drilled into, or null for none.
+/// Which level or group a section has drilled into, or null for none.
 ///
 /// Within-screen back navigation lives in a provider rather than a `PopScope`,
 /// so the system back button and the in-app arrow run the same code.
@@ -117,17 +117,8 @@ class _SelectionNotifier<T> extends Notifier<T?> {
   void clear() => state = null;
 }
 
-final kanjiSelectedGroupProvider = NotifierProvider<_GroupNotifier, int?>(
-  _GroupNotifier.new,
-);
+final kanjiSelectedGroupProvider =
+    NotifierProvider<_SelectionNotifier<int>, int?>(_SelectionNotifier.new);
 
-final vocabularySelectedGroupProvider = NotifierProvider<_GroupNotifier, int?>(
-  _GroupNotifier.new,
-);
-
-class _GroupNotifier extends Notifier<int?> {
-  @override
-  int? build() => null;
-  void select(int group) => state = group;
-  void clear() => state = null;
-}
+final vocabularySelectedGroupProvider =
+    NotifierProvider<_SelectionNotifier<int>, int?>(_SelectionNotifier.new);

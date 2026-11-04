@@ -1,25 +1,20 @@
 part of '../app_database.dart';
 
+Card _decodeCard(String json) =>
+    Card.fromMap(jsonDecode(json) as Map<String, dynamic>);
+
 /// Reading and writing individual SRS cards.
 extension SrsCardQueries on AppDatabase {
   Future<Map<int, Card>> getAllSrsCardsForType(String itemType) async {
     final rows = await (select(
       srsCards,
     )..where((s) => s.itemType.equals(itemType))).get();
-    return {
-      for (final r in rows)
-        r.itemId: Card.fromMap(jsonDecode(r.cardJson) as Map<String, dynamic>),
-    };
+    return {for (final r in rows) r.itemId: _decodeCard(r.cardJson)};
   }
 
   Stream<Map<int, Card>> watchAllSrsCardsForType(String itemType) =>
       (select(srsCards)..where((s) => s.itemType.equals(itemType))).watch().map(
-        (rows) => {
-          for (final r in rows)
-            r.itemId: Card.fromMap(
-              jsonDecode(r.cardJson) as Map<String, dynamic>,
-            ),
-        },
+        (rows) => {for (final r in rows) r.itemId: _decodeCard(r.cardJson)},
       );
 
   /// Item type and due date for every card, without parsing the card JSON.
@@ -43,9 +38,7 @@ extension SrsCardQueries on AppDatabase {
       select(srsCards).watch().map((rows) {
         final byType = <String, List<Card>>{};
         for (final r in rows) {
-          (byType[r.itemType] ??= []).add(
-            Card.fromMap(jsonDecode(r.cardJson) as Map<String, dynamic>),
-          );
+          (byType[r.itemType] ??= []).add(_decodeCard(r.cardJson));
         }
         return byType;
       });

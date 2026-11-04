@@ -1,6 +1,6 @@
 import '../../core/providers/locale_provider.dart';
+import 'srs_cards_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fsrs/fsrs.dart';
 
 import '../../core/srs/srs_level.dart';
 import '../../core/theme/vocabulary_level.dart';
@@ -87,7 +87,7 @@ final groupShareProvider = Provider<Map<(int, int), double>?>((ref) {
 final coverageReachedProvider = Provider<double?>((ref) {
   final shares = ref.watch(groupShareProvider);
   if (shares == null) return null;
-  final srsCards = ref.watch(vocabularySrsCardsProvider).asData?.value;
+  final srsCards = ref.watch(srsCardsProvider('vocabulary')).asData?.value;
   if (srsCards == null) return null;
 
   var reached = 0.0;
@@ -112,10 +112,6 @@ final coverageReachedProvider = Provider<double?>((ref) {
   }
   return reached;
 });
-
-final vocabularySrsCardsProvider = StreamProvider<Map<int, Card>>(
-  (ref) => ref.watch(databaseProvider).watchAllSrsCardsForType('vocabulary'),
-);
 
 /// Total vocabulary count across every vocabulary level; null while any level is
 /// still loading.
@@ -142,6 +138,6 @@ final vocabularyGroupLearnedCountProvider =
               .toList() ??
           [];
       final srsCards =
-          ref.watch(vocabularySrsCardsProvider).asData?.value ?? {};
+          ref.watch(srsCardsProvider('vocabulary')).asData?.value ?? {};
       return entries.where((e) => isSrsKnown(srsCards[e.id])).length;
     });

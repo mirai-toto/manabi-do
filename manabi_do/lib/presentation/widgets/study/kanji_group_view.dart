@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../providers/srs_cards_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/srs/srs_level.dart';
@@ -28,7 +29,7 @@ class KanjiGroupView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final kanjiAsync = ref.watch(kanjiListProvider(level));
-    final srsCards = ref.watch(kanjiSrsCardsProvider).asData?.value ?? {};
+    final srsCards = ref.watch(srsCardsProvider('kanji')).asData?.value ?? {};
 
     if (kanjiAsync is AsyncLoading) {
       return const Center(child: AppSpinner.page());

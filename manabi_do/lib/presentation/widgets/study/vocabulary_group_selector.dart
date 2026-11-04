@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../providers/srs_cards_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/srs/srs_level.dart';
@@ -35,7 +36,8 @@ class VocabularyGroupSelector extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final vocabularyAsync = ref.watch(vocabularyByLevelProvider(level));
-    final srsCards = ref.watch(vocabularySrsCardsProvider).asData?.value ?? {};
+    final srsCards =
+        ref.watch(srsCardsProvider('vocabulary')).asData?.value ?? {};
     final shares = ref.watch(groupShareProvider);
     final color = vocabularyLevelColor(level, Theme.of(context).brightness);
 

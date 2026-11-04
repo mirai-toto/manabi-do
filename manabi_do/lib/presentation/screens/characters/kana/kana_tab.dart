@@ -7,7 +7,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../domain/data/kana_data.dart';
 import '../../../../l10n/l10n.dart';
-import '../../../providers/kana_progress_provider.dart';
+import '../../../providers/srs_cards_provider.dart';
 import '../../../widgets/widgets.dart';
 import 'kana_detail_sheet.dart';
 
@@ -43,7 +43,7 @@ class KanaTabView extends ConsumerWidget {
     // Kana has no JLPT level of its own, so it follows the app accent rather
     // than carrying a section colour.
     final color = context.tokens.primary;
-    final srsCards = ref.watch(kanaSrsCardsProvider(type)).asData?.value ?? {};
+    final srsCards = ref.watch(srsCardsProvider(type)).asData?.value ?? {};
     final learnedCount = allKana
         .where((e) => isSrsKnown(srsCards[e.id]))
         .length;

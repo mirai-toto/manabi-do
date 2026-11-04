@@ -3,6 +3,8 @@ import 'package:fsrs/fsrs.dart';
 import '../../data/database/app_database.dart';
 import 'database_provider.dart';
 
-final kanaSrsCardsProvider = StreamProvider.family<Map<int, Card>, String>(
+/// Every SRS card of one item type ('hiragana', 'katakana', 'kanji',
+/// 'vocabulary'), by item id, kept live.
+final srsCardsProvider = StreamProvider.family<Map<int, Card>, String>(
   (ref, type) => ref.watch(databaseProvider).watchAllSrsCardsForType(type),
 );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../providers/srs_cards_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_dimens.dart';
@@ -52,7 +53,7 @@ class _KanjiBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final color = levelColor(kanji.jlptLevel);
-    final srsCardsAsync = ref.watch(kanjiSrsCardsProvider);
+    final srsCardsAsync = ref.watch(srsCardsProvider('kanji'));
     final loaded = srsCardsAsync.asData != null;
     final card = srsCardsAsync.asData?.value[kanji.id];
 

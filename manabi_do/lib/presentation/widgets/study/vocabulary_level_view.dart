@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../providers/srs_cards_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' as fsrs;
 
@@ -171,7 +172,7 @@ class _LevelContent extends ConsumerWidget {
   List<_Section> _sections(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
-    final cards = ref.watch(vocabularySrsCardsProvider).asData?.value ?? {};
+    final cards = ref.watch(srsCardsProvider('vocabulary')).asData?.value ?? {};
     final now = DateTime.now();
 
     final due = <_WordState>[];

@@ -8,7 +8,7 @@ import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../domain/data/kana_data.dart';
 import '../../../../l10n/l10n.dart';
-import '../../../providers/kana_progress_provider.dart';
+import '../../../providers/srs_cards_provider.dart';
 import '../reset_progress_button.dart';
 import '../../../widgets/widgets.dart';
 
@@ -26,7 +26,7 @@ class KanaDetailSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final srsCardsAsync = ref.watch(kanaSrsCardsProvider(type));
+    final srsCardsAsync = ref.watch(srsCardsProvider(type));
     final bool loaded = srsCardsAsync.asData != null;
     final Card? srsCard = srsCardsAsync.asData?.value[entry.id];
     final t = context.tokens;
