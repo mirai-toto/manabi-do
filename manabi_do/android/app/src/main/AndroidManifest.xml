@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Re-arms the widgets' scheduled updates after a reboot. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:label="Manabi Do"
         android:name="${applicationName}"
@@ -25,6 +27,63 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- Home-screen widgets. The Dart side names these receivers in
+             lib/presentation/services/home_widget_service.dart. -->
+        <receiver
+            android:name=".widgets.ReviewsWidgetReceiver"
+            android:label="@string/widget_reviews_name"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/reviews_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.KanjiWidgetReceiver"
+            android:label="@string/widget_kanji_name"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/kanji_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.GrammarWidgetReceiver"
+            android:label="@string/widget_grammar_name"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/grammar_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.StreakWidgetReceiver"
+            android:label="@string/widget_streak_name"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/streak_widget_info" />
+        </receiver>
+        <!-- Delivers the updates scheduled with HomeWidget.scheduleWidgetUpdates
+             (cards coming due, midnight) and re-arms them after a reboot. -->
+        <receiver
+            android:name="es.antonborri.home_widget.HomeWidgetScheduledUpdateReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

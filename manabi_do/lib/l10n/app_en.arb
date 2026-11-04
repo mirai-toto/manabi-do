@@ -673,5 +673,20 @@
   "loadError": "Couldn't load this. Try again later.",
   "@loadError": {
     "description": "Shown in place of content that failed to load."
-  }
+  },
+  "widgetNextReview": "Next at {time}",
+  "@widgetNextReview": {
+    "description": "Home-screen widget: when the next review falls due. The widget fills in {time} itself.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetKanjiOfTheDay": "Kanji of the day",
+  "widgetResume": "Resume",
+  "widgetAllLessonsRead": "Every lesson read",
+  "widgetActivityRange": "Last 20 weeks",
+  "widgetLess": "Less",
+  "widgetMore": "More"
 }

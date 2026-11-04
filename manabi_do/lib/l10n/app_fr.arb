@@ -548,5 +548,12 @@
   "intervalHours": "{n} h",
   "intervalDays": "{n} j",
   "intervalMonths": "{n} mois",
-  "loadError": "Impossible de charger ce contenu. Réessayez plus tard."
+  "loadError": "Impossible de charger ce contenu. Réessayez plus tard.",
+  "widgetNextReview": "Prochaine à {time}",
+  "widgetKanjiOfTheDay": "Kanji du jour",
+  "widgetResume": "Reprendre",
+  "widgetAllLessonsRead": "Toutes les leçons lues",
+  "widgetActivityRange": "20 dernières semaines",
+  "widgetLess": "Moins",
+  "widgetMore": "Plus"
 }

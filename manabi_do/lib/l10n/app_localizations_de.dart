@@ -1148,4 +1148,27 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get loadError =>
       'Konnte nicht geladen werden. Versuche es später erneut.';
+
+  @override
+  String widgetNextReview(String time) {
+    return 'Nächste um $time';
+  }
+
+  @override
+  String get widgetKanjiOfTheDay => 'Kanji des Tages';
+
+  @override
+  String get widgetResume => 'Fortsetzen';
+
+  @override
+  String get widgetAllLessonsRead => 'Alle Lektionen gelesen';
+
+  @override
+  String get widgetActivityRange => 'Letzte 20 Wochen';
+
+  @override
+  String get widgetLess => 'Weniger';
+
+  @override
+  String get widgetMore => 'Mehr';
 }

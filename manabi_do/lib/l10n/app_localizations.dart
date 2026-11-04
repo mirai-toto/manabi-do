@@ -2097,6 +2097,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t load this. Try again later.'**
   String get loadError;
+
+  /// Home-screen widget: when the next review falls due. The widget fills in {time} itself.
+  ///
+  /// In en, this message translates to:
+  /// **'Next at {time}'**
+  String widgetNextReview(String time);
+
+  /// No description provided for @widgetKanjiOfTheDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Kanji of the day'**
+  String get widgetKanjiOfTheDay;
+
+  /// No description provided for @widgetResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get widgetResume;
+
+  /// No description provided for @widgetAllLessonsRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Every lesson read'**
+  String get widgetAllLessonsRead;
+
+  /// No description provided for @widgetActivityRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 20 weeks'**
+  String get widgetActivityRange;
+
+  /// No description provided for @widgetLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Less'**
+  String get widgetLess;
+
+  /// No description provided for @widgetMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get widgetMore;
 }
 
 class _AppLocalizationsDelegate

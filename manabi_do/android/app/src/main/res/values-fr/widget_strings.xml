@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Names and descriptions in the launcher's widget picker. -->
+<resources>
+    <string name="widget_reviews_name">Révisions à faire</string>
+    <string name="widget_reviews_description">Le nombre de révisions en attente, avec un raccourci pour commencer</string>
+    <string name="widget_kanji_name">Kanji du jour</string>
+    <string name="widget_kanji_description">Un des kanji que vous apprenez, chaque jour</string>
+    <string name="widget_grammar_name">Continuer la grammaire</string>
+    <string name="widget_grammar_description">Reprendre la leçon de grammaire là où vous en étiez</string>
+    <string name="widget_streak_name">Série</string>
+    <string name="widget_streak_description">Votre série de jours et 20 semaines de révisions</string>
+</resources>

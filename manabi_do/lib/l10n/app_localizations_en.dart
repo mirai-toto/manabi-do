@@ -1141,4 +1141,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loadError => 'Couldn\'t load this. Try again later.';
+
+  @override
+  String widgetNextReview(String time) {
+    return 'Next at $time';
+  }
+
+  @override
+  String get widgetKanjiOfTheDay => 'Kanji of the day';
+
+  @override
+  String get widgetResume => 'Resume';
+
+  @override
+  String get widgetAllLessonsRead => 'Every lesson read';
+
+  @override
+  String get widgetActivityRange => 'Last 20 weeks';
+
+  @override
+  String get widgetLess => 'Less';
+
+  @override
+  String get widgetMore => 'More';
 }

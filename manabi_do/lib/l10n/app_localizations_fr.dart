@@ -1149,4 +1149,27 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get loadError =>
       'Impossible de charger ce contenu. Réessayez plus tard.';
+
+  @override
+  String widgetNextReview(String time) {
+    return 'Prochaine à $time';
+  }
+
+  @override
+  String get widgetKanjiOfTheDay => 'Kanji du jour';
+
+  @override
+  String get widgetResume => 'Reprendre';
+
+  @override
+  String get widgetAllLessonsRead => 'Toutes les leçons lues';
+
+  @override
+  String get widgetActivityRange => '20 dernières semaines';
+
+  @override
+  String get widgetLess => 'Moins';
+
+  @override
+  String get widgetMore => 'Plus';
 }
