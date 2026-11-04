@@ -79,6 +79,8 @@ CLASSIFIED: dict[str, str] = {
     "ChapterCard": "list-item",
     "ContinueLessonCard": "list-item",
     "PracticeModeCard": "list-item",
+    "LevelSearchShell": "composite",
+    "SearchNoResults": "label",
     "CharacterCell": "list-item",
     "SessionReviewRow": "list-item",
     "StudyGroupCard": "list-item",

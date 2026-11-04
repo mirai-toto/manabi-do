@@ -20,7 +20,7 @@ const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 /// kanji section. Tapping a level calls `onSelect`. Typing replaces the tiles
 /// with ranked matches from `kanjiSearchProvider`; tapping a result calls
 /// `onOpenKanji`.
-class KanjiLevelSelector extends ConsumerStatefulWidget {
+class KanjiLevelSelector extends ConsumerWidget {
   final void Function(String) onSelect;
   final void Function(int kanjiId) onOpenKanji;
   const KanjiLevelSelector({
@@ -30,87 +30,41 @@ class KanjiLevelSelector extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<KanjiLevelSelector> createState() => _KanjiLevelSelectorState();
-}
-
-class _KanjiLevelSelectorState extends ConsumerState<KanjiLevelSelector> {
-  String _query = '';
-  final Set<String> _filter = <String>{};
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        // Sits outside the scrollables below, so switching between the level
-        // list and results never rebuilds the field or drops the keyboard.
-        Padding(
-          padding: const EdgeInsets.fromLTRB(
-            AppDimens.spaceMd,
-            AppDimens.spaceMd,
-            AppDimens.spaceMd,
-            AppDimens.spaceSm,
-          ),
-          child: SearchField(
-            label: l.searchKanji,
-            hint: l.searchKanjiHint,
-            onChanged: (query) => setState(() => _query = query),
-          ),
-        ),
-        // Only while searching: without a query the level list below already
-        // is the level picker, and two ways to do one thing reads as a bug.
-        if (isSearchableQuery(_query))
-          Padding(
-            padding: const EdgeInsets.fromLTRB(
-              AppDimens.spaceMd,
-              0,
-              AppDimens.spaceMd,
-              AppDimens.spaceSm,
+    return LevelSearchShell<String>(
+      searchLabel: l.searchKanji,
+      searchHint: l.searchKanjiHint,
+      filterOptions: _kanjiLevels,
+      filterLabelOf: (level) => level,
+      levels: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
+        children: [
+          SectionLabel(l.selectLevel),
+          const SizedBox(height: AppDimens.spaceSm),
+          for (final code in _kanjiLevels)
+            JlptLevelCard(
+              code: code,
+              subtitle: _subtitle(context, ref, code),
+              onTap: () => onSelect(code),
             ),
-            child: FilterChipBar<String>(
-              options: _kanjiLevels,
-              selected: _filter,
-              labelOf: (level) => level,
-              onToggle: (level) => setState(
-                () => _filter.contains(level)
-                    ? _filter.remove(level)
-                    : _filter.add(level),
-              ),
+        ],
+      ),
+      results: (query, filter) => Consumer(
+        builder: (context, ref, _) => ref
+            .watch(kanjiSearchProvider(SearchQuery(query, filter)))
+            .when(
+              loading: () => const Center(child: AppSpinner.page()),
+              error: (e, s) => const SizedBox.shrink(),
+              data: (results) => results.isEmpty
+                  ? SearchNoResults(message: l.noResults)
+                  : _ResultList(results: results, onOpenKanji: onOpenKanji),
             ),
-          ),
-        Expanded(
-          child: isSearchableQuery(_query) ? _results() : _levelList(context),
-        ),
-      ],
+      ),
     );
   }
 
-  Widget _levelList(BuildContext context) => ListView(
-    padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-    children: [
-      SectionLabel(context.l10n.selectLevel),
-      const SizedBox(height: AppDimens.spaceSm),
-      for (final code in _kanjiLevels)
-        JlptLevelCard(
-          code: code,
-          subtitle: _subtitle(context, code),
-          onTap: () => widget.onSelect(code),
-        ),
-    ],
-  );
-
-  Widget _results() => ref
-      .watch(kanjiSearchProvider(SearchQuery(_query, _filter)))
-      .when(
-        loading: () => const Center(child: AppSpinner.page()),
-        error: (e, s) => const SizedBox.shrink(),
-        data: (results) => results.isEmpty
-            ? const _NoResults()
-            : _ResultList(results: results, onOpenKanji: widget.onOpenKanji),
-      );
-
-  String? _subtitle(BuildContext context, String code) {
+  String? _subtitle(BuildContext context, WidgetRef ref, String code) {
     final data = ref.watch(kanjiListProvider(code)).asData?.value;
     return data != null ? context.l10n.nKanji(data.total) : null;
   }
@@ -131,23 +85,6 @@ class _ResultList extends StatelessWidget {
       onTap: () => onOpenKanji(results[index].id),
     ),
   );
-}
-
-class _NoResults extends StatelessWidget {
-  const _NoResults();
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.all(AppDimens.spaceLg),
-      child: Text(
-        context.l10n.noResults,
-        textAlign: TextAlign.center,
-        style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant),
-      ),
-    );
-  }
 }
 
 class _KanjiResultTile extends ConsumerWidget {

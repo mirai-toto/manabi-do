@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../core/theme/vocabulary_level.dart';
@@ -17,70 +16,34 @@ import '../widgets.dart';
 /// Tapping a level calls `onSelect`. Typing replaces the tiles with matching
 /// words from `vocabularySearchProvider` (word, reading or meaning; ranked by
 /// `searchRank`, capped at 50), built lazily as they scroll into view.
-class VocabularyLevelSelector extends ConsumerStatefulWidget {
+class VocabularyLevelSelector extends ConsumerWidget {
   final void Function(int) onSelect;
   const VocabularyLevelSelector({super.key, required this.onSelect});
 
   @override
-  ConsumerState<VocabularyLevelSelector> createState() =>
-      _VocabularyLevelSelectorState();
-}
-
-class _VocabularyLevelSelectorState
-    extends ConsumerState<VocabularyLevelSelector> {
-  String _query = '';
-  final Set<int> _filter = <int>{};
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        // Sits outside the scrollables below, so switching between the level
-        // list and results never rebuilds the field or drops the keyboard.
-        Padding(
-          padding: const EdgeInsets.fromLTRB(
-            AppDimens.spaceMd,
-            AppDimens.spaceMd,
-            AppDimens.spaceMd,
-            AppDimens.spaceSm,
-          ),
-          child: SearchField(
-            label: l.searchVocabulary,
-            hint: l.searchVocabularyHint,
-            onChanged: (query) => setState(() => _query = query),
-          ),
-        ),
-        // Only while searching: without a query the level list below already
-        // is the level picker, and two ways to do one thing reads as a bug.
-        if (isSearchableQuery(_query))
-          Padding(
-            padding: const EdgeInsets.fromLTRB(
-              AppDimens.spaceMd,
-              0,
-              AppDimens.spaceMd,
-              AppDimens.spaceSm,
+    return LevelSearchShell<int>(
+      searchLabel: l.searchVocabulary,
+      searchHint: l.searchVocabularyHint,
+      filterOptions: kAllVocabularyLevels,
+      filterLabelOf: (level) => vocabularyLevelLabel(level, context),
+      levels: _levelList(context, ref),
+      results: (query, filter) => Consumer(
+        builder: (context, ref, _) => ref
+            .watch(vocabularySearchProvider(SearchQuery(query, filter)))
+            .when(
+              loading: () => const Center(child: AppSpinner.page()),
+              error: (e, s) => const SizedBox.shrink(),
+              data: (results) => results.isEmpty
+                  ? SearchNoResults(message: l.noResults)
+                  : _ResultList(results),
             ),
-            child: FilterChipBar<int>(
-              options: kAllVocabularyLevels,
-              selected: _filter,
-              labelOf: (level) => vocabularyLevelLabel(level, context),
-              onToggle: (level) => setState(
-                () => _filter.contains(level)
-                    ? _filter.remove(level)
-                    : _filter.add(level),
-              ),
-            ),
-          ),
-        Expanded(
-          child: isSearchableQuery(_query) ? _results() : _levelList(context),
-        ),
-      ],
+      ),
     );
   }
 
-  Widget _levelList(BuildContext context) {
+  Widget _levelList(BuildContext context, WidgetRef ref) {
     final mine = ref.watch(coverageReachedProvider);
     final total = ref.watch(vocabularyTotalCountProvider);
     final l = context.l10n;
@@ -108,8 +71,8 @@ class _VocabularyLevelSelectorState
           for (final level in kAllVocabularyLevels)
             VocabularyLevelCard(
               level: level,
-              wordCount: _wordCount(context, level),
-              onTap: () => widget.onSelect(level),
+              wordCount: _wordCount(context, ref, level),
+              onTap: () => onSelect(level),
             ),
           const SizedBox(height: AppDimens.spaceLg),
         ],
@@ -117,16 +80,7 @@ class _VocabularyLevelSelectorState
     );
   }
 
-  Widget _results() => ref
-      .watch(vocabularySearchProvider(SearchQuery(_query, _filter)))
-      .when(
-        loading: () => const Center(child: AppSpinner.page()),
-        error: (e, s) => const SizedBox.shrink(),
-        data: (results) =>
-            results.isEmpty ? const _NoResults() : _ResultList(results),
-      );
-
-  String? _wordCount(BuildContext context, int level) {
+  String? _wordCount(BuildContext context, WidgetRef ref, int level) {
     final count = ref
         .watch(vocabularyByLevelProvider(level))
         .asData
@@ -173,23 +127,6 @@ class _ResultList extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _NoResults extends StatelessWidget {
-  const _NoResults();
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.all(AppDimens.spaceLg),
-      child: Text(
-        context.l10n.noResults,
-        textAlign: TextAlign.center,
-        style: AppTextStyles.body.copyWith(color: t.onSurfaceVariant),
       ),
     );
   }

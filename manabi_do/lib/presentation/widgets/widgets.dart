@@ -78,6 +78,7 @@ export 'study/kanji_group_selector.dart';
 export 'study/kanji_group_view.dart';
 export 'study/kanji_level_selector.dart';
 export 'study/lesson_row.dart';
+export 'study/level_search_shell.dart';
 export 'study/practice_button.dart';
 export 'study/practice_mode_card.dart';
 export 'study/streak_pill.dart';
