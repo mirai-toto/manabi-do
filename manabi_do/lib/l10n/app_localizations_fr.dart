@@ -1078,4 +1078,54 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get deckContinue => 'Continuer';
+
+  @override
+  String get onboardingWelcome => 'Bienvenue';
+
+  @override
+  String get onboardingLanguageBody =>
+      'Choisissez la langue des définitions et des leçons. Vous pourrez en changer dans les Paramètres.';
+
+  @override
+  String get onboardingContinue => 'Continuer';
+
+  @override
+  String get onboardingHookTitle => '750 mots, c\'est la moitié';
+
+  @override
+  String get onboardingHookBody =>
+      'Les mots sont enseignés dans l\'ordre où ils s\'écrivent réellement, mesuré sur 18 millions de mots de japonais. Le premier niveau couvre à lui seul la moitié de tout ce qui s\'écrit.';
+
+  @override
+  String onboardingLevelWords(int level, String count) {
+    return 'Niveau $level · $count mots';
+  }
+
+  @override
+  String get onboardingStudyTitle => 'Que voulez-vous apprendre ?';
+
+  @override
+  String get onboardingStudyBody =>
+      'Activez ce que vous voulez sur votre écran d\'accueil. Rien n\'est verrouillé : vous pourrez ajouter le reste quand vous voudrez.';
+
+  @override
+  String get onboardingPaceTitle => 'Combien par jour ?';
+
+  @override
+  String get onboardingPaceBody =>
+      'Nouveaux éléments par jour. Les révisions s\'ajoutent, et elles se stabilisent après quelques jours.';
+
+  @override
+  String onboardingPaceEstimate(int minutes) {
+    return 'Environ $minutes minutes par jour';
+  }
+
+  @override
+  String get onboardingStart => 'Commencer';
+
+  @override
+  String get onboardingSkip => 'Configurer plus tard';
+
+  @override
+  String get onboardingPickOne => 'Choisissez-en au moins un pour continuer.';
 }

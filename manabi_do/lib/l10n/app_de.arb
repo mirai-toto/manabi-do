@@ -538,5 +538,19 @@
   },
   "deckCaughtUp": "Erledigt",
   "deckNotStarted": "Starten",
-  "deckContinue": "Weiter"
+  "deckContinue": "Weiter",
+  "onboardingWelcome": "Willkommen",
+  "onboardingLanguageBody": "Wählen Sie die Sprache für Bedeutungen und Lektionen. Sie können sie später in den Einstellungen ändern.",
+  "onboardingContinue": "Weiter",
+  "onboardingHookTitle": "750 Wörter sind die Hälfte",
+  "onboardingHookBody": "Wörter werden in der Reihenfolge gelehrt, in der sie tatsächlich geschrieben werden, gemessen an 18 Millionen Wörtern Japanisch. Die erste Stufe allein deckt die Hälfte von allem Geschriebenen ab.",
+  "onboardingLevelWords": "Stufe {level} · {count} Wörter",
+  "onboardingStudyTitle": "Was möchten Sie lernen?",
+  "onboardingStudyBody": "Schalten Sie ein, was auf Ihrem Startbildschirm erscheinen soll. Nichts ist festgelegt — den Rest können Sie jederzeit hinzufügen.",
+  "onboardingPaceTitle": "Wie viel pro Tag?",
+  "onboardingPaceBody": "Neue Einträge pro Tag. Wiederholungen kommen dazu und pendeln sich nach ein paar Tagen ein.",
+  "onboardingPaceEstimate": "Etwa {minutes} Minuten pro Tag",
+  "onboardingStart": "Loslegen",
+  "onboardingSkip": "Später einrichten",
+  "onboardingPickOne": "Wählen Sie mindestens eines aus."
 }

@@ -1995,6 +1995,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue'**
   String get deckContinue;
+
+  /// No description provided for @onboardingWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get onboardingWelcome;
+
+  /// No description provided for @onboardingLanguageBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the language you want meanings and lessons in. You can change it later in Settings.'**
+  String get onboardingLanguageBody;
+
+  /// No description provided for @onboardingContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get onboardingContinue;
+
+  /// No description provided for @onboardingHookTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'750 words is half of it'**
+  String get onboardingHookTitle;
+
+  /// No description provided for @onboardingHookBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Words are taught in the order people actually write them, measured against 18 million words of Japanese. The first level alone covers half of everything written.'**
+  String get onboardingHookBody;
+
+  /// Label beside a coverage bar on the onboarding hook screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level} · {count} words'**
+  String onboardingLevelWords(int level, String count);
+
+  /// No description provided for @onboardingStudyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you want to learn?'**
+  String get onboardingStudyTitle;
+
+  /// No description provided for @onboardingStudyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on what you want on your home screen. Nothing is locked — you can add the rest whenever.'**
+  String get onboardingStudyBody;
+
+  /// No description provided for @onboardingPaceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How much a day?'**
+  String get onboardingPaceTitle;
+
+  /// No description provided for @onboardingPaceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'New items per day. Reviews come on top, and they settle once you have a few days behind you.'**
+  String get onboardingPaceBody;
+
+  /// Rough daily time estimate from the chosen pace.
+  ///
+  /// In en, this message translates to:
+  /// **'About {minutes} minutes a day'**
+  String onboardingPaceEstimate(int minutes);
+
+  /// No description provided for @onboardingStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start learning'**
+  String get onboardingStart;
+
+  /// No description provided for @onboardingSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Set it up later'**
+  String get onboardingSkip;
+
+  /// No description provided for @onboardingPickOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose at least one to carry on.'**
+  String get onboardingPickOne;
 }
 
 class _AppLocalizationsDelegate

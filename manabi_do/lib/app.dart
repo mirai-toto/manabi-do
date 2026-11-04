@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:manabi_do/l10n/app_localizations.dart';
 
 import 'core/providers/locale_provider.dart';
+import 'core/providers/onboarding_provider.dart';
 import 'core/providers/theme_provider.dart';
 import 'core/theme/app_theme.dart';
+import 'presentation/screens/onboarding/onboarding_screen.dart';
 import 'presentation/screens/shell_screen.dart';
 
 class ManabiDoApp extends ConsumerWidget {
@@ -16,6 +18,11 @@ class ManabiDoApp extends ConsumerWidget {
     final themeMode =
         ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system;
     final locale = ref.watch(localeProvider);
+    // Read synchronously, so the first frame is already the right screen.
+    // Onboarding sets the locale, which rebuilds this; leaving it as `home`
+    // rather than a route means that rebuild swaps the screen cleanly once
+    // the flag flips.
+    final bool onboarded = ref.watch(onboardingSeenProvider);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -31,7 +38,7 @@ class ManabiDoApp extends ConsumerWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
-      home: const ShellScreen(),
+      home: onboarded ? const ShellScreen() : const OnboardingScreen(),
     );
   }
 }

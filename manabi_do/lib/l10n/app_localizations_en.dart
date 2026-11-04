@@ -1071,4 +1071,54 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deckContinue => 'Continue';
+
+  @override
+  String get onboardingWelcome => 'Welcome';
+
+  @override
+  String get onboardingLanguageBody =>
+      'Pick the language you want meanings and lessons in. You can change it later in Settings.';
+
+  @override
+  String get onboardingContinue => 'Continue';
+
+  @override
+  String get onboardingHookTitle => '750 words is half of it';
+
+  @override
+  String get onboardingHookBody =>
+      'Words are taught in the order people actually write them, measured against 18 million words of Japanese. The first level alone covers half of everything written.';
+
+  @override
+  String onboardingLevelWords(int level, String count) {
+    return 'Level $level · $count words';
+  }
+
+  @override
+  String get onboardingStudyTitle => 'What do you want to learn?';
+
+  @override
+  String get onboardingStudyBody =>
+      'Turn on what you want on your home screen. Nothing is locked — you can add the rest whenever.';
+
+  @override
+  String get onboardingPaceTitle => 'How much a day?';
+
+  @override
+  String get onboardingPaceBody =>
+      'New items per day. Reviews come on top, and they settle once you have a few days behind you.';
+
+  @override
+  String onboardingPaceEstimate(int minutes) {
+    return 'About $minutes minutes a day';
+  }
+
+  @override
+  String get onboardingStart => 'Start learning';
+
+  @override
+  String get onboardingSkip => 'Set it up later';
+
+  @override
+  String get onboardingPickOne => 'Choose at least one to carry on.';
 }
