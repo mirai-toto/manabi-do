@@ -103,19 +103,23 @@ class TranslatedText extends StatelessWidget {
         overflow: overflow,
       );
     }
+    final WidgetSpan mark = WidgetSpan(
+      alignment: PlaceholderAlignment.middle,
+      child: TranslationFallbackInfo(
+        language: missingLanguage!,
+        color: markColor,
+      ),
+    );
+    // A clipped line throws away everything past the ellipsis, the mark
+    // included, so text that is allowed to truncate wears it in front where
+    // truncation cannot reach. Text that runs to its full length keeps it at
+    // the end, where it reads as a footnote rather than a bullet.
+    final bool mayTruncate = maxLines != null;
     return Text.rich(
       TextSpan(
-        children: [
-          TextSpan(text: text),
-          const TextSpan(text: ' '),
-          WidgetSpan(
-            alignment: PlaceholderAlignment.middle,
-            child: TranslationFallbackInfo(
-              language: missingLanguage!,
-              color: markColor,
-            ),
-          ),
-        ],
+        children: mayTruncate
+            ? [mark, const TextSpan(text: ' '), TextSpan(text: text)]
+            : [TextSpan(text: text), const TextSpan(text: ' '), mark],
       ),
       style: style,
       textAlign: textAlign,

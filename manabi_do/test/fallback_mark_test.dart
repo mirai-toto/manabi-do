@@ -71,6 +71,42 @@ void main() {
     expect(find.byIcon(Icons.info_outline_rounded), findsOneWidget);
   });
 
+  testWidgets('a truncated meaning still shows the mark', (tester) async {
+    // A trailing mark is dropped from layout entirely when the line is
+    // clipped — its rect comes back NaN — so this asserts the mark is really
+    // laid out inside the box, not merely present in the tree.
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.light,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('fr'),
+        home: const Scaffold(
+          body: Align(
+            alignment: Alignment.topLeft,
+            child: SizedBox(
+              key: Key('box'),
+              width: 90,
+              child: TranslatedText(
+                'once; one time; one round; one game; once more; one more time',
+                missingLanguage: 'Français',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final Rect box = tester.getRect(find.byKey(const Key('box')));
+    final Rect mark = tester.getRect(find.byIcon(Icons.info_outline_rounded));
+    expect(mark.left.isFinite, isTrue, reason: 'the mark was never laid out');
+    expect(mark.right, lessThanOrEqualTo(box.right + 0.5));
+    expect(mark.bottom, lessThanOrEqualTo(box.bottom + 0.5));
+  });
+
   testWidgets('TranslatedText shows the mark only when asked', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
