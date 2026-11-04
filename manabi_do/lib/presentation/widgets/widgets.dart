@@ -59,6 +59,7 @@ export 'settings/language_picker_sheet.dart';
 export 'settings/practice_settings_card.dart';
 export 'settings/settings_card.dart';
 export 'settings/settings_info.dart';
+export 'settings/attribution_card.dart';
 export 'settings/choice_count_field.dart';
 export 'settings/session_length_field.dart';
 export 'settings/settings_field_text.dart';

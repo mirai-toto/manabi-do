@@ -5,7 +5,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../core/providers/onboarding_provider.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import 'sources_screen.dart';
@@ -108,31 +107,6 @@ class SettingsAboutSection extends ConsumerWidget {
           ],
         ),
       ],
-    );
-  }
-}
-
-class AttributionCard extends StatelessWidget {
-  final String notice;
-  final String link;
-  const AttributionCard({super.key, required this.notice, required this.link});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return CardContainer(
-      padding: const EdgeInsets.all(AppDimens.spaceMd),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            notice,
-            style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
-          ),
-          const SizedBox(height: AppDimens.spaceSm),
-          Text(link, style: AppTextStyles.bodySmall.copyWith(color: t.primary)),
-        ],
-      ),
     );
   }
 }

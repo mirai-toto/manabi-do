@@ -59,6 +59,7 @@ CLASSIFIED: dict[str, str] = {
     "SettingsSwitchRow": "input",
     "SettingsFieldLabel": "label",
     "SettingsFieldHint": "label",
+    "AttributionCard": "surface",
     "CoverageMeterCard": "indicator",
     "VocabularyWordRow": "list-item",
     "KanjiDrawingCanvas": "input",
