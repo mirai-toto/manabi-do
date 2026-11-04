@@ -12,8 +12,8 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/vocabulary_list_provider.dart';
-import '../../screens/vocabulary/vocabulary_detail_screen.dart';
-import '../widgets.dart';
+import 'vocabulary_detail_screen.dart';
+import '../../widgets/widgets.dart';
 
 /// Shows the thirty words of one group, split by what to do about each.
 ///

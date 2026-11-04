@@ -16,6 +16,7 @@ import '../../services/srs_service.dart';
 import '../../services/support_service.dart';
 import '../../widgets/widgets.dart';
 import 'exercise_settings_screen.dart';
+import 'settings_about_section.dart';
 
 /// Order the appearance segments are shown in. Listed explicitly so it cannot
 /// drift from `ThemeMode`'s declaration order.

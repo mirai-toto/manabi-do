@@ -13,6 +13,7 @@ import '../../../l10n/l10n.dart';
 import '../../../l10n/pos_label.dart';
 import '../../providers/vocabulary_provider.dart';
 import '../../widgets/widgets.dart';
+import 'vocabulary_kanji_list.dart';
 
 /// Everything the app knows about one word.
 ///

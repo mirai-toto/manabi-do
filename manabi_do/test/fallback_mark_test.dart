@@ -6,7 +6,7 @@ import 'package:manabi_do/core/providers/locale_provider.dart';
 import 'package:manabi_do/core/theme/app_theme.dart';
 import 'package:manabi_do/data/database/app_database.dart';
 import 'package:manabi_do/presentation/providers/vocabulary_provider.dart';
-import 'package:manabi_do/presentation/widgets/characters/kanji_example_words.dart';
+import 'package:manabi_do/presentation/screens/characters/kanji/kanji_example_words.dart';
 import 'package:manabi_do/core/text/sentence_language.dart';
 import 'package:manabi_do/l10n/app_localizations.dart';
 import 'package:manabi_do/presentation/widgets/common/indicator/pill_badge.dart';

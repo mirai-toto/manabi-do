@@ -10,7 +10,7 @@ import '../../../core/theme/vocabulary_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/vocabulary_level_label.dart';
 import '../../providers/vocabulary_list_provider.dart';
-import '../widgets.dart';
+import '../../widgets/widgets.dart';
 
 /// Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for
 /// pagination within a vocabulary level, in groups of `kVocabularyGroupSize`.

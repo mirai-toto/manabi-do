@@ -6,13 +6,13 @@ import '../../../core/models/drawing_settings.dart';
 import '../../../core/models/practice_answer.dart';
 import '../../../core/srs/drawing_rating.dart';
 import '../../../core/text/short_meaning.dart';
-import '../common/indicator/app_spinner.dart';
+import '../../widgets/common/indicator/app_spinner.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_strokes_provider.dart';
-import 'drawing_exercise.dart';
-import 'practice_progress_row.dart';
+import '../../widgets/exercise/drawing_exercise.dart';
+import '../../widgets/exercise/practice_progress_row.dart';
 
 /// Write the kanji from its meaning, then grade the attempt.
 class KanjiDrawingBody extends ConsumerWidget {

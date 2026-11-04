@@ -11,6 +11,7 @@ import '../../../providers/kanji_provider.dart';
 import '../reset_progress_button.dart';
 import '../../../widgets/widgets.dart';
 import 'kanji_drawing_practice_screen.dart';
+import 'kanji_example_words.dart';
 
 class KanjiDetailScreen extends ConsumerWidget {
   final int kanjiId;

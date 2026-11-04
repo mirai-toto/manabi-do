@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/providers/locale_provider.dart';
-import '../../../core/text/sentence_language.dart';
-import '../../providers/vocabulary_provider.dart';
-import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
-import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
-import '../../../data/database/app_database.dart';
-import '../../../l10n/l10n.dart';
-import '../../services/search_service.dart';
-import '../../providers/kanji_provider.dart';
-import '../widgets.dart';
+import '../../../../core/providers/locale_provider.dart';
+import '../../../../core/text/sentence_language.dart';
+import '../../../providers/vocabulary_provider.dart';
+import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_tokens.dart';
+import '../../../../core/theme/jlpt_level.dart';
+import '../../../../data/database/app_database.dart';
+import '../../../../l10n/l10n.dart';
+import '../../../services/search_service.dart';
+import '../../../providers/kanji_provider.dart';
+import '../../../widgets/widgets.dart';
 
 const _kanjiLevels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 

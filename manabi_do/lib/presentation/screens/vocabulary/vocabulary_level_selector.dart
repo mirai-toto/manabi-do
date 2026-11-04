@@ -9,8 +9,8 @@ import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../services/search_service.dart';
 import '../../providers/vocabulary_list_provider.dart';
-import '../../screens/vocabulary/vocabulary_detail_screen.dart';
-import '../widgets.dart';
+import 'vocabulary_detail_screen.dart';
+import '../../widgets/widgets.dart';
 
 /// Pinned `SearchField` over a full-screen-width list of coverage levels.
 /// Tapping a level calls `onSelect`. Typing replaces the tiles with matching

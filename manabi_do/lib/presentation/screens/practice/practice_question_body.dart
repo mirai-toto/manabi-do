@@ -13,7 +13,7 @@ import '../../../l10n/l10n.dart';
 import '../../widgets/exercise/grammar_builder_body.dart';
 import '../../widgets/exercise/grammar_cloze_body.dart';
 import '../../widgets/exercise/grammar_error_detection_body.dart';
-import '../../widgets/exercise/kanji_drawing_body.dart';
+import 'kanji_drawing_body.dart';
 import '../../widgets/exercise/practice_flashcard_body.dart';
 import '../../widgets/exercise/practice_mcq_body.dart';
 import '../../widgets/exercise/sentence_cloze_body.dart';

@@ -4,7 +4,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../../widgets/widgets.dart';
+import 'settings_about_section.dart';
 
 /// Every outside source the content is built from, and the credit it is owed.
 ///

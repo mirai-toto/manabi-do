@@ -1,17 +1,17 @@
-import '../../../core/text/sentence_language.dart';
-import '../../../core/providers/locale_provider.dart';
+import '../../../../core/text/sentence_language.dart';
+import '../../../../core/providers/locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
-import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/vocabulary_level.dart';
-import '../../../data/database/app_database.dart';
-import '../../../l10n/l10n.dart';
-import '../../../l10n/pos_label.dart';
-import '../widgets.dart';
-import '../../providers/vocabulary_provider.dart';
-import '../../screens/vocabulary/vocabulary_detail_screen.dart';
+import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_tokens.dart';
+import '../../../../core/theme/vocabulary_level.dart';
+import '../../../../data/database/app_database.dart';
+import '../../../../l10n/l10n.dart';
+import '../../../../l10n/pos_label.dart';
+import '../../../widgets/widgets.dart';
+import '../../../providers/vocabulary_provider.dart';
+import '../../vocabulary/vocabulary_detail_screen.dart';
 
 /// `SectionLabel` + list of example vocabulary words for a kanji. Fetches
 /// localized vocabulary via provider; shows a loading indicator, empty state,

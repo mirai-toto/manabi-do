@@ -8,8 +8,8 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_provider.dart';
-import '../../screens/characters/kanji/kanji_detail_screen.dart';
-import '../widgets.dart';
+import '../characters/kanji/kanji_detail_screen.dart';
+import '../../widgets/widgets.dart';
 
 /// `SectionLabel` + the kanji a word is written with, each opening its own
 /// detail screen.
