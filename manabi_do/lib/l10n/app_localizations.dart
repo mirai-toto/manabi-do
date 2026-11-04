@@ -2006,7 +2006,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Level {level} · {count} words'**
-  String onboardingLevelWords(int level, String count);
+  String onboardingLevelWords(int level, int count);
 
   /// No description provided for @onboardingStudyTitle.
   ///

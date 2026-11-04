@@ -1080,8 +1080,12 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les mots sont enseignés dans l\'ordre où ils s\'écrivent réellement, mesuré sur 18 millions de mots de japonais. Le premier niveau couvre à lui seul la moitié de tout ce qui s\'écrit.';
 
   @override
-  String onboardingLevelWords(int level, String count) {
-    return 'Niveau $level · $count mots';
+  String onboardingLevelWords(int level, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Niveau $level · $countString mots';
   }
 
   @override

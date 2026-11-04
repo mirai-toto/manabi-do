@@ -1073,8 +1073,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'Words are taught in the order people actually write them, measured against 18 million words of Japanese. The first level alone covers half of everything written.';
 
   @override
-  String onboardingLevelWords(int level, String count) {
-    return 'Level $level · $count words';
+  String onboardingLevelWords(int level, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Level $level · $countString words';
   }
 
   @override

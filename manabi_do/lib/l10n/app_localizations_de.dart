@@ -1079,8 +1079,12 @@ class AppLocalizationsDe extends AppLocalizations {
       'Wörter werden in der Reihenfolge gelehrt, in der sie tatsächlich geschrieben werden, gemessen an 18 Millionen Wörtern Japanisch. Die erste Stufe allein deckt die Hälfte von allem Geschriebenen ab.';
 
   @override
-  String onboardingLevelWords(int level, String count) {
-    return 'Stufe $level · $count Wörter';
+  String onboardingLevelWords(int level, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Stufe $level · $countString Wörter';
   }
 
   @override

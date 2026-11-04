@@ -594,7 +594,8 @@
         "type": "int"
       },
       "count": {
-        "type": "String"
+        "type": "int",
+        "format": "decimalPattern"
       }
     }
   },
