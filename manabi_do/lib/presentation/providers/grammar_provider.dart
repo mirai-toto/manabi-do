@@ -26,6 +26,9 @@ class GrammarTheme {
     required this.description,
     required this.chapters,
   });
+
+  /// Every lesson in the theme, in reading order.
+  List<GrammarLesson> get lessons => chapters.expand((c) => c.lessons).toList();
 }
 
 final grammarThemesProvider = FutureProvider.family<List<GrammarTheme>, String>(

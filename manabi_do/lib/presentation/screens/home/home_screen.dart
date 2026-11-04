@@ -11,10 +11,9 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/grammar_provider.dart';
 import '../../providers/home_provider.dart';
-import '../../services/grammar_progress_service.dart';
 import '../../services/review_queue_service.dart';
 import '../../widgets/widgets.dart';
-import '../grammar/grammar_lesson_screen.dart';
+import '../grammar/grammar_navigation.dart';
 import '../practice/practice_session_screen.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -88,22 +87,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     );
   }
 
-  void _continueLesson(GrammarContinueTarget target) {
-    ref
-        .read(grammarProgressServiceProvider)
-        .markLessonStarted(target.lesson.id);
-    Navigator.push(
-      context,
-      MaterialPageRoute<void>(
-        builder: (_) => GrammarLessonScreen(
-          lessonId: target.lesson.id,
-          title: target.lesson.title,
-          blocks: target.lesson.blocks,
-          levelColor: levelColor(target.level),
-        ),
-      ),
-    );
-  }
+  void _continueLesson(GrammarContinueTarget target) =>
+      openGrammarLesson(context, ref, target.lesson, levelColor(target.level));
 
   @override
   Widget build(BuildContext context) {
