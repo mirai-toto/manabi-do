@@ -46,17 +46,8 @@ extension KanaQueries on AppDatabase {
     final katakana = katakanaRowOrder
         .map((l) => buildRow(l, katakanaSlots[l]!, katakanaGroup[l]!))
         .toList();
-    final hiraganaCount = hiragana.expand((r) => r.kana).length;
-    final katakanaCount = katakana.expand((r) => r.kana).length;
-
     return KanaData(
-      hiraganaCount: hiraganaCount,
-      katakanaCount: katakanaCount,
-      total: hiraganaCount + katakanaCount,
-      groups: const [
-        KanaGroup(id: 'gojuuon', label: 'Gojuuon'),
-        KanaGroup(id: 'dakuten', label: 'Dakuten'),
-      ],
+      total: [...hiragana, ...katakana].expand((r) => r.kana).length,
       hiragana: hiragana,
       katakana: katakana,
     );

@@ -2,8 +2,6 @@ part of '../app_database.dart';
 
 /// Kanji lookups and search.
 extension KanjiQueries on AppDatabase {
-  Future<int> countTotalKanji() => (select(kanjis)).get().then((r) => r.length);
-
   Future<String?> getKanjiSvg(int kanjiId) =>
       (select(kanjis)..where((k) => k.id.equals(kanjiId)))
           .getSingleOrNull()

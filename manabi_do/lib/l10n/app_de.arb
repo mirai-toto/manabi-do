@@ -388,14 +388,6 @@
     }
   },
   "vocabularySubtitleShort": "Wörter entdecken",
-  "reviewsDue": "{count} Wiederholungen",
-  "@reviewsDue": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "nNew": "{count} neu",
   "@nNew": {
     "placeholders": {

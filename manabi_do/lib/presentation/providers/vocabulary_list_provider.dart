@@ -2,12 +2,10 @@ import '../../core/providers/locale_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart';
 
-import '../../core/providers/srs_settings_provider.dart';
 import '../../core/srs/srs_level.dart';
 import '../../core/theme/vocabulary_level.dart';
 import '../../data/database/app_database.dart';
 import '../services/search_service.dart';
-import '../services/srs_queue_service.dart';
 import 'database_provider.dart';
 
 const kVocabularyGroupSize = 30;
@@ -145,27 +143,4 @@ final vocabularyGroupLearnedCountProvider =
       final srsCards =
           ref.watch(vocabularySrsCardsProvider).asData?.value ?? {};
       return entries.where((e) => isSrsKnown(srsCards[e.id])).length;
-    });
-
-/// Returns (reviewCount, newCount) for the given vocabulary group.
-final vocabularyGroupSrsCountProvider =
-    FutureProvider.family<(int, int), ({int level, int groupIndex})>((
-      ref,
-      args,
-    ) async {
-      final all = await ref.read(vocabularyByLevelProvider(args.level).future);
-      final groupIds = all
-          .skip(args.groupIndex * kVocabularyGroupSize)
-          .take(kVocabularyGroupSize)
-          .map((e) => e.id)
-          .toSet();
-      final settings = await ref.read(srsSettingsProvider.future);
-      final session = await ref
-          .read(srsQueueServiceProvider)
-          .vocabulary(args.level, newCardLimit: settings.newVocabularyPerDay);
-      final group = session.where((p) => groupIds.contains(p.$1.id)).toList();
-      return (
-        group.where((p) => p.$2 != null).length,
-        group.where((p) => p.$2 == null).length,
-      );
     });

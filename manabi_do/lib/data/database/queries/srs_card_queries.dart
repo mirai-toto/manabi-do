@@ -107,42 +107,6 @@ extension SrsCardQueries on AppDatabase {
     ),
   );
 
-  /// Debug only: inserts past-due SRS cards for a sample of items.
-  Future<void> seedFakeReviews() async {
-    final yesterday = DateTime.now().subtract(const Duration(days: 1));
-
-    final hiragana =
-        await (select(kanas)
-              ..where((k) => k.type.equals('hiragana'))
-              ..limit(5))
-            .get();
-    for (final k in hiragana) {
-      await upsertSrsCard('hiragana', k.id, Card(cardId: k.id, due: yesterday));
-    }
-
-    final kanji =
-        await (select(kanjis)
-              ..where((k) => k.jlptLevel.equals('N5'))
-              ..limit(5))
-            .get();
-    for (final k in kanji) {
-      await upsertSrsCard('kanji', k.id, Card(cardId: k.id, due: yesterday));
-    }
-
-    final vocabulary =
-        await (select(vocabularyEntries)
-              ..where((v) => v.vocabularyLevel.equals(1))
-              ..limit(5))
-            .get();
-    for (final v in vocabulary) {
-      await upsertSrsCard(
-        'vocabulary',
-        v.id,
-        Card(cardId: v.id, due: yesterday),
-      );
-    }
-  }
-
   Future<void> resetAllProgress() async {
     await delete(srsCards).go();
     await delete(progressEntries).go();

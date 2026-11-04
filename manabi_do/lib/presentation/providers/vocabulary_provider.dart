@@ -5,14 +5,6 @@ import 'database_provider.dart';
 
 typedef KanjiVocabularyArgs = ({int kanjiId});
 
-final kanjiVocabularyProvider =
-    FutureProvider.family<List<VocabularyEntry>, KanjiVocabularyArgs>((
-      ref,
-      args,
-    ) {
-      return ref.watch(databaseProvider).getVocabularyForKanji(args.kanjiId);
-    });
-
 /// A kanji's example words with their meanings, and whether each meaning is
 /// in the reader's language.
 ///

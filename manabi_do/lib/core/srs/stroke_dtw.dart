@@ -64,23 +64,3 @@ bool evaluateSingleStroke(
   if (ref.isEmpty || user.isEmpty) return false;
   return dtw(ref, user) / ref.length < threshold;
 }
-
-/// Compare [userStrokes] (screen [Offset] lists) against [referenceStrokes] (KanjiVG [Path]s).
-///
-/// Returns one bool per reference stroke (true = within [threshold]).
-/// If stroke counts differ, all are false.
-List<bool> evaluateStrokes(
-  List<List<Offset>> userStrokes,
-  List<Path> referenceStrokes, {
-  double threshold = 15.0,
-}) {
-  if (userStrokes.length != referenceStrokes.length) {
-    return List.filled(referenceStrokes.length, false);
-  }
-  return List.generate(referenceStrokes.length, (i) {
-    final ref = normalizeStroke(samplePath(referenceStrokes[i]), 100);
-    final user = normalizeStroke(userStrokes[i], 100);
-    if (ref.isEmpty || user.isEmpty) return false;
-    return dtw(ref, user) / ref.length < threshold;
-  });
-}

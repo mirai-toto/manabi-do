@@ -446,14 +446,6 @@
     }
   },
   "vocabularySubtitleShort": "Words to discover",
-  "reviewsDue": "{count} reviews",
-  "@reviewsDue": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "nNew": "{count} new",
   "@nNew": {
     "placeholders": {

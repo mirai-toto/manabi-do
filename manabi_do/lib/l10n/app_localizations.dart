@@ -1432,12 +1432,6 @@ abstract class AppLocalizations {
   /// **'Words to discover'**
   String get vocabularySubtitleShort;
 
-  /// No description provided for @reviewsDue.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} reviews'**
-  String reviewsDue(int count);
-
   /// No description provided for @nNew.
   ///
   /// In en, this message translates to:

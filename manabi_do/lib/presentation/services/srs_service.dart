@@ -25,18 +25,6 @@ class SrsService {
       _ref.read(databaseProvider).resetSrsCard(type, id);
 
   Future<void> resetAll() => _ref.read(databaseProvider).resetAllProgress();
-
-  Future<void> seedFakeReviews() =>
-      _ref.read(databaseProvider).seedFakeReviews();
-
-  Future<void> review(
-    String srsType,
-    int id,
-    Card? existingCard,
-    Rating rating,
-  ) => _ref
-      .read(databaseProvider)
-      .upsertSrsCard(srsType, id, applyRating(existingCard, rating));
 }
 
 final srsServiceProvider = Provider((ref) => SrsService(ref));

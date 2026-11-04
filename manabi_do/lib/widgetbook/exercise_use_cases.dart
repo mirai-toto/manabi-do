@@ -10,7 +10,6 @@ import '../presentation/providers/drawing_settings_provider.dart';
 import '../presentation/providers/kanji_strokes_provider.dart';
 import '../presentation/widgets/exercise/drawing_exercise.dart';
 import '../presentation/widgets/exercise/flashcard.dart';
-import '../presentation/widgets/exercise/lesson_reader.dart';
 import '../presentation/widgets/exercise/mcq_card.dart';
 import '../presentation/widgets/exercise/sentence_cloze_card.dart';
 import '../data/database/app_database.dart';
@@ -115,31 +114,6 @@ Widget buildDrawingExercise(BuildContext context) {
         ),
       );
     },
-  );
-}
-
-// ── LessonReaderCard ──────────────────────────────────────────────────────────
-
-@widgetbook.UseCase(name: 'Default', type: LessonReaderCard, path: 'Exercise')
-Widget buildLessonReaderCard(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16),
-    child: LessonReaderCard(
-      chapterLabel: 'Chapter 1',
-      title: 'Greetings in Japanese',
-      body: const [
-        ReaderBodyText(
-          'Japanese greetings vary by time of day and level of formality.',
-        ),
-        ReaderSectionTitle('Morning greeting'),
-        ReaderJpExample(
-          japanese: 'おはようございます',
-          translation: 'Good morning (formal)',
-        ),
-        ReaderBodyText('Use おはよう with close friends and family.'),
-      ],
-      onPractice: () {},
-    ),
   );
 }
 

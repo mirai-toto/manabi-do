@@ -386,14 +386,6 @@
     }
   },
   "vocabularySubtitleShort": "Mots à découvrir",
-  "reviewsDue": "{count} révisions",
-  "@reviewsDue": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "nNew": "{count} nouveau",
   "@nNew": {
     "placeholders": {

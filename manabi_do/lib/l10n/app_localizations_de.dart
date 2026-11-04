@@ -769,11 +769,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get vocabularySubtitleShort => 'Wörter entdecken';
 
   @override
-  String reviewsDue(int count) {
-    return '$count Wiederholungen';
-  }
-
-  @override
   String nNew(int count) {
     return '$count neu';
   }

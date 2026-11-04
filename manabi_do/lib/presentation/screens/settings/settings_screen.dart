@@ -235,13 +235,7 @@ class SettingsScreen extends ConsumerWidget {
             SettingsCard(
               children: [
                 SettingsTile(
-                  leading: Text(
-                    currentLang.flag,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontFamily: 'NotoColorEmoji',
-                    ),
-                  ),
+                  leading: AppEmoji(currentLang.flag, size: 22),
                   label: l.settingsLanguage,
                   value: currentLang.name,
                   onTap: () => _showLanguagePicker(

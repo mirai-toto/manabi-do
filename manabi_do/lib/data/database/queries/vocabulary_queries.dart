@@ -111,7 +111,4 @@ extension VocabularyQueries on AppDatabase {
     }
     return merged.values.toList();
   }
-
-  Future<int> countTotalVocabulary() =>
-      (select(vocabularyEntries)).get().then((r) => r.length);
 }

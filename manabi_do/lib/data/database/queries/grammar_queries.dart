@@ -18,14 +18,6 @@ extension GrammarQueries on AppDatabase {
         .get();
   }
 
-  Future<List<GrammarExerciseRow>> getGrammarExercisesForLesson(
-    String lessonPath,
-  ) =>
-      (select(grammarExercises)
-            ..where((e) => e.lessonPath.equals(lessonPath))
-            ..orderBy([(e) => OrderingTerm.asc(e.orderIndex)]))
-          .get();
-
   Stream<Set<String>> watchUnlockedGrammarChapters() => select(
     grammarChapterUnlocks,
   ).watch().map((rows) => rows.map((r) => r.chapterKey).toSet());

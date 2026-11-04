@@ -3,20 +3,16 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../common/indicator/app_spinner.dart';
 import '../common/surface/tappable_surface.dart';
 
 /// Tappable card for a single practice mode or feature entry point. Left-side
-/// tinted icon box (`color 12% opacity`, `radiusMd`), title, optional subtitle
-/// and count label, trailing chevron. Decoration: `cardBackground`, `radiusLg`,
-/// accent border at 25% opacity. Shows a `CircularProgressIndicator` when
-/// `isCountLoading: true`. All display strings pre-formatted by the caller.
+/// tinted icon box (`color 12% opacity`, `radiusMd`), title, optional subtitle,
+/// trailing chevron. Decoration: `cardBackground`, `radiusLg`, accent border at
+/// 25% opacity. All display strings pre-formatted by the caller.
 class PracticeModeCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final String? subtitle;
-  final String? countLabel;
-  final bool isCountLoading;
   final Color color;
   final VoidCallback onTap;
 
@@ -27,8 +23,6 @@ class PracticeModeCard extends StatelessWidget {
     required this.color,
     required this.onTap,
     this.subtitle,
-    this.countLabel,
-    this.isCountLoading = false,
   });
 
   @override
@@ -78,22 +72,6 @@ class PracticeModeCard extends StatelessWidget {
                       ),
                     ),
                   ],
-                  if (isCountLoading)
-                    const Padding(
-                      padding: EdgeInsets.only(top: AppDimens.spaceXxs),
-                      child: AppSpinner(size: AppSpinner.small),
-                    )
-                  else if (countLabel != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: AppDimens.spaceXxs),
-                      child: Text(
-                        countLabel!,
-                        style: AppTextStyles.bodySmall.copyWith(
-                          color: color,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
                 ],
               ),
             ),

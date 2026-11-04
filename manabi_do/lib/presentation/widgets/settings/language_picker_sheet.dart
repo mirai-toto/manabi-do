@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../common/decoration/app_emoji.dart';
 import '../common/decoration/sheet_drag_handle.dart';
 
 const languages = [
@@ -57,13 +58,7 @@ class LanguagePickerSheet extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Text(
-                        lang.flag,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontFamily: 'NotoColorEmoji',
-                        ),
-                      ),
+                      AppEmoji(lang.flag, size: 28),
                       const SizedBox(width: AppDimens.spaceMd),
                       Expanded(
                         child: Text(

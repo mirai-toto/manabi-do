@@ -272,13 +272,7 @@ class _LanguagePage extends ConsumerWidget {
           for (final lang in languages) ...[
             _Choice(
               label: lang.name,
-              leading: Text(
-                lang.flag,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontFamily: 'NotoColorEmoji',
-                ),
-              ),
+              leading: AppEmoji(lang.flag, size: 22),
               selected: lang.code == current,
               onTap: () => ref
                   .read(localeProvider.notifier)

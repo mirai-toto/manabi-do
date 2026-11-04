@@ -141,17 +141,7 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
     }
 
     if (strokesAsync is AsyncError) {
-      final t = context.tokens;
-      return SizedBox(
-        width: widget.size,
-        height: widget.size,
-        child: Center(
-          child: Text(
-            '',
-            style: TextStyle(color: t.onSurfaceVariant, fontSize: 32),
-          ),
-        ),
-      );
+      return SizedBox(width: widget.size, height: widget.size);
     }
 
     if (strokes == null) {

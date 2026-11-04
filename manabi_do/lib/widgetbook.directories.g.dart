@@ -519,16 +519,6 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'LessonReaderCard',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildLessonReaderCard,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
         name: 'McqCard',
         useCases: [
           _widgetbook.WidgetbookUseCase(

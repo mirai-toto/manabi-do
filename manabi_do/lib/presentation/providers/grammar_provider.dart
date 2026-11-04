@@ -136,15 +136,6 @@ final grammarReadLessonsProvider = StreamProvider<Set<String>>((ref) {
   return db.watchReadGrammarLessons();
 });
 
-final grammarHasExercisesProvider = FutureProvider.family<bool, String>((
-  ref,
-  lessonPath,
-) async {
-  final db = ref.read(databaseProvider);
-  final rows = await db.getGrammarExercisesForLesson(lessonPath);
-  return rows.isNotEmpty;
-});
-
 final grammarExerciseCountsProvider =
     FutureProvider.family<Map<String, int>, String>((
       ref,

@@ -768,11 +768,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get vocabularySubtitleShort => 'Mots à découvrir';
 
   @override
-  String reviewsDue(int count) {
-    return '$count révisions';
-  }
-
-  @override
   String nNew(int count) {
     return '$count nouveau';
   }

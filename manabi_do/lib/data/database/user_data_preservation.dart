@@ -167,8 +167,6 @@ class VocabularyRemap {
     required this.translated,
     required this.dropped,
   });
-
-  int get total => translated + dropped;
 }
 
 /// Thrown when almost no vocabulary card could be translated.
