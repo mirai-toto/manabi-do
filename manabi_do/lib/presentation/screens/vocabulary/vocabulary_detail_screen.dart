@@ -30,13 +30,7 @@ class VocabularyDetailScreen extends ConsumerWidget {
       entry.vocabularyLevel,
       Theme.of(context).brightness,
     );
-    final localized = ref
-        .watch(localizedVocabularyMeaningProvider(entry.id))
-        .asData
-        ?.value;
-    final meaning = (localized == null || localized.isEmpty)
-        ? entry.meaning
-        : localized;
+    final String meaning = ref.watch(vocabularyMeaningProvider(entry)).meaning;
 
     return Scaffold(
       backgroundColor: t.surface,

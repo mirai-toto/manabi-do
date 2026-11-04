@@ -9,6 +9,7 @@ import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../services/search_service.dart';
 import '../../providers/vocabulary_list_provider.dart';
+import '../../providers/vocabulary_provider.dart';
 import 'vocabulary_detail_screen.dart';
 import '../../widgets/widgets.dart';
 
@@ -116,14 +117,24 @@ class _ResultList extends StatelessWidget {
                 indent: AppDimens.spaceMd,
                 endIndent: AppDimens.spaceMd,
               ),
-            VocabularyWordTile(
-              entry: results[index],
-              showLevel: true,
-              onOpen: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => VocabularyDetailScreen(entry: results[index]),
-                ),
-              ),
+            Consumer(
+              builder: (context, ref, _) {
+                final shown = ref.watch(
+                  vocabularyMeaningProvider(results[index]),
+                );
+                return VocabularyWordTile(
+                  entry: results[index],
+                  meaning: shown.meaning,
+                  missingLanguage: shown.missingLanguage,
+                  showLevel: true,
+                  onOpen: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) =>
+                          VocabularyDetailScreen(entry: results[index]),
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../providers/srs_cards_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../providers/srs_cards_provider.dart';
 
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
@@ -8,6 +9,7 @@ import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../providers/kanji_provider.dart';
+import '../../../providers/vocabulary_provider.dart';
 import '../reset_progress_button.dart';
 import '../../../widgets/widgets.dart';
 import 'kanji_drawing_practice_screen.dart';
@@ -26,6 +28,7 @@ class KanjiDetailScreen extends ConsumerWidget {
     }
 
     final color = levelColor(kanji.jlptLevel);
+    final ShownMeaning shown = ref.watch(kanjiMeaningProvider(kanji));
 
     return Scaffold(
       body: ScrollFade(
@@ -34,6 +37,8 @@ class KanjiDetailScreen extends ConsumerWidget {
           padding: EdgeInsets.zero,
           children: [
             KanjiHero(
+              meaning: shown.meaning,
+              missingLanguage: shown.missingLanguage,
               kanji: kanji,
               color: color,
               onBack: () => Navigator.of(context).pop(),

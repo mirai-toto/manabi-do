@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../providers/srs_cards_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' as fsrs;
+
+import '../../providers/srs_cards_provider.dart';
 
 import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
@@ -12,6 +13,7 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/vocabulary_list_provider.dart';
+import '../../providers/vocabulary_provider.dart';
 import 'vocabulary_detail_screen.dart';
 import '../../widgets/widgets.dart';
 
@@ -142,6 +144,16 @@ class _LevelContent extends ConsumerWidget {
                         ),
                       VocabularyWordRow(
                         entry: section.words[i].entry,
+                        meaning: ref
+                            .watch(
+                              vocabularyMeaningProvider(section.words[i].entry),
+                            )
+                            .meaning,
+                        missingLanguage: ref
+                            .watch(
+                              vocabularyMeaningProvider(section.words[i].entry),
+                            )
+                            .missingLanguage,
                         accent: section.words[i].accent,
                         onOpen: () => Navigator.of(context).push(
                           MaterialPageRoute<void>(

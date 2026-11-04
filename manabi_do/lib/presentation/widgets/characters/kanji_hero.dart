@@ -1,30 +1,34 @@
-import '../../../core/text/sentence_language.dart';
-import '../../../core/providers/locale_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../widgets.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
-import '../../providers/vocabulary_provider.dart';
 
 /// Full-width gradient hero banner for a kanji detail screen. Shows the
-/// character, JLPT level badge, meanings, and a back button. Fetches localized
-/// meaning via `localizedKanjiMeaningProvider`.
-class KanjiHero extends ConsumerWidget {
+/// character, JLPT level badge, meanings, and a back button. The caller
+/// resolves the meaning.
+class KanjiHero extends StatelessWidget {
   final Kanji kanji;
+
+  /// The meaning to show, already in the reader's language where possible.
+  final String meaning;
+
+  /// The reader's language, named, when [meaning] fell back to English.
+  final String? missingLanguage;
   final Color color;
   final VoidCallback onBack;
   const KanjiHero({
     super.key,
     required this.kanji,
+    required this.meaning,
+    this.missingLanguage,
     required this.color,
     required this.onBack,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final darkColor = Color.lerp(color, Colors.black, isDark ? 0.65 : 0.35)!;
     final lightColor = isDark ? Color.lerp(color, Colors.black, 0.30)! : color;
@@ -33,19 +37,6 @@ class KanjiHero extends ConsumerWidget {
     // JLPT colour, and mid-tone levels drop it below AA. Measure against the
     // lighter end of the gradient, which is the worst case.
     final Color onAccent = onAccentFor(lightColor);
-
-    final localizedAsync = ref.watch(localizedKanjiMeaningProvider(kanji.id));
-    final localizedMeaning = localizedAsync.asData?.value ?? '';
-    final meaning = localizedMeaning.isNotEmpty
-        ? localizedMeaning
-        : kanji.meaning;
-    // KANJIDIC2 publishes kanji meanings in English, French, Spanish and
-    // Portuguese only, so a German reader never gets one. Waiting for the
-    // query to land first, or the mark flashes on every kanji.
-    final String? missingLanguage = missingMeaningLanguage(
-      localizedAsync,
-      readerLocale: ref.watch(localeProvider).languageCode,
-    );
 
     return Container(
       decoration: BoxDecoration(

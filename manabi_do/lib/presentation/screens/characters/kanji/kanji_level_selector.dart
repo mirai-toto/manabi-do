@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/providers/locale_provider.dart';
-import '../../../../core/text/sentence_language.dart';
 import '../../../providers/vocabulary_provider.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
@@ -99,14 +97,7 @@ class _KanjiResultTile extends ConsumerWidget {
     // The detail screen has shown the reader's own meaning for a while; the
     // row that leads to it still showed English. KANJIDIC2 has no German at
     // all, so the mark explains the rows that stay English.
-    final localized = ref.watch(localizedKanjiMeaningProvider(kanji.id));
-    final String meaning = localized.asData?.value.isNotEmpty == true
-        ? localized.asData!.value
-        : kanji.meaning;
-    final String? missingLanguage = missingMeaningLanguage(
-      localized,
-      readerLocale: ref.watch(localeProvider).languageCode,
-    );
+    final (:meaning, :missingLanguage) = ref.watch(kanjiMeaningProvider(kanji));
     return Column(
       children: [
         InkWell(
