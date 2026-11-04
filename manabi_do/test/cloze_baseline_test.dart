@@ -34,6 +34,16 @@ void main() {
     expect(mixed([...before, ...after]), isTrue);
   });
 
+  test('a highlighted sentence keeps all three slices in one kind', () {
+    // The vocabulary screen splits on the highlighted word, so a sentence
+    // like 頭痛がする。 is three calls: 頭痛が with ruby, する without, 。
+    // without. 頭痛がする。 dropped its tail half a line before this.
+    final before = furiganaSpans('{頭痛|ずつう}が', style, ruby, reserveRuby: true);
+    final target = furiganaSpans('する', style, ruby, reserveRuby: true);
+    final after = furiganaSpans('。', style, ruby, reserveRuby: true);
+    expect(mixed([...before, ...target, ...after]), isFalse);
+  });
+
   test('a sentence with no ruby anywhere stays plain', () {
     // reserveRuby is off, so a kana-only line keeps its tight spacing.
     final spans = furiganaSpans('あった。', style, ruby);

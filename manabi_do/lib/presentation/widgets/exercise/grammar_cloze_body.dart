@@ -153,6 +153,10 @@ class _ClozeSentence extends StatelessWidget {
     final parts = sentence.split('___');
     final before = parts.isNotEmpty ? parts[0] : '';
     final after = parts.length > 1 ? parts[1] : '';
+    // One sentence, one decision: a half with no kanji of its own still
+    // reserves the ruby band, or it renders as plain text beside the other
+    // half's columns and sits half a line lower.
+    final bool anyRuby = sentence.contains('{');
 
     final baseStyle = AppTextStyles.jpMedium.copyWith(
       color: t.onSurface,
@@ -171,7 +175,12 @@ class _ClozeSentence extends StatelessWidget {
       child: Text.rich(
         TextSpan(
           children: [
-            ...furiganaSpans(before, baseStyle, rubyStyle),
+            ...furiganaSpans(
+              before,
+              baseStyle,
+              rubyStyle,
+              reserveRuby: anyRuby,
+            ),
             WidgetSpan(
               alignment: PlaceholderAlignment.baseline,
               baseline: TextBaseline.alphabetic,
@@ -202,7 +211,7 @@ class _ClozeSentence extends StatelessWidget {
                 ),
               ),
             ),
-            ...furiganaSpans(after, baseStyle, rubyStyle),
+            ...furiganaSpans(after, baseStyle, rubyStyle, reserveRuby: anyRuby),
           ],
         ),
         textAlign: TextAlign.center,
