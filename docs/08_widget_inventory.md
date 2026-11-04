@@ -117,12 +117,12 @@ _A piece an exercise body composes._
 
 | Widget | Uses | File |
 | --- | --- | --- |
-| `LetterCircle` | 3 | `exercise/letter_circle.dart` |
+| `LetterCircle` | 2 | `exercise/letter_circle.dart` |
 | `McqCard` | 2 | `exercise/mcq_card.dart` |
-| `ClozeOption` | 1 | `exercise/cloze_option.dart` |
 | `ExampleCard` | 1 | `exercise/example_card.dart` |
 | `FeedbackPanel` | 1 | `exercise/feedback_panel.dart` |
 | `Flashcard` | 1 | `exercise/flashcard.dart` |
+| `McqOptionTile` | 1 | `exercise/mcq_card.dart` |
 | `SentenceClozeCard` | 1 | `exercise/sentence_cloze_card.dart` |
 | `SummaryCard` | 1 | `exercise/summary_card.dart` |
 
@@ -155,7 +155,7 @@ _Read-only status: progress, counts, streaks, badges._
 | Widget | Uses | File |
 | --- | --- | --- |
 | `PillBadge` | 25 | `common/indicator/pill_badge.dart` |
-| `AppSpinner` | 21 | `common/indicator/app_spinner.dart` |
+| `AppSpinner` | 18 | `common/indicator/app_spinner.dart` |
 | `PracticeProgressRow` | 8 | `exercise/practice_progress_row.dart` |
 | `AppProgressBar` | 4 | `common/indicator/progress_bar.dart` |
 | `DifficultyDots` | 4 | `common/indicator/difficulty_dots.dart` |
@@ -189,7 +189,7 @@ _Text presentation, including Japanese-specific typography._
 | Widget | Uses | File |
 | --- | --- | --- |
 | `SectionLabel` | 21 | `common/label/section_label.dart` |
-| `JapaneseText` | 8 | `common/label/japanese_text.dart` |
+| `JapaneseText` | 7 | `common/label/japanese_text.dart` |
 | `TranslatedText` | 6 | `common/label/translation_fallback_info.dart` |
 | `SectionHeader` | 3 | `common/label/section_header.dart` |
 | `TranslationFallbackInfo` | 3 | `common/label/translation_fallback_info.dart` |

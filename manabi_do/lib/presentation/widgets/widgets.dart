@@ -106,7 +106,6 @@ export 'characters/stroke_order_section.dart';
 export 'characters/stroke_step_row.dart';
 
 // exercise
-export 'exercise/cloze_option.dart';
 export 'exercise/drawing_exercise.dart';
 export 'exercise/example_card.dart';
 export 'exercise/feedback_panel.dart';

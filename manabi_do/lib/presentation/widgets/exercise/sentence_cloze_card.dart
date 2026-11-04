@@ -11,10 +11,9 @@ import '../common/indicator/pill_badge.dart';
 import '../common/action/copy_button.dart';
 import '../common/action/speak_button.dart';
 import 'mcq_card.dart';
-import 'cloze_option.dart';
 
 /// Stateless display card for a sentence cloze item. Renders the gapped
-/// sentence, optional furigana, translation toggle, and `ClozeOption` chips. No
+/// sentence, optional furigana, translation toggle, and `McqOptionTile` rows. No
 /// answer-handling logic.
 class SentenceClozeCard extends StatelessWidget {
   final Sentence sentence;
@@ -242,7 +241,7 @@ class SentenceClozeCard extends StatelessWidget {
             options.length,
             (i) => Padding(
               padding: EdgeInsets.only(top: i == 0 ? 0 : AppDimens.spaceSm),
-              child: ClozeOption(
+              child: McqOptionTile(
                 option: options[i],
                 showFurigana: showChoiceFurigana,
                 onTap: () => onOptionTap?.call(i),

@@ -98,7 +98,7 @@ CLASSIFIED: dict[str, str] = {
     "SummaryCard": "exercise-part",
     "FeedbackPanel": "exercise-part",
     "ExampleCard": "exercise-part",
-    "ClozeOption": "exercise-part",
+    "McqOptionTile": "exercise-part",
     "LetterCircle": "exercise-part",
     "LessonReaderCard": "exercise-part",
     "ReaderBodyText": "exercise-part",

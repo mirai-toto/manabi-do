@@ -112,7 +112,7 @@ class McqCard extends StatelessWidget {
               options.length,
               (i) => Padding(
                 padding: EdgeInsets.only(top: i == 0 ? 0 : AppDimens.spaceSm),
-                child: _McqOptionTile(
+                child: McqOptionTile(
                   option: options[i],
                   onTap: () => onOptionTap?.call(i),
                 ),
@@ -249,11 +249,20 @@ class _McqOptionShell extends StatelessWidget {
   }
 }
 
-class _McqOptionTile extends StatelessWidget {
+/// One answer row: a lettered circle and the option text, drawn in the
+/// colours of its [McqOption.state]. Shared by multiple choice and the
+/// fill-in-the-blank exercises.
+class McqOptionTile extends StatelessWidget {
   final McqOption option;
   final VoidCallback? onTap;
+  final bool showFurigana;
 
-  const _McqOptionTile({required this.option, this.onTap});
+  const McqOptionTile({
+    super.key,
+    required this.option,
+    this.onTap,
+    this.showFurigana = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -272,6 +281,8 @@ class _McqOptionTile extends StatelessWidget {
             Expanded(
               child: JapaneseText(
                 word: option.text,
+                reading: option.reading,
+                showFurigana: showFurigana,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style:
@@ -280,7 +291,7 @@ class _McqOptionTile extends StatelessWidget {
                             : AppTextStyles.body)
                         .copyWith(color: contentColor),
                 rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                  color: contentColor,
+                  color: contentColor.withValues(alpha: 0.7),
                 ),
               ),
             ),

@@ -12,7 +12,7 @@ import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 
 /// Grammar fill-in-the-blank body. Renders the sentence with a gap and a set of
-/// `ClozeOption` chips.
+/// `McqCard` options.
 class GrammarClozeBody extends StatefulWidget {
   /// Sentence text with "___" marking the blank.
   final String sentence;
