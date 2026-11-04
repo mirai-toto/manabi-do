@@ -13,21 +13,43 @@ final kanjiVocabularyProvider =
       return ref.watch(databaseProvider).getVocabularyForKanji(args.kanjiId);
     });
 
-/// Each element is (entry, localizedMeaning). Falls back to English.
+/// A kanji's example words with their meanings, and whether each meaning is
+/// in the reader's language.
+///
+/// JMdict has French for 72% of these words and German for 95%, so the rest
+/// arrive in English. `translated` is false for those, which lets the screen
+/// mark the section once rather than marking every row.
+typedef LocalizedWord = ({
+  VocabularyEntry entry,
+  String meaning,
+  bool translated,
+});
+
 final localizedKanjiVocabularyProvider =
-    FutureProvider.family<List<(VocabularyEntry, String)>, KanjiVocabularyArgs>(
-      (ref, args) async {
-        final locale = ref.watch(localeProvider).languageCode;
-        final db = ref.watch(databaseProvider);
-        final entries = await db.getVocabularyForKanji(args.kanjiId);
-        if (locale == 'en' || entries.isEmpty) {
-          return entries.map((e) => (e, e.meaning)).toList();
-        }
-        final ids = entries.map((e) => e.id).toList();
-        final tr = await db.getVocabularyTranslations(ids, locale);
-        return entries.map((e) => (e, tr[e.id] ?? e.meaning)).toList();
-      },
-    );
+    FutureProvider.family<List<LocalizedWord>, KanjiVocabularyArgs>((
+      ref,
+      args,
+    ) async {
+      final locale = ref.watch(localeProvider).languageCode;
+      final db = ref.watch(databaseProvider);
+      final entries = await db.getVocabularyForKanji(args.kanjiId);
+      if (locale == 'en' || entries.isEmpty) {
+        return entries
+            .map((e) => (entry: e, meaning: e.meaning, translated: true))
+            .toList();
+      }
+      final ids = entries.map((e) => e.id).toList();
+      final tr = await db.getVocabularyTranslations(ids, locale);
+      return entries
+          .map(
+            (e) => (
+              entry: e,
+              meaning: tr[e.id] ?? e.meaning,
+              translated: tr[e.id] != null,
+            ),
+          )
+          .toList();
+    });
 
 /// Returns the localized meaning for a single vocabulary entry. Falls back to English.
 final localizedVocabularyMeaningProvider = FutureProvider.family<String, int>((

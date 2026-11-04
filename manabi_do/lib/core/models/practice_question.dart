@@ -115,6 +115,12 @@ final class DrawingQuestion extends PracticeQuestion {
 final class SentenceClozeQuestion extends PracticeQuestion {
   final Sentence sentence;
   final String? translation;
+
+  /// The reader's language, named, when [translation] is not in it. Fewer than
+  /// half the example sentences carry French, so the English stands in and the
+  /// card says as much.
+  final String? translationMissingLanguage;
+
   final String? targetReading;
   final List<McqOption> options;
   final int correctIndex;
@@ -124,6 +130,7 @@ final class SentenceClozeQuestion extends PracticeQuestion {
     required this.options,
     required this.correctIndex,
     this.translation,
+    this.translationMissingLanguage,
     this.targetReading,
     super.level,
     super.vocabularyLevel,

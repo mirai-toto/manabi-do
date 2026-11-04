@@ -1,3 +1,4 @@
+import '../../core/text/sentence_language.dart';
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -276,6 +277,10 @@ class VocabularySessionService {
         question: SentenceClozeQuestion(
           sentence: sentence,
           translation: sentenceTranslations[sentence.id]?.text,
+          translationMissingLanguage: missingLanguageForSentence(
+            sentenceTranslations[sentence.id]?.locale,
+            locale,
+          ),
           targetReading: entry.reading,
           options: cloze.options,
           correctIndex: cloze.correctIndex,
@@ -404,6 +409,10 @@ class VocabularySessionService {
         question: SentenceClozeQuestion(
           sentence: sentence,
           translation: sentenceTranslations[sentence.id]?.text,
+          translationMissingLanguage: missingLanguageForSentence(
+            sentenceTranslations[sentence.id]?.locale,
+            locale,
+          ),
           targetReading: entry.reading,
           options: cloze.options,
           correctIndex: cloze.correctIndex,

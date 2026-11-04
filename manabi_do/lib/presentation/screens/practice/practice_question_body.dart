@@ -173,6 +173,7 @@ class PracticeQuestionBody extends StatelessWidget {
       final SentenceClozeQuestion q => SentenceClozeBody(
         sentence: q.sentence,
         translation: q.translation,
+        translationMissingLanguage: q.translationMissingLanguage,
         targetReading: q.targetReading,
         options: q.options,
         correctIndex: q.correctIndex,

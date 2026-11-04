@@ -1,3 +1,4 @@
+import '../common/label/translation_fallback_info.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_dimens.dart';
@@ -18,6 +19,7 @@ import 'cloze_option.dart';
 class SentenceClozeCard extends StatelessWidget {
   final Sentence sentence;
   final String? translation;
+  final String? translationMissingLanguage;
   final bool showTranslation;
   final VoidCallback? onToggleTranslation;
   final bool showSentenceFurigana;
@@ -39,6 +41,7 @@ class SentenceClozeCard extends StatelessWidget {
     required this.showSentenceFurigana,
     required this.showChoiceFurigana,
     this.translation,
+    this.translationMissingLanguage,
     this.onToggleTranslation,
     this.targetReading,
   });
@@ -195,8 +198,23 @@ class SentenceClozeCard extends StatelessWidget {
           ),
           if (showTranslation && translation != null) ...[
             const SizedBox(height: AppDimens.spaceMd),
-            Text(
-              translation!,
+            // The mark rides at the end of the text, so it does not take a
+            // line of its own in the middle of an exercise.
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(text: translation!),
+                  if (translationMissingLanguage != null) ...[
+                    const TextSpan(text: ' '),
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: TranslationFallbackInfo(
+                        language: translationMissingLanguage!,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
               style: AppTextStyles.bodySmall.copyWith(
                 color: t.onSurfaceVariant,
                 fontStyle: FontStyle.italic,

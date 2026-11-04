@@ -1,3 +1,5 @@
+import '../../../core/text/sentence_language.dart';
+import '../../../core/providers/locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
@@ -24,10 +26,26 @@ class KanjiExampleWords extends ConsumerWidget {
       localizedKanjiVocabularyProvider((kanjiId: kanji.id)),
     );
 
+    // Marked once for the whole list: a mark on each row would be most of
+    // the row, and the gap is the same gap for all of them.
+    final String? missingLanguage = switch (async.asData?.value) {
+      final List<LocalizedWord> words when words.any((w) => !w.translated) =>
+        readerLanguageName(ref.watch(localeProvider).languageCode),
+      _ => null,
+    };
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionLabel(context.l10n.exampleWords),
+        Row(
+          children: [
+            SectionLabel(context.l10n.exampleWords),
+            if (missingLanguage != null) ...[
+              const SizedBox(width: AppDimens.spaceXs),
+              TranslationFallbackInfo(language: missingLanguage),
+            ],
+          ],
+        ),
         const SizedBox(height: AppDimens.spaceSm),
         async.when(
           loading: () => const _Loading(),
@@ -70,7 +88,7 @@ class _EmptyState extends StatelessWidget {
 }
 
 class _WordList extends StatelessWidget {
-  final List<(VocabularyEntry, String)> words;
+  final List<LocalizedWord> words;
   const _WordList({required this.words});
 
   @override
@@ -82,7 +100,7 @@ class _WordList extends StatelessWidget {
           for (int i = 0; i < words.length; i++) ...[
             if (i > 0)
               Divider(height: 1, thickness: 1, color: t.outlineVariant),
-            _WordRow(entry: words[i].$1, meaning: words[i].$2),
+            _WordRow(entry: words[i].entry, meaning: words[i].meaning),
           ],
         ],
       ),

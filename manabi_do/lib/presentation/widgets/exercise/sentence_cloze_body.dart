@@ -16,6 +16,7 @@ import 'sentence_cloze_card.dart';
 class SentenceClozeBody extends StatefulWidget {
   final Sentence sentence;
   final String? translation;
+  final String? translationMissingLanguage;
   final String? targetReading;
   final List<McqOption> options;
   final int correctIndex;
@@ -52,6 +53,7 @@ class SentenceClozeBody extends StatefulWidget {
     required this.fourPointGrading,
     this.gradeAccent,
     this.translation,
+    this.translationMissingLanguage,
     this.targetReading,
   });
 
@@ -141,6 +143,7 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
           SentenceClozeCard(
             sentence: widget.sentence,
             translation: effectiveTranslation,
+            translationMissingLanguage: widget.translationMissingLanguage,
             showTranslation: effectiveShowTranslation,
             onToggleTranslation: toggleCallback,
             showSentenceFurigana: widget.showSentenceFurigana,
