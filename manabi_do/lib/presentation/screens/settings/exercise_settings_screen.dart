@@ -10,6 +10,15 @@ import '../../widgets/widgets.dart';
 /// Which exercise's settings a screen shows. One per store.
 enum ExerciseKind { flashcard, mcq, sentence, writing }
 
+/// The exercise's name, as its settings are titled.
+String exerciseKindLabel(ExerciseKind kind, AppLocalizations l) =>
+    switch (kind) {
+      ExerciseKind.flashcard => l.flashcardPractice,
+      ExerciseKind.mcq => l.mcqPractice,
+      ExerciseKind.sentence => l.sentencePractice,
+      ExerciseKind.writing => l.writingPractice,
+    };
+
 /// One exercise's settings, reached from the settings screen.
 ///
 /// The same sections the in-session sheet shows, so there is one place to
@@ -20,13 +29,6 @@ class ExerciseSettingsScreen extends ConsumerWidget {
   final ExerciseKind kind;
 
   const ExerciseSettingsScreen({super.key, required this.kind});
-
-  String _title(AppLocalizations l) => switch (kind) {
-    ExerciseKind.flashcard => l.flashcardPractice,
-    ExerciseKind.mcq => l.mcqPractice,
-    ExerciseKind.sentence => l.sentencePractice,
-    ExerciseKind.writing => l.writingPractice,
-  };
 
   /// Where this exercise's settings take effect. Shown because the values are
   /// shared: change multiple choice and vocabulary, kanji and grammar all
@@ -52,7 +54,7 @@ class ExerciseSettingsScreen extends ConsumerWidget {
         backgroundColor: t.surface,
         foregroundColor: t.onSurface,
         elevation: 0,
-        title: Text(_title(l)),
+        title: Text(exerciseKindLabel(kind, l)),
       ),
       body: Align(
         alignment: Alignment.topCenter,

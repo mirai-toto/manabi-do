@@ -198,7 +198,7 @@ class SettingsScreen extends ConsumerWidget {
                       size: 20,
                       color: t.onSurfaceVariant,
                     ),
-                    label: _exerciseLabel(kind, l),
+                    label: exerciseKindLabel(kind, l),
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (_) => ExerciseSettingsScreen(kind: kind),
@@ -321,13 +321,6 @@ IconData _exerciseIcon(ExerciseKind kind) => switch (kind) {
   ExerciseKind.mcq => Icons.list_alt_rounded,
   ExerciseKind.sentence => Icons.format_quote_rounded,
   ExerciseKind.writing => Icons.edit_rounded,
-};
-
-String _exerciseLabel(ExerciseKind kind, AppLocalizations l) => switch (kind) {
-  ExerciseKind.flashcard => l.flashcardPractice,
-  ExerciseKind.mcq => l.mcqPractice,
-  ExerciseKind.sentence => l.sentencePractice,
-  ExerciseKind.writing => l.writingPractice,
 };
 
 /// The home screen's sections, named, or "all" when none is hidden.
