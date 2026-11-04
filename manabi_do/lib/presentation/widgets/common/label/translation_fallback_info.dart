@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../l10n/l10n.dart';
 
@@ -41,10 +42,17 @@ class TranslationFallbackInfo extends StatelessWidget {
       child: Semantics(
         label: message,
         button: true,
-        child: Icon(
-          Icons.info_outline_rounded,
-          size: 14,
-          color: color ?? t.onSurfaceVariant,
+        // Tinted and padded, because the first version was a 14px glyph in
+        // onSurfaceVariant beside a small uppercase label and nobody saw it.
+        // An affordance nobody notices is not an affordance, and the padding
+        // is what makes it big enough to hit on a phone.
+        child: Padding(
+          padding: const EdgeInsets.all(AppDimens.spaceXxs),
+          child: Icon(
+            Icons.info_outline_rounded,
+            size: 17,
+            color: color ?? t.primary,
+          ),
         ),
       ),
     );
