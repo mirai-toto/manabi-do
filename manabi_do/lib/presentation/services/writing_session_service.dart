@@ -53,6 +53,6 @@ class WritingSessionService {
   }
 }
 
-final writingSessionServiceProvider = Provider(
+final writingSessionServiceProvider = Provider<WritingSessionService>(
   (ref) => WritingSessionService(ref),
 );

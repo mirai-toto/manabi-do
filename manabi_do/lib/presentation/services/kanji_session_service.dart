@@ -112,6 +112,8 @@ class KanjiSessionService {
   }
 }
 
-final kanjiSessionServiceProvider = Provider((ref) => KanjiSessionService(ref));
+final kanjiSessionServiceProvider = Provider<KanjiSessionService>(
+  (ref) => KanjiSessionService(ref),
+);
 
 enum _QuizType { kanjiToMeaning, meaningToKanji, drawing, flashcard }

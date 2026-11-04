@@ -24,4 +24,4 @@ class SrsService {
   Future<void> resetAll() => _ref.read(databaseProvider).resetAllProgress();
 }
 
-final srsServiceProvider = Provider((ref) => SrsService(ref));
+final srsServiceProvider = Provider<SrsService>((ref) => SrsService(ref));

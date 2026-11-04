@@ -204,6 +204,6 @@ class VocabularySessionService {
   }
 }
 
-final vocabularySessionServiceProvider = Provider(
+final vocabularySessionServiceProvider = Provider<VocabularySessionService>(
   (ref) => VocabularySessionService(ref),
 );

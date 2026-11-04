@@ -205,4 +205,6 @@ class ReviewQueueService {
   }
 }
 
-final reviewQueueServiceProvider = Provider((ref) => ReviewQueueService(ref));
+final reviewQueueServiceProvider = Provider<ReviewQueueService>(
+  (ref) => ReviewQueueService(ref),
+);

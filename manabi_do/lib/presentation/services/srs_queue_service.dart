@@ -153,6 +153,6 @@ class SrsQueueService {
   }
 }
 
-final srsQueueServiceProvider = Provider(
+final srsQueueServiceProvider = Provider<SrsQueueService>(
   (ref) => SrsQueueService(ref.read(databaseProvider)),
 );

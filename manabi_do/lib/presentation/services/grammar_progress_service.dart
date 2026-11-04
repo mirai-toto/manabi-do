@@ -53,6 +53,6 @@ class GrammarProgressService {
       _db.unlockGrammarChapter(grammarLessonKey(lessonId));
 }
 
-final grammarProgressServiceProvider = Provider(
+final grammarProgressServiceProvider = Provider<GrammarProgressService>(
   (ref) => GrammarProgressService(ref.read(databaseProvider)),
 );

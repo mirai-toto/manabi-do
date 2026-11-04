@@ -165,6 +165,6 @@ int _levelRank(String level) {
   return difficulty < 0 ? 99 : difficulty;
 }
 
-final searchServiceProvider = Provider(
+final searchServiceProvider = Provider<SearchService>(
   (ref) => SearchService(ref.read(databaseProvider)),
 );

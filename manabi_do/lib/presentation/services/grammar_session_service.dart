@@ -172,6 +172,6 @@ class GrammarSessionService {
       );
 }
 
-final grammarSessionServiceProvider = Provider(
+final grammarSessionServiceProvider = Provider<GrammarSessionService>(
   (ref) => GrammarSessionService(ref),
 );
