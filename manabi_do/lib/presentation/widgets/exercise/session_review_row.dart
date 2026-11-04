@@ -289,7 +289,7 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: AppDimens.spaceXs),
-            ..._buildGrades(context),
+            _buildGrades(context),
           ],
           if (widget.onDetailTap != null)
             Center(
@@ -377,69 +377,15 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
   /// Driven by the user's grading-precision setting, not by who marked the
   /// answer: grading with two buttons and then being offered four to change
   /// it read as a different scale for the same decision.
-  List<Widget> _buildGrades(BuildContext context) {
+  Widget _buildGrades(BuildContext context) {
     final l = context.l10n;
-    final brightness = Theme.of(context).brightness;
-
-    Widget btn(String label, Rating rating, Color accent) {
-      final isGiven = widget.rating == rating;
-      final fg = onAccentContainer(accent, brightness);
-      return Expanded(
-        child: AppButton(
-          label: label,
-          subtitle: srsIntervalPreview(widget.card, rating),
-          backgroundColor: accentContainer(accent, brightness),
-          foregroundColor: fg,
-          radius: AppDimens.radiusLg,
-          padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
-          visualDensity: VisualDensity.standard,
-          // Rings the grade already given, so you can see it before changing it.
-          selected: isGiven,
-          side: isGiven
-              ? BorderSide(color: fg, width: AppDimens.borderWidthSelected)
-              : BorderSide.none,
-          onPressed: () => widget.onRegrade!(rating),
-        ),
-      );
-    }
-
-    if (!widget.fourPointGrading) {
-      return [
-        Row(
-          children: [
-            btn(
-              l.ratingIncorrect,
-              Rating.again,
-              twoPointRatingAccent(Rating.again),
-            ),
-            const SizedBox(width: AppDimens.spaceSm),
-            btn(
-              l.ratingCorrect,
-              Rating.good,
-              twoPointRatingAccent(Rating.good),
-            ),
-          ],
-        ),
-      ];
-    }
-
-    return [
-      Row(
-        children: [
-          btn(l.ratingAgain, Rating.again, ratingAccent(Rating.again)),
-          const SizedBox(width: AppDimens.spaceSm),
-          btn(l.ratingHard, Rating.hard, ratingAccent(Rating.hard)),
-        ],
-      ),
-      const SizedBox(height: AppDimens.spaceSm),
-      Row(
-        children: [
-          btn(l.ratingGood, Rating.good, ratingAccent(Rating.good)),
-          const SizedBox(width: AppDimens.spaceSm),
-          btn(l.ratingEasy, Rating.easy, ratingAccent(Rating.easy)),
-        ],
-      ),
-    ];
+    return FlashcardActions(
+      card: widget.card,
+      fourPointGrading: widget.fourPointGrading,
+      selected: widget.rating,
+      passFailLabels: (fail: l.ratingIncorrect, pass: l.ratingCorrect),
+      onRate: widget.onRegrade!,
+    );
   }
 
   // ── Labels ─────────────────────────────────────────────────────────────────

@@ -147,8 +147,10 @@ bool _looksJapanese(String text) {
   return jpCount / runes.length > 0.5;
 }
 
-/// Rating button row shown after a flashcard is revealed. Shows FSRS interval
-/// previews in SRS mode; shows "Got it / Not yet" in free mode.
+/// The grade buttons: Again / Hard / Good / Easy, or a pass/fail pair when
+/// [fourPointGrading] is off. Each previews the interval it would schedule for
+/// [card]. Shown after a flashcard is revealed and when regrading an answer in
+/// the session review.
 class FlashcardActions extends StatelessWidget {
   final Card? card;
   final bool fourPointGrading;
@@ -159,6 +161,12 @@ class FlashcardActions extends StatelessWidget {
   /// that nothing is being recorded. Null uses the ramp.
   final Color? gradeAccent;
   final String? question;
+
+  /// The grade already given, ringed so it can be seen before changing it.
+  final Rating? selected;
+
+  /// Labels for the pass/fail pair. Null uses "Not yet" / "Got it".
+  final ({String fail, String pass})? passFailLabels;
   final void Function(Rating) onRate;
 
   const FlashcardActions({
@@ -168,6 +176,8 @@ class FlashcardActions extends StatelessWidget {
     required this.fourPointGrading,
     this.gradeAccent,
     this.question,
+    this.selected,
+    this.passFailLabels,
   });
 
   @override
@@ -175,6 +185,8 @@ class FlashcardActions extends StatelessWidget {
     final t = context.tokens;
     final l = context.l10n;
     final brightness = Theme.of(context).brightness;
+    final failLabel = passFailLabels?.fail ?? l.flashcardNotYet;
+    final passLabel = passFailLabels?.pass ?? l.flashcardGotIt;
 
     Widget btn(
       String label,
@@ -188,7 +200,15 @@ class FlashcardActions extends StatelessWidget {
         subtitle: srsIntervalPreview(card, rating),
         backgroundColor: background,
         foregroundColor: foreground,
-        side: side,
+        // Null when nothing was given yet, so the buttons are not announced
+        // as unselected toggles.
+        selected: selected == null ? null : selected == rating,
+        side: selected == rating
+            ? BorderSide(
+                color: foreground,
+                width: AppDimens.borderWidthSelected,
+              )
+            : side,
         radius: AppDimens.radiusLg,
         padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
         visualDensity: VisualDensity.standard,
@@ -214,7 +234,7 @@ class FlashcardActions extends StatelessWidget {
         return Row(
           children: [
             btn(
-              l.flashcardNotYet,
+              failLabel,
               Rating.again,
               background: Colors.transparent,
               foreground: accent,
@@ -225,7 +245,7 @@ class FlashcardActions extends StatelessWidget {
             ),
             const SizedBox(width: AppDimens.spaceSm),
             btn(
-              l.flashcardGotIt,
+              passLabel,
               Rating.good,
               background: accent,
               foreground: onAccentFor(accent),
@@ -235,17 +255,9 @@ class FlashcardActions extends StatelessWidget {
       }
       return Row(
         children: [
-          rampBtn(
-            l.flashcardNotYet,
-            Rating.again,
-            twoPointRatingAccent(Rating.again),
-          ),
+          rampBtn(failLabel, Rating.again, twoPointRatingAccent(Rating.again)),
           const SizedBox(width: AppDimens.spaceSm),
-          rampBtn(
-            l.flashcardGotIt,
-            Rating.good,
-            twoPointRatingAccent(Rating.good),
-          ),
+          rampBtn(passLabel, Rating.good, twoPointRatingAccent(Rating.good)),
         ],
       );
     }
