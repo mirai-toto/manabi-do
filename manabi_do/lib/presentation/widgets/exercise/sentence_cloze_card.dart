@@ -73,20 +73,32 @@ class SentenceClozeCard extends StatelessWidget {
         sentence.japanese,
         sentence.targetWord,
       );
+      // One sentence, one baseline. Asked per slice, あった。would answer "no
+      // ruby here" and render as plain text beside a before-half built from
+      // ruby columns, which is what dropped it half a line.
+      final bool anyRuby =
+          showSentenceFurigana && sentence.furigana!.contains('{');
       beforeSpans = furiganaSpans(
         beforeAnnot,
         sentenceStyle,
         rubyStyle,
         showFurigana: showSentenceFurigana,
+        reserveRuby: anyRuby,
       );
       afterSpans = furiganaSpans(
         afterAnnot,
         sentenceStyle,
         rubyStyle,
         showFurigana: showSentenceFurigana,
+        reserveRuby: anyRuby,
       );
       targetSpans = answered
-          ? furiganaSpans(targetAnnot, targetStyle, targetRubyStyle)
+          ? furiganaSpans(
+              targetAnnot,
+              targetStyle,
+              targetRubyStyle,
+              reserveRuby: anyRuby,
+            )
           : [_blankSpan(color)];
     } else {
       final rawBefore = sentence.japanese.split(sentence.targetWord).first;
@@ -94,8 +106,19 @@ class SentenceClozeCard extends StatelessWidget {
           .split(sentence.targetWord)
           .skip(1)
           .join(sentence.targetWord);
+      // Same rule as above: either half can carry the ruby, and both have to
+      // reserve the band if one does.
+      final bool anyRuby =
+          showSentenceFurigana &&
+          ((sentence.furiganaBefore?.contains('{') ?? false) ||
+              (sentence.furiganaAfter?.contains('{') ?? false));
       beforeSpans = (showSentenceFurigana && sentence.furiganaBefore != null)
-          ? furiganaSpans(sentence.furiganaBefore!, sentenceStyle, rubyStyle)
+          ? furiganaSpans(
+              sentence.furiganaBefore!,
+              sentenceStyle,
+              rubyStyle,
+              reserveRuby: anyRuby,
+            )
           : furiganaSpans(
               rawBefore,
               sentenceStyle,
@@ -103,7 +126,12 @@ class SentenceClozeCard extends StatelessWidget {
               showFurigana: false,
             );
       afterSpans = (showSentenceFurigana && sentence.furiganaAfter != null)
-          ? furiganaSpans(sentence.furiganaAfter!, sentenceStyle, rubyStyle)
+          ? furiganaSpans(
+              sentence.furiganaAfter!,
+              sentenceStyle,
+              rubyStyle,
+              reserveRuby: anyRuby,
+            )
           : furiganaSpans(
               rawAfter,
               sentenceStyle,
