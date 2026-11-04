@@ -669,5 +669,9 @@
         "type": "int"
       }
     }
+  },
+  "loadError": "Couldn't load this. Try again later.",
+  "@loadError": {
+    "description": "Shown in place of content that failed to load."
   }
 }

@@ -1145,4 +1145,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String intervalMonths(int n) {
     return '$n mois';
   }
+
+  @override
+  String get loadError =>
+      'Impossible de charger ce contenu. Réessayez plus tard.';
 }

@@ -1138,4 +1138,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String intervalMonths(int n) {
     return '${n}mo';
   }
+
+  @override
+  String get loadError => 'Couldn\'t load this. Try again later.';
 }

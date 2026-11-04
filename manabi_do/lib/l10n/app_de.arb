@@ -547,5 +547,6 @@
   "intervalMinutes": "{n} Min.",
   "intervalHours": "{n} Std.",
   "intervalDays": "{n} T.",
-  "intervalMonths": "{n} Mon."
+  "intervalMonths": "{n} Mon.",
+  "loadError": "Konnte nicht geladen werden. Versuche es später erneut."
 }

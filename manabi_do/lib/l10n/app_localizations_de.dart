@@ -1144,4 +1144,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String intervalMonths(int n) {
     return '$n Mon.';
   }
+
+  @override
+  String get loadError =>
+      'Konnte nicht geladen werden. Versuche es später erneut.';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../providers/srs_cards_provider.dart';
 
@@ -145,7 +146,8 @@ class _ShareBadge extends StatelessWidget {
     if (value == null || value <= 0) return const SizedBox.shrink();
     final t = context.tokens;
     return PillBadge(
-      label: '+${(value * 100).toStringAsFixed(1)}%',
+      label:
+          '+${NumberFormat.decimalPercentPattern(locale: Localizations.localeOf(context).toString(), decimalDigits: 1).format(value)}',
       color: t.onPrimaryContainer,
       background: t.primaryContainer,
       textStyle: AppTextStyles.labelSmall,

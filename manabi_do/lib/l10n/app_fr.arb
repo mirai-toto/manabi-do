@@ -547,5 +547,6 @@
   "intervalMinutes": "{n} min",
   "intervalHours": "{n} h",
   "intervalDays": "{n} j",
-  "intervalMonths": "{n} mois"
+  "intervalMonths": "{n} mois",
+  "loadError": "Impossible de charger ce contenu. Réessayez plus tard."
 }

@@ -2091,6 +2091,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{n}mo'**
   String intervalMonths(int n);
+
+  /// Shown in place of content that failed to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load this. Try again later.'**
+  String get loadError;
 }
 
 class _AppLocalizationsDelegate

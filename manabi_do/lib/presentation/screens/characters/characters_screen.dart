@@ -69,11 +69,11 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen>
                     const KanjiTabView(),
                   ],
                 ),
-                AsyncError(:final error) => Center(
+                AsyncError() => Center(
                   child: Padding(
                     padding: const EdgeInsets.all(AppDimens.spaceLg),
                     child: Text(
-                      'Database error: $error',
+                      context.l10n.loadError,
                       textAlign: TextAlign.center,
                     ),
                   ),
