@@ -34,9 +34,7 @@ void main() {
     expect(find.byIcon(Icons.info_outline_rounded), findsOneWidget);
   });
 
-  testWidgets('the Example Words heading marks an untranslated word', (
-    tester,
-  ) async {
+  testWidgets('only the untranslated example word is marked', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [

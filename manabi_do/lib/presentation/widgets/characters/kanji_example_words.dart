@@ -8,10 +8,10 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
-import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/pos_label.dart';
 import '../widgets.dart';
 import '../../providers/vocabulary_provider.dart';
+import '../../screens/vocabulary/vocabulary_detail_screen.dart';
 
 /// `SectionLabel` + list of example vocabulary words for a kanji. Fetches
 /// localized vocabulary via provider; shows a loading indicator, empty state,
@@ -26,32 +26,23 @@ class KanjiExampleWords extends ConsumerWidget {
       localizedKanjiVocabularyProvider((kanjiId: kanji.id)),
     );
 
-    // Marked once for the whole list: a mark on each row would be most of
-    // the row, and the gap is the same gap for all of them.
-    final String? missingLanguage = switch (async.asData?.value) {
-      final List<LocalizedWord> words when words.any((w) => !w.translated) =>
-        readerLanguageName(ref.watch(localeProvider).languageCode),
-      _ => null,
-    };
+    // Named once here and handed down; each row decides whether it is the
+    // one that needs the mark.
+    final String? missingLanguage = readerLanguageName(
+      ref.watch(localeProvider).languageCode,
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            SectionLabel(context.l10n.exampleWords),
-            if (missingLanguage != null) ...[
-              const SizedBox(width: AppDimens.spaceXs),
-              TranslationFallbackInfo(language: missingLanguage),
-            ],
-          ],
-        ),
+        SectionLabel(context.l10n.exampleWords),
         const SizedBox(height: AppDimens.spaceSm),
         async.when(
           loading: () => const _Loading(),
           error: (_, _) => const SizedBox.shrink(),
-          data: (words) =>
-              words.isEmpty ? const _EmptyState() : _WordList(words: words),
+          data: (words) => words.isEmpty
+              ? const _EmptyState()
+              : _WordList(words: words, missingLanguage: missingLanguage),
         ),
       ],
     );
@@ -89,7 +80,11 @@ class _EmptyState extends StatelessWidget {
 
 class _WordList extends StatelessWidget {
   final List<LocalizedWord> words;
-  const _WordList({required this.words});
+
+  /// The reader's language, named, when any word in the list is missing it.
+  final String? missingLanguage;
+
+  const _WordList({required this.words, this.missingLanguage});
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +95,7 @@ class _WordList extends StatelessWidget {
           for (int i = 0; i < words.length; i++) ...[
             if (i > 0)
               Divider(height: 1, thickness: 1, color: t.outlineVariant),
-            _WordRow(entry: words[i].entry, meaning: words[i].meaning),
+            _WordRow(word: words[i], missingLanguage: missingLanguage),
           ],
         ],
       ),
@@ -109,60 +104,81 @@ class _WordList extends StatelessWidget {
 }
 
 class _WordRow extends StatelessWidget {
-  final VocabularyEntry entry;
-  final String meaning;
-  const _WordRow({required this.entry, required this.meaning});
+  final LocalizedWord word;
+
+  /// The reader's language, named. The mark is drawn on the rows that are
+  /// actually missing it, not on all of them — this list is usually mixed,
+  /// and a mark on a French row would be a lie.
+  final String? missingLanguage;
+
+  const _WordRow({required this.word, this.missingLanguage});
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final badgeColor = vocabularyLevelColor(
+    final entry = word.entry;
+    final Color levelColour = vocabularyLevelColor(
       entry.vocabularyLevel,
       Theme.of(context).brightness,
     );
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppDimens.spaceMd,
-        vertical: AppDimens.spaceSnug,
+
+    return InkWell(
+      // Opens the word's own screen, which already holds its senses, the
+      // kanji it is written with and its example sentences.
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => VocabularyDetailScreen(entry: entry),
+        ),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 2,
-            child: _WordLabel(word: entry.word, reading: entry.reading),
-          ),
-          const SizedBox(width: AppDimens.spaceSm),
-          Expanded(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  meaning,
-                  style: AppTextStyles.bodySmall.copyWith(
-                    color: t.onSurfaceVariant,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: AppDimens.spaceXxs),
-                Text(
-                  posLabel(entry.partOfSpeech, context),
-                  style: AppTextStyles.labelSmall.copyWith(
-                    color: t.onSurfaceVariant.withValues(alpha: 0.6),
-                  ),
-                ),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimens.spaceMd,
+          vertical: AppDimens.spaceSnug,
+        ),
+        child: Row(
+          children: [
+            // Fixed, not flexible. The rarity used to be a word — "Les plus
+            // courants" against "Courants" — and its width changed what was
+            // left for everything else, so no two meanings began at the same
+            // place down the list.
+            SizedBox(
+              width: 80,
+              child: _WordLabel(word: entry.word, reading: entry.reading),
             ),
-          ),
-          const SizedBox(width: AppDimens.spaceSm),
-          PillBadge(
-            label: vocabularyLevelLabel(entry.vocabularyLevel, context),
-            color: badgeColor,
-            background: badgeColor.withValues(alpha: 0.12),
-          ),
-        ],
+            const SizedBox(width: AppDimens.spaceSm),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TranslatedText(
+                    word.meaning,
+                    missingLanguage: word.translated ? null : missingLanguage,
+                    style: AppTextStyles.bodySmall.copyWith(
+                      color: t.onSurfaceVariant,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: AppDimens.spaceXxs),
+                  Text(
+                    posLabel(entry.partOfSpeech, context),
+                    style: AppTextStyles.labelSmall.copyWith(
+                      color: t.onSurfaceVariant.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: AppDimens.spaceSm),
+            // Dots, not a label: the same rarity in a fixed width, and the
+            // reader is here for the word rather than for its band.
+            DifficultyDots(
+              total: kVocabularyLevelCount,
+              filled: kVocabularyLevelCount - entry.vocabularyLevel + 1,
+              color: levelColour,
+            ),
+          ],
+        ),
       ),
     );
   }
