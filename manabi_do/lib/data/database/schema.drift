@@ -138,13 +138,6 @@ CREATE TABLE vocabulary_senses (
   PRIMARY KEY (vocabulary_id, locale, position)
 );
 
-CREATE TABLE vocabulary_translations (
-  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
-  locale TEXT NOT NULL,
-  meaning TEXT NOT NULL,
-  PRIMARY KEY (vocabulary_id, locale)
-);
-
 CREATE TABLE sentences (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   japanese TEXT NOT NULL,
