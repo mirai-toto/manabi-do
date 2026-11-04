@@ -175,6 +175,8 @@
   "intransitive": "intransitif",
   "exampleSentences": "Dans une phrase",
   "translationFallbackNotice": "Pas encore de traduction en {language} pour ceci : l'anglais est affiché.",
+  "meaningsInEnglish": "En anglais",
+  "translationCoarseNotice": "Le {language} n'a qu'une entrée pour ce mot : les sens anglais sont aussi affichés.",
   "writtenWith": "Écrit avec",
   "youCanRead": "Vous pouvez lire",
   "ofWrittenJapanese": "de tout ce qui s'écrit en japonais",

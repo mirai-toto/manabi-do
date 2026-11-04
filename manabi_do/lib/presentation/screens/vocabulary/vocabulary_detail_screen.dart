@@ -229,17 +229,27 @@ class _Meanings extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
-    final senses =
+    final meanings =
         ref.watch(vocabularySensesProvider(entry.id)).asData?.value ??
-        const <VocabularySense>[];
+        (own: const <VocabularySense>[], english: const <VocabularySense>[]);
+    final List<VocabularySense> senses = meanings.own.isEmpty
+        ? meanings.english
+        : meanings.own;
+    // English shown under the reader's own meanings, not instead of them:
+    // their language collapsed a sense list into one line.
+    final List<VocabularySense> alsoEnglish = meanings.own.isEmpty
+        ? const <VocabularySense>[]
+        : meanings.english;
+
+    final readerLocale = ref.watch(localeProvider).languageCode;
+    final String? language = readerLanguageName(readerLocale);
     // JMdict has French for 72% of these words and German for 95%, so the
     // rest arrive in English. The senses say which language they are in.
-    final readerLocale = ref.watch(localeProvider).languageCode;
     final String? missingLanguage = senses.isEmpty
         ? null
         : senses.first.locale == readerLocale
         ? null
-        : readerLanguageName(readerLocale);
+        : language;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,6 +282,28 @@ class _Meanings extends ConsumerWidget {
           )
         else
           _SenseList(senses: senses, limit: _shown),
+        if (alsoEnglish.isNotEmpty && language != null) ...[
+          const SizedBox(height: AppDimens.spaceMd),
+          Row(
+            children: [
+              SectionLabel(l.meaningsInEnglish),
+              const SizedBox(width: AppDimens.spaceXs),
+              TranslationFallbackInfo(
+                language: language,
+                message: l.translationCoarseNotice(language),
+              ),
+              const Spacer(),
+              Text(
+                l.nMeanings(alsoEnglish.length),
+                style: AppTextStyles.labelSmall.copyWith(
+                  color: t.onSurfaceVariant,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppDimens.spaceSm),
+          _SenseList(senses: alsoEnglish, limit: _shown),
+        ],
       ],
     );
   }

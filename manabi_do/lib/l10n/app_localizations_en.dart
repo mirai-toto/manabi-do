@@ -419,6 +419,14 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get meaningsInEnglish => 'In English';
+
+  @override
+  String translationCoarseNotice(String language) {
+    return '$language has one entry for this word, so the English senses are shown too.';
+  }
+
+  @override
   String get writtenWith => 'Written with';
 
   @override

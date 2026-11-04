@@ -419,6 +419,14 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get meaningsInEnglish => 'Auf Englisch';
+
+  @override
+  String translationCoarseNotice(String language) {
+    return '$language hat nur einen Eintrag für dieses Wort, daher werden auch die englischen Bedeutungen gezeigt.';
+  }
+
+  @override
   String get writtenWith => 'Geschrieben mit';
 
   @override

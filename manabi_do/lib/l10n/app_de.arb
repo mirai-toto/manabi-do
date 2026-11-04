@@ -177,6 +177,8 @@
   "intransitive": "intransitiv",
   "exampleSentences": "Im Satz",
   "translationFallbackNotice": "Hierfür gibt es noch keine Übersetzung auf {language}, daher wird Englisch angezeigt.",
+  "meaningsInEnglish": "Auf Englisch",
+  "translationCoarseNotice": "{language} hat nur einen Eintrag für dieses Wort, daher werden auch die englischen Bedeutungen gezeigt.",
   "writtenWith": "Geschrieben mit",
   "youCanRead": "Du kannst lesen",
   "ofWrittenJapanese": "von allem, was auf Japanisch geschrieben wird",

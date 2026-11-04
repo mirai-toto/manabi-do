@@ -227,6 +227,16 @@
       }
     }
   },
+  "meaningsInEnglish": "In English",
+  "translationCoarseNotice": "{language} has one entry for this word, so the English senses are shown too.",
+  "@translationCoarseNotice": {
+    "description": "Shown when the reader's language collapses many senses into one.",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
   "writtenWith": "Written with",
   "youCanRead": "You can read",
   "ofWrittenJapanese": "of everything written in Japanese",

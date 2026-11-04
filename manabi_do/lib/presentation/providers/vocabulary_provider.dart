@@ -97,18 +97,44 @@ final vocabularySentencesProvider =
       return sentences.map((s) => (s, translations[s.id])).toList();
     });
 
-/// A word's meanings, split into senses, in the reader's language.
+/// A word's meanings in the reader's language, and the English behind them.
 ///
-/// Falls back to English when the content has nothing in that language, and
-/// the caller falls back to the flattened `meaning` when even that is empty.
-final vocabularySensesProvider =
-    FutureProvider.family<List<VocabularySense>, int>((
-      ref,
-      vocabularyId,
-    ) async {
-      final locale = ref.watch(localeProvider).languageCode;
-      final db = ref.watch(databaseProvider);
-      final mine = await db.getVocabularySenses(vocabularyId, locale);
-      if (mine.isNotEmpty || locale == 'en') return mine;
-      return db.getVocabularySenses(vocabularyId, 'en');
-    });
+/// [own] is empty when the content has nothing in that language, and [english]
+/// then carries the fallback.
+///
+/// [english] is also filled when the reader's language has a single lumped
+/// sense and English has several. JMdict's French contributors often wrote one
+/// summary where the English has a sense list: する is 17 English senses
+/// against one French line reading "coûter; essayer; faire; jouer; pratiquer",
+/// in what looks like alphabetical order, so the first word a reader sees is
+/// the rarest. 1,703 words are like this. The French stays — it is their
+/// language — and the English senses go underneath it rather than replacing
+/// it.
+typedef WordMeanings = ({
+  List<VocabularySense> own,
+  List<VocabularySense> english,
+});
+
+/// How many English senses it takes before a single foreign sense counts as a
+/// summary rather than a translation. Two would catch words that genuinely
+/// have one meaning and a near-synonym.
+const int _summaryThreshold = 3;
+
+final vocabularySensesProvider = FutureProvider.family<WordMeanings, int>((
+  ref,
+  vocabularyId,
+) async {
+  final locale = ref.watch(localeProvider).languageCode;
+  final db = ref.watch(databaseProvider);
+  final mine = await db.getVocabularySenses(vocabularyId, locale);
+  if (locale == 'en') return (own: mine, english: const <VocabularySense>[]);
+
+  final english = await db.getVocabularySenses(vocabularyId, 'en');
+  if (mine.isEmpty) {
+    return (own: const <VocabularySense>[], english: english);
+  }
+  if (mine.length == 1 && english.length >= _summaryThreshold) {
+    return (own: mine, english: english);
+  }
+  return (own: mine, english: const <VocabularySense>[]);
+});

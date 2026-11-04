@@ -22,25 +22,32 @@ class TranslationFallbackInfo extends StatelessWidget {
   /// than the page, such as the kanji hero.
   final Color? color;
 
+  /// Replaces the default notice. "There is no French for this" and "the
+  /// French is a single line" are both worth explaining and are not the same
+  /// thing.
+  final String? message;
+
   const TranslationFallbackInfo({
     super.key,
     required this.language,
     this.color,
+    this.message,
   });
 
   @override
   Widget build(BuildContext context) {
     final AppTokens t = context.tokens;
-    final String message = context.l10n.translationFallbackNotice(language);
+    final String notice =
+        message ?? context.l10n.translationFallbackNotice(language);
     return Tooltip(
-      message: message,
+      message: notice,
       // Tap, not long-press: a reader who has noticed the mark is asking a
       // question, and a long-press is a gesture nobody guesses.
       triggerMode: TooltipTriggerMode.tap,
       showDuration: const Duration(seconds: 6),
       margin: const EdgeInsets.symmetric(horizontal: 24),
       child: Semantics(
-        label: message,
+        label: notice,
         button: true,
         // Tinted and padded, because the first version was a 14px glyph in
         // onSurfaceVariant beside a small uppercase label and nobody saw it.

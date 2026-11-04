@@ -838,6 +838,18 @@ abstract class AppLocalizations {
   /// **'No {language} translation for this yet, so the English is shown.'**
   String translationFallbackNotice(String language);
 
+  /// No description provided for @meaningsInEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'In English'**
+  String get meaningsInEnglish;
+
+  /// Shown when the reader's language collapses many senses into one.
+  ///
+  /// In en, this message translates to:
+  /// **'{language} has one entry for this word, so the English senses are shown too.'**
+  String translationCoarseNotice(String language);
+
   /// No description provided for @writtenWith.
   ///
   /// In en, this message translates to:
