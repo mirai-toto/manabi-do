@@ -343,11 +343,11 @@ class ReviewQueueService {
           answer: entry.word,
           kindLabel: (l) => l.reviewKindVocabularySentence,
           sentence: sentence.japanese,
-          sentenceTranslation: sentenceTranslations[sentence.id],
+          sentenceTranslation: sentenceTranslations[sentence.id]?.text,
         ),
         question: SentenceClozeQuestion(
           sentence: sentence,
-          translation: sentenceTranslations[sentence.id],
+          translation: sentenceTranslations[sentence.id]?.text,
           targetReading: entry.reading,
           options: clozeOptions,
           correctIndex: correctIndex,

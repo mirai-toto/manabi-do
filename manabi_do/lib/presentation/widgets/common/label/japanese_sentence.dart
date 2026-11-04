@@ -13,6 +13,11 @@ class JapaneseSentence extends StatelessWidget {
   final String? highlight;
   final Color? highlightColor;
   final String? translation;
+
+  /// The language [translation] is in, named, when it is not the reader's own.
+  /// Left null when it matches, because labelling every line would be noise.
+  final String? translationLanguage;
+
   final TextStyle? style;
   final bool hideHighlight;
 
@@ -22,6 +27,7 @@ class JapaneseSentence extends StatelessWidget {
     this.highlight,
     this.highlightColor,
     this.translation,
+    this.translationLanguage,
     this.style,
     this.hideHighlight = false,
   });
@@ -111,6 +117,17 @@ class JapaneseSentence extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
+          // Says which language this is, so a reader who asked for French and
+          // got English can see the app knows, and that the corpus simply has
+          // no French for this sentence.
+          if (translationLanguage != null) ...[
+            const SizedBox(height: AppDimens.spaceXs),
+            Text(
+              translationLanguage!,
+              style: AppTextStyles.labelXs.copyWith(color: t.onSurfaceVariant),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ],
       ],
     );

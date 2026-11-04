@@ -1,3 +1,5 @@
+import '../../../core/providers/locale_provider.dart';
+import '../../../core/text/sentence_language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -134,10 +136,11 @@ class _Sentences extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rows =
         ref.watch(vocabularySentencesProvider(entry.id)).asData?.value ??
-        const <(Sentence, String?)>[];
+        const <(Sentence, ({String locale, String text})?)>[];
     if (rows.isEmpty) return const SizedBox.shrink();
     final t = context.tokens;
     final l = context.l10n;
+    final readerLocale = ref.watch(localeProvider).languageCode;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,7 +173,11 @@ class _Sentences extends ConsumerWidget {
                           sentence: row.$1.furigana ?? row.$1.japanese,
                           highlight: entry.word,
                           highlightColor: color,
-                          translation: row.$2,
+                          translation: row.$2?.text,
+                          translationLanguage: languageNameForSentenceLocale(
+                            row.$2?.locale,
+                            readerLocale,
+                          ),
                         ),
                       ),
                       const SizedBox(width: AppDimens.spaceSm),
@@ -182,7 +189,7 @@ class _Sentences extends ConsumerWidget {
                           if (row.$2 != null)
                             CopyChoice(
                               label: l.translationModeLabel,
-                              text: row.$2!,
+                              text: row.$2!.text,
                             ),
                         ],
                       ),

@@ -53,16 +53,17 @@ final localizedKanjiMeaningProvider = FutureProvider.family<String, int>((
   return tr[kanjiId] ?? '';
 });
 
-/// Example sentences for a word, with their translations in the current locale.
+/// Example sentences for a word, with their translations and the language
+/// each translation is in.
 ///
-/// Matching is still a substring search in the content pipeline, so a word
-/// rarely gets more than a handful and an inflected form gets none. A
-/// tokeniser would find every sentence that uses the word.
+/// Only English is guaranteed by the content pipeline, so the locale comes
+/// back with the text: the screen names the language when it is not the
+/// reader's, instead of silently showing English.
 final vocabularySentencesProvider =
-    FutureProvider.family<List<(Sentence, String?)>, int>((
-      ref,
-      vocabularyId,
-    ) async {
+    FutureProvider.family<
+      List<(Sentence, ({String locale, String text})?)>,
+      int
+    >((ref, vocabularyId) async {
       final locale = ref.watch(localeProvider).languageCode;
       final db = ref.watch(databaseProvider);
       final sentences = await db.getSentencesForVocabulary(vocabularyId);
