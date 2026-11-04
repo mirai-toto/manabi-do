@@ -253,9 +253,17 @@ class _LanguagePage extends ConsumerWidget {
     final String current = ref.watch(localeProvider).languageCode;
 
     return _Page(
-      hero: Text(
-        'ようこそ',
-        style: AppTextStyles.jpHero.copyWith(color: t.primary),
+      // jpDisplay, not jpHero: at 96px four kana are wider than a phone and
+      // ようこそ broke across two lines. FittedBox shrinks it further on a
+      // narrow screen rather than letting it wrap again.
+      hero: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          'ようこそ',
+          maxLines: 1,
+          softWrap: false,
+          style: AppTextStyles.jpDisplay.copyWith(color: t.primary),
+        ),
       ),
       title: l.onboardingWelcome,
       body: l.onboardingLanguageBody,
