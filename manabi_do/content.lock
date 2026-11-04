@@ -7,5 +7,5 @@
 # schemaVersion in lib/data/database/app_database.dart. A schema change needs
 # a matching app release; a revision change is a drop-in.
 
-tag = v28.0
-sha256 = 289334413e3ff7443f90cc1b531c2bcb394a52e562da9ac94a4b6eb96d98e5dc
+tag = v29.0
+sha256 = 7dab088e8513bc1d1e68d9eff6e82238b0b0793198f2b5c6f4233ab8772e93f4
