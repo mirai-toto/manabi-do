@@ -1,3 +1,7 @@
-• Search now looks in your own language. In French, "feu" finds 火 — before, only "fire" did, and the same went for German and every other language.
-• Kanji results show their meaning in your language, which the kanji screen already did.
-• Fixed an information mark that appeared beside every word in English, saying English was missing.
+• The daily review now shows short meanings and the kanji's reading, like free practice.
+• Progress counts a word or kanji once you know it well, matching the "Known" list.
+• Rarity dots on example words now match the level cards.
+• Kanji on a word's page show their meaning in your language.
+• Times, intervals and numbers follow your language.
+• Writing practice ends with the usual summary.
+• Better screen reader support and more readable colored buttons.
