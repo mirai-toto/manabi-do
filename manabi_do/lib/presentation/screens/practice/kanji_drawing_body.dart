@@ -2,17 +2,15 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 
+import '../../widgets/widgets.dart';
 import '../../../core/models/drawing_settings.dart';
 import '../../models/practice_answer.dart';
 import '../../../core/srs/drawing_rating.dart';
 import '../../../core/text/short_meaning.dart';
-import '../../widgets/common/indicator/app_spinner.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_strokes_provider.dart';
-import '../../widgets/exercise/drawing_exercise.dart';
-import '../../widgets/exercise/practice_progress_row.dart';
 
 /// Write the kanji from its meaning, then grade the attempt.
 class KanjiDrawingBody extends ConsumerWidget {

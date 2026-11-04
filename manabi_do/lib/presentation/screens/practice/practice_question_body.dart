@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card;
 
+import '../../widgets/widgets.dart';
 import '../../../core/models/drawing_settings.dart';
 import '../../../core/models/flashcard_settings.dart';
 import '../../../core/models/mcq_settings.dart';
@@ -10,13 +11,7 @@ import '../../../core/models/sentence_settings.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
-import '../../widgets/exercise/grammar_builder_body.dart';
-import '../../widgets/exercise/grammar_cloze_body.dart';
-import '../../widgets/exercise/grammar_error_detection_body.dart';
 import 'kanji_drawing_body.dart';
-import '../../widgets/exercise/practice_flashcard_body.dart';
-import '../../widgets/exercise/practice_mcq_body.dart';
-import '../../widgets/exercise/sentence_cloze_body.dart';
 import '../characters/kanji/kanji_detail_screen.dart';
 
 /// The settings a practice body renders against.
