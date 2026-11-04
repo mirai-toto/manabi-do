@@ -79,6 +79,11 @@ class KanjiSessionService {
         _QuizType.meaningToKanji,
       ],
       ExerciseFilter.mixed => _QuizType.values,
+      ExerciseFilter.sentenceOnly => throw ArgumentError.value(
+        exerciseFilter,
+        'exerciseFilter',
+        'kanji have no sentence exercise',
+      ),
     };
 
     return pairs.map((pair) {

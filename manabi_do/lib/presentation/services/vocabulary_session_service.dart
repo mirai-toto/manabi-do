@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../core/models/sentence_settings.dart';
+import '../../core/models/exercise_filter.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/srs_settings_provider.dart';
 import '../../core/text/short_meaning.dart';
@@ -26,10 +27,11 @@ class VocabularySessionService {
     required int level,
     required Set<int>? allowedIds,
     required bool freeMode,
-    required bool sentenceOnly,
-    required bool mcqOnly,
-    required bool flashcardOnly,
+    required ExerciseFilter exerciseFilter,
   }) async {
+    final bool sentenceOnly = exerciseFilter == ExerciseFilter.sentenceOnly;
+    final bool mcqOnly = exerciseFilter == ExerciseFilter.mcqOnly;
+    final bool flashcardOnly = exerciseFilter == ExerciseFilter.flashcardOnly;
     final db = _ref.read(databaseProvider);
     final locale = _ref.read(localeProvider).languageCode;
     final rng = Random();

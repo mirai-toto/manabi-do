@@ -114,7 +114,7 @@ Future<void> openVocabularyPractice(
               VocabularyPracticeScreen(
                 level: level,
                 allowedIds: vocabularyIds,
-                flashcardOnly: true,
+                exerciseFilter: ExerciseFilter.flashcardOnly,
               ),
             ),
           ),
@@ -126,7 +126,7 @@ Future<void> openVocabularyPractice(
               VocabularyPracticeScreen(
                 level: level,
                 allowedIds: vocabularyIds,
-                mcqOnly: true,
+                exerciseFilter: ExerciseFilter.mcqOnly,
               ),
             ),
           ),
@@ -138,7 +138,7 @@ Future<void> openVocabularyPractice(
               VocabularyPracticeScreen(
                 level: level,
                 allowedIds: vocabularyIds,
-                sentenceOnly: true,
+                exerciseFilter: ExerciseFilter.sentenceOnly,
               ),
             ),
           ),

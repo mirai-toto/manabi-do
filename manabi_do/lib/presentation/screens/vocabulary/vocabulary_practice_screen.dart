@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/models/exercise_filter.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../l10n/vocabulary_level_label.dart';
 import '../../services/vocabulary_session_service.dart';
@@ -9,30 +10,26 @@ class VocabularyPracticeScreen extends StatelessWidget {
   final int level;
   final Set<int>? allowedIds;
   final bool freeMode;
-  final bool sentenceOnly;
-  final bool mcqOnly;
-  final bool flashcardOnly;
+  final ExerciseFilter exerciseFilter;
 
   const VocabularyPracticeScreen({
     super.key,
     required this.level,
     this.allowedIds,
     this.freeMode = false,
-    this.sentenceOnly = false,
-    this.mcqOnly = false,
-    this.flashcardOnly = false,
+    this.exerciseFilter = ExerciseFilter.mixed,
   });
 
-  Set<SettingsContext> get _contexts {
-    if (sentenceOnly) return const {SettingsContext.sentence};
-    if (mcqOnly) return const {SettingsContext.mcq};
-    if (flashcardOnly) return const {SettingsContext.flashcard};
-    return const {
+  Set<SettingsContext> get _contexts => switch (exerciseFilter) {
+    ExerciseFilter.sentenceOnly => const {SettingsContext.sentence},
+    ExerciseFilter.mcqOnly => const {SettingsContext.mcq},
+    ExerciseFilter.flashcardOnly => const {SettingsContext.flashcard},
+    ExerciseFilter.mixed => const {
       SettingsContext.flashcard,
       SettingsContext.mcq,
       SettingsContext.sentence,
-    };
-  }
+    },
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +42,10 @@ class VocabularyPracticeScreen extends StatelessWidget {
             level: level,
             allowedIds: allowedIds,
             freeMode: freeMode,
-            sentenceOnly: sentenceOnly,
-            mcqOnly: mcqOnly,
-            flashcardOnly: flashcardOnly,
+            exerciseFilter: exerciseFilter,
           ),
-      persistSrs: !freeMode && !mcqOnly && !flashcardOnly && !sentenceOnly,
+      // A single-exercise drill is always free practice.
+      persistSrs: !freeMode && exerciseFilter == ExerciseFilter.mixed,
       settingsContexts: _contexts,
     );
   }
