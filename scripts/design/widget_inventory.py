@@ -54,6 +54,13 @@ CLASSIFIED: dict[str, str] = {
     # input
     "SettingsStepper": "input",
     "SettingsToggle": "input",
+    "SessionLengthField": "input",
+    "ChoiceCountField": "input",
+    "SettingsSwitchRow": "input",
+    "SettingsFieldLabel": "label",
+    "SettingsFieldHint": "label",
+    "CoverageMeterCard": "indicator",
+    "VocabularyWordRow": "list-item",
     "KanjiDrawingCanvas": "input",
     "LanguagePickerSheet": "input",
     # navigation

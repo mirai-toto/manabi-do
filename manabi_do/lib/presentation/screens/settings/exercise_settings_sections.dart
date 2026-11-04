@@ -19,14 +19,12 @@ import '../../../core/models/flashcard_settings.dart';
 import '../../../core/models/mcq_settings.dart';
 import '../../../core/models/sentence_settings.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
-import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/drawing_settings_provider.dart';
 import '../../providers/flashcard_settings_provider.dart';
 import '../../providers/mcq_settings_provider.dart';
 import '../../providers/sentence_settings_provider.dart';
-import '../common/input/segmented_control.dart';
+import '../../widgets/widgets.dart';
 
 /// Flashcards have no auto-advance switch of their own: `FlashcardSettings`
 /// holds no such field, and a flashcard is graded by the learner, so there is
@@ -273,159 +271,6 @@ class WritingSettingsSection extends ConsumerWidget {
           onChanged: (v) => update(drawing.copyWith(showStrokeCount: v)),
         ),
       ],
-    );
-  }
-}
-
-/// How many questions a session runs for. `null` is "no limit".
-class SessionLengthField extends StatelessWidget {
-  final int? value;
-  final void Function(int?) onSelect;
-
-  const SessionLengthField({
-    super.key,
-    required this.value,
-    required this.onSelect,
-  });
-
-  static const List<int?> _lengths = [10, 20, 50, null];
-
-  @override
-  Widget build(BuildContext context) {
-    final l = context.l10n;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SettingsFieldLabel(l.practiceSettingsSessionLength),
-        const SizedBox(height: AppDimens.spaceXs),
-        SegmentedControl(
-          options: const ['10', '20', '50', '∞'],
-          selected: switch (value) {
-            10 => 0,
-            20 => 1,
-            50 => 2,
-            _ => value == null ? 3 : 1,
-          },
-          onSelect: (i) => onSelect(_lengths[i]),
-        ),
-        const SizedBox(height: AppDimens.spaceXs),
-        SettingsFieldHint(l.sessionLengthHint),
-      ],
-    );
-  }
-}
-
-/// How many options a multiple-choice question offers.
-class ChoiceCountField extends StatelessWidget {
-  final int value;
-  final void Function(int) onSelect;
-
-  const ChoiceCountField({
-    super.key,
-    required this.value,
-    required this.onSelect,
-  });
-
-  static const List<int> _counts = [4, 6, 8];
-
-  @override
-  Widget build(BuildContext context) {
-    final l = context.l10n;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SettingsFieldLabel(l.practiceSettingsMcqChoices),
-        const SizedBox(height: AppDimens.spaceXs),
-        SegmentedControl(
-          options: const ['4', '6', '8'],
-          selected: switch (value) {
-            6 => 1,
-            8 => 2,
-            _ => 0,
-          },
-          onSelect: (i) => onSelect(_counts[i]),
-        ),
-        const SizedBox(height: AppDimens.spaceXs),
-        SettingsFieldHint(l.sessionLengthHint),
-      ],
-    );
-  }
-}
-
-/// The small label above a segmented field.
-class SettingsFieldLabel extends StatelessWidget {
-  final String text;
-  const SettingsFieldLabel(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) => Text(
-    text,
-    style: AppTextStyles.labelSmall.copyWith(
-      color: context.tokens.onSurfaceVariant,
-    ),
-  );
-}
-
-/// The explanatory line under a segmented field.
-class SettingsFieldHint extends StatelessWidget {
-  final String text;
-  const SettingsFieldHint(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) => Text(
-    text,
-    style: AppTextStyles.bodySmall.copyWith(
-      color: context.tokens.onSurfaceVariant,
-    ),
-  );
-}
-
-/// A labelled switch with an explanatory line under it.
-class SettingsSwitchRow extends StatelessWidget {
-  final String label;
-  final String subtitle;
-  final bool value;
-  final void Function(bool) onChanged;
-
-  const SettingsSwitchRow({
-    super.key,
-    required this.label,
-    required this.subtitle,
-    required this.value,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.tokens;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceXs),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  style: AppTextStyles.body.copyWith(color: t.onSurface),
-                ),
-                Text(
-                  subtitle,
-                  style: AppTextStyles.bodySmall.copyWith(
-                    color: t.onSurfaceVariant,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Switch(
-            value: value,
-            onChanged: onChanged,
-            activeThumbColor: t.primary,
-          ),
-        ],
-      ),
     );
   }
 }
