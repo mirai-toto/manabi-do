@@ -26,7 +26,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 28;
+  int get schemaVersion => 29;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -202,6 +202,15 @@ class AppDatabase extends _$AppDatabase {
       // came first.
       from27To28: (m, schema) async {
         await m.deleteTable('vocabulary_translations');
+      },
+      // Empty until a schema 29 content database replaces this one, which is
+      // why the column is nullable and why the remap still falls back to
+      // (word, reading) when it finds nothing here.
+      from28To29: (m, schema) async {
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.jmdictId,
+        );
       },
     ),
   );

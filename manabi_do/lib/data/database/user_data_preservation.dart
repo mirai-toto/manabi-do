@@ -100,22 +100,40 @@ const String vocabularyItemType = 'vocabulary';
 /// either, so the pair cannot collide with a different pair.
 String vocabularyKey(String word, String reading) => '$word\u0000$reading';
 
-/// Reads `id → (word, reading)` out of a content database.
+/// Reads every identity a vocabulary row answers to, newest key first.
 ///
 /// `vocabulary_entries.id` is an autoincrement rowid assigned in insertion
 /// order, so it moves whenever the word list changes. A user's review history
-/// keys on it. Without translating, adding a word near the start of the list
-/// silently repoints every later card at a different word — not lost, which
-/// would at least be visible, but wrong.
+/// keys on it, so the two databases have to be matched through something
+/// stabler.
 ///
-/// `(word, reading)` is unique in the shipped content and is what identifies a
-/// word to a learner, so it is the key both sides are translated through.
-Map<int, String> readVocabularyIdentity(raw.Database db) {
-  final Map<int, String> identity = {};
+/// Two keys serve. `jmdict_id` is JMdict's own entry id and survives anything
+/// the pipeline does to a word, including rewriting its spelling. It exists
+/// only from schema 29, so `(word, reading)` remains as the fallback — it is
+/// what matched before, and it is the only key a database built earlier can
+/// offer. A row answers to both, and the remap takes the first that resolves,
+/// so an upgrade from before 29 still matches on the pair while every upgrade
+/// after it matches on the id.
+List<String> vocabularyIdentities(
+  String? jmdictId,
+  String word,
+  String reading,
+) => [
+  if (jmdictId != null && jmdictId.isNotEmpty) 'jmdict\u0000$jmdictId',
+  vocabularyKey(word, reading),
+];
+
+Map<int, List<String>> readVocabularyIdentity(raw.Database db) {
+  final Map<int, List<String>> identity = {};
+  final bool hasJmdictId = _hasColumn(db, 'vocabulary_entries', 'jmdict_id');
+  final String columns = hasJmdictId
+      ? 'id, jmdict_id, word, reading'
+      : 'id, word, reading';
   try {
-    final rows = db.select('SELECT id, word, reading FROM vocabulary_entries');
+    final rows = db.select('SELECT $columns FROM vocabulary_entries');
     for (final row in rows) {
-      identity[row['id'] as int] = vocabularyKey(
+      identity[row['id'] as int] = vocabularyIdentities(
+        hasJmdictId ? row['jmdict_id'] as String? : null,
         row['word'] as String,
         row['reading'] as String,
       );
@@ -125,6 +143,17 @@ Map<int, String> readVocabularyIdentity(raw.Database db) {
     rethrow;
   }
   return identity;
+}
+
+/// Whether a table carries a column, so a database built before it was added
+/// can still be read.
+bool _hasColumn(raw.Database db, String table, String column) {
+  try {
+    final rows = db.select('PRAGMA table_info($table)');
+    return rows.any((row) => row['name'] == column);
+  } catch (_) {
+    return false;
+  }
 }
 
 /// What a remap did, so the caller can act on a result that looks wrong.
@@ -169,12 +198,17 @@ class VocabularyRemapException implements Exception {
 /// untouched.
 VocabularyRemap remapVocabularyIds(
   Map<String, List<List<Object?>>> saved,
-  Map<int, String> oldIdentity,
-  Map<int, String> newIdentity,
+  Map<int, List<String>> oldIdentity,
+  Map<int, List<String>> newIdentity,
 ) {
-  final Map<String, int> newIdByKey = {
-    for (final entry in newIdentity.entries) entry.value: entry.key,
-  };
+  // Every key the new database answers to, so an old row can be found by
+  // whichever of its own keys that database happens to share.
+  final Map<String, int> newIdByKey = {};
+  for (final entry in newIdentity.entries) {
+    for (final key in entry.value) {
+      newIdByKey.putIfAbsent(key, () => entry.key);
+    }
+  }
 
   final Map<String, List<List<Object?>>> out = {};
   int translated = 0;
@@ -197,8 +231,14 @@ VocabularyRemap remapVocabularyIds(
         kept.add(row);
         continue;
       }
-      final key = oldIdentity[row[idAt] as int];
-      final newId = key == null ? null : newIdByKey[key];
+      // First key that resolves wins, so the JMdict id is tried before the
+      // spelling it may since have changed.
+      final keys = oldIdentity[row[idAt] as int] ?? const <String>[];
+      int? newId;
+      for (final key in keys) {
+        newId = newIdByKey[key];
+        if (newId != null) break;
+      }
       if (newId == null) {
         dropped++;
         continue;
