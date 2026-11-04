@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/providers/locale_provider.dart';
+import '../../../core/text/sentence_language.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -47,6 +49,12 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
     final localized = ref.watch(
       localizedVocabularyMeaningProvider(widget.entry.id),
     );
+    // Nothing in the reader's language means an English meaning stands in,
+    // and the mark says so rather than leaving it to look like a choice.
+    final String? missingLanguage =
+        localized.asData != null && localized.asData!.value.isEmpty
+        ? readerLanguageName(ref.watch(localeProvider).languageCode)
+        : null;
     final meaning = localized.asData?.value.isNotEmpty == true
         ? localized.asData!.value
         : widget.entry.meaning;
@@ -105,8 +113,9 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      TranslatedText(
                         meaning,
+                        missingLanguage: missingLanguage,
                         style: meaningStyle,
                         maxLines: _expanded ? null : 2,
                         overflow: _expanded

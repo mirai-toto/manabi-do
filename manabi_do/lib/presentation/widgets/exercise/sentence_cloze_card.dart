@@ -200,21 +200,9 @@ class SentenceClozeCard extends StatelessWidget {
             const SizedBox(height: AppDimens.spaceMd),
             // The mark rides at the end of the text, so it does not take a
             // line of its own in the middle of an exercise.
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(text: translation!),
-                  if (translationMissingLanguage != null) ...[
-                    const TextSpan(text: ' '),
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: TranslationFallbackInfo(
-                        language: translationMissingLanguage!,
-                      ),
-                    ),
-                  ],
-                ],
-              ),
+            TranslatedText(
+              translation!,
+              missingLanguage: translationMissingLanguage,
               style: AppTextStyles.bodySmall.copyWith(
                 color: t.onSurfaceVariant,
                 fontStyle: FontStyle.italic,

@@ -114,19 +114,9 @@ class JapaneseSentence extends StatelessWidget {
           // the end of the last line like a footnote marker instead of
           // claiming a row of its own. A reader who asked for French and got
           // English can see the app knows, and tap to find out why.
-          Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(text: translation!),
-                if (missingLanguage != null) ...[
-                  const TextSpan(text: ' '),
-                  WidgetSpan(
-                    alignment: PlaceholderAlignment.middle,
-                    child: TranslationFallbackInfo(language: missingLanguage!),
-                  ),
-                ],
-              ],
-            ),
+          TranslatedText(
+            translation!,
+            missingLanguage: missingLanguage,
             style: AppTextStyles.bodySmall.copyWith(
               color: t.onSurfaceVariant,
               fontStyle: FontStyle.italic,

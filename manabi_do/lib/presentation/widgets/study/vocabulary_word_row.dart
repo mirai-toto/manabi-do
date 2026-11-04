@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/providers/locale_provider.dart';
+import '../../../core/text/sentence_language.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
+import '../common/label/translation_fallback_info.dart';
 import '../../providers/vocabulary_provider.dart';
 
 /// Compact vocabulary row: a mastery spine, the word with its reading, and the
@@ -40,6 +43,13 @@ class VocabularyWordRow extends ConsumerWidget {
     final meaning = localized.asData?.value.isNotEmpty == true
         ? localized.asData!.value
         : entry.meaning;
+    // The provider returns nothing when the word has no meaning in the
+    // reader's language — JMdict has French for 72% of these — so an English
+    // one stands in and says so.
+    final String? missingLanguage =
+        localized.asData != null && localized.asData!.value.isEmpty
+        ? readerLanguageName(ref.watch(localeProvider).languageCode)
+        : null;
 
     return InkWell(
       onTap: onOpen,
@@ -86,8 +96,9 @@ class VocabularyWordRow extends ConsumerWidget {
             ),
             const SizedBox(width: AppDimens.spaceSm),
             Expanded(
-              child: Text(
+              child: TranslatedText(
                 meaning,
+                missingLanguage: missingLanguage,
                 style: AppTextStyles.bodySmall.copyWith(
                   color: t.onSurfaceVariant,
                 ),

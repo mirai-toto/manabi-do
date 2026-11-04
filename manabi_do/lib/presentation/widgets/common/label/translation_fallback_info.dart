@@ -50,3 +50,69 @@ class TranslationFallbackInfo extends StatelessWidget {
     );
   }
 }
+
+/// Text that carries its own explanation when it is not in the reader's
+/// language.
+///
+/// The mark rides at the end of the text as a [WidgetSpan], so it lands after
+/// the last line of a wrapped translation instead of taking a row of its own,
+/// and a caller adds it by passing one extra argument rather than assembling a
+/// `Text.rich` each time. Pass null for [missingLanguage] and this is an
+/// ordinary [Text].
+class TranslatedText extends StatelessWidget {
+  final String text;
+
+  /// The reader's language, named, when [text] is not in it.
+  final String? missingLanguage;
+
+  final TextStyle? style;
+  final TextAlign? textAlign;
+  final int? maxLines;
+  final TextOverflow? overflow;
+
+  /// Colour for the mark where it sits on a tinted surface.
+  final Color? markColor;
+
+  const TranslatedText(
+    this.text, {
+    super.key,
+    this.missingLanguage,
+    this.style,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.markColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (missingLanguage == null) {
+      return Text(
+        text,
+        style: style,
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+      );
+    }
+    return Text.rich(
+      TextSpan(
+        children: [
+          TextSpan(text: text),
+          const TextSpan(text: ' '),
+          WidgetSpan(
+            alignment: PlaceholderAlignment.middle,
+            child: TranslationFallbackInfo(
+              language: missingLanguage!,
+              color: markColor,
+            ),
+          ),
+        ],
+      ),
+      style: style,
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: overflow,
+    );
+  }
+}
