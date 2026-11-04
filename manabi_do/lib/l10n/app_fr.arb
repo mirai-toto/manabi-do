@@ -280,8 +280,6 @@
   "aboutTatoebaLink": "tatoeba.org",
   "aboutWallerNotice": "Les niveaux de difficulté des kanji proviennent de davidluzgouveia/kanji-data, construit sur les listes de vocabulaire et de kanji JLPT compilées par Jonathan Waller, sous licence Creative Commons Attribution. Ses listes de vocabulaire définissaient aussi les niveaux des mots dans les versions antérieures à 24.",
   "aboutWallerLink": "tanos.co.uk",
-  "aboutPykakasiNotice": "Les furigana affichés sur les phrases d'exemple ont été générés avec pykakasi, sous licence GNU General Public License v3 ou ultérieure.",
-  "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
   "aboutJanomeNotice": "Les phrases d'exemple sont choisies avec Janome, un analyseur morphologique japonais, sous licence Apache 2.0. Il détermine quels mots une phrase contient réellement.",
   "aboutJanomeLink": "mocobeta.github.io/janome",
   "aboutBccwjNotice": "La difficulté des mots, les niveaux de vocabulaire et la part du japonais écrit couverte par chaque groupe sont calculés à partir de la fréquence des mots dans le Balanced Corpus of Contemporary Written Japanese, publié par le National Institute for Japanese Language and Linguistics (NINJAL).",

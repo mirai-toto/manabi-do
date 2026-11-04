@@ -610,13 +610,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutWallerLink => 'tanos.co.uk';
 
   @override
-  String get aboutPykakasiNotice =>
-      'Furigana readings over example sentences were generated with pykakasi, licensed under the GNU General Public License v3 or later.';
-
-  @override
-  String get aboutPykakasiLink => 'codeberg.org/miurahr/pykakasi';
-
-  @override
   String get aboutJanomeNotice =>
       'Example sentences are chosen with Janome, a Japanese morphological analyser, licensed under the Apache License 2.0. It decides which words a sentence really contains.';
 

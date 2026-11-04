@@ -77,12 +77,6 @@ class SourcesScreen extends StatelessWidget {
                 notice: l.aboutJanomeNotice,
                 link: l.aboutJanomeLink,
               ),
-              const SizedBox(height: AppDimens.spaceSm),
-              // The tool is not shipped, but the furigana it produced is.
-              AttributionCard(
-                notice: l.aboutPykakasiNotice,
-                link: l.aboutPykakasiLink,
-              ),
               const SizedBox(height: AppDimens.spaceLg),
             ],
           ),

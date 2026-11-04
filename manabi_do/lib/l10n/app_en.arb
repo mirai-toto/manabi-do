@@ -340,8 +340,6 @@
   "aboutTatoebaLink": "tatoeba.org",
   "aboutWallerNotice": "Kanji difficulty levels come from davidluzgouveia/kanji-data, built on the JLPT vocabulary and kanji lists compiled by Jonathan Waller, licensed under Creative Commons Attribution. His vocabulary lists also set the word levels in versions before 24.",
   "aboutWallerLink": "tanos.co.uk",
-  "aboutPykakasiNotice": "Furigana readings over example sentences were generated with pykakasi, licensed under the GNU General Public License v3 or later.",
-  "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
   "aboutJanomeNotice": "Example sentences are chosen with Janome, a Japanese morphological analyser, licensed under the Apache License 2.0. It decides which words a sentence really contains.",
   "aboutJanomeLink": "mocobeta.github.io/janome",
   "aboutBccwjNotice": "Word difficulty, the vocabulary levels and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).",
