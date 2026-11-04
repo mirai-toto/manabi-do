@@ -88,10 +88,12 @@ class GrammarContinueTarget {
   });
 }
 
-const _continueLevels = ['basics', 'N5'];
+/// Every grammar level, in reading order. A level with no lessons yet is an
+/// empty query, so newly authored levels join without a code change.
+const _continueLevels = ['basics', 'N5', 'N4', 'N3', 'N2', 'N1'];
 
 /// The next grammar lesson to resume: the first started-but-unread lesson,
-/// falling back to the first unread one, scanning basics then N5 in order.
+/// falling back to the first unread one, scanning the levels in order.
 /// Null when every available lesson has been read.
 final grammarContinueProvider = FutureProvider<GrammarContinueTarget?>((
   ref,
