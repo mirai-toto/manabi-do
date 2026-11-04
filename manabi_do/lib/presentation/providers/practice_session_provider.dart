@@ -3,6 +3,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
+import '../../core/providers/review_log_provider.dart';
 import '../../data/database/app_database.dart';
 import '../models/practice_item.dart';
 import '../services/srs_service.dart';
@@ -95,6 +96,7 @@ class PracticeSessionNotifier extends Notifier<PracticeSessionState> {
       await ref
           .read(databaseProvider)
           .upsertSrsCard(item.srsType, item.id, applyRating(item.card, rating));
+      await ref.read(reviewLogProvider.notifier).record();
     }
 
     final isLast = s.index + 1 >= s.queue!.length;
