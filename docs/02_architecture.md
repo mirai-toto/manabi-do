@@ -67,7 +67,7 @@ A single SQLite file — `manabi_do_content.db` — is bundled as an asset and c
 
 If the bundled DB version marker changes, the existing DB is replaced and SRS progress is migrated across automatically.
 
-`manabi_do_content.db` tables: `kanjis`, `kanji_translations`, `kanas`, `vocabulary_entries`, `vocabulary_translations`, `sentences`, `sentence_translations`, `grammar_lessons`, `exercises`.
+`manabi_do_content.db` tables: `kanjis`, `kanji_translations`, `kanas`, `vocabulary_entries`, `vocabulary_senses`, `coverage_groups`, `sentences`, `sentence_translations`, `grammar_lessons`, `exercises`.
 
 User progress tables (written at runtime): `progress_entries`, `srs_cards`.
 
