@@ -80,6 +80,7 @@ CLASSIFIED: dict[str, str] = {
     "ContinueLessonCard": "list-item",
     "PracticeModeCard": "list-item",
     "LevelSearchShell": "composite",
+    "VocabularyGroupHeader": "navigation",
     "SearchNoResults": "label",
     "CharacterCell": "list-item",
     "SessionReviewRow": "list-item",

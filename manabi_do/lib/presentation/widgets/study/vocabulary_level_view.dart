@@ -98,41 +98,12 @@ class _LevelContent extends ConsumerWidget {
         controller: controller,
         padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
         children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(
-              AppDimens.spaceSm,
-              AppDimens.spaceSm,
-              AppDimens.spaceMd,
-              0,
-            ),
-            child: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back_rounded),
-                  onPressed: onBack,
-                  color: t.onSurface,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${vocabularyLevelLabel(level, context)} · ${l.groupN(groupIndex + 1)}',
-                        style: AppTextStyles.labelSmall.copyWith(
-                          color: color,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 0.8,
-                        ),
-                      ),
-                      Text(
-                        '${start + 1}–${start + entries.length}',
-                        style: AppTextStyles.title.copyWith(color: t.onSurface),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          VocabularyGroupHeader(
+            eyebrow:
+                '${vocabularyLevelLabel(level, context)} · ${l.groupN(groupIndex + 1)}',
+            title: '${start + 1}–${start + entries.length}',
+            color: color,
+            onBack: onBack,
           ),
           ProgressRow(known: learnedCount, total: entries.length, color: color),
           Padding(
