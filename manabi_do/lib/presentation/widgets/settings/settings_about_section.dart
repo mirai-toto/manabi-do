@@ -6,28 +6,44 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../../screens/settings/sources_screen.dart';
 import '../widgets.dart';
 
 final packageInfoProvider = FutureProvider<PackageInfo>(
   (_) => PackageInfo.fromPlatform(),
 );
 
-/// `SettingsAboutSection` is a `ConsumerWidget` that renders the app version
-/// row and a list of `AttributionCard` entries for third-party libraries.
-/// `AttributionCard` is a `CardContainer` with a notice text and a tappable URL
-/// link.
+/// One card: what this build is, what it is made of, and how to reach the
+/// person who made it.
+///
+/// The source notices moved to [SourcesScreen]. Seven paragraphs of licence
+/// text sat open at the foot of the settings screen and were most of its
+/// length; a licence asks to be reachable, not unavoidable. Feedback and
+/// support joined them here because they were loose unlabelled cards in the
+/// middle of the screen, and they belong with the rest of the information
+/// about the app rather than between two settings.
 class SettingsAboutSection extends ConsumerWidget {
-  const SettingsAboutSection({super.key});
+  final VoidCallback onSendFeedback;
+  final VoidCallback onSupport;
+
+  const SettingsAboutSection({
+    super.key,
+    required this.onSendFeedback,
+    required this.onSupport,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final t = context.tokens;
     final pkgAsync = ref.watch(packageInfoProvider);
     final version = pkgAsync.when(
       data: (p) => p.version,
       loading: () => '',
       error: (_, _) => '',
     );
+
+    Icon icon(IconData data) => Icon(data, size: 20, color: t.onSurfaceVariant);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,44 +57,31 @@ class SettingsAboutSection extends ConsumerWidget {
               label: l.aboutVersion(version),
             ),
             SettingsTile(
-              leading: Icon(
-                Icons.article_outlined,
-                size: 20,
-                color: context.tokens.onSurfaceVariant,
-              ),
+              leading: icon(Icons.article_outlined),
               label: l.aboutOpenSourceLicenses,
               onTap: () => showLicensePage(
                 context: context,
                 applicationName: l.appTitle,
               ),
             ),
+            SettingsTile(
+              leading: icon(Icons.inventory_2_outlined),
+              label: l.aboutDataSources,
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(builder: (_) => const SourcesScreen()),
+              ),
+            ),
+            SettingsTile(
+              leading: icon(Icons.mail_outline_rounded),
+              label: l.settingsSendFeedback,
+              onTap: onSendFeedback,
+            ),
+            SettingsTile(
+              leading: icon(Icons.coffee_outlined),
+              label: l.settingsSupportDeveloper,
+              onTap: onSupport,
+            ),
           ],
-        ),
-        const SizedBox(height: AppDimens.spaceLg),
-        SectionLabel(l.aboutDataSources),
-        const SizedBox(height: AppDimens.spaceSm),
-        AttributionCard(notice: l.aboutEdrdgNotice, link: l.aboutEdrdgLink),
-        const SizedBox(height: AppDimens.spaceSm),
-        AttributionCard(notice: l.aboutKanjiVgNotice, link: l.aboutKanjiVgLink),
-        const SizedBox(height: AppDimens.spaceSm),
-        AttributionCard(notice: l.aboutTatoebaNotice, link: l.aboutTatoebaLink),
-        const SizedBox(height: AppDimens.spaceSm),
-        // Owed since the first release and missing until now. Waller's lists
-        // decide which kanji the app teaches and how hard each one is, and his
-        // vocabulary lists set every word level before version 24. CC BY asks
-        // for credit.
-        AttributionCard(notice: l.aboutWallerNotice, link: l.aboutWallerLink),
-        const SizedBox(height: AppDimens.spaceSm),
-        AttributionCard(notice: l.aboutBccwjNotice, link: l.aboutBccwjLink),
-        const SizedBox(height: AppDimens.spaceSm),
-        // Not shipped either, but which sentence illustrates which word was
-        // its decision.
-        AttributionCard(notice: l.aboutJanomeNotice, link: l.aboutJanomeLink),
-        const SizedBox(height: AppDimens.spaceSm),
-        // The tool is not shipped, but the furigana it produced is.
-        AttributionCard(
-          notice: l.aboutPykakasiNotice,
-          link: l.aboutPykakasiLink,
         ),
       ],
     );

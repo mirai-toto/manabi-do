@@ -982,6 +982,24 @@ abstract class AppLocalizations {
   /// **'Home screen'**
   String get settingsHomeScreen;
 
+  /// No description provided for @settingsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get settingsApp;
+
+  /// No description provided for @settingsHomeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All sections'**
+  String get settingsHomeAll;
+
+  /// No description provided for @settingsHomeNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get settingsHomeNone;
+
   /// No description provided for @settingsPracticeNewCharacters.
   ///
   /// In en, this message translates to:
@@ -1089,6 +1107,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Data sources'**
   String get aboutDataSources;
+
+  /// No description provided for @aboutDataSourcesIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'The app\'s words, kanji, sentences and frequency data all come from outside sources. Each one is named here with the licence it asks for.'**
+  String get aboutDataSourcesIntro;
 
   /// No description provided for @aboutEdrdgNotice.
   ///

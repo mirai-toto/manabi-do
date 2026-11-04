@@ -218,20 +218,11 @@ class SettingsScreen extends ConsumerWidget {
               ),
             ),
 
+            // App chrome: how it looks, what language it speaks, what it
+            // opens on. Theme stays a segmented control, because a three-way
+            // choice shows every option in the height one row would cost.
             const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsHomeScreen),
-            const SizedBox(height: AppDimens.spaceSm),
-            HomeSettingsCard(
-              showKana: home.showKana,
-              showKanji: home.showKanji,
-              showVocabulary: home.showVocabulary,
-              onShowKanaChanged: homeNotifier.setShowKana,
-              onShowKanjiChanged: homeNotifier.setShowKanji,
-              onShowVocabularyChanged: homeNotifier.setShowVocabulary,
-            ),
-
-            const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsAppearance),
+            SectionLabel(l.settingsApp),
             const SizedBox(height: AppDimens.spaceSm),
             SegmentedControl(
               options: [
@@ -248,9 +239,6 @@ class SettingsScreen extends ConsumerWidget {
               onSelect: (i) =>
                   ref.read(themeModeProvider.notifier).setMode(_themeModes[i]),
             ),
-
-            const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsLanguage),
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [
@@ -262,7 +250,8 @@ class SettingsScreen extends ConsumerWidget {
                       fontFamily: 'NotoColorEmoji',
                     ),
                   ),
-                  label: currentLang.name,
+                  label: l.settingsLanguage,
+                  value: currentLang.name,
                   onTap: () => _showLanguagePicker(
                     context,
                     ref,
@@ -270,9 +259,35 @@ class SettingsScreen extends ConsumerWidget {
                     l.settingsLanguage,
                   ),
                 ),
+                SettingsTile(
+                  leading: Icon(
+                    Icons.home_outlined,
+                    size: 20,
+                    color: t.onSurfaceVariant,
+                  ),
+                  label: l.settingsHomeScreen,
+                  value: _homeSummary(home, l),
+                  onTap: () => showHomeScreenSheet(
+                    context,
+                    showKana: home.showKana,
+                    showKanji: home.showKanji,
+                    showVocabulary: home.showVocabulary,
+                    onShowKanaChanged: homeNotifier.setShowKana,
+                    onShowKanjiChanged: homeNotifier.setShowKanji,
+                    onShowVocabularyChanged: homeNotifier.setShowVocabulary,
+                  ),
+                ),
               ],
             ),
 
+            const SizedBox(height: AppDimens.spaceLg),
+            SettingsAboutSection(
+              onSendFeedback: () => _sendFeedback(context, ref, l),
+              onSupport: () => _openSupport(context, l),
+            ),
+
+            // Last, and on its own. Everything above changes a preference;
+            // this deletes what you have learned.
             const SizedBox(height: AppDimens.spaceLg),
             SettingsCard(
               children: [
@@ -288,39 +303,6 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ],
             ),
-
-            const SizedBox(height: AppDimens.spaceSm),
-            SettingsCard(
-              children: [
-                SettingsTile(
-                  leading: Icon(
-                    Icons.mail_outline_rounded,
-                    size: 20,
-                    color: t.onSurfaceVariant,
-                  ),
-                  label: l.settingsSendFeedback,
-                  onTap: () => _sendFeedback(context, ref, l),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: AppDimens.spaceSm),
-            SettingsCard(
-              children: [
-                SettingsTile(
-                  leading: Icon(
-                    Icons.coffee_outlined,
-                    size: 20,
-                    color: t.onSurfaceVariant,
-                  ),
-                  label: l.settingsSupportDeveloper,
-                  onTap: () => _openSupport(context, l),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: AppDimens.spaceLg),
-            const SettingsAboutSection(),
             const SizedBox(height: AppDimens.spaceLg),
           ],
         ),
@@ -364,3 +346,15 @@ String _exerciseLabel(ExerciseKind kind, AppLocalizations l) => switch (kind) {
   ExerciseKind.sentence => l.sentencePractice,
   ExerciseKind.writing => l.writingPractice,
 };
+
+/// The home screen's sections, named, or "all" when none is hidden.
+String _homeSummary(HomeSettings home, AppLocalizations l) {
+  final List<String> on = [
+    if (home.showKana) l.kana,
+    if (home.showKanji) l.tabKanji,
+    if (home.showVocabulary) l.sectionVocabulary,
+  ];
+  if (on.length == 3) return l.settingsHomeAll;
+  if (on.isEmpty) return l.settingsHomeNone;
+  return on.join(' · ');
+}

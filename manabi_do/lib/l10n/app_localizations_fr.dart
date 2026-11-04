@@ -502,6 +502,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsHomeScreen => 'Écran d\'accueil';
 
   @override
+  String get settingsApp => 'Application';
+
+  @override
+  String get settingsHomeAll => 'Toutes les sections';
+
+  @override
+  String get settingsHomeNone => 'Aucune';
+
+  @override
   String get settingsPracticeNewCharacters => 'Nouveaux caractères par jour';
 
   @override
@@ -561,6 +570,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aboutDataSources => 'Sources de données';
+
+  @override
+  String get aboutDataSourcesIntro =>
+      'Les mots, kanji, phrases et données de fréquence de l\'application proviennent tous de sources externes. Chacune est nommée ici avec la licence qu\'elle exige.';
 
   @override
   String get aboutEdrdgNotice =>

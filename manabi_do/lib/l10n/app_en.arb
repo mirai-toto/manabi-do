@@ -271,6 +271,9 @@
   "settingsStudyScopeNote": "Applies to any graded session, whichever exercises come up in it.",
   "settingsExercisesNote": "One set of preferences per exercise, shared by every section that uses it. Grammar has none of its own: it runs flashcards and multiple choice.",
   "settingsHomeScreen": "Home screen",
+  "settingsApp": "App",
+  "settingsHomeAll": "All sections",
+  "settingsHomeNone": "None",
   "settingsPracticeNewCharacters": "New characters per day",
   "settingsPracticeNewVocabulary": "New vocabulary per day",
   "settingsAppearance": "Appearance",
@@ -310,6 +313,7 @@
     }
   },
   "aboutDataSources": "Data sources",
+  "aboutDataSourcesIntro": "The app's words, kanji, sentences and frequency data all come from outside sources. Each one is named here with the licence it asks for.",
   "aboutEdrdgNotice": "This app uses JMdict and KANJIDIC2, published by the Electronic Dictionary Research and Development Group (EDRDG) under a Creative Commons Attribution-ShareAlike 4.0 International licence.",
   "aboutEdrdgLink": "edrdg.org",
   "aboutKanjiVgNotice": "Kanji stroke order diagrams use KanjiVG by Ulrich Apel, licensed under Creative Commons Attribution-ShareAlike 3.0 Unported.",

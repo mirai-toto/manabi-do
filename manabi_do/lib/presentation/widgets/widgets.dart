@@ -52,6 +52,7 @@ export 'navigation/nav_destination.dart';
 export 'navigation/nav_item.dart';
 
 // settings
+export 'settings/home_screen_sheet.dart';
 export 'settings/home_settings_card.dart';
 export 'settings/language_picker_sheet.dart';
 export 'settings/practice_settings_card.dart';

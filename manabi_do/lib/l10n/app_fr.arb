@@ -227,6 +227,9 @@
   "settingsStudyScopeNote": "S'applique à toute session notée, quels que soient les exercices qui s'y présentent.",
   "settingsExercisesNote": "Un réglage par exercice, partagé par toutes les sections qui l'utilisent. La grammaire n'en a pas : elle utilise les cartes et le choix multiple.",
   "settingsHomeScreen": "Écran d'accueil",
+  "settingsApp": "Application",
+  "settingsHomeAll": "Toutes les sections",
+  "settingsHomeNone": "Aucune",
   "settingsPracticeNewCharacters": "Nouveaux caractères par jour",
   "settingsPracticeNewVocabulary": "Nouveau vocabulaire par jour",
   "settingsAppearance": "Apparence",
@@ -266,6 +269,7 @@
     }
   },
   "aboutDataSources": "Sources de données",
+  "aboutDataSourcesIntro": "Les mots, kanji, phrases et données de fréquence de l'application proviennent tous de sources externes. Chacune est nommée ici avec la licence qu'elle exige.",
   "aboutEdrdgNotice": "Cette application utilise JMdict et KANJIDIC2, publiés par l'Electronic Dictionary Research and Development Group (EDRDG) sous licence Creative Commons Attribution-ShareAlike 4.0 International.",
   "aboutEdrdgLink": "edrdg.org",
   "aboutKanjiVgNotice": "Les diagrammes d'ordre des traits utilisent KanjiVG d'Ulrich Apel, sous licence Creative Commons Attribution-ShareAlike 3.0 non transposé.",
