@@ -166,13 +166,10 @@ class _KanjiResultTile extends ConsumerWidget {
     final String meaning = localized.asData?.value.isNotEmpty == true
         ? localized.asData!.value
         : kanji.meaning;
-    final String readerLocale = ref.watch(localeProvider).languageCode;
-    final String? missingLanguage =
-        localized.asData != null &&
-            localized.asData!.value.isEmpty &&
-            readerLocale != 'en'
-        ? readerLanguageName(readerLocale)
-        : null;
+    final String? missingLanguage = missingMeaningLanguage(
+      localized,
+      readerLocale: ref.watch(localeProvider).languageCode,
+    );
     return Column(
       children: [
         InkWell(

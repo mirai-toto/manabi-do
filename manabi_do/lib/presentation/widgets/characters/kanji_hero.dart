@@ -42,13 +42,10 @@ class KanjiHero extends ConsumerWidget {
     // KANJIDIC2 publishes kanji meanings in English, French, Spanish and
     // Portuguese only, so a German reader never gets one. Waiting for the
     // query to land first, or the mark flashes on every kanji.
-    final String readerLocale = ref.watch(localeProvider).languageCode;
-    final String? missingLanguage =
-        localizedAsync.asData != null &&
-            localizedMeaning.isEmpty &&
-            readerLocale != 'en'
-        ? readerLanguageName(readerLocale)
-        : null;
+    final String? missingLanguage = missingMeaningLanguage(
+      localizedAsync,
+      readerLocale: ref.watch(localeProvider).languageCode,
+    );
 
     return Container(
       decoration: BoxDecoration(

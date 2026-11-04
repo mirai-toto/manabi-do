@@ -19,6 +19,45 @@ void main() {
     expect(readerLanguageName('en'), 'English');
   });
 
+  group('missingMeaningLanguage', () {
+    test('an English reader is never told English is missing', () {
+      // The provider returns '' for English because there is nothing to
+      // localize. Reading that as a gap marked every row in the English app
+      // with "No English translation for this yet".
+      expect(
+        missingMeaningLanguage(const AsyncData<String>(''), readerLocale: 'en'),
+        isNull,
+      );
+    });
+
+    test('a French reader with no French meaning is told so', () {
+      expect(
+        missingMeaningLanguage(const AsyncData<String>(''), readerLocale: 'fr'),
+        'Français',
+      );
+    });
+
+    test('a French reader who has French is told nothing', () {
+      expect(
+        missingMeaningLanguage(
+          const AsyncData<String>('manger'),
+          readerLocale: 'fr',
+        ),
+        isNull,
+      );
+    });
+
+    test('nothing is claimed while the query is still running', () {
+      expect(
+        missingMeaningLanguage(
+          const AsyncLoading<String>(),
+          readerLocale: 'fr',
+        ),
+        isNull,
+      );
+    });
+  });
+
   testWidgets('the mark renders an icon', (tester) async {
     await tester.pumpWidget(
       MaterialApp(

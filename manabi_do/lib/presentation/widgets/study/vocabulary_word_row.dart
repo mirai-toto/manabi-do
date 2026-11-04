@@ -43,13 +43,10 @@ class VocabularyWordRow extends ConsumerWidget {
     final meaning = localized.asData?.value.isNotEmpty == true
         ? localized.asData!.value
         : entry.meaning;
-    // The provider returns nothing when the word has no meaning in the
-    // reader's language — JMdict has French for 72% of these — so an English
-    // one stands in and says so.
-    final String? missingLanguage =
-        localized.asData != null && localized.asData!.value.isEmpty
-        ? readerLanguageName(ref.watch(localeProvider).languageCode)
-        : null;
+    final String? missingLanguage = missingMeaningLanguage(
+      localized,
+      readerLocale: ref.watch(localeProvider).languageCode,
+    );
 
     return InkWell(
       onTap: onOpen,

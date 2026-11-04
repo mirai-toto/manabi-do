@@ -9,6 +9,8 @@
 /// looks like a defect.
 library;
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 /// `sentence_translations` stores ISO 639-2; the app's locales are 639-1.
 const Map<String, String> _endonyms = {
   'eng': 'English',
@@ -47,3 +49,22 @@ String? missingLanguageForSentence(
 /// never carries, which cannot be missing from anything.
 String? readerLanguageName(String readerLocale) =>
     _endonyms[_iso1To2[readerLocale] ?? readerLocale];
+
+/// The language a localized-meaning provider failed to supply, or null when
+/// nothing is missing.
+///
+/// The providers return an empty string for two different reasons: the reader
+/// is on English, where there is nothing to localize and the base column is
+/// already right, or the content has no meaning in their language. Only the
+/// second is a gap. Reading emptiness alone marked every row in the English
+/// app with "No English translation for this yet", which is why this rule
+/// lives in one place instead of at each call site.
+String? missingMeaningLanguage(
+  AsyncValue<String> localized, {
+  required String readerLocale,
+}) {
+  if (readerLocale == 'en') return null;
+  final String? value = localized.asData?.value;
+  if (value == null || value.isNotEmpty) return null;
+  return readerLanguageName(readerLocale);
+}
