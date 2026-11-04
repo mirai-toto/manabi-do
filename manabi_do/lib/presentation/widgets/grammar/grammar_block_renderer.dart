@@ -49,69 +49,48 @@ class GrammarBlockRenderer extends StatelessWidget {
     );
   }
 
-  Widget _buildBlock(GrammarBlock block) {
-    final d = block.data;
-    return switch (block.type) {
-      'text' => TextBlock(
-        content: d['content'] as String,
+  Widget _buildBlock(GrammarBlock block) => switch (block) {
+    TextGrammarBlock(:final content) => TextBlock(
+      content: content,
+      accentColor: levelColor,
+    ),
+    SectionTitleGrammarBlock(:final content) => SectionTitleBlock(
+      content: content,
+      color: levelColor,
+    ),
+    PatternGrammarBlock(:final lines) => PatternBlock(
+      lines: lines,
+      color: levelColor,
+    ),
+    NoteGrammarBlock(:final content) => NoteBlock(content: content),
+    ExampleTableGrammarBlock(:final columns, :final rows) => ExampleTableBlock(
+      columns: columns,
+      rows: rows,
+      accentColor: levelColor,
+    ),
+    VocabularyTableGrammarBlock(:final columns, :final rows) =>
+      VocabularyTableBlock(
+        columns: columns,
+        rows: rows,
         accentColor: levelColor,
       ),
-      'section_title' => SectionTitleBlock(
-        content: d['content'] as String,
-        color: levelColor,
-      ),
-      'pattern' => PatternBlock(
-        lines: (d['lines'] as List<dynamic>).cast<String>(),
-        color: levelColor,
-      ),
-      'note' => NoteBlock(content: d['content'] as String),
-      'example_table' => ExampleTableBlock(
-        columns: (d['columns'] as List<dynamic>).cast<String>(),
-        rows: _toRows(d['rows']),
-        accentColor: levelColor,
-      ),
-      'vocabulary_table' => VocabularyTableBlock(
-        columns: (d['columns'] as List<dynamic>).cast<String>(),
-        rows: _toRows(d['rows']),
-        accentColor: levelColor,
-      ),
-      'conjugation_table' => ConjugationTableBlock(
-        label: d['label'] as String,
-        rows: _toRows(d['rows']),
-      ),
-      'comparison' => ComparisonBlock(
-        left: _parseSide(d['left'] as Map<String, dynamic>),
-        right: _parseSide(d['right'] as Map<String, dynamic>),
-        accentColor: levelColor,
-      ),
-      'list' => ListBlock(
-        style: d['style'] == 'bullet' ? ListStyle.bullet : ListStyle.numbered,
-        items: (d['items'] as List<dynamic>).cast<String>(),
-        accentColor: levelColor,
-      ),
-      'transform_cards' => TransformCardsBlock(
-        groups: (d['groups'] as List<dynamic>)
-            .map((g) => TransformGroup.fromJson(g as Map<String, dynamic>))
-            .toList(),
-        accentColor: levelColor,
-      ),
-      'divider' => const Divider(),
-      _ => const SizedBox.shrink(),
-    };
-  }
-
-  List<Map<String, String>> _toRows(dynamic raw) {
-    return (raw as List<dynamic>)
-        .map((r) => Map<String, String>.from(r as Map))
-        .toList();
-  }
-
-  ComparisonSide _parseSide(Map<String, dynamic> d) {
-    return ComparisonSide(
-      label: d['label'] as String,
-      description: d['description'] as String,
-      exampleJp: d['example_jp'] as String,
-      exampleEn: d['example_en'] as String,
-    );
-  }
+    ConjugationTableGrammarBlock(:final label, :final rows) =>
+      ConjugationTableBlock(label: label, rows: rows),
+    ComparisonGrammarBlock(:final left, :final right) => ComparisonBlock(
+      left: left,
+      right: right,
+      accentColor: levelColor,
+    ),
+    ListGrammarBlock(:final bullet, :final items) => ListBlock(
+      style: bullet ? ListStyle.bullet : ListStyle.numbered,
+      items: items,
+      accentColor: levelColor,
+    ),
+    TransformCardsGrammarBlock(:final groups) => TransformCardsBlock(
+      groups: groups,
+      accentColor: levelColor,
+    ),
+    DividerGrammarBlock() => const Divider(),
+    UnknownGrammarBlock() => const SizedBox.shrink(),
+  };
 }
