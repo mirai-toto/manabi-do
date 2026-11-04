@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../providers/kanji_strokes_provider.dart';
 
-/// Horizontal scrollable row of mini stroke-step previews; tap a step to jump
-/// to it.
-class StrokeStepRow extends ConsumerStatefulWidget {
-  final int kanjiId;
-  const StrokeStepRow({super.key, required this.kanjiId});
+/// Horizontal row of mini previews, one per stroke, each showing the kanji up
+/// to that stroke. Drag to scroll.
+class StrokeStepRow extends StatefulWidget {
+  final List<Path> strokes;
+  const StrokeStepRow({super.key, required this.strokes});
 
   @override
-  ConsumerState<StrokeStepRow> createState() => _StrokeStepRowState();
+  State<StrokeStepRow> createState() => _StrokeStepRowState();
 }
 
-class _StrokeStepRowState extends ConsumerState<StrokeStepRow> {
+class _StrokeStepRowState extends State<StrokeStepRow> {
   final _scrollController = ScrollController();
 
   @override
@@ -50,12 +49,7 @@ class _StrokeStepRowState extends ConsumerState<StrokeStepRow> {
 
   @override
   Widget build(BuildContext context) {
-    final strokes = ref
-        .watch(kanjiStrokesProvider(widget.kanjiId))
-        .asData
-        ?.value;
-    if (strokes == null) return const SizedBox.shrink();
-
+    final List<Path> strokes = widget.strokes;
     final t = context.tokens;
     return GestureDetector(
       behavior: HitTestBehavior.opaque,

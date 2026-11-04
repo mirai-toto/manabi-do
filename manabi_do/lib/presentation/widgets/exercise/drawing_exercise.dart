@@ -219,7 +219,10 @@ class _DrawingExerciseState extends State<DrawingExercise>
             if (!_allCorrect) ...[
               const SizedBox(height: AppDimens.spaceSm),
               Center(
-                child: StrokeOrderAnimator(kanjiId: widget.kanjiId, size: 120),
+                child: StrokeOrderAnimator(
+                  strokes: widget.referenceStrokes,
+                  size: 120,
+                ),
               ),
             ],
           ],

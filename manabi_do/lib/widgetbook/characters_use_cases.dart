@@ -108,7 +108,7 @@ Widget buildKanjiDrawingCanvasWithResults(BuildContext context) {
   path: 'Characters',
 )
 Widget buildStrokeOrderAnimator(BuildContext context) {
-  return const Center(child: StrokeOrderAnimator(kanjiId: _water));
+  return Center(child: _WithStrokes((s) => StrokeOrderAnimator(strokes: s)));
 }
 
 @widgetbook.UseCase(
@@ -117,7 +117,9 @@ Widget buildStrokeOrderAnimator(BuildContext context) {
   path: 'Characters',
 )
 Widget buildStrokeOrderAnimatorLarge(BuildContext context) {
-  return const Center(child: StrokeOrderAnimator(kanjiId: _water, size: 260));
+  return Center(
+    child: _WithStrokes((s) => StrokeOrderAnimator(strokes: s, size: 260)),
+  );
 }
 
 // ── StrokeStepRow ─────────────────────────────────────────────────────────────
@@ -126,6 +128,18 @@ Widget buildStrokeOrderAnimatorLarge(BuildContext context) {
 Widget buildStrokeStepRow(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
-    child: StrokeStepRow(kanjiId: _water),
+    child: _WithStrokes((s) => StrokeStepRow(strokes: s)),
   );
+}
+
+/// Loads 水's strokes for a preview, which takes them as a plain list.
+class _WithStrokes extends ConsumerWidget {
+  final Widget Function(List<Path> strokes) builder;
+  const _WithStrokes(this.builder);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final strokes = ref.watch(kanjiStrokesProvider(_water)).asData?.value;
+    return strokes == null ? const SizedBox.shrink() : builder(strokes);
+  }
 }

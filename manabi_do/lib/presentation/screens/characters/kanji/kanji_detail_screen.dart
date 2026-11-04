@@ -9,6 +9,7 @@ import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../providers/kanji_provider.dart';
+import '../../../providers/kanji_strokes_provider.dart';
 import '../../../providers/vocabulary_provider.dart';
 import '../reset_progress_button.dart';
 import '../../../widgets/widgets.dart';
@@ -62,6 +63,7 @@ class _KanjiBody extends ConsumerWidget {
     final srsCardsAsync = ref.watch(srsCardsProvider('kanji'));
     final loaded = srsCardsAsync.asData != null;
     final card = srsCardsAsync.asData?.value[kanji.id];
+    final strokes = ref.watch(kanjiStrokesProvider(kanji.id)).asData?.value;
 
     return Padding(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -70,7 +72,10 @@ class _KanjiBody extends ConsumerWidget {
         children: [
           KanjiReadingsCard(kanji: kanji),
           const SizedBox(height: AppDimens.spaceLg),
-          StrokeOrderSection(kanji: kanji),
+          if (strokes == null)
+            const Center(child: AppSpinner())
+          else if (strokes.isNotEmpty)
+            StrokeOrderSection(strokes: strokes),
           const SizedBox(height: AppDimens.spaceSm),
           SizedBox(
             width: double.infinity,
