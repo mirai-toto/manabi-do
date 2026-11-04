@@ -519,16 +519,6 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'LessonReaderCard',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder:
-                _manabi_do_widgetbook_exercise_use_cases.buildLessonReaderCard,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
         name: 'McqCard',
         useCases: [
           _widgetbook.WidgetbookUseCase(
@@ -577,6 +567,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Perfect score',
             builder: _manabi_do_widgetbook_exercise_use_cases
                 .buildSummaryCardPerfect,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'ViewDetailButton',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder:
+                _manabi_do_widgetbook_exercise_use_cases.buildViewDetailButton,
           ),
         ],
       ),
@@ -927,6 +927,15 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Started',
             builder:
                 _manabi_do_widgetbook_study_use_cases.buildLessonRowStarted,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'PracticeButton',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder: _manabi_do_widgetbook_study_use_cases.buildPracticeButton,
           ),
         ],
       ),

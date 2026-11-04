@@ -3,8 +3,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
+import '../../core/providers/review_log_provider.dart';
 import '../../data/database/app_database.dart';
-import '../../core/models/practice_item.dart';
+import '../models/practice_item.dart';
 import '../services/srs_service.dart';
 import 'database_provider.dart';
 
@@ -45,12 +46,7 @@ class PracticeSessionState {
   PracticeItem? get currentItem =>
       queue != null && !done && index < queue!.length ? queue![index] : null;
 
-  String get formattedDuration {
-    final d = DateTime.now().difference(startedAt);
-    final m = d.inMinutes;
-    final s = d.inSeconds % 60;
-    return m > 0 ? '${m}m ${s}s' : '${s}s';
-  }
+  Duration get elapsed => DateTime.now().difference(startedAt);
 
   PracticeSessionState copyWith({
     List<PracticeItem>? queue,
@@ -100,6 +96,7 @@ class PracticeSessionNotifier extends Notifier<PracticeSessionState> {
       await ref
           .read(databaseProvider)
           .upsertSrsCard(item.srsType, item.id, applyRating(item.card, rating));
+      await ref.read(reviewLogProvider.notifier).record();
     }
 
     final isLast = s.index + 1 >= s.queue!.length;

@@ -25,7 +25,7 @@ class KanjiPracticeScreen extends StatelessWidget {
   Set<SettingsContext> get _contexts => switch (exerciseFilter) {
     ExerciseFilter.flashcardOnly => const {SettingsContext.flashcard},
     ExerciseFilter.mcqOnly => const {SettingsContext.mcq},
-    ExerciseFilter.mixed => const {
+    ExerciseFilter.mixed || ExerciseFilter.sentenceOnly => const {
       SettingsContext.flashcard,
       SettingsContext.mcq,
     },

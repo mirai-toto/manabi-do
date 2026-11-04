@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/providers/home_settings_provider.dart';
 import '../../../core/providers/locale_provider.dart';
@@ -9,6 +10,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/vocabulary_level.dart';
+import '../../../l10n/app_languages.dart';
 import '../../../l10n/l10n.dart';
 import '../../widgets/widgets.dart';
 
@@ -59,13 +61,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Widget build(BuildContext context) {
     final AppTokens t = context.tokens;
     final AppLocalizations l = context.l10n;
-    final home = ref.watch(homeSettingsProvider).asData?.value;
+    final home = ref.watch(homeSettingsProvider);
     final bool canContinue =
-        _page != 2 ||
-        home == null ||
-        home.showKana ||
-        home.showKanji ||
-        home.showVocabulary;
+        _page != 2 || home.showKana || home.showKanji || home.showVocabulary;
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -269,16 +267,10 @@ class _LanguagePage extends ConsumerWidget {
       body: l.onboardingLanguageBody,
       child: Column(
         children: [
-          for (final lang in languages) ...[
+          for (final lang in appLanguages) ...[
             _Choice(
               label: lang.name,
-              leading: Text(
-                lang.flag,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontFamily: 'NotoColorEmoji',
-                ),
-              ),
+              leading: AppEmoji(lang.flag, size: 22),
               selected: lang.code == current,
               onTap: () => ref
                   .read(localeProvider.notifier)
@@ -297,15 +289,14 @@ class _HookPage extends StatelessWidget {
 
   /// The first three levels, as the shipped content measures them. Enough to
   /// show the shape; all five would be a chart rather than a point.
-  static const List<(int, String, double, double)> _levels = [
-    (1, '750', 0.512, 1.0),
-    (2, '1,250', 0.112, 0.22),
-    (3, '2,000', 0.074, 0.145),
+  static const List<(int, int, double, double)> _levels = [
+    (1, 750, 0.512, 1.0),
+    (2, 1250, 0.112, 0.22),
+    (3, 2000, 0.074, 0.145),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final AppTokens t = context.tokens;
     final l = context.l10n;
     final Brightness brightness = Theme.of(context).brightness;
 
@@ -323,7 +314,6 @@ class _HookPage extends StatelessWidget {
                 share: share,
                 width: width,
                 color: vocabularyLevelColor(level, brightness),
-                track: t.surfaceContainer,
               ),
             ],
           ],
@@ -338,14 +328,12 @@ class _LevelBar extends StatelessWidget {
   final double share;
   final double width;
   final Color color;
-  final Color track;
 
   const _LevelBar({
     required this.label,
     required this.share,
     required this.width,
     required this.color,
-    required this.track,
   });
 
   @override
@@ -365,7 +353,10 @@ class _LevelBar extends StatelessWidget {
               ),
             ),
             Text(
-              '${(share * 100).toStringAsFixed(1)}%',
+              NumberFormat.decimalPercentPattern(
+                locale: Localizations.localeOf(context).toString(),
+                decimalDigits: 1,
+              ).format(share),
               style: AppTextStyles.labelSmall.copyWith(
                 color: t.onSurface,
                 fontWeight: FontWeight.w700,
@@ -374,15 +365,7 @@ class _LevelBar extends StatelessWidget {
           ],
         ),
         const SizedBox(height: AppDimens.spaceXs),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(4),
-          child: LinearProgressIndicator(
-            value: width,
-            minHeight: 8,
-            backgroundColor: track,
-            valueColor: AlwaysStoppedAnimation<Color>(color),
-          ),
-        ),
+        AppProgressBar(progress: width, color: color, height: 8),
       ],
     );
   }
@@ -394,9 +377,8 @@ class _SectionsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
-    final home = ref.watch(homeSettingsProvider).asData?.value;
+    final home = ref.watch(homeSettingsProvider);
     final notifier = ref.read(homeSettingsProvider.notifier);
-    if (home == null) return const Center(child: AppSpinner());
 
     return _Page(
       title: l.onboardingStudyTitle,
@@ -433,8 +415,7 @@ class _PacePage extends ConsumerWidget {
   /// A new item costs more than a review, and reviews pile up to a few times
   /// the daily intake once a deck is going.
   static int _minutes(int characters, int words) {
-    final double perDay =
-        (characters + words) * 0.5 + (characters + words) * 1.0;
+    final double perDay = (characters + words) * 1.5;
     return perDay.clamp(1, 120).round();
   }
 
@@ -442,48 +423,19 @@ class _PacePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AppTokens t = context.tokens;
     final l = context.l10n;
-    final srs = ref.watch(srsSettingsProvider).asData?.value;
+    final srs = ref.watch(srsSettingsProvider);
     final notifier = ref.read(srsSettingsProvider.notifier);
-    if (srs == null) return const Center(child: AppSpinner());
 
     return _Page(
       title: l.onboardingPaceTitle,
       body: l.onboardingPaceBody,
       child: Column(
         children: [
-          SettingsCard(
-            children: [
-              SettingsStepper(
-                icon: Icons.translate_rounded,
-                label: l.settingsPracticeNewCharacters,
-                value: srs.newCharactersPerDay,
-                onDecrement: srs.newCharactersPerDay > 0
-                    ? () => notifier.setNewCharactersPerDay(
-                        srs.newCharactersPerDay - 1,
-                      )
-                    : null,
-                onIncrement: srs.newCharactersPerDay < 50
-                    ? () => notifier.setNewCharactersPerDay(
-                        srs.newCharactersPerDay + 1,
-                      )
-                    : null,
-              ),
-              SettingsStepper(
-                icon: Icons.menu_book_rounded,
-                label: l.settingsPracticeNewVocabulary,
-                value: srs.newVocabularyPerDay,
-                onDecrement: srs.newVocabularyPerDay > 0
-                    ? () => notifier.setNewVocabularyPerDay(
-                        srs.newVocabularyPerDay - 1,
-                      )
-                    : null,
-                onIncrement: srs.newVocabularyPerDay < 50
-                    ? () => notifier.setNewVocabularyPerDay(
-                        srs.newVocabularyPerDay + 1,
-                      )
-                    : null,
-              ),
-            ],
+          PracticeSettingsCard(
+            newCharactersPerDay: srs.newCharactersPerDay,
+            newVocabularyPerDay: srs.newVocabularyPerDay,
+            onNewCharactersChanged: notifier.setNewCharactersPerDay,
+            onNewVocabularyChanged: notifier.setNewVocabularyPerDay,
           ),
           const SizedBox(height: AppDimens.spaceMd),
           Text(
@@ -516,45 +468,51 @@ class _Choice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppTokens t = context.tokens;
-    return Material(
-      color: selected ? t.primaryContainer : t.cardBackground,
-      borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-      child: InkWell(
-        onTap: onTap,
+    return Semantics(
+      label: label,
+      button: true,
+      selected: selected,
+      excludeSemantics: true,
+      child: Material(
+        color: selected ? t.primaryContainer : t.cardBackground,
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppDimens.spaceMd,
-            vertical: AppDimens.spaceCozy,
-          ),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: selected ? t.primary : t.outlineVariant,
-              width: AppDimens.borderWidthContainer,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.spaceMd,
+              vertical: AppDimens.spaceCozy,
             ),
-            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          ),
-          child: Row(
-            children: [
-              if (leading != null) ...[
-                leading!,
-                const SizedBox(width: AppDimens.spaceMd),
-              ],
-              Expanded(
-                child: Text(
-                  label,
-                  style: AppTextStyles.body.copyWith(
-                    color: selected ? t.onPrimaryContainer : t.onSurface,
-                    fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: selected ? t.primary : t.outlineVariant,
+                width: AppDimens.borderWidthContainer,
+              ),
+              borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+            ),
+            child: Row(
+              children: [
+                if (leading != null) ...[
+                  leading!,
+                  const SizedBox(width: AppDimens.spaceMd),
+                ],
+                Expanded(
+                  child: Text(
+                    label,
+                    style: AppTextStyles.body.copyWith(
+                      color: selected ? t.onPrimaryContainer : t.onSurface,
+                      fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+                    ),
                   ),
                 ),
-              ),
-              Icon(
-                selected ? Icons.check_circle_rounded : Icons.circle_outlined,
-                size: 20,
-                color: selected ? t.primary : t.outlineVariant,
-              ),
-            ],
+                Icon(
+                  selected ? Icons.check_circle_rounded : Icons.circle_outlined,
+                  size: 20,
+                  color: selected ? t.primary : t.outlineVariant,
+                ),
+              ],
+            ),
           ),
         ),
       ),

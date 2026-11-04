@@ -1,13 +1,23 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:home_widget/home_widget.dart';
+
 import '../../core/theme/app_tokens.dart';
+import '../../core/theme/jlpt_level.dart';
 import '../../l10n/l10n.dart';
+import '../providers/grammar_provider.dart';
 import '../providers/home_provider.dart';
+import '../services/home_widget_service.dart';
 import '../widgets/widgets.dart';
 import 'characters/characters_screen.dart';
+import 'characters/kanji/kanji_detail_screen.dart';
+import 'grammar/grammar_navigation.dart';
 import 'grammar/grammar_screen.dart';
 import 'home/home_screen.dart';
+import 'practice/practice_launcher.dart';
 import 'settings/settings_screen.dart';
 import 'vocabulary/vocabulary_screen.dart';
 
@@ -26,16 +36,62 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     (_) => GlobalKey<NavigatorState>(),
   );
 
+  StreamSubscription<Uri?>? _widgetClicks;
+
   @override
   void initState() {
     super.initState();
     HardwareKeyboard.instance.addHandler(_onKey);
+    if (homeWidgetsSupported) {
+      ref.read(homeWidgetSyncProvider);
+      HomeWidget.initiallyLaunchedFromHomeWidget().then(_openFromWidget);
+      _widgetClicks = HomeWidget.widgetClicked.listen(_openFromWidget);
+    }
   }
 
   @override
   void dispose() {
     HardwareKeyboard.instance.removeHandler(_onKey);
+    _widgetClicks?.cancel();
     super.dispose();
+  }
+
+  /// Opens what a home-screen widget was tapped for, on the home tab:
+  /// `manabido://review`, `manabido://kanji/<id>` or `manabido://grammar`.
+  Future<void> _openFromWidget(Uri? uri) async {
+    if (uri == null || uri.scheme != 'manabido') return;
+    ref.read(selectedTabProvider.notifier).select(0);
+    final NavigatorState? home = _navKeys[0].currentState;
+    if (home == null) return;
+    home.popUntil((route) => route.isFirst);
+
+    switch (uri.host) {
+      case 'review':
+        await openTodaysSession(home.context);
+      case 'kanji':
+        final int? id = int.tryParse(
+          uri.pathSegments.isEmpty ? '' : uri.pathSegments.first,
+        );
+        if (id == null) return;
+        await home.push(
+          MaterialPageRoute<void>(
+            builder: (_) => KanjiDetailScreen(kanjiId: id),
+          ),
+        );
+      case 'grammar':
+        final target = await ref.read(grammarContinueProvider.future);
+        if (!mounted) return;
+        if (target == null) {
+          ref.read(selectedTabProvider.notifier).select(3);
+          return;
+        }
+        openGrammarLesson(
+          home.context,
+          ref,
+          target.lesson,
+          levelColor(target.level),
+        );
+    }
   }
 
   bool _onKey(KeyEvent event) {

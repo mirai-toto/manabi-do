@@ -10,6 +10,9 @@ import '../../providers/home_provider.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../../widgets/widgets.dart';
 import '../practice/practice_launcher.dart';
+import 'vocabulary_group_selector.dart';
+import 'vocabulary_level_selector.dart';
+import 'vocabulary_level_view.dart';
 
 class VocabularyScreen extends ConsumerWidget {
   const VocabularyScreen({super.key});

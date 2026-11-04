@@ -2,12 +2,13 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart';
 import '../../../../core/srs/srs_level.dart';
+import '../../../../core/theme/srs_level_colors.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../domain/data/kana_data.dart';
 import '../../../../l10n/l10n.dart';
-import '../../../providers/kana_progress_provider.dart';
+import '../../../providers/srs_cards_provider.dart';
 import '../../../widgets/widgets.dart';
 import 'kana_detail_sheet.dart';
 
@@ -43,11 +44,10 @@ class KanaTabView extends ConsumerWidget {
     // Kana has no JLPT level of its own, so it follows the app accent rather
     // than carrying a section colour.
     final color = context.tokens.primary;
-    final srsCards = ref.watch(kanaSrsCardsProvider(type)).asData?.value ?? {};
-    final learnedCount = allKana.where((e) {
-      final level = srsLevel(srsCards[e.id]);
-      return level != SrsLevel.newCard && level != SrsLevel.learning;
-    }).length;
+    final srsCards = ref.watch(srsCardsProvider(type)).asData?.value ?? {};
+    final learnedCount = allKana
+        .where((e) => isSrsKnown(srsCards[e.id]))
+        .length;
 
     return ScrollFade(
       builder: (controller) => ListView(

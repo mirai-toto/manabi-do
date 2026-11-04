@@ -11,11 +11,10 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/grammar_provider.dart';
 import '../../providers/home_provider.dart';
-import '../../services/grammar_progress_service.dart';
 import '../../services/review_queue_service.dart';
 import '../../widgets/widgets.dart';
-import '../grammar/grammar_lesson_screen.dart';
-import '../practice/practice_session_screen.dart';
+import '../grammar/grammar_navigation.dart';
+import '../practice/practice_launcher.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -61,49 +60,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   String _japaneseDate(DateTime now) =>
       '${now.month}月${now.day}日 (${_weekdayKanji[now.weekday - 1]}曜日)';
 
-  void _startReviews() {
-    final l = context.l10n;
-    final t = context.tokens;
-    _openPractice(
-      title: l.todaysSession,
-      color: t.primary,
-      loadQueue: (ref) => ref.read(reviewQueueServiceProvider).allDue(),
-    );
-  }
-
-  void _openPractice({
-    required String title,
-    required Color color,
-    required LoadQueue loadQueue,
-  }) {
-    Navigator.push(
-      context,
-      MaterialPageRoute<void>(
-        builder: (_) => PracticeSessionScreen(
-          title: title,
-          color: color,
-          loadQueue: loadQueue,
-        ),
-      ),
-    );
-  }
-
-  void _continueLesson(GrammarContinueTarget target) {
-    ref
-        .read(grammarProgressServiceProvider)
-        .markLessonStarted(target.lesson.id);
-    Navigator.push(
-      context,
-      MaterialPageRoute<void>(
-        builder: (_) => GrammarLessonScreen(
-          lessonId: target.lesson.id,
-          title: target.lesson.title,
-          blocks: target.lesson.blocks,
-          levelColor: levelColor(target.level),
-        ),
-      ),
-    );
-  }
+  void _continueLesson(GrammarContinueTarget target) =>
+      openGrammarLesson(context, ref, target.lesson, levelColor(target.level));
 
   @override
   Widget build(BuildContext context) {
@@ -133,8 +91,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         ref.watch(weekActivityProvider).asData?.value ?? List.filled(7, false);
     final continueTarget = ref.watch(grammarContinueProvider).asData?.value;
 
-    final show =
-        ref.watch(homeSettingsProvider).asData?.value ?? const HomeSettings();
+    final show = ref.watch(homeSettingsProvider);
     final domains = [
       if (show.showKana) (glyph: 'か', due: kanaDue),
       if (show.showKanji) (glyph: '字', due: kanjiDue),
@@ -167,7 +124,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   TodaysSessionCard(
                     domains: domains,
                     newTotal: newTotal,
-                    onStart: _startReviews,
+                    onStart: () => openTodaysSession(context),
                   ),
                   if (domains.isNotEmpty) ...[
                     const SizedBox(height: AppDimens.spaceLg),
@@ -182,7 +139,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         seen: kanaProgress.seen,
                         newToday: kanaNew,
                         due: kanaDue,
-                        onTap: () => _openPractice(
+                        onTap: () => openPracticeSession(
+                          context,
                           title: l.kana,
                           color: t.primary,
                           loadQueue: (ref) =>
@@ -200,7 +158,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         seen: kanjiProgress.seen,
                         newToday: kanjiNew,
                         due: kanjiDue,
-                        onTap: () => _openPractice(
+                        onTap: () => openPracticeSession(
+                          context,
                           title: l.tabKanji,
                           color: t.primary,
                           loadQueue: (ref) =>
@@ -218,7 +177,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         seen: vocabularyProgress.seen,
                         newToday: vocabularyNew,
                         due: vocabularyDue,
-                        onTap: () => _openPractice(
+                        onTap: () => openPracticeSession(
+                          context,
                           title: l.sectionVocabulary,
                           color: t.primary,
                           loadQueue: (ref) =>

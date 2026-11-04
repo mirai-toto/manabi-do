@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../../data/grammar/grammar_models.dart';
+
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../common/surface/card_container.dart';
 import '../../common/label/japanese_text.dart';
 import '../../common/indicator/pill_badge.dart';
-
-class ComparisonSide {
-  final String label;
-  final String description;
-  final String exampleJp;
-  final String exampleEn;
-
-  const ComparisonSide({
-    required this.label,
-    required this.description,
-    required this.exampleJp,
-    required this.exampleEn,
-  });
-}
 
 /// Side-by-side comparison of two grammar patterns.
 class ComparisonBlock extends StatelessWidget {
@@ -82,7 +70,9 @@ class _SideCard extends StatelessWidget {
         children: [
           PillBadge(
             label: side.label,
-            color: Colors.white,
+            color: accentColor == null
+                ? t.onPrimary
+                : onAccentFor(accentColor!),
             background: accentColor ?? t.primary,
           ),
           const SizedBox(height: AppDimens.spaceSm),

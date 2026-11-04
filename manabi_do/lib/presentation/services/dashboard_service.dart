@@ -110,6 +110,6 @@ class DashboardService {
   });
 }
 
-final dashboardServiceProvider = Provider(
+final dashboardServiceProvider = Provider<DashboardService>(
   (ref) => DashboardService(ref.read(databaseProvider)),
 );

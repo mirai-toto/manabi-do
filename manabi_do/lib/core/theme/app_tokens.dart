@@ -82,9 +82,6 @@ class AppTokens extends ThemeExtension<AppTokens> {
     successContainer: Color(0xFFC8F5DA),
     warning: Color(0xFF7A5200),
     warningContainer: Color(0xFFFFDDB3),
-    // Darkened from #1E88E5, which failed WCAG AA at 2.96:1 against its own
-    // container. The other three semantic foregrounds are dark and land at
-    // 5.35-5.55; this sits with them at 5.45 rather than staying a mid-tone.
     hintStroke: Color(0xFFFF8F00),
     onyomi: Color(0xFF1565C0),
     kunyomi: Color(0xFFC62828),
@@ -287,6 +284,6 @@ double _contrastRatio(Color a, Color b) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-extension AppTheme on BuildContext {
+extension AppTokensContext on BuildContext {
   AppTokens get tokens => Theme.of(this).extension<AppTokens>()!;
 }

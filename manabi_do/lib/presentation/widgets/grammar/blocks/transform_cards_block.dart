@@ -3,66 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
+import '../../../../data/grammar/grammar_models.dart';
 import '../../common/surface/card_container.dart';
 import '../../common/indicator/pill_badge.dart';
-
-// ── Data models ──────────────────────────────────────────────────────────────
-
-class TransformRow {
-  final String base;
-  final String? old;
-  final String? newSuffix;
-  final String result;
-  final String? romaji;
-  final String? english;
-
-  const TransformRow({
-    required this.base,
-    this.old,
-    this.newSuffix,
-    required this.result,
-    this.romaji,
-    this.english,
-  });
-
-  factory TransformRow.fromJson(Map<String, dynamic> d) => TransformRow(
-    base: d['base'] as String,
-    old: d['old'] as String?,
-    newSuffix: d['new'] as String?,
-    result: d['result'] as String,
-    romaji: d['romaji'] as String?,
-    english: d['english'] as String?,
-  );
-}
-
-class TransformGroup {
-  final String label;
-  final String? tag;
-  final String? description;
-  final String? rule;
-  final List<TransformRow> rows;
-  final String? note;
-
-  const TransformGroup({
-    required this.label,
-    this.tag,
-    this.description,
-    this.rule,
-    required this.rows,
-    this.note,
-  });
-
-  factory TransformGroup.fromJson(Map<String, dynamic> d) => TransformGroup(
-    label: d['label'] as String,
-    tag: d['tag'] as String?,
-    description: d['description'] as String?,
-    rule: d['rule'] as String?,
-    rows: (d['rows'] as List<dynamic>)
-        .map((r) => TransformRow.fromJson(r as Map<String, dynamic>))
-        .toList(),
-    note: d['note'] as String?,
-  );
-}
 
 // ── Widgets ───────────────────────────────────────────────────────────────────
 

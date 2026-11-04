@@ -10,11 +10,11 @@ import '../presentation/providers/drawing_settings_provider.dart';
 import '../presentation/providers/kanji_strokes_provider.dart';
 import '../presentation/widgets/exercise/drawing_exercise.dart';
 import '../presentation/widgets/exercise/flashcard.dart';
-import '../presentation/widgets/exercise/lesson_reader.dart';
 import '../presentation/widgets/exercise/mcq_card.dart';
 import '../presentation/widgets/exercise/sentence_cloze_card.dart';
 import '../data/database/app_database.dart';
 import '../presentation/widgets/exercise/summary_card.dart';
+import '../presentation/widgets/exercise/view_detail_button.dart';
 
 // ── Flashcard ─────────────────────────────────────────────────────────────────
 
@@ -118,31 +118,6 @@ Widget buildDrawingExercise(BuildContext context) {
   );
 }
 
-// ── LessonReaderCard ──────────────────────────────────────────────────────────
-
-@widgetbook.UseCase(name: 'Default', type: LessonReaderCard, path: 'Exercise')
-Widget buildLessonReaderCard(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16),
-    child: LessonReaderCard(
-      chapterLabel: 'Chapter 1',
-      title: 'Greetings in Japanese',
-      body: const [
-        ReaderBodyText(
-          'Japanese greetings vary by time of day and level of formality.',
-        ),
-        ReaderSectionTitle('Morning greeting'),
-        ReaderJpExample(
-          japanese: 'おはようございます',
-          translation: 'Good morning (formal)',
-        ),
-        ReaderBodyText('Use おはよう with close friends and family.'),
-      ],
-      onPractice: () {},
-    ),
-  );
-}
-
 // ── McqCard ───────────────────────────────────────────────────────────────────
 
 const _options = [
@@ -157,6 +132,7 @@ Widget buildMcqCardIdle(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: McqCard(
+      badgeLabel: 'Multiple Choice',
       question: 'What is the meaning of this kanji?',
       japanesePrompt: '水',
       options: _options,
@@ -169,6 +145,7 @@ Widget buildMcqCardSelected(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: McqCard(
+      badgeLabel: 'Multiple Choice',
       question: 'What is the meaning of this kanji?',
       japanesePrompt: '水',
       options: [
@@ -184,6 +161,7 @@ Widget buildMcqCardCorrect(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: McqCard(
+      badgeLabel: 'Multiple Choice',
       question: 'What is the meaning of this kanji?',
       japanesePrompt: '水',
       options: [
@@ -199,6 +177,7 @@ Widget buildMcqCardWrong(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16),
     child: McqCard(
+      badgeLabel: 'Multiple Choice',
       question: 'What is the meaning of this kanji?',
       japanesePrompt: '水',
       options: [
@@ -362,3 +341,12 @@ Widget buildSentenceClozeCardHidden(BuildContext context) =>
 )
 Widget buildSentenceClozeCardShowing(BuildContext context) =>
     _cloze(context, showTranslation: true);
+
+// ── ViewDetailButton ─────────────────────────────────────────────────────────
+
+@widgetbook.UseCase(name: 'Default', type: ViewDetailButton, path: 'Exercise')
+Widget buildViewDetailButton(BuildContext context) {
+  return Center(
+    child: ViewDetailButton(label: 'View detail', onPressed: () {}),
+  );
+}

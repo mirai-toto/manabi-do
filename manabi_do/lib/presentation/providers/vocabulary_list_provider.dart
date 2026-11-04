@@ -1,15 +1,14 @@
 import '../../core/providers/locale_provider.dart';
+import 'srs_cards_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fsrs/fsrs.dart';
 
-import '../../core/providers/srs_settings_provider.dart';
 import '../../core/srs/srs_level.dart';
 import '../../core/theme/vocabulary_level.dart';
 import '../../data/database/app_database.dart';
 import '../services/search_service.dart';
-import '../services/srs_queue_service.dart';
 import 'database_provider.dart';
 
+/// Words per group within a vocabulary level.
 const kVocabularyGroupSize = 30;
 
 final vocabularyByLevelProvider =
@@ -88,7 +87,7 @@ final groupShareProvider = Provider<Map<(int, int), double>?>((ref) {
 final coverageReachedProvider = Provider<double?>((ref) {
   final shares = ref.watch(groupShareProvider);
   if (shares == null) return null;
-  final srsCards = ref.watch(vocabularySrsCardsProvider).asData?.value;
+  final srsCards = ref.watch(srsCardsProvider('vocabulary')).asData?.value;
   if (srsCards == null) return null;
 
   var reached = 0.0;
@@ -100,8 +99,7 @@ final coverageReachedProvider = Provider<double?>((ref) {
     for (final entry in entries) {
       sizePerGroup[entry.groupIndex] =
           (sizePerGroup[entry.groupIndex] ?? 0) + 1;
-      final level = srsLevel(srsCards[entry.id]);
-      if (level != SrsLevel.newCard && level != SrsLevel.learning) {
+      if (isSrsKnown(srsCards[entry.id])) {
         learnedPerGroup[entry.groupIndex] =
             (learnedPerGroup[entry.groupIndex] ?? 0) + 1;
       }
@@ -115,10 +113,6 @@ final coverageReachedProvider = Provider<double?>((ref) {
   return reached;
 });
 
-final vocabularySrsCardsProvider = StreamProvider<Map<int, Card>>(
-  (ref) => ref.watch(databaseProvider).watchAllSrsCardsForType('vocabulary'),
-);
-
 /// Total vocabulary count across every vocabulary level; null while any level is
 /// still loading.
 final vocabularyTotalCountProvider = Provider<int?>((ref) {
@@ -131,7 +125,7 @@ final vocabularyTotalCountProvider = Provider<int?>((ref) {
   return sum;
 });
 
-/// How many vocabulary entries in the given group have been learned (past new/learning).
+/// How many vocabulary entries in the given group are known (familiar or above, see `isSrsKnown`).
 final vocabularyGroupLearnedCountProvider =
     Provider.family<int, ({int level, int groupIndex})>((ref, args) {
       final entries =
@@ -144,32 +138,6 @@ final vocabularyGroupLearnedCountProvider =
               .toList() ??
           [];
       final srsCards =
-          ref.watch(vocabularySrsCardsProvider).asData?.value ?? {};
-      return entries.where((e) {
-        final lvl = srsLevel(srsCards[e.id]);
-        return lvl != SrsLevel.newCard && lvl != SrsLevel.learning;
-      }).length;
-    });
-
-/// Returns (reviewCount, newCount) for the given vocabulary group.
-final vocabularyGroupSrsCountProvider =
-    FutureProvider.family<(int, int), ({int level, int groupIndex})>((
-      ref,
-      args,
-    ) async {
-      final all = await ref.read(vocabularyByLevelProvider(args.level).future);
-      final groupIds = all
-          .skip(args.groupIndex * kVocabularyGroupSize)
-          .take(kVocabularyGroupSize)
-          .map((e) => e.id)
-          .toSet();
-      final settings = await ref.read(srsSettingsProvider.future);
-      final session = await ref
-          .read(srsQueueServiceProvider)
-          .vocabulary(args.level, newCardLimit: settings.newVocabularyPerDay);
-      final group = session.where((p) => groupIds.contains(p.$1.id)).toList();
-      return (
-        group.where((p) => p.$2 != null).length,
-        group.where((p) => p.$2 == null).length,
-      );
+          ref.watch(srsCardsProvider('vocabulary')).asData?.value ?? {};
+      return entries.where((e) => isSrsKnown(srsCards[e.id])).length;
     });

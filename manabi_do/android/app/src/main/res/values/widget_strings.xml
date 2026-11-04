@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Names and descriptions in the launcher's widget picker. -->
+<resources>
+    <string name="widget_reviews_name">Reviews due</string>
+    <string name="widget_reviews_description">How many reviews are waiting, with a shortcut to start</string>
+    <string name="widget_kanji_name">Kanji of the day</string>
+    <string name="widget_kanji_description">One of the kanji you are learning, each day</string>
+    <string name="widget_grammar_name">Continue grammar</string>
+    <string name="widget_grammar_description">Pick up the grammar lesson where you left off</string>
+    <string name="widget_streak_name">Streak</string>
+    <string name="widget_streak_description">Your day streak and 20 weeks of reviews</string>
+</resources>

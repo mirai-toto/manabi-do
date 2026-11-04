@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Names and descriptions in the launcher's widget picker. -->
+<resources>
+    <string name="widget_reviews_name">Fällige Wiederholungen</string>
+    <string name="widget_reviews_description">Wie viele Wiederholungen warten, mit einer Abkürzung zum Starten</string>
+    <string name="widget_kanji_name">Kanji des Tages</string>
+    <string name="widget_kanji_description">Jeden Tag eines der Kanji, die du lernst</string>
+    <string name="widget_grammar_name">Grammatik fortsetzen</string>
+    <string name="widget_grammar_description">Die Grammatiklektion dort fortsetzen, wo du aufgehört hast</string>
+    <string name="widget_streak_name">Serie</string>
+    <string name="widget_streak_description">Deine Tagesserie und 20 Wochen Wiederholungen</string>
+</resources>

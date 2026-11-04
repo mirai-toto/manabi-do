@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../providers/srs_cards_provider.dart';
+
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/theme/app_tokens.dart';
 import '../../../../core/theme/jlpt_level.dart';
 import '../../../../data/database/app_database.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../providers/kanji_provider.dart';
-import '../../../services/srs_service.dart';
+import '../../../providers/kanji_strokes_provider.dart';
+import '../../../providers/vocabulary_provider.dart';
+import '../reset_progress_button.dart';
 import '../../../widgets/widgets.dart';
 import 'kanji_drawing_practice_screen.dart';
+import 'kanji_example_words.dart';
 
 class KanjiDetailScreen extends ConsumerWidget {
   final int kanjiId;
@@ -25,6 +29,7 @@ class KanjiDetailScreen extends ConsumerWidget {
     }
 
     final color = levelColor(kanji.jlptLevel);
+    final ShownMeaning shown = ref.watch(kanjiMeaningProvider(kanji));
 
     return Scaffold(
       body: ScrollFade(
@@ -33,6 +38,8 @@ class KanjiDetailScreen extends ConsumerWidget {
           padding: EdgeInsets.zero,
           children: [
             KanjiHero(
+              meaning: shown.meaning,
+              missingLanguage: shown.missingLanguage,
               kanji: kanji,
               color: color,
               onBack: () => Navigator.of(context).pop(),
@@ -51,12 +58,12 @@ class _KanjiBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final t = context.tokens;
     final l = context.l10n;
     final color = levelColor(kanji.jlptLevel);
-    final srsCardsAsync = ref.watch(kanjiSrsCardsProvider);
+    final srsCardsAsync = ref.watch(srsCardsProvider('kanji'));
     final loaded = srsCardsAsync.asData != null;
     final card = srsCardsAsync.asData?.value[kanji.id];
+    final strokes = ref.watch(kanjiStrokesProvider(kanji.id)).asData?.value;
 
     return Padding(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -65,7 +72,10 @@ class _KanjiBody extends ConsumerWidget {
         children: [
           KanjiReadingsCard(kanji: kanji),
           const SizedBox(height: AppDimens.spaceLg),
-          StrokeOrderSection(kanji: kanji),
+          if (strokes == null)
+            const Center(child: AppSpinner())
+          else if (strokes.isNotEmpty)
+            StrokeOrderSection(strokes: strokes),
           const SizedBox(height: AppDimens.spaceSm),
           SizedBox(
             width: double.infinity,
@@ -103,26 +113,10 @@ class _KanjiBody extends ConsumerWidget {
           SrsProgressCard(isLoaded: loaded, srsCard: card),
           if (loaded && card != null) ...[
             const SizedBox(height: AppDimens.spaceXs),
-            SizedBox(
-              width: double.infinity,
-              child: TextButton.icon(
-                onPressed: () async {
-                  final confirmed = await showConfirmDialog(
-                    context,
-                    title: l.resetKanjiTitle,
-                    body: l.resetKanaBody,
-                  );
-                  if (!confirmed) return;
-                  await ref
-                      .read(srsServiceProvider)
-                      .resetCard('kanji', kanji.id);
-                },
-                icon: Icon(Icons.restart_alt_rounded, size: 18, color: t.error),
-                label: Text(
-                  l.resetCharacterProgress,
-                  style: AppTextStyles.bodySmall.copyWith(color: t.error),
-                ),
-              ),
+            ResetProgressButton(
+              srsType: 'kanji',
+              id: kanji.id,
+              confirmTitle: l.resetKanjiTitle,
             ),
           ],
         ],

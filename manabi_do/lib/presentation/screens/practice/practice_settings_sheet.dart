@@ -7,6 +7,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../widgets/widgets.dart';
+import '../settings/exercise_settings_sections.dart';
 
 export '../../../core/models/sentence_settings.dart' show TranslationMode;
 
@@ -34,8 +35,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
     final t = context.tokens;
     final l = context.l10n;
 
-    final SrsSettings srs =
-        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
+    final SrsSettings srs = ref.watch(srsSettingsProvider);
 
     final showLabels = contexts.length > 1;
 

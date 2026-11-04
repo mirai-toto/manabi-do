@@ -3,7 +3,6 @@ import '../../../core/models/mcq_option.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../l10n/l10n.dart';
 import '../common/label/japanese_text.dart';
 import '../common/indicator/pill_badge.dart';
 import '../common/action/speak_button.dart';
@@ -41,6 +40,8 @@ export '../../../core/models/mcq_option.dart';
 /// `McqOption` tiles with idle/correct/wrong states. The caller reads
 /// `mcqSettingsProvider` and passes `showFurigana`.
 class McqCard extends StatelessWidget {
+  /// Exercise type shown in the badge above the prompt.
+  final String badgeLabel;
   final String question;
   final String? japanesePrompt;
   final String? japaneseReading;
@@ -51,6 +52,7 @@ class McqCard extends StatelessWidget {
 
   const McqCard({
     super.key,
+    required this.badgeLabel,
     required this.question,
     this.japanesePrompt,
     this.japaneseReading,
@@ -80,7 +82,7 @@ class McqCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _ExTypeBadge(),
+          _ExTypeBadge(label: badgeLabel),
           const SizedBox(height: AppDimens.spaceMd),
           _ExPrompt(
             question: question,
@@ -110,7 +112,7 @@ class McqCard extends StatelessWidget {
               options.length,
               (i) => Padding(
                 padding: EdgeInsets.only(top: i == 0 ? 0 : AppDimens.spaceSm),
-                child: _McqOptionTile(
+                child: McqOptionTile(
                   option: options[i],
                   onTap: () => onOptionTap?.call(i),
                 ),
@@ -123,12 +125,16 @@ class McqCard extends StatelessWidget {
 }
 
 class _ExTypeBadge extends StatelessWidget {
+  final String label;
+
+  const _ExTypeBadge({required this.label});
+
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
 
     return PillBadge(
-      label: context.l10n.multipleChoice.toUpperCase(),
+      label: label.toUpperCase(),
       color: t.primary,
       background: t.primaryContainer,
       textStyle: AppTextStyles.labelSmall.copyWith(
@@ -243,11 +249,20 @@ class _McqOptionShell extends StatelessWidget {
   }
 }
 
-class _McqOptionTile extends StatelessWidget {
+/// One answer row: a lettered circle and the option text, drawn in the
+/// colours of its [McqOption.state]. Shared by multiple choice and the
+/// fill-in-the-blank exercises.
+class McqOptionTile extends StatelessWidget {
   final McqOption option;
   final VoidCallback? onTap;
+  final bool showFurigana;
 
-  const _McqOptionTile({required this.option, this.onTap});
+  const McqOptionTile({
+    super.key,
+    required this.option,
+    this.onTap,
+    this.showFurigana = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -266,6 +281,8 @@ class _McqOptionTile extends StatelessWidget {
             Expanded(
               child: JapaneseText(
                 word: option.text,
+                reading: option.reading,
+                showFurigana: showFurigana,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style:
@@ -274,7 +291,7 @@ class _McqOptionTile extends StatelessWidget {
                             : AppTextStyles.body)
                         .copyWith(color: contentColor),
                 rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                  color: contentColor,
+                  color: contentColor.withValues(alpha: 0.7),
                 ),
               ),
             ),

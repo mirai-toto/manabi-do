@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../core/models/learning_state.dart';
+import '../core/theme/jlpt_level.dart';
 import '../presentation/widgets/study/chapter_card.dart';
 import '../presentation/widgets/study/continue_lesson_card.dart';
 import '../presentation/widgets/study/deck_row.dart';
 import '../presentation/widgets/study/lesson_row.dart';
+import '../presentation/widgets/study/practice_button.dart';
 import '../presentation/widgets/study/streak_pill.dart';
 import '../presentation/widgets/study/todays_session_card.dart';
 import '../presentation/widgets/study/week_strip.dart';
@@ -251,6 +253,20 @@ Widget buildChapterCardLocked(BuildContext context) {
       accentColor: accent,
       isLocked: true,
       onTap: () {},
+    ),
+  );
+}
+
+// ── PracticeButton ───────────────────────────────────────────────────────────
+
+@widgetbook.UseCase(name: 'Default', type: PracticeButton, path: 'Study')
+Widget buildPracticeButton(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: PracticeButton(
+      label: 'Practice',
+      color: levelColor('N5'),
+      onPressed: () {},
     ),
   );
 }

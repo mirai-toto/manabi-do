@@ -5,9 +5,11 @@ import '../../../../core/theme/jlpt_level.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../l10n/level_label.dart';
 import '../../../providers/home_provider.dart';
-import '../../../widgets/widgets.dart';
 import '../../practice/practice_launcher.dart';
 import 'kanji_detail_screen.dart';
+import 'kanji_group_selector.dart';
+import 'kanji_group_view.dart';
+import 'kanji_level_selector.dart';
 
 class KanjiTabView extends ConsumerWidget {
   const KanjiTabView({super.key});

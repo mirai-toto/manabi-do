@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/text/kanji_readings.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -11,11 +13,6 @@ import '../widgets.dart';
 abstract final class _Dimens {
   static const double readingPaddingV = 3;
 }
-
-const int kMaxReadingsPerType = 4;
-
-List<String> parseKanjiReadings(String raw) =>
-    raw.split('、').where((s) => s.trim().isNotEmpty).toList();
 
 /// `SectionLabel` + `CardContainer` listing on-yomi and kun-yomi readings as
 /// `KanjiReadingChip` pills.

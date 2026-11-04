@@ -20,17 +20,6 @@ extension SentenceQueries on AppDatabase {
     return result;
   }
 
-  // sentence_translations uses ISO 639-2 (3-letter) codes; map from 639-1.
-  static const _iso1To2 = {
-    'en': 'eng',
-    'fr': 'fra',
-    'de': 'deu',
-    'es': 'spa',
-    'pt': 'por',
-    'it': 'ita',
-    'ru': 'rus',
-  };
-
   /// Each sentence's translation, with the language it is actually in.
   ///
   /// Only English is guaranteed: a sentence is imported when it has one, and
@@ -43,7 +32,7 @@ extension SentenceQueries on AppDatabase {
     bool nativeOnly = false,
   }) async {
     if (sentenceIds.isEmpty) return {};
-    final locale3 = _iso1To2[locale] ?? locale;
+    final locale3 = sentenceLocaleCode(locale);
     final rows =
         await (select(sentenceTranslations)..where(
               (t) =>

@@ -9,9 +9,8 @@ import '../../../l10n/l10n.dart';
 import '../../../l10n/level_label.dart';
 import '../../providers/grammar_provider.dart';
 import '../../services/grammar_progress_service.dart';
-import '../../services/grammar_session_service.dart';
 import '../../widgets/widgets.dart';
-import '../practice/practice_session_screen.dart';
+import 'grammar_navigation.dart';
 import 'grammar_lesson_list_screen.dart';
 
 class GrammarChapterView extends ConsumerWidget {
@@ -35,9 +34,9 @@ class GrammarChapterView extends ConsumerWidget {
     final color = levelColor(level);
 
     final themes = themesAsync.asData?.value ?? [];
-    final allLessonPaths = themes
-        .expand((th) => th.chapters.expand((c) => c.lessons.map((l) => l.id)))
-        .toList();
+    final allLessonPaths = [
+      for (final theme in themes) ...theme.lessons.map((lesson) => lesson.id),
+    ];
     final pathsKey = allLessonPaths.join('\n');
     final hasExercises = ref
         .watch(grammarChapterHasExercisesProvider(pathsKey))
@@ -47,40 +46,30 @@ class GrammarChapterView extends ConsumerWidget {
     final unlockedChapters =
         ref.watch(grammarUnlockedChaptersProvider).asData?.value ?? {};
 
-    bool isThemeLocked(int index) {
-      if (index == 0) return false;
-      final prev = themes[index - 1];
-      final prevLessons = prev.chapters.expand((c) => c.lessons).toList();
-      if (prevLessons.isEmpty) return false;
-      final prevDone = prevLessons
-          .where((l) => readLessons.contains(l.id))
-          .length;
-      if (prevDone == prevLessons.length) return false;
-      return !unlockedChapters.contains(grammarThemeKey(level, index));
-    }
+    bool isThemeLocked(int index) =>
+        index > 0 &&
+        isGrammarStepLocked(
+          previousLessonIds: themes[index - 1].lessons.map((l) => l.id),
+          readLessons: readLessons,
+          unlockedByHand: unlockedChapters.contains(
+            grammarThemeKey(level, index),
+          ),
+        );
+
+    void openTheme(GrammarTheme theme) => Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) =>
+            GrammarLessonListScreen(theme: theme, levelColor: color),
+      ),
+    );
 
     return Scaffold(
       backgroundColor: t.surface,
       floatingActionButton: hasExercises
-          ? FloatingActionButton.extended(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => PracticeSessionScreen(
-                    title: title,
-                    color: color,
-                    persistSrs: false,
-                    settingsContexts: const {SettingsContext.grammar},
-                    hasExamples: true,
-                    loadQueue: (ref) => ref
-                        .read(grammarSessionServiceProvider)
-                        .buildQueueForChapter(lessonPaths: allLessonPaths),
-                  ),
-                ),
-              ),
-              icon: const Icon(Icons.school_rounded),
-              label: Text(l.grammarPractice),
-              backgroundColor: color,
-              foregroundColor: Colors.white,
+          ? GrammarPracticeFab(
+              title: title,
+              color: color,
+              lessonPaths: allLessonPaths,
             )
           : null,
       body: themesAsync.when(
@@ -158,51 +147,19 @@ class GrammarChapterView extends ConsumerWidget {
                             ),
                             accentColor: color,
                             isLocked: locked,
-                            onTap: () {
-                              if (!locked) {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute<void>(
-                                    builder: (_) => GrammarLessonListScreen(
-                                      theme: theme,
-                                      levelColor: color,
-                                    ),
-                                  ),
+                            onTap: () async {
+                              if (locked) {
+                                final confirmed = await confirmGrammarUnlock(
+                                  context,
+                                  title: l.chapterLocked,
+                                  body: l.chapterLockedBody,
                                 );
-                                return;
+                                if (!confirmed) return;
+                                await ref
+                                    .read(grammarProgressServiceProvider)
+                                    .unlockTheme(level, i);
                               }
-                              showDialog<void>(
-                                context: context,
-                                builder: (ctx) => AlertDialog(
-                                  title: Text(l.chapterLocked),
-                                  content: Text(l.chapterLockedBody),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.of(ctx).pop(),
-                                      child: Text(l.cancel),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(ctx).pop();
-                                        ref
-                                            .read(
-                                              grammarProgressServiceProvider,
-                                            )
-                                            .unlockTheme(level, i);
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute<void>(
-                                            builder: (_) =>
-                                                GrammarLessonListScreen(
-                                                  theme: theme,
-                                                  levelColor: color,
-                                                ),
-                                          ),
-                                        );
-                                      },
-                                      child: Text(l.chapterUnlockAnyway),
-                                    ),
-                                  ],
-                                ),
-                              );
+                              if (context.mounted) openTheme(theme);
                             },
                           );
                         },

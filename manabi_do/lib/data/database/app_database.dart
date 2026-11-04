@@ -6,6 +6,7 @@ import 'package:fsrs/fsrs.dart';
 import 'db_connection_native.dart'
     if (dart.library.js_interop) 'db_connection_web.dart';
 
+import '../../core/text/sentence_language.dart';
 import '../../domain/data/kana_data.dart';
 import 'schema_versions.dart';
 
@@ -214,18 +215,4 @@ class AppDatabase extends _$AppDatabase {
       },
     ),
   );
-
-  /// Cards of [itemType] first seen today, which the daily new-card budget
-  /// is measured against.
-  Future<int> countSeenToday(String itemType) {
-    final now = DateTime.now();
-    final todayStart = DateTime(now.year, now.month, now.day);
-    return (select(srsCards)..where(
-          (s) =>
-              s.itemType.equals(itemType) &
-              s.firstSeenAt.isBiggerOrEqualValue(todayStart),
-        ))
-        .get()
-        .then((rows) => rows.length);
-  }
 }

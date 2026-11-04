@@ -26,6 +26,9 @@ class GrammarTheme {
     required this.description,
     required this.chapters,
   });
+
+  /// Every lesson in the theme, in reading order.
+  List<GrammarLesson> get lessons => chapters.expand((c) => c.lessons).toList();
 }
 
 final grammarThemesProvider = FutureProvider.family<List<GrammarTheme>, String>(
@@ -85,10 +88,12 @@ class GrammarContinueTarget {
   });
 }
 
-const _continueLevels = ['basics', 'N5'];
+/// Every grammar level, in reading order. A level with no lessons yet is an
+/// empty query, so newly authored levels join without a code change.
+const _continueLevels = ['basics', 'N5', 'N4', 'N3', 'N2', 'N1'];
 
 /// The next grammar lesson to resume: the first started-but-unread lesson,
-/// falling back to the first unread one, scanning basics then N5 in order.
+/// falling back to the first unread one, scanning the levels in order.
 /// Null when every available lesson has been read.
 final grammarContinueProvider = FutureProvider<GrammarContinueTarget?>((
   ref,
@@ -134,15 +139,6 @@ final grammarUnlockedChaptersProvider = StreamProvider<Set<String>>((ref) {
 final grammarReadLessonsProvider = StreamProvider<Set<String>>((ref) {
   final db = ref.read(databaseProvider);
   return db.watchReadGrammarLessons();
-});
-
-final grammarHasExercisesProvider = FutureProvider.family<bool, String>((
-  ref,
-  lessonPath,
-) async {
-  final db = ref.read(databaseProvider);
-  final rows = await db.getGrammarExercisesForLesson(lessonPath);
-  return rows.isNotEmpty;
 });
 
 final grammarExerciseCountsProvider =

@@ -1,10 +1,35 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../../services/review_queue_service.dart';
 import '../characters/kanji/kanji_practice_screen.dart';
 import '../vocabulary/vocabulary_practice_screen.dart';
 import 'practice_selection_screen.dart';
+import 'practice_session_screen.dart';
 import 'writing_session_screen.dart';
+
+/// Opens an SRS session over whatever [loadQueue] returns.
+Future<void> openPracticeSession(
+  BuildContext context, {
+  required String title,
+  required Color color,
+  required LoadQueue loadQueue,
+}) => Navigator.of(context).push(
+  MaterialPageRoute<void>(
+    builder: (_) =>
+        PracticeSessionScreen(title: title, color: color, loadQueue: loadQueue),
+  ),
+);
+
+/// Opens today's combined session, as the home screen's start button and the
+/// reviews widget do.
+Future<void> openTodaysSession(BuildContext context) => openPracticeSession(
+  context,
+  title: context.l10n.todaysSession,
+  color: context.tokens.primary,
+  loadQueue: (ref) => ref.read(reviewQueueServiceProvider).allDue(),
+);
 
 /// Opens the kanji practice picker for a whole [level], or for a single group
 /// when [kanjiIds] is given.
@@ -114,7 +139,7 @@ Future<void> openVocabularyPractice(
               VocabularyPracticeScreen(
                 level: level,
                 allowedIds: vocabularyIds,
-                flashcardOnly: true,
+                exerciseFilter: ExerciseFilter.flashcardOnly,
               ),
             ),
           ),
@@ -126,7 +151,7 @@ Future<void> openVocabularyPractice(
               VocabularyPracticeScreen(
                 level: level,
                 allowedIds: vocabularyIds,
-                mcqOnly: true,
+                exerciseFilter: ExerciseFilter.mcqOnly,
               ),
             ),
           ),
@@ -138,7 +163,7 @@ Future<void> openVocabularyPractice(
               VocabularyPracticeScreen(
                 level: level,
                 allowedIds: vocabularyIds,
-                sentenceOnly: true,
+                exerciseFilter: ExerciseFilter.sentenceOnly,
               ),
             ),
           ),

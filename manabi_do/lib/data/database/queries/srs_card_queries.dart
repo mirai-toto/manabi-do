@@ -1,25 +1,20 @@
 part of '../app_database.dart';
 
+Card _decodeCard(String json) =>
+    Card.fromMap(jsonDecode(json) as Map<String, dynamic>);
+
 /// Reading and writing individual SRS cards.
 extension SrsCardQueries on AppDatabase {
   Future<Map<int, Card>> getAllSrsCardsForType(String itemType) async {
     final rows = await (select(
       srsCards,
     )..where((s) => s.itemType.equals(itemType))).get();
-    return {
-      for (final r in rows)
-        r.itemId: Card.fromMap(jsonDecode(r.cardJson) as Map<String, dynamic>),
-    };
+    return {for (final r in rows) r.itemId: _decodeCard(r.cardJson)};
   }
 
   Stream<Map<int, Card>> watchAllSrsCardsForType(String itemType) =>
       (select(srsCards)..where((s) => s.itemType.equals(itemType))).watch().map(
-        (rows) => {
-          for (final r in rows)
-            r.itemId: Card.fromMap(
-              jsonDecode(r.cardJson) as Map<String, dynamic>,
-            ),
-        },
+        (rows) => {for (final r in rows) r.itemId: _decodeCard(r.cardJson)},
       );
 
   /// Item type and due date for every card, without parsing the card JSON.
@@ -43,9 +38,7 @@ extension SrsCardQueries on AppDatabase {
       select(srsCards).watch().map((rows) {
         final byType = <String, List<Card>>{};
         for (final r in rows) {
-          (byType[r.itemType] ??= []).add(
-            Card.fromMap(jsonDecode(r.cardJson) as Map<String, dynamic>),
-          );
+          (byType[r.itemType] ??= []).add(_decodeCard(r.cardJson));
         }
         return byType;
       });
@@ -75,16 +68,6 @@ extension SrsCardQueries on AppDatabase {
     });
   }
 
-  Future<Card?> getSrsCard(String itemType, int itemId) async {
-    final row =
-        await (select(srsCards)..where(
-              (s) => s.itemType.equals(itemType) & s.itemId.equals(itemId),
-            ))
-            .getSingleOrNull();
-    if (row == null) return null;
-    return Card.fromMap(jsonDecode(row.cardJson) as Map<String, dynamic>);
-  }
-
   Future<void> upsertSrsCard(
     String itemType,
     int itemId,
@@ -107,42 +90,6 @@ extension SrsCardQueries on AppDatabase {
     ),
   );
 
-  /// Debug only: inserts past-due SRS cards for a sample of items.
-  Future<void> seedFakeReviews() async {
-    final yesterday = DateTime.now().subtract(const Duration(days: 1));
-
-    final hiragana =
-        await (select(kanas)
-              ..where((k) => k.type.equals('hiragana'))
-              ..limit(5))
-            .get();
-    for (final k in hiragana) {
-      await upsertSrsCard('hiragana', k.id, Card(cardId: k.id, due: yesterday));
-    }
-
-    final kanji =
-        await (select(kanjis)
-              ..where((k) => k.jlptLevel.equals('N5'))
-              ..limit(5))
-            .get();
-    for (final k in kanji) {
-      await upsertSrsCard('kanji', k.id, Card(cardId: k.id, due: yesterday));
-    }
-
-    final vocabulary =
-        await (select(vocabularyEntries)
-              ..where((v) => v.vocabularyLevel.equals(1))
-              ..limit(5))
-            .get();
-    for (final v in vocabulary) {
-      await upsertSrsCard(
-        'vocabulary',
-        v.id,
-        Card(cardId: v.id, due: yesterday),
-      );
-    }
-  }
-
   Future<void> resetAllProgress() async {
     await delete(srsCards).go();
     await delete(progressEntries).go();
@@ -158,5 +105,21 @@ extension SrsCardQueries on AppDatabase {
     await (delete(
       progressEntries,
     )..where((p) => p.itemType.equals(type) & p.itemId.equals(itemId))).go();
+  }
+
+  /// Cards of [itemType] first seen today, which the daily new-card budget
+  /// is measured against.
+  Future<int> countSeenToday(String itemType) {
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+    final count = srsCards.itemId.count();
+    return (selectOnly(srsCards)
+          ..addColumns([count])
+          ..where(
+            srsCards.itemType.equals(itemType) &
+                srsCards.firstSeenAt.isBiggerOrEqualValue(todayStart),
+          ))
+        .map((r) => r.read(count)!)
+        .getSingle();
   }
 }

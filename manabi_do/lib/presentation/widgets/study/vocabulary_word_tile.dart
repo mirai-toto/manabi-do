@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/providers/locale_provider.dart';
-import '../../../core/text/sentence_language.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -10,16 +7,20 @@ import '../../../core/theme/vocabulary_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/pos_label.dart';
 import '../../../l10n/vocabulary_level_label.dart';
-import '../../providers/vocabulary_provider.dart';
 import '../widgets.dart';
 
 /// Expandable vocabulary list row. Shows word, reading, abbreviated meaning.
 /// Tap expands to full meaning, part-of-speech chips, and `SpeakButton`.
-/// Localized meaning fetched via provider. `showLevel` adds a vocabulary-level
-/// badge on the
-/// right, for lists that mix levels.
-class VocabularyWordTile extends ConsumerStatefulWidget {
+/// The caller resolves the meaning. `showLevel` adds a vocabulary-level badge
+/// on the right, for lists that mix levels.
+class VocabularyWordTile extends StatefulWidget {
   final VocabularyEntry entry;
+
+  /// The meaning to show, already in the reader's language where possible.
+  final String meaning;
+
+  /// The reader's language, named, when [meaning] fell back to English.
+  final String? missingLanguage;
 
   /// Shows a JLPT badge next to the part of speech. Search results mix levels,
   /// so they need it; a group already knows which level it belongs to.
@@ -32,30 +33,24 @@ class VocabularyWordTile extends ConsumerStatefulWidget {
   const VocabularyWordTile({
     super.key,
     required this.entry,
+    required this.meaning,
+    this.missingLanguage,
     this.showLevel = false,
     this.onOpen,
   });
 
   @override
-  ConsumerState<VocabularyWordTile> createState() => _VocabularyWordTileState();
+  State<VocabularyWordTile> createState() => _VocabularyWordTileState();
 }
 
-class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
+class _VocabularyWordTileState extends State<VocabularyWordTile> {
   bool _expanded = false;
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final localized = ref.watch(
-      localizedVocabularyMeaningProvider(widget.entry.id),
-    );
-    final String? missingLanguage = missingMeaningLanguage(
-      localized,
-      readerLocale: ref.watch(localeProvider).languageCode,
-    );
-    final meaning = localized.asData?.value.isNotEmpty == true
-        ? localized.asData!.value
-        : widget.entry.meaning;
+    final String meaning = widget.meaning;
+    final String? missingLanguage = widget.missingLanguage;
     final posColor = t.onSurfaceVariant;
     final meaningStyle = AppTextStyles.body.copyWith(color: t.onSurface);
 
@@ -80,16 +75,21 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: GestureDetector(
-                      onTap: widget.onOpen,
-                      child: JapaneseText(
-                        word: widget.entry.word,
-                        reading: widget.entry.reading,
-                        style: AppTextStyles.jpMedium.copyWith(
-                          color: t.onSurface,
-                        ),
-                        rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                          color: t.onSurfaceVariant,
+                    child: Semantics(
+                      label: widget.entry.word,
+                      button: true,
+                      excludeSemantics: true,
+                      child: GestureDetector(
+                        onTap: widget.onOpen,
+                        child: JapaneseText(
+                          word: widget.entry.word,
+                          reading: widget.entry.reading,
+                          style: AppTextStyles.jpMedium.copyWith(
+                            color: t.onSurface,
+                          ),
+                          rubyStyle: AppTextStyles.jpFurigana.copyWith(
+                            color: t.onSurfaceVariant,
+                          ),
                         ),
                       ),
                     ),

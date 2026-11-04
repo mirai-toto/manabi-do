@@ -164,11 +164,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get next => 'Weiter →';
 
   @override
-  String kanjiPracticed(int count) {
-    return '$count Kanji geübt';
-  }
-
-  @override
   String get correct => 'Richtig';
 
   @override
@@ -769,11 +764,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get vocabularySubtitleShort => 'Wörter entdecken';
 
   @override
-  String reviewsDue(int count) {
-    return '$count Wiederholungen';
-  }
-
-  @override
   String nNew(int count) {
     return '$count neu';
   }
@@ -1089,8 +1079,12 @@ class AppLocalizationsDe extends AppLocalizations {
       'Wörter werden in der Reihenfolge gelehrt, in der sie tatsächlich geschrieben werden, gemessen an 18 Millionen Wörtern Japanisch. Die erste Stufe allein deckt die Hälfte von allem Geschriebenen ab.';
 
   @override
-  String onboardingLevelWords(int level, String count) {
-    return 'Stufe $level · $count Wörter';
+  String onboardingLevelWords(int level, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Stufe $level · $countString Wörter';
   }
 
   @override
@@ -1120,4 +1114,61 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingPickOne => 'Wählen Sie mindestens eines aus.';
+
+  @override
+  String durationMinutesSeconds(int minutes, int seconds) {
+    return '$minutes Min. $seconds s';
+  }
+
+  @override
+  String durationSeconds(int seconds) {
+    return '$seconds s';
+  }
+
+  @override
+  String intervalMinutes(int n) {
+    return '$n Min.';
+  }
+
+  @override
+  String intervalHours(int n) {
+    return '$n Std.';
+  }
+
+  @override
+  String intervalDays(int n) {
+    return '$n T.';
+  }
+
+  @override
+  String intervalMonths(int n) {
+    return '$n Mon.';
+  }
+
+  @override
+  String get loadError =>
+      'Konnte nicht geladen werden. Versuche es später erneut.';
+
+  @override
+  String widgetNextReview(String time) {
+    return 'Nächste um $time';
+  }
+
+  @override
+  String get widgetKanjiOfTheDay => 'Kanji des Tages';
+
+  @override
+  String get widgetResume => 'Fortsetzen';
+
+  @override
+  String get widgetAllLessonsRead => 'Alle Lektionen gelesen';
+
+  @override
+  String get widgetActivityRange => 'Letzte 20 Wochen';
+
+  @override
+  String get widgetLess => 'Weniger';
+
+  @override
+  String get widgetMore => 'Mehr';
 }

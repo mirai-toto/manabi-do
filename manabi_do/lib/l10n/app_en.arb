@@ -83,14 +83,6 @@
   "dailyTraining": "Daily Training",
   "writingPractice": "Writing Practice",
   "next": "Next →",
-  "kanjiPracticed": "{count} kanji practiced",
-  "@kanjiPracticed": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "correct": "Correct",
   "correctAnswer": "Correct answer",
   "missed": "Missed",
@@ -446,14 +438,6 @@
     }
   },
   "vocabularySubtitleShort": "Words to discover",
-  "reviewsDue": "{count} reviews",
-  "@reviewsDue": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "nNew": "{count} new",
   "@nNew": {
     "placeholders": {
@@ -610,7 +594,8 @@
         "type": "int"
       },
       "count": {
-        "type": "String"
+        "type": "int",
+        "format": "decimalPattern"
       }
     }
   },
@@ -629,5 +614,79 @@
   },
   "onboardingStart": "Start learning",
   "onboardingSkip": "Set it up later",
-  "onboardingPickOne": "Choose at least one to carry on."
+  "onboardingPickOne": "Choose at least one to carry on.",
+  "durationMinutesSeconds": "{minutes}m {seconds}s",
+  "@durationMinutesSeconds": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "durationSeconds": "{seconds}s",
+  "@durationSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "intervalMinutes": "{n}m",
+  "@intervalMinutes": {
+    "description": "Short interval under a grade button.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "intervalHours": "{n}h",
+  "@intervalHours": {
+    "description": "Short interval under a grade button.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "intervalDays": "{n}d",
+  "@intervalDays": {
+    "description": "Short interval under a grade button.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "intervalMonths": "{n}mo",
+  "@intervalMonths": {
+    "description": "Short interval under a grade button.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "loadError": "Couldn't load this. Try again later.",
+  "@loadError": {
+    "description": "Shown in place of content that failed to load."
+  },
+  "widgetNextReview": "Next at {time}",
+  "@widgetNextReview": {
+    "description": "Home-screen widget: when the next review falls due. The widget fills in {time} itself.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetKanjiOfTheDay": "Kanji of the day",
+  "widgetResume": "Resume",
+  "widgetAllLessonsRead": "Every lesson read",
+  "widgetActivityRange": "Last 20 weeks",
+  "widgetLess": "Less",
+  "widgetMore": "More"
 }

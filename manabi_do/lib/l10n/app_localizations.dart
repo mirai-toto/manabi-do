@@ -376,12 +376,6 @@ abstract class AppLocalizations {
   /// **'Next →'**
   String get next;
 
-  /// No description provided for @kanjiPracticed.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} kanji practiced'**
-  String kanjiPracticed(int count);
-
   /// No description provided for @correct.
   ///
   /// In en, this message translates to:
@@ -1432,12 +1426,6 @@ abstract class AppLocalizations {
   /// **'Words to discover'**
   String get vocabularySubtitleShort;
 
-  /// No description provided for @reviewsDue.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} reviews'**
-  String reviewsDue(int count);
-
   /// No description provided for @nNew.
   ///
   /// In en, this message translates to:
@@ -2018,7 +2006,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Level {level} · {count} words'**
-  String onboardingLevelWords(int level, String count);
+  String onboardingLevelWords(int level, int count);
 
   /// No description provided for @onboardingStudyTitle.
   ///
@@ -2067,6 +2055,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose at least one to carry on.'**
   String get onboardingPickOne;
+
+  /// No description provided for @durationMinutesSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes}m {seconds}s'**
+  String durationMinutesSeconds(int minutes, int seconds);
+
+  /// No description provided for @durationSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds}s'**
+  String durationSeconds(int seconds);
+
+  /// Short interval under a grade button.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}m'**
+  String intervalMinutes(int n);
+
+  /// Short interval under a grade button.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}h'**
+  String intervalHours(int n);
+
+  /// Short interval under a grade button.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}d'**
+  String intervalDays(int n);
+
+  /// Short interval under a grade button.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}mo'**
+  String intervalMonths(int n);
+
+  /// Shown in place of content that failed to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load this. Try again later.'**
+  String get loadError;
+
+  /// Home-screen widget: when the next review falls due. The widget fills in {time} itself.
+  ///
+  /// In en, this message translates to:
+  /// **'Next at {time}'**
+  String widgetNextReview(String time);
+
+  /// No description provided for @widgetKanjiOfTheDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Kanji of the day'**
+  String get widgetKanjiOfTheDay;
+
+  /// No description provided for @widgetResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get widgetResume;
+
+  /// No description provided for @widgetAllLessonsRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Every lesson read'**
+  String get widgetAllLessonsRead;
+
+  /// No description provided for @widgetActivityRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 20 weeks'**
+  String get widgetActivityRange;
+
+  /// No description provided for @widgetLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Less'**
+  String get widgetLess;
+
+  /// No description provided for @widgetMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get widgetMore;
 }
 
 class _AppLocalizationsDelegate

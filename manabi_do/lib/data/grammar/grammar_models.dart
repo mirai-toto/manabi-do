@@ -144,18 +144,203 @@ final class ErrorDetectionExercise extends GrammarExercise {
   }
 }
 
-class GrammarBlock {
-  final String type;
-  final Map<String, dynamic> data;
-
-  const GrammarBlock({required this.type, required this.data});
+/// One block of a grammar lesson, parsed from the lesson's `blocks_json`.
+///
+/// Parsed here, once, so the widgets that draw a block receive typed fields
+/// instead of reaching into a map. A type this build does not know becomes an
+/// [UnknownGrammarBlock], which draws nothing: newer content must not break
+/// an older app.
+sealed class GrammarBlock {
+  const GrammarBlock();
 
   factory GrammarBlock.fromJson(Map<String, dynamic> json) {
-    return GrammarBlock(
-      type: json['type'] as String,
-      data: Map<String, dynamic>.from(json),
-    );
+    final String type = json['type'] as String;
+    return switch (type) {
+      'text' => TextGrammarBlock(json['content'] as String),
+      'section_title' => SectionTitleGrammarBlock(json['content'] as String),
+      'pattern' => PatternGrammarBlock(_strings(json['lines'])),
+      'note' => NoteGrammarBlock(json['content'] as String),
+      'example_table' => ExampleTableGrammarBlock(
+        columns: _strings(json['columns']),
+        rows: _rows(json['rows']),
+      ),
+      'vocabulary_table' => VocabularyTableGrammarBlock(
+        columns: _strings(json['columns']),
+        rows: _rows(json['rows']),
+      ),
+      'conjugation_table' => ConjugationTableGrammarBlock(
+        label: json['label'] as String,
+        rows: _rows(json['rows']),
+      ),
+      'comparison' => ComparisonGrammarBlock(
+        left: ComparisonSide.fromJson(json['left'] as Map<String, dynamic>),
+        right: ComparisonSide.fromJson(json['right'] as Map<String, dynamic>),
+      ),
+      'list' => ListGrammarBlock(
+        bullet: json['style'] == 'bullet',
+        items: _strings(json['items']),
+      ),
+      'transform_cards' => TransformCardsGrammarBlock(
+        (json['groups'] as List<dynamic>)
+            .map((g) => TransformGroup.fromJson(g as Map<String, dynamic>))
+            .toList(),
+      ),
+      'divider' => const DividerGrammarBlock(),
+      _ => UnknownGrammarBlock(type),
+    };
   }
+
+  static List<String> _strings(Object? raw) =>
+      (raw as List<dynamic>).cast<String>();
+
+  static List<Map<String, String>> _rows(Object? raw) => (raw as List<dynamic>)
+      .map((r) => Map<String, String>.from(r as Map))
+      .toList();
+}
+
+final class TextGrammarBlock extends GrammarBlock {
+  final String content;
+  const TextGrammarBlock(this.content);
+}
+
+final class SectionTitleGrammarBlock extends GrammarBlock {
+  final String content;
+  const SectionTitleGrammarBlock(this.content);
+}
+
+final class PatternGrammarBlock extends GrammarBlock {
+  final List<String> lines;
+  const PatternGrammarBlock(this.lines);
+}
+
+final class NoteGrammarBlock extends GrammarBlock {
+  final String content;
+  const NoteGrammarBlock(this.content);
+}
+
+final class ExampleTableGrammarBlock extends GrammarBlock {
+  final List<String> columns;
+  final List<Map<String, String>> rows;
+  const ExampleTableGrammarBlock({required this.columns, required this.rows});
+}
+
+final class VocabularyTableGrammarBlock extends GrammarBlock {
+  final List<String> columns;
+  final List<Map<String, String>> rows;
+  const VocabularyTableGrammarBlock({
+    required this.columns,
+    required this.rows,
+  });
+}
+
+final class ConjugationTableGrammarBlock extends GrammarBlock {
+  final String label;
+  final List<Map<String, String>> rows;
+  const ConjugationTableGrammarBlock({required this.label, required this.rows});
+}
+
+final class ComparisonGrammarBlock extends GrammarBlock {
+  final ComparisonSide left;
+  final ComparisonSide right;
+  const ComparisonGrammarBlock({required this.left, required this.right});
+}
+
+final class ListGrammarBlock extends GrammarBlock {
+  final bool bullet;
+  final List<String> items;
+  const ListGrammarBlock({required this.bullet, required this.items});
+}
+
+final class TransformCardsGrammarBlock extends GrammarBlock {
+  final List<TransformGroup> groups;
+  const TransformCardsGrammarBlock(this.groups);
+}
+
+final class DividerGrammarBlock extends GrammarBlock {
+  const DividerGrammarBlock();
+}
+
+final class UnknownGrammarBlock extends GrammarBlock {
+  final String type;
+  const UnknownGrammarBlock(this.type);
+}
+
+/// One side of a comparison block.
+class ComparisonSide {
+  final String label;
+  final String description;
+  final String exampleJp;
+  final String exampleEn;
+
+  const ComparisonSide({
+    required this.label,
+    required this.description,
+    required this.exampleJp,
+    required this.exampleEn,
+  });
+
+  factory ComparisonSide.fromJson(Map<String, dynamic> d) => ComparisonSide(
+    label: d['label'] as String,
+    description: d['description'] as String,
+    exampleJp: d['example_jp'] as String,
+    exampleEn: d['example_en'] as String,
+  );
+}
+
+class TransformRow {
+  final String base;
+  final String? old;
+  final String? newSuffix;
+  final String result;
+  final String? romaji;
+  final String? english;
+
+  const TransformRow({
+    required this.base,
+    this.old,
+    this.newSuffix,
+    required this.result,
+    this.romaji,
+    this.english,
+  });
+
+  factory TransformRow.fromJson(Map<String, dynamic> d) => TransformRow(
+    base: d['base'] as String,
+    old: d['old'] as String?,
+    newSuffix: d['new'] as String?,
+    result: d['result'] as String,
+    romaji: d['romaji'] as String?,
+    english: d['english'] as String?,
+  );
+}
+
+class TransformGroup {
+  final String label;
+  final String? tag;
+  final String? description;
+  final String? rule;
+  final List<TransformRow> rows;
+  final String? note;
+
+  const TransformGroup({
+    required this.label,
+    this.tag,
+    this.description,
+    this.rule,
+    required this.rows,
+    this.note,
+  });
+
+  factory TransformGroup.fromJson(Map<String, dynamic> d) => TransformGroup(
+    label: d['label'] as String,
+    tag: d['tag'] as String?,
+    description: d['description'] as String?,
+    rule: d['rule'] as String?,
+    rows: (d['rows'] as List<dynamic>)
+        .map((r) => TransformRow.fromJson(r as Map<String, dynamic>))
+        .toList(),
+    note: d['note'] as String?,
+  );
 }
 
 class GrammarLesson {
@@ -170,15 +355,4 @@ class GrammarLesson {
     required this.blocks,
     this.difficulty = 1,
   });
-
-  factory GrammarLesson.fromJson(Map<String, dynamic> json) {
-    return GrammarLesson(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      difficulty: json['difficulty'] as int? ?? 1,
-      blocks: (json['blocks'] as List<dynamic>)
-          .map((b) => GrammarBlock.fromJson(b as Map<String, dynamic>))
-          .toList(),
-    );
-  }
 }

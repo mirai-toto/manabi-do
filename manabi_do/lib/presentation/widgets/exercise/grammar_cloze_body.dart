@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:fsrs/fsrs.dart' show Rating;
 
-import '../../../core/models/practice_answer.dart';
+import '../../models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../common/label/japanese_text.dart';
 import 'flashcard.dart';
+import 'choice_answer.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 
 /// Grammar fill-in-the-blank body. Renders the sentence with a gap and a set of
-/// `ClozeOption` chips.
+/// `McqCard` options.
 class GrammarClozeBody extends StatefulWidget {
   /// Sentence text with "___" marking the blank.
   final String sentence;
@@ -44,56 +44,19 @@ class GrammarClozeBody extends StatefulWidget {
   State<GrammarClozeBody> createState() => _GrammarClozeBodyState();
 }
 
-class _GrammarClozeBodyState extends State<GrammarClozeBody> {
-  late List<McqOptionState> _states;
-  bool _answered = false;
-  bool _autoAdvancing = false;
-
-  /// Kept so the self-assessment path reports the choice too, not just the
-  /// auto-advance one.
-  String? _given;
-
-  @override
-  void initState() {
-    super.initState();
-    _states = List.filled(widget.options.length, McqOptionState.idle);
-  }
-
-  void _onTap(int i) {
-    if (_answered) return;
-    final isCorrect = i == widget.correctIndex;
-    setState(() {
-      _answered = true;
-      _given = widget.options[i].text;
-      _states = List.generate(widget.options.length, (j) {
-        if (j == i) {
-          return isCorrect ? McqOptionState.correct : McqOptionState.wrong;
-        }
-        if (!isCorrect && j == widget.correctIndex) {
-          return McqOptionState.correct;
-        }
-        return McqOptionState.idle;
-      });
-    });
-    if (widget.autoAdvance) {
-      setState(() => _autoAdvancing = true);
-      Future.delayed(const Duration(milliseconds: 800), () {
-        if (mounted) {
-          widget.onAnswer(
-            isCorrect ? Rating.good : Rating.again,
-            given: _given,
-          );
-        }
-      });
-    }
-  }
+class _GrammarClozeBodyState extends State<GrammarClozeBody>
+    with ChoiceAnswer<GrammarClozeBody> {
+  void _onTap(int i) => answerChoice(
+    i,
+    options: widget.options,
+    correctIndex: widget.correctIndex,
+    autoAdvance: widget.autoAdvance,
+    onAnswer: widget.onAnswer,
+  );
 
   @override
   Widget build(BuildContext context) {
-    final options = List.generate(
-      widget.options.length,
-      (i) => widget.options[i].copyWith(state: _states[i]),
-    );
+    final options = withAnswerStates(widget.options);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -109,23 +72,24 @@ class _GrammarClozeBodyState extends State<GrammarClozeBody> {
           _ClozeSentence(
             sentence: widget.sentence,
             color: widget.color,
-            answered: _answered,
+            answered: answered,
             correctAnswer: widget.options[widget.correctIndex].text,
           ),
           const SizedBox(height: AppDimens.spaceLg),
           McqCard(
+            badgeLabel: context.l10n.sentenceFillIn,
             question: context.l10n.sentenceFillInPrompt,
             options: options,
-            onOptionTap: _answered ? null : _onTap,
+            onOptionTap: answered ? null : _onTap,
           ),
-          if (_answered && !_autoAdvancing) ...[
+          if (answered && !autoAdvancing) ...[
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: null,
               fourPointGrading: widget.fourPointGrading,
               gradeAccent: widget.gradeAccent,
               question: context.l10n.selfAssessQuestion,
-              onRate: (rating) => widget.onAnswer(rating, given: _given),
+              onRate: (rating) => widget.onAnswer(rating, given: given),
             ),
           ],
         ],

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/theme/jlpt_level.dart';
 import '../../core/text/search_rank.dart';
 import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
@@ -158,15 +159,12 @@ List<T> _ranked<T>({
 
 /// Easiest first. Searching "water" should surface 水 above the rare N1 entries
 /// whose meanings happen to mention water.
-int _levelRank(String level) => switch (level) {
-  'N5' => 0,
-  'N4' => 1,
-  'N3' => 2,
-  'N2' => 3,
-  'N1' => 4,
-  _ => 5,
-};
+/// Kanji outside the JLPT lists sort last.
+int _levelRank(String level) {
+  final int difficulty = levelDifficulty(level);
+  return difficulty < 0 ? 99 : difficulty;
+}
 
-final searchServiceProvider = Provider(
+final searchServiceProvider = Provider<SearchService>(
   (ref) => SearchService(ref.read(databaseProvider)),
 );

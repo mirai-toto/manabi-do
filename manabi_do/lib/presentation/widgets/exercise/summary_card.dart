@@ -122,7 +122,7 @@ class _ScoreCircle extends StatelessWidget {
         child: Text(
           '$score/$total',
           style: AppTextStyles.headlineLarge.copyWith(
-            color: Colors.white,
+            color: t.onPrimary,
             fontWeight: FontWeight.w800,
           ),
         ),

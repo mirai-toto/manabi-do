@@ -13,6 +13,7 @@ import '../../../l10n/l10n.dart';
 import '../../../l10n/pos_label.dart';
 import '../../providers/vocabulary_provider.dart';
 import '../../widgets/widgets.dart';
+import 'vocabulary_kanji_list.dart';
 
 /// Everything the app knows about one word.
 ///
@@ -29,13 +30,7 @@ class VocabularyDetailScreen extends ConsumerWidget {
       entry.vocabularyLevel,
       Theme.of(context).brightness,
     );
-    final localized = ref
-        .watch(localizedVocabularyMeaningProvider(entry.id))
-        .asData
-        ?.value;
-    final meaning = (localized == null || localized.isEmpty)
-        ? entry.meaning
-        : localized;
+    final String meaning = ref.watch(vocabularyMeaningProvider(entry)).meaning;
 
     return Scaffold(
       backgroundColor: t.surface,

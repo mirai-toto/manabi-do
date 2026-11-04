@@ -2,23 +2,21 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/app_languages.dart';
+import '../common/decoration/app_emoji.dart';
 import '../common/decoration/sheet_drag_handle.dart';
-
-const languages = [
-  (code: 'en', flag: '🇬🇧', name: 'English'),
-  (code: 'fr', flag: '🇫🇷', name: 'Français'),
-  (code: 'de', flag: '🇩🇪', name: 'Deutsch'),
-];
 
 /// Bottom sheet for selecting the app language. Renders a list of supported
 /// locale codes as tappable tiles; highlights the current selection.
 class LanguagePickerSheet extends StatelessWidget {
+  final List<AppLanguage> languages;
   final String currentCode;
   final void Function(String code) onSelect;
   final String title;
 
   const LanguagePickerSheet({
     super.key,
+    required this.languages,
     required this.currentCode,
     required this.onSelect,
     required this.title,
@@ -48,39 +46,39 @@ class LanguagePickerSheet extends StatelessWidget {
             ),
             const SizedBox(height: AppDimens.spaceMd),
             for (final lang in languages)
-              InkWell(
-                onTap: () => onSelect(lang.code),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppDimens.spaceMd,
-                    vertical: AppDimens.spaceMd,
-                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        lang.flag,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontFamily: 'NotoColorEmoji',
-                        ),
-                      ),
-                      const SizedBox(width: AppDimens.spaceMd),
-                      Expanded(
-                        child: Text(
-                          lang.name,
-                          style: AppTextStyles.body.copyWith(
-                            color: lang.code == currentCode
-                                ? t.primary
-                                : t.onSurface,
-                            fontWeight: lang.code == currentCode
-                                ? FontWeight.w600
-                                : FontWeight.w400,
+              Semantics(
+                label: lang.name,
+                button: true,
+                selected: lang.code == currentCode,
+                excludeSemantics: true,
+                child: InkWell(
+                  onTap: () => onSelect(lang.code),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDimens.spaceMd,
+                      vertical: AppDimens.spaceMd,
+                    ),
+                    child: Row(
+                      children: [
+                        AppEmoji(lang.flag, size: 28),
+                        const SizedBox(width: AppDimens.spaceMd),
+                        Expanded(
+                          child: Text(
+                            lang.name,
+                            style: AppTextStyles.body.copyWith(
+                              color: lang.code == currentCode
+                                  ? t.primary
+                                  : t.onSurface,
+                              fontWeight: lang.code == currentCode
+                                  ? FontWeight.w600
+                                  : FontWeight.w400,
+                            ),
                           ),
                         ),
-                      ),
-                      if (lang.code == currentCode)
-                        Icon(Icons.check_rounded, size: 20, color: t.primary),
-                    ],
+                        if (lang.code == currentCode)
+                          Icon(Icons.check_rounded, size: 20, color: t.primary),
+                      ],
+                    ),
                   ),
                 ),
               ),

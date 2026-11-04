@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import 'shared_preferences_provider.dart';
 
 const _keyNewCharactersPerDay = 'srs_new_characters_per_day';
 const _keyNewVocabularyPerDay = 'srs_new_vocab_per_day';
@@ -47,10 +48,10 @@ class SrsSettings {
   );
 }
 
-class SrsSettingsNotifier extends AsyncNotifier<SrsSettings> {
+class SrsSettingsNotifier extends Notifier<SrsSettings> {
   @override
-  Future<SrsSettings> build() async {
-    final prefs = await SharedPreferences.getInstance();
+  SrsSettings build() {
+    final prefs = ref.read(sharedPreferencesProvider);
     final legacy = prefs.getInt(_keyLegacyNewCards) ?? 10;
     return SrsSettings(
       newCharactersPerDay: prefs.getInt(_keyNewCharactersPerDay) ?? legacy,
@@ -61,31 +62,30 @@ class SrsSettingsNotifier extends AsyncNotifier<SrsSettings> {
   }
 
   Future<void> setNewCharactersPerDay(int value) async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = ref.read(sharedPreferencesProvider);
     await prefs.setInt(_keyNewCharactersPerDay, value);
-    state = AsyncData(state.requireValue.copyWith(newCharactersPerDay: value));
+    state = state.copyWith(newCharactersPerDay: value);
   }
 
   Future<void> setNewVocabularyPerDay(int value) async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = ref.read(sharedPreferencesProvider);
     await prefs.setInt(_keyNewVocabularyPerDay, value);
-    state = AsyncData(state.requireValue.copyWith(newVocabularyPerDay: value));
+    state = state.copyWith(newVocabularyPerDay: value);
   }
 
   Future<void> setAutoAdvance(bool value) async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = ref.read(sharedPreferencesProvider);
     await prefs.setBool(_keyAutoAdvance, value);
-    state = AsyncData(state.requireValue.copyWith(autoAdvance: value));
+    state = state.copyWith(autoAdvance: value);
   }
 
   Future<void> setDetailedGrading(bool value) async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = ref.read(sharedPreferencesProvider);
     await prefs.setBool(_keyDetailedGrading, value);
-    state = AsyncData(state.requireValue.copyWith(detailedGrading: value));
+    state = state.copyWith(detailedGrading: value);
   }
 }
 
-final srsSettingsProvider =
-    AsyncNotifierProvider<SrsSettingsNotifier, SrsSettings>(
-      SrsSettingsNotifier.new,
-    );
+final srsSettingsProvider = NotifierProvider<SrsSettingsNotifier, SrsSettings>(
+  SrsSettingsNotifier.new,
+);

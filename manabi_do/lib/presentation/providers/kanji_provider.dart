@@ -1,6 +1,5 @@
 import '../../core/providers/locale_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fsrs/fsrs.dart';
 import '../../data/database/app_database.dart';
 import '../services/search_service.dart';
 import 'database_provider.dart';
@@ -36,10 +35,6 @@ final kanjiListProvider = StreamProvider.family<KanjiLevelData, String>((
 final kanjiDetailProvider = StreamProvider.family<Kanji?, int>((ref, id) {
   return ref.watch(databaseProvider).watchKanjiById(id);
 });
-
-final kanjiSrsCardsProvider = StreamProvider<Map<int, Card>>(
-  (ref) => ref.watch(databaseProvider).watchAllSrsCardsForType('kanji'),
-);
 
 /// The kanji a word is written with, in reading order.
 final kanjiForVocabularyProvider = FutureProvider.family<List<Kanji>, int>(

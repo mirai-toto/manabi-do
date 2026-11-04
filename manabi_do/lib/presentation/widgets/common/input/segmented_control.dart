@@ -62,14 +62,14 @@ class SegmentedControl extends StatelessWidget {
                         Icon(
                           icons![i],
                           size: 18,
-                          color: i == selected ? Colors.white : t.onSurface,
+                          color: i == selected ? t.onPrimary : t.onSurface,
                         ),
                         const SizedBox(height: AppDimens.spaceXxs),
                       ],
                       Text(
                         options[i],
                         style: AppTextStyles.labelSmall.copyWith(
-                          color: i == selected ? Colors.white : t.onSurface,
+                          color: i == selected ? t.onPrimary : t.onSurface,
                           fontWeight: FontWeight.w600,
                         ),
                         textAlign: TextAlign.center,

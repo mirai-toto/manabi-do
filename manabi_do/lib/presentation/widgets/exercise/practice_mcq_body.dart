@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:fsrs/fsrs.dart' show Card, Rating;
+import 'package:fsrs/fsrs.dart' show Card;
 
-import '../../../core/models/practice_answer.dart';
+import '../../models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/action/app_button.dart';
+import 'view_detail_button.dart';
 import 'flashcard.dart';
+import 'choice_answer.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 
@@ -58,56 +58,19 @@ class PracticeMcqBody extends StatefulWidget {
   State<PracticeMcqBody> createState() => _PracticeMcqBodyState();
 }
 
-class _PracticeMcqBodyState extends State<PracticeMcqBody> {
-  late List<McqOptionState> _states;
-  bool _answered = false;
-  bool _autoAdvancing = false;
-
-  /// Kept so the self-assessment path can report the choice too, not just the
-  /// auto-advance one.
-  String? _given;
-
-  @override
-  void initState() {
-    super.initState();
-    _states = List.filled(widget.options.length, McqOptionState.idle);
-  }
-
-  void _onTap(int i) {
-    if (_answered) return;
-    final isCorrect = i == widget.correctIndex;
-    setState(() {
-      _answered = true;
-      _given = widget.options[i].text;
-      _states = List.generate(widget.options.length, (j) {
-        if (j == i) {
-          return isCorrect ? McqOptionState.correct : McqOptionState.wrong;
-        }
-        if (!isCorrect && j == widget.correctIndex) {
-          return McqOptionState.correct;
-        }
-        return McqOptionState.idle;
-      });
-    });
-    if (widget.autoAdvance) {
-      setState(() => _autoAdvancing = true);
-      Future.delayed(const Duration(milliseconds: 800), () {
-        if (mounted) {
-          widget.onAnswer(
-            isCorrect ? Rating.good : Rating.again,
-            given: _given,
-          );
-        }
-      });
-    }
-  }
+class _PracticeMcqBodyState extends State<PracticeMcqBody>
+    with ChoiceAnswer<PracticeMcqBody> {
+  void _onTap(int i) => answerChoice(
+    i,
+    options: widget.options,
+    correctIndex: widget.correctIndex,
+    autoAdvance: widget.autoAdvance,
+    onAnswer: widget.onAnswer,
+  );
 
   @override
   Widget build(BuildContext context) {
-    final options = List.generate(
-      widget.options.length,
-      (i) => widget.options[i].copyWith(state: _states[i]),
-    );
+    final options = withAnswerStates(widget.options);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
@@ -121,30 +84,28 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
           ),
           const SizedBox(height: AppDimens.spaceLg),
           McqCard(
+            badgeLabel: context.l10n.multipleChoice,
             question: widget.question,
             japanesePrompt: widget.japanesePrompt,
             japaneseReading: widget.japaneseReading,
             options: options,
-            onOptionTap: _answered ? null : _onTap,
+            onOptionTap: answered ? null : _onTap,
             compactGrid: widget.compactGrid,
             showFurigana: widget.showPromptFurigana,
           ),
-          if (_answered && !_autoAdvancing) ...[
+          if (answered && !autoAdvancing) ...[
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: widget.card,
               fourPointGrading: widget.fourPointGrading,
               gradeAccent: widget.gradeAccent,
               question: context.l10n.selfAssessQuestion,
-              onRate: (rating) => widget.onAnswer(rating, given: _given),
+              onRate: (rating) => widget.onAnswer(rating, given: given),
             ),
             if (widget.onDetailTap != null) ...[
               const SizedBox(height: AppDimens.spaceSm),
-              AppButton(
+              ViewDetailButton(
                 label: context.l10n.viewDetail,
-                icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                variant: AppButtonVariant.text,
-                foregroundColor: context.tokens.onSurfaceVariant,
                 onPressed: widget.onDetailTap,
               ),
             ],

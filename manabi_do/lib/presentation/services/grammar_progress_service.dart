@@ -13,6 +13,18 @@ String grammarGroupKey(String themeTitle, int chapterIndex) =>
 
 String grammarLessonKey(String lessonId) => 'lesson:$lessonId';
 
+/// Whether a theme, group or lesson is locked: the step before it is not fully
+/// read, and the learner has not unlocked it by hand. A first step, or one
+/// after an empty step, is never locked.
+bool isGrammarStepLocked({
+  required Iterable<String> previousLessonIds,
+  required Set<String> readLessons,
+  required bool unlockedByHand,
+}) {
+  if (previousLessonIds.every(readLessons.contains)) return false;
+  return !unlockedByHand;
+}
+
 /// Records what the learner has done with a grammar lesson.
 ///
 /// Screens call this instead of the database: opening a lesson, ticking it as
@@ -41,6 +53,6 @@ class GrammarProgressService {
       _db.unlockGrammarChapter(grammarLessonKey(lessonId));
 }
 
-final grammarProgressServiceProvider = Provider(
+final grammarProgressServiceProvider = Provider<GrammarProgressService>(
   (ref) => GrammarProgressService(ref.read(databaseProvider)),
 );

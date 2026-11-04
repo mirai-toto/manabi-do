@@ -78,7 +78,6 @@
   "dailyTraining": "Tägliches Training",
   "writingPractice": "Schreibübung",
   "next": "Weiter →",
-  "kanjiPracticed": "{count} Kanji geübt",
   "copy": "Kopieren",
   "correct": "Richtig",
   "correctAnswer": "Richtige Antwort",
@@ -388,14 +387,6 @@
     }
   },
   "vocabularySubtitleShort": "Wörter entdecken",
-  "reviewsDue": "{count} Wiederholungen",
-  "@reviewsDue": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "nNew": "{count} neu",
   "@nNew": {
     "placeholders": {
@@ -550,5 +541,19 @@
   "onboardingPaceEstimate": "Etwa {minutes} Minuten pro Tag",
   "onboardingStart": "Loslegen",
   "onboardingSkip": "Später einrichten",
-  "onboardingPickOne": "Wählen Sie mindestens eines aus."
+  "onboardingPickOne": "Wählen Sie mindestens eines aus.",
+  "durationMinutesSeconds": "{minutes} Min. {seconds} s",
+  "durationSeconds": "{seconds} s",
+  "intervalMinutes": "{n} Min.",
+  "intervalHours": "{n} Std.",
+  "intervalDays": "{n} T.",
+  "intervalMonths": "{n} Mon.",
+  "loadError": "Konnte nicht geladen werden. Versuche es später erneut.",
+  "widgetNextReview": "Nächste um {time}",
+  "widgetKanjiOfTheDay": "Kanji des Tages",
+  "widgetResume": "Fortsetzen",
+  "widgetAllLessonsRead": "Alle Lektionen gelesen",
+  "widgetActivityRange": "Letzte 20 Wochen",
+  "widgetLess": "Weniger",
+  "widgetMore": "Mehr"
 }

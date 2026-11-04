@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers/locale_provider.dart';
@@ -7,7 +8,26 @@ import '../../core/text/short_meaning.dart';
 import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
 import '../providers/drawing_settings_provider.dart';
-import '../providers/writing_session_provider.dart';
+
+/// Which kanji a writing session draws: a whole level, or some of it.
+class WritingSessionArgs {
+  final String level;
+  // Stored sorted so equality is stable regardless of Set iteration order.
+  final List<int>? kanjiIds;
+
+  WritingSessionArgs({required this.level, Set<int>? kanjiIds})
+    : kanjiIds = kanjiIds == null ? null : (kanjiIds.toList()..sort());
+
+  @override
+  bool operator ==(Object other) =>
+      other is WritingSessionArgs &&
+      other.level == level &&
+      listEquals(other.kanjiIds, kanjiIds);
+
+  @override
+  int get hashCode =>
+      Object.hash(level, kanjiIds == null ? null : Object.hashAll(kanjiIds!));
+}
 
 class WritingSessionService {
   final Ref _ref;
@@ -53,6 +73,6 @@ class WritingSessionService {
   }
 }
 
-final writingSessionServiceProvider = Provider(
+final writingSessionServiceProvider = Provider<WritingSessionService>(
   (ref) => WritingSessionService(ref),
 );

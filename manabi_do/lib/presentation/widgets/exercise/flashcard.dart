@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
-import '../../../core/srs/srs_level.dart';
+import 'package:fsrs/fsrs.dart' show Card, Rating;
+import '../../../core/theme/srs_level_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../core/srs/interval_preview.dart';
+import '../../../l10n/interval_label.dart';
 import '../../../l10n/l10n.dart';
 import '../common/action/app_button.dart';
 import '../common/action/speak_button.dart';
@@ -147,8 +149,10 @@ bool _looksJapanese(String text) {
   return jpCount / runes.length > 0.5;
 }
 
-/// Rating button row shown after a flashcard is revealed. Shows FSRS interval
-/// previews in SRS mode; shows "Got it / Not yet" in free mode.
+/// The grade buttons: Again / Hard / Good / Easy, or a pass/fail pair when
+/// [fourPointGrading] is off. Each previews the interval it would schedule for
+/// [card]. Shown after a flashcard is revealed and when regrading an answer in
+/// the session review.
 class FlashcardActions extends StatelessWidget {
   final Card? card;
   final bool fourPointGrading;
@@ -159,6 +163,12 @@ class FlashcardActions extends StatelessWidget {
   /// that nothing is being recorded. Null uses the ramp.
   final Color? gradeAccent;
   final String? question;
+
+  /// The grade already given, ringed so it can be seen before changing it.
+  final Rating? selected;
+
+  /// Labels for the pass/fail pair. Null uses "Not yet" / "Got it".
+  final ({String fail, String pass})? passFailLabels;
   final void Function(Rating) onRate;
 
   const FlashcardActions({
@@ -168,6 +178,8 @@ class FlashcardActions extends StatelessWidget {
     required this.fourPointGrading,
     this.gradeAccent,
     this.question,
+    this.selected,
+    this.passFailLabels,
   });
 
   @override
@@ -175,6 +187,8 @@ class FlashcardActions extends StatelessWidget {
     final t = context.tokens;
     final l = context.l10n;
     final brightness = Theme.of(context).brightness;
+    final failLabel = passFailLabels?.fail ?? l.flashcardNotYet;
+    final passLabel = passFailLabels?.pass ?? l.flashcardGotIt;
 
     Widget btn(
       String label,
@@ -185,10 +199,21 @@ class FlashcardActions extends StatelessWidget {
     }) => Expanded(
       child: AppButton(
         label: label,
-        subtitle: srsIntervalPreview(card, rating),
+        subtitle: switch (srsIntervalPreview(card, rating)) {
+          final Duration interval => intervalLabel(interval, l),
+          null => null,
+        },
         backgroundColor: background,
         foregroundColor: foreground,
-        side: side,
+        // Null when nothing was given yet, so the buttons are not announced
+        // as unselected toggles.
+        selected: selected == null ? null : selected == rating,
+        side: selected == rating
+            ? BorderSide(
+                color: foreground,
+                width: AppDimens.borderWidthSelected,
+              )
+            : side,
         radius: AppDimens.radiusLg,
         padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
         visualDensity: VisualDensity.standard,
@@ -214,7 +239,7 @@ class FlashcardActions extends StatelessWidget {
         return Row(
           children: [
             btn(
-              l.flashcardNotYet,
+              failLabel,
               Rating.again,
               background: Colors.transparent,
               foreground: accent,
@@ -225,7 +250,7 @@ class FlashcardActions extends StatelessWidget {
             ),
             const SizedBox(width: AppDimens.spaceSm),
             btn(
-              l.flashcardGotIt,
+              passLabel,
               Rating.good,
               background: accent,
               foreground: onAccentFor(accent),
@@ -235,17 +260,9 @@ class FlashcardActions extends StatelessWidget {
       }
       return Row(
         children: [
-          rampBtn(
-            l.flashcardNotYet,
-            Rating.again,
-            twoPointRatingAccent(Rating.again),
-          ),
+          rampBtn(failLabel, Rating.again, twoPointRatingAccent(Rating.again)),
           const SizedBox(width: AppDimens.spaceSm),
-          rampBtn(
-            l.flashcardGotIt,
-            Rating.good,
-            twoPointRatingAccent(Rating.good),
-          ),
+          rampBtn(passLabel, Rating.good, twoPointRatingAccent(Rating.good)),
         ],
       );
     }
@@ -279,18 +296,4 @@ class FlashcardActions extends StatelessWidget {
       ],
     );
   }
-}
-
-/// How far out [rating] would push [card], as a short label.
-///
-/// Null for a card that has never been reviewed, where there is no interval to
-/// preview yet.
-String? srsIntervalPreview(Card? card, Rating rating) {
-  if (card == null) return null;
-  final preview = Scheduler().reviewCard(card, rating).card;
-  final diff = preview.due.difference(DateTime.now());
-  if (diff.inMinutes < 60) return '${diff.inMinutes.clamp(1, 59)}m';
-  if (diff.inHours < 24) return '${diff.inHours}h';
-  if (diff.inDays < 30) return '${diff.inDays}d';
-  return '${(diff.inDays / 30).round()}mo';
 }

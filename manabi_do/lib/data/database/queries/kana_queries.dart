@@ -46,25 +46,21 @@ extension KanaQueries on AppDatabase {
     final katakana = katakanaRowOrder
         .map((l) => buildRow(l, katakanaSlots[l]!, katakanaGroup[l]!))
         .toList();
-    final hiraganaCount = hiragana.expand((r) => r.kana).length;
-    final katakanaCount = katakana.expand((r) => r.kana).length;
-
     return KanaData(
-      hiraganaCount: hiraganaCount,
-      katakanaCount: katakanaCount,
-      total: hiraganaCount + katakanaCount,
-      groups: const [
-        KanaGroup(id: 'gojuuon', label: 'Gojuuon'),
-        KanaGroup(id: 'dakuten', label: 'Dakuten'),
-      ],
+      total: [...hiragana, ...katakana].expand((r) => r.kana).length,
       hiragana: hiragana,
       katakana: katakana,
     );
   }
 
-  Future<int> countKanaOfType(String type) => (select(
-    kanas,
-  )..where((k) => k.type.equals(type))).get().then((rows) => rows.length);
+  Future<int> countKanaOfType(String type) {
+    final count = kanas.id.count();
+    return (selectOnly(kanas)
+          ..addColumns([count])
+          ..where(kanas.type.equals(type)))
+        .map((r) => r.read(count)!)
+        .getSingle();
+  }
 
   Future<List<Kana>> getKanaByType(String type) =>
       (select(kanas)

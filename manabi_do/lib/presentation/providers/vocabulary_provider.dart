@@ -1,17 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers/locale_provider.dart';
+import '../../core/text/sentence_language.dart';
 import '../../data/database/app_database.dart';
 import 'database_provider.dart';
 
 typedef KanjiVocabularyArgs = ({int kanjiId});
-
-final kanjiVocabularyProvider =
-    FutureProvider.family<List<VocabularyEntry>, KanjiVocabularyArgs>((
-      ref,
-      args,
-    ) {
-      return ref.watch(databaseProvider).getVocabularyForKanji(args.kanjiId);
-    });
 
 /// A kanji's example words with their meanings, and whether each meaning is
 /// in the reader's language.
@@ -51,7 +44,9 @@ final localizedKanjiVocabularyProvider =
           .toList();
     });
 
-/// Returns the localized meaning for a single vocabulary entry. Falls back to English.
+/// A word's meaning in the reader's language, or '' when the reader is on
+/// English or the content has none. [vocabularyMeaningProvider] resolves the
+/// fallback.
 final localizedVocabularyMeaningProvider = FutureProvider.family<String, int>((
   ref,
   vocabularyId,
@@ -63,7 +58,9 @@ final localizedVocabularyMeaningProvider = FutureProvider.family<String, int>((
   return tr[vocabularyId] ?? '';
 });
 
-/// Returns the localized meaning for a single kanji. Falls back to English.
+/// A kanji's meaning in the reader's language, or '' when the reader is on
+/// English or the content has none. [kanjiMeaningProvider] resolves the
+/// fallback.
 final localizedKanjiMeaningProvider = FutureProvider.family<String, int>((
   ref,
   kanjiId,
@@ -74,6 +71,44 @@ final localizedKanjiMeaningProvider = FutureProvider.family<String, int>((
   final tr = await db.getKanjiTranslations([kanjiId], locale);
   return tr[kanjiId] ?? '';
 });
+
+/// A meaning ready to show: in the reader's language when the content has it,
+/// otherwise English, with the reader's language named when it fell back.
+typedef ShownMeaning = ({String meaning, String? missingLanguage});
+
+ShownMeaning _shownMeaning(
+  Ref ref,
+  AsyncValue<String> localized,
+  String english,
+) {
+  final String? value = localized.asData?.value;
+  return (
+    meaning: value == null || value.isEmpty ? english : value,
+    missingLanguage: missingMeaningLanguage(
+      value,
+      readerLocale: ref.watch(localeProvider).languageCode,
+    ),
+  );
+}
+
+final vocabularyMeaningProvider =
+    Provider.family<ShownMeaning, VocabularyEntry>(
+      (ref, entry) => _shownMeaning(
+        ref,
+        ref.watch(localizedVocabularyMeaningProvider(entry.id)),
+        entry.meaning,
+      ),
+    );
+
+/// KANJIDIC2 publishes kanji meanings in English, French, Spanish and
+/// Portuguese only, so a German reader is always shown English.
+final kanjiMeaningProvider = Provider.family<ShownMeaning, Kanji>(
+  (ref, kanji) => _shownMeaning(
+    ref,
+    ref.watch(localizedKanjiMeaningProvider(kanji.id)),
+    kanji.meaning,
+  ),
+);
 
 /// Example sentences for a word, with their translations and the language
 /// each translation is in.

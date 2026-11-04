@@ -52,7 +52,7 @@ class ChapterCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppDimens.radiusLg),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.08),
+                color: t.onSurface.withValues(alpha: 0.08),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),

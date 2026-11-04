@@ -4,6 +4,9 @@
 /// any widget code. `McqCard` decides how each [McqOptionState] is drawn.
 enum McqOptionState { idle, selected, correct, wrong }
 
+/// The letter for the choice at [index]: A, B, C, ...
+String optionLetter(int index) => String.fromCharCode(65 + index);
+
 class McqOption {
   final String letter;
   final String text;

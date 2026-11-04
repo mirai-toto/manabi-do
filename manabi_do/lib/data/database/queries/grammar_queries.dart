@@ -2,29 +2,20 @@ part of '../app_database.dart';
 
 /// Grammar lessons, exercises and progress flags.
 extension GrammarQueries on AppDatabase {
+  /// The level's lessons in [locale], or in English when it has none.
   Future<List<GrammarLessonRow>> getGrammarLessonsForLevel(
     String level, {
     String locale = 'en',
   }) async {
-    final rows =
-        await (select(grammarLessons)
-              ..where((g) => g.level.equals(level) & g.locale.equals(locale))
+    Future<List<GrammarLessonRow>> inLocale(String code) =>
+        (select(grammarLessons)
+              ..where((g) => g.level.equals(level) & g.locale.equals(code))
               ..orderBy([(g) => OrderingTerm.asc(g.orderIndex)]))
             .get();
+    final rows = await inLocale(locale);
     if (rows.isNotEmpty || locale == 'en') return rows;
-    return (select(grammarLessons)
-          ..where((g) => g.level.equals(level) & g.locale.equals('en'))
-          ..orderBy([(g) => OrderingTerm.asc(g.orderIndex)]))
-        .get();
+    return inLocale('en');
   }
-
-  Future<List<GrammarExerciseRow>> getGrammarExercisesForLesson(
-    String lessonPath,
-  ) =>
-      (select(grammarExercises)
-            ..where((e) => e.lessonPath.equals(lessonPath))
-            ..orderBy([(e) => OrderingTerm.asc(e.orderIndex)]))
-          .get();
 
   Stream<Set<String>> watchUnlockedGrammarChapters() => select(
     grammarChapterUnlocks,

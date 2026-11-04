@@ -3,6 +3,8 @@ import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
+    // Compose compiler, for the Glance home-screen widgets.
+    id("org.jetbrains.kotlin.plugin.compose")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
@@ -16,6 +18,10 @@ android {
     namespace = "com.github.mirai_toto.manabi_do"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+
+    buildFeatures {
+        compose = true
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -60,4 +66,9 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Same version home_widget builds against.
+    implementation("androidx.glance:glance-appwidget:1.2.0")
 }

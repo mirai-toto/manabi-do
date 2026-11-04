@@ -9,10 +9,8 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/grammar_provider.dart';
 import '../../services/grammar_progress_service.dart';
-import '../../services/grammar_session_service.dart';
 import '../../widgets/widgets.dart';
-import '../practice/practice_session_screen.dart';
-import 'grammar_lesson_screen.dart';
+import 'grammar_navigation.dart';
 
 class GrammarLessonListScreen extends ConsumerStatefulWidget {
   final GrammarTheme theme;
@@ -38,9 +36,7 @@ class _GrammarLessonListScreenState
   @override
   void initState() {
     super.initState();
-    _allLessonPaths = widget.theme.chapters
-        .expand((c) => c.lessons.map((l) => l.id))
-        .toList();
+    _allLessonPaths = widget.theme.lessons.map((l) => l.id).toList();
     _lessonPathsKey = _allLessonPaths.join('\n');
     _collapsed = {};
   }
@@ -61,16 +57,17 @@ class _GrammarLessonListScreenState
     int ci,
     Set<String> readLessons,
     Set<String> unlockedKeys,
-  ) {
-    if (ci == 0) return false;
-    final prev = widget.theme.chapters[ci - 1];
-    if (prev.lessons.isEmpty) return false;
-    final prevDone = prev.lessons
-        .where((l) => readLessons.contains(l.id))
-        .length;
-    if (prevDone == prev.lessons.length) return false;
-    return !unlockedKeys.contains(grammarGroupKey(widget.theme.title, ci));
-  }
+  ) =>
+      ci > 0 &&
+      isGrammarStepLocked(
+        previousLessonIds: widget.theme.chapters[ci - 1].lessons.map(
+          (l) => l.id,
+        ),
+        readLessons: readLessons,
+        unlockedByHand: unlockedKeys.contains(
+          grammarGroupKey(widget.theme.title, ci),
+        ),
+      );
 
   bool _isLessonLocked(
     int ci,
@@ -79,70 +76,16 @@ class _GrammarLessonListScreenState
     Set<String> unlockedKeys,
   ) {
     if (li == 0) return false;
-    final prevLesson = widget.theme.chapters[ci].lessons[li - 1];
-    if (readLessons.contains(prevLesson.id)) return false;
-    final lessonId = widget.theme.chapters[ci].lessons[li].id;
-    return !unlockedKeys.contains(grammarLessonKey(lessonId));
-  }
-
-  void _showUnlockDialog({
-    required String title,
-    required String body,
-    required VoidCallback onConfirm,
-  }) {
-    final l = context.l10n;
-    showDialog<void>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(title),
-        content: Text(body),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: Text(l.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              onConfirm();
-            },
-            child: Text(l.chapterUnlockAnyway),
-          ),
-        ],
-      ),
+    final lessons = widget.theme.chapters[ci].lessons;
+    return isGrammarStepLocked(
+      previousLessonIds: [lessons[li - 1].id],
+      readLessons: readLessons,
+      unlockedByHand: unlockedKeys.contains(grammarLessonKey(lessons[li].id)),
     );
   }
 
-  void _openLesson(GrammarLesson lesson) {
-    ref.read(grammarProgressServiceProvider).markLessonStarted(lesson.id);
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => GrammarLessonScreen(
-          lessonId: lesson.id,
-          title: lesson.title,
-          blocks: lesson.blocks,
-          levelColor: widget.levelColor,
-        ),
-      ),
-    );
-  }
-
-  void _openExercises() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => PracticeSessionScreen(
-          title: widget.theme.title,
-          color: widget.levelColor,
-          persistSrs: false,
-          settingsContexts: const {SettingsContext.grammar},
-          hasExamples: true,
-          loadQueue: (ref) => ref
-              .read(grammarSessionServiceProvider)
-              .buildQueueForChapter(lessonPaths: _allLessonPaths),
-        ),
-      ),
-    );
-  }
+  void _openLesson(GrammarLesson lesson) =>
+      openGrammarLesson(context, ref, lesson, widget.levelColor);
 
   @override
   Widget build(BuildContext context) {
@@ -180,12 +123,10 @@ class _GrammarLessonListScreenState
         ),
       ),
       floatingActionButton: hasExercises
-          ? FloatingActionButton.extended(
-              onPressed: _openExercises,
-              icon: const Icon(Icons.school_rounded),
-              label: Text(context.l10n.grammarPractice),
-              backgroundColor: widget.levelColor,
-              foregroundColor: Colors.white,
+          ? GrammarPracticeFab(
+              title: widget.theme.title,
+              color: widget.levelColor,
+              lessonPaths: _allLessonPaths,
             )
           : null,
       body: AccentTheme(
@@ -222,16 +163,19 @@ class _GrammarLessonListScreenState
                           widget.theme.chapters[ci].lessons.length,
                         ),
                         accentColor: widget.levelColor,
-                        onToggle: () {
+                        onToggle: () async {
                           if (groupLocked) {
                             final l = context.l10n;
-                            _showUnlockDialog(
+                            final confirmed = await confirmGrammarUnlock(
+                              context,
                               title: l.groupLocked,
                               body: l.groupLockedBody,
-                              onConfirm: () => ref
-                                  .read(grammarProgressServiceProvider)
-                                  .unlockGroup(widget.theme.title, ci),
                             );
+                            if (confirmed) {
+                              await ref
+                                  .read(grammarProgressServiceProvider)
+                                  .unlockGroup(widget.theme.title, ci);
+                            }
                           } else {
                             setState(() {
                               if (_collapsed.contains(ci)) {
@@ -277,18 +221,18 @@ class _GrammarLessonListScreenState
                           accentColor: widget.levelColor,
                           exerciseCount: exerciseCounts[lesson.id] ?? 0,
                           onTap: lessonLocked
-                              ? () {
+                              ? () async {
                                   final l = context.l10n;
-                                  _showUnlockDialog(
+                                  final confirmed = await confirmGrammarUnlock(
+                                    context,
                                     title: l.lessonLocked,
                                     body: l.lessonLockedBody,
-                                    onConfirm: () {
-                                      ref
-                                          .read(grammarProgressServiceProvider)
-                                          .unlockLesson(lesson.id);
-                                      _openLesson(lesson);
-                                    },
                                   );
+                                  if (!confirmed || !mounted) return;
+                                  await ref
+                                      .read(grammarProgressServiceProvider)
+                                      .unlockLesson(lesson.id);
+                                  _openLesson(lesson);
                                 }
                               : () => _openLesson(lesson),
                         );

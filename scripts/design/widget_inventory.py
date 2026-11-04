@@ -49,9 +49,19 @@ ROLES: dict[str, str] = {
 CLASSIFIED: dict[str, str] = {
     # action
     "LessonReadToggle": "action",
+    "PracticeButton": "action",
+    "ViewDetailButton": "action",
     # input
     "SettingsStepper": "input",
     "SettingsToggle": "input",
+    "SessionLengthField": "input",
+    "ChoiceCountField": "input",
+    "SettingsSwitchRow": "input",
+    "SettingsFieldLabel": "label",
+    "SettingsFieldHint": "label",
+    "AttributionCard": "surface",
+    "CoverageMeterCard": "indicator",
+    "VocabularyWordRow": "list-item",
     "KanjiDrawingCanvas": "input",
     "LanguagePickerSheet": "input",
     # navigation
@@ -77,6 +87,9 @@ CLASSIFIED: dict[str, str] = {
     "ChapterCard": "list-item",
     "ContinueLessonCard": "list-item",
     "PracticeModeCard": "list-item",
+    "LevelSearchShell": "composite",
+    "VocabularyGroupHeader": "navigation",
+    "SearchNoResults": "label",
     "CharacterCell": "list-item",
     "SessionReviewRow": "list-item",
     "StudyGroupCard": "list-item",
@@ -98,7 +111,7 @@ CLASSIFIED: dict[str, str] = {
     "SummaryCard": "exercise-part",
     "FeedbackPanel": "exercise-part",
     "ExampleCard": "exercise-part",
-    "ClozeOption": "exercise-part",
+    "McqOptionTile": "exercise-part",
     "LetterCircle": "exercise-part",
     "LessonReaderCard": "exercise-part",
     "ReaderBodyText": "exercise-part",

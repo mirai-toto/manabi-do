@@ -164,11 +164,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get next => 'Next →';
 
   @override
-  String kanjiPracticed(int count) {
-    return '$count kanji practiced';
-  }
-
-  @override
   String get correct => 'Correct';
 
   @override
@@ -766,11 +761,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get vocabularySubtitleShort => 'Words to discover';
 
   @override
-  String reviewsDue(int count) {
-    return '$count reviews';
-  }
-
-  @override
   String nNew(int count) {
     return '$count new';
   }
@@ -1083,8 +1073,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'Words are taught in the order people actually write them, measured against 18 million words of Japanese. The first level alone covers half of everything written.';
 
   @override
-  String onboardingLevelWords(int level, String count) {
-    return 'Level $level · $count words';
+  String onboardingLevelWords(int level, int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Level $level · $countString words';
   }
 
   @override
@@ -1114,4 +1108,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingPickOne => 'Choose at least one to carry on.';
+
+  @override
+  String durationMinutesSeconds(int minutes, int seconds) {
+    return '${minutes}m ${seconds}s';
+  }
+
+  @override
+  String durationSeconds(int seconds) {
+    return '${seconds}s';
+  }
+
+  @override
+  String intervalMinutes(int n) {
+    return '${n}m';
+  }
+
+  @override
+  String intervalHours(int n) {
+    return '${n}h';
+  }
+
+  @override
+  String intervalDays(int n) {
+    return '${n}d';
+  }
+
+  @override
+  String intervalMonths(int n) {
+    return '${n}mo';
+  }
+
+  @override
+  String get loadError => 'Couldn\'t load this. Try again later.';
+
+  @override
+  String widgetNextReview(String time) {
+    return 'Next at $time';
+  }
+
+  @override
+  String get widgetKanjiOfTheDay => 'Kanji of the day';
+
+  @override
+  String get widgetResume => 'Resume';
+
+  @override
+  String get widgetAllLessonsRead => 'Every lesson read';
+
+  @override
+  String get widgetActivityRange => 'Last 20 weeks';
+
+  @override
+  String get widgetLess => 'Less';
+
+  @override
+  String get widgetMore => 'More';
 }

@@ -6,7 +6,7 @@ import 'package:manabi_do/core/providers/locale_provider.dart';
 import 'package:manabi_do/core/theme/app_theme.dart';
 import 'package:manabi_do/data/database/app_database.dart';
 import 'package:manabi_do/presentation/providers/vocabulary_provider.dart';
-import 'package:manabi_do/presentation/widgets/characters/kanji_example_words.dart';
+import 'package:manabi_do/presentation/screens/characters/kanji/kanji_example_words.dart';
 import 'package:manabi_do/core/text/sentence_language.dart';
 import 'package:manabi_do/l10n/app_localizations.dart';
 import 'package:manabi_do/presentation/widgets/common/indicator/pill_badge.dart';
@@ -24,37 +24,19 @@ void main() {
       // The provider returns '' for English because there is nothing to
       // localize. Reading that as a gap marked every row in the English app
       // with "No English translation for this yet".
-      expect(
-        missingMeaningLanguage(const AsyncData<String>(''), readerLocale: 'en'),
-        isNull,
-      );
+      expect(missingMeaningLanguage('', readerLocale: 'en'), isNull);
     });
 
     test('a French reader with no French meaning is told so', () {
-      expect(
-        missingMeaningLanguage(const AsyncData<String>(''), readerLocale: 'fr'),
-        'Français',
-      );
+      expect(missingMeaningLanguage('', readerLocale: 'fr'), 'Français');
     });
 
     test('a French reader who has French is told nothing', () {
-      expect(
-        missingMeaningLanguage(
-          const AsyncData<String>('manger'),
-          readerLocale: 'fr',
-        ),
-        isNull,
-      );
+      expect(missingMeaningLanguage('manger', readerLocale: 'fr'), isNull);
     });
 
     test('nothing is claimed while the query is still running', () {
-      expect(
-        missingMeaningLanguage(
-          const AsyncLoading<String>(),
-          readerLocale: 'fr',
-        ),
-        isNull,
-      );
+      expect(missingMeaningLanguage(null, readerLocale: 'fr'), isNull);
     });
   });
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart';
 import '../../../core/srs/srs_level.dart';
+import '../../../core/theme/srs_level_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
 import '../widgets.dart';

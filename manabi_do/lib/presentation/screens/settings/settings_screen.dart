@@ -10,12 +10,14 @@ import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/app_languages.dart';
 import '../../../l10n/l10n.dart';
 import '../../services/feedback_service.dart';
 import '../../services/srs_service.dart';
 import '../../services/support_service.dart';
 import '../../widgets/widgets.dart';
 import 'exercise_settings_screen.dart';
+import 'settings_about_section.dart';
 
 /// Order the appearance segments are shown in. Listed explicitly so it cannot
 /// drift from `ThemeMode`'s declaration order.
@@ -121,6 +123,7 @@ class SettingsScreen extends ConsumerWidget {
         ),
       ),
       builder: (_) => LanguagePickerSheet(
+        languages: appLanguages,
         currentCode: current,
         title: title,
         onSelect: (code) {
@@ -135,25 +138,22 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final t = context.tokens;
-    final themeMode =
-        ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system;
+    final themeMode = ref.watch(themeModeProvider);
     final locale = ref.watch(localeProvider);
 
-    final SrsSettings srs =
-        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
+    final SrsSettings srs = ref.watch(srsSettingsProvider);
     final SrsSettingsNotifier srsNotifier = ref.read(
       srsSettingsProvider.notifier,
     );
 
-    final HomeSettings home =
-        ref.watch(homeSettingsProvider).asData?.value ?? const HomeSettings();
+    final HomeSettings home = ref.watch(homeSettingsProvider);
     final HomeSettingsNotifier homeNotifier = ref.read(
       homeSettingsProvider.notifier,
     );
 
-    final currentLang = languages.firstWhere(
+    final currentLang = appLanguages.firstWhere(
       (e) => e.code == locale.languageCode,
-      orElse: () => languages.first,
+      orElse: () => appLanguages.first,
     );
 
     return Align(
@@ -201,7 +201,7 @@ class SettingsScreen extends ConsumerWidget {
                       size: 20,
                       color: t.onSurfaceVariant,
                     ),
-                    label: _exerciseLabel(kind, l),
+                    label: exerciseKindLabel(kind, l),
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (_) => ExerciseSettingsScreen(kind: kind),
@@ -235,13 +235,7 @@ class SettingsScreen extends ConsumerWidget {
             SettingsCard(
               children: [
                 SettingsTile(
-                  leading: Text(
-                    currentLang.flag,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontFamily: 'NotoColorEmoji',
-                    ),
-                  ),
+                  leading: AppEmoji(currentLang.flag, size: 22),
                   label: l.settingsLanguage,
                   value: currentLang.name,
                   onTap: () => _showLanguagePicker(
@@ -330,13 +324,6 @@ IconData _exerciseIcon(ExerciseKind kind) => switch (kind) {
   ExerciseKind.mcq => Icons.list_alt_rounded,
   ExerciseKind.sentence => Icons.format_quote_rounded,
   ExerciseKind.writing => Icons.edit_rounded,
-};
-
-String _exerciseLabel(ExerciseKind kind, AppLocalizations l) => switch (kind) {
-  ExerciseKind.flashcard => l.flashcardPractice,
-  ExerciseKind.mcq => l.mcqPractice,
-  ExerciseKind.sentence => l.sentencePractice,
-  ExerciseKind.writing => l.writingPractice,
 };
 
 /// The home screen's sections, named, or "all" when none is hidden.

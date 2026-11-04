@@ -17,7 +17,9 @@ class PracticeSettingsCard extends StatelessWidget {
   final ValueChanged<int> onNewCharactersChanged;
   final ValueChanged<int> onNewVocabularyChanged;
   final bool detailedGrading;
-  final ValueChanged<bool> onDetailedGradingChanged;
+
+  /// Null leaves the grading switch out, for onboarding.
+  final ValueChanged<bool>? onDetailedGradingChanged;
 
   const PracticeSettingsCard({
     super.key,
@@ -25,8 +27,8 @@ class PracticeSettingsCard extends StatelessWidget {
     required this.newVocabularyPerDay,
     required this.onNewCharactersChanged,
     required this.onNewVocabularyChanged,
-    required this.detailedGrading,
-    required this.onDetailedGradingChanged,
+    this.detailedGrading = true,
+    this.onDetailedGradingChanged,
   });
 
   @override
@@ -57,12 +59,13 @@ class PracticeSettingsCard extends StatelessWidget {
               ? () => onNewVocabularyChanged(_stepUp(newVocabularyPerDay))
               : null,
         ),
-        SettingsToggle(
-          leading: const Icon(Icons.tune_rounded, size: 20),
-          label: l.settingsDetailedGrading,
-          value: detailedGrading,
-          onChanged: onDetailedGradingChanged,
-        ),
+        if (onDetailedGradingChanged != null)
+          SettingsToggle(
+            leading: const Icon(Icons.tune_rounded, size: 20),
+            label: l.settingsDetailedGrading,
+            value: detailedGrading,
+            onChanged: onDetailedGradingChanged!,
+          ),
       ],
     );
   }

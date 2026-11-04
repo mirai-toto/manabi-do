@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:fsrs/fsrs.dart' show Card, Rating;
+import 'package:fsrs/fsrs.dart' show Card;
 
-import '../../../core/models/practice_answer.dart';
+import '../../models/practice_answer.dart';
 import '../../../core/models/sentence_settings.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import 'flashcard.dart';
+import 'choice_answer.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 import 'sentence_cloze_card.dart';
@@ -61,58 +62,22 @@ class SentenceClozeBody extends StatefulWidget {
   State<SentenceClozeBody> createState() => _SentenceClozeBodyState();
 }
 
-class _SentenceClozeBodyState extends State<SentenceClozeBody> {
-  late List<McqOptionState> _states;
-  bool _answered = false;
-  bool _autoAdvancing = false;
+class _SentenceClozeBodyState extends State<SentenceClozeBody>
+    with ChoiceAnswer<SentenceClozeBody> {
   bool _showTranslation = false;
 
-  /// Kept so the self-assessment path reports the choice too, not just the
-  /// auto-advance one.
-  String? _given;
-
-  @override
-  void initState() {
-    super.initState();
-    _states = List.filled(widget.options.length, McqOptionState.idle);
-  }
-
-  void _onTap(int i) {
-    if (_answered) return;
-    final isCorrect = i == widget.correctIndex;
-    setState(() {
-      _answered = true;
-      _given = widget.options[i].text;
-      _states = List.generate(widget.options.length, (j) {
-        if (j == i) {
-          return isCorrect ? McqOptionState.correct : McqOptionState.wrong;
-        }
-        if (!isCorrect && j == widget.correctIndex) {
-          return McqOptionState.correct;
-        }
-        return McqOptionState.idle;
-      });
-    });
-    if (widget.autoAdvance) {
-      setState(() => _autoAdvancing = true);
-      Future.delayed(const Duration(milliseconds: 800), () {
-        if (mounted) {
-          widget.onAnswer(
-            isCorrect ? Rating.good : Rating.again,
-            given: _given,
-          );
-        }
-      });
-    }
-  }
+  void _onTap(int i) => answerChoice(
+    i,
+    options: widget.options,
+    correctIndex: widget.correctIndex,
+    autoAdvance: widget.autoAdvance,
+    onAnswer: widget.onAnswer,
+  );
 
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    final options = List.generate(
-      widget.options.length,
-      (i) => widget.options[i].copyWith(state: _states[i]),
-    );
+    final options = withAnswerStates(widget.options);
 
     final bool effectiveShowTranslation = switch (widget.translationMode) {
       TranslationMode.always => true,
@@ -150,18 +115,18 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
             showChoiceFurigana: widget.showChoiceFurigana,
             targetReading: widget.targetReading,
             options: options,
-            answered: _answered,
+            answered: answered,
             color: widget.color,
-            onOptionTap: _answered ? null : _onTap,
+            onOptionTap: answered ? null : _onTap,
           ),
-          if (_answered && !_autoAdvancing) ...[
+          if (answered && !autoAdvancing) ...[
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: widget.card,
               fourPointGrading: widget.fourPointGrading,
               gradeAccent: widget.gradeAccent,
               question: l.selfAssessQuestion,
-              onRate: (rating) => widget.onAnswer(rating, given: _given),
+              onRate: (rating) => widget.onAnswer(rating, given: given),
             ),
           ],
         ],

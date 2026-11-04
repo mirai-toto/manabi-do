@@ -1,13 +1,11 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_strokes_provider.dart';
-import '../common/indicator/app_spinner.dart';
 
 // ── Shared shell ─────────────────────────────────────────────────────────────
 
@@ -91,29 +89,29 @@ class _AnimatorShell extends StatelessWidget {
 
 /// Plays back reference strokes sequentially. Auto-plays on load; tap to
 /// replay.
-class StrokeOrderAnimator extends ConsumerStatefulWidget {
-  final int kanjiId;
+class StrokeOrderAnimator extends StatefulWidget {
+  final List<ui.Path> strokes;
   final double size;
   const StrokeOrderAnimator({
     super.key,
-    required this.kanjiId,
+    required this.strokes,
     this.size = 160,
   });
 
   @override
-  ConsumerState<StrokeOrderAnimator> createState() =>
-      _StrokeOrderAnimatorState();
+  State<StrokeOrderAnimator> createState() => _StrokeOrderAnimatorState();
 }
 
-class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
+class _StrokeOrderAnimatorState extends State<StrokeOrderAnimator>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  bool _didAutoPlay = false;
+  late final AnimationController _controller = AnimationController(vsync: this);
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _play();
+    });
   }
 
   @override
@@ -122,55 +120,23 @@ class _StrokeOrderAnimatorState extends ConsumerState<StrokeOrderAnimator>
     super.dispose();
   }
 
-  void _play(List<ui.Path> strokes) {
+  void _play() {
     _controller
-      ..duration = Duration(milliseconds: strokes.length * 500)
+      ..duration = Duration(milliseconds: widget.strokes.length * 500)
       ..forward(from: 0);
   }
 
   @override
   Widget build(BuildContext context) {
-    final strokesAsync = ref.watch(kanjiStrokesProvider(widget.kanjiId));
-    final strokes = strokesAsync.asData?.value;
-
-    if (strokes != null && !_didAutoPlay) {
-      _didAutoPlay = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) _play(strokes);
-      });
-    }
-
-    if (strokesAsync is AsyncError) {
-      final t = context.tokens;
-      return SizedBox(
-        width: widget.size,
-        height: widget.size,
-        child: Center(
-          child: Text(
-            '',
-            style: TextStyle(color: t.onSurfaceVariant, fontSize: 32),
-          ),
-        ),
-      );
-    }
-
-    if (strokes == null) {
-      return SizedBox(
-        width: widget.size,
-        height: widget.size,
-        child: const Center(child: AppSpinner()),
-      );
-    }
-
     final t = context.tokens;
     return _AnimatorShell(
       size: widget.size,
       controller: _controller,
-      onReplay: () => _play(strokes),
+      onReplay: _play,
       replayLabel: context.l10n.replayStrokeOrder,
       buildPainter: (v) => _StrokeOrderPainter(
-        strokes: strokes,
-        progress: v * strokes.length,
+        strokes: widget.strokes,
+        progress: v * widget.strokes.length,
         strokeColor: t.onSurface,
       ),
     );

@@ -15,8 +15,7 @@ class ManabiDoApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode =
-        ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system;
+    final themeMode = ref.watch(themeModeProvider);
     final locale = ref.watch(localeProvider);
     // Read synchronously, so the first frame is already the right screen.
     // Onboarding sets the locale, which rebuilds this; leaving it as `home`
@@ -34,7 +33,7 @@ class ManabiDoApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: locale,
-      supportedLocales: const [Locale('en'), Locale('fr'), Locale('de')],
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
