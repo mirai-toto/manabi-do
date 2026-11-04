@@ -189,7 +189,8 @@ class VocabularyRemapException implements Exception {
 }
 
 /// Rewrites vocabulary `item_id`s from the old database's numbering to the
-/// new one's, matching on `(word, reading)`.
+/// new one's, matching on each word's identity keys in order: the JMdict id
+/// first (since schema 29), then `(word, reading)`.
 ///
 /// A row whose word is no longer taught is dropped, which is correct — there
 /// is nothing left to review. Rows for other item types pass through

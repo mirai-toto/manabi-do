@@ -10,9 +10,6 @@ import '../common/indicator/pill_badge.dart';
 import '../common/indicator/progress_bar.dart';
 import '../common/surface/tappable_surface.dart';
 
-/// One study domain on the home screen: glyph, known/seen progress,
-/// new-today count, and a due badge. Tapping starts the domain's
-/// practice session; browsing the domain stays on the bottom nav.
 /// Width the due badge is sized to, so every deck row's pill matches.
 ///
 /// Measured rather than hardcoded: the label is localised and respects the
