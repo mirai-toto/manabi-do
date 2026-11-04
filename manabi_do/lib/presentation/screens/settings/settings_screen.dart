@@ -210,14 +210,6 @@ class SettingsScreen extends ConsumerWidget {
                   ),
               ],
             ),
-            const SizedBox(height: AppDimens.spaceSm),
-            Text(
-              l.settingsExercisesNote,
-              style: AppTextStyles.bodySmall.copyWith(
-                color: t.onSurfaceVariant,
-              ),
-            ),
-
             // App chrome: how it looks, what language it speaks, what it
             // opens on. Theme stays a segmented control, because a three-way
             // choice shows every option in the height one row would cost.

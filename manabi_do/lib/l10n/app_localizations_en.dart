@@ -489,12 +489,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsExercises => 'Exercises';
 
   @override
-  String get settingsStudyScopeNote =>
-      'Applies to any graded session, whichever exercises come up in it.';
-
-  @override
-  String get settingsExercisesNote =>
-      'One set of preferences per exercise, shared by every section that uses it. Grammar has none of its own: it runs flashcards and multiple choice.';
+  String get settingsStudyScopeNote => 'Applies to every graded session.';
 
   @override
   String get settingsHomeScreen => 'Home screen';

@@ -491,12 +491,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsExercises => 'Exercices';
 
   @override
-  String get settingsStudyScopeNote =>
-      'S\'applique à toute session notée, quels que soient les exercices qui s\'y présentent.';
-
-  @override
-  String get settingsExercisesNote =>
-      'Un réglage par exercice, partagé par toutes les sections qui l\'utilisent. La grammaire n\'en a pas : elle utilise les cartes et le choix multiple.';
+  String get settingsStudyScopeNote => 'S\'applique à chaque session notée.';
 
   @override
   String get settingsHomeScreen => 'Écran d\'accueil';

@@ -967,14 +967,8 @@ abstract class AppLocalizations {
   /// No description provided for @settingsStudyScopeNote.
   ///
   /// In en, this message translates to:
-  /// **'Applies to any graded session, whichever exercises come up in it.'**
+  /// **'Applies to every graded session.'**
   String get settingsStudyScopeNote;
-
-  /// No description provided for @settingsExercisesNote.
-  ///
-  /// In en, this message translates to:
-  /// **'One set of preferences per exercise, shared by every section that uses it. Grammar has none of its own: it runs flashcards and multiple choice.'**
-  String get settingsExercisesNote;
 
   /// No description provided for @settingsHomeScreen.
   ///

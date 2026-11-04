@@ -491,12 +491,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsExercises => 'Übungen';
 
   @override
-  String get settingsStudyScopeNote =>
-      'Gilt für jede bewertete Sitzung, welche Übungen auch vorkommen.';
-
-  @override
-  String get settingsExercisesNote =>
-      'Eine Einstellung je Übung, geteilt von jedem Bereich, der sie nutzt. Grammatik hat keine eigenen: sie nutzt Karten und Multiple Choice.';
+  String get settingsStudyScopeNote => 'Gilt für jede bewertete Sitzung.';
 
   @override
   String get settingsHomeScreen => 'Startbildschirm';
