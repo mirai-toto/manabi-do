@@ -218,6 +218,15 @@
   "transitive": "transitive",
   "intransitive": "intransitive",
   "exampleSentences": "In a sentence",
+  "translationFallbackNotice": "No {language} translation for this yet, so the English is shown.",
+  "@translationFallbackNotice": {
+    "description": "Shown when content has no translation in the reader's language and English is used instead.",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
   "writtenWith": "Written with",
   "youCanRead": "You can read",
   "ofWrittenJapanese": "of everything written in Japanese",

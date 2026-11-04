@@ -23,6 +23,7 @@ export 'common/indicator/review_progress_info.dart';
 
 // — label
 export 'common/label/japanese_sentence.dart';
+export 'common/label/translation_fallback_info.dart';
 export 'common/label/japanese_text.dart';
 export 'common/label/section_header.dart';
 export 'common/label/section_label.dart';

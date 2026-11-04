@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
+import 'translation_fallback_info.dart';
 import 'japanese_text.dart';
 
 /// Renders a Japanese sentence with optional furigana and a highlighted target
@@ -14,9 +15,9 @@ class JapaneseSentence extends StatelessWidget {
   final Color? highlightColor;
   final String? translation;
 
-  /// The language [translation] is in, named, when it is not the reader's own.
-  /// Left null when it matches, because labelling every line would be noise.
-  final String? translationLanguage;
+  /// The reader's language, named, when [translation] is not in it. Null when
+  /// it is, because marking every line would be noise.
+  final String? missingLanguage;
 
   final TextStyle? style;
   final bool hideHighlight;
@@ -27,7 +28,7 @@ class JapaneseSentence extends StatelessWidget {
     this.highlight,
     this.highlightColor,
     this.translation,
-    this.translationLanguage,
+    this.missingLanguage,
     this.style,
     this.hideHighlight = false,
   });
@@ -117,16 +118,11 @@ class JapaneseSentence extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          // Says which language this is, so a reader who asked for French and
-          // got English can see the app knows, and that the corpus simply has
-          // no French for this sentence.
-          if (translationLanguage != null) ...[
+          // A reader who asked for French and got English can see that the
+          // app knows, and tap to find out why.
+          if (missingLanguage != null) ...[
             const SizedBox(height: AppDimens.spaceXs),
-            Text(
-              translationLanguage!,
-              style: AppTextStyles.labelXs.copyWith(color: t.onSurfaceVariant),
-              textAlign: TextAlign.center,
-            ),
+            Center(child: TranslationFallbackInfo(language: missingLanguage!)),
           ],
         ],
       ],

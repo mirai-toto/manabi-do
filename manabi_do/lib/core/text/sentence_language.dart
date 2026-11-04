@@ -30,14 +30,20 @@ const Map<String, String> _iso1To2 = {
   'ru': 'rus',
 };
 
-/// The language [sentenceLocale] names, or null when it is already the
-/// reader's — labelling every line would be noise, so only a substitution
-/// gets named.
-String? languageNameForSentenceLocale(
+/// The reader's own language, named, when [sentenceLocale] is not it — which
+/// is the language the content is missing. Null when the translation is
+/// already in their language, because then there is nothing to explain.
+String? missingLanguageForSentence(
   String? sentenceLocale,
   String readerLocale,
 ) {
   if (sentenceLocale == null) return null;
-  if (sentenceLocale == (_iso1To2[readerLocale] ?? readerLocale)) return null;
-  return _endonyms[sentenceLocale];
+  final String reader3 = _iso1To2[readerLocale] ?? readerLocale;
+  if (sentenceLocale == reader3) return null;
+  return _endonyms[reader3];
 }
+
+/// The reader's language, named in itself. Null for a language the content
+/// never carries, which cannot be missing from anything.
+String? readerLanguageName(String readerLocale) =>
+    _endonyms[_iso1To2[readerLocale] ?? readerLocale];

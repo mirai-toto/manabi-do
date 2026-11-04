@@ -832,6 +832,12 @@ abstract class AppLocalizations {
   /// **'In a sentence'**
   String get exampleSentences;
 
+  /// Shown when content has no translation in the reader's language and English is used instead.
+  ///
+  /// In en, this message translates to:
+  /// **'No {language} translation for this yet, so the English is shown.'**
+  String translationFallbackNotice(String language);
+
   /// No description provided for @writtenWith.
   ///
   /// In en, this message translates to:

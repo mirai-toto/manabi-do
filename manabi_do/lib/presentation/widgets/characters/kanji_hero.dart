@@ -1,3 +1,5 @@
+import '../../../core/text/sentence_language.dart';
+import '../../../core/providers/locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_dimens.dart';
@@ -37,6 +39,16 @@ class KanjiHero extends ConsumerWidget {
     final meaning = localizedMeaning.isNotEmpty
         ? localizedMeaning
         : kanji.meaning;
+    // KANJIDIC2 publishes kanji meanings in English, French, Spanish and
+    // Portuguese only, so a German reader never gets one. Waiting for the
+    // query to land first, or the mark flashes on every kanji.
+    final String readerLocale = ref.watch(localeProvider).languageCode;
+    final String? missingLanguage =
+        localizedAsync.asData != null &&
+            localizedMeaning.isEmpty &&
+            readerLocale != 'en'
+        ? readerLanguageName(readerLocale)
+        : null;
 
     return Container(
       decoration: BoxDecoration(
@@ -84,6 +96,7 @@ class KanjiHero extends ConsumerWidget {
                   meaning: meaning,
                   level: kanji.jlptLevel,
                   onAccent: onAccent,
+                  missingLanguage: missingLanguage,
                 ),
               ),
             ],
@@ -122,17 +135,36 @@ class _KanjiInfo extends StatelessWidget {
   final String meaning;
   final String level;
   final Color onAccent;
+  final String? missingLanguage;
   const _KanjiInfo({
     required this.meaning,
     required this.level,
     required this.onAccent,
+    this.missingLanguage,
   });
 
   @override
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(meaning, style: AppTextStyles.title.copyWith(color: onAccent)),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text(
+              meaning,
+              style: AppTextStyles.title.copyWith(color: onAccent),
+            ),
+          ),
+          if (missingLanguage != null) ...[
+            const SizedBox(width: AppDimens.spaceXs),
+            TranslationFallbackInfo(
+              language: missingLanguage!,
+              color: onAccent,
+            ),
+          ],
+        ],
+      ),
       const SizedBox(height: AppDimens.spaceXs),
       _LevelPill(level: level, onAccent: onAccent),
     ],

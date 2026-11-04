@@ -174,7 +174,7 @@ class _Sentences extends ConsumerWidget {
                           highlight: entry.word,
                           highlightColor: color,
                           translation: row.$2?.text,
-                          translationLanguage: languageNameForSentenceLocale(
+                          missingLanguage: missingLanguageForSentence(
                             row.$2?.locale,
                             readerLocale,
                           ),
@@ -232,6 +232,14 @@ class _Meanings extends ConsumerWidget {
     final senses =
         ref.watch(vocabularySensesProvider(entry.id)).asData?.value ??
         const <VocabularySense>[];
+    // JMdict has French for 72% of these words and German for 95%, so the
+    // rest arrive in English. The senses say which language they are in.
+    final readerLocale = ref.watch(localeProvider).languageCode;
+    final String? missingLanguage = senses.isEmpty
+        ? null
+        : senses.first.locale == readerLocale
+        ? null
+        : readerLanguageName(readerLocale);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -239,6 +247,10 @@ class _Meanings extends ConsumerWidget {
         Row(
           children: [
             SectionLabel(l.meaning),
+            if (missingLanguage != null) ...[
+              const SizedBox(width: AppDimens.spaceXs),
+              TranslationFallbackInfo(language: missingLanguage),
+            ],
             const Spacer(),
             if (senses.length > 1)
               Text(

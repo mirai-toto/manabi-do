@@ -414,6 +414,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get exampleSentences => 'Im Satz';
 
   @override
+  String translationFallbackNotice(String language) {
+    return 'Hierfür gibt es noch keine Übersetzung auf $language, daher wird Englisch angezeigt.';
+  }
+
+  @override
   String get writtenWith => 'Geschrieben mit';
 
   @override
