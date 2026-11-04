@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
-import '../../../core/models/practice_item.dart';
+import '../../models/practice_item.dart';
 import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
@@ -21,7 +21,7 @@ import 'practice_settings_sheet.dart';
 import 'session_app_bar.dart';
 import 'session_review_screen.dart';
 
-export '../../../core/models/practice_item.dart';
+export '../../models/practice_item.dart';
 export 'practice_settings_sheet.dart' show SettingsContext;
 
 class PracticeSessionScreen extends ConsumerStatefulWidget {

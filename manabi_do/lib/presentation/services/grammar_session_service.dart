@@ -9,8 +9,8 @@ import '../../data/database/app_database.dart';
 import '../../data/grammar/grammar_models.dart';
 import '../providers/database_provider.dart';
 import '../providers/mcq_settings_provider.dart';
-import '../../core/models/practice_item.dart';
-import '../../core/models/practice_question.dart';
+import '../models/practice_item.dart';
+import '../models/practice_question.dart';
 
 class GrammarSessionService {
   final Ref _ref;

@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../core/models/mcq_option.dart';
-import '../../core/models/practice_item.dart';
-import '../../core/models/practice_question.dart';
+import '../models/practice_item.dart';
+import '../models/practice_question.dart';
 import '../../core/text/kanji_readings.dart';
 import '../../core/text/sentence_language.dart';
 import '../../l10n/app_localizations.dart';

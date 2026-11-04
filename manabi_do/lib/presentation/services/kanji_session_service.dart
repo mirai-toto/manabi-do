@@ -12,7 +12,7 @@ import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
 import '../providers/flashcard_settings_provider.dart';
 import '../providers/mcq_settings_provider.dart';
-import '../../core/models/practice_item.dart';
+import '../models/practice_item.dart';
 import 'session_item_builders.dart';
 import 'srs_queue_service.dart';
 

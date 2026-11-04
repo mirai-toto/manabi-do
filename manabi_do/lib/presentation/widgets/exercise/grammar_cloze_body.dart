@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide Card;
 
-import '../../../core/models/practice_answer.dart';
+import '../../models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';

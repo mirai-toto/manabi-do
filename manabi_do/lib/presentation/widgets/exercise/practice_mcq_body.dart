@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card;
 
-import '../../../core/models/practice_answer.dart';
+import '../../models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../l10n/l10n.dart';
 import 'view_detail_button.dart';

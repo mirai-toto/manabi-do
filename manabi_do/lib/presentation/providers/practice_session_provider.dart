@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
 import '../../data/database/app_database.dart';
-import '../../core/models/practice_item.dart';
+import '../models/practice_item.dart';
 import '../services/srs_service.dart';
 import 'database_provider.dart';
 

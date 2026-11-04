@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/models/practice_answer.dart';
+import '../../models/practice_answer.dart';
 import '../../../core/srs/drawing_rating.dart';
 import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../../core/models/drawing_settings.dart';
-import '../../../core/models/practice_answer.dart';
+import '../../models/practice_answer.dart';
 import '../../../core/srs/drawing_rating.dart';
 import '../../../core/text/short_meaning.dart';
 import '../../widgets/common/indicator/app_spinner.dart';

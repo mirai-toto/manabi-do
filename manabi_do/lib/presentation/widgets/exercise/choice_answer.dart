@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
 import '../../../core/models/mcq_option.dart';
-import '../../../core/models/practice_answer.dart';
+import '../../models/practice_answer.dart';
 
 /// The answer flow shared by exercises that pick one of several options.
 ///

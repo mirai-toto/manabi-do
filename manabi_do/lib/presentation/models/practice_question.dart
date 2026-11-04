@@ -1,4 +1,4 @@
-import 'mcq_option.dart';
+import '../../core/models/mcq_option.dart';
 import 'practice_answer.dart';
 import '../../data/database/app_database.dart';
 import '../../data/grammar/grammar_models.dart';

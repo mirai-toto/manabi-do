@@ -5,6 +5,7 @@ import 'package:fsrs/fsrs.dart' as fsrs;
 import '../../providers/srs_cards_provider.dart';
 
 import '../../../core/srs/srs_level.dart';
+import '../../../core/theme/srs_level_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
