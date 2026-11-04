@@ -59,13 +59,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Widget build(BuildContext context) {
     final AppTokens t = context.tokens;
     final AppLocalizations l = context.l10n;
-    final home = ref.watch(homeSettingsProvider).asData?.value;
+    final home = ref.watch(homeSettingsProvider);
     final bool canContinue =
-        _page != 2 ||
-        home == null ||
-        home.showKana ||
-        home.showKanji ||
-        home.showVocabulary;
+        _page != 2 || home.showKana || home.showKanji || home.showVocabulary;
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -388,9 +384,8 @@ class _SectionsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
-    final home = ref.watch(homeSettingsProvider).asData?.value;
+    final home = ref.watch(homeSettingsProvider);
     final notifier = ref.read(homeSettingsProvider.notifier);
-    if (home == null) return const Center(child: AppSpinner());
 
     return _Page(
       title: l.onboardingStudyTitle,
@@ -436,9 +431,8 @@ class _PacePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AppTokens t = context.tokens;
     final l = context.l10n;
-    final srs = ref.watch(srsSettingsProvider).asData?.value;
+    final srs = ref.watch(srsSettingsProvider);
     final notifier = ref.read(srsSettingsProvider.notifier);
-    if (srs == null) return const Center(child: AppSpinner());
 
     return _Page(
       title: l.onboardingPaceTitle,

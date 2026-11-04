@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/models/drawing_settings.dart';
 import '../../core/providers/shared_preferences_provider.dart';
@@ -15,20 +12,19 @@ final drawingSettingsProvider =
 
 class DrawingSettingsNotifier extends Notifier<DrawingSettings> {
   @override
-  DrawingSettings build() {
-    final prefs = ref.read(sharedPreferencesProvider);
-    final raw = prefs.getString(_kKey);
-    if (raw == null) return DrawingSettings.defaults;
-    try {
-      return DrawingSettings.fromJson(jsonDecode(raw) as Map<String, dynamic>);
-    } catch (_) {
-      return DrawingSettings.defaults;
-    }
-  }
+  DrawingSettings build() => readJsonSetting(
+    ref.read(sharedPreferencesProvider),
+    _kKey,
+    DrawingSettings.fromJson,
+    DrawingSettings.defaults,
+  );
 
   Future<void> update(DrawingSettings settings) async {
     state = settings;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_kKey, jsonEncode(settings.toJson()));
+    await writeJsonSetting(
+      ref.read(sharedPreferencesProvider),
+      _kKey,
+      settings.toJson(),
+    );
   }
 }

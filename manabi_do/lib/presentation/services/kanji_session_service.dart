@@ -51,7 +51,7 @@ class KanjiSessionService {
           : filtered;
       pairs = limited.map((k) => (k, null)).toList();
     } else {
-      final settings = await _ref.read(srsSettingsProvider.future);
+      final settings = _ref.read(srsSettingsProvider);
       final allPairs = await _ref
           .read(srsQueueServiceProvider)
           .kanji(level, newCardLimit: settings.newCharactersPerDay);

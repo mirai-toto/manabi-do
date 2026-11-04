@@ -26,7 +26,7 @@ class ReviewQueueService {
 
   Future<List<PracticeItem>> kanaPractice(String type) async {
     final db = _ref.read(databaseProvider);
-    final settings = await _ref.read(srsSettingsProvider.future);
+    final settings = _ref.read(srsSettingsProvider);
     final mcqSettings = _ref.read(mcqSettingsProvider);
     final queue = await _ref
         .read(srsQueueServiceProvider)
@@ -50,7 +50,7 @@ class ReviewQueueService {
 
   Future<List<PracticeItem>> kana() async {
     final db = _ref.read(databaseProvider);
-    final settings = await _ref.read(srsSettingsProvider.future);
+    final settings = _ref.read(srsSettingsProvider);
     final mcqSettings = _ref.read(mcqSettingsProvider);
     final pairs = await _ref
         .read(srsQueueServiceProvider)
@@ -74,7 +74,7 @@ class ReviewQueueService {
   /// Everything due today across the decks enabled in the home settings,
   /// shuffled together.
   Future<List<PracticeItem>> allDue() async {
-    final settings = await _ref.read(homeSettingsProvider.future);
+    final settings = _ref.read(homeSettingsProvider);
     final queues = await Future.wait([
       if (settings.showKana) kana(),
       if (settings.showKanji) kanji(),
@@ -112,7 +112,7 @@ class ReviewQueueService {
 
   Future<List<PracticeItem>> kanji() async {
     final db = _ref.read(databaseProvider);
-    final settings = await _ref.read(srsSettingsProvider.future);
+    final settings = _ref.read(srsSettingsProvider);
     final mcqSettings = _ref.read(mcqSettingsProvider);
     final locale = _ref.read(localeProvider).languageCode;
     final pairs = await _ref
@@ -152,7 +152,7 @@ class ReviewQueueService {
   Future<List<PracticeItem>> vocabulary() async {
     final db = _ref.read(databaseProvider);
     final locale = _ref.read(localeProvider).languageCode;
-    final settings = await _ref.read(srsSettingsProvider.future);
+    final settings = _ref.read(srsSettingsProvider);
     final mcqSettings = _ref.read(mcqSettingsProvider);
     final sentenceSettings = _ref.read(sentenceSettingsProvider);
     final pairs = await _ref

@@ -133,8 +133,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         ref.watch(weekActivityProvider).asData?.value ?? List.filled(7, false);
     final continueTarget = ref.watch(grammarContinueProvider).asData?.value;
 
-    final show =
-        ref.watch(homeSettingsProvider).asData?.value ?? const HomeSettings();
+    final show = ref.watch(homeSettingsProvider);
     final domains = [
       if (show.showKana) (glyph: 'か', due: kanaDue),
       if (show.showKanji) (glyph: '字', due: kanjiDue),

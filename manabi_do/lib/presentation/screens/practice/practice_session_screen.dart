@@ -94,8 +94,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
 
     // Watched, not captured at queue-build time, so toggling a setting in the
     // in-session sheet re-renders the card currently on screen.
-    final SrsSettings srs =
-        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
+    final SrsSettings srs = ref.watch(srsSettingsProvider);
     final PracticeBodySettings bodySettings = PracticeBodySettings(
       mcq: ref.watch(mcqSettingsProvider),
       flashcard: ref.watch(flashcardSettingsProvider),

@@ -65,14 +65,12 @@ final weekActivityProvider = StreamProvider<List<bool>>(
 );
 
 final kanaNewCountProvider = StreamProvider<int>((ref) {
-  final limit =
-      ref.watch(srsSettingsProvider).asData?.value.newCharactersPerDay ?? 10;
+  final limit = ref.watch(srsSettingsProvider).newCharactersPerDay;
   return ref.watch(dashboardServiceProvider).kanaNewCount(newCardLimit: limit);
 });
 
 final kanjiNewCountProvider = StreamProvider<int>((ref) {
-  final limit =
-      ref.watch(srsSettingsProvider).asData?.value.newCharactersPerDay ?? 10;
+  final limit = ref.watch(srsSettingsProvider).newCharactersPerDay;
   return ref.watch(dashboardServiceProvider).kanjiNewCount(newCardLimit: limit);
 });
 
@@ -88,8 +86,7 @@ class PracticeActiveNotifier extends Notifier<bool> {
 }
 
 final vocabularyNewCountProvider = StreamProvider<int>((ref) {
-  final limit =
-      ref.watch(srsSettingsProvider).asData?.value.newVocabularyPerDay ?? 10;
+  final limit = ref.watch(srsSettingsProvider).newVocabularyPerDay;
   return ref
       .watch(dashboardServiceProvider)
       .vocabularyNewCount(newCardLimit: limit);

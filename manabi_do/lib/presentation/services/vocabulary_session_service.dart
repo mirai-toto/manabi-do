@@ -58,7 +58,7 @@ class VocabularySessionService {
           : filtered;
       pairs = limited.map((v) => (v, null)).toList();
     } else {
-      final settings = await _ref.read(srsSettingsProvider.future);
+      final settings = _ref.read(srsSettingsProvider);
       final allPairs = await _ref
           .read(srsQueueServiceProvider)
           .vocabulary(level, newCardLimit: settings.newVocabularyPerDay);

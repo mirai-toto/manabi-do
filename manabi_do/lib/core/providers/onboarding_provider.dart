@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'shared_preferences_provider.dart';
 
@@ -21,14 +20,14 @@ class OnboardingSeenNotifier extends Notifier<bool> {
 
   Future<void> markSeen() async {
     state = true;
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = ref.read(sharedPreferencesProvider);
     await prefs.setBool(_kOnboardingSeen, true);
   }
 
   /// For the reset-progress flow, which puts the app back to a fresh install.
   Future<void> reset() async {
     state = false;
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = ref.read(sharedPreferencesProvider);
     await prefs.remove(_kOnboardingSeen);
   }
 }

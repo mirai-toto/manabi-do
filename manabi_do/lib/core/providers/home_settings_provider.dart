@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import 'shared_preferences_provider.dart';
 
 const _keyShowKana = 'home_show_kana';
 const _keyShowKanji = 'home_show_kanji';
@@ -28,10 +29,10 @@ class HomeSettings {
   );
 }
 
-class HomeSettingsNotifier extends AsyncNotifier<HomeSettings> {
+class HomeSettingsNotifier extends Notifier<HomeSettings> {
   @override
-  Future<HomeSettings> build() async {
-    final prefs = await SharedPreferences.getInstance();
+  HomeSettings build() {
+    final prefs = ref.read(sharedPreferencesProvider);
     return HomeSettings(
       showKana: prefs.getBool(_keyShowKana) ?? true,
       showKanji: prefs.getBool(_keyShowKanji) ?? true,
@@ -40,25 +41,25 @@ class HomeSettingsNotifier extends AsyncNotifier<HomeSettings> {
   }
 
   Future<void> setShowKana(bool value) async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = ref.read(sharedPreferencesProvider);
     await prefs.setBool(_keyShowKana, value);
-    state = AsyncData(state.requireValue.copyWith(showKana: value));
+    state = state.copyWith(showKana: value);
   }
 
   Future<void> setShowKanji(bool value) async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = ref.read(sharedPreferencesProvider);
     await prefs.setBool(_keyShowKanji, value);
-    state = AsyncData(state.requireValue.copyWith(showKanji: value));
+    state = state.copyWith(showKanji: value);
   }
 
   Future<void> setShowVocabulary(bool value) async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = ref.read(sharedPreferencesProvider);
     await prefs.setBool(_keyShowVocabulary, value);
-    state = AsyncData(state.requireValue.copyWith(showVocabulary: value));
+    state = state.copyWith(showVocabulary: value);
   }
 }
 
 final homeSettingsProvider =
-    AsyncNotifierProvider<HomeSettingsNotifier, HomeSettings>(
+    NotifierProvider<HomeSettingsNotifier, HomeSettings>(
       HomeSettingsNotifier.new,
     );

@@ -34,8 +34,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
     final t = context.tokens;
     final l = context.l10n;
 
-    final SrsSettings srs =
-        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
+    final SrsSettings srs = ref.watch(srsSettingsProvider);
 
     final showLabels = contexts.length > 1;
 

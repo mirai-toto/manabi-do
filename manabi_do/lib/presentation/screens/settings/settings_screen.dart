@@ -135,18 +135,15 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final t = context.tokens;
-    final themeMode =
-        ref.watch(themeModeProvider).asData?.value ?? ThemeMode.system;
+    final themeMode = ref.watch(themeModeProvider);
     final locale = ref.watch(localeProvider);
 
-    final SrsSettings srs =
-        ref.watch(srsSettingsProvider).asData?.value ?? const SrsSettings();
+    final SrsSettings srs = ref.watch(srsSettingsProvider);
     final SrsSettingsNotifier srsNotifier = ref.read(
       srsSettingsProvider.notifier,
     );
 
-    final HomeSettings home =
-        ref.watch(homeSettingsProvider).asData?.value ?? const HomeSettings();
+    final HomeSettings home = ref.watch(homeSettingsProvider);
     final HomeSettingsNotifier homeNotifier = ref.read(
       homeSettingsProvider.notifier,
     );
