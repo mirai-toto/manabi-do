@@ -71,8 +71,12 @@ extension VocabularyQueries on AppDatabase {
   Future<List<VocabularyEntry>> getAllVocabulary() =>
       (select(vocabularyEntries)).get();
 
-  Future<int> countVocabularyEntries() =>
-      select(vocabularyEntries).get().then((rows) => rows.length);
+  Future<int> countVocabularyEntries() {
+    final count = vocabularyEntries.id.count();
+    return (selectOnly(
+      vocabularyEntries,
+    )..addColumns([count])).map((r) => r.read(count)!).getSingle();
+  }
 
   /// Every word whose spelling, reading or meaning contains [query], in no
   /// particular order. `SearchService` ranks them.

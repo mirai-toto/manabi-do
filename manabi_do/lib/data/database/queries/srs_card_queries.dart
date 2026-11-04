@@ -106,4 +106,20 @@ extension SrsCardQueries on AppDatabase {
       progressEntries,
     )..where((p) => p.itemType.equals(type) & p.itemId.equals(itemId))).go();
   }
+
+  /// Cards of [itemType] first seen today, which the daily new-card budget
+  /// is measured against.
+  Future<int> countSeenToday(String itemType) {
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+    final count = srsCards.itemId.count();
+    return (selectOnly(srsCards)
+          ..addColumns([count])
+          ..where(
+            srsCards.itemType.equals(itemType) &
+                srsCards.firstSeenAt.isBiggerOrEqualValue(todayStart),
+          ))
+        .map((r) => r.read(count)!)
+        .getSingle();
+  }
 }

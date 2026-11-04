@@ -53,9 +53,14 @@ extension KanaQueries on AppDatabase {
     );
   }
 
-  Future<int> countKanaOfType(String type) => (select(
-    kanas,
-  )..where((k) => k.type.equals(type))).get().then((rows) => rows.length);
+  Future<int> countKanaOfType(String type) {
+    final count = kanas.id.count();
+    return (selectOnly(kanas)
+          ..addColumns([count])
+          ..where(kanas.type.equals(type)))
+        .map((r) => r.read(count)!)
+        .getSingle();
+  }
 
   Future<List<Kana>> getKanaByType(String type) =>
       (select(kanas)
