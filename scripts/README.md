@@ -26,7 +26,6 @@ scripts/
     screenshot.js                  # single screenshot
     screenshot_tab.js              # every bottom-nav tab
     screenshot_grammar.js          # the full grammar flow
-    screenshot_grammar_n5.js       # N5 grammar lessons
     pw/                            # Playwright install (gitignored)
     output/                        # screenshot output (gitignored)
   setup/                           # one-time machine setup

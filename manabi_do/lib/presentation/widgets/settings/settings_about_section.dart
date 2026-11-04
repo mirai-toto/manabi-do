@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../../core/providers/onboarding_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -52,10 +54,32 @@ class SettingsAboutSection extends ConsumerWidget {
         const SizedBox(height: AppDimens.spaceSm),
         SettingsCard(
           children: [
-            SettingsInfo(
-              icon: Icons.info_outline_rounded,
-              label: l.aboutVersion(version),
-            ),
+            // Long-press the version to see onboarding again. Debug only,
+            // and deliberately undiscoverable: it is for testing the first-run
+            // flow without clearing the app's stored settings by hand.
+            if (kDebugMode)
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onLongPress: () async {
+                  await ref.read(onboardingSeenProvider.notifier).reset();
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Onboarding reset — restart the app'),
+                      duration: Duration(seconds: 3),
+                    ),
+                  );
+                },
+                child: SettingsInfo(
+                  icon: Icons.info_outline_rounded,
+                  label: l.aboutVersion(version),
+                ),
+              )
+            else
+              SettingsInfo(
+                icon: Icons.info_outline_rounded,
+                label: l.aboutVersion(version),
+              ),
             SettingsTile(
               leading: icon(Icons.article_outlined),
               label: l.aboutOpenSourceLicenses,

@@ -6,7 +6,7 @@ import 'package:manabi_do/data/database/app_database.dart';
 
 void main() {
   test(
-    'a v22 content database migrates to 27 with the vocabulary level columns',
+    'a v22 content database migrates to 29, gaining levels and the stable id',
     () async {
       final source = File(
         '${Platform.environment['HOME']}/.cache/manabi-content/v22.1-manabi_do_content.db',
@@ -32,8 +32,15 @@ void main() {
       // defaults. A migrated database has no coverage figures until the matching
       // content asset replaces it, which is what ships with a schema change.
       await db.customSelect('SELECT COUNT(*) FROM coverage_groups').getSingle();
+      final tables = await db
+          .customSelect("SELECT name FROM sqlite_master WHERE type='table'")
+          .get()
+          .then((rows) => rows.map((r) => r.data['name']).toList());
 
-      expect(version, 27);
+      expect(version, 29);
+      expect(tables, contains('vocabulary_senses'));
+      expect(tables, isNot(contains('vocabulary_translations')));
+      expect(columns, contains('jmdict_id'));
       expect(columns, contains('vocabulary_level'));
       expect(columns, contains('group_index'));
       expect(columns, isNot(contains('jlpt_level')));

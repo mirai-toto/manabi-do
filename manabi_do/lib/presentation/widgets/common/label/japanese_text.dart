@@ -235,18 +235,24 @@ WidgetSpan rubySpan(
 /// plain spans with no ruby row. That row is about 10 logical pixels of empty
 /// band above the text, and reserving it on a line that can never fill it left
 /// every kana-only sentence sitting low in its own space with a gap on top.
+///
+/// [reserveRuby] forces the band on anyway, for a caller that builds one line
+/// from several calls. A cloze sentence is split into before, answer and
+/// after: 卵が全部で１０ carries ruby and あった。does not, so deciding per
+/// call put the two halves of one sentence on different baselines.
 List<InlineSpan> furiganaSpans(
   String text,
   TextStyle textStyle,
   TextStyle rubyStyle, {
   bool showFurigana = true,
+  bool reserveRuby = false,
 }) {
   if (!showFurigana) {
     return [TextSpan(text: stripAnnotation(text), style: textStyle)];
   }
 
   final segments = parseFuriganaAnnotation(text);
-  if (!segments.any((seg) => seg.ruby != null)) {
+  if (!segments.any((seg) => seg.ruby != null) && !reserveRuby) {
     return [
       TextSpan(text: segments.map((seg) => seg.text).join(), style: textStyle),
     ];

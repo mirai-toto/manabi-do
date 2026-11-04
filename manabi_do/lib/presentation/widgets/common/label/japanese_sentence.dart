@@ -48,6 +48,11 @@ class JapaneseSentence extends StatelessWidget {
 
     if (highlight != null && highlight!.isNotEmpty) {
       final plain = stripAnnotation(sentence);
+      // Decided once for the whole sentence, not per slice. Highlighting
+      // splits it into three, and a slice with no kanji of its own would
+      // otherwise render as plain text beside the ruby columns and sit half a
+      // line lower — 頭痛がする。dropped its する and its 。that way.
+      final bool anyRuby = sentence.contains('{');
       final (before, target, after) = splitSentenceAnnotation(
         sentence,
         plain,
@@ -55,7 +60,7 @@ class JapaneseSentence extends StatelessWidget {
       );
       if (hideHighlight) {
         spans = [
-          ...furiganaSpans(before, baseStyle, rubyStyle),
+          ...furiganaSpans(before, baseStyle, rubyStyle, reserveRuby: anyRuby),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
             child: Container(
@@ -83,17 +88,18 @@ class JapaneseSentence extends StatelessWidget {
               ),
             ),
           ),
-          ...furiganaSpans(after, baseStyle, rubyStyle),
+          ...furiganaSpans(after, baseStyle, rubyStyle, reserveRuby: anyRuby),
         ];
       } else {
         spans = [
-          ...furiganaSpans(before, baseStyle, rubyStyle),
+          ...furiganaSpans(before, baseStyle, rubyStyle, reserveRuby: anyRuby),
           ...furiganaSpans(
             target,
             baseStyle.copyWith(color: accentColor, fontWeight: FontWeight.w700),
             rubyStyle.copyWith(color: accentColor),
+            reserveRuby: anyRuby,
           ),
-          ...furiganaSpans(after, baseStyle, rubyStyle),
+          ...furiganaSpans(after, baseStyle, rubyStyle, reserveRuby: anyRuby),
         ];
       }
     } else {

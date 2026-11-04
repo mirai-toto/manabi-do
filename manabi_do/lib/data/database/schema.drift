@@ -36,6 +36,13 @@ CREATE TABLE kanas (
 
 CREATE TABLE vocabulary_entries (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  -- JMdict's own entry id, which survives releases. `id` above does not: it is
+  -- an autoincrement rowid assigned in insertion order, so it moves whenever
+  -- the word list changes. Review history keyed on the pair (word, reading)
+  -- instead, which held until schema 28 wrote 要る in kanji to separate it from
+  -- いる and orphaned 17 words' cards. Null only in a database migrated from
+  -- before schema 29; every built database fills it.
+  jmdict_id TEXT,
   word TEXT NOT NULL,
   reading TEXT NOT NULL,
   meaning TEXT NOT NULL,
@@ -136,13 +143,6 @@ CREATE TABLE vocabulary_senses (
   note TEXT NOT NULL DEFAULT '',
   kind TEXT NOT NULL DEFAULT '',
   PRIMARY KEY (vocabulary_id, locale, position)
-);
-
-CREATE TABLE vocabulary_translations (
-  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
-  locale TEXT NOT NULL,
-  meaning TEXT NOT NULL,
-  PRIMARY KEY (vocabulary_id, locale)
 );
 
 CREATE TABLE sentences (

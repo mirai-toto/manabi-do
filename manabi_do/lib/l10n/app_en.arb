@@ -598,5 +598,38 @@
   },
   "deckCaughtUp": "Caught up",
   "deckNotStarted": "Start",
-  "deckContinue": "Continue"
+  "deckContinue": "Continue",
+  "onboardingWelcome": "Welcome",
+  "onboardingLanguageBody": "Pick the language you want meanings and lessons in. You can change it later in Settings.",
+  "onboardingContinue": "Continue",
+  "onboardingHookTitle": "750 words is half of it",
+  "onboardingHookBody": "Words are taught in the order people actually write them, measured against 18 million words of Japanese. The first level alone covers half of everything written.",
+  "onboardingLevelWords": "Level {level} · {count} words",
+  "@onboardingLevelWords": {
+    "description": "Label beside a coverage bar on the onboarding hook screen.",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingStudyTitle": "What do you want to learn?",
+  "onboardingStudyBody": "Turn on what you want on your home screen. Nothing is locked — you can add the rest whenever.",
+  "onboardingPaceTitle": "How much a day?",
+  "onboardingPaceBody": "New items per day. Reviews come on top, and they settle once you have a few days behind you.",
+  "onboardingPaceEstimate": "About {minutes} minutes a day",
+  "@onboardingPaceEstimate": {
+    "description": "Rough daily time estimate from the chosen pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingStart": "Start learning",
+  "onboardingSkip": "Set it up later",
+  "onboardingPickOne": "Choose at least one to carry on."
 }

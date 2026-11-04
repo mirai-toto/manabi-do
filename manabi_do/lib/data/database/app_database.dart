@@ -26,7 +26,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 27;
+  int get schemaVersion => 29;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -194,6 +194,23 @@ class AppDatabase extends _$AppDatabase {
       // joined string rather than failing.
       from26To27: (m, schema) async {
         await m.createTable(schema.vocabularySenses);
+      },
+      // `vocabulary_senses` carries the same glosses split per sense, in
+      // order, with JMdict's usage notes. `vocabulary_translations` held them
+      // mashed into one string per language, which is where する's French read
+      // "coûter; essayer; faire; jouer; pratiquer" with no sense of which
+      // came first.
+      from27To28: (m, schema) async {
+        await m.deleteTable('vocabulary_translations');
+      },
+      // Empty until a schema 29 content database replaces this one, which is
+      // why the column is nullable and why the remap still falls back to
+      // (word, reading) when it finds nothing here.
+      from28To29: (m, schema) async {
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.jmdictId,
+        );
       },
     ),
   );

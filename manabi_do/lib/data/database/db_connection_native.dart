@@ -89,7 +89,7 @@ QueryExecutor openDbConnection() {
       // history keys on them, so the old numbering is captured here and
       // translated below. Read before the overwrite, because the file about to
       // be replaced is the only place it exists.
-      Map<int, String> oldIdentity = const {};
+      Map<int, List<String>> oldIdentity = const {};
       if (file.existsSync()) {
         final raw.Database old = raw.sqlite3.open(file.path);
         try {

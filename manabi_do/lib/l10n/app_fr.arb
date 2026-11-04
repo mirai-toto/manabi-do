@@ -538,5 +538,19 @@
   },
   "deckCaughtUp": "À jour",
   "deckNotStarted": "Commencer",
-  "deckContinue": "Continuer"
+  "deckContinue": "Continuer",
+  "onboardingWelcome": "Bienvenue",
+  "onboardingLanguageBody": "Choisissez la langue des définitions et des leçons. Vous pourrez en changer dans les Paramètres.",
+  "onboardingContinue": "Continuer",
+  "onboardingHookTitle": "750 mots, c'est la moitié",
+  "onboardingHookBody": "Les mots sont enseignés dans l'ordre où ils s'écrivent réellement, mesuré sur 18 millions de mots de japonais. Le premier niveau couvre à lui seul la moitié de tout ce qui s'écrit.",
+  "onboardingLevelWords": "Niveau {level} · {count} mots",
+  "onboardingStudyTitle": "Que voulez-vous apprendre ?",
+  "onboardingStudyBody": "Activez ce que vous voulez sur votre écran d'accueil. Rien n'est verrouillé : vous pourrez ajouter le reste quand vous voudrez.",
+  "onboardingPaceTitle": "Combien par jour ?",
+  "onboardingPaceBody": "Nouveaux éléments par jour. Les révisions s'ajoutent, et elles se stabilisent après quelques jours.",
+  "onboardingPaceEstimate": "Environ {minutes} minutes par jour",
+  "onboardingStart": "Commencer",
+  "onboardingSkip": "Configurer plus tard",
+  "onboardingPickOne": "Choisissez-en au moins un pour continuer."
 }
