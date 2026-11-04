@@ -26,7 +26,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 22;
+  int get schemaVersion => 27;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -79,6 +79,121 @@ class AppDatabase extends _$AppDatabase {
           'WHERE blocks_json LIKE ?',
           ['"vocab_table"', '"vocabulary_table"', '%"vocab_table"%'],
         );
+      },
+
+      // A word is written with as many kanji as it has. `kanji_id` held the
+      // first and discarded the rest, so 今日 knew 今 and not 日 — which made
+      // scoring a word by its kanji impossible.
+      //
+      // Nothing is backfilled here. A schema change ships a new asset, and the
+      // refresh replaces the file wholesale, so the rows arrive already built.
+      // This step exists for a database opened without that replacement.
+      from22To23: (m, schema) async {
+        await m.createTable(schema.vocabularyKanji);
+        await m.alterTable(TableMigration(schema.vocabularyEntries));
+      },
+
+      // Difficulty stops being a number copied from a downloaded list and
+      // becomes one computed from JMdict's frequency levels and KANJIDIC2's
+      // school grades — both of which were already being downloaded and
+      // thrown away. `jlpt_level` stays, so the two can be compared.
+      //
+      // Empty here for the same reason as the step above: a schema change
+      // ships a new asset and the refresh replaces the file.
+      from23To24: (m, schema) async {
+        await m.addColumn(schema.kanjis, schema.kanjis.grade);
+        await m.addColumn(schema.kanjis, schema.kanjis.freq);
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.freqBand,
+        );
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.difficulty,
+        );
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.difficultyTier,
+        );
+        await m.addColumn(
+          schema.vocabularyEntries,
+          schema.vocabularyEntries.difficultySource,
+        );
+      },
+
+      // A word's place in Japanese, rather than its place in our word list.
+      //
+      // `difficulty_tier` banded words by share of the roster, so tier 1 meant
+      // "the easiest tenth of whatever we ship" — a fact about the app, not
+      // about the language. `vocabulary_level` and `group_index` carry a share of
+      // running Japanese instead, and `coverage_groups` says what each group of
+      // thirty words buys.
+      //
+      // `jlpt_level` goes at the same time. The JLPT publishes a kanji list and
+      // no vocabulary list, so the column only ever held somebody's guess.
+      //
+      // Nothing is backfilled: a schema change ships a new asset and the
+      // refresh replaces the file wholesale, so the rows arrive already built.
+      // This step exists for a database opened without that replacement.
+      from24To25: (m, schema) async {
+        await m.createTable(schema.coverageGroups);
+        // `newColumns` is not optional here. `alterTable` copies the old rows
+        // into the new shape, and without it drift writes a SELECT naming
+        // `vocabulary_level` and `group_index` against the table that does not
+        // have them yet, so opening the database throws "no such column".
+        // Their SQL defaults fill the copied rows.
+        await m.alterTable(
+          TableMigration(
+            schema.vocabularyEntries,
+            newColumns: [
+              schema.vocabularyEntries.coverageBand,
+              schema.vocabularyEntries.groupIndex,
+            ],
+          ),
+        );
+      },
+
+      // `coverage_band` becomes `vocabulary_level`, and `coverage_groups.band`
+      // with it.
+      //
+      // A rename and nothing else. The word "band" was ours alone: the screens
+      // call these levels, so the column now says the same thing. Spelled out
+      // rather than plain `level` so it cannot be read as the exam level that
+      // `kanjis.jlpt_level` holds.
+      //
+      // This needed its own version. The rename first went into v25 directly,
+      // on the grounds that v25 had never been released — but a v25 database
+      // already existed on a development machine, drift saw a version it had
+      // nothing to do for, and every vocabulary query then asked for a column
+      // that was no longer there. A schema that has reached any disk anywhere
+      // is frozen.
+      from25To26: (m, schema) async {
+        await m.renameColumn(
+          schema.vocabularyEntries,
+          'coverage_band',
+          schema.vocabularyEntries.vocabularyLevel,
+        );
+        await m.renameColumn(
+          schema.coverageGroups,
+          'band',
+          schema.coverageGroups.vocabularyLevel,
+        );
+      },
+
+      // A word's meanings become rows instead of one joined string.
+      //
+      // `vocabulary_entries.meaning` still holds every gloss of every sense
+      // joined with "; " — 824 characters for する — because search matches
+      // against it and a list row wants one truncated line. The word's own
+      // screen reads `vocabulary_senses` instead, which keeps JMdict's sense
+      // boundaries, its usage notes and the transitivity of each sense.
+      //
+      // Nothing is backfilled: a schema change ships a new asset and the
+      // refresh replaces the file wholesale. This step exists so a database
+      // opened without that replacement has the table and degrades to the
+      // joined string rather than failing.
+      from26To27: (m, schema) async {
+        await m.createTable(schema.vocabularySenses);
       },
     ),
   );

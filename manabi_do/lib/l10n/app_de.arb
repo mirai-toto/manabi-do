@@ -1,29 +1,22 @@
 {
   "@@locale": "de",
-
   "appTitle": "Manabi Do",
-
   "tagline": "Japanisch lernen · offline, in deinem Tempo",
   "signInWithGoogle": "Mit Google anmelden",
   "signInWithApple": "Mit Apple anmelden",
   "continueAsGuest": "Als Gast fortfahren →",
   "or": "oder",
-
   "sectionGrammar": "Grammatik",
   "sectionCharacters": "Zeichen",
   "sectionVocabulary": "Vokabular",
-
   "tabHiragana": "Hiragana",
   "tabKatakana": "Katakana",
   "tabKanji": "Kanji",
   "kana": "Kana",
   "japanese": "Japanisch",
-
   "skipKana": "Überspringen (aus Übung ausschließen)",
   "skippedKana": "Übersprungen",
-
   "statusNotStarted": "Nicht begonnen",
-
   "chapterLocked": "Kapitel gesperrt",
   "chapterLockedBody": "Schließe das vorherige Kapitel ab, um dieses freizuschalten, oder mach trotzdem weiter.",
   "groupLocked": "Gruppe gesperrt",
@@ -31,43 +24,47 @@
   "lessonLocked": "Lektion gesperrt",
   "lessonLockedBody": "Schließe die vorherige Lektion ab, um diese freizuschalten, oder mach trotzdem weiter.",
   "chapterUnlockAnyway": "Trotzdem freischalten",
-
   "exampleWords": "Beispielwörter",
   "readings": "Lesungen",
-
   "difficultyLevel": "Schwierigkeit {level}",
   "@difficultyLevel": {
     "placeholders": {
-      "level": { "type": "int" }
+      "level": {
+        "type": "int"
+      }
     }
   },
-
   "chapterN": "Kapitel {number}",
   "@chapterN": {
     "placeholders": {
-      "number": { "type": "String" }
+      "number": {
+        "type": "String"
+      }
     }
   },
-
   "nLessons": "{count, plural, =1{1 Lektion} other{{count} Lektionen}}",
   "@nLessons": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "lessonsProgress": "{done} / {total} Lektionen",
   "@lessonsProgress": {
     "placeholders": {
-      "done": { "type": "int" },
-      "total": { "type": "int" }
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
-
   "multipleChoice": "Multiple Choice",
   "sentenceFillIn": "Satz",
   "sentenceFillInPrompt": "Lücke ausfüllen",
   "practice": "Üben →",
-
   "sessionComplete": "Sitzung abgeschlossen!",
   "retry": "Nochmal",
   "nextLesson": "Nächste Lektion →",
@@ -87,26 +84,21 @@
   "correctAnswer": "Richtige Antwort",
   "missed": "Falsch",
   "timeSpent": "Benötigte Zeit",
-
   "flashcardDefaultPrompt": "Was bedeutet das?",
   "flashcardJapaneseQuestion": "Wie sagt man das auf Japanisch?",
   "tapToReveal": "Zum Aufdecken tippen",
   "tapToHide": "Zum Verbergen tippen",
   "flashcardNotYet": "✗  Noch nicht",
   "flashcardGotIt": "✓  Gewusst",
-
   "navSettings": "Einstellungen",
   "navHome": "Start",
   "navVocabulary": "Vokabeln",
-
   "greetingMorning": "Guten Morgen",
   "greetingAfternoon": "Guten Tag",
   "greetingEvening": "Guten Abend",
   "greetingSubtitle": "Lass uns Japanisch lernen",
-
   "streakLabel": "Tage in Folge",
   "streakSubtitle": "Weiter so!",
-
   "todaysSession": "Heutige Lerneinheit",
   "reviewsDueUnit": "{count, plural, one{fällige Wiederholung} other{fällige Wiederholungen}}",
   "startReviews": "Wiederholungen starten",
@@ -115,16 +107,21 @@
   "thisWeek": "Diese Woche",
   "nNewToday": "{count} neue heute",
   "nDue": "{count} fällig",
+  "reviewNDue": "{count} fällige wiederholen",
+  "@reviewNDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "lessonOfTotal": "Lektion {index} von {total}",
-
   "strokeOrderPlaceholder": "▶ Strichfolge-Animation",
-
   "strokeOrder": "Strichfolge",
   "selectLevel": "Niveau auswählen",
   "onyomi": "Onyomi",
   "kunyomi": "Kunyomi",
   "noExampleWordsFound": "Keine Beispielwörter gefunden",
-
   "posNoun": "Substantiv",
   "posVerb": "Verb",
   "posAdverb": "Adverb",
@@ -149,24 +146,77 @@
   "posNounPrefix": "Nominalpräfix",
   "posSuruSpecial": "Suru-Verb (spez.)",
   "posSuruIrregular": "Suru-Verb (unreg.)",
-
   "levelN5": "Anfänger",
   "levelN4": "Grundstufe",
   "levelN3": "Mittelstufe",
   "levelN2": "Obere Mittelstufe",
   "levelN1": "Fortgeschritten",
-
+  "vocabularyLevel1": "Am häufigsten",
+  "vocabularyLevel2": "Sehr häufig",
+  "vocabularyLevel3": "Häufig",
+  "vocabularyLevel4": "Selten",
+  "vocabularyLevel5": "Sehr selten",
+  "meaning": "Bedeutung",
+  "nMeanings": "{count} Bedeutungen",
+  "@nMeanings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "showNMoreMeanings": "{count} weitere anzeigen",
+  "@showNMoreMeanings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "transitive": "transitiv",
+  "intransitive": "intransitiv",
+  "exampleSentences": "Im Satz",
+  "translationFallbackNotice": "Hierfür gibt es noch keine Übersetzung auf {language}, daher wird Englisch angezeigt.",
+  "meaningsInEnglish": "Auf Englisch",
+  "translationCoarseNotice": "{language} hat nur einen Eintrag für dieses Wort, daher werden auch die englischen Bedeutungen gezeigt.",
+  "writtenWith": "Geschrieben mit",
+  "youCanRead": "Du kannst lesen",
+  "ofWrittenJapanese": "von allem, was auf Japanisch geschrieben wird",
+  "coverageAtLeast": "mindestens {percent} %",
+  "@coverageAtLeast": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "finishThisLevel": "Diese Stufe abschließen",
+  "levelReaches": "lesbar, mit {count} Wörtern",
+  "@levelReaches": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vocabularyLevels": "Stufen",
   "charactersSubtitle": "Kana · Kanji N5–N1 · {total} Kana",
   "@charactersSubtitle": {
-    "placeholders": { "total": { "type": "int" } }
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
   },
   "charactersSubtitleShort": "Kana · Kanji N5–N1",
-
   "nKanji": "{count} Kanji",
   "@nKanji": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "kanaRowVowels": "Vokale",
   "settingsResetProgress": "Alle Fortschritte zurücksetzen",
   "resetProgressTitle": "Alle Fortschritte zurücksetzen?",
@@ -177,12 +227,15 @@
   "resetCharacterProgress": "Fortschritt dieses Zeichens zurücksetzen",
   "resetConfirm": "Zurücksetzen",
   "cancel": "Abbrechen",
-
   "settingsPractice": "Übung",
+  "settingsExercises": "Übungen",
+  "settingsStudyScopeNote": "Gilt für jede bewertete Sitzung.",
   "settingsHomeScreen": "Startbildschirm",
+  "settingsApp": "App",
+  "settingsHomeAll": "Alle Bereiche",
+  "settingsHomeNone": "Keine",
   "settingsPracticeNewCharacters": "Neue Zeichen pro Tag",
   "settingsPracticeNewVocabulary": "Neues Vokabular pro Tag",
-
   "settingsAppearance": "Erscheinungsbild",
   "settingsThemeSystem": "System",
   "settingsThemeLight": "Hell",
@@ -193,49 +246,79 @@
   "feedbackEmailBodyHint": "Was gut funktioniert, was nicht, und was fehlt.",
   "feedbackNoMailApp": "Keine E-Mail-App gefunden. Adresse: {email}",
   "@feedbackNoMailApp": {
-    "placeholders": { "email": { "type": "String" } }
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
   },
   "feedbackAddressCopied": "Adresse kopiert",
   "settingsSupportDeveloper": "Entwicklung unterstützen",
   "supportNoBrowser": "Link konnte nicht geöffnet werden. {url}",
   "@supportNoBrowser": {
-    "placeholders": { "url": { "type": "String" } }
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
   },
   "supportLinkCopied": "Link kopiert",
-
   "aboutTitle": "Über",
   "aboutVersion": "Version {version}",
   "@aboutVersion": {
-    "placeholders": { "version": { "type": "String" } }
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
   },
   "aboutDataSources": "Datenquellen",
+  "aboutDataSourcesIntro": "Die Wörter, Kanji, Sätze und Häufigkeitsdaten der App stammen alle aus externen Quellen. Jede wird hier mit der von ihr verlangten Lizenz genannt.",
   "aboutEdrdgNotice": "Diese App verwendet JMdict und KANJIDIC2, veröffentlicht von der Electronic Dictionary Research and Development Group (EDRDG) unter einer Creative Commons Attribution-ShareAlike 4.0 International Lizenz.",
   "aboutEdrdgLink": "edrdg.org",
   "aboutKanjiVgNotice": "Die Strichreihenfolge-Diagramme verwenden KanjiVG von Ulrich Apel, lizenziert unter Creative Commons Attribution-ShareAlike 3.0 Unported.",
   "aboutKanjiVgLink": "kanjivg.tagaini.net",
   "aboutTatoebaNotice": "Beispielsätze stammen von Tatoeba (tatoeba.org), einem gemeinschaftlich erstellten mehrsprachigen Korpus, lizenziert unter Creative Commons Attribution 2.0.",
   "aboutTatoebaLink": "tatoeba.org",
+  "aboutWallerNotice": "Die Schwierigkeitsstufen der Kanji stammen aus davidluzgouveia/kanji-data, das auf den von Jonathan Waller zusammengestellten JLPT-Wortschatz- und Kanji-Listen aufbaut, lizenziert unter Creative Commons Attribution. Seine Wortschatzlisten bestimmten in Versionen vor 24 auch die Wortstufen.",
+  "aboutWallerLink": "tanos.co.uk",
+  "aboutPykakasiNotice": "Die Furigana über den Beispielsätzen wurden mit pykakasi erzeugt, lizenziert unter der GNU General Public License v3 oder später.",
+  "aboutPykakasiLink": "codeberg.org/miurahr/pykakasi",
+  "aboutJanomeNotice": "Beispielsätze werden mit Janome ausgewählt, einem morphologischen Analysewerkzeug für Japanisch, lizenziert unter der Apache-Lizenz 2.0. Es bestimmt, welche Wörter ein Satz wirklich enthält.",
+  "aboutJanomeLink": "mocobeta.github.io/janome",
+  "aboutBccwjNotice": "Die Wortschwierigkeit, die Vokabelstufen und der Anteil des geschriebenen Japanisch, den jede Lerngruppe abdeckt, werden aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).",
+  "aboutBccwjLink": "clrd.ninjal.ac.jp",
   "aboutOpenSourceLicenses": "Open-Source-Lizenzen",
-
   "practiceSessionDone": "Sitzung abgeschlossen",
   "practiceReviewed": "{count} wiederholt",
   "@practiceReviewed": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "practiceGotIt": "{count} gewusst",
   "@practiceGotIt": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "practiceNotYet": "{count} noch nicht",
   "@practiceNotYet": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "practiceEmpty": "Nichts zu wiederholen · komm morgen wieder!",
   "practiceDone": "Fertig",
   "quitPracticeTitle": "Sitzung verlassen?",
   "quitPracticeBody": "Die verbleibenden Elemente werden nicht geübt.",
   "quit": "Verlassen",
-
   "drawingPractice": "Schreiben üben",
   "selfAssessQuestion": "Hast du es gewusst?",
   "ratingAgain": "Nochmal",
@@ -250,22 +333,31 @@
   "drawingHint": "Hinweis",
   "drawingStrokeCount": "{count} Striche",
   "@drawingStrokeCount": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "drawingMistakeCount": "{count, plural, =0{Perfekt!} one{1 Fehler} other{{count} Fehler}}",
   "@drawingMistakeCount": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "mcqSelectKanaReading": "Wie lautet die Lesung dieses Kana?",
-
   "mcqSelectMeaning": "Was bedeutet dieses Kanji?",
   "mcqSelectWordMeaning": "Was bedeutet dieses Wort?",
   "mcqSelectKanji": "Welches Kanji steht für: \"{meaning}\"?",
   "@mcqSelectKanji": {
-    "placeholders": { "meaning": { "type": "String" } }
+    "placeholders": {
+      "meaning": {
+        "type": "String"
+      }
+    }
   },
-
   "srsStateNew": "Neu",
   "srsStateLearning": "In Bearbeitung",
   "srsStateApprentice": "Anfänger",
@@ -275,52 +367,87 @@
   "srsDueToday": "Heute fällig",
   "srsDueIn": "In {days} T.",
   "@srsDueIn": {
-    "placeholders": { "days": { "type": "int" } }
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
   },
   "nWords": "{count} Wörter",
   "@nWords": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "vocabularySubtitle": "{total} Wörter entdecken",
   "@vocabularySubtitle": {
-    "placeholders": { "total": { "type": "int" } }
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
   },
   "vocabularySubtitleShort": "Wörter entdecken",
   "reviewsDue": "{count} Wiederholungen",
   "@reviewsDue": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "nNew": "{count} neu",
   "@nNew": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "reviewsDueSubtitle": "Tippen um die Sitzung zu starten",
   "reviewNow": "Jetzt üben",
   "studyNow": "Jetzt lernen",
   "reviewAndStudy": "Üben & lernen",
   "viewDetail": "Details anzeigen",
-  "sessionReview": "Sitzungs\u00fcbersicht",
-  "reviewClozePrompt": "W\u00e4hle das passende Wort f\u00fcr den Satz",
+  "sessionReview": "Sitzungsübersicht",
+  "reviewClozePrompt": "Wähle das passende Wort für den Satz",
   "sessionReviewEmpty": "Du hast noch nichts beantwortet.",
   "sessionReviewCount": "{answered} von {total}",
   "@sessionReviewCount": {
-    "placeholders": { "answered": { "type": "int" }, "total": { "type": "int" } }
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   },
   "sessionReviewYourAnswer": "Deine Antwort",
   "sessionReviewCorrectAnswer": "Richtige Antwort",
-  "sessionReviewChangeGrade": "Bewertung \u00e4ndern",
+  "sessionReviewChangeGrade": "Bewertung ändern",
   "sessionReviewShowAll": "Alle {count} Bedeutungen anzeigen",
   "@sessionReviewShowAll": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "sessionReviewShowLess": "Weniger anzeigen",
   "ratingIncorrect": "Falsch",
   "ratingCorrect": "Richtig",
-  "reviewKindKanjiWriting": "Kanji \u00b7 Schreiben",
-  "reviewKindVocabularySentence": "Wortschatz \u00b7 Satz",
-  "reviewDrawPrompt": "Zeichne das Kanji f\u00fcr: {meaning}",
+  "reviewKindKanjiWriting": "Kanji · Schreiben",
+  "reviewKindVocabularySentence": "Wortschatz · Satz",
+  "reviewDrawPrompt": "Zeichne das Kanji für: {meaning}",
   "@reviewDrawPrompt": {
-    "placeholders": { "meaning": { "type": "String" } }
+    "placeholders": {
+      "meaning": {
+        "type": "String"
+      }
+    }
   },
   "allCaughtUp": "Alles erledigt!",
   "allCaughtUpSubtitle": "Komm später für weitere Wiederholungen zurück",
@@ -334,12 +461,14 @@
   "searchVocabulary": "Wortschatz suchen",
   "searchVocabularyHint": "Wort, Lesung oder Bedeutung…",
   "noResults": "Keine Ergebnisse",
-
   "groupN": "Gruppe {n}",
   "@groupN": {
-    "placeholders": { "n": { "type": "int" } }
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
   },
-
   "practiceSettingsTitle": "Übungseinstellungen",
   "practiceSettingsRecognition": "Erkennung",
   "recognitionStrict": "Streng",
@@ -360,14 +489,12 @@
   "showStrokeCountSubtitle": "Anzahl der Striche als Hinweis anzeigen",
   "autoAdvanceLabel": "Auto-Weiter",
   "autoAdvanceSubtitle": "Automatisch weitergehen und jede Antwort für dich bewerten",
-
+  "autoAdvanceFreePracticeNote": "Gilt für freies Üben. Eine bewertete Sitzung nutzt den einen Schalter unter Lernen, da eine Sitzung Übungsarten mischt.",
   "hintUsedFeedback": "Hinweis benutzt · als falsch markiert",
-
   "flashcardPractice": "Karteikarten",
   "mcqPractice": "Multiple Choice",
   "freePractice": "Freies Üben",
   "sentencePractice": "Sätze",
-
   "sentenceSettingsLabel": "Satzübung",
   "showMcqFuriganaLabel": "Furigana in der Aufgabe",
   "showMcqFuriganaSubtitle": "Lesung über Kanji im japanischen Wort anzeigen",
@@ -382,23 +509,33 @@
   "nativeTranslationOnlyLabel": "Nur meine Sprache",
   "nativeTranslationOnlySubtitle": "Sätze ohne Übersetzung in Ihrer Sprache überspringen",
   "hide": "Ausblenden",
-
   "grammarPractice": "Üben",
   "grammarMcqPrompt": "Was bedeutet dieser Satz?",
   "grammarBuilderPrompt": "Ordne den Satz",
   "grammarErrorDetectionPrompt": "Welcher Satz ist korrekt?",
   "example": "Beispiel",
-
   "showExampleLabel": "Beispiel anzeigen",
   "showExampleSubtitle": "Einen Beispielsatz auf Karteikarten anzeigen",
-
   "speakPronunciation": "Aussprache abspielen",
+  "settingsDetailedGrading": "Detaillierte Bewertung",
+  "settingsDetailedGradingSubtitle": "Mit Nochmal / Schwer / Gut / Leicht bewerten statt nur Noch nicht / Gewusst",
   "replayStrokeOrder": "Strichfolge erneut abspielen",
   "increaseSetting": "{label} erhöhen",
-  "@increaseSetting": { "placeholders": { "label": { "type": "String" } } },
+  "@increaseSetting": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "decreaseSetting": "{label} verringern",
-  "@decreaseSetting": { "placeholders": { "label": { "type": "String" } } },
-
+  "@decreaseSetting": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "deckCaughtUp": "Erledigt",
   "deckNotStarted": "Starten",
   "deckContinue": "Weiter"

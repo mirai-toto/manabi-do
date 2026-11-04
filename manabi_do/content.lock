@@ -1,0 +1,11 @@
+# Which content database this app ships.
+#
+# Built and published by mirai-toto/manabi-content. Fetch it with
+# scripts/content/fetch_content.sh — the asset itself is not tracked here.
+#
+# tag is v<schema>.<revision>. The schema number must equal the app's
+# schemaVersion in lib/data/database/app_database.dart. A schema change needs
+# a matching app release; a revision change is a drop-in.
+
+tag = v27.2
+sha256 = 8b894a5b76478d4e3ae150e6d4f97477f6fd2fbfec8ca8b972bf62c7e1a600dc

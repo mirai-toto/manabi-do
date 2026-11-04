@@ -63,7 +63,7 @@ No local Flutter installation needed, everything runs inside Docker.
 
 ```bash
 # Build and run
-./run-linux.sh
+scripts/run/run-linux.sh
 ```
 
 The `Dockerfile` and `docker-compose.yml` at the repo root define the build environment.

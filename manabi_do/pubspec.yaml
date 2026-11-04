@@ -95,6 +95,10 @@ flutter:
 
   assets:
     - assets/manabi_do_content.db
+    # Shipped so the app can read which content build it carries. The pin is
+    # already the source of truth for that; bundling it means the app and the
+    # pin cannot disagree.
+    - content.lock
     - assets/icons/
 
   fonts:

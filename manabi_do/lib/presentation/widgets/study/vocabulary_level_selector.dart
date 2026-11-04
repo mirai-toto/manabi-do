@@ -5,14 +5,20 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
+import '../../../core/theme/vocabulary_level.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/l10n.dart';
+import '../../services/search_service.dart';
 import '../../providers/vocabulary_list_provider.dart';
+import '../../screens/vocabulary/vocabulary_detail_screen.dart';
 import '../widgets.dart';
 
-const _levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
-
+/// Pinned `SearchField` over a full-screen-width list of coverage levels.
+/// Tapping a level calls `onSelect`. Typing replaces the tiles with matching
+/// words from `vocabularySearchProvider` (word, reading or meaning; ranked by
+/// `searchRank`, capped at 50), built lazily as they scroll into view.
 class VocabularyLevelSelector extends ConsumerStatefulWidget {
-  final void Function(String) onSelect;
+  final void Function(int) onSelect;
   const VocabularyLevelSelector({super.key, required this.onSelect});
 
   @override
@@ -23,6 +29,7 @@ class VocabularyLevelSelector extends ConsumerStatefulWidget {
 class _VocabularyLevelSelectorState
     extends ConsumerState<VocabularyLevelSelector> {
   String _query = '';
+  final Set<int> _filter = <int>{};
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +52,27 @@ class _VocabularyLevelSelectorState
             onChanged: (query) => setState(() => _query = query),
           ),
         ),
+        // Only while searching: without a query the level list below already
+        // is the level picker, and two ways to do one thing reads as a bug.
+        if (isSearchableQuery(_query))
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppDimens.spaceMd,
+              0,
+              AppDimens.spaceMd,
+              AppDimens.spaceSm,
+            ),
+            child: FilterChipBar<int>(
+              options: kAllVocabularyLevels,
+              selected: _filter,
+              labelOf: (level) => vocabularyLevelLabel(level, context),
+              onToggle: (level) => setState(
+                () => _filter.contains(level)
+                    ? _filter.remove(level)
+                    : _filter.add(level),
+              ),
+            ),
+          ),
         Expanded(
           child: isSearchableQuery(_query) ? _results() : _levelList(context),
         ),
@@ -52,25 +80,45 @@ class _VocabularyLevelSelectorState
     );
   }
 
-  Widget _levelList(BuildContext context) => ScrollFade(
-    builder: (controller) => ListView(
-      controller: controller,
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
-      children: [
-        SectionLabel(context.l10n.selectLevel),
-        const SizedBox(height: AppDimens.spaceSm),
-        for (final code in _levels)
-          JlptLevelCard(
-            code: code,
-            subtitle: _subtitle(context, code),
-            onTap: () => widget.onSelect(code),
-          ),
-      ],
-    ),
-  );
+  Widget _levelList(BuildContext context) {
+    final mine = ref.watch(coverageReachedProvider);
+    final total = ref.watch(vocabularyTotalCountProvider);
+    final l = context.l10n;
+    return ScrollFade(
+      builder: (controller) => ListView(
+        controller: controller,
+        padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
+        children: [
+          // "At least", because 3,448 of the 12,000 words carry no measurable
+          // share: UniDic counts お願いします in pieces, so the corpus has
+          // nothing to attribute to it. The figure is a floor, not an estimate.
+          if (mine != null)
+            CoverageMeterCard(
+              label: l.youCanRead,
+              share: mine,
+              caption: l.ofWrittenJapanese,
+              progressLabel: l.coverageAtLeast((mine * 100).round()),
+              // How much there is to read against how far through it you are.
+              // The percentage alone says nothing about the size of the job.
+              nextLabel: total != null ? l.nWords(total) : null,
+            ),
+          const SizedBox(height: AppDimens.spaceMd),
+          SectionLabel(l.vocabularyLevels),
+          const SizedBox(height: AppDimens.spaceSm),
+          for (final level in kAllVocabularyLevels)
+            VocabularyLevelCard(
+              level: level,
+              wordCount: _wordCount(context, level),
+              onTap: () => widget.onSelect(level),
+            ),
+          const SizedBox(height: AppDimens.spaceLg),
+        ],
+      ),
+    );
+  }
 
   Widget _results() => ref
-      .watch(vocabularySearchProvider(_query))
+      .watch(vocabularySearchProvider(SearchQuery(_query, _filter)))
       .when(
         loading: () => const Center(child: AppSpinner.page()),
         error: (e, s) => const SizedBox.shrink(),
@@ -78,9 +126,9 @@ class _VocabularyLevelSelectorState
             results.isEmpty ? const _NoResults() : _ResultList(results),
       );
 
-  String? _subtitle(BuildContext context, String code) {
+  String? _wordCount(BuildContext context, int level) {
     final count = ref
-        .watch(vocabularyByLevelProvider(code))
+        .watch(vocabularyByLevelProvider(level))
         .asData
         ?.value
         .length;
@@ -114,7 +162,15 @@ class _ResultList extends StatelessWidget {
                 indent: AppDimens.spaceMd,
                 endIndent: AppDimens.spaceMd,
               ),
-            VocabularyWordTile(entry: results[index], showLevel: true),
+            VocabularyWordTile(
+              entry: results[index],
+              showLevel: true,
+              onOpen: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => VocabularyDetailScreen(entry: results[index]),
+                ),
+              ),
+            ),
           ],
         ),
       ),

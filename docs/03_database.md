@@ -21,11 +21,11 @@ The schema has a single source of truth: **`manabi_do/lib/data/database/schema.d
 Two very different consumers read that one file:
 
 - **drift** generates the Dart table classes and row types from it
-- **`scripts/content_pipeline/build_content_db.py`** executes the same statements when building the shipped content DB
+- **`pipeline/build_content_db.py`** in [mirai-toto/manabi-content](https://github.com/mirai-toto/manabi-content) executes the same statements when building the shipped content DB
 
 Keep it to plain `CREATE TABLE`. Only two drift-isms are tolerated, and both are translated for the Python side: a trailing `) AS RowName` naming the generated row class, and `DATETIME` / `BOOLEAN`, which drift stores as `INTEGER`.
 
-Nothing checks the two consumers against each other automatically, so a change to `schema.drift` that drift accepts but Python does not will only show up when the content pipeline runs. Build the asset after a schema change.
+The two consumers live in different repositories, so nothing here catches them diverging. The content repo vendors a copy of this file under `schema/` and `pipeline/check_schema.py` compares the two, but that check runs there, not in this repo. After a schema change: bump `schemaVersion`, copy this file over the content repo's `schema/content.drift`, update its `schema/version.txt`, and cut a release whose tag carries the new schema number.
 
 ### Changing the schema
 
@@ -139,14 +139,14 @@ Primary key: (sentence_id, locale). English (`eng`) is the fallback locale.
 | id          | INTEGER PK |                                     |
 | locale      | TEXT       | `en`, `fr`, `de`, …                 |
 | level       | TEXT       | `basics`, `N5`, …                   |
-| path        | TEXT       | Relative to `content/grammar/`      |
+| path        | TEXT       | Relative to the content repo's `content/grammar/` |
 | theme_name  | TEXT       | Theme grouping (e.g. "Time & Actions") |
 | chapter     | TEXT       | Chapter title within the theme      |
 | title       | TEXT       | Lesson title                        |
 | blocks_json | TEXT       | JSON array of `{type, data}` blocks |
 | order_index | INTEGER    | Position within chapter             |
 
-Compiled from `content/grammar/` by `scripts/content_pipeline/build_content_db.py`. The app queries this table via `grammarThemesProvider` to build the Level → Theme → Lesson hierarchy.
+Compiled from the content repo's `content/grammar/` by its `pipeline/build_content_db.py`. The app queries this table via `grammarThemesProvider` to build the Level → Theme → Lesson hierarchy.
 
 **`grammar_exercises`**
 
@@ -192,31 +192,41 @@ Primary key: (item_type, item_id).
 
 | Content                   | Source                                                                                                                                                                         | License      |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
-| Kanji JLPT level          | [davidluzgouveia/kanji-data](https://github.com/davidluzgouveia/kanji-data) (based on Jonathan Waller's JLPT lists)                                                            | MIT          |
+| Kanji JLPT level          | [davidluzgouveia/kanji-data](https://github.com/davidluzgouveia/kanji-data) (based on Jonathan Waller's JLPT lists)                                                            | MIT code, CC BY data |
 | Kanji meanings & readings | KANJIDIC2 — Electronic Dictionary Research and Development Group (EDRDG)                                                                                                       | CC BY-SA 4.0 |
 | Kanji stroke order SVGs   | [KanjiVG](https://kanjivg.tagaini.net/) by Ulrich Apel                                                                                                                        | CC BY-SA 3.0 |
-| Vocabulary                | JMdict (via [jmdict-simplified](https://github.com/scriptin/jmdict-simplified)) + [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) for JLPT level tagging | CC BY-SA 4.0 |
+| Vocabulary meanings, readings, part of speech | JMdict (via [jmdict-simplified](https://github.com/scriptin/jmdict-simplified))                                                             | CC BY-SA 4.0 |
+| Vocabulary word list & JLPT level | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) (based on Jonathan Waller's JLPT lists)                                           | MIT code, CC BY data |
 | Example sentences         | [Tatoeba](https://tatoeba.org) community corpus                                                                                                                                | CC BY 2.0    |
-| Grammar lessons           | Hand-authored in `content/grammar/`                                                                                                                                            | —            |
+| Grammar lessons           | Hand-authored in the content repo's `content/grammar/`                                                                                                                         | —            |
 
-These sources feed into `content/` JSON files (committed) via the content pipeline. See `content/README.md` for the full rebuild workflow. `scripts/content_pipeline/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from upstream; run via `scripts/content_pipeline/generate.py --sync`.
+All of these are downloaded, joined and compiled in [mirai-toto/manabi-content](https://github.com/mirai-toto/manabi-content). Its `ATTRIBUTION.md` is generated from a source registry and records each one's licence and the credit it is owed. This repo downloads the finished database; see `scripts/README.md`.
 
 ## Content storage and recoverability
 
-Every content type has a different resilience profile. This table maps where each lives and what is needed to recover it if the compiled DB is lost or corrupted.
+None of the content lives in this repository any more. The compiled database is
+a release asset, and everything it was built from lives in
+[mirai-toto/manabi-content](https://github.com/mirai-toto/manabi-content).
 
-| Content | `content/` JSON (git) | DB | Raw source in `data/` (gitignored) | Recovery if DB lost |
-|---|---|---|---|---|
-| Kanji characters, readings, meanings | ✅ `kanji_n*.json` | ✅ `kanjis` | ✅ re-downloadable | Rebuild from `content/` |
-| Kanji stroke order SVGs | ✅ `kanji_svg/` | ✅ `kanjis.svg` | — (committed in `content/`) | Rebuild from `content/characters/kanji_svg/` |
-| Kana | ✅ `kana.json` | ✅ `kanas` | — (static) | Rebuild from `content/` |
-| Vocabulary words, readings, POS | ✅ `vocabulary_n*.json` | ✅ `vocabulary_entries` | ✅ re-downloadable | Rebuild from `content/` |
-| Vocabulary meanings (multilingual) | ✅ inside `vocabulary_n*.json` | ✅ `vocabulary_translations` | ✅ re-downloadable (250 MB) | Rebuild from `content/` |
-| Example sentences | ❌ | ✅ `sentences` | ✅ re-downloadable | Re-download Tatoeba → rebuild DB |
-| Sentence translations | ❌ | ✅ `sentence_translations` | ✅ re-downloadable | Re-download Tatoeba → rebuild DB |
-| Grammar lessons | ✅ `content/grammar/` | ✅ `grammar_lessons` | — (hand-authored) | Rebuild from `content/` |
+| Content | In the DB | Recovery |
+|---|---|---|
+| Kanji characters, readings, meanings | `kanjis` | fetch the release, or rebuild from the content repo's committed JSON |
+| Kanji stroke order SVGs | `kanjis.svg` | same; the 2,211 SVGs are committed there |
+| Kana | `kanas` | same; static |
+| Vocabulary words, readings, POS | `vocabulary_entries` | same |
+| Vocabulary meanings (multilingual) | `vocabulary_translations` | same |
+| Example sentences | `sentences` | re-download Tatoeba and rebuild |
+| Sentence translations | `sentence_translations` | same |
+| Grammar lessons | `grammar_lessons` | same; hand-authored and committed there |
 
-**Key insight:** sentences are the only content with no committed fallback — they exist only in the DB and the gitignored Tatoeba download. All other content survives a DB loss via `content/` (JSON or SVG files). A full rebuild from scratch takes a few minutes with `python3 scripts/content_pipeline/generate.py --sync`.
+**Two things worth knowing.** Losing the local asset costs nothing — run
+`scripts/content/fetch_content.sh`. The asset is gitignored, so `git clean -fdX`
+removes it.
+
+Sentences are the one content type with no committed fallback anywhere: they
+exist only in a built database and in the Tatoeba download, which is itself
+re-fetched live on every build. So two builds of the same commit can differ.
+Every other type is reproducible from committed files in the content repo.
 
 ## Content organisation by JLPT level
 
@@ -285,7 +295,7 @@ Sentences come from Tatoeba where translations depend on community contributions
 
 Three kinds of repetition exist in the content. Only the first is a defect.
 
-**57 exact duplicate vocabulary rows.** Same `word`, `reading` and `meaning`, differing only by `id` and the `jlpt_level` they were filed under — `いい` at N5 and N3, `だから` at N4 and N3. Each is its own SRS card, so both fall due together and daily training, which merges every level, asked the identical question twice. Worked around in `loadAllDueQueue` by `_dropRepeatedPrompts`, which drops later items whose prompt and answer match one already in the queue. The proper fix is in the content pipeline: merge the rows and keep the lower level. When that lands, `_dropRepeatedPrompts` becomes dead weight and should go with it.
+**57 exact duplicate vocabulary rows.** Same `word`, `reading` and `meaning`, differing only by `id` and the `jlpt_level` they were filed under — `いい` at N5 and N3, `だから` at N4 and N3. Each is its own SRS card, so both fall due together and daily training, which merges every level, asked the identical question twice. Worked around in `loadAllDueQueue` by `_dropRepeatedPrompts`, which drops later items whose prompt and answer match one already in the queue. The proper fix is in the content repo: merge the rows and keep the lower level. When that lands, `_dropRepeatedPrompts` becomes dead weight and should go with it.
 
 **800 single-character words that are also kanji.** `塩` is both a `kanjis` row (*"What does this kanji mean?"* → salt) and a `vocabulary_entries` row (*"What does this word mean?"* → salt; common salt; …). **Left in deliberately.** They are different learning objectives with separate SRS cards, and the readings a kanji carries are not the same knowledge as the word it forms alone. The dedupe above keys on `srsType` precisely so it does not collapse these. If a session ever feels repetitive because of it, that is a product decision to revisit — not a data bug.
 
@@ -297,4 +307,4 @@ Three kinds of repetition exist in the content. Only the first is a defect.
 - [ ] German kanji meanings: 0% coverage — no translations in DB at any level
 - [ ] N1 vocabulary meanings in FR (~735 missing)
 - [ ] Sentence translations: structural gap — Tatoeba does not cover most sentences in FR/DE/ES
-- [ ] 57 exact duplicate vocabulary rows: merge in the content pipeline and drop the `loadAllDueQueue` workaround
+- [ ] 57 exact duplicate vocabulary rows: merge in the content repo and drop the `loadAllDueQueue` workaround

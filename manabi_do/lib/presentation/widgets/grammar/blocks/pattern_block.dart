@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
-import '../../../widgets/common/card_container.dart';
+import '../../../widgets/common/surface/card_container.dart';
 
+/// Displays a grammar pattern formula with colour-coded slots.
 class PatternBlock extends StatelessWidget {
   final List<String> lines;
   final Color color;

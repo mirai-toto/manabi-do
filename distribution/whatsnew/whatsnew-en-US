@@ -1,4 +1,5 @@
-• Search your vocabulary by word, reading or meaning, the same way you already search kanji.
-• Search results now come back in order of how well they match, and the list keeps up as you type.
-• Practice cards stay readable: they show the first few meanings instead of every one.
-• Going back from a group returns to that level's group list instead of leaving the screen.
+• Vocabulary is now ordered by how common each word really is, measured against a corpus of written Japanese. Five levels: the first 750 words cover half of everything written.
+• Each group of thirty shows what it adds to your coverage.
+• Word screens split meanings into numbered senses, with usage notes and example sentences.
+• Every exercise setting is reachable from Settings.
+• A mark shows when something is only available in English.

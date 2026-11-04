@@ -262,6 +262,11 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String reviewNDue(int count) {
+    return '$count fällige wiederholen';
+  }
+
+  @override
   String lessonOfTotal(int index, int total) {
     return 'Lektion $index von $total';
   }
@@ -372,6 +377,82 @@ class AppLocalizationsDe extends AppLocalizations {
   String get levelN1 => 'Fortgeschritten';
 
   @override
+  String get vocabularyLevel1 => 'Am häufigsten';
+
+  @override
+  String get vocabularyLevel2 => 'Sehr häufig';
+
+  @override
+  String get vocabularyLevel3 => 'Häufig';
+
+  @override
+  String get vocabularyLevel4 => 'Selten';
+
+  @override
+  String get vocabularyLevel5 => 'Sehr selten';
+
+  @override
+  String get meaning => 'Bedeutung';
+
+  @override
+  String nMeanings(int count) {
+    return '$count Bedeutungen';
+  }
+
+  @override
+  String showNMoreMeanings(int count) {
+    return '$count weitere anzeigen';
+  }
+
+  @override
+  String get transitive => 'transitiv';
+
+  @override
+  String get intransitive => 'intransitiv';
+
+  @override
+  String get exampleSentences => 'Im Satz';
+
+  @override
+  String translationFallbackNotice(String language) {
+    return 'Hierfür gibt es noch keine Übersetzung auf $language, daher wird Englisch angezeigt.';
+  }
+
+  @override
+  String get meaningsInEnglish => 'Auf Englisch';
+
+  @override
+  String translationCoarseNotice(String language) {
+    return '$language hat nur einen Eintrag für dieses Wort, daher werden auch die englischen Bedeutungen gezeigt.';
+  }
+
+  @override
+  String get writtenWith => 'Geschrieben mit';
+
+  @override
+  String get youCanRead => 'Du kannst lesen';
+
+  @override
+  String get ofWrittenJapanese =>
+      'von allem, was auf Japanisch geschrieben wird';
+
+  @override
+  String coverageAtLeast(int percent) {
+    return 'mindestens $percent %';
+  }
+
+  @override
+  String get finishThisLevel => 'Diese Stufe abschließen';
+
+  @override
+  String levelReaches(int count) {
+    return 'lesbar, mit $count Wörtern';
+  }
+
+  @override
+  String get vocabularyLevels => 'Stufen';
+
+  @override
   String charactersSubtitle(int total) {
     return 'Kana · Kanji N5–N1 · $total Kana';
   }
@@ -420,7 +501,22 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsPractice => 'Übung';
 
   @override
+  String get settingsExercises => 'Übungen';
+
+  @override
+  String get settingsStudyScopeNote => 'Gilt für jede bewertete Sitzung.';
+
+  @override
   String get settingsHomeScreen => 'Startbildschirm';
+
+  @override
+  String get settingsApp => 'App';
+
+  @override
+  String get settingsHomeAll => 'Alle Bereiche';
+
+  @override
+  String get settingsHomeNone => 'Keine';
 
   @override
   String get settingsPracticeNewCharacters => 'Neue Zeichen pro Tag';
@@ -484,6 +580,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get aboutDataSources => 'Datenquellen';
 
   @override
+  String get aboutDataSourcesIntro =>
+      'Die Wörter, Kanji, Sätze und Häufigkeitsdaten der App stammen alle aus externen Quellen. Jede wird hier mit der von ihr verlangten Lizenz genannt.';
+
+  @override
   String get aboutEdrdgNotice =>
       'Diese App verwendet JMdict und KANJIDIC2, veröffentlicht von der Electronic Dictionary Research and Development Group (EDRDG) unter einer Creative Commons Attribution-ShareAlike 4.0 International Lizenz.';
 
@@ -503,6 +603,34 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aboutTatoebaLink => 'tatoeba.org';
+
+  @override
+  String get aboutWallerNotice =>
+      'Die Schwierigkeitsstufen der Kanji stammen aus davidluzgouveia/kanji-data, das auf den von Jonathan Waller zusammengestellten JLPT-Wortschatz- und Kanji-Listen aufbaut, lizenziert unter Creative Commons Attribution. Seine Wortschatzlisten bestimmten in Versionen vor 24 auch die Wortstufen.';
+
+  @override
+  String get aboutWallerLink => 'tanos.co.uk';
+
+  @override
+  String get aboutPykakasiNotice =>
+      'Die Furigana über den Beispielsätzen wurden mit pykakasi erzeugt, lizenziert unter der GNU General Public License v3 oder später.';
+
+  @override
+  String get aboutPykakasiLink => 'codeberg.org/miurahr/pykakasi';
+
+  @override
+  String get aboutJanomeNotice =>
+      'Beispielsätze werden mit Janome ausgewählt, einem morphologischen Analysewerkzeug für Japanisch, lizenziert unter der Apache-Lizenz 2.0. Es bestimmt, welche Wörter ein Satz wirklich enthält.';
+
+  @override
+  String get aboutJanomeLink => 'mocobeta.github.io/janome';
+
+  @override
+  String get aboutBccwjNotice =>
+      'Die Wortschwierigkeit, die Vokabelstufen und der Anteil des geschriebenen Japanisch, den jede Lerngruppe abdeckt, werden aus der Worthäufigkeit im Balanced Corpus of Contemporary Written Japanese berechnet, veröffentlicht vom National Institute for Japanese Language and Linguistics (NINJAL).';
+
+  @override
+  String get aboutBccwjLink => 'clrd.ninjal.ac.jp';
 
   @override
   String get aboutOpenSourceLicenses => 'Open-Source-Lizenzen';
@@ -826,6 +954,10 @@ class AppLocalizationsDe extends AppLocalizations {
       'Automatisch weitergehen und jede Antwort für dich bewerten';
 
   @override
+  String get autoAdvanceFreePracticeNote =>
+      'Gilt für freies Üben. Eine bewertete Sitzung nutzt den einen Schalter unter Lernen, da eine Sitzung Übungsarten mischt.';
+
+  @override
   String get hintUsedFeedback => 'Hinweis benutzt · als falsch markiert';
 
   @override
@@ -916,6 +1048,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get speakPronunciation => 'Aussprache abspielen';
+
+  @override
+  String get settingsDetailedGrading => 'Detaillierte Bewertung';
+
+  @override
+  String get settingsDetailedGradingSubtitle =>
+      'Mit Nochmal / Schwer / Gut / Leicht bewerten statt nur Noch nicht / Gewusst';
 
   @override
   String get replayStrokeOrder => 'Strichfolge erneut abspielen';

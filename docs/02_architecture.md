@@ -77,17 +77,22 @@ See `docs/03_database.md` for full column-level schema.
 
 ## Content Pipeline
 
-All app content is authored outside the Flutter project and compiled into `manabi_do_content.db`:
+All app content is authored and compiled in a separate repository,
+[mirai-toto/manabi-content](https://github.com/mirai-toto/manabi-content). This
+app holds no Python and downloads no sources; it consumes a finished database:
 
 ```
-Online sources (Bluskyo, JMdict, KANJIDIC2, KanjiVG)
-        ↓  download & cache  →  data/  (gitignored)
-content/  ← versioned JSON snapshot, committed to git
-        ↓  scripts/content_pipeline/generate.py
-manabi_do/assets/manabi_do_content.db  ← compiled output, committed to git
+mirai-toto/manabi-content              sources, pipeline, authored content
+        ↓  git tag v<schema>.<revision>
+manabi_do_content.db                   published as a release asset
+        ↓  scripts/content/fetch_content.sh
+manabi_do/assets/manabi_do_content.db  gitignored — fetched, never committed
 ```
 
-`content/` JSON files are committed to git as a versioned snapshot and can diverge from upstream as manual edits accumulate. `scripts/content_pipeline/sync_content.py` re-seeds `content/characters/` and `content/vocabulary/` from online sources; `scripts/content_pipeline/generate.py --sync` is the end-to-end rebuild entry point. See `content/README.md` for the full rebuild workflow.
+`manabi_do/content.lock` pins the tag and its checksum; changing that file is the
+whole upgrade. The schema number in the tag must equal `schemaVersion`, so a
+schema change needs a matching release. `scripts/content/build_content.sh`
+builds from source instead, for work on the pipeline itself.
 
 ---
 
@@ -132,7 +137,9 @@ If you only want to browse widgets interactively, skip the reference and run the
 flutter run -t lib/widgetbook.dart
 ```
 
-Adding a widget means adding a `@widgetbook.UseCase` in `lib/widgetbook/<area>_use_cases.dart` and re-running `dart run build_runner build` to regenerate `widgetbook.directories.g.dart`. See `docs/07_widget_catalogue.md` for what each widget is for.
+Adding a widget means adding a `@widgetbook.UseCase` in `lib/widgetbook/<area>_use_cases.dart` and re-running `dart run build_runner build` to regenerate `widgetbook.directories.g.dart`.
+
+What a widget is *for* is the doc comment on its class. The reference reads those and prints them beside the live preview, and reports any previewed widget that has none — so the description lives next to the code and cannot drift from it. There is no separate catalogue.
 
 ---
 
@@ -181,13 +188,13 @@ Anything that changes while a card is on screen — position in the queue, the a
 
 ## Kanji SVG Assets
 
-Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db`. They are loaded at runtime by `KanjiStrokesProvider` via a DB query and rendered as animated paths. Source SVG files live in `content/characters/kanji_svg/` (committed) and are embedded into the DB by `scripts/content_pipeline/build_content_db.py`.
+Stroke order SVGs are stored in the `kanjis.svg` column of `manabi_do_content.db`. They are loaded at runtime by `KanjiStrokesProvider` via a DB query and rendered as animated paths. The source SVG files live in the content repo under `content/characters/kanji_svg/` and are embedded into the DB there.
 
 ---
 
 ## Grammar Content
 
-Grammar lessons are authored as JSON files in `content/grammar/` using a recursive chapter/lesson structure. `scripts/content_pipeline/build_content_db.py` walks the tree and writes all lessons into the `grammar_lessons` table. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
+Grammar lessons are authored as JSON files in the content repo under `content/grammar/`, using a recursive chapter/lesson structure. Its pipeline walks the tree and writes every lesson into the `grammar_lessons` table, so authoring a lesson happens there, not here. The block format is defined in `docs/04_grammar_lesson_widgets.md`.
 
 ---
 

@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../l10n/l10n.dart';
-import '../../../l10n/level_label.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../providers/home_provider.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../../widgets/widgets.dart';
@@ -26,6 +26,8 @@ class VocabularyScreen extends ConsumerWidget {
         ? l.vocabularySubtitle(total)
         : l.vocabularySubtitleShort;
 
+    final brightness = Theme.of(context).brightness;
+
     Widget body;
     if (selectedLevel == null) {
       body = VocabularyLevelSelector(
@@ -43,9 +45,9 @@ class VocabularyScreen extends ConsumerWidget {
         },
         onPractice: () => openVocabularyPractice(
           context,
-          title: levelLabel(selectedLevel, context),
+          title: vocabularyLevelLabel(selectedLevel, context),
           level: selectedLevel,
-          color: levelColor(selectedLevel),
+          color: vocabularyLevelColor(selectedLevel, brightness),
         ),
         onSelect: (i) =>
             ref.read(vocabularySelectedGroupProvider.notifier).select(i),
@@ -60,7 +62,7 @@ class VocabularyScreen extends ConsumerWidget {
           context,
           title: l.groupN(selectedGroup + 1),
           level: selectedLevel,
-          color: levelColor(selectedLevel),
+          color: vocabularyLevelColor(selectedLevel, brightness),
           vocabularyIds: vocabularyIds,
         ),
       );

@@ -4,6 +4,7 @@ import '../../../core/theme/app_tokens.dart';
 import 'nav_destination.dart';
 import 'nav_item.dart';
 
+/// Bottom navigation bar for phone layouts.
 class AppNavBar extends StatelessWidget {
   final List<NavDestination> destinations;
   final int selectedIndex;

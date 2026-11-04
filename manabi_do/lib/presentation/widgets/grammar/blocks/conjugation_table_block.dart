@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_dimens.dart';
-import '../../common/section_label.dart';
+import '../../common/label/section_label.dart';
 import 'grammar_table.dart';
 
 /// Block for verb / adjective conjugation paradigms.

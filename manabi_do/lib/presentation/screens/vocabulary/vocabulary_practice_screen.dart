@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/jlpt_level.dart';
-import '../../../l10n/level_label.dart';
+import '../../../core/theme/vocabulary_level.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../services/vocabulary_session_service.dart';
 import '../practice/practice_session_screen.dart';
 
 class VocabularyPracticeScreen extends StatelessWidget {
-  final String level;
+  final int level;
   final Set<int>? allowedIds;
   final bool freeMode;
   final bool sentenceOnly;
@@ -37,8 +37,8 @@ class VocabularyPracticeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PracticeSessionScreen(
-      title: levelLabel(level, context),
-      color: levelColor(level),
+      title: vocabularyLevelLabel(level, context),
+      color: vocabularyLevelColor(level, Theme.of(context).brightness),
       loadQueue: (ref) => ref
           .read(vocabularySessionServiceProvider)
           .buildQueue(

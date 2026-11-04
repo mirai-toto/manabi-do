@@ -5,8 +5,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/card_container.dart';
-import '../common/section_label.dart';
+import '../common/surface/card_container.dart';
+import '../common/label/section_label.dart';
 
 /// Seven dots for the current week (Monday first): a check for days with
 /// reviews, a ring around today.

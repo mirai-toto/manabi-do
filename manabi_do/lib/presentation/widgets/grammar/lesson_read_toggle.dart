@@ -5,6 +5,11 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 
+/// Full-width animated toggle shown at the bottom of a grammar lesson. Unread
+/// state: `surfaceContainer` background, outline check icon, "Mark as read"
+/// label. Read state: `successContainer` background, `success` border, filled
+/// check icon, "Marked as read" label. Animates in 150ms. Reads `context.l10n`
+/// internally — the labels are inseparable from the toggle state.
 class LessonReadToggle extends StatelessWidget {
   final bool isRead;
   final VoidCallback onTap;

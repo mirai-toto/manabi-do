@@ -1,3 +1,4 @@
+import '../../core/text/sentence_language.dart';
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,7 +25,7 @@ class VocabularySessionService {
   const VocabularySessionService(this._ref);
 
   Future<List<PracticeItem>> buildQueue({
-    required String level,
+    required int level,
     required Set<int>? allowedIds,
     required bool freeMode,
     required bool sentenceOnly,
@@ -135,7 +136,7 @@ class VocabularySessionService {
 
   List<PracticeItem> _buildFlashcardItems({
     required List<(VocabularyEntry, Card?)> pairs,
-    required String level,
+    required int level,
     required Random rng,
     required bool isFreeMode,
     required String Function(VocabularyEntry) meaningOf,
@@ -155,14 +156,13 @@ class VocabularySessionService {
               : l.flashcardDefaultPrompt,
           answer: isReversed ? entry.word : meaningOf(entry),
           kindLabel: (l) => l.sectionVocabulary,
-          selfAssessed: true,
         ),
         question: FlashcardQuestion(
           japanese: entry.word,
           label: entry.reading != entry.word ? entry.reading : null,
           answer: meaningOf(entry),
           isReversed: isReversed,
-          level: level,
+          vocabularyLevel: level,
           isFreeMode: isFreeMode,
         ),
       );
@@ -172,7 +172,7 @@ class VocabularySessionService {
   List<PracticeItem> _buildMcqItems({
     required List<(VocabularyEntry, Card?)> pairs,
     required List<VocabularyEntry> pool,
-    required String level,
+    required int level,
     required Random rng,
     required McqSettings mcqSettings,
     required bool isFreeMode,
@@ -197,7 +197,6 @@ class VocabularySessionService {
           question: (l) => l.mcqSelectWordMeaning,
           answer: meaningOf(entry),
           kindLabel: (l) => l.sectionVocabulary,
-          selfAssessed: false,
         ),
         question: McqQuestion(
           prompt: (l) => l.mcqSelectWordMeaning,
@@ -205,7 +204,7 @@ class VocabularySessionService {
           japaneseReading: entry.reading != entry.word ? entry.reading : null,
           options: vocabularyMcq.options,
           correctIndex: vocabularyMcq.correctIndex,
-          level: level,
+          vocabularyLevel: level,
           isFreeMode: isFreeMode,
         ),
       );
@@ -216,7 +215,7 @@ class VocabularySessionService {
     required AppDatabase db,
     required List<VocabularyEntry> pool,
     required List<VocabularyEntry> distractorPool,
-    required String level,
+    required int level,
     required String locale,
     required Random rng,
     required int? sessionLimit,
@@ -272,17 +271,20 @@ class VocabularySessionService {
           question: (l) => l.reviewClozePrompt,
           answer: entry.word,
           kindLabel: (l) => l.reviewKindVocabularySentence,
-          selfAssessed: false,
           sentence: sentence.japanese,
-          sentenceTranslation: sentenceTranslations[sentence.id],
+          sentenceTranslation: sentenceTranslations[sentence.id]?.text,
         ),
         question: SentenceClozeQuestion(
           sentence: sentence,
-          translation: sentenceTranslations[sentence.id],
+          translation: sentenceTranslations[sentence.id]?.text,
+          translationMissingLanguage: missingLanguageForSentence(
+            sentenceTranslations[sentence.id]?.locale,
+            locale,
+          ),
           targetReading: entry.reading,
           options: cloze.options,
           correctIndex: cloze.correctIndex,
-          level: level,
+          vocabularyLevel: level,
           isFreeMode: true,
         ),
       );
@@ -293,7 +295,7 @@ class VocabularySessionService {
     required AppDatabase db,
     required List<(VocabularyEntry, Card?)> pairs,
     required List<VocabularyEntry> pool,
-    required String level,
+    required int level,
     required String locale,
     required Random rng,
     required bool freeMode,
@@ -340,14 +342,13 @@ class VocabularySessionService {
                 : l.flashcardDefaultPrompt,
             answer: quizType == 1 ? entry.word : meaningOf(entry),
             kindLabel: (l) => l.sectionVocabulary,
-            selfAssessed: true,
           ),
           question: FlashcardQuestion(
             japanese: entry.word,
             label: entry.reading != entry.word ? entry.reading : null,
             answer: meaningOf(entry),
             isReversed: quizType == 1,
-            level: level,
+            vocabularyLevel: level,
             isFreeMode: freeMode,
           ),
         );
@@ -371,7 +372,6 @@ class VocabularySessionService {
             question: (l) => l.mcqSelectWordMeaning,
             answer: meaningOf(entry),
             kindLabel: (l) => l.sectionVocabulary,
-            selfAssessed: false,
           ),
           question: McqQuestion(
             prompt: (l) => l.mcqSelectWordMeaning,
@@ -379,7 +379,7 @@ class VocabularySessionService {
             japaneseReading: entry.reading != entry.word ? entry.reading : null,
             options: vocabularyMcq.options,
             correctIndex: vocabularyMcq.correctIndex,
-            level: level,
+            vocabularyLevel: level,
             isFreeMode: freeMode,
           ),
         );
@@ -403,17 +403,20 @@ class VocabularySessionService {
           question: (l) => l.reviewClozePrompt,
           answer: entry.word,
           kindLabel: (l) => l.reviewKindVocabularySentence,
-          selfAssessed: false,
           sentence: sentence.japanese,
-          sentenceTranslation: sentenceTranslations[sentence.id],
+          sentenceTranslation: sentenceTranslations[sentence.id]?.text,
         ),
         question: SentenceClozeQuestion(
           sentence: sentence,
-          translation: sentenceTranslations[sentence.id],
+          translation: sentenceTranslations[sentence.id]?.text,
+          translationMissingLanguage: missingLanguageForSentence(
+            sentenceTranslations[sentence.id]?.locale,
+            locale,
+          ),
           targetReading: entry.reading,
           options: cloze.options,
           correctIndex: cloze.correctIndex,
-          level: level,
+          vocabularyLevel: level,
           isFreeMode: freeMode,
         ),
       );

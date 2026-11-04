@@ -1,5 +1,11 @@
 # Grammar Lesson Style Guide
 
+
+> **Where the lessons live.** Grammar lesson JSON is authored in
+> [mirai-toto/manabi-content](https://github.com/mirai-toto/manabi-content)
+> under `content/grammar/`, not in this repository. Its pipeline compiles
+> them into the shipped database.
+
 This document defines the voice, structure, and quality bar for all grammar lesson content in Manabi Do. Content is authored in Markdown (`.md` files as drafts) and then expressed as JSON block files (`.json`) for the app. See `docs/04_grammar_lesson_widgets.md` for the block spec.
 
 ---

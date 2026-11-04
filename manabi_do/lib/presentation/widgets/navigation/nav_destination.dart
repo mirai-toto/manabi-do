@@ -1,3 +1,5 @@
+/// Data object describing a single nav entry. Consumed by `AppNavBar` and
+/// `AppNavRail`.
 class NavDestination {
   final String label;
   final String? icon;

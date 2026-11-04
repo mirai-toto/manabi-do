@@ -7,9 +7,9 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/app_button.dart';
-import '../common/pill_badge.dart';
-import '../common/review_progress_info.dart';
+import '../common/action/app_button.dart';
+import '../common/indicator/pill_badge.dart';
+import '../common/indicator/review_progress_info.dart';
 import 'flashcard.dart';
 
 /// Glosses beyond this many are folded away behind "show all".
@@ -41,6 +41,9 @@ class SessionReviewRow extends StatefulWidget {
   final bool isExpanded;
   final VoidCallback onToggle;
 
+  /// The scale re-grading offers, matching what the exercise asked for.
+  final bool fourPointGrading;
+
   /// Null where a grade cannot be changed — free practice writes nothing back,
   /// so the panel shows what happened without offering to re-score it.
   final void Function(Rating)? onRegrade;
@@ -56,6 +59,7 @@ class SessionReviewRow extends StatefulWidget {
     required this.card,
     required this.isExpanded,
     required this.onToggle,
+    required this.fourPointGrading,
     this.onRegrade,
     this.given,
     this.mistakes,
@@ -190,8 +194,14 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
                 PillBadge(
                   label: _ratingLabel(widget.rating, l),
                   icon: _isCorrect ? Icons.check_rounded : Icons.close_rounded,
-                  color: _ratingColor(widget.rating, t),
-                  background: _ratingBackground(widget.rating, t),
+                  color: _ratingColor(
+                    widget.rating,
+                    Theme.of(context).brightness,
+                  ),
+                  background: _ratingBackground(
+                    widget.rating,
+                    Theme.of(context).brightness,
+                  ),
                 ),
                 AnimatedRotation(
                   turns: widget.isExpanded ? 0.25 : 0,
@@ -362,20 +372,23 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
       ? () => setState(() => _showAllGlosses = !_showAllGlosses)
       : null;
 
-  /// The grades on offer, mirroring what the exercise itself asked for: an
-  /// exercise that marked its own answer gets correct and incorrect, one the
-  /// user judged keeps the full scale.
+  /// The grades on offer, mirroring what the exercise itself asked for.
+  ///
+  /// Driven by the user's grading-precision setting, not by who marked the
+  /// answer: grading with two buttons and then being offered four to change
+  /// it read as a different scale for the same decision.
   List<Widget> _buildGrades(BuildContext context) {
-    final t = context.tokens;
     final l = context.l10n;
+    final brightness = Theme.of(context).brightness;
 
-    Widget btn(String label, Rating rating, Color bg, Color fg) {
+    Widget btn(String label, Rating rating, Color accent) {
       final isGiven = widget.rating == rating;
+      final fg = onAccentContainer(accent, brightness);
       return Expanded(
         child: AppButton(
           label: label,
           subtitle: srsIntervalPreview(widget.card, rating),
-          backgroundColor: bg,
+          backgroundColor: accentContainer(accent, brightness),
           foregroundColor: fg,
           radius: AppDimens.radiusLg,
           padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
@@ -390,13 +403,21 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
       );
     }
 
-    if (!widget.summary.selfAssessed) {
+    if (!widget.fourPointGrading) {
       return [
         Row(
           children: [
-            btn(l.ratingIncorrect, Rating.again, t.errorContainer, t.error),
+            btn(
+              l.ratingIncorrect,
+              Rating.again,
+              twoPointRatingAccent(Rating.again),
+            ),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingCorrect, Rating.good, t.successContainer, t.success),
+            btn(
+              l.ratingCorrect,
+              Rating.good,
+              twoPointRatingAccent(Rating.good),
+            ),
           ],
         ),
       ];
@@ -405,17 +426,17 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
     return [
       Row(
         children: [
-          btn(l.ratingAgain, Rating.again, t.errorContainer, t.error),
+          btn(l.ratingAgain, Rating.again, ratingAccent(Rating.again)),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.ratingHard, Rating.hard, t.warningContainer, t.warning),
+          btn(l.ratingHard, Rating.hard, ratingAccent(Rating.hard)),
         ],
       ),
       const SizedBox(height: AppDimens.spaceSm),
       Row(
         children: [
-          btn(l.ratingGood, Rating.good, t.successContainer, t.success),
+          btn(l.ratingGood, Rating.good, ratingAccent(Rating.good)),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.ratingEasy, Rating.easy, t.infoContainer, t.info),
+          btn(l.ratingEasy, Rating.easy, ratingAccent(Rating.easy)),
         ],
       ),
     ];
@@ -439,19 +460,11 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
     Rating.easy => l.ratingEasy,
   };
 
-  Color _ratingColor(Rating rating, AppTokens t) => switch (rating) {
-    Rating.again => t.error,
-    Rating.hard => t.warning,
-    Rating.good => t.success,
-    Rating.easy => t.info,
-  };
+  Color _ratingColor(Rating rating, Brightness b) =>
+      onAccentContainer(ratingAccent(rating), b);
 
-  Color _ratingBackground(Rating rating, AppTokens t) => switch (rating) {
-    Rating.again => t.errorContainer,
-    Rating.hard => t.warningContainer,
-    Rating.good => t.successContainer,
-    Rating.easy => t.infoContainer,
-  };
+  Color _ratingBackground(Rating rating, Brightness b) =>
+      accentContainer(ratingAccent(rating), b);
 }
 
 /// A bordered answer, folded down to [_kGlossesBeforeFold] entries when there

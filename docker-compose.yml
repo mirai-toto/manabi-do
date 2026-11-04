@@ -18,13 +18,15 @@ services:
     extends:
       service: flutter
     volumes:
-      # `assets/` is a volume so the content DB never reaches the host. The
-      # committed fonts and icons are seeded in read-only; -n keeps the
-      # freshly generated DB from being clobbered by the committed one.
+      # `assets/` is a volume so the container's runtime copy never reaches the
+      # host. The host's assets — fonts, icons, and the content DB that
+      # scripts/content/fetch_content.sh downloaded — are seeded in read-only.
+      # It clobbers: the host is the source of truth now, so a newly fetched
+      # database must replace whatever an earlier run left in the volume.
       - ./manabi_do/assets:/seed-assets:ro
       - app-assets:/app/assets
     command: >
-      sh -c "cp -rn /seed-assets/. /app/assets/ &&
+      sh -c "cp -r /seed-assets/. /app/assets/ &&
              flutter pub get && flutter gen-l10n &&
              dart run build_runner build --delete-conflicting-outputs 2>/dev/null;
              flutter build linux --release"
@@ -36,34 +38,11 @@ services:
     command: >
       sh -c "flutter pub get && flutter test"
 
-  # Rebuilds manabi_do/assets/manabi_do_content.db inside the container.
-  #
-  # `data/` is a container-owned volume, not the host directory, so the first
-  # run downloads the ~300 MB of sources itself rather than reusing whatever is
-  # already on your machine. That is the point: it exercises the real pipeline.
-  # Later runs reuse the volume.
-  #
-  # To also re-seed content/ from JMdict, KANJIDIC2 and Bluskyo (this rewrites
-  # tracked files):
-  #
-  #   docker compose run --rm content python3 scripts/content_pipeline/generate.py --sync --translations
-  content:
-    image: python:3.12-slim
-    volumes:
-      - .:/repo
-      - content-data:/repo/data
-      # The generated DB lands here, not in your checkout.
-      - app-assets:/repo/manabi_do/assets
-    working_dir: /repo
-    command: >
-      sh -c "pip install --quiet pykakasi && python3 scripts/content_pipeline/generate.py"
-
   # Runs the built app inside the container.
   #
   # Its database lives in the `app-data` volume, so the runtime copy is the
-  # container's own — the host's ~/.local/share is never touched. Combined with
-  # the `content` service above, that means the app is exercised against a DB
-  # built from scratch in isolation.
+  # container's own — the host's ~/.local/share is never touched. The content DB
+  # it reads comes from the host, seeded by the `build` service.
   app:
     extends:
       service: flutter
@@ -81,5 +60,4 @@ volumes:
   build-output:
   dart-tool:
   linux-ephemeral:
-  content-data:
   app-data:

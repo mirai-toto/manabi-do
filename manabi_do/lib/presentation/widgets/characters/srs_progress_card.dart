@@ -3,9 +3,12 @@ import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../common/app_spinner.dart';
-import '../common/review_progress_info.dart';
+import '../common/indicator/app_spinner.dart';
+import '../common/indicator/review_progress_info.dart';
 
+/// Full-width `surfaceContainer` card wrapping `ReviewProgressInfo`. Shows a
+/// small `CircularProgressIndicator` while loading; shows SRS state once
+/// loaded.
 class SrsProgressCard extends StatelessWidget {
   final bool isLoaded;
   final Card? srsCard;

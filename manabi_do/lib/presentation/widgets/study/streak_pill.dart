@@ -14,6 +14,8 @@ abstract final class _Dimens {
   static const double flameSize = 18;
 }
 
+/// Day-streak count on a brand gradient, with a flame icon. Not tappable — it
+/// reports, it does not act.
 class StreakPill extends StatelessWidget {
   final int days;
 

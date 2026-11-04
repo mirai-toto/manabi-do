@@ -1,5 +1,11 @@
 # Grammar Lesson — Content Blocks & Widget Spec
 
+
+> **Where the lessons live.** Grammar lesson JSON is authored in
+> [mirai-toto/manabi-content](https://github.com/mirai-toto/manabi-content)
+> under `content/grammar/`, not in this repository. Its pipeline compiles
+> them into the shipped database.
+
 This document defines every block type that can appear in a grammar lesson JSON file.
 Each block is a JSON object with a required `type` field. The app renders each type
 with a dedicated Flutter widget. No HTML or markdown is used in lesson content.

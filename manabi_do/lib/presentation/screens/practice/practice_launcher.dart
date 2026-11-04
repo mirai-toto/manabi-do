@@ -78,12 +78,12 @@ Future<void> openKanjiPractice(
   );
 }
 
-/// Opens the vocabulary practice picker for a whole [level], or for a single
-/// group when [vocabularyIds] is given.
+/// Opens the vocabulary practice picker for a whole coverage [level], or for a
+/// single group when [vocabularyIds] is given.
 Future<void> openVocabularyPractice(
   BuildContext context, {
   required String title,
-  required String level,
+  required int level,
   required Color color,
   Set<int>? vocabularyIds,
 }) {

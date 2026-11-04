@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/providers/locale_provider.dart';
+import '../../../core/text/sentence_language.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
-import '../../../core/theme/jlpt_level.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/pos_label.dart';
+import '../../../l10n/vocabulary_level_label.dart';
 import '../../providers/vocabulary_provider.dart';
 import '../widgets.dart';
 
+/// Expandable vocabulary list row. Shows word, reading, abbreviated meaning.
+/// Tap expands to full meaning, part-of-speech chips, and `SpeakButton`.
+/// Localized meaning fetched via provider. `showLevel` adds a vocabulary-level
+/// badge on the
+/// right, for lists that mix levels.
 class VocabularyWordTile extends ConsumerStatefulWidget {
   final VocabularyEntry entry;
 
@@ -17,10 +25,15 @@ class VocabularyWordTile extends ConsumerStatefulWidget {
   /// so they need it; a group already knows which level it belongs to.
   final bool showLevel;
 
+  /// Opens the word's own screen. The meaning keeps its own tap, which expands
+  /// it, so only the word itself navigates.
+  final VoidCallback? onOpen;
+
   const VocabularyWordTile({
     super.key,
     required this.entry,
     this.showLevel = false,
+    this.onOpen,
   });
 
   @override
@@ -36,6 +49,12 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
     final localized = ref.watch(
       localizedVocabularyMeaningProvider(widget.entry.id),
     );
+    // Nothing in the reader's language means an English meaning stands in,
+    // and the mark says so rather than leaving it to look like a choice.
+    final String? missingLanguage =
+        localized.asData != null && localized.asData!.value.isEmpty
+        ? readerLanguageName(ref.watch(localeProvider).languageCode)
+        : null;
     final meaning = localized.asData?.value.isNotEmpty == true
         ? localized.asData!.value
         : widget.entry.meaning;
@@ -63,14 +82,17 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: JapaneseText(
-                      word: widget.entry.word,
-                      reading: widget.entry.reading,
-                      style: AppTextStyles.jpMedium.copyWith(
-                        color: t.onSurface,
-                      ),
-                      rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                        color: t.onSurfaceVariant,
+                    child: GestureDetector(
+                      onTap: widget.onOpen,
+                      child: JapaneseText(
+                        word: widget.entry.word,
+                        reading: widget.entry.reading,
+                        style: AppTextStyles.jpMedium.copyWith(
+                          color: t.onSurface,
+                        ),
+                        rubyStyle: AppTextStyles.jpFurigana.copyWith(
+                          color: t.onSurfaceVariant,
+                        ),
                       ),
                     ),
                   ),
@@ -91,8 +113,9 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      TranslatedText(
                         meaning,
+                        missingLanguage: missingLanguage,
                         style: meaningStyle,
                         maxLines: _expanded ? null : 2,
                         overflow: _expanded
@@ -129,10 +152,17 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: PillBadge(
-                                  label: widget.entry.jlptLevel,
-                                  color: levelColor(widget.entry.jlptLevel),
-                                  background: levelColor(
-                                    widget.entry.jlptLevel,
+                                  label: vocabularyLevelLabel(
+                                    widget.entry.vocabularyLevel,
+                                    context,
+                                  ),
+                                  color: vocabularyLevelColor(
+                                    widget.entry.vocabularyLevel,
+                                    Theme.of(context).brightness,
+                                  ),
+                                  background: vocabularyLevelColor(
+                                    widget.entry.vocabularyLevel,
+                                    Theme.of(context).brightness,
                                   ).withValues(alpha: 0.12),
                                   textStyle: AppTextStyles.labelSmall,
                                 ),

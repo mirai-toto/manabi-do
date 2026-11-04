@@ -1,7 +1,7 @@
 -- Single source of truth for the database schema.
 --
 -- drift generates the Dart table classes from this file, and
--- tools/build_content_db.py executes the same statements when building the
+-- pipeline/build_content_db.py in mirai-toto/manabi-content executes the same statements when building the
 -- shipped content DB. Keep it to plain CREATE TABLE so both readers cope.
 --
 -- Changing anything here is a schema change: bump `schemaVersion` in
@@ -15,7 +15,13 @@ CREATE TABLE kanjis (
   on_reading TEXT NOT NULL,
   kun_reading TEXT NOT NULL,
   jlpt_level TEXT NOT NULL,
-  svg TEXT
+  svg TEXT,
+  -- Measured difficulty from KANJIDIC2, downloaded since the start and
+  -- discarded until now. `grade` is the school year a kanji is taught in,
+  -- `freq` its rank in a newspaper corpus. Both null for a kanji KANJIDIC2
+  -- does not rank.
+  grade INTEGER,
+  freq INTEGER
 );
 
 CREATE TABLE kanas (
@@ -33,9 +39,68 @@ CREATE TABLE vocabulary_entries (
   word TEXT NOT NULL,
   reading TEXT NOT NULL,
   meaning TEXT NOT NULL,
-  jlpt_level TEXT NOT NULL,
   part_of_speech TEXT NOT NULL,
-  kanji_id INTEGER REFERENCES kanjis (id)
+  -- JMdict's newspaper frequency band, 1 (most common) to 48, or 49 for a word
+  -- on another of its common lists with no band. Null means no evidence.
+  freq_band INTEGER,
+  -- Computed difficulty, 0 (easiest) to 1000, with the tier it falls in and
+  -- what fed the number.
+  --
+  -- There is no `jlpt_level` here, unlike `kanjis`. The JLPT publishes a kanji
+  -- list and no vocabulary list, so a word's "level" in any dataset is a guess
+  -- by whoever built it. The column used to hold such a guess, and after the
+  -- score arrived it held the tier wearing JLPT names, which was worse: the
+  -- label claimed an exam that had never been consulted.
+  difficulty INTEGER NOT NULL DEFAULT 0,
+  difficulty_source TEXT NOT NULL DEFAULT '',
+  -- Which vocabulary level the word sits in, 1 (commonest) to 5, and which
+  -- group of thirty inside that level. Together they are the study order: the
+  -- app teaches level 1 group 1 first, and those thirty words are over a fifth
+  -- of running Japanese on their own.
+  --
+  -- Named `vocabulary_level` and not `level` so it cannot be read as the exam
+  -- level that `kanjis.jlpt_level` holds. It is measured, not assigned: a level
+  -- is a span of the frequency order, so "level 1" means "this far into the
+  -- language". It replaced a `difficulty_tier` that banded words by share of
+  -- our own word list, which was a fact about the app rather than about
+  -- Japanese.
+  vocabulary_level INTEGER NOT NULL DEFAULT 5,
+  group_index INTEGER NOT NULL DEFAULT 1
+);
+
+-- What each study group buys, as a share of running Japanese, measured on the
+-- BCCWJ corpus. Summing the groups a learner has finished is how the app knows
+-- what they can read.
+--
+-- Per group of thirty words rather than per word, and that is deliberate. No
+-- per-word count or rank leaves the build machine; a share of thirty words
+-- together cannot be turned back into one. NINJAL is credited for the lists
+-- these figures are derived from.
+--
+-- `corpus_share` is 0 for the groups in level 5, whose words the corpus cannot
+-- attribute: UniDic splits お願いします into pieces and counts お菓子 as お plus
+-- 菓子. That is a missing measurement, not a claim that the words are rare, and
+-- it is why the app says "at least" when it adds these numbers up.
+CREATE TABLE coverage_groups (
+  vocabulary_level INTEGER NOT NULL,
+  group_index INTEGER NOT NULL,
+  word_count INTEGER NOT NULL,
+  corpus_share REAL NOT NULL,
+  PRIMARY KEY (vocabulary_level, group_index)
+);
+
+-- Which kanji a word is written with. A word has as many as it has: this
+-- replaced a single `vocabulary_entries.kanji_id`, which held the first one
+-- and discarded the rest, so 今日 knew about 今 and not 日. Scoring a word by
+-- the school grade of its kanji is impossible while a word knows only one.
+--
+-- `position` is where the kanji first appears in the word, so the order a
+-- reader sees is preserved. A kanji repeated in one word gets a single row.
+CREATE TABLE vocabulary_kanji (
+  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
+  kanji_id INTEGER NOT NULL REFERENCES kanjis (id),
+  position INTEGER NOT NULL,
+  PRIMARY KEY (vocabulary_id, kanji_id)
 );
 
 CREATE TABLE kanji_translations (
@@ -43,6 +108,34 @@ CREATE TABLE kanji_translations (
   locale TEXT NOT NULL,
   meaning TEXT NOT NULL,
   PRIMARY KEY (kanji_id, locale)
+);
+
+-- A word's meanings, one row per sense per language, in JMdict's own order.
+--
+-- `vocabulary_entries.meaning` holds every gloss of every sense joined with
+-- "; ". That is 824 characters for する — 37 glosses from 17 unrelated senses
+-- run together, with nothing to say where one meaning stops. It stays, because
+-- search matches against it and a list row wants one truncated line, but it is
+-- not what a word's screen should read from.
+--
+-- Nothing here is inferred. JMdict ships `sense` as an array and each entry
+-- carries its own glosses, so the grouping already exists upstream and the
+-- pipeline was erasing it. `note` is the editors' `info` field verbatim —
+-- "as 〜にする,〜とする" — and `kind` is `vt` or `vi` off that sense's own part of
+-- speech, which is why one sense of する can be intransitive while its
+-- neighbour is not.
+--
+-- `position` counts per language. jmdict-all merges each language's sense list
+-- into one array, so a sense often has glosses in one language and none in the
+-- others; numbering across all of them would print English sense 7 as 23.
+CREATE TABLE vocabulary_senses (
+  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
+  locale TEXT NOT NULL,
+  position INTEGER NOT NULL,
+  glosses TEXT NOT NULL,
+  note TEXT NOT NULL DEFAULT '',
+  kind TEXT NOT NULL DEFAULT '',
+  PRIMARY KEY (vocabulary_id, locale, position)
 );
 
 CREATE TABLE vocabulary_translations (

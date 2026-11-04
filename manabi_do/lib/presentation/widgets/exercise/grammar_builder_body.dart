@@ -8,7 +8,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/japanese_text.dart';
+import '../common/label/japanese_text.dart';
 import 'flashcard.dart';
 import 'practice_progress_row.dart';
 
@@ -19,6 +19,8 @@ abstract final class _Dimens {
   static const double chipPaddingV = 6;
 }
 
+/// Sentence-builder exercise body. Displays a shuffled word bank; the user taps
+/// words into order. Advances automatically or on confirmation.
 class GrammarBuilderBody extends StatefulWidget {
   final List<String> parts;
   final String translation;
@@ -27,6 +29,8 @@ class GrammarBuilderBody extends StatefulWidget {
   final Color color;
   final bool autoAdvance;
   final AnswerCallback onAnswer;
+  final bool fourPointGrading;
+  final Color? gradeAccent;
 
   const GrammarBuilderBody({
     super.key,
@@ -37,6 +41,8 @@ class GrammarBuilderBody extends StatefulWidget {
     required this.color,
     required this.onAnswer,
     this.autoAdvance = false,
+    required this.fourPointGrading,
+    this.gradeAccent,
   });
 
   @override
@@ -164,7 +170,8 @@ class _GrammarBuilderBodyState extends State<GrammarBuilderBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: null,
-              isFreeMode: true,
+              fourPointGrading: widget.fourPointGrading,
+              gradeAccent: widget.gradeAccent,
               question: l.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),

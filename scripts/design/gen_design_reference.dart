@@ -11,6 +11,9 @@
 // against WCAG AA, groups dimensions by the number they hold so duplicate names
 // cannot hide, and cross-references every token against lib/ so dead entries
 // show up. Those are the things reading the Dart file will not tell you.
+//
+// It also prints each widget's own doc comment beside its live preview, which
+// is why there is no separate widget catalogue to keep in step.
 
 import 'dart:io';
 import 'dart:math' as math;
@@ -23,6 +26,7 @@ const _stylesPath = 'lib/core/theme/app_text_styles.dart';
 const _jlptPath = 'lib/core/theme/jlpt_level.dart';
 const _srsPath = 'lib/core/srs/srs_level.dart';
 const _useCasesPath = 'lib/widgetbook.directories.g.dart';
+const _widgetsDir = 'lib/presentation/widgets';
 const _outPath = '../design-reference/index.html';
 
 /// Where the page reaches for the real typefaces, relative to [_outPath].
@@ -63,6 +67,13 @@ class Rgb {
     (b * alpha + bg.b * (1 - alpha)).round(),
   );
 
+  /// This colour [t] of the way toward [other], matching `Color.lerp`.
+  Rgb mix(Rgb other, double t) => Rgb(
+    (r + (other.r - r) * t).round(),
+    (g + (other.g - g) * t).round(),
+    (b + (other.b - b) * t).round(),
+  );
+
   double get luminance {
     double ch(int v) {
       final s = v / 255;
@@ -74,6 +85,11 @@ class Rgb {
     return 0.2126 * ch(r) + 0.7152 * ch(g) + 0.0722 * ch(b);
   }
 }
+
+/// The two anchors `onAccentFor` and the container lerps in `app_tokens.dart`
+/// blend toward.
+const _white = Rgb(0xFF, 0xFF, 0xFF);
+const _black = Rgb(0x00, 0x00, 0x00);
 
 double contrast(Rgb a, Rgb b) {
   final la = a.luminance, lb = b.luminance;
@@ -266,6 +282,61 @@ List<UseCase> parseUseCases(String src) {
   return out;
 }
 
+/// What each widget is for, read from the doc comment on its class.
+///
+/// The description lives in the code because that is the only place it cannot
+/// drift from the thing it describes — the same reason this page reads the theme
+/// source rather than a written copy of it. Only the leading prose is taken:
+/// everything up to the first blank doc line, which by convention is the summary.
+Map<String, String> parseWidgetDocs() {
+  final dir = Directory(_widgetsDir);
+  if (!dir.existsSync()) return const {};
+  final out = <String, String>{};
+
+  for (final f in dir.listSync(recursive: true)) {
+    if (f is! File || !f.path.endsWith('.dart')) continue;
+    final lines = f.readAsStringSync().split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      final cls = RegExp(r'^class ([A-Z]\w*)').firstMatch(lines[i]);
+      if (cls == null) continue;
+
+      final doc = <String>[];
+      for (var j = i - 1; j >= 0; j--) {
+        final line = lines[j].trimLeft();
+        if (!line.startsWith('///')) break;
+        final text = line.substring(3).trim();
+        // A blank doc line ends the summary; the rest is detail this page has
+        // no room for.
+        if (text.isEmpty) {
+          doc.clear();
+          continue;
+        }
+        doc.insert(0, text);
+      }
+      if (doc.isNotEmpty) out[cls.group(1)!] = doc.join(' ');
+    }
+  }
+  return out;
+}
+
+/// Every widget class that actually exists, so a catalogue entry for something
+/// deleted can be told apart from one that simply has no preview.
+Set<String> declaredWidgets() {
+  final dir = Directory(_widgetsDir);
+  if (!dir.existsSync()) return const {};
+  final out = <String>{};
+  for (final f in dir.listSync(recursive: true)) {
+    if (f is! File || !f.path.endsWith('.dart')) continue;
+    for (final m in RegExp(
+      r'^class ([A-Z]\w*)',
+      multiLine: true,
+    ).allMatches(f.readAsStringSync())) {
+      out.add(m.group(1)!);
+    }
+  }
+  return out;
+}
+
 /// Maps each `SrsLevel` to the ramp entry it borrows, per `srs_level.dart`.
 Map<String, String> parseSrsLevels(String src) {
   final out = <String, String>{};
@@ -318,6 +389,7 @@ void main() {
   final srs = parseSrsLevels(_read(_srsPath));
   final useCases = parseUseCases(_read(_useCasesPath));
   final colorGroups = parseColorGroups(tokensSrc);
+  final blurbs = parseWidgetDocs();
   final lib = readLibSources();
 
   final html = buildPage(
@@ -328,6 +400,7 @@ void main() {
     ramp: ramp,
     srs: srs,
     useCases: useCases,
+    blurbs: blurbs,
     colorGroups: colorGroups,
     lib: lib,
   );
@@ -342,6 +415,31 @@ void main() {
     '${styles.length} text styles, ${ramp.length} ramp colours, '
     '${useCases.length} widget use cases',
   );
+
+  // The catalogue and the widgetbook drift in both directions: a widget gains a
+  // preview without an entry, or keeps an entry after being deleted. Both are
+  // reported rather than fixed silently.
+  final previewed = useCases.map((u) => u.component).toSet();
+  final declared = declaredWidgets();
+  final undocumented = previewed.difference(blurbs.keys.toSet()).toList()
+    ..sort();
+  final unpreviewed =
+      declared
+          .where((k) => blurbs.containsKey(k) && !previewed.contains(k))
+          .toList()
+        ..sort();
+  stdout.writeln(
+    '  ${blurbs.length} documented widgets, '
+    '${previewed.length - undocumented.length}/${previewed.length} previewed '
+    'widgets described',
+  );
+  if (undocumented.isNotEmpty) {
+    stdout.writeln('  ! No doc comment: ${undocumented.join(', ')}');
+  }
+  if (unpreviewed.isNotEmpty) {
+    stdout.writeln('  . No widgetbook preview: ${unpreviewed.join(', ')}');
+  }
+
   if (!Directory('${out.parent.path}/widgetbook').existsSync()) {
     stdout.writeln(
       '  ! No widgetbook build beside it — the widget previews will be blank.\n'
@@ -390,6 +488,7 @@ String buildPage({
   required Map<String, Rgb> ramp,
   required Map<String, String> srs,
   required List<UseCase> useCases,
+  required Map<String, String> blurbs,
   required List<(String, List<String>)> colorGroups,
   required String lib,
 }) {
@@ -490,6 +589,10 @@ code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monosp
               color: var(--muted); background: var(--line);
               padding: 0 7px; border-radius: 100px; }
 .comp .tiles { padding: 0 14px 14px; }
+.comp-note { color: var(--muted); font-size: 13px; line-height: 1.55;
+  margin: 0 14px 12px; max-width: 78ch; }
+.comp-note code { font-family: ui-monospace, monospace; font-size: 12px;
+  background: var(--ground); padding: 1px 4px; border-radius: 4px; }
 .tiles { display: grid; gap: 12px;
          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 .tile { margin: 0; background: var(--panel); border: 1px solid var(--line);
@@ -550,13 +653,13 @@ td.pad { padding-left: 26px; }
   </p>
 </header>''');
 
-  _writeInContext(b, light, dark);
+  _writeInContext(b, light, dark, ramp);
   _writeContrast(b, light, dark);
   _writeColors(b, light, dark, colorGroups, lib);
   _writeRamp(b, ramp, srs, light, dark);
   _writeDimens(b, dimens, lib);
   _writeType(b, styles, lib);
-  _writeWidgets(b, useCases);
+  _writeWidgets(b, useCases, blurbs);
 
   b.writeln('</div>$_lazyScript</body></html>');
   return b.toString();
@@ -906,7 +1009,11 @@ const _lazyScript = '''
 })();
 </script>''';
 
-void _writeWidgets(StringBuffer b, List<UseCase> useCases) {
+void _writeWidgets(
+  StringBuffer b,
+  List<UseCase> useCases,
+  Map<String, String> blurbs,
+) {
   b.writeln('<h2>Widgets</h2>');
   b.writeln(
     '<p class="note">${useCases.length} use cases, rendered live from the '
@@ -938,8 +1045,11 @@ void _writeWidgets(StringBuffer b, List<UseCase> useCases) {
         '<details class="comp"><summary>'
         '<span class="mono">${comp.key}</span>'
         '<span class="comp-count">${comp.value.length}</span>'
-        '</summary><div class="tiles">',
+        '</summary>',
       );
+      final blurb = blurbs[comp.key];
+      if (blurb != null) b.writeln('<p class="comp-note">$blurb</p>');
+      b.writeln('<div class="tiles">');
       for (final u in comp.value) {
         final url = 'widgetbook/index.html#/?path=${u.path}&preview';
         b.writeln(
@@ -970,6 +1080,7 @@ void _writeInContext(
   StringBuffer b,
   Map<String, Rgb> light,
   Map<String, Rgb> dark,
+  Map<String, Rgb> ramp,
 ) {
   b.writeln('<h2>In context</h2>');
   b.writeln(
@@ -979,17 +1090,29 @@ void _writeInContext(
   );
   b.writeln('<div class="ctx-pair">');
   for (final e in [('Light', light), ('Dark', dark)]) {
-    b.writeln(_contextPanel(e.$1, e.$2));
+    b.writeln(_contextPanel(e.$1, e.$2, ramp, e.$1 == 'Dark'));
   }
   b.writeln('</div>');
 }
 
-String _contextPanel(String label, Map<String, Rgb> t) {
+String _contextPanel(
+  String label,
+  Map<String, Rgb> t,
+  Map<String, Rgb> ramp,
+  bool isDark,
+) {
   String c(String k) => t[k]!.css;
 
-  String pill(String fg, String bg, String text) =>
-      '<span class="ctx-pill" style="color:${c(fg)};background:${c(bg)}">'
-      '$text</span>';
+  /// A grade pill, built the way `FlashcardActions` builds it: the level's
+  /// colour lerped toward white or black for the surface, and the other way for
+  /// the text. Reading the ramp keeps this in step with `ratingAccent`.
+  String gradePill(String level, String text) {
+    final a = ramp[level]!;
+    final bg = isDark ? a.mix(_black, 0.55) : a.mix(_white, 0.88);
+    final fg = isDark ? a.mix(_white, 0.60) : a.mix(_black, 0.55);
+    return '<span class="ctx-pill" style="color:${fg.css};'
+        'background:${bg.css}">$text</span>';
+  }
 
   return '''
 <div class="ctx">
@@ -1012,10 +1135,10 @@ String _contextPanel(String label, Map<String, Rgb> t) {
       </div>
       <div class="ctx-rule" style="background:${c('outlineVariant')}"></div>
       <div class="ctx-row">
-        ${pill('error', 'errorContainer', 'Again')}
-        ${pill('warning', 'warningContainer', 'Hard')}
-        ${pill('success', 'successContainer', 'Good')}
-        ${pill('info', 'infoContainer', 'Easy')}
+        ${gradePill('N1', 'Again')}
+        ${gradePill('N3', 'Hard')}
+        ${gradePill('N4', 'Good')}
+        ${gradePill('N5', 'Easy')}
       </div>
       <div class="ctx-row">
         <span class="ctx-jp" style="color:${c('onyomi')}">オン</span>

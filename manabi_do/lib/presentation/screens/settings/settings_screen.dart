@@ -15,6 +15,7 @@ import '../../services/feedback_service.dart';
 import '../../services/srs_service.dart';
 import '../../services/support_service.dart';
 import '../../widgets/widgets.dart';
+import 'exercise_settings_screen.dart';
 
 /// Order the appearance segments are shown in. Listed explicitly so it cannot
 /// drift from `ThemeMode`'s declaration order.
@@ -172,22 +173,48 @@ class SettingsScreen extends ConsumerWidget {
               newVocabularyPerDay: srs.newVocabularyPerDay,
               onNewCharactersChanged: srsNotifier.setNewCharactersPerDay,
               onNewVocabularyChanged: srsNotifier.setNewVocabularyPerDay,
+              detailedGrading: srs.detailedGrading,
+              onDetailedGradingChanged: srsNotifier.setDetailedGrading,
             ),
 
-            const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsHomeScreen),
             const SizedBox(height: AppDimens.spaceSm),
-            HomeSettingsCard(
-              showKana: home.showKana,
-              showKanji: home.showKanji,
-              showVocabulary: home.showVocabulary,
-              onShowKanaChanged: homeNotifier.setShowKana,
-              onShowKanjiChanged: homeNotifier.setShowKanji,
-              onShowVocabularyChanged: homeNotifier.setShowVocabulary,
+            Text(
+              l.settingsStudyScopeNote,
+              style: AppTextStyles.bodySmall.copyWith(
+                color: t.onSurfaceVariant,
+              ),
             ),
 
+            // The twenty-two exercise settings that used to be reachable only
+            // from inside a running session. One row per store, because
+            // nothing is kept per section: grammar reads the same flashcard
+            // and multiple-choice values that vocabulary and kanji do.
             const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsAppearance),
+            SectionLabel(l.settingsExercises),
+            const SizedBox(height: AppDimens.spaceSm),
+            SettingsCard(
+              children: [
+                for (final kind in ExerciseKind.values)
+                  SettingsTile(
+                    leading: Icon(
+                      _exerciseIcon(kind),
+                      size: 20,
+                      color: t.onSurfaceVariant,
+                    ),
+                    label: _exerciseLabel(kind, l),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => ExerciseSettingsScreen(kind: kind),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            // App chrome: how it looks, what language it speaks, what it
+            // opens on. Theme stays a segmented control, because a three-way
+            // choice shows every option in the height one row would cost.
+            const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.settingsApp),
             const SizedBox(height: AppDimens.spaceSm),
             SegmentedControl(
               options: [
@@ -204,9 +231,6 @@ class SettingsScreen extends ConsumerWidget {
               onSelect: (i) =>
                   ref.read(themeModeProvider.notifier).setMode(_themeModes[i]),
             ),
-
-            const SizedBox(height: AppDimens.spaceLg),
-            SectionLabel(l.settingsLanguage),
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [
@@ -218,7 +242,8 @@ class SettingsScreen extends ConsumerWidget {
                       fontFamily: 'NotoColorEmoji',
                     ),
                   ),
-                  label: currentLang.name,
+                  label: l.settingsLanguage,
+                  value: currentLang.name,
                   onTap: () => _showLanguagePicker(
                     context,
                     ref,
@@ -226,9 +251,35 @@ class SettingsScreen extends ConsumerWidget {
                     l.settingsLanguage,
                   ),
                 ),
+                SettingsTile(
+                  leading: Icon(
+                    Icons.home_outlined,
+                    size: 20,
+                    color: t.onSurfaceVariant,
+                  ),
+                  label: l.settingsHomeScreen,
+                  value: _homeSummary(home, l),
+                  onTap: () => showHomeScreenSheet(
+                    context,
+                    showKana: home.showKana,
+                    showKanji: home.showKanji,
+                    showVocabulary: home.showVocabulary,
+                    onShowKanaChanged: homeNotifier.setShowKana,
+                    onShowKanjiChanged: homeNotifier.setShowKanji,
+                    onShowVocabularyChanged: homeNotifier.setShowVocabulary,
+                  ),
+                ),
               ],
             ),
 
+            const SizedBox(height: AppDimens.spaceLg),
+            SettingsAboutSection(
+              onSendFeedback: () => _sendFeedback(context, ref, l),
+              onSupport: () => _openSupport(context, l),
+            ),
+
+            // Last, and on its own. Everything above changes a preference;
+            // this deletes what you have learned.
             const SizedBox(height: AppDimens.spaceLg),
             SettingsCard(
               children: [
@@ -244,39 +295,6 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ],
             ),
-
-            const SizedBox(height: AppDimens.spaceSm),
-            SettingsCard(
-              children: [
-                SettingsTile(
-                  leading: Icon(
-                    Icons.mail_outline_rounded,
-                    size: 20,
-                    color: t.onSurfaceVariant,
-                  ),
-                  label: l.settingsSendFeedback,
-                  onTap: () => _sendFeedback(context, ref, l),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: AppDimens.spaceSm),
-            SettingsCard(
-              children: [
-                SettingsTile(
-                  leading: Icon(
-                    Icons.coffee_outlined,
-                    size: 20,
-                    color: t.onSurfaceVariant,
-                  ),
-                  label: l.settingsSupportDeveloper,
-                  onTap: () => _openSupport(context, l),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: AppDimens.spaceLg),
-            const SettingsAboutSection(),
             const SizedBox(height: AppDimens.spaceLg),
           ],
         ),
@@ -305,4 +323,30 @@ class _ScreenHeader extends StatelessWidget {
       ),
     );
   }
+}
+
+IconData _exerciseIcon(ExerciseKind kind) => switch (kind) {
+  ExerciseKind.flashcard => Icons.style_rounded,
+  ExerciseKind.mcq => Icons.list_alt_rounded,
+  ExerciseKind.sentence => Icons.format_quote_rounded,
+  ExerciseKind.writing => Icons.edit_rounded,
+};
+
+String _exerciseLabel(ExerciseKind kind, AppLocalizations l) => switch (kind) {
+  ExerciseKind.flashcard => l.flashcardPractice,
+  ExerciseKind.mcq => l.mcqPractice,
+  ExerciseKind.sentence => l.sentencePractice,
+  ExerciseKind.writing => l.writingPractice,
+};
+
+/// The home screen's sections, named, or "all" when none is hidden.
+String _homeSummary(HomeSettings home, AppLocalizations l) {
+  final List<String> on = [
+    if (home.showKana) l.kana,
+    if (home.showKanji) l.tabKanji,
+    if (home.showVocabulary) l.sectionVocabulary,
+  ];
+  if (on.length == 3) return l.settingsHomeAll;
+  if (on.isEmpty) return l.settingsHomeNone;
+  return on.join(' · ');
 }

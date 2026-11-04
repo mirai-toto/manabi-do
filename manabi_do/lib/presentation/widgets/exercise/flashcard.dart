@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
+import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/app_button.dart';
-import '../common/speak_button.dart';
+import '../common/action/app_button.dart';
+import '../common/action/speak_button.dart';
 
+/// Large gradient card showing a prompt and, when revealed, an answer. Includes
+/// a `SpeakButton` and a tap-to-reveal/hide label.
 class Flashcard extends StatelessWidget {
   final String prompt;
   final String? promptSub;
@@ -144,9 +147,17 @@ bool _looksJapanese(String text) {
   return jpCount / runes.length > 0.5;
 }
 
+/// Rating button row shown after a flashcard is revealed. Shows FSRS interval
+/// previews in SRS mode; shows "Got it / Not yet" in free mode.
 class FlashcardActions extends StatelessWidget {
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
+
+  /// Paint every grade this colour instead of reading the rating ramp.
+  /// Free practice passes the level's colour: it keeps the session of a
+  /// piece, and a grade that is not the ramp's colour is a quiet reminder
+  /// that nothing is being recorded. Null uses the ramp.
+  final Color? gradeAccent;
   final String? question;
   final void Function(Rating) onRate;
 
@@ -154,7 +165,8 @@ class FlashcardActions extends StatelessWidget {
     super.key,
     required this.card,
     required this.onRate,
-    this.isFreeMode = false,
+    required this.fourPointGrading,
+    this.gradeAccent,
     this.question,
   });
 
@@ -162,13 +174,21 @@ class FlashcardActions extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
     final l = context.l10n;
+    final brightness = Theme.of(context).brightness;
 
-    Widget btn(String label, Rating rating, Color bg, Color fg) => Expanded(
+    Widget btn(
+      String label,
+      Rating rating, {
+      required Color background,
+      required Color foreground,
+      BorderSide side = BorderSide.none,
+    }) => Expanded(
       child: AppButton(
         label: label,
         subtitle: srsIntervalPreview(card, rating),
-        backgroundColor: bg,
-        foregroundColor: fg,
+        backgroundColor: background,
+        foregroundColor: foreground,
+        side: side,
         radius: AppDimens.radiusLg,
         padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceMd),
         visualDensity: VisualDensity.standard,
@@ -176,12 +196,56 @@ class FlashcardActions extends StatelessWidget {
       ),
     );
 
-    if (isFreeMode) {
+    // A recorded grade takes its colour from the JLPT ramp, so the scale reads
+    // red-to-green like every other difficulty in the app.
+    Widget rampBtn(String label, Rating rating, Color accent) => btn(
+      label,
+      rating,
+      background: accentContainer(accent, brightness),
+      foreground: onAccentContainer(accent, brightness),
+    );
+
+    if (!fourPointGrading) {
+      final accent = gradeAccent;
+      if (accent != null) {
+        // Free practice: one level colour, split outlined and filled the way
+        // the confirm dialog splits Cancel from its action. Same hue keeps the
+        // session of a piece; the fill still marks which one is the pass.
+        return Row(
+          children: [
+            btn(
+              l.flashcardNotYet,
+              Rating.again,
+              background: Colors.transparent,
+              foreground: accent,
+              side: BorderSide(
+                color: accent,
+                width: AppDimens.borderWidthInteractive,
+              ),
+            ),
+            const SizedBox(width: AppDimens.spaceSm),
+            btn(
+              l.flashcardGotIt,
+              Rating.good,
+              background: accent,
+              foreground: onAccentFor(accent),
+            ),
+          ],
+        );
+      }
       return Row(
         children: [
-          btn(l.flashcardNotYet, Rating.again, t.errorContainer, t.error),
+          rampBtn(
+            l.flashcardNotYet,
+            Rating.again,
+            twoPointRatingAccent(Rating.again),
+          ),
           const SizedBox(width: AppDimens.spaceSm),
-          btn(l.flashcardGotIt, Rating.good, t.successContainer, t.success),
+          rampBtn(
+            l.flashcardGotIt,
+            Rating.good,
+            twoPointRatingAccent(Rating.good),
+          ),
         ],
       );
     }
@@ -199,20 +263,17 @@ class FlashcardActions extends StatelessWidget {
         ],
         Row(
           children: [
-            btn(l.ratingAgain, Rating.again, t.errorContainer, t.error),
+            rampBtn(l.ratingAgain, Rating.again, ratingAccent(Rating.again)),
             const SizedBox(width: AppDimens.spaceSm),
-            btn(l.ratingHard, Rating.hard, t.warningContainer, t.warning),
+            rampBtn(l.ratingHard, Rating.hard, ratingAccent(Rating.hard)),
           ],
         ),
         const SizedBox(height: AppDimens.spaceSm),
         Row(
           children: [
-            btn(l.ratingGood, Rating.good, t.successContainer, t.success),
+            rampBtn(l.ratingGood, Rating.good, ratingAccent(Rating.good)),
             const SizedBox(width: AppDimens.spaceSm),
-            // Ratings are a semantic scale, not an accent. Again/Hard/Good
-            // take error/warning/success; Easy needs a fourth that reads as
-            // positive without being another green, hence `info`.
-            btn(l.ratingEasy, Rating.easy, t.infoContainer, t.info),
+            rampBtn(l.ratingEasy, Rating.easy, ratingAccent(Rating.easy)),
           ],
         ),
       ],

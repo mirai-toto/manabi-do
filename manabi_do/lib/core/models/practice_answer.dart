@@ -40,10 +40,6 @@ class PracticeSummary {
   /// What kind of exercise this was, for the row's third line.
   final L10nText kindLabel;
 
-  /// True when the user graded themselves, which is what decides whether the
-  /// review offers all four ratings or just correct and incorrect.
-  final bool selfAssessed;
-
   /// The sentence a cloze was drawn from, with the answer left in, and its
   /// translation. Null for every other exercise.
   final String? sentence;
@@ -54,7 +50,6 @@ class PracticeSummary {
     required this.question,
     required this.answer,
     required this.kindLabel,
-    required this.selfAssessed,
     this.reading,
     this.sentence,
     this.sentenceTranslation,

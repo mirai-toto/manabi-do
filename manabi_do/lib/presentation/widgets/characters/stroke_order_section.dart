@@ -4,6 +4,9 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../widgets.dart';
 
+/// `SectionLabel` + `CardContainer(StrokeOrderAnimator)` + `StrokeStepRow`
+/// composed as a single block. Drop it below the readings card in any kanji
+/// detail view.
 class StrokeOrderSection extends StatelessWidget {
   final Kanji kanji;
   const StrokeOrderSection({super.key, required this.kanji});

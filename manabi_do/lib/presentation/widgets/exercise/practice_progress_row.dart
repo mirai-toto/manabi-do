@@ -4,6 +4,10 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 
+/// Thin progress bar + `"N / total"` counter shown at the top of every exercise
+/// screen. The bar fills proportionally to `index / total` using the session's
+/// accent colour; the text label counts from 1. Handles `total == 0` without
+/// dividing by zero.
 class PracticeProgressRow extends StatelessWidget {
   final int index;
   final int total;

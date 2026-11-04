@@ -1,31 +1,50 @@
 // common
-export 'common/app_button.dart';
-export 'common/app_emoji.dart';
-export 'common/auth_button.dart';
-export 'common/app_filter_chip.dart';
-export 'common/app_spinner.dart';
-export 'common/app_text_field.dart';
-export 'common/card_container.dart';
-export 'common/collapsible_section.dart';
+// — action
+export 'common/action/app_button.dart';
+export 'common/action/copy_button.dart';
+export 'common/action/app_filter_chip.dart';
+export 'common/action/auth_button.dart';
+export 'common/action/speak_button.dart';
+
+// — input
+export 'common/input/app_text_field.dart';
+export 'common/input/filter_chip_bar.dart';
+export 'common/input/search_field.dart';
+export 'common/input/segmented_control.dart';
+export 'common/input/segmented_tab_bar.dart';
+
+// — indicator
+export 'common/indicator/app_spinner.dart';
+export 'common/indicator/difficulty_dots.dart';
+export 'common/indicator/pill_badge.dart';
+export 'common/indicator/progress_bar.dart';
+export 'common/indicator/progress_row.dart';
+export 'common/indicator/review_progress_info.dart';
+
+// — label
+export 'common/label/japanese_sentence.dart';
+export 'common/label/translation_fallback_info.dart';
+export 'common/label/japanese_text.dart';
+export 'common/label/section_header.dart';
+export 'common/label/section_label.dart';
+
+// — list_item
+export 'common/list_item/vocabulary_level_card.dart';
+export 'common/list_item/jlpt_level_card.dart';
+
+// — surface
+export 'common/surface/card_container.dart';
+export 'common/surface/collapsible_section.dart';
+export 'common/surface/tappable_surface.dart';
+
+// — decoration
+export 'common/decoration/app_emoji.dart';
+export 'common/decoration/landing_hero_panel.dart';
+export 'common/decoration/scroll_fade.dart';
+export 'common/decoration/sheet_drag_handle.dart';
+
+// — dialogs
 export 'common/confirm_dialog.dart';
-export 'common/difficulty_dots.dart';
-export 'common/japanese_sentence.dart';
-export 'common/japanese_text.dart';
-export 'common/jlpt_level_card.dart';
-export 'common/landing_hero_panel.dart';
-export 'common/pill_badge.dart';
-export 'common/progress_bar.dart';
-export 'common/progress_row.dart';
-export 'common/section_header.dart';
-export 'common/scroll_fade.dart';
-export 'common/search_field.dart';
-export 'common/section_label.dart';
-export 'common/segmented_control.dart';
-export 'common/sheet_drag_handle.dart';
-export 'common/segmented_tab_bar.dart';
-export 'common/speak_button.dart';
-export 'common/review_progress_info.dart';
-export 'common/tappable_surface.dart';
 
 // navigation
 export 'navigation/app_nav_bar.dart';
@@ -34,12 +53,14 @@ export 'navigation/nav_destination.dart';
 export 'navigation/nav_item.dart';
 
 // settings
+export 'settings/home_screen_sheet.dart';
 export 'settings/home_settings_card.dart';
 export 'settings/language_picker_sheet.dart';
 export 'settings/practice_settings_card.dart';
 export 'settings/settings_about_section.dart';
 export 'settings/settings_card.dart';
 export 'settings/settings_info.dart';
+export 'settings/exercise_settings_sections.dart';
 export 'settings/settings_stepper.dart';
 export 'settings/settings_tile.dart';
 export 'settings/settings_toggle.dart';
@@ -62,8 +83,11 @@ export 'study/streak_pill.dart';
 export 'study/study_group_card.dart';
 export 'study/todays_session_card.dart';
 export 'study/vocabulary_group_selector.dart' hide kVocabularyGroupSize;
+export 'study/coverage_meter_card.dart';
 export 'study/vocabulary_level_selector.dart';
+export 'study/vocabulary_kanji_list.dart';
 export 'study/vocabulary_level_view.dart';
+export 'study/vocabulary_word_row.dart';
 export 'study/vocabulary_word_tile.dart';
 export 'study/week_strip.dart';
 

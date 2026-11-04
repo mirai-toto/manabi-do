@@ -48,16 +48,8 @@ ROLES: dict[str, str] = {
 
 CLASSIFIED: dict[str, str] = {
     # action
-    "AppButton": "action",
-    "AuthButton": "action",
-    "SpeakButton": "action",
     "LessonReadToggle": "action",
-    "AppFilterChip": "action",
     # input
-    "AppTextField": "input",
-    "SearchField": "input",
-    "SegmentedControl": "input",
-    "SegmentedTabBar": "input",
     "SettingsStepper": "input",
     "SettingsToggle": "input",
     "KanjiDrawingCanvas": "input",
@@ -68,28 +60,14 @@ CLASSIFIED: dict[str, str] = {
     "NavItem": "navigation",
     "NavDestination": "navigation",
     # surface
-    "CardContainer": "surface",
-    "TappableSurface": "surface",
     "SettingsCard": "surface",
-    "CollapsibleSection": "surface",
     # indicator
-    "AppProgressBar": "indicator",
-    "ProgressRow": "indicator",
-    "AppSpinner": "indicator",
-    "DifficultyDots": "indicator",
-    "PillBadge": "indicator",
     "StreakPill": "indicator",
-    "ReviewProgressInfo": "indicator",
     "SrsProgressCard": "indicator",
     "PracticeProgressRow": "indicator",
     "WeekStrip": "indicator",
     "LevelBadge": "indicator",
     # label
-    "SectionLabel": "label",
-    "SectionHeader": "label",
-    "JapaneseText": "label",
-    "JapaneseSentence": "label",
-    "FuriganaSegment": "label",
     "SettingsInfo": "label",
     # list-item
     "DeckRow": "list-item",
@@ -98,7 +76,6 @@ CLASSIFIED: dict[str, str] = {
     "VocabularyWordTile": "list-item",
     "ChapterCard": "list-item",
     "ContinueLessonCard": "list-item",
-    "JlptLevelCard": "list-item",
     "PracticeModeCard": "list-item",
     "CharacterCell": "list-item",
     "SessionReviewRow": "list-item",
@@ -163,12 +140,8 @@ CLASSIFIED: dict[str, str] = {
     "KanjiLevelHeader": "composite",
     "FlashcardActions": "composite",
     # decoration
-    "SheetDragHandle": "decoration",
-    "ScrollFade": "decoration",
     "KanjiHero": "decoration",
     "CharacterHeroBox": "decoration",
-    "LandingHeroPanel": "decoration",
-    "AppEmoji": "decoration",
     "StrokeOrderAnimator": "decoration",
 }
 
@@ -212,14 +185,31 @@ def dart_files(root: Path) -> list[Path]:
     ]
 
 
+def role_from_folder(path: Path) -> str | None:
+    """`common/` states the role in the directory, so the tree is the map.
+
+    Feature folders (characters, exercise, …) group by area instead, so those
+    still need [CLASSIFIED]. A file can also hold classes of different roles —
+    `LevelBadge` is an indicator living in a list item — so an explicit entry
+    always wins over the folder.
+    """
+    parts = path.relative_to(WIDGETS).parts
+    if len(parts) > 1 and parts[0] == "common":
+        role = parts[1].replace("_", "-")
+        return role if role in ROLES else None
+    return None
+
+
 def declared_widgets() -> list[Widget]:
     found: list[Widget] = []
     decl = re.compile(r"^class ([A-Z][A-Za-z0-9_]*)", re.MULTILINE)
     for path in dart_files(WIDGETS):
+        folder_role = role_from_folder(path)
         for name in decl.findall(path.read_text()):
             if name.endswith("State"):
                 continue  # State classes are an implementation detail
-            found.append(Widget(name=name, path=path, role=CLASSIFIED.get(name)))
+            role = CLASSIFIED.get(name) or folder_role
+            found.append(Widget(name=name, path=path, role=role))
     return found
 
 

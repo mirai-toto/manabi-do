@@ -5,11 +5,13 @@ import '../../../core/models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/app_button.dart';
+import '../common/action/app_button.dart';
 import 'flashcard.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 
+/// Multiple-choice exercise body. Renders `McqCard` options and advances on
+/// selection.
 class PracticeMcqBody extends StatefulWidget {
   final String question;
   final String? japanesePrompt;
@@ -17,7 +19,8 @@ class PracticeMcqBody extends StatefulWidget {
   final List<McqOption> options;
   final int correctIndex;
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
+  final Color? gradeAccent;
   final int index;
   final int total;
   final Color color;
@@ -43,7 +46,8 @@ class PracticeMcqBody extends StatefulWidget {
     required this.onAnswer,
     required this.autoAdvance,
     required this.showPromptFurigana,
-    this.isFreeMode = false,
+    required this.fourPointGrading,
+    this.gradeAccent,
     this.japanesePrompt,
     this.japaneseReading,
     this.onDetailTap,
@@ -129,7 +133,8 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: widget.card,
-              isFreeMode: widget.isFreeMode,
+              fourPointGrading: widget.fourPointGrading,
+              gradeAccent: widget.gradeAccent,
               question: context.l10n.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),

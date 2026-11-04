@@ -3,12 +3,17 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 
-/// A tappable settings row with a leading widget, label, and chevron.
+/// A tappable settings row with a leading widget, label, optional current
+/// value, and chevron.
 class SettingsTile extends StatelessWidget {
   final Widget leading;
   final String label;
   final VoidCallback onTap;
   final Color? labelColor;
+
+  /// What the setting is currently set to, shown before the chevron. A row
+  /// that hides its value behind a tap makes the reader open it to find out.
+  final String? value;
 
   const SettingsTile({
     super.key,
@@ -16,6 +21,7 @@ class SettingsTile extends StatelessWidget {
     required this.label,
     required this.onTap,
     this.labelColor,
+    this.value,
   });
 
   @override
@@ -41,6 +47,15 @@ class SettingsTile extends StatelessWidget {
                 ),
               ),
             ),
+            if (value != null) ...[
+              Text(
+                value!,
+                style: AppTextStyles.bodySmall.copyWith(
+                  color: t.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(width: AppDimens.spaceSm),
+            ],
             Icon(
               Icons.chevron_right_rounded,
               size: 20,

@@ -544,6 +544,12 @@ abstract class AppLocalizations {
   /// **'{count} due'**
   String nDue(int count);
 
+  /// No description provided for @reviewNDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Review {count} due'**
+  String reviewNDue(int count);
+
   /// No description provided for @lessonOfTotal.
   ///
   /// In en, this message translates to:
@@ -760,6 +766,132 @@ abstract class AppLocalizations {
   /// **'Advanced'**
   String get levelN1;
 
+  /// No description provided for @vocabularyLevel1.
+  ///
+  /// In en, this message translates to:
+  /// **'Most common'**
+  String get vocabularyLevel1;
+
+  /// No description provided for @vocabularyLevel2.
+  ///
+  /// In en, this message translates to:
+  /// **'Very common'**
+  String get vocabularyLevel2;
+
+  /// No description provided for @vocabularyLevel3.
+  ///
+  /// In en, this message translates to:
+  /// **'Common'**
+  String get vocabularyLevel3;
+
+  /// No description provided for @vocabularyLevel4.
+  ///
+  /// In en, this message translates to:
+  /// **'Uncommon'**
+  String get vocabularyLevel4;
+
+  /// No description provided for @vocabularyLevel5.
+  ///
+  /// In en, this message translates to:
+  /// **'Rare'**
+  String get vocabularyLevel5;
+
+  /// No description provided for @meaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaning'**
+  String get meaning;
+
+  /// No description provided for @nMeanings.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} meanings'**
+  String nMeanings(int count);
+
+  /// No description provided for @showNMoreMeanings.
+  ///
+  /// In en, this message translates to:
+  /// **'Show {count} more'**
+  String showNMoreMeanings(int count);
+
+  /// No description provided for @transitive.
+  ///
+  /// In en, this message translates to:
+  /// **'transitive'**
+  String get transitive;
+
+  /// No description provided for @intransitive.
+  ///
+  /// In en, this message translates to:
+  /// **'intransitive'**
+  String get intransitive;
+
+  /// No description provided for @exampleSentences.
+  ///
+  /// In en, this message translates to:
+  /// **'In a sentence'**
+  String get exampleSentences;
+
+  /// Shown when content has no translation in the reader's language and English is used instead.
+  ///
+  /// In en, this message translates to:
+  /// **'No {language} translation for this yet, so the English is shown.'**
+  String translationFallbackNotice(String language);
+
+  /// No description provided for @meaningsInEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'In English'**
+  String get meaningsInEnglish;
+
+  /// Shown when the reader's language collapses many senses into one.
+  ///
+  /// In en, this message translates to:
+  /// **'{language} has one entry for this word, so the English senses are shown too.'**
+  String translationCoarseNotice(String language);
+
+  /// No description provided for @writtenWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Written with'**
+  String get writtenWith;
+
+  /// No description provided for @youCanRead.
+  ///
+  /// In en, this message translates to:
+  /// **'You can read'**
+  String get youCanRead;
+
+  /// No description provided for @ofWrittenJapanese.
+  ///
+  /// In en, this message translates to:
+  /// **'of everything written in Japanese'**
+  String get ofWrittenJapanese;
+
+  /// No description provided for @coverageAtLeast.
+  ///
+  /// In en, this message translates to:
+  /// **'at least {percent}%'**
+  String coverageAtLeast(int percent);
+
+  /// No description provided for @finishThisLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish this level'**
+  String get finishThisLevel;
+
+  /// No description provided for @levelReaches.
+  ///
+  /// In en, this message translates to:
+  /// **'readable, from {count} words'**
+  String levelReaches(int count);
+
+  /// No description provided for @vocabularyLevels.
+  ///
+  /// In en, this message translates to:
+  /// **'Levels'**
+  String get vocabularyLevels;
+
   /// No description provided for @charactersSubtitle.
   ///
   /// In en, this message translates to:
@@ -844,11 +976,41 @@ abstract class AppLocalizations {
   /// **'Practice'**
   String get settingsPractice;
 
+  /// No description provided for @settingsExercises.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercises'**
+  String get settingsExercises;
+
+  /// No description provided for @settingsStudyScopeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Applies to every graded session.'**
+  String get settingsStudyScopeNote;
+
   /// No description provided for @settingsHomeScreen.
   ///
   /// In en, this message translates to:
   /// **'Home screen'**
   String get settingsHomeScreen;
+
+  /// No description provided for @settingsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get settingsApp;
+
+  /// No description provided for @settingsHomeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All sections'**
+  String get settingsHomeAll;
+
+  /// No description provided for @settingsHomeNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get settingsHomeNone;
 
   /// No description provided for @settingsPracticeNewCharacters.
   ///
@@ -958,6 +1120,12 @@ abstract class AppLocalizations {
   /// **'Data sources'**
   String get aboutDataSources;
 
+  /// No description provided for @aboutDataSourcesIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'The app\'s words, kanji, sentences and frequency data all come from outside sources. Each one is named here with the licence it asks for.'**
+  String get aboutDataSourcesIntro;
+
   /// No description provided for @aboutEdrdgNotice.
   ///
   /// In en, this message translates to:
@@ -993,6 +1161,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'tatoeba.org'**
   String get aboutTatoebaLink;
+
+  /// No description provided for @aboutWallerNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Kanji difficulty levels come from davidluzgouveia/kanji-data, built on the JLPT vocabulary and kanji lists compiled by Jonathan Waller, licensed under Creative Commons Attribution. His vocabulary lists also set the word levels in versions before 24.'**
+  String get aboutWallerNotice;
+
+  /// No description provided for @aboutWallerLink.
+  ///
+  /// In en, this message translates to:
+  /// **'tanos.co.uk'**
+  String get aboutWallerLink;
+
+  /// No description provided for @aboutPykakasiNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Furigana readings over example sentences were generated with pykakasi, licensed under the GNU General Public License v3 or later.'**
+  String get aboutPykakasiNotice;
+
+  /// No description provided for @aboutPykakasiLink.
+  ///
+  /// In en, this message translates to:
+  /// **'codeberg.org/miurahr/pykakasi'**
+  String get aboutPykakasiLink;
+
+  /// No description provided for @aboutJanomeNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Example sentences are chosen with Janome, a Japanese morphological analyser, licensed under the Apache License 2.0. It decides which words a sentence really contains.'**
+  String get aboutJanomeNotice;
+
+  /// No description provided for @aboutJanomeLink.
+  ///
+  /// In en, this message translates to:
+  /// **'mocobeta.github.io/janome'**
+  String get aboutJanomeLink;
+
+  /// No description provided for @aboutBccwjNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Word difficulty, the vocabulary levels and the share of written Japanese each study group covers are all calculated from word frequency in the Balanced Corpus of Contemporary Written Japanese, published by the National Institute for Japanese Language and Linguistics (NINJAL).'**
+  String get aboutBccwjNotice;
+
+  /// No description provided for @aboutBccwjLink.
+  ///
+  /// In en, this message translates to:
+  /// **'clrd.ninjal.ac.jp'**
+  String get aboutBccwjLink;
 
   /// No description provided for @aboutOpenSourceLicenses.
   ///
@@ -1552,6 +1768,12 @@ abstract class AppLocalizations {
   /// **'Move on automatically, scoring each answer for you'**
   String get autoAdvanceSubtitle;
 
+  /// No description provided for @autoAdvanceFreePracticeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This applies in free practice. A graded session uses the one switch under Study, because a session mixes exercise types.'**
+  String get autoAdvanceFreePracticeNote;
+
   /// No description provided for @hintUsedFeedback.
   ///
   /// In en, this message translates to:
@@ -1725,6 +1947,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Play pronunciation'**
   String get speakPronunciation;
+
+  /// No description provided for @settingsDetailedGrading.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed grading'**
+  String get settingsDetailedGrading;
+
+  /// No description provided for @settingsDetailedGradingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade with Again / Hard / Good / Easy instead of just Not yet / Got it'**
+  String get settingsDetailedGradingSubtitle;
 
   /// No description provided for @replayStrokeOrder.
   ///

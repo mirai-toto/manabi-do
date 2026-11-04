@@ -103,6 +103,10 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
       drawing: ref.watch(drawingSettingsProvider),
       // Only a session that writes its results back has a grade to decide.
       autoAdvance: widget.persistSrs && srs.autoAdvance,
+      // Free practice always asks the short way: its grading is painted in
+      // the level colour, and one colour cannot carry a four-step scale.
+      fourPointGrading: widget.persistSrs && srs.detailedGrading,
+      gradesRecorded: widget.persistSrs,
     );
 
     return PopScope(
@@ -147,6 +151,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen> {
                         return SessionReviewScreen(
                           answers: s.answers,
                           total: s.queue?.length ?? s.answers.length,
+                          fourPointGrading: bodySettings.fourPointGrading,
                           onRegrade: (i, rating) => ref
                               .read(practiceSessionProvider.notifier)
                               .regrade(

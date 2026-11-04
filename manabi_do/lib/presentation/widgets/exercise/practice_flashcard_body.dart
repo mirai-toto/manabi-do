@@ -6,18 +6,21 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/grammar/grammar_models.dart';
 import '../../../l10n/l10n.dart';
-import '../common/app_button.dart';
+import '../common/action/app_button.dart';
 import 'example_card.dart';
 import 'flashcard.dart';
 import 'practice_progress_row.dart';
 
+/// Flashcard exercise body. Shows a `Flashcard` (front/back flip), then SRS
+/// rating buttons. Handles the flip animation and rating UI internally.
 class PracticeFlashcardBody extends StatefulWidget {
   final String japanese;
   final String? label;
   final String answer;
   final bool isReversed;
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
+  final Color? gradeAccent;
   final int index;
   final int total;
   final Color color;
@@ -38,7 +41,8 @@ class PracticeFlashcardBody extends StatefulWidget {
     required this.color,
     required this.onAnswer,
     required this.showExample,
-    this.isFreeMode = false,
+    required this.fourPointGrading,
+    this.gradeAccent,
     this.label,
     this.isReversed = false,
     this.onDetailTap,
@@ -130,7 +134,8 @@ class _PracticeFlashcardBodyState extends State<PracticeFlashcardBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: widget.card,
-              isFreeMode: widget.isFreeMode,
+              fourPointGrading: widget.fourPointGrading,
+              gradeAccent: widget.gradeAccent,
               question: l.selfAssessQuestion,
               onRate: widget.onAnswer,
             ),

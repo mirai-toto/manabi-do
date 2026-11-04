@@ -6,7 +6,7 @@ import '../../../core/models/drawing_settings.dart';
 import '../../../core/models/practice_answer.dart';
 import '../../../core/srs/drawing_rating.dart';
 import '../../../core/text/short_meaning.dart';
-import '../common/app_spinner.dart';
+import '../common/indicator/app_spinner.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
@@ -18,7 +18,8 @@ import 'practice_progress_row.dart';
 class KanjiDrawingBody extends ConsumerWidget {
   final Kanji kanji;
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
+  final Color? gradeAccent;
   final DrawingSettings drawingSettings;
 
   /// Whether to advance on a correct answer. Which switch decides that is the
@@ -42,7 +43,8 @@ class KanjiDrawingBody extends ConsumerWidget {
     required this.onAnswer,
     required this.drawingSettings,
     this.meaning,
-    this.isFreeMode = false,
+    required this.fourPointGrading,
+    this.gradeAccent,
     this.autoAdvance = false,
     this.onDetailTap,
   });
@@ -71,7 +73,8 @@ class KanjiDrawingBody extends ConsumerWidget {
                 kunReading: kanji.kunReading,
                 color: color,
                 card: card,
-                isFreeMode: isFreeMode,
+                fourPointGrading: fourPointGrading,
+                gradeAccent: gradeAccent,
                 autoAdvance: autoAdvance,
                 onRate: onAnswer,
                 onAutoAdvance: ({required hintsUsed, required mistakes}) =>

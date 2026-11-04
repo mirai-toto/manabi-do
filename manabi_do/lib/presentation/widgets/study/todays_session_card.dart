@@ -4,8 +4,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/app_button.dart';
-import '../common/pill_badge.dart';
+import '../common/action/app_button.dart';
+import '../common/indicator/pill_badge.dart';
 
 /// Hero card summarising everything due today, with one button to start a
 /// combined review session. Shows a caught-up message when nothing is due.

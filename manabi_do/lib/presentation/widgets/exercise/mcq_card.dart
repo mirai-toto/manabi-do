@@ -4,9 +4,9 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/japanese_text.dart';
-import '../common/pill_badge.dart';
-import '../common/speak_button.dart';
+import '../common/label/japanese_text.dart';
+import '../common/indicator/pill_badge.dart';
+import '../common/action/speak_button.dart';
 import 'letter_circle.dart';
 
 export '../../../core/models/mcq_option.dart';
@@ -37,6 +37,9 @@ export '../../../core/models/mcq_option.dart';
   ),
 };
 
+/// Multiple-choice question card. Renders a question prompt and a list of
+/// `McqOption` tiles with idle/correct/wrong states. The caller reads
+/// `mcqSettingsProvider` and passes `showFurigana`.
 class McqCard extends StatelessWidget {
   final String question;
   final String? japanesePrompt;

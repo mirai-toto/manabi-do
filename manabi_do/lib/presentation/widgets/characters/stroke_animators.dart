@@ -7,7 +7,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_strokes_provider.dart';
-import '../common/app_spinner.dart';
+import '../common/indicator/app_spinner.dart';
 
 // ── Shared shell ─────────────────────────────────────────────────────────────
 
@@ -89,6 +89,8 @@ class _AnimatorShell extends StatelessWidget {
 
 // ── StrokeOrderAnimator ───────────────────────────────────────────────────────
 
+/// Plays back reference strokes sequentially. Auto-plays on load; tap to
+/// replay.
 class StrokeOrderAnimator extends ConsumerStatefulWidget {
   final int kanjiId;
   final double size;

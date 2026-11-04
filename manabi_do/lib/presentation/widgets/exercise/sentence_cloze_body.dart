@@ -11,14 +11,18 @@ import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 import 'sentence_cloze_card.dart';
 
+/// Sentence-level cloze exercise. Fetches per-card SRS state, renders
+/// `SentenceClozeCard`, and handles rating.
 class SentenceClozeBody extends StatefulWidget {
   final Sentence sentence;
   final String? translation;
+  final String? translationMissingLanguage;
   final String? targetReading;
   final List<McqOption> options;
   final int correctIndex;
   final Card? card;
-  final bool isFreeMode;
+  final bool fourPointGrading;
+  final Color? gradeAccent;
   final int index;
   final int total;
   final Color color;
@@ -46,8 +50,10 @@ class SentenceClozeBody extends StatefulWidget {
     required this.translationMode,
     required this.showSentenceFurigana,
     required this.showChoiceFurigana,
-    this.isFreeMode = false,
+    required this.fourPointGrading,
+    this.gradeAccent,
     this.translation,
+    this.translationMissingLanguage,
     this.targetReading,
   });
 
@@ -137,6 +143,7 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
           SentenceClozeCard(
             sentence: widget.sentence,
             translation: effectiveTranslation,
+            translationMissingLanguage: widget.translationMissingLanguage,
             showTranslation: effectiveShowTranslation,
             onToggleTranslation: toggleCallback,
             showSentenceFurigana: widget.showSentenceFurigana,
@@ -151,7 +158,8 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: widget.card,
-              isFreeMode: widget.isFreeMode,
+              fourPointGrading: widget.fourPointGrading,
+              gradeAccent: widget.gradeAccent,
               question: l.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),

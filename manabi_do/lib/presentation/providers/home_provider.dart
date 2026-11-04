@@ -95,19 +95,28 @@ final vocabularyNewCountProvider = StreamProvider<int>((ref) {
       .vocabularyNewCount(newCardLimit: limit);
 });
 
-final kanjiSelectedLevelProvider = NotifierProvider<_LevelNotifier, String?>(
-  _LevelNotifier.new,
-);
-final vocabularySelectedLevelProvider =
-    NotifierProvider<_LevelNotifier, String?>(_LevelNotifier.new);
-final grammarSelectedLevelProvider = NotifierProvider<_LevelNotifier, String?>(
-  _LevelNotifier.new,
-);
+final kanjiSelectedLevelProvider =
+    NotifierProvider<_SelectionNotifier<String>, String?>(
+      _SelectionNotifier.new,
+    );
 
-class _LevelNotifier extends Notifier<String?> {
+/// The vocabulary level being browsed. A number, not a level code: vocabulary has
+/// no JLPT level.
+final vocabularySelectedLevelProvider =
+    NotifierProvider<_SelectionNotifier<int>, int?>(_SelectionNotifier.new);
+final grammarSelectedLevelProvider =
+    NotifierProvider<_SelectionNotifier<String>, String?>(
+      _SelectionNotifier.new,
+    );
+
+/// Which level or level a section has drilled into, or null for none.
+///
+/// Within-screen back navigation lives in a provider rather than a `PopScope`,
+/// so the system back button and the in-app arrow run the same code.
+class _SelectionNotifier<T> extends Notifier<T?> {
   @override
-  String? build() => null;
-  void select(String level) => state = level;
+  T? build() => null;
+  void select(T value) => state = value;
   void clear() => state = null;
 }
 

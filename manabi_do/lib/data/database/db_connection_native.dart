@@ -10,7 +10,32 @@ import 'package:sqlite3/sqlite3.dart' as raw;
 
 import 'user_data_preservation.dart';
 
-const _assetDbVersion = '9.0';
+/// Which content build the bundled asset is, read from the pin that ships
+/// beside it.
+///
+/// This used to be a hand-written constant. It was wrong for exactly as long as
+/// anybody failed to notice: a new asset shipped with schema 25 while the
+/// constant still said `9.0`, so every install kept its old content, ran the
+/// migration over it, and showed all 8,406 words in the last vocabulary level with
+/// no group figures at all. Nothing in the build could catch that, because the
+/// constant was true of nothing.
+///
+/// `content.lock` already is the record of which build the app ships, and
+/// `scripts/content/fetch_content.sh` rewrites it whenever the asset is
+/// replaced. Reading it here means the two cannot drift apart.
+Future<String> _assetContentVersion() async {
+  final String lock = await rootBundle.loadString('content.lock');
+  for (final String line in lock.split('\n')) {
+    final String trimmed = line.trim();
+    if (trimmed.startsWith('tag')) {
+      final int at = trimmed.indexOf('=');
+      if (at != -1) return trimmed.substring(at + 1).trim();
+    }
+  }
+  throw StateError(
+    'content.lock names no tag, so the content build is unknown',
+  );
+}
 
 // Walk up from the executable until a .git directory is found (repo root).
 String? _repoRoot() {
@@ -45,10 +70,11 @@ QueryExecutor openDbConnection() {
     final file = File(p.join(dbDir, 'manabi_do.db'));
     final marker = File(p.join(dbDir, 'manabi_do.db.version'));
 
+    final String assetVersion = await _assetContentVersion();
     final currentVersion = marker.existsSync()
         ? marker.readAsStringSync().trim()
         : '';
-    final needsCopy = !file.existsSync() || currentVersion != _assetDbVersion;
+    final needsCopy = !file.existsSync() || currentVersion != assetVersion;
 
     if (needsCopy) {
       // Save user data so it survives the content DB refresh.
@@ -59,14 +85,27 @@ QueryExecutor openDbConnection() {
       // half-finished refresh.
       final Map<String, List<List<Object?>>> savedUserData = readUserData(file);
 
-      // Remove stale WAL/SHM files so SQLite doesn't try to replay old frames.
-      for (final suffix in ['-wal', '-shm']) {
-        final side = File('${file.path}$suffix');
-        if (side.existsSync()) side.deleteSync();
+      // Vocabulary row ids move whenever the word list changes, and review
+      // history keys on them, so the old numbering is captured here and
+      // translated below. Read before the overwrite, because the file about to
+      // be replaced is the only place it exists.
+      Map<int, String> oldIdentity = const {};
+      if (file.existsSync()) {
+        final raw.Database old = raw.sqlite3.open(file.path);
+        try {
+          oldIdentity = readVocabularyIdentity(old);
+        } finally {
+          old.close();
+        }
       }
 
       final blob = await rootBundle.load('assets/manabi_do_content.db');
-      await file.writeAsBytes(
+
+      // Staged beside the real file rather than written over it. The remap
+      // below can refuse, and refusing is only safe while the old database is
+      // still intact: the marker stays unwritten, so the next launch retries.
+      final File staged = File('${file.path}.new');
+      await staged.writeAsBytes(
         blob.buffer.asUint8List(blob.offsetInBytes, blob.lengthInBytes),
       );
 
@@ -74,14 +113,36 @@ QueryExecutor openDbConnection() {
       // from, so it already contains every table and is stamped with the
       // current schemaVersion. Drift therefore opens it with nothing to
       // migrate — no version rewriting needed here.
-      final setup = raw.sqlite3.open(file.path);
+      try {
+        final raw.Database setup = raw.sqlite3.open(staged.path);
+        try {
+          final VocabularyRemap remap = remapVocabularyIds(
+            savedUserData,
+            oldIdentity,
+            readVocabularyIdentity(setup),
+          );
+          writeUserData(setup, remap.rows);
+        } finally {
+          setup.close();
+        }
+      } catch (_) {
+        if (staged.existsSync()) staged.deleteSync();
+        rethrow;
+      }
 
-      // Restore user data into the fresh DB before drift opens it.
-      writeUserData(setup, savedUserData);
-      setup.close();
+      // Remove stale WAL/SHM files so SQLite doesn't try to replay old frames
+      // against the replacement.
+      for (final suffix in ['-wal', '-shm']) {
+        final side = File('${file.path}$suffix');
+        if (side.existsSync()) side.deleteSync();
+      }
 
-      // Write the marker only after setup succeeds so a crash here retries next launch.
-      await marker.writeAsString(_assetDbVersion);
+      // Same directory, so this is atomic: the file is either the old content
+      // or the new one with the history carried over, never a half-written mix.
+      await staged.rename(file.path);
+
+      // Write the marker only after the move succeeds so a crash here retries next launch.
+      await marker.writeAsString(assetVersion);
     }
 
     return NativeDatabase(file);

@@ -6,11 +6,13 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/japanese_text.dart';
+import '../common/label/japanese_text.dart';
 import 'flashcard.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 
+/// Grammar fill-in-the-blank body. Renders the sentence with a gap and a set of
+/// `ClozeOption` chips.
 class GrammarClozeBody extends StatefulWidget {
   /// Sentence text with "___" marking the blank.
   final String sentence;
@@ -21,6 +23,8 @@ class GrammarClozeBody extends StatefulWidget {
   final Color color;
   final bool autoAdvance;
   final AnswerCallback onAnswer;
+  final bool fourPointGrading;
+  final Color? gradeAccent;
 
   const GrammarClozeBody({
     super.key,
@@ -32,6 +36,8 @@ class GrammarClozeBody extends StatefulWidget {
     required this.color,
     required this.onAnswer,
     this.autoAdvance = false,
+    required this.fourPointGrading,
+    this.gradeAccent,
   });
 
   @override
@@ -116,7 +122,8 @@ class _GrammarClozeBodyState extends State<GrammarClozeBody> {
             const SizedBox(height: AppDimens.spaceMd),
             FlashcardActions(
               card: null,
-              isFreeMode: true,
+              fourPointGrading: widget.fourPointGrading,
+              gradeAccent: widget.gradeAccent,
               question: context.l10n.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: _given),
             ),

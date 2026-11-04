@@ -53,6 +53,16 @@ jobs:
           BUILD=${{ github.run_number }}
           sed -i "s/^version: .*/version: ${VERSION}+${BUILD}/" manabi_do/pubspec.yaml
 
+      # The database is not tracked. It is built in mirai-toto/manabi-content
+      # and pinned in manabi_do/content.lock. github.token is scoped to this
+      # repo and cannot read another one, so CONTENT_PAT is a separate
+      # fine-grained token with Contents: Read on mirai-toto/manabi-content
+      # only. Deliberately not RELEASE_PAT, which can write.
+      - name: Fetch content database
+        run: scripts/content/fetch_content.sh
+        env:
+          GH_TOKEN: ${{ secrets.CONTENT_PAT }}
+
       - name: Build AAB
         run: flutter build appbundle --release
         working-directory: manabi_do

@@ -13,6 +13,7 @@ import 'blocks/text_block.dart';
 import 'blocks/transform_cards_block.dart';
 import 'blocks/vocabulary_table_block.dart';
 
+/// Dispatches a `GrammarBlock` to the correct block widget by `type`.
 class GrammarBlockRenderer extends StatelessWidget {
   final List<GrammarBlock> blocks;
   final Color levelColor;

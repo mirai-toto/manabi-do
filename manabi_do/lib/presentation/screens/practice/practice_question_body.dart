@@ -7,6 +7,7 @@ import '../../../core/models/mcq_settings.dart';
 import '../../../core/models/practice_item.dart';
 import '../../../core/models/practice_question.dart';
 import '../../../core/models/sentence_settings.dart';
+import '../../../core/theme/vocabulary_level.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../widgets/exercise/grammar_builder_body.dart';
@@ -33,12 +34,24 @@ class PracticeBodySettings {
   /// False outside a review, where those per-exercise ones apply instead.
   final bool autoAdvance;
 
+  /// Offer the full four-point scale when the user grades. The setting, but
+  /// only where [gradesRecorded]: free practice paints grading in the level
+  /// colour, and one colour cannot express a four-step scale.
+  final bool fourPointGrading;
+
+  /// False in free practice, where a grade moves the session score and
+  /// nothing else. Grading is themed to the level there rather than the
+  /// rating ramp, which says "this is not being recorded" without a label.
+  final bool gradesRecorded;
+
   const PracticeBodySettings({
     required this.mcq,
     required this.flashcard,
     required this.sentence,
     required this.drawing,
     required this.autoAdvance,
+    required this.fourPointGrading,
+    required this.gradesRecorded,
   });
 }
 
@@ -91,8 +104,15 @@ class PracticeQuestionBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = question.level != null
-        ? levelColor(question.level!)
+    // A kanji carries a JLPT level, a word carries a vocabulary level, and the
+    // two are drawn from different ramps: the JLPT scale is categorical green
+    // to red, a vocabularyLevel is a sequential share of the language.
+    final vocabularyLevel = question.vocabularyLevel;
+    final level = question.level;
+    final Color color = vocabularyLevel != null
+        ? vocabularyLevelColor(vocabularyLevel, Theme.of(context).brightness)
+        : level != null
+        ? levelColor(level)
         : sessionColor;
 
     return switch (question) {
@@ -104,7 +124,8 @@ class PracticeQuestionBody extends StatelessWidget {
         example: q.example,
         locale: q.locale,
         questionOverride: q.questionOverride,
-        isFreeMode: q.isFreeMode,
+        fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         card: card,
         index: index,
         total: total,
@@ -120,7 +141,8 @@ class PracticeQuestionBody extends StatelessWidget {
         options: q.options,
         correctIndex: q.correctIndex,
         compactGrid: q.compactGrid,
-        isFreeMode: q.isFreeMode,
+        fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         card: card,
         index: index,
         total: total,
@@ -133,7 +155,8 @@ class PracticeQuestionBody extends StatelessWidget {
       final DrawingQuestion q => KanjiDrawingBody(
         kanji: q.kanji,
         meaning: q.meaning,
-        isFreeMode: q.isFreeMode,
+        fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         card: card,
         index: index,
         total: total,
@@ -150,10 +173,12 @@ class PracticeQuestionBody extends StatelessWidget {
       final SentenceClozeQuestion q => SentenceClozeBody(
         sentence: q.sentence,
         translation: q.translation,
+        translationMissingLanguage: q.translationMissingLanguage,
         targetReading: q.targetReading,
         options: q.options,
         correctIndex: q.correctIndex,
-        isFreeMode: q.isFreeMode,
+        fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         card: card,
         index: index,
         total: total,
@@ -172,6 +197,8 @@ class PracticeQuestionBody extends StatelessWidget {
         total: total,
         color: color,
         autoAdvance: _autoAdvanceMcq,
+        fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         onAnswer: onAnswer,
       ),
       final GrammarBuilderQuestion q => GrammarBuilderBody(
@@ -181,6 +208,8 @@ class PracticeQuestionBody extends StatelessWidget {
         total: total,
         color: color,
         autoAdvance: _autoAdvanceMcq,
+        fourPointGrading: settings.fourPointGrading,
+        gradeAccent: settings.gradesRecorded ? null : color,
         onAnswer: onAnswer,
       ),
       final GrammarErrorQuestion q => GrammarErrorDetectionBody(

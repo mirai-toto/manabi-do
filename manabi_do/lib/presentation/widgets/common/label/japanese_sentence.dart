@@ -1,0 +1,130 @@
+import 'package:flutter/material.dart';
+
+import '../../../../core/theme/app_dimens.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_tokens.dart';
+import 'translation_fallback_info.dart';
+import 'japanese_text.dart';
+
+/// Renders a Japanese sentence with optional furigana and a highlighted target
+/// word. Pass `hideHighlight: true` to mask the target as a blank pill before
+/// reveal.
+class JapaneseSentence extends StatelessWidget {
+  final String sentence;
+  final String? highlight;
+  final Color? highlightColor;
+  final String? translation;
+
+  /// The reader's language, named, when [translation] is not in it. Null when
+  /// it is, because marking every line would be noise.
+  final String? missingLanguage;
+
+  final TextStyle? style;
+  final bool hideHighlight;
+
+  const JapaneseSentence({
+    super.key,
+    required this.sentence,
+    this.highlight,
+    this.highlightColor,
+    this.translation,
+    this.missingLanguage,
+    this.style,
+    this.hideHighlight = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.tokens;
+    final baseStyle = (style ?? AppTextStyles.jpBody).copyWith(
+      color: t.onSurface,
+    );
+    final rubyStyle = AppTextStyles.jpFurigana.copyWith(
+      color: t.onSurfaceVariant,
+    );
+    final accentColor = highlightColor ?? t.primary;
+
+    final List<InlineSpan> spans;
+
+    if (highlight != null && highlight!.isNotEmpty) {
+      final plain = stripAnnotation(sentence);
+      final (before, target, after) = splitSentenceAnnotation(
+        sentence,
+        plain,
+        highlight!,
+      );
+      if (hideHighlight) {
+        spans = [
+          ...furiganaSpans(before, baseStyle, rubyStyle),
+          WidgetSpan(
+            alignment: PlaceholderAlignment.middle,
+            child: Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceXxs,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceTight,
+                vertical: 1,
+              ),
+              decoration: BoxDecoration(
+                color: accentColor.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(AppDimens.radiusXs),
+                border: Border.all(
+                  color: accentColor,
+                  width: AppDimens.borderWidthContainer,
+                ),
+              ),
+              child: Text(
+                stripAnnotation(target),
+                style: baseStyle.copyWith(
+                  color: Colors.transparent,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ),
+          ...furiganaSpans(after, baseStyle, rubyStyle),
+        ];
+      } else {
+        spans = [
+          ...furiganaSpans(before, baseStyle, rubyStyle),
+          ...furiganaSpans(
+            target,
+            baseStyle.copyWith(color: accentColor, fontWeight: FontWeight.w700),
+            rubyStyle.copyWith(color: accentColor),
+          ),
+          ...furiganaSpans(after, baseStyle, rubyStyle),
+        ];
+      }
+    } else {
+      spans = furiganaSpans(sentence, baseStyle, rubyStyle);
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(children: spans),
+        ),
+        if (translation != null) ...[
+          const SizedBox(height: AppDimens.spaceXs),
+          // The mark rides in the text rather than under it, so it lands at
+          // the end of the last line like a footnote marker instead of
+          // claiming a row of its own. A reader who asked for French and got
+          // English can see the app knows, and tap to find out why.
+          TranslatedText(
+            translation!,
+            missingLanguage: missingLanguage,
+            style: AppTextStyles.bodySmall.copyWith(
+              color: t.onSurfaceVariant,
+              fontStyle: FontStyle.italic,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ],
+    );
+  }
+}

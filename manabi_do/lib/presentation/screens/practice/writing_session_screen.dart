@@ -83,7 +83,6 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen> {
           question: (l) => l.reviewDrawPrompt(meaning),
           answer: meaning,
           kindLabel: (l) => l.reviewKindKanjiWriting,
-          selfAssessed: true,
         ),
       ),
     );
@@ -236,6 +235,9 @@ class _ActiveScreen extends ConsumerWidget {
                     color: color,
                     settings: drawingSettings,
                     autoAdvance: drawingSettings.autoAdvance,
+                    // Always machine-graded through `drawingRating`; this
+                    // session never asks for a self-assessment.
+                    fourPointGrading: false,
                     onNext: onDone,
                     onAutoAdvance: onDone,
                     onDetailTap: () => Navigator.of(context).push(

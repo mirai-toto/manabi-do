@@ -1,15 +1,18 @@
 #!/bin/bash
 set -e
 
-# Builds and runs the app entirely inside Docker, against a content DB the
-# container rebuilds from its own downloaded sources. The host contributes the
-# source tree and an X server; everything else — the content sources, the build
-# output, the runtime database — lives in container volumes.
+# Builds and runs the app entirely inside Docker. The host contributes the
+# source tree, the content database and an X server; the build output and the
+# runtime database live in container volumes.
+#
+# The content database is not in the repo. It is fetched from the pinned
+# release in mirai-toto/manabi-content, on the host, because that is where the
+# gh CLI is signed in.
 
 ROOT="$(dirname "$(realpath "$0")")/../.."
 COMPOSE="docker compose -f $ROOT/docker-compose.yml"
 
-$COMPOSE run --rm content
+"$ROOT/scripts/content/fetch_content.sh"
 $COMPOSE run --rm build
 
 # The app needs to reach the host's X server to draw a window.

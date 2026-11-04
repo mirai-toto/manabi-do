@@ -2,25 +2,70 @@ part of '../app_database.dart';
 
 /// Vocabulary lookups.
 extension VocabularyQueries on AppDatabase {
-  Future<List<VocabularyEntry>> getVocabularyForKanji(
-    int kanjiId,
-    String character,
-  ) =>
+  /// Words written with a given kanji.
+  ///
+  /// Joined through `vocabulary_kanji`, so a word is found by any of its
+  /// kanji rather than only its first. This used to read
+  /// `kanjiId.equals(id) | word.like('%$character%')` — the `like` was there
+  /// to paper over the single-kanji column, and it matched on the character
+  /// appearing anywhere, including inside a different kanji's reading. The
+  /// join is exact, so the fallback is gone and so is the `character`
+  /// argument.
+  Future<List<VocabularyEntry>> getVocabularyForKanji(int kanjiId) {
+    final query =
+        select(vocabularyEntries).join([
+            innerJoin(
+              vocabularyKanji,
+              vocabularyKanji.vocabularyId.equalsExp(vocabularyEntries.id),
+            ),
+          ])
+          ..where(vocabularyKanji.kanjiId.equals(kanjiId))
+          ..orderBy([
+            OrderingTerm.asc(vocabularyEntries.difficulty),
+            OrderingTerm.asc(vocabularyEntries.word),
+          ])
+          ..limit(30);
+    return query.map((row) => row.readTable(vocabularyEntries)).get();
+  }
+
+  /// Every word in a vocabulary level, in study order.
+  ///
+  /// Ordered by `group_index` first, so skipping thirty at a time lands on the
+  /// groups the content pipeline cut. The groups are a property of the content,
+  /// not something the app recomputes: they are where the per-group coverage
+  /// figures in `coverage_groups` apply.
+  Future<List<VocabularyEntry>> getVocabularyByLevel(int level) =>
       (select(vocabularyEntries)
-            ..where(
-              (v) => v.kanjiId.equals(kanjiId) | v.word.like('%$character%'),
-            )
+            ..where((v) => v.vocabularyLevel.equals(level))
             ..orderBy([
-              (v) => OrderingTerm.desc(v.jlptLevel),
+              (v) => OrderingTerm.asc(v.groupIndex),
+              (v) => OrderingTerm.asc(v.difficulty),
               (v) => OrderingTerm.asc(v.word),
-            ])
-            ..limit(30))
+            ]))
           .get();
 
-  Future<List<VocabularyEntry>> getVocabularyByLevel(String level) =>
-      (select(vocabularyEntries)
-            ..where((v) => v.jlptLevel.equals(level))
-            ..orderBy([(v) => OrderingTerm.asc(v.word)]))
+  /// A word's meanings in [locale], in JMdict's own order.
+  ///
+  /// Empty when the content has no senses for that language, which is the
+  /// caller's cue to fall back to `VocabularyEntry.meaning`.
+  Future<List<VocabularySense>> getVocabularySenses(
+    int vocabularyId,
+    String locale,
+  ) =>
+      (select(vocabularySenses)
+            ..where(
+              (s) =>
+                  s.vocabularyId.equals(vocabularyId) & s.locale.equals(locale),
+            )
+            ..orderBy([(s) => OrderingTerm.asc(s.position)]))
+          .get();
+
+  /// What each study group buys, as a share of running Japanese.
+  Future<List<CoverageGroup>> getCoverageGroups() =>
+      (select(coverageGroups)..orderBy([
+            (g) => OrderingTerm.asc(g.vocabularyLevel),
+            (g) => OrderingTerm.asc(g.groupIndex),
+          ]))
           .get();
 
   Future<List<VocabularyEntry>> getAllVocabulary() =>

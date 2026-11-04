@@ -15,7 +15,14 @@ import '../../data/grammar/grammar_models.dart';
 sealed class PracticeQuestion {
   /// The JLPT level whose colour this question is drawn in. Null means the
   /// session's own colour, which is what grammar and writing use.
+  ///
+  /// Kanji only. A word has no JLPT level, and its [vocabularyLevel] is a different scale
+  /// drawn from a different ramp, so the two cannot share one field.
   final String? level;
+
+  /// The vocabulary level whose colour this question is drawn in, for vocabulary.
+  /// Null for everything else.
+  final int? vocabularyLevel;
 
   /// Free practice: nothing is written back to the SRS, and the per-exercise
   /// auto-advance switches apply instead of the session-wide one.
@@ -27,6 +34,7 @@ sealed class PracticeQuestion {
 
   const PracticeQuestion({
     this.level,
+    this.vocabularyLevel,
     this.isFreeMode = false,
     this.kanjiDetailId,
   });
@@ -57,6 +65,7 @@ final class FlashcardQuestion extends PracticeQuestion {
     this.locale = 'en',
     this.questionOverride,
     super.level,
+    super.vocabularyLevel,
     super.isFreeMode,
     super.kanjiDetailId,
   });
@@ -81,6 +90,7 @@ final class McqQuestion extends PracticeQuestion {
     this.japaneseReading,
     this.compactGrid = false,
     super.level,
+    super.vocabularyLevel,
     super.isFreeMode,
     super.kanjiDetailId,
   });
@@ -95,6 +105,7 @@ final class DrawingQuestion extends PracticeQuestion {
     required this.kanji,
     required this.meaning,
     super.level,
+    super.vocabularyLevel,
     super.isFreeMode,
     super.kanjiDetailId,
   });
@@ -104,6 +115,12 @@ final class DrawingQuestion extends PracticeQuestion {
 final class SentenceClozeQuestion extends PracticeQuestion {
   final Sentence sentence;
   final String? translation;
+
+  /// The reader's language, named, when [translation] is not in it. Fewer than
+  /// half the example sentences carry French, so the English stands in and the
+  /// card says as much.
+  final String? translationMissingLanguage;
+
   final String? targetReading;
   final List<McqOption> options;
   final int correctIndex;
@@ -113,8 +130,10 @@ final class SentenceClozeQuestion extends PracticeQuestion {
     required this.options,
     required this.correctIndex,
     this.translation,
+    this.translationMissingLanguage,
     this.targetReading,
     super.level,
+    super.vocabularyLevel,
     super.isFreeMode,
   });
 }
@@ -130,6 +149,7 @@ final class GrammarClozeQuestion extends PracticeQuestion {
     required this.options,
     required this.correctIndex,
     super.level,
+    super.vocabularyLevel,
     super.isFreeMode,
   });
 }
@@ -143,6 +163,7 @@ final class GrammarBuilderQuestion extends PracticeQuestion {
     required this.parts,
     required this.translation,
     super.level,
+    super.vocabularyLevel,
     super.isFreeMode,
   });
 }
@@ -158,6 +179,7 @@ final class GrammarErrorQuestion extends PracticeQuestion {
     required this.wrong,
     required this.explanation,
     super.level,
+    super.vocabularyLevel,
     super.isFreeMode,
   });
 }

@@ -4,9 +4,11 @@ import '../../data/database/app_database.dart';
 import '../services/search_service.dart';
 import 'database_provider.dart';
 
-final kanjiSearchProvider = FutureProvider.family<List<Kanji>, String>(
-  (ref, query) => ref.read(searchServiceProvider).kanji(query),
-);
+final kanjiSearchProvider =
+    FutureProvider.family<List<Kanji>, SearchQuery<String>>(
+      (ref, q) =>
+          ref.read(searchServiceProvider).kanji(q.text, levels: q.filters),
+    );
 
 class KanjiLevelData {
   final String level;
@@ -31,4 +33,10 @@ final kanjiDetailProvider = StreamProvider.family<Kanji?, int>((ref, id) {
 
 final kanjiSrsCardsProvider = StreamProvider<Map<int, Card>>(
   (ref) => ref.watch(databaseProvider).watchAllSrsCardsForType('kanji'),
+);
+
+/// The kanji a word is written with, in reading order.
+final kanjiForVocabularyProvider = FutureProvider.family<List<Kanji>, int>(
+  (ref, vocabularyId) =>
+      ref.watch(databaseProvider).getKanjiForVocabulary(vocabularyId),
 );

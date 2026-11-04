@@ -10,7 +10,7 @@ Items are ordered by priority. All must ship before App Store / Play Store publi
 | 2 | iOS / App Store build | Not started |
 | 3 | Tablet UI — visually intentional layouts on larger screens | Not started |
 | 4 | SRS backup & restore via external drive (Google Drive primary) | Not started |
-| 5 | German grammar translation | In progress (low priority) |
+| 5 | German grammar translation | Done — `basics` and N5 shipped |
 
 **Out of scope for v1:** Google/Apple sign-in with server-side sync (requires a backend — far future).
 
