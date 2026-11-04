@@ -543,5 +543,9 @@
   "onboardingSkip": "Configurer plus tard",
   "onboardingPickOne": "Choisissez-en au moins un pour continuer.",
   "durationMinutesSeconds": "{minutes} min {seconds} s",
-  "durationSeconds": "{seconds} s"
+  "durationSeconds": "{seconds} s",
+  "intervalMinutes": "{n} min",
+  "intervalHours": "{n} h",
+  "intervalDays": "{n} j",
+  "intervalMonths": "{n} mois"
 }

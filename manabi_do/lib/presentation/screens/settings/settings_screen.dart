@@ -10,6 +10,7 @@ import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/app_languages.dart';
 import '../../../l10n/l10n.dart';
 import '../../services/feedback_service.dart';
 import '../../services/srs_service.dart';
@@ -122,6 +123,7 @@ class SettingsScreen extends ConsumerWidget {
         ),
       ),
       builder: (_) => LanguagePickerSheet(
+        languages: appLanguages,
         currentCode: current,
         title: title,
         onSelect: (code) {
@@ -149,9 +151,9 @@ class SettingsScreen extends ConsumerWidget {
       homeSettingsProvider.notifier,
     );
 
-    final currentLang = languages.firstWhere(
+    final currentLang = appLanguages.firstWhere(
       (e) => e.code == locale.languageCode,
-      orElse: () => languages.first,
+      orElse: () => appLanguages.first,
     );
 
     return Align(

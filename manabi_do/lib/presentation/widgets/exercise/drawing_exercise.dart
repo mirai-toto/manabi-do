@@ -5,6 +5,7 @@ import 'package:fsrs/fsrs.dart' show Card, Rating;
 
 import '../../../core/models/drawing_settings.dart';
 import '../../../core/srs/stroke_dtw.dart';
+import '../../../core/text/kanji_readings.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';

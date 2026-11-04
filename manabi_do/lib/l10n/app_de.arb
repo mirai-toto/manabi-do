@@ -543,5 +543,9 @@
   "onboardingSkip": "Später einrichten",
   "onboardingPickOne": "Wählen Sie mindestens eines aus.",
   "durationMinutesSeconds": "{minutes} Min. {seconds} s",
-  "durationSeconds": "{seconds} s"
+  "durationSeconds": "{seconds} s",
+  "intervalMinutes": "{n} Min.",
+  "intervalHours": "{n} Std.",
+  "intervalDays": "{n} T.",
+  "intervalMonths": "{n} Mon."
 }

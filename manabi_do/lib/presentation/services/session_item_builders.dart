@@ -5,14 +5,15 @@ import 'package:fsrs/fsrs.dart' show Card;
 import '../../core/models/mcq_option.dart';
 import '../../core/models/practice_item.dart';
 import '../../core/models/practice_question.dart';
+import '../../core/text/kanji_readings.dart';
 import '../../core/text/sentence_language.dart';
 import '../../l10n/app_localizations.dart';
 import '../../data/database/app_database.dart';
 
 // The reading shown under a kanji prompt: first on'yomi, else first kun'yomi.
-String? kanjiPromptReading(Kanji kanji) => kanji.onReading.isNotEmpty
-    ? kanji.onReading.split('、').first
-    : kanji.kunReading.split('、').firstOrNull;
+String? kanjiPromptReading(Kanji kanji) =>
+    parseKanjiReadings(kanji.onReading).firstOrNull ??
+    parseKanjiReadings(kanji.kunReading).firstOrNull;
 
 // Picks up to [count] distractors from [pool], shuffling first and skipping
 // any whose display key is already in [seen]. Mutates [seen] as it picks.

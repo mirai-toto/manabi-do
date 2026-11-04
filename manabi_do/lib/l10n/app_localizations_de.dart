@@ -1124,4 +1124,24 @@ class AppLocalizationsDe extends AppLocalizations {
   String durationSeconds(int seconds) {
     return '$seconds s';
   }
+
+  @override
+  String intervalMinutes(int n) {
+    return '$n Min.';
+  }
+
+  @override
+  String intervalHours(int n) {
+    return '$n Std.';
+  }
+
+  @override
+  String intervalDays(int n) {
+    return '$n T.';
+  }
+
+  @override
+  String intervalMonths(int n) {
+    return '$n Mon.';
+  }
 }

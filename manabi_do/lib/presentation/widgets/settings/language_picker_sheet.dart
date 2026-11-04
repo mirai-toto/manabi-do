@@ -2,24 +2,21 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/app_languages.dart';
 import '../common/decoration/app_emoji.dart';
 import '../common/decoration/sheet_drag_handle.dart';
-
-const languages = [
-  (code: 'en', flag: '🇬🇧', name: 'English'),
-  (code: 'fr', flag: '🇫🇷', name: 'Français'),
-  (code: 'de', flag: '🇩🇪', name: 'Deutsch'),
-];
 
 /// Bottom sheet for selecting the app language. Renders a list of supported
 /// locale codes as tappable tiles; highlights the current selection.
 class LanguagePickerSheet extends StatelessWidget {
+  final List<AppLanguage> languages;
   final String currentCode;
   final void Function(String code) onSelect;
   final String title;
 
   const LanguagePickerSheet({
     super.key,
+    required this.languages,
     required this.currentCode,
     required this.onSelect,
     required this.title,

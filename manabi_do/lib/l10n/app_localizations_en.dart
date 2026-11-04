@@ -1118,4 +1118,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String durationSeconds(int seconds) {
     return '${seconds}s';
   }
+
+  @override
+  String intervalMinutes(int n) {
+    return '${n}m';
+  }
+
+  @override
+  String intervalHours(int n) {
+    return '${n}h';
+  }
+
+  @override
+  String intervalDays(int n) {
+    return '${n}d';
+  }
+
+  @override
+  String intervalMonths(int n) {
+    return '${n}mo';
+  }
 }

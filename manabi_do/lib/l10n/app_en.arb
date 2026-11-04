@@ -633,5 +633,41 @@
         "type": "int"
       }
     }
+  },
+  "intervalMinutes": "{n}m",
+  "@intervalMinutes": {
+    "description": "Short interval under a grade button.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "intervalHours": "{n}h",
+  "@intervalHours": {
+    "description": "Short interval under a grade button.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "intervalDays": "{n}d",
+  "@intervalDays": {
+    "description": "Short interval under a grade button.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "intervalMonths": "{n}mo",
+  "@intervalMonths": {
+    "description": "Short interval under a grade button.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
   }
 }

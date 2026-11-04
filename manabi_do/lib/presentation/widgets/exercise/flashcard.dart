@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart' hide Card;
-import 'package:fsrs/fsrs.dart' show Card, Rating, Scheduler;
+import 'package:fsrs/fsrs.dart' show Card, Rating;
 import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../core/srs/interval_preview.dart';
+import '../../../l10n/interval_label.dart';
 import '../../../l10n/l10n.dart';
 import '../common/action/app_button.dart';
 import '../common/action/speak_button.dart';
@@ -197,7 +199,10 @@ class FlashcardActions extends StatelessWidget {
     }) => Expanded(
       child: AppButton(
         label: label,
-        subtitle: srsIntervalPreview(card, rating),
+        subtitle: switch (srsIntervalPreview(card, rating)) {
+          final Duration interval => intervalLabel(interval, l),
+          null => null,
+        },
         backgroundColor: background,
         foregroundColor: foreground,
         // Null when nothing was given yet, so the buttons are not announced
@@ -291,18 +296,4 @@ class FlashcardActions extends StatelessWidget {
       ],
     );
   }
-}
-
-/// How far out [rating] would push [card], as a short label.
-///
-/// Null for a card that has never been reviewed, where there is no interval to
-/// preview yet.
-String? srsIntervalPreview(Card? card, Rating rating) {
-  if (card == null) return null;
-  final preview = Scheduler().reviewCard(card, rating).card;
-  final diff = preview.due.difference(DateTime.now());
-  if (diff.inMinutes < 60) return '${diff.inMinutes.clamp(1, 59)}m';
-  if (diff.inHours < 24) return '${diff.inHours}h';
-  if (diff.inDays < 30) return '${diff.inDays}d';
-  return '${(diff.inDays / 30).round()}mo';
 }

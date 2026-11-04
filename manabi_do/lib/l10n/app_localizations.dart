@@ -2067,6 +2067,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{seconds}s'**
   String durationSeconds(int seconds);
+
+  /// Short interval under a grade button.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}m'**
+  String intervalMinutes(int n);
+
+  /// Short interval under a grade button.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}h'**
+  String intervalHours(int n);
+
+  /// Short interval under a grade button.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}d'**
+  String intervalDays(int n);
+
+  /// Short interval under a grade button.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}mo'**
+  String intervalMonths(int n);
 }
 
 class _AppLocalizationsDelegate
