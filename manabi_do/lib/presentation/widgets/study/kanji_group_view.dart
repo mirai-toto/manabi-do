@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/srs/srs_level.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_provider.dart';
@@ -66,23 +65,10 @@ class KanjiGroupView extends ConsumerWidget {
               horizontal: AppDimens.spaceMd,
               vertical: AppDimens.spaceSm,
             ),
-            child: AppButton(
+            child: PracticeButton(
               label: context.l10n.freePractice,
-              icon: Icon(Icons.school_rounded, color: color, size: 20),
+              color: color,
               onPressed: () => onPractice(groupIds),
-              fullWidth: true,
-              backgroundColor: color.withValues(alpha: 0.08),
-              foregroundColor: color,
-              side: BorderSide(
-                color: color.withValues(alpha: 0.35),
-                width: AppDimens.borderWidthContainer,
-              ),
-              radius: AppDimens.radiusMd,
-              visualDensity: VisualDensity.standard,
-              padding: const EdgeInsets.all(AppDimens.spaceMd),
-              textStyle: AppTextStyles.body.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
             ),
           ),
           KanjiGrid(

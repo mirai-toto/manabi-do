@@ -14,6 +14,7 @@ import '../presentation/widgets/exercise/mcq_card.dart';
 import '../presentation/widgets/exercise/sentence_cloze_card.dart';
 import '../data/database/app_database.dart';
 import '../presentation/widgets/exercise/summary_card.dart';
+import '../presentation/widgets/exercise/view_detail_button.dart';
 
 // ── Flashcard ─────────────────────────────────────────────────────────────────
 
@@ -340,3 +341,12 @@ Widget buildSentenceClozeCardHidden(BuildContext context) =>
 )
 Widget buildSentenceClozeCardShowing(BuildContext context) =>
     _cloze(context, showTranslation: true);
+
+// ── ViewDetailButton ─────────────────────────────────────────────────────────
+
+@widgetbook.UseCase(name: 'Default', type: ViewDetailButton, path: 'Exercise')
+Widget buildViewDetailButton(BuildContext context) {
+  return Center(
+    child: ViewDetailButton(label: 'View detail', onPressed: () {}),
+  );
+}

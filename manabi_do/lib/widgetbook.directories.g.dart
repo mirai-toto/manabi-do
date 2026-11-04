@@ -570,6 +570,16 @@ final directories = <_widgetbook.WidgetbookNode>[
           ),
         ],
       ),
+      _widgetbook.WidgetbookComponent(
+        name: 'ViewDetailButton',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder:
+                _manabi_do_widgetbook_exercise_use_cases.buildViewDetailButton,
+          ),
+        ],
+      ),
     ],
   ),
   _widgetbook.WidgetbookFolder(
@@ -917,6 +927,15 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Started',
             builder:
                 _manabi_do_widgetbook_study_use_cases.buildLessonRowStarted,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'PracticeButton',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder: _manabi_do_widgetbook_study_use_cases.buildPracticeButton,
           ),
         ],
       ),

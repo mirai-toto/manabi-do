@@ -9,7 +9,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/action/app_button.dart';
+import 'view_detail_button.dart';
 import '../characters/kanji_drawing_canvas.dart';
 import '../characters/kanji_readings_card.dart';
 import '../characters/stroke_animators.dart';
@@ -247,11 +247,8 @@ class _DrawingExerciseState extends State<DrawingExercise>
               ),
               if (widget.onDetailTap != null) ...[
                 const SizedBox(width: AppDimens.spaceSm),
-                AppButton(
+                ViewDetailButton(
                   label: l.viewDetail,
-                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                  variant: AppButtonVariant.text,
-                  foregroundColor: t.onSurfaceVariant,
                   onPressed: widget.onDetailTap,
                 ),
               ],
@@ -290,13 +287,7 @@ class _DrawingExerciseState extends State<DrawingExercise>
     // reach them without leaving the session.
     final detailLink = widget.onDetailTap == null
         ? null
-        : AppButton(
-            label: l.viewDetail,
-            icon: const Icon(Icons.open_in_new_rounded, size: 16),
-            variant: AppButtonVariant.text,
-            foregroundColor: context.tokens.onSurfaceVariant,
-            onPressed: widget.onDetailTap,
-          );
+        : ViewDetailButton(label: l.viewDetail, onPressed: widget.onDetailTap);
 
     if (widget.onNext != null) {
       return Column(

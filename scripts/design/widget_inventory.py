@@ -49,6 +49,8 @@ ROLES: dict[str, str] = {
 CLASSIFIED: dict[str, str] = {
     # action
     "LessonReadToggle": "action",
+    "PracticeButton": "action",
+    "ViewDetailButton": "action",
     # input
     "SettingsStepper": "input",
     "SettingsToggle": "input",

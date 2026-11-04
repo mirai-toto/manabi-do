@@ -140,23 +140,10 @@ class _LevelContent extends ConsumerWidget {
               horizontal: AppDimens.spaceMd,
               vertical: AppDimens.spaceSm,
             ),
-            child: AppButton(
+            child: PracticeButton(
               label: dueCount > 0 ? l.reviewNDue(dueCount) : l.freePractice,
-              icon: Icon(Icons.school_rounded, color: color, size: 20),
+              color: color,
               onPressed: () => onPractice(groupIds),
-              fullWidth: true,
-              backgroundColor: color.withValues(alpha: 0.08),
-              foregroundColor: color,
-              side: BorderSide(
-                color: color.withValues(alpha: 0.35),
-                width: AppDimens.borderWidthContainer,
-              ),
-              radius: AppDimens.radiusMd,
-              visualDensity: VisualDensity.standard,
-              padding: const EdgeInsets.all(AppDimens.spaceMd),
-              textStyle: AppTextStyles.body.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
             ),
           ),
           for (final section in sections) ...[

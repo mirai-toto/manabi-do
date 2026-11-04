@@ -3,9 +3,8 @@ import 'package:fsrs/fsrs.dart' show Card;
 
 import '../../../core/models/practice_answer.dart';
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/action/app_button.dart';
+import 'view_detail_button.dart';
 import 'flashcard.dart';
 import 'choice_answer.dart';
 import 'mcq_card.dart';
@@ -105,11 +104,8 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody>
             ),
             if (widget.onDetailTap != null) ...[
               const SizedBox(height: AppDimens.spaceSm),
-              AppButton(
+              ViewDetailButton(
                 label: context.l10n.viewDetail,
-                icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                variant: AppButtonVariant.text,
-                foregroundColor: context.tokens.onSurfaceVariant,
                 onPressed: widget.onDetailTap,
               ),
             ],

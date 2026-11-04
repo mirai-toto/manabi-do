@@ -7,7 +7,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
-import '../common/action/app_button.dart';
+import 'view_detail_button.dart';
 import '../common/indicator/pill_badge.dart';
 import '../common/indicator/review_progress_info.dart';
 import 'flashcard.dart';
@@ -293,11 +293,8 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
           ],
           if (widget.onDetailTap != null)
             Center(
-              child: AppButton(
+              child: ViewDetailButton(
                 label: l.viewDetail,
-                icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                variant: AppButtonVariant.text,
-                foregroundColor: t.onSurfaceVariant,
                 onPressed: widget.onDetailTap,
               ),
             ),
