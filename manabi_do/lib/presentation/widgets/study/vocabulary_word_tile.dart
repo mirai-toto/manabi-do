@@ -49,12 +49,10 @@ class _VocabularyWordTileState extends ConsumerState<VocabularyWordTile> {
     final localized = ref.watch(
       localizedVocabularyMeaningProvider(widget.entry.id),
     );
-    // Nothing in the reader's language means an English meaning stands in,
-    // and the mark says so rather than leaving it to look like a choice.
-    final String? missingLanguage =
-        localized.asData != null && localized.asData!.value.isEmpty
-        ? readerLanguageName(ref.watch(localeProvider).languageCode)
-        : null;
+    final String? missingLanguage = missingMeaningLanguage(
+      localized,
+      readerLocale: ref.watch(localeProvider).languageCode,
+    );
     final meaning = localized.asData?.value.isNotEmpty == true
         ? localized.asData!.value
         : widget.entry.meaning;

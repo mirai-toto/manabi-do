@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/providers/locale_provider.dart';
+import '../../../core/text/sentence_language.dart';
+import '../../providers/vocabulary_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -147,15 +150,26 @@ class _NoResults extends StatelessWidget {
   }
 }
 
-class _KanjiResultTile extends StatelessWidget {
+class _KanjiResultTile extends ConsumerWidget {
   final Kanji kanji;
   final VoidCallback onTap;
   const _KanjiResultTile({required this.kanji, required this.onTap});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final color = levelColor(kanji.jlptLevel);
+    // The detail screen has shown the reader's own meaning for a while; the
+    // row that leads to it still showed English. KANJIDIC2 has no German at
+    // all, so the mark explains the rows that stay English.
+    final localized = ref.watch(localizedKanjiMeaningProvider(kanji.id));
+    final String meaning = localized.asData?.value.isNotEmpty == true
+        ? localized.asData!.value
+        : kanji.meaning;
+    final String? missingLanguage = missingMeaningLanguage(
+      localized,
+      readerLocale: ref.watch(localeProvider).languageCode,
+    );
     return Column(
       children: [
         InkWell(
@@ -180,8 +194,9 @@ class _KanjiResultTile extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        kanji.meaning,
+                      TranslatedText(
+                        meaning,
+                        missingLanguage: missingLanguage,
                         style: AppTextStyles.body.copyWith(color: t.onSurface),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

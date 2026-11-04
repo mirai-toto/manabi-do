@@ -1174,18 +1174,6 @@ abstract class AppLocalizations {
   /// **'tanos.co.uk'**
   String get aboutWallerLink;
 
-  /// No description provided for @aboutPykakasiNotice.
-  ///
-  /// In en, this message translates to:
-  /// **'Furigana readings over example sentences were generated with pykakasi, licensed under the GNU General Public License v3 or later.'**
-  String get aboutPykakasiNotice;
-
-  /// No description provided for @aboutPykakasiLink.
-  ///
-  /// In en, this message translates to:
-  /// **'codeberg.org/miurahr/pykakasi'**
-  String get aboutPykakasiLink;
-
   /// No description provided for @aboutJanomeNotice.
   ///
   /// In en, this message translates to:

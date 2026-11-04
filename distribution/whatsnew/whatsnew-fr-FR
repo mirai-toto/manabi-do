@@ -1,5 +1,3 @@
-• Nouveau ? Une courte configuration vous guide : votre langue, ce que vous voulez étudier et un rythme quotidien.
-• Les furigana sont lus dans la phrase, non devinés d'après les caractères : 怒ってる se lit おこ, pas いか.
-• Deux mots différents s'écrivent いる — « être » et « avoir besoin ». Un seul était enseigné. Les deux le sont maintenant.
-• Les phrases d'exemple sont de nouveau alignées.
-• L'application pèse environ 9 Mo de moins.
+• La recherche fonctionne désormais dans votre langue. « feu » trouve 火 — auparavant seul « fire » y parvenait, et de même pour l'allemand et les autres langues.
+• Les résultats kanji affichent leur sens dans votre langue, comme le faisait déjà la fiche du kanji.
+• Correction d'un repère d'information qui apparaissait à côté de chaque mot en anglais.

@@ -76,12 +76,40 @@ extension VocabularyQueries on AppDatabase {
 
   /// Every word whose spelling, reading or meaning contains [query], in no
   /// particular order. `SearchService` ranks them.
-  Future<List<VocabularyEntry>> searchVocabularyCandidates(String query) {
+  ///
+  /// `vocabulary_entries.meaning` is English. The reader's own glosses are in
+  /// `vocabulary_senses`, so both are searched: without it "manger" found
+  /// nothing and "to eat" found 食べる.
+  Future<List<VocabularyEntry>> searchVocabularyCandidates(
+    String query,
+    String locale,
+  ) async {
     final q = '%$query%';
-    return (select(
-          vocabularyEntries,
-        )..where((v) => v.word.like(q) | v.reading.like(q) | v.meaning.like(q)))
-        .get();
+    final direct =
+        await (select(vocabularyEntries)..where(
+              (v) => v.word.like(q) | v.reading.like(q) | v.meaning.like(q),
+            ))
+            .get();
+    if (locale == 'en') return direct;
+
+    final translated =
+        await (select(vocabularyEntries).join([
+              innerJoin(
+                vocabularySenses,
+                vocabularySenses.vocabularyId.equalsExp(vocabularyEntries.id),
+              ),
+            ])..where(
+              vocabularySenses.locale.equals(locale) &
+                  vocabularySenses.glosses.like(q),
+            ))
+            .map((row) => row.readTable(vocabularyEntries))
+            .get();
+
+    final Map<int, VocabularyEntry> merged = {for (final v in direct) v.id: v};
+    for (final v in translated) {
+      merged.putIfAbsent(v.id, () => v);
+    }
+    return merged.values.toList();
   }
 
   Future<int> countTotalVocabulary() =>

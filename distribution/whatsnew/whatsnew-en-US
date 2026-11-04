@@ -1,5 +1,3 @@
-• New here? A short setup walks you through your language, what you want to study and a daily pace.
-• Furigana is now read from the sentence, not guessed from the characters: 怒ってる is おこ, not いか.
-• Two different words are written いる — "to be" and "to need". Only one of them was being taught. Both are now.
-• Example sentences sit on one line again instead of stepping out of place.
-• The app is about 9 MB smaller.
+• Search now looks in your own language. In French, "feu" finds 火 — before, only "fire" did, and the same went for German and every other language.
+• Kanji results show their meaning in your language, which the kanji screen already did.
+• Fixed an information mark that appeared beside every word in English, saying English was missing.

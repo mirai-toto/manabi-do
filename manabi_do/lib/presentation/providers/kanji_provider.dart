@@ -1,3 +1,4 @@
+import '../../core/providers/locale_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart';
 import '../../data/database/app_database.dart';
@@ -6,8 +7,13 @@ import 'database_provider.dart';
 
 final kanjiSearchProvider =
     FutureProvider.family<List<Kanji>, SearchQuery<String>>(
-      (ref, q) =>
-          ref.read(searchServiceProvider).kanji(q.text, levels: q.filters),
+      (ref, q) => ref
+          .read(searchServiceProvider)
+          .kanji(
+            q.text,
+            levels: q.filters,
+            locale: ref.watch(localeProvider).languageCode,
+          ),
     );
 
 class KanjiLevelData {

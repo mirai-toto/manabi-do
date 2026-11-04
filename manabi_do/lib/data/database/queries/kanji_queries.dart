@@ -58,17 +58,43 @@ extension KanjiQueries on AppDatabase {
   Stream<Kanji?> watchKanjiById(int id) =>
       (select(kanjis)..where((k) => k.id.equals(id))).watchSingleOrNull();
 
-  /// Every kanji whose character, meaning or readings contain [query], in no
+  /// Every kanji whose character, readings or meaning contain [query], in no
   /// particular order. `SearchService` ranks them.
-  Future<List<Kanji>> searchKanjiCandidates(String query) {
+  ///
+  /// `kanjis.meaning` holds English only, so a French reader searching "feu"
+  /// found nothing while "fire" worked. KANJIDIC2 publishes French, Spanish
+  /// and Portuguese as well, and those live in `kanji_translations`; both are
+  /// searched and the results merged.
+  Future<List<Kanji>> searchKanjiCandidates(String query, String locale) async {
     final q = '%$query%';
-    return (select(kanjis)..where(
-          (k) =>
-              k.character.like(q) |
-              k.meaning.like(q) |
-              k.onReading.like(q) |
-              k.kunReading.like(q),
-        ))
-        .get();
+    final direct =
+        await (select(kanjis)..where(
+              (k) =>
+                  k.character.like(q) |
+                  k.meaning.like(q) |
+                  k.onReading.like(q) |
+                  k.kunReading.like(q),
+            ))
+            .get();
+    if (locale == 'en') return direct;
+
+    final translated =
+        await (select(kanjis).join([
+              innerJoin(
+                kanjiTranslations,
+                kanjiTranslations.kanjiId.equalsExp(kanjis.id),
+              ),
+            ])..where(
+              kanjiTranslations.locale.equals(locale) &
+                  kanjiTranslations.meaning.like(q),
+            ))
+            .map((row) => row.readTable(kanjis))
+            .get();
+
+    final Map<int, Kanji> merged = {for (final k in direct) k.id: k};
+    for (final k in translated) {
+      merged.putIfAbsent(k.id, () => k);
+    }
+    return merged.values.toList();
   }
 }
