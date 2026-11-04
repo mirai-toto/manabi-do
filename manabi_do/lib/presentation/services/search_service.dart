@@ -57,18 +57,29 @@ class SearchService {
   const SearchService(this._db);
 
   /// [levels] narrows the result to those coverage levels. Empty means all.
+  ///
+  /// [locale] decides which meanings are searched and scored. Ranking on the
+  /// English text alone would list a word matched on its French gloss below
+  /// every word whose English happens to contain the same letters.
   Future<List<VocabularyEntry>> vocabulary(
     String query, {
     Set<int> levels = const {},
+    String locale = 'en',
   }) async {
-    final candidates = await _db.searchVocabularyCandidates(query);
+    final candidates = await _db.searchVocabularyCandidates(query, locale);
+    final Map<int, String> localized = locale == 'en'
+        ? const {}
+        : await _db.getVocabularyTranslations(
+            candidates.map((e) => e.id).toList(),
+            locale,
+          );
     return _ranked(
       query: query,
       candidates: candidates,
       fieldsOf: (entry) => (
         japanese: entry.word,
         readings: [entry.reading],
-        meaning: entry.meaning,
+        meaning: localized[entry.id] ?? entry.meaning,
       ),
       keep: (entry) => levels.isEmpty || levels.contains(entry.vocabularyLevel),
       // Level 1 is the commonest, so the number is already the right order.
@@ -82,15 +93,22 @@ class SearchService {
   Future<List<Kanji>> kanji(
     String query, {
     Set<String> levels = const {},
+    String locale = 'en',
   }) async {
-    final candidates = await _db.searchKanjiCandidates(query);
+    final candidates = await _db.searchKanjiCandidates(query, locale);
+    final Map<int, String> localized = locale == 'en'
+        ? const {}
+        : await _db.getKanjiTranslations(
+            candidates.map((k) => k.id).toList(),
+            locale,
+          );
     return _ranked(
       query: query,
       candidates: candidates,
       fieldsOf: (kanji) => (
         japanese: kanji.character,
         readings: [kanji.onReading, kanji.kunReading],
-        meaning: kanji.meaning,
+        meaning: localized[kanji.id] ?? kanji.meaning,
       ),
       keep: (kanji) => levels.isEmpty || levels.contains(kanji.jlptLevel),
       easiness: (kanji) => _levelRank(kanji.jlptLevel),

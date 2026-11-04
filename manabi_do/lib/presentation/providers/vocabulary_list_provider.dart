@@ -1,3 +1,4 @@
+import '../../core/providers/locale_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart';
 
@@ -18,8 +19,13 @@ final vocabularyByLevelProvider =
 
 final vocabularySearchProvider =
     FutureProvider.family<List<VocabularyEntry>, SearchQuery<int>>(
-      (ref, q) =>
-          ref.read(searchServiceProvider).vocabulary(q.text, levels: q.filters),
+      (ref, q) => ref
+          .read(searchServiceProvider)
+          .vocabulary(
+            q.text,
+            levels: q.filters,
+            locale: ref.watch(localeProvider).languageCode,
+          ),
     );
 
 /// What each study group buys, as a share of running Japanese.
