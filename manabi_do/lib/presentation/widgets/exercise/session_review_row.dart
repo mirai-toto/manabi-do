@@ -466,6 +466,7 @@ class _AnswerBlock extends StatelessWidget {
                         onTap: onToggleGlosses,
                         child: Semantics(
                           button: true,
+                          expanded: showAll,
                           child: Text(
                             showAll
                                 ? l.sessionReviewShowLess

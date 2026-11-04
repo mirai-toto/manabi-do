@@ -111,9 +111,14 @@ class _BackButton extends StatelessWidget {
     ),
     child: Material(
       color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        child: Icon(Icons.arrow_back_rounded, color: onAccent, size: 18),
+      child: Semantics(
+        label: MaterialLocalizations.of(context).backButtonTooltip,
+        button: true,
+        excludeSemantics: true,
+        child: InkWell(
+          onTap: onTap,
+          child: Icon(Icons.arrow_back_rounded, color: onAccent, size: 18),
+        ),
       ),
     ),
   );

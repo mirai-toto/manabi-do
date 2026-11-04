@@ -468,45 +468,51 @@ class _Choice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppTokens t = context.tokens;
-    return Material(
-      color: selected ? t.primaryContainer : t.cardBackground,
-      borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-      child: InkWell(
-        onTap: onTap,
+    return Semantics(
+      label: label,
+      button: true,
+      selected: selected,
+      excludeSemantics: true,
+      child: Material(
+        color: selected ? t.primaryContainer : t.cardBackground,
         borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppDimens.spaceMd,
-            vertical: AppDimens.spaceCozy,
-          ),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: selected ? t.primary : t.outlineVariant,
-              width: AppDimens.borderWidthContainer,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.spaceMd,
+              vertical: AppDimens.spaceCozy,
             ),
-            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          ),
-          child: Row(
-            children: [
-              if (leading != null) ...[
-                leading!,
-                const SizedBox(width: AppDimens.spaceMd),
-              ],
-              Expanded(
-                child: Text(
-                  label,
-                  style: AppTextStyles.body.copyWith(
-                    color: selected ? t.onPrimaryContainer : t.onSurface,
-                    fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: selected ? t.primary : t.outlineVariant,
+                width: AppDimens.borderWidthContainer,
+              ),
+              borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+            ),
+            child: Row(
+              children: [
+                if (leading != null) ...[
+                  leading!,
+                  const SizedBox(width: AppDimens.spaceMd),
+                ],
+                Expanded(
+                  child: Text(
+                    label,
+                    style: AppTextStyles.body.copyWith(
+                      color: selected ? t.onPrimaryContainer : t.onSurface,
+                      fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+                    ),
                   ),
                 ),
-              ),
-              Icon(
-                selected ? Icons.check_circle_rounded : Icons.circle_outlined,
-                size: 20,
-                color: selected ? t.primary : t.outlineVariant,
-              ),
-            ],
+                Icon(
+                  selected ? Icons.check_circle_rounded : Icons.circle_outlined,
+                  size: 20,
+                  color: selected ? t.primary : t.outlineVariant,
+                ),
+              ],
+            ),
           ),
         ),
       ),

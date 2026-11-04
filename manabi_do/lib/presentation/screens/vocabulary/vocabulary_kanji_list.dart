@@ -8,6 +8,7 @@ import '../../../core/theme/jlpt_level.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_provider.dart';
+import '../../providers/vocabulary_provider.dart';
 import '../characters/kanji/kanji_detail_screen.dart';
 import '../../widgets/widgets.dart';
 
@@ -59,70 +60,77 @@ class VocabularyKanjiList extends ConsumerWidget {
   }
 }
 
-class _KanjiRow extends StatelessWidget {
+class _KanjiRow extends ConsumerWidget {
   final Kanji kanji;
   const _KanjiRow({required this.kanji});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
+    final (:meaning, :missingLanguage) = ref.watch(kanjiMeaningProvider(kanji));
     final color = levelColor(kanji.jlptLevel);
     final readings = [
       kanji.onReading,
       kanji.kunReading,
     ].where((r) => r.isNotEmpty).join(' / ');
 
-    return InkWell(
-      onTap: () => Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
+    return Semantics(
+      label: '${kanji.character}, $meaning',
+      button: true,
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
+          ),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceSm),
-        child: Row(
-          children: [
-            CharacterCell(
-              character: kanji.character,
-              accentColor: color,
-              width: 48,
-              height: 48,
-              characterSize: 28,
-            ),
-            const SizedBox(width: AppDimens.spaceMd),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    kanji.meaning,
-                    style: AppTextStyles.body.copyWith(
-                      color: t.onSurface,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  if (readings.isNotEmpty)
-                    Text(
-                      readings,
-                      style: AppTextStyles.bodySmall.copyWith(
-                        color: t.onSurfaceVariant,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceSm),
+          child: Row(
+            children: [
+              CharacterCell(
+                character: kanji.character,
+                accentColor: color,
+                width: 48,
+                height: 48,
+                characterSize: 28,
+              ),
+              const SizedBox(width: AppDimens.spaceMd),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TranslatedText(
+                      meaning,
+                      missingLanguage: missingLanguage,
+                      style: AppTextStyles.body.copyWith(
+                        color: t.onSurface,
+                        fontWeight: FontWeight.w600,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                ],
+                    if (readings.isNotEmpty)
+                      Text(
+                        readings,
+                        style: AppTextStyles.bodySmall.copyWith(
+                          color: t.onSurfaceVariant,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(width: AppDimens.spaceSm),
-            PillBadge(
-              label: kanji.jlptLevel,
-              color: color,
-              background: color.withValues(alpha: 0.12),
-              textStyle: AppTextStyles.labelSmall,
-            ),
-          ],
+              const SizedBox(width: AppDimens.spaceSm),
+              PillBadge(
+                label: kanji.jlptLevel,
+                color: color,
+                background: color.withValues(alpha: 0.12),
+                textStyle: AppTextStyles.labelSmall,
+              ),
+            ],
+          ),
         ),
       ),
     );

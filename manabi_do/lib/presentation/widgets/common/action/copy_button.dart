@@ -36,6 +36,7 @@ class CopyButton extends StatelessWidget {
       child: Semantics(
         button: true,
         label: context.l10n.copy,
+        excludeSemantics: true,
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: AppDimens.spaceTight,
@@ -107,38 +108,43 @@ class _Option extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => InkWell(
-    onTap: onTap,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppDimens.spaceLg,
-        vertical: AppDimens.spaceMd,
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  choice.label,
-                  style: AppTextStyles.bodySmall.copyWith(
-                    color: tokens.onSurfaceVariant,
-                    fontWeight: FontWeight.w600,
+  Widget build(BuildContext context) => Semantics(
+    label: choice.label,
+    button: true,
+    excludeSemantics: true,
+    child: InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimens.spaceLg,
+          vertical: AppDimens.spaceMd,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    choice.label,
+                    style: AppTextStyles.bodySmall.copyWith(
+                      color: tokens.onSurfaceVariant,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                const SizedBox(height: AppDimens.spaceXxs),
-                Text(
-                  choice.text,
-                  style: AppTextStyles.body.copyWith(color: tokens.onSurface),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+                  const SizedBox(height: AppDimens.spaceXxs),
+                  Text(
+                    choice.text,
+                    style: AppTextStyles.body.copyWith(color: tokens.onSurface),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Icon(Icons.copy_rounded, size: 16, color: tokens.onSurfaceVariant),
-        ],
+            Icon(Icons.copy_rounded, size: 16, color: tokens.onSurfaceVariant),
+          ],
+        ),
       ),
     ),
   );

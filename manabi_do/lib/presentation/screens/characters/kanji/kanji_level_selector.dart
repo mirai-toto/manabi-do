@@ -100,57 +100,66 @@ class _KanjiResultTile extends ConsumerWidget {
     final (:meaning, :missingLanguage) = ref.watch(kanjiMeaningProvider(kanji));
     return Column(
       children: [
-        InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimens.spaceSm,
-              vertical: AppDimens.spaceSm,
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 48,
-                  child: Text(
-                    kanji.character,
-                    style: AppTextStyles.jpMedium.copyWith(color: t.onSurface),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                const SizedBox(width: AppDimens.spaceMd),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TranslatedText(
-                        meaning,
-                        missingLanguage: missingLanguage,
-                        style: AppTextStyles.body.copyWith(color: t.onSurface),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+        Semantics(
+          label: '${kanji.character}, $meaning',
+          button: true,
+          excludeSemantics: true,
+          child: InkWell(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.spaceSm,
+                vertical: AppDimens.spaceSm,
+              ),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 48,
+                    child: Text(
+                      kanji.character,
+                      style: AppTextStyles.jpMedium.copyWith(
+                        color: t.onSurface,
                       ),
-                      const SizedBox(height: AppDimens.spaceXxs),
-                      Text(
-                        [
-                          kanji.onReading,
-                          kanji.kunReading,
-                        ].where((r) => r.isNotEmpty).join('  ·  '),
-                        style: AppTextStyles.bodySmall.copyWith(
-                          color: t.onSurfaceVariant,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(width: AppDimens.spaceMd),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TranslatedText(
+                          meaning,
+                          missingLanguage: missingLanguage,
+                          style: AppTextStyles.body.copyWith(
+                            color: t.onSurface,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                        const SizedBox(height: AppDimens.spaceXxs),
+                        Text(
+                          [
+                            kanji.onReading,
+                            kanji.kunReading,
+                          ].where((r) => r.isNotEmpty).join('  ·  '),
+                          style: AppTextStyles.bodySmall.copyWith(
+                            color: t.onSurfaceVariant,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(width: AppDimens.spaceSm),
-                PillBadge(
-                  label: kanji.jlptLevel,
-                  color: color,
-                  background: color.withValues(alpha: 0.12),
-                ),
-              ],
+                  const SizedBox(width: AppDimens.spaceSm),
+                  PillBadge(
+                    label: kanji.jlptLevel,
+                    color: color,
+                    background: color.withValues(alpha: 0.12),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

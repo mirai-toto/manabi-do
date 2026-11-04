@@ -75,16 +75,21 @@ class _VocabularyWordTileState extends State<VocabularyWordTile> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: GestureDetector(
-                      onTap: widget.onOpen,
-                      child: JapaneseText(
-                        word: widget.entry.word,
-                        reading: widget.entry.reading,
-                        style: AppTextStyles.jpMedium.copyWith(
-                          color: t.onSurface,
-                        ),
-                        rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                          color: t.onSurfaceVariant,
+                    child: Semantics(
+                      label: widget.entry.word,
+                      button: true,
+                      excludeSemantics: true,
+                      child: GestureDetector(
+                        onTap: widget.onOpen,
+                        child: JapaneseText(
+                          word: widget.entry.word,
+                          reading: widget.entry.reading,
+                          style: AppTextStyles.jpMedium.copyWith(
+                            color: t.onSurface,
+                          ),
+                          rubyStyle: AppTextStyles.jpFurigana.copyWith(
+                            color: t.onSurfaceVariant,
+                          ),
                         ),
                       ),
                     ),

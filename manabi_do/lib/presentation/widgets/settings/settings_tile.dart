@@ -27,41 +27,46 @@ class SettingsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.spaceMd,
-          vertical: AppDimens.spaceMd,
-        ),
-        child: Row(
-          children: [
-            leading,
-            const SizedBox(width: AppDimens.spaceMd),
-            Expanded(
-              child: Text(
-                label,
-                style: AppTextStyles.body.copyWith(
-                  color: labelColor ?? t.onSurface,
+    return Semantics(
+      label: value == null ? label : '$label, $value',
+      button: true,
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppDimens.spaceMd,
+            vertical: AppDimens.spaceMd,
+          ),
+          child: Row(
+            children: [
+              leading,
+              const SizedBox(width: AppDimens.spaceMd),
+              Expanded(
+                child: Text(
+                  label,
+                  style: AppTextStyles.body.copyWith(
+                    color: labelColor ?? t.onSurface,
+                  ),
                 ),
               ),
-            ),
-            if (value != null) ...[
-              Text(
-                value!,
-                style: AppTextStyles.bodySmall.copyWith(
-                  color: t.onSurfaceVariant,
+              if (value != null) ...[
+                Text(
+                  value!,
+                  style: AppTextStyles.bodySmall.copyWith(
+                    color: t.onSurfaceVariant,
+                  ),
                 ),
+                const SizedBox(width: AppDimens.spaceSm),
+              ],
+              Icon(
+                Icons.chevron_right_rounded,
+                size: 20,
+                color: labelColor ?? t.onSurfaceVariant,
               ),
-              const SizedBox(width: AppDimens.spaceSm),
             ],
-            Icon(
-              Icons.chevron_right_rounded,
-              size: 20,
-              color: labelColor ?? t.onSurfaceVariant,
-            ),
-          ],
+          ),
         ),
       ),
     );

@@ -46,33 +46,39 @@ class LanguagePickerSheet extends StatelessWidget {
             ),
             const SizedBox(height: AppDimens.spaceMd),
             for (final lang in languages)
-              InkWell(
-                onTap: () => onSelect(lang.code),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppDimens.spaceMd,
-                    vertical: AppDimens.spaceMd,
-                  ),
-                  child: Row(
-                    children: [
-                      AppEmoji(lang.flag, size: 28),
-                      const SizedBox(width: AppDimens.spaceMd),
-                      Expanded(
-                        child: Text(
-                          lang.name,
-                          style: AppTextStyles.body.copyWith(
-                            color: lang.code == currentCode
-                                ? t.primary
-                                : t.onSurface,
-                            fontWeight: lang.code == currentCode
-                                ? FontWeight.w600
-                                : FontWeight.w400,
+              Semantics(
+                label: lang.name,
+                button: true,
+                selected: lang.code == currentCode,
+                excludeSemantics: true,
+                child: InkWell(
+                  onTap: () => onSelect(lang.code),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDimens.spaceMd,
+                      vertical: AppDimens.spaceMd,
+                    ),
+                    child: Row(
+                      children: [
+                        AppEmoji(lang.flag, size: 28),
+                        const SizedBox(width: AppDimens.spaceMd),
+                        Expanded(
+                          child: Text(
+                            lang.name,
+                            style: AppTextStyles.body.copyWith(
+                              color: lang.code == currentCode
+                                  ? t.primary
+                                  : t.onSurface,
+                              fontWeight: lang.code == currentCode
+                                  ? FontWeight.w600
+                                  : FontWeight.w400,
+                            ),
                           ),
                         ),
-                      ),
-                      if (lang.code == currentCode)
-                        Icon(Icons.check_rounded, size: 20, color: t.primary),
-                    ],
+                        if (lang.code == currentCode)
+                          Icon(Icons.check_rounded, size: 20, color: t.primary),
+                      ],
+                    ),
                   ),
                 ),
               ),

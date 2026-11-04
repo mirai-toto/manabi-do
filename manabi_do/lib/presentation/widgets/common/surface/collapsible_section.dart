@@ -31,57 +31,63 @@ class CollapsibleSection extends StatelessWidget {
     final t = context.tokens;
     return Opacity(
       opacity: isLocked ? 0.55 : 1.0,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        onTap: onToggle,
-        child: Container(
-          decoration: BoxDecoration(
-            color: accentColor.withValues(alpha: 0.08),
-            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-          ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppDimens.spaceMd,
-            vertical: AppDimens.spaceMd,
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: AppTextStyles.body.copyWith(
-                    color: t.onSurface,
-                    fontWeight: FontWeight.w700,
+      child: Semantics(
+        label: badge == null ? title : '$title, $badge',
+        button: true,
+        expanded: !isCollapsed,
+        excludeSemantics: true,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+          onTap: onToggle,
+          child: Container(
+            decoration: BoxDecoration(
+              color: accentColor.withValues(alpha: 0.08),
+              borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.spaceMd,
+              vertical: AppDimens.spaceMd,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    style: AppTextStyles.body.copyWith(
+                      color: t.onSurface,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
-              ),
-              if (badge != null) ...[
-                PillBadge(
-                  label: badge!,
-                  color: accentColor,
-                  background: accentColor.withValues(alpha: 0.12),
-                  textStyle: AppTextStyles.labelSmall.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(width: AppDimens.spaceSm),
-              ],
-              if (isLocked)
-                Icon(
-                  Icons.lock_outline_rounded,
-                  color: t.onSurfaceVariant,
-                  size: 18,
-                )
-              else
-                AnimatedRotation(
-                  turns: isCollapsed ? -0.25 : 0,
-                  duration: const Duration(milliseconds: 200),
-                  child: Icon(
-                    Icons.expand_more_rounded,
+                if (badge != null) ...[
+                  PillBadge(
+                    label: badge!,
                     color: accentColor,
-                    size: 22,
+                    background: accentColor.withValues(alpha: 0.12),
+                    textStyle: AppTextStyles.labelSmall.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-            ],
+                  const SizedBox(width: AppDimens.spaceSm),
+                ],
+                if (isLocked)
+                  Icon(
+                    Icons.lock_outline_rounded,
+                    color: t.onSurfaceVariant,
+                    size: 18,
+                  )
+                else
+                  AnimatedRotation(
+                    turns: isCollapsed ? -0.25 : 0,
+                    duration: const Duration(milliseconds: 200),
+                    child: Icon(
+                      Icons.expand_more_rounded,
+                      color: accentColor,
+                      size: 22,
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),

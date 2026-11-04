@@ -44,62 +44,67 @@ class VocabularyWordRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.tokens;
 
-    return InkWell(
-      onTap: onOpen,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.spaceCozy,
-          vertical: AppDimens.spaceSnug,
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 3,
-              height: 30,
-              decoration: BoxDecoration(
-                color: accent,
-                borderRadius: BorderRadius.circular(2),
+    return Semantics(
+      label: '${entry.word}, $meaning',
+      button: true,
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: onOpen,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppDimens.spaceCozy,
+            vertical: AppDimens.spaceSnug,
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 3,
+                height: 30,
+                decoration: BoxDecoration(
+                  color: accent,
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
-            ),
-            const SizedBox(width: AppDimens.spaceCozy),
-            // Fixed width, so the meanings line up down the list instead of
-            // stepping in and out with the length of each word.
-            SizedBox(
-              width: 78,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (entry.reading != entry.word)
-                    Text(
-                      entry.reading,
-                      style: AppTextStyles.jpFurigana.copyWith(
-                        color: t.onSurfaceVariant,
+              const SizedBox(width: AppDimens.spaceCozy),
+              // Fixed width, so the meanings line up down the list instead of
+              // stepping in and out with the length of each word.
+              SizedBox(
+                width: 78,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (entry.reading != entry.word)
+                      Text(
+                        entry.reading,
+                        style: AppTextStyles.jpFurigana.copyWith(
+                          color: t.onSurfaceVariant,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
+                    Text(
+                      entry.word,
+                      style: AppTextStyles.jpBody.copyWith(color: t.onSurface),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  Text(
-                    entry.word,
-                    style: AppTextStyles.jpBody.copyWith(color: t.onSurface),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: AppDimens.spaceSm),
-            Expanded(
-              child: TranslatedText(
-                meaning,
-                missingLanguage: missingLanguage,
-                style: AppTextStyles.bodySmall.copyWith(
-                  color: t.onSurfaceVariant,
+                  ],
                 ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ],
+              const SizedBox(width: AppDimens.spaceSm),
+              Expanded(
+                child: TranslatedText(
+                  meaning,
+                  missingLanguage: missingLanguage,
+                  style: AppTextStyles.bodySmall.copyWith(
+                    color: t.onSurfaceVariant,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -122,62 +122,67 @@ class _WordRow extends StatelessWidget {
       Theme.of(context).brightness,
     );
 
-    return InkWell(
-      // Opens the word's own screen, which already holds its senses, the
-      // kanji it is written with and its example sentences.
-      onTap: () => Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (_) => VocabularyDetailScreen(entry: entry),
+    return Semantics(
+      label: '${entry.word}, ${word.meaning}',
+      button: true,
+      excludeSemantics: true,
+      child: InkWell(
+        // Opens the word's own screen, which already holds its senses, the
+        // kanji it is written with and its example sentences.
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => VocabularyDetailScreen(entry: entry),
+          ),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimens.spaceMd,
-          vertical: AppDimens.spaceSnug,
-        ),
-        child: Row(
-          children: [
-            // Fixed, not flexible. The rarity used to be a word — "Les plus
-            // courants" against "Courants" — and its width changed what was
-            // left for everything else, so no two meanings began at the same
-            // place down the list.
-            SizedBox(
-              width: 80,
-              child: _WordLabel(word: entry.word, reading: entry.reading),
-            ),
-            const SizedBox(width: AppDimens.spaceSm),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TranslatedText(
-                    word.meaning,
-                    missingLanguage: word.translated ? null : missingLanguage,
-                    style: AppTextStyles.bodySmall.copyWith(
-                      color: t.onSurfaceVariant,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: AppDimens.spaceXxs),
-                  Text(
-                    posLabel(entry.partOfSpeech, context),
-                    style: AppTextStyles.labelSmall.copyWith(
-                      color: t.onSurfaceVariant.withValues(alpha: 0.6),
-                    ),
-                  ),
-                ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppDimens.spaceMd,
+            vertical: AppDimens.spaceSnug,
+          ),
+          child: Row(
+            children: [
+              // Fixed, not flexible. The rarity used to be a word — "Les plus
+              // courants" against "Courants" — and its width changed what was
+              // left for everything else, so no two meanings began at the same
+              // place down the list.
+              SizedBox(
+                width: 80,
+                child: _WordLabel(word: entry.word, reading: entry.reading),
               ),
-            ),
-            const SizedBox(width: AppDimens.spaceSm),
-            // Dots, not a label: the same rarity in a fixed width, and the
-            // reader is here for the word rather than for its band.
-            DifficultyDots(
-              total: kVocabularyLevelCount,
-              filled: vocabularyLevelDifficulty(entry.vocabularyLevel),
-              color: levelColour,
-            ),
-          ],
+              const SizedBox(width: AppDimens.spaceSm),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TranslatedText(
+                      word.meaning,
+                      missingLanguage: word.translated ? null : missingLanguage,
+                      style: AppTextStyles.bodySmall.copyWith(
+                        color: t.onSurfaceVariant,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: AppDimens.spaceXxs),
+                    Text(
+                      posLabel(entry.partOfSpeech, context),
+                      style: AppTextStyles.labelSmall.copyWith(
+                        color: t.onSurfaceVariant.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: AppDimens.spaceSm),
+              // Dots, not a label: the same rarity in a fixed width, and the
+              // reader is here for the word rather than for its band.
+              DifficultyDots(
+                total: kVocabularyLevelCount,
+                filled: vocabularyLevelDifficulty(entry.vocabularyLevel),
+                color: levelColour,
+              ),
+            ],
+          ),
         ),
       ),
     );
