@@ -6,6 +6,7 @@ import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../l10n/l10n.dart';
+import '../../../../l10n/srs_level_label.dart';
 import 'pill_badge.dart';
 
 /// SRS state pill + stability progress bar for a single `Card?`. Shows level
@@ -22,14 +23,7 @@ class ReviewProgressInfo extends StatelessWidget {
     final stability = srsCard?.stability ?? 0.0;
     final level = srsLevel(srsCard);
 
-    final stateLabel = switch (level) {
-      SrsLevel.newCard => l.srsStateNew,
-      SrsLevel.learning => l.srsStateLearning,
-      SrsLevel.apprentice => l.srsStateApprentice,
-      SrsLevel.familiar => l.srsStateFamiliar,
-      SrsLevel.mastered => l.srsStateMastered,
-      SrsLevel.expert => l.srsStateExpert,
-    };
+    final stateLabel = srsLevelLabel(level, l);
     final stateColor = level == SrsLevel.newCard
         ? t.onSurfaceVariant
         : level.accent;

@@ -7,6 +7,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
+import '../../../l10n/srs_level_label.dart';
 import 'view_detail_button.dart';
 import '../common/indicator/pill_badge.dart';
 import '../common/indicator/review_progress_info.dart';
@@ -170,7 +171,7 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
                       Row(
                         children: [
                           PillBadge(
-                            label: _levelLabel(level, l),
+                            label: srsLevelLabel(level, l),
                             color: levelColor,
                             background: levelColor.withValues(alpha: 0.12),
                           ),
@@ -192,7 +193,7 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
                 ),
                 const SizedBox(width: AppDimens.spaceSm),
                 PillBadge(
-                  label: _ratingLabel(widget.rating, l),
+                  label: ratingLabel(widget.rating, l),
                   icon: _isCorrect ? Icons.check_rounded : Icons.close_rounded,
                   color: _ratingColor(
                     widget.rating,
@@ -386,22 +387,6 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
   }
 
   // ── Labels ─────────────────────────────────────────────────────────────────
-
-  String _levelLabel(SrsLevel level, AppLocalizations l) => switch (level) {
-    SrsLevel.newCard => l.srsStateNew,
-    SrsLevel.learning => l.srsStateLearning,
-    SrsLevel.apprentice => l.srsStateApprentice,
-    SrsLevel.familiar => l.srsStateFamiliar,
-    SrsLevel.mastered => l.srsStateMastered,
-    SrsLevel.expert => l.srsStateExpert,
-  };
-
-  String _ratingLabel(Rating rating, AppLocalizations l) => switch (rating) {
-    Rating.again => l.ratingAgain,
-    Rating.hard => l.ratingHard,
-    Rating.good => l.ratingGood,
-    Rating.easy => l.ratingEasy,
-  };
 
   Color _ratingColor(Rating rating, Brightness b) =>
       onAccentContainer(ratingAccent(rating), b);
