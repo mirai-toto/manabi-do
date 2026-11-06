@@ -1,7 +1,6 @@
 package com.github.mirai_toto.manabi_do.widgets
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,12 +24,15 @@ class GrammarWidget : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            Content(context, currentState<HomeWidgetGlanceState>().preferences)
+            // The state, not its preferences: the preferences are the same object on every
+            // update, so Compose would skip the redraw while the session is still open.
+            Content(context, currentState<HomeWidgetGlanceState>())
         }
     }
 
     @Composable
-    private fun Content(context: Context, prefs: SharedPreferences) {
+    private fun Content(context: Context, state: HomeWidgetGlanceState) {
+        val prefs = state.preferences
         val open = openApp(context, "manabido://grammar")
         val title = prefs.text("grammar_title")
         val level = prefs.text("grammar_level")

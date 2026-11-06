@@ -36,7 +36,9 @@ class KanjiWidget : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            Content(context, currentState<HomeWidgetGlanceState>().preferences)
+            // The state, not its preferences: the preferences are the same object on every
+            // update, so Compose would skip the redraw while the session is still open.
+            Content(context, currentState<HomeWidgetGlanceState>())
         }
     }
 
@@ -54,7 +56,8 @@ class KanjiWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun Content(context: Context, prefs: SharedPreferences) {
+    private fun Content(context: Context, state: HomeWidgetGlanceState) {
+        val prefs = state.preferences
         val kanji = today(prefs)
         val link = if (kanji == null) "manabido://review" else "manabido://kanji/${kanji.getInt("id")}"
 
