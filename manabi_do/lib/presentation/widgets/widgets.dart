@@ -122,6 +122,7 @@ export 'exercise/view_detail_button.dart';
 export 'exercise/practice_flashcard_body.dart';
 export 'exercise/practice_mcq_body.dart';
 export 'exercise/practice_progress_row.dart';
+export 'exercise/question_switcher.dart';
 export 'exercise/sentence_cloze_body.dart';
 export 'exercise/sentence_cloze_card.dart';
 export 'exercise/session_review_row.dart';

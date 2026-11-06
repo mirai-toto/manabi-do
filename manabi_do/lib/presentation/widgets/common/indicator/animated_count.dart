@@ -28,7 +28,7 @@ class AnimatedCount extends StatelessWidget {
       label: _text(value),
       excludeSemantics: true,
       child: TweenAnimationBuilder<double>(
-        tween: Tween(end: value.toDouble()),
+        tween: Tween(begin: 0, end: value.toDouble()),
         duration: context.motion(AppMotion.long),
         curve: AppMotion.enter,
         builder: (context, shown, _) =>

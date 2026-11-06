@@ -30,6 +30,7 @@ class PracticeProgressRow extends StatelessWidget {
         Expanded(
           child: AppProgressBar(
             progress: progress,
+            from: total == 0 ? 0 : (index - 1).clamp(0, total) / total,
             color: color,
             trackColor: t.outlineVariant,
             radius: AppDimens.radiusXs,

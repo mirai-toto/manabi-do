@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../common/decoration/fade_slide_in.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -15,17 +16,20 @@ class FeedbackPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppDimens.spaceMd),
-      decoration: BoxDecoration(
-        color: isCorrect ? t.successContainer : t.errorContainer,
-        borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-      ),
-      child: Text(
-        text,
-        style: AppTextStyles.body.copyWith(
-          color: isCorrect ? t.success : t.error,
+    // Arrives with the answer rather than appearing at once.
+    return FadeSlideIn(
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(AppDimens.spaceMd),
+        decoration: BoxDecoration(
+          color: isCorrect ? t.successContainer : t.errorContainer,
+          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
+        ),
+        child: Text(
+          text,
+          style: AppTextStyles.body.copyWith(
+            color: isCorrect ? t.success : t.error,
+          ),
         ),
       ),
     );

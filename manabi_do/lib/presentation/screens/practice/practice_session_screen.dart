@@ -164,8 +164,8 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen>
               ? const Center(child: AppSpinner.page())
               : session.done
               ? _buildSummary(session, notifier)
-              : KeyedSubtree(
-                  key: ValueKey(session.index),
+              : QuestionSwitcher(
+                  index: session.index,
                   child: PracticeQuestionBody(
                     question: session.currentItem!.question,
                     card: session.currentItem!.card,

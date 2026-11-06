@@ -6,11 +6,16 @@ import '../../../../core/theme/app_tokens.dart';
 /// Thin horizontal progress bar (0–1). Accepts an optional `color`, track
 /// colour, corner radius and `height`.
 ///
-/// Fills smoothly: from empty when it first appears, and from where it was
-/// whenever [progress] changes, so an answer in a session or a finished lesson
-/// reads as movement rather than a jump.
+/// Fills smoothly: from [from] when it first appears (empty unless told
+/// otherwise), and from where it was whenever [progress] changes, so an answer
+/// in a session or a finished lesson reads as movement rather than a jump.
 class AppProgressBar extends StatelessWidget {
   final double progress; // 0.0 – 1.0
+
+  /// Where the fill starts when the bar first appears. A bar rebuilt for
+  /// every question passes the previous question's progress, so it steps
+  /// forward instead of refilling from empty each time.
+  final double from;
   final Color? color;
   final Color? trackColor;
   final double radius;
@@ -20,6 +25,7 @@ class AppProgressBar extends StatelessWidget {
   const AppProgressBar({
     super.key,
     required this.progress,
+    this.from = 0,
     this.color,
     this.trackColor,
     this.radius = AppDimens.radiusPill,
@@ -41,7 +47,7 @@ class AppProgressBar extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(radius),
           child: TweenAnimationBuilder<double>(
-            tween: Tween(end: target),
+            tween: Tween(begin: from.clamp(0.0, 1.0), end: target),
             duration: context.motion(AppMotion.long),
             curve: AppMotion.enter,
             builder: (context, value, _) => LinearProgressIndicator(
