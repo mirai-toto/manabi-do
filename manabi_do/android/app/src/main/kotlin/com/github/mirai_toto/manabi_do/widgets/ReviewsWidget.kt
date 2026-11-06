@@ -13,8 +13,6 @@ import androidx.glance.appwidget.provideContent
 import androidx.glance.layout.Spacer
 import androidx.glance.layout.height
 import androidx.glance.text.FontWeight
-import es.antonborri.home_widget.HomeWidgetGlanceStateDefinition
-import es.antonborri.home_widget.HomeWidgetGlanceWidgetReceiver
 import java.util.Date
 import org.json.JSONArray
 
@@ -23,8 +21,6 @@ import org.json.JSONArray
  * keeps climbing while the app is closed.
  */
 class ReviewsWidget : GlanceAppWidget() {
-    override val stateDefinition = HomeWidgetGlanceStateDefinition()
-
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
             WidgetContent(context) { prefs -> Content(context, prefs) }
@@ -83,6 +79,6 @@ class ReviewsWidget : GlanceAppWidget() {
     }
 }
 
-class ReviewsWidgetReceiver : HomeWidgetGlanceWidgetReceiver<ReviewsWidget>() {
+class ReviewsWidgetReceiver : AppWidgetReceiver() {
     override val glanceAppWidget = ReviewsWidget()
 }

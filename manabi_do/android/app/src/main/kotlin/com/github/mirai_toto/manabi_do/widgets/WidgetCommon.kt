@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceModifier
 import androidx.glance.action.Action
 import androidx.glance.action.clickable
+import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.background
 import androidx.glance.color.ColorProvider
@@ -37,6 +38,7 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import com.github.mirai_toto.manabi_do.MainActivity
+import es.antonborri.home_widget.HomeWidgetScheduler
 import es.antonborri.home_widget.actionStartActivity
 import java.util.Calendar
 import java.util.Locale
@@ -117,6 +119,22 @@ fun WidgetContent(context: Context, content: @Composable (SharedPreferences) -> 
     }
     key(syncedAt) {
         CompositionLocalProvider(LocalWidgetColors provides WidgetColors.from(prefs)) { content(prefs) }
+    }
+}
+
+/**
+ * Receiver base for the widgets: Glance's own, which updates off the main thread.
+ *
+ * home_widget's `HomeWidgetGlanceWidgetReceiver` wraps every update in `runBlocking` on the
+ * main thread to refresh its Glance state first. The widgets read their preferences directly
+ * ([WidgetContent]), so that refresh buys nothing, and the blocking froze the app long enough
+ * for an "isn't responding" dialog when updates piled up. Kept from it: re-arming the scheduled
+ * updates when the first widget of a kind is placed.
+ */
+abstract class AppWidgetReceiver : GlanceAppWidgetReceiver() {
+    override fun onEnabled(context: Context) {
+        super.onEnabled(context)
+        HomeWidgetScheduler.pruneAndArmNext(context, javaClass.name, catchUp = false)
     }
 }
 

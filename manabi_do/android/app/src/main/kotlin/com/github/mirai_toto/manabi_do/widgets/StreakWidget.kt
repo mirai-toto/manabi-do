@@ -23,8 +23,6 @@ import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import androidx.glance.layout.width
 import androidx.glance.text.FontWeight
-import es.antonborri.home_widget.HomeWidgetGlanceStateDefinition
-import es.antonborri.home_widget.HomeWidgetGlanceWidgetReceiver
 import java.util.Calendar
 import org.json.JSONObject
 
@@ -37,8 +35,6 @@ private const val WEEKS = 20
  * far fewer than 140 days.
  */
 class StreakWidget : GlanceAppWidget() {
-    override val stateDefinition = HomeWidgetGlanceStateDefinition()
-
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
             WidgetContent(context) { prefs -> Content(context, prefs) }
@@ -128,6 +124,6 @@ class StreakWidget : GlanceAppWidget() {
         }
 }
 
-class StreakWidgetReceiver : HomeWidgetGlanceWidgetReceiver<StreakWidget>() {
+class StreakWidgetReceiver : AppWidgetReceiver() {
     override val glanceAppWidget = StreakWidget()
 }

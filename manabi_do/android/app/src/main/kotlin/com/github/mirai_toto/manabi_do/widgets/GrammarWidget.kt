@@ -14,13 +14,9 @@ import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import androidx.glance.text.FontWeight
-import es.antonborri.home_widget.HomeWidgetGlanceStateDefinition
-import es.antonborri.home_widget.HomeWidgetGlanceWidgetReceiver
 
 /** The grammar lesson the home screen would resume. */
 class GrammarWidget : GlanceAppWidget() {
-    override val stateDefinition = HomeWidgetGlanceStateDefinition()
-
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
             WidgetContent(context) { prefs -> Content(context, prefs) }
@@ -74,6 +70,6 @@ class GrammarWidget : GlanceAppWidget() {
     }
 }
 
-class GrammarWidgetReceiver : HomeWidgetGlanceWidgetReceiver<GrammarWidget>() {
+class GrammarWidgetReceiver : AppWidgetReceiver() {
     override val glanceAppWidget = GrammarWidget()
 }

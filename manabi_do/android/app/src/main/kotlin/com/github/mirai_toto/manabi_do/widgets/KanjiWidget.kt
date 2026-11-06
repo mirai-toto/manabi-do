@@ -22,16 +22,12 @@ import androidx.glance.layout.height
 import androidx.glance.layout.padding
 import androidx.glance.layout.width
 import androidx.glance.text.FontWeight
-import es.antonborri.home_widget.HomeWidgetGlanceStateDefinition
-import es.antonborri.home_widget.HomeWidgetGlanceWidgetReceiver
 import java.util.Calendar
 import org.json.JSONArray
 import org.json.JSONObject
 
 /** One kanji a day out of the week the app picked ahead. */
 class KanjiWidget : GlanceAppWidget() {
-    override val stateDefinition = HomeWidgetGlanceStateDefinition()
-
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
             WidgetContent(context) { prefs -> Content(context, prefs) }
@@ -112,6 +108,6 @@ class KanjiWidget : GlanceAppWidget() {
     }
 }
 
-class KanjiWidgetReceiver : HomeWidgetGlanceWidgetReceiver<KanjiWidget>() {
+class KanjiWidgetReceiver : AppWidgetReceiver() {
     override val glanceAppWidget = KanjiWidget()
 }
