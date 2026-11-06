@@ -857,10 +857,16 @@ class _Actions extends StatelessWidget {
     final VoidCallback? practiceMistakes = mistakes > 0
         ? onPracticeMistakes
         : null;
+    // Everything again is the same round as the misses again when every
+    // answer was a miss, so it is only offered when it adds something.
+    final VoidCallback? practiceAll =
+        practiceMistakes != null && mistakes >= total ? null : onPracticeAll;
 
     final String? hint;
     final AppButton primary;
     final List<AppButton> secondary;
+    // Its own row under the others, when the secondary row is already full.
+    AppButton? closing;
 
     if (!gradesRecorded) {
       hint = null;
@@ -876,12 +882,12 @@ class _Actions extends StatelessWidget {
               onPressed: onPracticeAll,
             );
       secondary = [
-        if (practiceMistakes != null && onPracticeAll != null)
+        if (practiceMistakes != null && practiceAll != null)
           AppButton(
             label: l.summaryPracticeAll(total),
             variant: AppButtonVariant.outlined,
             fullWidth: true,
-            onPressed: onPracticeAll,
+            onPressed: practiceAll,
           ),
         AppButton(
           label: l.summaryDone,
@@ -905,13 +911,20 @@ class _Actions extends StatelessWidget {
             fullWidth: true,
             onPressed: practiceMistakes,
           ),
-        AppButton(
-          label: l.summaryDone,
-          variant: AppButtonVariant.tonal,
-          fullWidth: true,
-          onPressed: onDone,
-        ),
+        if (practiceAll != null)
+          AppButton(
+            label: l.summaryPracticeAll(total),
+            variant: AppButtonVariant.outlined,
+            fullWidth: true,
+            onPressed: practiceAll,
+          ),
       ];
+      closing = AppButton(
+        label: l.summaryDone,
+        variant: AppButtonVariant.tonal,
+        fullWidth: true,
+        onPressed: onDone,
+      );
     } else {
       final bool offerNew = allDone && newLeft > 0 && onContinue != null;
       hint = offerNew ? l.summaryRoomForMore(newLeft) : null;
@@ -934,6 +947,15 @@ class _Actions extends StatelessWidget {
             variant: AppButtonVariant.outlined,
             fullWidth: true,
             onPressed: onContinue,
+          ),
+        // A finished day offers new items or the misses, never both (it has
+        // none), so this is always the second of at most two.
+        if (practiceAll != null)
+          AppButton(
+            label: l.summaryPracticeAll(total),
+            variant: AppButtonVariant.outlined,
+            fullWidth: true,
+            onPressed: practiceAll,
           ),
       ];
     }
@@ -960,6 +982,10 @@ class _Actions extends StatelessWidget {
               ],
             ],
           ),
+        ],
+        if (closing != null) ...[
+          const SizedBox(height: AppDimens.spaceSnug),
+          closing,
         ],
       ],
     );

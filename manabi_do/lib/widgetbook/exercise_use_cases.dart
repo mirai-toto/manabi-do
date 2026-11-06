@@ -239,6 +239,7 @@ Widget buildSessionSummaryMixed(BuildContext context) {
       onDone: () {},
       onContinue: () {},
       onPracticeMistakes: () {},
+      onPracticeAll: () {},
       onOpenAnswers: () {},
     ),
   );
@@ -265,6 +266,7 @@ Widget buildSessionSummaryDone(BuildContext context) {
       comingBack: (laterToday: 0, tomorrow: 11, later: 1, next: null),
       onDone: () {},
       onContinue: () {},
+      onPracticeAll: () {},
       onOpenAnswers: () {},
     ),
   );

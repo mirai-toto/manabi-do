@@ -1302,7 +1302,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String summaryAllAnswers(int count) {
-    return 'All $count answers';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'All $count answers',
+      one: 'See the answer',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -1354,12 +1360,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String summaryPracticeMistakes(int count) {
-    return 'Practice the $count again';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Practice the $count again',
+      one: 'Practice it again',
+    );
+    return '$_temp0';
   }
 
   @override
   String summaryPracticeAll(int count) {
-    return 'All $count again';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'All $count again',
+      one: 'Practice it again',
+    );
+    return '$_temp0';
   }
 
   @override

@@ -2329,7 +2329,7 @@ abstract class AppLocalizations {
   /// No description provided for @summaryAllAnswers.
   ///
   /// In en, this message translates to:
-  /// **'All {count} answers'**
+  /// **'{count, plural, one{See the answer} other{All {count} answers}}'**
   String summaryAllAnswers(int count);
 
   /// No description provided for @summaryYouChose.
@@ -2401,13 +2401,13 @@ abstract class AppLocalizations {
   /// No description provided for @summaryPracticeMistakes.
   ///
   /// In en, this message translates to:
-  /// **'Practice the {count} again'**
+  /// **'{count, plural, one{Practice it again} other{Practice the {count} again}}'**
   String summaryPracticeMistakes(int count);
 
   /// No description provided for @summaryPracticeAll.
   ///
   /// In en, this message translates to:
-  /// **'All {count} again'**
+  /// **'{count, plural, one{Practice it again} other{All {count} again}}'**
   String summaryPracticeAll(int count);
 
   /// No description provided for @summaryDone.

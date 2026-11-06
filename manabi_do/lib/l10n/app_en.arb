@@ -799,7 +799,7 @@
   },
   "summaryHowItWent": "How it went",
   "summaryLookAgain": "Look again",
-  "summaryAllAnswers": "All {count} answers",
+  "summaryAllAnswers": "{count, plural, one{See the answer} other{All {count} answers}}",
   "@summaryAllAnswers": {
     "placeholders": {
       "count": {
@@ -846,7 +846,7 @@
     }
   },
   "summaryContinue": "Continue reviews",
-  "summaryPracticeMistakes": "Practice the {count} again",
+  "summaryPracticeMistakes": "{count, plural, one{Practice it again} other{Practice the {count} again}}",
   "@summaryPracticeMistakes": {
     "placeholders": {
       "count": {
@@ -854,7 +854,7 @@
       }
     }
   },
-  "summaryPracticeAll": "All {count} again",
+  "summaryPracticeAll": "{count, plural, one{Practice it again} other{All {count} again}}",
   "@summaryPracticeAll": {
     "placeholders": {
       "count": {
