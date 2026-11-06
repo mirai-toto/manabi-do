@@ -270,7 +270,7 @@
   "kanaRowVowels": "Vowels",
   "settingsResetProgress": "Reset all progress",
   "resetProgressTitle": "Reset all progress?",
-  "resetProgressBody": "All SRS cards will be permanently deleted.",
+  "resetProgressBody": "All SRS cards will be permanently deleted, and the app will start again from the welcome screens.",
   "resetKanaTitle": "Reset this kana?",
   "resetKanjiTitle": "Reset this kanji?",
   "resetKanaBody": "SRS data for this character will be permanently deleted.",

@@ -219,7 +219,7 @@
   "kanaRowVowels": "Vokale",
   "settingsResetProgress": "Alle Fortschritte zurücksetzen",
   "resetProgressTitle": "Alle Fortschritte zurücksetzen?",
-  "resetProgressBody": "Alle SRS-Karten werden dauerhaft gelöscht.",
+  "resetProgressBody": "Alle SRS-Karten werden dauerhaft gelöscht, und die App beginnt wieder mit den Willkommensseiten.",
   "resetKanaTitle": "Dieses Kana zurücksetzen?",
   "resetKanjiTitle": "Dieses Kanji zurücksetzen?",
   "resetKanaBody": "SRS-Daten für dieses Zeichen werden dauerhaft gelöscht.",

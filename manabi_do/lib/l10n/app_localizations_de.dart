@@ -470,7 +470,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get resetProgressTitle => 'Alle Fortschritte zurücksetzen?';
 
   @override
-  String get resetProgressBody => 'Alle SRS-Karten werden dauerhaft gelöscht.';
+  String get resetProgressBody =>
+      'Alle SRS-Karten werden dauerhaft gelöscht, und die App beginnt wieder mit den Willkommensseiten.';
 
   @override
   String get resetKanaTitle => 'Dieses Kana zurücksetzen?';

@@ -470,7 +470,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get resetProgressBody =>
-      'Toutes les cartes SRS seront définitivement supprimées.';
+      'Toutes les cartes SRS seront définitivement supprimées, et l\'application reprendra depuis les écrans d\'accueil.';
 
   @override
   String get resetKanaTitle => 'Réinitialiser ce kana ?';

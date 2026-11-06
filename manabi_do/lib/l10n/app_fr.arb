@@ -217,7 +217,7 @@
   "kanaRowVowels": "Voyelles",
   "settingsResetProgress": "Réinitialiser la progression",
   "resetProgressTitle": "Réinitialiser toute la progression ?",
-  "resetProgressBody": "Toutes les cartes SRS seront définitivement supprimées.",
+  "resetProgressBody": "Toutes les cartes SRS seront définitivement supprimées, et l'application reprendra depuis les écrans d'accueil.",
   "resetKanaTitle": "Réinitialiser ce kana ?",
   "resetKanjiTitle": "Réinitialiser ce kanji ?",
   "resetKanaBody": "Les données SRS de ce caractère seront définitivement supprimées.",

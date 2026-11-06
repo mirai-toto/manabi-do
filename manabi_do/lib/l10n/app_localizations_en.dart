@@ -469,7 +469,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resetProgressTitle => 'Reset all progress?';
 
   @override
-  String get resetProgressBody => 'All SRS cards will be permanently deleted.';
+  String get resetProgressBody =>
+      'All SRS cards will be permanently deleted, and the app will start again from the welcome screens.';
 
   @override
   String get resetKanaTitle => 'Reset this kana?';

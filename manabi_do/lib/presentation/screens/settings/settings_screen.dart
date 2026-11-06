@@ -5,6 +5,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../core/providers/home_settings_provider.dart';
 import '../../../core/providers/locale_provider.dart';
+import '../../../core/providers/onboarding_provider.dart';
 import '../../../core/providers/reminder_settings_provider.dart';
 import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/providers/theme_provider.dart';
@@ -46,6 +47,9 @@ class SettingsScreen extends ConsumerWidget {
     );
     if (!confirmed) return;
     await ref.read(srsServiceProvider).resetAll();
+    // Back to a fresh install, welcome screens included. The app watches this
+    // flag, so onboarding replaces the shell at once, without a restart.
+    await ref.read(onboardingSeenProvider.notifier).reset();
   }
 
   Future<void> _sendFeedback(

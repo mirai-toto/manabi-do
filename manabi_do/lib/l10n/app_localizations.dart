@@ -925,7 +925,7 @@ abstract class AppLocalizations {
   /// No description provided for @resetProgressBody.
   ///
   /// In en, this message translates to:
-  /// **'All SRS cards will be permanently deleted.'**
+  /// **'All SRS cards will be permanently deleted, and the app will start again from the welcome screens.'**
   String get resetProgressBody;
 
   /// No description provided for @resetKanaTitle.
