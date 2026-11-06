@@ -1238,4 +1238,155 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsColourTheme => 'Colour theme';
+
+  @override
+  String get summarySessionComplete => 'Session complete';
+
+  @override
+  String get summaryPracticeComplete => 'Practice complete';
+
+  @override
+  String summaryReviewedTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count cards reviewed',
+      one: '1 card reviewed',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get summaryAllDoneTitle => 'Today\'s reviews are done';
+
+  @override
+  String summaryPracticeTitle(int got, int total) {
+    return '$got of $total right';
+  }
+
+  @override
+  String summaryMetaMixed(String time, int remembered, int again) {
+    return '$time · $remembered remembered, $again to look at again';
+  }
+
+  @override
+  String summaryMetaPerfect(String time) {
+    return '$time · every one remembered';
+  }
+
+  @override
+  String get summaryFreePracticeNote =>
+      'Free practice. Nothing here changes your review schedule.';
+
+  @override
+  String summaryStreak(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days-day streak',
+      one: '1-day streak',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String summaryStreakToday(int days) {
+    return 'Today counts. Come back tomorrow to make it $days.';
+  }
+
+  @override
+  String get summaryHowItWent => 'How it went';
+
+  @override
+  String get summaryLookAgain => 'Look again';
+
+  @override
+  String summaryAllAnswers(int count) {
+    return 'All $count answers';
+  }
+
+  @override
+  String get summaryYouChose => 'You chose';
+
+  @override
+  String get summaryHardNote => 'Right, but it took a moment';
+
+  @override
+  String get summaryComingBack => 'Coming back';
+
+  @override
+  String get summaryLaterToday => 'later today';
+
+  @override
+  String get summaryTomorrow => 'tomorrow';
+
+  @override
+  String get summaryLater => 'later';
+
+  @override
+  String summaryNextAt(String time) {
+    return 'next at $time';
+  }
+
+  @override
+  String summaryNextTomorrow(String time) {
+    return 'next tomorrow at $time';
+  }
+
+  @override
+  String summaryNextOn(String time) {
+    return 'next on $time';
+  }
+
+  @override
+  String summaryStillDue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reviews are still due today',
+      one: '1 review is still due today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get summaryContinue => 'Continue reviews';
+
+  @override
+  String summaryPracticeMistakes(int count) {
+    return 'Practice the $count again';
+  }
+
+  @override
+  String summaryPracticeAll(int count) {
+    return 'All $count again';
+  }
+
+  @override
+  String get summaryDone => 'Done';
+
+  @override
+  String get summaryDoneForToday => 'Done for today';
+
+  @override
+  String summaryRoomForMore(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Room for more? $count new items are ready.',
+      one: 'Room for more? 1 new item is ready.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String summaryLearnNew(int count) {
+    return 'Learn $count new';
+  }
+
+  @override
+  String get summaryGotIt => 'Got it';
+
+  @override
+  String get summaryNotYet => 'Not yet';
 }

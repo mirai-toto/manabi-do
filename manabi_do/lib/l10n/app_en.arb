@@ -735,5 +735,151 @@
       }
     }
   },
-  "settingsColourTheme": "Colour theme"
+  "settingsColourTheme": "Colour theme",
+  "summarySessionComplete": "Session complete",
+  "summaryPracticeComplete": "Practice complete",
+  "summaryReviewedTitle": "{count, plural, one{1 card reviewed} other{{count} cards reviewed}}",
+  "@summaryReviewedTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryAllDoneTitle": "Today's reviews are done",
+  "summaryPracticeTitle": "{got} of {total} right",
+  "@summaryPracticeTitle": {
+    "placeholders": {
+      "got": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryMetaMixed": "{time} · {remembered} remembered, {again} to look at again",
+  "@summaryMetaMixed": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "remembered": {
+        "type": "int"
+      },
+      "again": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryMetaPerfect": "{time} · every one remembered",
+  "@summaryMetaPerfect": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "summaryFreePracticeNote": "Free practice. Nothing here changes your review schedule.",
+  "summaryStreak": "{days, plural, one{1-day streak} other{{days}-day streak}}",
+  "@summaryStreak": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryStreakToday": "Today counts. Come back tomorrow to make it {days}.",
+  "@summaryStreakToday": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryHowItWent": "How it went",
+  "summaryLookAgain": "Look again",
+  "summaryAllAnswers": "All {count} answers",
+  "@summaryAllAnswers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryYouChose": "You chose",
+  "summaryHardNote": "Right, but it took a moment",
+  "summaryComingBack": "Coming back",
+  "summaryLaterToday": "later today",
+  "summaryTomorrow": "tomorrow",
+  "summaryLater": "later",
+  "summaryNextAt": "next at {time}",
+  "@summaryNextAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "summaryNextTomorrow": "next tomorrow at {time}",
+  "@summaryNextTomorrow": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "summaryNextOn": "next on {time}",
+  "@summaryNextOn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "summaryStillDue": "{count, plural, one{1 review is still due today} other{{count} reviews are still due today}}",
+  "@summaryStillDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryContinue": "Continue reviews",
+  "summaryPracticeMistakes": "Practice the {count} again",
+  "@summaryPracticeMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryPracticeAll": "All {count} again",
+  "@summaryPracticeAll": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryDone": "Done",
+  "summaryDoneForToday": "Done for today",
+  "summaryRoomForMore": "{count, plural, one{Room for more? 1 new item is ready.} other{Room for more? {count} new items are ready.}}",
+  "@summaryRoomForMore": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryLearnNew": "Learn {count} new",
+  "@summaryLearnNew": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "summaryGotIt": "Got it",
+  "summaryNotYet": "Not yet"
 }

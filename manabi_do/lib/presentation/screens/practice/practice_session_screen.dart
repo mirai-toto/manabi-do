@@ -4,6 +4,11 @@ import 'package:fsrs/fsrs.dart' show Rating;
 
 import '../../models/practice_item.dart';
 import '../../../core/providers/srs_settings_provider.dart';
+import 'practice_launcher.dart';
+import '../../services/srs_service.dart';
+import '../../providers/home_provider.dart';
+import '../../../core/srs/session_summary.dart';
+import '../../../core/providers/home_settings_provider.dart';
 import '../../../core/theme/accent_theme.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -122,31 +127,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen>
               SessionHistoryButton(
                 count: session.answers.length,
                 color: widget.color,
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    // Watched inside the route, not captured when it is pushed:
-                    // re-grading rewrites the provider, and a captured list
-                    // would leave the open review showing the old grade until
-                    // it was closed and reopened.
-                    builder: (_) => Consumer(
-                      builder: (context, ref, _) {
-                        final s = ref.watch(practiceSessionProvider);
-                        return SessionReviewScreen(
-                          answers: s.answers,
-                          total: s.queue?.length ?? s.answers.length,
-                          fourPointGrading: bodySettings.fourPointGrading,
-                          onRegrade: (i, rating) => ref
-                              .read(practiceSessionProvider.notifier)
-                              .regrade(
-                                i,
-                                rating,
-                                persistSrs: widget.persistSrs,
-                              ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
+                onPressed: () => _openReview(bodySettings),
               ),
             SessionSettingsButton(
               sheetBuilder: (_) => PracticeSettingsSheet(
@@ -163,7 +144,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen>
           child: session.isLoading
               ? const Center(child: AppSpinner.page())
               : session.done
-              ? _buildSummary(session, notifier)
+              ? _buildSummary(session, notifier, bodySettings)
               : QuestionSwitcher(
                   index: session.index,
                   child: PracticeQuestionBody(
@@ -187,22 +168,71 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen>
     );
   }
 
+  /// The session review, re-graded in place. Watched inside the route, not
+  /// captured when it is pushed: re-grading rewrites the provider, and a
+  /// captured list would leave the open review showing the old grade until it
+  /// was closed and reopened.
+  void _openReview(PracticeBodySettings bodySettings) =>
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => Consumer(
+            builder: (context, ref, _) {
+              final s = ref.watch(practiceSessionProvider);
+              return SessionReviewScreen(
+                answers: s.answers,
+                total: s.queue?.length ?? s.answers.length,
+                fourPointGrading: bodySettings.fourPointGrading,
+                onRegrade: (i, rating) => ref
+                    .read(practiceSessionProvider.notifier)
+                    .regrade(i, rating, persistSrs: widget.persistSrs),
+              );
+            },
+          ),
+        ),
+      );
+
   Widget _buildSummary(
     PracticeSessionState session,
     PracticeSessionNotifier notifier,
+    PracticeBodySettings bodySettings,
   ) {
+    // A retry round is practice: nothing it grades is written back.
+    final bool recorded = widget.persistSrs && !session.isRetry;
+    final HomeSettings show = ref.watch(homeSettingsProvider);
+    int shown(AsyncValue<int> count, bool visible) =>
+        visible ? count.asData?.value ?? 0 : 0;
+    final int dueLeft =
+        shown(ref.watch(kanaDueCountProvider), show.showKana) +
+        shown(ref.watch(kanjiDueCountProvider), show.showKanji) +
+        shown(ref.watch(vocabularyDueCountProvider), show.showVocabulary);
+    final int newLeft =
+        shown(ref.watch(kanaNewCountProvider), show.showKana) +
+        shown(ref.watch(kanjiNewCountProvider), show.showKanji) +
+        shown(ref.watch(vocabularyNewCountProvider), show.showVocabulary);
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(AppDimens.spaceMd),
-      child: SummaryCard(
-        score: session.gotIt,
-        total: session.queue!.length,
-        title: context.l10n.sessionComplete,
-        subtitle: widget.title,
-        correct: session.gotIt,
-        missed: session.notYet,
-        timeSpent: durationLabel(session.elapsed, context.l10n),
-        onRetry: notifier.retry,
-        onNext: _onExit,
+      child: SessionSummary(
+        answers: session.answers,
+        elapsedLabel: durationLabel(session.elapsed, context.l10n),
+        gradesRecorded: recorded,
+        fourPointGrading: bodySettings.fourPointGrading,
+        streakDays: ref.watch(streakDaysProvider).asData?.value ?? 0,
+        dueLeft: dueLeft,
+        newLeft: newLeft,
+        comingBack: recorded
+            ? comingBack([
+                for (final a in session.answers)
+                  applyRating(a.card, a.rating).due,
+              ], now: DateTime.now())
+            : null,
+        onDone: _onExit,
+        onContinue: recorded ? () => continueWithTodaysSession(context) : null,
+        onPracticeMistakes: () => notifier.retryMistakes(
+          fourPointGrading: bodySettings.fourPointGrading,
+        ),
+        onPracticeAll: notifier.retry,
+        onOpenAnswers: () => _openReview(bodySettings),
       ),
     );
   }

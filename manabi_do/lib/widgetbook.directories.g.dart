@@ -557,16 +557,22 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'SummaryCard',
+        name: 'SessionSummary',
         useCases: [
           _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _manabi_do_widgetbook_exercise_use_cases.buildSummaryCard,
+            name: 'Day finished',
+            builder: _manabi_do_widgetbook_exercise_use_cases
+                .buildSessionSummaryDone,
           ),
           _widgetbook.WidgetbookUseCase(
-            name: 'Perfect score',
+            name: 'Free practice',
             builder: _manabi_do_widgetbook_exercise_use_cases
-                .buildSummaryCardPerfect,
+                .buildSessionSummaryPractice,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Review with mistakes',
+            builder: _manabi_do_widgetbook_exercise_use_cases
+                .buildSessionSummaryMixed,
           ),
         ],
       ),

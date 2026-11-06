@@ -2253,6 +2253,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Colour theme'**
   String get settingsColourTheme;
+
+  /// No description provided for @summarySessionComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Session complete'**
+  String get summarySessionComplete;
+
+  /// No description provided for @summaryPracticeComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice complete'**
+  String get summaryPracticeComplete;
+
+  /// No description provided for @summaryReviewedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 card reviewed} other{{count} cards reviewed}}'**
+  String summaryReviewedTitle(int count);
+
+  /// No description provided for @summaryAllDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s reviews are done'**
+  String get summaryAllDoneTitle;
+
+  /// No description provided for @summaryPracticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{got} of {total} right'**
+  String summaryPracticeTitle(int got, int total);
+
+  /// No description provided for @summaryMetaMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} · {remembered} remembered, {again} to look at again'**
+  String summaryMetaMixed(String time, int remembered, int again);
+
+  /// No description provided for @summaryMetaPerfect.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} · every one remembered'**
+  String summaryMetaPerfect(String time);
+
+  /// No description provided for @summaryFreePracticeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Free practice. Nothing here changes your review schedule.'**
+  String get summaryFreePracticeNote;
+
+  /// No description provided for @summaryStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, one{1-day streak} other{{days}-day streak}}'**
+  String summaryStreak(int days);
+
+  /// No description provided for @summaryStreakToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today counts. Come back tomorrow to make it {days}.'**
+  String summaryStreakToday(int days);
+
+  /// No description provided for @summaryHowItWent.
+  ///
+  /// In en, this message translates to:
+  /// **'How it went'**
+  String get summaryHowItWent;
+
+  /// No description provided for @summaryLookAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Look again'**
+  String get summaryLookAgain;
+
+  /// No description provided for @summaryAllAnswers.
+  ///
+  /// In en, this message translates to:
+  /// **'All {count} answers'**
+  String summaryAllAnswers(int count);
+
+  /// No description provided for @summaryYouChose.
+  ///
+  /// In en, this message translates to:
+  /// **'You chose'**
+  String get summaryYouChose;
+
+  /// No description provided for @summaryHardNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Right, but it took a moment'**
+  String get summaryHardNote;
+
+  /// No description provided for @summaryComingBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming back'**
+  String get summaryComingBack;
+
+  /// No description provided for @summaryLaterToday.
+  ///
+  /// In en, this message translates to:
+  /// **'later today'**
+  String get summaryLaterToday;
+
+  /// No description provided for @summaryTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'tomorrow'**
+  String get summaryTomorrow;
+
+  /// No description provided for @summaryLater.
+  ///
+  /// In en, this message translates to:
+  /// **'later'**
+  String get summaryLater;
+
+  /// No description provided for @summaryNextAt.
+  ///
+  /// In en, this message translates to:
+  /// **'next at {time}'**
+  String summaryNextAt(String time);
+
+  /// No description provided for @summaryNextTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'next tomorrow at {time}'**
+  String summaryNextTomorrow(String time);
+
+  /// No description provided for @summaryNextOn.
+  ///
+  /// In en, this message translates to:
+  /// **'next on {time}'**
+  String summaryNextOn(String time);
+
+  /// No description provided for @summaryStillDue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 review is still due today} other{{count} reviews are still due today}}'**
+  String summaryStillDue(int count);
+
+  /// No description provided for @summaryContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue reviews'**
+  String get summaryContinue;
+
+  /// No description provided for @summaryPracticeMistakes.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice the {count} again'**
+  String summaryPracticeMistakes(int count);
+
+  /// No description provided for @summaryPracticeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All {count} again'**
+  String summaryPracticeAll(int count);
+
+  /// No description provided for @summaryDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get summaryDone;
+
+  /// No description provided for @summaryDoneForToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Done for today'**
+  String get summaryDoneForToday;
+
+  /// No description provided for @summaryRoomForMore.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{Room for more? 1 new item is ready.} other{Room for more? {count} new items are ready.}}'**
+  String summaryRoomForMore(int count);
+
+  /// No description provided for @summaryLearnNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn {count} new'**
+  String summaryLearnNew(int count);
+
+  /// No description provided for @summaryGotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get summaryGotIt;
+
+  /// No description provided for @summaryNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not yet'**
+  String get summaryNotYet;
 }
 
 class _AppLocalizationsDelegate

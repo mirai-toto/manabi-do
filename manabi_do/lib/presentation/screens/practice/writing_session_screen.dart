@@ -84,8 +84,9 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen>
     });
   }
 
+  /// Free practice: nothing is scheduled, so the summary offers another round
+  /// rather than more reviews.
   Widget _buildSummary(int total) {
-    final int correct = _answers.where((a) => a.isCorrect).length;
     return Scaffold(
       backgroundColor: context.tokens.surface,
       appBar: AppBar(backgroundColor: context.tokens.surface),
@@ -93,19 +94,24 @@ class _WritingSessionScreenState extends ConsumerState<WritingSessionScreen>
         accent: widget.color,
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppDimens.spaceMd),
-          child: SummaryCard(
-            score: correct,
-            total: total,
-            title: context.l10n.sessionComplete,
-            subtitle: widget.level,
-            correct: correct,
-            missed: _answers.length - correct,
-            timeSpent: durationLabel(
+          child: SessionSummary(
+            answers: List.of(_answers),
+            elapsedLabel: durationLabel(
               DateTime.now().difference(_startedAt),
               context.l10n,
             ),
-            onRetry: _restart,
-            onNext: () => Navigator.of(context).pop(),
+            gradesRecorded: false,
+            fourPointGrading: false,
+            onDone: () => Navigator.of(context).pop(),
+            onPracticeAll: _restart,
+            onOpenAnswers: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => SessionReviewScreen(
+                  answers: List.of(_answers),
+                  total: total,
+                ),
+              ),
+            ),
           ),
         ),
       ),

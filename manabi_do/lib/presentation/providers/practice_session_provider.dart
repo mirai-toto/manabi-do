@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fsrs/fsrs.dart' show Rating;
 
 import '../../core/providers/review_log_provider.dart';
+import '../../core/srs/session_summary.dart';
 import '../../data/database/app_database.dart';
 import '../models/practice_item.dart';
 import '../services/srs_service.dart';
@@ -148,6 +149,31 @@ class PracticeSessionNotifier extends Notifier<PracticeSessionState> {
     final s = state;
     state = PracticeSessionState(
       queue: List.from(s.completedQueue!),
+      done: false,
+      isRetry: true,
+      startedAt: DateTime.now(),
+    );
+  }
+
+  /// Practises again only what the summary listed under "look again".
+  ///
+  /// [answers] are in the order [completedQueue] was played, one each, so the
+  /// item behind an answer is the queue entry at the same position. Like
+  /// [retry], nothing here is written back to the schedule.
+  void retryMistakes({required bool fourPointGrading}) {
+    final s = state;
+    final List<PracticeItem> played = s.completedQueue!;
+    final List<PracticeItem> again = [
+      for (var i = 0; i < s.answers.length && i < played.length; i++)
+        if (needsAnotherLook(
+          s.answers[i].rating,
+          fourPointGrading: fourPointGrading,
+        ))
+          played[i],
+    ];
+    if (again.isEmpty) return;
+    state = PracticeSessionState(
+      queue: again,
       done: false,
       isRetry: true,
       startedAt: DateTime.now(),

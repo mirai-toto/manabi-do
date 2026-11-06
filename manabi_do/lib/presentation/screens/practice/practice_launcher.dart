@@ -22,14 +22,27 @@ Future<void> openPracticeSession(
   ),
 );
 
-/// Opens today's combined session, as the home screen's start button and the
-/// reviews widget do.
-Future<void> openTodaysSession(BuildContext context) => openPracticeSession(
-  context,
+/// Today's combined session: everything due, then new items up to the daily
+/// limits.
+Widget _todaysSession(BuildContext context) => PracticeSessionScreen(
   title: context.l10n.todaysSession,
   color: context.tokens.primary,
   loadQueue: (ref) => ref.read(reviewQueueServiceProvider).allDue(),
 );
+
+/// Opens today's combined session, as the home screen's start button and the
+/// reviews widget do.
+Future<void> openTodaysSession(BuildContext context) => Navigator.of(
+  context,
+).push(MaterialPageRoute<void>(builder: (_) => _todaysSession(context)));
+
+/// Puts today's session in place of the current one, for a session summary's
+/// "Continue": going back from it returns to where that session was opened,
+/// not to the finished summary.
+Future<void> continueWithTodaysSession(BuildContext context) =>
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute<void>(builder: (_) => _todaysSession(context)),
+    );
 
 /// Opens the kanji practice picker for a whole [level], or for a single group
 /// when [kanjiIds] is given.

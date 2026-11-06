@@ -126,4 +126,4 @@ export 'exercise/question_switcher.dart';
 export 'exercise/sentence_cloze_body.dart';
 export 'exercise/sentence_cloze_card.dart';
 export 'exercise/session_review_row.dart';
-export 'exercise/summary_card.dart';
+export 'exercise/session_summary.dart';

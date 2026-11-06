@@ -1249,4 +1249,155 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsColourTheme => 'Thème de couleurs';
+
+  @override
+  String get summarySessionComplete => 'Session terminée';
+
+  @override
+  String get summaryPracticeComplete => 'Entraînement terminé';
+
+  @override
+  String summaryReviewedTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count cartes révisées',
+      one: '1 carte révisée',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get summaryAllDoneTitle => 'Les révisions du jour sont terminées';
+
+  @override
+  String summaryPracticeTitle(int got, int total) {
+    return '$got sur $total justes';
+  }
+
+  @override
+  String summaryMetaMixed(String time, int remembered, int again) {
+    return '$time · $remembered retenues, $again à revoir';
+  }
+
+  @override
+  String summaryMetaPerfect(String time) {
+    return '$time · tout est retenu';
+  }
+
+  @override
+  String get summaryFreePracticeNote =>
+      'Entraînement libre. Rien ici ne modifie votre planning de révisions.';
+
+  @override
+  String summaryStreak(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days jours de suite',
+      one: '1 jour de suite',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String summaryStreakToday(int days) {
+    return 'Aujourd\'hui compte. Revenez demain pour passer à $days.';
+  }
+
+  @override
+  String get summaryHowItWent => 'Bilan';
+
+  @override
+  String get summaryLookAgain => 'À revoir';
+
+  @override
+  String summaryAllAnswers(int count) {
+    return 'Les $count réponses';
+  }
+
+  @override
+  String get summaryYouChose => 'Votre choix';
+
+  @override
+  String get summaryHardNote => 'Juste, mais avec hésitation';
+
+  @override
+  String get summaryComingBack => 'Prochaines révisions';
+
+  @override
+  String get summaryLaterToday => 'plus tard aujourd\'hui';
+
+  @override
+  String get summaryTomorrow => 'demain';
+
+  @override
+  String get summaryLater => 'plus tard';
+
+  @override
+  String summaryNextAt(String time) {
+    return 'prochaine à $time';
+  }
+
+  @override
+  String summaryNextTomorrow(String time) {
+    return 'prochaine demain à $time';
+  }
+
+  @override
+  String summaryNextOn(String time) {
+    return 'prochaine le $time';
+  }
+
+  @override
+  String summaryStillDue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count révisions restent à faire aujourd\'hui',
+      one: '1 révision reste à faire aujourd\'hui',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get summaryContinue => 'Continuer les révisions';
+
+  @override
+  String summaryPracticeMistakes(int count) {
+    return 'Revoir les $count';
+  }
+
+  @override
+  String summaryPracticeAll(int count) {
+    return 'Les $count à nouveau';
+  }
+
+  @override
+  String get summaryDone => 'Terminé';
+
+  @override
+  String get summaryDoneForToday => 'Fini pour aujourd\'hui';
+
+  @override
+  String summaryRoomForMore(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Encore un peu ? $count nouveaux éléments sont prêts.',
+      one: 'Encore un peu ? 1 nouvel élément est prêt.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String summaryLearnNew(int count) {
+    return 'Apprendre $count nouveaux';
+  }
+
+  @override
+  String get summaryGotIt => 'Je sais';
+
+  @override
+  String get summaryNotYet => 'Pas encore';
 }
