@@ -19,7 +19,7 @@ get_pref() {
 old_palette="$(get_pref theme_palette)"
 old_mode="$(get_pref theme_mode)"
 
-for palette in fuji ai sakura matcha sumi; do
+for palette in fuji ai sakura matcha kuri sumi; do
   for mode in light dark; do
     "$ADB" shell am force-stop "$PKG"
     set_pref theme_palette "$palette"

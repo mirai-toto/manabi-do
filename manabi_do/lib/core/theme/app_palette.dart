@@ -15,6 +15,7 @@ enum AppPalette {
   ai('Ai', '藍', _aiLight, _aiDark),
   sakura('Sakura', '桜', _sakuraLight, _sakuraDark),
   matcha('Matcha', '抹茶', _matchaLight, _matchaDark),
+  kuri('Kuri', '栗', _kuriLight, _kuriDark),
   sumi('Sumi', '墨', _sumiLight, _sumiDark);
 
   final String romaji;
