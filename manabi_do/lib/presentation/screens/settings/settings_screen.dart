@@ -5,18 +5,22 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../core/providers/home_settings_provider.dart';
 import '../../../core/providers/locale_provider.dart';
+import '../../../core/providers/reminder_settings_provider.dart';
 import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/app_languages.dart';
 import '../../../l10n/l10n.dart';
 import '../../services/feedback_service.dart';
+import '../../services/reminder_service.dart';
 import '../../services/srs_service.dart';
 import '../../services/support_service.dart';
 import '../../widgets/widgets.dart';
 import 'exercise_settings_screen.dart';
+import 'reminder_actions.dart';
 import 'settings_about_section.dart';
 
 /// Order the appearance segments are shown in. Listed explicitly so it cannot
@@ -139,6 +143,7 @@ class SettingsScreen extends ConsumerWidget {
     final l = context.l10n;
     final t = context.tokens;
     final themeMode = ref.watch(themeModeProvider);
+    final AppPalette palette = ref.watch(paletteProvider);
     final locale = ref.watch(localeProvider);
 
     final SrsSettings srs = ref.watch(srsSettingsProvider);
@@ -150,6 +155,10 @@ class SettingsScreen extends ConsumerWidget {
     final HomeSettingsNotifier homeNotifier = ref.read(
       homeSettingsProvider.notifier,
     );
+
+    final ReminderSettings reminder = ref.watch(reminderSettingsProvider);
+    // Until the check returns, assume allowed rather than flash a warning.
+    final bool permitted = ref.watch(reminderPermissionProvider).value ?? true;
 
     final currentLang = appLanguages.firstWhere(
       (e) => e.code == locale.languageCode,
@@ -235,6 +244,20 @@ class SettingsScreen extends ConsumerWidget {
             SettingsCard(
               children: [
                 SettingsTile(
+                  leading: Icon(
+                    Icons.palette_outlined,
+                    size: 20,
+                    color: t.onSurfaceVariant,
+                  ),
+                  label: l.settingsColourTheme,
+                  value: palette.label,
+                  onTap: () => showPalettePickerSheet(
+                    context,
+                    selected: palette,
+                    onSelected: ref.read(paletteProvider.notifier).setPalette,
+                  ),
+                ),
+                SettingsTile(
                   leading: AppEmoji(currentLang.flag, size: 22),
                   label: l.settingsLanguage,
                   value: currentLang.name,
@@ -264,6 +287,26 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                 ),
               ],
+            ),
+
+            // Off until asked for. Blocked means the user wants reminders but
+            // the system stopped allowing them, so none would arrive.
+            const SizedBox(height: AppDimens.spaceLg),
+            SectionLabel(l.settingsReminders),
+            const SizedBox(height: AppDimens.spaceSm),
+            RemindersCard(
+              enabled: reminder.enabled,
+              blocked: reminder.enabled && !permitted,
+              time: reminderTimeLabel(context, reminder),
+              onEnabledChanged: (on) => on
+                  ? turnOnReminders(context, ref)
+                  : ref
+                        .read(reminderSettingsProvider.notifier)
+                        .setEnabled(false),
+              onPickTime: () => pickReminderTime(context, ref),
+              onOpenSystemSettings: ref
+                  .read(reminderServiceProvider)
+                  .openSystemSettings,
             ),
 
             const SizedBox(height: AppDimens.spaceLg),

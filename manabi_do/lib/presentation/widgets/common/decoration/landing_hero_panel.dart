@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_dimens.dart';
 
-import '../../../../core/theme/app_brand_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_tokens.dart';
 import '../../../../l10n/l10n.dart';
@@ -23,11 +22,7 @@ class LandingHeroPanel extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            AppBrandColors.heroDeep,
-            AppBrandColors.heroMid,
-            t.primaryLight,
-          ],
+          colors: [t.heroDeep, t.heroMid, t.primaryLight],
           stops: const [0.0, 0.5, 1.0],
         ),
       ),

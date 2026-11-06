@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card, Rating;
+import '../common/decoration/slide_in.dart';
 import '../../../core/theme/srs_level_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -267,33 +268,38 @@ class FlashcardActions extends StatelessWidget {
       );
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (question != null) ...[
-          Text(
-            question!,
-            style: AppTextStyles.labelSmall.copyWith(color: t.onSurfaceVariant),
-            textAlign: TextAlign.center,
+    // Rises into place when an answer brings it up, instead of popping in.
+    return SlideIn(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (question != null) ...[
+            Text(
+              question!,
+              style: AppTextStyles.labelSmall.copyWith(
+                color: t.onSurfaceVariant,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: AppDimens.spaceXs),
+          ],
+          Row(
+            children: [
+              rampBtn(l.ratingAgain, Rating.again, ratingAccent(Rating.again)),
+              const SizedBox(width: AppDimens.spaceSm),
+              rampBtn(l.ratingHard, Rating.hard, ratingAccent(Rating.hard)),
+            ],
           ),
-          const SizedBox(height: AppDimens.spaceXs),
+          const SizedBox(height: AppDimens.spaceSm),
+          Row(
+            children: [
+              rampBtn(l.ratingGood, Rating.good, ratingAccent(Rating.good)),
+              const SizedBox(width: AppDimens.spaceSm),
+              rampBtn(l.ratingEasy, Rating.easy, ratingAccent(Rating.easy)),
+            ],
+          ),
         ],
-        Row(
-          children: [
-            rampBtn(l.ratingAgain, Rating.again, ratingAccent(Rating.again)),
-            const SizedBox(width: AppDimens.spaceSm),
-            rampBtn(l.ratingHard, Rating.hard, ratingAccent(Rating.hard)),
-          ],
-        ),
-        const SizedBox(height: AppDimens.spaceSm),
-        Row(
-          children: [
-            rampBtn(l.ratingGood, Rating.good, ratingAccent(Rating.good)),
-            const SizedBox(width: AppDimens.spaceSm),
-            rampBtn(l.ratingEasy, Rating.easy, ratingAccent(Rating.easy)),
-          ],
-        ),
-      ],
+      ),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../../../core/providers/home_settings_provider.dart';
 import '../../../core/providers/locale_provider.dart';
 import '../../../core/providers/onboarding_provider.dart';
+import '../../../core/providers/reminder_settings_provider.dart';
 import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -12,12 +13,14 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../l10n/app_languages.dart';
 import '../../../l10n/l10n.dart';
+import '../../services/reminder_service.dart';
 import '../../widgets/widgets.dart';
+import '../settings/reminder_actions.dart';
 
-/// The four screens shown once, before the first session.
+/// The screens shown once, before the first session.
 ///
-/// Three of them set something the app already stores: the locale, the home
-/// sections, and the daily pace. The second asks for nothing — it is the one
+/// Most of them set something the app already stores: the locale, the home
+/// sections, the daily pace, and whether to send a daily reminder. The second asks for nothing — it is the one
 /// that explains why the word order is what it is, and a learner who has seen
 /// it accepts five a day instead of wondering why 日本 is not lesson one.
 ///
@@ -34,7 +37,16 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final PageController _pages = PageController();
   int _page = 0;
 
-  static const int _pageCount = 4;
+  /// The reminder page only where reminders exist.
+  static final List<Widget> _screens = [
+    const _LanguagePage(),
+    const _HookPage(),
+    const _SectionsPage(),
+    const _PacePage(),
+    if (remindersSupported) const _RemindersPage(),
+  ];
+
+  int get _pageCount => _screens.length;
 
   @override
   void dispose() {
@@ -81,12 +93,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   child: PageView(
                     controller: _pages,
                     onPageChanged: (i) => setState(() => _page = i),
-                    children: const [
-                      _LanguagePage(),
-                      _HookPage(),
-                      _SectionsPage(),
-                      _PacePage(),
-                    ],
+                    children: _screens,
                   ),
                 ),
                 Padding(
@@ -298,7 +305,6 @@ class _HookPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    final Brightness brightness = Theme.of(context).brightness;
 
     return _Page(
       title: l.onboardingHookTitle,
@@ -313,7 +319,7 @@ class _HookPage extends StatelessWidget {
                 label: l.onboardingLevelWords(level, count),
                 share: share,
                 width: width,
-                color: vocabularyLevelColor(level, brightness),
+                color: vocabularyLevelColor(level, context.tokens),
               ),
             ],
           ],
@@ -443,6 +449,60 @@ class _PacePage extends ConsumerWidget {
               _minutes(srs.newCharactersPerDay, srs.newVocabularyPerDay),
             ),
             style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Asks for the daily reminder. Choosing it asks for notification permission
+/// right away, while the reason is on screen; refusing leaves it off.
+class _RemindersPage extends ConsumerWidget {
+  const _RemindersPage();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final AppTokens t = context.tokens;
+    final l = context.l10n;
+    final ReminderSettings reminder = ref.watch(reminderSettingsProvider);
+
+    return _Page(
+      title: l.onboardingRemindersTitle,
+      body: l.onboardingRemindersBody,
+      child: Column(
+        children: [
+          _Choice(
+            label: l.onboardingRemindMe,
+            selected: reminder.enabled,
+            onTap: () {
+              if (!reminder.enabled) turnOnReminders(context, ref);
+            },
+          ),
+          if (reminder.enabled) ...[
+            const SizedBox(height: AppDimens.spaceSm),
+            SettingsCard(
+              children: [
+                SettingsTile(
+                  leading: Icon(
+                    Icons.schedule_rounded,
+                    size: 20,
+                    color: t.onSurfaceVariant,
+                  ),
+                  label: l.onboardingReminderAt(
+                    reminderTimeLabel(context, reminder),
+                  ),
+                  onTap: () => pickReminderTime(context, ref),
+                ),
+              ],
+            ),
+          ],
+          const SizedBox(height: AppDimens.spaceSm),
+          _Choice(
+            label: l.onboardingNotNow,
+            selected: !reminder.enabled,
+            onTap: () =>
+                ref.read(reminderSettingsProvider.notifier).setEnabled(false),
           ),
         ],
       ),

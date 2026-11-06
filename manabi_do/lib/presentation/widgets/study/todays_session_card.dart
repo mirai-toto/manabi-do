@@ -1,3 +1,4 @@
+import '../common/indicator/animated_count.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_dimens.dart';
@@ -57,8 +58,8 @@ class TodaysSessionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
               children: [
-                Text(
-                  '$_dueTotal',
+                AnimatedCount(
+                  value: _dueTotal,
                   style: AppTextStyles.display.copyWith(
                     color: t.onSurface,
                     fontWeight: FontWeight.w800,

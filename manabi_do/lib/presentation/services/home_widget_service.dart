@@ -1,20 +1,28 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:home_widget/home_widget.dart';
 
-import '../../core/providers/home_settings_provider.dart';
 import '../../core/providers/locale_provider.dart';
+import '../../core/providers/theme_provider.dart';
 import '../../core/providers/review_log_provider.dart';
 import '../../core/srs/dashboard_stats.dart';
+import '../../core/theme/app_palette.dart';
+import '../../core/theme/app_tokens.dart';
 import '../../data/database/app_database.dart';
 import '../../l10n/app_localizations.dart';
 import '../providers/database_provider.dart';
 import '../providers/grammar_provider.dart';
+import 'study_activity.dart';
+
+/// Package the widget receivers live in. `home_widget` resolves a bare
+/// `androidName` against the application id, which misses this subpackage, so
+/// every call passes the qualified name instead.
+const String _receiverPackage = 'com.github.mirai_toto.manabi_do.widgets';
+
+String _receiver(String name) => '$_receiverPackage.$name';
 
 /// Android receivers the snapshot is pushed to, by class name. Each one is
 /// declared in `android/app/src/main/AndroidManifest.xml`.
@@ -74,23 +82,18 @@ class HomeWidgetService {
     await _saveKanji(l, now);
     await _saveGrammar(l);
     await _saveActivity(l, now);
+    await _saveColours();
+    // Last, after everything above: an open widget redraws when this changes
+    // (`WidgetContent` in WidgetCommon.kt), so it must see the whole snapshot.
+    await _save('synced_at', now.millisecondsSinceEpoch);
 
     for (final String receiver in _receivers) {
-      await HomeWidget.updateWidget(androidName: receiver);
+      await HomeWidget.updateWidget(qualifiedAndroidName: _receiver(receiver));
     }
   }
 
   Future<void> _saveReviews(AppLocalizations l, DateTime now) async {
-    final settings = _ref.read(homeSettingsProvider);
-    final Set<String> types = {
-      if (settings.showKana) ...{'hiragana', 'katakana'},
-      if (settings.showKanji) 'kanji',
-      if (settings.showVocabulary) 'vocabulary',
-    };
-    final List<DateTime> dues = [
-      for (final row in await _db.watchSrsDueDates().first)
-        if (types.contains(row.itemType)) row.due,
-    ];
+    final List<DateTime> dues = await loadDueDates(_ref);
     final List<int> upcoming =
         (dues.where((due) => due.isAfter(now)).toList()..sort())
             .take(_upcomingLimit)
@@ -113,7 +116,7 @@ class HomeWidgetService {
     }.toList();
     await HomeWidget.scheduleWidgetUpdates(
       wakeAt,
-      androidName: 'ReviewsWidgetReceiver',
+      qualifiedAndroidName: _receiver('ReviewsWidgetReceiver'),
     );
   }
 
@@ -167,7 +170,7 @@ class HomeWidgetService {
     await _save('kanji_kun', l.kunyomi);
     await HomeWidget.scheduleWidgetUpdates(
       days.skip(1).toList(),
-      androidName: 'KanjiWidgetReceiver',
+      qualifiedAndroidName: _receiver('KanjiWidgetReceiver'),
     );
   }
 
@@ -189,20 +192,12 @@ class HomeWidgetService {
   }
 
   /// Reviews per day for the heatmap and streak.
-  ///
-  /// The review log only starts counting from this release, so days the
-  /// cards remember a review on but the log does not are kept as one review:
-  /// the streak stays what the home screen shows.
   Future<void> _saveActivity(AppLocalizations l, DateTime now) async {
-    final Map<String, int> log = _ref.read(reviewLogProvider);
-    final Set<DateTime> reviewed = await _db.watchReviewDates().first;
     final String oldest = reviewDayKey(
       DateTime(now.year, now.month, now.day - _activityDays),
     );
-    final Map<String, int> activity = {
-      for (final day in reviewed) reviewDayKey(day): 1,
-      ...log,
-    }..removeWhere((day, _) => day.compareTo(oldest) <= 0);
+    final Map<String, int> activity = await loadActivity(_ref)
+      ..removeWhere((day, _) => day.compareTo(oldest) <= 0);
 
     await _save('activity', jsonEncode(activity));
     await _save('streak_label', l.streakLabel);
@@ -211,7 +206,39 @@ class HomeWidgetService {
     await _save('streak_more', l.widgetMore);
     await HomeWidget.scheduleWidgetUpdates([
       DateTime(now.year, now.month, now.day + 1),
-    ], androidName: 'StreakWidgetReceiver');
+    ], qualifiedAndroidName: _receiver('StreakWidgetReceiver'));
+  }
+
+  /// The theme's colours, light and dark, so the widgets follow the colour
+  /// theme picked in the app. Read by `WidgetColors.from` on the Kotlin side.
+  Future<void> _saveColours() async {
+    final AppPalette palette = _ref.read(paletteProvider);
+    Map<String, Object> side(AppTokens t, {required bool dark}) => {
+      // The widget card sits on the wallpaper, so in dark mode it takes the
+      // container step: plain `surface` is near black and loses its edge.
+      'surface': (dark ? t.surfaceContainer : t.surface).toARGB32(),
+      'onSurface': t.onSurface.toARGB32(),
+      'muted': t.onSurfaceVariant.toARGB32(),
+      'primary': t.primary.toARGB32(),
+      'onPrimary': t.onPrimary.toARGB32(),
+      'primaryContainer': t.primaryContainer.toARGB32(),
+      'onPrimaryContainer': t.onPrimaryContainer.toARGB32(),
+      'track': t.surfaceVariant.toARGB32(),
+      // The streak heatmap, empty to busiest: the level ramp read from its
+      // faint end, as on the vocabulary screen.
+      'heat': [
+        t.surfaceContainerHigh,
+        if (dark) ...[t.levelRamp[4], t.levelRamp[2], t.levelRamp[0]],
+        if (!dark) ...[t.levelRamp[4], t.levelRamp[3], t.levelRamp[1]],
+      ].map((c) => c.toARGB32()).toList(),
+    };
+    await _save(
+      'theme_colours',
+      jsonEncode({
+        'day': side(palette.light, dark: false),
+        'night': side(palette.dark, dark: true),
+      }),
+    );
   }
 
   Future<void> _save<T>(String key, T value) =>
@@ -221,38 +248,3 @@ class HomeWidgetService {
 final homeWidgetServiceProvider = Provider<HomeWidgetService>(
   (ref) => HomeWidgetService(ref),
 );
-
-/// Keeps the widgets in step with the app while it runs: after reviews,
-/// lessons, a language or deck change, and whenever the app comes back.
-///
-/// Changes arrive in bursts (one card per answer), so a sync waits for a
-/// quiet moment rather than running on every one.
-final homeWidgetSyncProvider = Provider<void>((ref) {
-  if (!homeWidgetsSupported) return;
-
-  Timer? pending;
-  void schedule() {
-    pending?.cancel();
-    pending = Timer(const Duration(seconds: 2), () {
-      ref.read(homeWidgetServiceProvider).sync();
-    });
-  }
-
-  final StreamSubscription<void> cards = ref
-      .read(databaseProvider)
-      .watchSrsDueDates()
-      .listen((_) => schedule());
-  ref.listen(reviewLogProvider, (_, _) => schedule());
-  ref.listen(localeProvider, (_, _) => schedule());
-  ref.listen(homeSettingsProvider, (_, _) => schedule());
-  ref.listen(grammarContinueProvider, (_, _) => schedule());
-  final AppLifecycleListener lifecycle = AppLifecycleListener(
-    onResume: schedule,
-  );
-
-  ref.onDispose(() {
-    pending?.cancel();
-    cards.cancel();
-    lifecycle.dispose();
-  });
-});

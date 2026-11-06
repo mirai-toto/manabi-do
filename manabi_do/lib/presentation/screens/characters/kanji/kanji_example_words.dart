@@ -119,7 +119,7 @@ class _WordRow extends StatelessWidget {
     final entry = word.entry;
     final Color levelColour = vocabularyLevelColor(
       entry.vocabularyLevel,
-      Theme.of(context).brightness,
+      context.tokens,
     );
 
     return Semantics(

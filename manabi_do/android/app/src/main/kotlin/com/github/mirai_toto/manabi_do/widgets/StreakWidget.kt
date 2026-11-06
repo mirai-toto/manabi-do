@@ -15,7 +15,6 @@ import androidx.glance.Image
 import androidx.glance.ImageProvider
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.provideContent
-import androidx.glance.currentState
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.ContentScale
 import androidx.glance.layout.Row
@@ -24,9 +23,6 @@ import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import androidx.glance.layout.width
 import androidx.glance.text.FontWeight
-import es.antonborri.home_widget.HomeWidgetGlanceState
-import es.antonborri.home_widget.HomeWidgetGlanceStateDefinition
-import es.antonborri.home_widget.HomeWidgetGlanceWidgetReceiver
 import java.util.Calendar
 import org.json.JSONObject
 
@@ -39,34 +35,33 @@ private const val WEEKS = 20
  * far fewer than 140 days.
  */
 class StreakWidget : GlanceAppWidget() {
-    override val stateDefinition = HomeWidgetGlanceStateDefinition()
-
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            Content(context, currentState<HomeWidgetGlanceState>().preferences)
+            WidgetContent(context) { prefs -> Content(context, prefs) }
         }
     }
 
     @Composable
     private fun Content(context: Context, prefs: SharedPreferences) {
+        val colors = LocalWidgetColors.current
         val activity = JSONObject(prefs.getString("activity", null) ?: "{}")
 
         WidgetCard(onClick = openApp(context, "manabido://review"), padding = 18.dp) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = GlanceModifier.fillMaxWidth()) {
                 Label(
                     streak(activity).toString(),
-                    color = WidgetColors.primary,
+                    color = colors.primary,
                     size = 26.sp,
                     weight = FontWeight.Bold,
                 )
                 Spacer(GlanceModifier.width(6.dp))
-                Label(prefs.text("streak_label"), color = WidgetColors.onSurface, size = 14.sp, weight = FontWeight.Medium)
+                Label(prefs.text("streak_label"), color = colors.onSurface, size = 14.sp, weight = FontWeight.Medium)
                 Spacer(GlanceModifier.defaultWeight())
                 Label(prefs.text("streak_range"))
             }
             Spacer(GlanceModifier.height(10.dp))
             Image(
-                provider = ImageProvider(heatmap(context, activity)),
+                provider = ImageProvider(heatmap(context, activity, colors)),
                 contentDescription = prefs.text("streak_range"),
                 contentScale = ContentScale.Fit,
                 modifier = GlanceModifier.fillMaxWidth().defaultWeight(),
@@ -86,10 +81,8 @@ class StreakWidget : GlanceAppWidget() {
     }
 
     /** Weeks as columns, Monday at the top, today's week last. */
-    private fun heatmap(context: Context, activity: JSONObject): Bitmap {
-        val palette =
-            if (isNight(context)) intArrayOf(0xFF2B2930.toInt(), 0xFF4F378B.toInt(), 0xFF8A6EF0.toInt(), 0xFFD6C8FF.toInt())
-            else intArrayOf(0xFFECE6F0.toInt(), 0xFFC9BCFF.toInt(), 0xFF9B7FFF.toInt(), 0xFF5B3FE0.toInt())
+    private fun heatmap(context: Context, activity: JSONObject, colors: WidgetColors): Bitmap {
+        val palette = colors.heat(isNight(context))
         val density = context.resources.displayMetrics.density
         val cell = 12 * density
         val gap = 4 * density
@@ -131,6 +124,6 @@ class StreakWidget : GlanceAppWidget() {
         }
 }
 
-class StreakWidgetReceiver : HomeWidgetGlanceWidgetReceiver<StreakWidget>() {
+class StreakWidgetReceiver : AppWidgetReceiver() {
     override val glanceAppWidget = StreakWidget()
 }

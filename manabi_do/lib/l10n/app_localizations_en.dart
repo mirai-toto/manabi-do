@@ -1164,4 +1164,78 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get widgetMore => 'More';
+
+  @override
+  String get reminderChannelName => 'Study reminders';
+
+  @override
+  String get reminderChannelDescription =>
+      'A daily nudge when reviews are waiting';
+
+  @override
+  String reminderDueTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reviews due',
+      one: '$count review due',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reminderDueBody => 'A few minutes now keeps them fresh';
+
+  @override
+  String reminderStreakBody(int days) {
+    return 'Keep your $days-day streak going';
+  }
+
+  @override
+  String reminderStreakTitle(int days) {
+    return 'Keep your $days-day streak';
+  }
+
+  @override
+  String get reminderStreakOnlyBody => 'One short session today keeps it going';
+
+  @override
+  String get settingsReminders => 'Reminders';
+
+  @override
+  String get settingsDailyReminder => 'Daily reminder';
+
+  @override
+  String get settingsReminderTime => 'Time';
+
+  @override
+  String get settingsRemindersNote =>
+      'Sent only when reviews are due or your streak is at risk.';
+
+  @override
+  String get remindersBlocked => 'Notifications are turned off for Manabi Do.';
+
+  @override
+  String get remindersOpenSystemSettings => 'Open settings';
+
+  @override
+  String get onboardingRemindersTitle => 'A daily reminder?';
+
+  @override
+  String get onboardingRemindersBody =>
+      'One notification a day, only when reviews are waiting or your streak is at risk. You can change it in Settings at any time.';
+
+  @override
+  String get onboardingRemindMe => 'Remind me';
+
+  @override
+  String get onboardingNotNow => 'Not now';
+
+  @override
+  String onboardingReminderAt(String time) {
+    return 'Every day at $time';
+  }
+
+  @override
+  String get settingsColourTheme => 'Colour theme';
 }

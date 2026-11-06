@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="widget_surface">#211F26</color>
+    <color name="widget_on_surface">#E6E0E9</color>
+    <color name="widget_muted">#B5AFBC</color>
+    <color name="widget_primary">#CFBCFF</color>
+    <color name="widget_on_primary">#2A1A5E</color>
+    <color name="widget_primary_container">#4F378B</color>
+    <color name="widget_on_primary_container">#F2ECFF</color>
+    <color name="widget_track">#49454F</color>
+    <color name="widget_onyomi">#90CAF9</color>
+    <color name="widget_kunyomi">#FFBA60</color>
+    <color name="widget_heat_0">#2B2930</color>
+    <color name="widget_heat_1">#4F378B</color>
+    <color name="widget_heat_2">#8A6EF0</color>
+    <color name="widget_heat_3">#D6C8FF</color>
+</resources>

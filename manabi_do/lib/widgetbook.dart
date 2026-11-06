@@ -6,6 +6,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import 'core/providers/shared_preferences_provider.dart';
+import 'core/theme/app_palette.dart';
 import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 import 'widgetbook.directories.g.dart';
@@ -32,8 +33,16 @@ class _WidgetbookShell extends StatelessWidget {
       addons: [
         MaterialThemeAddon(
           themes: [
-            WidgetbookTheme(name: 'Light', data: AppTheme.light),
-            WidgetbookTheme(name: 'Dark', data: AppTheme.dark),
+            for (final AppPalette palette in AppPalette.values) ...[
+              WidgetbookTheme(
+                name: '${palette.romaji} light',
+                data: AppTheme.light(palette),
+              ),
+              WidgetbookTheme(
+                name: '${palette.romaji} dark',
+                data: AppTheme.dark(palette),
+              ),
+            ],
           ],
         ),
         LocalizationAddon(

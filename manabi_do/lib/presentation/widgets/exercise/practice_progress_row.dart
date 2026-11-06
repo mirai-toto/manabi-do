@@ -1,3 +1,4 @@
+import '../common/indicator/progress_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_dimens.dart';
@@ -27,11 +28,13 @@ class PracticeProgressRow extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: LinearProgressIndicator(
-            value: progress,
-            backgroundColor: t.outlineVariant,
+          child: AppProgressBar(
+            progress: progress,
+            from: total == 0 ? 0 : (index - 1).clamp(0, total) / total,
             color: color,
-            borderRadius: BorderRadius.circular(AppDimens.radiusXs),
+            trackColor: t.outlineVariant,
+            radius: AppDimens.radiusXs,
+            height: 4,
           ),
         ),
         const SizedBox(width: AppDimens.spaceXs),

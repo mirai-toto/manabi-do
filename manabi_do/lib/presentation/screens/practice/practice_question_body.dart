@@ -8,6 +8,7 @@ import '../../../core/models/mcq_settings.dart';
 import '../../models/practice_item.dart';
 import '../../models/practice_question.dart';
 import '../../../core/models/sentence_settings.dart';
+import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
@@ -105,7 +106,7 @@ class PracticeQuestionBody extends StatelessWidget {
     final vocabularyLevel = question.vocabularyLevel;
     final level = question.level;
     final Color color = vocabularyLevel != null
-        ? vocabularyLevelColor(vocabularyLevel, Theme.of(context).brightness)
+        ? vocabularyLevelColor(vocabularyLevel, context.tokens)
         : level != null
         ? levelColor(level)
         : sessionColor;

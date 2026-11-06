@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:manabi_do/core/providers/locale_provider.dart';
+import 'package:manabi_do/core/theme/app_palette.dart';
 import 'package:manabi_do/core/theme/app_theme.dart';
 import 'package:manabi_do/data/database/app_database.dart';
 import 'package:manabi_do/presentation/providers/vocabulary_provider.dart';
@@ -43,7 +44,7 @@ void main() {
   testWidgets('the mark renders an icon', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
-        theme: AppTheme.light,
+        theme: AppTheme.light(AppPalette.fallback),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: const Locale('fr'),
@@ -77,7 +78,7 @@ void main() {
           ),
         ],
         child: MaterialApp(
-          theme: AppTheme.light,
+          theme: AppTheme.light(AppPalette.fallback),
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           locale: const Locale('fr'),
@@ -98,7 +99,7 @@ void main() {
     // the row by 97px rather than shrinking.
     await tester.pumpWidget(
       MaterialApp(
-        theme: AppTheme.light,
+        theme: AppTheme.light(AppPalette.fallback),
         home: Scaffold(
           body: Row(
             children: [
@@ -126,7 +127,7 @@ void main() {
     // laid out inside the box, not merely present in the tree.
     await tester.pumpWidget(
       MaterialApp(
-        theme: AppTheme.light,
+        theme: AppTheme.light(AppPalette.fallback),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: const Locale('fr'),
@@ -159,7 +160,7 @@ void main() {
   testWidgets('TranslatedText shows the mark only when asked', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
-        theme: AppTheme.light,
+        theme: AppTheme.light(AppPalette.fallback),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: const Locale('fr'),

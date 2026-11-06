@@ -11,7 +11,6 @@ import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
 import androidx.glance.background
-import androidx.glance.currentState
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Box
 import androidx.glance.layout.Column
@@ -23,20 +22,15 @@ import androidx.glance.layout.height
 import androidx.glance.layout.padding
 import androidx.glance.layout.width
 import androidx.glance.text.FontWeight
-import es.antonborri.home_widget.HomeWidgetGlanceState
-import es.antonborri.home_widget.HomeWidgetGlanceStateDefinition
-import es.antonborri.home_widget.HomeWidgetGlanceWidgetReceiver
 import java.util.Calendar
 import org.json.JSONArray
 import org.json.JSONObject
 
 /** One kanji a day out of the week the app picked ahead. */
 class KanjiWidget : GlanceAppWidget() {
-    override val stateDefinition = HomeWidgetGlanceStateDefinition()
-
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            Content(context, currentState<HomeWidgetGlanceState>().preferences)
+            WidgetContent(context) { prefs -> Content(context, prefs) }
         }
     }
 
@@ -55,6 +49,7 @@ class KanjiWidget : GlanceAppWidget() {
 
     @Composable
     private fun Content(context: Context, prefs: SharedPreferences) {
+        val colors = LocalWidgetColors.current
         val kanji = today(prefs)
         val link = if (kanji == null) "manabido://review" else "manabido://kanji/${kanji.getInt("id")}"
 
@@ -68,13 +63,13 @@ class KanjiWidget : GlanceAppWidget() {
                     modifier =
                         GlanceModifier.width(120.dp)
                             .fillMaxHeight()
-                            .background(WidgetColors.primaryContainer)
+                            .background(colors.primaryContainer)
                             .cornerRadius(16.dp),
                     contentAlignment = Alignment.Center,
                 ) {
                     Label(
                         kanji.getString("character"),
-                        color = WidgetColors.onPrimaryContainer,
+                        color = colors.onPrimaryContainer,
                         size = 72.sp,
                     )
                 }
@@ -88,7 +83,7 @@ class KanjiWidget : GlanceAppWidget() {
                     Spacer(GlanceModifier.height(6.dp))
                     Label(
                         kanji.getString("meaning"),
-                        color = WidgetColors.onSurface,
+                        color = colors.onSurface,
                         size = 17.sp,
                         weight = FontWeight.Medium,
                         maxLines = 2,
@@ -108,11 +103,11 @@ class KanjiWidget : GlanceAppWidget() {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Label(label, color = color, size = 12.sp, weight = FontWeight.Medium)
             Spacer(GlanceModifier.width(8.dp))
-            Label(value, color = WidgetColors.onSurface, size = 13.sp)
+            Label(value, color = LocalWidgetColors.current.onSurface, size = 13.sp)
         }
     }
 }
 
-class KanjiWidgetReceiver : HomeWidgetGlanceWidgetReceiver<KanjiWidget>() {
+class KanjiWidgetReceiver : AppWidgetReceiver() {
     override val glanceAppWidget = KanjiWidget()
 }

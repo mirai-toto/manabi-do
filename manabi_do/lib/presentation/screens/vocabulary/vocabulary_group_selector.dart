@@ -41,7 +41,7 @@ class VocabularyGroupSelector extends ConsumerWidget {
     final srsCards =
         ref.watch(srsCardsProvider('vocabulary')).asData?.value ?? {};
     final shares = ref.watch(groupShareProvider);
-    final color = vocabularyLevelColor(level, Theme.of(context).brightness);
+    final color = vocabularyLevelColor(level, context.tokens);
 
     final entries = vocabularyAsync.asData?.value ?? [];
     final groupCount = (entries.length / kVocabularyGroupSize).ceil();

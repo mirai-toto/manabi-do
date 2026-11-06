@@ -10,27 +10,22 @@ import androidx.glance.GlanceModifier
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.LinearProgressIndicator
 import androidx.glance.appwidget.provideContent
-import androidx.glance.currentState
 import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import androidx.glance.text.FontWeight
-import es.antonborri.home_widget.HomeWidgetGlanceState
-import es.antonborri.home_widget.HomeWidgetGlanceStateDefinition
-import es.antonborri.home_widget.HomeWidgetGlanceWidgetReceiver
 
 /** The grammar lesson the home screen would resume. */
 class GrammarWidget : GlanceAppWidget() {
-    override val stateDefinition = HomeWidgetGlanceStateDefinition()
-
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            Content(context, currentState<HomeWidgetGlanceState>().preferences)
+            WidgetContent(context) { prefs -> Content(context, prefs) }
         }
     }
 
     @Composable
     private fun Content(context: Context, prefs: SharedPreferences) {
+        val colors = LocalWidgetColors.current
         val open = openApp(context, "manabido://grammar")
         val title = prefs.text("grammar_title")
         val level = prefs.text("grammar_level")
@@ -44,12 +39,12 @@ class GrammarWidget : GlanceAppWidget() {
             )
             Spacer(GlanceModifier.height(6.dp))
             if (title.isEmpty()) {
-                Label(prefs.text("grammar_done"), color = WidgetColors.onSurface, size = 16.sp)
+                Label(prefs.text("grammar_done"), color = colors.onSurface, size = 16.sp)
                 return@WidgetCard
             }
             Label(
                 title,
-                color = WidgetColors.primary,
+                color = colors.primary,
                 size = 18.sp,
                 weight = FontWeight.Bold,
                 maxLines = 3,
@@ -59,8 +54,8 @@ class GrammarWidget : GlanceAppWidget() {
             LinearProgressIndicator(
                 progress = (prefs.number("grammar_index") + 1).toFloat() / total,
                 modifier = GlanceModifier.fillMaxWidth().height(6.dp),
-                color = WidgetColors.primary,
-                backgroundColor = WidgetColors.track,
+                color = colors.primary,
+                backgroundColor = colors.track,
             )
             Spacer(GlanceModifier.height(4.dp))
             Label(prefs.text("grammar_progress"))
@@ -68,13 +63,13 @@ class GrammarWidget : GlanceAppWidget() {
             PillButton(
                 text = prefs.text("grammar_button"),
                 onClick = open,
-                background = WidgetColors.primaryContainer,
-                content = WidgetColors.onPrimaryContainer,
+                background = colors.primaryContainer,
+                content = colors.onPrimaryContainer,
             )
         }
     }
 }
 
-class GrammarWidgetReceiver : HomeWidgetGlanceWidgetReceiver<GrammarWidget>() {
+class GrammarWidgetReceiver : AppWidgetReceiver() {
     override val glanceAppWidget = GrammarWidget()
 }

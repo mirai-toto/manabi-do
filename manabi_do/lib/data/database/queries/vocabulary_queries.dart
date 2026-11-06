@@ -11,6 +11,10 @@ extension VocabularyQueries on AppDatabase {
   /// appearing anywhere, including inside a different kanji's reading. The
   /// join is exact, so the fallback is gone and so is the `character`
   /// argument.
+  ///
+  /// Ordered by study order, the same as [getVocabularyByLevel]. `difficulty`
+  /// alone disagrees with the level the row's dots show: for 日 it put 昨日
+  /// (level 1) after 日 (level 3), and あくる日 (level 5) ahead of level 3.
   Future<List<VocabularyEntry>> getVocabularyForKanji(int kanjiId) {
     final query =
         select(vocabularyEntries).join([
@@ -21,6 +25,8 @@ extension VocabularyQueries on AppDatabase {
           ])
           ..where(vocabularyKanji.kanjiId.equals(kanjiId))
           ..orderBy([
+            OrderingTerm.asc(vocabularyEntries.vocabularyLevel),
+            OrderingTerm.asc(vocabularyEntries.groupIndex),
             OrderingTerm.asc(vocabularyEntries.difficulty),
             OrderingTerm.asc(vocabularyEntries.word),
           ])

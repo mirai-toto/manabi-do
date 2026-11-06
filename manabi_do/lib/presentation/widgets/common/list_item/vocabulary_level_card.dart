@@ -41,8 +41,7 @@ class VocabularyLevelCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final brightness = Theme.of(context).brightness;
-    final color = vocabularyLevelColor(level, brightness);
+    final color = vocabularyLevelColor(level, context.tokens);
     final count = wordCount;
 
     return Padding(
@@ -64,7 +63,7 @@ class VocabularyLevelCard extends StatelessWidget {
               LevelBadge(
                 code: '$level',
                 color: color,
-                foreground: onVocabularyLevelColor(level, brightness),
+                foreground: onVocabularyLevelColor(level, context.tokens),
               ),
               const SizedBox(width: AppDimens.spaceMd),
               Expanded(

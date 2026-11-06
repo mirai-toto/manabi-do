@@ -1,3 +1,4 @@
+import '../common/indicator/animated_count.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_dimens.dart';
@@ -73,8 +74,9 @@ class CoverageMeterCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children: [
-              Text(
-                '${(share * 100).round()}%',
+              AnimatedCount(
+                value: (share * 100).round(),
+                format: (n) => '$n%',
                 style: AppTextStyles.display.copyWith(color: accent),
               ),
               const SizedBox(width: AppDimens.spaceSm),

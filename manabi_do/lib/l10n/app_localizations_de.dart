@@ -1171,4 +1171,81 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get widgetMore => 'Mehr';
+
+  @override
+  String get reminderChannelName => 'Lernerinnerungen';
+
+  @override
+  String get reminderChannelDescription =>
+      'Eine tägliche Erinnerung, wenn Wiederholungen warten';
+
+  @override
+  String reminderDueTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count fällige Wiederholungen',
+      one: '$count fällige Wiederholung',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reminderDueBody =>
+      'Ein paar Minuten genügen, um sie frisch zu halten';
+
+  @override
+  String reminderStreakBody(int days) {
+    return 'Halten Sie Ihre Serie von $days Tagen am Laufen';
+  }
+
+  @override
+  String reminderStreakTitle(int days) {
+    return 'Verlieren Sie nicht Ihre Serie von $days Tagen';
+  }
+
+  @override
+  String get reminderStreakOnlyBody =>
+      'Eine kurze Einheit heute hält sie am Leben';
+
+  @override
+  String get settingsReminders => 'Erinnerungen';
+
+  @override
+  String get settingsDailyReminder => 'Tägliche Erinnerung';
+
+  @override
+  String get settingsReminderTime => 'Uhrzeit';
+
+  @override
+  String get settingsRemindersNote =>
+      'Nur wenn Wiederholungen fällig sind oder Ihre Serie in Gefahr ist.';
+
+  @override
+  String get remindersBlocked =>
+      'Benachrichtigungen sind für Manabi Do ausgeschaltet.';
+
+  @override
+  String get remindersOpenSystemSettings => 'Einstellungen öffnen';
+
+  @override
+  String get onboardingRemindersTitle => 'Eine tägliche Erinnerung?';
+
+  @override
+  String get onboardingRemindersBody =>
+      'Eine Benachrichtigung am Tag, nur wenn Wiederholungen warten oder Ihre Serie in Gefahr ist. Jederzeit in den Einstellungen änderbar.';
+
+  @override
+  String get onboardingRemindMe => 'Erinnern Sie mich';
+
+  @override
+  String get onboardingNotNow => 'Nicht jetzt';
+
+  @override
+  String onboardingReminderAt(String time) {
+    return 'Jeden Tag um $time';
+  }
+
+  @override
+  String get settingsColourTheme => 'Farbthema';
 }

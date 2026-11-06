@@ -10,13 +10,9 @@ import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.provideContent
-import androidx.glance.currentState
 import androidx.glance.layout.Spacer
 import androidx.glance.layout.height
 import androidx.glance.text.FontWeight
-import es.antonborri.home_widget.HomeWidgetGlanceState
-import es.antonborri.home_widget.HomeWidgetGlanceStateDefinition
-import es.antonborri.home_widget.HomeWidgetGlanceWidgetReceiver
 import java.util.Date
 import org.json.JSONArray
 
@@ -25,16 +21,15 @@ import org.json.JSONArray
  * keeps climbing while the app is closed.
  */
 class ReviewsWidget : GlanceAppWidget() {
-    override val stateDefinition = HomeWidgetGlanceStateDefinition()
-
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            Content(context, currentState<HomeWidgetGlanceState>().preferences)
+            WidgetContent(context) { prefs -> Content(context, prefs) }
         }
     }
 
     @Composable
     private fun Content(context: Context, prefs: SharedPreferences) {
+        val colors = LocalWidgetColors.current
         val now = System.currentTimeMillis()
         val upcoming = JSONArray(prefs.getString("reviews_upcoming", null) ?: "[]")
         var due = prefs.number("reviews_due_base")
@@ -59,8 +54,8 @@ class ReviewsWidget : GlanceAppWidget() {
         WidgetCard(onClick = open) {
             Label("Manabi Do", weight = FontWeight.Medium)
             Spacer(GlanceModifier.defaultWeight())
-            Label(due.toString(), color = WidgetColors.primary, size = 44.sp, weight = FontWeight.Bold)
-            Label(unit, color = WidgetColors.onSurface, size = 14.sp, weight = FontWeight.Medium)
+            Label(due.toString(), color = colors.primary, size = 44.sp, weight = FontWeight.Bold)
+            Label(unit, color = colors.onSurface, size = 14.sp, weight = FontWeight.Medium)
             val hint =
                 when {
                     next != null ->
@@ -76,14 +71,14 @@ class ReviewsWidget : GlanceAppWidget() {
                 PillButton(
                     text = prefs.text("reviews_button"),
                     onClick = open,
-                    background = WidgetColors.primary,
-                    content = WidgetColors.onPrimary,
+                    background = colors.primary,
+                    content = colors.onPrimary,
                 )
             }
         }
     }
 }
 
-class ReviewsWidgetReceiver : HomeWidgetGlanceWidgetReceiver<ReviewsWidget>() {
+class ReviewsWidgetReceiver : AppWidgetReceiver() {
     override val glanceAppWidget = ReviewsWidget()
 }

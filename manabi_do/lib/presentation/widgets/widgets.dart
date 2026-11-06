@@ -17,6 +17,7 @@ export 'common/input/segmented_tab_bar.dart';
 export 'common/indicator/app_spinner.dart';
 export 'common/indicator/difficulty_dots.dart';
 export 'common/indicator/pill_badge.dart';
+export 'common/indicator/animated_count.dart';
 export 'common/indicator/progress_bar.dart';
 export 'common/indicator/progress_row.dart';
 export 'common/indicator/review_progress_info.dart';
@@ -39,6 +40,7 @@ export 'common/surface/tappable_surface.dart';
 
 // — decoration
 export 'common/decoration/app_emoji.dart';
+export 'common/decoration/slide_in.dart';
 export 'common/decoration/landing_hero_panel.dart';
 export 'common/decoration/scroll_fade.dart';
 export 'common/decoration/sheet_drag_handle.dart';
@@ -49,6 +51,7 @@ export 'common/confirm_dialog.dart';
 // navigation
 export 'navigation/app_nav_bar.dart';
 export 'navigation/app_nav_rail.dart';
+export 'navigation/slide_indexed_stack.dart';
 export 'navigation/nav_destination.dart';
 export 'navigation/nav_item.dart';
 
@@ -56,7 +59,9 @@ export 'navigation/nav_item.dart';
 export 'settings/home_screen_sheet.dart';
 export 'settings/home_settings_card.dart';
 export 'settings/language_picker_sheet.dart';
+export 'settings/palette_picker_sheet.dart';
 export 'settings/practice_settings_card.dart';
+export 'settings/reminders_card.dart';
 export 'settings/settings_card.dart';
 export 'settings/settings_info.dart';
 export 'settings/attribution_card.dart';
@@ -117,6 +122,7 @@ export 'exercise/view_detail_button.dart';
 export 'exercise/practice_flashcard_body.dart';
 export 'exercise/practice_mcq_body.dart';
 export 'exercise/practice_progress_row.dart';
+export 'exercise/question_switcher.dart';
 export 'exercise/sentence_cloze_body.dart';
 export 'exercise/sentence_cloze_card.dart';
 export 'exercise/session_review_row.dart';

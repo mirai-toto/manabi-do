@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/models/mcq_option.dart';
+import 'answer_reaction.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -226,22 +227,25 @@ class _McqOptionShell extends StatelessWidget {
       selected: option.state != McqOptionState.idle,
       button: option.state == McqOptionState.idle,
       excludeSemantics: true,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 120),
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: bgColor,
-          border: Border.all(
-            color: borderColor,
-            width: AppDimens.borderWidthInteractive,
+      child: AnswerReaction(
+        state: option.state,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 120),
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            color: bgColor,
+            border: Border.all(
+              color: borderColor,
+              width: AppDimens.borderWidthInteractive,
+            ),
+            borderRadius: BorderRadius.circular(AppDimens.radiusMd),
           ),
-          borderRadius: BorderRadius.circular(AppDimens.radiusMd),
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: option.state == McqOptionState.idle ? onTap : null,
-            child: builder(contentColor),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: option.state == McqOptionState.idle ? onTap : null,
+              child: builder(contentColor),
+            ),
           ),
         ),
       ),

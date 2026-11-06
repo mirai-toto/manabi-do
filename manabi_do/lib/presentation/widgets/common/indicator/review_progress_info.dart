@@ -1,3 +1,4 @@
+import 'progress_bar.dart';
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card;
 
@@ -63,14 +64,11 @@ class ReviewProgressInfo extends StatelessWidget {
         ),
         if (srsCard != null) ...[
           const SizedBox(height: AppDimens.spaceSm),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(AppDimens.radiusXs),
-            child: LinearProgressIndicator(
-              value: progress,
-              backgroundColor: t.outlineVariant,
-              color: stateColor,
-              minHeight: 6,
-            ),
+          AppProgressBar(
+            progress: progress,
+            color: stateColor,
+            trackColor: t.outlineVariant,
+            radius: AppDimens.radiusXs,
           ),
         ],
       ],
