@@ -43,8 +43,8 @@ SHOTS = {
     "4-vocab": ("sakura", "The words that matter most", "Ordered by how often they appear"),
     "5-grammar": ("matcha", "Grammar from the basics", "Clear lessons, starting with how Japanese is written"),
     "6-widgets": ("kuri", "Review from your home screen", "Reviews, kanji of the day, grammar, streak"),
-    "7-themes": ("sumi", "Six colour themes", "Each in light and dark"),
-    "8-summary": ("fuji", "See every session add up", "No account, no ads, fully offline"),
+    "7-cloze": ("sumi", "Words in real sentences", "Fill the gap, with furigana and translation"),
+    "8-builder": ("sakura", "Build sentences, learn grammar", "Arrange the words, check your answer"),
 }
 
 
