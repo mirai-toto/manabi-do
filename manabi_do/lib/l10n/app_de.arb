@@ -573,5 +573,6 @@
   "onboardingRemindersBody": "Eine Benachrichtigung am Tag, nur wenn Wiederholungen warten oder Ihre Serie in Gefahr ist. Jederzeit in den Einstellungen änderbar.",
   "onboardingRemindMe": "Erinnern Sie mich",
   "onboardingNotNow": "Nicht jetzt",
-  "onboardingReminderAt": "Jeden Tag um {time}"
+  "onboardingReminderAt": "Jeden Tag um {time}",
+  "settingsColourTheme": "Farbthema"
 }

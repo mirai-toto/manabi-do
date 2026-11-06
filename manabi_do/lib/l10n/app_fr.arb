@@ -573,5 +573,6 @@
   "onboardingRemindersBody": "Une notification par jour, seulement quand des révisions vous attendent ou que votre série est en jeu. Modifiable à tout moment dans les réglages.",
   "onboardingRemindMe": "Me le rappeler",
   "onboardingNotNow": "Pas maintenant",
-  "onboardingReminderAt": "Chaque jour à {time}"
+  "onboardingReminderAt": "Chaque jour à {time}",
+  "settingsColourTheme": "Thème de couleurs"
 }

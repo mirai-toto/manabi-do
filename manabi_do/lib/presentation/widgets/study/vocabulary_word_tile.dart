@@ -156,11 +156,11 @@ class _VocabularyWordTileState extends State<VocabularyWordTile> {
                                   ),
                                   color: vocabularyLevelColor(
                                     widget.entry.vocabularyLevel,
-                                    Theme.of(context).brightness,
+                                    context.tokens,
                                   ),
                                   background: vocabularyLevelColor(
                                     widget.entry.vocabularyLevel,
-                                    Theme.of(context).brightness,
+                                    context.tokens,
                                   ).withValues(alpha: 0.12),
                                   textStyle: AppTextStyles.labelSmall,
                                 ),

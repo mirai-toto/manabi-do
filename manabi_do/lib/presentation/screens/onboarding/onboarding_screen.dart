@@ -305,7 +305,6 @@ class _HookPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    final Brightness brightness = Theme.of(context).brightness;
 
     return _Page(
       title: l.onboardingHookTitle,
@@ -320,7 +319,7 @@ class _HookPage extends StatelessWidget {
                 label: l.onboardingLevelWords(level, count),
                 share: share,
                 width: width,
-                color: vocabularyLevelColor(level, brightness),
+                color: vocabularyLevelColor(level, context.tokens),
               ),
             ],
           ],

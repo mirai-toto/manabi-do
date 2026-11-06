@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'app_palette.dart';
 import 'app_tokens.dart';
 
 abstract final class AppTheme {
-  static ThemeData get light => _build(AppTokens.light, Brightness.light);
-  static ThemeData get dark => _build(AppTokens.dark, Brightness.dark);
+  static ThemeData light(AppPalette palette) =>
+      _build(palette.light, Brightness.light);
+  static ThemeData dark(AppPalette palette) =>
+      _build(palette.dark, Brightness.dark);
 
   /// Maps [tokens] onto Material's own colour roles.
   ///

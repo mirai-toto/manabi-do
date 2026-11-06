@@ -41,7 +41,7 @@ class VocabularyLevelView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final vocabularyAsync = ref.watch(vocabularyByLevelProvider(level));
-    final color = vocabularyLevelColor(level, Theme.of(context).brightness);
+    final color = vocabularyLevelColor(level, context.tokens);
 
     return switch (vocabularyAsync) {
       AsyncLoading() => const Center(child: AppSpinner.page()),

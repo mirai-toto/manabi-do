@@ -9,6 +9,7 @@ import '../../../core/providers/reminder_settings_provider.dart';
 import '../../../core/providers/srs_settings_provider.dart';
 import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/app_dimens.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/app_languages.dart';
@@ -142,6 +143,7 @@ class SettingsScreen extends ConsumerWidget {
     final l = context.l10n;
     final t = context.tokens;
     final themeMode = ref.watch(themeModeProvider);
+    final AppPalette palette = ref.watch(paletteProvider);
     final locale = ref.watch(localeProvider);
 
     final SrsSettings srs = ref.watch(srsSettingsProvider);
@@ -241,6 +243,20 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: AppDimens.spaceSm),
             SettingsCard(
               children: [
+                SettingsTile(
+                  leading: Icon(
+                    Icons.palette_outlined,
+                    size: 20,
+                    color: t.onSurfaceVariant,
+                  ),
+                  label: l.settingsColourTheme,
+                  value: palette.label,
+                  onTap: () => showPalettePickerSheet(
+                    context,
+                    selected: palette,
+                    onSelected: ref.read(paletteProvider.notifier).setPalette,
+                  ),
+                ),
                 SettingsTile(
                   leading: AppEmoji(currentLang.flag, size: 22),
                   label: l.settingsLanguage,

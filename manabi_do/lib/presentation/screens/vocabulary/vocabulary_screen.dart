@@ -29,8 +29,6 @@ class VocabularyScreen extends ConsumerWidget {
         ? l.vocabularySubtitle(total)
         : l.vocabularySubtitleShort;
 
-    final brightness = Theme.of(context).brightness;
-
     Widget body;
     if (selectedLevel == null) {
       body = VocabularyLevelSelector(
@@ -50,7 +48,7 @@ class VocabularyScreen extends ConsumerWidget {
           context,
           title: vocabularyLevelLabel(selectedLevel, context),
           level: selectedLevel,
-          color: vocabularyLevelColor(selectedLevel, brightness),
+          color: vocabularyLevelColor(selectedLevel, context.tokens),
         ),
         onSelect: (i) =>
             ref.read(vocabularySelectedGroupProvider.notifier).select(i),
@@ -65,7 +63,7 @@ class VocabularyScreen extends ConsumerWidget {
           context,
           title: l.groupN(selectedGroup + 1),
           level: selectedLevel,
-          color: vocabularyLevelColor(selectedLevel, brightness),
+          color: vocabularyLevelColor(selectedLevel, context.tokens),
           vocabularyIds: vocabularyIds,
         ),
       );

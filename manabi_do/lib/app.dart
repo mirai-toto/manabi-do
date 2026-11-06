@@ -6,6 +6,7 @@ import 'package:manabi_do/l10n/app_localizations.dart';
 import 'core/providers/locale_provider.dart';
 import 'core/providers/onboarding_provider.dart';
 import 'core/providers/theme_provider.dart';
+import 'core/theme/app_palette.dart';
 import 'core/theme/app_theme.dart';
 import 'presentation/screens/onboarding/onboarding_screen.dart';
 import 'presentation/screens/shell_screen.dart';
@@ -16,6 +17,7 @@ class ManabiDoApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeModeProvider);
+    final AppPalette palette = ref.watch(paletteProvider);
     final locale = ref.watch(localeProvider);
     // Read synchronously, so the first frame is already the right screen.
     // Onboarding sets the locale, which rebuilds this; leaving it as `home`
@@ -34,8 +36,8 @@ class ManabiDoApp extends ConsumerWidget {
       ],
       locale: locale,
       supportedLocales: AppLocalizations.supportedLocales,
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
+      theme: AppTheme.light(palette),
+      darkTheme: AppTheme.dark(palette),
       themeMode: themeMode,
       home: onboarded ? const ShellScreen() : const OnboardingScreen(),
     );

@@ -734,5 +734,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "settingsColourTheme": "Colour theme"
 }

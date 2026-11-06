@@ -35,6 +35,14 @@ class AppTokens extends ThemeExtension<AppTokens> {
   final Color onyomi;
   final Color kunyomi;
 
+  /// The five vocabulary level colours, level 1 first. A sequential ramp
+  /// around [primary]: see `vocabulary_level.dart`.
+  final List<Color> levelRamp;
+
+  // The landing hero's gradient, drawn on its own dark panel in either mode.
+  final Color heroDeep;
+  final Color heroMid;
+
   const AppTokens({
     required this.surface,
     required this.surfaceVariant,
@@ -59,63 +67,10 @@ class AppTokens extends ThemeExtension<AppTokens> {
     required this.hintStroke,
     required this.onyomi,
     required this.kunyomi,
+    required this.levelRamp,
+    required this.heroDeep,
+    required this.heroMid,
   });
-
-  static const light = AppTokens(
-    surface: Color(0xFFFEF7FF),
-    surfaceVariant: Color(0xFFE7E0EC),
-    surfaceContainer: Color(0xFFF3EDF7),
-    surfaceContainerHigh: Color(0xFFECE6F0),
-    cardBackground: Color(0xFFFFFFFF),
-    onSurface: Color(0xFF1C1B1F),
-    onSurfaceVariant: Color(0xFF49454F),
-    outline: Color(0xFF79747E),
-    outlineVariant: Color(0xFFCAC4D0),
-    primary: Color(0xFF6B4EFF),
-    primaryLight: Color(0xFF9B7FFF),
-    primaryContainer: Color(0xFFE8E0FF),
-    onPrimary: Color(0xFFFFFFFF),
-    onPrimaryContainer: Color(0xFF1E0085),
-    error: Color(0xFFB3261E),
-    errorContainer: Color(0xFFFCE8E6),
-    success: Color(0xFF146B3A),
-    successContainer: Color(0xFFC8F5DA),
-    warning: Color(0xFF7A5200),
-    warningContainer: Color(0xFFFFDDB3),
-    hintStroke: Color(0xFFFF8F00),
-    onyomi: Color(0xFF1565C0),
-    kunyomi: Color(0xFFC62828),
-  );
-
-  static const dark = AppTokens(
-    surface: Color(0xFF141218),
-    surfaceVariant: Color(0xFF49454F),
-    // Was #141218, identical to `surface`, which made every fill drawn on the
-    // surface invisible in dark: the zebra striping in grammar tables, the nav
-    // bar, the segmented tab track. This is M3's own step between `surface`
-    // and `surfaceContainerHigh`, matching the light values either side of it.
-    surfaceContainer: Color(0xFF211F26),
-    surfaceContainerHigh: Color(0xFF2B2930),
-    cardBackground: Color(0xFF1E1B24),
-    onSurface: Color(0xFFE6E1E5),
-    onSurfaceVariant: Color(0xFFCAC4D0),
-    outline: Color(0xFF938F99),
-    outlineVariant: Color(0xFF49454F),
-    primary: Color(0xFFCFBCFF),
-    primaryLight: Color(0xFFB39DFF),
-    primaryContainer: Color(0xFF4F378B),
-    onPrimary: Color(0xFF381E72),
-    onPrimaryContainer: Color(0xFFEADDFF),
-    error: Color(0xFFF2B8B5),
-    errorContainer: Color(0xFF8C1D18),
-    success: Color(0xFF6CDFAB),
-    successContainer: Color(0xFF0A3D22),
-    warning: Color(0xFFFFBA60),
-    warningContainer: Color(0xFF3E2900),
-    hintStroke: Color(0xFFFFB74D),
-    onyomi: Color(0xFF90CAF9),
-    kunyomi: Color(0xFFEF9A9A),
-  );
 
   @override
   AppTokens copyWith({
@@ -142,6 +97,9 @@ class AppTokens extends ThemeExtension<AppTokens> {
     Color? hintStroke,
     Color? onyomi,
     Color? kunyomi,
+    List<Color>? levelRamp,
+    Color? heroDeep,
+    Color? heroMid,
   }) => AppTokens(
     surface: surface ?? this.surface,
     surfaceVariant: surfaceVariant ?? this.surfaceVariant,
@@ -166,6 +124,9 @@ class AppTokens extends ThemeExtension<AppTokens> {
     hintStroke: hintStroke ?? this.hintStroke,
     onyomi: onyomi ?? this.onyomi,
     kunyomi: kunyomi ?? this.kunyomi,
+    levelRamp: levelRamp ?? this.levelRamp,
+    heroDeep: heroDeep ?? this.heroDeep,
+    heroMid: heroMid ?? this.heroMid,
   );
 
   @override
@@ -223,6 +184,12 @@ class AppTokens extends ThemeExtension<AppTokens> {
       hintStroke: Color.lerp(hintStroke, other.hintStroke, t)!,
       onyomi: Color.lerp(onyomi, other.onyomi, t)!,
       kunyomi: Color.lerp(kunyomi, other.kunyomi, t)!,
+      levelRamp: [
+        for (var i = 0; i < levelRamp.length; i++)
+          Color.lerp(levelRamp[i], other.levelRamp[i], t)!,
+      ],
+      heroDeep: Color.lerp(heroDeep, other.heroDeep, t)!,
+      heroMid: Color.lerp(heroMid, other.heroMid, t)!,
     );
   }
 

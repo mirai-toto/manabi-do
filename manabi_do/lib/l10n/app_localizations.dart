@@ -2247,6 +2247,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Every day at {time}'**
   String onboardingReminderAt(String time);
+
+  /// No description provided for @settingsColourTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Colour theme'**
+  String get settingsColourTheme;
 }
 
 class _AppLocalizationsDelegate

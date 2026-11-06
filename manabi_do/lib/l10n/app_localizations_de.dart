@@ -1245,4 +1245,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String onboardingReminderAt(String time) {
     return 'Jeden Tag um $time';
   }
+
+  @override
+  String get settingsColourTheme => 'Farbthema';
 }

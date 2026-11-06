@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/models/exercise_filter.dart';
+import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../l10n/vocabulary_level_label.dart';
 import '../../services/vocabulary_session_service.dart';
@@ -35,7 +36,7 @@ class VocabularyPracticeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PracticeSessionScreen(
       title: vocabularyLevelLabel(level, context),
-      color: vocabularyLevelColor(level, Theme.of(context).brightness),
+      color: vocabularyLevelColor(level, context.tokens),
       loadQueue: (ref) => ref
           .read(vocabularySessionServiceProvider)
           .buildQueue(

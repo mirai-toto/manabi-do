@@ -26,10 +26,7 @@ class VocabularyDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
-    final color = vocabularyLevelColor(
-      entry.vocabularyLevel,
-      Theme.of(context).brightness,
-    );
+    final color = vocabularyLevelColor(entry.vocabularyLevel, context.tokens);
     final String meaning = ref.watch(vocabularyMeaningProvider(entry)).meaning;
 
     return Scaffold(
@@ -110,7 +107,7 @@ class _Hero extends StatelessWidget {
               label: vocabularyLevelLabel(entry.vocabularyLevel, context),
               color: onVocabularyLevelColor(
                 entry.vocabularyLevel,
-                Theme.of(context).brightness,
+                context.tokens,
               ),
               background: color,
               textStyle: AppTextStyles.labelSmall,
