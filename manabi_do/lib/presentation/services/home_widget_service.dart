@@ -6,8 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:home_widget/home_widget.dart';
 
 import '../../core/providers/locale_provider.dart';
+import '../../core/providers/theme_provider.dart';
 import '../../core/providers/review_log_provider.dart';
 import '../../core/srs/dashboard_stats.dart';
+import '../../core/theme/app_palette.dart';
+import '../../core/theme/app_tokens.dart';
 import '../../data/database/app_database.dart';
 import '../../l10n/app_localizations.dart';
 import '../providers/database_provider.dart';
@@ -79,6 +82,10 @@ class HomeWidgetService {
     await _saveKanji(l, now);
     await _saveGrammar(l);
     await _saveActivity(l, now);
+    await _saveColours();
+    // Last, after everything above: an open widget redraws when this changes
+    // (`WidgetContent` in WidgetCommon.kt), so it must see the whole snapshot.
+    await _save('synced_at', now.millisecondsSinceEpoch);
 
     for (final String receiver in _receivers) {
       await HomeWidget.updateWidget(qualifiedAndroidName: _receiver(receiver));
@@ -200,6 +207,38 @@ class HomeWidgetService {
     await HomeWidget.scheduleWidgetUpdates([
       DateTime(now.year, now.month, now.day + 1),
     ], qualifiedAndroidName: _receiver('StreakWidgetReceiver'));
+  }
+
+  /// The theme's colours, light and dark, so the widgets follow the colour
+  /// theme picked in the app. Read by `WidgetColors.from` on the Kotlin side.
+  Future<void> _saveColours() async {
+    final AppPalette palette = _ref.read(paletteProvider);
+    Map<String, Object> side(AppTokens t, {required bool dark}) => {
+      // The widget card sits on the wallpaper, so in dark mode it takes the
+      // container step: plain `surface` is near black and loses its edge.
+      'surface': (dark ? t.surfaceContainer : t.surface).toARGB32(),
+      'onSurface': t.onSurface.toARGB32(),
+      'muted': t.onSurfaceVariant.toARGB32(),
+      'primary': t.primary.toARGB32(),
+      'onPrimary': t.onPrimary.toARGB32(),
+      'primaryContainer': t.primaryContainer.toARGB32(),
+      'onPrimaryContainer': t.onPrimaryContainer.toARGB32(),
+      'track': t.surfaceVariant.toARGB32(),
+      // The streak heatmap, empty to busiest: the level ramp read from its
+      // faint end, as on the vocabulary screen.
+      'heat': [
+        t.surfaceContainerHigh,
+        if (dark) ...[t.levelRamp[4], t.levelRamp[2], t.levelRamp[0]],
+        if (!dark) ...[t.levelRamp[4], t.levelRamp[3], t.levelRamp[1]],
+      ].map((c) => c.toARGB32()).toList(),
+    };
+    await _save(
+      'theme_colours',
+      jsonEncode({
+        'day': side(palette.light, dark: false),
+        'night': side(palette.dark, dark: true),
+      }),
+    );
   }
 
   Future<void> _save<T>(String key, T value) =>

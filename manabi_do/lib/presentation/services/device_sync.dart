@@ -7,6 +7,7 @@ import '../../core/providers/home_settings_provider.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/reminder_settings_provider.dart';
 import '../../core/providers/review_log_provider.dart';
+import '../../core/providers/theme_provider.dart';
 import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
 import '../providers/grammar_provider.dart';
@@ -15,7 +16,7 @@ import 'reminder_service.dart';
 
 /// Keeps what the system shows outside the app, the home-screen widgets and
 /// the daily reminder, in step with the app while it runs: after reviews,
-/// lessons, a language, deck or reminder change, and whenever the app comes
+/// lessons, a language, deck, theme or reminder change, and whenever the app comes
 /// back.
 ///
 /// Changes arrive in bursts (one card per answer), so a sync waits for a
@@ -40,6 +41,7 @@ final deviceSyncProvider = Provider<void>((ref) {
   ref.listen(localeProvider, (_, _) => schedule());
   ref.listen(homeSettingsProvider, (_, _) => schedule());
   ref.listen(reminderSettingsProvider, (_, _) => schedule());
+  ref.listen(paletteProvider, (_, _) => schedule());
   ref.listen(grammarContinueProvider, (_, _) => schedule());
   final AppLifecycleListener lifecycle = AppLifecycleListener(
     onResume: schedule,
