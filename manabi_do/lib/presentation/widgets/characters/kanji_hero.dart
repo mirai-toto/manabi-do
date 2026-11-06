@@ -60,23 +60,10 @@ class KanjiHero extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  CharacterHeroBox(
-                    character: kanji.character,
-                    size: 96,
-                    onAccentOverride: onAccent,
-                  ),
-                  Positioned(
-                    top: AppDimens.spaceSm,
-                    right: AppDimens.spaceSm,
-                    child: SpeakButton(
-                      text: kanji.character,
-                      color: onAccent.withValues(alpha: 0.8),
-                      size: 18,
-                    ),
-                  ),
-                ],
+              CharacterHeroBox(
+                character: kanji.character,
+                size: 96,
+                onAccentOverride: onAccent,
               ),
               const SizedBox(width: AppDimens.spaceMd),
               Expanded(
@@ -86,6 +73,15 @@ class KanjiHero extends StatelessWidget {
                   onAccent: onAccent,
                   missingLanguage: missingLanguage,
                 ),
+              ),
+              const SizedBox(width: AppDimens.spaceSm),
+              // Beside the character rather than on it: over the glyph it was
+              // small and hard to find.
+              SpeakButton(
+                text: kanji.character,
+                color: onAccent,
+                background: onAccent.withValues(alpha: 0.2),
+                size: 22,
               ),
             ],
           ),
