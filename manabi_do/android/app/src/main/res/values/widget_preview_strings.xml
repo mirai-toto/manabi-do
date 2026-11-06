@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sample content for the widget picker previews. The labels match the app's
+     own (lib/l10n/app_*.arb), which the real widgets receive at run time. -->
+<resources>
+    <string name="widget_preview_reviews_unit">reviews due</string>
+    <string name="widget_preview_reviews_button">Start reviews</string>
+    <string name="widget_preview_grammar_heading">Keep learning · basics</string>
+    <string name="widget_preview_grammar_title">The Three Scripts</string>
+    <string name="widget_preview_grammar_progress">Lesson 1 of 3</string>
+    <string name="widget_preview_grammar_button">Resume</string>
+    <string name="widget_preview_kanji_heading">Kanji of the day · N5</string>
+    <string name="widget_preview_kanji_meaning">going, journey, carry out</string>
+    <string name="widget_preview_kanji_on">onyomi</string>
+    <string name="widget_preview_kanji_kun">kunyomi</string>
+    <string name="widget_preview_streak_label">day streak</string>
+    <string name="widget_preview_streak_range">Last 20 weeks</string>
+    <!-- Not translated: it is the app's name. -->
+    <string name="widget_preview_app_name" translatable="false">Manabi Do</string>
+</resources>

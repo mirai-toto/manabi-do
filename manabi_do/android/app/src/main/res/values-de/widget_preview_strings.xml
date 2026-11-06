@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sample content for the widget picker previews. The labels match the app's
+     own (lib/l10n/app_*.arb), which the real widgets receive at run time. -->
+<resources>
+    <string name="widget_preview_reviews_unit">fällige Wiederholungen</string>
+    <string name="widget_preview_reviews_button">Wiederholungen starten</string>
+    <string name="widget_preview_grammar_heading">Weiterlernen · basics</string>
+    <string name="widget_preview_grammar_title">Die Drei Schriftsysteme</string>
+    <string name="widget_preview_grammar_progress">Lektion 1 von 3</string>
+    <string name="widget_preview_grammar_button">Fortsetzen</string>
+    <string name="widget_preview_kanji_heading">Kanji des Tages · N5</string>
+    <string name="widget_preview_kanji_meaning">going, journey, carry out</string>
+    <string name="widget_preview_kanji_on">Onyomi</string>
+    <string name="widget_preview_kanji_kun">Kunyomi</string>
+    <string name="widget_preview_streak_label">Tage in Folge</string>
+    <string name="widget_preview_streak_range">Letzte 20 Wochen</string>
+</resources>

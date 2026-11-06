@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- WidgetColors from WidgetCommon.kt, for the picker previews. A preview is a
+     plain layout rather than Glance, so it cannot read those directly. -->
+<resources>
+    <color name="widget_surface">#FEF7FF</color>
+    <color name="widget_on_surface">#1C1B1F</color>
+    <color name="widget_muted">#5A5560</color>
+    <color name="widget_primary">#6B4EFF</color>
+    <color name="widget_on_primary">#FFFFFF</color>
+    <color name="widget_primary_container">#E8E0FF</color>
+    <color name="widget_on_primary_container">#2A1A5E</color>
+    <color name="widget_track">#E7E0EC</color>
+    <color name="widget_onyomi">#1565C0</color>
+    <color name="widget_kunyomi">#7A5200</color>
+    <!-- StreakWidget's heatmap palette, empty to busiest. -->
+    <color name="widget_heat_0">#ECE6F0</color>
+    <color name="widget_heat_1">#C9BCFF</color>
+    <color name="widget_heat_2">#9B7FFF</color>
+    <color name="widget_heat_3">#5B3FE0</color>
+</resources>
