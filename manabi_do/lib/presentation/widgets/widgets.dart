@@ -57,6 +57,7 @@ export 'settings/home_screen_sheet.dart';
 export 'settings/home_settings_card.dart';
 export 'settings/language_picker_sheet.dart';
 export 'settings/practice_settings_card.dart';
+export 'settings/reminders_card.dart';
 export 'settings/settings_card.dart';
 export 'settings/settings_info.dart';
 export 'settings/attribution_card.dart';

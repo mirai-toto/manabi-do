@@ -10,7 +10,9 @@ import '../../core/theme/jlpt_level.dart';
 import '../../l10n/l10n.dart';
 import '../providers/grammar_provider.dart';
 import '../providers/home_provider.dart';
+import '../services/device_sync.dart';
 import '../services/home_widget_service.dart';
+import '../services/reminder_service.dart';
 import '../widgets/widgets.dart';
 import 'characters/characters_screen.dart';
 import 'characters/kanji/kanji_detail_screen.dart';
@@ -43,10 +45,17 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     super.initState();
     HardwareKeyboard.instance.addHandler(_onKey);
     if (homeWidgetsSupported) {
-      ref.read(homeWidgetSyncProvider);
-      HomeWidget.initiallyLaunchedFromHomeWidget().then(_openFromWidget);
-      _widgetClicks = HomeWidget.widgetClicked.listen(_openFromWidget);
+      HomeWidget.initiallyLaunchedFromHomeWidget().then(_openLink);
+      _widgetClicks = HomeWidget.widgetClicked.listen(_openLink);
     }
+    if (remindersSupported) {
+      final ReminderService reminders = ref.read(reminderServiceProvider);
+      reminders
+          .initialize(onOpen: _openLink)
+          .then((_) => reminders.launchLink())
+          .then(_openLink);
+    }
+    ref.read(deviceSyncProvider);
   }
 
   @override
@@ -56,9 +65,10 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     super.dispose();
   }
 
-  /// Opens what a home-screen widget was tapped for, on the home tab:
-  /// `manabido://review`, `manabido://kanji/<id>` or `manabido://grammar`.
-  Future<void> _openFromWidget(Uri? uri) async {
+  /// Opens what a home-screen widget or a reminder was tapped for, on the
+  /// home tab: `manabido://review`, `manabido://kanji/<id>` or
+  /// `manabido://grammar`.
+  Future<void> _openLink(Uri? uri) async {
     if (uri == null || uri.scheme != 'manabido') return;
     ref.read(selectedTabProvider.notifier).select(0);
     final NavigatorState? home = _navKeys[0].currentState;

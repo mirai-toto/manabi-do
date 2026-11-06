@@ -1172,4 +1172,78 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get widgetMore => 'Plus';
+
+  @override
+  String get reminderChannelName => 'Rappels d\'étude';
+
+  @override
+  String get reminderChannelDescription =>
+      'Un rappel par jour quand des révisions vous attendent';
+
+  @override
+  String reminderDueTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count révisions à faire',
+      one: '$count révision à faire',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reminderDueBody =>
+      'Quelques minutes suffisent pour les garder en tête';
+
+  @override
+  String reminderStreakBody(int days) {
+    return 'Gardez votre série de $days jours';
+  }
+
+  @override
+  String reminderStreakTitle(int days) {
+    return 'Ne perdez pas votre série de $days jours';
+  }
+
+  @override
+  String get reminderStreakOnlyBody =>
+      'Une courte séance aujourd\'hui suffit à la prolonger';
+
+  @override
+  String get settingsReminders => 'Rappels';
+
+  @override
+  String get settingsDailyReminder => 'Rappel quotidien';
+
+  @override
+  String get settingsReminderTime => 'Heure';
+
+  @override
+  String get settingsRemindersNote =>
+      'Envoyé seulement quand des révisions sont à faire ou que votre série est en jeu.';
+
+  @override
+  String get remindersBlocked =>
+      'Les notifications sont désactivées pour Manabi Do.';
+
+  @override
+  String get remindersOpenSystemSettings => 'Ouvrir les réglages';
+
+  @override
+  String get onboardingRemindersTitle => 'Un rappel chaque jour ?';
+
+  @override
+  String get onboardingRemindersBody =>
+      'Une notification par jour, seulement quand des révisions vous attendent ou que votre série est en jeu. Modifiable à tout moment dans les réglages.';
+
+  @override
+  String get onboardingRemindMe => 'Me le rappeler';
+
+  @override
+  String get onboardingNotNow => 'Pas maintenant';
+
+  @override
+  String onboardingReminderAt(String time) {
+    return 'Chaque jour à $time';
+  }
 }

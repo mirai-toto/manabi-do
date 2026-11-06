@@ -1,13 +1,10 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:home_widget/home_widget.dart';
 
-import '../../core/providers/home_settings_provider.dart';
 import '../../core/providers/locale_provider.dart';
 import '../../core/providers/review_log_provider.dart';
 import '../../core/srs/dashboard_stats.dart';
@@ -15,6 +12,7 @@ import '../../data/database/app_database.dart';
 import '../../l10n/app_localizations.dart';
 import '../providers/database_provider.dart';
 import '../providers/grammar_provider.dart';
+import 'study_activity.dart';
 
 /// Package the widget receivers live in. `home_widget` resolves a bare
 /// `androidName` against the application id, which misses this subpackage, so
@@ -88,16 +86,7 @@ class HomeWidgetService {
   }
 
   Future<void> _saveReviews(AppLocalizations l, DateTime now) async {
-    final settings = _ref.read(homeSettingsProvider);
-    final Set<String> types = {
-      if (settings.showKana) ...{'hiragana', 'katakana'},
-      if (settings.showKanji) 'kanji',
-      if (settings.showVocabulary) 'vocabulary',
-    };
-    final List<DateTime> dues = [
-      for (final row in await _db.watchSrsDueDates().first)
-        if (types.contains(row.itemType)) row.due,
-    ];
+    final List<DateTime> dues = await loadDueDates(_ref);
     final List<int> upcoming =
         (dues.where((due) => due.isAfter(now)).toList()..sort())
             .take(_upcomingLimit)
@@ -196,20 +185,12 @@ class HomeWidgetService {
   }
 
   /// Reviews per day for the heatmap and streak.
-  ///
-  /// The review log only starts counting from this release, so days the
-  /// cards remember a review on but the log does not are kept as one review:
-  /// the streak stays what the home screen shows.
   Future<void> _saveActivity(AppLocalizations l, DateTime now) async {
-    final Map<String, int> log = _ref.read(reviewLogProvider);
-    final Set<DateTime> reviewed = await _db.watchReviewDates().first;
     final String oldest = reviewDayKey(
       DateTime(now.year, now.month, now.day - _activityDays),
     );
-    final Map<String, int> activity = {
-      for (final day in reviewed) reviewDayKey(day): 1,
-      ...log,
-    }..removeWhere((day, _) => day.compareTo(oldest) <= 0);
+    final Map<String, int> activity = await loadActivity(_ref)
+      ..removeWhere((day, _) => day.compareTo(oldest) <= 0);
 
     await _save('activity', jsonEncode(activity));
     await _save('streak_label', l.streakLabel);
@@ -228,38 +209,3 @@ class HomeWidgetService {
 final homeWidgetServiceProvider = Provider<HomeWidgetService>(
   (ref) => HomeWidgetService(ref),
 );
-
-/// Keeps the widgets in step with the app while it runs: after reviews,
-/// lessons, a language or deck change, and whenever the app comes back.
-///
-/// Changes arrive in bursts (one card per answer), so a sync waits for a
-/// quiet moment rather than running on every one.
-final homeWidgetSyncProvider = Provider<void>((ref) {
-  if (!homeWidgetsSupported) return;
-
-  Timer? pending;
-  void schedule() {
-    pending?.cancel();
-    pending = Timer(const Duration(seconds: 2), () {
-      ref.read(homeWidgetServiceProvider).sync();
-    });
-  }
-
-  final StreamSubscription<void> cards = ref
-      .read(databaseProvider)
-      .watchSrsDueDates()
-      .listen((_) => schedule());
-  ref.listen(reviewLogProvider, (_, _) => schedule());
-  ref.listen(localeProvider, (_, _) => schedule());
-  ref.listen(homeSettingsProvider, (_, _) => schedule());
-  ref.listen(grammarContinueProvider, (_, _) => schedule());
-  final AppLifecycleListener lifecycle = AppLifecycleListener(
-    onResume: schedule,
-  );
-
-  ref.onDispose(() {
-    pending?.cancel();
-    cards.cancel();
-    lifecycle.dispose();
-  });
-});

@@ -688,5 +688,51 @@
   "widgetAllLessonsRead": "Every lesson read",
   "widgetActivityRange": "Last 20 weeks",
   "widgetLess": "Less",
-  "widgetMore": "More"
+  "widgetMore": "More",
+  "reminderChannelName": "Study reminders",
+  "reminderChannelDescription": "A daily nudge when reviews are waiting",
+  "reminderDueTitle": "{count, plural, one{{count} review due} other{{count} reviews due}}",
+  "@reminderDueTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reminderDueBody": "A few minutes now keeps them fresh",
+  "reminderStreakBody": "Keep your {days}-day streak going",
+  "@reminderStreakBody": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "reminderStreakTitle": "Keep your {days}-day streak",
+  "@reminderStreakTitle": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "reminderStreakOnlyBody": "One short session today keeps it going",
+  "settingsReminders": "Reminders",
+  "settingsDailyReminder": "Daily reminder",
+  "settingsReminderTime": "Time",
+  "settingsRemindersNote": "Sent only when reviews are due or your streak is at risk.",
+  "remindersBlocked": "Notifications are turned off for Manabi Do.",
+  "remindersOpenSystemSettings": "Open settings",
+  "onboardingRemindersTitle": "A daily reminder?",
+  "onboardingRemindersBody": "One notification a day, only when reviews are waiting or your streak is at risk. You can change it in Settings at any time.",
+  "onboardingRemindMe": "Remind me",
+  "onboardingNotNow": "Not now",
+  "onboardingReminderAt": "Every day at {time}",
+  "@onboardingReminderAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  }
 }

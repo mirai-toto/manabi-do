@@ -2139,6 +2139,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'More'**
   String get widgetMore;
+
+  /// No description provided for @reminderChannelName.
+  ///
+  /// In en, this message translates to:
+  /// **'Study reminders'**
+  String get reminderChannelName;
+
+  /// No description provided for @reminderChannelDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A daily nudge when reviews are waiting'**
+  String get reminderChannelDescription;
+
+  /// No description provided for @reminderDueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{{count} review due} other{{count} reviews due}}'**
+  String reminderDueTitle(int count);
+
+  /// No description provided for @reminderDueBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A few minutes now keeps them fresh'**
+  String get reminderDueBody;
+
+  /// No description provided for @reminderStreakBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your {days}-day streak going'**
+  String reminderStreakBody(int days);
+
+  /// No description provided for @reminderStreakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your {days}-day streak'**
+  String reminderStreakTitle(int days);
+
+  /// No description provided for @reminderStreakOnlyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'One short session today keeps it going'**
+  String get reminderStreakOnlyBody;
+
+  /// No description provided for @settingsReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get settingsReminders;
+
+  /// No description provided for @settingsDailyReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily reminder'**
+  String get settingsDailyReminder;
+
+  /// No description provided for @settingsReminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get settingsReminderTime;
+
+  /// No description provided for @settingsRemindersNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent only when reviews are due or your streak is at risk.'**
+  String get settingsRemindersNote;
+
+  /// No description provided for @remindersBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are turned off for Manabi Do.'**
+  String get remindersBlocked;
+
+  /// No description provided for @remindersOpenSystemSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get remindersOpenSystemSettings;
+
+  /// No description provided for @onboardingRemindersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A daily reminder?'**
+  String get onboardingRemindersTitle;
+
+  /// No description provided for @onboardingRemindersBody.
+  ///
+  /// In en, this message translates to:
+  /// **'One notification a day, only when reviews are waiting or your streak is at risk. You can change it in Settings at any time.'**
+  String get onboardingRemindersBody;
+
+  /// No description provided for @onboardingRemindMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me'**
+  String get onboardingRemindMe;
+
+  /// No description provided for @onboardingNotNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get onboardingNotNow;
+
+  /// No description provided for @onboardingReminderAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Every day at {time}'**
+  String onboardingReminderAt(String time);
 }
 
 class _AppLocalizationsDelegate
