@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_motion.dart';
 
-/// Moves a session from one question to the next: the answered question
-/// slides a little to the left as it fades, and the next one comes in from the
-/// right.
+/// Moves a session from one question to the next: the next question pushes
+/// the answered one out to the left, both fully visible, like turning a card.
 ///
 /// [index] identifies the question, so each one gets fresh state, as the
 /// keyed subtree this replaces did. The question on its way out ignores taps:
@@ -15,29 +14,29 @@ class QuestionSwitcher extends StatelessWidget {
 
   const QuestionSwitcher({super.key, required this.index, required this.child});
 
-  /// How far a question travels, as a share of its width.
-  static const double _travel = 0.12;
+  /// How far a question travels, as a share of its width: all the way, so
+  /// the two cards meet edge to edge.
+  static const double _travel = 1;
 
   @override
   Widget build(BuildContext context) {
     final Key current = ValueKey(index);
-    return AnimatedSwitcher(
-      duration: context.motion(AppMotion.medium),
-      switchInCurve: AppMotion.enter,
-      switchOutCurve: AppMotion.enter,
-      layoutBuilder: (currentChild, previousChildren) => Stack(
-        alignment: Alignment.topCenter,
-        children: [...previousChildren, ?currentChild],
-      ),
-      transitionBuilder: (child, animation) {
-        final bool incoming = child.key == current;
-        // An outgoing child's animation runs from 1 back to 0, so its start
-        // offset is where it ends up: to the left.
-        final Offset start = Offset(incoming ? _travel : -_travel, 0);
-        return IgnorePointer(
-          ignoring: !incoming,
-          child: FadeTransition(
-            opacity: animation,
+    return ClipRect(
+      child: AnimatedSwitcher(
+        duration: context.motion(AppMotion.medium),
+        switchInCurve: AppMotion.enter,
+        switchOutCurve: AppMotion.enter,
+        layoutBuilder: (currentChild, previousChildren) => Stack(
+          alignment: Alignment.topCenter,
+          children: [...previousChildren, ?currentChild],
+        ),
+        transitionBuilder: (child, animation) {
+          final bool incoming = child.key == current;
+          // An outgoing child's animation runs from 1 back to 0, so its start
+          // offset is where it ends up: to the left.
+          final Offset start = Offset(incoming ? _travel : -_travel, 0);
+          return IgnorePointer(
+            ignoring: !incoming,
             child: SlideTransition(
               position: Tween(
                 begin: start,
@@ -45,10 +44,10 @@ class QuestionSwitcher extends StatelessWidget {
               ).animate(animation),
               child: child,
             ),
-          ),
-        );
-      },
-      child: KeyedSubtree(key: current, child: child),
+          );
+        },
+        child: KeyedSubtree(key: current, child: child),
+      ),
     );
   }
 }

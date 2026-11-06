@@ -5,7 +5,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../../core/theme/app_motion.dart';
 import '../common/action/app_button.dart';
-import '../common/decoration/fade_slide_in.dart';
+import '../common/decoration/slide_in.dart';
 import '../common/indicator/animated_count.dart';
 
 /// End-of-session results card. Shows score, correct/missed counts, time spent,
@@ -56,7 +56,7 @@ class SummaryCard extends StatelessWidget {
         children: [
           _ScoreCircle(score: score, total: total),
           const SizedBox(height: AppDimens.spaceLg),
-          FadeSlideIn(
+          SlideIn(
             order: 2,
             child: Column(
               children: [
@@ -75,7 +75,7 @@ class SummaryCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppDimens.spaceLg),
-          FadeSlideIn(
+          SlideIn(
             order: 4,
             child: _StatsGrid(
               correct: correct,
@@ -84,7 +84,7 @@ class SummaryCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppDimens.spaceLg),
-          FadeSlideIn(
+          SlideIn(
             order: 6,
             child: Row(
               children: [

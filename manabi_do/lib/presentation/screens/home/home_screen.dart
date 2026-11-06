@@ -121,7 +121,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  FadeSlideIn(
+                  SlideIn(
                     order: 0,
                     child: TodaysSessionCard(
                       domains: domains,
@@ -134,7 +134,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     SectionLabel(l.yourDecks),
                     if (show.showKana) ...[
                       const SizedBox(height: AppDimens.spaceSm),
-                      FadeSlideIn(
+                      SlideIn(
                         order: 1,
                         child: DeckRow(
                           title: l.kana,
@@ -156,7 +156,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     ],
                     if (show.showKanji) ...[
                       const SizedBox(height: AppDimens.spaceSm),
-                      FadeSlideIn(
+                      SlideIn(
                         order: 2,
                         child: DeckRow(
                           title: l.tabKanji,
@@ -178,7 +178,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     ],
                     if (show.showVocabulary) ...[
                       const SizedBox(height: AppDimens.spaceSm),
-                      FadeSlideIn(
+                      SlideIn(
                         order: 3,
                         child: DeckRow(
                           title: l.sectionVocabulary,
@@ -204,7 +204,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     const SizedBox(height: AppDimens.spaceLg),
                     SectionLabel(l.keepLearning),
                     const SizedBox(height: AppDimens.spaceSm),
-                    FadeSlideIn(
+                    SlideIn(
                       order: 4,
                       child: ContinueLessonCard(
                         title: continueTarget.lesson.title,
@@ -219,7 +219,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     ),
                   ],
                   const SizedBox(height: AppDimens.spaceLg),
-                  FadeSlideIn(
+                  SlideIn(
                     order: 5,
                     child: WeekStrip(
                       reviewedDays: weekActivity,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart' show Card, Rating;
-import '../common/decoration/fade_slide_in.dart';
+import '../common/decoration/slide_in.dart';
 import '../../../core/theme/srs_level_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -269,7 +269,7 @@ class FlashcardActions extends StatelessWidget {
     }
 
     // Rises into place when an answer brings it up, instead of popping in.
-    return FadeSlideIn(
+    return SlideIn(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

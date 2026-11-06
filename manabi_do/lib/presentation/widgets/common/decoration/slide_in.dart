@@ -2,36 +2,34 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_motion.dart';
 
-/// Fades [child] in while it rises a few pixels into place, once, when it is
-/// first built. [order] staggers a column of these so they arrive one after
-/// another rather than all at once.
+/// Springs [child] up into place, once, when it is first built. [order]
+/// staggers a column of these so they land one after another.
 ///
-/// Plays only on the first build: a screen kept alive in the tab stack does
-/// not replay it on every visit.
-class FadeSlideIn extends StatefulWidget {
+/// The child is fully visible throughout: it moves in rather than fading in,
+/// which reads as quicker. Plays only on the first build, so a screen kept
+/// alive in the tab stack does not replay it on every visit.
+class SlideIn extends StatefulWidget {
   final int order;
   final Widget child;
 
-  const FadeSlideIn({super.key, this.order = 0, required this.child});
+  const SlideIn({super.key, this.order = 0, required this.child});
 
   /// How far below its place the child starts, in logical pixels.
-  static const double _rise = 12;
+  static const double _rise = 16;
 
   @override
-  State<FadeSlideIn> createState() => _FadeSlideInState();
+  State<SlideIn> createState() => _SlideInState();
 }
 
-class _FadeSlideInState extends State<FadeSlideIn>
-    with SingleTickerProviderStateMixin {
+class _SlideInState extends State<SlideIn> with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     vsync: this,
     duration: AppMotion.medium,
   );
   late final Animation<double> _curve = CurvedAnimation(
     parent: _controller,
-    curve: AppMotion.enter,
+    curve: AppMotion.pop,
   );
-
   bool _started = false;
 
   @override
@@ -59,12 +57,9 @@ class _FadeSlideInState extends State<FadeSlideIn>
     return AnimatedBuilder(
       animation: _curve,
       child: widget.child,
-      builder: (context, child) => Opacity(
-        opacity: _curve.value,
-        child: Transform.translate(
-          offset: Offset(0, FadeSlideIn._rise * (1 - _curve.value)),
-          child: child,
-        ),
+      builder: (context, child) => Transform.translate(
+        offset: Offset(0, SlideIn._rise * (1 - _curve.value)),
+        child: child,
       ),
     );
   }

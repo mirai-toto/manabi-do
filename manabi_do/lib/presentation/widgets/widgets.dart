@@ -40,7 +40,7 @@ export 'common/surface/tappable_surface.dart';
 
 // — decoration
 export 'common/decoration/app_emoji.dart';
-export 'common/decoration/fade_slide_in.dart';
+export 'common/decoration/slide_in.dart';
 export 'common/decoration/landing_hero_panel.dart';
 export 'common/decoration/scroll_fade.dart';
 export 'common/decoration/sheet_drag_handle.dart';
@@ -51,7 +51,7 @@ export 'common/confirm_dialog.dart';
 // navigation
 export 'navigation/app_nav_bar.dart';
 export 'navigation/app_nav_rail.dart';
-export 'navigation/fade_indexed_stack.dart';
+export 'navigation/slide_indexed_stack.dart';
 export 'navigation/nav_destination.dart';
 export 'navigation/nav_item.dart';
 
