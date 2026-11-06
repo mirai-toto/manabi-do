@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart' show CupertinoPageTransitionsBuilder;
 import 'package:flutter/material.dart';
 import 'app_palette.dart';
 import 'app_tokens.dart';
@@ -49,6 +50,18 @@ abstract final class AppTheme {
       brightness: brightness,
       colorScheme: scheme,
       scaffoldBackgroundColor: t.surface,
+      // One way of opening a page everywhere. Android keeps its predictive
+      // back gesture; the desktop builds used the older zoom, which made the
+      // same app move differently on Linux.
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: PredictiveBackPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.linux: FadeForwardsPageTransitionsBuilder(),
+          TargetPlatform.windows: FadeForwardsPageTransitionsBuilder(),
+        },
+      ),
       extensions: [t],
     );
   }

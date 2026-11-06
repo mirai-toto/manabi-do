@@ -1,3 +1,4 @@
+import '../common/indicator/progress_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_dimens.dart';
@@ -108,15 +109,7 @@ class ChapterCard extends StatelessWidget {
                   ),
                 ],
                 const SizedBox(height: AppDimens.spaceMd),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(AppDimens.radiusPill),
-                  child: LinearProgressIndicator(
-                    value: _progress,
-                    minHeight: 6,
-                    backgroundColor: t.surfaceVariant,
-                    valueColor: AlwaysStoppedAnimation<Color>(accentColor),
-                  ),
-                ),
+                AppProgressBar(progress: _progress, color: accentColor),
                 const SizedBox(height: AppDimens.spaceXs),
                 Text(
                   progressLabel,

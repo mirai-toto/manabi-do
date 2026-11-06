@@ -227,7 +227,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     final body = PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) => _onBack(),
-      child: IndexedStack(
+      child: FadeIndexedStack(
         index: index,
         children: List.generate(
           _screenCount,

@@ -121,68 +121,81 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  TodaysSessionCard(
-                    domains: domains,
-                    newTotal: newTotal,
-                    onStart: () => openTodaysSession(context),
+                  FadeSlideIn(
+                    order: 0,
+                    child: TodaysSessionCard(
+                      domains: domains,
+                      newTotal: newTotal,
+                      onStart: () => openTodaysSession(context),
+                    ),
                   ),
                   if (domains.isNotEmpty) ...[
                     const SizedBox(height: AppDimens.spaceLg),
                     SectionLabel(l.yourDecks),
                     if (show.showKana) ...[
                       const SizedBox(height: AppDimens.spaceSm),
-                      DeckRow(
-                        title: l.kana,
-                        glyph: 'か',
-                        color: t.primary,
-                        known: kanaProgress.known,
-                        seen: kanaProgress.seen,
-                        newToday: kanaNew,
-                        due: kanaDue,
-                        onTap: () => openPracticeSession(
-                          context,
+                      FadeSlideIn(
+                        order: 1,
+                        child: DeckRow(
                           title: l.kana,
+                          glyph: 'か',
                           color: t.primary,
-                          loadQueue: (ref) =>
-                              ref.read(reviewQueueServiceProvider).kana(),
+                          known: kanaProgress.known,
+                          seen: kanaProgress.seen,
+                          newToday: kanaNew,
+                          due: kanaDue,
+                          onTap: () => openPracticeSession(
+                            context,
+                            title: l.kana,
+                            color: t.primary,
+                            loadQueue: (ref) =>
+                                ref.read(reviewQueueServiceProvider).kana(),
+                          ),
                         ),
                       ),
                     ],
                     if (show.showKanji) ...[
                       const SizedBox(height: AppDimens.spaceSm),
-                      DeckRow(
-                        title: l.tabKanji,
-                        glyph: '字',
-                        color: t.primary,
-                        known: kanjiProgress.known,
-                        seen: kanjiProgress.seen,
-                        newToday: kanjiNew,
-                        due: kanjiDue,
-                        onTap: () => openPracticeSession(
-                          context,
+                      FadeSlideIn(
+                        order: 2,
+                        child: DeckRow(
                           title: l.tabKanji,
+                          glyph: '字',
                           color: t.primary,
-                          loadQueue: (ref) =>
-                              ref.read(reviewQueueServiceProvider).kanji(),
+                          known: kanjiProgress.known,
+                          seen: kanjiProgress.seen,
+                          newToday: kanjiNew,
+                          due: kanjiDue,
+                          onTap: () => openPracticeSession(
+                            context,
+                            title: l.tabKanji,
+                            color: t.primary,
+                            loadQueue: (ref) =>
+                                ref.read(reviewQueueServiceProvider).kanji(),
+                          ),
                         ),
                       ),
                     ],
                     if (show.showVocabulary) ...[
                       const SizedBox(height: AppDimens.spaceSm),
-                      DeckRow(
-                        title: l.sectionVocabulary,
-                        glyph: '語',
-                        color: t.primary,
-                        known: vocabularyProgress.known,
-                        seen: vocabularyProgress.seen,
-                        newToday: vocabularyNew,
-                        due: vocabularyDue,
-                        onTap: () => openPracticeSession(
-                          context,
+                      FadeSlideIn(
+                        order: 3,
+                        child: DeckRow(
                           title: l.sectionVocabulary,
+                          glyph: '語',
                           color: t.primary,
-                          loadQueue: (ref) =>
-                              ref.read(reviewQueueServiceProvider).vocabulary(),
+                          known: vocabularyProgress.known,
+                          seen: vocabularyProgress.seen,
+                          newToday: vocabularyNew,
+                          due: vocabularyDue,
+                          onTap: () => openPracticeSession(
+                            context,
+                            title: l.sectionVocabulary,
+                            color: t.primary,
+                            loadQueue: (ref) => ref
+                                .read(reviewQueueServiceProvider)
+                                .vocabulary(),
+                          ),
                         ),
                       ),
                     ],
@@ -191,21 +204,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     const SizedBox(height: AppDimens.spaceLg),
                     SectionLabel(l.keepLearning),
                     const SizedBox(height: AppDimens.spaceSm),
-                    ContinueLessonCard(
-                      title: continueTarget.lesson.title,
-                      subtitle:
-                          '${continueTarget.themeTitle} · '
-                          '${continueTarget.chapterTitle}',
-                      lessonIndex: continueTarget.lessonIndex,
-                      lessonCount: continueTarget.chapterLessonCount,
-                      color: t.primary,
-                      onTap: () => _continueLesson(continueTarget),
+                    FadeSlideIn(
+                      order: 4,
+                      child: ContinueLessonCard(
+                        title: continueTarget.lesson.title,
+                        subtitle:
+                            '${continueTarget.themeTitle} · '
+                            '${continueTarget.chapterTitle}',
+                        lessonIndex: continueTarget.lessonIndex,
+                        lessonCount: continueTarget.chapterLessonCount,
+                        color: t.primary,
+                        onTap: () => _continueLesson(continueTarget),
+                      ),
                     ),
                   ],
                   const SizedBox(height: AppDimens.spaceLg),
-                  WeekStrip(
-                    reviewedDays: weekActivity,
-                    todayIndex: DateTime.now().weekday - 1,
+                  FadeSlideIn(
+                    order: 5,
+                    child: WeekStrip(
+                      reviewedDays: weekActivity,
+                      todayIndex: DateTime.now().weekday - 1,
+                    ),
                   ),
                 ],
               ),

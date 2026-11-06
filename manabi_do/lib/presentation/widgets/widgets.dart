@@ -17,6 +17,7 @@ export 'common/input/segmented_tab_bar.dart';
 export 'common/indicator/app_spinner.dart';
 export 'common/indicator/difficulty_dots.dart';
 export 'common/indicator/pill_badge.dart';
+export 'common/indicator/animated_count.dart';
 export 'common/indicator/progress_bar.dart';
 export 'common/indicator/progress_row.dart';
 export 'common/indicator/review_progress_info.dart';
@@ -39,6 +40,7 @@ export 'common/surface/tappable_surface.dart';
 
 // — decoration
 export 'common/decoration/app_emoji.dart';
+export 'common/decoration/fade_slide_in.dart';
 export 'common/decoration/landing_hero_panel.dart';
 export 'common/decoration/scroll_fade.dart';
 export 'common/decoration/sheet_drag_handle.dart';
@@ -49,6 +51,7 @@ export 'common/confirm_dialog.dart';
 // navigation
 export 'navigation/app_nav_bar.dart';
 export 'navigation/app_nav_rail.dart';
+export 'navigation/fade_indexed_stack.dart';
 export 'navigation/nav_destination.dart';
 export 'navigation/nav_item.dart';
 

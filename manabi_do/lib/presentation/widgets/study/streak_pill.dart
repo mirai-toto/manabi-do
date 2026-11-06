@@ -1,3 +1,4 @@
+import '../common/indicator/animated_count.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -53,8 +54,8 @@ class StreakPill extends StatelessWidget {
               ),
             ),
             const SizedBox(width: AppDimens.spaceXs),
-            Text(
-              '$days',
+            AnimatedCount(
+              value: days,
               style: AppTextStyles.labelLarge.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w800,
