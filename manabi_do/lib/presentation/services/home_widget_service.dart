@@ -16,6 +16,13 @@ import '../../l10n/app_localizations.dart';
 import '../providers/database_provider.dart';
 import '../providers/grammar_provider.dart';
 
+/// Package the widget receivers live in. `home_widget` resolves a bare
+/// `androidName` against the application id, which misses this subpackage, so
+/// every call passes the qualified name instead.
+const String _receiverPackage = 'com.github.mirai_toto.manabi_do.widgets';
+
+String _receiver(String name) => '$_receiverPackage.$name';
+
 /// Android receivers the snapshot is pushed to, by class name. Each one is
 /// declared in `android/app/src/main/AndroidManifest.xml`.
 const List<String> _receivers = [
@@ -76,7 +83,7 @@ class HomeWidgetService {
     await _saveActivity(l, now);
 
     for (final String receiver in _receivers) {
-      await HomeWidget.updateWidget(androidName: receiver);
+      await HomeWidget.updateWidget(qualifiedAndroidName: _receiver(receiver));
     }
   }
 
@@ -113,7 +120,7 @@ class HomeWidgetService {
     }.toList();
     await HomeWidget.scheduleWidgetUpdates(
       wakeAt,
-      androidName: 'ReviewsWidgetReceiver',
+      qualifiedAndroidName: _receiver('ReviewsWidgetReceiver'),
     );
   }
 
@@ -167,7 +174,7 @@ class HomeWidgetService {
     await _save('kanji_kun', l.kunyomi);
     await HomeWidget.scheduleWidgetUpdates(
       days.skip(1).toList(),
-      androidName: 'KanjiWidgetReceiver',
+      qualifiedAndroidName: _receiver('KanjiWidgetReceiver'),
     );
   }
 
@@ -211,7 +218,7 @@ class HomeWidgetService {
     await _save('streak_more', l.widgetMore);
     await HomeWidget.scheduleWidgetUpdates([
       DateTime(now.year, now.month, now.day + 1),
-    ], androidName: 'StreakWidgetReceiver');
+    ], qualifiedAndroidName: _receiver('StreakWidgetReceiver'));
   }
 
   Future<void> _save<T>(String key, T value) =>
