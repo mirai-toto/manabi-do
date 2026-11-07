@@ -351,6 +351,13 @@ class _Chip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
+    final textStyle = AppTextStyles.jpBody.copyWith(
+      color: selected ? color : t.onSurface,
+    );
+    final rubyStyle = AppTextStyles.jpFurigana.copyWith(
+      color: selected ? color : t.onSurfaceVariant,
+    );
+
     return Semantics(
       label: label,
       button: true,
@@ -373,14 +380,22 @@ class _Chip extends StatelessWidget {
               width: AppDimens.borderWidthContainer,
             ),
           ),
-          child: JapaneseText(
-            word: label,
-            style: AppTextStyles.jpBody.copyWith(
-              color: selected ? color : t.onSurface,
-            ),
-            rubyStyle: AppTextStyles.jpFurigana.copyWith(
-              color: selected ? color : t.onSurfaceVariant,
-            ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              // Invisible furigana word: its ruby line plus base line sets the
+              // pill height, so a kana-only chip gets the same pill and
+              // centres its word in it.
+              Opacity(
+                opacity: 0,
+                child: JapaneseText(
+                  word: '{見|み}',
+                  style: textStyle,
+                  rubyStyle: rubyStyle,
+                ),
+              ),
+              JapaneseText(word: label, style: textStyle, rubyStyle: rubyStyle),
+            ],
           ),
         ),
       ),
