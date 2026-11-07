@@ -36,10 +36,16 @@ class GrammarWidget : GlanceAppWidget() {
                 else "${prefs.text("grammar_heading")} · $level",
                 size = 11.sp,
                 weight = FontWeight.Medium,
+                maxLines = 2,
             )
             Spacer(GlanceModifier.height(6.dp))
             if (title.isEmpty()) {
-                Label(prefs.text("grammar_done"), color = colors.onSurface, size = 16.sp)
+                Label(
+                    prefs.text("grammar_done"),
+                    color = colors.onSurface,
+                    size = 16.sp,
+                    maxLines = 2,
+                )
                 return@WidgetCard
             }
             Label(

@@ -31,7 +31,6 @@ import androidx.glance.layout.Column
 import androidx.glance.layout.ColumnScope
 import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.fillMaxWidth
-import androidx.glance.layout.height
 import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
@@ -203,12 +202,14 @@ fun PillButton(
     Box(
         modifier =
             GlanceModifier.fillMaxWidth()
-                .height(44.dp)
                 .background(background)
                 .cornerRadius(22.dp)
-                .clickable(onClick),
+                .clickable(onClick)
+                .padding(horizontal = 16.dp, vertical = 12.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Label(text, color = content, size = 14.sp, weight = FontWeight.Medium)
+        // Two lines so a long label (e.g. French "Commencer les révisions")
+        // wraps instead of truncating to "Commencer le…".
+        Label(text, color = content, size = 14.sp, weight = FontWeight.Medium, maxLines = 2)
     }
 }

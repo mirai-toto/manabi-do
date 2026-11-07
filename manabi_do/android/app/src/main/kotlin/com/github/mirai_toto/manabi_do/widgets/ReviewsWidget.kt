@@ -55,7 +55,13 @@ class ReviewsWidget : GlanceAppWidget() {
             Label("Manabi Do", weight = FontWeight.Medium)
             Spacer(GlanceModifier.defaultWeight())
             Label(due.toString(), color = colors.primary, size = 44.sp, weight = FontWeight.Bold)
-            Label(unit, color = colors.onSurface, size = 14.sp, weight = FontWeight.Medium)
+            Label(
+                unit,
+                color = colors.onSurface,
+                size = 14.sp,
+                weight = FontWeight.Medium,
+                maxLines = 2,
+            )
             val hint =
                 when {
                     next != null ->
