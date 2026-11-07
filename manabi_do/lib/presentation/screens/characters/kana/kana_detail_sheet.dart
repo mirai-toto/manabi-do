@@ -49,23 +49,10 @@ class KanaDetailSheet extends ConsumerWidget {
             // Character hero
             Row(
               children: [
-                Stack(
-                  children: [
-                    CharacterHeroBox(
-                      character: entry.kana,
-                      size: 88,
-                      accentColor: color,
-                    ),
-                    Positioned(
-                      top: AppDimens.spaceSm,
-                      right: AppDimens.spaceSm,
-                      child: SpeakButton(
-                        text: entry.kana,
-                        color: Colors.white.withValues(alpha: 0.8),
-                        size: 18,
-                      ),
-                    ),
-                  ],
+                CharacterHeroBox(
+                  character: entry.kana,
+                  size: 88,
+                  accentColor: color,
                 ),
                 const SizedBox(width: AppDimens.spaceMd),
                 Expanded(
@@ -94,6 +81,18 @@ class KanaDetailSheet extends ConsumerWidget {
                       ),
                     ],
                   ),
+                ),
+                const SizedBox(width: AppDimens.spaceSm),
+                // Beside the character rather than on it, where a white icon
+                // was hard to see on the lighter level colours.
+                SpeakButton(
+                  text: entry.kana,
+                  color: onAccentContainer(color, Theme.of(context).brightness),
+                  background: accentContainer(
+                    color,
+                    Theme.of(context).brightness,
+                  ),
+                  size: 22,
                 ),
               ],
             ),

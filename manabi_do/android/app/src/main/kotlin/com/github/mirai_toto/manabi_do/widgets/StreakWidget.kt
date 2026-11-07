@@ -57,7 +57,7 @@ class StreakWidget : GlanceAppWidget() {
                 Spacer(GlanceModifier.width(6.dp))
                 Label(prefs.text("streak_label"), color = colors.onSurface, size = 14.sp, weight = FontWeight.Medium)
                 Spacer(GlanceModifier.defaultWeight())
-                Label(prefs.text("streak_range"))
+                Label(prefs.text("streak_range"), maxLines = 2)
             }
             Spacer(GlanceModifier.height(10.dp))
             Image(

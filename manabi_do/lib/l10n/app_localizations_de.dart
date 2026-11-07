@@ -470,7 +470,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get resetProgressTitle => 'Alle Fortschritte zurücksetzen?';
 
   @override
-  String get resetProgressBody => 'Alle SRS-Karten werden dauerhaft gelöscht.';
+  String get resetProgressBody =>
+      'Alle SRS-Karten werden dauerhaft gelöscht, und die App beginnt wieder mit den Willkommensseiten.';
 
   @override
   String get resetKanaTitle => 'Dieses Kana zurücksetzen?';
@@ -1248,4 +1249,173 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsColourTheme => 'Farbthema';
+
+  @override
+  String get summarySessionComplete => 'Sitzung beendet';
+
+  @override
+  String get summaryPracticeComplete => 'Übung beendet';
+
+  @override
+  String summaryReviewedTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Karten wiederholt',
+      one: '1 Karte wiederholt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get summaryAllDoneTitle => 'Die heutigen Wiederholungen sind erledigt';
+
+  @override
+  String summaryPracticeTitle(int got, int total) {
+    return '$got von $total richtig';
+  }
+
+  @override
+  String summaryMetaMixed(String time, int remembered, int again) {
+    return '$time · $remembered gewusst, $again noch einmal ansehen';
+  }
+
+  @override
+  String summaryMetaPerfect(String time) {
+    return '$time · alles gewusst';
+  }
+
+  @override
+  String get summaryFreePracticeNote =>
+      'Freies Üben. Nichts hiervon ändert Ihren Wiederholungsplan.';
+
+  @override
+  String summaryStreak(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days Tage in Folge',
+      one: '1 Tag in Folge',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String summaryStreakToday(int days) {
+    return 'Heute zählt. Kommen Sie morgen wieder, dann sind es $days.';
+  }
+
+  @override
+  String get summaryHowItWent => 'So lief es';
+
+  @override
+  String get summaryLookAgain => 'Noch einmal ansehen';
+
+  @override
+  String summaryAllAnswers(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Alle $count Antworten',
+      one: 'Antwort ansehen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get summaryYouChose => 'Ihre Wahl';
+
+  @override
+  String get summaryHardNote => 'Richtig, aber mit Zögern';
+
+  @override
+  String get summaryComingBack => 'Kommt wieder';
+
+  @override
+  String get summaryLaterToday => 'später heute';
+
+  @override
+  String get summaryTomorrow => 'morgen';
+
+  @override
+  String get summaryLater => 'später';
+
+  @override
+  String summaryNextAt(String time) {
+    return 'nächste um $time';
+  }
+
+  @override
+  String summaryNextTomorrow(String time) {
+    return 'nächste morgen um $time';
+  }
+
+  @override
+  String summaryNextOn(String time) {
+    return 'nächste am $time';
+  }
+
+  @override
+  String summaryStillDue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Heute sind noch $count Wiederholungen fällig',
+      one: 'Heute ist noch 1 Wiederholung fällig',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get summaryContinue => 'Wiederholungen fortsetzen';
+
+  @override
+  String summaryPracticeMistakes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Die $count noch einmal üben',
+      one: 'Noch einmal üben',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String summaryPracticeAll(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Alle $count noch einmal',
+      one: 'Noch einmal üben',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get summaryDone => 'Fertig';
+
+  @override
+  String get summaryDoneForToday => 'Fertig für heute';
+
+  @override
+  String summaryRoomForMore(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Noch Lust? $count neue Einträge sind bereit.',
+      one: 'Noch Lust? 1 neuer Eintrag ist bereit.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String summaryLearnNew(int count) {
+    return '$count neue lernen';
+  }
+
+  @override
+  String get summaryGotIt => 'Gewusst';
+
+  @override
+  String get summaryNotYet => 'Noch nicht';
 }

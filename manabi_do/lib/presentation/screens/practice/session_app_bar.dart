@@ -9,19 +9,22 @@ import '../../providers/home_provider.dart';
 mixin MarksPracticeActive<T extends ConsumerStatefulWidget>
     on ConsumerState<T> {
   late final PracticeActiveNotifier _practiceNotifier;
+  bool _entered = false;
 
   @override
   void initState() {
     super.initState();
     _practiceNotifier = ref.read(practiceActiveProvider.notifier);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) _practiceNotifier.setActive(true);
+      if (!mounted) return;
+      _entered = true;
+      _practiceNotifier.enter();
     });
   }
 
   @override
   void dispose() {
-    Future(() => _practiceNotifier.setActive(false));
+    if (_entered) Future(_practiceNotifier.leave);
     super.dispose();
   }
 }

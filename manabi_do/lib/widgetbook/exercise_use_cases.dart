@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fsrs/fsrs.dart' show Card;
+import 'package:fsrs/fsrs.dart' show Card, Rating;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../presentation/widgets/exercise/grammar_builder_body.dart';
@@ -13,7 +13,8 @@ import '../presentation/widgets/exercise/flashcard.dart';
 import '../presentation/widgets/exercise/mcq_card.dart';
 import '../presentation/widgets/exercise/sentence_cloze_card.dart';
 import '../data/database/app_database.dart';
-import '../presentation/widgets/exercise/summary_card.dart';
+import '../presentation/models/practice_answer.dart';
+import '../presentation/widgets/exercise/session_summary.dart';
 import '../presentation/widgets/exercise/view_detail_button.dart';
 
 // ── Flashcard ─────────────────────────────────────────────────────────────────
@@ -189,40 +190,105 @@ Widget buildMcqCardWrong(BuildContext context) {
   );
 }
 
-// ── SummaryCard ───────────────────────────────────────────────────────────────
+// ── SessionSummary ────────────────────────────────────────────────────────────
 
-@widgetbook.UseCase(name: 'Default', type: SummaryCard, path: 'Exercise')
-Widget buildSummaryCard(BuildContext context) {
-  return Padding(
+SessionAnswer _summaryAnswer(
+  String item,
+  String answer,
+  Rating rating, {
+  String? given,
+}) => SessionAnswer(
+  srsType: 'hiragana',
+  id: item.hashCode,
+  card: null,
+  rating: rating,
+  given: given,
+  summary: PracticeSummary(
+    item: item,
+    question: (l) => l.summaryLookAgain,
+    answer: answer,
+    kindLabel: (l) => l.summaryLookAgain,
+  ),
+);
+
+final List<SessionAnswer> _summaryMixed = [
+  _summaryAnswer('ぬ', 'nu', Rating.again, given: 'me'),
+  _summaryAnswer('ほ', 'ho', Rating.again, given: 'ha'),
+  _summaryAnswer('る', 'ru', Rating.hard, given: 'ru'),
+  for (final k in ['か', 'き', 'く', 'け', 'こ', 'さ', 'し', 'す'])
+    _summaryAnswer(k, k, Rating.good, given: k),
+  _summaryAnswer('そ', 'so', Rating.easy, given: 'so'),
+];
+
+@widgetbook.UseCase(
+  name: 'Review with mistakes',
+  type: SessionSummary,
+  path: 'Exercise',
+)
+Widget buildSessionSummaryMixed(BuildContext context) {
+  return SingleChildScrollView(
     padding: const EdgeInsets.all(16),
-    child: SummaryCard(
-      score: 8,
-      total: 10,
-      title: 'Session complete!',
-      subtitle: 'N5 Kanji · 10 cards',
-      correct: 8,
-      missed: 2,
-      timeSpent: '4m 32s',
-      onRetry: () {},
-      onNext: () {},
+    child: SessionSummary(
+      answers: _summaryMixed,
+      elapsedLabel: '4 min 12 s',
+      gradesRecorded: true,
+      fourPointGrading: true,
+      streakDays: 5,
+      dueLeft: 4,
+      comingBack: (laterToday: 2, tomorrow: 7, later: 3, next: null),
+      onDone: () {},
+      onContinue: () {},
+      onPracticeMistakes: () {},
+      onPracticeAll: () {},
+      onOpenAnswers: () {},
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'Perfect score', type: SummaryCard, path: 'Exercise')
-Widget buildSummaryCardPerfect(BuildContext context) {
-  return Padding(
+@widgetbook.UseCase(
+  name: 'Day finished',
+  type: SessionSummary,
+  path: 'Exercise',
+)
+Widget buildSessionSummaryDone(BuildContext context) {
+  return SingleChildScrollView(
     padding: const EdgeInsets.all(16),
-    child: SummaryCard(
-      score: 10,
-      total: 10,
-      title: 'Perfect!',
-      subtitle: 'N5 Kanji · 10 cards',
-      correct: 10,
-      missed: 0,
-      timeSpent: '2m 10s',
-      onRetry: () {},
-      onNext: () {},
+    child: SessionSummary(
+      answers: [
+        for (final a in _summaryMixed)
+          _summaryAnswer(a.summary.item, a.summary.answer, Rating.good),
+      ],
+      elapsedLabel: '9 min 40 s',
+      gradesRecorded: true,
+      fourPointGrading: true,
+      streakDays: 6,
+      newLeft: 8,
+      comingBack: (laterToday: 0, tomorrow: 11, later: 1, next: null),
+      onDone: () {},
+      onContinue: () {},
+      onPracticeAll: () {},
+      onOpenAnswers: () {},
+    ),
+  );
+}
+
+@widgetbook.UseCase(
+  name: 'Free practice',
+  type: SessionSummary,
+  path: 'Exercise',
+)
+Widget buildSessionSummaryPractice(BuildContext context) {
+  return SingleChildScrollView(
+    padding: const EdgeInsets.all(16),
+    child: SessionSummary(
+      answers: _summaryMixed,
+      elapsedLabel: '2 min 58 s',
+      gradesRecorded: false,
+      fourPointGrading: false,
+      onDone: () {},
+      onPracticeMistakes: () {},
+      onPracticeAll: () {},
+      onOpenAnswers: () {},
     ),
   );
 }

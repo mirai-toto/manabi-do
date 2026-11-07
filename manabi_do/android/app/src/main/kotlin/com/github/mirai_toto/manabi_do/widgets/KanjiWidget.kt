@@ -79,6 +79,7 @@ class KanjiWidget : GlanceAppWidget() {
                         "${prefs.text("kanji_title")} · ${kanji.getString("level")}",
                         size = 11.sp,
                         weight = FontWeight.Medium,
+                        maxLines = 2,
                     )
                     Spacer(GlanceModifier.height(6.dp))
                     Label(

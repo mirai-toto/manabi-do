@@ -78,11 +78,21 @@ final practiceActiveProvider = NotifierProvider<PracticeActiveNotifier, bool>(
   PracticeActiveNotifier.new,
 );
 
+/// Whether a practice session is on screen, which hides the navigation bar.
+///
+/// Counted rather than set, because one session can replace another (the
+/// summary's "Continue" opens today's session in its place): the outgoing
+/// screen leaves after the incoming one has entered, and a plain flag would be
+/// switched off under the new session.
 class PracticeActiveNotifier extends Notifier<bool> {
+  int _screens = 0;
+
   @override
   bool build() => false;
 
-  void setActive(bool value) => state = value;
+  void enter() => state = ++_screens > 0;
+
+  void leave() => state = --_screens > 0;
 }
 
 final vocabularyNewCountProvider = StreamProvider<int>((ref) {
