@@ -1,5 +1,3 @@
-• Die überarbeitete Sitzungsübersicht zeigt, was Sie wiederholen sollten und was als Nächstes kommt. Sie können die ganze Sitzung direkt von dort wiederholen.
-• Beim Zurücksetzen des gesamten Fortschritts gelangen Sie wieder zur Einrichtung.
-• Die Aussprache-Schaltfläche auf den Kanji- und Kana-Details sitzt jetzt neben dem Zeichen statt darauf.
-• Home-Screen-Widgets brechen längeren Text jetzt um, statt ihn abzuschneiden.
-• Die Bausteine des Satzbilders sind jetzt gleichmäßig groß.
+• Furigana werden jetzt in der Sitzungsübersicht angezeigt, und Grammatiksätze bekommen dort eine eigene Zeile.
+• Der Sitzungszähler beginnt bei 0 und zählt beantwortete Fragen, sodass die letzte Frage nicht mehr n/n anzeigt.
+• Besseres Querformat: Der Inhalt füllt den Platz neben dem Menü, Überschriften passen in eine Zeile und Zeichenraster bleiben kompakt.

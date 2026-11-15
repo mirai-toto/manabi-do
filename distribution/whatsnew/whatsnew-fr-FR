@@ -1,5 +1,3 @@
-• Un bilan repensé montre quoi revoir et ce qui vient ensuite, et vous permet de refaire toute la session depuis celui-ci.
-• Réinitialiser toute votre progression vous ramène à la configuration initiale.
-• Le bouton de prononciation des fiches kanji et kana se trouve désormais à côté du caractère, plus par-dessus.
-• Les widgets d'accueil passent le texte long à la ligne au lieu de le couper.
-• Les tuiles de construction de phrase sont désormais de taille uniforme.
+• Les furigana s'affichent désormais dans le bilan de session, et les phrases de grammaire y ont une ligne entière.
+• Le compteur de session part de 0 et compte les questions répondues : la dernière question n'affiche plus n/n.
+• Meilleur affichage en paysage : le contenu remplit l'espace à côté du menu, les titres tiennent sur une ligne et les grilles de caractères restent compactes.

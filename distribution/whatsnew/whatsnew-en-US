@@ -1,5 +1,3 @@
-• A redesigned session summary shows what to review again and what comes next, and lets you practise the whole session again from it.
-• Resetting all progress returns you to onboarding.
-• The pronunciation button on kanji and kana details now sits beside the character, not on top of it.
-• Home-screen widgets wrap longer text instead of cutting it off.
-• Grammar sentence-builder tiles are now evenly sized.
+• Furigana now show in the session summary, and grammar sentences get a full line there.
+• The session counter starts at 0 and counts answered questions, so the last question no longer reads n/n.
+• Better landscape layout: content fills the space beside the menu, headers take a single line, and character grids stay compact.
