@@ -20,29 +20,36 @@ class GrammarScreen extends ConsumerWidget {
     final t = context.tokens;
     final selectedLevel = ref.watch(grammarSelectedLevelProvider);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SectionHeader(
-          title: l.sectionGrammar,
-          subtitle: l.grammarSubtitle,
-          glyph: '文',
-          color: t.primary,
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: AppDimens.screenMaxWidth),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SectionHeader(
+              title: l.sectionGrammar,
+              subtitle: l.grammarSubtitle,
+              glyph: '文',
+              color: t.primary,
+            ),
+            Expanded(
+              child: selectedLevel == null
+                  ? _LevelSelector(
+                      onSelect: (level) => ref
+                          .read(grammarSelectedLevelProvider.notifier)
+                          .select(level),
+                    )
+                  : GrammarChapterView(
+                      level: selectedLevel,
+                      onBack: () => ref
+                          .read(grammarSelectedLevelProvider.notifier)
+                          .clear(),
+                    ),
+            ),
+          ],
         ),
-        Expanded(
-          child: selectedLevel == null
-              ? _LevelSelector(
-                  onSelect: (level) => ref
-                      .read(grammarSelectedLevelProvider.notifier)
-                      .select(level),
-                )
-              : GrammarChapterView(
-                  level: selectedLevel,
-                  onBack: () =>
-                      ref.read(grammarSelectedLevelProvider.notifier).clear(),
-                ),
-        ),
-      ],
+      ),
     );
   }
 }

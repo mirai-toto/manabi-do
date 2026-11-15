@@ -144,12 +144,16 @@ class _KanaGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     const gap = AppDimens.spaceSm;
     const cols = 5;
+    // A row is one gojūon line, so it stays five wide; on a wide screen the
+    // cells stop growing instead, and one row no longer fills the viewport.
+    const maxCellSize = 120.0;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final cellSize = (constraints.maxWidth - gap * (cols - 1)) / cols;
+          final cellSize = ((constraints.maxWidth - gap * (cols - 1)) / cols)
+              .clamp(0.0, maxCellSize);
           final kanaSize = (cellSize * 0.24).clamp(18.0, 48.0);
           final romajiSize = (cellSize * 0.095).clamp(9.0, 18.0);
           return Row(

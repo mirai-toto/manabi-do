@@ -1,6 +1,8 @@
 abstract final class AppDimens {
-  // Max content width: applied to all screens for consistent centering
-  static const double screenMaxWidth = 1100;
+  // Max content width: applied to all screens for consistent centering. Narrow
+  // enough that a phone in landscape centres a column instead of stretching
+  // cards and buttons across the whole screen.
+  static const double screenMaxWidth = 640;
 
   // Border radius: matches mockup CSS variables
   static const double radiusXs = 4;

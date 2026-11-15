@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart' hide Card;
 import 'package:fsrs/fsrs.dart';
 import '../../../core/srs/srs_level.dart';
@@ -23,12 +25,19 @@ class KanjiGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const gap = AppDimens.spaceSm;
-    const cols = 4;
+    // Four across on a phone; a wider screen adds columns rather than
+    // blowing each cell up.
+    const minCols = 4;
+    const targetCellSize = 110.0;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimens.spaceMd),
       child: LayoutBuilder(
         builder: (context, constraints) {
+          final int cols = math.max(
+            minCols,
+            (constraints.maxWidth / targetCellSize).floor(),
+          );
           final cellSize = (constraints.maxWidth - gap * (cols - 1)) / cols;
           final kanjiSize = (cellSize * 0.30).clamp(18.0, 48.0);
           final meaningSize = (cellSize * 0.10).clamp(9.0, 13.0);
@@ -36,7 +45,7 @@ class KanjiGrid extends StatelessWidget {
           return GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: cols,
               crossAxisSpacing: gap,
               mainAxisSpacing: gap,
