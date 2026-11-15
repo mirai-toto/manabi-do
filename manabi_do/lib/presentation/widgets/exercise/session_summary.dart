@@ -12,6 +12,7 @@ import '../../../l10n/l10n.dart';
 import '../../models/practice_answer.dart';
 import '../common/action/app_button.dart';
 import '../common/decoration/slide_in.dart';
+import '../common/label/japanese_text.dart';
 import '../common/label/section_label.dart';
 import '../common/surface/card_container.dart';
 
@@ -593,6 +594,45 @@ class _LookAgainRow extends StatelessWidget {
     final String? given = answer.given;
     final bool wrongPick =
         missed && given != null && given != answer.summary.answer;
+    final bool isSentence = answer.srsType == 'grammar';
+
+    final Widget details = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Built and corrected sentences are their own answer; the line above
+        // already shows it.
+        if (answer.summary.answer != answer.summary.item)
+          JapaneseText(
+            word: answer.summary.answer,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: AppTextStyles.body.copyWith(
+              color: t.onSurface,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        if (wrongPick)
+          Text.rich(
+            TextSpan(
+              text: '${l.summaryYouChose} ',
+              children: furiganaSpans(
+                given,
+                AppTextStyles.bodySmall.copyWith(
+                  color: t.error,
+                  fontWeight: FontWeight.w600,
+                ),
+                AppTextStyles.jpFurigana.copyWith(color: t.onSurfaceVariant),
+              ),
+            ),
+            style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+          )
+        else if (!missed)
+          Text(
+            l.summaryHardNote,
+            style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
+          ),
+      ],
+    );
 
     return InkWell(
       onTap: onTap,
@@ -605,65 +645,46 @@ class _LookAgainRow extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // One kana fills the narrow box; a word widens it, and a long
-              // word shrinks to fit rather than being cut to an ellipsis.
-              ConstrainedBox(
-                constraints: const BoxConstraints(
-                  minWidth: _glyphMinWidth,
-                  maxWidth: _glyphMaxWidth,
-                ),
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    answer.summary.item,
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
+              if (isSentence)
+                // A grammar item is a whole sentence: squeezed into the glyph
+                // box it shrank past reading, so it takes the line above the
+                // answer instead.
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      JapaneseText(
+                        word: answer.summary.item,
+                        style: AppTextStyles.jpBodyLarge.copyWith(
+                          color: t.onSurface,
+                        ),
+                      ),
+                      const SizedBox(height: AppDimens.spaceXs),
+                      details,
+                    ],
+                  ),
+                )
+              else ...[
+                // One kana fills the narrow box; a word widens it, and a long
+                // word shrinks to fit rather than being cut to an ellipsis.
+                ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    minWidth: _glyphMinWidth,
+                    maxWidth: _glyphMaxWidth,
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: JapaneseText(
+                      word: answer.summary.item,
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      style: AppTextStyles.jpLarge.copyWith(color: t.onSurface),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: AppDimens.iconTextGap),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      answer.summary.answer,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.body.copyWith(
-                        color: t.onSurface,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    if (wrongPick)
-                      Text.rich(
-                        TextSpan(
-                          text: '${l.summaryYouChose} ',
-                          children: [
-                            TextSpan(
-                              text: given,
-                              style: TextStyle(
-                                color: t.error,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                        style: AppTextStyles.bodySmall.copyWith(
-                          color: t.onSurfaceVariant,
-                        ),
-                      )
-                    else if (!missed)
-                      Text(
-                        l.summaryHardNote,
-                        style: AppTextStyles.bodySmall.copyWith(
-                          color: t.onSurfaceVariant,
-                        ),
-                      ),
-                  ],
-                ),
-              ),
+                const SizedBox(width: AppDimens.iconTextGap),
+                Expanded(child: details),
+              ],
               const SizedBox(width: AppDimens.spaceSm),
               _GradeChip(rating: answer.rating),
             ],
