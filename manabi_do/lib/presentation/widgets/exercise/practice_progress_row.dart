@@ -7,8 +7,9 @@ import '../../../core/theme/app_tokens.dart';
 
 /// Thin progress bar + `"N / total"` counter shown at the top of every exercise
 /// screen. The bar fills proportionally to `index / total` using the session's
-/// accent colour; the text label counts from 1. Handles `total == 0` without
-/// dividing by zero.
+/// accent colour, and the label counts answered questions to match it: the
+/// last question reads 8 / 9, since 9 / 9 would claim the session is done.
+/// Handles `total == 0` without dividing by zero.
 class PracticeProgressRow extends StatelessWidget {
   final int index;
   final int total;
@@ -39,7 +40,7 @@ class PracticeProgressRow extends StatelessWidget {
         ),
         const SizedBox(width: AppDimens.spaceXs),
         Text(
-          '${index + 1} / $total',
+          '$index / $total',
           style: AppTextStyles.bodySmall.copyWith(color: t.onSurfaceVariant),
         ),
       ],
