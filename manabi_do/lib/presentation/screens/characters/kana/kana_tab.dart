@@ -157,6 +157,7 @@ class _KanaGrid extends StatelessWidget {
           final kanaSize = (cellSize * 0.24).clamp(18.0, 48.0);
           final romajiSize = (cellSize * 0.095).clamp(9.0, 18.0);
           return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               for (int i = 0; i < row.entries.length; i++) ...[
                 if (i > 0) const SizedBox(width: gap),
