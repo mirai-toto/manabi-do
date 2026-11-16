@@ -11,6 +11,7 @@ import '../../../l10n/l10n.dart';
 import '../../../l10n/srs_level_label.dart';
 import 'view_detail_button.dart';
 import '../common/indicator/pill_badge.dart';
+import '../common/label/japanese_text.dart';
 import '../common/indicator/review_progress_info.dart';
 import 'flashcard.dart';
 
@@ -126,7 +127,9 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
         : level.accent;
 
     return Semantics(
-      label: '${widget.summary.item}, ${widget.summary.answer}',
+      label:
+          '${stripAnnotation(widget.summary.item)}, '
+          '${stripAnnotation(widget.summary.answer)}',
       button: true,
       toggled: widget.isExpanded,
       excludeSemantics: true,
@@ -150,8 +153,8 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
                     children: [
                       // The item gets the full text column: the longest word in
                       // the database is 10 characters and still fits here.
-                      Text(
-                        widget.summary.item,
+                      JapaneseText(
+                        word: widget.summary.item,
                         style: AppTextStyles.jpBodyLarge.copyWith(
                           color: t.onSurface,
                           fontWeight: FontWeight.w600,
@@ -160,8 +163,8 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: AppDimens.spaceXxs),
-                      Text(
-                        widget.summary.answer,
+                      JapaneseText(
+                        word: widget.summary.answer,
                         style: AppTextStyles.bodySmall.copyWith(
                           color: t.onSurfaceVariant,
                         ),
@@ -262,8 +265,8 @@ class _SessionReviewRowState extends State<SessionReviewRow> {
           ],
           if (s.sentence != null) ...[
             const SizedBox(height: AppDimens.spaceSm),
-            Text(
-              s.sentence!,
+            JapaneseText(
+              word: s.sentence!,
               style: AppTextStyles.jpBodyLarge.copyWith(color: t.onSurface),
             ),
             if (s.sentenceTranslation != null) ...[
@@ -457,8 +460,8 @@ class _AnswerBlock extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      shown.join('; '),
+                    JapaneseText(
+                      word: shown.join('; '),
                       style: AppTextStyles.body.copyWith(color: color),
                     ),
                     if (onToggleGlosses != null) ...[
