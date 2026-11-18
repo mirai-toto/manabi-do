@@ -93,7 +93,7 @@ Separate sections: Hiragana, Katakana, Kanji.
 ## Vocabulary
 
 - 5 levels, separated by commonality
-- Each level split into groups of 20 words
+- Each level split into groups of 30 words
 - Word list split by status: due today, not started, known, etc.
 - Same color logic as kana and kanji
 - Search bar:
@@ -156,7 +156,7 @@ _Draft from the code; to review._
     - Writing only
     - Flashcard only
     - Multiple choice only
-  - Vocabulary: a practice button on a level or on a group of 20, opening a picker:
+  - Vocabulary: a practice button on a level or on a group of 30, opening a picker:
     - Free practice (mixed)
     - Flashcard only
     - Multiple choice only
