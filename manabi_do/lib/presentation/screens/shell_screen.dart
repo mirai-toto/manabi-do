@@ -227,14 +227,22 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     final body = PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) => _onBack(),
-      child: SlideIndexedStack(
-        index: index,
-        children: List.generate(
-          _screenCount,
-          (i) => Navigator(
-            key: _navKeys[i],
-            onGenerateRoute: (_) =>
-                MaterialPageRoute(builder: (_) => _screens[i]),
+      // A tab's navigator reports to Android whether it can pop. Once it is
+      // back at its root it says no, and with predictive back Android then
+      // closes the app before [_onBack] runs, skipping the group and level
+      // steps. Swallowed here so only this PopScope's answer reaches Android:
+      // back is always handled, and [_onBack] exits on Home itself.
+      child: NotificationListener<NavigationNotification>(
+        onNotification: (_) => true,
+        child: SlideIndexedStack(
+          index: index,
+          children: List.generate(
+            _screenCount,
+            (i) => Navigator(
+              key: _navKeys[i],
+              onGenerateRoute: (_) =>
+                  MaterialPageRoute(builder: (_) => _screens[i]),
+            ),
           ),
         ),
       ),
