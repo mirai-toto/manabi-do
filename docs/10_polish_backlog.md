@@ -32,7 +32,12 @@ Done: tapping an example sentence in word detail opens a sentence detail with au
 Still open:
 
 - Kanji outside the app's 2,211 (e.g. 誰, 俺) aren't listed, since the app has no data for them; a sentence made only of those shows no kanji at all
-- Breakdown: list the words in the sentence by matching dictionary entries against the text (conjugated forms would be missed; needs its own look)
+- **Words in this sentence** (planned): a list like the kanji one, each word opening its word detail. Words are worked out ahead of time in the content pipeline (`manabi-content`), not in the app:
+  - Source: Tatoeba's `jpn_indices` (curated, already linked to JMdict senses) where a sentence has them; Janome (or SudachiPy) as a fallback for the rest, matching its dictionary forms and readings to the app's vocabulary
+  - Words outside the app's vocabulary are skipped, like untaught kanji
+  - App side: a sentence → words table (schema change and migration), one query, and the list on the sentence detail reusing the word rows
+  - Rejected: matching words in the app (misses conjugations, noisy on particles) and shipping a tokenizer in the app (tens of MB, native code)
+  - First step: check how the content pipeline imports sentences and whether the indices are already used
 - Sentence detail is only reachable from word detail; the sentence exercise should link to it too (see 4)
 
 ### 4. Details from every answer choice
