@@ -164,7 +164,7 @@ class _Sentences extends ConsumerWidget {
                       vertical: AppDimens.spaceSm,
                     ),
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
                           // The annotated form, not the plain one. Every
