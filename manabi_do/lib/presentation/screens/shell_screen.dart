@@ -16,6 +16,7 @@ import '../services/reminder_service.dart';
 import '../widgets/widgets.dart';
 import 'characters/characters_screen.dart';
 import 'characters/kanji/kanji_detail_screen.dart';
+import 'detail_navigation.dart';
 import 'grammar/grammar_navigation.dart';
 import 'grammar/grammar_screen.dart';
 import 'home/home_screen.dart';
@@ -36,6 +37,12 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
   final _navKeys = List.generate(
     _screenCount,
     (_) => GlobalKey<NavigatorState>(),
+  );
+
+  /// One per tab navigator: an observer cannot be shared between navigators.
+  final _detailObservers = List.generate(
+    _screenCount,
+    (_) => DetailRouteObserver(),
   );
 
   StreamSubscription<Uri?>? _widgetClicks;
@@ -240,6 +247,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
             _screenCount,
             (i) => Navigator(
               key: _navKeys[i],
+              observers: [_detailObservers[i]],
               onGenerateRoute: (_) =>
                   MaterialPageRoute(builder: (_) => _screens[i]),
             ),
