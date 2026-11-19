@@ -7,7 +7,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/l10n.dart';
 import '../../widgets/widgets.dart';
-import '../characters/kanji/kanji_detail_screen.dart';
+import '../detail_navigation.dart';
 
 /// Everything answered so far in a session, with the grade of any of them open
 /// to being changed where the session has grades to change.
@@ -68,13 +68,8 @@ class _SessionReviewScreenState extends State<SessionReviewScreen> {
 
   /// Kanji is the only item with a screen of its own, so it is the only one
   /// that gets a detail link.
-  VoidCallback? _detailTapFor(String srsType, int id) => srsType == 'kanji'
-      ? () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => KanjiDetailScreen(kanjiId: id),
-          ),
-        )
-      : null;
+  VoidCallback? _detailTapFor(String srsType, int id) =>
+      srsType == 'kanji' ? () => openKanjiDetail(context, id) : null;
 
   @override
   Widget build(BuildContext context) {

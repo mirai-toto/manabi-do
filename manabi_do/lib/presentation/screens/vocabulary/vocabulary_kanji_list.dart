@@ -9,8 +9,8 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_provider.dart';
 import '../../providers/vocabulary_provider.dart';
-import '../characters/kanji/kanji_detail_screen.dart';
 import '../../widgets/widgets.dart';
+import '../detail_navigation.dart';
 
 /// `SectionLabel` + the kanji a word is written with, each opening its own
 /// detail screen.
@@ -79,11 +79,7 @@ class _KanjiRow extends ConsumerWidget {
       button: true,
       excludeSemantics: true,
       child: InkWell(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-          ),
-        ),
+        onTap: () => openKanjiDetail(context, kanji.id),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceSm),
           child: Row(

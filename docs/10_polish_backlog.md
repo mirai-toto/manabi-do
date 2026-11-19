@@ -6,15 +6,16 @@ Ergonomic improvements found while listing the app's features in [09_functional_
 
 ## Now
 
-### 1. Back navigation
+### 1. Back navigation ✅
 
-Back often leaves the app instead of going one step back. The code already intends one-step back (each tab keeps its own stack), so this needs a repro on device first.
+Done:
 
-Expected behaviour, including detail screens that open each other (word → kanji → word…):
+- Back no longer leaves the app from a group or level: the tab navigators' "can't pop" reports used to reach Android's predictive back and close the app before the shell's back handler ran
+- No duplicates: tapping a kanji or word already open in the current chain of detail screens goes back to it instead of stacking a copy (`screens/detail_navigation.dart`); the search stops at the first non-detail screen, so a practice session is never closed without its "Leave session?" check
 
-- Every tap on a word or kanji opens a new screen on top; back closes it and returns to exactly where you were (word detail, kanji group, level list…)
-- No duplicates: tapping an item already open lower in the stack goes back to it instead of opening a copy, so the stack can't loop
-- A quick way out when deep in details: tapping the current tab already does it; a close button in the detail app bar could too
+Still open:
+
+- A close button in the detail app bar for deep chains (tapping the current tab already returns to the tab root)
 
 ### 2. Centralize settings by use case
 

@@ -14,7 +14,7 @@ import '../../providers/drawing_settings_provider.dart';
 import '../../providers/writing_session_provider.dart';
 import '../../providers/kanji_strokes_provider.dart';
 import '../../widgets/widgets.dart';
-import '../characters/kanji/kanji_detail_screen.dart';
+import '../detail_navigation.dart';
 import 'practice_settings_sheet.dart';
 import 'session_app_bar.dart';
 import 'session_review_screen.dart';
@@ -235,11 +235,7 @@ class _ActiveScreen extends ConsumerWidget {
                     fourPointGrading: false,
                     onNext: onDone,
                     onAutoAdvance: onDone,
-                    onDetailTap: () => Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-                      ),
-                    ),
+                    onDetailTap: () => openKanjiDetail(context, kanji.id),
                   ),
                 ),
               ),

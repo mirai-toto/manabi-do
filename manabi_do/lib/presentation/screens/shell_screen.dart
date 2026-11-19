@@ -15,7 +15,6 @@ import '../services/home_widget_service.dart';
 import '../services/reminder_service.dart';
 import '../widgets/widgets.dart';
 import 'characters/characters_screen.dart';
-import 'characters/kanji/kanji_detail_screen.dart';
 import 'detail_navigation.dart';
 import 'grammar/grammar_navigation.dart';
 import 'grammar/grammar_screen.dart';
@@ -90,11 +89,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
           uri.pathSegments.isEmpty ? '' : uri.pathSegments.first,
         );
         if (id == null) return;
-        await home.push(
-          MaterialPageRoute<void>(
-            builder: (_) => KanjiDetailScreen(kanjiId: id),
-          ),
-        );
+        await openKanjiDetail(home.context, id);
       case 'grammar':
         final target = await ref.read(grammarContinueProvider.future);
         if (!mounted) return;

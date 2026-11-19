@@ -11,7 +11,7 @@ import '../../../../l10n/l10n.dart';
 import '../../../../l10n/pos_label.dart';
 import '../../../widgets/widgets.dart';
 import '../../../providers/vocabulary_provider.dart';
-import '../../vocabulary/vocabulary_detail_screen.dart';
+import '../../detail_navigation.dart';
 
 /// `SectionLabel` + list of example vocabulary words for a kanji. Fetches
 /// localized vocabulary via provider; shows a loading indicator, empty state,
@@ -129,11 +129,7 @@ class _WordRow extends StatelessWidget {
       child: InkWell(
         // Opens the word's own screen, which already holds its senses, the
         // kanji it is written with and its example sentences.
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => VocabularyDetailScreen(entry: entry),
-          ),
-        ),
+        onTap: () => openWordDetail(context, entry),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppDimens.spaceMd,

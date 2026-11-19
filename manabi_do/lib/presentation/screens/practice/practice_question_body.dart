@@ -12,8 +12,8 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../core/theme/jlpt_level.dart';
 import '../../../l10n/l10n.dart';
+import '../detail_navigation.dart';
 import 'kanji_drawing_body.dart';
-import '../characters/kanji/kanji_detail_screen.dart';
 
 /// The settings a practice body renders against.
 ///
@@ -91,11 +91,7 @@ class PracticeQuestionBody extends StatelessWidget {
   VoidCallback? _onDetailTap(BuildContext context) {
     final kanjiId = question.kanjiDetailId;
     if (kanjiId == null) return null;
-    return () => Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => KanjiDetailScreen(kanjiId: kanjiId),
-      ),
-    );
+    return () => openKanjiDetail(context, kanjiId);
   }
 
   @override
