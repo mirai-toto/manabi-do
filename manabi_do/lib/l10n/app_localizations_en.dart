@@ -886,7 +886,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recognitionLenient => 'Lenient';
 
   @override
-  String get practiceSettingsSessionLength => 'Session length';
+  String get practiceSettingsSessionLength => 'Free practice length';
 
   @override
   String get practiceSettingsMcqChoices => 'Options per question';
@@ -931,10 +931,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get autoAdvanceSubtitle =>
       'Move on automatically, scoring each answer for you';
-
-  @override
-  String get autoAdvanceFreePracticeNote =>
-      'This applies in free practice. A graded session uses the one switch under Study, because a session mixes exercise types.';
 
   @override
   String get hintUsedFeedback => 'Hint used · marked as missed';

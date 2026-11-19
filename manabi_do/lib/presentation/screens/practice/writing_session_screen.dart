@@ -204,7 +204,6 @@ class _ActiveScreen extends ConsumerWidget {
           SessionSettingsButton(
             sheetBuilder: (_) => const PracticeSettingsSheet(
               contexts: {SettingsContext.writing},
-              showAutoAdvance: true,
             ),
           ),
         ],

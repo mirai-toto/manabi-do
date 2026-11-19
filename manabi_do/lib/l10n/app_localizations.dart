@@ -1657,7 +1657,7 @@ abstract class AppLocalizations {
   /// No description provided for @practiceSettingsSessionLength.
   ///
   /// In en, this message translates to:
-  /// **'Session length'**
+  /// **'Free practice length'**
   String get practiceSettingsSessionLength;
 
   /// No description provided for @practiceSettingsMcqChoices.
@@ -1743,12 +1743,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Move on automatically, scoring each answer for you'**
   String get autoAdvanceSubtitle;
-
-  /// No description provided for @autoAdvanceFreePracticeNote.
-  ///
-  /// In en, this message translates to:
-  /// **'This applies in free practice. A graded session uses the one switch under Study, because a session mixes exercise types.'**
-  String get autoAdvanceFreePracticeNote;
 
   /// No description provided for @hintUsedFeedback.
   ///

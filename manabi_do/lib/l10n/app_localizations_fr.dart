@@ -889,7 +889,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get recognitionLenient => 'Tolérant';
 
   @override
-  String get practiceSettingsSessionLength => 'Durée de session';
+  String get practiceSettingsSessionLength => 'Durée de l\'entraînement libre';
 
   @override
   String get practiceSettingsMcqChoices => 'Options par question';
@@ -936,10 +936,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get autoAdvanceSubtitle =>
       'Passer à la suite automatiquement, en notant chaque réponse à votre place';
-
-  @override
-  String get autoAdvanceFreePracticeNote =>
-      'Ceci s\'applique en entraînement libre. Une session notée utilise l\'option unique sous Étude, car une session mélange les types d\'exercices.';
 
   @override
   String get hintUsedFeedback => 'Indice utilisé · marqué comme raté';

@@ -17,19 +17,13 @@ Still open:
 
 - A close button in the detail app bar for deep chains (tapping the current tab already returns to the tab root)
 
-### 2. Centralize settings by use case
+### 2. Settings scope ✅
 
-Settings don't say where they apply: some only affect graded sessions (grading detail, the in-session auto-advance switch), some only free practice (session length, per-exercise auto-advance), most affect both. The graded auto-advance switch only exists inside a session.
+Done, in a simpler form than the planned split into Daily reviews / Free practice / Exercises pages:
 
-Proposal: every setting lives on the Settings page, split by use case, with a UI that keeps the longer list easy to scan:
-
-- Main page becomes a short list of entries, each with a one-line summary of its current values:
-  - **Daily reviews** › new items per day, grading detail, auto-advance
-  - **Free practice** › per exercise type: questions per session, auto-advance
-  - **Exercises** › how exercises look, everywhere: furigana, translation, number of choices, writing options
-  - App, Reminders, About, Reset progress (unchanged)
-- Auto-advance exists in both Daily reviews and Free practice on purpose: two use cases, not a duplicate
-- The in-session settings sheet shows only what applies to the current session (daily or free), with a link to the full Settings page
+- Auto-advance is one switch per exercise type, used in graded sessions and free practice alike; the separate session-wide switch is gone
+- "Session length" is now "Free practice length", and graded sessions no longer show it in the in-session sheet
+- The misleading note pointing to a non-existent "switch under Study" is removed
 
 ### 3. Sentence detail
 

@@ -162,9 +162,8 @@ _Draft from the code; to review._
     - Multiple choice only
     - Sentence only
   - Grammar: the floating practice button on a level or chapter (see Grammar)
-- Kanji and vocabulary pick items at random from the level or group, up to the session length
+- Kanji and vocabulary pick items at random from the level or group, up to the free practice length
 - What changes in free practice:
-  - Auto-advance comes from each exercise's setting in Settings > Exercises
   - Grade buttons are drawn in the level's colour instead of the grade colours, as a hint that nothing is recorded
   - Summary shows "X of Y right", no streak or schedule, and offers another round
   - Grades can't be changed in the session review
@@ -180,9 +179,8 @@ _Draft from the code; to review._
   - Auto-advance on: moves on after a short pause, without showing the correction
   - Hint used: in a graded session it moves on automatically, whatever the setting (the hint gave the answer away)
 - Grade buttons follow the grading setting (4 grades or 2), and each one previews when the item would come back
-- Where auto-advance comes from:
-  - Graded sessions: one switch for the whole session, only in the in-session settings sheet
-  - Free practice: the per-exercise auto-advance from Settings > Exercises
+- Auto-advance is set per exercise type (Settings > Exercises, or the in-session sheet) and applies to graded sessions and free practice alike
+- In-session settings sheet: shows the settings of the exercise types in that session; a graded session also shows grading detail and hides the free practice length
 
 ### Session review
 
@@ -223,8 +221,8 @@ _Draft from the code; to review._
   - Grading detail: either detailed (Again / Hard / Good / Easy) or simple (Not yet / Got it); free practice always uses the simple one
 - **Exercises**: one settings page per exercise type, shared by all sections; applies to both graded sessions and free practice unless noted
   - Common settings:
-    - Session length: number of questions per exercise (all four types; free practice only, graded sessions take everything due plus new up to the daily limits)
-    - Auto-advance (all but flashcard): move on automatically and score each answer (free practice only; graded sessions use the in-session switch)
+    - Free practice length: number of questions in a free practice session (all four types; graded sessions take everything due plus new up to the daily limits)
+    - Auto-advance (all but flashcard): move on automatically and score each answer, in graded sessions and free practice
   - Flashcard (kana, kanji, vocabulary, grammar): a prompt is shown, the learner reveals the answer and grades themselves (either direction: Japanese to meaning, or meaning to Japanese)
     - Show an example sentence on the card (only grammar flashcards have one)
   - Multiple choice (kana, kanji, vocabulary, grammar): pick the right answer from a short list

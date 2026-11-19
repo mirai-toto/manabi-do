@@ -890,7 +890,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get recognitionLenient => 'Großzügig';
 
   @override
-  String get practiceSettingsSessionLength => 'Sitzungslänge';
+  String get practiceSettingsSessionLength => 'Länge beim freien Üben';
 
   @override
   String get practiceSettingsMcqChoices => 'Optionen pro Frage';
@@ -936,10 +936,6 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get autoAdvanceSubtitle =>
       'Automatisch weitergehen und jede Antwort für dich bewerten';
-
-  @override
-  String get autoAdvanceFreePracticeNote =>
-      'Gilt für freies Üben. Eine bewertete Sitzung nutzt den einen Schalter unter Lernen, da eine Sitzung Übungsarten mischt.';
 
   @override
   String get hintUsedFeedback => 'Hinweis benutzt · als falsch markiert';

@@ -25,11 +25,6 @@ class PracticeBodySettings {
   final SentenceSettings sentence;
   final DrawingSettings drawing;
 
-  /// The review session's auto-advance switch. Covers the whole queue, unlike
-  /// the per-exercise switches free practice keeps in [mcq] and [sentence].
-  /// False outside a review, where those per-exercise ones apply instead.
-  final bool autoAdvance;
-
   /// Offer the full four-point scale when the user grades. The setting, but
   /// only where [gradesRecorded]: free practice paints grading in the level
   /// colour, and one colour cannot express a four-step scale.
@@ -45,7 +40,6 @@ class PracticeBodySettings {
     required this.flashcard,
     required this.sentence,
     required this.drawing,
-    required this.autoAdvance,
     required this.fourPointGrading,
     required this.gradesRecorded,
   });
@@ -79,14 +73,11 @@ class PracticeQuestionBody extends StatelessWidget {
     required this.sessionColor,
   });
 
-  /// Free practice follows the switch that belongs to the exercise; a review
-  /// follows the one switch that covers the whole session.
-  bool get _autoAdvanceMcq =>
-      question.isFreeMode ? settings.mcq.autoAdvance : settings.autoAdvance;
+  /// Each exercise follows its own switch, in a review and in free practice
+  /// alike.
+  bool get _autoAdvanceMcq => settings.mcq.autoAdvance;
 
-  bool get _autoAdvanceSentence => question.isFreeMode
-      ? settings.sentence.autoAdvance
-      : settings.autoAdvance;
+  bool get _autoAdvanceSentence => settings.sentence.autoAdvance;
 
   VoidCallback? _onDetailTap(BuildContext context) {
     final kanjiId = question.kanjiDetailId;
@@ -155,11 +146,7 @@ class PracticeQuestionBody extends StatelessWidget {
         color: color,
         onAnswer: onAnswer,
         drawingSettings: settings.drawing,
-        // Free practice follows the drawing settings' own switch; a review
-        // follows the session one.
-        autoAdvance: q.isFreeMode
-            ? settings.drawing.autoAdvance
-            : settings.autoAdvance,
+        autoAdvance: settings.drawing.autoAdvance,
         onDetailTap: _onDetailTap(context),
       ),
       final SentenceClozeQuestion q => SentenceClozeBody(
