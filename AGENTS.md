@@ -86,6 +86,12 @@ The emulator runs on the Windows host. WSL's own `adb` doesn't see it, so use th
 ADB="/mnt/c/Users/<windows-user>/AppData/Local/Android/Sdk/platform-tools/adb.exe"
 WINTMP="/mnt/c/Users/<windows-user>/AppData/Local/Temp"
 
+# 0. Start the emulator if none is running. No Android Studio needed: the SDK's
+#    emulator.exe launches a virtual device directly (run it in the background).
+EMU="/mnt/c/Users/<windows-user>/AppData/Local/Android/Sdk/emulator/emulator.exe"
+"$EMU" -list-avds                      # e.g. Pixel_10_Pro_XL
+"$EMU" -avd Pixel_10_Pro_XL > /dev/null 2>&1 &
+
 # 1. Find the emulator. A recreated device can leave a dead entry behind:
 #    keep the one that answers.
 "$ADB" devices
