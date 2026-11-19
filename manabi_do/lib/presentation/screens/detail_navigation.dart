@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/database/app_database.dart';
 import 'characters/kanji/kanji_detail_screen.dart';
+import 'vocabulary/sentence_detail_screen.dart';
 import 'vocabulary/vocabulary_detail_screen.dart';
 
 /// Route names of detail screens share this prefix, so a chain of them can be
@@ -25,9 +26,28 @@ Future<void> openWordDetail(BuildContext context, VocabularyEntry entry) =>
       (_) => VocabularyDetailScreen(entry: entry),
     );
 
-/// Kanji and word details link to each other, so word → kanji → word would
-/// otherwise stack copies without end. Going back to the open copy keeps the
-/// stack to one screen per item.
+/// Opens the detail for an example [sentence], with [highlight] marked in it,
+/// or goes back to it when it is already open in the chain of details on top.
+Future<void> openSentenceDetail(
+  BuildContext context, {
+  required Sentence sentence,
+  required ({String locale, String text})? translation,
+  required String highlight,
+  required Color highlightColor,
+}) => _openDetail(
+  context,
+  '${_detailPrefix}sentence/${sentence.id}',
+  (_) => SentenceDetailScreen(
+    sentence: sentence,
+    translation: translation,
+    highlight: highlight,
+    highlightColor: highlightColor,
+  ),
+);
+
+/// Kanji, word and sentence details link to each other, so word → kanji →
+/// word would otherwise stack copies without end. Going back to the open copy
+/// keeps the stack to one screen per item.
 Future<void> _openDetail(
   BuildContext context,
   String name,

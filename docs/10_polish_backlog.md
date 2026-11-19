@@ -25,13 +25,15 @@ Done, in a simpler form than the planned split into Daily reviews / Free practic
 - "Session length" is now "Free practice length", and graded sessions no longer show it in the in-session sheet
 - The misleading note pointing to a non-existent "switch under Study" is removed
 
-### 3. Sentence detail
+### 3. Sentence detail ✅
 
-Tap an example sentence (word detail, and later anywhere a sentence appears) to open a sentence detail:
+Done: tapping an example sentence in word detail opens a sentence detail with audio, "Copy Japanese" / "Copy translation" buttons (the copy popup on the word detail rows is gone), and the kanji in the sentence, each opening its kanji detail.
 
-- Makes copying less awkward than the current popup
-- Lists the sentence's kanji, like word detail does. Today a learner can spot a kanji in a sentence that isn't in the word itself, and has no way to look it up
-- If feasible, break the sentence down in detail (to explore; may not be fully possible)
+Still open:
+
+- Kanji outside the app's 2,211 (e.g. 誰, 俺) aren't listed, since the app has no data for them; a sentence made only of those shows no kanji at all
+- Breakdown: list the words in the sentence by matching dictionary entries against the text (conjugated forms would be missed; needs its own look)
+- Sentence detail is only reachable from word detail; the sentence exercise should link to it too (see 4)
 
 ### 4. Details from every answer choice
 
@@ -45,7 +47,7 @@ After answering with auto-advance off, let every choice open its detail, not jus
 ## Next
 
 - **Vocabulary search**: searching by reading in romaji doesn't work; ranking doesn't work perfectly yet
-- **Example sentence audio**: example sentences can't be played; add playback like words, kana and kanji
+- **Example sentence audio**: playable from the sentence detail now; the sentence list in word detail and the sentence exercise still have no play button
 - **"Show example" setting**: only affects grammar flashcards; for kana, kanji and vocabulary it does nothing. Either say so in the setting, or give those flashcards examples too
 - **Kana free practice pool**: uses the same items as the graded queue (due and new today), so when nothing is due there's little or nothing to practise, unlike kanji and vocabulary which pick from the whole level or group
 - **Practice buttons never record**: "Practice" inside a section never counts toward reviews, which may surprise a learner who expects it to

@@ -1858,6 +1858,30 @@ abstract class AppLocalizations {
   /// **'Japanese'**
   String get japanese;
 
+  /// No description provided for @copyJapanese.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Japanese'**
+  String get copyJapanese;
+
+  /// No description provided for @copyTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy translation'**
+  String get copyTranslation;
+
+  /// No description provided for @copiedToClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get copiedToClipboard;
+
+  /// No description provided for @kanjiInSentence.
+  ///
+  /// In en, this message translates to:
+  /// **'Kanji in this sentence'**
+  String get kanjiInSentence;
+
   /// No description provided for @copy.
   ///
   /// In en, this message translates to:

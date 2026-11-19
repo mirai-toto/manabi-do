@@ -13,6 +13,7 @@ import '../../../l10n/l10n.dart';
 import '../../../l10n/pos_label.dart';
 import '../../providers/vocabulary_provider.dart';
 import '../../widgets/widgets.dart';
+import '../detail_navigation.dart';
 import 'vocabulary_kanji_list.dart';
 
 /// Everything the app knows about one word.
@@ -131,7 +132,6 @@ class _Sentences extends ConsumerWidget {
         const <(Sentence, ({String locale, String text})?)>[];
     if (rows.isEmpty) return const SizedBox.shrink();
     final t = context.tokens;
-    final l = context.l10n;
     final readerLocale = ref.watch(localeProvider).languageCode;
 
     return Column(
@@ -149,43 +149,46 @@ class _Sentences extends ConsumerWidget {
               for (final (index, row) in rows.indexed) ...[
                 if (index > 0)
                   Divider(height: 1, thickness: 1, color: t.outlineVariant),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: AppDimens.spaceSm,
+                // The whole row opens the sentence on its own screen, which
+                // reads it aloud, copies it and lists every kanji in it.
+                InkWell(
+                  onTap: () => openSentenceDetail(
+                    context,
+                    sentence: row.$1,
+                    translation: row.$2,
+                    highlight: entry.word,
+                    highlightColor: color,
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        // The annotated form, not the plain one. Every
-                        // sentence in the database carries furigana in
-                        // `{漢字|かんじ}` form, and passing `japanese` meant
-                        // the readings were there and simply never drawn.
-                        child: JapaneseSentence(
-                          sentence: row.$1.furigana ?? row.$1.japanese,
-                          highlight: entry.word,
-                          highlightColor: color,
-                          translation: row.$2?.text,
-                          missingLanguage: missingLanguageForSentence(
-                            row.$2?.locale,
-                            readerLocale,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: AppDimens.spaceSm,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          // The annotated form, not the plain one. Every
+                          // sentence in the database carries furigana in
+                          // `{漢字|かんじ}` form, and passing `japanese` meant
+                          // the readings were there and simply never drawn.
+                          child: JapaneseSentence(
+                            sentence: row.$1.furigana ?? row.$1.japanese,
+                            highlight: entry.word,
+                            highlightColor: color,
+                            translation: row.$2?.text,
+                            missingLanguage: missingLanguageForSentence(
+                              row.$2?.locale,
+                              readerLocale,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: AppDimens.spaceSm),
-                      // The plain text, never the annotated form: nobody
-                      // wants to paste `{何|なに}するの？` anywhere.
-                      CopyButton(
-                        choices: [
-                          CopyChoice(label: l.japanese, text: row.$1.japanese),
-                          if (row.$2 != null)
-                            CopyChoice(
-                              label: l.translationModeLabel,
-                              text: row.$2!.text,
-                            ),
-                        ],
-                      ),
-                    ],
+                        const SizedBox(width: AppDimens.spaceSm),
+                        Icon(
+                          Icons.chevron_right_rounded,
+                          color: t.onSurfaceVariant,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

@@ -999,6 +999,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get japanese => 'Japonais';
 
   @override
+  String get copyJapanese => 'Copier le japonais';
+
+  @override
+  String get copyTranslation => 'Copier la traduction';
+
+  @override
+  String get copiedToClipboard => 'Copié';
+
+  @override
+  String get kanjiInSentence => 'Kanji de cette phrase';
+
+  @override
   String get copy => 'Copier';
 
   @override

@@ -12,6 +12,22 @@ extension KanjiQueries on AppDatabase {
 
   Future<List<Kanji>> getAllKanji() => select(kanjis).get();
 
+  /// The taught kanji among [characters], in the order given. Characters the
+  /// app has no entry for are left out.
+  Future<List<Kanji>> getKanjiByCharacters(List<String> characters) async {
+    if (characters.isEmpty) return const [];
+    final List<Kanji> rows = await (select(
+      kanjis,
+    )..where((k) => k.character.isIn(characters))).get();
+    final Map<String, Kanji> byCharacter = {
+      for (final Kanji row in rows) row.character: row,
+    };
+    return [
+      for (final String c in characters)
+        if (byCharacter[c] case final Kanji kanji) kanji,
+    ];
+  }
+
   /// The kanji a word is written with, in the order they appear in it.
   ///
   /// The mirror of [getVocabularyForKanji]. Joined through `vocabulary_kanji`,
