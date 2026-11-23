@@ -43,6 +43,13 @@ Still open:
 
 Done: after answering with auto-advance off, every option in kanji and vocabulary multiple choice and in the sentence exercise shows an info icon and opens its kanji or word detail; the sentence exercise also has "View sentence". Kana options (romaji) and grammar options are left out on purpose.
 
+### 5. Home screen setting
+
+Settings › App › Home screen lets you hide sections (Kana, Kanji, Vocabulary) from Home, which also takes them out of the daily reviews. Two problems:
+
+- It's not clear what it does: nothing says that hiding a section also stops its daily reviews
+- The toggles don't work
+
 ---
 
 ## Next
@@ -51,6 +58,7 @@ Done: after answering with auto-advance off, every option in kanji and vocabular
 - ✅ **Example sentence audio**: playable from the sentence list in word detail, the sentence detail and the sentence exercise
 - ✅ **"Show example" setting**: vocabulary flashcards now show one of the word's sentences (word masked until revealed); kanji and kana have no sentences, so it stays vocabulary and grammar only
 - ✅ **Kana free practice pool**: picks random kana from the whole table, up to the free practice length
+- **CI performance**: run the release notes check first, as a preflight, so a missing or broken release note fails fast instead of after all the heavy checks
 - ✅ **Practice buttons never record**: the kanji and vocabulary practice pickers open with a banner (練 tile) saying practice isn't recorded, with a link to today's reviews
 
 ---
