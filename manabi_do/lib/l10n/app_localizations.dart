@@ -991,7 +991,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsHomeScreenHint.
   ///
   /// In en, this message translates to:
-  /// **'Hidden sections leave Home and today\'s reviews. You can still study them from their tab.'**
+  /// **'Turn a section off to hide it from Home and stop its daily reviews.'**
   String get settingsHomeScreenHint;
 
   /// No description provided for @settingsApp.

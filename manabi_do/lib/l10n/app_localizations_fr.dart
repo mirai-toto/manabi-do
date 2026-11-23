@@ -506,7 +506,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsHomeScreenHint =>
-      'Les sections masquées disparaissent de l\'accueil et des révisions du jour. Vous pouvez toujours les étudier depuis leur onglet.';
+      'Désactivez une section pour la masquer de l\'accueil et arrêter ses révisions quotidiennes.';
 
   @override
   String get settingsApp => 'Application';

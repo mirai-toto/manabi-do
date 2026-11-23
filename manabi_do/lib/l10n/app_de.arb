@@ -235,7 +235,7 @@
   "settingsExercises": "Übungen",
   "settingsStudyScopeNote": "Gilt für jede bewertete Sitzung.",
   "settingsHomeScreen": "Startbildschirm",
-  "settingsHomeScreenHint": "Ausgeblendete Bereiche verschwinden von der Startseite und aus den heutigen Wiederholungen. Über ihren Tab können Sie sie weiter lernen.",
+  "settingsHomeScreenHint": "Schalten Sie einen Bereich aus, um ihn auf der Startseite auszublenden und seine täglichen Wiederholungen zu stoppen.",
   "settingsApp": "App",
   "settingsHomeAll": "Alle Bereiche",
   "settingsHomeNone": "Keine",

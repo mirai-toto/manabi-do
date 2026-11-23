@@ -228,7 +228,7 @@
   "settingsExercises": "Exercices",
   "settingsStudyScopeNote": "S'applique à chaque session notée.",
   "settingsHomeScreen": "Écran d'accueil",
-  "settingsHomeScreenHint": "Les sections masquées disparaissent de l'accueil et des révisions du jour. Vous pouvez toujours les étudier depuis leur onglet.",
+  "settingsHomeScreenHint": "Désactivez une section pour la masquer de l'accueil et arrêter ses révisions quotidiennes.",
   "settingsApp": "Application",
   "settingsHomeAll": "Toutes les sections",
   "settingsHomeNone": "Aucune",

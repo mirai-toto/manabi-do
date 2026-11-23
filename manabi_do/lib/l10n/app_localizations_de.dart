@@ -507,7 +507,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsHomeScreenHint =>
-      'Ausgeblendete Bereiche verschwinden von der Startseite und aus den heutigen Wiederholungen. Über ihren Tab können Sie sie weiter lernen.';
+      'Schalten Sie einen Bereich aus, um ihn auf der Startseite auszublenden und seine täglichen Wiederholungen zu stoppen.';
 
   @override
   String get settingsApp => 'App';
