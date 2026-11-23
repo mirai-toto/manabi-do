@@ -43,12 +43,9 @@ Still open:
 
 Done: after answering with auto-advance off, every option in kanji and vocabulary multiple choice and in the sentence exercise shows an info icon and opens its kanji or word detail; the sentence exercise also has "View sentence". Kana options (romaji) and grammar options are left out on purpose.
 
-### 5. Home screen setting
+### 5. Home screen setting ✅
 
-Settings › App › Home screen lets you hide sections (Kana, Kanji, Vocabulary) from Home, which also takes them out of the daily reviews. Two problems:
-
-- It's not clear what it does: nothing says that hiding a section also stops its daily reviews
-- The toggles don't work
+Done: the Home screen sheet's switches now move when tapped (they were saved, but the sheet never redrew, so they looked broken), and a line under the title says hidden sections also leave today's reviews and can still be studied from their tab.
 
 ---
 

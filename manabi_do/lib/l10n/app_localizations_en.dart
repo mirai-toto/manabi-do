@@ -504,6 +504,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsHomeScreen => 'Home screen';
 
   @override
+  String get settingsHomeScreenHint =>
+      'Hidden sections leave Home and today\'s reviews. You can still study them from their tab.';
+
+  @override
   String get settingsApp => 'App';
 
   @override

@@ -988,6 +988,12 @@ abstract class AppLocalizations {
   /// **'Home screen'**
   String get settingsHomeScreen;
 
+  /// No description provided for @settingsHomeScreenHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden sections leave Home and today\'s reviews. You can still study them from their tab.'**
+  String get settingsHomeScreenHint;
+
   /// No description provided for @settingsApp.
   ///
   /// In en, this message translates to:

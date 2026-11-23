@@ -281,6 +281,7 @@
   "settingsExercises": "Exercises",
   "settingsStudyScopeNote": "Applies to every graded session.",
   "settingsHomeScreen": "Home screen",
+  "settingsHomeScreenHint": "Hidden sections leave Home and today's reviews. You can still study them from their tab.",
   "settingsApp": "App",
   "settingsHomeAll": "All sections",
   "settingsHomeNone": "None",

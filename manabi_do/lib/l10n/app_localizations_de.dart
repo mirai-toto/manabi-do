@@ -506,6 +506,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsHomeScreen => 'Startbildschirm';
 
   @override
+  String get settingsHomeScreenHint =>
+      'Ausgeblendete Bereiche verschwinden von der Startseite und aus den heutigen Wiederholungen. Über ihren Tab können Sie sie weiter lernen.';
+
+  @override
   String get settingsApp => 'App';
 
   @override
