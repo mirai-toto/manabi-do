@@ -11,9 +11,15 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Preflight first: the release notes and commit message checks take seconds,
+# so the heavy jobs (Flutter setup, content download, analyze, test, release
+# dry run) wait for them and are skipped when one fails. Every job here is a
+# required check on main, so a skipped heavy job never lets a failing pull
+# request through: the failed preflight job still blocks the merge.
 jobs:
   analyze:
     name: Analyze & format
+    needs: [release-notes, commitlint]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -106,6 +112,7 @@ jobs:
 
   release-dry-run:
     name: Release dry run
+    needs: [release-notes, commitlint]
     runs-on: ubuntu-latest
     permissions:
       contents: write
