@@ -71,10 +71,31 @@ int searchRank({
       shape = _insideWord;
     }
 
-    final rank = _rank(at == 0 ? shape : shape + 1, i);
+    // English verbs are glossed "to hate": the query still opens that
+    // sense, or every verb would rank below the nouns that share a word.
+    final bool opensSense = at == 0 || (at == 3 && gloss.startsWith('to '));
+    final rank = _rank(opensSense ? shape : shape + 1, i);
     if (rank < best) best = rank;
   }
   return best;
+}
+
+/// Ranks an entry matched through romaji converted to [kana]: "taberu" read as
+/// たべる. Below a real kana query, because romaji is ambiguous with English
+/// ("hate" is both 果て and the first sense of 嫌う): an exact reading comes
+/// just after a meaning that opens with the query as a whole word, a partial
+/// reading just after one that opens with it as a prefix.
+int romajiSearchRank({
+  required String kana,
+  required String japanese,
+  required List<String> readings,
+}) {
+  final List<String> fields = [japanese, ...readings];
+  if (fields.any((field) => field == kana)) return _rank(_wholeWord + 1, 0);
+  if (fields.any((field) => field.contains(kana))) {
+    return _rank(_wordPrefix + 1, 0);
+  }
+  return noSearchMatch;
 }
 
 int _rank(int quality, int glossIndex) =>

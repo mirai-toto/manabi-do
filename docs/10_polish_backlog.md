@@ -51,7 +51,7 @@ Done: the Home screen sheet's switches now move when tapped (they were saved, bu
 
 ## Next
 
-- **Vocabulary search**: searching by reading in romaji doesn't work; ranking doesn't work perfectly yet
+- ✅ **Vocabulary search**: romaji now searches as hiragana and katakana (taberu → 食べる, terebi → テレビ), ranked just below meanings that open with the query; English verbs ("to hate") no longer rank below nouns
 - ✅ **Example sentence audio**: playable from the sentence list in word detail, the sentence detail and the sentence exercise
 - ✅ **"Show example" setting**: vocabulary flashcards now show one of the word's sentences (word masked until revealed); kanji and kana have no sentences, so it stays vocabulary and grammar only
 - ✅ **Kana free practice pool**: picks random kana from the whole table, up to the free practice length

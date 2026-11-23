@@ -97,7 +97,7 @@ Separate sections: Hiragana, Katakana, Kanji.
 - Word list split by status: due today, not started, known, etc.
 - Same color logic as kana and kanji
 - Search bar:
-  - Matches the word, its reading (kana only, romaji input doesn't work), or its meaning
+  - Matches the word, its reading (typed in kana or romaji), or its meaning
   - Results ordered by commonality (most common first) and closeness to the search
   - Filter results by commonality
 - Word detail:
