@@ -48,10 +48,10 @@ Done: after answering with auto-advance off, every option in kanji and vocabular
 ## Next
 
 - **Vocabulary search**: searching by reading in romaji doesn't work; ranking doesn't work perfectly yet
-- **Example sentence audio**: playable from the sentence detail now; the sentence list in word detail and the sentence exercise still have no play button
-- **"Show example" setting**: only affects grammar flashcards; for kana, kanji and vocabulary it does nothing. Either say so in the setting, or give those flashcards examples too
-- **Kana free practice pool**: uses the same items as the graded queue (due and new today), so when nothing is due there's little or nothing to practise, unlike kanji and vocabulary which pick from the whole level or group
-- **Practice buttons never record**: "Practice" inside a section never counts toward reviews, which may surprise a learner who expects it to
+- ✅ **Example sentence audio**: playable from the sentence list in word detail, the sentence detail and the sentence exercise
+- ✅ **"Show example" setting**: vocabulary flashcards now show one of the word's sentences (word masked until revealed); kanji and kana have no sentences, so it stays vocabulary and grammar only
+- ✅ **Kana free practice pool**: picks random kana from the whole table, up to the free practice length
+- ✅ **Practice buttons never record**: the kanji and vocabulary practice pickers open with a banner (練 tile) saying practice isn't recorded, with a link to today's reviews
 
 ---
 

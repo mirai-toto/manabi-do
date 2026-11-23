@@ -784,7 +784,9 @@
       }
     }
   },
-  "practiceNotRecordedNote": "Practice here isn't recorded: your review schedule only moves with the daily reviews on Home.",
+  "practiceModeTitle": "Practice mode: not recorded",
+  "practiceModeBody": "Train as much as you like. Your review schedule only moves with today's reviews on Home.",
+  "practiceModeGoToReviews": "Go to today's reviews",
   "summaryFreePracticeNote": "Free practice. Nothing here changes your review schedule.",
   "summaryStreak": "{days, plural, one{1-day streak} other{{days}-day streak}}",
   "@summaryStreak": {

@@ -1297,8 +1297,14 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get practiceNotRecordedNote =>
-      'Üben hier wird nicht gespeichert: Ihr Wiederholungsplan ändert sich nur mit den täglichen Wiederholungen auf der Startseite.';
+  String get practiceModeTitle => 'Übungsmodus: wird nicht gespeichert';
+
+  @override
+  String get practiceModeBody =>
+      'Üben Sie so viel Sie möchten. Ihr Wiederholungsplan ändert sich nur mit den heutigen Wiederholungen auf der Startseite.';
+
+  @override
+  String get practiceModeGoToReviews => 'Zu den heutigen Wiederholungen';
 
   @override
   String get summaryFreePracticeNote =>

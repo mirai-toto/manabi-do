@@ -2320,11 +2320,23 @@ abstract class AppLocalizations {
   /// **'{time} · every one remembered'**
   String summaryMetaPerfect(String time);
 
-  /// No description provided for @practiceNotRecordedNote.
+  /// No description provided for @practiceModeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Practice here isn\'t recorded: your review schedule only moves with the daily reviews on Home.'**
-  String get practiceNotRecordedNote;
+  /// **'Practice mode: not recorded'**
+  String get practiceModeTitle;
+
+  /// No description provided for @practiceModeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Train as much as you like. Your review schedule only moves with today\'s reviews on Home.'**
+  String get practiceModeBody;
+
+  /// No description provided for @practiceModeGoToReviews.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to today\'s reviews'**
+  String get practiceModeGoToReviews;
 
   /// No description provided for @summaryFreePracticeNote.
   ///

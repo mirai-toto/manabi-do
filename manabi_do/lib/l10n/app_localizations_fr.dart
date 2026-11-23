@@ -1297,8 +1297,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get practiceNotRecordedNote =>
-      'L\'entraînement ici n\'est pas enregistré : votre planning ne change qu\'avec les révisions du jour, sur l\'accueil.';
+  String get practiceModeTitle => 'Mode entraînement : non enregistré';
+
+  @override
+  String get practiceModeBody =>
+      'Entraînez-vous autant que vous voulez. Votre planning ne change qu\'avec les révisions du jour, sur l\'accueil.';
+
+  @override
+  String get practiceModeGoToReviews => 'Aller aux révisions du jour';
 
   @override
   String get summaryFreePracticeNote =>

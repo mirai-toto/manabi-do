@@ -1288,8 +1288,14 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get practiceNotRecordedNote =>
-      'Practice here isn\'t recorded: your review schedule only moves with the daily reviews on Home.';
+  String get practiceModeTitle => 'Practice mode: not recorded';
+
+  @override
+  String get practiceModeBody =>
+      'Train as much as you like. Your review schedule only moves with today\'s reviews on Home.';
+
+  @override
+  String get practiceModeGoToReviews => 'Go to today\'s reviews';
 
   @override
   String get summaryFreePracticeNote =>
