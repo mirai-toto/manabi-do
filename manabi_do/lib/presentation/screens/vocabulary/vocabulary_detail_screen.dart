@@ -187,6 +187,10 @@ class _Sentences extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(width: AppDimens.spaceSm),
+                        SpeakButton(
+                          text: row.$1.japanese,
+                          color: t.onSurfaceVariant,
+                        ),
                         Icon(
                           Icons.chevron_right_rounded,
                           color: t.onSurfaceVariant,
