@@ -113,4 +113,12 @@ cp build/app/outputs/flutter-apk/app-debug.apk "$WINTMP/manabi-debug.apk"
 
 - App data survives `install -r`; a new virtual device starts on onboarding.
 - Wrap `adb.exe` calls in `timeout`: a dead emulator entry makes them hang instead of failing.
+- `adb.exe` output ends lines with `\r\n`. Strip the `\r` before matching it in scripts, or patterns anchored at line end never match and a wait loop never sees the device:
+
+  ```bash
+  "$ADB" devices | tr -d '\r' | awk '/emulator.*device$/{print $1}'
+  "$ADB" -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r'   # "1", not "1\r"
+  ```
+
+- A cold boot can take several minutes; when waiting for it, allow up to ~10 minutes, and confirm an install by its time (`dumpsys package com.github.mirai_toto.manabi_do | grep lastUpdateTime`) rather than assuming it worked.
 - Re-read the screen (`uiautomator dump`) before each tap; coordinates change between screens and after a relaunch.
