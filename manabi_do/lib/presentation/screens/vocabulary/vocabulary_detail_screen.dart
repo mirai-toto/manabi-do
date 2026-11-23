@@ -155,7 +155,11 @@ class _Sentences extends ConsumerWidget {
                   onTap: () => openSentenceDetail(
                     context,
                     sentence: row.$1,
-                    translation: row.$2,
+                    translation: row.$2?.text,
+                    translationMissingLanguage: missingLanguageForSentence(
+                      row.$2?.locale,
+                      readerLocale,
+                    ),
                     highlight: entry.word,
                     highlightColor: color,
                   ),

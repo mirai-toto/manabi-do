@@ -11,6 +11,7 @@ import '../../../core/models/sentence_settings.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../core/theme/jlpt_level.dart';
+import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../detail_navigation.dart';
 import 'kanji_drawing_body.dart';
@@ -79,6 +80,24 @@ class PracticeQuestionBody extends StatelessWidget {
 
   bool get _autoAdvanceSentence => settings.sentence.autoAdvance;
 
+  /// What each option opens once answered, or null when none opens anything.
+  List<VoidCallback>? _optionOpeners(
+    BuildContext context,
+    List<OptionLink> links,
+  ) => links.isEmpty
+      ? null
+      : [
+          for (final OptionLink link in links)
+            switch (link) {
+              KanjiOptionLink(:final int kanjiId) => () => openKanjiDetail(
+                context,
+                kanjiId,
+              ),
+              WordOptionLink(:final VocabularyEntry entry) =>
+                () => openWordDetail(context, entry),
+            },
+        ];
+
   VoidCallback? _onDetailTap(BuildContext context) {
     final kanjiId = question.kanjiDetailId;
     if (kanjiId == null) return null;
@@ -134,6 +153,7 @@ class PracticeQuestionBody extends StatelessWidget {
         autoAdvance: _autoAdvanceMcq,
         showPromptFurigana: settings.mcq.showPromptFurigana,
         onDetailTap: _onDetailTap(context),
+        optionOpeners: _optionOpeners(context, q.optionLinks),
       ),
       final DrawingQuestion q => KanjiDrawingBody(
         kanji: q.kanji,
@@ -167,6 +187,18 @@ class PracticeQuestionBody extends StatelessWidget {
         translationMode: settings.sentence.translationMode,
         showSentenceFurigana: settings.sentence.showSentenceFurigana,
         showChoiceFurigana: settings.sentence.showChoiceFurigana,
+        optionOpeners: [
+          for (final VocabularyEntry entry in q.optionEntries)
+            () => openWordDetail(context, entry),
+        ],
+        onOpenSentence: () => openSentenceDetail(
+          context,
+          sentence: q.sentence,
+          translation: q.translation,
+          translationMissingLanguage: q.translationMissingLanguage,
+          highlight: q.sentence.targetWord,
+          highlightColor: color,
+        ),
       ),
       final GrammarClozeQuestion q => GrammarClozeBody(
         sentence: q.sentence,

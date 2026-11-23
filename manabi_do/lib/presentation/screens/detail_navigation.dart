@@ -31,7 +31,8 @@ Future<void> openWordDetail(BuildContext context, VocabularyEntry entry) =>
 Future<void> openSentenceDetail(
   BuildContext context, {
   required Sentence sentence,
-  required ({String locale, String text})? translation,
+  required String? translation,
+  required String? translationMissingLanguage,
   required String highlight,
   required Color highlightColor,
 }) => _openDetail(
@@ -40,6 +41,7 @@ Future<void> openSentenceDetail(
   (_) => SentenceDetailScreen(
     sentence: sentence,
     translation: translation,
+    translationMissingLanguage: translationMissingLanguage,
     highlight: highlight,
     highlightColor: highlightColor,
   ),

@@ -1882,6 +1882,12 @@ abstract class AppLocalizations {
   /// **'Kanji in this sentence'**
   String get kanjiInSentence;
 
+  /// No description provided for @viewSentence.
+  ///
+  /// In en, this message translates to:
+  /// **'View sentence'**
+  String get viewSentence;
+
   /// No description provided for @copy.
   ///
   /// In en, this message translates to:

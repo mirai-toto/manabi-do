@@ -179,6 +179,7 @@ _Draft from the code; to review._
 - **Multiple choice and Sentence**: tap an option; it's marked right or wrong (small pop or shake), and the correct answer is highlighted if you were wrong
   - Auto-advance on: graded automatically (right = Good, wrong = Again) and moves on after a short pause
   - Auto-advance off: the grade buttons appear and you grade yourself; multiple choice also offers a link to the item's detail
+  - Auto-advance off, after answering: kanji and vocabulary options show an info icon, and tapping any option opens that kanji's or word's detail; the sentence exercise also offers "View sentence" (kana and grammar options open nothing)
 - **Writing**: once all strokes are drawn
   - Auto-advance off: shows the number of wrong strokes, replays the correct stroke order if any were wrong, then grade buttons, retry, and a link to the kanji detail
   - Auto-advance on: moves on after a short pause, without showing the correction

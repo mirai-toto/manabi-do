@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/providers/locale_provider.dart';
-import '../../../core/text/sentence_language.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
@@ -21,7 +19,10 @@ import 'vocabulary_kanji_list.dart';
 /// up.
 class SentenceDetailScreen extends ConsumerWidget {
   final Sentence sentence;
-  final ({String locale, String text})? translation;
+  final String? translation;
+
+  /// The reader's language, named, when [translation] fell back to English.
+  final String? translationMissingLanguage;
 
   /// The word the sentence was opened from, highlighted in it.
   final String highlight;
@@ -31,6 +32,7 @@ class SentenceDetailScreen extends ConsumerWidget {
     super.key,
     required this.sentence,
     required this.translation,
+    required this.translationMissingLanguage,
     required this.highlight,
     required this.highlightColor,
   });
@@ -46,11 +48,10 @@ class SentenceDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.tokens;
     final l = context.l10n;
-    final String readerLocale = ref.watch(localeProvider).languageCode;
     final List<Kanji> kanji =
         ref.watch(kanjiInTextProvider(sentence.japanese)).asData?.value ??
         const <Kanji>[];
-    final ({String locale, String text})? translation = this.translation;
+    final String? translation = this.translation;
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -81,11 +82,8 @@ class SentenceDetailScreen extends ConsumerWidget {
                       sentence: sentence.furigana ?? sentence.japanese,
                       highlight: highlight,
                       highlightColor: highlightColor,
-                      translation: translation?.text,
-                      missingLanguage: missingLanguageForSentence(
-                        translation?.locale,
-                        readerLocale,
-                      ),
+                      translation: translation,
+                      missingLanguage: translationMissingLanguage,
                       style: AppTextStyles.jpSentence,
                     ),
                   ),
@@ -114,7 +112,7 @@ class SentenceDetailScreen extends ConsumerWidget {
                       variant: AppButtonVariant.outlined,
                       size: AppButtonSize.small,
                       icon: const Icon(Icons.copy_rounded, size: 16),
-                      onPressed: () => _copy(context, translation.text),
+                      onPressed: () => _copy(context, translation),
                     ),
                 ],
               ),

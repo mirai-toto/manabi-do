@@ -38,14 +38,10 @@ Still open:
   - App side: a sentence → words table (schema change and migration), one query, and the list on the sentence detail reusing the word rows
   - Rejected: matching words in the app (misses conjugations, noisy on particles) and shipping a tokenizer in the app (tens of MB, native code)
   - First step: check how the content pipeline imports sentences and whether the indices are already used
-- Sentence detail is only reachable from word detail; the sentence exercise should link to it too (see 4)
 
-### 4. Details from every answer choice
+### 4. Details from every answer choice ✅
 
-After answering with auto-advance off, let every choice open its detail, not just the item asked:
-
-- Multiple choice: tap any of the kana, kanji, or words offered to open its detail
-- Sentence: tap the sentence to open the sentence detail (see 3)
+Done: after answering with auto-advance off, every option in kanji and vocabulary multiple choice and in the sentence exercise shows an info icon and opens its kanji or word detail; the sentence exercise also has "View sentence". Kana options (romaji) and grammar options are left out on purpose.
 
 ---
 

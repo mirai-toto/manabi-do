@@ -1011,6 +1011,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kanjiInSentence => 'Kanji de cette phrase';
 
   @override
+  String get viewSentence => 'Voir la phrase';
+
+  @override
   String get copy => 'Copier';
 
   @override

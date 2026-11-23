@@ -60,7 +60,8 @@ List<T> _pickDistractors<T>({
   );
 }
 
-({List<McqOption> options, int correctIndex}) buildKanjiMcqOptions({
+({List<McqOption> options, int correctIndex, List<Kanji> kanji})
+buildKanjiMcqOptions({
   required Kanji target,
   required List<Kanji> pool,
   required int n,
@@ -91,10 +92,12 @@ List<T> _pickDistractors<T>({
       ),
     ),
     correctIndex: correctIndex,
+    kanji: options,
   );
 }
 
-({List<McqOption> options, int correctIndex}) buildVocabularyMcqOptions({
+({List<McqOption> options, int correctIndex, List<VocabularyEntry> entries})
+buildVocabularyMcqOptions({
   required VocabularyEntry target,
   required List<VocabularyEntry> pool,
   required int n,
@@ -118,10 +121,12 @@ List<T> _pickDistractors<T>({
           McqOption(letter: optionLetter(i), text: meaningOf(optionEntries[i])),
     ),
     correctIndex: correctIndex,
+    entries: optionEntries,
   );
 }
 
-({List<McqOption> options, int correctIndex}) buildClozeOptions({
+({List<McqOption> options, int correctIndex, List<VocabularyEntry> entries})
+buildClozeOptions({
   required VocabularyEntry target,
   required List<VocabularyEntry> pool,
   required int n,
@@ -148,6 +153,7 @@ List<T> _pickDistractors<T>({
       ),
     ),
     correctIndex: correctIndex,
+    entries: optionEntries,
   );
 }
 
@@ -295,6 +301,7 @@ PracticeItem kanjiMcqItem(
       options: mcq.options,
       correctIndex: mcq.correctIndex,
       compactGrid: !isKanjiToMeaning,
+      optionLinks: [for (final Kanji k in mcq.kanji) KanjiOptionLink(k.id)],
       level: kanji.jlptLevel,
       isFreeMode: isFreeMode,
       kanjiDetailId: kanji.id,
@@ -363,6 +370,9 @@ PracticeItem vocabularyMcqItem(
       japaneseReading: _readingIfDifferent(entry),
       options: mcq.options,
       correctIndex: mcq.correctIndex,
+      optionLinks: [
+        for (final VocabularyEntry e in mcq.entries) WordOptionLink(e),
+      ],
       vocabularyLevel: entry.vocabularyLevel,
       isFreeMode: isFreeMode,
     ),
@@ -409,6 +419,7 @@ PracticeItem vocabularyClozeItem(
       targetReading: entry.reading,
       options: cloze.options,
       correctIndex: cloze.correctIndex,
+      optionEntries: cloze.entries,
       vocabularyLevel: entry.vocabularyLevel,
       isFreeMode: isFreeMode,
     ),
