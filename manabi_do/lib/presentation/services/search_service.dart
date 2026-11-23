@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/jlpt_level.dart';
+import '../../core/text/romaji.dart';
 import '../../core/text/search_rank.dart';
 import '../../data/database/app_database.dart';
 import '../providers/database_provider.dart';
@@ -67,7 +68,30 @@ class SearchService {
     Set<int> levels = const {},
     String locale = 'en',
   }) async {
-    final candidates = await _db.searchVocabularyCandidates(query, locale);
+    // Romaji also searches as kana, both scripts: readings are stored in
+    // hiragana, and in katakana for loanwords.
+    final String? hiragana = romajiToHiragana(query);
+    final List<String> kanaQueries = hiragana == null
+        ? const []
+        : [hiragana, hiraganaToKatakana(hiragana)];
+
+    final Map<int, VocabularyEntry> merged = {
+      for (final VocabularyEntry e in await _db.searchVocabularyCandidates(
+        query,
+        locale,
+      ))
+        e.id: e,
+    };
+    for (final String kana in kanaQueries) {
+      for (final VocabularyEntry e in await _db.searchVocabularyCandidates(
+        kana,
+        locale,
+      )) {
+        merged.putIfAbsent(e.id, () => e);
+      }
+    }
+    final List<VocabularyEntry> candidates = merged.values.toList();
+
     final Map<int, String> localized = locale == 'en'
         ? const {}
         : await _db.getVocabularyTranslations(
@@ -82,6 +106,17 @@ class SearchService {
         readings: [entry.reading],
         meaning: localized[entry.id] ?? entry.meaning,
       ),
+      extraRank: kanaQueries.isEmpty
+          ? null
+          : (entry) => kanaQueries
+                .map(
+                  (String kana) => romajiSearchRank(
+                    kana: kana,
+                    japanese: entry.word,
+                    readings: [entry.reading],
+                  ),
+                )
+                .reduce((a, b) => a < b ? a : b),
       keep: (entry) => levels.isEmpty || levels.contains(entry.vocabularyLevel),
       // Level 1 is the commonest, so the number is already the right order.
       easiness: (entry) => entry.vocabularyLevel,
@@ -122,6 +157,10 @@ List<T> _ranked<T>({
   required String query,
   required List<T> candidates,
   required SearchFields Function(T) fieldsOf,
+
+  /// Another way an entry can match, such as romaji read as kana; the better
+  /// of the two ranks counts.
+  int Function(T)? extraRank,
   required bool Function(T) keep,
   required int Function(T) easiness,
   required Comparator<T> tiebreak,
@@ -134,14 +173,16 @@ List<T> _ranked<T>({
   final scored =
       pool.map((candidate) {
         final fields = fieldsOf(candidate);
+        final int direct = searchRank(
+          query: query,
+          japanese: fields.japanese,
+          readings: fields.readings,
+          meaning: fields.meaning,
+        );
+        final int extra = extraRank?.call(candidate) ?? noSearchMatch;
         return (
           item: candidate,
-          rank: searchRank(
-            query: query,
-            japanese: fields.japanese,
-            readings: fields.readings,
-            meaning: fields.meaning,
-          ),
+          rank: direct < extra ? direct : extra,
           easiness: easiness(candidate),
         );
       }).toList()..sort((a, b) {

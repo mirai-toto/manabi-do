@@ -15,18 +15,16 @@ enum SettingsContext { sentence, mcq, flashcard, writing, grammar }
 
 class PracticeSettingsSheet extends ConsumerWidget {
   final Set<SettingsContext> contexts;
-  final bool showAutoAdvance;
 
-  /// The whole-queue auto-advance switch, offered by review sessions. Free
-  /// practice shows [showAutoAdvance] per exercise instead.
-  final bool showSessionAutoAdvance;
+  /// True in a graded session: it offers the grading scale, and hides the free
+  /// practice length, which it does not use.
+  final bool gradesRecorded;
   final bool hasExamples;
 
   const PracticeSettingsSheet({
     super.key,
     this.contexts = const {SettingsContext.mcq},
-    this.showAutoAdvance = false,
-    this.showSessionAutoAdvance = false,
+    this.gradesRecorded = false,
     this.hasExamples = false,
   });
 
@@ -59,19 +57,9 @@ class PracticeSettingsSheet extends ConsumerWidget {
             ),
             const SizedBox(height: AppDimens.spaceMd),
 
-            // ── Whole session ─────────────────────────────────────────────
-            // One switch, not one per exercise type: a review session mixes
-            // them, and being asked by only half of them would be incoherent.
-            if (showSessionAutoAdvance) ...[
-              SettingsSwitchRow(
-                label: l.autoAdvanceLabel,
-                subtitle: l.autoAdvanceSubtitle,
-                value: srs.autoAdvance,
-                onChanged: (v) =>
-                    ref.read(srsSettingsProvider.notifier).setAutoAdvance(v),
-              ),
-              // Only offered where the grade is kept: free practice discards it,
-              // so there is no precision to choose.
+            // Only offered where the grade is kept: free practice discards it,
+            // so there is no precision to choose.
+            if (gradesRecorded) ...[
               SettingsSwitchRow(
                 label: l.settingsDetailedGrading,
                 subtitle: l.settingsDetailedGradingSubtitle,
@@ -91,7 +79,10 @@ class PracticeSettingsSheet extends ConsumerWidget {
                 _CategoryLabel(l.flashcardPractice),
                 const SizedBox(height: AppDimens.spaceXs),
               ],
-              FlashcardSettingsSection(hasExamples: hasExamples),
+              FlashcardSettingsSection(
+                hasExamples: hasExamples,
+                showLength: !gradesRecorded,
+              ),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
@@ -101,7 +92,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
                 const SizedBox(height: AppDimens.spaceXs),
               ] else
                 const SizedBox(height: AppDimens.spaceSm),
-              McqSettingsSection(showAutoAdvance: showAutoAdvance),
+              McqSettingsSection(showLength: !gradesRecorded),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
@@ -112,9 +103,12 @@ class PracticeSettingsSheet extends ConsumerWidget {
                 _CategoryLabel(l.grammarPractice),
                 const SizedBox(height: AppDimens.spaceXs),
               ],
-              McqSettingsSection(showAutoAdvance: showAutoAdvance),
+              McqSettingsSection(showLength: !gradesRecorded),
               if (hasExamples)
-                FlashcardSettingsSection(hasExamples: hasExamples),
+                FlashcardSettingsSection(
+                  hasExamples: hasExamples,
+                  showLength: !gradesRecorded,
+                ),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
@@ -123,7 +117,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
                 _CategoryLabel(l.sentencePractice),
                 const SizedBox(height: AppDimens.spaceXs),
               ],
-              SentenceSettingsSection(showAutoAdvance: showAutoAdvance),
+              SentenceSettingsSection(showLength: !gradesRecorded),
               if (showLabels) const SizedBox(height: AppDimens.spaceMd),
             ],
 
@@ -132,7 +126,7 @@ class PracticeSettingsSheet extends ConsumerWidget {
                 _CategoryLabel(l.writingPractice),
                 const SizedBox(height: AppDimens.spaceXs),
               ],
-              WritingSettingsSection(showAutoAdvance: showAutoAdvance),
+              WritingSettingsSection(showLength: !gradesRecorded),
             ],
           ],
         ),

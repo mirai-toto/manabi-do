@@ -3,6 +3,22 @@ import 'practice_answer.dart';
 import '../../data/database/app_database.dart';
 import '../../data/grammar/grammar_models.dart';
 
+/// What an answer option opens once the question is answered: the kanji or
+/// word it stands for. Kana and grammar options have none.
+sealed class OptionLink {
+  const OptionLink();
+}
+
+final class KanjiOptionLink extends OptionLink {
+  final int kanjiId;
+  const KanjiOptionLink(this.kanjiId);
+}
+
+final class WordOptionLink extends OptionLink {
+  final VocabularyEntry entry;
+  const WordOptionLink(this.entry);
+}
+
 /// What a practice item asks, as data.
 ///
 /// A session service decides *what* to ask; `PracticeQuestionBody` decides how
@@ -51,7 +67,8 @@ final class FlashcardQuestion extends PracticeQuestion {
   /// Ask for the Japanese given the meaning, rather than the other way round.
   final bool isReversed;
 
-  /// Grammar flashcards carry a worked example and their own wording.
+  /// A worked example: grammar flashcards carry one from the lesson, word
+  /// flashcards one of the word's sentences. Grammar also has its own wording.
   final GrammarExample? example;
   final String locale;
   final String? questionOverride;
@@ -82,10 +99,15 @@ final class McqQuestion extends PracticeQuestion {
   /// Two columns of short Japanese choices rather than one column of prose.
   final bool compactGrid;
 
+  /// One per option, in the same order: what each opens after answering.
+  /// Empty when the options open nothing.
+  final List<OptionLink> optionLinks;
+
   const McqQuestion({
     required this.prompt,
     required this.options,
     required this.correctIndex,
+    this.optionLinks = const [],
     this.japanesePrompt,
     this.japaneseReading,
     this.compactGrid = false,
@@ -125,10 +147,14 @@ final class SentenceClozeQuestion extends PracticeQuestion {
   final List<McqOption> options;
   final int correctIndex;
 
+  /// The word behind each option, in the same order, for its detail screen.
+  final List<VocabularyEntry> optionEntries;
+
   const SentenceClozeQuestion({
     required this.sentence,
     required this.options,
     required this.correctIndex,
+    required this.optionEntries,
     this.translation,
     this.translationMissingLanguage,
     this.targetReading,

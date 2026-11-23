@@ -506,6 +506,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsHomeScreen => 'Startbildschirm';
 
   @override
+  String get settingsHomeScreenHint =>
+      'Schalten Sie einen Bereich aus, um ihn auf der Startseite auszublenden und seine täglichen Wiederholungen zu stoppen.';
+
+  @override
   String get settingsApp => 'App';
 
   @override
@@ -890,7 +894,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get recognitionLenient => 'Großzügig';
 
   @override
-  String get practiceSettingsSessionLength => 'Sitzungslänge';
+  String get practiceSettingsSessionLength => 'Länge beim freien Üben';
 
   @override
   String get practiceSettingsMcqChoices => 'Optionen pro Frage';
@@ -936,10 +940,6 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get autoAdvanceSubtitle =>
       'Automatisch weitergehen und jede Antwort für dich bewerten';
-
-  @override
-  String get autoAdvanceFreePracticeNote =>
-      'Gilt für freies Üben. Eine bewertete Sitzung nutzt den einen Schalter unter Lernen, da eine Sitzung Übungsarten mischt.';
 
   @override
   String get hintUsedFeedback => 'Hinweis benutzt · als falsch markiert';
@@ -1003,6 +1003,21 @@ class AppLocalizationsDe extends AppLocalizations {
   String get japanese => 'Japanisch';
 
   @override
+  String get copyJapanese => 'Japanisch kopieren';
+
+  @override
+  String get copyTranslation => 'Übersetzung kopieren';
+
+  @override
+  String get copiedToClipboard => 'Kopiert';
+
+  @override
+  String get kanjiInSentence => 'Kanji in diesem Satz';
+
+  @override
+  String get viewSentence => 'Satz ansehen';
+
+  @override
   String get copy => 'Kopieren';
 
   @override
@@ -1028,7 +1043,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get showExampleSubtitle =>
-      'Einen Beispielsatz auf Karteikarten anzeigen';
+      'Einen Beispielsatz auf Vokabel- und Grammatikkarten anzeigen';
 
   @override
   String get speakPronunciation => 'Aussprache abspielen';
@@ -1284,6 +1299,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String summaryMetaPerfect(String time) {
     return '$time · alles gewusst';
   }
+
+  @override
+  String get practiceModeTitle => 'Übungsmodus: wird nicht gespeichert';
+
+  @override
+  String get practiceModeBody =>
+      'Üben Sie so viel Sie möchten. Ihr Wiederholungsplan ändert sich nur mit den heutigen Wiederholungen auf der Startseite.';
+
+  @override
+  String get practiceModeGoToReviews => 'Zu den heutigen Wiederholungen';
 
   @override
   String get summaryFreePracticeNote =>

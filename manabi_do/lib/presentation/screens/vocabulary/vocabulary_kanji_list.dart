@@ -9,8 +9,8 @@ import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_provider.dart';
 import '../../providers/vocabulary_provider.dart';
-import '../characters/kanji/kanji_detail_screen.dart';
 import '../../widgets/widgets.dart';
+import '../detail_navigation.dart';
 
 /// `SectionLabel` + the kanji a word is written with, each opening its own
 /// detail screen.
@@ -28,13 +28,29 @@ class VocabularyKanjiList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final kanji = ref.watch(kanjiForVocabularyProvider(vocabularyId));
-    final rows = kanji.asData?.value ?? const <Kanji>[];
-    if (rows.isEmpty) return const SizedBox.shrink();
+    return KanjiListSection(
+      title: context.l10n.writtenWith,
+      kanji: kanji.asData?.value ?? const <Kanji>[],
+    );
+  }
+}
+
+/// A titled card of kanji rows, each opening its own detail screen. Shared by
+/// a word's "written with" list and a sentence's kanji.
+class KanjiListSection extends StatelessWidget {
+  final String title;
+  final List<Kanji> kanji;
+
+  const KanjiListSection({super.key, required this.title, required this.kanji});
+
+  @override
+  Widget build(BuildContext context) {
+    if (kanji.isEmpty) return const SizedBox.shrink();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionLabel(context.l10n.writtenWith),
+        SectionLabel(title),
         const SizedBox(height: AppDimens.spaceSm),
         CardContainer(
           padding: const EdgeInsets.symmetric(
@@ -43,7 +59,7 @@ class VocabularyKanjiList extends ConsumerWidget {
           ),
           child: Column(
             children: [
-              for (final (index, entry) in rows.indexed) ...[
+              for (final (index, entry) in kanji.indexed) ...[
                 if (index > 0)
                   Divider(
                     height: 1,
@@ -79,11 +95,7 @@ class _KanjiRow extends ConsumerWidget {
       button: true,
       excludeSemantics: true,
       child: InkWell(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => KanjiDetailScreen(kanjiId: kanji.id),
-          ),
-        ),
+        onTap: () => openKanjiDetail(context, kanji.id),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: AppDimens.spaceSm),
           child: Row(

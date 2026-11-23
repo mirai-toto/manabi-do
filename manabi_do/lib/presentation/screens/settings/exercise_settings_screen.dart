@@ -22,9 +22,7 @@ String exerciseKindLabel(ExerciseKind kind, AppLocalizations l) =>
 /// One exercise's settings, reached from the settings screen.
 ///
 /// The same sections the in-session sheet shows, so there is one place to
-/// change a value and two places to reach it. What differs is that a settings
-/// screen has no session: the per-exercise auto-advance switches apply here,
-/// and they are labelled so nobody confuses them with the session-wide one.
+/// change a value and two places to reach it.
 class ExerciseSettingsScreen extends ConsumerWidget {
   final ExerciseKind kind;
 
@@ -74,32 +72,10 @@ class ExerciseSettingsScreen extends ConsumerWidget {
                 ExerciseKind.flashcard => const FlashcardSettingsSection(
                   hasExamples: true,
                 ),
-                ExerciseKind.mcq => const McqSettingsSection(
-                  showAutoAdvance: true,
-                ),
-                ExerciseKind.sentence => const SentenceSettingsSection(
-                  showAutoAdvance: true,
-                ),
-                ExerciseKind.writing => const WritingSettingsSection(
-                  showAutoAdvance: true,
-                ),
+                ExerciseKind.mcq => const McqSettingsSection(),
+                ExerciseKind.sentence => const SentenceSettingsSection(),
+                ExerciseKind.writing => const WritingSettingsSection(),
               },
-              if (kind != ExerciseKind.flashcard) ...[
-                const SizedBox(height: AppDimens.spaceMd),
-                Container(
-                  padding: const EdgeInsets.all(AppDimens.spaceCozy),
-                  decoration: BoxDecoration(
-                    color: t.primaryContainer,
-                    borderRadius: BorderRadius.circular(AppDimens.radiusSm),
-                  ),
-                  child: Text(
-                    l.autoAdvanceFreePracticeNote,
-                    style: AppTextStyles.bodySmall.copyWith(
-                      color: t.onPrimaryContainer,
-                    ),
-                  ),
-                ),
-              ],
               const SizedBox(height: AppDimens.spaceLg),
             ],
           ),

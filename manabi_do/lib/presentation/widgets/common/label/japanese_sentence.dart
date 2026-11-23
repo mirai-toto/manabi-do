@@ -61,8 +61,11 @@ class JapaneseSentence extends StatelessWidget {
       if (hideHighlight) {
         spans = [
           ...furiganaSpans(before, baseStyle, rubyStyle, reserveRuby: anyRuby),
+          // On the text's baseline, not the line's middle: the middle counts
+          // the furigana row above, which sat the box lower than the words.
           WidgetSpan(
-            alignment: PlaceholderAlignment.middle,
+            alignment: PlaceholderAlignment.baseline,
+            baseline: TextBaseline.alphabetic,
             child: Container(
               margin: const EdgeInsets.symmetric(
                 horizontal: AppDimens.spaceXxs,

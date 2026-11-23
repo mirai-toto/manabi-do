@@ -85,6 +85,12 @@ class VocabularySessionService {
         shortMeaning(translatedOr(translations, v.id, v.meaning));
 
     if (flashcardOnly) {
+      final VocabularySentences sentences = await loadVocabularySentences(
+        db,
+        pairs.map((p) => p.$1.id).toList(),
+        locale: locale,
+        nativeTranslationOnly: sentenceSettings.nativeTranslationOnly,
+      );
       return [
         for (final (entry, card) in pairs)
           vocabularyFlashcardItem(
@@ -92,6 +98,8 @@ class VocabularySessionService {
             card,
             meaning: meaningOf(entry),
             isReversed: rng.nextBool(),
+            example: vocabularyExample(entry, sentences, rng),
+            locale: locale,
             isFreeMode: true,
           ),
       ];
@@ -159,6 +167,8 @@ class VocabularySessionService {
           card,
           meaning: meaningOf(entry),
           isReversed: quizType == 1,
+          example: vocabularyExample(entry, sentences, rng),
+          locale: locale,
           isFreeMode: freeMode,
         ),
         2 => vocabularyMcqItem(

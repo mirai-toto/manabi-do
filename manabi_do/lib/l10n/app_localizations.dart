@@ -988,6 +988,12 @@ abstract class AppLocalizations {
   /// **'Home screen'**
   String get settingsHomeScreen;
 
+  /// No description provided for @settingsHomeScreenHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn a section off to hide it from Home and stop its daily reviews.'**
+  String get settingsHomeScreenHint;
+
   /// No description provided for @settingsApp.
   ///
   /// In en, this message translates to:
@@ -1657,7 +1663,7 @@ abstract class AppLocalizations {
   /// No description provided for @practiceSettingsSessionLength.
   ///
   /// In en, this message translates to:
-  /// **'Session length'**
+  /// **'Free practice length'**
   String get practiceSettingsSessionLength;
 
   /// No description provided for @practiceSettingsMcqChoices.
@@ -1743,12 +1749,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Move on automatically, scoring each answer for you'**
   String get autoAdvanceSubtitle;
-
-  /// No description provided for @autoAdvanceFreePracticeNote.
-  ///
-  /// In en, this message translates to:
-  /// **'This applies in free practice. A graded session uses the one switch under Study, because a session mixes exercise types.'**
-  String get autoAdvanceFreePracticeNote;
 
   /// No description provided for @hintUsedFeedback.
   ///
@@ -1864,6 +1864,36 @@ abstract class AppLocalizations {
   /// **'Japanese'**
   String get japanese;
 
+  /// No description provided for @copyJapanese.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Japanese'**
+  String get copyJapanese;
+
+  /// No description provided for @copyTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy translation'**
+  String get copyTranslation;
+
+  /// No description provided for @copiedToClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get copiedToClipboard;
+
+  /// No description provided for @kanjiInSentence.
+  ///
+  /// In en, this message translates to:
+  /// **'Kanji in this sentence'**
+  String get kanjiInSentence;
+
+  /// No description provided for @viewSentence.
+  ///
+  /// In en, this message translates to:
+  /// **'View sentence'**
+  String get viewSentence;
+
   /// No description provided for @copy.
   ///
   /// In en, this message translates to:
@@ -1915,7 +1945,7 @@ abstract class AppLocalizations {
   /// No description provided for @showExampleSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Display an example sentence on flashcards'**
+  /// **'Display an example sentence on vocabulary and grammar flashcards'**
   String get showExampleSubtitle;
 
   /// No description provided for @speakPronunciation.
@@ -2295,6 +2325,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{time} · every one remembered'**
   String summaryMetaPerfect(String time);
+
+  /// No description provided for @practiceModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice mode: not recorded'**
+  String get practiceModeTitle;
+
+  /// No description provided for @practiceModeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Train as much as you like. Your review schedule only moves with today\'s reviews on Home.'**
+  String get practiceModeBody;
+
+  /// No description provided for @practiceModeGoToReviews.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to today\'s reviews'**
+  String get practiceModeGoToReviews;
 
   /// No description provided for @summaryFreePracticeNote.
   ///

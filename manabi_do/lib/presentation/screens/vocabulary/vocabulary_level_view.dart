@@ -15,8 +15,8 @@ import '../../../l10n/vocabulary_level_label.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/vocabulary_list_provider.dart';
 import '../../providers/vocabulary_provider.dart';
-import 'vocabulary_detail_screen.dart';
 import '../../widgets/widgets.dart';
+import '../detail_navigation.dart';
 
 /// Shows the thirty words of one group, split by what to do about each.
 ///
@@ -156,13 +156,8 @@ class _LevelContent extends ConsumerWidget {
                             )
                             .missingLanguage,
                         accent: section.words[i].accent,
-                        onOpen: () => Navigator.of(context).push(
-                          MaterialPageRoute<void>(
-                            builder: (_) => VocabularyDetailScreen(
-                              entry: section.words[i].entry,
-                            ),
-                          ),
-                        ),
+                        onOpen: () =>
+                            openWordDetail(context, section.words[i].entry),
                       ),
                     ],
                   ],

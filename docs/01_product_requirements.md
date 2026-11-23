@@ -8,11 +8,12 @@ Items are ordered by priority. All must ship before App Store / Play Store publi
 |---|---------|--------|
 | 1 | Grammar exercises (hand-authored alongside lesson JSON) | Not started |
 | 2 | iOS / App Store build | Not started |
-| 3 | Tablet UI — visually intentional layouts on larger screens | Not started |
-| 4 | SRS backup & restore via external drive (Google Drive primary) | Not started |
-| 5 | German grammar translation | Done — `basics` and N5 shipped |
+| 3 | SRS backup & restore via external drive (Google Drive primary) | Not started |
+| 4 | German grammar translation | Done — `basics` and N5 shipped |
 
 **Out of scope for v1:** Google/Apple sign-in with server-side sync (requires a backend — far future).
+
+**Not urgent:** Tablet UI — visually intentional layouts on larger screens (see [10_polish_backlog.md](10_polish_backlog.md)).
 
 ---
 
@@ -76,7 +77,7 @@ Level selector (N5/N4/N3/N2/N1). Word list shows kanji form, kana reading, meani
 
 ### Grammar
 
-Chapter list → lesson list → lesson reader (block-rendered content). Lessons are loaded at runtime from bundled JSON asset files. Grammar is currently behind a feature flag and only accessible in debug mode.
+Chapter list → lesson list → lesson reader (block-rendered content). Lessons are read from the bundled content database, built from `content/grammar/`. Grammar is always enabled; only `basics` and N5 have lessons so far.
 
 ---
 
@@ -180,7 +181,7 @@ Mobile-first. Two layout breakpoints:
 
 The navigation rail and bottom bar are hidden during active practice sessions. Escape key navigates back on desktop/Linux.
 
-Tablet support is a v1 goal: layouts must not only adapt structurally at ≥600px but be visually intentional on larger screens — content should use the extra space rather than just stretch.
+Tablet support is not urgent. Today layouts adapt structurally at ≥600px (navigation rail, centred column up to 840px); layouts designed for larger screens are tracked in [10_polish_backlog.md](10_polish_backlog.md).
 
 ---
 

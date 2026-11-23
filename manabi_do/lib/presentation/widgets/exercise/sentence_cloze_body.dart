@@ -11,6 +11,7 @@ import 'choice_answer.dart';
 import 'mcq_card.dart';
 import 'practice_progress_row.dart';
 import 'sentence_cloze_card.dart';
+import 'view_detail_button.dart';
 
 /// Sentence-level cloze exercise. Fetches per-card SRS state, renders
 /// `SentenceClozeCard`, and handles rating.
@@ -30,12 +31,17 @@ class SentenceClozeBody extends StatefulWidget {
   final AnswerCallback onAnswer;
 
   /// Move on once the answer is in, deriving the rating from it, instead of
-  /// stopping for a self-assessment. The caller decides which setting feeds
-  /// this: free practice has one per exercise, a review has one per session.
+  /// stopping for a self-assessment.
   final bool autoAdvance;
   final TranslationMode translationMode;
   final bool showSentenceFurigana;
   final bool showChoiceFurigana;
+
+  /// One per option, opening that word's detail once answered.
+  final List<VoidCallback>? optionOpeners;
+
+  /// Opens the sentence on its own screen once answered.
+  final VoidCallback? onOpenSentence;
 
   const SentenceClozeBody({
     super.key,
@@ -56,6 +62,8 @@ class SentenceClozeBody extends StatefulWidget {
     this.translation,
     this.translationMissingLanguage,
     this.targetReading,
+    this.optionOpeners,
+    this.onOpenSentence,
   });
 
   @override
@@ -118,6 +126,9 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody>
             answered: answered,
             color: widget.color,
             onOptionTap: answered ? null : _onTap,
+            onOptionOpen: answered && !autoAdvancing
+                ? widget.optionOpeners
+                : null,
           ),
           if (answered && !autoAdvancing) ...[
             const SizedBox(height: AppDimens.spaceMd),
@@ -128,6 +139,13 @@ class _SentenceClozeBodyState extends State<SentenceClozeBody>
               question: l.selfAssessQuestion,
               onRate: (rating) => widget.onAnswer(rating, given: given),
             ),
+            if (widget.onOpenSentence != null) ...[
+              const SizedBox(height: AppDimens.spaceSm),
+              ViewDetailButton(
+                label: l.viewSentence,
+                onPressed: widget.onOpenSentence,
+              ),
+            ],
           ],
         ],
       ),

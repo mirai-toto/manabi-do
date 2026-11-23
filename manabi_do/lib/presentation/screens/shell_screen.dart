@@ -15,7 +15,7 @@ import '../services/home_widget_service.dart';
 import '../services/reminder_service.dart';
 import '../widgets/widgets.dart';
 import 'characters/characters_screen.dart';
-import 'characters/kanji/kanji_detail_screen.dart';
+import 'detail_navigation.dart';
 import 'grammar/grammar_navigation.dart';
 import 'grammar/grammar_screen.dart';
 import 'home/home_screen.dart';
@@ -36,6 +36,12 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
   final _navKeys = List.generate(
     _screenCount,
     (_) => GlobalKey<NavigatorState>(),
+  );
+
+  /// One per tab navigator: an observer cannot be shared between navigators.
+  final _detailObservers = List.generate(
+    _screenCount,
+    (_) => DetailRouteObserver(),
   );
 
   StreamSubscription<Uri?>? _widgetClicks;
@@ -83,11 +89,7 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
           uri.pathSegments.isEmpty ? '' : uri.pathSegments.first,
         );
         if (id == null) return;
-        await home.push(
-          MaterialPageRoute<void>(
-            builder: (_) => KanjiDetailScreen(kanjiId: id),
-          ),
-        );
+        await openKanjiDetail(home.context, id);
       case 'grammar':
         final target = await ref.read(grammarContinueProvider.future);
         if (!mounted) return;
@@ -227,14 +229,23 @@ class _ShellScreenState extends ConsumerState<ShellScreen> {
     final body = PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) => _onBack(),
-      child: SlideIndexedStack(
-        index: index,
-        children: List.generate(
-          _screenCount,
-          (i) => Navigator(
-            key: _navKeys[i],
-            onGenerateRoute: (_) =>
-                MaterialPageRoute(builder: (_) => _screens[i]),
+      // A tab's navigator reports to Android whether it can pop. Once it is
+      // back at its root it says no, and with predictive back Android then
+      // closes the app before [_onBack] runs, skipping the group and level
+      // steps. Swallowed here so only this PopScope's answer reaches Android:
+      // back is always handled, and [_onBack] exits on Home itself.
+      child: NotificationListener<NavigationNotification>(
+        onNotification: (_) => true,
+        child: SlideIndexedStack(
+          index: index,
+          children: List.generate(
+            _screenCount,
+            (i) => Navigator(
+              key: _navKeys[i],
+              observers: [_detailObservers[i]],
+              onGenerateRoute: (_) =>
+                  MaterialPageRoute(builder: (_) => _screens[i]),
+            ),
           ),
         ),
       ),

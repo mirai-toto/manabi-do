@@ -11,6 +11,10 @@ import 'letter_circle.dart';
 
 export '../../../core/models/mcq_option.dart';
 
+/// Marks an answered option that opens its detail.
+const IconData _kOpenIcon = Icons.info_outline_rounded;
+const double _kOpenIconSize = 18;
+
 ({Color borderColor, Color bgColor, Color contentColor}) _resolveOptionColors(
   McqOptionState state,
   AppTokens t,
@@ -48,6 +52,10 @@ class McqCard extends StatelessWidget {
   final String? japaneseReading;
   final List<McqOption> options;
   final ValueChanged<int>? onOptionTap;
+
+  /// One per option once the question is answered: tapping an option then
+  /// opens what it stands for instead of answering. Null before that.
+  final List<VoidCallback>? onOptionOpen;
   final bool compactGrid;
   final bool showFurigana;
 
@@ -59,6 +67,7 @@ class McqCard extends StatelessWidget {
     this.japaneseReading,
     required this.options,
     this.onOptionTap,
+    this.onOptionOpen,
     this.compactGrid = false,
     this.showFurigana = false,
   });
@@ -105,6 +114,7 @@ class McqCard extends StatelessWidget {
                 (i) => _McqGridCell(
                   option: options[i],
                   onTap: () => onOptionTap?.call(i),
+                  onOpen: onOptionOpen?[i],
                 ),
               ),
             )
@@ -116,6 +126,7 @@ class McqCard extends StatelessWidget {
                 child: McqOptionTile(
                   option: options[i],
                   onTap: () => onOptionTap?.call(i),
+                  onOpen: onOptionOpen?[i],
                 ),
               ),
             ),
@@ -206,12 +217,17 @@ class _ExPrompt extends StatelessWidget {
 class _McqOptionShell extends StatelessWidget {
   final McqOption option;
   final VoidCallback? onTap;
+
+  /// Set once the question is answered: the whole option then opens its
+  /// detail, whatever its state.
+  final VoidCallback? onOpen;
   final Widget Function(Color contentColor) builder;
 
   const _McqOptionShell({
     required this.option,
     required this.builder,
     this.onTap,
+    this.onOpen,
   });
 
   @override
@@ -225,7 +241,7 @@ class _McqOptionShell extends StatelessWidget {
     return Semantics(
       label: '${option.letter}: ${stripAnnotation(option.text)}',
       selected: option.state != McqOptionState.idle,
-      button: option.state == McqOptionState.idle,
+      button: onOpen != null || option.state == McqOptionState.idle,
       excludeSemantics: true,
       child: AnswerReaction(
         state: option.state,
@@ -243,7 +259,9 @@ class _McqOptionShell extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: option.state == McqOptionState.idle ? onTap : null,
+              onTap:
+                  onOpen ??
+                  (option.state == McqOptionState.idle ? onTap : null),
               child: builder(contentColor),
             ),
           ),
@@ -259,12 +277,16 @@ class _McqOptionShell extends StatelessWidget {
 class McqOptionTile extends StatelessWidget {
   final McqOption option;
   final VoidCallback? onTap;
+
+  /// Opens the option's detail; shows an icon saying so. Set after answering.
+  final VoidCallback? onOpen;
   final bool showFurigana;
 
   const McqOptionTile({
     super.key,
     required this.option,
     this.onTap,
+    this.onOpen,
     this.showFurigana = true,
   });
 
@@ -273,6 +295,7 @@ class McqOptionTile extends StatelessWidget {
     return _McqOptionShell(
       option: option,
       onTap: onTap,
+      onOpen: onOpen,
       builder: (contentColor) => Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppDimens.spaceMd,
@@ -299,6 +322,10 @@ class McqOptionTile extends StatelessWidget {
                 ),
               ),
             ),
+            if (onOpen != null) ...[
+              const SizedBox(width: AppDimens.spaceSm),
+              Icon(_kOpenIcon, size: _kOpenIconSize, color: contentColor),
+            ],
           ],
         ),
       ),
@@ -309,14 +336,16 @@ class McqOptionTile extends StatelessWidget {
 class _McqGridCell extends StatelessWidget {
   final McqOption option;
   final VoidCallback? onTap;
+  final VoidCallback? onOpen;
 
-  const _McqGridCell({required this.option, this.onTap});
+  const _McqGridCell({required this.option, this.onTap, this.onOpen});
 
   @override
   Widget build(BuildContext context) {
     return _McqOptionShell(
       option: option,
       onTap: onTap,
+      onOpen: onOpen,
       builder: (contentColor) => Stack(
         children: [
           Padding(
@@ -334,6 +363,16 @@ class _McqGridCell extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
+          if (onOpen != null)
+            Positioned(
+              top: AppDimens.spaceXs,
+              right: AppDimens.spaceXs,
+              child: Icon(
+                _kOpenIcon,
+                size: _kOpenIconSize,
+                color: contentColor,
+              ),
+            ),
         ],
       ),
     );

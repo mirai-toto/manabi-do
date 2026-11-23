@@ -21,36 +21,60 @@ Future<void> showHomeScreenSheet(
   required ValueChanged<bool> onShowVocabularyChanged,
 }) {
   final AppTokens t = context.tokens;
+  // The sheet keeps its own copy: the values passed in are a snapshot taken
+  // when it opened, and nothing rebuilds a sheet when the caller's state
+  // changes, so the switches never moved although each tap was saved.
+  bool kana = showKana;
+  bool kanji = showKanji;
+  bool vocabulary = showVocabulary;
   return showModalBottomSheet<void>(
     context: context,
     backgroundColor: t.surface,
     showDragHandle: true,
-    builder: (context) => SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(
-          AppDimens.spaceMd,
-          0,
-          AppDimens.spaceMd,
-          AppDimens.spaceMd,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.l10n.settingsHomeScreen,
-              style: AppTextStyles.title.copyWith(color: t.onSurface),
-            ),
-            const SizedBox(height: AppDimens.spaceMd),
-            HomeSettingsCard(
-              showKana: showKana,
-              showKanji: showKanji,
-              showVocabulary: showVocabulary,
-              onShowKanaChanged: onShowKanaChanged,
-              onShowKanjiChanged: onShowKanjiChanged,
-              onShowVocabularyChanged: onShowVocabularyChanged,
-            ),
-          ],
+    builder: (context) => StatefulBuilder(
+      builder: (context, setState) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppDimens.spaceMd,
+            0,
+            AppDimens.spaceMd,
+            AppDimens.spaceMd,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.l10n.settingsHomeScreen,
+                style: AppTextStyles.title.copyWith(color: t.onSurface),
+              ),
+              const SizedBox(height: AppDimens.spaceXs),
+              Text(
+                context.l10n.settingsHomeScreenHint,
+                style: AppTextStyles.bodySmall.copyWith(
+                  color: t.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: AppDimens.spaceMd),
+              HomeSettingsCard(
+                showKana: kana,
+                showKanji: kanji,
+                showVocabulary: vocabulary,
+                onShowKanaChanged: (v) {
+                  setState(() => kana = v);
+                  onShowKanaChanged(v);
+                },
+                onShowKanjiChanged: (v) {
+                  setState(() => kanji = v);
+                  onShowKanjiChanged(v);
+                },
+                onShowVocabularyChanged: (v) {
+                  setState(() => vocabulary = v);
+                  onShowVocabularyChanged(v);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     ),

@@ -85,6 +85,7 @@ export 'study/home_header.dart';
 export 'study/lesson_row.dart';
 export 'study/level_search_shell.dart';
 export 'study/practice_button.dart';
+export 'study/practice_mode_banner.dart';
 export 'study/practice_mode_card.dart';
 export 'study/streak_pill.dart';
 export 'study/study_group_card.dart';

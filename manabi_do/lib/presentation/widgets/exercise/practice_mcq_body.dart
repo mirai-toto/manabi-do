@@ -26,11 +26,14 @@ class PracticeMcqBody extends StatefulWidget {
   final Color color;
   final AnswerCallback onAnswer;
   final VoidCallback? onDetailTap;
+
+  /// One per option, opening what it stands for. Offered only once the
+  /// question is answered and the session waits for a grade.
+  final List<VoidCallback>? optionOpeners;
   final bool compactGrid;
 
   /// Move on once the answer is in, deriving the rating from it, instead of
-  /// stopping for a self-assessment. The caller decides which setting feeds
-  /// this: free practice has one per exercise, a review has one per session.
+  /// stopping for a self-assessment.
   final bool autoAdvance;
   final bool showPromptFurigana;
 
@@ -51,6 +54,7 @@ class PracticeMcqBody extends StatefulWidget {
     this.japanesePrompt,
     this.japaneseReading,
     this.onDetailTap,
+    this.optionOpeners,
     this.compactGrid = false,
   });
 
@@ -90,6 +94,9 @@ class _PracticeMcqBodyState extends State<PracticeMcqBody>
             japaneseReading: widget.japaneseReading,
             options: options,
             onOptionTap: answered ? null : _onTap,
+            onOptionOpen: answered && !autoAdvancing
+                ? widget.optionOpeners
+                : null,
             compactGrid: widget.compactGrid,
             showFurigana: widget.showPromptFurigana,
           ),

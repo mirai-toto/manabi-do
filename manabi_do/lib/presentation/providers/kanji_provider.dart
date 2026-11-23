@@ -41,3 +41,20 @@ final kanjiForVocabularyProvider = FutureProvider.family<List<Kanji>, int>(
   (ref, vocabularyId) =>
       ref.watch(databaseProvider).getKanjiForVocabulary(vocabularyId),
 );
+
+/// The kanji in a piece of Japanese text, in reading order and without
+/// repeats. Only the ones the app teaches come back.
+final kanjiInTextProvider = FutureProvider.family<List<Kanji>, String>((
+  ref,
+  text,
+) {
+  final List<String> characters = <String>{
+    for (final int rune in text.runes)
+      if (_isKanji(rune)) String.fromCharCode(rune),
+  }.toList();
+  return ref.watch(databaseProvider).getKanjiByCharacters(characters);
+});
+
+/// CJK unified ideographs, plus extension A.
+bool _isKanji(int rune) =>
+    (rune >= 0x4E00 && rune <= 0x9FFF) || (rune >= 0x3400 && rune <= 0x4DBF);

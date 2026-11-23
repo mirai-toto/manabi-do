@@ -48,6 +48,10 @@ class VocabularyPracticeScreen extends StatelessWidget {
       // A single-exercise drill is always free practice.
       persistSrs: !freeMode && exerciseFilter == ExerciseFilter.mixed,
       settingsContexts: _contexts,
+      // Word flashcards carry one of the word's sentences.
+      hasExamples:
+          exerciseFilter == ExerciseFilter.flashcardOnly ||
+          exerciseFilter == ExerciseFilter.mixed,
     );
   }
 }

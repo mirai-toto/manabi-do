@@ -95,8 +95,6 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen>
       flashcard: ref.watch(flashcardSettingsProvider),
       sentence: ref.watch(sentenceSettingsProvider),
       drawing: ref.watch(drawingSettingsProvider),
-      // Only a session that writes its results back has a grade to decide.
-      autoAdvance: widget.persistSrs && srs.autoAdvance,
       // Free practice always asks the short way: its grading is painted in
       // the level colour, and one colour cannot carry a four-step scale.
       fourPointGrading: widget.persistSrs && srs.detailedGrading,
@@ -133,8 +131,7 @@ class _PracticeSessionScreenState extends ConsumerState<PracticeSessionScreen>
               sheetBuilder: (_) => PracticeSettingsSheet(
                 contexts: widget.settingsContexts,
                 hasExamples: widget.hasExamples,
-                showAutoAdvance: !widget.persistSrs,
-                showSessionAutoAdvance: widget.persistSrs,
+                gradesRecorded: widget.persistSrs,
               ),
             ),
           ],

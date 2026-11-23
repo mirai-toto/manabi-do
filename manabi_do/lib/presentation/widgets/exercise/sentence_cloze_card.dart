@@ -29,6 +29,9 @@ class SentenceClozeCard extends StatelessWidget {
   final Color color;
   final ValueChanged<int>? onOptionTap;
 
+  /// One per option once answered, opening that word's detail.
+  final List<VoidCallback>? onOptionOpen;
+
   const SentenceClozeCard({
     super.key,
     required this.sentence,
@@ -36,6 +39,7 @@ class SentenceClozeCard extends StatelessWidget {
     required this.answered,
     required this.color,
     required this.onOptionTap,
+    this.onOptionOpen,
     required this.showTranslation,
     required this.showSentenceFurigana,
     required this.showChoiceFurigana,
@@ -245,6 +249,7 @@ class SentenceClozeCard extends StatelessWidget {
                 option: options[i],
                 showFurigana: showChoiceFurigana,
                 onTap: () => onOptionTap?.call(i),
+                onOpen: onOptionOpen?[i],
               ),
             ),
           ),

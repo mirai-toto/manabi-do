@@ -10,7 +10,7 @@ import '../../../providers/drawing_settings_provider.dart';
 import '../../../providers/kanji_provider.dart';
 import '../../../providers/kanji_strokes_provider.dart';
 import '../../../widgets/widgets.dart';
-import 'kanji_detail_screen.dart';
+import '../../detail_navigation.dart';
 
 class KanjiDrawingPracticeScreen extends ConsumerWidget {
   final int kanjiId;
@@ -58,11 +58,7 @@ class KanjiDrawingPracticeScreen extends ConsumerWidget {
             autoAdvance: false,
             // No `onRate`, so nothing is ever graded here.
             fourPointGrading: false,
-            onDetailTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => KanjiDetailScreen(kanjiId: kanjiId),
-              ),
-            ),
+            onDetailTap: () => openKanjiDetail(context, kanjiId),
           ),
         ),
       ),

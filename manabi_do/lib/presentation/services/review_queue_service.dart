@@ -24,28 +24,29 @@ class ReviewQueueService {
 
   const ReviewQueueService(this._ref);
 
+  /// Free practice over a whole kana table: random kana up to the free
+  /// practice length, like kanji and vocabulary practice, rather than only
+  /// what is due today, which left nothing to practise once caught up.
   Future<List<PracticeItem>> kanaPractice(String type) async {
     final db = _ref.read(databaseProvider);
-    final settings = _ref.read(srsSettingsProvider);
     final mcqSettings = _ref.read(mcqSettingsProvider);
-    final queue = await _ref
-        .read(srsQueueServiceProvider)
-        .kana(type, newCardLimit: settings.newCharactersPerDay);
     final allKana = await db.getKanaByType(type);
     final rng = Random();
+    final int? length = mcqSettings.sessionLength;
+    final List<Kana> picked = [...allKana]..shuffle(rng);
 
-    return queue.map((pair) {
-      final (kana, card) = pair;
-      return rng.nextBool()
-          ? kanaMcqItem(
-              kana,
-              card,
-              pool: allKana,
-              choiceCount: mcqSettings.mcqChoiceCount,
-              rng: rng,
-            )
-          : kanaFlashcardItem(kana, card);
-    }).toList();
+    return [
+      for (final Kana kana in length == null ? picked : picked.take(length))
+        rng.nextBool()
+            ? kanaMcqItem(
+                kana,
+                null,
+                pool: allKana,
+                choiceCount: mcqSettings.mcqChoiceCount,
+                rng: rng,
+              )
+            : kanaFlashcardItem(kana, null),
+    ];
   }
 
   Future<List<PracticeItem>> kana() async {

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
+import '../../../l10n/l10n.dart';
 import '../../widgets/widgets.dart';
+import 'practice_launcher.dart';
 
 class PracticeMode {
   final IconData icon;
@@ -43,6 +45,15 @@ class PracticeSelectionScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Said up front: a learner expecting this to count toward their
+            // reviews would otherwise only find out on the summary.
+            PracticeModeBanner(
+              title: context.l10n.practiceModeTitle,
+              body: context.l10n.practiceModeBody,
+              actionLabel: context.l10n.practiceModeGoToReviews,
+              onAction: () => openTodaysSession(context),
+            ),
+            const SizedBox(height: AppDimens.spaceMd),
             for (int i = 0; i < modes.length; i++) ...[
               if (i > 0) const SizedBox(height: AppDimens.spaceMd),
               PracticeModeCard(

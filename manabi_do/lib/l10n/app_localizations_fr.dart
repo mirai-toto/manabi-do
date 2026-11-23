@@ -505,6 +505,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsHomeScreen => 'Écran d\'accueil';
 
   @override
+  String get settingsHomeScreenHint =>
+      'Désactivez une section pour la masquer de l\'accueil et arrêter ses révisions quotidiennes.';
+
+  @override
   String get settingsApp => 'Application';
 
   @override
@@ -889,7 +893,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get recognitionLenient => 'Tolérant';
 
   @override
-  String get practiceSettingsSessionLength => 'Durée de session';
+  String get practiceSettingsSessionLength => 'Durée de l\'entraînement libre';
 
   @override
   String get practiceSettingsMcqChoices => 'Options par question';
@@ -936,10 +940,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get autoAdvanceSubtitle =>
       'Passer à la suite automatiquement, en notant chaque réponse à votre place';
-
-  @override
-  String get autoAdvanceFreePracticeNote =>
-      'Ceci s\'applique en entraînement libre. Une session notée utilise l\'option unique sous Étude, car une session mélange les types d\'exercices.';
 
   @override
   String get hintUsedFeedback => 'Indice utilisé · marqué comme raté';
@@ -1003,6 +1003,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get japanese => 'Japonais';
 
   @override
+  String get copyJapanese => 'Copier le japonais';
+
+  @override
+  String get copyTranslation => 'Copier la traduction';
+
+  @override
+  String get copiedToClipboard => 'Copié';
+
+  @override
+  String get kanjiInSentence => 'Kanji de cette phrase';
+
+  @override
+  String get viewSentence => 'Voir la phrase';
+
+  @override
   String get copy => 'Copier';
 
   @override
@@ -1028,7 +1043,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get showExampleSubtitle =>
-      'Afficher une phrase d\'exemple sur les flashcards';
+      'Afficher une phrase d\'exemple sur les flashcards de vocabulaire et de grammaire';
 
   @override
   String get speakPronunciation => 'Écouter la prononciation';
@@ -1284,6 +1299,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String summaryMetaPerfect(String time) {
     return '$time · tout est retenu';
   }
+
+  @override
+  String get practiceModeTitle => 'Mode entraînement : non enregistré';
+
+  @override
+  String get practiceModeBody =>
+      'Entraînez-vous autant que vous voulez. Votre planning ne change qu\'avec les révisions du jour, sur l\'accueil.';
+
+  @override
+  String get practiceModeGoToReviews => 'Aller aux révisions du jour';
 
   @override
   String get summaryFreePracticeNote =>

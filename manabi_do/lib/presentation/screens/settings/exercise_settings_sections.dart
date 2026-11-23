@@ -33,7 +33,15 @@ class FlashcardSettingsSection extends ConsumerWidget {
   /// Flashcards only offer an example where the content has one to show.
   final bool hasExamples;
 
-  const FlashcardSettingsSection({super.key, this.hasExamples = false});
+  /// Free practice length. Hidden in a graded session, which takes everything
+  /// due plus new items up to the daily limits instead.
+  final bool showLength;
+
+  const FlashcardSettingsSection({
+    super.key,
+    this.hasExamples = false,
+    this.showLength = true,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -45,14 +53,16 @@ class FlashcardSettingsSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SessionLengthField(
-          value: flashcard.sessionLength,
-          onSelect: (v) => update(
-            v == null
-                ? flashcard.copyWith(clearSessionLength: true)
-                : flashcard.copyWith(sessionLength: v),
+        if (showLength) ...[
+          SessionLengthField(
+            value: flashcard.sessionLength,
+            onSelect: (v) => update(
+              v == null
+                  ? flashcard.copyWith(clearSessionLength: true)
+                  : flashcard.copyWith(sessionLength: v),
+            ),
           ),
-        ),
+        ],
         if (hasExamples) ...[
           const SizedBox(height: AppDimens.spaceMd),
           SettingsSwitchRow(
@@ -68,16 +78,11 @@ class FlashcardSettingsSection extends ConsumerWidget {
 }
 
 class McqSettingsSection extends ConsumerWidget {
-  /// Whether this exercise's own auto-advance switch belongs here.
-  ///
-  /// A graded session owns one switch for the whole queue, because the queue
-  /// mixes exercise types and being asked by only some of them is incoherent;
-  /// that one lives with the session settings. Free practice has no queue, so
-  /// each exercise answers for itself, and the settings screen shows these
-  /// because it has no session at all.
-  final bool showAutoAdvance;
+  /// Free practice length. Hidden in a graded session, which takes everything
+  /// due plus new items up to the daily limits instead.
+  final bool showLength;
 
-  const McqSettingsSection({super.key, this.showAutoAdvance = false});
+  const McqSettingsSection({super.key, this.showLength = true});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -89,28 +94,28 @@ class McqSettingsSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SessionLengthField(
-          value: mcq.sessionLength,
-          onSelect: (v) => update(
-            v == null
-                ? mcq.copyWith(clearSessionLength: true)
-                : mcq.copyWith(sessionLength: v),
+        if (showLength) ...[
+          SessionLengthField(
+            value: mcq.sessionLength,
+            onSelect: (v) => update(
+              v == null
+                  ? mcq.copyWith(clearSessionLength: true)
+                  : mcq.copyWith(sessionLength: v),
+            ),
           ),
-        ),
-        const SizedBox(height: AppDimens.spaceMd),
+          const SizedBox(height: AppDimens.spaceMd),
+        ],
         ChoiceCountField(
           value: mcq.mcqChoiceCount,
           onSelect: (v) => update(mcq.copyWith(mcqChoiceCount: v)),
         ),
-        if (showAutoAdvance) ...[
-          const SizedBox(height: AppDimens.spaceMd),
-          SettingsSwitchRow(
-            label: l.autoAdvanceLabel,
-            subtitle: l.autoAdvanceSubtitle,
-            value: mcq.autoAdvance,
-            onChanged: (v) => update(mcq.copyWith(autoAdvance: v)),
-          ),
-        ],
+        const SizedBox(height: AppDimens.spaceMd),
+        SettingsSwitchRow(
+          label: l.autoAdvanceLabel,
+          subtitle: l.autoAdvanceSubtitle,
+          value: mcq.autoAdvance,
+          onChanged: (v) => update(mcq.copyWith(autoAdvance: v)),
+        ),
         SettingsSwitchRow(
           label: l.showMcqFuriganaLabel,
           subtitle: l.showMcqFuriganaSubtitle,
@@ -123,9 +128,11 @@ class McqSettingsSection extends ConsumerWidget {
 }
 
 class SentenceSettingsSection extends ConsumerWidget {
-  final bool showAutoAdvance;
+  /// Free practice length. Hidden in a graded session, which takes everything
+  /// due plus new items up to the daily limits instead.
+  final bool showLength;
 
-  const SentenceSettingsSection({super.key, this.showAutoAdvance = false});
+  const SentenceSettingsSection({super.key, this.showLength = true});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -137,28 +144,28 @@ class SentenceSettingsSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SessionLengthField(
-          value: sentence.sessionLength,
-          onSelect: (v) => update(
-            v == null
-                ? sentence.copyWith(clearSessionLength: true)
-                : sentence.copyWith(sessionLength: v),
+        if (showLength) ...[
+          SessionLengthField(
+            value: sentence.sessionLength,
+            onSelect: (v) => update(
+              v == null
+                  ? sentence.copyWith(clearSessionLength: true)
+                  : sentence.copyWith(sessionLength: v),
+            ),
           ),
-        ),
-        const SizedBox(height: AppDimens.spaceMd),
+          const SizedBox(height: AppDimens.spaceMd),
+        ],
         ChoiceCountField(
           value: sentence.mcqChoiceCount,
           onSelect: (v) => update(sentence.copyWith(mcqChoiceCount: v)),
         ),
-        if (showAutoAdvance) ...[
-          const SizedBox(height: AppDimens.spaceMd),
-          SettingsSwitchRow(
-            label: l.autoAdvanceLabel,
-            subtitle: l.autoAdvanceSubtitle,
-            value: sentence.autoAdvance,
-            onChanged: (v) => update(sentence.copyWith(autoAdvance: v)),
-          ),
-        ],
+        const SizedBox(height: AppDimens.spaceMd),
+        SettingsSwitchRow(
+          label: l.autoAdvanceLabel,
+          subtitle: l.autoAdvanceSubtitle,
+          value: sentence.autoAdvance,
+          onChanged: (v) => update(sentence.copyWith(autoAdvance: v)),
+        ),
         SettingsSwitchRow(
           label: l.showSentenceFuriganaLabel,
           subtitle: l.showSentenceFuriganaSubtitle,
@@ -197,9 +204,11 @@ class SentenceSettingsSection extends ConsumerWidget {
 }
 
 class WritingSettingsSection extends ConsumerWidget {
-  final bool showAutoAdvance;
+  /// Free practice length. Hidden in a graded session, which takes everything
+  /// due plus new items up to the daily limits instead.
+  final bool showLength;
 
-  const WritingSettingsSection({super.key, this.showAutoAdvance = false});
+  const WritingSettingsSection({super.key, this.showLength = true});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -211,23 +220,23 @@ class WritingSettingsSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SessionLengthField(
-          value: drawing.sessionLength,
-          onSelect: (v) => update(
-            v == null
-                ? drawing.copyWith(clearSessionLength: true)
-                : drawing.copyWith(sessionLength: v),
+        if (showLength) ...[
+          SessionLengthField(
+            value: drawing.sessionLength,
+            onSelect: (v) => update(
+              v == null
+                  ? drawing.copyWith(clearSessionLength: true)
+                  : drawing.copyWith(sessionLength: v),
+            ),
           ),
-        ),
-        if (showAutoAdvance) ...[
           const SizedBox(height: AppDimens.spaceMd),
-          SettingsSwitchRow(
-            label: l.autoAdvanceLabel,
-            subtitle: l.autoAdvanceSubtitle,
-            value: drawing.autoAdvance,
-            onChanged: (v) => update(drawing.copyWith(autoAdvance: v)),
-          ),
         ],
+        SettingsSwitchRow(
+          label: l.autoAdvanceLabel,
+          subtitle: l.autoAdvanceSubtitle,
+          value: drawing.autoAdvance,
+          onChanged: (v) => update(drawing.copyWith(autoAdvance: v)),
+        ),
         const SizedBox(height: AppDimens.spaceXs),
         SettingsFieldLabel(l.practiceSettingsRecognition),
         const SizedBox(height: AppDimens.spaceXs),

@@ -504,6 +504,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsHomeScreen => 'Home screen';
 
   @override
+  String get settingsHomeScreenHint =>
+      'Turn a section off to hide it from Home and stop its daily reviews.';
+
+  @override
   String get settingsApp => 'App';
 
   @override
@@ -886,7 +890,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recognitionLenient => 'Lenient';
 
   @override
-  String get practiceSettingsSessionLength => 'Session length';
+  String get practiceSettingsSessionLength => 'Free practice length';
 
   @override
   String get practiceSettingsMcqChoices => 'Options per question';
@@ -931,10 +935,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get autoAdvanceSubtitle =>
       'Move on automatically, scoring each answer for you';
-
-  @override
-  String get autoAdvanceFreePracticeNote =>
-      'This applies in free practice. A graded session uses the one switch under Study, because a session mixes exercise types.';
 
   @override
   String get hintUsedFeedback => 'Hint used · marked as missed';
@@ -998,6 +998,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get japanese => 'Japanese';
 
   @override
+  String get copyJapanese => 'Copy Japanese';
+
+  @override
+  String get copyTranslation => 'Copy translation';
+
+  @override
+  String get copiedToClipboard => 'Copied';
+
+  @override
+  String get kanjiInSentence => 'Kanji in this sentence';
+
+  @override
+  String get viewSentence => 'View sentence';
+
+  @override
   String get copy => 'Copy';
 
   @override
@@ -1022,7 +1037,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get showExampleLabel => 'Show example';
 
   @override
-  String get showExampleSubtitle => 'Display an example sentence on flashcards';
+  String get showExampleSubtitle =>
+      'Display an example sentence on vocabulary and grammar flashcards';
 
   @override
   String get speakPronunciation => 'Play pronunciation';
@@ -1274,6 +1290,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String summaryMetaPerfect(String time) {
     return '$time · every one remembered';
   }
+
+  @override
+  String get practiceModeTitle => 'Practice mode: not recorded';
+
+  @override
+  String get practiceModeBody =>
+      'Train as much as you like. Your review schedule only moves with today\'s reviews on Home.';
+
+  @override
+  String get practiceModeGoToReviews => 'Go to today\'s reviews';
 
   @override
   String get summaryFreePracticeNote =>

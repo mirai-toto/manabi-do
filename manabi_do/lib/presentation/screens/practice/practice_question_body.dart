@@ -11,9 +11,10 @@ import '../../../core/models/sentence_settings.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../core/theme/jlpt_level.dart';
+import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
+import '../detail_navigation.dart';
 import 'kanji_drawing_body.dart';
-import '../characters/kanji/kanji_detail_screen.dart';
 
 /// The settings a practice body renders against.
 ///
@@ -24,11 +25,6 @@ class PracticeBodySettings {
   final FlashcardSettings flashcard;
   final SentenceSettings sentence;
   final DrawingSettings drawing;
-
-  /// The review session's auto-advance switch. Covers the whole queue, unlike
-  /// the per-exercise switches free practice keeps in [mcq] and [sentence].
-  /// False outside a review, where those per-exercise ones apply instead.
-  final bool autoAdvance;
 
   /// Offer the full four-point scale when the user grades. The setting, but
   /// only where [gradesRecorded]: free practice paints grading in the level
@@ -45,7 +41,6 @@ class PracticeBodySettings {
     required this.flashcard,
     required this.sentence,
     required this.drawing,
-    required this.autoAdvance,
     required this.fourPointGrading,
     required this.gradesRecorded,
   });
@@ -79,23 +74,34 @@ class PracticeQuestionBody extends StatelessWidget {
     required this.sessionColor,
   });
 
-  /// Free practice follows the switch that belongs to the exercise; a review
-  /// follows the one switch that covers the whole session.
-  bool get _autoAdvanceMcq =>
-      question.isFreeMode ? settings.mcq.autoAdvance : settings.autoAdvance;
+  /// Each exercise follows its own switch, in a review and in free practice
+  /// alike.
+  bool get _autoAdvanceMcq => settings.mcq.autoAdvance;
 
-  bool get _autoAdvanceSentence => question.isFreeMode
-      ? settings.sentence.autoAdvance
-      : settings.autoAdvance;
+  bool get _autoAdvanceSentence => settings.sentence.autoAdvance;
+
+  /// What each option opens once answered, or null when none opens anything.
+  List<VoidCallback>? _optionOpeners(
+    BuildContext context,
+    List<OptionLink> links,
+  ) => links.isEmpty
+      ? null
+      : [
+          for (final OptionLink link in links)
+            switch (link) {
+              KanjiOptionLink(:final int kanjiId) => () => openKanjiDetail(
+                context,
+                kanjiId,
+              ),
+              WordOptionLink(:final VocabularyEntry entry) =>
+                () => openWordDetail(context, entry),
+            },
+        ];
 
   VoidCallback? _onDetailTap(BuildContext context) {
     final kanjiId = question.kanjiDetailId;
     if (kanjiId == null) return null;
-    return () => Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => KanjiDetailScreen(kanjiId: kanjiId),
-      ),
-    );
+    return () => openKanjiDetail(context, kanjiId);
   }
 
   @override
@@ -147,6 +153,7 @@ class PracticeQuestionBody extends StatelessWidget {
         autoAdvance: _autoAdvanceMcq,
         showPromptFurigana: settings.mcq.showPromptFurigana,
         onDetailTap: _onDetailTap(context),
+        optionOpeners: _optionOpeners(context, q.optionLinks),
       ),
       final DrawingQuestion q => KanjiDrawingBody(
         kanji: q.kanji,
@@ -159,11 +166,7 @@ class PracticeQuestionBody extends StatelessWidget {
         color: color,
         onAnswer: onAnswer,
         drawingSettings: settings.drawing,
-        // Free practice follows the drawing settings' own switch; a review
-        // follows the session one.
-        autoAdvance: q.isFreeMode
-            ? settings.drawing.autoAdvance
-            : settings.autoAdvance,
+        autoAdvance: settings.drawing.autoAdvance,
         onDetailTap: _onDetailTap(context),
       ),
       final SentenceClozeQuestion q => SentenceClozeBody(
@@ -184,6 +187,18 @@ class PracticeQuestionBody extends StatelessWidget {
         translationMode: settings.sentence.translationMode,
         showSentenceFurigana: settings.sentence.showSentenceFurigana,
         showChoiceFurigana: settings.sentence.showChoiceFurigana,
+        optionOpeners: [
+          for (final VocabularyEntry entry in q.optionEntries)
+            () => openWordDetail(context, entry),
+        ],
+        onOpenSentence: () => openSentenceDetail(
+          context,
+          sentence: q.sentence,
+          translation: q.translation,
+          translationMissingLanguage: q.translationMissingLanguage,
+          highlight: q.sentence.targetWord,
+          highlightColor: color,
+        ),
       ),
       final GrammarClozeQuestion q => GrammarClozeBody(
         sentence: q.sentence,
