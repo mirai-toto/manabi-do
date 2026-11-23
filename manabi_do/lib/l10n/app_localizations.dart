@@ -1939,7 +1939,7 @@ abstract class AppLocalizations {
   /// No description provided for @showExampleSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Display an example sentence on flashcards'**
+  /// **'Display an example sentence on vocabulary and grammar flashcards'**
   String get showExampleSubtitle;
 
   /// No description provided for @speakPronunciation.
@@ -2319,6 +2319,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{time} · every one remembered'**
   String summaryMetaPerfect(String time);
+
+  /// No description provided for @practiceNotRecordedNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice here isn\'t recorded: your review schedule only moves with the daily reviews on Home.'**
+  String get practiceNotRecordedNote;
 
   /// No description provided for @summaryFreePracticeNote.
   ///

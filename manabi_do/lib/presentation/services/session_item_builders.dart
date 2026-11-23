@@ -9,6 +9,7 @@ import '../../core/text/kanji_readings.dart';
 import '../../core/text/sentence_language.dart';
 import '../../l10n/app_localizations.dart';
 import '../../data/database/app_database.dart';
+import '../../data/grammar/grammar_models.dart';
 
 // The reading shown under a kanji prompt: first on'yomi, else first kun'yomi.
 String? kanjiPromptReading(Kanji kanji) =>
@@ -309,11 +310,37 @@ PracticeItem kanjiMcqItem(
   );
 }
 
+/// One of [entry]'s sentences as a flashcard example, or null when it has
+/// none. The word stays masked in it until the card is revealed.
+GrammarExample? vocabularyExample(
+  VocabularyEntry entry,
+  VocabularySentences sentences,
+  Random rng,
+) {
+  final List<Sentence> candidates = sentences.forWord(entry.id);
+  if (candidates.isEmpty) return null;
+  final Sentence sentence = candidates[rng.nextInt(candidates.length)];
+  final ({String locale, String text})? translation =
+      sentences.translations[sentence.id];
+  // Keyed by the reader's language, which the example card looks up: the
+  // stored locale is a three-letter code (`eng`), and its text may be the
+  // English fallback.
+  return GrammarExample(
+    sentence: sentence.furigana ?? sentence.japanese,
+    highlight: sentence.targetWord,
+    translation: translation == null
+        ? null
+        : {sentences.locale: translation.text},
+  );
+}
+
 PracticeItem vocabularyFlashcardItem(
   VocabularyEntry entry,
   Card? card, {
   required String meaning,
   required bool isReversed,
+  GrammarExample? example,
+  String locale = 'en',
   bool isFreeMode = false,
 }) => PracticeItem(
   id: entry.id,
@@ -332,6 +359,8 @@ PracticeItem vocabularyFlashcardItem(
     label: _readingIfDifferent(entry),
     answer: meaning,
     isReversed: isReversed,
+    example: example,
+    locale: locale,
     vocabularyLevel: entry.vocabularyLevel,
     isFreeMode: isFreeMode,
   ),

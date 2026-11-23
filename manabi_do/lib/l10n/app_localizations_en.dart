@@ -1033,7 +1033,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get showExampleLabel => 'Show example';
 
   @override
-  String get showExampleSubtitle => 'Display an example sentence on flashcards';
+  String get showExampleSubtitle =>
+      'Display an example sentence on vocabulary and grammar flashcards';
 
   @override
   String get speakPronunciation => 'Play pronunciation';
@@ -1285,6 +1286,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String summaryMetaPerfect(String time) {
     return '$time · every one remembered';
   }
+
+  @override
+  String get practiceNotRecordedNote =>
+      'Practice here isn\'t recorded: your review schedule only moves with the daily reviews on Home.';
 
   @override
   String get summaryFreePracticeNote =>

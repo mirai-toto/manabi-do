@@ -67,7 +67,8 @@ final class FlashcardQuestion extends PracticeQuestion {
   /// Ask for the Japanese given the meaning, rather than the other way round.
   final bool isReversed;
 
-  /// Grammar flashcards carry a worked example and their own wording.
+  /// A worked example: grammar flashcards carry one from the lesson, word
+  /// flashcards one of the word's sentences. Grammar also has its own wording.
   final GrammarExample? example;
   final String locale;
   final String? questionOverride;

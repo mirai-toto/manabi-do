@@ -561,7 +561,7 @@
   "grammarErrorDetectionPrompt": "Which sentence is correct?",
   "example": "Example",
   "showExampleLabel": "Show example",
-  "showExampleSubtitle": "Display an example sentence on flashcards",
+  "showExampleSubtitle": "Display an example sentence on vocabulary and grammar flashcards",
   "speakPronunciation": "Play pronunciation",
   "settingsDetailedGrading": "Detailed grading",
   "settingsDetailedGradingSubtitle": "Grade with Again / Hard / Good / Easy instead of just Not yet / Got it",
@@ -784,6 +784,7 @@
       }
     }
   },
+  "practiceNotRecordedNote": "Practice here isn't recorded: your review schedule only moves with the daily reviews on Home.",
   "summaryFreePracticeNote": "Free practice. Nothing here changes your review schedule.",
   "summaryStreak": "{days, plural, one{1-day streak} other{{days}-day streak}}",
   "@summaryStreak": {

@@ -1039,7 +1039,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get showExampleSubtitle =>
-      'Afficher une phrase d\'exemple sur les flashcards';
+      'Afficher une phrase d\'exemple sur les flashcards de vocabulaire et de grammaire';
 
   @override
   String get speakPronunciation => 'Écouter la prononciation';
@@ -1295,6 +1295,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String summaryMetaPerfect(String time) {
     return '$time · tout est retenu';
   }
+
+  @override
+  String get practiceNotRecordedNote =>
+      'L\'entraînement ici n\'est pas enregistré : votre planning ne change qu\'avec les révisions du jour, sur l\'accueil.';
 
   @override
   String get summaryFreePracticeNote =>

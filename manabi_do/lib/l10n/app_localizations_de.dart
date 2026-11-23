@@ -1039,7 +1039,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get showExampleSubtitle =>
-      'Einen Beispielsatz auf Karteikarten anzeigen';
+      'Einen Beispielsatz auf Vokabel- und Grammatikkarten anzeigen';
 
   @override
   String get speakPronunciation => 'Aussprache abspielen';
@@ -1295,6 +1295,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String summaryMetaPerfect(String time) {
     return '$time · alles gewusst';
   }
+
+  @override
+  String get practiceNotRecordedNote =>
+      'Üben hier wird nicht gespeichert: Ihr Wiederholungsplan ändert sich nur mit den täglichen Wiederholungen auf der Startseite.';
 
   @override
   String get summaryFreePracticeNote =>
