@@ -46,17 +46,20 @@ class VocabularyLevelView extends ConsumerWidget {
     return switch (vocabularyAsync) {
       AsyncLoading() => const Center(child: AppSpinner.page()),
       AsyncError() => const SizedBox.shrink(),
-      AsyncData(:final value) => _LevelContent(
-        level: level,
-        groupIndex: groupIndex,
-        color: color,
-        entries: value
-            .skip(groupIndex * kVocabularyGroupSize)
-            .take(kVocabularyGroupSize)
-            .toList(),
-        onBack: onBack,
-        onPractice: onPractice,
-      ),
+      AsyncData(:final value) => switch (vocabularyGroups(
+        value,
+      ).elementAtOrNull(groupIndex)) {
+        null => const SizedBox.shrink(),
+        final group => _LevelContent(
+          level: level,
+          groupIndex: groupIndex,
+          start: group.start,
+          color: color,
+          entries: group.words,
+          onBack: onBack,
+          onPractice: onPractice,
+        ),
+      },
     };
   }
 }
@@ -64,6 +67,9 @@ class VocabularyLevelView extends ConsumerWidget {
 class _LevelContent extends ConsumerWidget {
   final int level;
   final int groupIndex;
+
+  /// Position of the group's first word in its level.
+  final int start;
   final Color color;
   final List<VocabularyEntry> entries;
   final VoidCallback onBack;
@@ -72,6 +78,7 @@ class _LevelContent extends ConsumerWidget {
   const _LevelContent({
     required this.level,
     required this.groupIndex,
+    required this.start,
     required this.color,
     required this.entries,
     required this.onBack,
@@ -91,7 +98,6 @@ class _LevelContent extends ConsumerWidget {
     );
 
     final groupIds = entries.map((e) => e.id).toSet();
-    final start = groupIndex * kVocabularyGroupSize;
     final sections = _sections(context, ref);
     final dueCount = sections
         .where((s) => s.kind == _Bucket.due)

@@ -36,8 +36,8 @@ extension VocabularyQueries on AppDatabase {
 
   /// Every word in a vocabulary level, in study order.
   ///
-  /// Ordered by `group_index` first, so skipping thirty at a time lands on the
-  /// groups the content pipeline cut. The groups are a property of the content,
+  /// Ordered by `group_index` first, so the groups the content pipeline cut
+  /// come out contiguous (see `vocabularyGroups`). The groups are a property of the content,
   /// not something the app recomputes: they are where the per-group coverage
   /// figures in `coverage_groups` apply.
   Future<List<VocabularyEntry>> getVocabularyByLevel(int level) =>

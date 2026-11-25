@@ -15,7 +15,7 @@ import '../../providers/vocabulary_list_provider.dart';
 import '../../widgets/widgets.dart';
 
 /// Shows a `SectionLabel` header and a list of `StudyGroupCard` tiles for
-/// pagination within a vocabulary level, in groups of `kVocabularyGroupSize`.
+/// pagination within a vocabulary level, one per group the content cut.
 ///
 /// Each row carries what the group buys: the share of running Japanese those
 /// thirty words account for. That number falls away sharply — the first group
@@ -44,7 +44,8 @@ class VocabularyGroupSelector extends ConsumerWidget {
     final color = vocabularyLevelColor(level, context.tokens);
 
     final entries = vocabularyAsync.asData?.value ?? [];
-    final groupCount = (entries.length / kVocabularyGroupSize).ceil();
+    final groups = vocabularyGroups(entries);
+    final groupCount = groups.length;
     final bandShare = ref.watch(vocabularyLevelReachedProvider)?[level];
     final learnedInLevel = entries
         .where((e) => isSrsKnown(srsCards[e.id]))
@@ -94,11 +95,9 @@ class VocabularyGroupSelector extends ConsumerWidget {
               padding: const EdgeInsets.all(AppDimens.spaceMd),
               child: Column(
                 children: List.generate(groupCount, (i) {
-                  final start = i * kVocabularyGroupSize;
-                  final groupEntries = entries
-                      .skip(start)
-                      .take(kVocabularyGroupSize)
-                      .toList();
+                  final group = groups[i];
+                  final start = group.start;
+                  final groupEntries = group.words;
                   final learnedCount = groupEntries
                       .where((e) => isSrsKnown(srsCards[e.id]))
                       .length;
@@ -117,7 +116,9 @@ class VocabularyGroupSelector extends ConsumerWidget {
                           '${start + 1}–$end · $learnedCount / ${groupEntries.length}',
                       progress: progress,
                       color: color,
-                      trailing: _ShareBadge(share: shares?[(level, i + 1)]),
+                      trailing: _ShareBadge(
+                        share: shares?[(level, group.groupIndex)],
+                      ),
                       onTap: () => onSelect(i),
                     ),
                   );
