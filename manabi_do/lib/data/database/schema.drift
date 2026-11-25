@@ -152,7 +152,12 @@ CREATE TABLE sentences (
   vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
   furigana_before TEXT,
   furigana_after TEXT,
-  furigana TEXT
+  furigana TEXT,
+  -- Tatoeba's own sentence id, which survives content updates. `id` above is
+  -- a rowid and means nothing across releases. The content repo refreshes a
+  -- sentence's text and translations by this id. Null only in a database
+  -- migrated from before schema 30.
+  tatoeba_id INTEGER
 );
 
 CREATE TABLE sentence_translations (

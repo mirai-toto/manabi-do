@@ -27,7 +27,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 29;
+  int get schemaVersion => 30;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -212,6 +212,13 @@ class AppDatabase extends _$AppDatabase {
           schema.vocabularyEntries,
           schema.vocabularyEntries.jmdictId,
         );
+      },
+
+      // Empty until a schema 30 content database replaces this one, which is
+      // why the column is nullable. Nothing in the app reads it yet: it is the
+      // key the content repo refreshes sentences by.
+      from29To30: (m, schema) async {
+        await m.addColumn(schema.sentences, schema.sentences.tatoebaId);
       },
     ),
   );

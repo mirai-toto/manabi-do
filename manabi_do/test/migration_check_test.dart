@@ -6,7 +6,7 @@ import 'package:manabi_do/data/database/app_database.dart';
 
 void main() {
   test(
-    'a v22 content database migrates to 29, gaining levels and the stable id',
+    'a v22 content database migrates to 30, gaining levels and the stable ids',
     () async {
       final source = File(
         '${Platform.environment['HOME']}/.cache/manabi-content/v22.1-manabi_do_content.db',
@@ -28,6 +28,10 @@ void main() {
           .customSelect('PRAGMA table_info(vocabulary_entries)')
           .get()
           .then((rows) => rows.map((r) => r.data['name']).toList());
+      final sentenceColumns = await db
+          .customSelect('PRAGMA table_info(sentences)')
+          .get()
+          .then((rows) => rows.map((r) => r.data['name']).toList());
       // Reads to prove the new table exists and the copied rows took their
       // defaults. A migrated database has no coverage figures until the matching
       // content asset replaces it, which is what ships with a schema change.
@@ -37,10 +41,11 @@ void main() {
           .get()
           .then((rows) => rows.map((r) => r.data['name']).toList());
 
-      expect(version, 29);
+      expect(version, 30);
       expect(tables, contains('vocabulary_senses'));
       expect(tables, isNot(contains('vocabulary_translations')));
       expect(columns, contains('jmdict_id'));
+      expect(sentenceColumns, contains('tatoeba_id'));
       expect(columns, contains('vocabulary_level'));
       expect(columns, contains('group_index'));
       expect(columns, isNot(contains('jlpt_level')));
