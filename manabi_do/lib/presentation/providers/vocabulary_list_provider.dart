@@ -8,8 +8,29 @@ import '../../data/database/app_database.dart';
 import '../services/search_service.dart';
 import 'database_provider.dart';
 
-/// Words per group within a vocabulary level.
-const kVocabularyGroupSize = 30;
+/// One study group of a vocabulary level: its `group_index`, the position of
+/// its first word in the level, and its words in study order.
+typedef VocabularyGroup = ({
+  int groupIndex,
+  int start,
+  List<VocabularyEntry> words,
+});
+
+/// A level's words, in study order, split into the groups the content cut.
+///
+/// Read from `group_index` rather than sliced thirty at a time. The content
+/// curriculum is edited in place, so a group can hold fewer than thirty words,
+/// and slicing by position would shift every group after a short one.
+List<VocabularyGroup> vocabularyGroups(List<VocabularyEntry> entries) {
+  final groups = <VocabularyGroup>[];
+  for (final (position, entry) in entries.indexed) {
+    if (groups.isEmpty || groups.last.groupIndex != entry.groupIndex) {
+      groups.add((groupIndex: entry.groupIndex, start: position, words: []));
+    }
+    groups.last.words.add(entry);
+  }
+  return groups;
+}
 
 final vocabularyByLevelProvider =
     FutureProvider.family<List<VocabularyEntry>, int>(
@@ -126,17 +147,19 @@ final vocabularyTotalCountProvider = Provider<int?>((ref) {
 });
 
 /// How many vocabulary entries in the given group are known (familiar or above, see `isSrsKnown`).
+///
+/// `groupIndex` is the group's 0-based place in its level, as navigation uses
+/// it, not its `group_index`.
 final vocabularyGroupLearnedCountProvider =
     Provider.family<int, ({int level, int groupIndex})>((ref, args) {
-      final entries =
-          ref
-              .watch(vocabularyByLevelProvider(args.level))
-              .asData
-              ?.value
-              .skip(args.groupIndex * kVocabularyGroupSize)
-              .take(kVocabularyGroupSize)
-              .toList() ??
-          [];
+      final level = ref
+          .watch(vocabularyByLevelProvider(args.level))
+          .asData
+          ?.value;
+      final entries = level == null
+          ? <VocabularyEntry>[]
+          : vocabularyGroups(level).elementAtOrNull(args.groupIndex)?.words ??
+                [];
       final srsCards =
           ref.watch(srsCardsProvider('vocabulary')).asData?.value ?? {};
       return entries.where((e) => isSrsKnown(srsCards[e.id])).length;
