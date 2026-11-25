@@ -1,8 +1,8 @@
 -- Single source of truth for the database schema.
 --
 -- drift generates the Dart table classes from this file, and
--- pipeline/build_content_db.py in mirai-toto/manabi-content executes the same statements when building the
--- shipped content DB. Keep it to plain CREATE TABLE so both readers cope.
+-- mirai-toto/manabi-content keeps a copy and creates the shipped content DB
+-- from the same statements. Keep it to plain CREATE TABLE so both readers cope.
 --
 -- Changing anything here is a schema change: bump `schemaVersion` in
 -- app_database.dart and add a migration step. `flutter test test/schema_test.dart`
@@ -152,7 +152,12 @@ CREATE TABLE sentences (
   vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
   furigana_before TEXT,
   furigana_after TEXT,
-  furigana TEXT
+  furigana TEXT,
+  -- Tatoeba's own sentence id, which survives content updates. `id` above is
+  -- a rowid and means nothing across releases. The content repo refreshes a
+  -- sentence's text and translations by this id. Null only in a database
+  -- migrated from before schema 30.
+  tatoeba_id INTEGER
 );
 
 CREATE TABLE sentence_translations (

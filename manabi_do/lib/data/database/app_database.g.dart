@@ -1006,6 +1006,17 @@ class VocabularyEntries extends Table
     requiredDuringInsert: false,
     $customConstraints: 'NOT NULL PRIMARY KEY AUTOINCREMENT',
   );
+  static const VerificationMeta _jmdictIdMeta = const VerificationMeta(
+    'jmdictId',
+  );
+  late final GeneratedColumn<String> jmdictId = GeneratedColumn<String>(
+    'jmdict_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: '',
+  );
   static const VerificationMeta _wordMeta = const VerificationMeta('word');
   late final GeneratedColumn<String> word = GeneratedColumn<String>(
     'word',
@@ -1110,6 +1121,7 @@ class VocabularyEntries extends Table
   @override
   List<GeneratedColumn> get $columns => [
     id,
+    jmdictId,
     word,
     reading,
     meaning,
@@ -1134,6 +1146,12 @@ class VocabularyEntries extends Table
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('jmdict_id')) {
+      context.handle(
+        _jmdictIdMeta,
+        jmdictId.isAcceptableOrUnknown(data['jmdict_id']!, _jmdictIdMeta),
+      );
     }
     if (data.containsKey('word')) {
       context.handle(
@@ -1219,6 +1237,10 @@ class VocabularyEntries extends Table
         DriftSqlType.int,
         data['${effectivePrefix}id'],
       )!,
+      jmdictId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}jmdict_id'],
+      ),
       word: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}word'],
@@ -1269,6 +1291,14 @@ class VocabularyEntries extends Table
 
 class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   final int id;
+
+  /// JMdict's own entry id, which survives releases. `id` above does not: it is
+  /// an autoincrement rowid assigned in insertion order, so it moves whenever
+  /// the word list changes. Review history keyed on the pair (word, reading)
+  /// instead, which held until schema 28 wrote 要る in kanji to separate it from
+  /// いる and orphaned 17 words' cards. Null only in a database migrated from
+  /// before schema 29; every built database fills it.
+  final String? jmdictId;
   final String word;
   final String reading;
   final String meaning;
@@ -1304,6 +1334,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   final int groupIndex;
   const VocabularyEntry({
     required this.id,
+    this.jmdictId,
     required this.word,
     required this.reading,
     required this.meaning,
@@ -1318,6 +1349,9 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
+    if (!nullToAbsent || jmdictId != null) {
+      map['jmdict_id'] = Variable<String>(jmdictId);
+    }
     map['word'] = Variable<String>(word);
     map['reading'] = Variable<String>(reading);
     map['meaning'] = Variable<String>(meaning);
@@ -1335,6 +1369,9 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   VocabularyEntriesCompanion toCompanion(bool nullToAbsent) {
     return VocabularyEntriesCompanion(
       id: Value(id),
+      jmdictId: jmdictId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(jmdictId),
       word: Value(word),
       reading: Value(reading),
       meaning: Value(meaning),
@@ -1356,6 +1393,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return VocabularyEntry(
       id: serializer.fromJson<int>(json['id']),
+      jmdictId: serializer.fromJson<String?>(json['jmdict_id']),
       word: serializer.fromJson<String>(json['word']),
       reading: serializer.fromJson<String>(json['reading']),
       meaning: serializer.fromJson<String>(json['meaning']),
@@ -1372,6 +1410,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
+      'jmdict_id': serializer.toJson<String?>(jmdictId),
       'word': serializer.toJson<String>(word),
       'reading': serializer.toJson<String>(reading),
       'meaning': serializer.toJson<String>(meaning),
@@ -1386,6 +1425,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
 
   VocabularyEntry copyWith({
     int? id,
+    Value<String?> jmdictId = const Value.absent(),
     String? word,
     String? reading,
     String? meaning,
@@ -1397,6 +1437,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
     int? groupIndex,
   }) => VocabularyEntry(
     id: id ?? this.id,
+    jmdictId: jmdictId.present ? jmdictId.value : this.jmdictId,
     word: word ?? this.word,
     reading: reading ?? this.reading,
     meaning: meaning ?? this.meaning,
@@ -1410,6 +1451,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   VocabularyEntry copyWithCompanion(VocabularyEntriesCompanion data) {
     return VocabularyEntry(
       id: data.id.present ? data.id.value : this.id,
+      jmdictId: data.jmdictId.present ? data.jmdictId.value : this.jmdictId,
       word: data.word.present ? data.word.value : this.word,
       reading: data.reading.present ? data.reading.value : this.reading,
       meaning: data.meaning.present ? data.meaning.value : this.meaning,
@@ -1436,6 +1478,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   String toString() {
     return (StringBuffer('VocabularyEntry(')
           ..write('id: $id, ')
+          ..write('jmdictId: $jmdictId, ')
           ..write('word: $word, ')
           ..write('reading: $reading, ')
           ..write('meaning: $meaning, ')
@@ -1452,6 +1495,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
   @override
   int get hashCode => Object.hash(
     id,
+    jmdictId,
     word,
     reading,
     meaning,
@@ -1467,6 +1511,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
       identical(this, other) ||
       (other is VocabularyEntry &&
           other.id == this.id &&
+          other.jmdictId == this.jmdictId &&
           other.word == this.word &&
           other.reading == this.reading &&
           other.meaning == this.meaning &&
@@ -1480,6 +1525,7 @@ class VocabularyEntry extends DataClass implements Insertable<VocabularyEntry> {
 
 class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   final Value<int> id;
+  final Value<String?> jmdictId;
   final Value<String> word;
   final Value<String> reading;
   final Value<String> meaning;
@@ -1491,6 +1537,7 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   final Value<int> groupIndex;
   const VocabularyEntriesCompanion({
     this.id = const Value.absent(),
+    this.jmdictId = const Value.absent(),
     this.word = const Value.absent(),
     this.reading = const Value.absent(),
     this.meaning = const Value.absent(),
@@ -1503,6 +1550,7 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   });
   VocabularyEntriesCompanion.insert({
     this.id = const Value.absent(),
+    this.jmdictId = const Value.absent(),
     required String word,
     required String reading,
     required String meaning,
@@ -1518,6 +1566,7 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
        partOfSpeech = Value(partOfSpeech);
   static Insertable<VocabularyEntry> custom({
     Expression<int>? id,
+    Expression<String>? jmdictId,
     Expression<String>? word,
     Expression<String>? reading,
     Expression<String>? meaning,
@@ -1530,6 +1579,7 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
+      if (jmdictId != null) 'jmdict_id': jmdictId,
       if (word != null) 'word': word,
       if (reading != null) 'reading': reading,
       if (meaning != null) 'meaning': meaning,
@@ -1544,6 +1594,7 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
 
   VocabularyEntriesCompanion copyWith({
     Value<int>? id,
+    Value<String?>? jmdictId,
     Value<String>? word,
     Value<String>? reading,
     Value<String>? meaning,
@@ -1556,6 +1607,7 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   }) {
     return VocabularyEntriesCompanion(
       id: id ?? this.id,
+      jmdictId: jmdictId ?? this.jmdictId,
       word: word ?? this.word,
       reading: reading ?? this.reading,
       meaning: meaning ?? this.meaning,
@@ -1573,6 +1625,9 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
     final map = <String, Expression>{};
     if (id.present) {
       map['id'] = Variable<int>(id.value);
+    }
+    if (jmdictId.present) {
+      map['jmdict_id'] = Variable<String>(jmdictId.value);
     }
     if (word.present) {
       map['word'] = Variable<String>(word.value);
@@ -1608,6 +1663,7 @@ class VocabularyEntriesCompanion extends UpdateCompanion<VocabularyEntry> {
   String toString() {
     return (StringBuffer('VocabularyEntriesCompanion(')
           ..write('id: $id, ')
+          ..write('jmdictId: $jmdictId, ')
           ..write('word: $word, ')
           ..write('reading: $reading, ')
           ..write('meaning: $meaning, ')
@@ -2931,289 +2987,6 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
   }
 }
 
-class VocabularyTranslations extends Table
-    with TableInfo<VocabularyTranslations, VocabularyTranslation> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  VocabularyTranslations(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _vocabularyIdMeta = const VerificationMeta(
-    'vocabularyId',
-  );
-  late final GeneratedColumn<int> vocabularyId = GeneratedColumn<int>(
-    'vocabulary_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES vocabulary_entries(id)',
-  );
-  static const VerificationMeta _localeMeta = const VerificationMeta('locale');
-  late final GeneratedColumn<String> locale = GeneratedColumn<String>(
-    'locale',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
-  );
-  static const VerificationMeta _meaningMeta = const VerificationMeta(
-    'meaning',
-  );
-  late final GeneratedColumn<String> meaning = GeneratedColumn<String>(
-    'meaning',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
-  );
-  @override
-  List<GeneratedColumn> get $columns => [vocabularyId, locale, meaning];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'vocabulary_translations';
-  @override
-  VerificationContext validateIntegrity(
-    Insertable<VocabularyTranslation> instance, {
-    bool isInserting = false,
-  }) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('vocabulary_id')) {
-      context.handle(
-        _vocabularyIdMeta,
-        vocabularyId.isAcceptableOrUnknown(
-          data['vocabulary_id']!,
-          _vocabularyIdMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_vocabularyIdMeta);
-    }
-    if (data.containsKey('locale')) {
-      context.handle(
-        _localeMeta,
-        locale.isAcceptableOrUnknown(data['locale']!, _localeMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_localeMeta);
-    }
-    if (data.containsKey('meaning')) {
-      context.handle(
-        _meaningMeta,
-        meaning.isAcceptableOrUnknown(data['meaning']!, _meaningMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_meaningMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {vocabularyId, locale};
-  @override
-  VocabularyTranslation map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return VocabularyTranslation(
-      vocabularyId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}vocabulary_id'],
-      )!,
-      locale: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}locale'],
-      )!,
-      meaning: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}meaning'],
-      )!,
-    );
-  }
-
-  @override
-  VocabularyTranslations createAlias(String alias) {
-    return VocabularyTranslations(attachedDatabase, alias);
-  }
-
-  @override
-  List<String> get customConstraints => const [
-    'PRIMARY KEY(vocabulary_id, locale)',
-  ];
-  @override
-  bool get dontWriteConstraints => true;
-}
-
-class VocabularyTranslation extends DataClass
-    implements Insertable<VocabularyTranslation> {
-  final int vocabularyId;
-  final String locale;
-  final String meaning;
-  const VocabularyTranslation({
-    required this.vocabularyId,
-    required this.locale,
-    required this.meaning,
-  });
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['vocabulary_id'] = Variable<int>(vocabularyId);
-    map['locale'] = Variable<String>(locale);
-    map['meaning'] = Variable<String>(meaning);
-    return map;
-  }
-
-  VocabularyTranslationsCompanion toCompanion(bool nullToAbsent) {
-    return VocabularyTranslationsCompanion(
-      vocabularyId: Value(vocabularyId),
-      locale: Value(locale),
-      meaning: Value(meaning),
-    );
-  }
-
-  factory VocabularyTranslation.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return VocabularyTranslation(
-      vocabularyId: serializer.fromJson<int>(json['vocabulary_id']),
-      locale: serializer.fromJson<String>(json['locale']),
-      meaning: serializer.fromJson<String>(json['meaning']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'vocabulary_id': serializer.toJson<int>(vocabularyId),
-      'locale': serializer.toJson<String>(locale),
-      'meaning': serializer.toJson<String>(meaning),
-    };
-  }
-
-  VocabularyTranslation copyWith({
-    int? vocabularyId,
-    String? locale,
-    String? meaning,
-  }) => VocabularyTranslation(
-    vocabularyId: vocabularyId ?? this.vocabularyId,
-    locale: locale ?? this.locale,
-    meaning: meaning ?? this.meaning,
-  );
-  VocabularyTranslation copyWithCompanion(
-    VocabularyTranslationsCompanion data,
-  ) {
-    return VocabularyTranslation(
-      vocabularyId: data.vocabularyId.present
-          ? data.vocabularyId.value
-          : this.vocabularyId,
-      locale: data.locale.present ? data.locale.value : this.locale,
-      meaning: data.meaning.present ? data.meaning.value : this.meaning,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('VocabularyTranslation(')
-          ..write('vocabularyId: $vocabularyId, ')
-          ..write('locale: $locale, ')
-          ..write('meaning: $meaning')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(vocabularyId, locale, meaning);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is VocabularyTranslation &&
-          other.vocabularyId == this.vocabularyId &&
-          other.locale == this.locale &&
-          other.meaning == this.meaning);
-}
-
-class VocabularyTranslationsCompanion
-    extends UpdateCompanion<VocabularyTranslation> {
-  final Value<int> vocabularyId;
-  final Value<String> locale;
-  final Value<String> meaning;
-  final Value<int> rowid;
-  const VocabularyTranslationsCompanion({
-    this.vocabularyId = const Value.absent(),
-    this.locale = const Value.absent(),
-    this.meaning = const Value.absent(),
-    this.rowid = const Value.absent(),
-  });
-  VocabularyTranslationsCompanion.insert({
-    required int vocabularyId,
-    required String locale,
-    required String meaning,
-    this.rowid = const Value.absent(),
-  }) : vocabularyId = Value(vocabularyId),
-       locale = Value(locale),
-       meaning = Value(meaning);
-  static Insertable<VocabularyTranslation> custom({
-    Expression<int>? vocabularyId,
-    Expression<String>? locale,
-    Expression<String>? meaning,
-    Expression<int>? rowid,
-  }) {
-    return RawValuesInsertable({
-      if (vocabularyId != null) 'vocabulary_id': vocabularyId,
-      if (locale != null) 'locale': locale,
-      if (meaning != null) 'meaning': meaning,
-      if (rowid != null) 'rowid': rowid,
-    });
-  }
-
-  VocabularyTranslationsCompanion copyWith({
-    Value<int>? vocabularyId,
-    Value<String>? locale,
-    Value<String>? meaning,
-    Value<int>? rowid,
-  }) {
-    return VocabularyTranslationsCompanion(
-      vocabularyId: vocabularyId ?? this.vocabularyId,
-      locale: locale ?? this.locale,
-      meaning: meaning ?? this.meaning,
-      rowid: rowid ?? this.rowid,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (vocabularyId.present) {
-      map['vocabulary_id'] = Variable<int>(vocabularyId.value);
-    }
-    if (locale.present) {
-      map['locale'] = Variable<String>(locale.value);
-    }
-    if (meaning.present) {
-      map['meaning'] = Variable<String>(meaning.value);
-    }
-    if (rowid.present) {
-      map['rowid'] = Variable<int>(rowid.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('VocabularyTranslationsCompanion(')
-          ..write('vocabularyId: $vocabularyId, ')
-          ..write('locale: $locale, ')
-          ..write('meaning: $meaning, ')
-          ..write('rowid: $rowid')
-          ..write(')'))
-        .toString();
-  }
-}
-
 class Sentences extends Table with TableInfo<Sentences, Sentence> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -3295,6 +3068,17 @@ class Sentences extends Table with TableInfo<Sentences, Sentence> {
     requiredDuringInsert: false,
     $customConstraints: '',
   );
+  static const VerificationMeta _tatoebaIdMeta = const VerificationMeta(
+    'tatoebaId',
+  );
+  late final GeneratedColumn<int> tatoebaId = GeneratedColumn<int>(
+    'tatoeba_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: '',
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -3304,6 +3088,7 @@ class Sentences extends Table with TableInfo<Sentences, Sentence> {
     furiganaBefore,
     furiganaAfter,
     furigana,
+    tatoebaId,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -3371,6 +3156,12 @@ class Sentences extends Table with TableInfo<Sentences, Sentence> {
         furigana.isAcceptableOrUnknown(data['furigana']!, _furiganaMeta),
       );
     }
+    if (data.containsKey('tatoeba_id')) {
+      context.handle(
+        _tatoebaIdMeta,
+        tatoebaId.isAcceptableOrUnknown(data['tatoeba_id']!, _tatoebaIdMeta),
+      );
+    }
     return context;
   }
 
@@ -3408,6 +3199,10 @@ class Sentences extends Table with TableInfo<Sentences, Sentence> {
         DriftSqlType.string,
         data['${effectivePrefix}furigana'],
       ),
+      tatoebaId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}tatoeba_id'],
+      ),
     );
   }
 
@@ -3428,6 +3223,12 @@ class Sentence extends DataClass implements Insertable<Sentence> {
   final String? furiganaBefore;
   final String? furiganaAfter;
   final String? furigana;
+
+  /// Tatoeba's own sentence id, which survives content updates. `id` above is
+  /// a rowid and means nothing across releases. The content repo refreshes a
+  /// sentence's text and translations by this id. Null only in a database
+  /// migrated from before schema 30.
+  final int? tatoebaId;
   const Sentence({
     required this.id,
     required this.japanese,
@@ -3436,6 +3237,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
     this.furiganaBefore,
     this.furiganaAfter,
     this.furigana,
+    this.tatoebaId,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -3452,6 +3254,9 @@ class Sentence extends DataClass implements Insertable<Sentence> {
     }
     if (!nullToAbsent || furigana != null) {
       map['furigana'] = Variable<String>(furigana);
+    }
+    if (!nullToAbsent || tatoebaId != null) {
+      map['tatoeba_id'] = Variable<int>(tatoebaId);
     }
     return map;
   }
@@ -3471,6 +3276,9 @@ class Sentence extends DataClass implements Insertable<Sentence> {
       furigana: furigana == null && nullToAbsent
           ? const Value.absent()
           : Value(furigana),
+      tatoebaId: tatoebaId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(tatoebaId),
     );
   }
 
@@ -3487,6 +3295,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
       furiganaBefore: serializer.fromJson<String?>(json['furigana_before']),
       furiganaAfter: serializer.fromJson<String?>(json['furigana_after']),
       furigana: serializer.fromJson<String?>(json['furigana']),
+      tatoebaId: serializer.fromJson<int?>(json['tatoeba_id']),
     );
   }
   @override
@@ -3500,6 +3309,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
       'furigana_before': serializer.toJson<String?>(furiganaBefore),
       'furigana_after': serializer.toJson<String?>(furiganaAfter),
       'furigana': serializer.toJson<String?>(furigana),
+      'tatoeba_id': serializer.toJson<int?>(tatoebaId),
     };
   }
 
@@ -3511,6 +3321,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
     Value<String?> furiganaBefore = const Value.absent(),
     Value<String?> furiganaAfter = const Value.absent(),
     Value<String?> furigana = const Value.absent(),
+    Value<int?> tatoebaId = const Value.absent(),
   }) => Sentence(
     id: id ?? this.id,
     japanese: japanese ?? this.japanese,
@@ -3523,6 +3334,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
         ? furiganaAfter.value
         : this.furiganaAfter,
     furigana: furigana.present ? furigana.value : this.furigana,
+    tatoebaId: tatoebaId.present ? tatoebaId.value : this.tatoebaId,
   );
   Sentence copyWithCompanion(SentencesCompanion data) {
     return Sentence(
@@ -3541,6 +3353,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
           ? data.furiganaAfter.value
           : this.furiganaAfter,
       furigana: data.furigana.present ? data.furigana.value : this.furigana,
+      tatoebaId: data.tatoebaId.present ? data.tatoebaId.value : this.tatoebaId,
     );
   }
 
@@ -3553,7 +3366,8 @@ class Sentence extends DataClass implements Insertable<Sentence> {
           ..write('vocabularyId: $vocabularyId, ')
           ..write('furiganaBefore: $furiganaBefore, ')
           ..write('furiganaAfter: $furiganaAfter, ')
-          ..write('furigana: $furigana')
+          ..write('furigana: $furigana, ')
+          ..write('tatoebaId: $tatoebaId')
           ..write(')'))
         .toString();
   }
@@ -3567,6 +3381,7 @@ class Sentence extends DataClass implements Insertable<Sentence> {
     furiganaBefore,
     furiganaAfter,
     furigana,
+    tatoebaId,
   );
   @override
   bool operator ==(Object other) =>
@@ -3578,7 +3393,8 @@ class Sentence extends DataClass implements Insertable<Sentence> {
           other.vocabularyId == this.vocabularyId &&
           other.furiganaBefore == this.furiganaBefore &&
           other.furiganaAfter == this.furiganaAfter &&
-          other.furigana == this.furigana);
+          other.furigana == this.furigana &&
+          other.tatoebaId == this.tatoebaId);
 }
 
 class SentencesCompanion extends UpdateCompanion<Sentence> {
@@ -3589,6 +3405,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
   final Value<String?> furiganaBefore;
   final Value<String?> furiganaAfter;
   final Value<String?> furigana;
+  final Value<int?> tatoebaId;
   const SentencesCompanion({
     this.id = const Value.absent(),
     this.japanese = const Value.absent(),
@@ -3597,6 +3414,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
     this.furiganaBefore = const Value.absent(),
     this.furiganaAfter = const Value.absent(),
     this.furigana = const Value.absent(),
+    this.tatoebaId = const Value.absent(),
   });
   SentencesCompanion.insert({
     this.id = const Value.absent(),
@@ -3606,6 +3424,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
     this.furiganaBefore = const Value.absent(),
     this.furiganaAfter = const Value.absent(),
     this.furigana = const Value.absent(),
+    this.tatoebaId = const Value.absent(),
   }) : japanese = Value(japanese),
        targetWord = Value(targetWord),
        vocabularyId = Value(vocabularyId);
@@ -3617,6 +3436,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
     Expression<String>? furiganaBefore,
     Expression<String>? furiganaAfter,
     Expression<String>? furigana,
+    Expression<int>? tatoebaId,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -3626,6 +3446,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
       if (furiganaBefore != null) 'furigana_before': furiganaBefore,
       if (furiganaAfter != null) 'furigana_after': furiganaAfter,
       if (furigana != null) 'furigana': furigana,
+      if (tatoebaId != null) 'tatoeba_id': tatoebaId,
     });
   }
 
@@ -3637,6 +3458,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
     Value<String?>? furiganaBefore,
     Value<String?>? furiganaAfter,
     Value<String?>? furigana,
+    Value<int?>? tatoebaId,
   }) {
     return SentencesCompanion(
       id: id ?? this.id,
@@ -3646,6 +3468,7 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
       furiganaBefore: furiganaBefore ?? this.furiganaBefore,
       furiganaAfter: furiganaAfter ?? this.furiganaAfter,
       furigana: furigana ?? this.furigana,
+      tatoebaId: tatoebaId ?? this.tatoebaId,
     );
   }
 
@@ -3673,6 +3496,9 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
     if (furigana.present) {
       map['furigana'] = Variable<String>(furigana.value);
     }
+    if (tatoebaId.present) {
+      map['tatoeba_id'] = Variable<int>(tatoebaId.value);
+    }
     return map;
   }
 
@@ -3685,7 +3511,8 @@ class SentencesCompanion extends UpdateCompanion<Sentence> {
           ..write('vocabularyId: $vocabularyId, ')
           ..write('furiganaBefore: $furiganaBefore, ')
           ..write('furiganaAfter: $furiganaAfter, ')
-          ..write('furigana: $furigana')
+          ..write('furigana: $furigana, ')
+          ..write('tatoebaId: $tatoebaId')
           ..write(')'))
         .toString();
   }
@@ -6800,8 +6627,6 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final VocabularyKanji vocabularyKanji = VocabularyKanji(this);
   late final KanjiTranslations kanjiTranslations = KanjiTranslations(this);
   late final VocabularySenses vocabularySenses = VocabularySenses(this);
-  late final VocabularyTranslations vocabularyTranslations =
-      VocabularyTranslations(this);
   late final Sentences sentences = Sentences(this);
   late final SentenceTranslations sentenceTranslations = SentenceTranslations(
     this,
@@ -6830,7 +6655,6 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     vocabularyKanji,
     kanjiTranslations,
     vocabularySenses,
-    vocabularyTranslations,
     sentences,
     sentenceTranslations,
     exercises,
@@ -7539,6 +7363,7 @@ typedef $KanasProcessedTableManager =
 typedef $VocabularyEntriesCreateCompanionBuilder =
     VocabularyEntriesCompanion Function({
       Value<int> id,
+      Value<String?> jmdictId,
       required String word,
       required String reading,
       required String meaning,
@@ -7552,6 +7377,7 @@ typedef $VocabularyEntriesCreateCompanionBuilder =
 typedef $VocabularyEntriesUpdateCompanionBuilder =
     VocabularyEntriesCompanion Function({
       Value<int> id,
+      Value<String?> jmdictId,
       Value<String> word,
       Value<String> reading,
       Value<String> meaning,
@@ -7607,31 +7433,6 @@ final class $VocabularyEntriesReferences
     );
   }
 
-  static MultiTypedResultKey<
-    VocabularyTranslations,
-    List<VocabularyTranslation>
-  >
-  _vocabularyTranslationsRefsTable(_$AppDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.vocabularyTranslations,
-        aliasName:
-            'vocabulary_entries__id__vocabulary_translations__vocabulary_id',
-      );
-
-  $VocabularyTranslationsProcessedTableManager get vocabularyTranslationsRefs {
-    final manager = $VocabularyTranslationsTableManager(
-      $_db,
-      $_db.vocabularyTranslations,
-    ).filter((f) => f.vocabularyId.id.sqlEquals($_itemColumn<int>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _vocabularyTranslationsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
   static MultiTypedResultKey<Sentences, List<Sentence>> _sentencesRefsTable(
     _$AppDatabase db,
   ) => MultiTypedResultKey.fromTable(
@@ -7663,6 +7464,11 @@ class $VocabularyEntriesFilterComposer
   });
   ColumnFilters<int> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get jmdictId => $composableBuilder(
+    column: $table.jmdictId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -7761,31 +7567,6 @@ class $VocabularyEntriesFilterComposer
     return f(composer);
   }
 
-  Expression<bool> vocabularyTranslationsRefs(
-    Expression<bool> Function($VocabularyTranslationsFilterComposer f) f,
-  ) {
-    final $VocabularyTranslationsFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.vocabularyTranslations,
-      getReferencedColumn: (t) => t.vocabularyId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $VocabularyTranslationsFilterComposer(
-            $db: $db,
-            $table: $db.vocabularyTranslations,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
   Expression<bool> sentencesRefs(
     Expression<bool> Function($SentencesFilterComposer f) f,
   ) {
@@ -7823,6 +7604,11 @@ class $VocabularyEntriesOrderingComposer
   });
   ColumnOrderings<int> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get jmdictId => $composableBuilder(
+    column: $table.jmdictId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -7883,6 +7669,9 @@ class $VocabularyEntriesAnnotationComposer
   });
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get jmdictId =>
+      $composableBuilder(column: $table.jmdictId, builder: (column) => column);
 
   GeneratedColumn<String> get word =>
       $composableBuilder(column: $table.word, builder: (column) => column);
@@ -7971,31 +7760,6 @@ class $VocabularyEntriesAnnotationComposer
     return f(composer);
   }
 
-  Expression<T> vocabularyTranslationsRefs<T extends Object>(
-    Expression<T> Function($VocabularyTranslationsAnnotationComposer a) f,
-  ) {
-    final $VocabularyTranslationsAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.vocabularyTranslations,
-      getReferencedColumn: (t) => t.vocabularyId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $VocabularyTranslationsAnnotationComposer(
-            $db: $db,
-            $table: $db.vocabularyTranslations,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
   Expression<T> sentencesRefs<T extends Object>(
     Expression<T> Function($SentencesAnnotationComposer a) f,
   ) {
@@ -8038,7 +7802,6 @@ class $VocabularyEntriesTableManager
           PrefetchHooks Function({
             bool vocabularyKanjiRefs,
             bool vocabularySensesRefs,
-            bool vocabularyTranslationsRefs,
             bool sentencesRefs,
           })
         > {
@@ -8056,6 +7819,7 @@ class $VocabularyEntriesTableManager
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
+                Value<String?> jmdictId = const Value.absent(),
                 Value<String> word = const Value.absent(),
                 Value<String> reading = const Value.absent(),
                 Value<String> meaning = const Value.absent(),
@@ -8067,6 +7831,7 @@ class $VocabularyEntriesTableManager
                 Value<int> groupIndex = const Value.absent(),
               }) => VocabularyEntriesCompanion(
                 id: id,
+                jmdictId: jmdictId,
                 word: word,
                 reading: reading,
                 meaning: meaning,
@@ -8080,6 +7845,7 @@ class $VocabularyEntriesTableManager
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
+                Value<String?> jmdictId = const Value.absent(),
                 required String word,
                 required String reading,
                 required String meaning,
@@ -8091,6 +7857,7 @@ class $VocabularyEntriesTableManager
                 Value<int> groupIndex = const Value.absent(),
               }) => VocabularyEntriesCompanion.insert(
                 id: id,
+                jmdictId: jmdictId,
                 word: word,
                 reading: reading,
                 meaning: meaning,
@@ -8113,7 +7880,6 @@ class $VocabularyEntriesTableManager
               ({
                 vocabularyKanjiRefs = false,
                 vocabularySensesRefs = false,
-                vocabularyTranslationsRefs = false,
                 sentencesRefs = false,
               }) {
                 return PrefetchHooks(
@@ -8121,7 +7887,6 @@ class $VocabularyEntriesTableManager
                   explicitlyWatchedTables: [
                     if (vocabularyKanjiRefs) db.vocabularyKanji,
                     if (vocabularySensesRefs) db.vocabularySenses,
-                    if (vocabularyTranslationsRefs) db.vocabularyTranslations,
                     if (sentencesRefs) db.sentences,
                   ],
                   addJoins: null,
@@ -8163,27 +7928,6 @@ class $VocabularyEntriesTableManager
                                 table,
                                 p0,
                               ).vocabularySensesRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.vocabularyId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (vocabularyTranslationsRefs)
-                        await $_getPrefetchedData<
-                          VocabularyEntry,
-                          VocabularyEntries,
-                          VocabularyTranslation
-                        >(
-                          currentTable: table,
-                          referencedTable: $VocabularyEntriesReferences
-                              ._vocabularyTranslationsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $VocabularyEntriesReferences(
-                                db,
-                                table,
-                                p0,
-                              ).vocabularyTranslationsRefs,
                           referencedItemsForCurrentItem:
                               (item, referencedItems) => referencedItems.where(
                                 (e) => e.vocabularyId == item.id,
@@ -8234,7 +7978,6 @@ typedef $VocabularyEntriesProcessedTableManager =
       PrefetchHooks Function({
         bool vocabularyKanjiRefs,
         bool vocabularySensesRefs,
-        bool vocabularyTranslationsRefs,
         bool sentencesRefs,
       })
     >;
@@ -9408,300 +9151,6 @@ typedef $VocabularySensesProcessedTableManager =
       VocabularySense,
       PrefetchHooks Function({bool vocabularyId})
     >;
-typedef $VocabularyTranslationsCreateCompanionBuilder =
-    VocabularyTranslationsCompanion Function({
-      required int vocabularyId,
-      required String locale,
-      required String meaning,
-      Value<int> rowid,
-    });
-typedef $VocabularyTranslationsUpdateCompanionBuilder =
-    VocabularyTranslationsCompanion Function({
-      Value<int> vocabularyId,
-      Value<String> locale,
-      Value<String> meaning,
-      Value<int> rowid,
-    });
-
-final class $VocabularyTranslationsReferences
-    extends
-        BaseReferences<
-          _$AppDatabase,
-          VocabularyTranslations,
-          VocabularyTranslation
-        > {
-  $VocabularyTranslationsReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static VocabularyEntries _vocabularyIdTable(_$AppDatabase db) =>
-      db.vocabularyEntries.createAlias(
-        'vocabulary_translations__vocabulary_id__vocabulary_entries__id',
-      );
-
-  $VocabularyEntriesProcessedTableManager get vocabularyId {
-    final $_column = $_itemColumn<int>('vocabulary_id')!;
-
-    final manager = $VocabularyEntriesTableManager(
-      $_db,
-      $_db.vocabularyEntries,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_vocabularyIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
-class $VocabularyTranslationsFilterComposer
-    extends Composer<_$AppDatabase, VocabularyTranslations> {
-  $VocabularyTranslationsFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnFilters<String> get locale => $composableBuilder(
-    column: $table.locale,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get meaning => $composableBuilder(
-    column: $table.meaning,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  $VocabularyEntriesFilterComposer get vocabularyId {
-    final $VocabularyEntriesFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.vocabularyId,
-      referencedTable: $db.vocabularyEntries,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $VocabularyEntriesFilterComposer(
-            $db: $db,
-            $table: $db.vocabularyEntries,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-}
-
-class $VocabularyTranslationsOrderingComposer
-    extends Composer<_$AppDatabase, VocabularyTranslations> {
-  $VocabularyTranslationsOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnOrderings<String> get locale => $composableBuilder(
-    column: $table.locale,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get meaning => $composableBuilder(
-    column: $table.meaning,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  $VocabularyEntriesOrderingComposer get vocabularyId {
-    final $VocabularyEntriesOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.vocabularyId,
-      referencedTable: $db.vocabularyEntries,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $VocabularyEntriesOrderingComposer(
-            $db: $db,
-            $table: $db.vocabularyEntries,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-}
-
-class $VocabularyTranslationsAnnotationComposer
-    extends Composer<_$AppDatabase, VocabularyTranslations> {
-  $VocabularyTranslationsAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  GeneratedColumn<String> get locale =>
-      $composableBuilder(column: $table.locale, builder: (column) => column);
-
-  GeneratedColumn<String> get meaning =>
-      $composableBuilder(column: $table.meaning, builder: (column) => column);
-
-  $VocabularyEntriesAnnotationComposer get vocabularyId {
-    final $VocabularyEntriesAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.vocabularyId,
-      referencedTable: $db.vocabularyEntries,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $VocabularyEntriesAnnotationComposer(
-            $db: $db,
-            $table: $db.vocabularyEntries,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-}
-
-class $VocabularyTranslationsTableManager
-    extends
-        RootTableManager<
-          _$AppDatabase,
-          VocabularyTranslations,
-          VocabularyTranslation,
-          $VocabularyTranslationsFilterComposer,
-          $VocabularyTranslationsOrderingComposer,
-          $VocabularyTranslationsAnnotationComposer,
-          $VocabularyTranslationsCreateCompanionBuilder,
-          $VocabularyTranslationsUpdateCompanionBuilder,
-          (VocabularyTranslation, $VocabularyTranslationsReferences),
-          VocabularyTranslation,
-          PrefetchHooks Function({bool vocabularyId})
-        > {
-  $VocabularyTranslationsTableManager(
-    _$AppDatabase db,
-    VocabularyTranslations table,
-  ) : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $VocabularyTranslationsFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $VocabularyTranslationsOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $VocabularyTranslationsAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> vocabularyId = const Value.absent(),
-                Value<String> locale = const Value.absent(),
-                Value<String> meaning = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
-              }) => VocabularyTranslationsCompanion(
-                vocabularyId: vocabularyId,
-                locale: locale,
-                meaning: meaning,
-                rowid: rowid,
-              ),
-          createCompanionCallback:
-              ({
-                required int vocabularyId,
-                required String locale,
-                required String meaning,
-                Value<int> rowid = const Value.absent(),
-              }) => VocabularyTranslationsCompanion.insert(
-                vocabularyId: vocabularyId,
-                locale: locale,
-                meaning: meaning,
-                rowid: rowid,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $VocabularyTranslationsReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({vocabularyId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (vocabularyId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.vocabularyId,
-                                referencedTable:
-                                    $VocabularyTranslationsReferences
-                                        ._vocabularyIdTable(db),
-                                referencedColumn:
-                                    $VocabularyTranslationsReferences
-                                        ._vocabularyIdTable(db)
-                                        .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
-        ),
-      );
-}
-
-typedef $VocabularyTranslationsProcessedTableManager =
-    ProcessedTableManager<
-      _$AppDatabase,
-      VocabularyTranslations,
-      VocabularyTranslation,
-      $VocabularyTranslationsFilterComposer,
-      $VocabularyTranslationsOrderingComposer,
-      $VocabularyTranslationsAnnotationComposer,
-      $VocabularyTranslationsCreateCompanionBuilder,
-      $VocabularyTranslationsUpdateCompanionBuilder,
-      (VocabularyTranslation, $VocabularyTranslationsReferences),
-      VocabularyTranslation,
-      PrefetchHooks Function({bool vocabularyId})
-    >;
 typedef $SentencesCreateCompanionBuilder =
     SentencesCompanion Function({
       Value<int> id,
@@ -9711,6 +9160,7 @@ typedef $SentencesCreateCompanionBuilder =
       Value<String?> furiganaBefore,
       Value<String?> furiganaAfter,
       Value<String?> furigana,
+      Value<int?> tatoebaId,
     });
 typedef $SentencesUpdateCompanionBuilder =
     SentencesCompanion Function({
@@ -9721,6 +9171,7 @@ typedef $SentencesUpdateCompanionBuilder =
       Value<String?> furiganaBefore,
       Value<String?> furiganaAfter,
       Value<String?> furigana,
+      Value<int?> tatoebaId,
     });
 
 final class $SentencesReferences
@@ -9802,6 +9253,11 @@ class $SentencesFilterComposer extends Composer<_$AppDatabase, Sentences> {
 
   ColumnFilters<String> get furigana => $composableBuilder(
     column: $table.furigana,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get tatoebaId => $composableBuilder(
+    column: $table.tatoebaId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -9892,6 +9348,11 @@ class $SentencesOrderingComposer extends Composer<_$AppDatabase, Sentences> {
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<int> get tatoebaId => $composableBuilder(
+    column: $table.tatoebaId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $VocabularyEntriesOrderingComposer get vocabularyId {
     final $VocabularyEntriesOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -9947,6 +9408,9 @@ class $SentencesAnnotationComposer extends Composer<_$AppDatabase, Sentences> {
 
   GeneratedColumn<String> get furigana =>
       $composableBuilder(column: $table.furigana, builder: (column) => column);
+
+  GeneratedColumn<int> get tatoebaId =>
+      $composableBuilder(column: $table.tatoebaId, builder: (column) => column);
 
   $VocabularyEntriesAnnotationComposer get vocabularyId {
     final $VocabularyEntriesAnnotationComposer composer = $composerBuilder(
@@ -10035,6 +9499,7 @@ class $SentencesTableManager
                 Value<String?> furiganaBefore = const Value.absent(),
                 Value<String?> furiganaAfter = const Value.absent(),
                 Value<String?> furigana = const Value.absent(),
+                Value<int?> tatoebaId = const Value.absent(),
               }) => SentencesCompanion(
                 id: id,
                 japanese: japanese,
@@ -10043,6 +9508,7 @@ class $SentencesTableManager
                 furiganaBefore: furiganaBefore,
                 furiganaAfter: furiganaAfter,
                 furigana: furigana,
+                tatoebaId: tatoebaId,
               ),
           createCompanionCallback:
               ({
@@ -10053,6 +9519,7 @@ class $SentencesTableManager
                 Value<String?> furiganaBefore = const Value.absent(),
                 Value<String?> furiganaAfter = const Value.absent(),
                 Value<String?> furigana = const Value.absent(),
+                Value<int?> tatoebaId = const Value.absent(),
               }) => SentencesCompanion.insert(
                 id: id,
                 japanese: japanese,
@@ -10061,6 +9528,7 @@ class $SentencesTableManager
                 furiganaBefore: furiganaBefore,
                 furiganaAfter: furiganaAfter,
                 furigana: furigana,
+                tatoebaId: tatoebaId,
               ),
           withReferenceMapper: (p0) => p0
               .map(
@@ -12029,8 +11497,6 @@ class $AppDatabaseManager {
       $KanjiTranslationsTableManager(_db, _db.kanjiTranslations);
   $VocabularySensesTableManager get vocabularySenses =>
       $VocabularySensesTableManager(_db, _db.vocabularySenses);
-  $VocabularyTranslationsTableManager get vocabularyTranslations =>
-      $VocabularyTranslationsTableManager(_db, _db.vocabularyTranslations);
   $SentencesTableManager get sentences =>
       $SentencesTableManager(_db, _db.sentences);
   $SentenceTranslationsTableManager get sentenceTranslations =>
