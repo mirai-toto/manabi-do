@@ -38,6 +38,32 @@ extension VocabularyQueries on AppDatabase {
     return query.map((row) => row.readTable(vocabularyEntries)).get();
   }
 
+  /// The taught words a sentence contains, in its order, each with the form
+  /// the sentence writes it in (戻ります for 戻る). Worked out by the content
+  /// pipeline and keyed on the Tatoeba id, so every row of one sentence shares
+  /// the list.
+  Future<List<({VocabularyEntry entry, String surface})>> getSentenceWords(
+    int tatoebaId,
+  ) {
+    final query =
+        select(sentenceWords).join([
+            innerJoin(
+              vocabularyEntries,
+              vocabularyEntries.id.equalsExp(sentenceWords.vocabularyId),
+            ),
+          ])
+          ..where(sentenceWords.tatoebaId.equals(tatoebaId))
+          ..orderBy([OrderingTerm.asc(sentenceWords.position)]);
+    return query
+        .map(
+          (row) => (
+            entry: row.readTable(vocabularyEntries),
+            surface: row.readTable(sentenceWords).surface,
+          ),
+        )
+        .get();
+  }
+
   /// Every word in a vocabulary level, in study order.
   ///
   /// Ordered by `group_index` first, so the groups the content pipeline cut

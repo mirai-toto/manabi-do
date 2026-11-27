@@ -1882,6 +1882,18 @@ abstract class AppLocalizations {
   /// **'Kanji in this sentence'**
   String get kanjiInSentence;
 
+  /// Heading over the taught words a sentence contains
+  ///
+  /// In en, this message translates to:
+  /// **'Words in this sentence'**
+  String get wordsInSentence;
+
+  /// Under a word found in a sentence: the inflected form the sentence uses, e.g. 'as 戻ります'
+  ///
+  /// In en, this message translates to:
+  /// **'as {form}'**
+  String writtenAs(String form);
+
   /// No description provided for @viewSentence.
   ///
   /// In en, this message translates to:

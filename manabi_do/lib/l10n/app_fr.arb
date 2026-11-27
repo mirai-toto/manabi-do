@@ -499,6 +499,8 @@
   "copyTranslation": "Copier la traduction",
   "copiedToClipboard": "Copié",
   "kanjiInSentence": "Kanji de cette phrase",
+  "wordsInSentence": "Mots de cette phrase",
+  "writtenAs": "ici {form}",
   "viewSentence": "Voir la phrase",
   "copy": "Copier",
   "hide": "Masquer",

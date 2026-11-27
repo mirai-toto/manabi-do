@@ -110,6 +110,7 @@ Separate sections: Hiragana, Katakana, Kanji.
   - The sentence with furigana, the word highlighted, and its translation (English fallback pill when needed)
   - Audio playback
   - "Copy Japanese" and "Copy translation" buttons
+  - Words in this sentence: the taught words it contains, in order, each with reading, meaning and rarity, and the form the sentence uses when it is inflected ("as 作った"); tap to open the word. Particles and grammar words are left out. Worked out by the content pipeline from Tatoeba's curated word index, or its tokeniser for the third of sentences without one
   - Kanji in this sentence: each with meaning, reading and level; tap to open the kanji detail. Only kanji the app teaches (the 2,226 with a JLPT level) are listed
   - Kanji in the word: each listed with meaning, reading, and level; tap to open the kanji detail
 

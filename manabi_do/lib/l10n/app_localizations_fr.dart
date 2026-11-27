@@ -1012,6 +1012,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kanjiInSentence => 'Kanji de cette phrase';
 
   @override
+  String get wordsInSentence => 'Mots de cette phrase';
+
+  @override
+  String writtenAs(String form) {
+    return 'ici $form';
+  }
+
+  @override
   String get viewSentence => 'Voir la phrase';
 
   @override

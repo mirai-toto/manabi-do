@@ -82,6 +82,8 @@
   "copyTranslation": "Übersetzung kopieren",
   "copiedToClipboard": "Kopiert",
   "kanjiInSentence": "Kanji in diesem Satz",
+  "wordsInSentence": "Wörter in diesem Satz",
+  "writtenAs": "hier {form}",
   "viewSentence": "Satz ansehen",
   "copy": "Kopieren",
   "correct": "Richtig",
