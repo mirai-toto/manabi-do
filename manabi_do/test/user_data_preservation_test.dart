@@ -74,7 +74,12 @@ void main() {
     expect(fresh.select('SELECT * FROM grammar_chapter_unlocks').length, 1);
 
     // content came from the fresh asset, untouched
-    expect(fresh.select('SELECT COUNT(*) c FROM kanjis').first['c'], 2211);
+    final asset = raw.sqlite3.open(_assetDb.path, mode: raw.OpenMode.readOnly);
+    expect(
+      fresh.select('SELECT COUNT(*) c FROM kanjis').first['c'],
+      asset.select('SELECT COUNT(*) c FROM kanjis').first['c'],
+    );
+    asset.close();
     fresh.close();
   });
 

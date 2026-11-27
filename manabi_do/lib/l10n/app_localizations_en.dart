@@ -400,12 +400,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get transitive => 'transitive';
-
-  @override
-  String get intransitive => 'intransitive';
-
-  @override
   String get exampleSentences => 'In a sentence';
 
   @override
@@ -751,6 +745,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String srsDueIn(int days) {
     return 'Due in ${days}d';
   }
+
+  @override
+  String get openWord => 'Open';
 
   @override
   String nWords(int count) {

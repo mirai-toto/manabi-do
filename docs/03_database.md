@@ -25,7 +25,7 @@ Two very different consumers read that one file:
 
 Keep it to plain `CREATE TABLE`. Only two drift-isms are tolerated, and both are translated for the Python side: a trailing `) AS RowName` naming the generated row class, and `DATETIME` / `BOOLEAN`, which drift stores as `INTEGER`.
 
-The two consumers live in different repositories, so nothing here catches them diverging. The content repo vendors a copy of this file under `schema/` and `pipeline/check_schema.py` compares the two, but that check runs there, not in this repo. After a schema change: bump `schemaVersion`, copy this file over the content repo's `schema/content.drift`, update its `schema/version.txt`, and cut a release whose tag carries the new schema number.
+The two consumers live in different repositories, and the dependency runs one way: this app pins a content release, so this app checks it. `test/content_asset_schema_test.dart` opens the pinned asset and a database drift builds from this file, and fails unless the schema number (asset, `content.lock` tag, `schemaVersion`), the tables and every column match. The content repo vendors a copy of this file and checks only itself against it; it never looks at this repo.
 
 ### Changing the schema
 
@@ -34,10 +34,12 @@ The two consumers live in different repositories, so nothing here catches them d
 3. `dart run drift_dev schema dump lib/data/database/app_database.dart drift_schemas/`
 4. `dart run drift_dev schema steps drift_schemas/ lib/data/database/schema_versions.dart`
 5. Fill in the generated `fromNToN+1` case
+6. Leave the branch unmerged. In manabi-content, with this branch checked out beside it, run `tools/take_schema.sh` (copies this file and the version, migrates its database), sync, merge there and tag `v<schema>.0`
+7. Back here, pin that tag in `manabi_do/content.lock` (`scripts/content/fetch_content.sh --update-lock` after clearing `sha256`). `content_asset_schema_test.dart` now passes; merge
 
 `drift_schemas/` holds the frozen snapshot per version and feeds step 4, so it stays under version control.
 
-You do **not** need to rebuild the asset for a schema change — `stepByStep` migrates it forward on open.
+On a device, `stepByStep` migrates the existing database forward on open; the pinned release then replaces its content tables. The test above is what keeps the two from shipping out of step.
 
 ### Two mechanisms, deliberately separate
 
@@ -50,7 +52,10 @@ Upgrades are generated rather than hand-written. Each step receives the schema *
 
 v22 is the baseline. The steps since are in `app_database.dart`: 24 dropped the
 JLPT columns for measured ones, 26 renamed the coverage band to the vocabulary
-level, 27 added `vocabulary_senses`, and 28 dropped `vocabulary_translations`.
+level, 27 added `vocabulary_senses`, 28 dropped `vocabulary_translations`,
+and 31 turned a sense's `kind` (`vt`/`vi`) into `labels`, every JMdict tag it
+carries, with `sense_labels` holding their texts; 32 gave each label an
+abbreviation (`short`) for the pill, its name showing on a press.
 
 
 ---
@@ -112,10 +117,11 @@ a release asset, and everything it was built from lives in
 | Content | In the DB | Recovery |
 |---|---|---|
 | Kanji characters, readings, meanings | `kanjis` | fetch the release, or rebuild from the content repo's committed JSON |
-| Kanji stroke order SVGs | `kanjis.svg` | same; the 2,211 SVGs are committed there |
+| Kanji stroke order SVGs | `kanjis.svg` | same; the 2,226 SVGs are committed there |
 | Kana | `kanas` | same; static |
 | Vocabulary words, readings, POS | `vocabulary_entries` | same |
 | Vocabulary meanings, per sense | `vocabulary_senses` | same |
+| Sense label texts (colloquial, honorific…) | `sense_labels` | same; authored there |
 | Example sentences | `sentences` | re-download Tatoeba and rebuild |
 | Sentence translations | `sentence_translations` | same |
 | Grammar lessons | `grammar_lessons` | same; hand-authored and committed there |

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_dimens.dart';
-import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../l10n/vocabulary_level_label.dart';
@@ -91,47 +90,37 @@ class VocabularyLevelSelector extends ConsumerWidget {
   }
 }
 
-/// Result rows, built as they scroll into view.
-///
-/// Laying out fifty at once — each measuring its meaning to decide whether it
-/// needs an expand arrow — is more than a frame's worth of work.
+/// Result cards, built as they scroll into view: fifty at once, each resolving
+/// its meaning, is more than a frame's worth of work.
 class _ResultList extends StatelessWidget {
   final List<VocabularyEntry> results;
   const _ResultList(this.results);
 
   @override
   Widget build(BuildContext context) {
-    final t = context.tokens;
     return ScrollFade(
-      builder: (controller) => ListView.builder(
+      builder: (controller) => ListView.separated(
         controller: controller,
-        padding: const EdgeInsets.only(bottom: AppDimens.spaceLg),
+        padding: const EdgeInsets.fromLTRB(
+          AppDimens.spaceMd,
+          0,
+          AppDimens.spaceMd,
+          AppDimens.spaceLg,
+        ),
         itemCount: results.length,
-        itemBuilder: (context, index) => Column(
-          children: [
-            if (index > 0)
-              Divider(
-                height: 1,
-                thickness: 1,
-                color: t.outlineVariant,
-                indent: AppDimens.spaceMd,
-                endIndent: AppDimens.spaceMd,
-              ),
-            Consumer(
-              builder: (context, ref, _) {
-                final shown = ref.watch(
-                  vocabularyMeaningProvider(results[index]),
-                );
-                return VocabularyWordTile(
-                  entry: results[index],
-                  meaning: shown.meaning,
-                  missingLanguage: shown.missingLanguage,
-                  showLevel: true,
-                  onOpen: () => openWordDetail(context, results[index]),
-                );
-              },
-            ),
-          ],
+        separatorBuilder: (context, index) =>
+            const SizedBox(height: AppDimens.spaceSm),
+        itemBuilder: (context, index) => Consumer(
+          builder: (context, ref, _) {
+            final shown = ref.watch(vocabularyMeaningProvider(results[index]));
+            return VocabularyWordTile(
+              entry: results[index],
+              meaning: shown.meaning,
+              missingLanguage: shown.missingLanguage,
+              showLevel: true,
+              onOpen: () => openWordDetail(context, results[index]),
+            );
+          },
         ),
       ),
     );

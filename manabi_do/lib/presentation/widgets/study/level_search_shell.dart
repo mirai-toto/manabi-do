@@ -64,13 +64,9 @@ class _LevelSearchShellState<T> extends State<LevelSearchShell<T>> {
         // is the level picker, and two ways to do one thing reads as a bug.
         if (searching)
           Padding(
-            padding: const EdgeInsets.fromLTRB(
-              AppDimens.spaceMd,
-              0,
-              AppDimens.spaceMd,
-              AppDimens.spaceSm,
-            ),
+            padding: const EdgeInsets.only(bottom: AppDimens.spaceSm),
             child: FilterChipBar<T>(
+              horizontalPadding: AppDimens.spaceMd,
               options: widget.filterOptions,
               selected: _filter,
               labelOf: widget.filterLabelOf,

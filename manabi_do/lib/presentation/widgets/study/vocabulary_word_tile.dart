@@ -5,15 +5,19 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../core/theme/vocabulary_level.dart';
 import '../../../data/database/app_database.dart';
+import '../../../l10n/l10n.dart';
 import '../../../l10n/pos_label.dart';
 import '../../../l10n/vocabulary_level_label.dart';
 import '../widgets.dart';
 
-/// Expandable vocabulary list row. Shows word, reading, abbreviated meaning.
-/// Tap expands to full meaning, part-of-speech chips, and `SpeakButton`.
-/// The caller resolves the meaning. `showLevel` adds a vocabulary-level badge
-/// on the right, for lists that mix levels.
-class VocabularyWordTile extends StatefulWidget {
+/// A search result as a card: the word with its reading, two lines of meaning,
+/// its part of speech and, for lists that mix levels, its vocabulary level.
+///
+/// The whole card opens the word. It used to open only from the word itself,
+/// while a tap on the meaning expanded it and the rest of the row did nothing,
+/// so most taps on a result went nowhere. The speaker stays its own button,
+/// above the card's tap area. The caller resolves the meaning.
+class VocabularyWordTile extends StatelessWidget {
   final VocabularyEntry entry;
 
   /// The meaning to show, already in the reader's language where possible.
@@ -22,12 +26,11 @@ class VocabularyWordTile extends StatefulWidget {
   /// The reader's language, named, when [meaning] fell back to English.
   final String? missingLanguage;
 
-  /// Shows a JLPT badge next to the part of speech. Search results mix levels,
-  /// so they need it; a group already knows which level it belongs to.
+  /// Shows a level badge next to the part of speech. Search results mix
+  /// levels, so they need it; a group already knows which level it belongs to.
   final bool showLevel;
 
-  /// Opens the word's own screen. The meaning keeps its own tap, which expands
-  /// it, so only the word itself navigates.
+  /// Opens the word's own screen.
   final VoidCallback? onOpen;
 
   const VocabularyWordTile({
@@ -40,142 +43,136 @@ class VocabularyWordTile extends StatefulWidget {
   });
 
   @override
-  State<VocabularyWordTile> createState() => _VocabularyWordTileState();
-}
-
-class _VocabularyWordTileState extends State<VocabularyWordTile> {
-  bool _expanded = false;
-
-  @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final String meaning = widget.meaning;
-    final String? missingLanguage = widget.missingLanguage;
+    final l = context.l10n;
     final posColor = t.onSurfaceVariant;
-    final meaningStyle = AppTextStyles.body.copyWith(color: t.onSurface);
+    final levelColor = vocabularyLevelColor(entry.vocabularyLevel, t);
+    final radius = BorderRadius.circular(AppDimens.radiusLg);
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppDimens.spaceMd,
-        vertical: AppDimens.spaceSm,
+    return Container(
+      decoration: BoxDecoration(
+        color: t.cardBackground,
+        borderRadius: radius,
+        border: Border.all(
+          color: t.outlineVariant,
+          width: AppDimens.borderWidthContainer,
+        ),
       ),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final tp = TextPainter(
-            text: TextSpan(text: meaning, style: meaningStyle),
-            maxLines: 2,
-            textDirection: TextDirection.ltr,
-          )..layout(maxWidth: constraints.maxWidth);
-          final overflows = tp.didExceedMaxLines;
-
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Semantics(
-                      label: widget.entry.word,
-                      button: true,
-                      excludeSemantics: true,
-                      child: GestureDetector(
-                        onTap: widget.onOpen,
-                        child: JapaneseText(
-                          word: widget.entry.word,
-                          reading: widget.entry.reading,
-                          style: AppTextStyles.jpMedium.copyWith(
-                            color: t.onSurface,
-                          ),
-                          rubyStyle: AppTextStyles.jpFurigana.copyWith(
-                            color: t.onSurfaceVariant,
-                          ),
-                        ),
-                      ),
-                    ),
+      child: Stack(
+        children: [
+          Material(
+            type: MaterialType.transparency,
+            borderRadius: radius,
+            clipBehavior: Clip.antiAlias,
+            child: Semantics(
+              button: true,
+              label: entry.word,
+              child: InkWell(
+                onTap: onOpen,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    AppDimens.spaceMd,
+                    AppDimens.spaceCozy,
+                    _kSpeakerGutter,
+                    AppDimens.spaceCozy,
                   ),
-                  SpeakButton(
-                    text: widget.entry.word,
-                    color: t.onSurfaceVariant,
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppDimens.spaceXxs),
-              Semantics(
-                button: overflows,
-                toggled: overflows ? _expanded : null,
-                child: GestureDetector(
-                  onTap: overflows
-                      ? () => setState(() => _expanded = !_expanded)
-                      : null,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppDimens.spaceXs,
                     children: [
-                      TranslatedText(
-                        meaning,
-                        missingLanguage: missingLanguage,
-                        style: meaningStyle,
-                        maxLines: _expanded ? null : 2,
-                        overflow: _expanded
-                            ? TextOverflow.visible
-                            : TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: AppDimens.spaceXs),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Stack(
-                          alignment: Alignment.centerLeft,
-                          children: [
-                            PillBadge(
-                              label: posLabel(
-                                widget.entry.partOfSpeech,
-                                context,
-                              ),
-                              color: posColor,
-                              background: posColor.withValues(alpha: 0.1),
-                              textStyle: AppTextStyles.labelSmall,
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.end,
+                        spacing: AppDimens.spaceSm,
+                        children: [
+                          Text(
+                            entry.word,
+                            style: AppTextStyles.jpMedium.copyWith(
+                              color: t.onSurface,
+                              fontWeight: FontWeight.w700,
                             ),
-                            if (overflows)
-                              Align(
-                                alignment: Alignment.center,
-                                child: Icon(
-                                  _expanded
-                                      ? Icons.expand_less_rounded
-                                      : Icons.expand_more_rounded,
-                                  size: 16,
+                          ),
+                          if (entry.reading != entry.word)
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: AppDimens.spaceXxs,
+                              ),
+                              child: Text(
+                                entry.reading,
+                                style: AppTextStyles.jpFurigana.copyWith(
                                   color: t.onSurfaceVariant,
                                 ),
                               ),
-                            if (widget.showLevel)
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: PillBadge(
-                                  label: vocabularyLevelLabel(
-                                    widget.entry.vocabularyLevel,
-                                    context,
-                                  ),
-                                  color: vocabularyLevelColor(
-                                    widget.entry.vocabularyLevel,
-                                    context.tokens,
-                                  ),
-                                  background: vocabularyLevelColor(
-                                    widget.entry.vocabularyLevel,
-                                    context.tokens,
-                                  ).withValues(alpha: 0.12),
-                                  textStyle: AppTextStyles.labelSmall,
-                                ),
-                              ),
-                          ],
+                            ),
+                        ],
+                      ),
+                      TranslatedText(
+                        meaning,
+                        missingLanguage: missingLanguage,
+                        style: AppTextStyles.bodySmall.copyWith(
+                          color: t.onSurface,
                         ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Row(
+                        spacing: AppDimens.spaceXs,
+                        children: [
+                          PillBadge(
+                            label: posLabel(entry.partOfSpeech, context),
+                            color: posColor,
+                            background: posColor.withValues(alpha: 0.1),
+                            textStyle: AppTextStyles.labelSmall,
+                          ),
+                          if (showLevel)
+                            PillBadge(
+                              label: vocabularyLevelLabel(
+                                entry.vocabularyLevel,
+                                context,
+                              ),
+                              color: levelColor,
+                              background: levelColor.withValues(alpha: 0.12),
+                              textStyle: AppTextStyles.labelSmall,
+                            ),
+                          const Spacer(),
+                          ExcludeSemantics(
+                            child: Row(
+                              children: [
+                                Text(
+                                  l.openWord,
+                                  style: AppTextStyles.labelSmall.copyWith(
+                                    color: t.primary,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.chevron_right_rounded,
+                                  size: _kChevronSize,
+                                  color: t.primary,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
-            ],
-          );
-        },
+            ),
+          ),
+          Positioned(
+            top: AppDimens.spaceXs,
+            right: AppDimens.spaceXs,
+            child: SpeakButton(text: entry.word, color: t.onSurfaceVariant),
+          ),
+        ],
       ),
     );
   }
 }
+
+/// Room on the right of the card's text for the speaker button above it.
+const double _kSpeakerGutter = 56;
+
+const double _kChevronSize = 16;

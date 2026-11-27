@@ -128,9 +128,11 @@ CREATE TABLE kanji_translations (
 -- Nothing here is inferred. JMdict ships `sense` as an array and each entry
 -- carries its own glosses, so the grouping already exists upstream and the
 -- pipeline was erasing it. `note` is the editors' `info` field verbatim —
--- "as 〜にする,〜とする" — and `kind` is `vt` or `vi` off that sense's own part of
--- speech, which is why one sense of する can be intransitive while its
--- neighbour is not.
+-- "as 〜にする,〜とする" — and `labels` lists the sense's own JMdict tags,
+-- comma-separated: `vt` or `vi` off its part of speech, which is why one sense
+-- of する can be intransitive while its neighbour is not, then its usage
+-- (`col`, `hon`, `uk`…), subject (`comp`, `med`…) and dialect (`ksb`…) tags.
+-- `sense_labels` says what each one reads as.
 --
 -- `position` counts per language. jmdict-all merges each language's sense list
 -- into one array, so a sense often has glosses in one language and none in the
@@ -141,8 +143,22 @@ CREATE TABLE vocabulary_senses (
   position INTEGER NOT NULL,
   glosses TEXT NOT NULL,
   note TEXT NOT NULL DEFAULT '',
-  kind TEXT NOT NULL DEFAULT '',
+  labels TEXT NOT NULL DEFAULT '',
   PRIMARY KEY (vocabulary_id, locale, position)
+);
+
+-- What a sense label reads as, per app language: `short` is the abbreviation
+-- a pill shows ("coll.", "fam.", "ugs."), `label` the name a press on it
+-- spells out ("colloquial", "familier", "umgangssprachlich"). Authored in the
+-- content repo (`content/sense_labels.json`), so the app shows what the
+-- database gives it and a new label never needs an app release. A locale
+-- without a row falls back to English.
+CREATE TABLE sense_labels (
+  code TEXT NOT NULL,
+  locale TEXT NOT NULL,
+  label TEXT NOT NULL,
+  short TEXT NOT NULL DEFAULT '',
+  PRIMARY KEY (code, locale)
 );
 
 CREATE TABLE sentences (

@@ -808,18 +808,6 @@ abstract class AppLocalizations {
   /// **'Show {count} more'**
   String showNMoreMeanings(int count);
 
-  /// No description provided for @transitive.
-  ///
-  /// In en, this message translates to:
-  /// **'transitive'**
-  String get transitive;
-
-  /// No description provided for @intransitive.
-  ///
-  /// In en, this message translates to:
-  /// **'intransitive'**
-  String get intransitive;
-
   /// No description provided for @exampleSentences.
   ///
   /// In en, this message translates to:
@@ -1413,6 +1401,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Due in {days}d'**
   String srsDueIn(int days);
+
+  /// Hint on a search result card that tapping it opens the word
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get openWord;
 
   /// No description provided for @nWords.
   ///

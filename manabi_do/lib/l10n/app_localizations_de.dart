@@ -400,12 +400,6 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get transitive => 'transitiv';
-
-  @override
-  String get intransitive => 'intransitiv';
-
-  @override
   String get exampleSentences => 'Im Satz';
 
   @override
@@ -754,6 +748,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String srsDueIn(int days) {
     return 'In $days T.';
   }
+
+  @override
+  String get openWord => 'Öffnen';
 
   @override
   String nWords(int count) {

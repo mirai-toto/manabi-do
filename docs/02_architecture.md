@@ -87,7 +87,7 @@ A single SQLite file — `manabi_do_content.db` — is bundled as an asset and c
 
 If the bundled DB version marker changes, the existing DB is replaced and SRS progress is migrated across automatically.
 
-`manabi_do_content.db` tables: `kanjis`, `kanji_translations`, `kanas`, `vocabulary_entries`, `vocabulary_senses`, `coverage_groups`, `sentences`, `sentence_translations`, `grammar_lessons`, `exercises`.
+`manabi_do_content.db` tables: `kanjis`, `kanji_translations`, `kanas`, `vocabulary_entries`, `vocabulary_senses`, `sense_labels`, `coverage_groups`, `sentences`, `sentence_translations`, `grammar_lessons`, `exercises`.
 
 User progress tables (written at runtime): `progress_entries`, `srs_cards`.
 
@@ -111,7 +111,8 @@ manabi_do/assets/manabi_do_content.db  gitignored — fetched, never committed
 
 `manabi_do/content.lock` pins the tag and its checksum; changing that file is the
 whole upgrade. The schema number in the tag must equal `schemaVersion`, so a
-schema change needs a matching release. `scripts/content/build_content.sh`
+schema change needs a matching release; `test/content_asset_schema_test.dart`
+fails CI until the pinned release fits the schema (see `03_database.md`). `scripts/content/build_content.sh`
 builds from source instead, for work on the pipeline itself.
 
 ---

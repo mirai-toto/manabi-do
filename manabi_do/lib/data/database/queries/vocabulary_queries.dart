@@ -1,5 +1,9 @@
 part of '../app_database.dart';
 
+/// A sense label as the reader reads it: the pill's abbreviation and the
+/// name a press on it shows.
+typedef SenseLabelText = ({String short, String name});
+
 /// Vocabulary lookups.
 extension VocabularyQueries on AppDatabase {
   /// Words written with a given kanji.
@@ -65,6 +69,22 @@ extension VocabularyQueries on AppDatabase {
             )
             ..orderBy([(s) => OrderingTerm.asc(s.position)]))
           .get();
+
+  /// Sense labels in [locale], by code: the abbreviation a pill shows and the
+  /// name a press spells out (`col` → "fam.", "familier"). English fills any
+  /// code [locale] has no row for, and an empty abbreviation falls back to the
+  /// name.
+  Future<Map<String, SenseLabelText>> getSenseLabels(String locale) async {
+    final rows = await (select(
+      senseLabels,
+    )..where((l) => l.locale.isIn([locale, 'en']))).get();
+    SenseLabelText text(SenseLabel r) =>
+        (short: r.short.isEmpty ? r.label : r.short, name: r.label);
+    return {
+      for (final r in rows.where((r) => r.locale == 'en')) r.code: text(r),
+      for (final r in rows.where((r) => r.locale == locale)) r.code: text(r),
+    };
+  }
 
   /// What each study group buys, as a share of running Japanese.
   Future<List<CoverageGroup>> getCoverageGroups() =>

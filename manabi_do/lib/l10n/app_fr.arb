@@ -170,8 +170,6 @@
       }
     }
   },
-  "transitive": "transitif",
-  "intransitive": "intransitif",
   "exampleSentences": "Dans une phrase",
   "translationFallbackNotice": "Pas encore de traduction en {language} pour ceci : l'anglais est affiché.",
   "meaningsInEnglish": "En anglais",
@@ -369,6 +367,7 @@
       }
     }
   },
+  "openWord": "Ouvrir",
   "nWords": "{count} mots",
   "@nWords": {
     "placeholders": {

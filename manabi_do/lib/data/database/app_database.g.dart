@@ -2628,9 +2628,9 @@ class VocabularySenses extends Table
     $customConstraints: 'NOT NULL DEFAULT \'\'',
     defaultValue: const CustomExpression('\'\''),
   );
-  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
-  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
-    'kind',
+  static const VerificationMeta _labelsMeta = const VerificationMeta('labels');
+  late final GeneratedColumn<String> labels = GeneratedColumn<String>(
+    'labels',
     aliasedName,
     false,
     type: DriftSqlType.string,
@@ -2645,7 +2645,7 @@ class VocabularySenses extends Table
     position,
     glosses,
     note,
-    kind,
+    labels,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -2700,10 +2700,10 @@ class VocabularySenses extends Table
         note.isAcceptableOrUnknown(data['note']!, _noteMeta),
       );
     }
-    if (data.containsKey('kind')) {
+    if (data.containsKey('labels')) {
       context.handle(
-        _kindMeta,
-        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+        _labelsMeta,
+        labels.isAcceptableOrUnknown(data['labels']!, _labelsMeta),
       );
     }
     return context;
@@ -2735,9 +2735,9 @@ class VocabularySenses extends Table
         DriftSqlType.string,
         data['${effectivePrefix}note'],
       )!,
-      kind: attachedDatabase.typeMapping.read(
+      labels: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
-        data['${effectivePrefix}kind'],
+        data['${effectivePrefix}labels'],
       )!,
     );
   }
@@ -2761,14 +2761,14 @@ class VocabularySense extends DataClass implements Insertable<VocabularySense> {
   final int position;
   final String glosses;
   final String note;
-  final String kind;
+  final String labels;
   const VocabularySense({
     required this.vocabularyId,
     required this.locale,
     required this.position,
     required this.glosses,
     required this.note,
-    required this.kind,
+    required this.labels,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -2778,7 +2778,7 @@ class VocabularySense extends DataClass implements Insertable<VocabularySense> {
     map['position'] = Variable<int>(position);
     map['glosses'] = Variable<String>(glosses);
     map['note'] = Variable<String>(note);
-    map['kind'] = Variable<String>(kind);
+    map['labels'] = Variable<String>(labels);
     return map;
   }
 
@@ -2789,7 +2789,7 @@ class VocabularySense extends DataClass implements Insertable<VocabularySense> {
       position: Value(position),
       glosses: Value(glosses),
       note: Value(note),
-      kind: Value(kind),
+      labels: Value(labels),
     );
   }
 
@@ -2804,7 +2804,7 @@ class VocabularySense extends DataClass implements Insertable<VocabularySense> {
       position: serializer.fromJson<int>(json['position']),
       glosses: serializer.fromJson<String>(json['glosses']),
       note: serializer.fromJson<String>(json['note']),
-      kind: serializer.fromJson<String>(json['kind']),
+      labels: serializer.fromJson<String>(json['labels']),
     );
   }
   @override
@@ -2816,7 +2816,7 @@ class VocabularySense extends DataClass implements Insertable<VocabularySense> {
       'position': serializer.toJson<int>(position),
       'glosses': serializer.toJson<String>(glosses),
       'note': serializer.toJson<String>(note),
-      'kind': serializer.toJson<String>(kind),
+      'labels': serializer.toJson<String>(labels),
     };
   }
 
@@ -2826,14 +2826,14 @@ class VocabularySense extends DataClass implements Insertable<VocabularySense> {
     int? position,
     String? glosses,
     String? note,
-    String? kind,
+    String? labels,
   }) => VocabularySense(
     vocabularyId: vocabularyId ?? this.vocabularyId,
     locale: locale ?? this.locale,
     position: position ?? this.position,
     glosses: glosses ?? this.glosses,
     note: note ?? this.note,
-    kind: kind ?? this.kind,
+    labels: labels ?? this.labels,
   );
   VocabularySense copyWithCompanion(VocabularySensesCompanion data) {
     return VocabularySense(
@@ -2844,7 +2844,7 @@ class VocabularySense extends DataClass implements Insertable<VocabularySense> {
       position: data.position.present ? data.position.value : this.position,
       glosses: data.glosses.present ? data.glosses.value : this.glosses,
       note: data.note.present ? data.note.value : this.note,
-      kind: data.kind.present ? data.kind.value : this.kind,
+      labels: data.labels.present ? data.labels.value : this.labels,
     );
   }
 
@@ -2856,14 +2856,14 @@ class VocabularySense extends DataClass implements Insertable<VocabularySense> {
           ..write('position: $position, ')
           ..write('glosses: $glosses, ')
           ..write('note: $note, ')
-          ..write('kind: $kind')
+          ..write('labels: $labels')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode =>
-      Object.hash(vocabularyId, locale, position, glosses, note, kind);
+      Object.hash(vocabularyId, locale, position, glosses, note, labels);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2873,7 +2873,7 @@ class VocabularySense extends DataClass implements Insertable<VocabularySense> {
           other.position == this.position &&
           other.glosses == this.glosses &&
           other.note == this.note &&
-          other.kind == this.kind);
+          other.labels == this.labels);
 }
 
 class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
@@ -2882,7 +2882,7 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
   final Value<int> position;
   final Value<String> glosses;
   final Value<String> note;
-  final Value<String> kind;
+  final Value<String> labels;
   final Value<int> rowid;
   const VocabularySensesCompanion({
     this.vocabularyId = const Value.absent(),
@@ -2890,7 +2890,7 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
     this.position = const Value.absent(),
     this.glosses = const Value.absent(),
     this.note = const Value.absent(),
-    this.kind = const Value.absent(),
+    this.labels = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   VocabularySensesCompanion.insert({
@@ -2899,7 +2899,7 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
     required int position,
     required String glosses,
     this.note = const Value.absent(),
-    this.kind = const Value.absent(),
+    this.labels = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : vocabularyId = Value(vocabularyId),
        locale = Value(locale),
@@ -2911,7 +2911,7 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
     Expression<int>? position,
     Expression<String>? glosses,
     Expression<String>? note,
-    Expression<String>? kind,
+    Expression<String>? labels,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -2920,7 +2920,7 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
       if (position != null) 'position': position,
       if (glosses != null) 'glosses': glosses,
       if (note != null) 'note': note,
-      if (kind != null) 'kind': kind,
+      if (labels != null) 'labels': labels,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -2931,7 +2931,7 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
     Value<int>? position,
     Value<String>? glosses,
     Value<String>? note,
-    Value<String>? kind,
+    Value<String>? labels,
     Value<int>? rowid,
   }) {
     return VocabularySensesCompanion(
@@ -2940,7 +2940,7 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
       position: position ?? this.position,
       glosses: glosses ?? this.glosses,
       note: note ?? this.note,
-      kind: kind ?? this.kind,
+      labels: labels ?? this.labels,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -2963,8 +2963,8 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
     if (note.present) {
       map['note'] = Variable<String>(note.value);
     }
-    if (kind.present) {
-      map['kind'] = Variable<String>(kind.value);
+    if (labels.present) {
+      map['labels'] = Variable<String>(labels.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -2980,7 +2980,316 @@ class VocabularySensesCompanion extends UpdateCompanion<VocabularySense> {
           ..write('position: $position, ')
           ..write('glosses: $glosses, ')
           ..write('note: $note, ')
-          ..write('kind: $kind, ')
+          ..write('labels: $labels, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class SenseLabels extends Table with TableInfo<SenseLabels, SenseLabel> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  SenseLabels(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _codeMeta = const VerificationMeta('code');
+  late final GeneratedColumn<String> code = GeneratedColumn<String>(
+    'code',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _localeMeta = const VerificationMeta('locale');
+  late final GeneratedColumn<String> locale = GeneratedColumn<String>(
+    'locale',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _labelMeta = const VerificationMeta('label');
+  late final GeneratedColumn<String> label = GeneratedColumn<String>(
+    'label',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _shortMeta = const VerificationMeta('short');
+  late final GeneratedColumn<String> short = GeneratedColumn<String>(
+    'short',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'\'',
+    defaultValue: const CustomExpression('\'\''),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [code, locale, label, short];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'sense_labels';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SenseLabel> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('code')) {
+      context.handle(
+        _codeMeta,
+        code.isAcceptableOrUnknown(data['code']!, _codeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_codeMeta);
+    }
+    if (data.containsKey('locale')) {
+      context.handle(
+        _localeMeta,
+        locale.isAcceptableOrUnknown(data['locale']!, _localeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_localeMeta);
+    }
+    if (data.containsKey('label')) {
+      context.handle(
+        _labelMeta,
+        label.isAcceptableOrUnknown(data['label']!, _labelMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_labelMeta);
+    }
+    if (data.containsKey('short')) {
+      context.handle(
+        _shortMeta,
+        short.isAcceptableOrUnknown(data['short']!, _shortMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {code, locale};
+  @override
+  SenseLabel map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SenseLabel(
+      code: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}code'],
+      )!,
+      locale: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}locale'],
+      )!,
+      label: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}label'],
+      )!,
+      short: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}short'],
+      )!,
+    );
+  }
+
+  @override
+  SenseLabels createAlias(String alias) {
+    return SenseLabels(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const ['PRIMARY KEY(code, locale)'];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class SenseLabel extends DataClass implements Insertable<SenseLabel> {
+  final String code;
+  final String locale;
+  final String label;
+  final String short;
+  const SenseLabel({
+    required this.code,
+    required this.locale,
+    required this.label,
+    required this.short,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['code'] = Variable<String>(code);
+    map['locale'] = Variable<String>(locale);
+    map['label'] = Variable<String>(label);
+    map['short'] = Variable<String>(short);
+    return map;
+  }
+
+  SenseLabelsCompanion toCompanion(bool nullToAbsent) {
+    return SenseLabelsCompanion(
+      code: Value(code),
+      locale: Value(locale),
+      label: Value(label),
+      short: Value(short),
+    );
+  }
+
+  factory SenseLabel.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SenseLabel(
+      code: serializer.fromJson<String>(json['code']),
+      locale: serializer.fromJson<String>(json['locale']),
+      label: serializer.fromJson<String>(json['label']),
+      short: serializer.fromJson<String>(json['short']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'code': serializer.toJson<String>(code),
+      'locale': serializer.toJson<String>(locale),
+      'label': serializer.toJson<String>(label),
+      'short': serializer.toJson<String>(short),
+    };
+  }
+
+  SenseLabel copyWith({
+    String? code,
+    String? locale,
+    String? label,
+    String? short,
+  }) => SenseLabel(
+    code: code ?? this.code,
+    locale: locale ?? this.locale,
+    label: label ?? this.label,
+    short: short ?? this.short,
+  );
+  SenseLabel copyWithCompanion(SenseLabelsCompanion data) {
+    return SenseLabel(
+      code: data.code.present ? data.code.value : this.code,
+      locale: data.locale.present ? data.locale.value : this.locale,
+      label: data.label.present ? data.label.value : this.label,
+      short: data.short.present ? data.short.value : this.short,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SenseLabel(')
+          ..write('code: $code, ')
+          ..write('locale: $locale, ')
+          ..write('label: $label, ')
+          ..write('short: $short')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(code, locale, label, short);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SenseLabel &&
+          other.code == this.code &&
+          other.locale == this.locale &&
+          other.label == this.label &&
+          other.short == this.short);
+}
+
+class SenseLabelsCompanion extends UpdateCompanion<SenseLabel> {
+  final Value<String> code;
+  final Value<String> locale;
+  final Value<String> label;
+  final Value<String> short;
+  final Value<int> rowid;
+  const SenseLabelsCompanion({
+    this.code = const Value.absent(),
+    this.locale = const Value.absent(),
+    this.label = const Value.absent(),
+    this.short = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SenseLabelsCompanion.insert({
+    required String code,
+    required String locale,
+    required String label,
+    this.short = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : code = Value(code),
+       locale = Value(locale),
+       label = Value(label);
+  static Insertable<SenseLabel> custom({
+    Expression<String>? code,
+    Expression<String>? locale,
+    Expression<String>? label,
+    Expression<String>? short,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (code != null) 'code': code,
+      if (locale != null) 'locale': locale,
+      if (label != null) 'label': label,
+      if (short != null) 'short': short,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SenseLabelsCompanion copyWith({
+    Value<String>? code,
+    Value<String>? locale,
+    Value<String>? label,
+    Value<String>? short,
+    Value<int>? rowid,
+  }) {
+    return SenseLabelsCompanion(
+      code: code ?? this.code,
+      locale: locale ?? this.locale,
+      label: label ?? this.label,
+      short: short ?? this.short,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (code.present) {
+      map['code'] = Variable<String>(code.value);
+    }
+    if (locale.present) {
+      map['locale'] = Variable<String>(locale.value);
+    }
+    if (label.present) {
+      map['label'] = Variable<String>(label.value);
+    }
+    if (short.present) {
+      map['short'] = Variable<String>(short.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SenseLabelsCompanion(')
+          ..write('code: $code, ')
+          ..write('locale: $locale, ')
+          ..write('label: $label, ')
+          ..write('short: $short, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -6627,6 +6936,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final VocabularyKanji vocabularyKanji = VocabularyKanji(this);
   late final KanjiTranslations kanjiTranslations = KanjiTranslations(this);
   late final VocabularySenses vocabularySenses = VocabularySenses(this);
+  late final SenseLabels senseLabels = SenseLabels(this);
   late final Sentences sentences = Sentences(this);
   late final SentenceTranslations sentenceTranslations = SentenceTranslations(
     this,
@@ -6655,6 +6965,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     vocabularyKanji,
     kanjiTranslations,
     vocabularySenses,
+    senseLabels,
     sentences,
     sentenceTranslations,
     exercises,
@@ -8821,7 +9132,7 @@ typedef $VocabularySensesCreateCompanionBuilder =
       required int position,
       required String glosses,
       Value<String> note,
-      Value<String> kind,
+      Value<String> labels,
       Value<int> rowid,
     });
 typedef $VocabularySensesUpdateCompanionBuilder =
@@ -8831,7 +9142,7 @@ typedef $VocabularySensesUpdateCompanionBuilder =
       Value<int> position,
       Value<String> glosses,
       Value<String> note,
-      Value<String> kind,
+      Value<String> labels,
       Value<int> rowid,
     });
 
@@ -8887,8 +9198,8 @@ class $VocabularySensesFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get kind => $composableBuilder(
-    column: $table.kind,
+  ColumnFilters<String> get labels => $composableBuilder(
+    column: $table.labels,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -8945,8 +9256,8 @@ class $VocabularySensesOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get kind => $composableBuilder(
-    column: $table.kind,
+  ColumnOrderings<String> get labels => $composableBuilder(
+    column: $table.labels,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -8995,8 +9306,8 @@ class $VocabularySensesAnnotationComposer
   GeneratedColumn<String> get note =>
       $composableBuilder(column: $table.note, builder: (column) => column);
 
-  GeneratedColumn<String> get kind =>
-      $composableBuilder(column: $table.kind, builder: (column) => column);
+  GeneratedColumn<String> get labels =>
+      $composableBuilder(column: $table.labels, builder: (column) => column);
 
   $VocabularyEntriesAnnotationComposer get vocabularyId {
     final $VocabularyEntriesAnnotationComposer composer = $composerBuilder(
@@ -9055,7 +9366,7 @@ class $VocabularySensesTableManager
                 Value<int> position = const Value.absent(),
                 Value<String> glosses = const Value.absent(),
                 Value<String> note = const Value.absent(),
-                Value<String> kind = const Value.absent(),
+                Value<String> labels = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => VocabularySensesCompanion(
                 vocabularyId: vocabularyId,
@@ -9063,7 +9374,7 @@ class $VocabularySensesTableManager
                 position: position,
                 glosses: glosses,
                 note: note,
-                kind: kind,
+                labels: labels,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -9073,7 +9384,7 @@ class $VocabularySensesTableManager
                 required int position,
                 required String glosses,
                 Value<String> note = const Value.absent(),
-                Value<String> kind = const Value.absent(),
+                Value<String> labels = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => VocabularySensesCompanion.insert(
                 vocabularyId: vocabularyId,
@@ -9081,7 +9392,7 @@ class $VocabularySensesTableManager
                 position: position,
                 glosses: glosses,
                 note: note,
-                kind: kind,
+                labels: labels,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
@@ -9150,6 +9461,180 @@ typedef $VocabularySensesProcessedTableManager =
       (VocabularySense, $VocabularySensesReferences),
       VocabularySense,
       PrefetchHooks Function({bool vocabularyId})
+    >;
+typedef $SenseLabelsCreateCompanionBuilder =
+    SenseLabelsCompanion Function({
+      required String code,
+      required String locale,
+      required String label,
+      Value<String> short,
+      Value<int> rowid,
+    });
+typedef $SenseLabelsUpdateCompanionBuilder =
+    SenseLabelsCompanion Function({
+      Value<String> code,
+      Value<String> locale,
+      Value<String> label,
+      Value<String> short,
+      Value<int> rowid,
+    });
+
+class $SenseLabelsFilterComposer extends Composer<_$AppDatabase, SenseLabels> {
+  $SenseLabelsFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get code => $composableBuilder(
+    column: $table.code,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get locale => $composableBuilder(
+    column: $table.locale,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get label => $composableBuilder(
+    column: $table.label,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get short => $composableBuilder(
+    column: $table.short,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $SenseLabelsOrderingComposer
+    extends Composer<_$AppDatabase, SenseLabels> {
+  $SenseLabelsOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get code => $composableBuilder(
+    column: $table.code,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get locale => $composableBuilder(
+    column: $table.locale,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get label => $composableBuilder(
+    column: $table.label,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get short => $composableBuilder(
+    column: $table.short,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $SenseLabelsAnnotationComposer
+    extends Composer<_$AppDatabase, SenseLabels> {
+  $SenseLabelsAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get code =>
+      $composableBuilder(column: $table.code, builder: (column) => column);
+
+  GeneratedColumn<String> get locale =>
+      $composableBuilder(column: $table.locale, builder: (column) => column);
+
+  GeneratedColumn<String> get label =>
+      $composableBuilder(column: $table.label, builder: (column) => column);
+
+  GeneratedColumn<String> get short =>
+      $composableBuilder(column: $table.short, builder: (column) => column);
+}
+
+class $SenseLabelsTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          SenseLabels,
+          SenseLabel,
+          $SenseLabelsFilterComposer,
+          $SenseLabelsOrderingComposer,
+          $SenseLabelsAnnotationComposer,
+          $SenseLabelsCreateCompanionBuilder,
+          $SenseLabelsUpdateCompanionBuilder,
+          (SenseLabel, BaseReferences<_$AppDatabase, SenseLabels, SenseLabel>),
+          SenseLabel,
+          PrefetchHooks Function()
+        > {
+  $SenseLabelsTableManager(_$AppDatabase db, SenseLabels table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $SenseLabelsFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $SenseLabelsOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $SenseLabelsAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> code = const Value.absent(),
+                Value<String> locale = const Value.absent(),
+                Value<String> label = const Value.absent(),
+                Value<String> short = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SenseLabelsCompanion(
+                code: code,
+                locale: locale,
+                label: label,
+                short: short,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String code,
+                required String locale,
+                required String label,
+                Value<String> short = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SenseLabelsCompanion.insert(
+                code: code,
+                locale: locale,
+                label: label,
+                short: short,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $SenseLabelsProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      SenseLabels,
+      SenseLabel,
+      $SenseLabelsFilterComposer,
+      $SenseLabelsOrderingComposer,
+      $SenseLabelsAnnotationComposer,
+      $SenseLabelsCreateCompanionBuilder,
+      $SenseLabelsUpdateCompanionBuilder,
+      (SenseLabel, BaseReferences<_$AppDatabase, SenseLabels, SenseLabel>),
+      SenseLabel,
+      PrefetchHooks Function()
     >;
 typedef $SentencesCreateCompanionBuilder =
     SentencesCompanion Function({
@@ -11497,6 +11982,8 @@ class $AppDatabaseManager {
       $KanjiTranslationsTableManager(_db, _db.kanjiTranslations);
   $VocabularySensesTableManager get vocabularySenses =>
       $VocabularySensesTableManager(_db, _db.vocabularySenses);
+  $SenseLabelsTableManager get senseLabels =>
+      $SenseLabelsTableManager(_db, _db.senseLabels);
   $SentencesTableManager get sentences =>
       $SentencesTableManager(_db, _db.sentences);
   $SentenceTranslationsTableManager get sentenceTranslations =>
