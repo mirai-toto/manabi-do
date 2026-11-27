@@ -110,7 +110,7 @@ Separate sections: Hiragana, Katakana, Kanji.
   - The sentence with furigana, the word highlighted, and its translation (English fallback pill when needed)
   - Audio playback
   - "Copy Japanese" and "Copy translation" buttons
-  - Kanji in this sentence: each with meaning, reading and level; tap to open the kanji detail. Only kanji the app teaches (the 2,211 with a JLPT level) are listed
+  - Kanji in this sentence: each with meaning, reading and level; tap to open the kanji detail. Only kanji the app teaches (the 2,225 with a JLPT level) are listed
   - Kanji in the word: each listed with meaning, reading, and level; tap to open the kanji detail
 
 ---

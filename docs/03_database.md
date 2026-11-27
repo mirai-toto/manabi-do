@@ -115,7 +115,7 @@ a release asset, and everything it was built from lives in
 | Content | In the DB | Recovery |
 |---|---|---|
 | Kanji characters, readings, meanings | `kanjis` | fetch the release, or rebuild from the content repo's committed JSON |
-| Kanji stroke order SVGs | `kanjis.svg` | same; the 2,211 SVGs are committed there |
+| Kanji stroke order SVGs | `kanjis.svg` | same; the 2,225 SVGs are committed there |
 | Kana | `kanas` | same; static |
 | Vocabulary words, readings, POS | `vocabulary_entries` | same |
 | Vocabulary meanings, per sense | `vocabulary_senses` | same |
