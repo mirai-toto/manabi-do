@@ -374,6 +374,7 @@
       }
     }
   },
+  "openWord": "Öffnen",
   "nWords": "{count} Wörter",
   "@nWords": {
     "placeholders": {

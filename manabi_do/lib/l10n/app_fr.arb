@@ -367,6 +367,7 @@
       }
     }
   },
+  "openWord": "Ouvrir",
   "nWords": "{count} mots",
   "@nWords": {
     "placeholders": {

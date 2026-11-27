@@ -1402,6 +1402,12 @@ abstract class AppLocalizations {
   /// **'Due in {days}d'**
   String srsDueIn(int days);
 
+  /// Hint on a search result card that tapping it opens the word
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get openWord;
+
   /// No description provided for @nWords.
   ///
   /// In en, this message translates to:

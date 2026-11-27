@@ -750,6 +750,9 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get openWord => 'Öffnen';
+
+  @override
   String nWords(int count) {
     return '$count Wörter';
   }

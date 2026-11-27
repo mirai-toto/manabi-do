@@ -748,6 +748,9 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get openWord => 'Ouvrir';
+
+  @override
   String nWords(int count) {
     return '$count mots';
   }
