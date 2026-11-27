@@ -183,6 +183,21 @@ CREATE TABLE sentence_translations (
   PRIMARY KEY (sentence_id, locale)
 );
 
+-- The taught words a sentence contains, in order, each once: what sentence
+-- detail lists under "Words in this sentence". Keyed on the Tatoeba id, since
+-- one sentence can illustrate several words and so appear in several
+-- `sentences` rows. Built by the content pipeline from Tatoeba's curated
+-- `jpn_indices`, or its tokeniser where a sentence has none; particles and
+-- grammar words are left out. `surface` is the word as the sentence writes
+-- it (戻ります for 戻る), equal to the word itself when not inflected.
+CREATE TABLE sentence_words (
+  tatoeba_id INTEGER NOT NULL,
+  position INTEGER NOT NULL,
+  vocabulary_id INTEGER NOT NULL REFERENCES vocabulary_entries (id),
+  surface TEXT NOT NULL,
+  PRIMARY KEY (tatoeba_id, position)
+);
+
 CREATE TABLE exercises (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   locale TEXT NOT NULL,

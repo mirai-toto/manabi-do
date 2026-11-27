@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/providers/locale_provider.dart';
+import '../../../core/text/sentence_language.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../data/database/app_database.dart';
 import '../../../l10n/l10n.dart';
 import '../../providers/kanji_provider.dart';
+import '../../providers/vocabulary_provider.dart';
 import '../../widgets/widgets.dart';
+import '../detail_navigation.dart';
 import 'vocabulary_kanji_list.dart';
 
 /// One example sentence, on a screen of its own: read aloud, copied without a
-/// dialog, and with every kanji in it reachable.
+/// dialog, and with every taught word and kanji in it reachable.
 ///
 /// A word's sentence list only links the word's own kanji, so a learner could
 /// spot an unknown kanji elsewhere in the sentence and have no way to look it
@@ -52,6 +56,11 @@ class SentenceDetailScreen extends ConsumerWidget {
         ref.watch(kanjiInTextProvider(sentence.japanese)).asData?.value ??
         const <Kanji>[];
     final String? translation = this.translation;
+    final int? tatoebaId = sentence.tatoebaId;
+    final List<SentenceWordItem> words = tatoebaId == null
+        ? const <SentenceWordItem>[]
+        : ref.watch(localizedSentenceWordsProvider(tatoebaId)).asData?.value ??
+              const <SentenceWordItem>[];
 
     return Scaffold(
       backgroundColor: t.surface,
@@ -117,6 +126,28 @@ class SentenceDetailScreen extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: AppDimens.spaceLg),
+              // Absent when nothing was found, like the kanji below: a heading
+              // over nothing reads as a bug.
+              if (words.isNotEmpty) ...[
+                SectionLabel(l.wordsInSentence),
+                const SizedBox(height: AppDimens.spaceSm),
+                WordListCard(
+                  words: [
+                    for (final w in words)
+                      (
+                        entry: w.word.entry,
+                        meaning: w.word.meaning,
+                        translated: w.word.translated,
+                        surface: w.surface,
+                      ),
+                  ],
+                  missingLanguage: readerLanguageName(
+                    ref.watch(localeProvider).languageCode,
+                  ),
+                  onOpen: (entry) => openWordDetail(context, entry),
+                ),
+                const SizedBox(height: AppDimens.spaceLg),
+              ],
               KanjiListSection(title: l.kanjiInSentence, kanji: kanji),
             ],
           ),

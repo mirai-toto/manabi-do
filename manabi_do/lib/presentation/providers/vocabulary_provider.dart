@@ -18,30 +18,62 @@ typedef LocalizedWord = ({
   bool translated,
 });
 
+/// [entries] with their meanings in [locale], falling back to English.
+Future<List<LocalizedWord>> _localize(
+  AppDatabase db,
+  String locale,
+  List<VocabularyEntry> entries,
+) async {
+  if (locale == 'en' || entries.isEmpty) {
+    return entries
+        .map((e) => (entry: e, meaning: e.meaning, translated: true))
+        .toList();
+  }
+  final tr = await db.getVocabularyTranslations(
+    entries.map((e) => e.id).toList(),
+    locale,
+  );
+  return entries
+      .map(
+        (e) => (
+          entry: e,
+          meaning: tr[e.id] ?? e.meaning,
+          translated: tr[e.id] != null,
+        ),
+      )
+      .toList();
+}
+
 final localizedKanjiVocabularyProvider =
     FutureProvider.family<List<LocalizedWord>, KanjiVocabularyArgs>((
       ref,
       args,
     ) async {
-      final locale = ref.watch(localeProvider).languageCode;
       final db = ref.watch(databaseProvider);
-      final entries = await db.getVocabularyForKanji(args.kanjiId);
-      if (locale == 'en' || entries.isEmpty) {
-        return entries
-            .map((e) => (entry: e, meaning: e.meaning, translated: true))
-            .toList();
-      }
-      final ids = entries.map((e) => e.id).toList();
-      final tr = await db.getVocabularyTranslations(ids, locale);
-      return entries
-          .map(
-            (e) => (
-              entry: e,
-              meaning: tr[e.id] ?? e.meaning,
-              translated: tr[e.id] != null,
-            ),
-          )
-          .toList();
+      return _localize(
+        db,
+        ref.watch(localeProvider).languageCode,
+        await db.getVocabularyForKanji(args.kanjiId),
+      );
+    });
+
+/// A word found in a sentence, with the form the sentence writes it in.
+typedef SentenceWordItem = ({LocalizedWord word, String surface});
+
+/// The taught words in a sentence, by its Tatoeba id, in sentence order.
+final localizedSentenceWordsProvider =
+    FutureProvider.family<List<SentenceWordItem>, int>((ref, tatoebaId) async {
+      final db = ref.watch(databaseProvider);
+      final found = await db.getSentenceWords(tatoebaId);
+      final words = await _localize(
+        db,
+        ref.watch(localeProvider).languageCode,
+        found.map((f) => f.entry).toList(),
+      );
+      return [
+        for (final (i, word) in words.indexed)
+          (word: word, surface: found[i].surface),
+      ];
     });
 
 /// A word's meaning in the reader's language, or '' when the reader is on

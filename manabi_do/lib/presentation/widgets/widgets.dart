@@ -95,6 +95,7 @@ export 'study/coverage_meter_card.dart';
 export 'study/vocabulary_word_row.dart';
 export 'study/vocabulary_word_tile.dart';
 export 'study/week_strip.dart';
+export 'study/word_list_card.dart';
 
 // characters
 export 'characters/character_cell.dart';

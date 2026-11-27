@@ -4110,6 +4110,337 @@ class SentenceTranslationsCompanion
   }
 }
 
+class SentenceWords extends Table with TableInfo<SentenceWords, SentenceWord> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  SentenceWords(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _tatoebaIdMeta = const VerificationMeta(
+    'tatoebaId',
+  );
+  late final GeneratedColumn<int> tatoebaId = GeneratedColumn<int>(
+    'tatoeba_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _positionMeta = const VerificationMeta(
+    'position',
+  );
+  late final GeneratedColumn<int> position = GeneratedColumn<int>(
+    'position',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _vocabularyIdMeta = const VerificationMeta(
+    'vocabularyId',
+  );
+  late final GeneratedColumn<int> vocabularyId = GeneratedColumn<int>(
+    'vocabulary_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES vocabulary_entries(id)',
+  );
+  static const VerificationMeta _surfaceMeta = const VerificationMeta(
+    'surface',
+  );
+  late final GeneratedColumn<String> surface = GeneratedColumn<String>(
+    'surface',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    tatoebaId,
+    position,
+    vocabularyId,
+    surface,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'sentence_words';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SentenceWord> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('tatoeba_id')) {
+      context.handle(
+        _tatoebaIdMeta,
+        tatoebaId.isAcceptableOrUnknown(data['tatoeba_id']!, _tatoebaIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tatoebaIdMeta);
+    }
+    if (data.containsKey('position')) {
+      context.handle(
+        _positionMeta,
+        position.isAcceptableOrUnknown(data['position']!, _positionMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_positionMeta);
+    }
+    if (data.containsKey('vocabulary_id')) {
+      context.handle(
+        _vocabularyIdMeta,
+        vocabularyId.isAcceptableOrUnknown(
+          data['vocabulary_id']!,
+          _vocabularyIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_vocabularyIdMeta);
+    }
+    if (data.containsKey('surface')) {
+      context.handle(
+        _surfaceMeta,
+        surface.isAcceptableOrUnknown(data['surface']!, _surfaceMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_surfaceMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {tatoebaId, position};
+  @override
+  SentenceWord map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SentenceWord(
+      tatoebaId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}tatoeba_id'],
+      )!,
+      position: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}position'],
+      )!,
+      vocabularyId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}vocabulary_id'],
+      )!,
+      surface: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}surface'],
+      )!,
+    );
+  }
+
+  @override
+  SentenceWords createAlias(String alias) {
+    return SentenceWords(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const [
+    'PRIMARY KEY(tatoeba_id, position)',
+  ];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class SentenceWord extends DataClass implements Insertable<SentenceWord> {
+  final int tatoebaId;
+  final int position;
+  final int vocabularyId;
+  final String surface;
+  const SentenceWord({
+    required this.tatoebaId,
+    required this.position,
+    required this.vocabularyId,
+    required this.surface,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['tatoeba_id'] = Variable<int>(tatoebaId);
+    map['position'] = Variable<int>(position);
+    map['vocabulary_id'] = Variable<int>(vocabularyId);
+    map['surface'] = Variable<String>(surface);
+    return map;
+  }
+
+  SentenceWordsCompanion toCompanion(bool nullToAbsent) {
+    return SentenceWordsCompanion(
+      tatoebaId: Value(tatoebaId),
+      position: Value(position),
+      vocabularyId: Value(vocabularyId),
+      surface: Value(surface),
+    );
+  }
+
+  factory SentenceWord.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SentenceWord(
+      tatoebaId: serializer.fromJson<int>(json['tatoeba_id']),
+      position: serializer.fromJson<int>(json['position']),
+      vocabularyId: serializer.fromJson<int>(json['vocabulary_id']),
+      surface: serializer.fromJson<String>(json['surface']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'tatoeba_id': serializer.toJson<int>(tatoebaId),
+      'position': serializer.toJson<int>(position),
+      'vocabulary_id': serializer.toJson<int>(vocabularyId),
+      'surface': serializer.toJson<String>(surface),
+    };
+  }
+
+  SentenceWord copyWith({
+    int? tatoebaId,
+    int? position,
+    int? vocabularyId,
+    String? surface,
+  }) => SentenceWord(
+    tatoebaId: tatoebaId ?? this.tatoebaId,
+    position: position ?? this.position,
+    vocabularyId: vocabularyId ?? this.vocabularyId,
+    surface: surface ?? this.surface,
+  );
+  SentenceWord copyWithCompanion(SentenceWordsCompanion data) {
+    return SentenceWord(
+      tatoebaId: data.tatoebaId.present ? data.tatoebaId.value : this.tatoebaId,
+      position: data.position.present ? data.position.value : this.position,
+      vocabularyId: data.vocabularyId.present
+          ? data.vocabularyId.value
+          : this.vocabularyId,
+      surface: data.surface.present ? data.surface.value : this.surface,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SentenceWord(')
+          ..write('tatoebaId: $tatoebaId, ')
+          ..write('position: $position, ')
+          ..write('vocabularyId: $vocabularyId, ')
+          ..write('surface: $surface')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(tatoebaId, position, vocabularyId, surface);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SentenceWord &&
+          other.tatoebaId == this.tatoebaId &&
+          other.position == this.position &&
+          other.vocabularyId == this.vocabularyId &&
+          other.surface == this.surface);
+}
+
+class SentenceWordsCompanion extends UpdateCompanion<SentenceWord> {
+  final Value<int> tatoebaId;
+  final Value<int> position;
+  final Value<int> vocabularyId;
+  final Value<String> surface;
+  final Value<int> rowid;
+  const SentenceWordsCompanion({
+    this.tatoebaId = const Value.absent(),
+    this.position = const Value.absent(),
+    this.vocabularyId = const Value.absent(),
+    this.surface = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SentenceWordsCompanion.insert({
+    required int tatoebaId,
+    required int position,
+    required int vocabularyId,
+    required String surface,
+    this.rowid = const Value.absent(),
+  }) : tatoebaId = Value(tatoebaId),
+       position = Value(position),
+       vocabularyId = Value(vocabularyId),
+       surface = Value(surface);
+  static Insertable<SentenceWord> custom({
+    Expression<int>? tatoebaId,
+    Expression<int>? position,
+    Expression<int>? vocabularyId,
+    Expression<String>? surface,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (tatoebaId != null) 'tatoeba_id': tatoebaId,
+      if (position != null) 'position': position,
+      if (vocabularyId != null) 'vocabulary_id': vocabularyId,
+      if (surface != null) 'surface': surface,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SentenceWordsCompanion copyWith({
+    Value<int>? tatoebaId,
+    Value<int>? position,
+    Value<int>? vocabularyId,
+    Value<String>? surface,
+    Value<int>? rowid,
+  }) {
+    return SentenceWordsCompanion(
+      tatoebaId: tatoebaId ?? this.tatoebaId,
+      position: position ?? this.position,
+      vocabularyId: vocabularyId ?? this.vocabularyId,
+      surface: surface ?? this.surface,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (tatoebaId.present) {
+      map['tatoeba_id'] = Variable<int>(tatoebaId.value);
+    }
+    if (position.present) {
+      map['position'] = Variable<int>(position.value);
+    }
+    if (vocabularyId.present) {
+      map['vocabulary_id'] = Variable<int>(vocabularyId.value);
+    }
+    if (surface.present) {
+      map['surface'] = Variable<String>(surface.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SentenceWordsCompanion(')
+          ..write('tatoebaId: $tatoebaId, ')
+          ..write('position: $position, ')
+          ..write('vocabularyId: $vocabularyId, ')
+          ..write('surface: $surface, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class Exercises extends Table with TableInfo<Exercises, Exercise> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -6941,6 +7272,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final SentenceTranslations sentenceTranslations = SentenceTranslations(
     this,
   );
+  late final SentenceWords sentenceWords = SentenceWords(this);
   late final Exercises exercises = Exercises(this);
   late final GrammarLessons grammarLessons = GrammarLessons(this);
   late final GrammarExercises grammarExercises = GrammarExercises(this);
@@ -6968,6 +7300,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     senseLabels,
     sentences,
     sentenceTranslations,
+    sentenceWords,
     exercises,
     grammarLessons,
     grammarExercises,
@@ -7762,6 +8095,24 @@ final class $VocabularyEntriesReferences
       manager.$state.copyWith(prefetchedData: cache),
     );
   }
+
+  static MultiTypedResultKey<SentenceWords, List<SentenceWord>>
+  _sentenceWordsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.sentenceWords,
+    aliasName: 'vocabulary_entries__id__sentence_words__vocabulary_id',
+  );
+
+  $SentenceWordsProcessedTableManager get sentenceWordsRefs {
+    final manager = $SentenceWordsTableManager(
+      $_db,
+      $_db.sentenceWords,
+    ).filter((f) => f.vocabularyId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_sentenceWordsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $VocabularyEntriesFilterComposer
@@ -7894,6 +8245,31 @@ class $VocabularyEntriesFilterComposer
           }) => $SentencesFilterComposer(
             $db: $db,
             $table: $db.sentences,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> sentenceWordsRefs(
+    Expression<bool> Function($SentenceWordsFilterComposer f) f,
+  ) {
+    final $SentenceWordsFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.sentenceWords,
+      getReferencedColumn: (t) => t.vocabularyId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $SentenceWordsFilterComposer(
+            $db: $db,
+            $table: $db.sentenceWords,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -8095,6 +8471,31 @@ class $VocabularyEntriesAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> sentenceWordsRefs<T extends Object>(
+    Expression<T> Function($SentenceWordsAnnotationComposer a) f,
+  ) {
+    final $SentenceWordsAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.sentenceWords,
+      getReferencedColumn: (t) => t.vocabularyId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $SentenceWordsAnnotationComposer(
+            $db: $db,
+            $table: $db.sentenceWords,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $VocabularyEntriesTableManager
@@ -8114,6 +8515,7 @@ class $VocabularyEntriesTableManager
             bool vocabularyKanjiRefs,
             bool vocabularySensesRefs,
             bool sentencesRefs,
+            bool sentenceWordsRefs,
           })
         > {
   $VocabularyEntriesTableManager(_$AppDatabase db, VocabularyEntries table)
@@ -8192,6 +8594,7 @@ class $VocabularyEntriesTableManager
                 vocabularyKanjiRefs = false,
                 vocabularySensesRefs = false,
                 sentencesRefs = false,
+                sentenceWordsRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
@@ -8199,6 +8602,7 @@ class $VocabularyEntriesTableManager
                     if (vocabularyKanjiRefs) db.vocabularyKanji,
                     if (vocabularySensesRefs) db.vocabularySenses,
                     if (sentencesRefs) db.sentences,
+                    if (sentenceWordsRefs) db.sentenceWords,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
@@ -8266,6 +8670,27 @@ class $VocabularyEntriesTableManager
                               ),
                           typedResults: items,
                         ),
+                      if (sentenceWordsRefs)
+                        await $_getPrefetchedData<
+                          VocabularyEntry,
+                          VocabularyEntries,
+                          SentenceWord
+                        >(
+                          currentTable: table,
+                          referencedTable: $VocabularyEntriesReferences
+                              ._sentenceWordsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $VocabularyEntriesReferences(
+                                db,
+                                table,
+                                p0,
+                              ).sentenceWordsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.vocabularyId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
                     ];
                   },
                 );
@@ -8290,6 +8715,7 @@ typedef $VocabularyEntriesProcessedTableManager =
         bool vocabularyKanjiRefs,
         bool vocabularySensesRefs,
         bool sentencesRefs,
+        bool sentenceWordsRefs,
       })
     >;
 typedef $CoverageGroupsCreateCompanionBuilder =
@@ -10396,6 +10822,305 @@ typedef $SentenceTranslationsProcessedTableManager =
       SentenceTranslation,
       PrefetchHooks Function({bool sentenceId})
     >;
+typedef $SentenceWordsCreateCompanionBuilder =
+    SentenceWordsCompanion Function({
+      required int tatoebaId,
+      required int position,
+      required int vocabularyId,
+      required String surface,
+      Value<int> rowid,
+    });
+typedef $SentenceWordsUpdateCompanionBuilder =
+    SentenceWordsCompanion Function({
+      Value<int> tatoebaId,
+      Value<int> position,
+      Value<int> vocabularyId,
+      Value<String> surface,
+      Value<int> rowid,
+    });
+
+final class $SentenceWordsReferences
+    extends BaseReferences<_$AppDatabase, SentenceWords, SentenceWord> {
+  $SentenceWordsReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static VocabularyEntries _vocabularyIdTable(_$AppDatabase db) => db
+      .vocabularyEntries
+      .createAlias('sentence_words__vocabulary_id__vocabulary_entries__id');
+
+  $VocabularyEntriesProcessedTableManager get vocabularyId {
+    final $_column = $_itemColumn<int>('vocabulary_id')!;
+
+    final manager = $VocabularyEntriesTableManager(
+      $_db,
+      $_db.vocabularyEntries,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_vocabularyIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $SentenceWordsFilterComposer
+    extends Composer<_$AppDatabase, SentenceWords> {
+  $SentenceWordsFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get tatoebaId => $composableBuilder(
+    column: $table.tatoebaId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get surface => $composableBuilder(
+    column: $table.surface,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $VocabularyEntriesFilterComposer get vocabularyId {
+    final $VocabularyEntriesFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.vocabularyId,
+      referencedTable: $db.vocabularyEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularyEntriesFilterComposer(
+            $db: $db,
+            $table: $db.vocabularyEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $SentenceWordsOrderingComposer
+    extends Composer<_$AppDatabase, SentenceWords> {
+  $SentenceWordsOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get tatoebaId => $composableBuilder(
+    column: $table.tatoebaId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get surface => $composableBuilder(
+    column: $table.surface,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $VocabularyEntriesOrderingComposer get vocabularyId {
+    final $VocabularyEntriesOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.vocabularyId,
+      referencedTable: $db.vocabularyEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularyEntriesOrderingComposer(
+            $db: $db,
+            $table: $db.vocabularyEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $SentenceWordsAnnotationComposer
+    extends Composer<_$AppDatabase, SentenceWords> {
+  $SentenceWordsAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get tatoebaId =>
+      $composableBuilder(column: $table.tatoebaId, builder: (column) => column);
+
+  GeneratedColumn<int> get position =>
+      $composableBuilder(column: $table.position, builder: (column) => column);
+
+  GeneratedColumn<String> get surface =>
+      $composableBuilder(column: $table.surface, builder: (column) => column);
+
+  $VocabularyEntriesAnnotationComposer get vocabularyId {
+    final $VocabularyEntriesAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.vocabularyId,
+      referencedTable: $db.vocabularyEntries,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $VocabularyEntriesAnnotationComposer(
+            $db: $db,
+            $table: $db.vocabularyEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $SentenceWordsTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          SentenceWords,
+          SentenceWord,
+          $SentenceWordsFilterComposer,
+          $SentenceWordsOrderingComposer,
+          $SentenceWordsAnnotationComposer,
+          $SentenceWordsCreateCompanionBuilder,
+          $SentenceWordsUpdateCompanionBuilder,
+          (SentenceWord, $SentenceWordsReferences),
+          SentenceWord,
+          PrefetchHooks Function({bool vocabularyId})
+        > {
+  $SentenceWordsTableManager(_$AppDatabase db, SentenceWords table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $SentenceWordsFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $SentenceWordsOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $SentenceWordsAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> tatoebaId = const Value.absent(),
+                Value<int> position = const Value.absent(),
+                Value<int> vocabularyId = const Value.absent(),
+                Value<String> surface = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SentenceWordsCompanion(
+                tatoebaId: tatoebaId,
+                position: position,
+                vocabularyId: vocabularyId,
+                surface: surface,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required int tatoebaId,
+                required int position,
+                required int vocabularyId,
+                required String surface,
+                Value<int> rowid = const Value.absent(),
+              }) => SentenceWordsCompanion.insert(
+                tatoebaId: tatoebaId,
+                position: position,
+                vocabularyId: vocabularyId,
+                surface: surface,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $SentenceWordsReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({vocabularyId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (vocabularyId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.vocabularyId,
+                                referencedTable: $SentenceWordsReferences
+                                    ._vocabularyIdTable(db),
+                                referencedColumn: $SentenceWordsReferences
+                                    ._vocabularyIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $SentenceWordsProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      SentenceWords,
+      SentenceWord,
+      $SentenceWordsFilterComposer,
+      $SentenceWordsOrderingComposer,
+      $SentenceWordsAnnotationComposer,
+      $SentenceWordsCreateCompanionBuilder,
+      $SentenceWordsUpdateCompanionBuilder,
+      (SentenceWord, $SentenceWordsReferences),
+      SentenceWord,
+      PrefetchHooks Function({bool vocabularyId})
+    >;
 typedef $ExercisesCreateCompanionBuilder =
     ExercisesCompanion Function({
       Value<int> id,
@@ -11988,6 +12713,8 @@ class $AppDatabaseManager {
       $SentencesTableManager(_db, _db.sentences);
   $SentenceTranslationsTableManager get sentenceTranslations =>
       $SentenceTranslationsTableManager(_db, _db.sentenceTranslations);
+  $SentenceWordsTableManager get sentenceWords =>
+      $SentenceWordsTableManager(_db, _db.sentenceWords);
   $ExercisesTableManager get exercises =>
       $ExercisesTableManager(_db, _db.exercises);
   $GrammarLessonsTableManager get grammarLessons =>

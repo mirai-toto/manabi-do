@@ -27,7 +27,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 32;
+  int get schemaVersion => 33;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -240,6 +240,12 @@ class AppDatabase extends _$AppDatabase {
       // version because schema 31 had already reached a disk.
       from31To32: (m, schema) async {
         await m.addColumn(schema.senseLabels, schema.senseLabels.short);
+      },
+
+      // The words in each example sentence, worked out by the content
+      // pipeline. Empty until the matching asset replaces the content.
+      from32To33: (m, schema) async {
+        await m.createTable(schema.sentenceWords);
       },
     ),
   );
