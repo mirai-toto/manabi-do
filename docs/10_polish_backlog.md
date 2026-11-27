@@ -8,7 +8,6 @@ Done items are removed; git history and [09_functional_features.md](09_functiona
 
 ## Next
 
-- **Close button in deep detail chains**: a close action in the detail app bar to leave a long kanji → word → sentence chain at once (tapping the current tab already returns to the tab root)
 - **Kanji outside the app's 2,211** (e.g. 誰, 俺) aren't listed in sentence detail, since the app has no data for them; a sentence made only of those shows no kanji at all
 - **Words in this sentence** (planned): a list like the kanji one, each word opening its word detail. Words are worked out ahead of time in the content pipeline (`manabi-content`), not in the app:
   - Source: Tatoeba's `jpn_indices` (curated, already linked to JMdict senses) where a sentence has them; Janome (or SudachiPy) as a fallback for the rest, matching its dictionary forms and readings to the app's vocabulary
