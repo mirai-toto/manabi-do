@@ -52,7 +52,8 @@ v22 is the baseline. The steps since are in `app_database.dart`: 24 dropped the
 JLPT columns for measured ones, 26 renamed the coverage band to the vocabulary
 level, 27 added `vocabulary_senses`, 28 dropped `vocabulary_translations`,
 and 31 turned a sense's `kind` (`vt`/`vi`) into `labels`, every JMdict tag it
-carries, with `sense_labels` holding their texts.
+carries, with `sense_labels` holding their texts; 32 gave each label an
+abbreviation (`short`) for the pill, its name showing on a press.
 
 
 ---

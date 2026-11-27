@@ -243,9 +243,9 @@ class _Meanings extends ConsumerWidget {
     final List<VocabularySense> alsoEnglish = meanings.own.isEmpty
         ? const <VocabularySense>[]
         : meanings.english;
-    final Map<String, String> labels =
+    final Map<String, SenseLabelText> labels =
         ref.watch(senseLabelsProvider).asData?.value ??
-        const <String, String>{};
+        const <String, SenseLabelText>{};
 
     final readerLocale = ref.watch(localeProvider).languageCode;
     final String? language = readerLanguageName(readerLocale);
@@ -319,7 +319,7 @@ class _SenseList extends StatefulWidget {
   final List<VocabularySense> senses;
 
   /// Label texts by code, from `sense_labels`.
-  final Map<String, String> labels;
+  final Map<String, SenseLabelText> labels;
   final int limit;
 
   const _SenseList({
@@ -359,7 +359,8 @@ class _SenseListState extends State<_SenseList> {
                   sense: visible[i],
                   labels: [
                     for (final code in visible[i].labels.split(','))
-                      if (code.isNotEmpty) widget.labels[code] ?? code,
+                      if (code.isNotEmpty)
+                        widget.labels[code] ?? (short: code, name: code),
                   ],
                   numbered: senses.length > 1,
                 ),
@@ -389,15 +390,16 @@ class _SenseListState extends State<_SenseList> {
 /// and the longest to 147.
 const int _maxPatternLength = 32;
 
-/// Widest the label column may grow, so a long label ("electrical
-/// engineering") cannot squeeze the glosses.
-const double _kLabelsMaxWidth = 140;
+/// Widest the label column may grow, so a long abbreviation ("video games")
+/// cannot squeeze the glosses.
+const double _kLabelsMaxWidth = 120;
 
 class _SenseRow extends StatelessWidget {
   final VocabularySense sense;
 
-  /// The sense's labels as the reader reads them: "transitive", "colloquial".
-  final List<String> labels;
+  /// The sense's labels as the reader reads them: "trans.", "coll.", each
+  /// with the name a press shows.
+  final List<SenseLabelText> labels;
   final bool numbered;
 
   const _SenseRow({
@@ -492,12 +494,18 @@ class _SenseRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 spacing: AppDimens.spaceXs,
                 children: [
+                  // The abbreviation keeps the column narrow; a press
+                  // spells it out, as "intr." means nothing to a beginner.
                   for (final label in labels)
-                    PillBadge(
-                      label: label,
-                      color: t.onPrimaryContainer,
-                      background: t.primaryContainer,
-                      textStyle: AppTextStyles.labelSmall,
+                    Tooltip(
+                      message: label.name,
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: PillBadge(
+                        label: label.short,
+                        color: t.onPrimaryContainer,
+                        background: t.primaryContainer,
+                        textStyle: AppTextStyles.labelSmall,
+                      ),
                     ),
                 ],
               ),

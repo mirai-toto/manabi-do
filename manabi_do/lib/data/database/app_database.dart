@@ -27,7 +27,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 31;
+  int get schemaVersion => 32;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -233,6 +233,13 @@ class AppDatabase extends _$AppDatabase {
           schema.vocabularySenses.labels,
         );
         await m.createTable(schema.senseLabels);
+      },
+
+      // A label gets an abbreviation beside its name: pills show `short`
+      // ("intr."), a press spells out `label` ("intransitive verb"). Its own
+      // version because schema 31 had already reached a disk.
+      from31To32: (m, schema) async {
+        await m.addColumn(schema.senseLabels, schema.senseLabels.short);
       },
     ),
   );

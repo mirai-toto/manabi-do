@@ -147,15 +147,17 @@ CREATE TABLE vocabulary_senses (
   PRIMARY KEY (vocabulary_id, locale, position)
 );
 
--- What a sense label reads as, per app language: `col` is "colloquial",
--- "familier", "umgangssprachlich". Authored in the content repo
--- (`content/sense_labels.json`), so the app shows what the database gives it
--- and a new label never needs an app release. A locale without a row falls
--- back to English.
+-- What a sense label reads as, per app language: `short` is the abbreviation
+-- a pill shows ("coll.", "fam.", "ugs."), `label` the name a press on it
+-- spells out ("colloquial", "familier", "umgangssprachlich"). Authored in the
+-- content repo (`content/sense_labels.json`), so the app shows what the
+-- database gives it and a new label never needs an app release. A locale
+-- without a row falls back to English.
 CREATE TABLE sense_labels (
   code TEXT NOT NULL,
   locale TEXT NOT NULL,
   label TEXT NOT NULL,
+  short TEXT NOT NULL DEFAULT '',
   PRIMARY KEY (code, locale)
 );
 

@@ -3019,8 +3019,18 @@ class SenseLabels extends Table with TableInfo<SenseLabels, SenseLabel> {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  static const VerificationMeta _shortMeta = const VerificationMeta('short');
+  late final GeneratedColumn<String> short = GeneratedColumn<String>(
+    'short',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'\'',
+    defaultValue: const CustomExpression('\'\''),
+  );
   @override
-  List<GeneratedColumn> get $columns => [code, locale, label];
+  List<GeneratedColumn> get $columns => [code, locale, label, short];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -3057,6 +3067,12 @@ class SenseLabels extends Table with TableInfo<SenseLabels, SenseLabel> {
     } else if (isInserting) {
       context.missing(_labelMeta);
     }
+    if (data.containsKey('short')) {
+      context.handle(
+        _shortMeta,
+        short.isAcceptableOrUnknown(data['short']!, _shortMeta),
+      );
+    }
     return context;
   }
 
@@ -3078,6 +3094,10 @@ class SenseLabels extends Table with TableInfo<SenseLabels, SenseLabel> {
         DriftSqlType.string,
         data['${effectivePrefix}label'],
       )!,
+      short: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}short'],
+      )!,
     );
   }
 
@@ -3096,10 +3116,12 @@ class SenseLabel extends DataClass implements Insertable<SenseLabel> {
   final String code;
   final String locale;
   final String label;
+  final String short;
   const SenseLabel({
     required this.code,
     required this.locale,
     required this.label,
+    required this.short,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -3107,6 +3129,7 @@ class SenseLabel extends DataClass implements Insertable<SenseLabel> {
     map['code'] = Variable<String>(code);
     map['locale'] = Variable<String>(locale);
     map['label'] = Variable<String>(label);
+    map['short'] = Variable<String>(short);
     return map;
   }
 
@@ -3115,6 +3138,7 @@ class SenseLabel extends DataClass implements Insertable<SenseLabel> {
       code: Value(code),
       locale: Value(locale),
       label: Value(label),
+      short: Value(short),
     );
   }
 
@@ -3127,6 +3151,7 @@ class SenseLabel extends DataClass implements Insertable<SenseLabel> {
       code: serializer.fromJson<String>(json['code']),
       locale: serializer.fromJson<String>(json['locale']),
       label: serializer.fromJson<String>(json['label']),
+      short: serializer.fromJson<String>(json['short']),
     );
   }
   @override
@@ -3136,20 +3161,27 @@ class SenseLabel extends DataClass implements Insertable<SenseLabel> {
       'code': serializer.toJson<String>(code),
       'locale': serializer.toJson<String>(locale),
       'label': serializer.toJson<String>(label),
+      'short': serializer.toJson<String>(short),
     };
   }
 
-  SenseLabel copyWith({String? code, String? locale, String? label}) =>
-      SenseLabel(
-        code: code ?? this.code,
-        locale: locale ?? this.locale,
-        label: label ?? this.label,
-      );
+  SenseLabel copyWith({
+    String? code,
+    String? locale,
+    String? label,
+    String? short,
+  }) => SenseLabel(
+    code: code ?? this.code,
+    locale: locale ?? this.locale,
+    label: label ?? this.label,
+    short: short ?? this.short,
+  );
   SenseLabel copyWithCompanion(SenseLabelsCompanion data) {
     return SenseLabel(
       code: data.code.present ? data.code.value : this.code,
       locale: data.locale.present ? data.locale.value : this.locale,
       label: data.label.present ? data.label.value : this.label,
+      short: data.short.present ? data.short.value : this.short,
     );
   }
 
@@ -3158,37 +3190,42 @@ class SenseLabel extends DataClass implements Insertable<SenseLabel> {
     return (StringBuffer('SenseLabel(')
           ..write('code: $code, ')
           ..write('locale: $locale, ')
-          ..write('label: $label')
+          ..write('label: $label, ')
+          ..write('short: $short')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(code, locale, label);
+  int get hashCode => Object.hash(code, locale, label, short);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is SenseLabel &&
           other.code == this.code &&
           other.locale == this.locale &&
-          other.label == this.label);
+          other.label == this.label &&
+          other.short == this.short);
 }
 
 class SenseLabelsCompanion extends UpdateCompanion<SenseLabel> {
   final Value<String> code;
   final Value<String> locale;
   final Value<String> label;
+  final Value<String> short;
   final Value<int> rowid;
   const SenseLabelsCompanion({
     this.code = const Value.absent(),
     this.locale = const Value.absent(),
     this.label = const Value.absent(),
+    this.short = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   SenseLabelsCompanion.insert({
     required String code,
     required String locale,
     required String label,
+    this.short = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : code = Value(code),
        locale = Value(locale),
@@ -3197,12 +3234,14 @@ class SenseLabelsCompanion extends UpdateCompanion<SenseLabel> {
     Expression<String>? code,
     Expression<String>? locale,
     Expression<String>? label,
+    Expression<String>? short,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (code != null) 'code': code,
       if (locale != null) 'locale': locale,
       if (label != null) 'label': label,
+      if (short != null) 'short': short,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -3211,12 +3250,14 @@ class SenseLabelsCompanion extends UpdateCompanion<SenseLabel> {
     Value<String>? code,
     Value<String>? locale,
     Value<String>? label,
+    Value<String>? short,
     Value<int>? rowid,
   }) {
     return SenseLabelsCompanion(
       code: code ?? this.code,
       locale: locale ?? this.locale,
       label: label ?? this.label,
+      short: short ?? this.short,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -3233,6 +3274,9 @@ class SenseLabelsCompanion extends UpdateCompanion<SenseLabel> {
     if (label.present) {
       map['label'] = Variable<String>(label.value);
     }
+    if (short.present) {
+      map['short'] = Variable<String>(short.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -3245,6 +3289,7 @@ class SenseLabelsCompanion extends UpdateCompanion<SenseLabel> {
           ..write('code: $code, ')
           ..write('locale: $locale, ')
           ..write('label: $label, ')
+          ..write('short: $short, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -9422,6 +9467,7 @@ typedef $SenseLabelsCreateCompanionBuilder =
       required String code,
       required String locale,
       required String label,
+      Value<String> short,
       Value<int> rowid,
     });
 typedef $SenseLabelsUpdateCompanionBuilder =
@@ -9429,6 +9475,7 @@ typedef $SenseLabelsUpdateCompanionBuilder =
       Value<String> code,
       Value<String> locale,
       Value<String> label,
+      Value<String> short,
       Value<int> rowid,
     });
 
@@ -9452,6 +9499,11 @@ class $SenseLabelsFilterComposer extends Composer<_$AppDatabase, SenseLabels> {
 
   ColumnFilters<String> get label => $composableBuilder(
     column: $table.label,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get short => $composableBuilder(
+    column: $table.short,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -9479,6 +9531,11 @@ class $SenseLabelsOrderingComposer
     column: $table.label,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get short => $composableBuilder(
+    column: $table.short,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $SenseLabelsAnnotationComposer
@@ -9498,6 +9555,9 @@ class $SenseLabelsAnnotationComposer
 
   GeneratedColumn<String> get label =>
       $composableBuilder(column: $table.label, builder: (column) => column);
+
+  GeneratedColumn<String> get short =>
+      $composableBuilder(column: $table.short, builder: (column) => column);
 }
 
 class $SenseLabelsTableManager
@@ -9531,11 +9591,13 @@ class $SenseLabelsTableManager
                 Value<String> code = const Value.absent(),
                 Value<String> locale = const Value.absent(),
                 Value<String> label = const Value.absent(),
+                Value<String> short = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => SenseLabelsCompanion(
                 code: code,
                 locale: locale,
                 label: label,
+                short: short,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -9543,11 +9605,13 @@ class $SenseLabelsTableManager
                 required String code,
                 required String locale,
                 required String label,
+                Value<String> short = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => SenseLabelsCompanion.insert(
                 code: code,
                 locale: locale,
                 label: label,
+                short: short,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
