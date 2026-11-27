@@ -6,7 +6,7 @@ import 'package:manabi_do/data/database/app_database.dart';
 
 void main() {
   test(
-    'a v22 content database migrates to 32, gaining levels, stable ids and sense labels',
+    'a v22 content database migrates to 33, gaining levels, stable ids, sense labels and sentence words',
     () async {
       final source = File(
         '${Platform.environment['HOME']}/.cache/manabi-content/v22.1-manabi_do_content.db',
@@ -45,7 +45,8 @@ void main() {
           .get()
           .then((rows) => rows.map((r) => r.data['name']).toList());
 
-      expect(version, 32);
+      expect(version, 33);
+      expect(tables, contains('sentence_words'));
       expect(tables, contains('vocabulary_senses'));
       expect(tables, contains('sense_labels'));
       expect(senseColumns, contains('labels'));
