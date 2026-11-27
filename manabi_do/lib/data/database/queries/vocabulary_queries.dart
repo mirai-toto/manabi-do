@@ -66,6 +66,18 @@ extension VocabularyQueries on AppDatabase {
             ..orderBy([(s) => OrderingTerm.asc(s.position)]))
           .get();
 
+  /// What each sense label reads as in [locale], by code: `col` →
+  /// "familier". English fills any code [locale] has no row for.
+  Future<Map<String, String>> getSenseLabels(String locale) async {
+    final rows = await (select(
+      senseLabels,
+    )..where((l) => l.locale.isIn([locale, 'en']))).get();
+    return {
+      for (final r in rows.where((r) => r.locale == 'en')) r.code: r.label,
+      for (final r in rows.where((r) => r.locale == locale)) r.code: r.label,
+    };
+  }
+
   /// What each study group buys, as a share of running Japanese.
   Future<List<CoverageGroup>> getCoverageGroups() =>
       (select(coverageGroups)..orderBy([

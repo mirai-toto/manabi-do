@@ -155,6 +155,12 @@ typedef WordMeanings = ({
 /// have one meaning and a near-synonym.
 const int _summaryThreshold = 3;
 
+/// Sense label texts in the reader's language, by code (`col` → "familier").
+final senseLabelsProvider = FutureProvider<Map<String, String>>((ref) {
+  final locale = ref.watch(localeProvider).languageCode;
+  return ref.watch(databaseProvider).getSenseLabels(locale);
+});
+
 final vocabularySensesProvider = FutureProvider.family<WordMeanings, int>((
   ref,
   vocabularyId,

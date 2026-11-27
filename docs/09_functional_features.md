@@ -102,7 +102,7 @@ Separate sections: Hiragana, Katakana, Kanji.
   - Filter results by commonality
 - Word detail:
   - The word, with audio playback (like kana and kanji)
-  - List of meanings
+  - List of meanings, each with its labels: transitive or intransitive, usage (colloquial, honorific, slang…), subject (computing, medicine…), dialect
   - Word type (adverb, noun, etc.)
   - Commonality
   - Example sentences: furigana and translation; tap one to open its sentence detail

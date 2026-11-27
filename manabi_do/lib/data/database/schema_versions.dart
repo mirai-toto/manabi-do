@@ -3679,6 +3679,349 @@ i1.GeneratedColumn<int> _column_71(String aliasedName) =>
       type: i1.DriftSqlType.int,
       $customConstraints: '',
     );
+
+final class Schema31 extends i0.VersionedSchema {
+  Schema31({required super.database}) : super(version: 31);
+  @override
+  late final List<i1.DatabaseSchemaEntity> entities = [
+    kanjis,
+    kanas,
+    vocabularyEntries,
+    coverageGroups,
+    vocabularyKanji,
+    kanjiTranslations,
+    vocabularySenses,
+    senseLabels,
+    sentences,
+    sentenceTranslations,
+    exercises,
+    grammarLessons,
+    grammarExercises,
+    grammarLessonProgress,
+    grammarLessonStarts,
+    grammarChapterUnlocks,
+    progressEntries,
+    srsCards,
+  ];
+  late final Shape17 kanjis = Shape17(
+    source: i0.VersionedTable(
+      entityName: 'kanjis',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_53,
+        _column_54,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape1 kanas = Shape1(
+    source: i0.VersionedTable(
+      entityName: 'kanas',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_7,
+        _column_8,
+        _column_9,
+        _column_10,
+        _column_11,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape24 vocabularyEntries = Shape24(
+    source: i0.VersionedTable(
+      entityName: 'vocabulary_entries',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [],
+      columns: [
+        _column_0,
+        _column_70,
+        _column_12,
+        _column_13,
+        _column_2,
+        _column_14,
+        _column_55,
+        _column_56,
+        _column_58,
+        _column_65,
+        _column_60,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape22 coverageGroups = Shape22(
+    source: i0.VersionedTable(
+      entityName: 'coverage_groups',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(vocabulary_level, group_index)'],
+      columns: [_column_66, _column_62, _column_63, _column_64],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape16 vocabularyKanji = Shape16(
+    source: i0.VersionedTable(
+      entityName: 'vocabulary_kanji',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(vocabulary_id, kanji_id)'],
+      columns: [_column_18, _column_16, _column_52],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape3 kanjiTranslations = Shape3(
+    source: i0.VersionedTable(
+      entityName: 'kanji_translations',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(kanji_id, locale)'],
+      columns: [_column_16, _column_17, _column_2],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape26 vocabularySenses = Shape26(
+    source: i0.VersionedTable(
+      entityName: 'vocabulary_senses',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(vocabulary_id, locale, position)'],
+      columns: [
+        _column_18,
+        _column_17,
+        _column_52,
+        _column_67,
+        _column_68,
+        _column_72,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape27 senseLabels = Shape27(
+    source: i0.VersionedTable(
+      entityName: 'sense_labels',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(code, locale)'],
+      columns: [_column_73, _column_17, _column_74],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape25 sentences = Shape25(
+    source: i0.VersionedTable(
+      entityName: 'sentences',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [],
+      columns: [
+        _column_0,
+        _column_19,
+        _column_20,
+        _column_18,
+        _column_21,
+        _column_22,
+        _column_23,
+        _column_71,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape6 sentenceTranslations = Shape6(
+    source: i0.VersionedTable(
+      entityName: 'sentence_translations',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(sentence_id, locale)'],
+      columns: [_column_24, _column_17, _column_25],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape7 exercises = Shape7(
+    source: i0.VersionedTable(
+      entityName: 'exercises',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [],
+      columns: [
+        _column_0,
+        _column_17,
+        _column_8,
+        _column_26,
+        _column_27,
+        _column_28,
+        _column_29,
+        _column_30,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape8 grammarLessons = Shape8(
+    source: i0.VersionedTable(
+      entityName: 'grammar_lessons',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [],
+      columns: [
+        _column_0,
+        _column_31,
+        _column_32,
+        _column_33,
+        _column_34,
+        _column_35,
+        _column_36,
+        _column_37,
+        _column_38,
+        _column_39,
+        _column_40,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape9 grammarExercises = Shape9(
+    source: i0.VersionedTable(
+      entityName: 'grammar_exercises',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [],
+      columns: [_column_0, _column_41, _column_39, _column_8, _column_42],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape10 grammarLessonProgress = Shape10(
+    source: i0.VersionedTable(
+      entityName: 'grammar_lesson_progress',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(lesson_path)'],
+      columns: [_column_41, _column_43],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape11 grammarLessonStarts = Shape11(
+    source: i0.VersionedTable(
+      entityName: 'grammar_lesson_starts',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(lesson_path)'],
+      columns: [_column_41],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape12 grammarChapterUnlocks = Shape12(
+    source: i0.VersionedTable(
+      entityName: 'grammar_chapter_unlocks',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(chapter_key)'],
+      columns: [_column_44],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape13 progressEntries = Shape13(
+    source: i0.VersionedTable(
+      entityName: 'progress_entries',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['UNIQUE(item_type, item_id)'],
+      columns: [_column_0, _column_45, _column_46, _column_47, _column_48],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape14 srsCards = Shape14(
+    source: i0.VersionedTable(
+      entityName: 'srs_cards',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(item_type, item_id)'],
+      columns: [_column_45, _column_46, _column_49, _column_50, _column_51],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+}
+
+class Shape26 extends i0.VersionedTable {
+  Shape26({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<int> get vocabularyId =>
+      columnsByName['vocabulary_id']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get locale =>
+      columnsByName['locale']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get position =>
+      columnsByName['position']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get glosses =>
+      columnsByName['glosses']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get note =>
+      columnsByName['note']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get labels =>
+      columnsByName['labels']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<String> _column_72(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'labels',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL DEFAULT \'\'',
+      defaultValue: const i1.CustomExpression('\'\''),
+    );
+
+class Shape27 extends i0.VersionedTable {
+  Shape27({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get code =>
+      columnsByName['code']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get locale =>
+      columnsByName['locale']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get label =>
+      columnsByName['label']! as i1.GeneratedColumn<String>;
+}
+
+i1.GeneratedColumn<String> _column_73(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'code',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL',
+    );
+i1.GeneratedColumn<String> _column_74(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'label',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NOT NULL',
+    );
 i0.MigrationStepWithVersion migrationSteps({
   required Future<void> Function(i1.Migrator m, Schema21 schema) from20To21,
   required Future<void> Function(i1.Migrator m, Schema22 schema) from21To22,
@@ -3690,6 +4033,7 @@ i0.MigrationStepWithVersion migrationSteps({
   required Future<void> Function(i1.Migrator m, Schema28 schema) from27To28,
   required Future<void> Function(i1.Migrator m, Schema29 schema) from28To29,
   required Future<void> Function(i1.Migrator m, Schema30 schema) from29To30,
+  required Future<void> Function(i1.Migrator m, Schema31 schema) from30To31,
 }) {
   return (currentVersion, database) async {
     switch (currentVersion) {
@@ -3743,6 +4087,11 @@ i0.MigrationStepWithVersion migrationSteps({
         final migrator = i1.Migrator(database, schema);
         await from29To30(migrator, schema);
         return 30;
+      case 30:
+        final schema = Schema31(database: database);
+        final migrator = i1.Migrator(database, schema);
+        await from30To31(migrator, schema);
+        return 31;
       default:
         throw ArgumentError.value('Unknown migration from $currentVersion');
     }
@@ -3760,6 +4109,7 @@ i1.OnUpgrade stepByStep({
   required Future<void> Function(i1.Migrator m, Schema28 schema) from27To28,
   required Future<void> Function(i1.Migrator m, Schema29 schema) from28To29,
   required Future<void> Function(i1.Migrator m, Schema30 schema) from29To30,
+  required Future<void> Function(i1.Migrator m, Schema31 schema) from30To31,
 }) => i0.VersionedSchema.stepByStepHelper(
   step: migrationSteps(
     from20To21: from20To21,
@@ -3772,5 +4122,6 @@ i1.OnUpgrade stepByStep({
     from27To28: from27To28,
     from28To29: from28To29,
     from29To30: from29To30,
+    from30To31: from30To31,
   ),
 );

@@ -27,7 +27,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.withExecutor(super.executor);
 
   @override
-  int get schemaVersion => 30;
+  int get schemaVersion => 31;
 
   /// Upgrades are generated, not hand-written.
   ///
@@ -219,6 +219,20 @@ class AppDatabase extends _$AppDatabase {
       // key the content repo refreshes sentences by.
       from29To30: (m, schema) async {
         await m.addColumn(schema.sentences, schema.sentences.tatoebaId);
+      },
+
+      // A sense's `kind`, only ever `vt` or `vi`, becomes `labels`: every
+      // JMdict tag the sense carries (colloquial, honorific, computing,
+      // Kansai dialect…), with `sense_labels` saying what each reads as in
+      // the app's languages. `vt` and `vi` stay valid codes, so the rename
+      // keeps what is stored.
+      from30To31: (m, schema) async {
+        await m.renameColumn(
+          schema.vocabularySenses,
+          'kind',
+          schema.vocabularySenses.labels,
+        );
+        await m.createTable(schema.senseLabels);
       },
     ),
   );

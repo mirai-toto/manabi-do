@@ -207,8 +207,6 @@
       }
     }
   },
-  "transitive": "transitive",
-  "intransitive": "intransitive",
   "exampleSentences": "In a sentence",
   "translationFallbackNotice": "No {language} translation for this yet, so the English is shown.",
   "@translationFallbackNotice": {

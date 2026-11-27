@@ -243,6 +243,9 @@ class _Meanings extends ConsumerWidget {
     final List<VocabularySense> alsoEnglish = meanings.own.isEmpty
         ? const <VocabularySense>[]
         : meanings.english;
+    final Map<String, String> labels =
+        ref.watch(senseLabelsProvider).asData?.value ??
+        const <String, String>{};
 
     final readerLocale = ref.watch(localeProvider).languageCode;
     final String? language = readerLanguageName(readerLocale);
@@ -284,7 +287,7 @@ class _Meanings extends ConsumerWidget {
             ),
           )
         else
-          _SenseList(senses: senses, limit: _shown),
+          _SenseList(senses: senses, labels: labels, limit: _shown),
         if (alsoEnglish.isNotEmpty && language != null) ...[
           const SizedBox(height: AppDimens.spaceMd),
           Row(
@@ -305,7 +308,7 @@ class _Meanings extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: AppDimens.spaceSm),
-          _SenseList(senses: alsoEnglish, limit: _shown),
+          _SenseList(senses: alsoEnglish, labels: labels, limit: _shown),
         ],
       ],
     );
@@ -314,9 +317,16 @@ class _Meanings extends ConsumerWidget {
 
 class _SenseList extends StatefulWidget {
   final List<VocabularySense> senses;
+
+  /// Label texts by code, from `sense_labels`.
+  final Map<String, String> labels;
   final int limit;
 
-  const _SenseList({required this.senses, required this.limit});
+  const _SenseList({
+    required this.senses,
+    required this.labels,
+    required this.limit,
+  });
 
   @override
   State<_SenseList> createState() => _SenseListState();
@@ -345,7 +355,14 @@ class _SenseListState extends State<_SenseList> {
               for (int i = 0; i < visible.length; i++) ...[
                 if (i > 0)
                   Divider(height: 1, thickness: 1, color: t.outlineVariant),
-                _SenseRow(sense: visible[i], numbered: senses.length > 1),
+                _SenseRow(
+                  sense: visible[i],
+                  labels: [
+                    for (final code in visible[i].labels.split(','))
+                      if (code.isNotEmpty) widget.labels[code] ?? code,
+                  ],
+                  numbered: senses.length > 1,
+                ),
               ],
             ],
           ),
@@ -372,16 +389,26 @@ class _SenseListState extends State<_SenseList> {
 /// and the longest to 147.
 const int _maxPatternLength = 32;
 
+/// Widest the label column may grow, so a long label ("electrical
+/// engineering") cannot squeeze the glosses.
+const double _kLabelsMaxWidth = 140;
+
 class _SenseRow extends StatelessWidget {
   final VocabularySense sense;
+
+  /// The sense's labels as the reader reads them: "transitive", "colloquial".
+  final List<String> labels;
   final bool numbered;
 
-  const _SenseRow({required this.sense, required this.numbered});
+  const _SenseRow({
+    required this.sense,
+    required this.labels,
+    required this.numbered,
+  });
 
   @override
   Widget build(BuildContext context) {
     final t = context.tokens;
-    final l = context.l10n;
     // JMdict writes two kinds of note in the same field. Short ones are
     // patterns — "as 〜にする" — and read as tags. Others are whole sentences
     // of explanation, up to 147 characters, and a pill is the wrong shape for
@@ -457,13 +484,23 @@ class _SenseRow extends StatelessWidget {
               ],
             ),
           ),
-          if (sense.kind.isNotEmpty) ...[
+          if (labels.isNotEmpty) ...[
             const SizedBox(width: AppDimens.spaceSm),
-            PillBadge(
-              label: sense.kind == 'vt' ? l.transitive : l.intransitive,
-              color: t.onPrimaryContainer,
-              background: t.primaryContainer,
-              textStyle: AppTextStyles.labelSmall,
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: _kLabelsMaxWidth),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                spacing: AppDimens.spaceXs,
+                children: [
+                  for (final label in labels)
+                    PillBadge(
+                      label: label,
+                      color: t.onPrimaryContainer,
+                      background: t.primaryContainer,
+                      textStyle: AppTextStyles.labelSmall,
+                    ),
+                ],
+              ),
             ),
           ],
         ],

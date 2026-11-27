@@ -6,7 +6,7 @@ import 'package:manabi_do/data/database/app_database.dart';
 
 void main() {
   test(
-    'a v22 content database migrates to 30, gaining levels and the stable ids',
+    'a v22 content database migrates to 31, gaining levels, stable ids and sense labels',
     () async {
       final source = File(
         '${Platform.environment['HOME']}/.cache/manabi-content/v22.1-manabi_do_content.db',
@@ -28,6 +28,10 @@ void main() {
           .customSelect('PRAGMA table_info(vocabulary_entries)')
           .get()
           .then((rows) => rows.map((r) => r.data['name']).toList());
+      final senseColumns = await db
+          .customSelect('PRAGMA table_info(vocabulary_senses)')
+          .get()
+          .then((rows) => rows.map((r) => r.data['name']).toList());
       final sentenceColumns = await db
           .customSelect('PRAGMA table_info(sentences)')
           .get()
@@ -41,8 +45,11 @@ void main() {
           .get()
           .then((rows) => rows.map((r) => r.data['name']).toList());
 
-      expect(version, 30);
+      expect(version, 31);
       expect(tables, contains('vocabulary_senses'));
+      expect(tables, contains('sense_labels'));
+      expect(senseColumns, contains('labels'));
+      expect(senseColumns, isNot(contains('kind')));
       expect(tables, isNot(contains('vocabulary_translations')));
       expect(columns, contains('jmdict_id'));
       expect(sentenceColumns, contains('tatoeba_id'));

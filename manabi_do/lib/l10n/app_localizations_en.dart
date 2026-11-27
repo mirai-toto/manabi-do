@@ -400,12 +400,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get transitive => 'transitive';
-
-  @override
-  String get intransitive => 'intransitive';
-
-  @override
   String get exampleSentences => 'In a sentence';
 
   @override

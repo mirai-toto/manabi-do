@@ -50,7 +50,9 @@ Upgrades are generated rather than hand-written. Each step receives the schema *
 
 v22 is the baseline. The steps since are in `app_database.dart`: 24 dropped the
 JLPT columns for measured ones, 26 renamed the coverage band to the vocabulary
-level, 27 added `vocabulary_senses`, and 28 dropped `vocabulary_translations`.
+level, 27 added `vocabulary_senses`, 28 dropped `vocabulary_translations`,
+and 31 turned a sense's `kind` (`vt`/`vi`) into `labels`, every JMdict tag it
+carries, with `sense_labels` holding their texts.
 
 
 ---
@@ -116,6 +118,7 @@ a release asset, and everything it was built from lives in
 | Kana | `kanas` | same; static |
 | Vocabulary words, readings, POS | `vocabulary_entries` | same |
 | Vocabulary meanings, per sense | `vocabulary_senses` | same |
+| Sense label texts (colloquial, honorific…) | `sense_labels` | same; authored there |
 | Example sentences | `sentences` | re-download Tatoeba and rebuild |
 | Sentence translations | `sentence_translations` | same |
 | Grammar lessons | `grammar_lessons` | same; hand-authored and committed there |
